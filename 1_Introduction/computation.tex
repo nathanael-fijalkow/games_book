@@ -1,0 +1,88 @@
+\subsection*{The Random Access Machine model of computation}
+For complexity statements we consider the classical Turing model of computation.
+However for algorithmic results the Turing model is a bit painful and unnatural hence it is customary to use the Random Access Machine (RAM) model instead.
+Intuitively this corresponds to using a standard imperative programming language on a usual computer which can create, access, and update variables.
+There are variants of the RAM model; to be specific the one we use and describe here is called ``""word RAM""''.
+The main reason to use the RAM model is to make our life easier by hiding some small computational costs which are inessential for our purposes.
+
+\vskip1em
+The memory is arranged in ""machine words"" whose size is a parameter $w$ to be fixed depending on the problem.
+A machine word is a register which stores some information as a binary word of length $w$.
+The first key assumption of the RAM model is that \textit{memory can be accessed in constant time}.
+In other words, machine words are registers with a unique address and can be accessed either directly or indirectly.
+A concrete implication is that checking whether an element belongs to a set is a single operation (if each element of the set can be stored in a single machine word).
+
+\vskip1em
+We consider an (often implicit) set of basic operations operating on a constant number of machine words; 
+addition, multiplication, subtraction, division, and comparison of integers are typical examples.
+The second key assumption is the ``""unit cost model""'', it says that the time complexity (also called cost) of basic operations is constant.
+This convention implies that we can manipulate counters for small numbers with no additional complexity, this will be useful in many situations.
+
+We note that this is unrealistic as it means that for instance we can compute the number $2^{2^n}$ by repeatedly squaring $2$: the complexity is $O(n)$ but this number uses $O(2^n)$ bits hence cannot be generated in polynomial time using a Turing machine.
+We will not make use of such weaknesses in our algorithms.
+
+\vskip1em
+The size of an input is the number of machine words required to store it.
+The most common choice for the machine word size is $w = \log(s)$ where $s$ is the size of the input as we want to at least be able to store an integer $x$ of order $s$ in one machine word.
+However in situations in which there are numerical inputs, it is reasonable to assume that each input number fits into one machine word,
+leading to a potentially larger $w$.
+Note that an algorithm in the word RAM model with machine word size $w$ is allowed to use numbers that are larger than $2^w$, but such numbers should be split among several machine words.
+
+\vskip1em
+The time complexity is the number of steps performed by the machine, as a function of the input size, 
+and the space complexity is the maximal number of machine words used throughout the computation.
+
+\subsection*{Games representations in the RAM model}
+%For algorithmic manipulations, we typically assume that games are finite. 
+The important parameters for algorithms on games are $n$ the number of vertices and $m$ the number of edges.
+Note that our assumption that every vertex has an outgoing edge implies that $n \le m$.
+
+The machine word size is always at least $w = \log(m)$, so that both a vertex and an edge can be stored in one machine word.
+A graph is given by the list of vertices and the list of edges, which implies that its size is $O(n + m) = O(m)$.
+An algorithm can go through all vertices, all edges, or all "successors" or "predecessors" of a given vertex, 
+with no additional cost for the space complexity.
+
+An arena additionally specifies for each vertex which player controls the vertex, which is a boolean value also stored in one machine word.
+The representation of conditions and colouring functions is different for each and is discussed when introducing them.
+
+\subsection*{Polynomial versus strongly polynomial time algorithms}
+Let us consider a computational problem in which the input consists of a sequence of $N$ integers plus a number $n$ of other input bits.
+We write $L$ for the total number of bits needed to encode the input integer numbers. 
+We say that an algorithm runs in ""strongly polynomial time"" if: 
+\begin{itemize}
+	\item the number of arithmetic operations is bounded by a polynomial in the number of integers $N$ in the input instance; and
+	\item the space used by the algorithm is bounded by a polynomial in the size $L + n$ of the input.
+\end{itemize}
+An equivalent definition using the unit cost word RAM model is that the algorithm uses machine word size $w = L + \log(n)$
+and runs in polynomial time.
+
+\subsection*{Linear programming}
+We give here only the very essential definitions and results related to linear programming,
+and refer to~\cite{Bertsimas&Tsitsiklis:1997} for a reference book on the topic.
+
+A ""linear program"" (in canonical form) uses a set of real variables organised in a vector $x$ and is defined by
+\[
+\begin{array}{l}
+\text{maximise } c^T x \text{ subject to } \\
+A x \le b \text{ and } x \ge 0,
+\end{array}
+\]
+where $c$ and $b$ are rational vectors (with $c^T$ the transpose of $c$) and $A$ is a rational matrix. 
+More explicitly: 
+\[
+\begin{array}{l}
+\text{maximise } \sum_{j = 1}^n c_j x_j \text{ subject to } \\
+\forall i \in [1,m],\ \sum_{j = 1}^n A_{i,j} x_j \le b_i \\
+\forall j \in [1,n],\ x_j \ge 0.
+\end{array}
+\]
+Solving a linear program is finding an optimal assignment $x^*$ of the variables.
+
+\begin{theorem}
+There exists a polynomial time algorithm for solving linear programs.
+\end{theorem}
+We define here linear programs with a maximising objective. 
+The same problem with minimising $c^T x$ can be easily shown to be equivalent.
+
+The statement above says that there exists a weakly polynomial time algorithm; whether there exists a strongly polynomial algorithm for linear programming is a long standing open question.
+

@@ -1,0 +1,813 @@
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple &#8212; Games on graphs</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"set": ["\\left\\{ #1 \\right\\}", 1], "Z": "\\mathbb{Z}", "Q": "\\mathbb{Q}", "R": "\\mathbb{R}", "Rinfty": "\\R \\cup \\set{\\infty}", "ing": "\\text{In}", "Ing": "\\ing", "out": "\\text{Out}", "Out": "\\out", "first": "\\text{first}", "last": "\\text{last}", "Paths": "\\text{Paths}", "play": "\\pi", "arena": "\\mathcal{A}", "Arena": "\\arena", "col": "\\textsf{col}", "Col": "\\col", "game": "\\mathcal{G}", "Game": "\\game", "Eve": "\\mathrm{Eve}", "Adam": "\\mathrm{Adam}", "VE": "V_\\Eve", "VA": "V_\\Adam", "VR": "V_\\mathrm{Random}", "WE": "W_\\Eve", "WA": "W_\\Adam", "Value": "val", "val": "\\Value", "ValueE": "\\Value_\\Eve", "ValueA": "\\Value_\\Adam"}}, "tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Content in Jupyter Book" href="content.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Games on graphs</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="#">
+   Simple
+  </a>
+ </li>
+</ul>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="content.html">
+   Content in Jupyter Book
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/intro.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#players">
+   Players
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#graphs">
+   Graphs
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#arenas">
+   Arenas
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#playing">
+   Playing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#strategies">
+   Strategies
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conditions">
+   Conditions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#objectives">
+   Objectives
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#games">
+   Games
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#winning-in-qualitative-games">
+   Winning in qualitative games
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   Winning in qualitative games
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#computational-problems-for-qualitative-games">
+   Computational problems for qualitative games
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#values-in-quantitative-games">
+   Values in quantitative games
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#computational-problems-for-quantitative-games">
+   Computational problems for quantitative games
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#prefix-independent-objectives">
+   Prefix independent objectives
+  </a>
+ </li>
+</ul>
+
+        </nav>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="simple">
+<span id="sec-simple"></span><h1>Simple<a class="headerlink" href="#simple" title="Permalink to this headline">¶</a></h1>
+<p>The first model we define is the common denominator of most models studied in this book:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(2\)</span>-player,</p></li>
+<li><p>zero sum,</p></li>
+<li><p>turn based,</p></li>
+<li><p>perfect information
+game.</p></li>
+</ul>
+<div class="section" id="players">
+<span id="subsec-players"></span><h2>Players<a class="headerlink" href="#players" title="Permalink to this headline">¶</a></h2>
+<p>The term <em><span class="math notranslate nohighlight">\(2\)</span>-player</em> means that there are two players, Eve and Adam. Many, many different names
+have been used: Player <span class="math notranslate nohighlight">\(0\)</span> and Player <span class="math notranslate nohighlight">\(1\)</span>, Player I and Player II as in
+descriptive complexity, Éloïse and Abélard, Circle and Square,
+corresponding to the graphical representation, Even and Odd, mostly for
+parity objectives, Player and Opponent, Pathfinder and Verifier in the
+context of automata, Max and Min, which makes sense for quantitative
+objectives, and this is only a very partial list of names they have been
+given. In the names Eve and Adam, the first letters refer to <span class="math notranslate nohighlight">\(\exists\)</span>
+and <span class="math notranslate nohighlight">\(\forall\)</span> suggesting a duality between them. We will make use of
+their gender to distinguish between them, so we speak of her or his
+strategy.</p>
+<p>We speak of 1-player games when there is only one player. In the
+context of stochastic games, we refer to random as a third player, and
+more precisely as half a player. Hence a 2 1/2-player game is a
+stochastic game with two players, and a 1 1/2-player game is a
+stochastic game with one player.</p>
+<p>The situation where there are more than two players is called
+multiplayer games.</p>
+</div>
+<div class="section" id="graphs">
+<span id="subsec-graphs"></span><h2>Graphs<a class="headerlink" href="#graphs" title="Permalink to this headline">¶</a></h2>
+<p>A (directed) graph is given by a
+set <span class="math notranslate nohighlight">\(V\)</span> of vertices and a set <span class="math notranslate nohighlight">\(E \subseteq V \times V\)</span> of edges. For an
+edge <span class="math notranslate nohighlight">\(e = (v,v')\)</span> we write <span class="math notranslate nohighlight">\(\ing(e)\)</span> for the incoming
+vertex <span class="math notranslate nohighlight">\(v\)</span> and <span class="math notranslate nohighlight">\(\out(e)\)</span> for the outgoing vertex <span class="math notranslate nohighlight">\(v'\)</span>: we
+say that <span class="math notranslate nohighlight">\(e\)</span> is an outgoing edge of <span class="math notranslate nohighlight">\(v\)</span> and an incoming
+edge to <span class="math notranslate nohighlight">\(v'\)</span>.</p>
+<p>A path <span class="math notranslate nohighlight">\(\pi = v_0 v_1 \cdots\)</span> is a non empty finite or infinite
+sequence of consecutive vertices: for all <span class="math notranslate nohighlight">\(i\)</span> we have
+<span class="math notranslate nohighlight">\((v_i,v_{i+1}) \in E\)</span>. We let <span class="math notranslate nohighlight">\(\first(\pi)\)</span> denote the first vertex
+occurring in <span class="math notranslate nohighlight">\(\pi\)</span> and <span class="math notranslate nohighlight">\(\last(\pi)\)</span> the last one if <span class="math notranslate nohighlight">\(\pi\)</span> is finite. We
+say that <span class="math notranslate nohighlight">\(\pi\)</span> starts from <span class="math notranslate nohighlight">\(\first(\pi)\)</span> and if <span class="math notranslate nohighlight">\(\pi\)</span> is finite
+<span class="math notranslate nohighlight">\(\pi\)</span> ends in <span class="math notranslate nohighlight">\(\last(\pi)\)</span>. We sometimes talk of a path and let
+the context determine whether it is finite or infinite.</p>
+<p>We let <span class="math notranslate nohighlight">\(\Paths(G) \subseteq V^+\)</span> denote the set of finite paths in the
+graph <span class="math notranslate nohighlight">\(G\)</span>, sometimes omitting <span class="math notranslate nohighlight">\(G\)</span> when clear from the context. To
+restrict to paths starting from <span class="math notranslate nohighlight">\(v\)</span> we write <span class="math notranslate nohighlight">\(\Paths(G,v)\)</span>. The set of
+infinite paths is <span class="math notranslate nohighlight">\(\Paths_\omega(G) \subseteq V^\omega\)</span>, and
+<span class="math notranslate nohighlight">\(\Paths_\omega(G,v)\)</span> for those starting from <span class="math notranslate nohighlight">\(v\)</span>.</p>
+<p>We use the standard terminology of graphs: for instance a vertex <span class="math notranslate nohighlight">\(v'\)</span> is
+a successor of <span class="math notranslate nohighlight">\(v\)</span> if <span class="math notranslate nohighlight">\((v,v') \in E\)</span>, and then <span class="math notranslate nohighlight">\(v\)</span> is a
+predecessor of <span class="math notranslate nohighlight">\(v'\)</span>, a vertex <span class="math notranslate nohighlight">\(v'\)</span> is reachable from <span class="math notranslate nohighlight">\(v\)</span>
+if there exists a path starting from <span class="math notranslate nohighlight">\(v\)</span> and ending in <span class="math notranslate nohighlight">\(v'\)</span>, the
+outdegree of a vertex is its number of outgoing edges, the
+indegree is its number of incoming edges, a simple path
+is a path with no repetitions of vertices, a cycle is a path
+whose first and last vertex coincide, it is a simple cycle if it
+does not strictly contain another cycle, a self loop is an edge
+from a vertex to itself, and a sink is a vertex with only a self
+loop as outgoing edge.</p>
+</div>
+<div class="section" id="arenas">
+<span id="subsec-arenas"></span><h2>Arenas<a class="headerlink" href="#arenas" title="Permalink to this headline">¶</a></h2>
+<p>The arena is the place where the game is played, they have also
+been called game structures or game graphs.</p>
+<p>In the turn based setting we define here, the set of vertices is divided
+into vertices controlled by each player. Since we are for now interested
+in <em><span class="math notranslate nohighlight">\(2\)</span>-player</em> games, we have <span class="math notranslate nohighlight">\(V = \VE \uplus \VA\)</span>, where <span class="math notranslate nohighlight">\(\VE\)</span> is the
+set of vertices controlled by Eve and <span class="math notranslate nohighlight">\(\VA\)</span> the set of vertices
+controlled by Adam. We represent vertices in <span class="math notranslate nohighlight">\(\VE\)</span> by circles, and
+vertices in <span class="math notranslate nohighlight">\(\VA\)</span> by squares, and also say that <span class="math notranslate nohighlight">\(v \in \VE\)</span> belongs to
+Eve, or that Eve owns or controls <span class="math notranslate nohighlight">\(v\)</span>, and similarly for Adam. An arena
+is given by a graph and the sets <span class="math notranslate nohighlight">\(\VE\)</span> and <span class="math notranslate nohighlight">\(\VA\)</span>. In the context of
+games, vertices are often referred to as positions.</p>
+<p>The adjective “<em>finite</em>” means that the arena is finite, <em>i.e.</em>
+there are finitely many vertices (hence finitely many edges). We oppose
+“<em>deterministic</em>” to “<em>stochastic</em>”: in the first definition we are
+giving here, there is no stochastic aspect in the game. An important
+assumption, called “<em>perfect information</em>”, says that the players see
+everything about how the game is played out, in particular they see the
+other player’s moves.</p>
+<p>Our definition of an arena does not include the initial vertex.</p>
+<p>We assume that all vertices have an outgoing edge. This is for technical
+convenience, as it implies that we do not need to explain what happens
+when a play cannot be prolonged.</p>
+</div>
+<div class="section" id="playing">
+<span id="subsec-playing"></span><h2>Playing<a class="headerlink" href="#playing" title="Permalink to this headline">¶</a></h2>
+<p>The interaction between the two players consists in moving a token on
+the vertices of the arena. The token is initially on some vertex. When
+the token is in some vertex <span class="math notranslate nohighlight">\(v\)</span>, the player who controls the vertex
+chooses an outgoing edge <span class="math notranslate nohighlight">\(e\)</span> of <span class="math notranslate nohighlight">\(v\)</span> and pushes the token along this edge
+to the next vertex <span class="math notranslate nohighlight">\(\out(e) = v'\)</span>. The outcome of this interaction is
+the sequence of vertices traversed by the token: it is a path. In the
+context of games a path is also called a play and as for paths
+usually written <span class="math notranslate nohighlight">\(\play\)</span>. We note that plays can be finite (but non
+empty) or infinite.</p>
+</div>
+<div class="section" id="strategies">
+<span id="subsec-strategies"></span><h2>Strategies<a class="headerlink" href="#strategies" title="Permalink to this headline">¶</a></h2>
+<p>The most important notion in this book is that of <em>strategies</em>
+(sometimes called policies). A strategy for a player is a full
+description of his or her moves in all situations. Formally, a
+strategy is a function mapping finite plays to edges:</p>
+<div class="math notranslate nohighlight">
+\[\sigma : \Paths \to E.\]</div>
+<p>We use <span class="math notranslate nohighlight">\(\sigma\)</span> for strategies of Eve and <span class="math notranslate nohighlight">\(\tau\)</span> for strategies of Adam
+so when considering a strategy <span class="math notranslate nohighlight">\(\sigma\)</span> it is implicitly for Eve,
+and similarly <span class="math notranslate nohighlight">\(\tau\)</span> is implicitly a strategy for Adam.</p>
+<p>We say that a play <span class="math notranslate nohighlight">\(\play = v_0 v_1 \dots\)</span> is consistent with a strategy
+<span class="math notranslate nohighlight">\(\sigma\)</span> of Eve if for all <span class="math notranslate nohighlight">\(i\)</span> such that <span class="math notranslate nohighlight">\(v_i \in \VE\)</span> we have
+<span class="math notranslate nohighlight">\(\sigma(\play_{\le i}) = (v_i,v_{i+1})\)</span>. The definition is easily
+adapted for strategies of Adam.</p>
+<p>Once an initial vertex <span class="math notranslate nohighlight">\(v\)</span> and two strategies <span class="math notranslate nohighlight">\(\sigma\)</span> and <span class="math notranslate nohighlight">\(\tau\)</span> have
+been fixed, there exists a unique infinite play starting from <span class="math notranslate nohighlight">\(v\)</span> and
+consistent with both strategies written <span class="math notranslate nohighlight">\(\pi^{v}_{\sigma,\tau}\)</span>. Note
+that the fact that it is infinite follows from our assumption that all
+vertices have an outgoing edge.</p>
+</div>
+<div class="section" id="conditions">
+<span id="subsec-conditions"></span><h2>Conditions<a class="headerlink" href="#conditions" title="Permalink to this headline">¶</a></h2>
+<p>The last ingredient to wrap up the definitions is (winning)
+conditions, which is what Eve wants to achieve. There are two
+types of conditions: the <em>qualitative</em>, or Boolean ones, and the
+<em>quantitative</em> ones.</p>
+<p>A qualitative condition is <span class="math notranslate nohighlight">\(W \subseteq \Paths_\omega\)</span>: it
+separates winning from losing plays, in other words a play which belongs
+to <span class="math notranslate nohighlight">\(W\)</span> is winning and otherwise it is losing. We also say that the play
+satisfies <span class="math notranslate nohighlight">\(W\)</span>. In the zero sum context a play which is losing for Eve is
+winning for Adam, so Adam’s condition is <span class="math notranslate nohighlight">\(\Paths_\omega \setminus W\)</span>.</p>
+<p>A quantitative condition is <span class="math notranslate nohighlight">\(f : \Paths_\omega \to \Rinfty\)</span>: it
+assigns a real value (or plus or minus infinity) to a play, which can be
+thought of as a payoff or a score. In the zero sum context Eve wants to
+maximise while Adam wants to minimise the outcome.</p>
+<p>Often we define <span class="math notranslate nohighlight">\(W\)</span> as a subset of <span class="math notranslate nohighlight">\(V^\omega\)</span> and <span class="math notranslate nohighlight">\(f\)</span> as
+<span class="math notranslate nohighlight">\(f : V^\omega \to \Rinfty\)</span>, since <span class="math notranslate nohighlight">\(\Paths_\omega\)</span> is included in
+<span class="math notranslate nohighlight">\(V^\omega\)</span>.</p>
+</div>
+<div class="section" id="objectives">
+<span id="subsec-objectives"></span><h2>Objectives<a class="headerlink" href="#objectives" title="Permalink to this headline">¶</a></h2>
+<p>To reason about classes of games with the same conditions, we introduce
+the notions of objectives and colouring functions. An objective
+and a colouring function together induce a condition. The main point is
+that <em>objectives are independent of the arenas</em>, so we can speak of the
+class of conditions induced by a given objective, and by extension a
+class of games induced by a given objective, for instance parity games.</p>
+<p>We fix a set <span class="math notranslate nohighlight">\(C\)</span> of colours. A qualitative objective is
+<span class="math notranslate nohighlight">\(\Omega \subseteq C^\omega\)</span>, and a quantitative objective is a
+function <span class="math notranslate nohighlight">\(\Phi : C^\omega \to \Rinfty\)</span>.</p>
+<p>The link between an arena and an objective is given by a colouring
+function <span class="math notranslate nohighlight">\(\col : V \to C\)</span> labelling vertices of the graph by
+colours. We extend <span class="math notranslate nohighlight">\(\col\)</span> componentwise to induce
+<span class="math notranslate nohighlight">\(\col : \Paths_\omega \to C^\omega\)</span> mapping plays to sequences of
+colours:
+<span class="math notranslate nohighlight">\(\col(v_0 v_1 \dots) = \col(v_0)\ \col(v_1) \dots\)</span></p>
+<p>A qualitative objective <span class="math notranslate nohighlight">\(\Omega\)</span> and a colouring function <span class="math notranslate nohighlight">\(\col\)</span> induce a
+qualitative condition <span class="math notranslate nohighlight">\(\Omega[\col]\)</span> defined by:</p>
+<div class="math notranslate nohighlight">
+\[\Omega[\col] = \set{\play \in \Paths_\omega : \col(\play) \in \Omega}.\]</div>
+<p>When <span class="math notranslate nohighlight">\(\col\)</span> is clear from the context we sometimes say that a play
+<span class="math notranslate nohighlight">\(\play\)</span> satisfies <span class="math notranslate nohighlight">\(\Omega\)</span> but the intended meaning is that <span class="math notranslate nohighlight">\(\play\)</span>
+satisfies <span class="math notranslate nohighlight">\(\Omega[\col]\)</span>, equivalently that <span class="math notranslate nohighlight">\(\col(\play) \in \Omega\)</span>.</p>
+<p>Similarly, a quantitative objective <span class="math notranslate nohighlight">\(\Phi : C^\omega \to \Rinfty\)</span> and a
+colouring function <span class="math notranslate nohighlight">\(\col\)</span> induce a quantitative condition
+<span class="math notranslate nohighlight">\(\Phi[\col] : \Paths_\omega \to \Rinfty\)</span> defined by:</p>
+<div class="math notranslate nohighlight">
+\[\Phi[\col](\play) = \Phi(\col(\play)).\]</div>
+<p>In our definition the colouring function labels vertices. Another more
+general definition would label edges, and yet another relaxation would
+be to allow partial functions, meaning that some vertices (or edges) are
+not labelled by a colour. In most cases the variants are all (in some
+sense) equivalent; whenever we use a different definition we will make
+it explicit by referring for instance to edge colouring functions or
+partial colouring functions.</p>
+</div>
+<div class="section" id="games">
+<span id="subsec-games"></span><h2>Games<a class="headerlink" href="#games" title="Permalink to this headline">¶</a></h2>
+<p>We can now give the following definitions.</p>
+<ul class="simple">
+<li><p>A graph is a tuple <span class="math notranslate nohighlight">\(G = (V,E)\)</span> where <span class="math notranslate nohighlight">\(V\)</span> is a set of vertices and <span class="math notranslate nohighlight">\(E\)</span> is a set of edges.</p></li>
+<li><p>An arena is a tuple <span class="math notranslate nohighlight">\(\arena = (G,\VE,\VA)\)</span> where <span class="math notranslate nohighlight">\(G\)</span> is a graph over the set of vertices <span class="math notranslate nohighlight">\(V\)</span> and <span class="math notranslate nohighlight">\(V = \VE \uplus \VA\)</span>.</p></li>
+<li><p>A colouring function is a function <span class="math notranslate nohighlight">\(\col : V \to C\)</span> where <span class="math notranslate nohighlight">\(C\)</span> is a set of colours.</p></li>
+<li><p>A qualitative condition is <span class="math notranslate nohighlight">\(W \subseteq \Paths_\omega\)</span>.</p></li>
+<li><p>A qualitative objective is a subset <span class="math notranslate nohighlight">\(\Omega \subseteq C^\omega\)</span>. A colouring function <span class="math notranslate nohighlight">\(\col\)</span> and a qualitative objective <span class="math notranslate nohighlight">\(\Omega\)</span> induce a qualitative condition <span class="math notranslate nohighlight">\(\Omega[\col]\)</span>.</p></li>
+<li><p>A qualitative game <span class="math notranslate nohighlight">\(\game\)</span> is a tuple <span class="math notranslate nohighlight">\((\arena,W)\)</span> where <span class="math notranslate nohighlight">\(\arena\)</span> is an arena and <span class="math notranslate nohighlight">\(W\)</span> a qualitative condition.</p></li>
+<li><p>A quantitative condition is <span class="math notranslate nohighlight">\(f : \Paths_\omega \to \Rinfty\)</span>.</p></li>
+<li><p>A quantitative objective <span class="math notranslate nohighlight">\(\Phi\)</span> is a function <span class="math notranslate nohighlight">\(\Phi : C^\omega \to \Rinfty\)</span>. A colouring function <span class="math notranslate nohighlight">\(\col\)</span> and a quantitative objective <span class="math notranslate nohighlight">\(\Phi\)</span> induce a quantitative condition <span class="math notranslate nohighlight">\(\Phi[\col]\)</span>.</p></li>
+<li><p>A quantitative game <span class="math notranslate nohighlight">\(\game\)</span> is a tuple <span class="math notranslate nohighlight">\((\arena,f)\)</span> where <span class="math notranslate nohighlight">\(\arena\)</span> is an arena and <span class="math notranslate nohighlight">\(f\)</span> a quantitative condition.</p></li>
+</ul>
+<p>To be specific, the definition above is for <span class="math notranslate nohighlight">\(2\)</span>-player zero sum turn
+based perfect information games. As a convention we use the condition to
+qualify games, so for instance “parity games” are games equipped with a
+parity condition. This extends to graphs: we speak of a “graph with
+condition <span class="math notranslate nohighlight">\(W\)</span>” for a graph equipped with a condition <span class="math notranslate nohighlight">\(W\)</span>, and for
+instance a “mean payoff graph” if <span class="math notranslate nohighlight">\(W\)</span> is a mean payoff condition.</p>
+<p>We often introduce notations implicitly: for instance when we introduce
+a qualitative game <span class="math notranslate nohighlight">\(\Game\)</span> without specifying the arena and the
+condition, it is understood that the arena is <span class="math notranslate nohighlight">\(\arena\)</span> and the condition
+<span class="math notranslate nohighlight">\(W\)</span>.</p>
+<p>We always implicitly take the point of view of Eve. Since we consider
+zero sum games we can easily reverse the point of view by considering
+the qualitative game <span class="math notranslate nohighlight">\((\arena,\Paths_\omega \setminus W)\)</span> and the
+qualitative game <span class="math notranslate nohighlight">\((\arena,-f)\)</span>. Indeed for the latter Adam wants to
+minimise <span class="math notranslate nohighlight">\(f\)</span>, which is equivalent to maximising <span class="math notranslate nohighlight">\(-f\)</span>. The term zero sum
+comes from this: the total outcome for the two players is <span class="math notranslate nohighlight">\(f + (-f)\)</span>,
+meaning zero.</p>
+<p>Unless otherwise stated we assume that graphs are finite, meaning that
+there are finitely many vertices (hence finitely many edges). We
+equivalently say that the arena or the game is finite. will study games
+over infinite graphs.</p>
+</div>
+<div class="section" id="winning-in-qualitative-games">
+<span id="subsec-qualitative-games"></span><h2>Winning in qualitative games<a class="headerlink" href="#winning-in-qualitative-games" title="Permalink to this headline">¶</a></h2>
+<p>Now that we have the definitions of a game we can ask the main question:
+given a game <span class="math notranslate nohighlight">\(\game\)</span> and a vertex <span class="math notranslate nohighlight">\(v\)</span>, who wins <span class="math notranslate nohighlight">\(\game\)</span> from <span class="math notranslate nohighlight">\(v\)</span>?</p>
+<p>Let <span class="math notranslate nohighlight">\(\game\)</span> be a qualitative game and <span class="math notranslate nohighlight">\(v\)</span> a vertex. A strategy <span class="math notranslate nohighlight">\(\sigma\)</span>
+for Eve is called winning from <span class="math notranslate nohighlight">\(v\)</span> if every play starting from
+<span class="math notranslate nohighlight">\(v\)</span> consistent with <span class="math notranslate nohighlight">\(\sigma\)</span> is winning, <em>i.e.</em> satisfies <span class="math notranslate nohighlight">\(W\)</span>. Another
+common terminology is that <span class="math notranslate nohighlight">\(\sigma\)</span> ensures <span class="math notranslate nohighlight">\(W\)</span>. In that case we say
+that Eve has a winning strategy from <span class="math notranslate nohighlight">\(v\)</span> in <span class="math notranslate nohighlight">\(\game\)</span>, or equivalently
+that Eve wins <span class="math notranslate nohighlight">\(\game\)</span> from <span class="math notranslate nohighlight">\(v\)</span>. This vocabulary also applies to Adam:
+for instance a strategy <span class="math notranslate nohighlight">\(\tau\)</span> for Adam is called winning from
+<span class="math notranslate nohighlight">\(v\)</span> if every play starting from <span class="math notranslate nohighlight">\(v\)</span> consistent with <span class="math notranslate nohighlight">\(\tau\)</span> is losing,
+<em>i.e.</em> does not satisfy <span class="math notranslate nohighlight">\(W\)</span>.</p>
+<p>We let <span class="math notranslate nohighlight">\(\WE(\game)\)</span> denote the set of vertices <span class="math notranslate nohighlight">\(v\)</span> such that Eve wins
+<span class="math notranslate nohighlight">\(\game\)</span> from <span class="math notranslate nohighlight">\(v\)</span>, it is called winning region, or sometimes
+winning set. A vertex in <span class="math notranslate nohighlight">\(\WE(\game)\)</span> is said winning for Eve. The
+analogous notation for Adam is <span class="math notranslate nohighlight">\(\WA(\game)\)</span>.</p>
+<p>We say that a strategy is optimal if it is winning from all
+vertices in <span class="math notranslate nohighlight">\(\WE(\game)\)</span>.</p>
+</div>
+<div class="section" id="id1">
+<span id="id2"></span><h2>Winning in qualitative games<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<div class="admonition-lemma admonition">
+<p class="admonition-title">Lemma</p>
+<p>For all qualitative games <span class="math notranslate nohighlight">\(\game\)</span> we have
+<span class="math notranslate nohighlight">\(\WE(\game) \cap \WA(\game) = \emptyset\)</span>.</p>
+</div>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Proof</p>
+<p>Assume for the sake of contradiction that both players have a
+winning strategy from <span class="math notranslate nohighlight">\(v\)</span>, then <span class="math notranslate nohighlight">\(\pi^{v}_{\sigma,\tau}\)</span> would both
+satisfy <span class="math notranslate nohighlight">\(W\)</span> and not satisfy <span class="math notranslate nohighlight">\(W\)</span>, a contradiction.</p>
+</div>
+<p>It is however not clear that for every vertex <span class="math notranslate nohighlight">\(v\)</span>, <em>some</em> player has a
+winning strategy from <span class="math notranslate nohighlight">\(v\)</span>, which symbolically reads
+<span class="math notranslate nohighlight">\(\WE(\game) \cup \WA(\game) = V\)</span>. One might imagine that if Eve picks a
+strategy, then Adam can produce a counter strategy beating Eve’s
+strategy, and vice versa, if Adam picks a strategy, then Eve can come up
+with a strategy winning against Adam’s strategy. A typical example would
+be rock-paper-scissors (note that this is a concurrent game, meaning the
+two players play simultanously, hence it does not fit in the definitions
+given so far), where neither player has a winning strategy.</p>
+<p>Whenever <span class="math notranslate nohighlight">\(\WE(\game) \cup \WA(\game) = V\)</span>, we say that the game is
+determined. Being determined can be understood as follows: the
+outcome can be determined before playing assuming both players play
+optimally since one of them can ensure to win whatever is the strategy
+of the opponent.</p>
+<div class="admonition-theorem admonition" id="thm-borel-determinacy">
+<p class="admonition-title">Theorem</p>
+<p>Qualitative games with Borel conditions are determined.</p>
+</div>
+<p>The definition of Borel sets goes beyond the scope of this book. Suffice
+to say that all conditions studied in this book are (very simple)
+examples of Borel sets, implying that our qualitative games are all
+determined (as long as we consider perfect infomation and turn based
+games, the situation will change with more general models of games).</p>
+</div>
+<div class="section" id="computational-problems-for-qualitative-games">
+<span id="subsec-computational-problems-for-qualitative-games"></span><h2>Computational problems for qualitative games<a class="headerlink" href="#computational-problems-for-qualitative-games" title="Permalink to this headline">¶</a></h2>
+<p>We identify three computational problems. The first is that of
+solving a game, which is the simplest one and since it induces a
+decision problem, allows us to make complexity theoretic statements.</p>
+<p>For qualitative games, “solving the game” means solving the following
+decision problem:</p>
+<div class="admonition-solving-a-qualitative-game admonition">
+<p class="admonition-title">Solving a qualitative game</p>
+<p>A “qualitative game” <span class="math notranslate nohighlight">\(\game\)</span> and a vertex <span class="math notranslate nohighlight">\(v\)</span></p>
+<p>Does Eve win <span class="math notranslate nohighlight">\(\game\)</span> from <span class="math notranslate nohighlight">\(v\)</span>?</p>
+</div>
+<p>The second problem extends the previous one: most algorithms solve games
+for all vertices at once instead of only for the given initial vertex.
+This is called computing the winning regions.</p>
+<p>For qualitative games, “computing the winning regions” means solving the
+following computational task:</p>
+<p>The third problem is constructing a winning strategy.</p>
+<p>For qualitative games, “constructing a winning strategy” means solving
+the following computational task:</p>
+<p>We did not specify how the winning regions or the winning strategies are
+represented, this will depend on the types of games we consider.</p>
+</div>
+<div class="section" id="values-in-quantitative-games">
+<span id="subsec-values-in-quantitative-games"></span><h2>Values in quantitative games<a class="headerlink" href="#values-in-quantitative-games" title="Permalink to this headline">¶</a></h2>
+<p>Let <span class="math notranslate nohighlight">\(\game\)</span> be a quantitative game and <span class="math notranslate nohighlight">\(v\)</span> a vertex. Given <span class="math notranslate nohighlight">\(x \in \R\)</span>
+called a threshold, we say that a strategy <span class="math notranslate nohighlight">\(\sigma\)</span> for Eve
+ensures <span class="math notranslate nohighlight">\(x\)</span> from <span class="math notranslate nohighlight">\(v\)</span> if every play <span class="math notranslate nohighlight">\(\pi\)</span> starting from <span class="math notranslate nohighlight">\(v\)</span>
+consistent with <span class="math notranslate nohighlight">\(\sigma\)</span> has value at least <span class="math notranslate nohighlight">\(x\)</span> under <span class="math notranslate nohighlight">\(f\)</span>, <em>i.e.</em>
+<span class="math notranslate nohighlight">\(f(\play) \ge x\)</span>. In that case we say that Eve has a strategy ensuring
+<span class="math notranslate nohighlight">\(x\)</span> in <span class="math notranslate nohighlight">\(\game\)</span> from <span class="math notranslate nohighlight">\(v\)</span>.</p>
+<p>Note that by doing so we are actually considering a qualitative game in
+disguise, where the qualitative condition is the set of plays having
+value at least <span class="math notranslate nohighlight">\(x\)</span> under <span class="math notranslate nohighlight">\(f\)</span>. Formally, a quantitative condition <span class="math notranslate nohighlight">\(f\)</span> and
+a threshold <span class="math notranslate nohighlight">\(x\)</span> induce a qualitative condition</p>
+<div class="math notranslate nohighlight">
+\[f_{\ge x} = \set{\play \in \Paths_\omega \mid f(\play) \ge x}.\]</div>
+<p>Analogously, we say that a strategy <span class="math notranslate nohighlight">\(\tau\)</span> for Adam ensures <span class="math notranslate nohighlight">\(x\)</span>
+from <span class="math notranslate nohighlight">\(v\)</span> if every play <span class="math notranslate nohighlight">\(\play\)</span> starting from <span class="math notranslate nohighlight">\(v\)</span> consistent with <span class="math notranslate nohighlight">\(\tau\)</span>
+has value at most <span class="math notranslate nohighlight">\(x\)</span> under <span class="math notranslate nohighlight">\(f\)</span>, <em>i.e.</em> <span class="math notranslate nohighlight">\(f(\play) \le x\)</span>.</p>
+<p>We let <span class="math notranslate nohighlight">\(\ValueE^{\game}(v)\)</span> denote the quantity</p>
+<div class="math notranslate nohighlight">
+\[\sup_{\sigma} \inf_{\tau} f(\play_{\sigma,\tau}^{v}),\]</div>
+<p>where <span class="math notranslate nohighlight">\(\sigma\)</span> ranges over all strategies of Eve and <span class="math notranslate nohighlight">\(\tau\)</span> over all strategies of Adam. We also write
+<span class="math notranslate nohighlight">\(\ValueE^{\sigma}(v) = \inf_{\tau} f(\play_{\sigma,\tau}^{v})\)</span> so that
+<span class="math notranslate nohighlight">\(\ValueE^{\game}(v) = \sup_{\sigma} \ValueE^\sigma(v)\)</span>. This is called
+the value of Eve in the game <span class="math notranslate nohighlight">\(\game\)</span> from <span class="math notranslate nohighlight">\(v\)</span>, and represents the best
+outcome that she can ensure against any strategy of Adam. Note that
+<span class="math notranslate nohighlight">\(\ValueE^{\game}(v)\)</span> is either a real number, <span class="math notranslate nohighlight">\(\infty\)</span>, or <span class="math notranslate nohighlight">\(-\infty\)</span>.</p>
+<p>A strategy <span class="math notranslate nohighlight">\(\sigma\)</span> such that <span class="math notranslate nohighlight">\(\ValueE^\sigma(v) = \ValueE^{\game}(v)\)</span>
+is called optimal from <span class="math notranslate nohighlight">\(v\)</span>, and it is simply optimal if the
+equality holds for all vertices. Equivalently, <span class="math notranslate nohighlight">\(\sigma\)</span> is optimal from
+<span class="math notranslate nohighlight">\(v\)</span> if for every play <span class="math notranslate nohighlight">\(\play\)</span> consistent with <span class="math notranslate nohighlight">\(\sigma\)</span> starting from <span class="math notranslate nohighlight">\(v\)</span>
+we have <span class="math notranslate nohighlight">\(f(\play) \ge \ValueE^{\game}(v)\)</span>.</p>
+<p>There may not exist optimal strategies which is why we introduce the
+following notion. For <span class="math notranslate nohighlight">\(\varepsilon &gt; 0\)</span>, a strategy <span class="math notranslate nohighlight">\(\sigma\)</span> such that
+<span class="math notranslate nohighlight">\(\ValueE^\sigma(v) \ge \ValueE^{\game}(v) - \varepsilon\)</span> is called
+<span class="math notranslate nohighlight">\(\varepsilon\)</span>-optimal. If <span class="math notranslate nohighlight">\(\ValueE^{\game}(v)\)</span> is finite there
+exist <span class="math notranslate nohighlight">\(\varepsilon\)</span>-optimal strategies for any <span class="math notranslate nohighlight">\(\varepsilon &gt; 0\)</span>.</p>
+<p>Symmetrically, we let <span class="math notranslate nohighlight">\(\ValueA^{\game}(v)\)</span> denote</p>
+<div class="math notranslate nohighlight">
+\[\inf_{\tau} \sup_{\sigma} f(\play_{\sigma,\tau}^{v}).\]</div>
+<div class="admonition-lemma admonition">
+<p class="admonition-title">Lemma</p>
+<p>For all quantitative games <span class="math notranslate nohighlight">\(\game\)</span> and vertex <span class="math notranslate nohighlight">\(v\)</span> we have
+<span class="math notranslate nohighlight">\(\ValueE^{\game}(v) \le \ValueA^{\game}(v)\)</span>.</p>
+</div>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Proof</p>
+<p>For any function <span class="math notranslate nohighlight">\(F : X \times Y \to \Rinfty\)</span>, we have</p>
+<div class="math notranslate nohighlight">
+\[\sup_{x \in X} \inf_{y \in Y} F(x,y) \le \inf_{y \in Y} \sup_{x \in X} F(x,y).\]</div>
+</div>
+<p>If this inequality is an equality, we say that the game <span class="math notranslate nohighlight">\(\game\)</span> is
+<em>determined</em> in <span class="math notranslate nohighlight">\(v\)</span>, and let <span class="math notranslate nohighlight">\(\Value^{\game}(v)\)</span> denote the value in the
+game <span class="math notranslate nohighlight">\(\game\)</span> from <span class="math notranslate nohighlight">\(v\)</span> and <span class="math notranslate nohighlight">\(\Value^\sigma(v)\)</span> for
+<span class="math notranslate nohighlight">\(\inf_{\tau} f(\play_{\sigma,\tau}^{v})\)</span>. Similarly as for the
+qualitative case, being determined can be understood as follows: the
+outcome can be determined before playing assuming both players play
+optimally, and in that case the outcome is the value.</p>
+<p>We say that a quantitative objective <span class="math notranslate nohighlight">\(f : C^\omega \to \Rinfty\)</span> is Borel
+if for all <span class="math notranslate nohighlight">\(x \in \R\)</span>, the qualitative objective
+<span class="math notranslate nohighlight">\(f_{\ge x} \subseteq C^\omega\)</span> is a Borel set.</p>
+<div class="admonition-theorem admonition" id="cor-borel-determinacy">
+<p class="admonition-title">Theorem</p>
+<p>Quantitative games with Borel
+conditions are determined, meaning that for all quantitative games
+<span class="math notranslate nohighlight">\(\game\)</span> we have <span class="math notranslate nohighlight">\(\ValueE^{\game} = \ValueA^{\game}\)</span>.</p>
+</div>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Proof</p>
+<p>If <span class="math notranslate nohighlight">\(\ValueE^{\game}(v) = \infty\)</span> then thanks to the inequality
+above <span class="math notranslate nohighlight">\(\ValueA^{\game}(v) = \infty\)</span> and the equality holds. Assume
+<span class="math notranslate nohighlight">\(\ValueE^{\game}(v) = -\infty\)</span> and let <span class="math notranslate nohighlight">\(r\)</span> be a real number. (The
+argument is actually the same as for the finite case but for the sake of
+clarity we treat them independently.) We consider <span class="math notranslate nohighlight">\(f_{\ge r}\)</span>. By
+definition, this a qualitative Borel condition, so implies that it is
+determined. Since Eve cannot have a winning strategy for <span class="math notranslate nohighlight">\(f_{\ge r}\)</span>, as
+this would contradict the definition of <span class="math notranslate nohighlight">\(\ValueE^{\game}(v)\)</span>, this
+implies that Adam has a winning strategy for <span class="math notranslate nohighlight">\(f_{\ge r}\)</span>, meaning a
+strategy <span class="math notranslate nohighlight">\(\tau\)</span> such that every play <span class="math notranslate nohighlight">\(\play\)</span> starting from <span class="math notranslate nohighlight">\(v\)</span>
+consistent with <span class="math notranslate nohighlight">\(\tau\)</span> satisfy <span class="math notranslate nohighlight">\(f(\play) \&lt; r\)</span>.
+In other words, <span class="math notranslate nohighlight">\(\ValueA^{\tau}(v) = \sup_{\sigma} f(\play_{\sigma,\tau}^{v}) \le r\)</span>,
+which implies that <span class="math notranslate nohighlight">\(\ValueA^{\game}(v) \le r\)</span>. Since this is true for
+any real number <span class="math notranslate nohighlight">\(r\)</span>, this implies <span class="math notranslate nohighlight">\(\ValueA^{\game}(v) = -\infty\)</span>.</p>
+<p>Let us now assume that <span class="math notranslate nohighlight">\(x = \ValueE^{\game}(v)\)</span> is finite and let
+<span class="math notranslate nohighlight">\(\varepsilon &gt; 0\)</span>. We consider <span class="math notranslate nohighlight">\(f_{\ge x + \varepsilon}\)</span>. By definition,
+this a qualitative Borel condition, so implies that it is determined.
+Since Eve cannot have a winning strategy for <span class="math notranslate nohighlight">\(f_{\ge x + \varepsilon}\)</span>,
+as this would contradict the definition of <span class="math notranslate nohighlight">\(\ValueE^{\game}(v)\)</span>, this
+implies that Adam has a winning strategy for <span class="math notranslate nohighlight">\(f_{\ge x + \varepsilon}\)</span>,
+meaning a strategy <span class="math notranslate nohighlight">\(\tau\)</span> such that every play <span class="math notranslate nohighlight">\(\play\)</span> starting from <span class="math notranslate nohighlight">\(v\)</span>
+consistent with <span class="math notranslate nohighlight">\(\tau\)</span> satisfy <span class="math notranslate nohighlight">\(f(\play) &lt; x + \varepsilon\)</span>. In other
+words,
+<span class="math notranslate nohighlight">\(\ValueA^{\tau}(v) = \sup_{\sigma} f(\play_{\sigma,\tau}^{v}) \le x + \varepsilon\)</span>,
+which implies that <span class="math notranslate nohighlight">\(\ValueA^{\game}(v) \le x + \varepsilon\)</span>. Since this
+is true for any <span class="math notranslate nohighlight">\(\varepsilon &gt; 0\)</span>, this implies
+<span class="math notranslate nohighlight">\(\ValueA^{\game}(v) \le \ValueE^{\game}(v)\)</span>. As we have seen the
+converse inequality holds, implying the equality.</p>
+</div>
+<p>Note that this determinacy result does not imply the existence of
+optimal strategies.</p>
+</div>
+<div class="section" id="computational-problems-for-quantitative-games">
+<span id="subsec-computational-problems-for-quantitative-games"></span><h2>Computational problems for quantitative games<a class="headerlink" href="#computational-problems-for-quantitative-games" title="Permalink to this headline">¶</a></h2>
+<p>As for qualitative games, we identify different computational problems.
+The first is solving the game.</p>
+<p>For quantitative games, “solving the game” means solving the following
+decision problem:</p>
+<div class="admonition-decision-problem admonition">
+<p class="admonition-title">Decision problem</p>
+<p>A “qualitative game” <span class="math notranslate nohighlight">\(\game\)</span> and a vertex <span class="math notranslate nohighlight">\(v\)</span></p>
+<p>Does Eve win <span class="math notranslate nohighlight">\(\game\)</span> from <span class="math notranslate nohighlight">\(v\)</span>?</p>
+</div>
+<p>A very close problem is the value problem.</p>
+<div class="admonition-decision-problem admonition">
+<p class="admonition-title">Decision problem</p>
+<p>A “qualitative game” <span class="math notranslate nohighlight">\(\game\)</span> and a vertex <span class="math notranslate nohighlight">\(v\)</span></p>
+<p>Does Eve win <span class="math notranslate nohighlight">\(\game\)</span> from <span class="math notranslate nohighlight">\(v\)</span>?</p>
+</div>
+<p>For quantitative games, “solving the value problem” means solving the
+following decision problem:</p>
+<p>The two problems of solving a game and the value problem are not
+quite equivalent: they become equivalent if we assume the existence of
+optimal strategies.</p>
+<p>The value problem is directly related to computing the
+value.</p>
+<p>For quantitative games, “computing the value” means solving the
+following computational task:</p>
+<p>What computing the value means may become unclear if the value is
+not a rational number, making its representation complicated. Especially
+in this case, it may be enough to approximate the value, which is indeed
+what the value problem gives us: by repeatingly applying an
+algorithm solving the value problem one can approximate the value to any
+given precision, using a binary search.</p>
+<div class="admonition-lemma admonition">
+<p class="admonition-title">Lemma</p>
+<p>If there exists an algorithm <span class="math notranslate nohighlight">\(A\)</span> for solving the value problem of a
+class of games, then there exists an algorithm for approximating the
+value of games in this class within precision <span class="math notranslate nohighlight">\(\varepsilon\)</span> using
+<span class="math notranslate nohighlight">\(\log(\frac{1}{\varepsilon})\)</span> calls to the algorithm <span class="math notranslate nohighlight">\(A\)</span>.</p>
+</div>
+<p>The following problem is global, in the same way as computing the
+winning regions.</p>
+<p>For quantitative games, “computing the value function” means solving the
+following computational task:</p>
+<div class="admonition-decision-problem admonition">
+<p class="admonition-title">Decision problem</p>
+<p>A “qualitative game” <span class="math notranslate nohighlight">\(\game\)</span> and a vertex <span class="math notranslate nohighlight">\(v\)</span></p>
+<p>Does Eve win <span class="math notranslate nohighlight">\(\game\)</span> from <span class="math notranslate nohighlight">\(v\)</span>?</p>
+</div>
+<p>Finally, we are sometimes interested in constructing optimal strategies
+provided they exist.</p>
+<p>For quantitative games, “constructing an optimal strategy” means solving
+the following computational task:</p>
+<p>A close variant is to construct <span class="math notranslate nohighlight">\(\varepsilon\)</span>-optimal strategies,
+usually with <span class="math notranslate nohighlight">\(\varepsilon\)</span> given as input.</p>
+<p>(1-subsec:prefix-independent-objectives)</p>
+</div>
+<div class="section" id="prefix-independent-objectives">
+<h2>Prefix independent objectives<a class="headerlink" href="#prefix-independent-objectives" title="Permalink to this headline">¶</a></h2>
+<p>A qualitative objective <span class="math notranslate nohighlight">\(\Omega\)</span> is:</p>
+<ul class="simple">
+<li><p>closed under adding prefixes if for every finite sequence
+<span class="math notranslate nohighlight">\(\rho\)</span> and for every infinite sequence <span class="math notranslate nohighlight">\(\rho'\)</span>, if
+<span class="math notranslate nohighlight">\(\rho' \in \Omega\)</span> then <span class="math notranslate nohighlight">\(\rho \rho' \in \Omega\)</span>;</p></li>
+<li><p>closed under removing prefixes if for every finite sequence
+<span class="math notranslate nohighlight">\(\rho\)</span> and for every infinite sequence <span class="math notranslate nohighlight">\(\rho'\)</span>, if
+<span class="math notranslate nohighlight">\(\rho \rho' \in \Omega\)</span> then <span class="math notranslate nohighlight">\(\rho' \in \Omega\)</span>;</p></li>
+<li><p>prefix independent if it is closed under both adding and
+removing prefixes; in other words whether a sequence satisfies
+<span class="math notranslate nohighlight">\(\Omega\)</span> does not depend upon finite prefixes.</p></li>
+</ul>
+<p>Let <span class="math notranslate nohighlight">\(\play\)</span> be a finite play consistent with <span class="math notranslate nohighlight">\(\sigma\)</span>, we write
+<span class="math notranslate nohighlight">\(\sigma_{\mid \play}\)</span> for the strategy defined by</p>
+<div class="math notranslate nohighlight">
+\[\sigma_{\mid \play}(\play') = \sigma(\play \play').\]</div>
+<div class="admonition-fact admonition" id="fact-winning-prefix-independent-qualitative">
+<p class="admonition-title">Fact</p>
+<p>Let <span class="math notranslate nohighlight">\(\Game\)</span> be a qualitative game with objective <span class="math notranslate nohighlight">\(\Omega\)</span> closed under removing prefixes,
+<span class="math notranslate nohighlight">\(\sigma\)</span> a winning strategy from <span class="math notranslate nohighlight">\(v\)</span>, and <span class="math notranslate nohighlight">\(\play\)</span> a finite play
+consistent with <span class="math notranslate nohighlight">\(\sigma\)</span> starting from <span class="math notranslate nohighlight">\(v\)</span>. Then <span class="math notranslate nohighlight">\(\sigma_{\mid \play}\)</span>
+is winning from <span class="math notranslate nohighlight">\(v' = \last(\play)\)</span>.</p>
+</div>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Proof</p>
+<p>Let <span class="math notranslate nohighlight">\(\play'\)</span> be an infinite play consistent with
+<span class="math notranslate nohighlight">\(\sigma_{\mid \play}\)</span> from <span class="math notranslate nohighlight">\(v'\)</span>, then <span class="math notranslate nohighlight">\(\play \play'\)</span> is an infinite play
+consistent with <span class="math notranslate nohighlight">\(\sigma\)</span> starting from <span class="math notranslate nohighlight">\(v\)</span>, implying that it is winning,
+and since <span class="math notranslate nohighlight">\(\Omega\)</span> is closed under removing prefixes the play <span class="math notranslate nohighlight">\(\play'\)</span>
+is winning. Thus <span class="math notranslate nohighlight">\(\sigma_{\mid \play}\)</span> is winning from <span class="math notranslate nohighlight">\(v'\)</span>.</p>
+</div>
+<p>Let <span class="math notranslate nohighlight">\(\Game\)</span> be a qualitative game with objective <span class="math notranslate nohighlight">\(\Omega\)</span> closed under
+removing prefixes and <span class="math notranslate nohighlight">\(\sigma\)</span> a winning strategy from <span class="math notranslate nohighlight">\(v\)</span>. Then all
+vertices reachable from <span class="math notranslate nohighlight">\(v\)</span> by a play consistent with <span class="math notranslate nohighlight">\(\sigma\)</span> are
+winning.</p>
+<p>In other words, when playing a winning strategy the play does not leave
+the winning region.</p>
+<p>Similarly, a quantitative objective <span class="math notranslate nohighlight">\(\Phi\)</span> is:</p>
+<ul class="simple">
+<li><p>monotonic under adding prefixes if for every finite sequence
+<span class="math notranslate nohighlight">\(\rho\)</span> and for every infinite sequence <span class="math notranslate nohighlight">\(\rho'\)</span> we have
+<span class="math notranslate nohighlight">\(\Phi(\rho') \le \Phi(\rho \rho')\)</span>;</p></li>
+<li><p>monotonic under removing prefixes if for every finite
+sequence <span class="math notranslate nohighlight">\(\rho\)</span> and for every infinite sequence <span class="math notranslate nohighlight">\(\rho'\)</span> we have
+<span class="math notranslate nohighlight">\(\Phi(\rho') \ge \Phi(\rho \rho')\)</span>;</p></li>
+<li><p>prefix independent if it is monotonic under both adding and
+removing prefixes.</p></li>
+</ul>
+<p>The fact above extends to quantitative objectives with the same proof.</p>
+<div class="admonition-fact admonition" id="fact-winning-prefix-independent-quantitative">
+<p class="admonition-title">Fact</p>
+<p>Let <span class="math notranslate nohighlight">\(\Game\)</span> be a
+quantitative game with objective <span class="math notranslate nohighlight">\(\Phi\)</span> monotonic under removing
+prefixes, <span class="math notranslate nohighlight">\(\sigma\)</span> a strategy ensuring <span class="math notranslate nohighlight">\(x\)</span> from <span class="math notranslate nohighlight">\(v\)</span>, and <span class="math notranslate nohighlight">\(\play\)</span> a
+finite play consistent with <span class="math notranslate nohighlight">\(\sigma\)</span> starting from <span class="math notranslate nohighlight">\(v\)</span>. Then
+<span class="math notranslate nohighlight">\(\sigma_{\mid \play}\)</span> ensures <span class="math notranslate nohighlight">\(x\)</span> from <span class="math notranslate nohighlight">\(v' = \last(\play)\)</span>.</p>
+</div>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Proof</p>
+<p>Let <span class="math notranslate nohighlight">\(\play'\)</span> be an infinite play consistent with
+<span class="math notranslate nohighlight">\(\sigma_{\mid \play}\)</span> from <span class="math notranslate nohighlight">\(v'\)</span>, then <span class="math notranslate nohighlight">\(\play \play'\)</span> is an infinite play
+consistent with <span class="math notranslate nohighlight">\(\sigma\)</span> starting from <span class="math notranslate nohighlight">\(v\)</span>, implying that
+<span class="math notranslate nohighlight">\(\Phi(\play \play') \ge x\)</span>, and since <span class="math notranslate nohighlight">\(\Phi\)</span> is monotonic under removing
+prefixes this implies that <span class="math notranslate nohighlight">\(\Phi(\play') \ge x\)</span>. Thus
+<span class="math notranslate nohighlight">\(\sigma_{\mid \play}\)</span> ensures <span class="math notranslate nohighlight">\(x\)</span> from <span class="math notranslate nohighlight">\(v'\)</span>.</p>
+</div>
+<p>Let <span class="math notranslate nohighlight">\(\Game\)</span> be a quantitative game with objective <span class="math notranslate nohighlight">\(\Phi\)</span> monotonic under
+removing prefixes and <span class="math notranslate nohighlight">\(\sigma\)</span> an optimal strategy from <span class="math notranslate nohighlight">\(v\)</span>. Then for
+all vertices <span class="math notranslate nohighlight">\(v'\)</span> reachable from <span class="math notranslate nohighlight">\(v\)</span> by a play consistent with <span class="math notranslate nohighlight">\(\sigma\)</span>
+we have <span class="math notranslate nohighlight">\(\val^{\game}(v) \le \val^{\game}(v')\)</span>.</p>
+<p>In other words, when playing an optimal strategy the value is
+non-decreasing along the play.</p>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='right-next' id="next-link" href="content.html" title="next page">Content in Jupyter Book</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Nathalie Bertrand, Romain Brenguier, Patricia Bouyer-Decitre, Arnaud Carayol, John Fearnley, Nathanaël Fijalkow, Hugo Gimbert, Florian Horn, Rasmus Ibsen-Jensen, Nicolas Markey, Benjamin Monmege, Petr Novotny, Mickael Randour, Ocan Sankur, Sylvain Schmitz, Olivier Serre<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="_static/js/index.js"></script>
+    
+  </body>
+</html>
