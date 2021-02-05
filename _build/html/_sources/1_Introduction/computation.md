@@ -57,8 +57,8 @@ Let us consider a computational problem in which the input consists of a sequenc
 We write $L$ for the total number of bits needed to encode the input integer numbers. 
 We say that an algorithm runs in strongly polynomial time if: 
 
-	*  the number of arithmetic operations is bounded by a polynomial in the number of integers $N$ in the input instance; and
-	*  the space used by the algorithm is bounded by a polynomial in the size $L + n$ of the input.
+*  the number of arithmetic operations is bounded by a polynomial in the number of integers $N$ in the input instance; and
+*  the space used by the algorithm is bounded by a polynomial in the size $L + n$ of the input.
 
 An equivalent definition using the unit cost word RAM model is that the algorithm uses machine word size $w = L + \log(n)$
 and runs in polynomial time.
@@ -68,25 +68,29 @@ We give here only the very essential definitions and results related to linear p
 and refer to {cite}`Bertsimas&Tsitsiklis:1997` for a reference book on the topic.
 
 A linear program (in canonical form) uses a set of real variables organised in a vector $x$ and is defined by
-\[
+
+$$
 \begin{array}{l}
 \text{maximise } c^T x \text{ subject to } \\
 A x \le b \text{ and } x \ge 0,
 \end{array}
-\]
+$$
+
 where $c$ and $b$ are rational vectors (with $c^T$ the transpose of $c$) and $A$ is a rational matrix. 
 More explicitly: 
-\[
+
+$$
 \begin{array}{l}
 \text{maximise } \sum_{j = 1}^n c_j x_j \text{ subject to } \\
 \forall i \in [1,m],\ \sum_{j = 1}^n A_{i,j} x_j \le b_i \\
 \forall j \in [1,n],\ x_j \ge 0.
 \end{array}
-\]
+$$
+
 Solving a linear program is finding an optimal assignment $x^*$ of the variables.
 
 ```{admonition} Theorem
- :class: result
+:class: result
 There exists a polynomial time algorithm for solving linear programs.
 ```
 We define here linear programs with a maximising objective. 

@@ -2,14 +2,7 @@
 # Games on Graphs
 
 
-That's the entry point to the book. Maybe a little logo?
-
-```{prf:axiom} Completeness of $\mathbb{R}$
-:label: my-axiom
-
-Every Cauchy sequence on the real line is convergent.
-```
-
+That's the entry point to the book.
 
 ```{image} cover.jpg
 :alt: logo

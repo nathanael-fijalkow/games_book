@@ -302,10 +302,10 @@ The representation of conditions and colouring functions is different for each a
 <p>Let us consider a computational problem in which the input consists of a sequence of <span class="math notranslate nohighlight">\(N\)</span> integers plus a number <span class="math notranslate nohighlight">\(n\)</span> of other input bits.
 We write <span class="math notranslate nohighlight">\(L\)</span> for the total number of bits needed to encode the input integer numbers.
 We say that an algorithm runs in strongly polynomial time if:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>*  the number of arithmetic operations is bounded by a polynomial in the number of integers $N$ in the input instance; and
-*  the space used by the algorithm is bounded by a polynomial in the size $L + n$ of the input.
-</pre></div>
-</div>
+<ul class="simple">
+<li><p>the number of arithmetic operations is bounded by a polynomial in the number of integers <span class="math notranslate nohighlight">\(N\)</span> in the input instance; and</p></li>
+<li><p>the space used by the algorithm is bounded by a polynomial in the size <span class="math notranslate nohighlight">\(L + n\)</span> of the input.</p></li>
+</ul>
 <p>An equivalent definition using the unit cost word RAM model is that the algorithm uses machine word size <span class="math notranslate nohighlight">\(w = L + \log(n)\)</span>
 and runs in polynomial time.</p>
 </div>
@@ -313,23 +313,25 @@ and runs in polynomial time.</p>
 <h2>Linear programming<a class="headerlink" href="#linear-programming" title="Permalink to this headline">¶</a></h2>
 <p>We give here only the very essential definitions and results related to linear programming,
 and refer to <span id="id1">[<span>Bertsimas&amp;Tsitsiklis:1997</span>]</span> for a reference book on the topic.</p>
-<p>A linear program (in canonical form) uses a set of real variables organised in a vector <span class="math notranslate nohighlight">\(x\)</span> and is defined by
-[
+<p>A linear program (in canonical form) uses a set of real variables organised in a vector <span class="math notranslate nohighlight">\(x\)</span> and is defined by</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
 \begin{array}{l}
-\text{maximise } c^T x \text{ subject to } \
+\text{maximise } c^T x \text{ subject to } \\
 A x \le b \text{ and } x \ge 0,
 \end{array}
-]
-where <span class="math notranslate nohighlight">\(c\)</span> and <span class="math notranslate nohighlight">\(b\)</span> are rational vectors (with <span class="math notranslate nohighlight">\(c^T\)</span> the transpose of <span class="math notranslate nohighlight">\(c\)</span>) and <span class="math notranslate nohighlight">\(A\)</span> is a rational matrix.
-More explicitly:
-[
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(c\)</span> and <span class="math notranslate nohighlight">\(b\)</span> are rational vectors (with <span class="math notranslate nohighlight">\(c^T\)</span> the transpose of <span class="math notranslate nohighlight">\(c\)</span>) and <span class="math notranslate nohighlight">\(A\)</span> is a rational matrix.
+More explicitly:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
 \begin{array}{l}
-\text{maximise } \sum_{j = 1}^n c_j x_j \text{ subject to } \
-\forall i \in [1,m],\ \sum_{j = 1}^n A_{i,j} x_j \le b_i \
+\text{maximise } \sum_{j = 1}^n c_j x_j \text{ subject to } \\
+\forall i \in [1,m],\ \sum_{j = 1}^n A_{i,j} x_j \le b_i \\
 \forall j \in [1,n],\ x_j \ge 0.
 \end{array}
-]
-Solving a linear program is finding an optimal assignment <span class="math notranslate nohighlight">\(x^*\)</span> of the variables.</p>
+\end{split}\]</div>
+<p>Solving a linear program is finding an optimal assignment <span class="math notranslate nohighlight">\(x^*\)</span> of the variables.</p>
 <div class="result admonition">
 <p class="admonition-title">Theorem</p>
 <p>There exists a polynomial time algorithm for solving linear programs.</p>
