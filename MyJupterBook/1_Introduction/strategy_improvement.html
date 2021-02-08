@@ -1,0 +1,331 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Strategy improvement algorithms &#8212; Games on graphs</title>
+    
+  <link rel="stylesheet" href="../../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"set": ["\\left\\{ #1 \\right\\}", 1], "Z": "\\mathbb{Z}", "Q": "\\mathbb{Q}", "R": "\\mathbb{R}", "Rinfty": "\\R \\cup \\set{\\infty}", "ing": "\\text{In}", "Ing": "\\ing", "out": "\\text{Out}", "Out": "\\out", "first": "\\text{first}", "last": "\\text{last}", "Paths": "\\text{Paths}", "play": "\\pi", "arena": "\\mathcal{A}", "Arena": "\\arena", "col": "\\textsf{col}", "Col": "\\col", "game": "\\mathcal{G}", "Game": "\\game", "Eve": "\\mathrm{Eve}", "Adam": "\\mathrm{Adam}", "VE": "V_\\Eve", "VA": "V_\\Adam", "VR": "V_\\mathrm{Random}", "WE": "W_\\Eve", "WA": "W_\\Adam", "Value": "val", "val": "\\Value", "ValueE": "\\Value_\\Eve", "ValueA": "\\Value_\\Adam", "Win": "\\text{Win}", "Lose": "\\text{Lose}", "Safe": "\\mathtt{Safe}", "Reach": "\\mathtt{Reach}", "Buchi": "\\mathtt{Buchi}", "CoBuchi": "\\mathtt{CoBuchi}", "Parity": "\\mathtt{Parity}", "MeanPayoff": "\\mathtt{MeanPayoff}", "DiscountedPayoff": "\\mathtt{DiscountedPayoff}"}}, "tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <img src="../../_static/cover.jpg" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Games on graphs</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../book.html">
+   Games on Graphs
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../../1_Introduction/main.html">
+   Introduction
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1_Introduction/intro.html">
+     What is this book about?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1_Introduction/simple.html">
+     Simple
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1_Introduction/computation.html">
+     Computational models
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1_Introduction/objectives.html">
+     Objectives
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../1_Introduction/references.html">
+     References
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Classical
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../2_Regular/main.html">
+   Regular Games
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../3_Parity/main.html">
+   Parity Games
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../4_Payoffs/main.html">
+   Games with Payoffs
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/MyJupterBook/1_Introduction/strategy_improvement.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="strategy-improvement-algorithms">
+<span id="sec-strategy-improvement"></span><h1>Strategy improvement algorithms<a class="headerlink" href="#strategy-improvement-algorithms" title="Permalink to this headline">¶</a></h1>
+<p>Value iteration algorithms manipulate value functions and never construct any strategy, at least explicitly.
+This is a key difference with strategy improvement algorithms (also called policy iteration algorithms) whose fundamental idea is to maintain and improve a strategy.
+We assume that the games we consider in this section are positionally determined, therefore all strategies are assumed to be positional.
+\mynote{explain <span class="math notranslate nohighlight">\(\delta\)</span>}</p>
+<p>Let us consider a game <span class="math notranslate nohighlight">\(\game\)</span> and set as a goal to construct an optimal strategy for Eve.
+As for value iteration algorithms we work with a value function:
+the key idea behind strategy improvement is to use <span class="math notranslate nohighlight">\(\val^{\sigma}\)</span> to improve the strategy <span class="math notranslate nohighlight">\(\sigma\)</span>
+by <strong>switching</strong> an edge, which is an operation that creates a new strategy.
+This involves defining the notion of <strong>switchable edge</strong>:
+the edge <span class="math notranslate nohighlight">\((v,u)\)</span> is switchable if</p>
+<div class="math notranslate nohighlight">
+\[\delta(\val^{\sigma}(u),\col(v)) &gt; \delta(\val^{\sigma}(v'),\col(v)) \text{ where } \sigma(v) = (v,v').\]</div>
+<p>Intuitively: according to <span class="math notranslate nohighlight">\(\val^{\sigma}\)</span>, playing <span class="math notranslate nohighlight">\((v,u)\)</span> is better than playing <span class="math notranslate nohighlight">\(\sigma(v)\)</span>.</p>
+<p>Given a strategy <span class="math notranslate nohighlight">\(\sigma\)</span> and an edge <span class="math notranslate nohighlight">\(e = (v,u)\)</span> we use <span class="math notranslate nohighlight">\(\sigma[v \to e]\)</span> to denote the strategy playing <span class="math notranslate nohighlight">\(e\)</span> from <span class="math notranslate nohighlight">\(v\)</span> and all other vertices follow <span class="math notranslate nohighlight">\(\sigma\)</span>.
+Let us write <span class="math notranslate nohighlight">\(\sigma \le \sigma'\)</span> if for all vertices <span class="math notranslate nohighlight">\(v\)</span> we have <span class="math notranslate nohighlight">\(\val^{\sigma}(v) \le \val^{\sigma'}(v)\)</span>,
+and <span class="math notranslate nohighlight">\(\sigma &lt; \sigma'\)</span> if additionally <span class="math notranslate nohighlight">\(\neg (\sigma' \le \sigma)\)</span>.</p>
+<p>The difficulty is that <span class="math notranslate nohighlight">\(e = (v,u)\)</span> being switchable does not mean that it is a better move than <span class="math notranslate nohighlight">\(\sigma(v)\)</span> in any context,
+but only according to the value function <span class="math notranslate nohighlight">\(\val^{\sigma}\)</span>, so it is not clear that <span class="math notranslate nohighlight">\(\sigma[v \to e]\)</span> is better than <span class="math notranslate nohighlight">\(\sigma\)</span>.
+Strategy improvement algorithms depend on the following two principles.</p>
+<div class="principle admonition">
+<p class="admonition-title">Principle (Progress)</p>
+<p>Let <span class="math notranslate nohighlight">\(\sigma\)</span> be a strategy and let <span class="math notranslate nohighlight">\(e = (v,u)\)</span> be a switchable edge.
+Then <span class="math notranslate nohighlight">\(\sigma &lt; \sigma[v \to e]\)</span>.</p>
+</div>
+<div class="principle admonition">
+<p class="admonition-title">Principle (Optimality)</p>
+<p>Let <span class="math notranslate nohighlight">\(\sigma\)</span> be a strategy that has no switchable edges, then <span class="math notranslate nohighlight">\(\sigma\)</span> is optimal.</p>
+</div>
+<p>The algorithm is the following: start at an initial strategy <span class="math notranslate nohighlight">\(\sigma_0\)</span>.
+In each round <span class="math notranslate nohighlight">\(i\)</span> compute <span class="math notranslate nohighlight">\(\val^{\sigma_i}\)</span> and look for a switchable edge.
+If there exists a switchable edge <span class="math notranslate nohighlight">\(e_i = (v_i,v'_i)\)</span>, let <span class="math notranslate nohighlight">\(\sigma_{i+1} = \sigma_i[v_i \to e_i]\)</span> and iterate to the next round.
+Otherwise, return the optimal strategy <span class="math notranslate nohighlight">\(\sigma_i\)</span>.</p>
+<p>The algorithm computes a sequence of strategies
+<span class="math notranslate nohighlight">\(\sigma_0 &lt; \sigma_1 &lt; \sigma_2 &lt; \dots\)</span>.
+Note that any such sequence must be finite, since at each step we strictly increase in the ordering and there are only finitely many (positional) strategies.</p>
+<p>If both progress and optimality principles hold as stated this yields a strategy improvement algorithm computing the optimal strategy.
+Unfortunately such ideal properties rarely hold and it is often necessary to state and prove weaker properties,
+we refer to  <span class="xref std std-ref">Chapter</span> for examples.</p>
+<div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>In the description above we did not specify which switchable edge to choose.
+Actually strategy improvement algorithms often switch more than one edge at a time, making this question worse:
+which subset of the switchable edges should be chosen?
+Many possible rules for choosing this set have been studied, as for instance the <strong>greedy all-switches</strong> rule.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./MyJupterBook/1_Introduction"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Nathalie Bertrand, Romain Brenguier, Patricia Bouyer-Decitre, Arnaud Carayol, John Fearnley, Nathanaël Fijalkow, Hugo Gimbert, Florian Horn, Rasmus Ibsen-Jensen, Nicolas Markey, Benjamin Monmege, Petr Novotny, Mickael Randour, Ocan Sankur, Sylvain Schmitz, Olivier Serre<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>
