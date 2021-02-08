@@ -1,135 +1,196 @@
 import re
-import sys
 
-chap = sys.argv[1]
-file = sys.argv[2]
-name = sys.argv[3]
-title = sys.argv[4]
+def translate(nb_chap, title_chap, file, title):
+	f = open(nb_chap + "_" + title_chap + "/" + file + ".tex", "r")
+	content = f.read()
+	f.close()
 
-f = open(chap + "/" + file + ".tex", "r")
+	print("reading %s" % file)
 
-content = f.read()
+	#### Add title and reference to it
+	content = "(" + nb_chap + "-sec:" + file + ")=\n# " + title + "\n\n" + content
 
-#### Add title and reference to it
-content = "(" + name + ")=\n# " + title + "\n\n" + content
+	#### Remove comments
+	content = re.sub(r'%(.*?)\n', r'', content)
 
-#### Deal with accents
-content = re.sub(r'\{\\"u}', r'&uuml;', content)
-content = re.sub(r'\{\\"i}', r'&iuml;', content)
-content = re.sub(r'\{\\\'e}', r'&eacute;', content)
-content = re.sub(r'\{\\\`e}', r'&egrave;', content)
+	#### Remove tilde
+	content = re.sub(r'~\$', r' $', content)
 
-#### Deal with figures
+	# #### Remove line breaks
+	# content = re.sub(r'\\\\', r'', content)
+	### DOES NOT WORK, WE WOULD REMOVE IN TABLES AND ARRAYS
 
-# remove figs and creates files
+	#### Deal with accents
+	content = re.sub(r'\{\\"u}', r'&uuml;', content)
+	content = re.sub(r'\{\\"e}', r'&euml;', content) 
+	content = re.sub(r'\{\\"i}', r'&iuml;', content)
+	content = re.sub(r'\{\\\'e}', r'&eacute;', content)
+	content = re.sub(r'\{\\\`e}', r'&egrave;', content)
 
-list_fig = re.findall(r'\\begin\{figure\}([\s\S]*?)(\\begin\{tikzpicture\}[\s\S]*?)\\caption\{([\s\S]*?)\}\n\\label\{(.*?)\}\n\\end\{figure\}', content)
+	#### Deal with figures
 
-for x in list_fig:
-	h = open(chap + "/Fig/" + x[3] + ".tex", 'w')
-	h.write("\\documentclass[preview,border=0mm,convert={density=600,outext=.png}]{standalone}\n\
-		\\usepackage{tikz}\n\\usetikzlibrary{automata,shapes,patterns,calc,arrows}\n\
-		\\input{tikz-style.tex}\n\\begin{document}\n" + x[1] + "\n\\end{document}")
+	# remove figs and creates files
 
-content = re.sub(r'\\begin\{figure\}([\s\S]*?)\\caption\{([\s\S]*?)\}\n\\label\{(\d*?)-fig:(.*?)\}\n\\end\{figure\}', \
-	r'\n```{figure} Fig/\3-fig:\4.png\n:name: \3-\4\n:align: center\n\2\n```', content)
+	list_fig = re.findall(r'\\begin\{figure\}([\s\S]*?)(\\begin\{tikzpicture\}[\s\S]*?)\\caption\{([\s\S]*?)\}\n\\label\{(.*?)\}\n\\end\{figure\}', content)
 
-#### Deal with subsections
+	for x in list_fig:
+		h = open(nb_chap + "_" + title_chap + "/Fig/" + x[3] + ".tex", 'w')
+		h.write("\\documentclass[preview,border=0mm,convert={density=600,outext=.png}]{standalone}\n\
+			\\usepackage{tikz}\n\\usetikzlibrary{automata,shapes,patterns,calc,arrows}\n\
+			\\input{tikz-style.tex}\n\\begin{document}\n" + x[1] + "\n\\end{document}")
 
-# replace
-# \subsection*{Players}
-# by
-# ## Players 
+	content = re.sub(r'\\begin\{figure\}([\s\S]*?)\\caption\{([\s\S]*?)\}\n\\label\{(\d*?)-fig:(.*?)\}\n\\end\{figure\}', \
+		r'\n```{figure} Fig/\3-fig:\4.png\n:name: \3-\4\n:align: center\n\2\n```', content)
 
-content = re.sub(r'\\subsection\*\{(.*?)\}', r'## \1', content)
+	#### Deal with subsections and subsubsections
 
-#### Replace \[ \] by $$ $$
-content = re.sub(r'\\\[', r'\n$$', content)
-content = re.sub(r'\\\]', r'$$\n', content)
+	# replace
+	# \subsection*{Players}
+	# by
+	# ## Players 
 
-#### Remove vskip1em
-content = re.sub(r'\\vskip1em', r'\n', content)
+	content = re.sub(r'\\subsection\*\{([\s\S]*?)\}', r'\n## \1\n', content)
+	content = re.sub(r'\\subsubsection\*\{([\s\S]*?)\}', r'\n### \1\n', content)
 
-#### Rewrite textit
-content = re.sub(r'\\textit\{(.*?)\}', r'\1', content)
+	#### Replace \[ \] by $$ $$
+	content = re.sub(r'\\\[([\s\S]*?)\\\]', r'\n\n$$\n\1\n$$\n\n', content)
 
-#### Remove knowledge
-content = re.sub(r'""(.*?)""', r'\1', content)
+	#### Remove vskip1em
+	content = re.sub(r'\\vskip1em', r'\n', content)
 
-#### Reshape quotes
-content = re.sub(r'\`\`(.*?)\'\'', r'''\1''', content)
+	#### Rewrite quotation
 
-#### Deal with itemize
-content = re.sub(r'\\begin\{itemize\}', r'', content)
-content = re.sub(r'\\end\{itemize\}', r'', content)
-content = re.sub(r'\\item(.*?)', r'* \1', content)
+	# replace
+	# \begin{quotation}
+	# ``An extraordinary number of basic ideas in model theory can be expressed in terms of games.''
+	# \end{quotation}
+	# by
+	# > An extraordinary number of basic ideas in model theory can be expressed in terms of games.
 
-#### Deal with theorem
+	content = re.sub(r'\\begin\{quotation\}\n``([\s\S]*?)\'\'\n\\end\{quotation\}', r'\n\n> \1\n\n', content)
 
-# replace
-# \begin{theorem}[Banach's fixed point theorem]
-# \label{1-thm:banach}
-# Content
-# \end{theorem}
+	#### Rewrite textit and emph
+	content = re.sub(r'\\textit\{([\s\S]*?)\}', r'**\1**', content)
+	content = re.sub(r'\\emph\{([\s\S]*?)\}', r'**\1**', content)
+	content = re.sub(r'\\textbf\{([\s\S]*?)\}', r'**\1**', content)
 
-# by
+	#### Remove svgraybox
+	content = re.sub(r'\\begin\{svgraybox\}([\s\S]*?)\\end\{svgraybox\}', \
+		r'```{admonition} Problem\n\1\n```', content)
 
-# ```{admonition} Theorem
-# :class: result
-# :name: 1-thm:banach
-# Content
-# ```
+	#### Remove knowledge
+	content = re.sub(r'""(.*?)""', r'\1', content)
+	content = re.sub(r'"(.*?)"', r'\1', content)
 
-content = re.sub(r'\\begin\{theorem\}[(.*?)]\n\\label\{(\d*?)-thm:(.*?)\}', \
-	r'```{admonition} Theorem \1\n:class: result\n:name: \2-thm:\3\n', content)
+	#### Reshape quotes
+	content = re.sub(r'\`\`(.*?)\'\'', r'''\1''', content)
 
-# case no []
-content = re.sub(r'\\begin\{theorem\}\n\\label\{(\d*?)-thm:(.*?)\}', \
-	r'```{admonition} Theorem\n:class: result\n:name: \2-thm:\3\n', content)
+	#### Deal with itemize
+	content = re.sub(r'\\begin\{itemize\}([\s\S]*?)\\end\{itemize\}', r'\1', content)
+	content = re.sub(r'\\item([\s\S]*?)', r'* \1', content)
 
-# case no label
-content = re.sub(r'\\begin\{theorem\}[(.*?)]', \
-	r'```{admonition} Theorem \1\n:class: result\n', content)
+	#### Deal with theorem and many other environments
 
-# case no [] no label
-content = re.sub(r'\\begin\{theorem\}\n', \
-	r'```{admonition} Theorem\n:class: result\n', content)
+	# replace
+	# \begin{theorem}[Banach's fixed point theorem]
+	# \label{1-thm:banach}
+	# Content
+	# \end{theorem}
 
-content = re.sub(r'\\end\{theorem\}', r'```', content)
+	# by
 
-#### Deal with references
-content = re.sub(r'~\\cref\{(\d*?)-sec:(.*?)\}', r' Section {ref}`\1-sec:\2`', content)
-content = re.sub(r'~\\cref\{(\d*?)-thm:(.*?)\}', r' Theorem {ref}`\1-thm:\2`', content)
-content = re.sub(r'~\\cref\{(\d*?)-lem:(.*?)\}', r' Lemma {ref}`\1-lem:\2`', content)
-content = re.sub(r'~\\cref\{(\d*?)-fig:(.*?)\}', r' Figure {ref}`\1-fig:\2`', content)
-content = re.sub(r'~\\cref\{(\d*?)-chap:(.*?)\}', r' Chapter {ref}`\1-chap:\2`', content)
-content = re.sub(r'~\\cref\{part:(.*?)\}', r' Part {ref}`part:\1`', content)
-
-content = re.sub(r'\\Cref\{(\d*?)-sec:(.*?)\}', r'Section {ref}`\1-sec:\2`', content)
-content = re.sub(r'\\Cref\{(\d*?)-thm:(.*?)\}', r'Theorem {ref}`\1-thm:\2`', content)
-content = re.sub(r'\\Cref\{(\d*?)-lem:(.*?)\}', r'Lemma {ref}`\1-lem:\2`', content)
-content = re.sub(r'\\Cref\{(\d*?)-fig:(.*?)\}', r'Figure {ref}`\1-fig:\2`', content)
-content = re.sub(r'\\cref\{(\d*?)-chap:(.*?)\}', r'Chapter {ref}`\1-chap:\2`', content)
-content = re.sub(r'\\Cref\{part:(.*?)\}', r'Part {ref}`part:\1`', content)
-
-content = re.sub(r'\\cref\{(\d*?)-sec:(.*?)\}', r'Section {ref}`\1-sec:\2`', content)
-content = re.sub(r'\\cref\{(\d*?)-thm:(.*?)\}', r'Theorem {ref}`\1-thm:\2`', content)
-content = re.sub(r'\\cref\{(\d*?)-lem:(.*?)\}', r'Lemma {ref}`\1-lem:\2`', content)
-content = re.sub(r'\\cref\{(\d*?)-fig:(.*?)\}', r'Figure {ref}`\1-fig:\2`', content)
-content = re.sub(r'\\cref\{(\d*?)-chap:(.*?)\}', r'Chapter {ref}`\1-chap:\2`', content)
-content = re.sub(r'\\cref\{part:(.*?)\}', r'Part {ref}`part:\1`', content)
+	# ```{admonition} Theorem
+	# :class: result
+	# :name: 1-thm:banach
+	# Content
+	# ```
 
 
-#### Deal with citations
-content = re.sub(r'~\\cite\{(.*?)\}', r' {cite}`\1`', content)
+	# if it has a title and a label
+	p1 = r'\\begin\{{{}\}}\[(.*?)\]\n?\\label\{{(.*?)\}}([\s\S]*?)\\end\{{{}\}}'
+	s1 = r'\n```{{admonition}} {} (\1)\n:class: {}\n:name: \2\n\3\n```\n'
 
-#### Remove indents
-content = re.sub(r'\t', r'', content)
+	# just a label
+	p2 = r'\\begin\{{{}\}}\n?\\label\{{(.*?)\}}([\s\S]*?)\\end\{{{}\}}'
+	s2 = r'\n```{{admonition}} {}\n:class: {}\n:name: \1\n\2\n```\n'
 
-print(content)
-f.close()
+	# just a title
+	p3 = r'\\begin\{{{}\}}\[(.*?)\]\n?([\s\S]*?)\\end\{{{}\}}'
+	s3 = r'\n```{{admonition}} {} (\1)\n:class: {}\n\2\n```\n'
 
-g = open(chap + "/" + file + ".md", "w")
-g.write(content)
+	# none
+	p4 = r'\\begin\{{{}\}}([\s\S]*?)\\end\{{{}\}}'
+	s4 = r'\n```{{admonition}} {}\n:class: {}\n\1\n```\n'
+
+	l = [\
+	("theorem","Theorem"), \
+	("lemma","Lemma"), \
+	("fact","Fact"), \
+	("corollary","Corollary"), \
+	("remark","Remark"), \
+	("definition","Definition"), \
+	("convention","Convention"), \
+	("proposition","Proposition"), \
+	("principle","Principle") \
+	]
+
+	for (short_name, long_name) in l:
+		content = re.sub(p1.format(short_name,short_name), s1.format(long_name,short_name), content)
+		content = re.sub(p2.format(short_name,short_name), s2.format(long_name,short_name), content)
+		content = re.sub(p3.format(short_name,short_name), s3.format(long_name,short_name), content)
+		content = re.sub(p4.format(short_name,short_name), s4.format(long_name,short_name), content)
 
 
+	#### Deal with proof
+
+	content = re.sub(r'\\begin\{proof\}([\s\S]*?)\\end\{proof\}', \
+		r'\n```{admonition} Proof\n:class: dropdown tip\n\1\n```\n', content)
+
+	#### Deal with references
+
+	p1 = r"~\\cref\{{(\d*?)-{}:(.*?)\}}"
+	s1 = r" {{ref}}`{} <\1-{}:\2>`"
+
+	p2 = r"\\cref\{{(\d*?)-{}:(.*?)\}}"
+	s2 = r" {{ref}}`{} <\1-{}:\2>`"
+
+	p3 = r"\\Cref\{{(\d*?)-{}:(.*?)\}}"
+	s3 = r"{{ref}}`{} <\1-{}:\2>`"
+
+	l = [\
+	("sec","Section"), \
+	("chap","Chapter"), \
+	("thm","Theorem"), \
+	("def","Definition"), \
+	("lem","Lemma"), \
+	("fig","Figure"), \
+	("algo","Algorithm"), \
+	]
+
+	for (short_name, long_name) in l:
+		content = re.sub(p1.format(short_name), s1.format(long_name, short_name), content)
+		content = re.sub(p2.format(short_name), s2.format(long_name, short_name), content)
+		content = re.sub(p3.format(short_name), s3.format(long_name, short_name), content)
+
+	content = re.sub(r'~\\cref\{part:(.*?)\}', r' Part {ref}`part:\1`', content)
+	content = re.sub(r'\\Cref\{part:(.*?)\}', r'Part {ref}`part:\1`', content)
+	content = re.sub(r'\\cref\{part:(.*?)\}', r'Part {ref}`part:\1`', content)
+
+
+	#### Deal with citations
+	content = re.sub(r'~\\cite\{(.*?)\}', r' {cite}`\1`', content)
+
+	#### Remove indents
+	content = re.sub(r'\t', r'', content)
+	#### Remove double newlines
+	content = re.sub(r'\n\n\n', r'\n\n', content)
+
+	### If references, add bibliography
+	if file == "references":
+		content = content + '\n\n```{bibliography}\n:style: unsrtalpha\n```'
+
+	print(content)
+
+	g = open(nb_chap + "_" + title_chap + "/" + file + ".md", "w")
+	g.write(content)
+	g.close()
