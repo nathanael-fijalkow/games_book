@@ -1,0 +1,580 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bibliographic references &#8212; Games on graphs</title>
+    
+  <link rel="stylesheet" href="../../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"set": ["\\left\\{ #1 \\right\\}", 1], "Eve": "\\textrm{Eve}", "Adam": "\\textrm{Adam}", "N": "\\mathbb{N}", "Z": "\\mathbb{Z}", "Zinfty": "\\Z \\cup \\set{\\pm \\infty}", "R": "\\mathbb{R}", "Rinfty": "\\R \\cup \\set{\\pm \\infty}", "Q": "\\mathbb{Q}", "Qinfty": "\\Q \\cup \\set{\\pm \\infty}", "argmax": "\\text{argmax}", "argmin": "\\text{argmin}", "Op": "\\mathbb{O}", "Prob": "\\mathbb{P}", "dist": "\\mathcal{D}", "Dist": "\\dist", "supp": "\\text{supp}", "game": "\\mathcal{G}", "Game": "\\game", "arena": "\\mathcal{A}", "Arena": "\\arena", "col": "\\textsf{col}", "Col": "\\col", "mEve": "\\mathrm{Eve}", "mAdam": "\\mathrm{Adam}", "mRandom": "\\mathrm{Random}", "vertices": "V", "VE": "V_\\mEve", "VA": "V_\\mAdam", "VR": "V_\\mRandom", "ing": "\\text{In}", "Ing": "\\ing", "out": "\\text{Out}", "Out": "\\out", "dest": "\\Delta", "WE": "W_\\mEve", "WA": "W_\\mAdam", "Paths": "\\text{Paths}", "play": "\\pi", "first": "\\text{first}", "last": "\\text{last}", "mem": "\\mathcal{M}", "Mem": "\\mem", "Pre": "\\text{Pre}", "PreE": "\\text{Pre}_\\mEve", "PreA": "\\text{Pre}_\\mAdam", "Attr": "\\text{Attr}", "AttrE": "\\text{Attr}_\\mEve", "AttrA": "\\text{Attr}_\\mAdam", "rank": "\\text{rank}", "Win": "\\textsc{Win}", "Lose": "\\textsc{Lose}", "Value": "\\text{val}", "ValueE": "\\text{val}_\\mEve", "ValueA": "\\text{val}_\\mAdam", "val": "\\Value", "Automaton": "\\mathbf{A}", "Safe": "\\mathtt{Safe}", "Reach": "\\mathtt{Reach}", "Buchi": "\\mathtt{Buchi}", "CoBuchi": "\\mathtt{CoBuchi}", "Parity": "\\mathtt{Parity}", "Muller": "\\mathtt{Muller}", "Rabin": "\\mathtt{Rabin}", "Streett": "\\mathtt{Streett}", "MeanPayoff": "\\mathtt{MeanPayoff}", "DiscountedPayoff": "\\mathtt{DiscountedPayoff}", "Energy": "\\mathtt{Energy}", "TotalPayoff": "\\mathtt{TotalPayoff}", "ShortestPath": "\\mathtt{ShortestPath}", "Sup": "\\mathtt{Sup}", "Inf": "\\mathtt{Inf}", "LimSup": "\\mathtt{LimSup}", "LimInf": "\\mathtt{LimInf}"}}, "tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="Total payoff games" href="total_payoff.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <img src="../../_static/cover.jpg" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Games on graphs</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../book.html">
+   Games on Graphs
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../../Introduction/index.html">
+   Introduction
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Introduction/intro.html">
+     What is this book about?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Introduction/simple.html">
+     A first model of games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Introduction/computation.html">
+     Computational models
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Introduction/objectives.html">
+     Objectives
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Introduction/automata.html">
+     Automata
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Introduction/memory.html">
+     Memory
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Introduction/reductions.html">
+     Reductions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Introduction/subgames.html">
+     Traps and subgames
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Introduction/fixed_points.html">
+     Generic fixed point algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Introduction/value_iteration.html">
+     Value iteration algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Introduction/strategy_improvement.html">
+     Strategy improvement algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Introduction/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Classic
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../2_Regular/index.html">
+   Regular
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/attractors.html">
+     A linear time algorithm for reachability games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/buchi.html">
+     A quadratic time algorithm for Büchi games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/parity.html">
+     An exponential time algorithm for parity games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/muller.html">
+     Rabin, Streett, and Muller games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/zielonka.html">
+     The Zielonka tree
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../3_Parity/index.html">
+   Parity
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/strategy_improvement.html">
+     An exponential time strategy improvement algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/zielonka.html">
+     A quasipolynomial time attractor decomposition algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/separation.html">
+     A quasipolynomial time separating automata algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/value_iteration.html">
+     A quasipolynomial time value iteration algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/relationships.html">
+     Comparing the three families of algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 current active collapsible-parent">
+  <a class="reference internal" href="index.html">
+   Payoffs
+  </a>
+  <ul class="current collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="notations.html">
+     Notations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="qualitative.html">
+     Refining qualitative objectives with quantities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="mean_payoff.html">
+     Mean payoff games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="discounted_payoff.html">
+     Discounted payoff games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="shortest_path.html">
+     Shortest path games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="total_payoff.html">
+     Total payoff games
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/Classic/4_Payoffs/references.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="bibliographic-references">
+<span id="sec-references"></span><h1>Bibliographic references<a class="headerlink" href="#bibliographic-references" title="Permalink to this headline">¶</a></h1>
+<p>One player variants due to Karp <span id="id1">[<span>Karp:1978</span>]</span></p>
+<p><a class="reference internal" href="shortest_path.html#thm-shortest-path-positive"><span class="std std-ref">Theorem</span></a>
+\cite{Khachiyan&amp;al:2008}</p>
+<p>NP and coNP: \cite{Puri:1995}?</p>
+<p>This chapter has been the occasion to start revealing a ladder of
+reductions going up from parity games to discounted payoff games,
+going through mean payoff games: it shows that parity games are the
+simplest fragment of games from a computational perspective, in
+<span class="math notranslate nohighlight">\(\UP\cap \coUP\)</span>. In~\cref{chap:stochastic}, the last reduction from
+discounted payoff games to simple stochastic games will complete the
+computational landscape.</p>
+<p>Mean payoff games have been first studied by Ehrenfeucht and Mycielski
+in <span id="id2">[<span>Ehrebfeucht&amp;Mycielski:1979</span>]</span> where positional determinacy is
+shown. It is much later that Zwick and
+Paterson <span id="id3">[<span>Zwick&amp;Paterson:1996</span>]</span> first obtained the
+pseudopolynomial value iteration algorithm to solve them, while
+introducing discounted payoff games (that had been first studied in a
+probabilistic setting as will be studied in~\cref{chap:MDP} and
+\cref{chap:stochastic}).</p>
+<p>We have followed the proof of Ehrenfeucht and
+Mycielski <span id="id4">[<span>Ehrebfeucht&amp;Mycielski:1979</span>]</span> to prove the positional
+determinacy of mean payoff games. In 2004, Bj”orklund, Sandberg and
+Vorobyov \cite{Bjorklund&amp;Sandberg&amp;Vorobyov:2004} claimed a simpler
+proof that works directly, with no back-and-forth reasoning between
+the first cycle objective and the original mean payoff one: however,
+their proof technique has been shown incorrect by Aminof and
+Rubin <span id="id5">[<span>Aminof&amp;Rubin:2017</span>]</span>, who also correct it by studying
+further the first-cycle games.</p>
+<p>We gave several algorithms to solve mean payoff games, apart from the
+one of Zwick and Paterson <span id="id6">[<span>Zwick&amp;Paterson:1996</span>]</span>.</p>
+<p>The <strong>strategy improvement technique</strong> is due to Bj”orklund and
+Vorobyov <span id="id7">[<span>Bjorklund&amp;Vorobyov:2007</span>]</span>, presented via the new notion
+of <strong>longest shortest path problem (LSP)</strong>. Other solutions to
+obtain a strategy iteration algorithm for mean payoff games work by
+adding gain and bias variables to the system, as may be studied
+in <span id="id8">[<span>Filar&amp;Vrieze:1996</span>]</span> for concurrent mean payoff games.  Strategy
+improvement methods (for parity games or payoff games) are very close
+to the simplex method to solve linear programs. A more thorough
+comparison can be found in \cite{Allamigeon&amp;Benchimol&amp;al:2014}.  Lifshits and
+Pavlov <span id="id9">[<span>Lifshits&amp;Pavlov:2007</span>]</span> use the potential techniques of strategy
+improvement for mean payoff games, with a reweighting of the arena in
+order to obtain a <span class="math notranslate nohighlight">\(\bigO(mn2^{n}\log W)\)</span> algorithm (it may
+then be useful if weights are much bigger than the number of
+vertices).</p>
+<p>The <strong>value iteration algorithm</strong> has been developed by Brim,
+Chaloupka, Doyen, Gentilini, and
+Raskin <span id="id10">[<span>Brim&amp;Chaloupka&amp;Doyen&amp;Gentilini&amp;Raskin:2011</span>]</span>. They also
+introduce and solve the so-called <strong>energy games</strong>, that will be
+studied more carefully in~\cref{12-avag}. As for the strategy
+improvement algorithm, it is paired with a binary search to compute
+the values of the game (and not only decide whether Eve can guarantee
+a positive mean payoff). Comin and Rizzi <span id="id11">[<span>Comin&amp;Rizzi:2017</span>]</span> have
+improved it to obtain a <span class="math notranslate nohighlight">\(\bigO(n^2 m W)\)</span> upper-bound, without
+the <span class="math notranslate nohighlight">\(\log(n)+\log(W)\)</span> term due to binary search.</p>
+<p>We have motivated our study of quantitative games with the
+<span class="math notranslate nohighlight">\(\ShortestPath\)</span> objective, a very natural generalisation of both
+(qualitative) reachability games and shortest path problems in
+classical graph theory. The longest shortest path problem (LSP) of
+Bj”orklund and Vorobyov <span id="id12">[<span>Bjorklund&amp;Vorobyov:2007</span>]</span>, though a
+priori close, is indeed quite different. The requirement is there to
+find the best possible <strong>positional</strong> strategy of Eve, so that the
+length of the shortest path from every vertex to a target is as large
+as possible (over all positional strategies). Because of the fact they
+introduce these games to solve mean payoff games with a combinatorial
+strongly subexponential strategy improvement algorithm, the definition
+of what is a path from a vertex <span class="math notranslate nohighlight">\(v\)</span> to a target is very different from
+the one in shortest path games: in particular, if <span class="math notranslate nohighlight">\(v\)</span> appears in a
+cycle (even if it cannot reach the target), the length they consider
+is <span class="math notranslate nohighlight">\(-\infty\)</span> if the cycle has negative weight, <span class="math notranslate nohighlight">\(+\infty\)</span> if the cycle
+has positive weight, and <span class="math notranslate nohighlight">\(0\)</span> if the cycle has weight zero. This is
+thus an orthogonal generalisation, that is dedicated to the study of a
+strategy iteration algorithm for mean payoff games: contrary to what
+we have shown before for discounted payoff games, the situation is
+much more complex for mean payoff games since the min-max operator
+does not have a unique solution anymore, making difficult the search
+for the accurate fixed point (as in the case of total payoff games).</p>
+<p>As we have seen, shortest path games are solvable in polynomial time
+when only non-negative weights appear on transitions, but no
+polynomial solution is known (as for mean payoff or parity games) for
+the general case. The best known at the time this chapter is written
+is a polynomial time fragment consisting of <strong>divergent
+shortest path games</strong> <span id="id13">[<span>Busatto&amp;Monmege&amp;Reynier:2017</span>]</span> in which
+the arena is supposed to contain no cycles of weight 0: this a priori
+weak property indeed partition the strongly connected components of
+the arena into the ones where all cycles are positive, and the ones
+where all cycles are negative; in each of these components, it is
+shown why the value iteration algorithm converges in polynomial
+time.  <a class="reference internal" href="shortest_path.html#thm-infty-mp"><span class="std std-ref">Theorem</span></a> shows a polynomial time reduction between
+the detection of vertices of optimal value <span class="math notranslate nohighlight">\(-\infty\)</span> in a
+shortest path game and the detection of vertices of negative optimale
+value in the corresponding mean payoff games: however it is still open
+to know the computational complexity of solving shortest path games
+that are supposed to have no vertices of value <span class="math notranslate nohighlight">\(-\infty\)</span>.</p>
+<p id="id14"><dl class="citation">
+<dt class="label" id="id15"><span class="brackets">BT97</span></dt>
+<dd><p>Dimitris Bertsimas and John N. Tsitsiklis. <em>Introduction to linear optimization</em>. Volume 6 of Athena scientific optimization and computation series. Athena Scientific, 1997. ISBN 978-1-886529-19-9.</p>
+</dd>
+<dt class="label" id="id32"><span class="brackets">Tho97</span></dt>
+<dd><p>Wolfgang Thomas. Languages, automata, and logic. In <em>Handbook of Formal Languages, Volume 3: Beyond Words</em>, pages 389–455. Springer-Verlag, 1997.</p>
+</dd>
+<dt class="label" id="id35"><span class="brackets">Zer13</span></dt>
+<dd><p>Ernst Zermelo. Uber eine anwendung der mengenlehre auf die theorie des schachspiels. In <em>Proceedings of the International Congress of Mathematicians, ICM'13</em>, volume 2, 501–504. Cambridge University Press, 1913.</p>
+</dd>
+<dt class="label" id="id28"><span class="brackets">Mar75</span></dt>
+<dd><p>Donald A. Martin. Borel determinacy. <em>Annals of Mathematics</em>, 102(2):363–371, 1975.</p>
+</dd>
+<dt class="label" id="id23"><span class="brackets">GS53</span></dt>
+<dd><p>David Gale and F.M. Stewart. Infinite games with perfect information. <em>Annals of Mathematical Studies</em>, 28:245–266, 1953.</p>
+</dd>
+<dt class="label" id="id18"><span class="brackets">Chu57</span></dt>
+<dd><p>Alonzo Church. Applications of recursive arithmetic to the problem of cricuit synthesis. In <em>Summaries of the Summer Institute of Symbolic Logic</em>, volume I, pages 3–50. Cornell University, 1957.</p>
+</dd>
+<dt class="label" id="id19"><span class="brackets">Chu62</span></dt>
+<dd><p>Alonzo Church. Logic, arithmetic, and automata. In <em>Proceedings of the International Congress of Mathematicians</em>, 23–35. 1962.</p>
+</dd>
+<dt class="label" id="id16"><span class="brackets">BuchiL69</span></dt>
+<dd><p>J. Richard Büchi and Lawrence H. Landweber. Solving sequential conditions by finite-state strategies. <em>Transactions of the American Mathematical Society</em>, 138:295–311, 1969.</p>
+</dd>
+<dt class="label" id="id27"><span class="brackets">Lan67</span></dt>
+<dd><p>Lawrence H. Landweber. Finite state games–a solvability algorithm for restricted second-order arithmetic. <em>Notices of the American Mathematical Society</em>, 14:129–130, 1967.</p>
+</dd>
+<dt class="label" id="id29"><span class="brackets">McN65</span></dt>
+<dd><p>Robert McNaughton. Finite-state infinite games. Technical Report, Massachusetts Institute of Technology, 1965.</p>
+</dd>
+<dt class="label" id="id30"><span class="brackets">McN66</span></dt>
+<dd><p>Robert McNaughton. Testing and generating infinite sequences by a finite automaton. <em>Information and Computation</em>, 9(5):521–530, 1966.</p>
+</dd>
+<dt class="label" id="id31"><span class="brackets">Tho09</span></dt>
+<dd><p>Wolfgang Thomas. Facets of synthesis: revisiting Church's problem. In <em>Proceedings of the International Conference on the Foundations of Software Science and Computational Structures, FoSSaCS'09</em>, 1–14. 2009.</p>
+</dd>
+<dt class="label" id="id33"><span class="brackets">Rab69</span></dt>
+<dd><p>Michael O. Rabin. Decidability of second-order theories and automata on infinite trees. <em>Transactions of the American Mathematical Society</em>, 141:1–35, 1969.</p>
+</dd>
+<dt class="label" id="id25"><span class="brackets">GH82</span></dt>
+<dd><p>Yuri Gurevich and Leo Harrington. Trees, automata, and games. In <em>Proceedings of the Annual ACM Symposium on Theory of Computing, STOC'82</em>, 60–65. ACM Press, 1982.</p>
+</dd>
+<dt class="label" id="id17"><span class="brackets">Buchi77</span></dt>
+<dd><p>J. Richard Büchi. Using determinancy of games to eliminate quantifiers. In <em>Fundamentals of Computation Theory77</em>, 367–378. 1977.</p>
+</dd>
+<dt class="label" id="id26"><span class="brackets">Hod93</span></dt>
+<dd><p>Wilfrid Hodges. <em>Model theory</em>. Volume 42 of Encyclopedia of mathematics and its applications. Cambridge University Press, 1993.</p>
+</dd>
+<dt class="label" id="id24"><span class="brackets">Gradel02</span></dt>
+<dd><p>Erich Grädel. Model checking games. <em>Electronic Notes in Theoretical Computer Science</em>, 67:15–34, 2002.</p>
+</dd>
+<dt class="label" id="id20"><span class="brackets">Ehr61</span></dt>
+<dd><p>Andrzej Ehrenfeucht. An application of games to the completeness problem for formalized theories. <em>Comptes-rendus de l'Académie des Sciences</em>, 49:129–141, 1961.</p>
+</dd>
+</dl>
+</p>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Classic/4_Payoffs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="total_payoff.html" title="previous page">Total payoff games</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By a set of authors coordinated by Nathana&euml;l Fijalkow<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

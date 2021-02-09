@@ -1,0 +1,684 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A quasipolynomial time attractor decomposition algorithm &#8212; Games on graphs</title>
+    
+  <link rel="stylesheet" href="../../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"set": ["\\left\\{ #1 \\right\\}", 1], "Eve": "\\textrm{Eve}", "Adam": "\\textrm{Adam}", "N": "\\mathbb{N}", "Z": "\\mathbb{Z}", "Zinfty": "\\Z \\cup \\set{\\pm \\infty}", "R": "\\mathbb{R}", "Rinfty": "\\R \\cup \\set{\\pm \\infty}", "Q": "\\mathbb{Q}", "Qinfty": "\\Q \\cup \\set{\\pm \\infty}", "argmax": "\\text{argmax}", "argmin": "\\text{argmin}", "Op": "\\mathbb{O}", "Prob": "\\mathbb{P}", "dist": "\\mathcal{D}", "Dist": "\\dist", "supp": "\\text{supp}", "game": "\\mathcal{G}", "Game": "\\game", "arena": "\\mathcal{A}", "Arena": "\\arena", "col": "\\textsf{col}", "Col": "\\col", "mEve": "\\mathrm{Eve}", "mAdam": "\\mathrm{Adam}", "mRandom": "\\mathrm{Random}", "vertices": "V", "VE": "V_\\mEve", "VA": "V_\\mAdam", "VR": "V_\\mRandom", "ing": "\\text{In}", "Ing": "\\ing", "out": "\\text{Out}", "Out": "\\out", "dest": "\\Delta", "WE": "W_\\mEve", "WA": "W_\\mAdam", "Paths": "\\text{Paths}", "play": "\\pi", "first": "\\text{first}", "last": "\\text{last}", "mem": "\\mathcal{M}", "Mem": "\\mem", "Pre": "\\text{Pre}", "PreE": "\\text{Pre}_\\mEve", "PreA": "\\text{Pre}_\\mAdam", "Attr": "\\text{Attr}", "AttrE": "\\text{Attr}_\\mEve", "AttrA": "\\text{Attr}_\\mAdam", "rank": "\\text{rank}", "Win": "\\textsc{Win}", "Lose": "\\textsc{Lose}", "Value": "\\text{val}", "ValueE": "\\text{val}_\\mEve", "ValueA": "\\text{val}_\\mAdam", "val": "\\Value", "Automaton": "\\mathbf{A}", "Safe": "\\mathtt{Safe}", "Reach": "\\mathtt{Reach}", "Buchi": "\\mathtt{Buchi}", "CoBuchi": "\\mathtt{CoBuchi}", "Parity": "\\mathtt{Parity}", "Muller": "\\mathtt{Muller}", "Rabin": "\\mathtt{Rabin}", "Streett": "\\mathtt{Streett}", "MeanPayoff": "\\mathtt{MeanPayoff}", "DiscountedPayoff": "\\mathtt{DiscountedPayoff}", "Energy": "\\mathtt{Energy}", "TotalPayoff": "\\mathtt{TotalPayoff}", "ShortestPath": "\\mathtt{ShortestPath}", "Sup": "\\mathtt{Sup}", "Inf": "\\mathtt{Inf}", "LimSup": "\\mathtt{LimSup}", "LimInf": "\\mathtt{LimInf}"}}, "tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="A quasipolynomial time separating automata algorithm" href="separation.html" />
+    <link rel="prev" title="An exponential time strategy improvement algorithm" href="strategy_improvement.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <img src="../../_static/cover.jpg" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Games on graphs</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../book.html">
+   Games on Graphs
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../../Introduction/index.html">
+   Introduction
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Introduction/intro.html">
+     What is this book about?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Introduction/simple.html">
+     A first model of games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Introduction/computation.html">
+     Computational models
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Introduction/objectives.html">
+     Objectives
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Introduction/automata.html">
+     Automata
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Introduction/memory.html">
+     Memory
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Introduction/reductions.html">
+     Reductions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Introduction/subgames.html">
+     Traps and subgames
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Introduction/fixed_points.html">
+     Generic fixed point algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Introduction/value_iteration.html">
+     Value iteration algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Introduction/strategy_improvement.html">
+     Strategy improvement algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Introduction/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Classic
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../2_Regular/index.html">
+   Regular
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/attractors.html">
+     A linear time algorithm for reachability games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/buchi.html">
+     A quadratic time algorithm for Büchi games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/parity.html">
+     An exponential time algorithm for parity games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/muller.html">
+     Rabin, Streett, and Muller games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/zielonka.html">
+     The Zielonka tree
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 current active collapsible-parent">
+  <a class="reference internal" href="index.html">
+   Parity
+  </a>
+  <ul class="current collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="strategy_improvement.html">
+     An exponential time strategy improvement algorithm
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     A quasipolynomial time attractor decomposition algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="separation.html">
+     A quasipolynomial time separating automata algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="value_iteration.html">
+     A quasipolynomial time value iteration algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="relationships.html">
+     Comparing the three families of algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../4_Payoffs/index.html">
+   Payoffs
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/notations.html">
+     Notations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/qualitative.html">
+     Refining qualitative objectives with quantities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/mean_payoff.html">
+     Mean payoff games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/discounted_payoff.html">
+     Discounted payoff games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/shortest_path.html">
+     Shortest path games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/total_payoff.html">
+     Total payoff games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/Classic/3_Parity/zielonka.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="a-quasipolynomial-time-attractor-decomposition-algorithm">
+<span id="sec-zielonka"></span><h1>A quasipolynomial time attractor decomposition algorithm<a class="headerlink" href="#a-quasipolynomial-time-attractor-decomposition-algorithm" title="Permalink to this headline">¶</a></h1>
+<div class="theorem admonition">
+<p class="admonition-title">Theorem</p>
+<p>There exists a quasipolynomial time algorithm for solving parity games, and more specifically of complexity <span class="math notranslate nohighlight">\(n^{O(\log n)}\)</span>.</p>
+</div>
+<p>\begin{algorithm}
+\KwData{A parity game <span class="math notranslate nohighlight">\(\Game\)</span> with priorities in <span class="math notranslate nohighlight">\([1,d]\)</span>}
+\SetKwFunction{FSolveEven}{SolveEven}
+\SetKwFunction{FSolveOdd}{SolveOdd}
+\SetKwProg{Fn}{Function}{:}{}
+\DontPrintSemicolon</p>
+<p>\Fn{\FSolveEven{<span class="math notranslate nohighlight">\(\Game\)</span>}}{</p>
+<p><span class="math notranslate nohighlight">\(i \leftarrow -1\)</span></p>
+<p><span class="math notranslate nohighlight">\(V_0 \leftarrow V\)</span></p>
+<p>\Repeat{<span class="math notranslate nohighlight">\(\WA(\Game_i) = \emptyset\)</span>}{
+<span class="math notranslate nohighlight">\(i \leftarrow i + 1\)</span></p>
+<p>Let <span class="math notranslate nohighlight">\(\Game_i\)</span> the subgame of <span class="math notranslate nohighlight">\(\Game\)</span> induced by <span class="math notranslate nohighlight">\(V_i \setminus \AttrE^{\Game_i}(d)\)</span></p>
+<p><span class="math notranslate nohighlight">\(\WE(\Game_i) \leftarrow\)</span> \FSolveOdd{<span class="math notranslate nohighlight">\(\Game_i\)</span>}</p>
+<p><span class="math notranslate nohighlight">\(V_{i+1} \leftarrow V_i \setminus \AttrA^{\Game}( \WA(\Game_i) )\)</span>
+}</p>
+<p>\Return{<span class="math notranslate nohighlight">\(V_i\)</span>}
+}</p>
+<p>\Fn{\FSolveOdd{<span class="math notranslate nohighlight">\(\Game\)</span>}}{
+\If{<span class="math notranslate nohighlight">\(d = 1\)</span>}{
+\Return{<span class="math notranslate nohighlight">\(V\)</span>}
+}</p>
+<p><span class="math notranslate nohighlight">\(i \leftarrow -1\)</span></p>
+<p><span class="math notranslate nohighlight">\(V_0 \leftarrow V\)</span></p>
+<p>\Repeat{<span class="math notranslate nohighlight">\(\WE(\Game_i) = \emptyset\)</span>}{
+<span class="math notranslate nohighlight">\(i \leftarrow i + 1\)</span></p>
+<p>Let <span class="math notranslate nohighlight">\(\Game_i\)</span> the subgame of <span class="math notranslate nohighlight">\(\Game\)</span> induced by <span class="math notranslate nohighlight">\(V_i \setminus \AttrA^{\Game_i}(d)\)</span></p>
+<p><span class="math notranslate nohighlight">\(\WA(\Game_i) \leftarrow\)</span> \FSolveEven{<span class="math notranslate nohighlight">\(\Game_i\)</span>}</p>
+<p><span class="math notranslate nohighlight">\(V_{i+1} \leftarrow V_i \setminus \AttrE^{\Game}( \WE(\Game_i) )\)</span>
+}</p>
+<p>\Return{<span class="math notranslate nohighlight">\(V_i\)</span>}
+}</p>
+<p>\If{<span class="math notranslate nohighlight">\(d\)</span> is even}{
+\Return{\FSolveEven{<span class="math notranslate nohighlight">\(\Game\)</span>}}
+}
+\Else{
+\Return{\FSolveOdd{<span class="math notranslate nohighlight">\(\Game\)</span>}}
+}
+\caption{The recursive algorithm for computing the winning region of parity games.}
+\label{3-algo:zielonka_even}
+\end{algorithm}</p>
+<p>We revisit the exponential recursive algorithm presented in  <a class="reference internal" href="../2_Regular/parity.html#sec-parity"><span class="std std-ref">Section</span></a>.
+We refer to  <span class="xref std std-ref">Algorithm</span> for an equivalent presentation of this algorithm,
+where we make explicit all recursive calls involving the maximal priority <span class="math notranslate nohighlight">\(d\)</span>.
+The benefit of doing this is to make the following observation:
+during the <span class="math notranslate nohighlight">\(i\)</span>\textsuperscript{th} recursive call for <span class="math notranslate nohighlight">\(d\)</span>, the algorithm removes from the game <span class="math notranslate nohighlight">\(\Game\)</span> the subset
+<span class="math notranslate nohighlight">\(X_i = \AttrA^{\Game}( \WA(\Game_i) )\)</span>.
+Note that <span class="math notranslate nohighlight">\(X_i\)</span> is a trap for Eve in <span class="math notranslate nohighlight">\(\Game\)</span> and a subset of the winning region of Adam in <span class="math notranslate nohighlight">\(\Game\)</span>:
+we say that <span class="math notranslate nohighlight">\(X_i\)</span> is a dominion for Eve.
+More generally, given a game <span class="math notranslate nohighlight">\(\Game\)</span>, a set <span class="math notranslate nohighlight">\(X\)</span> of vertices is a dominion for Eve if
+it is a trap for Adam and a subset of the winning region of Eve.</p>
+<p>Let <span class="math notranslate nohighlight">\(i_{\infty}\)</span> be the final value of <span class="math notranslate nohighlight">\(i\)</span>, the sets <span class="math notranslate nohighlight">\(X_0,\dots,X_{i_{\infty}-1}\)</span> are disjoint.
+The <strong>key idea</strong> is that this implies that at most one of them can have size more than half the total size.</p>
+<p>To take advantage of this, we change the specification of the algorithm:
+the new algorithm takes as input a parity game and two parameters <span class="math notranslate nohighlight">\(s_{\mEve}\)</span> and <span class="math notranslate nohighlight">\(s_{\mAdam}\)</span>.
+As before, they are two mutually recursive procedures, <span class="math notranslate nohighlight">\(\textsl{SolveE}\)</span> and <span class="math notranslate nohighlight">\(\textsl{SolveA}\)</span>.
+At an intuitive level, the objective of <span class="math notranslate nohighlight">\(\textsl{SolveE}(\Game,s_{\mEve},s_{\mAdam})\)</span>
+is to return a (non-empty whenever possible) dominion for Eve of size at most <span class="math notranslate nohighlight">\(s_{\mEve}\)</span>.</p>
+<p>We spell out the pseudocode of <span class="math notranslate nohighlight">\(\textsl{SolveE}\)</span> in  <span class="xref std std-ref">Algorithm</span>, leaving out the perfectly symmetric <span class="math notranslate nohighlight">\(\textsl{SolveA}\)</span>.
+The base cases are when there is only one priority, in which case Eve wins everywhere if the priority is even, and Adam wins everywhere if the priority is odd.</p>
+<p>\begin{algorithm}
+\KwData{A parity game <span class="math notranslate nohighlight">\(\Game\)</span> with priorities in <span class="math notranslate nohighlight">\([1,d]\)</span>, and <span class="math notranslate nohighlight">\(d\)</span> even, two parameters <span class="math notranslate nohighlight">\(s_{\mEve}\)</span> and <span class="math notranslate nohighlight">\(s_{\mAdam}\)</span>}
+\SetKwFunction{FTreat}{Treat}
+\SetKwProg{Fn}{Function}{:}{}</p>
+<p>Let <span class="math notranslate nohighlight">\(i = 0\)</span> and <span class="math notranslate nohighlight">\(V_0 = V\)</span></p>
+<p>Let <span class="math notranslate nohighlight">\(\H_0\)</span> the subgame of <span class="math notranslate nohighlight">\(\Game\)</span> induced by <span class="math notranslate nohighlight">\(V_0\)</span></p>
+<p>Let <span class="math notranslate nohighlight">\(\Game_0\)</span> the subgame of <span class="math notranslate nohighlight">\(\H_0\)</span> induced by <span class="math notranslate nohighlight">\(V_0 \setminus \AttrE^{\H_0}(d)\)</span></p>
+<p>\Fn{\FTreat{<span class="math notranslate nohighlight">\(X_i\)</span>}}{
+Let <span class="math notranslate nohighlight">\(V_{i+1} = V_i \setminus \AttrA^{\H_i}(X_i)\)</span></p>
+<p>Let <span class="math notranslate nohighlight">\(\H_{i+1}\)</span> the subgame of <span class="math notranslate nohighlight">\(\H_i\)</span> induced by <span class="math notranslate nohighlight">\(V_{i+1}\)</span></p>
+<p>Let <span class="math notranslate nohighlight">\(\Game_{i+1}\)</span> the subgame of <span class="math notranslate nohighlight">\(\H_{i+1}\)</span> induced by <span class="math notranslate nohighlight">\(V_{i+1} \setminus \AttrE^{\H_{i+1}}(d)\)</span></p>
+<p><span class="math notranslate nohighlight">\(i = i + 1\)</span>
+}</p>
+<p>\tcp{recursive calls for small dominions}
+\While{<span class="math notranslate nohighlight">\(X_i = \textsl{SolveA}(\Game_i, s_{\mEve}, \lfloor s_{\mAdam} / 2 \rfloor) \neq \emptyset\)</span>}{
+\FTreat(<span class="math notranslate nohighlight">\(X_i\)</span>)
+}</p>
+<p>\tcp{one recursive call for a large dominion}</p>
+<p>\If{<span class="math notranslate nohighlight">\(X_i = \textsl{SolveA}(\Game_i, s_{\mEve}, s_{\mAdam}) \neq \emptyset\)</span>}{
+\FTreat(<span class="math notranslate nohighlight">\(X_i\)</span>)
+}</p>
+<p>\tcp{recursive calls for small dominions}
+\While{<span class="math notranslate nohighlight">\(X_i = \textsl{SolveA}(\Game_i, s_{\mEve}, \lfloor s_{\mAdam} / 2 \rfloor) \neq \emptyset\)</span>}{
+\FTreat(<span class="math notranslate nohighlight">\(X_i\)</span>)
+}</p>
+<p>\Return{<span class="math notranslate nohighlight">\(V_i\)</span>}
+\caption{A recursive quasipolynomial algorithm for computing the winning regions of parity games – the procedure <span class="math notranslate nohighlight">\(\textsl{SolveE}\)</span>.}
+\label{3-algo:quasipoly_zielonka_even}
+\end{algorithm}</p>
+<p>We need three simple facts about traps.</p>
+<div class="fact admonition" id="fact-traps">
+<p class="admonition-title">Fact</p>
+<p>\hfill</p>
+<ul class="simple">
+<li><p>Let <span class="math notranslate nohighlight">\(S\)</span> be a trap for Eve in the game <span class="math notranslate nohighlight">\(\Game\)</span> and <span class="math notranslate nohighlight">\(X\)</span> a set of vertices,
+then <span class="math notranslate nohighlight">\(S \setminus \AttrE(X)\)</span> is a trapfor Eve in the subgame of <span class="math notranslate nohighlight">\(\Game\)</span> induced by <span class="math notranslate nohighlight">\(V \setminus \AttrE(X)\)</span>.</p></li>
+<li><p>Let <span class="math notranslate nohighlight">\(S\)</span> be a trap for Eve in the game <span class="math notranslate nohighlight">\(\Game\)</span> and <span class="math notranslate nohighlight">\(X\)</span> a set of vertices such that <span class="math notranslate nohighlight">\(S \cap X = \emptyset\)</span>,
+then <span class="math notranslate nohighlight">\(S \subseteq V \setminus \AttrA(X)\)</span> and <span class="math notranslate nohighlight">\(S\)</span> is a trap for Eve in the subgame of <span class="math notranslate nohighlight">\(\Game\)</span> induced by <span class="math notranslate nohighlight">\(V \setminus \AttrA(X)\)</span>.</p></li>
+<li><p>Let <span class="math notranslate nohighlight">\(S\)</span> be a trap for Eve in the game <span class="math notranslate nohighlight">\(\Game\)</span> and <span class="math notranslate nohighlight">\(Z\)</span> a trap for Eve in the subgame of <span class="math notranslate nohighlight">\(\Game\)</span> induced by <span class="math notranslate nohighlight">\(S\)</span>,
+then <span class="math notranslate nohighlight">\(Z\)</span> is a trap for Eve in <span class="math notranslate nohighlight">\(\Game\)</span>.</p></li>
+</ul>
+</div>
+<p>The following lemma implies the correctness of the algorithm.</p>
+<div class="lemma admonition" id="lem-correctness-quasipoly-zielonka">
+<p class="admonition-title">Lemma</p>
+<p>\hfill</p>
+<ul class="simple">
+<li><p>For all dominions <span class="math notranslate nohighlight">\(S\)</span> for Eve, if <span class="math notranslate nohighlight">\(|S| \le s_{\mEve}\)</span>, then <span class="math notranslate nohighlight">\(S \subseteq \textsl{SolveE}(\Game,s_{\mEve},s_{\mAdam})\)</span>.</p></li>
+<li><p>For all dominions <span class="math notranslate nohighlight">\(S\)</span> for Adam, if <span class="math notranslate nohighlight">\(|S| \le s_{\mAdam}\)</span>, then <span class="math notranslate nohighlight">\(S \cap \textsl{SolveE}(\Game,s_{\mEve},s_{\mAdam}) = \emptyset\)</span>.</p></li>
+</ul>
+</div>
+<p>Indeed, <span class="math notranslate nohighlight">\(\WE(\Game)\)</span> and <span class="math notranslate nohighlight">\(\WA(\Game)\)</span> are dominions for Eve and Adam in <span class="math notranslate nohighlight">\(\Game\)</span>,
+so  <a class="reference internal" href="#lem-correctness-quasipoly-zielonka"><span class="std std-ref">Lemma</span></a> implies that <span class="math notranslate nohighlight">\(\textsl{SolveE}(\Game,n,n) = \WE(\Game)\)</span>.</p>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Proof</p>
+<p>The proof is by induction on the number of priorities: indeed all recursive calls to <span class="math notranslate nohighlight">\(\textsl{SolveA}\)</span> are for games with one less priority.
+It follows that by induction hypothesis the following two properties hold, for all <span class="math notranslate nohighlight">\(i\)</span>.</p>
+<ul class="simple">
+<li><p>For all dominions <span class="math notranslate nohighlight">\(S\)</span> in <span class="math notranslate nohighlight">\(\Game_i\)</span> for Adam, if <span class="math notranslate nohighlight">\(|S| \le s_{\mAdam}\)</span>,
+then</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ S \subseteq \textsl{SolveA}(\Game_i,s_{\mEve},s_{\mAdam}). \]</div>
+<ul class="simple">
+<li><p>For all dominions <span class="math notranslate nohighlight">\(S\)</span> in <span class="math notranslate nohighlight">\(\Game_i\)</span> for Eve, if <span class="math notranslate nohighlight">\(|S| \le s_{\mEve}\)</span>,
+then</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ S \cap \textsl{SolveA}(\Game_i,s_{\mEve},s_{\mAdam}) = \emptyset. \]</div>
+<p>Since there will be an induction inside this induction, we refer to the induction above as the external induction,
+and the second one as the internal induction.</p>
+<p>We write <span class="math notranslate nohighlight">\(i_{\infty}\)</span> for the final value of <span class="math notranslate nohighlight">\(i\)</span>, <strong>i.e.</strong> such that
+<span class="math notranslate nohighlight">\(\textsl{SolveE}(\Game,s_{\mEve},s_{\mAdam}) = V_{i_{\infty}}\)</span>.
+Note that the first item reads <span class="math notranslate nohighlight">\(S \subseteq V_{i_{\infty}}\)</span>.</p>
+<p>Let <span class="math notranslate nohighlight">\(S\)</span> be a dominion for Eve in <span class="math notranslate nohighlight">\(\Game\)</span> such that <span class="math notranslate nohighlight">\(|S| \le s_{\mEve}\)</span>.
+We show by internal induction on <span class="math notranslate nohighlight">\(i\)</span> that
+<span class="math notranslate nohighlight">\(S \subseteq V_i\)</span>.</p>
+<p>For <span class="math notranslate nohighlight">\(i = 0\)</span> this is by definition.
+We now assume that <span class="math notranslate nohighlight">\(S \subseteq V_i\)</span>.
+Recall that <span class="math notranslate nohighlight">\(\Game_i\)</span> is the subgame of <span class="math notranslate nohighlight">\(\H_i\)</span> induced by <span class="math notranslate nohighlight">\(V_i \setminus \AttrE^{\H_i}(d)\)</span>.
+It follows from the first item of \cref{3-fact:traps} that <span class="math notranslate nohighlight">\(S \setminus \AttrE^{\H_i}(d)\)</span>
+is a dominion for Eve in <span class="math notranslate nohighlight">\(\Game_i\)</span>.
+Since <span class="math notranslate nohighlight">\(S \setminus \AttrE^{\H_i}(d)\)</span> has size at most <span class="math notranslate nohighlight">\(s_{\mEve}\)</span>,
+the second item of the external induction hypothesis implies that
+<span class="math notranslate nohighlight">\(S \setminus \AttrE^{\Game_i}(d)\)</span> has an empty intersection with <span class="math notranslate nohighlight">\(X_i = \textsl{SolveA}(\Game_i,s_{\mEve},s_{\mAdam})\)</span>,
+implying that <span class="math notranslate nohighlight">\(S \cap X_i = \emptyset\)</span>.
+It follows from the second item of \cref{3-fact:traps} that <span class="math notranslate nohighlight">\(S \subseteq V_i \setminus \AttrA^{\H_i}(X_i) = V_{i+1}\)</span>.
+This finishes the internal induction, and implies the first item.</p>
+<p>We now prove the second item.</p>
+<p>Let <span class="math notranslate nohighlight">\(S\)</span> be a (non-empty) dominion for Adam in <span class="math notranslate nohighlight">\(\Game\)</span> such that <span class="math notranslate nohighlight">\(|S| \le s_{\mAdam}\)</span>.
+We write <span class="math notranslate nohighlight">\(S_i = S \cap V_i\)</span>.
+Note that the second item reads <span class="math notranslate nohighlight">\(S_{i_{\infty}} = \emptyset\)</span>.</p>
+<p>We first show by internal induction on <span class="math notranslate nohighlight">\(i\)</span> that
+<span class="math notranslate nohighlight">\(S_i\)</span> is a dominion for Adam in <span class="math notranslate nohighlight">\(\H_i\)</span>.
+For <span class="math notranslate nohighlight">\(i = 0\)</span> this is by definition.
+We now assume that <span class="math notranslate nohighlight">\(S_i\)</span> is a dominion for Adam in <span class="math notranslate nohighlight">\(\H_i\)</span>.
+Recall that <span class="math notranslate nohighlight">\(\H_{i+1}\)</span> is the subgame of <span class="math notranslate nohighlight">\(\H_i\)</span> induced by <span class="math notranslate nohighlight">\(V_{i+1} = V_i \setminus \AttrA^{\H_i}(X_i)\)</span>.
+It follows from the first item of \cref{3-fact:traps} applied to <span class="math notranslate nohighlight">\(S_i\)</span> (swapping the roles of Eve and Adam)
+that <span class="math notranslate nohighlight">\(S_i \setminus \AttrA^{\H_i}(X_i) = S_{i+1}\)</span> is a dominion for Adam in <span class="math notranslate nohighlight">\(\H_{i+1}\)</span>.
+This finishes the internal induction.</p>
+<p>We showed that <span class="math notranslate nohighlight">\(S_i\)</span> is a dominion for Adam in <span class="math notranslate nohighlight">\(\H_i\)</span> for each <span class="math notranslate nohighlight">\(i\)</span>.
+To apply the external inductive hypothesis, we need to exhibit dominions for Adam in <span class="math notranslate nohighlight">\(\Game_i\)</span> for each <span class="math notranslate nohighlight">\(i\)</span>.
+We consider <span class="math notranslate nohighlight">\(\H'_i\)</span> the subgame of <span class="math notranslate nohighlight">\(\H_i\)</span> induced by <span class="math notranslate nohighlight">\(S_i\)</span>.
+Let <span class="math notranslate nohighlight">\(Z_i = \WA^{\H'_i}(\Parity \cup \Reach(d))\)</span>:
+in words, <span class="math notranslate nohighlight">\(Z_i\)</span> is the subset of vertices of <span class="math notranslate nohighlight">\(S_i\)</span> from where Adam can ensure that the parity objective is not satisfied
+and never to see priority <span class="math notranslate nohighlight">\(d\)</span>.
+We prove two properties:</p>
+<ul class="simple">
+<li><p>If <span class="math notranslate nohighlight">\(Z_i = \emptyset\)</span>, then <span class="math notranslate nohighlight">\(S_i = \emptyset\)</span>.</p></li>
+</ul>
+<p>The fact that <span class="math notranslate nohighlight">\(Z_i\)</span> is empty implies that Eve has a strategy <span class="math notranslate nohighlight">\(\sigma\)</span> in <span class="math notranslate nohighlight">\(\Game_i\)</span> which from <span class="math notranslate nohighlight">\(S_i\)</span> ensures <span class="math notranslate nohighlight">\(\Parity\)</span> or to see priority <span class="math notranslate nohighlight">\(d\)</span>.
+Since <span class="math notranslate nohighlight">\(S_i\)</span> is a dominion for Adam in <span class="math notranslate nohighlight">\(\H_i\)</span>, there exists a strategy <span class="math notranslate nohighlight">\(\tau\)</span> for Adam which from <span class="math notranslate nohighlight">\(S_i\)</span> ensures the complement of <span class="math notranslate nohighlight">\(\Parity\)</span>
+and to stay in <span class="math notranslate nohighlight">\(S_i\)</span>.
+Playing <span class="math notranslate nohighlight">\(\sigma\)</span> against <span class="math notranslate nohighlight">\(\tau\)</span> yields a contradiction, since <span class="math notranslate nohighlight">\(\sigma\)</span> ensures <span class="math notranslate nohighlight">\(\Parity\)</span> if the play remains in <span class="math notranslate nohighlight">\(S_i\)</span>.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(Z_i\)</span> is a dominion for Adam in <span class="math notranslate nohighlight">\(\Game_i\)</span>.</p></li>
+</ul>
+<p>That <span class="math notranslate nohighlight">\(Z_i\)</span> is a subset of the winning region of Adam in <span class="math notranslate nohighlight">\(\Game_i\)</span> is clear.
+To see that <span class="math notranslate nohighlight">\(Z_i\)</span> is a trap for Eve in <span class="math notranslate nohighlight">\(\Game_i\)</span>, we first note that since <span class="math notranslate nohighlight">\(S_i\)</span> is a trap for Eve in <span class="math notranslate nohighlight">\(\H_i\)</span>
+and <span class="math notranslate nohighlight">\(Z_i\)</span> is a trap for Eve in <span class="math notranslate nohighlight">\(\H'_i\)</span>, the subgame of <span class="math notranslate nohighlight">\(\H_i\)</span> induced by <span class="math notranslate nohighlight">\(S_i\)</span>,
+then <span class="math notranslate nohighlight">\(Z_i\)</span> is a trap in <span class="math notranslate nohighlight">\(\H_i\)</span> by the third item of \cref{3-fact:traps}.
+Now, since <span class="math notranslate nohighlight">\(Z_i\)</span> has an empty intersection with <span class="math notranslate nohighlight">\(d\)</span>, by the second item of \cref{3-fact:traps}
+this implies that <span class="math notranslate nohighlight">\(Z_i\)</span> is a trap for Eve in the subgame of <span class="math notranslate nohighlight">\(\H_i\)</span> induced by <span class="math notranslate nohighlight">\(V_i \setminus \AttrE^{\H_i}(d)\)</span>,
+which is exactly <span class="math notranslate nohighlight">\(\Game_i\)</span>.</p>
+<p>We are now fully equipped to prove that <span class="math notranslate nohighlight">\(S_{i_{\infty}} = \emptyset\)</span>.
+Let <span class="math notranslate nohighlight">\(i_{\ell}\)</span> be the value of <span class="math notranslate nohighlight">\(i\)</span> for which the algorithm performs a recursive call for a large dominion.
+Since the sequence <span class="math notranslate nohighlight">\((S_i)_i\)</span> is non-increasing, if <span class="math notranslate nohighlight">\(S_i\)</span> is empty for some <span class="math notranslate nohighlight">\(i\)</span>, then <span class="math notranslate nohighlight">\(S_{i_{\infty}}\)</span> as well.</p>
+<p>The first while loop was exited for <span class="math notranslate nohighlight">\(i = i_{\ell}\)</span>, implying that</p>
+<div class="math notranslate nohighlight">
+\[
+\textsl{SolveA}(\Game_{i_{\ell}},s_{\mEve},\lfloor s_{\mAdam} / 2 \rfloor) = \emptyset.
+\]</div>
+<p>We apply the external inductive hypothesis to the dominion <span class="math notranslate nohighlight">\(Z_{i_{\ell}}\)</span> for Adam in <span class="math notranslate nohighlight">\(\Game_{i_{\ell}}\)</span>
+for the parameter <span class="math notranslate nohighlight">\(\lfloor s_{\mAdam} / 2 \rfloor\)</span>: if <span class="math notranslate nohighlight">\(|Z_{i_{\ell}}| \le \lfloor s_{\mAdam} / 2 \rfloor\)</span>, then
+<span class="math notranslate nohighlight">\(Z_{i_{\ell}} \subseteq \textsl{SolveA}(\Game_{i_{\ell}},s_{\mEve},\lfloor s_{\mAdam} / 2 \rfloor)\)</span>,
+implying that <span class="math notranslate nohighlight">\(Z_{i_{\ell}}\)</span> is empty, which by the first property above implies that <span class="math notranslate nohighlight">\(S_{i_{\ell}}\)</span> is empty,
+thus <span class="math notranslate nohighlight">\(S_{i_{\infty}}\)</span> as well, proving the second item of  <a class="reference internal" href="#lem-correctness-quasipoly-zielonka"><span class="std std-ref">Lemma</span></a>.
+Excluding this case, we then analyse the situation where
+<span class="math notranslate nohighlight">\(|Z_{i_{\ell}}| &gt; \lfloor s_{\mAdam} / 2 \rfloor\)</span>.</p>
+<p>We apply again the external inductive hypothesis to <span class="math notranslate nohighlight">\(Z_{i_\ell}\)</span>, but this time
+for the parameter <span class="math notranslate nohighlight">\(s_{\mAdam}\)</span>:
+if <span class="math notranslate nohighlight">\(|Z_{i_\ell}| \le s_{\mAdam}\)</span>, then <span class="math notranslate nohighlight">\(Z_{i_\ell} \subseteq X_{i_\ell}\)</span>.
+Since <span class="math notranslate nohighlight">\(Z_{i_\ell} \subseteq S_{i_\ell} \subseteq S\)</span> and <span class="math notranslate nohighlight">\(|S| \le s_{\mAdam}\)</span>, the premise is satisfied,
+so <span class="math notranslate nohighlight">\(Z_{i_\ell} \subseteq X_{i_\ell}\)</span>.
+Since <span class="math notranslate nohighlight">\(Z_{i_\ell}\)</span> is non-empty, so is <span class="math notranslate nohighlight">\(X_{i_\ell}\)</span>: the search for a large dominion was successful, and in particular
+<span class="math notranslate nohighlight">\(i\)</span> is incremented at this stage, implying that <span class="math notranslate nohighlight">\(i_\ell &lt; i_\infty\)</span>.</p>
+<p>Consider <span class="math notranslate nohighlight">\(S_{i_\ell + 1} = S_{i_\ell} \setminus \AttrA^{\H_{i_\ell}}(X_{i_\ell})\)</span>.
+In particular <span class="math notranslate nohighlight">\(S_{i_\ell + 1} \subseteq S_{i_\ell} \setminus X_{i_\ell} \subseteq S_{i_\ell} \setminus Z_{i_\ell}\)</span>, so</p>
+<div class="math notranslate nohighlight">
+\[
+|S_{i_\ell + 1}| \le |S_{i_\ell}| - |Z_{i_\ell}| \le \lfloor s_{\mAdam} / 2 \rfloor.
+\]</div>
+<p>The second while loop was exited for <span class="math notranslate nohighlight">\(i = i_{\infty}\)</span>, implying that</p>
+<div class="math notranslate nohighlight">
+\[
+\textsl{SolveA}(\Game_{i_{\infty}},s_{\mEve},\lfloor s_{\mAdam} / 2 \rfloor) = \emptyset.
+\]</div>
+<p>We apply the external inductive hypothesis to the dominion <span class="math notranslate nohighlight">\(Z_{i_{\infty}}\)</span> for Adam in <span class="math notranslate nohighlight">\(\Game_{i_{\infty}}\)</span>
+for the parameter <span class="math notranslate nohighlight">\(\lfloor s_{\mAdam} / 2 \rfloor\)</span>: if <span class="math notranslate nohighlight">\(|Z_{i_{\infty}}| \le \lfloor s_{\mAdam} / 2 \rfloor\)</span>, then
+<span class="math notranslate nohighlight">\(Z_{i_{\infty}} \subseteq \textsl{SolveA}(\Game_{i_{\infty}},s_{\mEve},\lfloor s_{\mAdam} / 2 \rfloor)\)</span>.
+The premise holds because <span class="math notranslate nohighlight">\(|S_{i_\ell + 1}| \le \lfloor s_{\mAdam} / 2 \rfloor\)</span>, the sequence <span class="math notranslate nohighlight">\((S_i)_i\)</span> is non-increasing,
+<span class="math notranslate nohighlight">\(i_\ell &lt; i_\infty\)</span>, and <span class="math notranslate nohighlight">\(Z_{i_{\infty}} \subseteq S_{i_\infty}\)</span>.
+Hence <span class="math notranslate nohighlight">\(Z_{i_\infty}\)</span> is empty. Thanks to the first property above for <span class="math notranslate nohighlight">\(Z_i\)</span>, this implies that <span class="math notranslate nohighlight">\(S_{i_\infty}\)</span> is empty.
+This finishes the proof of the second item of  <a class="reference internal" href="#lem-correctness-quasipoly-zielonka"><span class="std std-ref">Lemma</span></a>.</p>
+</div>
+<p>We obtain an algorithm for computing the winning regions of parity games using <span class="math notranslate nohighlight">\(\textsl{SolveE}(\Game,n,n)\)</span>,
+where <span class="math notranslate nohighlight">\(\Game\)</span> is a parity game with <span class="math notranslate nohighlight">\(n\)</span> vertices.</p>
+<p>We now perform a complexity analysis.
+Let us write <span class="math notranslate nohighlight">\(f(m,n,d,s_{\mEve},s_{\mAdam})\)</span> for the complexity of the algorithm over parity games with <span class="math notranslate nohighlight">\(m\)</span> edges, <span class="math notranslate nohighlight">\(n\)</span> vertices, <span class="math notranslate nohighlight">\(d\)</span> priorities,
+and parameters <span class="math notranslate nohighlight">\(s_{\mEve}\)</span> and <span class="math notranslate nohighlight">\(s_{\mAdam}\)</span>.
+We have <span class="math notranslate nohighlight">\(f(m,n,1,s_{\mEve},s_{\mAdam}) = O(n)\)</span> and <span class="math notranslate nohighlight">\(f(m,0,d,s_{\mEve},s_{\mAdam}) = f(m,n,d,0,s_{\mAdam}) = f(m,n,d,s_{\mEve},0) = O(1)\)</span>,
+with the general induction</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{lll}
+f(m,n,d,s_{\mEve},s_{\mAdam}) &amp; \le &amp; n \cdot f(m,n,d-1,s_{\mEve},\lfloor s_{\mAdam} / 2 \rfloor) \\
+  &amp; &amp; +\ f(m,n,d-1,s_{\mEve},s_{\mAdam}) \\
+  &amp; &amp; +\ O(nm).
+\end{array}
+\end{split}\]</div>
+<p>The term <span class="math notranslate nohighlight">\(n \cdot f(m,n,d-1,s_{\mEve},\lfloor s_{\mAdam} / 2 \rfloor)\)</span> corresponds to the recursive calls for small dominions,
+the term <span class="math notranslate nohighlight">\(f(m,n,d-1,s_{\mEve},s_{\mAdam})\)</span> to the recursive call for a large dominion,
+and <span class="math notranslate nohighlight">\(O(nm)\)</span> for the computation of the attractors.
+We obtain</p>
+<div class="math notranslate nohighlight">
+\[
+f(m,n,d,n,n) \le m \cdot n^{1 + 2 \lfloor \log n \rfloor} \cdot \binom{d + 2 \lfloor \log n \rfloor}{2 \lfloor \log n \rfloor}.
+\]</div>
+<p>which implies a quasipolynomial upper bound of <span class="math notranslate nohighlight">\(n^{O(\log n)}\)</span>.</p>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Classic/3_Parity"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="strategy_improvement.html" title="previous page">An exponential time strategy improvement algorithm</a>
+    <a class='right-next' id="next-link" href="separation.html" title="next page">A quasipolynomial time separating automata algorithm</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By a set of authors coordinated by Nathana&euml;l Fijalkow<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

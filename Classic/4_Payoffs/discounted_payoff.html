@@ -1,0 +1,1202 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Discounted payoff games &#8212; Games on graphs</title>
+    
+  <link rel="stylesheet" href="../../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"set": ["\\left\\{ #1 \\right\\}", 1], "Eve": "\\textrm{Eve}", "Adam": "\\textrm{Adam}", "N": "\\mathbb{N}", "Z": "\\mathbb{Z}", "Zinfty": "\\Z \\cup \\set{\\pm \\infty}", "R": "\\mathbb{R}", "Rinfty": "\\R \\cup \\set{\\pm \\infty}", "Q": "\\mathbb{Q}", "Qinfty": "\\Q \\cup \\set{\\pm \\infty}", "argmax": "\\text{argmax}", "argmin": "\\text{argmin}", "Op": "\\mathbb{O}", "Prob": "\\mathbb{P}", "dist": "\\mathcal{D}", "Dist": "\\dist", "supp": "\\text{supp}", "game": "\\mathcal{G}", "Game": "\\game", "arena": "\\mathcal{A}", "Arena": "\\arena", "col": "\\textsf{col}", "Col": "\\col", "mEve": "\\mathrm{Eve}", "mAdam": "\\mathrm{Adam}", "mRandom": "\\mathrm{Random}", "vertices": "V", "VE": "V_\\mEve", "VA": "V_\\mAdam", "VR": "V_\\mRandom", "ing": "\\text{In}", "Ing": "\\ing", "out": "\\text{Out}", "Out": "\\out", "dest": "\\Delta", "WE": "W_\\mEve", "WA": "W_\\mAdam", "Paths": "\\text{Paths}", "play": "\\pi", "first": "\\text{first}", "last": "\\text{last}", "mem": "\\mathcal{M}", "Mem": "\\mem", "Pre": "\\text{Pre}", "PreE": "\\text{Pre}_\\mEve", "PreA": "\\text{Pre}_\\mAdam", "Attr": "\\text{Attr}", "AttrE": "\\text{Attr}_\\mEve", "AttrA": "\\text{Attr}_\\mAdam", "rank": "\\text{rank}", "Win": "\\textsc{Win}", "Lose": "\\textsc{Lose}", "Value": "\\text{val}", "ValueE": "\\text{val}_\\mEve", "ValueA": "\\text{val}_\\mAdam", "val": "\\Value", "Automaton": "\\mathbf{A}", "Safe": "\\mathtt{Safe}", "Reach": "\\mathtt{Reach}", "Buchi": "\\mathtt{Buchi}", "CoBuchi": "\\mathtt{CoBuchi}", "Parity": "\\mathtt{Parity}", "Muller": "\\mathtt{Muller}", "Rabin": "\\mathtt{Rabin}", "Streett": "\\mathtt{Streett}", "MeanPayoff": "\\mathtt{MeanPayoff}", "DiscountedPayoff": "\\mathtt{DiscountedPayoff}", "Energy": "\\mathtt{Energy}", "TotalPayoff": "\\mathtt{TotalPayoff}", "ShortestPath": "\\mathtt{ShortestPath}", "Sup": "\\mathtt{Sup}", "Inf": "\\mathtt{Inf}", "LimSup": "\\mathtt{LimSup}", "LimInf": "\\mathtt{LimInf}"}}, "tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Shortest path games" href="shortest_path.html" />
+    <link rel="prev" title="Mean payoff games" href="mean_payoff.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <img src="../../_static/cover.jpg" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Games on graphs</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../book.html">
+   Games on Graphs
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../../Introduction/index.html">
+   Introduction
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Introduction/intro.html">
+     What is this book about?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Introduction/simple.html">
+     A first model of games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Introduction/computation.html">
+     Computational models
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Introduction/objectives.html">
+     Objectives
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Introduction/automata.html">
+     Automata
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Introduction/memory.html">
+     Memory
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Introduction/reductions.html">
+     Reductions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Introduction/subgames.html">
+     Traps and subgames
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Introduction/fixed_points.html">
+     Generic fixed point algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Introduction/value_iteration.html">
+     Value iteration algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Introduction/strategy_improvement.html">
+     Strategy improvement algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Introduction/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Classic
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../2_Regular/index.html">
+   Regular
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/attractors.html">
+     A linear time algorithm for reachability games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/buchi.html">
+     A quadratic time algorithm for Büchi games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/parity.html">
+     An exponential time algorithm for parity games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/muller.html">
+     Rabin, Streett, and Muller games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/zielonka.html">
+     The Zielonka tree
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../3_Parity/index.html">
+   Parity
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/strategy_improvement.html">
+     An exponential time strategy improvement algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/zielonka.html">
+     A quasipolynomial time attractor decomposition algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/separation.html">
+     A quasipolynomial time separating automata algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/value_iteration.html">
+     A quasipolynomial time value iteration algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/relationships.html">
+     Comparing the three families of algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 current active collapsible-parent">
+  <a class="reference internal" href="index.html">
+   Payoffs
+  </a>
+  <ul class="current collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="notations.html">
+     Notations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="qualitative.html">
+     Refining qualitative objectives with quantities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="mean_payoff.html">
+     Mean payoff games
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Discounted payoff games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="shortest_path.html">
+     Shortest path games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="total_payoff.html">
+     Total payoff games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/Classic/4_Payoffs/discounted_payoff.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#positional-determinacy-via-a-contraction-mapping">
+   Positional determinacy via a contraction mapping
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#strategy-improvement-algorithm">
+   Strategy improvement algorithm
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#value-iteration-algorithm">
+   Value iteration algorithm
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#polynomial-reduction-from-mean-payoff-games-to">
+   Polynomial reduction from mean payoff games to
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="discounted-payoff-games">
+<span id="sec-discounted-payoff"></span><h1>Discounted payoff games<a class="headerlink" href="#discounted-payoff-games" title="Permalink to this headline">¶</a></h1>
+<p>From a practical point of view, the modelling of a real-world
+situation via mean payoff games requires that only the long-term
+behaviour is important. Since mean payoff only depends on the limit of
+the play, it cannot be used to model the beginning of the execution:
+the mean payoff is said to be <strong>prefix independent</strong>. In economical
+studies, there is a tendency to make the prefixes count more, since
+they represent short-term implications of the actions taken, even if
+long-term behaviours also matter. The common payoff used to model this
+preference to prefixes is the discounted payoff that associates to a
+play <span class="math notranslate nohighlight">\(\play\)</span> the weight</p>
+<div class="math notranslate nohighlight">
+\[\DiscountedPayoff_\lambda(\play) = (1-\lambda)\sum_{i=0}^{\infty} \lambda^i
+  \, c(\play_i)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\lambda\)</span> is a parameter in the interval
+<span class="math notranslate nohighlight">\((0,1)\)</span>, ensuring the convergence of the infinite series (since
+weights <span class="math notranslate nohighlight">\(c(\play_i)\)</span> are bounded). The coefficient <span class="math notranslate nohighlight">\(1-\lambda\)</span> before
+the series is just to counterbalance the fact that if all weights in
+the game are <span class="math notranslate nohighlight">\(1\)</span>, we would like the payoff to be 1 too, which then
+holds since <span class="math notranslate nohighlight">\(\sum_{i=0}^\infty \lambda^i = \frac 1{1-\lambda}\)</span>. When
+<span class="math notranslate nohighlight">\(\lambda\)</span> tends to <span class="math notranslate nohighlight">\(0\)</span>, only the prefixes (and even the first weight)
+matters. On the contrary, when <span class="math notranslate nohighlight">\(\lambda\)</span> tends to <span class="math notranslate nohighlight">\(1\)</span>, the
+discounted payoff looks more and more like the mean payoff. To grasp
+an intuition why this holds, consider a play that results from
+positional strategies in a mean payoff game. The weights encountered
+during the play then ultimately follow a periodic sequence
+<span class="math notranslate nohighlight">\(w_0,w_1,\ldots,w_{r-1},w_0,w_1,\ldots,w_{r-1},w_0,\ldots\)</span> with
+average-payoff <span class="math notranslate nohighlight">\(\frac 1 r\sum_{i=0}^{r-1}w_i\)</span>. Grouping the terms of
+the series <span class="math notranslate nohighlight">\((1-\lambda)\sum_{i=0}^{\infty} \lambda^i \, w_i\)</span> by
+batches of <span class="math notranslate nohighlight">\(r\)</span> terms, we then obtain</p>
+<div class="math notranslate nohighlight">
+\[(1-\lambda)\sum_{i=0}^{\infty} \lambda^{ri} \sum_{j=0}^{r-1}
+  \lambda^jw_j=\frac{1-\lambda}{1-\lambda^r}\sum_{j=0}^{r-1}
+  \lambda^jw_j= \frac
+  1{1+\lambda+\cdots+\lambda^{r-1}}\sum_{j=0}^{r-1} \lambda^jw_j\]</div>
+<p>that tends towards the average-payoff <span class="math notranslate nohighlight">\(\frac 1 r\sum_{j=0}^{r-1} w_j\)</span>
+when <span class="math notranslate nohighlight">\(\lambda\)</span> tends to <span class="math notranslate nohighlight">\(1\)</span>.</p>
+<p>The weighted game of <a class="reference internal" href="mean_payoff.html#fig-mp"><span class="std std-ref">Figure</span></a> can also be equipped with a
+discounted payoff. If <span class="math notranslate nohighlight">\(\lambda\)</span> is close to <span class="math notranslate nohighlight">\(1\)</span>, for instance
+<span class="math notranslate nohighlight">\(\lambda=0.9\)</span>, then optimal strategies are the same as for the
+mean payoff objective: <span class="math notranslate nohighlight">\(\sigma^*(0)=1\)</span>, <span class="math notranslate nohighlight">\(\sigma^*(2)=3\)</span>,
+<span class="math notranslate nohighlight">\(\tau^*(1)=2\)</span>, <span class="math notranslate nohighlight">\(\tau^*(3)=1\)</span>, and <span class="math notranslate nohighlight">\(\tau^*(4)=0\)</span>. In that case, the
+discounted payoff of the unique lasso play
+<span class="math notranslate nohighlight">\((0,1)\big((1,2)(2,3)(3,1)\big)^\omega\)</span> starting in <span class="math notranslate nohighlight">\(0\)</span> and following
+this profile of strategies is
+<span class="math notranslate nohighlight">\((1-\lambda)\left(4+
+  \frac{2\lambda+4\lambda^2-\lambda^3}{1-\lambda^3}\right)\)</span>, which is
+around <span class="math notranslate nohighlight">\(1.7\)</span> when <span class="math notranslate nohighlight">\(\lambda=0.99\)</span>, while the mean payoff optimal value
+of vertex 0 was <span class="math notranslate nohighlight">\(5/3\approx 1.67\)</span>. However, the situation completely
+changes when <span class="math notranslate nohighlight">\(\lambda\)</span> decreases. When <span class="math notranslate nohighlight">\(\lambda=0.5\)</span> for instance,
+Adam changes his decision in vertex <span class="math notranslate nohighlight">\(1\)</span> and decides to go to vertex
+<span class="math notranslate nohighlight">\(0\)</span>: this is because the cycle <span class="math notranslate nohighlight">\((1,0)\)</span> has now a discounted payoff
+that becomes low enough, the first weight <span class="math notranslate nohighlight">\(0\)</span> being much lower than
+<span class="math notranslate nohighlight">\(2\)</span> (if he decides to go to vertex <span class="math notranslate nohighlight">\(2\)</span>). For a really low value of
+<span class="math notranslate nohighlight">\(\lambda\)</span>, for instance <span class="math notranslate nohighlight">\(\lambda=0.1\)</span>, the decisions again change
+drastically for both players: now the optimal (positional) strategy
+become <span class="math notranslate nohighlight">\(\sigma^*(0)=4\)</span>, <span class="math notranslate nohighlight">\(\sigma^*(2)=3\)</span>, <span class="math notranslate nohighlight">\(\tau^*(1)=0\)</span>, <span class="math notranslate nohighlight">\(\tau^*(3)=0\)</span>,
+and <span class="math notranslate nohighlight">\(\tau^*(4)=0\)</span>, i.e.~Adam changed his decision in vertex <span class="math notranslate nohighlight">\(3\)</span>, and
+Eve in vertex <span class="math notranslate nohighlight">\(0\)</span>. However, we note that for each value of <span class="math notranslate nohighlight">\(\lambda\)</span>
+considered so far, positional optimal strategies are described. This
+is no accident, as we will see in the remainder of the chapter.</p>
+<p>We now study how to solve this class of games, and how it is used to
+obtain a theoretically more efficient solution to mean payoff
+games. Indeed, we will obtain a pseudopolynomial time complexity for
+both objectives.</p>
+<div class="section" id="positional-determinacy-via-a-contraction-mapping">
+<h2>Positional determinacy via a contraction mapping<a class="headerlink" href="#positional-determinacy-via-a-contraction-mapping" title="Permalink to this headline">¶</a></h2>
+<p>First, it is easier (than for mean payoff games) to prove that
+discounted payoff games are positionally determined, by using a
+description of the values as a fixed point of a contracting operator
+<span class="math notranslate nohighlight">\(F\colon \R^V\to \R^V\)</span> that maps every vector <span class="math notranslate nohighlight">\(\vec x=(x_v)_{v\in V}\)</span>
+to a new vector <span class="math notranslate nohighlight">\((y_v)_{v\in V}\)</span> corresponding to the best that both
+players can hope for in one transition if they are rewarded by vector
+<span class="math notranslate nohighlight">\(\vec x\)</span> afterwards: for all <span class="math notranslate nohighlight">\(v\in V\)</span>, we thus let
+\begin{equation}y_v =
+\begin{cases}
+\max_{(v,v’)\in E} [(1-\lambda) c(v,v’) + \lambda x_{v’}] &amp;
+\text{ if } v\in \VE\
+\min_{(v,v’)\in E} [(1-\lambda) c(v,v’) + \lambda x_{v’}] &amp;
+\text{ if } v\in \VA\
+\end{cases}\label{4-eq:F-contraction}
+\end{equation}</p>
+<div class="theorem admonition" id="thm-discounted">
+<p class="admonition-title">Theorem (\cite{Zwick&amp;Paterson:1996})</p>
+<p>Discounted payoff games are positionally determined.</p>
+</div>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Proof</p>
+<p>We prove that <span class="math notranslate nohighlight">\(F\)</span> is indeed a contracting operator.
+For all vectors <span class="math notranslate nohighlight">\(\vec x=(x_v)_{v\in V}\)</span> and
+<span class="math notranslate nohighlight">\(\vec y = (y_v)_{v\in V}\)</span>, we have, by definition,
+<span class="math notranslate nohighlight">\(\|F(\vec x)-F(\vec y)\|_\infty = \max_{v\in V}|F(\vec x)_v-F(\vec
+  y)_v|\)</span>. Let <span class="math notranslate nohighlight">\(v\in \VE\)</span>. Consider a vertex <span class="math notranslate nohighlight">\(v'\)</span> such that
+<span class="math notranslate nohighlight">\(F(\vec x)_v = (1-\lambda) c(v,v') + \lambda x_{v'}\)</span>. Then,
+<span class="math notranslate nohighlight">\(F(\vec y)_v\geq (1-\lambda) c(v,v') + \lambda y_{v'}\)</span> so that
+<span class="math notranslate nohighlight">\(F(\vec x)_v-F(\vec y)_v\leq \lambda(x_{v'}-y_{v'})\)</span>. By now
+considering <span class="math notranslate nohighlight">\(v''\)</span> such that
+<span class="math notranslate nohighlight">\(F(\vec y)_v = (1-\lambda) c(v,v'') + \lambda y_{v''}\)</span>, we obtain
+also that <span class="math notranslate nohighlight">\(F(\vec x)_v-F(\vec y)_v\geq \lambda(x_{v''}-y_{v''})\)</span>. In
+the overall, we thus have
+<span class="math notranslate nohighlight">\(|F(\vec x)_v-F(\vec y)_v|\leq \lambda\|\vec x-\vec y\|_\infty\)</span>. The
+same reasoning also applies to a vertex <span class="math notranslate nohighlight">\(v\)</span> of <span class="math notranslate nohighlight">\(\VA\)</span>. Therefore, we
+obtain
+<span class="math notranslate nohighlight">\(\|F(\vec x)-F(\vec y)\|_\infty\leq \lambda\|\vec x-\vec y\|_\infty\)</span>
+which means that <span class="math notranslate nohighlight">\(F\)</span> is a contraction mapping (since <span class="math notranslate nohighlight">\(0&lt;\lambda&lt;1\)</span>).</p>
+<p>By Banach fixed-point theorem, <span class="math notranslate nohighlight">\(F\)</span> admits a unique fixed-point
+vector <span class="math notranslate nohighlight">\(\vec{x^*}\)</span>, such that <span class="math notranslate nohighlight">\(F(\vec{x^*})=\vec {x^*}\)</span>. This
+fixed-point is moreover the limit of the sequence of vectors
+<span class="math notranslate nohighlight">\((F^n(\vec 0))_{n\in \N}\)</span> with <span class="math notranslate nohighlight">\(\vec 0\)</span> being the null vector, by
+Kleene fixed-point theorem (since <span class="math notranslate nohighlight">\(F\)</span> is continuous, by composition
+of continuous functions). Imagine that Eve plays a positional
+strategy dictated by the equality <span class="math notranslate nohighlight">\(F(\vec{x^*})=\vec {x^*}\)</span>,
+i.e.~when in vertex <span class="math notranslate nohighlight">\(v\in \VE\)</span>, she chooses to go to some vertex
+<span class="math notranslate nohighlight">\(v'\)</span> such that <span class="math notranslate nohighlight">\(x^*_v = (1-\lambda) c(v,v') + \lambda
+  x^*_{v'}\)</span>. Then, she guarantees, by an easy induction proof, a value
+at least <span class="math notranslate nohighlight">\(x^*_v\)</span> when starting in vertex <span class="math notranslate nohighlight">\(v\)</span> (for all <span class="math notranslate nohighlight">\(v\in V\)</span>). A
+symmetrical argument for Adam allows one to obtain that, for all
+<span class="math notranslate nohighlight">\(v\in V\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[\ValueA(v)\leq x^*_v \leq \ValueE(v)\,.\]</div>
+<p>Since we
+always have <span class="math notranslate nohighlight">\(\ValueE(v)\leq \ValueA(v)\)</span>, we finally obtain that the
+game is determined, and that <span class="math notranslate nohighlight">\(x^*\)</span> is equal to the optimal value
+vector. Moreover, the two above positional strategies for Eve and
+Adam are optimal.</p>
+</div>
+<p>As for mean payoff (or parity) games, the existence of positional
+optimal (or winning) strategies for both players, and the ability to
+solve in polynomial time the one-player version of these games, allows
+us to obtain easily an <span class="math notranslate nohighlight">\(\NP\cap\coNP\)</span> complexity to solve
+discounted payoff games in the case of integer costs and a rational
+discount factor. The use of the above contracting operator even
+ensures that the Turing machines guessing and checking the optimal
+strategies may indeed be designed as unambiguous (instead of just
+non-deterministic). Calling <span class="math notranslate nohighlight">\(\UP\)</span> the class of problems that can be
+solved by an unambiguous Turing machine running in polynomial time,
+and <span class="math notranslate nohighlight">\(\coUP\)</span> the class of problems whose complement are in <span class="math notranslate nohighlight">\(\UP\)</span>, we
+then obtain the theorem:</p>
+<div class="theorem admonition" id="thm-disc-up">
+<p class="admonition-title">Theorem (\cite{Jurdzinski:1998})</p>
+<p>Discounted payoff games with integer costs and rational discount
+factor <span class="math notranslate nohighlight">\(\lambda\)</span> can be solved in <span class="math notranslate nohighlight">\(\UP\cap\coUP\)</span>.</p>
+</div>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Proof</p>
+<p>Using the previous result, we know that the value of a
+discounted payoff game is the <strong>unique</strong> solution of the fixed
+point equation <span class="math notranslate nohighlight">\(\vec x = F(\vec x)\)</span>, with <span class="math notranslate nohighlight">\(F\)</span> a contraction
+mapping. Therefore, guessing vector <span class="math notranslate nohighlight">\(\vec x\)</span> and checking it is
+indeed a fixed point of <span class="math notranslate nohighlight">\(F\)</span> can be performed in an unambiguous
+Turing machine. To conclude, it only remains to show that this check
+can be done in polynomial time, in particular we must show that the
+values <span class="math notranslate nohighlight">\(\vec x\)</span> are <strong>short</strong> in terms of their binary
+representation. The equality <span class="math notranslate nohighlight">\(\vec x = F(\vec x)\)</span> induces optimal
+decisions in each vertex, thus leading to a profile of strategies
+for both players. We summarise this profile
+in:  *  a square Boolean matrix
+<span class="math notranslate nohighlight">\(Q\in \{0,1\}^{V\times V}\)</span>, whose entry <span class="math notranslate nohighlight">\(Q_{v,v'}\)</span> is <span class="math notranslate nohighlight">\(1\)</span> if
+<span class="math notranslate nohighlight">\((v,v')\)</span> is the chosen edge in <span class="math notranslate nohighlight">\(v\)</span> by the profile, and <span class="math notranslate nohighlight">\(0\)</span>
+otherwise; *  a vector <span class="math notranslate nohighlight">\(\vec c\in \Z^{V}\)</span>, whose entry <span class="math notranslate nohighlight">\(c_v\)</span> is
+the weight of the edge <span class="math notranslate nohighlight">\((v,v')\)</span> chosen in <span class="math notranslate nohighlight">\(v\)</span> by the
+profile.   We can then write the fixed point equation
+as</p>
+<div class="math notranslate nohighlight">
+\[\vec x = (1-\lambda) \vec c + \lambda Q \vec x\,.\]</div>
+<p>Letting
+<span class="math notranslate nohighlight">\(\lambda = a/b\)</span> the rational discount factor, the above equation
+rewrites into \begin{equation} A\vec x = (b-a)\vec
+c\label{4-eq:1} \end{equation} with <span class="math notranslate nohighlight">\(A= b I- a Q\)</span> (<span class="math notranslate nohighlight">\(I\)</span> being the
+identity matrix). Therefore, <span class="math notranslate nohighlight">\(A\)</span> is a matrix that has at most two
+non-zero elements in each row: each of these non-zero elements can
+be written using at most <span class="math notranslate nohighlight">\(N=\max(\log_2 a,\log_2 b)\)</span> bits (therefore
+polynomial in the representation of the game), and are therefore
+bounded in absolute value by <span class="math notranslate nohighlight">\(2^N\)</span>. By induction on the size of the
+matrix, we can then show that the determinant of <span class="math notranslate nohighlight">\(A\)</span> is at most
+<span class="math notranslate nohighlight">\(4^{Nn}\)</span>. \cref{4-eq:1} then resolves, using Cramer’s formula, by
+<span class="math notranslate nohighlight">\(x_v = \det (A_v) / \det (A)\)</span>, with <span class="math notranslate nohighlight">\(A_v\)</span> the matrix obtained from <span class="math notranslate nohighlight">\(A\)</span>
+by replacing the <span class="math notranslate nohighlight">\(v\)</span>-th column with vector <span class="math notranslate nohighlight">\((b-a)\vec c\)</span>. Therefore,
+all components of <span class="math notranslate nohighlight">\(\vec x\)</span> can be written with only a polynomial of
+bits with respect to the size of the costs in the arena and <span class="math notranslate nohighlight">\(N\)</span>.</p>
+<p>The <span class="math notranslate nohighlight">\(\coUP\)</span> membership follows, as in  <a class="reference internal" href="mean_payoff.html#thm-mp-npconp"><span class="std std-ref">Theorem</span></a>, from a
+dual reasoning for Adam, using the above determinacy result for
+discounted payoff games.</p>
+</div>
+<p>For the discounted payoff game of <a class="reference internal" href="mean_payoff.html#fig-mp"><span class="std std-ref">Figure</span></a>, the contracting
+operator is:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}F\left(
+  \begin{array}{c}
+    x_{v_0}\\x_{v_1}\\x_{v_2}\\x_{v_3}\\x_{v_4}
+  \end{array}\right) =
+  \left(
+    \begin{array}{c}
+      \max\big(4(1-\lambda)+\lambda x_{v_1}, (1-\lambda)5+\lambda x_{v_4}\big)\\
+      \min\big(\lambda x_{v_0}, 2(1-\lambda)+\lambda x_{v_2}\big)\\
+      \max\big((1-\lambda)+\lambda x_{v_2}, 4(1-\lambda)+\lambda x_{v_3}\big)\\
+      \min\big(-2(1-\lambda)+\lambda x_{v_0}, -(1-\lambda)+\lambda x_{v_1}\big)\\
+      \min\big(-2(1-\lambda)+\lambda x_{v_0}, 2(1-\lambda)+\lambda x_{v_4}\big)
+    \end{array}
+  \right)\,.\end{split}\]</div>
+<p>A careful analysis gives the fixed points for all values of
+<span class="math notranslate nohighlight">\(\lambda\in (0,1)\)</span>, which in turn allows us to find the associated
+positional optimal strategies <span class="math notranslate nohighlight">\(\sigma^*\)</span> and <span class="math notranslate nohighlight">\(\tau^*\)</span> on the various
+intervals of values for <span class="math notranslate nohighlight">\(\lambda\)</span>, summarised in the following table:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+  \begin{array}{|c|c|c|c|c|}\hline
+    \lambda &amp; (0, \lambda_1]
+    &amp; (\lambda_1,\lambda_2] &amp; (\lambda_2,\lambda_3]
+    &amp; (\lambda_3,1) \\\hline
+    \sigma^*(v_0) &amp; v_4 &amp; v_4 &amp;  v_1   &amp; v_1  \\\hline
+    \tau^*(v_1) &amp; v_0 &amp;  v_0 &amp;   v_0 &amp;   v_2  \\\hline
+    \sigma^*(v_2) &amp; v_3  &amp; v_3   &amp; v_3 &amp;   v_3 \\\hline
+    \tau^*(v_3) &amp;v_0 &amp;  v_1  &amp; v_1 &amp;   v_1  \\\hline
+    \tau^*(v_4) &amp; v_0 &amp;  v_0  &amp; v_0 &amp;  v_0\\\hline
+  \end{array}\end{split}\]</div>
+<p>where frontiers are at <span class="math notranslate nohighlight">\(\lambda_1 = 1-\sqrt 2/2 \approx 0.293\)</span>,
+<span class="math notranslate nohighlight">\(\lambda_2 = 1/2\)</span>, and <span class="math notranslate nohighlight">\(\lambda_3 \approx 0.841\)</span>. For instance, on
+interval <span class="math notranslate nohighlight">\((0,\lambda_1]\)</span>, Adam gets discounted payoff
+<span class="math notranslate nohighlight">\(\frac{5\lambda-2}{1+\lambda}\)</span> when starting
+in vertex <span class="math notranslate nohighlight">\(v_3\)</span>, while switching his decision in interval
+<span class="math notranslate nohighlight">\((\lambda_1,\lambda_2]\)</span> allows him to secure
+<span class="math notranslate nohighlight">\(\frac{-2\lambda^3+6\lambda^2-1}{1+\lambda}\)</span>: this gives the
+explanation for the value of <span class="math notranslate nohighlight">\(\lambda_1\)</span> which allows one to equal the
+two values. A similar reasoning provides the values of
+<span class="math notranslate nohighlight">\(\lambda_2\)</span> and <span class="math notranslate nohighlight">\(\lambda_3\)</span>.</p>
+</div>
+<div class="section" id="strategy-improvement-algorithm">
+<h2>Strategy improvement algorithm<a class="headerlink" href="#strategy-improvement-algorithm" title="Permalink to this headline">¶</a></h2>
+<p>We apply the strategy improvement paradigm already used for
+mean payoff games. However, in the context of discounted payoff games,
+this algorithm will directly run on the game itself to compute optimal
+values and an optimal strategy for Eve (instead of only deciding if
+Eve can guarantee a positive mean payoff).</p>
+<p>The principle is identical though: it relies on an amelioration of a
+strategy based on a local switching policy. Starting from an arbitrary
+positional strategy of Eve, we apply local improvements by switching
+some decisions to obtain a strictly better positional strategy. Since
+there are only a finite (but exponential) number of positional
+strategies, this strategy improvement algorithm will terminate (with
+at most exponential time worst-case complexity). Moreover, it is
+correct, as we will see, meaning that the local optimum we find when
+no more switching is applicable is indeed a global optimum for Eve,
+meaning that we have computed a (positional) optimal strategy for her.</p>
+<p>To describe the switching policy used to solve discounted payoff
+games, consider a strategy <span class="math notranslate nohighlight">\(\sigma\)</span> of Eve, and let <span class="math notranslate nohighlight">\(\Value^\sigma(v)\)</span>
+be the best possible value Adam can get against <span class="math notranslate nohighlight">\(\sigma\)</span>, when the
+play starts from vertex <span class="math notranslate nohighlight">\(v\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\Value^\sigma(v) = \inf_\tau
+  \DiscountedPayoff_\lambda(v,\sigma,\tau).\]</div>
+<p>Two strategies <span class="math notranslate nohighlight">\(\sigma\)</span>
+and <span class="math notranslate nohighlight">\(\sigma'\)</span> are compared with respect to the vectors
+<span class="math notranslate nohighlight">\(\vec x=\Value^\sigma\)</span> and <span class="math notranslate nohighlight">\(\vec{x'}=\Value^{\sigma'}\)</span>: we denote by
+<span class="math notranslate nohighlight">\(\vec x\leq \vec{x'}\)</span> the fact that <span class="math notranslate nohighlight">\(x_v\leq x'_v\)</span> for all vertices
+<span class="math notranslate nohighlight">\(v\in V\)</span>. Computing the vector <span class="math notranslate nohighlight">\(\Value^\sigma\)</span> amounts to solving a
+one-player discounted payoff game where Eve’s vertices are now
+constrained to follow <span class="math notranslate nohighlight">\(\sigma\)</span>, and thus can be replaced by Adam’s
+vertices. By <a class="reference internal" href="#thm-discounted"><span class="std std-ref">Theorem</span></a>, the solution of such a
+one-player game is still the unique fixed point of the contraction
+mapping <span class="math notranslate nohighlight">\(F_\sigma\)</span> defined for all <span class="math notranslate nohighlight">\(\vec x\in \R^V\)</span> and <span class="math notranslate nohighlight">\(v\in V\)</span> by</p>
+<div class="math notranslate nohighlight">
+\[F_\sigma(\vec x)_v = \min_{(v,v')\in E}[(1-\lambda)c(v,v')+\lambda x_{v'}].\]</div>
+<div class="proposition admonition" id="lem-one-player-dp">
+<p class="admonition-title">Proposition</p>
+<p>We can compute in polynomial time the optimal value of a one-player
+discounted payoff game, by finding the unique fixed point
+<span class="math notranslate nohighlight">\(\vec{x^*}\)</span> of the previous contraction mapping <span class="math notranslate nohighlight">\(F_\sigma\)</span>.</p>
+</div>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Proof</p>
+<p>We first show that if a vector <span class="math notranslate nohighlight">\(\vec x\)</span> satisfies
+<span class="math notranslate nohighlight">\(\vec x\leq F_\sigma(\vec x)\)</span>, then <span class="math notranslate nohighlight">\(\vec x\leq \vec{x^*}\)</span>. Indeed,
+consider any positional strategy <span class="math notranslate nohighlight">\(\tau\)</span> of the unique player Adam,
+and a vertex <span class="math notranslate nohighlight">\(v\in V\)</span>. Then,
+<span class="math notranslate nohighlight">\(x_v\leq F_\sigma(\vec x)_v\leq (1-\lambda)c(v,v')+\lambda x_{v'}\)</span> with
+<span class="math notranslate nohighlight">\((v,v')=\tau(v)\)</span>. We let <span class="math notranslate nohighlight">\(\play\)</span> be the play starting in <span class="math notranslate nohighlight">\(v\)</span>, following
+<span class="math notranslate nohighlight">\(\tau\)</span>, and denote by <span class="math notranslate nohighlight">\(v=v_0,v_1,\ldots\)</span> the sequence of vertices
+visited by <span class="math notranslate nohighlight">\(\play\)</span>. By induction,
+<span class="math notranslate nohighlight">\(x_v \leq (1-\lambda)\sum_{i=0}^{n-1}\lambda^i c(\play_i) +
+  \lambda^nx_{v_n}\)</span>. Letting <span class="math notranslate nohighlight">\(n\)</span> go to <span class="math notranslate nohighlight">\(+\infty\)</span>, we get that
+<span class="math notranslate nohighlight">\(x_v\leq \DiscountedPayoff_\lambda(\play)\)</span>. Since this holds for all
+strategies of Adam, and <span class="math notranslate nohighlight">\(\vec{x^*}\)</span> is the optimal value vector of the
+game by <a class="reference internal" href="#thm-discounted"><span class="std std-ref">Theorem</span></a>, we obtain <span class="math notranslate nohighlight">\(x_v\leq x^*_v\)</span>.</p>
+<p>Therefore, it follows that <span class="math notranslate nohighlight">\(x^*\)</span> is the unique solution of the
+linear program</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{cases}
+      \max\sum_{v\in V}x_v \\
+      \text{under the constraints }\quad x_v\leq
+      (1-\lambda)c(v,v')+\lambda x_{v'}\qquad \forall (v,v')\in E
+    \end{cases}\end{split}\]</div>
+<p>Such a linear program can be solved in polynomial time.</p>
+</div>
+<p>On top of computing the value <span class="math notranslate nohighlight">\(\Value^\sigma\)</span> of a strategy <span class="math notranslate nohighlight">\(\sigma\)</span>
+of Eve, we also compute the best response of Adam, that is the best
+(positional) strategy <span class="math notranslate nohighlight">\(\tau\)</span> he must play to achieve the lowest payoff
+possible for Eve.</p>
+<p>For the discounted payoff game of <a class="reference internal" href="mean_payoff.html#fig-mp"><span class="std std-ref">Figure</span></a> with <span class="math notranslate nohighlight">\(\lambda=0.5\)</span>,
+if we start from Eve’s strategy <span class="math notranslate nohighlight">\(\sigma(0)=4\)</span> and <span class="math notranslate nohighlight">\(\sigma(2)=2\)</span>, the
+simplified contraction mapping in the one-player remaining game is
+given by:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}F_\sigma\left(
+  \begin{array}{c}
+    x_0\\x_1\\x_2\\x_3\\x_4
+  \end{array}\right) =
+  \left(
+    \begin{array}{c}
+      (1-\lambda)5+\lambda x_4\\
+      \min\big(\lambda x_0, 2(1-\lambda)+\lambda x_2\big)\\
+      (1-\lambda)+\lambda x_2\\
+      \min\big(-2(1-\lambda)+\lambda x_0, -(1-\lambda)+\lambda x_1\big)\\
+      \min\big(-2(1-\lambda)+\lambda x_0, 2(1-\lambda)+\lambda x_4\big)
+    \end{array}
+  \right)\,.\end{split}\]</div>
+<p>We compute the best response of Adam by solving the
+linear program:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{cases}
+    \max x_0+x_1+x_2+x_3+x_4 \\
+    \text{under the constraints } &amp; x_0=(1-\lambda)5+\lambda
+    x_4 \\
+    &amp; x_1\leq \lambda x_0 \\
+    &amp; x_1\leq 2(1-\lambda)+\lambda x_2\\
+    &amp; x_2 = (1-\lambda)+\lambda x_2 \qquad (\text{thus } x_2=1) \\
+    &amp; x_3\leq -2(1-\lambda)+\lambda x_0\\
+    &amp; x_3 \leq -(1-\lambda)+\lambda x_1 \\
+    &amp; x_4\leq -2(1-\lambda)+\lambda x_0\\
+    &amp; x_4\leq 2(1-\lambda)+\lambda x_4
+  \end{cases}\end{split}\]</div>
+<p>Feeding this linear program to a solver gives back the
+solution <span class="math notranslate nohighlight">\(\vec x=(8/3,4/3,1,1/6,\allowbreak 1/3)\)</span>, which is associated
+with the best response of Adam defined as <span class="math notranslate nohighlight">\(\tau(1)=0\)</span>, <span class="math notranslate nohighlight">\(\tau(3)=1\)</span>,
+and <span class="math notranslate nohighlight">\(\tau(4)=0\)</span>. We can check if this vector <span class="math notranslate nohighlight">\(\vec x\)</span> is a fixed point
+of <span class="math notranslate nohighlight">\(F\)</span> (and not only <span class="math notranslate nohighlight">\(F_\sigma\)</span>): we indeed have
+<span class="math notranslate nohighlight">\(F(\vec x)_0=\max\big(4(1-\lambda)+\lambda x_1, (1-\lambda)5+\lambda
+x_4\big)= \max(8/3,8/3)= 8/3\)</span>, but
+<span class="math notranslate nohighlight">\(F(\vec x)_2=\max\big((1-\lambda)+\lambda x_2, 4(1-\lambda)+\lambda
+x_3\big) = \max(1,25/12)=25/12\neq 1\)</span>. This suggests modifying
+strategy <span class="math notranslate nohighlight">\(\sigma\)</span> to a new strategy <span class="math notranslate nohighlight">\(\sigma'\)</span> with <span class="math notranslate nohighlight">\(\sigma'(0)=4\)</span> and
+<span class="math notranslate nohighlight">\(\sigma'(2)=3\)</span>. The new vector of values found by solving the new
+linear program is <span class="math notranslate nohighlight">\(\vec{x'}=(8/3,4/3,25/12,1/6,1/3)\)</span>, that is the
+(unique) fixed point of <span class="math notranslate nohighlight">\(F\)</span>. Notice in particular that
+<span class="math notranslate nohighlight">\(\vec{x}\leq \vec{x'}\)</span> with a strict inequality on the component of
+vertex <span class="math notranslate nohighlight">\(2\)</span>.</p>
+<p>\medskip</p>
+<p>We now come back to the general case by describing more precisely the
+algorithm in <span class="xref std std-ref">Algorithm</span>, and prove its
+correctness.  For a particular strategy <span class="math notranslate nohighlight">\(\sigma\)</span> for Eve, once
+<span class="math notranslate nohighlight">\(\Value^\sigma\)</span> computed, we can check whether
+<span class="math notranslate nohighlight">\(F(\Value^\sigma)=\Value^\sigma\)</span> (with <span class="math notranslate nohighlight">\(F\)</span> the more general operator
+defined in \eqref{4-eq:F-contraction}). If it is the case, then we
+know that the optimal value vector of the game is indeed
+<span class="math notranslate nohighlight">\(\Value^\sigma\)</span>: thus, <span class="math notranslate nohighlight">\(\sigma\)</span> is a positional optimal strategy for
+Eve, and the best response of Adam is a positional optimal strategy
+for him. In case <span class="math notranslate nohighlight">\(F(\Value^\sigma)\neq\Value^\sigma\)</span>, we consider for
+every vertex <span class="math notranslate nohighlight">\(v\in \VE\)</span>, the decision <span class="math notranslate nohighlight">\(v'\)</span> such that
+<span class="math notranslate nohighlight">\(F(\Value^\sigma)_v=(1-\lambda)c(v,v')+\lambda \Value^\sigma(v')\)</span>. We
+gather all these decisions in a new strategy <span class="math notranslate nohighlight">\(\sigma'\)</span> for Eve (only
+modifying <span class="math notranslate nohighlight">\(\sigma\)</span> over vertices for which it allows for a strictly
+better value, to ensure the termination of the algorithm).</p>
+<p>\begin{algorithm}
+\KwData{A discounted payoff game <span class="math notranslate nohighlight">\(\game\)</span> with discount factor
+<span class="math notranslate nohighlight">\(\lambda\in(0,1)\)</span>, and <span class="math notranslate nohighlight">\(F\)</span> the contracting operator defined
+in~\eqref{4-eq:F-contraction}}</p>
+<p><span class="math notranslate nohighlight">\(\sigma \leftarrow\)</span> arbitrary positional strategy for Eve ;</p>
+<p><span class="math notranslate nohighlight">\(\Value^\sigma \leftarrow \)</span> fixed-point of <span class="math notranslate nohighlight">\(F_\sigma\)</span>  \tcp*{by <a class="reference internal" href="#lem-one-player-dp"><span class="std std-ref">Lemma</span></a>}</p>
+<p>\While{<span class="math notranslate nohighlight">\(F(\Value^\sigma) \neq \Value^\sigma\)</span>}
+{<br />
+\For{<span class="math notranslate nohighlight">\(v\in \VE\)</span>}
+{
+\If{<span class="math notranslate nohighlight">\(F(\Value^\sigma)_v \neq \Value^\sigma(v)\)</span>}{
+<span class="math notranslate nohighlight">\(v' \leftarrow \)</span> a vertex such that <span class="math notranslate nohighlight">\(F(\Value^\sigma)_v =
+     (1-\lambda)c(v,v')+\lambda \Value^\sigma(v')\)</span> ;</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span> $\sigma(v) \leftarrow v&#39;$
+ }
+</pre></div>
+</div>
+<p>}</p>
+<p><span class="math notranslate nohighlight">\(\Value^\sigma \leftarrow \)</span> fixed-point of <span class="math notranslate nohighlight">\(F_\sigma\)</span>   \tcp*{by <a class="reference internal" href="#lem-one-player-dp"><span class="std std-ref">Lemma</span></a>}</p>
+<p>}</p>
+<p>\Return{<span class="math notranslate nohighlight">\((\Value^\sigma,\sigma)\)</span>}
+\caption{The strategy improvement algorithm for discounted payoff games.}
+\label{4-algo:DP-strategy-improvement}
+\end{algorithm}</p>
+<div class="theorem admonition" id="thm-dp-strategy-improvement-correctness">
+<p class="admonition-title">Theorem</p>
+<p>Strategy improvement algorithm computes the value of the game, as
+well as a positional optimal strategy for Eve, in exponential time.</p>
+</div>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Proof</p>
+<p>When the algorithm returns a strategy <span class="math notranslate nohighlight">\(\sigma\)</span>, it fulfils
+<span class="math notranslate nohighlight">\(F(\Value^\sigma)\neq \Value^\sigma\)</span>, and thus,
+by <a class="reference internal" href="#thm-disc-up"><span class="std std-ref">Theorem</span></a>, <span class="math notranslate nohighlight">\(\Value^\sigma\)</span> is the value of the game,
+and <span class="math notranslate nohighlight">\(\sigma\)</span> an optimal strategy of Eve.</p>
+<p>We thus only have to prove the termination of the algorithm, as well
+as its complexity. Consider the positional strategy <span class="math notranslate nohighlight">\(\sigma\)</span> in the
+beginning of an iteration such that
+<span class="math notranslate nohighlight">\(F(\Value^\sigma)\neq \Value^\sigma\)</span>, as well as the strategy
+<span class="math notranslate nohighlight">\(\sigma'\)</span> updated at the end of the same iteration. We see why
+<span class="math notranslate nohighlight">\(\Value^\sigma\leq \Value^{\sigma'}\)</span>, with a strict inequality for
+at least one of the coefficients. If it is correct, then it shows
+that the <strong>while</strong> loop terminates after a finite number of
+iterations, since there are only a finite number of positional
+strategies and that we cannot visit twice the same one.  More
+precisely, the algorithm has an exponential worst-case complexity,
+since it may have to go through all (or at least a large fraction
+of) the positional strategies.</p>
+<p>We thus prove that <span class="math notranslate nohighlight">\(\Value^\sigma\leq \Value^{\sigma'}\)</span>. Consider
+for that the two best responses of Adam, <span class="math notranslate nohighlight">\(\tau\)</span> and <span class="math notranslate nohighlight">\(\tau'\)</span>
+respectively. As in the proof of <a class="reference internal" href="#thm-disc-up"><span class="std std-ref">Theorem</span></a>, letting <span class="math notranslate nohighlight">\(Q\)</span>,
+<span class="math notranslate nohighlight">\(\vec c\)</span>, <span class="math notranslate nohighlight">\(Q'\)</span>, and <span class="math notranslate nohighlight">\(\vec {c'}\)</span> the respective matrices and cost
+vectors described by the profiles of strategies <span class="math notranslate nohighlight">\((\sigma,\tau)\)</span> and
+<span class="math notranslate nohighlight">\((\sigma',\tau')\)</span>, we have</p>
+<div class="math notranslate nohighlight">
+\[\Value^\sigma = (1-\lambda) \vec c + \lambda Q \Value^\sigma \qquad
+    \text{ and } \qquad \Value^{\sigma'} = (1-\lambda) \vec {c'} +
+    \lambda Q' \Value^{\sigma'}\,.\]</div>
+<p>Therefore, by adding and subtracting <span class="math notranslate nohighlight">\(\lambda Q'
+  \Value^\sigma\)</span> we obtain:</p>
+<div class="math notranslate nohighlight">
+\[\Value^{\sigma'}-\Value^\sigma=\lambda Q'
+    (\Value^{\sigma'}-\Value^{\sigma}) + \underbrace{\lambda
+      (Q'-Q)\Value^\sigma + (1-\lambda)(\vec{c'}-\vec c)}_{=\vec
+      \delta}\,.\]</div>
+<p>Since <span class="math notranslate nohighlight">\(Q'\)</span> is a positive matrix with coefficients in
+<span class="math notranslate nohighlight">\(\{0,1\}\)</span>, the series <span class="math notranslate nohighlight">\(\sum_i \lambda^iQ'^i\)</span> converges, which shows
+that <span class="math notranslate nohighlight">\(I-\lambda Q'\)</span> is invertible of inverse
+<span class="math notranslate nohighlight">\(\sum_{i=0}^\infty \lambda^i Q'^i\)</span>. In particular, the inverse
+<span class="math notranslate nohighlight">\((I-\lambda Q')^{-1}\)</span> has only non negative coefficients, and its
+diagonal coefficients are positive. Therefore, to show that
+<span class="math notranslate nohighlight">\(\Value^{\sigma'}-\Value^\sigma=(I-\lambda Q')^{-1} \vec\delta\)</span> is
+non-negative with at least one positive coefficient, it suffices to
+show that <span class="math notranslate nohighlight">\(\vec\delta\)</span> is non-negative with at least one positive
+coefficient. Consider thus <span class="math notranslate nohighlight">\(v\in V\)</span>:</p>
+<ul class="simple">
+<li><p>If <span class="math notranslate nohighlight">\(v\in \VE\)</span>, we have
+<span class="math notranslate nohighlight">\(\delta_v=\lambda(\Value^{\sigma}(v'_1)-\Value^\sigma(v_1)) +
+(1-\lambda)(c(v,v'_1)-c(v,v_1))\)</span>, with
+<span class="math notranslate nohighlight">\(\sigma(v)=(v,v_1)\)</span> and <span class="math notranslate nohighlight">\(\sigma'(v)=(v,v'_1)\)</span>. If <span class="math notranslate nohighlight">\(v_1=v'_1\)</span>, then
+<span class="math notranslate nohighlight">\(\delta_v=0\)</span>. Otherwise, since <span class="math notranslate nohighlight">\(\sigma'\)</span> is obtained by switching
+the decisions according to <span class="math notranslate nohighlight">\(F\)</span>, we have <span class="math notranslate nohighlight">\(\delta_v&gt;0\)</span>: notice that
+there exists at least one such vertex <span class="math notranslate nohighlight">\(v\)</span>, since otherwise,
+<span class="math notranslate nohighlight">\(\sigma'=\sigma\)</span> and the algorithm has already terminated.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(v\in \VA\)</span>, we have the same formula for <span class="math notranslate nohighlight">\(\delta_v\)</span> with
+<span class="math notranslate nohighlight">\(\tau(v)=(v,v_1)\)</span> and <span class="math notranslate nohighlight">\(\tau'(v)=(v,v'_1)\)</span>. Once again, <span class="math notranslate nohighlight">\(\delta_v=0\)</span>
+if <span class="math notranslate nohighlight">\(v_1=v'_1\)</span>. Otherwise, since <span class="math notranslate nohighlight">\(\tau\)</span> is the best response of Adam
+to the strategy <span class="math notranslate nohighlight">\(\sigma\)</span> of Eve, <span class="math notranslate nohighlight">\(\tau\)</span> is at least as good as
+<span class="math notranslate nohighlight">\(\tau'\)</span>, which means that <span class="math notranslate nohighlight">\(\delta_v\geq 0\)</span> too.</p></li>
+</ul>
+</div>
+<p>We now study another algorithm to compute the values with a possibly
+better worst-case complexity, trading an exponential (with respect to
+the number of vertices) complexity (but polynomial with respect to the
+binary encoding of <span class="math notranslate nohighlight">\(\lambda\)</span> and the weights of the arena), for a
+pseudopolynomial time complexity (polynomial with respect to the
+number of vertices and the binary encoding of the weights of the
+arena, but exponential with respect to the binary encoding of
+<span class="math notranslate nohighlight">\(\lambda\)</span>).</p>
+</div>
+<div class="section" id="value-iteration-algorithm">
+<h2>Value iteration algorithm<a class="headerlink" href="#value-iteration-algorithm" title="Permalink to this headline">¶</a></h2>
+<p>Another way to make use of the contraction mapping <span class="math notranslate nohighlight">\(F\)</span>
+of~\eqref{4-eq:F-contraction} is to compute the sequence
+<span class="math notranslate nohighlight">\(\big(F^n(\vec 0)\big)_{n\in \N}\)</span> that converges towards the value
+vector. However, the sequence is not stationary in general, and thus,
+to obtain an exact value we find a index <span class="math notranslate nohighlight">\(K\)</span> for which <span class="math notranslate nohighlight">\(F^K(\vec 0)\)</span>
+is close to <span class="math notranslate nohighlight">\(\Value\)</span>, as well as a rounding procedure to get the exact
+value <span class="math notranslate nohighlight">\(\Value\)</span> from its approximation <span class="math notranslate nohighlight">\(F^K(\vec 0)\)</span>. It is mainly
+based on the following technical lemma stating that <span class="math notranslate nohighlight">\(\Value(v)\)</span> is a
+rational number with a denominator that we can bound, in a similar
+manner as for~\cref{4-cor:rational-MP} in the mean payoff setting:</p>
+<div class="lemma admonition" id="lem-rational-discounted">
+<p class="admonition-title">Lemma</p>
+<p>If the arena has integer costs and <span class="math notranslate nohighlight">\(\lambda=\frac a b\in (0,1)\)</span>,
+then for all vertices <span class="math notranslate nohighlight">\(v\in V\)</span>, <span class="math notranslate nohighlight">\(D\times \Value(v)\in \Z\)</span>, with
+<span class="math notranslate nohighlight">\(D= b^{n-1}\prod_{j=1}^{n}(b^j-a^j)\)</span>.</p>
+</div>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Proof</p>
+<p>By picking any two optimal positional strategies for Eve and Adam
+(by <a class="reference internal" href="#thm-discounted"><span class="std std-ref">Theorem</span></a>), we obtain a play <span class="math notranslate nohighlight">\(\pi\)</span> starting in
+vertex <span class="math notranslate nohighlight">\(v\in V\)</span> that has a discounted payoff
+<span class="math notranslate nohighlight">\(\DiscountedPayoff(\pi) = \Value(v)\)</span>. Since both strategies are
+positional, the play <span class="math notranslate nohighlight">\(\pi\)</span> is a lasso: thus, the sequence of costs
+encountered through the play is of the form
+<span class="math notranslate nohighlight">\(w_0,w_1,\ldots,w_{k-1},(w_{k},\ldots,w_\ell)^\omega\)</span>, with
+<span class="math notranslate nohighlight">\(0\leq k\leq\ell&lt; n\)</span> and <span class="math notranslate nohighlight">\(w_i\in \Z\)</span>. We can thus compute the
+optimal value exactly:
+\begin{align*}
+\Value(v) &amp;= (1-\lambda) \left[\sum_{i=0}^{k-1} \lambda^i w_i +
+\lambda^{k}\sum_{m=0}^\infty
+\lambda^{(\ell-k+1)m}\sum_{i=0}^{\ell-k}
+\lambda^iw_{k+i}\right]\
+&amp;= \frac{b-a}b \left[\sum_{i=0}^{k-1} \frac{b^{k-1-i}a^i w_i}{b^{k-1}} +
+\frac{\lambda^{k}}{1-\lambda^{\ell-k+1}}\sum_{i=0}^{\ell-k}
+\frac{b^{\ell-k-i}a^iw_{k+i}}{b^{\ell-k}}\right]\
+&amp;= \frac {N_1}{b^{k}} +
+\frac{a^{k}b^{\ell-k+1}}{b^{k+1}(b^{\ell-k+1}-a^{\ell-k+1})}
+\frac{N_2}{b^{\ell-k}} \qquad \text{(with <span class="math notranslate nohighlight">\(N_1,N_2\in \Z\)</span>)}\
+&amp;= \frac{N_3}{b^{k}(b^{\ell-k+1}-a^{\ell-k+1})} \qquad \text{(with
+<span class="math notranslate nohighlight">\(N_3\in \Z\)</span>)}\
+&amp;= \frac{N}{b^{n-1}\prod_{j=1}^{n}(b^j-a^j)} \qquad \text{(with
+<span class="math notranslate nohighlight">\(N\in \Z\)</span>)}
+\end{align*}
+which proves that <span class="math notranslate nohighlight">\(\Value(v)\times D = N\in \Z\)</span>.</p>
+</div>
+<p>Therefore, <span class="math notranslate nohighlight">\(\Value(v)\)</span> is a rational number with a denominator bounded
+by <span class="math notranslate nohighlight">\(D\)</span>. In particular, if we have an approximation <span class="math notranslate nohighlight">\(\eta\)</span> of
+<span class="math notranslate nohighlight">\(\Value(v)\)</span> such that <span class="math notranslate nohighlight">\(|\Value(v)-\eta|&lt;\frac 1 {2D}\)</span>, we get that
+<span class="math notranslate nohighlight">\(\Value(v) = \frac{\lfloor D\eta+1/2\rfloor}D\)</span>. Using the fact that
+operator <span class="math notranslate nohighlight">\(F\)</span> is contracting, we can find an index <span class="math notranslate nohighlight">\(K\)</span> after which this
+rounding leads to the correct optimal value vector. In the following,
+we let again <span class="math notranslate nohighlight">\(W = \max_{(v,c,v')\in E} |c|\)</span> the maximal weight on edges of the arena, in
+absolute values.</p>
+<div class="lemma admonition" id="lem-number-steps-vi-discounted">
+<p class="admonition-title">Lemma</p>
+<p>Let <span class="math notranslate nohighlight">\(K\in \N\)</span> at most
+<span class="math notranslate nohighlight">\(\frac{1}{-\log_2\lambda} \left(\frac{n(n+3)}{2}\log_2b +
+    \log_2 W+2\right)\)</span>. Then,
+<span class="math notranslate nohighlight">\(\|F^K(\vec 0)-\Value\|_\infty &lt; \frac 1 {2D}\)</span>.</p>
+</div>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Proof</p>
+<p>First, we bound <span class="math notranslate nohighlight">\(D\)</span> by <span class="math notranslate nohighlight">\(b^{n+\frac{n(n+1)}2}\)</span>, so that
+<span class="math notranslate nohighlight">\(\frac{n(n+3)}{2}\log_2b\geq \log_2D\)</span>. Therefore
+<span class="math notranslate nohighlight">\(K\geq \frac{1}{-\log_2\lambda} (\log_2D + \log_2 W+\log_24) =
+  \log_{1/\lambda}(4DW)\)</span>. This implies that
+<span class="math notranslate nohighlight">\(\lambda^KW\leq \frac{1}{4D}&lt; \frac 1 {2D}\)</span>. But <span class="math notranslate nohighlight">\(F\)</span> is
+<span class="math notranslate nohighlight">\(\lambda\)</span>-contracting, so that
+<span class="math notranslate nohighlight">\(\|F^K(\vec 0)-\Value\|_\infty\leq
+  \lambda^K\|\Value\|_\infty\)</span>. Since <span class="math notranslate nohighlight">\(\Value(v)\)</span> is the discounted sum
+of weights all bounded in absolute value by <span class="math notranslate nohighlight">\(W\)</span>, we also know that
+<span class="math notranslate nohighlight">\(\|\Value\|_\infty\leq W\)</span> which allows us to conclude.</p>
+</div>
+<p>Therefore, the value iteration algoritm consists at iterating the
+contracting mapping <span class="math notranslate nohighlight">\(F\)</span> for a certain number <span class="math notranslate nohighlight">\(K\)</span> of steps which is
+polynomial with respect to the arena, each of the steps being
+performed in time <span class="math notranslate nohighlight">\(O(m)\)</span>, and then finish the computation by a
+rounding procedure (see <span class="xref std std-ref">Algorithm</span>). In the
+overall, it thus has complexity <span class="math notranslate nohighlight">\(O(K m)\)</span>.</p>
+<p>\begin{algorithm}
+\KwData{A discounted payoff game <span class="math notranslate nohighlight">\(\game\)</span> with discount factor
+<span class="math notranslate nohighlight">\(\lambda= a/b\in(0,1)\)</span>, and <span class="math notranslate nohighlight">\(F\)</span> the contracting operator defined
+in~\eqref{4-eq:F-contraction}}</p>
+<p><span class="math notranslate nohighlight">\(\vec x \leftarrow \vec 0\)</span> ;</p>
+<p><span class="math notranslate nohighlight">\(K \leftarrow \left\lceil \frac{1}{-\log_2\lambda} \left(\frac{n(n+3)}{2}\log_2b +
+     \log_2 W+2\right) \right\rceil\)</span> ;</p>
+<p>\For{<span class="math notranslate nohighlight">\(i = 1\)</span> to <span class="math notranslate nohighlight">\(K\)</span>}
+{
+<span class="math notranslate nohighlight">\(\vec x \leftarrow F(\vec x)\)</span>
+}</p>
+<p>\Return{<span class="math notranslate nohighlight">\(\vec x\)</span>}
+\caption{The value iteration algorithm for discounted payoff games.}
+\label{4-algo:DP-value-iteration}
+\end{algorithm}</p>
+<div class="theorem admonition" id="thm-dp-value-iteration">
+<p class="admonition-title">Theorem</p>
+<p>Value iteration algorithm computes in pseudopolynomial time the
+value vector of a given discounted payoff game with only rational
+weights and a rational discount factor <span class="math notranslate nohighlight">\(\lambda\in (0,1)\)</span>.</p>
+</div>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Proof</p>
+<p>The correctness of the algorithm follows
+from <a class="reference internal" href="#lem-number-steps-vi-discounted"><span class="std std-ref">Lemma</span></a>.  This algorithm runs
+in pseudopolynomial time (and not polynomial-time) because of the
+dependence in the discount factor <span class="math notranslate nohighlight">\(\lambda\)</span>. Indeed, consider that
+<span class="math notranslate nohighlight">\(\lambda = 1-\frac 1 b\)</span>, with <span class="math notranslate nohighlight">\(b\in \N\setminus \{0\}\)</span>. Then, we may
+store <span class="math notranslate nohighlight">\(\lambda\)</span> with <span class="math notranslate nohighlight">\(\log_2 b\)</span> bits, yet
+<span class="math notranslate nohighlight">\(\frac 1{-\log_2\lambda} \sim_{b\to \infty} b\ln 2\)</span> is exponential
+in <span class="math notranslate nohighlight">\(\log_2b\)</span>.</p>
+</div>
+<p>Once the optimal values are known, finding some positional optimal
+strategies for both players still requires to work, as we have already
+seen in <a class="reference internal" href="../../Introduction/memory.html#sec-memory"><span class="std std-ref">Section</span></a>:</p>
+<div class="theorem admonition" id="thm-dp-strategies">
+<p class="admonition-title">Theorem</p>
+<p>In a discounted payoff game with integer costs and rational discount
+factor <span class="math notranslate nohighlight">\(\lambda = a/b\)</span>, optimal strategies for both players can be
+found in
+<span class="math notranslate nohighlight">\(\bigO\big((n^3b\log_2b + \log_2W)\allowbreak
+  \log(m/n) m\big)\)</span> time.</p>
+</div>
+</div>
+<div class="section" id="polynomial-reduction-from-mean-payoff-games-to">
+<h2>Polynomial reduction from mean payoff games to<a class="headerlink" href="#polynomial-reduction-from-mean-payoff-games-to" title="Permalink to this headline">¶</a></h2>
+<p>discounted payoff games
+\label{4-sec:mean_payoff-values}</p>
+<p>Building upon the pseudopolynomial time algorithm for
+discounted payoff, we now describe a classical encoding of mean payoff
+games into discounted payoff games to obtain another algorithm with
+pseudopolynomial time complexity for mean payoff games. Compared to
+the algorithms studied before that were computing the values of a
+mean payoff game by a binary search, this other algorithm (indeed the
+oldest one) is more direct even if it does not obtain a better
+complexity.</p>
+<p>Recall that~\cref{4-cor:rational-MP} states that, in an arena where
+costs are integers, the mean payoff value <span class="math notranslate nohighlight">\(\Value(v)\)</span> is a rational
+number with denominator in <span class="math notranslate nohighlight">\(\{1,\ldots,n\}\)</span>. The minimal distance
+between two rational numbers <span class="math notranslate nohighlight">\(\frac \alpha k\)</span> and <span class="math notranslate nohighlight">\(\frac{\alpha'}{k'}\)</span>
+with <span class="math notranslate nohighlight">\(k,k'\in \{1,\ldots,n\}\)</span> is
+<span class="math notranslate nohighlight">\(\frac 1{n-1}-\frac 1{n}=\frac{1}{n(n-1)}\)</span>. Thus, a
+<span class="math notranslate nohighlight">\(\frac{1}{2n(n-1)}\)</span> approximation <span class="math notranslate nohighlight">\(\beta\)</span> of <span class="math notranslate nohighlight">\(\Value(v)\)</span> is enough
+to apply a rounding procedure finding the only rational
+<span class="math notranslate nohighlight">\(\frac \alpha k\)</span> with <span class="math notranslate nohighlight">\(k\in \{1,\ldots,n\}\)</span> in interval
+<span class="math notranslate nohighlight">\([\beta-\frac{1}{2n(n-1)}, \beta+\frac{1}{2n(n-1)}]\)</span>. By
+interpreting the mean payoff game as a discounted payoff game with a
+nicely chosen <span class="math notranslate nohighlight">\(\lambda\)</span>, we are able to find such a good
+approximation:</p>
+<div class="theorem admonition" id="thm-mp-zwick-paterson">
+<p class="admonition-title">Theorem (\cite{Zwick&amp;Paterson:1996})</p>
+<p>Let <span class="math notranslate nohighlight">\(\arena\)</span> be an arena with integer costs. Let
+<span class="math notranslate nohighlight">\(\lambda\in(0,1)\)</span>. We let <span class="math notranslate nohighlight">\(\Value(v)\)</span> be the value of vertex <span class="math notranslate nohighlight">\(v\)</span> in
+the mean payoff game on <span class="math notranslate nohighlight">\(\arena\)</span>, and <span class="math notranslate nohighlight">\(\Value_\lambda(v)\)</span> be the
+value of vertex <span class="math notranslate nohighlight">\(v\)</span> in the discounted payoff game on <span class="math notranslate nohighlight">\(\arena\)</span>, with
+<span class="math notranslate nohighlight">\(\lambda\)</span> as discount factor. Then
+<span class="math notranslate nohighlight">\(\|\Value-\Value_\lambda\|_\infty\leq 2n(1-\lambda)W\)</span>.</p>
+</div>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Proof</p>
+<p>Let <span class="math notranslate nohighlight">\(v\in V\)</span>. We prove the inequality
+<span class="math notranslate nohighlight">\(\Value_\lambda(v)-\Value(v)\geq -2n(1-\lambda)W\)</span> by reasoning on
+Eve’s strategies: a similar reasoning on Adam’s strategies allows
+one to obtain the other inequality
+<span class="math notranslate nohighlight">\(\Value_\lambda(v)-\Value(v)\leq 2n(1-\lambda)W\)</span>.</p>
+<p>By <a class="reference internal" href="mean_payoff.html#thm-mean-payoff-positional"><span class="std std-ref">Theorem</span></a>, we may select positional optimal
+strategies for Eve and Adam in the mean payoff game, denoted by
+<span class="math notranslate nohighlight">\(\sigma^*\)</span> and <span class="math notranslate nohighlight">\(\tau^*\)</span> respectively. As we have already seen, the play
+<span class="math notranslate nohighlight">\(\play\)</span> starting in <span class="math notranslate nohighlight">\(v\)</span> following <span class="math notranslate nohighlight">\(\sigma^*\)</span> and <span class="math notranslate nohighlight">\(\tau^*\)</span> is then a
+lasso, with a sequence of costs encountered of the form
+<span class="math notranslate nohighlight">\(w_0,w_1,\ldots,w_{k-1},(w_k,\ldots,w_\ell)^\omega\)</span> with
+<span class="math notranslate nohighlight">\(0\leq k\leq \ell&lt;n\)</span>. Then,
+<span class="math notranslate nohighlight">\(\Value(v)=\frac 1 {\ell-k+1}\sum_{i=k}^\ell w_i\)</span>. By choosing the
+same strategy <span class="math notranslate nohighlight">\(\sigma\)</span> for Eve in the discounted payoff game, we
+know that Eve’s value is at least
+<span class="math notranslate nohighlight">\(\DiscountedPayoff_\lambda(\play)\)</span>: therefore, by the determinacy
+result of <a class="reference internal" href="#thm-discounted"><span class="std std-ref">Theorem</span></a>,
+<span class="math notranslate nohighlight">\(\Value_\lambda(v)\geq \DiscountedPayoff_\lambda(\play)\)</span>. We now
+compute precisely <span class="math notranslate nohighlight">\(\DiscountedPayoff_\lambda(\play)\)</span>:
+\begin{align*}
+\DiscountedPayoff_\lambda(\play)
+&amp;=
+(1-\lambda)\sum_{i=0}^{k-1}\lambda^i
+\underbrace{w_i}<em>{\makebox[0pt][c]{\scriptsize<span class="math notranslate nohighlight">\(\geq -W\)</span>}}
++
+(1-\lambda)\lambda^k\sum</em>{m=0}^\infty
+\lambda^{(\ell-k+1)m} \sum_{i=0}^{\ell-k}\lambda^iw_{k+i}\
+&amp; \geq -(1-\lambda^k)W +
+\frac{(1-\lambda) \lambda^k}{1-\lambda^{\ell-k+1}}
+\sum_{i=0}^{\ell-k}\lambda^iw_{k+i} \tag*{\eqref{4-eq:1}}
+\end{align*}
+By shifting all weights by <span class="math notranslate nohighlight">\(W\)</span>, we can rewrite the remaining
+sum as:</p>
+<div class="math notranslate nohighlight">
+\[\sum_{i=0}^{\ell-k}\lambda^iw_{k+i} =
+    \sum_{i=0}^{\ell-k}\lambda^i(w_{k+i}+W) -
+    W\sum_{i=0}^{\ell-k}\lambda^i\]</div>
+<p>By using the fact that <span class="math notranslate nohighlight">\(w_{k+i}+W\)</span> is non-negative and
+<span class="math notranslate nohighlight">\(\lambda^i\geq \lambda^{\ell-k}\)</span>, we obtain
+\begin{align*}
+\sum_{i=0}^{\ell-k}\lambda^iw_{k+i}
+&amp;\geq \lambda^{\ell-k}
+\sum_{i=0}^{\ell-k}(w_{k+i}+W) -W
+\frac{1-\lambda^{\ell-k+1}}{1-\lambda} \
+&amp;= \lambda^{\ell-k}
+\sum_{i=0}^{\ell-k}w_{k+i} + (\ell-k+1)\lambda^{\ell-k}W
+-W \frac{1-\lambda^{\ell-k+1}}{1-\lambda}
+\end{align*}
+Therefore, since <span class="math notranslate nohighlight">\(\Value(v)=\frac 1 {\ell-k+1}\sum_{i=k}^\ell w_i\)</span>,
+we obtain</p>
+<div class="math notranslate nohighlight">
+\[\sum_{i=0}^{\ell-k}\lambda^iw_{k+i}\geq
+    \lambda^{\ell-k}(\ell-k+1)(\Value(v)+W)-
+    W\frac{1-\lambda^{\ell-k+1}}{1-\lambda} \,.\]</div>
+<p>Simplifying~\cref{4-eq:1} gives:</p>
+<div class="math notranslate nohighlight">
+\[\DiscountedPayoff_\lambda(\play)
+    \geq -W+ \frac{(1-\lambda)(\ell-k+1)}{1-\lambda^{\ell-k+1}}
+    \lambda^\ell (\Value(v) + W)\]</div>
+<p>Since
+<span class="math notranslate nohighlight">\(\frac {1-\lambda^{\ell-k+1}}{1-\lambda} =
+  \sum_{i=0}^{\ell-k}\lambda^i &lt; \ell-k+1\)</span>, and <span class="math notranslate nohighlight">\(\Value(v) + W\geq 0\)</span>
+(the mean payoff is an average of costs of the arena, so it is in
+the interval <span class="math notranslate nohighlight">\([-W,W]\)</span>), we have</p>
+<div class="math notranslate nohighlight">
+\[\DiscountedPayoff_\lambda(\play)
+    \geq -W + \lambda^\ell (\Value(v) + W)\]</div>
+<p>Finally, notice that
+<span class="math notranslate nohighlight">\(\ell\leq n\)</span>, so that
+<span class="math notranslate nohighlight">\(\lambda^\ell\geq \lambda^{n}&gt;(1-n(1-\lambda))\)</span>, using the fact
+that
+<span class="math notranslate nohighlight">\(\frac{1-\lambda^{n}}{1-\lambda} = \sum_{i=0}^{n-1}\lambda^i &lt;
+  n\)</span>. Therefore,
+\begin{align*}
+\DiscountedPayoff_\lambda(\play)
+&amp;\geq -W + (1-n(1-\lambda)) (\Value(v) + W)\
+&amp;= -n(1-\lambda)(W+\Value(v)) + \Value(v)\
+&amp;\geq -2n(1-\lambda)W + \Value(v)
+\end{align*}
+by using again <span class="math notranslate nohighlight">\(\Value(v)\leq W\)</span>. We obtain</p>
+<div class="math notranslate nohighlight">
+\[\Value_\lambda(v)-\Value(v)\geq -2n(1-\lambda)W\]</div>
+<p>as wanted, which allows us to conclude.</p>
+</div>
+<p>Therefore, by picking <span class="math notranslate nohighlight">\(\lambda = 1-\frac 1{4n^2(n-1)W}\)</span>, we may
+obtain a good enough approximation of the mean payoff optimal value,
+by solving the associated discounted payoff game. From a complexity
+point of view, this value iteration algorithm runs in polynomial time
+with respect to the arena, but exponential with respect to the
+representation of <span class="math notranslate nohighlight">\(\lambda\)</span>: here, it is therefore polynomial in
+<span class="math notranslate nohighlight">\(4n^2(n-1)W\)</span> which leads to a pseudopolynomial complexity to solve
+mean payoff games. More precisely,</p>
+<div class="theorem admonition" id="thm-mp-direct-value-iteration">
+<p class="admonition-title">Theorem</p>
+<p>The direct value iteration algorithm computes the values of a
+mean payoff game in complexity <span class="math notranslate nohighlight">\(O(mn^3W)\)</span>.</p>
+</div>
+<p>As for discounted payoff game, a binary search also
+permits to obtain optimal positional strategies for both players in
+<span class="math notranslate nohighlight">\(\bigO\big(n^4m\log(m/n)W\big)\)</span> time.</p>
+<p>Notice that the previous encoding implies a better theoretical
+complexity for mean payoff and parity games, that what we obtained
+before:</p>
+<div class="corollary admonition" id="col-up">
+<p class="admonition-title">Corollary</p>
+<p>Deciding the winner (with respect to a threshold) for mean payoff
+games, and deciding the winner for parity games, can be done in
+<span class="math notranslate nohighlight">\(\UP\cap\coUP\)</span>.</p>
+</div>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Proof</p>
+<p>The previous polynomial-time reduction from mean payoff to
+discounted payoff games allows to lift the <span class="math notranslate nohighlight">\(\UP\cap\coUP\)</span> complexity
+of <a class="reference internal" href="#thm-disc-up"><span class="std std-ref">Theorem</span></a>. Moreover, the polynomial-time reduction
+of <a class="reference internal" href="mean_payoff.html#thm-parity2mp"><span class="std std-ref">Theorem</span></a> allows one to obtain the same complexity for
+parity games.</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Classic/4_Payoffs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="mean_payoff.html" title="previous page">Mean payoff games</a>
+    <a class='right-next' id="next-link" href="shortest_path.html" title="next page">Shortest path games</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By a set of authors coordinated by Nathana&euml;l Fijalkow<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>
