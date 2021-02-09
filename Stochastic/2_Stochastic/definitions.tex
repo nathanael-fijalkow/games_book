@@ -1,0 +1,142 @@
+Let us first define the arenas stochastic games will be played on:
+\begin{definition}
+  A ""stochastic arena"" is a tuple $\arena = (\vertices,E,\delta)$ where
+  \begin{itemize}
+  \item $\vertices = \VA \sqcup \VE \sqcup \Randomvertices$ is a
+    finite set of vertices, partitionned into vertices of \Adam, \Eve,
+    and ""random vertices"";
+  \item $E \subseteq \vertices \times \vertices$ is the set of
+    edges;
+  \item $\delta : \Randomvertices \to \dist(\vertices)$ is the
+    probabilistic transition function, which satisfies:
+    $\forall v \in \Randomvertices$, $\delta(v)(w)>0$ iff
+    $(v,w) \in E$.
+  \end{itemize}
+\end{definition}
+
+\begin{figure}
+\centering
+    \begin{tikzpicture}[scale=1.3]
+    \node[s-eve] (init) at (0,0) {$v_0$};
+    \node[s-random] (v1) at (2,0) {$v_1$};
+    \node[s-eve] (v2) at (4,0) {$v_2$};    
+    \node[s-random] (v3) at (6,0) {$v_3$};
+    \node[s-random] (v4) at (0,-1.5) {$v_4$};
+    \node[s-eve] (v5) at (2,-1.5) {$v_5$};
+    \node[s-adam] (v6) at (4,-1.5) {$v_6$};    
+    \node[s-eve] (v7) at (6,-1.5) {$v_7$};
+    
+    \path[arrow] (init) edge (v1)
+    (init) edge[bend left] (v4)
+    (v4) edge[bend left] node[left] {$\frac 3 4$} (init)
+    (v4) edge node[above] {$\frac 1 4$} (v5)
+    (v5) edge[bend left] (v6)
+    (v6) edge (v7)
+    (v6) edge[bend left] (v5)
+    (v5) edge[selfloop=90]  (v5)
+    (v7) edge[selfloop]  (v7)
+    (v1) edge node[above] {$\frac 2 3$} (v2)
+    (v1) edge node[above right] {$\frac 1 3$} (v6)
+    (v2) edge (v6)
+    (v2) edge[bend left] (v3)
+    (v3) edge[bend left] node[below] {$\frac 1 2$} (v2)
+    (v3) edge node[right] {$\frac 1 2$} (v7)
+%    (init) edge node[left] {$\frac 1 {10}$} (av)
+%    (init) edge node[left] {$\frac 3 {10}$} (rv)
+%    (init) edge node[right] {$\frac 2 {5}$} (ev)
+    ;    
+% \node[s-random] (root) at (0,0) {$v$};
+% \node[s-random] (left) at (-.75,-1) {};
+% \node[s-random] (right) at (.75,-1) {};
+% \node[s-adam] (lleft) at (-1.5,-2) {$v_1$};
+% \node[s-random] (rleft) at (0,-2) {$v_2$};
+% \node[s-eve] (rright) at (.75,-2) {$v_3$};
+
+% \path[arrow] (root) edge node[left] {$\frac 2 5$}  (left)
+% (root) edge node[right] {$\frac 3 5$}  (right)
+% (left) edge node[left] {$\frac 1 4$} (lleft)
+% (left) edge node[right] {$\frac 3 4$} (rleft)
+% (right) edge node[right] {$\frac 2 3$} (rright)
+% (right) edge[out=70,in=0] node[right] {$\frac 1 3$} (root)
+% % (ab) edge [loop] (ab)
+% % (notb) edge  node [above] {} (notab)
+% % (notab) edge   (ab)
+% % (ab) edge[out=195,in=-15] (notab)
+% % (ab) edge[out=205,in=-25] (notb)
+% ;
+    \end{tikzpicture}
+  \caption{Example of a stochastic arena: circle nodes belong to \Eve,
+    square nodes to \Adam, and diamond nodes are random.}
+  \label{6-fig:ex-stoch-arena}
+\end{figure}
+
+
+Similarly to non-stochastic arenas, one can equip a stochastic arena
+with a winning objectives to define a stochastic game.
+\begin{definition}
+  A ""stochastic game"" is a tuple $\game = (\arena,\Omega)$ where
+  \begin{itemize}
+  \item $\arena$ is a stochastic arena;
+  \item $\Omega \subseteq \vertices^\omega$ is the (qualitative)
+    winning objective.
+  \end{itemize}
+\end{definition}
+
+For $\Win \subseteq \vertices$, letting $\Omega = \Reach(\Win)$ gives
+rise to a stochastic reachability game.
+Of course, one may consider more general $\omega$-regular
+properties. We write $\mathds{1}_\Omega$ for the characteristic
+function of the winning objective $\Omega$.
+
+
+In this game, \Eve aims at maximizing the probability that a play
+belongs to $\Omega$, while \Adam has the opposite objective of
+minimizing that probability. In that sense, we study quantitative
+games, although the winning objective is qualitative.
+
+A \emph{strategy} for \Eve is a function
+$\sigma: V^* \VE \to \dist(\vertices)$ such that whenever
+$\sigma(h v)(v') >0$ then $(v,v') \in E$. Similarly, one can define
+strategies for \Adam. When a strategy profile $(\sigma,\tau)$ is
+fixed, and assuming the arena is clear from context, we write
+$\probm_{\sigma,\tau}^v$ for the probability measure on infinite plays
+when the initial vertex is $v$. In particular,
+$\probm_{\sigma,\tau}^v(\mathds{1}_\Omega)$ is the outcome of the profile
+$(\sigma,\tau)$.
+
+
+% We note $\probm_{\sigma,\tau}^v$ without the name of the game when it
+% is evident.
+% We will also write $\sigma(h)(\adist,v')$ 
+
+% \textit{Strategies}
+% $\sigma$: strategies of \Eve; $\tau$: strategies of \Adam
+
+%\textit{Notions  of inf value, sup value}
+
+The \emph{"value" for \Eve} in $\game$ from $v$ is defined as
+$\ValueE^\game(v) = \sup_{\sigma} \inf_{\tau}
+\probm_{\sigma,\tau}^v(\mathds{1}_\Omega)$, whereas symmetrically the
+\emph{supremum value} is
+$\ValueA^\game(v) = \inf_{\tau}\sup_{\sigma}
+\probm_{\sigma,\tau}^v(\mathds{1}_\Omega)$. Clearly enough,
+$\ValueE^\game(v) \leq \ValueA^\game(v)$.  When the converse
+inequality holds, the game is \emph{determined} and the \emph{value}
+of $v$ in $\game$ is denoted $\Value^\game(v)$. Moreover, if the value
+is attained by positional strategies $\sigma$ and $\tau$, $\game$ is
+said to be \emph{positionally determined}. \emph{Strong determinacy}
+means that for every threshold $c$, either \Eve has a strategy to
+ensure that the probability that the play belongs to $\Omega$ is at
+least $c$, or \Adam has a strategy to ensure probability $< c$ to for
+the set of plays satisfying $\Omega$.
+
+Back to the example of Figure~\ref{6-fig:ex-stoch-arena}, assume that
+\Eve and \Adam play the following pure positional strategies:
+$\sigma(v_0) = v_1$, $\sigma(v_2) = v_3$, $\sigma(v_5) = v_5$ and
+$\tau(v_6) = v_5$. Under such a strategy profile, starting in $v_0$,
+the probability to reach $v_7$ is
+$\probm_{\sigma,\tau}^{v_0}(\mathds{1}_{\Reach(\{v_7\})}) = \frac 2
+3$. In fact, strategy $\sigma$ for \Eve is optimal for the
+reachability objective $\Reach(\{v_7\})$, and we will justify that
+$\ValueE^\game(v_0) = \ValueA^\game(v_0) = \frac 2 3$.
+

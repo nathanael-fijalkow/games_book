@@ -1,17 +1,20 @@
 (book)=
 # Games on Graphs
 
-Coordinated by Nathana&euml;l Fijalkow
-
-Written by (in alphabetical order):
-Nathalie Bertrand, Romain Brenguier, Patricia Bouyer-Decitre, Arnaud Carayol, John Fearnley, Nathana&euml;l Fijalkow, Hugo Gimbert, Florian Horn, Rasmus Ibsen-Jensen, Nicolas Markey, Benjamin Monmege, Petr Novotny, Mickael Randour, Ocan Sankur, Sylvain Schmitz, Olivier Serre
-
 ```{image} cover.jpg
 :alt: logo
 :class: bg-primary mb-1
 :width: 400px
 :align: center
 ```
+
+```{tableofcontents}
+```
+
+Coordinated by Nathana&euml;l Fijalkow
+
+Written by (in alphabetical order):
+Nathalie Bertrand, Romain Brenguier, Patricia Bouyer-Decitre, Arnaud Carayol, John Fearnley, Nathana&euml;l Fijalkow, Hugo Gimbert, Florian Horn, Rasmus Ibsen-Jensen, Nicolas Markey, Benjamin Monmege, Petr Novotny, Mickael Randour, Ocan Sankur, Sylvain Schmitz, Olivier Serre
 
 
 
@@ -20,16 +23,16 @@ Nathalie Bertrand, Romain Brenguier, Patricia Bouyer-Decitre, Arnaud Carayol, Jo
 :titlesonly:
 :caption: Introduction
 
-1_Introduction/main
+Introduction/index
 ```
 
 
 ```{toctree}
 :hidden:
 :titlesonly:
-:caption: Classical
+:caption: Classic
 
-2_Regular/main
-3_Parity/main
-4_Payoffs/main
+Classic/2_Regular/index
+Classic/3_Parity/index
+Classic/4_Payoffs/index
 ```

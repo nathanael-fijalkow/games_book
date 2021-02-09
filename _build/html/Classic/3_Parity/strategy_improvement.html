@@ -1,0 +1,688 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>An exponential time strategy improvement algorithm &#8212; Games on graphs</title>
+    
+  <link rel="stylesheet" href="../../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"set": ["\\left\\{ #1 \\right\\}", 1], "Eve": "\\textrm{Eve}", "Adam": "\\textrm{Adam}", "N": "\\mathbb{N}", "Z": "\\mathbb{Z}", "Zinfty": "\\Z \\cup \\set{\\pm \\infty}", "R": "\\mathbb{R}", "Rinfty": "\\R \\cup \\set{\\pm \\infty}", "Q": "\\mathbb{Q}", "Qinfty": "\\Q \\cup \\set{\\pm \\infty}", "argmax": "\\text{argmax}", "argmin": "\\text{argmin}", "Op": "\\mathbb{O}", "Prob": "\\mathbb{P}", "dist": "\\mathcal{D}", "Dist": "\\dist", "supp": "\\text{supp}", "game": "\\mathcal{G}", "Game": "\\game", "arena": "\\mathcal{A}", "Arena": "\\arena", "col": "\\textsf{col}", "Col": "\\col", "mEve": "\\mathrm{Eve}", "mAdam": "\\mathrm{Adam}", "mRandom": "\\mathrm{Random}", "vertices": "V", "VE": "V_\\mEve", "VA": "V_\\mAdam", "VR": "V_\\mRandom", "ing": "\\text{In}", "Ing": "\\ing", "out": "\\text{Out}", "Out": "\\out", "dest": "\\Delta", "WE": "W_\\mEve", "WA": "W_\\mAdam", "Paths": "\\text{Paths}", "play": "\\pi", "first": "\\text{first}", "last": "\\text{last}", "mem": "\\mathcal{M}", "Mem": "\\mem", "Pre": "\\text{Pre}", "PreE": "\\text{Pre}_\\mEve", "PreA": "\\text{Pre}_\\mAdam", "Attr": "\\text{Attr}", "AttrE": "\\text{Attr}_\\mEve", "AttrA": "\\text{Attr}_\\mAdam", "rank": "\\text{rank}", "Win": "\\textsc{Win}", "Lose": "\\textsc{Lose}", "Value": "\\text{val}", "ValueE": "\\text{val}_\\mEve", "ValueA": "\\text{val}_\\mAdam", "val": "\\Value", "Automaton": "\\mathbf{A}", "Safe": "\\mathtt{Safe}", "Reach": "\\mathtt{Reach}", "Buchi": "\\mathtt{Buchi}", "CoBuchi": "\\mathtt{CoBuchi}", "Parity": "\\mathtt{Parity}", "Muller": "\\mathtt{Muller}", "Rabin": "\\mathtt{Rabin}", "Streett": "\\mathtt{Streett}", "MeanPayoff": "\\mathtt{MeanPayoff}", "DiscountedPayoff": "\\mathtt{DiscountedPayoff}", "Energy": "\\mathtt{Energy}", "TotalPayoff": "\\mathtt{TotalPayoff}", "ShortestPath": "\\mathtt{ShortestPath}", "Sup": "\\mathtt{Sup}", "Inf": "\\mathtt{Inf}", "LimSup": "\\mathtt{LimSup}", "LimInf": "\\mathtt{LimInf}"}}, "tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="A quasipolynomial time attractor decomposition algorithm" href="zielonka.html" />
+    <link rel="prev" title="Parity" href="index.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <img src="../../_static/cover.jpg" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Games on graphs</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../book.html">
+   Games on Graphs
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../../Introduction/index.html">
+   Introduction
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Introduction/intro.html">
+     What is this book about?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Introduction/simple.html">
+     A first model of games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Introduction/computation.html">
+     Computational models
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Introduction/objectives.html">
+     Objectives
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Introduction/automata.html">
+     Automata
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Introduction/memory.html">
+     Memory
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Introduction/reductions.html">
+     Reductions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Introduction/subgames.html">
+     Traps and subgames
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Introduction/fixed_points.html">
+     Generic fixed point algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Introduction/value_iteration.html">
+     Value iteration algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Introduction/strategy_improvement.html">
+     Strategy improvement algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Introduction/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Classic
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../2_Regular/index.html">
+   Regular
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/attractors.html">
+     A linear time algorithm for reachability games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/buchi.html">
+     A quadratic time algorithm for Büchi games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/parity.html">
+     An exponential time algorithm for parity games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/muller.html">
+     Rabin, Streett, and Muller games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/zielonka.html">
+     The Zielonka tree
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 current active collapsible-parent">
+  <a class="reference internal" href="index.html">
+   Parity
+  </a>
+  <ul class="current collapse-ul">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     An exponential time strategy improvement algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="zielonka.html">
+     A quasipolynomial time attractor decomposition algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="separation.html">
+     A quasipolynomial time separating automata algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="value_iteration.html">
+     A quasipolynomial time value iteration algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="relationships.html">
+     Comparing the three families of algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../4_Payoffs/index.html">
+   Payoffs
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/notations.html">
+     Notations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/qualitative.html">
+     Refining qualitative objectives with quantities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/mean_payoff.html">
+     Mean payoff games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/discounted_payoff.html">
+     Discounted payoff games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/shortest_path.html">
+     Shortest path games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/total_payoff.html">
+     Total payoff games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/Classic/3_Parity/strategy_improvement.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="an-exponential-time-strategy-improvement-algorithm">
+<span id="sec-strategy-improvement"></span><h1>An exponential time strategy improvement algorithm<a class="headerlink" href="#an-exponential-time-strategy-improvement-algorithm" title="Permalink to this headline">¶</a></h1>
+<div class="theorem admonition" id="thm-strategy-improvement">
+<p class="admonition-title">Theorem</p>
+<p>There exists a strategy improvement algorithm for solving parity games in exponential time.</p>
+</div>
+<p>We rely on the high-level presentation of strategy improvement algorithms given in  <a class="reference internal" href="../../Introduction/strategy_improvement.html#sec-strategy-improvement"><span class="std std-ref">Section</span></a>.
+In a nutshell: the algorithm constructs a sequence of strategies, the next one being an improvement over the current one,
+until reaching an optimal strategy.</p>
+<p>\paragraph{\bf Adding the option of stopping the game.}
+Let <span class="math notranslate nohighlight">\(\game\)</span> a parity game with priorities in <span class="math notranslate nohighlight">\([1,d]\)</span>.
+Let us give Eve an extra move <span class="math notranslate nohighlight">\(\siblank\)</span> that indicates that the game should stop and that she can play from any vertex of hers.
+So a strategy for Eve is now a function <span class="math notranslate nohighlight">\(\sigma : \VE \rightarrow E \cup \set{\siblank}\)</span>
+where <span class="math notranslate nohighlight">\(\sigma(v) = \siblank\)</span> indicates that Eve has chosen to stop the game, and <span class="math notranslate nohighlight">\(\sigma(v) \ne \siblank\)</span> should be interpreted as normal.
+Adam is not allowed to stop the game, so strategies for Adam remain unchanged.
+We say that a play ending with <span class="math notranslate nohighlight">\(\siblank\)</span> is stopped.</p>
+<p>For reasoning it will be useful to consider the parity graph <span class="math notranslate nohighlight">\(\Game[\sigma]\)</span> obtained from <span class="math notranslate nohighlight">\(\Game\)</span> by restricting the outgoing edges from <span class="math notranslate nohighlight">\(\VE\)</span>
+to those prescribed by <span class="math notranslate nohighlight">\(\sigma\)</span>.
+Recall that we say that a parity graph (without stopping option) satisfies parity from <span class="math notranslate nohighlight">\(v\)</span> if all infinite paths from <span class="math notranslate nohighlight">\(v\)</span> satisfy parity.
+Then a strategy <span class="math notranslate nohighlight">\(\sigma\)</span> is winning from <span class="math notranslate nohighlight">\(v\)</span> if and only if the parity graph <span class="math notranslate nohighlight">\(\Game[\sigma]\)</span> satisfies parity from <span class="math notranslate nohighlight">\(v\)</span>.</p>
+<p>Since we added the option for Eve to stop the game we introduce a new terminology:
+we say that a strategy <span class="math notranslate nohighlight">\(\sigma\)</span> respects parity if all infinite plays consistent with <span class="math notranslate nohighlight">\(\sigma\)</span> satisfy parity,
+equivalently all infinite paths in <span class="math notranslate nohighlight">\(\Game[\sigma]\)</span> satisfy parity, not requiring anything of stopped plays.</p>
+<p>We say that a cycle is even if the maximal priority along the cycle is even, and it is odd otherwise.
+Respecting parity is characterised using cycles:</p>
+<div class="fact admonition">
+<p class="admonition-title">Fact</p>
+<p>A strategy <span class="math notranslate nohighlight">\(\sigma\)</span> respects parity if and only if all cycles in <span class="math notranslate nohighlight">\(\Game[\sigma]\)</span> are even.</p>
+</div>
+<p>The algorithm will only manipulate strategies respecting parity.</p>
+<p>\paragraph{\bf Evaluating a strategy.}
+The first question is: given a strategy <span class="math notranslate nohighlight">\(\sigma\)</span>, how to evaluate it (in order to later improve it)?
+As explained in  <a class="reference internal" href="../../Introduction/strategy_improvement.html#sec-strategy-improvement"><span class="std std-ref">Section</span></a> towards this goal we define a value function <span class="math notranslate nohighlight">\(\val^{\sigma} : V \to Y\)</span>.</p>
+<p>We let <span class="math notranslate nohighlight">\(\val^{\sigma}(v) = \min_\tau \val(\play_{\sigma,\tau}^v)\)</span> where <span class="math notranslate nohighlight">\(\tau\)</span> ranges over (general) strategies for Adam, so we first need to define the value of the play <span class="math notranslate nohighlight">\(\play = \play_{\sigma,\tau}^v\)</span>.
+If <span class="math notranslate nohighlight">\(\play\)</span> is stopped, then <span class="math notranslate nohighlight">\(\val(\play)\)</span> is the tuple <span class="math notranslate nohighlight">\((p_1, p_2, \dots, p_d)\)</span> where <span class="math notranslate nohighlight">\(p_i\)</span> is the number of times that priority <span class="math notranslate nohighlight">\(p\)</span> appears on the play.
+Otherwise <span class="math notranslate nohighlight">\(\val(\play)\)</span> is <span class="math notranslate nohighlight">\(\top\)</span> if <span class="math notranslate nohighlight">\(\play\)</span> satisfies parity, and <span class="math notranslate nohighlight">\(\bot\)</span> if <span class="math notranslate nohighlight">\(\play\)</span> does not satisfy parity.
+So the value of a play is either <span class="math notranslate nohighlight">\(\top\)</span>, <span class="math notranslate nohighlight">\(\bot\)</span>, or a multiset of priorities;
+we let <span class="math notranslate nohighlight">\(Y\)</span> denote the (infinite) set consisting of these elements.</p>
+<p>We define a total order <span class="math notranslate nohighlight">\(\le\)</span> on <span class="math notranslate nohighlight">\(Y\)</span> making it a complete lattice.
+First, <span class="math notranslate nohighlight">\(\top\)</span> is the greatest element and <span class="math notranslate nohighlight">\(\bot\)</span> the least element.
+For <span class="math notranslate nohighlight">\(t = (a_1, a_2, \dots, a_d)\)</span> and <span class="math notranslate nohighlight">\(t' = (b_1, b_2, \dots, b_d)\)</span>,
+we have that <span class="math notranslate nohighlight">\(t &lt; t'\)</span> if and only if <span class="math notranslate nohighlight">\(p\)</span> is the largest index such that <span class="math notranslate nohighlight">\(t_p \ne t'_p\)</span> and</p>
+<ul class="simple">
+<li><p>either <span class="math notranslate nohighlight">\(p\)</span> is even and <span class="math notranslate nohighlight">\(t_p &lt; t'_p\)</span>,</p></li>
+<li><p>or <span class="math notranslate nohighlight">\(p\)</span> is odd and <span class="math notranslate nohighlight">\(t_p &gt; t'_p\)</span>.</p></li>
+</ul>
+<p>Then <span class="math notranslate nohighlight">\(\le\)</span> is the reflexive closure of <span class="math notranslate nohighlight">\(&lt;\)</span>: we have <span class="math notranslate nohighlight">\(t \le t'\)</span> if <span class="math notranslate nohighlight">\(t &lt; t'\)</span> or <span class="math notranslate nohighlight">\(t = t'\)</span>.</p>
+<p>These conditions specify which priorities Eve likes to see along a play.
+Given a choice, Eve would prefer to see even priorities and to avoid odd priorities, but these preferences are hierarchical:
+assuming that <span class="math notranslate nohighlight">\(d\)</span> is even, Eve would like to see as many edges of priority <span class="math notranslate nohighlight">\(d\)</span> as possible.
+If two plays see <span class="math notranslate nohighlight">\(d\)</span> the same number of times, Eve prefers the play that visits the fewest vertices of
+priority <span class="math notranslate nohighlight">\(d-1\)</span>, and if two plays see <span class="math notranslate nohighlight">\(d\)</span> and <span class="math notranslate nohighlight">\(d-1\)</span> the same number of times,
+then Eve would like to maximise the number of times that <span class="math notranslate nohighlight">\(d-2\)</span> is visited, and so on recursively.</p>
+<p>\paragraph{\bf The value function as a fixed point.}
+We define <span class="math notranslate nohighlight">\(\delta : Y \times [1,d] \to Y\)</span> by</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\delta(t,p) = 
+\begin{cases}
+(a_1, a_2, \dots, a_p + 1, a_{p+1}, \dots, a_d) &amp; \text{ if } t = (a_1, a_2, \dots, a_d), \\
+\top &amp; \text{ if } t = \top, \\
+\bot &amp; \text{ if } t = \bot.
+\end{cases}
+\end{split}\]</div>
+<p>We note that <span class="math notranslate nohighlight">\(\delta\)</span> is monotonic: for all <span class="math notranslate nohighlight">\(p \in [1,d]\)</span>,
+if <span class="math notranslate nohighlight">\(t \le t'\)</span> then <span class="math notranslate nohighlight">\(\delta(t,p) \le \delta(t',p)\)</span>.
+We extend <span class="math notranslate nohighlight">\(\delta\)</span> to <span class="math notranslate nohighlight">\(\delta : Y \times [1,d]^* \to Y\)</span>.</p>
+<p>We let <span class="math notranslate nohighlight">\(F^\sigma_V\)</span> denote the set of functions <span class="math notranslate nohighlight">\(\mu : V \to Y\)</span> such that <span class="math notranslate nohighlight">\(\mu(v) = \emptyset\)</span> if <span class="math notranslate nohighlight">\(\sigma(v) = \siblank\)</span>,
+it is a lattice when equipped with the componentwise (partial) order induced by <span class="math notranslate nohighlight">\(Y\)</span>:
+we say that <span class="math notranslate nohighlight">\(\mu \le \mu'\)</span> if for all vertices <span class="math notranslate nohighlight">\(v\)</span> we have <span class="math notranslate nohighlight">\(\mu(v) \le \mu'(v)\)</span>.
+We then define an operator <span class="math notranslate nohighlight">\(\Op : F^\sigma_V \to F^\sigma_V\)</span> by</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\Op(\mu)(v) = 
+\begin{cases}
+\min \set{\delta( \mu(v'), \col(v)) : (v,v') \in E} &amp; \text{if } \sigma(v) \neq \siblank \\
+\emptyset &amp; \text{if } \sigma(v) = \siblank.
+\end{cases}
+\end{split}\]</div>
+<p>Since <span class="math notranslate nohighlight">\(\delta\)</span> is monotonic so is <span class="math notranslate nohighlight">\(\Op\)</span>.</p>
+<div class="fact admonition">
+<p class="admonition-title">Fact</p>
+<p>The function <span class="math notranslate nohighlight">\(\val^\sigma\)</span> is a fixed point of <span class="math notranslate nohighlight">\(\Op\)</span> in <span class="math notranslate nohighlight">\(F^\sigma_V\)</span>.</p>
+</div>
+<p>Unfortunately, <span class="math notranslate nohighlight">\(\val^{\sigma}\)</span> is not in general the greatest fixed point of <span class="math notranslate nohighlight">\(\Op\)</span> in <span class="math notranslate nohighlight">\(F^\sigma_V\)</span>;
+let us analyse this in more details.
+Let <span class="math notranslate nohighlight">\(\mu\)</span> a fixed point of <span class="math notranslate nohighlight">\(\Op\)</span> in <span class="math notranslate nohighlight">\(F^\sigma_V\)</span>, there are two cases.
+For a vertex <span class="math notranslate nohighlight">\(v\)</span> such that there exists a stopped play <span class="math notranslate nohighlight">\(\pi\)</span> starting from <span class="math notranslate nohighlight">\(v\)</span>, we have <span class="math notranslate nohighlight">\(\mu(v) \le \val(\pi)\)</span>, and more generally
+<span class="math notranslate nohighlight">\(\mu(v) \le \inf_{\pi} \val(\pi)\)</span> where <span class="math notranslate nohighlight">\(\pi\)</span> ranges over all stopped plays starting from <span class="math notranslate nohighlight">\(v\)</span>.
+The problem is for a vertex <span class="math notranslate nohighlight">\(v\)</span> such that no plays starting from <span class="math notranslate nohighlight">\(v\)</span> are stopped:
+we can have either <span class="math notranslate nohighlight">\(\mu(v) = \top\)</span> or <span class="math notranslate nohighlight">\(\mu(v) = \bot\)</span>, irrespective of whether the play satisfies parity or not.
+From this discussion we obtain the following result.</p>
+<div class="lemma admonition" id="lem-greatest-fixed-point">
+<p class="admonition-title">Lemma</p>
+<p>If <span class="math notranslate nohighlight">\(\sigma\)</span> respects parity, then <span class="math notranslate nohighlight">\(\val^{\sigma}\)</span> is the greatest fixed point of <span class="math notranslate nohighlight">\(\Op\)</span> in <span class="math notranslate nohighlight">\(F^\sigma_V\)</span>.</p>
+</div>
+<p>\paragraph{\bf Improving a strategy.}
+We reach the last item in the construction of the algorithm: the notion of switchable edges.
+Let <span class="math notranslate nohighlight">\(\sigma\)</span> a strategy. We say that an edge <span class="math notranslate nohighlight">\(e = (v,v')\)</span> is switchable if</p>
+<div class="math notranslate nohighlight">
+\[
+\delta(\val^{\sigma}(v'),\col(v)) &gt; \delta(\val^{\sigma}(u),\col(v)) \text{ where } \sigma(v) = (v,u).
+\]</div>
+<p>Intuitively: according to <span class="math notranslate nohighlight">\(\val^{\sigma}\)</span>, playing <span class="math notranslate nohighlight">\(e\)</span> is better than playing <span class="math notranslate nohighlight">\(\sigma(v)\)</span>.</p>
+<p>Given a strategy <span class="math notranslate nohighlight">\(\sigma\)</span> and an edge <span class="math notranslate nohighlight">\(e = (v,v')\)</span> we use <span class="math notranslate nohighlight">\(\sigma[v \to e]\)</span> to denote the strategy playing <span class="math notranslate nohighlight">\(e\)</span> from <span class="math notranslate nohighlight">\(v\)</span>
+and follow <span class="math notranslate nohighlight">\(\sigma\)</span> from all other vertices.
+Let us write <span class="math notranslate nohighlight">\(\sigma \le \sigma'\)</span> if for all vertices <span class="math notranslate nohighlight">\(v\)</span> we have <span class="math notranslate nohighlight">\(\val^{\sigma}(v) \le \val^{\sigma'}(v)\)</span>,
+and <span class="math notranslate nohighlight">\(\sigma &lt; \sigma'\)</span> if additionally <span class="math notranslate nohighlight">\(\neg (\sigma' \le \sigma)\)</span>.</p>
+<p>\paragraph{\bf The algorithm.}
+The algorithm starts with a specified initial strategy, which is the strategy
+<span class="math notranslate nohighlight">\(\sigma_0\)</span> where <span class="math notranslate nohighlight">\(\sigma_0(v) = \siblank\)</span> for all vertices <span class="math notranslate nohighlight">\(v \in \VE\)</span>.
+It may not hold that <span class="math notranslate nohighlight">\(\sigma_0\)</span> respects parity since <span class="math notranslate nohighlight">\(\game\)</span> may contain odd cycles fully controlled by Adam.
+This can be checked in linear time and the attractor to the corresponding vertices removed from the game.
+After this preprocessing <span class="math notranslate nohighlight">\(\sigma_0\)</span> indeed respects parity.</p>
+<p>The pseudocode of the algorithm is given in  <span class="xref std std-ref">Algorithm</span>.</p>
+<p>\begin{algorithm}
+\KwData{A parity game <span class="math notranslate nohighlight">\(\game\)</span>}
+\SetKwBlock{Repeat}{repeat}{}
+\DontPrintSemicolon</p>
+<p><span class="math notranslate nohighlight">\(i \leftarrow 0\)</span></p>
+<p>\For{<span class="math notranslate nohighlight">\(v\in \VE\)</span>}{
+<span class="math notranslate nohighlight">\(\sigma_0(v) \leftarrow \siblank\)</span>
+}</p>
+<p><span class="math notranslate nohighlight">\(C \leftarrow \set{v \in V : v \text{ contained in an odd cycle in } \game[\sigma_0]}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Game \leftarrow \Game \setminus \AttrA(C)\)</span></p>
+<p>\Repeat{
+Compute <span class="math notranslate nohighlight">\(\val^{\sigma_i}\)</span></p>
+<p>\If{<span class="math notranslate nohighlight">\(\exists e_i = (v_i,v'_i) \in E \text{ switchable}\)</span>}{
+<span class="math notranslate nohighlight">\(\sigma_{i+1} \leftarrow \sigma_i[v_i \to e_i]\)</span></p>
+<p><span class="math notranslate nohighlight">\(i \leftarrow i + 1\)</span></p>
+<p>}
+\Else{
+\Return{<span class="math notranslate nohighlight">\(\set{v \in V : \val^{\sigma_i}(v) = \top}\)</span>}
+}
+}</p>
+<p>\caption{The strategy improvement algorithm for parity games.}
+\label{3-algo:strategy_improvement}
+\end{algorithm}</p>
+<p>\paragraph{\bf Proof of correctness.}
+We start by stating a very simple property of <span class="math notranslate nohighlight">\(\delta\)</span>, which is key in the arguments below.</p>
+<div class="fact admonition">
+<p class="admonition-title">Fact</p>
+<p>Let <span class="math notranslate nohighlight">\(t \in Y\)</span> and <span class="math notranslate nohighlight">\(p_1,\dots,p_k \in [1,d]\)</span> such that <span class="math notranslate nohighlight">\(t\)</span> and <span class="math notranslate nohighlight">\(\delta(t,p_1 \dots p_k)\)</span> are neither <span class="math notranslate nohighlight">\(\top\)</span> nor <span class="math notranslate nohighlight">\(\bot\)</span>.
+Then <span class="math notranslate nohighlight">\(t \le \delta(t,p_1 \dots p_k)\)</span> if and only if <span class="math notranslate nohighlight">\(\max \set{p_1,\dots,p_k}\)</span> is even.</p>
+</div>
+<p>The following lemma states the two important properties of <span class="math notranslate nohighlight">\((Y,\le)\)</span> and <span class="math notranslate nohighlight">\(\delta\)</span>.</p>
+<div class="lemma admonition" id="lem-key-property">
+<p class="admonition-title">Lemma</p>
+<p>Let <span class="math notranslate nohighlight">\(G\)</span> a parity graph (with no stopping option).</p>
+<ul class="simple">
+<li><p>If there exists <span class="math notranslate nohighlight">\(\mu : V \to Y\)</span> such that for all vertices <span class="math notranslate nohighlight">\(v\)</span> we have <span class="math notranslate nohighlight">\(\mu(v) \neq \top,\bot\)</span>
+and for all edges <span class="math notranslate nohighlight">\((v,u) \in E\)</span> we have <span class="math notranslate nohighlight">\(\mu(v) \le \delta(\mu(u),\col(v))\)</span>,
+then <span class="math notranslate nohighlight">\(G\)</span> satisfies parity.</p></li>
+<li><p>If there exists <span class="math notranslate nohighlight">\(\mu : V \to Y\)</span> such that for all vertices <span class="math notranslate nohighlight">\(v\)</span> we have <span class="math notranslate nohighlight">\(\mu(v) \neq \top,\bot\)</span>
+and for all edges <span class="math notranslate nohighlight">\((v,u) \in E\)</span> we have <span class="math notranslate nohighlight">\(\mu(v) \ge \delta(\mu(u),\col(v))\)</span>,
+then <span class="math notranslate nohighlight">\(G\)</span> satisfies the complement of parity.</p></li>
+</ul>
+</div>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Proof</p>
+<p>We prove the first property, the second is proved in exactly the same way.
+Thanks to the characterisation using cycles it is enough to show that all cycles in <span class="math notranslate nohighlight">\(G\)</span> are even.
+Let us consider a cycle in <span class="math notranslate nohighlight">\(G\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\pi = (v_0,v_1) (v_1,v_2) \cdots (v_{k-1},v_0).
+\]</div>
+<p>For all <span class="math notranslate nohighlight">\(i \in [0,k-1]\)</span> we have <span class="math notranslate nohighlight">\(\mu(v_i) \le \delta(\mu(v_{i+1 \mod k}),\col(v_i))\)</span>.
+By monotonicity of <span class="math notranslate nohighlight">\(\delta\)</span> this implies <span class="math notranslate nohighlight">\(\mu(v_1) \le \delta(\mu(v_1),\col(v_{k-1}) \cdots \col(v_0))\)</span>.
+Thanks to  <a class="reference internal" href="../4_Payoffs/mean_payoff.html#lem-key-property"><span class="std std-ref">Lemma</span></a> this implies that the maximum priority in <span class="math notranslate nohighlight">\(\set{\col(v_0),\dots,\col(v_{k-1})}\)</span> is even.</p>
+</div>
+<p>Let <span class="math notranslate nohighlight">\(\sigma\)</span> a strategy respecting parity.
+A progress measure for <span class="math notranslate nohighlight">\(\Game[\sigma]\)</span> is a post-fixed point of <span class="math notranslate nohighlight">\(\Op\)</span> in <span class="math notranslate nohighlight">\(F^\sigma_V\)</span>:
+it is a function <span class="math notranslate nohighlight">\(\mu : V \to Y\)</span> such that <span class="math notranslate nohighlight">\(\mu(v) = \emptyset\)</span> if <span class="math notranslate nohighlight">\(\sigma(v) = \siblank\)</span> and <span class="math notranslate nohighlight">\(\mu \le \Op(\mu)\)</span>,
+which means that <span class="math notranslate nohighlight">\(\mu(v) \le \min \set{ \delta(\mu(v'),\col(v)) : (v,v') \in E}\)</span>.</p>
+<p>We now rely on  <a class="reference internal" href="../4_Payoffs/mean_payoff.html#lem-greatest-fixed-point"><span class="std std-ref">Lemma</span></a> and  <a class="reference internal" href="../4_Payoffs/mean_payoff.html#lem-key-property"><span class="std std-ref">Lemma</span></a> to prove the two principles: progress and optimality.</p>
+<div class="lemma admonition">
+<p class="admonition-title">Lemma (Progress)</p>
+<p>Let <span class="math notranslate nohighlight">\(\sigma\)</span> a strategy respecting parity and <span class="math notranslate nohighlight">\(e = (v,v')\)</span> a switchable edge.
+We let <span class="math notranslate nohighlight">\(\sigma'\)</span> denote <span class="math notranslate nohighlight">\(\sigma[v \to e]\)</span>.
+Then <span class="math notranslate nohighlight">\(\sigma'\)</span> respects parity and <span class="math notranslate nohighlight">\(\sigma &lt; \sigma'\)</span>.</p>
+</div>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Proof</p>
+<p>We first argue that <span class="math notranslate nohighlight">\(\sigma'\)</span> respects parity.
+The fact that <span class="math notranslate nohighlight">\(e = (v,v')\)</span> is switchable reads</p>
+<div class="math notranslate nohighlight">
+\[
+\delta(\val^\sigma(v'),\col(v)) &gt; \delta(\val^\sigma(u),\col(v)),
+\]</div>
+<p>and by definition of <span class="math notranslate nohighlight">\(\val^\sigma\)</span> we have <span class="math notranslate nohighlight">\(\val^\sigma(v) = \delta(\val^\sigma(u),\col(v))\)</span>,
+which implies <span class="math notranslate nohighlight">\(\val^\sigma(v) &lt; \delta(\val^\sigma(v'),\col(v))\)</span>, and in particular <span class="math notranslate nohighlight">\(\val^\sigma(v) \neq \top\)</span>.</p>
+<p>Let us consider the parity graph <span class="math notranslate nohighlight">\(\Game[\sigma']\)</span> and note that for all edges <span class="math notranslate nohighlight">\(e' = (s,t)\)</span>
+we have <span class="math notranslate nohighlight">\(\val^\sigma(s) \le \delta(\val^\sigma(t),\col(s))\)</span>:
+indeed either <span class="math notranslate nohighlight">\(e'\)</span> is an edge in <span class="math notranslate nohighlight">\(\Game[\sigma]\)</span> and this is by definition of <span class="math notranslate nohighlight">\(\val^\sigma\)</span>,
+or <span class="math notranslate nohighlight">\(e' = e\)</span> and the inequality was proved just above.</p>
+<p>Since <span class="math notranslate nohighlight">\(\sigma\)</span> respects parity <span class="math notranslate nohighlight">\(\val^\sigma\)</span> does not take the value <span class="math notranslate nohighlight">\(\bot\)</span>.
+But we cannot apply (the first item of)  <a class="reference internal" href="../4_Payoffs/mean_payoff.html#lem-key-property"><span class="std std-ref">Lemma</span></a> yet because <span class="math notranslate nohighlight">\(\val^\sigma\)</span> may have value <span class="math notranslate nohighlight">\(\top\)</span>.
+However by definition of <span class="math notranslate nohighlight">\(\val^\sigma\)</span> for all vertices <span class="math notranslate nohighlight">\(s\)</span> such that <span class="math notranslate nohighlight">\(\val^\sigma(s) = \top\)</span> all paths from <span class="math notranslate nohighlight">\(s\)</span> satisfy parity,
+so it is enough to consider the parity graph obtained from <span class="math notranslate nohighlight">\(\Game[\sigma']\)</span> by removing all such vertices.
+The first item of  <a class="reference internal" href="../4_Payoffs/mean_payoff.html#lem-key-property"><span class="std std-ref">Lemma</span></a> implies that it satisfies parity, hence <span class="math notranslate nohighlight">\(\Game[\sigma']\)</span> as well.</p>
+<p>At this point we know that <span class="math notranslate nohighlight">\(\sigma'\)</span> respects parity, which thanks to  <a class="reference internal" href="../4_Payoffs/mean_payoff.html#lem-greatest-fixed-point"><span class="std std-ref">Lemma</span></a>
+implies that <span class="math notranslate nohighlight">\(\val^{\sigma'}\)</span> is the greatest fixed point of <span class="math notranslate nohighlight">\(\Op\)</span> in <span class="math notranslate nohighlight">\(F^{\sigma'}_V\)</span>.</p>
+<p>We now argue that <span class="math notranslate nohighlight">\(\val^\sigma\)</span> is a progress measure for <span class="math notranslate nohighlight">\(\game[\sigma']\)</span>.
+For all vertices but <span class="math notranslate nohighlight">\(v\)</span> this is clear because the outgoing edges are the same in <span class="math notranslate nohighlight">\(\game[\sigma]\)</span> and in <span class="math notranslate nohighlight">\(\game[\sigma']\)</span>.
+For <span class="math notranslate nohighlight">\(v\)</span> as argued above we have <span class="math notranslate nohighlight">\(\val^\sigma(v) &lt; \delta(\val^\sigma(v'),\col(v))\)</span>.
+It follows that <span class="math notranslate nohighlight">\(\val^\sigma\)</span> is indeed a progress measure for <span class="math notranslate nohighlight">\(\game[\sigma']\)</span>.
+Since <span class="math notranslate nohighlight">\(\val^{\sigma'}\)</span> is the greatest fixed point of <span class="math notranslate nohighlight">\(\Op\)</span> in <span class="math notranslate nohighlight">\(F^{\sigma'}_V\)</span>, this implies that
+<span class="math notranslate nohighlight">\(\val^{\sigma} \le \val^{\sigma'}\)</span>.</p>
+<p>We now show that <span class="math notranslate nohighlight">\(\val^{\sigma} &lt; \val^{\sigma'}\)</span>.
+Using <span class="math notranslate nohighlight">\(\val^{\sigma}(v') \le \val^{\sigma'}(v')\)</span> and the monotonicity of <span class="math notranslate nohighlight">\(\delta\)</span> we obtain that
+<span class="math notranslate nohighlight">\(\delta(\val^\sigma(v'),\col(v)) \le \delta(\val^{\sigma'}(v'),\col(v))\)</span>.
+By definition of <span class="math notranslate nohighlight">\(\val^{\sigma'}\)</span> we have <span class="math notranslate nohighlight">\(\val^{\sigma'}(v) = \delta(\val^{\sigma'}(v'),\col(v))\)</span>
+and together with <span class="math notranslate nohighlight">\(\val^\sigma(v) &lt; \delta(\val^\sigma(v'),\col(v))\)</span> this implies that
+<span class="math notranslate nohighlight">\(\val^\sigma(v) &lt; \val^{\sigma'}(v)\)</span>.</p>
+</div>
+<div class="lemma admonition">
+<p class="admonition-title">Lemma (Optimality)</p>
+<p>Let <span class="math notranslate nohighlight">\(\sigma\)</span> a strategy respecting parity that has no switchable edges, then
+<span class="math notranslate nohighlight">\(\sigma\)</span> is winning from all vertices of <span class="math notranslate nohighlight">\(\WE(\Game)\)</span>.</p>
+</div>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Proof</p>
+<p>The fact that <span class="math notranslate nohighlight">\(\sigma\)</span> respects parity means that it is a winning strategy
+from all vertices <span class="math notranslate nohighlight">\(v\)</span> such that <span class="math notranslate nohighlight">\(\val^\sigma(v) = \top\)</span>.
+It also implies that for all vertices <span class="math notranslate nohighlight">\(v\)</span> we have <span class="math notranslate nohighlight">\(\val^{\sigma}(v) \neq \bot\)</span>.
+We now prove that Adam has a winning strategy from all vertices <span class="math notranslate nohighlight">\(v\)</span> such that <span class="math notranslate nohighlight">\(\val^{\sigma}(v) \neq \top\)</span>.
+We construct a strategy of Adam by</p>
+<div class="math notranslate nohighlight">
+\[
+\forall v \in \VA,\ \tau(v) = \argmin \set{ \delta(\val^{\sigma}(u),\col(v)) : (v,u) \in E }.
+\]</div>
+<p>We argue that <span class="math notranslate nohighlight">\(\tau\)</span> ensures the complement of parity from all vertices <span class="math notranslate nohighlight">\(v\)</span> such that <span class="math notranslate nohighlight">\(\val^{\sigma}(v) \neq \top\)</span>.
+Let us consider <span class="math notranslate nohighlight">\(\Game[\tau]\)</span> the parity graph obtained from <span class="math notranslate nohighlight">\(\Game\)</span> by restricting the outgoing edges from <span class="math notranslate nohighlight">\(\VA\)</span>
+to those prescribed by <span class="math notranslate nohighlight">\(\tau\)</span>.
+We argue that for all edges <span class="math notranslate nohighlight">\((v,,v')\)</span> in <span class="math notranslate nohighlight">\(\game[\tau]\)</span>, we have
+<span class="math notranslate nohighlight">\(\val^{\sigma}(v) \ge \delta(\val^{\sigma}(v'),\col(v))\)</span>.
+Once this is proved we conclude using the second item of  <a class="reference internal" href="../4_Payoffs/mean_payoff.html#lem-key-property"><span class="std std-ref">Lemma</span></a> implying that <span class="math notranslate nohighlight">\(\Game[\tau]\)</span> satisfies the complement of parity.</p>
+<p>The first case is when <span class="math notranslate nohighlight">\(v \in \VE\)</span>.
+Let <span class="math notranslate nohighlight">\(\sigma(v) = (v,u)\)</span>.
+Since the edge <span class="math notranslate nohighlight">\(e = (v,v')\)</span> is not switchable we have
+<span class="math notranslate nohighlight">\(\delta(\val^{\sigma}(v'),\col(v)) \le \delta(\val^{\sigma}(u),\col(v))\)</span>.
+By definition of <span class="math notranslate nohighlight">\(\val^\sigma\)</span> we have <span class="math notranslate nohighlight">\(\val^\sigma(v) = \delta(\val^{\sigma}(u),\col(v))\)</span>,
+implying the desired inequality.</p>
+<p>The second case is when <span class="math notranslate nohighlight">\(v \in \VA\)</span>, it holds by definition of <span class="math notranslate nohighlight">\(\tau\)</span>.</p>
+</div>
+<p>\paragraph{\bf Complexity analysis.}
+The computation of <span class="math notranslate nohighlight">\(\val^\sigma\)</span> for a strategy <span class="math notranslate nohighlight">\(\sigma\)</span> can be seen to be a shortest path problem where distances are measured using the operator <span class="math notranslate nohighlight">\(\le\)</span>.
+Thus, any algorithm for the shortest path problem can be applied, such as the Bellman-Ford algorithm.
+In particular computing <span class="math notranslate nohighlight">\(\val^\sigma\)</span> can be done in polynomial time, and even more efficiently through a refined analysis.</p>
+<p>An aspect of the algorithm we did not develop is choosing the switchable edge.
+It is possible to switch not only one edge but a set of switchable edges at each iteration, making this question worse:
+which subset of the switchable edges should be chosen?
+Many possible rules for choosing this set have been studied, as for instance the <strong>greedy all-switches</strong> rule.</p>
+<p>The next question is the number of iterations, meaning the length of the sequence
+<span class="math notranslate nohighlight">\(\sigma_0,\sigma_1,\dots\)</span>. It is at most exponential since it is bounded by the number of strategies (which is bounded aggressively by <span class="math notranslate nohighlight">\(m^n\)</span>).
+There are lower bounds showing that the sequence can be of exponential length, which apply to different rules for choosing switchable edges.
+Hence the overall complexity is exponential; we do not elaborate further here.</p>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Classic/3_Parity"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="index.html" title="previous page">Parity</a>
+    <a class='right-next' id="next-link" href="zielonka.html" title="next page">A quasipolynomial time attractor decomposition algorithm</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By a set of authors coordinated by Nathana&euml;l Fijalkow<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

@@ -1,0 +1,76 @@
+\input{macros_local.tex}
+
+\Cref{part:infinite} extends the basic setting to infinite arenas.
+Since the end goal is to construct algorithms, we restrict our attention to infinite arenas
+which can be described by finite means.
+More specifically, we consider infinite arenas which arise from finite system with additional features.
+\Cref{chap:timed} introduces clocks to measure time, \Cref{chap:pushdown} enriches the arena with a pushdown stack,
+and \Cref{chap:counters} extends arenas with a set of counters.
+
+\subsubsection*{Timed games}
+
+\begin{definition}
+A timed system is a tuple $(\Locations,T_{\text{Eve}},T_{\text{Adam}})$ where 
+$\Locations$ is a set of locations
+and 
+\[
+T_{\text{Eve}},T_{\text{Adam}} \subseteq \Locations \times \Phi_{\Clocks} \times 2^{\Clocks} \times C \times \Locations
+\]
+are legal transitions for Eve and Adam.
+The interpretation of a transition $(\ell,\phi,R,c,\ell')$ is to go from location $\ell$
+to location $\ell'$ if the clocks satisfy the guard condition $\phi$,
+having as effect to see the colour $c$ and to reset the clocks in $R$.
+
+A timed system induces a concurrent arena $\arena = (G,\Delta)$ called a timed arena where 
+\begin{itemize}
+	\item the set of vertices is $V = \Locations \times \R^{\Clocks}$,
+	\item the set of coloured edges is 
+	\[
+	E = \set{(\ell,v),c, \step((\ell,v), d, \delta)) : \delta \in T_{\text{Eve}} \cup T_{\text{Adam}}, d \in \Rp},
+	\]
+	\item the set of actions is $A = \Rp \times (T_{\text{Eve}} \cup T_{\text{Adam}})$,
+	\item the transition function $\Delta : V \times A \times A \to E$ is defined as follows.
+	$\Delta((\ell,v), (d,\delta) \in \Rp \times T_{\text{Eve}}, (d',\delta') \in \Rp \times T_{\text{Adam}}$ is
+	\[
+	\begin{array}{cc}
+	\left((\ell,v),c, \step((\ell,v), d, \delta) \right)	& \text{ if } d < d', \\
+	\left((\ell,v),c, \step((\ell,v), d', \delta') \right)	& \text{ if } d \ge d'. \\
+	\end{array}
+	\]
+\end{itemize}
+\end{definition}
+
+\subsubsection*{Pushdown games}
+
+\begin{definition}
+A pushdown system is a tuple $(Q,Q_{\text{Eve}}, Q_{\text{Adam}}, \Gamma,\Delta)$
+where $Q$ is a set of control states with $Q = Q_{\text{Eve}} \uplus Q_{\text{Adam}}$, 
+$\Gamma$ is the stack alphabet and $\Delta$ is the transition relation.
+%where 
+%\[
+%\Delta \subseteq (Q \times \Gamma^*) \times C \times (Q \times \Gamma^*).
+%\]
+There is a special stack symbol denoted $\bot$ which does not belong to $\Gamma$;
+we let $\Gamma_\bot$ denote the alphabet $\Gamma \cup \set{\bot}$.
+There are three kinds of transitions in $\Delta$.
+\begin{itemize}
+	\item \textbf{push}: $(p,a,c,b,q)$: allowed if the top stack element is $a \in \Gamma_\bot$, 
+	the symbol $b \in \Gamma$ is pushed onto the stack.
+	\item \textbf{pop}: $(p,c,a,q)$: allowed if the top stack element is $a \in \Gamma$,
+	the top stack symbol $a$ is popped from the stack.
+	\item \textbf{skip}: $(p,a,c,q)$: allowed if the top stack element is $a \in \Gamma_\bot$, the stack remains unchanged.
+\end{itemize}
+The symbol $\bot$ is never pushed onto, nor popped from the stack.
+
+A pushdown system induces a pushdown arena $\arena = (G,\VE,\VA)$ called a pushdown arena where
+\begin{itemize}
+	\item the set of vertices is $V = Q \times \Gamma^* \bot$ with $\VE = Q_{\text{Eve}} \times \Gamma^* \bot$ 
+	and $\VA = Q_{\text{Adam}} \times \Gamma^* \bot$,
+	\item the set of edges is $E$ induced by $\Delta$:
+	for instance for a push transition $(p,a,c,b,q) \in \Delta$, 
+	we have $\left((p,a w \bot),c,(q,baw \bot)\right) \in E$ for all words $w$ in $\Gamma^*$.	
+\end{itemize}
+\end{definition}
+
+\subsubsection*{Counter games}
+

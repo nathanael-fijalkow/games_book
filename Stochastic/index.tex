@@ -1,0 +1,297 @@
+\input{macros_local}
+
+In \Cref{chap:mdp} and \Cref{chap:stochastic} we consider stochastic games,
+more precisely $1\half$-player and $2\half$-player games.
+
+So far we considered \textit{deterministic} games, \textit{i.e.} where all actions are taken by players.
+In \textit{stochastic} games we introduce a source of randomness.
+
+We extend our model, defining $2\half$-player (zero-sum turn-based finite perfect information) games.
+There are actually two different approaches, which are equivalent but technically convenient in different scenarios.
+
+For a finite set $X$, we let $\dist(X)$ denote the set of probabilistic distributions over $X$,
+\textit{i.e.} functions $f : X \to [0,1]$ such that $\sum_{x \in X} f(x) \le 1$.
+Unless otherwise stated, for algorithmic purposes we assume that the distributions take rational values and are represented in binary.
+
+In the first model, random vertices are made explicit: a set of vertices denoted $\VR$ is responsible for the stochastic behaviour of the game.
+A stochastic arena $\arena$ is a tuple $(G,\VE,\VA,\VR,\delta,\Delta)$ where 
+\begin{itemize}
+	\item $G = (V,E)$ is a graph with $V = \VE \uplus \VA \uplus \VR$,
+	\item $\delta : \VR \to \dist(E)$ maps random vertices to distributions over edges.
+\end{itemize}
+
+The notions of plays and objectives are unchanged.
+In particular, a stochastic game is given by a stochastic arena and an objective.
+We extend the definition of strategies to allow them to randomise:
+a strategy $\sigma$ for Eve is now $\sigma : E^* \to \dist(A)$.
+
+Let $\arena$ be an arena, $v_0$ an initial vertex, $\sigma$ a strategy for Eve and $\tau$ a strategy for Adam.
+This does not induce a unique play as in the deterministic case, but rather a stochastic process generating plays.
+The formal definition goes by defining a probability space with the probability measure
+$\Prob^{v_0}_{\sigma,\tau}$, to make sense for instance of
+\[
+\Prob^{v_0}_{\sigma,\tau}(\Omega),
+\]
+the probability that a qualitative objective $\Omega \subseteq E^\omega$ is satisfied.
+We defer the technical details to \Cref{chap:mdp}.
+
+The second model uses the notion of actions: we let $A$ be a set of actions, 
+which is the set of choices the players can make at each step of the game.
+
+\begin{definition}
+A stochastic arena $\arena$ is a tuple $(G,\VE,\VA,\VR,\Delta)$ where 
+\begin{itemize}
+	\item $G = (V,E)$ is a graph with $V = \VE \uplus \VA$,
+	\item $\Delta : A \to \dist(E)$ maps actions to distribution of edges.
+\end{itemize}
+\end{definition}
+
+The notions are plays and objectives are extended in a natural way: for instance a strategy is a function
+$\sigma : E^* \to \dist(A)$.
+
+\vskip1em
+The first definition is used in \Cref{chap:stochastic}, and the second one in \Cref{chap:mdp}.
+
+
+\section*{Notations}
+
+A (discrete) ""probability distribution"" over a finite or countably infinite set $A$ is a function $\discProbDist \colon \rightarrow [0,1]$ such that $\sum_{a\in A}\discProbDist(a)=1$. A ""support"" of such a distribution $\discProbDist$ is the set of all $a\in A$ with $\discProbDist(a)>0$. A distribution $f$ is called ""Dirac"" if its support has size 1, which means that $f$ assigns probability 1 to a single element of $A$ and $0$ to all other elements. 
+We denote by $\dist(A)$ the set of all probability distributions over $A$.
+
+\knowledge{probability distribution}{notion,index={probability distribution}}
+\knowledge{support}{notion,index={support}}
+
+We also deal with probabilities over infinite sets of events. This is accomplished via the standard notion of a \emph{probability space.}
+
+\begin{definition}[""Probability space""]
+\label{5-def:probspace}
+A probability space is a triple
+$(\sampleSpace,\sigmaAlg,\probm)$ where
+\begin{itemize}
+\item
+$\sampleSpace$ is a non-empty set of \emph{events} (so called
+\emph{sample space}). 
+
+\item
+$\sigmaAlg$ is a ""sigma-algebra"" over $\sampleSpace$,
+i.e. a collection of subsets of $\sampleSpace$ that contains the empty set
+$\emptyset$, and that is closed under complementation and countable unions. The members of $\sigmaAlg$ are called ""$\sigmaAlg$-measurable 
+sets"".
+
+\item
+$\probm$ is a ""probability measure"" on $\sigmaAlg$, i.e., a function
+$\probm\colon \sigmaAlg\rightarrow[0,1]$ such that:
+\begin{enumerate}
+\item
+$\probm(\emptyset)=0$;
+
+\item
+for all $A\in \sigmaAlg$ it holds $\probm(\sampleSpace \setminus
+A)=1-\probm(A)$; and
+
+\item
+for all pairwise disjoint countable sequences of sets $A_1,A_2,\dots \in \sigmaAlg$ (i.e., $A_i \cap A_j = \emptyset$ for all $i\neq j$)
+we have $\sum_{i=1}^{\infty}\probm(A_i)=\probm(\bigcup_{i=1}^{\infty} A_i)$.
+\end{enumerate}
+\end{itemize}
+\end{definition}
+
+\knowledge{probability space}[Probability space]{notion,index={probability space}}
+\knowledge{sigma-algebra}{notion,index={sigma-algebra}}
+\knowledge{measurable set}[$\sigmaAlg$-measurable 
+sets]{notion,index={measurable set}}
+\knowledge{probability measure}{notion,index={probability measure}}
+
+A ""random variable"" in the probability space $(\sampleSpace,\sigmaAlg,\probm)$ is an $\sigmaAlg$-measurable function $\rvar\colon \Omega \rightarrow \R \cup
+\{-\infty,\infty\}$, i.e.,
+a function such that for every $a\in \R \cup \{ -\infty,\infty\}$ the set
+$\{\omega\in \Omega\mid \rvar(\omega)\leq a\}$ belongs to $\mathcal{F}$. We denote by $\expv[\rvar]$ the ""expected value"" of a random variable $\rvar$~(see \cite[Chapter 5]{Bil:1995}
+for a formal definition).
+
+\knowledge{random variable}{notion,index={random variable}}
+\knowledge{expected value}{notion,index={expected value}}
+
+\section*{Markov Decision Processes}
+
+We first give a syntactic notion of an MDP which is an analogue of the notion of an arena for games.
+
+\begin{definition}[""MDP""]
+\label{5-def:MDP}
+A ""Markov decision process (MDP)"" is a tuple $(\vertices,\edges,\probTranFunc,\colouring)$. The meaning of $\vertices$, $\edges$, and $\colouring$ is the same as for games, i.e. $\vertices$ is a finite set of vertices, $\edges\subseteq \vertices\times\vertices$ is a set of edges and $\colouring\colon \edges \rightarrow \colours$ mapping edges to certain sets of colours (here we use the simplification described in Subsection~\ref{xxx}). However, the meaning of $\probTranFunc$ is now different: $\probTranFunc$ is a partial ""probabilistic transition function"" of type $\probTranFunc\colon \vertices \times \actions \rightarrow \dist(\edges)$, such that the support of $\probTranFunc(v,a)$ only contains edges outgoing from $v$. We say that action $a$ is \emph{enabled} in $v$ if $\probTranFunc(v,a)$ is defined, and we denote by $\actions(v)$ the set of actions enabled in $v$. We stipulate that $\actions(v)\neq \emptyset$ for each $v$. We usually write $\probTranFunc(v'\mid v,a)$ as a shorthand for $\probTranFunc(v,a)((v,v'))$, i.e. the probability of transitioning from $v$ to $v'$ under an (enabled) action $a$.
+\end{definition}
+
+We also stipulate that for each edge $(v_1,v_2)$ there exists an action $a\in \actions(v_1)$ such that $\probTranFunc(v_2\mid v_1,a)>0$. Edges not satisfying this can be always removed without changing the semantics of the MDP, which is defined below.
+
+We denote by $\edges_\genColour$ the set of edges coloured by $\genColour$. Also, for MDPs where $\colours$ is some set of numbers, we use $\maxc$ to denote the number $\max_{e\in 
+	\edges}|\colouring(e)|$.
+%The probabilistic transition function is typically a partial function. An action $a$ is said to be \emph{enabled} in a vertex $v$ if $\probTranFunc(v,a)$ is defined. 
+
+% ALLOWED ACTIONS
+
+\begin{remark}
+	TODO: REMARK ABOUT POSSIBLE REPRESENTATION WITH STOCHASTIC VERTICES
+\end{remark}
+
+\subsubsection*{Plays and Strategies in MDPs}
+
+%The notion of plays in MDPs is the same as in classical games. There is, 
+%however, one new important notion, the one of cylinder sets. A ""basic 
+%cylinder"" determined by a finite play $\play$ is a set of all infinite plays 
+%having $\play$ as a prefix.
+
+ The way in which a play is generated in an MDP is similar to games, but now encompasses a certain degree of randomisation. There is a single player, say Eve, who controls all the vertices, and her interaction with the ``world'' described by an MDP is probabilistic. One reason is the stochasticity of the transition function, the other is the fact that in many MDP settings, it is permissible for the player to use ""randomised strategies"". Formally, a randomised strategy is a function $\sigma : E^* \to \dist(A)$, which to each finite play assigns a probability distribution over actions. We stipulate that the support of $\sigma(\play)$ consists of actions that are enabled in $\last(\play)$. We often shorten $\sigma(\play)(a)$ to $\sigma(a\mid \play)$.
+%
+In this section, we will refer to randomised strategies simply as ``strategies.'' The strategies known from the game setting will be called  ""deterministic strategies,"" since they do not use randomisation. Formally, a deterministic strategy can be viewed as a special type of a randomised strategy which always selects a Dirac distribution over the edges.
+
+Now a play in an MDP is produced as follows: in each step, when the finite play produced so far (i.e. the history of the game token's movement) is $\play$, Eve chooses an action $a$ randomly according to the distribution $\sigma(\play)$. Then, an edge outgoing from $\last(\play)$ is chosen randomly according to $\probTranFunc(\last(\play),a)$, and the token is pushed along the selected edge. This intuitive process can be formalized by constructing a special probability space whose sample space consists of infinite plays in the MDP. 
+
+
+
+%For each strategy $\sigma$ and each $i\geq 0$ we introduce an event $\actevent$
+
+\subsubsection*{Formal Semantics of MDPs}
+
+Formally, to each MDP $\mdp$, each (Eve's) strategy $\sigma$ in $\mdp$, and 
+each initial vertex $\vinit$ we assign a probability space 
+$(\sampleSpace_{\mdp},\sigmaAlg_{\mdp},\probm^{\sigma}_{\mdp,\vinit})$. To 
+explain the individual components, we need the notion of a cylinder set. A 
+""basic cylinder"" determined by a finite play $\play$ is a set of 
+all infinite plays in $\mdp$ having $\play$ as a prefix. Now the above 
+probability space consist of these components:
+\begin{itemize}
+	\item $\sampleSpace_{\mdp}$ is the set of all infinite plays in $\mdp$;
+	\item $\sigmaAlg_{\mdp}$ is the \emph{Borel} sigma-algebra over 
+	$\Omega_{\mdp}$; this is the smallest sigma-algebra containing all the 
+	basic cylinder sets determined by finite plays in $\mdp$. The sets in 
+	$\sigmaAlg_{\mdp}$ are called ""events"".
+	\item $\probm^{\sigma}_{\mdp,\vinit}$ is the unique probability measure 
+	arising from the \emph{cylinder construction} detailed below. We use 
+	$\expv^{\sigma}_{\mdp,\vinit}$ to denote the expectation operator 
+	associated to the measure $\probm^{\sigma}_{\mdp,\vinit}$.
+\end{itemize}
+
+Since the sample space $\sampleSpace_{\mdp}$ is uncountable, we construct the 
+probability measure by first specifying a probability of certain simple sets of 
+runs and then using an appropriate \emph{measure-extension} theorem to extend 
+the probability measure, in a unique way, to all sets in $\sigmaAlg_{\mdp}$.
+The standard cylinder construction of the probability measure 
+proceeds as follows: for each finite play $\play$ we define the probability 
+$\cylProb(\play)$ that the produced infinite play has a prefix $\play$. The 
+function $\cylProb$ is defined according to the above intuitive explanation of 
+MDP dynamics. That is, for a non-empty play $\play$ initiated in a vertex other 
+than $\vinit$ we put $\cylProb(\play)=0$ and for all other plays we proceed 
+inductively as follows:
+
+\begin{itemize}
+\item for an empty play $\emptyPlay$ we put $\cylProb(\emptyPlay)=1$;
+\item for a non-empty play $\play=\play_0\cdots \play_{k}$ initiated in 
+$\vinit$ we put 
+\[\cylProb(\play) = \cylProb(\play_{\leq k-1})\cdot \Big(\sum_{a \in \actions} 
+\sigma(a\mid \play_{\leq k-1})\cdot \probTranFunc(\last(\play)\mid 
+\last(\play_{\leq k-1}),a) 
+\Big), \]
+where we adopt the convention that $\last(\play_{\leq 0})=\vinit$;
+\item for all other $\play$ we have $\cylProb(\play)=0$.
+\end{itemize}
+
+Now using an appropriate measure-extension theorem
+(such as Hahn-Kol\-mo\-go\-rov theorem~\cite[Corollary 2.5.4 and Proposition  2.5.7]{Rosenthal:2006}, or Carath\'eodory theorem~\cite[Theorem 1.3.10]{Ash&Doleans-Dade:2000}) one can show that there is a 
+unique probability 
+measure $\probm^{\sigma}_{\mdp,\vinit} $ on $\sigmaAlg_{\mdp}$ such that for 
+every cylinder set determined by some finite play $\play$ the probability 
+measure of such a set under is equal to $\cylProb(\play)$. (Abusing the notation, we write $\probm^{\sigma}_{\mdp,\vinit}(\play)$ for the probability of this cylinder set). We note that there 
+are some intermediate steps to be performed before an extension theorem 
+can be applied, and we omit these due to space constraints. Full details on the 
+cylinder construction can be found, e.g. in~\cite{Ash&Doleans-Dade:2000,Novotny:2015}.
+
+While the construction of the probability measure 
+$\probm^{\sigma}_{\mdp,\vinit}$ might seem a bit esoteric, in the context of 
+MDP verification we do not usually need to be concerned with all the delicacies 
+behind the associated probability space. The sets of plays that we work with 
+typically arise from the basic cylinder sets by means of countable unions, 
+intersections, and simple combinations thereof; such sets by definition belong 
+to the 
+sigma-algebra $\sigmaAlg_{\mdp}$, and their probabilities can be inferred using 
+basic probabilistic reasoning. Nevertheless, one should keep in mind that all the 
+probabilistic argumentation rests on solid formal grounds. A reader wishing to 
+practice the formal understanding of probability theory might find the 
+following exercise useful: whenever this chapter (or some of the following 
+chapters with stochastic models) introduces some set of plays or a random 
+variable, try to understand why the set belongs to the sigma-algebra 
+$\sigmaAlg_{\mdp}$, why is the random variable $\sigmaAlg_{\mdp}$-measurable, 
+etc. This will help to develop an intuition for manipulating probabilistic 
+objects.
+
+In standard MDP literature~\cite{xxx}, the plays are often defined as alternating sequence of vertices and actions. Here we stick to the edge-based definition inherited from deterministic games. Still, we would sometimes like to speak about quantities such as ``probability that action $a$ is taken in step $i$.'' To this end, we introduce, for each strategy $\sigma$, each action $a$,  and each $i\geq 0$,  a random variable $\actevent{\sigma}{a}{i}$ such that $\actevent{\sigma}{a}{i}(\play)=\sigma(\play_{\leq_i})(a)$. It is easy to check that  $\expv^\sigma_v[\actevent{\sigma}{a}{i}]$ is the probability that action $a$ is played in step $i$ when using strategy $\sigma$.
+
+\subsubsection*{Objectives in MDPs.}
+
+Similarly to plays, the notions of both qualitative and quantitative objectives 
+are inherited from the non-stochastic world of games. However, since plays in 
+MDPs are generated stochastically, even for a fixed strategy $\sigma$ there is 
+typically no single infinite play that would constitute the outcome of 
+$\sigma$. A concrete $\sigma$ might yield different outcomes, depending on the 
+results of random events during the interaction with the MDP. Hence, we need a 
+more general way of evaluating strategies in MDPs. 
+
+In the game setting, a qualitative objective was given as a set $\objective
+\subseteq \colours^{\omega}$. In the MDP setting, we require that such 
+$\objective$ belongs to $\sigmaAlg_{\mdp}$ (this holds for all the objectives 
+introduced so far). We can then talk about a 
+probability that the produced play falls into $\objective$. For instance, for a 
+colour $\genColour$ the expression 
+$\probm^{\sigma}_{\mdp,\vinit}(\Reach(\genColour))$ 
+denotes the probability that a vertex of colour $\genColour$ is reached when 
+using 
+strategy $\sigma$ from vertex $\vinit$. In line with previous conventions, we 
+stipulate that Eve aims to maximize this probability. Similarly, a quantitative 
+objective in the game setting was given by a function 
+$\quantObj\colon \colours^\omega \rightarrow \R$. In the MDP setting, we 
+additionally require that $\quantObj$ is $\sigmaAlg_{\mdp}$-measurable, which 
+means that for each $x\in \R$ the set $\{\pi\in \vertices^\omega\mid 
+\quantObj(\colouring(\play_0)\colouring(\play_1)\cdots) \leq x\}$ belongs to 
+$\sigmaAlg_{\mdp}$ (again this holds for all the objectives studied 
+in the previous chapters). Then, for each $\sigma$ and $\vinit$ we can treat 
+$\quantObj$ as a random variable 
+in the probability space 
+$(\sampleSpace_{\mdp},\sigmaAlg_{\mdp},\probm^{\sigma}_{\mdp,\vinit})$, and our 
+typical task is to find a strategy which maximizes the 
+expected value of $\quantObj$. As in the game setting, we can also consider 
+qualitative objectives arising from quantitative ones. In such a case we could 
+be interested, e.g. in maximizing the probability that the value of a random 
+variable $\quantObj$ surpasses a given threshold $t\in \R$, i.e. maximizing the 
+probability of an event $\{\quantObj\geq t\}$.
+
+As a matter of fact, both quantitative and qualitative objectives can be 
+conveniently described in terms of optimizing the expected value. For a 
+qualitative objective $\objective$ we can consider an ""indicator"" random 
+variable $\indicator{\objective}$, such that $\indicator{\objective}(\play)=1$ 
+of 
+$\play\in\Omega$ and $\indicator{\objective}(\play)=0$ otherwise. Then 
+$\probm^{\sigma}_{\mdp,\vinit}(\objective) = 
+\expv^{\sigma}_{\mdp,\vinit}[\indicator{\objective}]$. Hence, we can think of 
+objectives as of random variables.
+
+\subsubsection*{Optimal Strategies \& Decision Problems}
+
+Let us fix an MDP $\mdp$ and an objective given by a random variable 
+$\quantObj$. The value of a vertex $v\in\vertices$ is the number 
+$\Value(v)=\sup_{\sigma} \expv^{\sigma}_{\mdp,v}[\quantObj]$. We say that a strategy $\sigma$ is $\eps$-optimal in $v$, for some $\eps\geq 0$, if $\expv^{\sigma}_{\mdp,v}[\quantObj] \geq \Value(v) - \eps$. A $0$-optimal strategy is simply called optimal. 
+
+For qualitative objectives, there are additional modes of objective satisfaction. Given such an objective $\objective$, we say that a strategy $\sigma$ is ""almost-surely winning"" from $v$ if $\expv^{\sigma}_{\mdp,v}[\indicator{\objective}]=1$, i.e. if the run produced by $\sigma$ falls into $\objective$ with probability $1$. We also say that $\sigma$ is ""positively winning"" if $\expv^{\sigma}_{\mdp,v}[\indicator{\objective}]>0$. For strategies that are winning in the non-stochastic game sense, i.e. that \emph{cannot} produce a run not belonging to $\objective$, are usually called ""surely winning"" to distinguish them from the above concepts. (An equivalent definition is that a strategy is surely winning in an MDP if it is winning in the game obtained by replacing probabilistic branching with choices of an adversary.) We denote by $\winPos(\mdp,\objective)$ and $\winAS(\mdp,\objective)$ the sets of all vertices of $\mdp$ from which there exists a positively or almost-surely winning strategy for objective $\objective$, respectively.
+
+The problems pertaining to the existence of almost-surely or positively winning strategy are often called \emph{qualitative problems} in the MDP literature, while the notion \emph{quantitative problems} covers the general notion of optimizing the expectation of some random variable. We do not use such a nomenclature here so as to avoid confusion with qualitative vs. quantitative objectives as defined in Chapter~\ref{xxx}. Instead, we will refer directly to, e.g. ``almost-sure reachability'' while using the term ``optimal reachability'' to refer to the expectation-maximization problem.
+
+To reason about the complexity of decision problems pertaining to MDPs we assume, as usual, that all numbers appearing in the MDP (numerical colours, probabilities\ldots) are rational. We will be sometimes interested, how does the bit-size of these numbers influence the runtime of our algorithms; in particular, whether the algorithms run in \emph{strongly polynomial time.}
+
+\begin{definition}
+An algorithm which takes MDPs as inputs is said to run in \emph{strongly polynomial time} if the number of arithmetic 
+	operations performed by the algorithm is bounded by a polynomial in the number 
+	of vertices, edges, and actions (but independent of the bit size of the 
+	probabilities and possible numerical colours). 
+\end{definition}
+
+
+%\subsection*{Expectation vs. Probabilistic Semantics of Objectives}
+%
+%The above view, where objectives are random variables whose expected value is to be optimized by choosing an appropriate strategy, is sometimes called an \emph{expectation semantics} (meaning semantics of the objective, not of the MDP dynamics per se). The expectation semantics is \emph{de facto} the standard  An alternative view is

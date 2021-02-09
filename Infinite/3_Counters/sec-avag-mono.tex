@@ -1,0 +1,416 @@
+
+The results on "configuration reachability" might give the impression
+that "asymmetry" does not help much for solving "vector games": we
+obtained in \cref{12-sub-reach} exactly the same results as in the
+general case.  Thankfully, the situation changes drastically if we
+consider the other types of "vector games": "coverability",
+"non-termination", and "parity@parity vector games" become decidable
+in "asymmetric vector games".  The main rationale for this comes from
+order theory, which prompts the following definitions.
+
+\paragraph{Quasi-orders}\AP A ""quasi-order"" $(X,{\leq})$ is a
+set~$X$ together with a reflexive and transitive
+relation~${\leq}\subseteq X\times X$.  Two elements $x,y\in X$ are
+incomparable if $x\not\leq y$ and $y\not\leq x$, and they are
+equivalent if $x\leq y$ and $y\leq x$.  The associated strict relation
+$x<y$ holds if $x\leq y$ and $y\not\leq x$.
+
+The ""upward closure"" of a subset $S\subseteq X$ is the set of
+elements greater or equal to the elements of S:
+${\uparrow}S\eqdef\{x\in X\mid\exists y\in S\mathbin.y\leq x\}$.  A
+subset $U\subseteq X$ is ""upwards closed"" if ${\uparrow}U=U$.  When
+$S=\{x\}$ is a singleton, we write more simply ${\uparrow}x$ for its
+upward closure and call the resulting "upwards closed" set a
+""principal filter"".  Dually, the ""downward closure"" of~$S$ is
+${\downarrow}S\eqdef\{x\in X\mid\exists y\in S\mathbin.x\leq y\}$, a
+""downwards closed"" set is a subset $D\subseteq X$ such that
+$D={\downarrow}D$, and ${\downarrow}x$ is called a ""principal
+ideal"".  Note that the complement $X\setminus U$ of an upwards closed
+set~$U$ is downwards closed and vice versa.
+
+
+\paragraph{Monotone Games}\AP
+Let us consider again the "natural semantics" $\natural(\?V)$ of a
+"vector system".  The set of vertices
+$V=\Loc\times\+N^\dd\cup\{\sink\}$ is naturally equipped with a
+partial ordering: $v\leq v'$ if either $v=v'=\sink$, or $v=\loc(\vec
+v)$ and $v'=\loc(\vec v')$ are two configurations that share the same
+location and satisfy $\vec v(i)\leq\vec v'(i)$ for all $1\leq
+i\leq\dd$, i.e., if $\vec v\leq\vec v'$ for the componentwise
+ordering.
+
+Consider a set of colours $C$ and a vertex colouring $\vcol{:}\,V\to C$
+of the "natural semantics" $\natural(\?V)$ of a "vector system", which
+defines a colouring $\col{:}\,E\to C$ where
+$\col(e)\eqdef\vcol(\ing(e))$.  We
+say that the "colouring"~$\vcol$ is ""monotonic"" if $C$ is finite and,
+for every colour $p\in C$, the set $\vcol^{-1}(p)$ of vertices coloured
+by~$p$ is "upwards closed" with respect to ${\leq}$.  Clearly, the
+"colourings" of "coverability", "non-termination", and "parity@parity
+vector games" "vector games" are "monotonic", whereas those of
+"configuration reachability" "vector games" are not.  By extension, we
+call a "vector game" \emph{"monotonic"} if its underlying "colouring"
+is "monotonic".
+
+\begin{lemma}[Simulation]\label{12-fact-mono}
+  In a "monotonic" "asymmetric vector game", if \Eve wins from a
+  vertex~$v_0$, then she also wins from~$v'_0$ for all $v'_0\geq
+  v_0$.
+\end{lemma}
+\begin{proof}
+  It suffices for this to check that, for all $v_1\leq v_2$ in $V$,
+  \begin{description}
+  \item[(colours)] $\vcol(v_1)=\vcol(v_2)$ since $\vcol$ is "monotonic";
+  \item[(zig \Eve)] if $v_1,v_2\in V_\mEve$, $a\in\Act$, and
+    $\dest(v_1,a)=v'_1\neq\sink$ is defined, then
+    $v'_2\eqdef\dest(v_2,a)$ is such that $v'_2\geq v'_1$: indeed,
+    $v'_1\neq\sink$ entails that $v_1$ is a configuration
+    $\loc(\vec v_1)$ and $v'_1=\loc'(\vec v_1+\vec u)$ for the action
+    $a=(\loc\step{\vec u}\loc')\in\Act$, but then $v_2=\loc(\vec v_2)$
+    for some $\vec v_2\geq\vec v_1$ and
+    $v'_2=\loc'(\vec v_2+\vec u)\geq v'_1$;
+  \item[(zig \Adam)] if $v_1,v_2\in V_\mAdam$, $a\in\Act$, and
+    $\dest(v_2,a)=v'_2$ is defined, then
+    $v'_1\eqdef\dest(v_1,a)\leq v'_2$: indeed, either $v'_2=\sink$ and
+    then $v'_1=\sink$, or $v'_2\neq\sink$, thus
+    $v_2=\loc(\vec v_2)$, $v'_2=\loc'(\vec v_2)$, and
+    $a=(\loc\step{\vec 0}\loc')\in\Act$ (recall that the game is
+    "asymmetric"), but then $v_1=\loc(\vec v_1)$ for some
+    $\vec v_1\leq\vec v_2$ and thus $v'_1=\loc'(\vec v_1)\leq v'_2$.
+  \end{description}
+  The above conditions show that, if $\sigma{:}\,E^\ast\to\Act$ is a
+  strategy of \Eve that wins from~$v_0$, then by
+  ""simulating""~$\sigma$ starting from~$v'_0$---i.e., by applying the
+  same actions when given a pointwise larger or equal history---she
+  will also win.\todoquestion{Is that clear?}
+\end{proof}
+
+Note that \cref{12-fact-mono} implies that $\WE$ is "upwards closed":
+$v_0\in\WE$ and $v_0\leq v'_0$ imply $v_0'\in\WE$.  \Cref{12-fact-mono}
+does not necessarily hold in "vector games" without the "asymmetry"
+condition.  For instance, in both \cref{12-fig-cov,12-fig-nonterm} on
+\cpageref{12-fig-cov}, $\loc'(0,1)\in\WE$ but $\loc'(1,2)\in\WA$ for
+the "coverability" and "non-termination" objectives.  This is due to
+the fact that the action $\loc'\step{-1,0}\loc$ is available
+in~$\loc'(1,2)$ but not in~$\loc'(0,1)$.
+
+
+\paragraph{Well-quasi-orders}\AP What makes "monotonic" "vector games" so
+interesting is that the partial order $(V,{\leq})$ associated with the
+"natural semantics" of a "vector system" is a ""well-quasi-order"".  A
+"quasi-order" $(X,{\leq})$ is "well@well-quasi-order" (a \emph{"wqo"})
+if any of the following equivalent characterisations
+hold~\cite{Kruskal:1972,Schmitz&Schnoebelen:2012}:
+\begin{itemize}
+  % \item\AP in any infinite sequence $x_0,x_1,\dots$ of elements of~$X$,
+  %   there exist indices $i<j$ such that $x_i\leq x_j$---infinite sequences in $X$ are ""good""---,
+  \item\AP in any infinite sequence $x_0,x_1,\cdots$ of elements
+    of~$X$, there exists an infinite sequence of indices
+    $n_0<n_1<\cdots$ such that $x_{n_0}\leq
+    x_{n_1}\leq\cdots$---infinite sequences in $X$ are ""good""---,
+  \item\AP any strictly ascending sequence $U_0\subsetneq
+    U_1\subsetneq\cdots$ of "upwards closed" sets $U_i\subseteq X$ is
+    finite---$X$ has the ""ascending chain condition""---,
+  \item\AP any non-empty "upwards closed" $U\subseteq X$ has at least
+    one, and at most finitely many minimal elements up to equivalence;
+    therefore any "upwards closed" $U\subseteq X$ is a finite union
+    $U=\bigcup_{1\leq j\leq n}{\uparrow}x_j$ of finitely many
+    "principal filters"~${\uparrow}x_j$---$X$ has the ""finite basis
+    property"".
+\end{itemize}
+
+The fact that $(V,{\leq})$ satisfies all of the above is an easy
+consequence of \emph{Dickson's Lemma}~\cite{Dickson:1913}.
+
+% In a "monotonic" "vector game", by the "finite basis property", each
+% set $\col^{-1}(d)$ for a colour $d\in C$ has finitely many minimal
+% elements $\min\col^{-1}(d)$, thus there exists a ""viable"" natural
+% number
+% $B\geq \max_{d\in C}\max_{\vec v\in\min\col^{-1}(d)}\|\vec v\|$.  In
+% \cref{12-pb-cov}, $\|\vec v\|$ is "viable" if $\loc(\vec v)$ is the
+% target configuration, while for \cref{12-pb-nonterm,12-pb-parity},
+% $0$~is "viable".
+
+\paragraph{Pareto Limits}\AP By the "finite basis property" of
+$(V,{\leq})$ and \cref{12-fact-mono}, in a "monotonic" "asymmetric
+vector game", $\WE=\bigcup_{1\leq j\leq n}{\uparrow}\loc_j(\vec v_j)$
+is a finite union of "principal filters".  The set
+$\mathsf{Pareto}\eqdef\{\loc_1(\vec v_1),\dots,\loc_n(\vec v_n)\}$ is
+called the ""Pareto limit"" or \emph{Pareto frontier} of the game.
+Both the "existential" and the "given initial credit" variants of the
+game can be reduced to computing this "Pareto limit": with
+"existential initial credit" and an initial location $\loc_0$, check
+whether $\loc_0(\vec v)\in\mathsf{Pareto}$ for some $\vec v$, and with
+"given initial credit" and an initial configuration $\loc_0(\vec v_0)$, check
+whether $\loc_0(\vec v)\in\mathsf{Pareto}$ for some $\vec v\leq\vec
+v_0$.
+\begin{example}
+  Consider the "asymmetric vector system" from \cref{12-fig-avg} on
+  \cpageref{12-fig-avg}.  For the "coverability game" with target
+  configuration $\loc(2,2)$, the "Pareto limit" is
+  $\mathsf{Pareto}=\{\loc(2,2),\loc'(3,2),\loc_{2,1}(0,1),\loc_{\text-1,0}(3,2)\}$,
+  while for the "non-termination game", $\mathsf{Pareto}=\emptyset$:
+  \Eve loses from all the vertices.  Observe that this is consistent
+  with \Eve's "winning region" in the "coverability" "energy game"
+  shown in \cref{12-fig-cov-nrg}.
+\end{example}
+
+% \paragraph{Pareto Bounds}
+% \AP Consider a "monotonic" "asymmetric" "vector game"
+% $\?G=(\natural(\?V),\col,\Omega)$ with "Pareto limit"
+% $\mathsf{Pareto}=\{\loc_1(\vec v_1),\dots,\loc_n(\vec v_n)\}$.  Since
+% this "Pareto limit" is finite, there exists a number
+% $\mathsf{ParetoBound}\eqdef\max_{\loc(\vec v)\in\mathsf{Pareto}}\|\vec
+% v\|$ bounding the necessary "given initial credit" for \Eve to win the
+% game from any initial location.  Another bound of interest is
+% $\mathsf{ExistentialParetoBound}\eqdef\max_{\loc\in\Loc}\min_{\loc(\vec
+% v)\in\mathsf{Pareto}}\|\vec v\|$, which bounds the "existential
+% initial credit" necessary for \Eve to win the game from any initial
+% location.  Note that
+% $\mathsf{ParetoBound}\geq \mathsf{ExistentialParetoBound}$ and that
+% the two values always coincide in dimension $\dd=1$.  We call a number
+% $B\geq\mathsf{ParetoBound}$ a ""Pareto bound"" and a number
+% $B\geq\mathsf{ExistentialParetoBound}$ an ""existential Pareto
+% bound"".
+
+\begin{example}\label{12-ex-pareto}
+  Consider the one-player "vector system" of \cref{12-fig-pareto},
+  where the "meta-decrement" from~$\loc_0$ to~$\loc_1$ can be
+  implemented using $O(n)$ additional counters and a set~$\Loc'$ of
+  $O(n)$ additional locations by the arguments of the
+  forthcoming \cref{12-avag-hard}.
+  
+  \begin{figure}[htbp]
+    \centering
+  \begin{tikzpicture}[auto,on grid,node distance=2.5cm]
+    \node[s-eve](0){$\loc_0$};
+    \node[s-eve,right=of 0](1){$\loc_1$};
+    \node[s-eve,below right=1.5 and 1.25 of 0](2){$\loc_f$};
+    \path[arrow,every node/.style={font=\footnotesize,inner sep=1}]
+    (0) edge node {$-2^{2^n}\cdot\vec e_1$} (1)
+    (0) edge[bend right=10,swap] node {$-\vec e_2$} (2)
+    (1) edge[bend left=10] node {$\vec 0$} (2);
+  \end{tikzpicture}
+  \caption{\label{12-fig-pareto} A one-player "vector system"
+  with a large "Pareto limit".}
+  \end{figure}
+  For the "coverability game" with target
+  configuration~$\loc_f(\vec 0)$, if $\loc_0$ is the initial location
+  and we are "given initial credit" $m\cdot\vec e_1$, \Eve wins if and
+  only if $m\geq 2^{2^n}$, but with "existential initial credit" she
+  can start from $\loc_0(\vec e_2)$ instead.  We have indeed
+  $\mathsf{Pareto}\cap(\{\loc_0,\loc_1,\loc_f\}\times\+N^\dd)=\{\loc_0(\vec
+  e_2),\loc_0(2^{2^n}\cdot\vec e_1),\loc_1(\vec 0),\loc_f(\vec 0)\}$.
+  Looking more in-depth into the construction of \cref{12-avag-hard},
+  there is also an at least double exponential number of distinct
+  minimal configurations in~$\mathsf{Pareto}$.
+\end{example}
+
+
+
+\paragraph{Finite Memory} 
+Besides having a finitely represented "winning region", \Eve also has
+finite memory strategies in "asymmetric vector games" with "parity"
+objectives; the following argument is straightforward to adapt to
+the other regular objectives from \cref{chap:regular}.
+\begin{lemma}\label{12-fact-finmem}
+  If \Eve has a "strategy" winning from some vertex~$v_0$ in a
+  "parity@parity vector game" "asymmetric vector game", then she has a
+  "finite-memory" one.
+\end{lemma}
+\begin{proof}
+  Assume~$\sigma$ is a winning strategy from~$v_0$.  Consider the tree
+  of vertices visited by plays consistent with~$\sigma$: each branch
+  is an infinite sequence $v_0,v_1,\dots$ of elements of~$V$ where the
+  maximal priority occuring infinitely often is some even number~$p$.
+  Since $(V,{\leq})$ is a "wqo", this is a "good sequence": there
+  exists infinitely many indices $n_0<n_1<\cdots$ such that
+  $v_{n_0}\leq v_{n_1}\leq\cdots$.  There exists $i<j$ such
+  that~$p=\max_{n_i\leq n<n_j}\vcol(v_n)$ is the maximal priority
+  occurring in some interval $v_{n_i},v_{n_{i+1}},\dots,v_{n_{j-1}}$.
+  Then \Eve can play in~$v_{n_j}$ as if she were in~$v_{n_i}$, in
+  $v_{n_j+1}$ as if she were in $v_{n_i+1}$ and so on, and we prune
+  the tree at index~$n_j$ along this branch so that $v_{n_j}$ is a
+  leaf, and we call~$v_{n_i}$ the ""return node"" of that leaf.  We
+  therefore obtain a finitely branching tree with finite branches,
+  which by K\H{o}nig's Lemma is finite.
+
+  The finite tree we obtain this way is sometimes called a
+  ""self-covering tree"".  %   It is labelled by configurations
+  % in~$\Loc\times\+N^\dd$ and
+  % \begin{enumerate}
+  % \item its root label is~$\loc_0(\vec v_0)$,
+  % \item if an internal node is labelled by $\loc(\vec v)$ with
+  %   $\loc\in\Loc_\mEve$, then it has exactly one child labelled by
+  %   some~$\loc'(\vec v+\vec u)$,
+  % \item if an internal node is labelled by $\loc(\vec v)$ with
+  %   $\loc\in\Loc_\mAdam$, then it has one child labelled~$\loc'(\vec
+  %   v)$ for each action $\loc\step{\vec 0}\loc'\in\Act$,
+  % \item\label{12-wt-self-even} if a leaf is labelled by $\loc(\vec v)$,
+  %   consider the branch
+  %   $\loc_0(\vec v_0),\loc_1(\vec v_1),\dots,\loc_n(\vec v_n)=\loc(\vec
+  %   v)$ that reaches the leaf: then
+  %   \begin{enumerate}
+  %   \item\label{12-wt-self}there exists~$i<n$ such that
+  %     $\loc_i=\loc$ and $\vec v_i\leq\vec v$---we call the node labelled by
+  %     $\loc_i(\vec v_i)$ the ""return point"" of the leaf---, and
+  %   \item\label{12-wt-even} the maximal priority observed between the two
+  %     nodes, i.e., $\max_{i\leq j<n}\col(v_j)$, is even.
+  %   \end{enumerate}
+  % \end{enumerate}
+  It is relatively straightforward to construct a finite "memory
+  structure"~$(M,m_0,\delta)$ (as defined in \cref{1-finite-memory}) from a
+  "self-covering tree", using its internal nodes as memory states plus
+  an additional sink memory state~$m_\bot$; the initial memory
+  state~$m_0$ is the root of the tree.  In a node~$m$ labelled by
+  $\loc(\vec v)$, given an edge
+  $e=(\loc(\vec v'),\loc'(\vec v'+\vec u))$ arising from an
+  action~$\loc\step{\vec u}\loc'\in\Act$, if $\vec v'\geq\vec v$ and
+  $m$~has a child~$m'$ labelled by $\loc'(\vec v+\vec u)$ in the
+  "self-covering tree", then either~$m'$ is a leaf with "return
+  node"~$m''$ and we set $\delta(m,e)\eqdef m''$, or $m'$~is an
+  internal node and we set $\delta(m,e)\eqdef m'$; in all the other
+  cases, $\delta(m,e)\eqdef m_\bot$. % The strategy
+  % $\sigma'{:}\,V\times M\to\Act$ associated with the memory structure
+  % picks an arbitrary action except if $v=\loc(\vec v')$ is a
+  % configuration with $\loc\in\Loc_\mEve$ and $m$~is an internal node
+  % of the "self-covering tree" labelled by $\loc(\vec v)$ for some
+  % $\vec v\leq\vec v'$, in which case~$m$ has a single child labelled
+  % by $\loc'(\vec v+\vec u)$ in the "self-covering tree", corresponding
+  % to an action $a=(\loc\step{\vec u}\loc')\in\Act$, and we set
+  % $\sigma'(v,m)\eqdef a$.
+  \todoquestion{Is that reasonably clear?  A
+    bit heavy no?}
+\end{proof}
+
+\TODO{Provide an additional example of a "self-covering tree".}
+
+\begin{example}
+  Consider the one-player "vector system" of \cref{12-fig-finitemem},
+  where the "meta-decrement" from~$\loc_1$ to~$\loc_0$ can be
+  implemented using $O(n)$ additional counters and $O(n)$ additional
+  locations by the arguments of the forthcoming \cref{12-avag-hard}
+  on \cpageref{12-avag-hard}.
+  
+  \begin{figure}[htbp]
+    \centering
+  \begin{tikzpicture}[auto,on grid,node distance=2.5cm]
+    \node[s-eve](0){$\loc_0$};
+    \node[s-eve,right=of 0](1){$\loc_1$};
+    \node[black!50,above=.5 of 0,font=\scriptsize]{$2$};
+    \node[black!50,above=.5 of 1,font=\scriptsize]{$1$};
+    \path[arrow,every node/.style={font=\footnotesize,inner sep=2}]
+    (1) edge[bend left=15] node {$-2^{2^n}\cdot\vec e_1$} (0)
+    (0) edge[bend left=15] node {$\vec 0$} (1)
+    (1) edge[loop right] node{$\vec e_1$} ();
+  \end{tikzpicture}
+  \caption{\label{12-fig-finitemem} A one-player "vector system"
+  witnessing the need for double exponential memory.}
+  \end{figure}
+
+  For the "parity@parity vector game" game with location colouring
+  $\lcol(\loc_0)\eqdef 2$ and $\lcol(\loc_1)\eqdef 1$, note that \Eve
+  must visit $\loc_0$ infinitely often in order to fulfil the parity
+  requirements.  Starting from the initial
+  configuration~$\loc_0(\vec 0)$, any winning play of \Eve begins
+  by \begin{equation*} \loc_0(\vec 0)\step{0}\loc_1(\vec 0)\step{\vec
+      e_1}\loc_1(\vec e_1)\step{\vec e_1}\cdots\step{\vec
+      e_1}\loc_1(m\cdot\vec
+    e_1)\mstep{-2^{2^n}}\loc_0((m-2^{2^n})\cdot\vec
+    e_1) \end{equation*} for some~$m\geq 2^{2^n}$ before she visits
+  again a
+  configuration---namely~$\loc_0((m-2^{2^n})\cdot\vec e_1)$---greater
+  or equal than a previous configuration---namely
+  $\loc_0(\vec 0)$---\emph{and} witnesses a maximal even parity in the
+  meantime.  She then has a winning strategy that simply repeats this
+  sequence of actions, allowing her to visit successively
+  $\loc_0(2(m-2^{2^n})\cdot\vec e_1)$,
+  $\loc_0(3(m-2^{2^n})\cdot\vec e_1)$, etc.  In this example, she
+  needs at least $2^{2^n}$ memory to remember how many times the
+  $\loc_1\step{\vec e_1}\loc_1$ loop should be taken.
+\end{example}
+
+\subsubsection{Attractor Computation for Coverability}
+\label{12-sub-attr}
+So far, we have not seen how to compute the "Pareto limit" derived
+from \cref{12-fact-mono} nor the finite "memory structure" derived
+from \cref{12-fact-finmem}.  These objects are not merely finite but
+also computable.  The simplest case is the one of "coverability"
+"asymmetric" "monotonic vector games": the fixed-point computation of
+\cref{chap:regular} for "reachability" objectives can be turned into
+an algorithm computing the "Pareto limit" of the game.
+
+\begin{fact}\label{12-pareto-cov}
+  The "Pareto limit" of a "coverability" "asymmetric vector game" is
+  computable.
+\end{fact}
+\begin{proof}
+Let $\loc_f(\vec v_f)$ be the target configuration.  We define a
+chain $U_0\subseteq U_1\subseteq\cdots$ of sets $U_i\subseteq V$ by
+\begin{align*}
+  U_0&\eqdef{\uparrow}\loc_f(\vec v_f)\;,&
+  U_{i+1}&\eqdef U_i\cup\mathrm{Pre}(U_i)\;.
+\end{align*}
+Observe that for all~$i$, $U_i$ is "upwards closed".  This can be
+checked by induction over~$i$: it holds initially in~$U_0$, and for
+the induction step, if $v\in U_{i+1}$ and $v'\geq v$, then either
+\begin{itemize}
+\item $v=\loc(\vec v)\in\mathrm{Pre}(U_i)\cap\VE$ thanks to some
+  $\loc\step{\vec u}\loc'\in\Act$ such that
+  $\loc'(\vec v+\vec u)\in U_i$; therefore $v'=\loc(\vec v')$ for some
+  $\vec v'\geq \vec v$ is such that $\loc'(\vec v'+\vec u)\in U_i$ as
+  well, thus $v'\in \mathrm{Pre}(U_i)\subseteq U_{i+1}$, or
+\item $v=\loc(\vec v)\in\mathrm{Pre}(U_i)\cap\VA$ because for all
+  $\loc\step{\vec 0}\loc'\in\Act$, $\loc'(\vec v)\in U_i$; therefore
+  $v'=\loc(\vec v')$ for some $\vec v'\geq \vec v$ is such that
+  $\loc'(\vec v')\in U_i$ as well, thus
+  $v'\in \mathrm{Pre}(U_i)\subseteq U_{i+1}$, or
+\item $v\in U_i$ and therefore $v'\in U_i\subseteq U_{i+1}$.
+\end{itemize}
+
+By the "ascending chain condition", there is a finite rank~$i$ such
+that $U_{i+1}\subseteq U_i$ and then $\WE=U_i$.  Thus the
+"Pareto limit" is obtained after finitely many steps.
+In order to turn this idea into an algorithm, we need a way of
+representing those infinite "upwards closed" sets $U_i$.  Thankfully,
+by the "finite basis property", each $U_i$ has a finite basis $B_i$
+such that ${\uparrow}B_i=U_i$.  We therefore compute the following
+sequence of sets
+\begin{align*}
+  B_0&\eqdef\{\loc_f(\vec v_f)\}&B_{i+1}&\eqdef
+                                       B_i\cup\min\mathrm{Pre}({\uparrow}B_i)\;.
+\end{align*}
+Indeed, given a finite basis~$B_i$ for~$U_i$, it is straightforward to
+compute a finite basis for the "upwards closed" $\mathrm{Pre}(U_i)$.
+This results in \cref{12-algo-cov} below.
+\end{proof}
+
+\begin{algorithm}
+ \KwData{A "vector system" and a target configuration $\loc_f(\vec v_f)$}
+
+$B_0 \leftarrow \{\loc_f(\vec v_f)\}$ ;
+
+$i \leftarrow 0$ ;
+     
+\Repeat{${\uparrow}B_i \supseteq B_{i+1}$}{
+
+$B_{i+1} \leftarrow B_i \cup \min\mathrm{Pre}({\uparrow}B_i)$ ;
+
+$i \leftarrow i + 1$ ;}
+
+\Return{$\min B_i = \mathsf{Pareto}(\game)$}
+\caption{Fixed point algorithm for "coverability" "asymmetric" "vector
+  games".}
+\label{12-algo-cov}
+\end{algorithm}
+
+While this algorithm terminates thanks to the "ascending chain
+condition", it may take quite long.  For instance, in
+\cref{12-ex-pareto}, it requires at least~$2^{2^n}$ steps before it
+reaches its fixed point.  This is a worst-case instance, as it turns
+out that this algorithm works in \kEXP[2]; see the bibliographic notes
+at the end of the chapter.  Note that such a
+fixed-point computation does not work directly for "non-termination"
+or "parity vector games", due to the need for greatest fixed-points.
+
+% Local IspellDict: british

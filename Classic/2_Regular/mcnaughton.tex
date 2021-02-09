@@ -1,0 +1,157 @@
+\begin{theorem}
+\label{2-thm:muller}
+Muller objectives are determined with finite memory strategies of size $d!$\footnote{See \cref{2-rmk:finite_infinite} for the case of infinite games.}.
+There exists an algorithm for computing the winning regions of Muller games in exponential time,
+and more specifically of complexity $O(m d (dn)^d)$, and in polynomial space, and more specifically $O(dm)$.
+\end{theorem}
+The presentation of the recursive algorithm for computing the winning regions of Muller games follows the exact same lines as for parity games:
+indeed, the Muller objective extends the parity objective, and specialising the algorithm for Muller games to parity games
+yields the algorithm we presented above.
+%As for parity games, our proof is by induction over the number of colours but it uses the finiteness of the games.
+%The finite memory determinacy actually holds for infinite games and the proof we present can be adapted to obtain this result.
+
+The following lemma induces the recursive algorithm for computing the winning regions of Muller games.
+
+\begin{lemma}
+\label{2-lem:Muller_even}
+Let $\Game$ be a Muller game such that $C \in \F$.
+For each $c \in C$, let $\Game_c$ be the subgame of $\Game$ induced by $V \setminus \AttrE(c)$.
+\begin{itemize}
+	\item If for all $c \in C$, we have $\WA(\Game_c) = \emptyset$, then $\WE(\Game) = V$.
+	\item If there exists $c \in C$ such that $\WA(\Game_c) \neq \emptyset$,
+	let $\Game'$ be the subgame of $\Game$ induced by $V \setminus \AttrA( \WA(\Game_c) )$,
+	then $\WE(\Game) = \WE(\Game')$.	
+\end{itemize}
+\end{lemma}
+
+\begin{proof}
+We prove the first item.
+
+For each $c \in C$, let $\sigma_c$ be an attractor strategy ensuring to reach $c$ from $\AttrE(c)$,
+and consider a winning strategy for Eve from $V \setminus \AttrE(c)$ in $\Game_c$, it induces a strategy $\sigma'_c$ in $\Game$.
+We construct a strategy $\sigma$ in $\Game$ which will simulate the strategies above in turn; to do so it uses $C$ as top-level memory states.
+(We note that the strategies $\sigma'_c$ may use memory as well, so $\sigma$ may actually use more memory than just $C$.)
+The strategy $\sigma$ with memory $c$ simulates $\sigma_c$ from $\AttrE(c)$ and $\sigma'_c$ from $V \setminus \AttrE(c)$,
+and if it ever reaches $c$ it updates its memory state to $c + 1$ and $1$ if $c = d$.
+Any play consistent with $\sigma$ either updates its memory state infinitely many times, 
+or eventually remains in $V \setminus \AttrE(c)$ and is eventually consistent with $\sigma'_c$.
+In the first case it sees each colour infinitely many times, and since $C \in \F$ the play satisfies $\Muller(\F)$, 
+and in the other case since $\sigma'_c$ is winning the play satisfies $\Muller(\F)$.
+Thus $\sigma$ is winning from $V$.
+
+We now look at the second item.
+
+Let $\tau_a$ denote an attractor strategy from $\AttrA(\WA(\Game_c)) \setminus \WA(\Game_c)$.
+Consider a winning strategy for Adam from $\WA(\Game_c)$ in $\Game_c$, it induces a strategy $\tau_c$ in $\Game$.
+Since $V \setminus \AttrE(c)$ is a "trap" for Eve, this implies that $\tau_c$ is a winning strategy in $\Game$.
+Consider now a winning strategy in the game $\Game'$ from $\WA(\Game')$, it induces a strategy $\tau'$ in $\Game$.
+The set $V \setminus \AttrA( \WA(\Game_c) )$ may not be a trap for Eve, so we cannot conclude that $\tau'$ is a winning strategy in $\Game$,
+and it indeed may not be.
+We construct a strategy $\tau$ in $\Game$ as the (disjoint) union of the strategy $\tau_a$ on $\AttrA(\WA(\Game_c)) \setminus \WA(\Game_c)$,
+the strategy $\tau_c$ on $\WA(\Game_c)$ and the strategy $\tau'$ on $\WA(\Game')$.
+We argue that $\tau$ is winning from $\AttrA( \WA(\Game_c) ) \cup \WA(\Game')$ in $\Game$.
+Indeed, any play consistent with this strategy in $\Game$ either stays forever in $\WA(\Game')$ hence is consistent with $\tau'$
+or enters $\AttrA( \WA(\Game_c) )$, so it is eventually consistent with $\tau_c$.
+In both cases this implies that the play is winning.
+Thus we have proved that $\AttrA( \WA(\Game_c) ) \cup \WA(\Game') \subseteq \WA(\Game)$.
+
+We now show that $\WE(\Game') \subseteq \WE(\Game)$, which implies the converse inclusion.
+Consider a winning strategy from $\WE(\Game')$ in $\Game'$, it induces a strategy $\sigma$ in $\Game$.
+Since $\Game'$ is a "trap" for Adam, any play consistent with $\sigma$ stays forever in $\WE(\Game')$, 
+implying that $\sigma$ is winning from $\WE(\Game')$ in $\Game$.
+\end{proof}
+
+To get the full algorithm we need the analogous lemma for the case where $C \notin \F$.
+We do not prove it as it is the exact dual of the previous lemma, and the proof is the same swapping the two players.
+
+\begin{lemma}
+\label{2-lem:Muller_odd}
+Let $\Game$ be a Muller game such that $C \notin \F$.
+For each $c \in C$, let $\Game_c$ be the subgame of $\Game$ induced by $V \setminus \AttrA(c)$.
+\begin{itemize}
+	\item If for all $c \in C$, we have $\WE(\Game_c) = \emptyset$, then $\WA(\Game) = V$.
+	\item If there exists $c \in C$ such that $\WE(\Game_c) \neq \emptyset$,
+	let $\Game'$ be the subgame of $\Game$ induced by $V \setminus \AttrE( \WE(\Game_c) )$,
+	then $\WA(\Game) = \WA(\Game')$.	
+\end{itemize}
+\end{lemma}
+
+The algorithm is presented in pseudocode in \Cref{2-algo:mcnaughton}.
+We only give the case where $C \in \F$, the other case being symmetric.
+The base case is when there is only one colour $c$, in wich case Eve wins everywhere if $\F = \set{c}$
+and Adam wins everywhere if $\F = \emptyset$.
+
+We now perform a complexity analysis of the algorithm.
+
+Let us start with time complexity and write $f(n,d)$ for the number of recursive calls performed by the algorithm on Muller games with $n$ vertices and $d$ colours.
+We have $f(n,1) = f(0,d) = 0$, with the general induction:
+\[
+f(n,d) \le d \cdot f(n,d-1) + f(n-1,d) + d + 1.
+\]
+The term $d \cdot f(n,d-1)$ corresponds to the recursive call to $\Game_c$ for each $c \in C$,
+the term $f(n-1,d)$ to the recursive call to $\Game'$.
+We obtain $f(n,d) \le d n \cdot f(n,d-1) + (d+1)n$,
+so $f(n,d) \le (d+1)n (1 + dn + (dn)^2 + \dots + (dn)^{d-2}) = O((dn)^d)$.
+In each recursive call we perform $d+1$ attractor computations so the number of operations in one recursive call is $O(dm)$.
+Thus the overall time complexity is $O(m d (dn)^d)$.
+
+%The space complexity is bounded by $O(nd)$.
+
+The proofs of \cref{2-lem:Muller_even} and \cref{2-lem:Muller_odd} also imply that Muller games are determined with finite memory of size $d!$.
+We do not make it more precise here because an improved analysis of the memory requirements will be conducted in \cref{2-sec:zielonka}
+using a variant of this algorithm.
+
+\begin{algorithm}
+ \KwData{A Muller game $\Game$ over $C = [1,d]$}
+ \SetKwFunction{FSolveIn}{SolveIn}
+ \SetKwFunction{FSolveOut}{SolveOut}
+ \SetKwProg{Fn}{Function}{:}{}
+
+\Fn{\FSolveIn{$\Game$}}{
+	\If{$d = 1$}{
+		\If{$\F = \set{1}$}{
+			\Return{$V$}
+		}
+		\Else{
+			\Return{$\emptyset$}
+		}
+	}
+
+	\For{$c \in C$}{
+		Let $\Game_c$ the subgame of $\Game$ induced by $V \setminus \AttrE(c)$
+	
+		\If{$C \setminus \set{c} \in \F$}{
+			$\WE(\Game_c) \leftarrow$ \FSolveIn($\Game_c$)
+		}
+		\Else{
+			$\WA(\Game_c) \leftarrow$ \FSolveOut($\Game_c$)
+		}
+	}
+
+	\If{$\forall c \in C,\ \WA(\Game_c) = \emptyset$}{
+		\Return{$V$}
+	}
+	\Else{
+		Let $c$ such that $\WA(\Game_c) \neq \emptyset$
+
+		Let $\Game'$ the subgame of $\Game$ induced by $V \setminus \AttrA( \WA(\Game_c) )$
+
+		$\WE(\Game') \leftarrow$ \FSolveIn($\Game'$)
+					
+		\Return{$\WE(\Game')$}
+	}
+}
+\vskip1em
+\Fn{\FSolveOut{$\Game$}}{
+	Symmetric to \FSolveIn
+}
+\vskip1em
+\If{$C \in \F$}{
+	\FSolveIn{$\Game$}
+}
+\Else{
+	\FSolveOut{$\Game$}
+}
+\caption{A recursive algorithm for computing the winning regions of Muller games.}
+\label{2-algo:mcnaughton}
+\end{algorithm}

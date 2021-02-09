@@ -1,0 +1,48 @@
+Let us introduce the notions we will study in normal-form games.
+
+\fbox{Pas mal de d\'efinitions vont \^etre h\'erit\'ees du chapitre concurrent}
+
+\subsection{Normal form games}\label{normal-form-games}
+
+\textbf{Definition}: A normal-form game is given by a set of players
+\(Players\), a set of strategies \(Strat_P\) for each player
+\(P \in Players\) and a payoff function
+\({\tt payoff}_P : \prod_{P \in Players} Strat_P \to \mathbb{R}\).
+
+The goal of each player is to maximize their payoff, and the payoff of
+each player can depend on other players' strategies. Note that we are in
+a concurrent setting, so each player chooses their strategy
+independently.
+
+A \emph{strategy profile} is a map assigning a strategy to each player.
+We simply denote it as a tuple
+\((\sigma_1,\sigma_2, \ldots,\sigma_n) \in \prod_{p \in P} Strat_p\).
+Such a tuple will often be written \(\sigma_P\), and for a subset of
+players \(A \subseteq P\), \(\sigma_A\) denotes the strategy profile for
+the players. The
+pair\textasciitilde{}\((\sigma_A,\sigma_{P\setminus A})\) then refers to
+the full strategy profile.
+
+\textbf{Example}: In the Hawk-Dove game, there are two players \(P_1\)
+and \(P_2\). Possible strategies are
+\(Strat_{P_1} = Strat_{P_2} = \{ Hawk, Dove \}\). The payoffs
+corresponding to different strategy profiles are given in Table
+\emph{(reference to table)}, \({\tt payoff}_{P_1}(Hawk, Hawk) = 0\),
+\({\tt payoff}_{P_1}(Hawk, Dove) = 4\), etc\ldots{}
+
+A \emph{randomised} strategy is a probability distributing over the
+actions, i.e. \(\forall a\in Act.\ \sigma_P(a)\in[0,1]\) and
+\(\sum_{a \in Act} \sigma_P(a) = 1\). The resulting payoff of a strategy
+profile is then
+\(\sum_{a_{Agt} \in Act^{Agt}} {\tt payoff}(a_{Agt}) \cdot \prod_{A\in Agt} \sigma_A(a_A)\).
+\fbox{probablement sera d\'ej\`a d\'efini}
+
+A strategy is said to be \emph{pure} if the support of its distribution
+is a singleton. A pure strategy profile is a profile consisting of pure
+strategies. A randomised strategy profile is a general strategy profile
+possibly containing randomised strategies.
+
+A \emph{pure (resp. randomised) Nash equilibrium} is pure (resp.
+randomised) strategy profile \(\sigma_P\) such that for all players
+\(A_i\in P\), and all strategies \(\sigma'_{A_i}\),
+\({\tt payoff}(\sigma'_{A_i}, \sigma_{P\setminus A_i}) \le {\tt payoff}(\sigma_{A_i}, \sigma_{P\setminus A_i})\).

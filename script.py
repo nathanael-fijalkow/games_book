@@ -1,14 +1,14 @@
 import re
 
-def translate(nb_chap, title_chap, file, title):
-	f = open(nb_chap + "_" + title_chap + "/" + file + ".tex", "r")
+def translate(nb_chap, file_name, path, title):
+	f = open(path + file_name + ".tex", "r")
 	content = f.read()
 	f.close()
 
-	print("reading %s" % file)
+	print("reading %s" % file_name)
 
 	#### Add title and reference to it
-	content = "(" + nb_chap + "-sec:" + file + ")=\n# " + title + "\n\n" + content
+	content = "(" + nb_chap + "-sec:" + file_name + ")=\n# " + title + "\n\n" + content
 
 	#### Remove comments
 	content = re.sub(r'%(.*?)\n', r'', content)
@@ -26,21 +26,44 @@ def translate(nb_chap, title_chap, file, title):
 	content = re.sub(r'\{\\"i}', r'&iuml;', content)
 	content = re.sub(r'\{\\\'e}', r'&eacute;', content)
 	content = re.sub(r'\{\\\`e}', r'&egrave;', content)
+	content = re.sub(r'\{\\\'n}', r'&#324;', content)
 
 	#### Deal with figures
 
 	# remove figs and creates files
 
-	list_fig = re.findall(r'\\begin\{figure\}([\s\S]*?)(\\begin\{tikzpicture\}[\s\S]*?)\\caption\{([\s\S]*?)\}\n\\label\{(.*?)\}\n\\end\{figure\}', content)
+	list_fig = re.findall(r'\\begin\{figure\}[\s\S]*?(\\begin\{tikzpicture\}[\s\S]*?\\end\{tikzpicture\})[\s\S]*?\\caption\{[\s\S]*?\}[\s\S]*?\\label\{(.*?)\}[\s\S]*?\\end\{figure\}', content)
 
 	for x in list_fig:
-		h = open(nb_chap + "_" + title_chap + "/Fig/" + x[3] + ".tex", 'w')
+		h = open(x[1] + ".tex", 'w')
 		h.write("\\documentclass[preview,border=0mm,convert={density=600,outext=.png}]{standalone}\n\
 			\\usepackage{tikz}\n\\usetikzlibrary{automata,shapes,patterns,calc,arrows}\n\
-			\\input{tikz-style.tex}\n\\begin{document}\n" + x[1] + "\n\\end{document}")
+			\\input{tikz-style.tex}\n\\input{macros.tex}\n\
+			\\begin{document}\n" + x[0] + "\n\\end{document}")
 
-	content = re.sub(r'\\begin\{figure\}([\s\S]*?)\\caption\{([\s\S]*?)\}\n\\label\{(\d*?)-fig:(.*?)\}\n\\end\{figure\}', \
-		r'\n```{figure} Fig/\3-fig:\4.png\n:name: \3-\4\n:align: center\n\2\n```', content)
+	pattern = r'\\begin\{figure\}[\s\S]*?\\begin\{tikzpicture\}[\s\S]*?\\end\{tikzpicture\}[\s\S]*?\\caption\{([\s\S]*?)\}[\s\S]*?\\label\{(.*?)\}[\s\S]*?\\end\{figure\}'
+	if nb_chap == 1:
+		content = re.sub(pattern, r'\n```{figure} ./../\2.png\n:name: \2\n:align: center\n\1\n```', content)
+	else:
+		content = re.sub(pattern, r'\n```{figure} ./../../\2.png\n:name: \2\n:align: center\n\1\n```', content)
+
+	#### Deal with algorithms
+
+	# remove algorithms and creates files
+
+	##### CONTINUE HERE
+#########################################
+
+	# list_algos = re.findall(r'\\begin\{algorithm\}([\s\S]*?)\\caption\{([\s\S]*?)\}\n\\label\{(.*?)\}\n\\end\{algorithm\}', content)
+
+	# for x in list_algos:
+	# 	h = open(x[2] + ".tex", 'w')
+	# 	h.write("\\documentclass[preview,border=0mm,convert={density=600,outext=.png}]{standalone}\n\
+	# 		\\usepackage{tikz}\n\\usetikzlibrary{automata,shapes,patterns,calc,arrows}\n\
+	# 		\\input{tikz-style.tex}\n\\begin{document}\n" + x[1] + "\n\\end{document}")
+
+	# content = re.sub(r'\\begin\{figure\}([\s\S]*?)\\caption\{([\s\S]*?)\}\n\\label\{(\d*?)-fig:(.*?)\}\n\\end\{figure\}', \
+	# 	r'\n```{figure} /../\3-fig:\4.png\n:name: \3-\4\n:align: center\n\2\n```', content)
 
 	#### Deal with subsections and subsubsections
 
@@ -53,7 +76,7 @@ def translate(nb_chap, title_chap, file, title):
 	content = re.sub(r'\\subsubsection\*\{([\s\S]*?)\}', r'\n### \1\n', content)
 
 	#### Replace \[ \] by $$ $$
-	content = re.sub(r'\\\[([\s\S]*?)\\\]', r'\n\n$$\n\1\n$$\n\n', content)
+	content = re.sub(r'\\\[([\s\S]*?)\\\]', r'\n\n$$\1$$\n\n', content)
 
 	#### Remove vskip1em
 	content = re.sub(r'\\vskip1em', r'\n', content)
@@ -186,11 +209,11 @@ def translate(nb_chap, title_chap, file, title):
 	content = re.sub(r'\n\n\n', r'\n\n', content)
 
 	### If references, add bibliography
-	if file == "references":
+	if file_name == "references":
 		content = content + '\n\n```{bibliography}\n:style: unsrtalpha\n```'
 
 	print(content)
 
-	g = open(nb_chap + "_" + title_chap + "/" + file + ".md", "w")
+	g = open(path + file_name + ".md", "w")
 	g.write(content)
 	g.close()

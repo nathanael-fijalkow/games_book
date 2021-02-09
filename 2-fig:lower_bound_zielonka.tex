@@ -1,0 +1,17 @@
+\documentclass[preview,border=0mm,convert={density=600,outext=.png}]{standalone}
+			\usepackage{tikz}
+\usetikzlibrary{automata,shapes,patterns,calc,arrows}
+			\input{tikz-style.tex}
+\input{macros.tex}
+			\begin{document}
+\begin{tikzpicture}[scale=1.3]
+    \node[s-eve] (v0) at (2,0) {$\begin{array}{c} v_1 \\ \ \end{array}$};
+    \node[s-eve] (v1) at (0,0) {$\begin{array}{c} v_0 \\ 1 \end{array}$};
+    \node[s-eve] (v2) at (4,0) {$\begin{array}{c} v_2 \\ 2 \end{array}$};
+        \path[arrow]
+      (v0) edge[bend left] (v1)
+      (v1) edge[bend left] (v0)
+      (v0) edge[bend left] (v2)
+      (v2) edge[bend left] (v0);
+  \end{tikzpicture}
+\end{document}

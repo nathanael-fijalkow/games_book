@@ -10,13 +10,6 @@ latex:
   latex_documents:
     targetname: book.tex
 
-# def setup(app):
-#     app.add_stylesheet('custom.css')
-
-sphinx:
-  extra_extensions:
-    - sphinx_proof
-
 sphinx:
   config:
     mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
@@ -26,53 +19,77 @@ sphinx:
     mathjax_config:
       TeX:
         Macros:
-          "set"    : ["\\left\\{ #1 \\right\\}", 1]
+          "set"      : ["\\left\\{ #1 \\right\\}", 1]
+          "Eve"      : "\\textrm{Eve}"
+          "Adam"      : "\\textrm{Adam}"
           "N"      : "\\mathbb{N}"
           "Z"      : "\\mathbb{Z}"
-          "Q"      : "\\mathbb{Q}"
-          "Qinfty" : "\\Q \\cup \\set{\\infty}"
+          "Zinfty"      : "\\Z \\cup \\set{\\pm \\infty}"
           "R"      : "\\mathbb{R}"
-          "Rinfty" : "\\R \\cup \\set{\\infty}"
-
-          "ing"    :  "\\text{In}"
-          "Ing"    :  "\\ing"
-          "out"    :  "\\text{Out}"
-          "Out"    :  "\\out"
-          "first"  :  "\\text{first}"
-          "last"   :  "\\text{last}"
-          "Paths"  :  "\\text{Paths}"
-          "play"   :  "\\pi"
-
-          "arena"  :  "\\mathcal{A}"
-          "Arena"  :  "\\arena"
-          "col"    :  "\\textsf{col}"
-          "Col"    :  "\\col"
-          "game"   :  "\\mathcal{G}"
-          "Game"   :  "\\game"
-
-          "Eve"    :  "\\mathrm{Eve}"
-          "Adam"   :  "\\mathrm{Adam}"
-          "VE"     :  "V_\\Eve"
-          "VA"     :  "V_\\Adam"
-          "VR"     :  "V_\\mathrm{Random}"
-          "WE"     :  "W_\\Eve"
-          "WA"     :  "W_\\Adam"
-          "Value"  :  "val"
-          "val"    :  "\\Value"
-          "ValueE" :  "\\Value_\\Eve"
-          "ValueA" :  "\\Value_\\Adam"
-
-          "Win"    :  "\\text{Win}"
-          "Lose"   :  "\\text{Lose}"
-
-          "Safe"             :  "\\mathtt{Safe}"
-          "Reach"            :  "\\mathtt{Reach}"
-          "Buchi"            :  "\\mathtt{Buchi}"
-          "CoBuchi"          :  "\\mathtt{CoBuchi}"
-          "Parity"           :  "\\mathtt{Parity}"
-          "MeanPayoff"       :  "\\mathtt{MeanPayoff}"
-          "DiscountedPayoff" :  "\\mathtt{DiscountedPayoff}"
-
-          "Automaton"        :  "\\mathbf{A}"
-
-          "half"             :  "\\frac{1}{2}"
+          "Rinfty"      : "\\R \\cup \\set{\\pm \\infty}"
+          "Q"      : "\\mathbb{Q}"
+          "Qinfty"      : "\\Q \\cup \\set{\\pm \\infty}"
+          "argmax"      : "\\text{argmax}"
+          "argmin"      : "\\text{argmin}"
+          "Op"      : "\\mathbb{O}"
+          "Prob"      : "\\mathbb{P}"
+          "dist"      : "\\mathcal{D}"
+          "Dist"      : "\\dist"
+          "supp"      : "\\text{supp}"
+          "game"      : "\\mathcal{G}"
+          "Game"      : "\\game"
+          "arena"      : "\\mathcal{A}"
+          "Arena"      : "\\arena"
+          "col"      : "\\textsf{col}"
+          "Col"      : "\\col"
+          "mEve"      : "\\mathrm{Eve}"
+          "mAdam"      : "\\mathrm{Adam}"
+          "mRandom"      : "\\mathrm{Random}"
+          "vertices"      : "V"
+          "VE"      : "V_\\mEve"
+          "VA"      : "V_\\mAdam"
+          "VR"      : "V_\\mRandom"
+          "ing"      : "\\text{In}"
+          "Ing"      : "\\ing"
+          "out"      : "\\text{Out}"
+          "Out"      : "\\out"
+          "dest"      : "\\Delta"
+          "WE"      : "W_\\mEve"
+          "WA"      : "W_\\mAdam"
+          "Paths"      : "\\text{Paths}"
+          "play"      : "\\pi"
+          "first"      : "\\text{first}"
+          "last"      : "\\text{last}"
+          "mem"      : "\\mathcal{M}"
+          "Mem"      : "\\mem"
+          "Pre"      : "\\text{Pre}"
+          "PreE"      : "\\text{Pre}_\\mEve"
+          "PreA"      : "\\text{Pre}_\\mAdam"
+          "Attr"      : "\\text{Attr}"
+          "AttrE"      : "\\text{Attr}_\\mEve"
+          "AttrA"      : "\\text{Attr}_\\mAdam"
+          "rank"      : "\\text{rank}"
+          "Win"      : "\\textsc{Win}"
+          "Lose"      : "\\textsc{Lose}"
+          "Value"      : "\\text{val}"
+          "ValueE"      : "\\text{val}_\\mEve"
+          "ValueA"      : "\\text{val}_\\mAdam"
+          "val"      : "\\Value"
+          "Automaton"      : "\\mathbf{A}"
+          "Safe"      : "\\mathtt{Safe}"
+          "Reach"      : "\\mathtt{Reach}"
+          "Buchi"      : "\\mathtt{Buchi}"
+          "CoBuchi"      : "\\mathtt{CoBuchi}"
+          "Parity"      : "\\mathtt{Parity}"
+          "Muller"      : "\\mathtt{Muller}"
+          "Rabin"      : "\\mathtt{Rabin}"
+          "Streett"      : "\\mathtt{Streett}"
+          "MeanPayoff"      : "\\mathtt{MeanPayoff}"
+          "DiscountedPayoff"      : "\\mathtt{DiscountedPayoff}"
+          "Energy"      : "\\mathtt{Energy}"
+          "TotalPayoff"      : "\\mathtt{TotalPayoff}"
+          "ShortestPath"      : "\\mathtt{ShortestPath}"
+          "Sup"      : "\\mathtt{Sup}"
+          "Inf"      : "\\mathtt{Inf}"
+          "LimSup"      : "\\mathtt{LimSup}"
+          "LimInf"      : "\\mathtt{LimInf}"

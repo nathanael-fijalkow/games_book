@@ -1,0 +1,69 @@
+\begin{theorem}\label{2-thm:Rabin_positional_determinacy}
+Rabin games are uniformly "positionally determined".
+\end{theorem}
+\Cref{2-thm:Rabin_positional_determinacy} holds for infinite games.
+However the proof we give here only applies to finite games and does not easily extend to infinite ones.
+A different approach is required to obtain the positionality result for infinite games, see \cref{2-thm:characterisation_Zielonka_tree}.
+
+\begin{proof}
+We proceed by induction over the following quantity: total outdegree of vertices controlled by Eve minus number of vertices controller by Eve.
+Since we assume that every vertex has an outgoing edge, the base case is when each vertex of Eve has only one successor. 
+In that case Eve has only one strategy and it is positional, so the property holds.
+    
+In the inductive step, we consider a Rabin game $\game$ where Eve has a winning strategy $\sigma$.
+Let $v \in \VE$ with at least two successors. 
+We partition the outgoing edges of $v$ in two non-empty subsets which we call $E^v_1$ and $E^v_2$.
+Let us define two games $\game_1$ and $\game_2$: the game $\game_1$ is obtained from $\game$ by removing the edges from $E^v_2$, and symmetrically for $\game_2$.
+
+We claim that Eve has a winning strategy in either $\game_1$ or $\game_2$.
+Let us assume towards contradiction that this is not the case: then there exist $\tau_1$ and $\tau_2$ two strategies for Adam
+which are winning in $\game_1$ and $\game_2$ respectively.
+We construct a strategy $\tau$ for Adam in $\game$ as follows: it has two modes, $1$ and $2$. The initial mode is $1$, and the strategy simulates $\tau_1$ from the mode $1$ and $\tau_2$ from the mode $2$. Whenever $v$ is visited, the mode is adjusted: if the outgoing edge is in $E^v_1$ then the new mode is $1$, otherwise it is $2$.
+To be more specific: when simulating $\tau_1$ we play ignoring the parts of the play using mode $2$, so removing them yields a play consistent with $\tau_1$. The same goes for $\tau_2$.
+
+Consider a play $\play$ consistent with $\sigma$ and $\tau$. 
+Since $\sigma$ is winning, the play $\play$ is winning. It can be decomposed following which mode the play is in:
+\[
+\begin{array}{ccccccccc}
+\text{mode } 1 & \overbrace{v_0 \cdots v}^{\play_1^0} & & 
+\overbrace{v \cdots v}^{\play_1^1} & & \ \cdots \\
+\text{mode } 2 && \underbrace{v \cdots v}_{\play_2^0} 
+& & \underbrace{v \cdots v}_{\play_2^1} & \ \cdots
+\end{array}
+\]
+where $\play_1 = \play_1^0 \play_1^1 \cdots$ is consistent with $\tau_1$ and $\play_2 = \play_2^0 \play_2^1 \cdots$ is consistent with $\tau_2$.
+Since $\tau_1$ and $\tau_2$ are winning strategies for Adam, $\play_1$ and $\play_2$ do not satisfy $\Rabin$.
+
+\vskip1em
+There are two cases: the decomposition is either finite or infinite.
+If it is finite we get a contradiction: since $\play$ is winning and $\Rabin$ is prefix independent any suffix of $\play$ is winning as well, contradicting that it is consistent with either $\tau_1$ or $\tau_2$ hence cannot be winning.
+
+In the second case to get a contradiction we observe the following property of the Rabin objective:
+let $(\rho_1^\ell)_{\ell \in \N}$ and $(\rho_2^\ell)_{\ell \in \N}$ such that:
+\[
+\begin{array}{lccccccccccc}
+& \rho_1 & = & \rho_1^0 & & \rho_1^1 & & \cdots & \rho_1^\ell & & \cdots & \notin \Rabin \\
+\text{and} & \rho_2 & = & & \rho_2^0 & & \rho_2^1 & \cdots & & \rho_2^\ell & \cdots & \notin \Rabin, \\ 
+\text{then: } & \rho_1 \Join \rho_2 & = & \rho_1^0 & \rho_2^0 & \rho_1^1 & \rho_2^1 & \cdots & \rho_1^\ell & \rho_2^\ell & \cdots & \notin \Rabin.
+\end{array}
+\]
+Indeed, since neither $\rho_1$ nor $\rho_2$ satisfy $\Rabin$, in both for all $i \in [1,d]$ if $R_i \in \Inf(\rho)$, then $G_i \in \Inf(\rho)$.
+Since $\Inf(\rho_1~\Join~\rho_2) = \Inf(\rho_1) \cup \Inf(\rho_2)$, this implies that $\rho_1 \Join \rho_2$ does not satisfy $\Rabin$.
+
+This directly yields a contradiction: neither $\play_1$ nor $\play_2$ satisfy $\Rabin$, yet their shuffle $\play$ does.
+\end{proof}
+
+The proof of \cref{2-thm:Rabin_positional_determinacy} yields a stronger result: every "prefix independent" submixing objective is "positionally determined" over finite arenas, where the ""submixing property"" is defined as follows for the objective $\Omega$:
+\[
+\begin{array}{lccccccccccc}
+\text{if} & \rho_1 & = & \rho_1^0 & & \rho_1^1 & & \cdots & \rho_1^\ell & & \cdots & \notin \Omega \\
+\text{and} & \rho_2 & = & & \rho_2^0 & & \rho_2^1 & \cdots & & \rho_2^\ell & \cdots & \notin \Omega, \\ 
+\text{then: } & \rho_1 \Join \rho_2 & = & \rho_1^0 & \rho_2^0 & \rho_1^1 & \rho_2^1 & \cdots & \rho_1^\ell & \rho_2^\ell & \cdots & \notin \Omega.
+\end{array}
+\]
+
+\begin{theorem}
+\label{2-thm:submixing_positional}
+Every "prefix independent" "submixing" objective is uniformly "positionally determined" over finite arenas.
+\end{theorem}
+

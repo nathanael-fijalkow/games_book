@@ -1,0 +1,12 @@
+\documentclass[preview,border=0mm,convert={density=600,outext=.png}]{standalone}
+			\usepackage{tikz}
+\usetikzlibrary{automata,shapes,patterns,calc,arrows}
+			\input{tikz-style.tex}
+\input{macros.tex}
+			\begin{document}
+\begin{tikzpicture}[node distance=2.5cm]
+    \node[s-adam](0) {$\begin{array}{c}v_0 \\ 1 \end{array}$};    \node[s-eve,below of=0](1) {$\begin{array}{c}v_1 \\ 1 \end{array}$};    \node[s-adam,left of=1](2) {$\begin{array}{c}v_2 \\ 3 \end{array}$};    \node[s-eve,left of=0](3) {$\begin{array}{c}v_3 \\ -2 \end{array}$};    \node[s-eve,right of=0](4) {$\begin{array}{c}v_4 \\ 0 \end{array}$};
+    \path[arrow] 
+    (0) edge[bend right=20] (1)    (1) edge[bend right=20] (0)    (1) edge (2)    (2) edge[selfloop=180] (2)    (2) edge (3)    (3) edge (1)    (3) edge (0)    (0) edge[bend left=20] (4)    (4) edge[bend left=20] (0)
+    (4) edge[selfloop=-90] (4);  \end{tikzpicture}
+\end{document}

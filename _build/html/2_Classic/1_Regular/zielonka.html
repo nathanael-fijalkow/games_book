@@ -1,0 +1,643 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1.6. The Zielonka tree &#8212; Games on graphs</title>
+    
+  <link rel="stylesheet" href="../../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"set": ["\\left\\{ #1 \\right\\}", 1], "N": "\\mathbb{N}", "Z": "\\mathbb{Z}", "Q": "\\mathbb{Q}", "Qinfty": "\\Q \\cup \\set{\\infty}", "R": "\\mathbb{R}", "Rinfty": "\\R \\cup \\set{\\infty}", "ing": "\\text{In}", "Ing": "\\ing", "out": "\\text{Out}", "Out": "\\out", "first": "\\text{first}", "last": "\\text{last}", "Paths": "\\text{Paths}", "play": "\\pi", "arena": "\\mathcal{A}", "Arena": "\\arena", "col": "\\textsf{col}", "Col": "\\col", "game": "\\mathcal{G}", "Game": "\\game", "Eve": "\\mathrm{Eve}", "Adam": "\\mathrm{Adam}", "VE": "V_\\Eve", "VA": "V_\\Adam", "VR": "V_\\mathrm{Random}", "WE": "W_\\Eve", "WA": "W_\\Adam", "Value": "val", "val": "\\Value", "ValueE": "\\Value_\\Eve", "ValueA": "\\Value_\\Adam", "Win": "\\text{Win}", "Lose": "\\text{Lose}", "Safe": "\\mathtt{Safe}", "Reach": "\\mathtt{Reach}", "Buchi": "\\mathtt{Buchi}", "CoBuchi": "\\mathtt{CoBuchi}", "Parity": "\\mathtt{Parity}", "MeanPayoff": "\\mathtt{MeanPayoff}", "DiscountedPayoff": "\\mathtt{DiscountedPayoff}", "Automaton": "\\mathbf{A}", "half": "\\frac{1}{2}"}}, "tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="1.7. Bibliographic references" href="references.html" />
+    <link rel="prev" title="1.5. Rabin, Streett, and Muller games" href="muller.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <img src="../../_static/cover.jpg" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Games on graphs</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../book.html">
+   Games on Graphs
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Classic
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active collapsible-parent">
+  <a class="reference internal" href="../index.html">
+   1. Classic
+  </a>
+  <ul class="current collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="index.html">
+     1.1. Regular
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="attractors.html">
+     1.2. A linear time algorithm for reachability games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="buchi.html">
+     1.3. A quadratic time algorithm for Büchi games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="parity.html">
+     1.4. An exponential time algorithm for parity games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="muller.html">
+     1.5. Rabin, Streett, and Muller games
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     1.6. The Zielonka tree
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="references.html">
+     1.7. Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/2_Classic/1_Regular/zielonka.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-latest-appearance-record">
+   1.6.1. The latest appearance record
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   1.6.2. The Zielonka tree
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-exact-memory-requirements">
+   1.6.3. The exact memory requirements
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#revisiting-streett-rabin-and-parity-objectives">
+   1.6.4. Revisiting Streett, Rabin, and parity objectives
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="the-zielonka-tree">
+<span id="sec-zielonka"></span><h1><span class="section-number">1.6. </span>The Zielonka tree<a class="headerlink" href="#the-zielonka-tree" title="Permalink to this headline">¶</a></h1>
+<p>The Zielonka tree is a combinatorial structure associated with a Muller objective which very neatly exposes its properties.
+As a warm-up we first present its predecessor the LAR construction, and then show the properties of Zielonka trees.
+As we will see, the key feature of the Zielonka tree of a Muller objective <span class="math notranslate nohighlight">\(\Muller(\F)\)</span> is to characterise its exact memory requirements.</p>
+<div class="section" id="the-latest-appearance-record">
+<h2><span class="section-number">1.6.1. </span>The latest appearance record<a class="headerlink" href="#the-latest-appearance-record" title="Permalink to this headline">¶</a></h2>
+<p>Muller objectives can be reduced to parity objectives, see <span class="xref std std-ref">Section</span> for an introduction to reductions between objectives.</p>
+<div class="theorem admonition" id="thm-lar">
+<p class="admonition-title">Theorem</p>
+<p>Let <span class="math notranslate nohighlight">\(C = [1,d]\)</span> be a set of colours and <span class="math notranslate nohighlight">\(\Muller(\F)\)</span> a Muller objective.
+There exists a deterministic parity automaton <span class="math notranslate nohighlight">\(\LAR_\F\)</span> over the alphabet <span class="math notranslate nohighlight">\(C\)</span> defining <span class="math notranslate nohighlight">\(\Muller(\F)\)</span>.
+It has <span class="math notranslate nohighlight">\(d!\)</span> states and has priorities in <span class="math notranslate nohighlight">\([1,2d]\)</span>.</p>
+</div>
+<p>LAR stands for Latest Appearance Record.
+In the literature the number of states is often <span class="math notranslate nohighlight">\(d \cdot d!\)</span> instead of <span class="math notranslate nohighlight">\(d!\)</span>,
+the multiplicative factor <span class="math notranslate nohighlight">\(d\)</span> is saved since for automata the acceptance conditions are transition based
+instead of state based.</p>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Proof</p>
+<p>We define the automaton <span class="math notranslate nohighlight">\(\LAR_\F\)</span>.
+The set of states is the set of lists of all colours of <span class="math notranslate nohighlight">\(C\)</span> without repetitions.
+We represent a list by <span class="math notranslate nohighlight">\((c_1,\dots,c_d)\)</span>.
+The initial state is irrelevant because <span class="math notranslate nohighlight">\(\Muller(\F)\)</span> is prefix independent.
+The transition function is defined as follows:
+<span class="math notranslate nohighlight">\(\delta(\ell, c)\)</span> is <span class="math notranslate nohighlight">\(\ell'\)</span> obtained from <span class="math notranslate nohighlight">\(\ell\)</span> by pushing <span class="math notranslate nohighlight">\(c\)</span> to the first position (hence shifting to the right the elements to the left of <span class="math notranslate nohighlight">\(c\)</span>).
+This is best understood on an example:</p>
+<div class="math notranslate nohighlight">
+\[\delta( (4, 1, 2, 3), 2) = (2, 4, 1, 3).\]</div>
+<p>Let <span class="math notranslate nohighlight">\(j\)</span> be the position of <span class="math notranslate nohighlight">\(c\)</span> in <span class="math notranslate nohighlight">\(\ell\)</span>, the priority of this transition is defined by:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\col((\ell,c,\ell')) =
+\begin{cases}
+2 j      &amp; \text{ if } \ell([1,j]) \in \F, \\
+2 j - 1  &amp; \text{ otherwise.}
+\end{cases}\end{split}\]</div>
+<p>We now show that the automaton <span class="math notranslate nohighlight">\(\LAR_\F\)</span> defines <span class="math notranslate nohighlight">\(\Muller(\F)\)</span>.
+Let <span class="math notranslate nohighlight">\(\rho = c_0 c_1 \dots\)</span> be an infinite word over the alphabet <span class="math notranslate nohighlight">\(C\)</span>.
+Let us consider the run of <span class="math notranslate nohighlight">\(\LAR_\F\)</span> over <span class="math notranslate nohighlight">\(\rho\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[(\ell_0,c_0,\ell_1) (\ell_1,c_1,\ell_2) \dots\]</div>
+<p>Let us write <span class="math notranslate nohighlight">\(j_i\)</span> for the position of <span class="math notranslate nohighlight">\(c_i\)</span> in <span class="math notranslate nohighlight">\(\ell_i\)</span>.
+We consider <span class="math notranslate nohighlight">\(\Inf(\rho)\)</span> the set of colours appearing infinitely many times and write <span class="math notranslate nohighlight">\(j\)</span> for its cardinal.
+From some point onwards the lists <span class="math notranslate nohighlight">\(\ell_i\)</span> are of the form</p>
+<div class="math notranslate nohighlight">
+\[(\underbrace{c_1,\dots,c_j}_{\Inf(\rho)} ,\ \underbrace{c_{j + 1},\dots,c_d}_{C \setminus \Inf(\rho)}).\]</div>
+<p>From this point on <span class="math notranslate nohighlight">\(j_i\)</span> is smaller than or equal to <span class="math notranslate nohighlight">\(j\)</span>, and it reaches <span class="math notranslate nohighlight">\(j\)</span> infinitely many times.
+It follows that the largest priority appearing infinitely many times in the run is <span class="math notranslate nohighlight">\(2 j\)</span> if <span class="math notranslate nohighlight">\(\Inf(\rho) \in \F\)</span>
+and <span class="math notranslate nohighlight">\(2 j - 1\)</span> if <span class="math notranslate nohighlight">\(\Inf(\rho) \notin \F\)</span>.
+Thus <span class="math notranslate nohighlight">\(\rho\)</span> is accepted by <span class="math notranslate nohighlight">\(\LAR_\F\)</span> if and only if <span class="math notranslate nohighlight">\(\Inf(\rho) \in \F\)</span>, as desired.</p>
+</div>
+</div>
+<div class="section" id="id1">
+<h2><span class="section-number">1.6.2. </span>The Zielonka tree<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="#thm-lar"><span class="std std-ref">Theorem</span></a> implies a reduction from Muller games to parity games as explained in  <span class="xref std std-ref">Section</span>.
+However this does not improve over the results we already obtained for Muller games in  <span class="xref std std-ref">Theorem</span>,
+neither algorithmically nor for the memory requirements.
+One weakness of the LAR construction is that its size depends only on the number of colours, and not on the properties of <span class="math notranslate nohighlight">\(\F\)</span>.
+The Zielonka tree is an improved take on the LAR.</p>
+<div class="definition admonition" id="definition-zielonka-tree">
+<p class="admonition-title">Definition (Zielonka tree)</p>
+<p>Let <span class="math notranslate nohighlight">\(\Muller(\F)\)</span> be a Muller objective over the set of colours <span class="math notranslate nohighlight">\(C\)</span>.
+The Zielonka tree <span class="math notranslate nohighlight">\(T_\F\)</span> of <span class="math notranslate nohighlight">\(\Muller(\F)\)</span> is a rooted tree with nodes labelled by subsets of colours,
+it is constructed inductively as follows:</p>
+<ul class="simple">
+<li><p>the root is labelled <span class="math notranslate nohighlight">\(C\)</span>,</p></li>
+<li><p>the children of a node labelled <span class="math notranslate nohighlight">\(S\)</span> are the maximal subsets <span class="math notranslate nohighlight">\(S_1, \dots, S_k\)</span> of <span class="math notranslate nohighlight">\(S\)</span> such that
+<span class="math notranslate nohighlight">\(S_i \in \Muller(\F) \Longleftrightarrow S \notin \Muller(\F)\)</span>.</p></li>
+</ul>
+</div>
+<p><span class="xref std std-ref">Figure</span> represents the Zielonka tree for <span class="math notranslate nohighlight">\(\Muller(\F)\)</span> with</p>
+<div class="math notranslate nohighlight">
+\[\F = \set{\set{2}, \set{3}, \set{4}, \set{1,2}, \set{1,3}, \set{1,3,4}, \set{2,3,4}, \set{1,2,3,4}}.\]</div>
+<p>We note that there are two nodes labelled <span class="math notranslate nohighlight">\(\set{1}\)</span>; in general there may be several nodes with the same label.
+Also, not all branches have the same length.</p>
+<div class="figure align-center" id="zielonka-tree-example">
+<img alt="../2-fig:Zielonka_tree_example.png" src="../2-fig:Zielonka_tree_example.png" />
+<p class="caption"><span class="caption-number">Fig. 1.1 </span><span class="caption-text">The Muller tree for <span class="math notranslate nohighlight">\(\Muller(\F)\)</span>. By convention nodes labelled by a set in <span class="math notranslate nohighlight">\(\F\)</span> are represented by a circle
+and the others by a square.
+The numbers on the right hand side and the dashed nodes (describing a branch) are both used in the proof of  <a class="reference internal" href="#thm-reduction-parity-zielonka-tree"><span class="std std-ref">Theorem</span></a>.</span><a class="headerlink" href="#zielonka-tree-example" title="Permalink to this image">¶</a></p>
+</div>
+<p>The first use of the Zielonka tree is to induce an improved reduction from Muller to parity objectives.
+A branch in a tree is a path from the root to a leaf.</p>
+<div class="theorem admonition" id="thm-reduction-parity-zielonka-tree">
+<p class="admonition-title">Theorem</p>
+<p>Let <span class="math notranslate nohighlight">\(C = [1,d]\)</span> be a set of colours and <span class="math notranslate nohighlight">\(\Muller(\F)\)</span> a Muller objective.
+There exists a deterministic parity automaton <span class="math notranslate nohighlight">\(\Zielonka_\F\)</span> over the alphabet <span class="math notranslate nohighlight">\(C\)</span> defining <span class="math notranslate nohighlight">\(\Muller(\F)\)</span>.
+Its number of states is the number of branches of <span class="math notranslate nohighlight">\(T_\F\)</span> and its parity condition uses <span class="math notranslate nohighlight">\(d\)</span> priorities.</p>
+</div>
+<p>Here again we take advantage of the fact that the acceptance conditions on automata are transition based;
+using stated based transitions we would have add a multiplicative factor <span class="math notranslate nohighlight">\(d\)</span>.</p>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Proof</p>
+<p>Without loss of generality <span class="math notranslate nohighlight">\(C \in \F\)</span> (otherwise we consider the complement <span class="math notranslate nohighlight">\(\Muller(2^C \setminus \F)\)</span>).
+We number the levels of <span class="math notranslate nohighlight">\(T_\F\)</span> from the leaves to the root such that nodes labelled by sets in <span class="math notranslate nohighlight">\(\F\)</span> are even
+and the other ones odd (this will be used for defining the parity condition).
+See  <span class="xref std std-ref">Figure</span> for a possible numeration of the levels (on the right hand side), the other options being shifts of this numeration by an even number.</p>
+<p>The set of states of <span class="math notranslate nohighlight">\(\Zielonka_\F\)</span> is the set of branches of <span class="math notranslate nohighlight">\(T_\F\)</span>.
+We represent a branch by <span class="math notranslate nohighlight">\((S_1,\dots,S_k)\)</span>
+where <span class="math notranslate nohighlight">\(S_1\)</span> is the set labelling the root and <span class="math notranslate nohighlight">\(S_k\)</span> the set labelling a leaf. Note that <span class="math notranslate nohighlight">\(k \le d\)</span>.
+For the sake of simplicity we identify nodes with their labels, which is an abuse since two different nodes may have the same label
+but will be convenient and harmless in our reasoning.</p>
+<p>The initial state is irrelevant because <span class="math notranslate nohighlight">\(\Muller(\F)\)</span> is prefix independent.
+We define the support <span class="math notranslate nohighlight">\(\support(b,c)\)</span> of a branch <span class="math notranslate nohighlight">\(b\)</span> and a colour <span class="math notranslate nohighlight">\(c\)</span> to be the lowest node of <span class="math notranslate nohighlight">\(b\)</span> which contains <span class="math notranslate nohighlight">\(c\)</span>.
+The transition function is defined as follows:
+<span class="math notranslate nohighlight">\(\delta(b,c)\)</span> is the next branch (in the lexicographic order from left to right and in a cyclic way) which coincides with <span class="math notranslate nohighlight">\(b\)</span> up to <span class="math notranslate nohighlight">\(\support(b,c)\)</span>.
+The priority of this transition is given by the level on which <span class="math notranslate nohighlight">\(\support(b,c)\)</span> sits.</p>
+<p>This is best understood on an example: on  <span class="xref std std-ref">Figure</span>
+consider the branch <span class="math notranslate nohighlight">\(b\)</span> represented by dashed nodes, reading the colour <span class="math notranslate nohighlight">\(2\)</span> we consider branches starting with <span class="math notranslate nohighlight">\((\set{1,2,3,4}, \set{1,2,3})\)</span>
+because <span class="math notranslate nohighlight">\(\support(b,2) = \set{1,2,3}\)</span>.
+The next branch after <span class="math notranslate nohighlight">\(b\)</span> is <span class="math notranslate nohighlight">\((\set{1,2,3,4}, \set{1,2,3},\set{1,2},\set{1})\)</span> (because we cycle: the node after <span class="math notranslate nohighlight">\(\set{1,3}\)</span> is <span class="math notranslate nohighlight">\(\set{1,2}\)</span>).
+The priority of this transition is <span class="math notranslate nohighlight">\(3\)</span> corresponding to the level where <span class="math notranslate nohighlight">\(\set{1,2,3}\)</span> sits.</p>
+<p>We now show that the automaton <span class="math notranslate nohighlight">\(\Zielonka_\F\)</span> defines <span class="math notranslate nohighlight">\(\Muller(\F)\)</span>.
+Let <span class="math notranslate nohighlight">\(\rho = c_0 c_1 \dots\)</span> be an infinite word over the alphabet <span class="math notranslate nohighlight">\(C\)</span>.
+Let us consider the run of <span class="math notranslate nohighlight">\(\Zielonka_\F\)</span> over <span class="math notranslate nohighlight">\(\rho\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[(b_0,c_0,b_1) (b_1,c_1,b_2) \dots\]</div>
+<p>We consider <span class="math notranslate nohighlight">\(\Inf(\rho)\)</span> the set of colours appearing infinitely many times.
+Let us look at the largest prefix <span class="math notranslate nohighlight">\((S_1,\dots,S_p)\)</span> of a branch which is eventually common to all the branches <span class="math notranslate nohighlight">\(b_i\)</span>.
+We make two claims:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\Inf(\rho)\)</span> is included in <span class="math notranslate nohighlight">\(S_p\)</span>;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Inf(\rho)\)</span> is not included in any child of <span class="math notranslate nohighlight">\(S_p\)</span>.</p></li>
+</ul>
+<p>For the first claim, let <span class="math notranslate nohighlight">\(c \in \Inf(\rho)\)</span>, since eventually the branch <span class="math notranslate nohighlight">\(b_i\)</span> starts with <span class="math notranslate nohighlight">\((S_1,\dots,S_p)\)</span>,
+the support of <span class="math notranslate nohighlight">\(b_i\)</span> and <span class="math notranslate nohighlight">\(c\)</span> is lower than or equal to <span class="math notranslate nohighlight">\(S_p\)</span>, meaning that <span class="math notranslate nohighlight">\(c \in S_p\)</span>.</p>
+<p>For the second claim, we first note that by maximality of <span class="math notranslate nohighlight">\((S_1,\dots,S_p)\)</span> the support of <span class="math notranslate nohighlight">\(b_i\)</span> and <span class="math notranslate nohighlight">\(c_i\)</span> is infinitely many times <span class="math notranslate nohighlight">\(S_p\)</span>.
+Indeed from some point onwards it is lower than or equal to <span class="math notranslate nohighlight">\(S_p\)</span>, and if it would be eventually strictly lower then the corresponding child of <span class="math notranslate nohighlight">\(S_p\)</span> would be common to all branches <span class="math notranslate nohighlight">\(b_i\)</span> from there on.
+This implies that all children of <span class="math notranslate nohighlight">\(S_p\)</span> appear infinitely many times in the branches <span class="math notranslate nohighlight">\(b_i\)</span>: each time the support of <span class="math notranslate nohighlight">\(b_i\)</span> and <span class="math notranslate nohighlight">\(c_i\)</span> is <span class="math notranslate nohighlight">\(S_p\)</span>, the branch switches to the next child of <span class="math notranslate nohighlight">\(S_p\)</span>.
+Now since each child <span class="math notranslate nohighlight">\(S_{p+1}\)</span> of <span class="math notranslate nohighlight">\(S_p\)</span> is left infinitely many times this implies that there exists <span class="math notranslate nohighlight">\(c \in \Inf(\rho)\)</span> with <span class="math notranslate nohighlight">\(c \notin S_{p+1}\)</span>.
+Hence <span class="math notranslate nohighlight">\(\Inf(\rho)\)</span> is not included in <span class="math notranslate nohighlight">\(S_{p+1}\)</span>.</p>
+<p>By definition of the Zielonka tree, this implies that <span class="math notranslate nohighlight">\(\Inf(\rho) \in \F\)</span> if and only if <span class="math notranslate nohighlight">\(S_p \in \F\)</span>,
+thus <span class="math notranslate nohighlight">\(\rho\)</span> is accepted by <span class="math notranslate nohighlight">\(\Zielonka_\F\)</span> if and only if <span class="math notranslate nohighlight">\(\Inf(\rho) \in \F\)</span>, as desired.</p>
+</div>
+<p>Since  <a class="reference internal" href="#thm-reduction-parity-zielonka-tree"><span class="std std-ref">Theorem</span></a> is a reduction from Muller to parity objectives,
+it implies a reduction from Muller games to parity games as explained in  <span class="xref std std-ref">Section</span>,
+improving over  <a class="reference internal" href="#thm-lar"><span class="std std-ref">Theorem</span></a>.
+Since solving parity games is in <span class="math notranslate nohighlight">\(\NP \cap \coNP\)</span>,
+if we represent the Muller condition by a Zielonka tree then the automaton constructed in  <a class="reference internal" href="#thm-reduction-parity-zielonka-tree"><span class="std std-ref">Theorem</span></a>
+is of polynomial size, implying the following result.</p>
+<div class="theorem admonition">
+<p class="admonition-title">Theorem</p>
+<p>Solving Muller games where the condition is represented by a Zielonka tree is in <span class="math notranslate nohighlight">\(\NP \cap \coNP\)</span>.</p>
+</div>
+<p>As observed above different nodes of the Zielonka tree may be labelled by the same set of colours.
+Hence it is tempting to represent a Muller condition not with its Zielonka tree but rather with the Zielonka DAG (Directed Acyclic Graph)
+where nodes labelled by the same set of colours are identified.
+However with this representation solving Muller games is again <span class="math notranslate nohighlight">\(\PSPACE\)</span>-complete:</p>
+<div class="theorem admonition" id="thm-muller-games-dag">
+<p class="admonition-title">Theorem</p>
+<p>Solving Muller games where the condition is represented by a Zielonka DAG is <span class="math notranslate nohighlight">\(\PSPACE\)</span>-complete.</p>
+</div>
+<p>The algorithm presented in  <span class="xref std std-ref">Theorem</span> runs in polynomial space for this representation.
+To obtain the <span class="math notranslate nohighlight">\(\PSPACE\)</span>-hardness we observe that in the reduction from QBF constructed in  <span class="xref std std-ref">Theorem</span>,
+the Muller objective is of polynomial size when represented by a Zielonka DAG (but of exponential size when represented by a Zielonka tree).</p>
+</div>
+<div class="section" id="the-exact-memory-requirements">
+<h2><span class="section-number">1.6.3. </span>The exact memory requirements<a class="headerlink" href="#the-exact-memory-requirements" title="Permalink to this headline">¶</a></h2>
+<p>The second and most interesting use of the Zielonka tree is for characterising the memory requirements.</p>
+<p>Note that a node in the Zielonka tree <span class="math notranslate nohighlight">\(T_\F\)</span> represents another Muller objective, over the set of colours labelling this node.
+For instance in  <span class="xref std std-ref">Figure</span> the node labelled <span class="math notranslate nohighlight">\(\set{1,2,3}\)</span> corresponds to <span class="math notranslate nohighlight">\(\Muller(\F')\)</span> with
+<span class="math notranslate nohighlight">\(\F' = \set{\set{2}, \set{3}, \set{1,2}, \set{1,3}}\)</span>.</p>
+<div class="definition admonition">
+<p class="admonition-title">Definition</p>
+<p>Let <span class="math notranslate nohighlight">\(\Muller(\F)\)</span> be a Muller objective over the set of colours <span class="math notranslate nohighlight">\(C\)</span>.
+We define <span class="math notranslate nohighlight">\(m_\F\)</span> by induction:</p>
+<ul class="simple">
+<li><p>if the tree consists of a single leaf, then <span class="math notranslate nohighlight">\(m_\F = 1\)</span>;</p></li>
+<li><p>otherwise, let <span class="math notranslate nohighlight">\(\F_1,\dots,\F_k\)</span> be the Muller objectives defined by the children of the root,
+there are two cases:
+\begin{itemize}</p></li>
+<li><p>if <span class="math notranslate nohighlight">\(C \in \F\)</span>, then <span class="math notranslate nohighlight">\(m_\F\)</span> is the <strong>sum</strong> of <span class="math notranslate nohighlight">\(m_{\F_1},\dots,m_{\F_k}\)</span>;</p></li>
+<li><p>if <span class="math notranslate nohighlight">\(C \notin \F\)</span>, then <span class="math notranslate nohighlight">\(m_\F\)</span> is the <strong>maximum</strong> of <span class="math notranslate nohighlight">\(m_{\F_1},\dots,m_{\F_k}\)</span>.</p></li>
+</ul>
+<p>\end{itemize}</p>
+</div>
+<p>For the Muller objective represented in  <span class="xref std std-ref">Figure</span>, we have <span class="math notranslate nohighlight">\(m_\F = 3\)</span>.
+In the following result we consider <strong>partial</strong> colouring functions: <span class="math notranslate nohighlight">\(\col : V \to C \cup \set{\emptyset}\)</span>,
+meaning that some vertices can be left uncolored (formally, labelled <span class="math notranslate nohighlight">\(\emptyset\)</span>).</p>
+<div class="theorem admonition" id="thm-characterisation-zielonka-tree">
+<p class="admonition-title">Theorem</p>
+<p>Muller objectives <span class="math notranslate nohighlight">\(\Muller(\F)\)</span> are determined with finite memory strategies of size <span class="math notranslate nohighlight">\(m_\F\)</span>
+for games with <strong>partial colouring functions</strong>\footnote{See \cref{2-rmk:finite_infinite} for the case of infinite games.}.
+This bound is tight: there exists a game with objective <span class="math notranslate nohighlight">\(\Muller(\F)\)</span> where Eve wins using <span class="math notranslate nohighlight">\(m_\F\)</span> memory states
+but not with less.</p>
+</div>
+<p>Let us show on an example that the assumption of partial colouring functions is necessary.
+Let <span class="math notranslate nohighlight">\(\F = \set{ \set{1,2} }\)</span>: the objective <span class="math notranslate nohighlight">\(\Muller(\F)\)</span> requires that both <span class="math notranslate nohighlight">\(1\)</span> and <span class="math notranslate nohighlight">\(2\)</span> are seen infinitely many times.
+The Zielonka tree <span class="math notranslate nohighlight">\(T_\F\)</span> has three nodes <span class="math notranslate nohighlight">\(\set{1,2}, \set{1}\)</span>, and <span class="math notranslate nohighlight">\(\set{2}\)</span>, and <span class="math notranslate nohighlight">\(m_\F = 2\)</span>.
+Indeed <span class="math notranslate nohighlight">\(\Muller(\F)\)</span> is determined with finite memory strategies of size <span class="math notranslate nohighlight">\(2\)</span>:
+intuitively the memory structure is used to remember which colour was last seen.
+A game with a partial colouring function where two memory states is necessary is presented in <span class="xref std std-ref">Figure</span>.
+However, <span class="math notranslate nohighlight">\(\Muller(\F)\)</span> is positionally determined for games with total colouring functions (as we have defined them originally):
+intuitively since every vertex has colour either <span class="math notranslate nohighlight">\(1\)</span> or <span class="math notranslate nohighlight">\(2\)</span>, there is no need to remember which colour was last seen.</p>
+<div class="figure align-center" id="lower-bound-zielonka">
+<img alt="../2-fig:lower_bound_zielonka.png" src="../2-fig:lower_bound_zielonka.png" />
+<p class="caption"><span class="caption-number">Fig. 1.2 </span><span class="caption-text">A game with a partial colouring function
+where Eve has a winning strategy for <span class="math notranslate nohighlight">\(\Muller(\F)\)</span> with <span class="math notranslate nohighlight">\(\F = \set{ \set{1,2} }\)</span> using two memory states
+but no positional winning strategy.</span><a class="headerlink" href="#lower-bound-zielonka" title="Permalink to this image">¶</a></p>
+</div>
+<p>We will not construct the lower bound, meaning the game where Eve needs <span class="math notranslate nohighlight">\(m_\F\)</span> memory states to win.
+However, we will now prove the upper bound.
+To this end we revisit the recursive algorithm presented in  <span class="xref std std-ref">Lemma</span> and  <span class="xref std std-ref">Lemma</span>.
+This algorithm was removing colours one by one and rely on the recursive solutions.
+We show that we can adapt the algorithm to follow instead the structure of the Zielonka tree:
+for solving a Muller game, it is enough to recursively solve the induced Muller games
+corresponding to the children of the root of the Zielonka tree.
+The following lemma is an improved variant of  <span class="xref std std-ref">Lemma</span>.</p>
+<div class="lemma admonition" id="lem-mcnaughton-zielonka-even">
+<p class="admonition-title">Lemma</p>
+<p>Let <span class="math notranslate nohighlight">\(\Game\)</span> be a Muller game with objective <span class="math notranslate nohighlight">\(\Muller(\F)\)</span> such that <span class="math notranslate nohighlight">\(C \in \F\)</span>.
+Let <span class="math notranslate nohighlight">\(C_1, \dots, C_k\)</span> be the maximal subsets of <span class="math notranslate nohighlight">\(C\)</span> such that <span class="math notranslate nohighlight">\(C_i \notin \F\)</span>.
+We let <span class="math notranslate nohighlight">\(\F_1,\dots,\F_k\)</span> be the corresponding induced Muller objectives,
+and define <span class="math notranslate nohighlight">\(\Game_i\)</span> be the subgame of <span class="math notranslate nohighlight">\(\Game\)</span> induced by <span class="math notranslate nohighlight">\(V \setminus \AttrE(C \setminus C_i)\)</span>
+with objective <span class="math notranslate nohighlight">\(\Muller(\F_i)\)</span>.</p>
+<ul class="simple">
+<li><p>If for all <span class="math notranslate nohighlight">\(i \in [1,k]\)</span>, we have <span class="math notranslate nohighlight">\(\WA(\Game_i) = \emptyset\)</span>, then <span class="math notranslate nohighlight">\(\WE(\Game) = V\)</span>.</p></li>
+<li><p>If there exists <span class="math notranslate nohighlight">\(i \in [1,k]\)</span> such that <span class="math notranslate nohighlight">\(\WA(\Game_i) \neq \emptyset\)</span>,
+let <span class="math notranslate nohighlight">\(\Game'\)</span> be the subgame of <span class="math notranslate nohighlight">\(\Game\)</span> induced by <span class="math notranslate nohighlight">\(V \setminus \AttrA( \WA(\Game_i) )\)</span>,
+then <span class="math notranslate nohighlight">\(\WE(\Game) = \WE(\Game')\)</span>.</p></li>
+</ul>
+</div>
+<p>We will prove the memory requirement at the same time inductively.
+Note that by duality, the case where <span class="math notranslate nohighlight">\(C \notin \F\)</span> corresponds to the memory requirement for Adam when <span class="math notranslate nohighlight">\(C \in \F\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[m_{2^C \setminus \F} = \max_{i \in [1,k]} m_{2^{C_i} \setminus \F_i}.\]</div>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Proof</p>
+<p>We prove the first item.</p>
+<p>For each <span class="math notranslate nohighlight">\(i \in [1,k]\)</span>, let <span class="math notranslate nohighlight">\(\sigma_i\)</span> be an attractor strategy ensuring to reach <span class="math notranslate nohighlight">\(C_i\)</span> from <span class="math notranslate nohighlight">\(\AttrE(C_i)\)</span>,
+and consider a winning strategy for Eve from <span class="math notranslate nohighlight">\(V \setminus \AttrE(C_i)\)</span> in <span class="math notranslate nohighlight">\(\Game_i\)</span>, it induces a strategy <span class="math notranslate nohighlight">\(\sigma'_i\)</span> in <span class="math notranslate nohighlight">\(\Game\)</span>.
+We construct a strategy <span class="math notranslate nohighlight">\(\sigma\)</span> in <span class="math notranslate nohighlight">\(\Game\)</span> which will simulate the strategies above in turn; to do so it uses <span class="math notranslate nohighlight">\([1,k]\)</span> as top-level memory states.
+(We will look at more closely at the memory structure at the end of the proof.)
+The strategy <span class="math notranslate nohighlight">\(\sigma\)</span> with memory <span class="math notranslate nohighlight">\(i\)</span> simulates <span class="math notranslate nohighlight">\(\sigma_i\)</span> from <span class="math notranslate nohighlight">\(\AttrE(C_i)\)</span> and <span class="math notranslate nohighlight">\(\sigma'_i\)</span> from <span class="math notranslate nohighlight">\(V \setminus \AttrE(C_i)\)</span>,
+and if it ever reaches a vertex in <span class="math notranslate nohighlight">\(C_i\)</span> it updates its memory state to <span class="math notranslate nohighlight">\(i + 1\)</span> and <span class="math notranslate nohighlight">\(1\)</span> if <span class="math notranslate nohighlight">\(i = k\)</span>.
+Any play consistent with <span class="math notranslate nohighlight">\(\sigma\)</span> either updates its memory state infinitely many times,
+or eventually remains in <span class="math notranslate nohighlight">\(V \setminus \AttrE(C_i)\)</span> and is eventually consistent with <span class="math notranslate nohighlight">\(\sigma'_i\)</span>.
+In the first case it sees a colour from each <span class="math notranslate nohighlight">\(C_i\)</span> infinitely many times, so by definition of the <span class="math notranslate nohighlight">\(C_i\)</span>’s and since <span class="math notranslate nohighlight">\(C \in \F\)</span>
+the play satisfies <span class="math notranslate nohighlight">\(\Muller(\F)\)</span>,
+and in the other case since <span class="math notranslate nohighlight">\(\sigma'_i\)</span> is winning the play satisfies <span class="math notranslate nohighlight">\(\Muller(\F)\)</span>.
+Thus <span class="math notranslate nohighlight">\(\sigma\)</span> is winning from <span class="math notranslate nohighlight">\(V\)</span>.</p>
+<p>Let us now discuss how many memory states are necessary to implement the strategy <span class="math notranslate nohighlight">\(\sigma\)</span>.
+By induction hypothesis, each of the strategies <span class="math notranslate nohighlight">\(\sigma'_i\)</span> uses <span class="math notranslate nohighlight">\(m_{\F_i}\)</span> memory states.
+Using a disjoint union of the memory structures we implement <span class="math notranslate nohighlight">\(\sigma\)</span> using <span class="math notranslate nohighlight">\(\sum_{i \in [1,k]} m_{\F_i}\)</span> memory states,
+corresponding to the definition of <span class="math notranslate nohighlight">\(m_\F\)</span>.</p>
+<p>We now look at the second item.</p>
+<p>Consider a winning strategy for Adam from <span class="math notranslate nohighlight">\(\WA(\Game_i)\)</span> in <span class="math notranslate nohighlight">\(\Game_i\)</span>, it induces a strategy <span class="math notranslate nohighlight">\(\tau_i\)</span> in <span class="math notranslate nohighlight">\(\Game\)</span>.
+Since <span class="math notranslate nohighlight">\(V \setminus \AttrE(C_i)\)</span> is a trap for Eve, this implies that <span class="math notranslate nohighlight">\(\tau_i\)</span> is a winning strategy in <span class="math notranslate nohighlight">\(\Game\)</span>.
+Let <span class="math notranslate nohighlight">\(\tau_a\)</span> denote an attractor strategy from <span class="math notranslate nohighlight">\(\AttrA(\WA(\Game_i)) \setminus \WA(\Game_i)\)</span>.
+Consider now a winning strategy in the game <span class="math notranslate nohighlight">\(\Game'\)</span> from <span class="math notranslate nohighlight">\(\WA(\Game')\)</span>, it induces a strategy <span class="math notranslate nohighlight">\(\tau'\)</span> in <span class="math notranslate nohighlight">\(\Game\)</span>.
+The set <span class="math notranslate nohighlight">\(V \setminus \AttrA( \WA(\Game_i) )\)</span> may not be a trap for Eve, so we cannot conclude that <span class="math notranslate nohighlight">\(\tau'\)</span> is a winning strategy in <span class="math notranslate nohighlight">\(\Game\)</span>,
+and it indeed may not be.
+We construct a strategy <span class="math notranslate nohighlight">\(\tau\)</span> in <span class="math notranslate nohighlight">\(\Game\)</span> as the (disjoint) union of the strategy <span class="math notranslate nohighlight">\(\tau_a\)</span> on <span class="math notranslate nohighlight">\(\AttrA(\WA(\Game_i)) \setminus \WA(\Game_i)\)</span>,
+the strategy <span class="math notranslate nohighlight">\(\tau_i\)</span> on <span class="math notranslate nohighlight">\(\WA(\Game_i)\)</span> and the strategy <span class="math notranslate nohighlight">\(\tau'\)</span> on <span class="math notranslate nohighlight">\(\WA(\Game')\)</span>.
+We argue that <span class="math notranslate nohighlight">\(\tau\)</span> is winning from <span class="math notranslate nohighlight">\(\AttrA( \WA(\Game_i) ) \cup \WA(\Game')\)</span> in <span class="math notranslate nohighlight">\(\Game\)</span>.
+Indeed, any play consistent with this strategy in <span class="math notranslate nohighlight">\(\Game\)</span> either stays forever in <span class="math notranslate nohighlight">\(\WA(\Game')\)</span> hence is consistent with <span class="math notranslate nohighlight">\(\tau'\)</span>
+or enters <span class="math notranslate nohighlight">\(\AttrA( \WA(\Game_i) )\)</span>, so it is eventually consistent with <span class="math notranslate nohighlight">\(\tau_i\)</span>.
+In both cases this implies that the play is winning.
+Thus we have proved that <span class="math notranslate nohighlight">\(\AttrA( \WA(\Game_c) ) \cup \WA(\Game') \subseteq \WA(\Game)\)</span>.</p>
+<p>We now show that <span class="math notranslate nohighlight">\(\WE(\Game') \subseteq \WE(\Game)\)</span>, which implies the converse inclusion.
+Consider a winning strategy from <span class="math notranslate nohighlight">\(\WE(\Game')\)</span> in <span class="math notranslate nohighlight">\(\Game'\)</span>, it induces a strategy <span class="math notranslate nohighlight">\(\sigma\)</span> in <span class="math notranslate nohighlight">\(\Game\)</span>.
+Since <span class="math notranslate nohighlight">\(\Game'\)</span> is a trap for Adam, any play consistent with <span class="math notranslate nohighlight">\(\sigma\)</span> stays forever in <span class="math notranslate nohighlight">\(\WE(\Game')\)</span>,
+implying that <span class="math notranslate nohighlight">\(\sigma\)</span> is winning from <span class="math notranslate nohighlight">\(\WE(\Game')\)</span> in <span class="math notranslate nohighlight">\(\Game\)</span>.</p>
+<p>Let us now discuss how many memory states are necessary to implement the strategy <span class="math notranslate nohighlight">\(\tau\)</span>.
+By induction hypothesis, the strategy <span class="math notranslate nohighlight">\(\tau_i\)</span> uses <span class="math notranslate nohighlight">\(m_{2^{C_i} \setminus \F_i}\)</span> memory states
+and the strategy <span class="math notranslate nohighlight">\(\tau'\)</span> uses <span class="math notranslate nohighlight">\(\max_{j \neq i} m_{2^{C_j} \setminus \F_j}\)</span> memory states.
+Since <span class="math notranslate nohighlight">\(\tau\)</span> is a disjoint union of strategies the memory can be reused so we can implement <span class="math notranslate nohighlight">\(\tau\)</span> using <span class="math notranslate nohighlight">\(\max_{i \in [1,k]} m_{2^{C_i} \setminus \F_i}\)</span> memory states, corresponding to the definition of <span class="math notranslate nohighlight">\(m_{2^C \setminus \F}\)</span>.</p>
+</div>
+<p>The corresponding lemma when <span class="math notranslate nohighlight">\(C \notin \F\)</span> is stated below, its proof is analogous to the previous one by swapping the two players.</p>
+<div class="lemma admonition" id="lem-mcnaughton-zielonka-odd">
+<p class="admonition-title">Lemma</p>
+<p>Let <span class="math notranslate nohighlight">\(\Game\)</span> be a Muller game such that <span class="math notranslate nohighlight">\(C \notin \F\)</span>.
+Let <span class="math notranslate nohighlight">\(C_1, \dots, C_k\)</span> be the maximal subsets of <span class="math notranslate nohighlight">\(C\)</span> such that <span class="math notranslate nohighlight">\(C_i \in \F\)</span>.
+We let <span class="math notranslate nohighlight">\(\F_1,\dots,\F_k\)</span> be the corresponding induced Muller objectives,
+and define <span class="math notranslate nohighlight">\(\Game_i\)</span> be the subgame of <span class="math notranslate nohighlight">\(\Game\)</span> induced by <span class="math notranslate nohighlight">\(V \setminus \AttrA(C \setminus C_i)\)</span> with objective <span class="math notranslate nohighlight">\(\Muller(\F_i)\)</span>.</p>
+<ul class="simple">
+<li><p>If for all <span class="math notranslate nohighlight">\(i \in [1,k]\)</span>, we have <span class="math notranslate nohighlight">\(\WE(\Game_i) = \emptyset\)</span>, then <span class="math notranslate nohighlight">\(\WA(\Game) = V\)</span>.</p></li>
+<li><p>If there exists <span class="math notranslate nohighlight">\(i \in [1,k]\)</span> such that <span class="math notranslate nohighlight">\(\WE(\Game_i) \neq \emptyset\)</span>,
+let <span class="math notranslate nohighlight">\(\Game'\)</span> be the subgame of <span class="math notranslate nohighlight">\(\Game\)</span> induced by <span class="math notranslate nohighlight">\(V \setminus \AttrE( \WE(\Game_i) )\)</span>,
+then <span class="math notranslate nohighlight">\(\WA(\Game) = \WA(\Game')\)</span>.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="revisiting-streett-rabin-and-parity-objectives">
+<h2><span class="section-number">1.6.4. </span>Revisiting Streett, Rabin, and parity objectives<a class="headerlink" href="#revisiting-streett-rabin-and-parity-objectives" title="Permalink to this headline">¶</a></h2>
+<p>Let us look at the Streett, Rabin, and parity objectives under the new light shed by  <a class="reference internal" href="#thm-characterisation-zielonka-tree"><span class="std std-ref">Theorem</span></a>.
+It is instructive to look at the Zielonka tree of a Rabin objective, illustrated in  <span class="xref std std-ref">Figure</span>.
+It has a simple recursive structure: the Zielonka tree of the Rabin objective for <span class="math notranslate nohighlight">\(d\)</span> pairs contains <span class="math notranslate nohighlight">\(d\)</span> copies
+of the Zielonka tree of the Rabin objective for <span class="math notranslate nohighlight">\(d-1\)</span> pairs.
+Naturally, this implies that <span class="math notranslate nohighlight">\(m_{\Rabin} = 1\)</span>, so  <a class="reference internal" href="#thm-characterisation-zielonka-tree"><span class="std std-ref">Theorem</span></a> induces the positional determinacy result
+stated in  <span class="xref std std-ref">Theorem</span>.
+Note that the two proofs are very different: the proof of  <a class="reference internal" href="#thm-characterisation-zielonka-tree"><span class="std std-ref">Theorem</span></a> is by induction over the Zielonka tree and can be extended to infinite games, while the proof of  <span class="xref std std-ref">Theorem</span> applies only to finite games but gives a general sufficient condition for positionality.</p>
+<div class="figure align-center" id="zielonka-tree-rabin">
+<img alt="../2-fig:Zielonka_tree_Rabin.png" src="../2-fig:Zielonka_tree_Rabin.png" />
+<p class="caption"><span class="caption-number">Fig. 1.3 </span><span class="caption-text">The (beginning of the) Zielonka tree for <span class="math notranslate nohighlight">\(\Rabin\)</span> with three pairs:
+<span class="math notranslate nohighlight">\(C = \set{G_1,R_1,G_2,R_2,G_3,R_3}\)</span>.</span><a class="headerlink" href="#zielonka-tree-rabin" title="Permalink to this image">¶</a></p>
+</div>
+<p>Recall that we defined Streett objectives using closure under union, and Rabin objectives as the complement of Streett objectives.</p>
+<div class="theorem admonition">
+<p class="admonition-title">Theorem</p>
+<p>Let <span class="math notranslate nohighlight">\(\Muller(\F)\)</span> be a Muller objective.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\Muller(\F)\)</span> is positionally determined if and only if <span class="math notranslate nohighlight">\(\Muller(\F)\)</span> is a Rabin objective;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Muller(\F)\)</span> is positionally determined for both players if and only if <span class="math notranslate nohighlight">\(\Muller(\F)\)</span> is a parity objective.</p></li>
+</ul>
+</div>
+<p>This theorem gives a characterisation of Rabin and parity objectives: they form the class of Muller objectives which are respectively positional and positional for both players.</p>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Proof</p>
+<p>Thanks to  <a class="reference internal" href="#thm-characterisation-zielonka-tree"><span class="std std-ref">Theorem</span></a> the objective <span class="math notranslate nohighlight">\(\Muller(\F)\)</span> is positionally determined if and only if <span class="math notranslate nohighlight">\(m_\F = 1\)</span>, which is equivalent to saying that all nodes labelled <span class="math notranslate nohighlight">\(S \in \F\)</span> in the Zielonka tree of <span class="math notranslate nohighlight">\(\F\)</span> have at most one child. Indeed, for such nodes the number <span class="math notranslate nohighlight">\(m\)</span> is obtained as the sum of the numbers for the children, so there can be at most one, and conversely if this is the case then <span class="math notranslate nohighlight">\(m_\F = 1\)</span>.
+This characterisation of the Zielonka tree is equivalent to the complement of <span class="math notranslate nohighlight">\(\F\)</span> being closed under union:</p>
+<ul class="simple">
+<li><p>Assume that the complement of <span class="math notranslate nohighlight">\(\F\)</span> is closed under union and let <span class="math notranslate nohighlight">\(S \in \F\)</span> be a node in the Zielonka tree of <span class="math notranslate nohighlight">\(\F\)</span>.
+Let <span class="math notranslate nohighlight">\(S_1,\dots,S_k\)</span> be the children of <span class="math notranslate nohighlight">\(S\)</span>, by definition they are the maximal subsets of <span class="math notranslate nohighlight">\(S\)</span> such that <span class="math notranslate nohighlight">\(S_i \notin \F\)</span>.
+The union <span class="math notranslate nohighlight">\(\bigcup_i S_i\)</span> is a subset of <span class="math notranslate nohighlight">\(S\)</span> and by closure under union of the complement of <span class="math notranslate nohighlight">\(\F\)</span> it is in the complement of <span class="math notranslate nohighlight">\(\F\)</span>,
+implying by maximality that it is one of the children, so they are all equal and <span class="math notranslate nohighlight">\(k = 1\)</span>.</p></li>
+<li><p>Conversely, assume that all nodes labelled <span class="math notranslate nohighlight">\(S \in \F\)</span> in the Zielonka tree of <span class="math notranslate nohighlight">\(\F\)</span> have at most one child.
+Let <span class="math notranslate nohighlight">\(S_1,S_2 \notin \F\)</span>, towards contradiction assume that <span class="math notranslate nohighlight">\(S_1 \cup S_2 \in \F\)</span>.
+By definition of the Zielonka tree, if <span class="math notranslate nohighlight">\(S_1 \cup S_2\)</span> is included into a node <span class="math notranslate nohighlight">\(S \notin \F\)</span>,
+then <span class="math notranslate nohighlight">\(S_1 \cup S_2\)</span> is included into one of its children.
+Starting from the root and applying this we find a node <span class="math notranslate nohighlight">\(S \in \F\)</span> such that <span class="math notranslate nohighlight">\(S_1 \cup S_2 \subseteq S\)</span>
+and <span class="math notranslate nohighlight">\(S_1 \cup S_2 \not\subseteq S'\)</span> with <span class="math notranslate nohighlight">\(S'\)</span> the only child of <span class="math notranslate nohighlight">\(S\)</span>
+(the case where <span class="math notranslate nohighlight">\(S\)</span> does not have any children is easy and treated separately).
+By definition of the Zielonka tree, since <span class="math notranslate nohighlight">\(S_1,S_2 \notin \F\)</span> and <span class="math notranslate nohighlight">\(S_1,S_2 \subseteq S\)</span>, then <span class="math notranslate nohighlight">\(S_1,S_2 \subseteq S'\)</span>, implying that
+<span class="math notranslate nohighlight">\(S_1 \cup S_2 \subseteq S'\)</span>, a contradiction.</p></li>
+</ul>
+<p>We have proved the first equivalence: <span class="math notranslate nohighlight">\(\Muller(\F)\)</span> is positionally determined if and only if the complement of <span class="math notranslate nohighlight">\(\F\)</span> is closed under union, which is the definition of Rabin objectives.</p>
+<p>For the second equivalence, we already have that <span class="math notranslate nohighlight">\(\Muller(\F)\)</span> is positionally determined for both players if and only if all nodes in the Zielonka tree of <span class="math notranslate nohighlight">\(\F\)</span> have at most one child. The Zielonka tree is in this case a chain:</p>
+<div class="math notranslate nohighlight">
+\[S_1 \subseteq S_2 \subseteq S_3 \subseteq S_4 \subseteq \cdots \subseteq S_{2d-1} \subseteq S_{2d} \subseteq C,\]</div>
+<p>with <span class="math notranslate nohighlight">\(S_{2i} \in \F\)</span> and <span class="math notranslate nohighlight">\(S_{2i-1} \notin \F\)</span>.
+Then <span class="math notranslate nohighlight">\(X \in \F\)</span> is equivalent to asking that the largest <span class="math notranslate nohighlight">\(i \in [1,d]\)</span> such that if <span class="math notranslate nohighlight">\(X \cap S_i \neq \emptyset\)</span> is even.
+Assigning priority <span class="math notranslate nohighlight">\(i\)</span> to <span class="math notranslate nohighlight">\(S_i\)</span> we get that <span class="math notranslate nohighlight">\(X \in \Muller(\F)\)</span> if and only if
+the largest priority appearing infinitely many times in <span class="math notranslate nohighlight">\(X\)</span> is even:
+this is the definition of the parity objective over the set of priorities <span class="math notranslate nohighlight">\([1,2d]\)</span>.
+Conversely, we observe that the Zielonka tree of a parity objective is indeed a chain.</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./2_Classic/1_Regular"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="muller.html" title="previous page"><span class="section-number">1.5. </span>Rabin, Streett, and Muller games</a>
+    <a class='right-next' id="next-link" href="references.html" title="next page"><span class="section-number">1.7. </span>Bibliographic references</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By a set of authors coordinated by Nathana&euml;l Fijalkow<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

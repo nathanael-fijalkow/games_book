@@ -1,0 +1,2218 @@
+%!TEX root = ../5_standalone.tex
+\input{macros_local}
+
+%\newcommand{\mlon}{\mathit{text}}
+
+In this chapter we study Markov decision processes (MDPs), a standard model for decision making under uncertainty. MDPs are also called ``$1\frac{1}{2}$-player games,'' since they can be viewed as a game in which only one player (say Eve) makes strategic choices, while the other player, which we call Nature, behaves according to some fixed probabilistic model. The chapter surveys the basic notions pertaining to MDPs, and algorithms for the following MDP-related problems:
+
+\begin{itemize}
+\item positive and almost-sure reachability and safety,
+\item discounted payoff,
+\item mean-payoff in strongly connected MDPs,
+\item decomposition of MDPs into maximal end-components (MECs),
+\item reductions of general mean-payoff MDPs, B\"uchi MDPs, and parity MDPs to general reachability MDPs (via the MEC decomposition),
+\item solving general reachability in MDPs.
+\end{itemize}
+
+%We show that for each of these objectives, memoryless deterministic strategies are sufficient for optimality and that MDPs with such objectives can be solved in polynomial time. We also present several algorithms for solving these MDPs.
+%, but we focus mostly on the \emph{linear programming} approach to solving the problems. This is because, apart from yielding the polynomial upper bound, the linear programming formulation gives insight into the structure of the MDP's behaviour, which can be exploited even for MDPs with more complex objectives.
+
+%PETR: MAYBE ADD MORE DEPENDING ON SPACE TAKEN BY THE ABOVE
+
+\section*{Notations and definitions}
+
+We write vectors in boldface: $ \vec{x}, \vec{y}, $ etc. For a vector $ \vec{x} $ indexed by a set $ I $ (i.e. $ \vec{x}\in \mathbb{R}^I $) we denote by $ \vec{x}_i $ the value of the component whose index is  $i\in I  $. 
+
+A (discrete) ""probability distribution"" over a finite or countably infinite set $A$ is a function $\discProbDist A \colon \rightarrow [0,1]$ such that $\sum_{a\in A}\discProbDist(a)=1$. The ""support"" of such a distribution $\discProbDist$ is the set of all $a\in A$ with $\discProbDist(a)>0$. A distribution $f$ is called ""Dirac"" if its support has size 1.
+%, which means that $f$ assigns probability 1 to a single element of $A$ and $0$ to all other elements. 
+We denote by $\dist(A)$ the set of all probability distributions over $A$.
+
+\knowledge{probability distribution}{notion,index={probability distribution}}
+\knowledge{support}{notion,index={support}}
+\knowledge{Dirac}{notion,index={probability distribution!Dirac}}
+
+We also deal with probabilities over uncountable sets of events. This is accomplished via the standard notion of a \emph{probability space.}
+
+\begin{definition}[""Probability space""]
+\label{5-def:probspace}
+A probability space is a triple
+$(\sampleSpace,\sigmaAlg,\probm)$ where
+\begin{itemize}
+\item
+$\sampleSpace$ is a non-empty set of \emph{events} (so called
+\emph{sample space}). 
+
+\item
+$\sigmaAlg$ is a ""sigma-algebra"" over $\sampleSpace$,
+i.e. a collection of subsets of $\sampleSpace$ that contains the empty set
+$\emptyset$ and that is closed under complementation and countable unions. The members of $\sigmaAlg$ are called ""$\sigmaAlg$-measurable 
+sets"".
+
+\item
+$\probm$ is a ""probability measure"" on $\sigmaAlg$, i.e. a function
+$\probm\colon \sigmaAlg\rightarrow[0,1]$ such that:
+\begin{enumerate}
+\item
+$\probm(\emptyset)=0$;
+
+\item
+for all $A\in \sigmaAlg$ it holds $\probm(\sampleSpace \setminus
+A)=1-\probm(A)$; and
+
+\item
+for all countable sequences of pairwise disjoint sets $A_1,A_2,\dots \in \sigmaAlg$ (i.e., $A_i \cap A_j = \emptyset$ for all $i\neq j$)
+we have $\sum_{i=1}^{\infty}\probm(A_i)=\probm(\bigcup_{i=1}^{\infty} A_i)$.
+\end{enumerate}
+\end{itemize}
+\end{definition}
+
+\knowledge{probability space}[Probability space]{notion,index={probability space}}
+\knowledge{sigma-algebra}{notion,index={sigma-algebra}}
+\knowledge{measurable set}[$\sigmaAlg$-measurable 
+sets]{notion,index={measurable set}}
+\knowledge{probability measure}{notion,index={probability measure}}
+
+A ""random variable"" in the probability space $(\sampleSpace,\sigmaAlg,\probm)$ is an $\sigmaAlg$-measurable function $\rvar\colon \Omega \rightarrow \R \cup
+\{-\infty,\infty\}$, i.e.,
+a function such that for every $a\in \R \cup \{ -\infty,\infty\}$ the set
+$\{\omega\in \Omega\mid \rvar(\omega)\leq a\}$ belongs to $\mathcal{F}$. We denote by $\expv[\rvar]$ the ""expected value"" of a random variable $\rvar$~(see \cite[Chapter 5]{Bil:1995}
+for a formal definition).
+
+\knowledge{random variable}{notion,index={random variable}}
+\knowledge{expected value}{notion,index={expected value}}
+
+\section*{Notations and definitions}
+
+We first give a syntactic notion of an MDP which is an analogue of the notion of an "arena" for games.
+
+\begin{definition}[""MDP""]
+\label{5-def:MDP}
+A ""Markov decision process"" is a tuple $(\vertices,\edges,\probTranFunc,\colouring)$. The meaning of $\vertices$, $\edges$, and $\colouring$ is the same as for games, i.e. $\vertices$ is a finite set of vertices, $\edges\subseteq \vertices\times\vertices$ is a set of edges and $\colouring\colon \edges \rightarrow \colours$ a mapping of edges to a set of colours. However, the meaning of $\probTranFunc$ is now different: $\probTranFunc$ is a partial ""probabilistic transition function"" of type $\probTranFunc\colon \vertices \times \actions \rightarrow \dist(\edges)$, such that the support of $\probTranFunc(v,a)$ only contains edges outgoing from $v$.
+% We say that action $a$ is \emph{enabled} in $v$ if $\probTranFunc(v,a)$ is defined, and we denote by $\actions(v)$ the set of actions enabled in $v$. We stipulate that $\actions(v)\neq \emptyset$ for each $v$. 
+ We usually write $\probTranFunc(v'\mid v,a)$ as a shorthand for $\probTranFunc(v,a)((v,v'))$, i.e. the probability of transitioning from $v$ to $v'$ under action $a$.
+\end{definition}
+
+\knowledge{MDP}[Markov decision process]{notion,index={Markov decision process}}
+\knowledge{probabilistic transition function}{notion,index={transition function!probabilistic}}
+
+We also stipulate that for each edge $(v_1,v_2)$ there exists an action $a\in \actions$ such that $\probTranFunc(v_2\mid v_1,a)>0$. Edges not satisfying this can be always removed without changing the semantics of the MDP, which is defined below. We denote by $ p_{\min} $ the smallest non-zero edge probability in a given MDP, i.e. $ p_{\min} = \min\{x>0 \mid \exists u,v \in \vertices, a \in \actions \text{ s.t. } x = \probTranFunc(v\mid u,a)\}. $
+
+We denote by $\edges_\genColour$ the set of edges coloured by $\genColour$. Also, for MDPs where $\colours$ is some set of numbers, we use $\maxc$ to denote the number $\max_{e\in 
+	\edges}|\colouring(e)|$.
+In the setting of MDPs it is technically convenient to encode regular objectives (Reachability, B\"uchi,\dots) by colours on \emph{vertices} as opposed to edges. Hence, when discussing these objectives, we assume that the colouring function $\colouring$ has the type $\vertices \rightarrow \colours$.
+%The probabilistic transition function is typically a partial function. An action $a$ is said to be \emph{enabled} in a vertex $v$ if $\probTranFunc(v,a)$ is defined. 
+
+% ALLOWED ACTIONS
+
+%\begin{remark}
+%	TODO: REMARK ABOUT POSSIBLE REPRESENTATION WITH STOCHASTIC VERTICES
+%\end{remark}
+
+\paragraph{Plays and strategies in MDPs}
+
+%The notion of plays in MDPs is the same as in classical games. There is, 
+%however, one new important notion, the one of cylinder sets. A ""basic 
+%cylinder"" determined by a finite play $\play$ is a set of all infinite plays 
+%having $\play$ as a prefix.
+
+ The way in which a play is generated in an MDP is similar to games, but now encompasses a certain degree of randomness. There is a single player, say Eve, who controls all the vertices. Eve's interaction with the ``world'' described by an MDP is probabilistic. One reason is the stochasticity of the transition function, the other is the fact that in MDP settings, it is usually permitted for Eve to use ""randomised strategies"". Formally, a randomised strategy is a function $\sigma : E^* \to \dist(A)$, which to each finite play assigns a probability distribution over actions. 
+% We stipulate that the support of $\sigma(\play)$ consists of actions that are enabled in $\last(\play)$. 
+ We typically shorten $\sigma(\play)(a)$ to $\sigma(a\mid \play)$.
+ 
+ \knowledge{randomised strategy}[randomised strategies]{notion,index={strategy!randomised}}
+%
+In this section, we will refer to randomised strategies simply as ``strategies.'' The strategies known from the game setting will be called  ""deterministic strategies"". Formally, a deterministic strategy can be viewed as a special type of a randomised strategy which always selects a Dirac distribution over the edges. We shorten ``memoryless randomised/deterministic'' to ""MR"" and ""MD"", respectively.
+\knowledge{deterministic strategy}[deterministic strategies]{notion,index={strategy!deterministic}}
+\knowledge{MR}{notion,index={strategy!MR}}
+\knowledge{MD}{notion,index={strategy!MD}}
+
+Now a play in an MDP is produced as follows: in each step, when the finite play produced so far (i.e. the history of the game token's movement) is $\play$, Eve chooses an action $a$ randomly according to the distribution $\sigma(\play)$. Then, an edge outgoing from $\last(\play)$ is chosen randomly according to $\probTranFunc(\last(\play),a)$ and the token is pushed along the selected edge. As shown below, this intuitive process can be formalized by constructing a special probability space whose sample space consists of infinite plays in the MDP. 
+
+
+
+%For each strategy $\sigma$ and each $i\geq 0$ we introduce an event $\actevent$
+
+\paragraph{Formal semantics of MDPs}
+
+Formally, to each MDP $\mdp$, each (Eve's) strategy $\sigma$ in $\mdp$, and 
+each initial vertex $\vinit$ we assign a probability space 
+$(\sampleSpace_{\mdp},\sigmaAlg_{\mdp},\probm^{\sigma}_{\mdp,\vinit})$. To 
+explain the individual components, we need the notion of a cylinder set. A 
+""basic cylinder"" determined by a finite play $\play$ is the set of 
+all infinite plays in $\mdp$ having $\play$ as a prefix. Now the above 
+probability space consists of the following components:
+\begin{itemize}
+	\item $\sampleSpace_{\mdp}$ is the set of all infinite plays in $\mdp$;
+	\item $\sigmaAlg_{\mdp}$ is the \emph{Borel} sigma-algebra over 
+	$\Omega_{\mdp}$; this is the smallest sigma-algebra containing all the 
+	basic cylinder sets determined by finite plays in $\mdp$. The sets in 
+	$\sigmaAlg_{\mdp}$ are called ""events"". Note that the smallest sigma-algebra of the desired property is guaranteed to exist, since an intersection of an arbitrary number of sigma-algebras is again a sigma algebra.
+	\item $\probm^{\sigma}_{\mdp,\vinit}$ is the unique probability measure 
+	arising from the \emph{cylinder construction} detailed below. We use 
+	$\expv^{\sigma}_{\mdp,\vinit}$ to denote the ""expectation"" operator 
+	associated to the measure $\probm^{\sigma}_{\mdp,\vinit}$.
+\end{itemize}
+\knowledge{basic cylinder}{notion,index={basic cylinder}}
+\knowledge{event}[events]{notion,index={event}}
+\knowledge{expectation}[expected value]{notion,index={expected value}}
+
+
+
+
+
+Since the sample space $\sampleSpace_{\mdp}$ is uncountable, we construct the 
+probability measure by first specifying a probability of certain simple sets of 
+runs and then using an appropriate \emph{measure-extension} theorem to extend 
+the probability measure, in a unique way, to all sets in $\sigmaAlg_{\mdp}$.
+The standard cylinder construction  
+proceeds as follows: for each finite play $\play$ we define the probability 
+$\cylProb(\play)$ such that
+
+\begin{itemize}
+\item for an empty play $\emptyPlay$ we put $\cylProb(\emptyPlay)=1$;
+\item for a non-empty play $\play=\play_0\cdots \play_{k}$ initiated in 
+$\vinit$ we put 
+\[\cylProb(\play) = \cylProb(\play_{< k})\cdot \Big(\sum_{a \in \actions} 
+\sigma(a\mid \play_{< k})\cdot \probTranFunc(\last(\play)\mid 
+\last(\play_{< k}),a) 
+\Big), \]
+where we use the convention that $\last(\play_{< 0})=\vinit$;
+\item for all other $\play$ we have $\cylProb(\play)=0$.
+\end{itemize}
+
+Now using an appropriate measure-extension theorem
+(such as Hahn-Kol\-mo\-go\-rov theorem~\cite[Corollary 2.5.4 and Proposition  2.5.7]{Rosenthal:2006}, or Carath\'eodory theorem~\cite[Theorem 1.3.10]{Ash&Doleans-Dade:2000}) one can show that there is a 
+unique probability 
+measure $\probm^{\sigma}_{\mdp,\vinit} $ on $\sigmaAlg_{\mdp}$ such that for 
+every cylinder set $\cylinder(\play)$ determined by some finite play $\play$ we have $\probm_{\vinit}^\sigma(\cylinder(\play))=\cylProb(\play)$. (Abusing the notation, we write $\probm^{\sigma}_{\mdp,\vinit}(\play)$ for the probability of this cylinder set). There 
+are some intermediate steps to be performed before an extension theorem 
+can be applied, and we omit these due to space constraints. Full details on the 
+cylinder construction can be found, e.g. in~\cite{Ash&Doleans-Dade:2000,Novotny:2015}.
+
+While the construction of the probability measure 
+$\probm^{\sigma}_{\mdp,\vinit}$ might seem a bit esoteric, in the context of 
+MDP verification we do not usually need to be concerned with all the delicacies 
+behind the associated probability space. The sets of plays that we work with 
+typically arise from the basic cylinder sets by means of countable unions, 
+intersections, and simple combinations thereof; such sets by definition belong 
+to the 
+sigma-algebra $\sigmaAlg_{\mdp}$, and their probabilities can be inferred using 
+basic probabilistic reasoning. Nevertheless, one should keep in mind that all the 
+probabilistic argumentation rests on solid formal grounds. 
+
+%A reader wishing to 
+%practice the formal understanding of probability theory might find the 
+%following exercise useful: whenever this chapter (or some of the following 
+%chapters with stochastic models) introduces some set of plays or a random 
+%variable, try to understand why the set belongs to the sigma-algebra 
+%$\sigmaAlg_{\mdp}$, why is the random variable $\sigmaAlg_{\mdp}$-measurable, 
+%etc. This will help to develop an intuition for manipulating probabilistic 
+%objects.
+
+In the standard MDP literature~\cite{Puterman:2005}, the plays are often defined as alternating sequence of vertices and actions. Here we stick to the edge-based definition inherited from deterministic games. Still, we would sometimes like to speak about quantities such as ``probability that action $a$ is taken in step $i$.'' To this end, we introduce, for each strategy $\sigma$, each action $a$,  and each $i\geq 0$,  a random variable $\actevent{\sigma}{a}{i}$ such that $\actevent{\sigma}{a}{i}(\play)=\sigma(\play_{< i})(a)$. It is easy to check that  $\expv^\sigma_v[\actevent{\sigma}{a}{i}]$ is the probability that action $a$ is played in step $i$ when using strategy $\sigma$.
+
+\paragraph{Objectives in MDPs}
+
+Similarly to plays, the notions of both qualitative and quantitative objectives 
+are inherited from the non-stochastic world of games. However, since plays in 
+MDPs are generated stochastically, even for a fixed strategy $\sigma$ there is 
+typically no single infinite play that would constitute the outcome of 
+$\sigma$. A concrete $\sigma$ might yield different outcomes, depending on the 
+results of random events during the interaction with the MDP. Hence, we need a 
+more general way of evaluating strategies in MDPs. 
+
+In the game setting, a qualitative objective was given as a set $\objective
+\subseteq \colours^{\omega}$. In the MDP setting, we require that such 
+$\objective$ is measurable in the sense that the set $\colouring^{-1}(\objective) = \{\play \in \sampleSpace_{\mdp} \mdp \colouring(\play) \in \objective \}$ belongs to $\sigmaAlg_{\mdp}$. We can then talk about a 
+probability that the produced play falls satisfies $\objective$. For instance, for a 
+colour $\genColour$ the objective $ \Reach(\genColour) $ is indeed measurable, since $ \colouring^{-1}(\objective) $ can be written as a countable union of all basic cylinders that are determined by finite plays ending in a vertex coloured by $ \genColour $. Indeed, all the qualitative objectives studied in previous chapters can be shown measurable in a similar way, and we encourage the reader to prove this as an exercise.
+Hence, the expression 
+$\probm^{\sigma}_{\mdp,\vinit}(\Reach(\genColour))$ 
+denotes the probability that a vertex of colour $\genColour$ is reached when 
+using 
+strategy $\sigma$ from vertex $\vinit$. 
+In line with previous conventions, we 
+stipulate that Eve aims to maximize this probability. 
+
+The situation is more complex for quantitative objectives. As shown in the previous chapter, 
+when working with quantitative objectives, the set of colours $\colours$ is typically the set of real numbers (or a subset thereof), and the quantitative objective is given by an ``aggregating function'' $\quantObj\colon \colours^\omega \rightarrow \R$, which can be extended into a function $\quantObjExt\colon \edges^\omega \rightarrow \R $ by putting $ \quantObjExt(\play) = \quantObj( \colouring(\play_0)\colouring(\play_1)\cdots) $.
+%a quantitative 
+%objective in the game setting was given by a function 
+%$\quantObj\colon \colours^\omega \rightarrow \R$. 
+In the MDP setting, we 
+require that $\quantObjExt$ is $\sigmaAlg_{\mdp}$-measurable, which 
+means that for each $x\in \R$ the set $\{\pi\in \edges^\omega\mid 
+\quantObj(\colouring(\play_0)\colouring(\play_1)\cdots) \leq x\}$ belongs to 
+$\sigmaAlg_{\mdp}$ (again this holds for all the objectives studied 
+in the previous chapters). Then there are two ways in which we can define the expected payoff achieved by strategy $ \sigma $ from a vertex $ v $.
+First, we can treat 
+$\quantObjExt$ as a random variable 
+in the probability space 
+$(\sampleSpace_{\mdp},\sigmaAlg_{\mdp},\probm^{\sigma}_{\mdp,v})$. Then the ""play-based payoff"" of $\sigma$ from $ v $, which we denote by $ \playPay_\quantObj(v,\sigma) $, is the expected value of this random variable, i.e. $ \playPay_\quantObj(v,\sigma) = \expv_{v}^\sigma [\quantObjExt] $. That is, we compute the expected payoff over all plays. This approach subsumes also qualitative objectives: For such an objective $\objective$ we can consider an ""indicator"" random 
+variable $\indicator{\objective}$, such that $\indicator{\objective}(\play)=1$ 
+of 
+$\play\in\Omega$ and $\indicator{\objective}(\play)=0$ otherwise. Then 
+$\probm^{\sigma}_{\mdp,v}(\objective) = 
+\expv^{\sigma}_{\mdp,v}[\indicator{\objective}] = \playPay_{\indicator{\objective}}(v,\sigma)$.
+
+\knowledge{indicator}{notion,index={random variable!indicator}}
+
+\knowledge{play-based payoff}{notion,index={payoff!play-based}}
+
+
+The second approach to quantitative objectives in MDPs, common e.g. in the operations research literature, is step-based: for each time step $i$ we compute the expected one-step reward (i.e. colour) encountered in that step and then  aggregate  these one-step expectations. Formally, the ""step-based payoff"" of $ \sigma $ from $ v $ is $ \stepPay_f(v,\sigma) = \quantObj(\expv_{v}^\sigma[\colouring(\play_0)] \expv_{v}^\sigma[\colouring(\play_1)]\cdots] ) $, where for each $ i $ we treat the expression $ \colouring(\play_i) $ as a random variable returning the colour (i.e. a number) which labels the $ i $-th edge of the randomly produced play (recall here that we index edges from~$ 0 $). 
+
+\knowledge{step-based payoff}{notion,index={payoff!step-based}}
+
+Depending on the concrete quantitative objective and on the shape of $\sigma$, the path- and step-based payoffs from a given vertex might or might not be equal. Nevertheless, in this chapter we study only objectives for which these two semantics yield the \emph{same optimization criteria:} no matter which of the two semantics we use, the optimal values will be the same and strategy that is optimal w.r.t. one of the semantics is also optimal for the other one. Hence, we will fix the play-based approach as the default one, writing just $ \Pay_f(v,\sigma)$ instead of $ \playPay_f(v,\sigma) $. We will prove the equivalence with step-based payoff where necessary. Also, we will drop the subscript $ f $ when the payoff function is known from the context.
+
+%As in the game setting, we can also consider 
+%qualitative objectives arising from quantitative ones. In such a case we could 
+%be interested, e.g. in maximizing the probability that the value of a random 
+%variable $\quantObj$ surpasses a given threshold $t\in \R$, i.e. maximizing the 
+%probability of an event $\{\quantObj\geq t\}$.
+
+%As a matter of fact, both quantitative and qualitative objectives can be 
+%conveniently described in terms of optimizing the expected value. For a 
+%qualitative objective $\objective$ we can consider an ""indicator"" random 
+%variable $\indicator{\objective}$, such that $\indicator{\objective}(\play)=1$ 
+%of 
+%$\play\in\Omega$ and $\indicator{\objective}(\play)=0$ otherwise. Then 
+%$\probm^{\sigma}_{\mdp,\vinit}(\objective) = 
+%\expv^{\sigma}_{\mdp,\vinit}[\indicator{\objective}]$. Hence, we can think of 
+%objectives as of random variables.
+
+\paragraph{Optimal strategies and decision problems}
+
+Let us fix an MDP $\mdp$ and an objective given by a random variable 
+$\quantObj$. The value of a vertex $v\in\vertices$ is the number 
+$\Value(v)=\sup_{\sigma} \Pay_f(v,\sigma)$. We let $\Value(\mdp)$ denote the $|\vertices|$-dimensional vector whose component 
+indexed by $v$ equals $\Value(v)$.
+
+We say that a strategy $\sigma$ is $\eps$-optimal in $v$, for some $\eps\geq 0$, if $\Pay_f(v,\sigma) \geq \Value(v) - \eps$. A $0$-optimal strategy is simply called optimal. 
+
+For qualitative objectives, there are additional modes of objective satisfaction. Given such an objective $\objective$, we say that a strategy $\sigma$ is ""almost-surely winning"" from $v$ if $\expv^{\sigma}_{\mdp,v}[\indicator{\objective}]=1$, i.e. if the run produced by $\sigma$ falls into $\objective$ with probability $1$. We also say that $\sigma$ is ""positively winning"" from $ v $ if $\expv^{\sigma}_{\mdp,v}[\indicator{\objective}]>0$. For strategies that are winning in the non-stochastic game sense, i.e. that \emph{cannot} produce a run not belonging to $\objective$, are usually called ""surely winning"" to distinguish them from the above concepts. We denote by $\winPos(\mdp,\objective)$ and $\winAS(\mdp,\objective)$ the sets of all vertices of $\mdp$ from which there exists a positively or almost-surely winning strategy for the objective $\objective$, respectively.
+
+\knowledge{almost-surely winning}[a.s. winning]{notion,index={strategy!almost-surely winning}}
+\knowledge{positively winning}[pos. winning]{notion,index={strategy!positively winning}}
+\knowledge{surely winning}[pos. winning]{notion,index={strategy!surely winning}}
+
+
+The problems pertaining to the existence of almost-surely or positively winning strategy are often called \emph{qualitative problems} in the MDP literature, while the notion \emph{quantitative problems} covers the general notion of optimizing the expectation of some random variable. We do not use such a nomenclature here so as to avoid confusion with qualitative vs. quantitative objectives as defined in \Cref{chap:introduction}. Instead, we will refer directly to, e.g. ``almost-sure reachability'' while using the term ``optimal reachability'' to refer to the expectation-maximization problem.
+
+%To reason about the complexity of decision problems pertaining to MDPs we assume, as usual, that all numbers appearing in the MDP (numerical colours, probabilities\ldots) are rational. We will be sometimes interested, how does the bit-size of these numbers influence the runtime of our algorithms; in particular, whether the algorithms run in \emph{strongly polynomial time.}
+%
+%\begin{definition}
+%An algorithm which takes MDPs as inputs is said to run in \emph{strongly polynomial time} if the number of arithmetic 
+%	operations performed by the algorithm is bounded by a polynomial in the number 
+%	of vertices, edges, and actions (but independent of the bit size of the 
+%	probabilities and possible numerical colours). 
+%\end{definition}
+
+
+%\subsection*{Expectation vs. Probabilistic Semantics of Objectives}
+%
+%The above view, where objectives are random variables whose expected value is to be optimized by choosing an appropriate strategy, is sometimes called an \emph{expectation semantics} (meaning semantics of the objective, not of the MDP dynamics per se). The expectation semantics is \emph{de facto} the standard  An alternative view is
+
+\section{Positive and almost-sure reachability and safety in MDPs}
+
+%We start our study of algorithmic problems for MDPs with the most basic 
+%objective: reachability. 
+% As we shall see later, the general problem of 
+% computing optimal reachability values and strategies can be reduced to optimizing 
+% expected mean-payoff, without an increase in the theoretical complexity (as 
+% opposed to the game case, where reachability games can be solved in polynomial 
+% time, while for mean-payoff games no polynomial-time algorithm is known). 
+% Hence, in this section 
+%We first focus on solving the positive and almost-sure 
+% reachability problems. 
+ % While these problems are also in \P{} (and, as we shall 
+% see, actually \P-complete), they can be efficiently solved by specific 
+% techniques that do not apply in the more general setting.
+
+%\subsection*{Positive and Almost-Sure Reachability}
+
+\paragraph{Positive reachability}  
+Analogously to classical games (cf. \cref{chap:regular}), we define a one-step \emph{positive 
+probability} predecessor 
+operator, $\PrePos$,
+as follows: for $U\subseteq \vertices$ we put
+
+\begin{align*}
+\PrePos(U) &= \{v \in \vertices \mid \exists a \in \actions, \exists u \in U: 
+\probTranFunc(u\mid v,a)>0 \}.\\
+%\PreAS(U) &= \{v \in \vertices \mid \exists a \in \actions, \forall t \in 
+%\vertices: \probTranFunc(t\mid v,a)>0 \Rightarrow t \in U \}.
+\end{align*}
+
+%Note that the operator $\PrePos$ is monotonic, i.e. $\PrePos(X) \subseteq 
+%\PrePos(Y)$ if $X\subseteq Y$, while $\PreAS$ is \emph{antitone,} i.e.  
+%$\PreAS(X) \supseteq \PreAS(Y)$ whenever $X\subseteq Y$.
+\noindent
+We also define an operator $\PreOPPos$ s.t. for each $X\subseteq\vertices$ we have
+$$\PreOPPos(X) = X\cup \PrePos(X).$$
+It is easy to see that $\PreOPPos$ is a classical 
+reachability operator in the underlying graph of the MDP, i.e. denoting $X_0 = 
+X$ and $X_i = \PreOPPos(X_{i-1})$, we get that $X_i$ is exactly the set of 
+vertices from which a vertex of $X$ is reachable via a finite play of length at 
+most $i$. It follows that iterating $\PreOPPos$ on any initial set reaches a 
+fixed point in at most $n-1$ steps, where $n=|\vertices|$.
+
+We have the following simple characterization of the positively winning set:
+
+\begin{theorem}
+\label{5-thm:positive-char}
+For each vertex $v$, the following conditions are equivalent:
+\begin{enumerate}
+\item The vertex $v$ belongs to $\winPos(\mdp,\Reach(\genColour))$.
+\item There 
+exists a (possibly empty) finite play from $v$ to a vertex of colour $\genColour$.
+\item The vertex $v$ 
+belongs to the fixed point of the iteration $\vertices_\genColour, 
+\PreOPPos(\vertices_\genColour),\PreOPPos^2(\vertices_\genColour),\cdots$.
+\end{enumerate}
+Moreover, there exists a memoryless deterministic strategy that is positively 
+winning from each vertex in $\winPos(\mdp,\Reach(\genColour))$.
+\end{theorem}
+\begin{proof}
+$(1)\Rightarrow(2)$: We have that $\Reach(\genColour) = \cup_{\play \in X} 
+\cylinder(\pi)$, where $X$ is the set of all finite plays ending in a vertex of 
+colour $\genColour$ and $\cylinder(\pi)$ is the basic cylinder determined by 
+$\pi$. Since $X$ is a countable set, from the property (3.) of a probability 
+measure it follows that $\probm^\sigma_{\mdp,v}(\Reach(\genColour))>0$ if and 
+only if there exists $\play\in X$ with 
+$\probm^\sigma_{\mdp,v}(\cylinder(\play))>0$.\footnote{Arguments of this style are said to invoke a ""union bound"". } For the latter to hold, it must 
+be that either $\play=\emptyPlay$, in which case $\colours(v)=\genColour$, or 
+$\play$ is a non-empty play initiated in $v$ and reaching a colour 
+$\genColour$, as required.
+
+\knowledge{union bound}{notion,index={union bound}}
+
+$(2)\Rightarrow(3)$:
+This is straightforward.
+	
+$(3)\Rightarrow (1)$:	
+For a vertex $v$, let $\rank(v)$ be the smallest $i$ such that $v \in 
+\PreOPPos^i(\vertices_\genColour)$ (if no such $i$ exists, then 
+$\rank(v)=\infty$). For each $v$ with a positive rank there exists an action 
+$a_v$ and vertex $u_v$ such that $\probTranFunc(u_v\mid v,a_v)>0$ and 
+$\rank(u_v)< \rank(v)$. Consider any MD strategy $  \sigma $ with the following property: 
+in each vertex of 
+$\winPos(\mdp,\Reach(\genColour))\setminus \vertices_{\genColour}$, $ \sigma $ selects the 
+action $a_v$ defined above with probability 1. A straightforward induction on the rank shows that such a $ \sigma $ is positively winning from each vertex of 
+$\winPos(\mdp,\Reach(\genColour))$. This also proves the last part 
+of the lemma.
+\end{proof}
+
+%\begin{algorithm}
+%	\KwData{An MDP $ \mdp $}
+%	\SetKwFunction{FTreat}{Treat}
+%	\SetKwProg{Fn}{Function}{:}{}
+%	
+%	$W \leftarrow \vertices_\genColour$ \;	
+%	\Repeat{$W' \neq W$}{
+%	$W' \leftarrow W$\;
+%	$W \leftarrow \PreOPPos(W)$
+%	}
+%	
+%	
+%	
+%	\Return{$W$}
+%	\caption{An algorithm computing $\winPos(\mdp,\Reach(\genColour))$}
+%	\label{5-algo:reach-pos}
+%\end{algorithm}
+
+\noindent
+%We also define multi-step iterates of the operators using the usual notation; e.g. $\PrePos^0(U)=\emptyset$ and $\PrePos^{i+1}(U)=\PrePos(\PrePos^i(U))$, and similarly for $\PreAS(U)$. 
+As for complexity, we can focus on the problem of determining whether a given 
+vertex belongs to $\winPos(\mdp,\Reach(\genColour))$. 
+
+\begin{corollary}
+\label{5-cor:pos-complexity}
+The problem of deciding whether a given vertex of a given MDP belongs to 
+$\winPos(\mdp,\Reach(\genColour))$ is \NL-complete. Moreover, the set $\winPos(\mdp,\Reach(\genColour))$ can be computed in linear time.
+\end{corollary}
+\begin{proof}
+\Cref{5-thm:positive-char} 
+gives a blueprint for a logspace reduction from this problem to the 
+\emph{s-t-connectivity} problem for directed graphs, and vice versa. The latter 
+problem is well known to be \NL-complete~\cite{Savitch:1970}. Moreover, the set of states from which a target colour is reachable can be computed by a simple graph search (e.g. by BFS), hence in linear time.
+\end{proof}
+% TODO: if space permits,{} FNL membership of strategy synthesis problem. Should 
+%be straightforward, via the ``certificate'' definition of FNL. Read the paper 
+%referenced in complexity zoo.
+
+
+
+%\begin{corollary}
+%Memoryless deterministic strategies are sufficient for positive reachability 
+%in MDPs. Moreover, the set $\winPos(\mdp,\Reach(\genColour))$, as well as an 
+%MD 
+%strategy that is positively winning from each vertex of 
+%$\winPos(\mdp,\Reach(\genColour))$, can be both computed in polynomial time.
+%\end{corollary}
+
+% INTRODUCE NOTATION FOR A SET OF COLOURED VERTICES
+
+\paragraph{Almost-sure reachability and safety} While the reachability and safety objectives are seemingly dual, in MDPs there is an intimate connection between them.
+% We start by defining  
+%
+%\noindent
+Let's start with almost-sure reachability. Consider the  \emph{almost-sure predecessor operator $\PreAS$}, s.t. for each $U \subseteq \vertices$ we have $$\PreAS(U) = \{v \in \vertices \mid \exists a \in \actions, \forall t \in 
+\vertices: \probTranFunc(t\mid v,a)>0 \Rightarrow t \in U \}.$$
+%one could be again tempted to compute the 
+%winning 
+%set $\winAS(\mdp,\Reach(\genColour))$ by iterating the operator $X \mapsto X 
+%\cup \PreAS(X)$, starting with the initial argument $\vertices_\genColour$. 
+%However, 
+One might be tempted to mimic the positive reachability case and perform the iteration $ X \leftarrow X \cup \PreAS(X) $ on the set $ \vertices_{\genColour} $ until a fixed point is reached.
+But this 
+is not correct: consider an MDP with two vertices, $u,v$, the latter one being coloured by $\Win$. We have only one action $a$: in $v$, the action self loops on $v$, while in $u$ playing the action either switches moves us to $v$ or leaves us in $u$, both options having probability $\frac{1}{2}$. The probability that we \emph{never} reach $v$ from $u$ is 
+equal to $\lim_{n\rightarrow \infty} \left(\frac{1}{2}\right)^n = 0$, and hence 
+$\winAS(\mdp,\Reach(\Win))=\{u,v\}$. However, $\{v\}\cup\PreAS(\{v\})=\{v\}$, so 
+$v$ is not included into the outcome of the iteration. Note that there indeed exists an infinite play which \emph{can} be generated by the strategy and 
+which 
+never visits $v$, but the probability of generating such a play is $0$. 
+
+Instead, we make a detour via safety. Consider the one-step \emph{almost-sure safety} operator $\safeOP$ acting on sets of vertices:
+%
+\begin{align*}
+\safeOP(X)= X \cap \PreAS(X).
+\end{align*}
+%
+This operator gives rise to a notion of a closed set, which is important for the study of safety objectives in MDPs.
+
+%Safety objectives in MDPs are related to the notion of a \emph{closed} set.
+
+\begin{definition}
+A set $X$ of vertices is ""closed"" if $ \safeOP(X)=X$. A ""sub-MDP"" of an MDP $ \mdp $ defined by a closed subset $X$ of $ \mdp $'s states is the MDP $\mdp_X = (X,\edges_X,\probTranFunc_X,\colouring_X)$ defined as follows:
+\begin{itemize}
+	\item $\edges_X$ is obtained from $\edges$ by removing edges incident to a vertex from $\vertices\setminus X$;
+	\item $\probTranFunc_X$ is obtained from $\probTranFunc\subseteq \vertices\times\actions\times\dist(\edges)$ by removing all triples $(v,a,f)$ where either $v\not \in X$ or where the support of $f$ is not contained in $X$;
+	\item $\colouring_X$ is a restriction of $\colouring$ to $X$.
+\end{itemize}
+We denote by $\closed(\mdp)$ the set of all closed sets in $\mdp.$
+\end{definition}
+
+Intuitively, a set is closed if Eve has a strategy ensuring that she stays in the set forever.
+
+
+
+Now consider the iteration of $ X, \safeOP(X),\safeOP^2(X),\ldots $ of the safety operator. Clearly $\safeOP(X)\subseteq X$. Hence, the iteration reaches a fixed point in at most $|\vertices|$ steps. We get the following:
+
+\begin{lemma}
+\label{5-lem:safety-iteration}
+The fixed point of iterating $ \safeOP $ on some initial set $ X $ of $ \mdp $'s vertices is the largest (w.r.t. inclusion) closed set contained in $ X $. In particular, a vertex of $ X $ which does not belong to the fixpoint cannot belong to  $\winAS(\mdp,\Safe(\vertices \setminus X))$.
+\end{lemma}
+\begin{proof}
+A straightforward induction on the number of iteration shows that if a vertex $ v $ is removed in an $ i $-th iteration, then no matter what strategy Eve uses, she has to reach $ \vertices\setminus X $ in at most $ i $ steps with a positive probability. The lemma follows.
+\end{proof}
+
+
+%To get the correct characterization,
+%
+% Intuitively, the fixed point of iterating $\safeOP$ on some initial argument $U$, which we denote by $\OPS$,\label{5-page:safetyop} is the largest subset $Y$ of $U$ for which there exists a strategy ensuring that $Y$ is never escaped (once it is entered).
+%%is parametrized by the target colour $\genColour$ and 
+%Now getting the almost-sure winning set for reachability entails repeated computation of positive winning sets on smaller and smaller sub-MDPs of $\mdp$.
+
+
+
+\knowledge{closed}{notion,index={closed set of vertices in MDP}}
+\knowledge{sub-MDP}{notion,index={sub-MDP}}
+
+%\noindent
+%To get the almost-surely winning set, we define the operator $\OPAS(c,\cdot)\colon \closed(\mdp) \rightarrow \closed(\mdp)$, parametrized by a colour $\genColour$, whose computation is shown in \Cref{5-algo:reach-opas}. Note that the algorithm terminates 
+
+
+
+%\begin{itemize}
+%\item We set $Y=\winPos(\mdp_X,\Reach(\genColour))$.
+%\item We set $\OPAS(\genColour,X) = \OPS(Y)$, i.e. $\OPAS(\genColour,X)$ is the fixed point of the iteration: $Y,\safeOP(Y),\safeOP^2(Y),$ $\safeOP^3(Y),\ldots$. (This ensures that $\OPAS(c,X)$ is a closed set.)
+%%	\item Compute the fixed point $Y$ of the iteration $X,\safeOP(X),\safeOP^2(X),\cdots$. 
+%%%	CORRECT THIS, NOT THE CRUDE OPERATOR
+%%%	\item Set $Z = Y \cup \vertices_{\genColour}$.
+%%	\item Construct a sub-MDP $\mdp_Y$ of $\mdp$ by prohibiting all actions that transition from $Y$ to $\vertices\setminus Y$ with a positive probability. Formally, viewing $\probTranFunc$ as a subset of $\vertices\times\actions\times\dist(\edges)$, we remove from $\probTranFunc$ all triples $(v,a,f)$ such that $v\in Y$ and $\probTranFunc(v'\mid v,a)>0$ for some $v'\not \in Y$. In this way we obtain a transition function $\probTranFunc_Y$ of $\mdp_Y$. To obtain the set of edges of $\mdp_Y$, we remove from $\edges$ all edges that cannot be transitioned with positive probability under $\probTranFunc_Y$. The fact that $\PreAS(Y)=Y$ is crucial for the construction of $\mdp_Y$, since it guarantees that each vertex in $\mdp_Y$ has at least one enabled action.
+%%	\item Finally, we let $\OPAS(X) = \winPos(\mdp_Y,\Reach(\genColour))$.
+%\end{itemize}
+
+
+
+\begin{algorithm}
+	\KwData{An MDP $ \mdp $, a colour $\genColour$}
+	\SetKwFunction{KwOPAS}{$\OPAS$}
+	\SetKwProg{Fn}{Function}{:}{}
+	
+%	\Fn{\KwOPAS{\genColour,X}}{
+		$Y \leftarrow \vertices \setminus\vertices_{\genColour}$ \;
+		\Repeat{$Y' \neq Y$}{
+			$Y' \leftarrow Y$\;
+			$Y \leftarrow \safeOP(Y)$
+		}
+		\Return{$Y$} \tcp*{$Y$ is now a closed set}
+%	}
+
+\caption{An algorithm computing $\winAS(\mdp,\Safe(\genColour))$}
+\label{5-algo:safety}
+\end{algorithm}
+%\noindent
+
+\begin{theorem}
+\label{5-thm:safety-main}
+\Cref{5-algo:safety} computes the set $\winAS(\mdp,\Safe(\genColour))$ in strongly polynomial time. Moreover, there exists a memoryless deterministic strategy, computable in polynomial time, that is almost-surely winning from every vertex of $\winAS(\mdp,\Safe(\genColour))$.
+\end{theorem}
+\begin{proof}
+The correctness follows immediately from \Cref{5-lem:safety-iteration}. The algorithm makes at most linearly many iterations, each of which has at most linear complexity. Hence, the complexity is at most quadratic. The strong polynomiality is testified by the fact that the algorithm only tests whether a 
+probability of a given transition is positive or not, for which the exact 
+values of positive probabilities are irrelevant. Clearly the output of the algorithm is a closed set, and hence for each $ v\in  \winAS(\mdp,\Safe(\genColour))$ there is an action $ a_v $ such that all edges in the support of $ \probTranFunc(v,a_v)  $ lead back to $ \winAS(\mdp,\Safe(\genColour)) $. Any MD strategy which in each $ v\in  \winAS(\mdp,\Safe(\genColour)) $ chooses $ a_v $ with probability 1 is a.s. winning inside $ \winAS(\mdp,\Safe(\genColour)) $, which proves the last part of the lemma.
+\end{proof}
+
+
+
+%It is easy to check that $\OPAS$ itself has the property that $\OPAS(X)\subseteq X$, and hence iterating it yields a fixed point in at most $|\vertices|$ steps.
+
+\begin{algorithm}
+	\KwData{An MDP $ \mdp $, a colour $ \genColour $}
+\SetKwFunction{FTreat}{Treat}
+$W \leftarrow \vertices$ \;	
+\Repeat{$W' \neq W$}{
+	$W' \leftarrow W$\;
+	$Z \leftarrow \winPos(\mdp_W,\Reach(\genColour))   $ \tcp*{\Cref{5-cor:pos-complexity}}
+%	colour each vertex in $ W \setminus Z $ by $ \Lose $\;
+	$W \leftarrow \winAS(\mdp_W,\Safe(W \setminus Z))$ \tcp*{\Cref{5-algo:safety}}
+}
+
+\Return{$W$} \tcp*{A positive winning strategy in $\mdp_W$ is now almost-surely winning from $W$ in $\mdp$.}
+\caption{An algorithm computing $\winAS(\mdp,\Reach(\genColour))$}
+\label{5-algo:reach-as}
+\end{algorithm}
+
+With a.s. safety solved, we go back to a.s. reachability, which is solved via \Cref{5-algo:reach-as}. Note that in the first iteration, the algorithm computes the set %$ \winAS(\mdp,\Reach(\genColour)) \neq 
+$\winAS(\mdp,\Safe(Z))$ where $ Z =  \winPos(\mdp,\Reach(\genColour))$. We might be tempted to think that this set already equals $ \winAS(\mdp,\Reach(\genColour)) $, but this is not the case. To see this, consider an MDP with three states $ u,v,t $ and two actions $ a,b $ such that $ t $ is coloured by $ \Win $, both actions self loop in $ v $ and $ t $, and $ \probTranFunc(t \mid u,a) = \probTranFunc(v \mid u,a) = \frac{1}{2} $ while $ \probTranFunc(u \mid u,b) = 1 $. Then $ \winAS(\mdp,\Reach(\Win)) = \{t\} $ while at the same time $ \winAS(\mdp,\Safe( \winPos(\mdp,\Reach(\Win)))) = \{u,t\}$. However, iterating the computation works, as shown in the following theorem.
+
+\begin{theorem}
+\label{5-thm:as-char}
+\Cref{5-algo:reach-as} computes $\winAS(\mdp,\Reach(\genColour))$ in strongly polynomial time. Moreover, there is an MD strategy, computable in strongly polynomial time, that is almost-surely winning from every vertex of $\winAS(\mdp,\Reach(\genColour))$.
+\end{theorem}
+\begin{proof}
+Since the set $ W $ can only decrease in each iteration, the algorithm terminates.
+We prove that upon termination, $W$ equals $\winAS(\mdp,\Reach(\genColour))$.
+	
+We start with the $ \subseteq $ direction. We have $W \subseteq \winPos(\mdp_W,\Reach(\genColour))$. By \Cref{5-thm:positive-char} there exists an MD strategy $\sigma$ in $\mdp_W$ which is positively winning from each vertex of $W$. We show that the same strategy is also almost-surely winning from each vertex of $W$ in $\mdp_W$ and thus also from each vertex of $W$ in $\mdp$, which also proves the second part of the theorem. 
+%Since $\mdp_W$ is a sub-MDP of $\mdp$ obtained by removing some vertices and transitions, the strategy $\sigma$ can be also regarded as a strategy in $\mdp$ (the choices in the missing vertices being defined arbitrarily) and it is then easy to see that it is also almost-surely winning in $\mdp,$ from each state of $X$. Together with the ``only if'' direction, this will also prove that MD strategies are sufficient for almost-sure reachability. 
+Let $v$ be any vertex of $W$ and denote $|W|$ by $\ell$. Since $\sigma$ is memoryless, it guarantees that a vertex of $\vertices_{\genColour}$ is reached with a positive probability in at most $\ell$ steps (see also the construction of $ \sigma $ in the proof of \Cref{5-thm:positive-char}), and since it is also deterministic, it guarantees that the probability $p$ of reaching $\vertices_{\genColour}$ in at most $\ell$ steps is at least $p_{\min}^{\ell}$, where  $p_{\min}$ is the smallest non-zero edge probability in $\mdp_W$. Now imagine that $\ell$ steps have elapsed and we have not yet reached $\vertices_{\genColour}$. This happens with a probability at most $(1-p_{\min}^\ell)$. However, even after these $\ell$ steps we are still in $W$, since $ \sigma  $ is a strategy in $ \mdp_w $. Hence, the probability that we do not reach $\vertices_\genColour$ within the first $2\ell$ steps is bounded by $(1-p_{\min}^\ell)^{2}$. To realize why this is the case, note that any finite play $\play$ of length $2\ell$ can be split into two halves, $\play',\play''$ of length $\ell$, and then $\probm^{\sigma}_{v}(\cylinder(\play))=\probm^{\sigma}_{v}(\cylinder(\play'))\cdot\probm^{\sigma}_{\last(\play')}(\cylinder(\play''))$ (here we use the fact that $\sigma$ is memoryless). Using this and some arithmetic, one can show that, denoting $\mathit{Avoid}_i$ the set of all plays that avoid the vertices of $\vertices_{\genColour}$ in steps $\ell\cdot(i-1)$ to $\ell\cdot(i)-1$, it holds $$\probm^{\sigma}_{v}(\mathit{Avoid}_1\cap \mathit{Avoid}_2) \leq \probm^{\sigma}_{v}(\mathit{Avoid}_1)\cdot \max_{u\in W\setminus \vertices_{\genColour}}\probm^{\sigma}_{u}(\mathit{Avoid}_1)\leq (1-p_{\min}^\ell)^{2}.$$
+
+\noindent
+One can then continue by induction to show that $\probm^{\sigma}_{v}(\bigcap_{i=1}^j \mathit{Avoid}_i)\leq (1-p_{\min}^\ell)^{j},$ and hence
+$$\probm^\sigma_{v}(\Reach(\genColour))= 1-\probm^{\sigma}_{v}(\bigcap_{i=1}^\infty \mathit{Avoid}_i) \leq 1-\lim_{j\rightarrow \infty}(1-p_{\min}^\ell)^{j}= 1-0=1.$$
+
+Now we prove the $ \supseteq $ direction. Denote $X=\winAS(\mdp,\Reach(\genColour))$. We prove that $ W \supseteq X $ is an invariant of the iteration. Initially this is clear. Now assume that this holds before an iteration takes place. It is easy to check that $X$ is closed, so $\mdp_{X}$ is well-defined. We prove that $ X \subseteq \winAS(\mdp_W,\Safe(W\setminus Z)) $, where $ Z $ is defined during the iteration. A strategy in $\mdp$ that reaches $\vertices_{\genColour}$ with probability 1 must never visit a vertex from $\vertices\setminus X$ with a positive probability. Hence, each such strategy can be viewed also as a strategy in $\mdp_{X}$. It follows that  $X=\winAS(\mdp_X,\Reach(\genColour)) = \winPos(\mdp_{X},\Reach(\genColour)) \subseteq \winPos(\mdp_{W},\Reach(\genColour)) = Z$, the middle inclusion following from induction hypothesis. Now by \Cref{5-lem:safety-iteration} and \Cref{5-thm:safety-main}, the set $ \winAS(\mdp_W,\Safe(W\setminus Z)) $ is the largest closed set contained in $ Z $. But $ X $ is also closed, and ashown above, it is contained in $ Z $. Hence,  $ X \subseteq \winAS(\mdp_W,\Safe(W \setminus Z)) $.
+
+The complexity follows form \Cref{5-cor:pos-complexity} and \Cref{5-thm:safety-main}; and also from the fact that the main loop must terminate in $ \leq |\vertices| $ steps. The strong polynomiality again follows from the algorithm being oblivious to precise probabilities.
+\end{proof}
+
+%Note that in the first part of the above proof we proved the following useful claim:
+%\begin{claim}
+%\label{5-clm:asclaim}
+%If there is an MD strategy positively winning for $ \Reach(\genColour) $ in every vertex of the MDP, then the same strategy a.s. winning for $ \Reach(\genColour) $ from every vertex.
+%\end{claim}
+
+%\Cref{5-thm:as-char} can be easily distilled into an algorithm for computing the set  $\winAS(\mdp,\Reach(\genColour))$: simply iterate $\OPAS(\genColour,\cdot)$ on $\vertices$ until a fixed point is reached. It is easy to check that each of the iterations can be performed in time polynomial in $\mdp$ (for the computation of $Y=\winPos(\mdp_X,\Reach(\genColour))$, this follows from \Cref{5-cor:pos-complexity}). Hence, computing the fixed point of $\OPAS(\vertices,\cdot)$, i.e. the set $W=\winAS(\mdp,\Reach(\genColour))$ can be also performed in polynomial time. Once $W$  is computed, we compute an MD strategy $\sigma$ which is positively winning for $\Reach(\genColour)$ in $\mdp_W$. As shown in the proof of \Cref{5-thm:as-char}, $\sigma$ can be seen as a strategy in $\mdp$ which is almost-surely winning in each state of $W$.
+
+%\noindent
+We also have a complementary hardness result. 
+% In total, we have the 
+%following:
+
+\begin{theorem}
+\label{5-thm:as-complexity}
+The problem of determining whether a given vertex of a given MDP belongs to 
+$\winAS(\mdp,\Reach(\genColour))$ is \P-complete.
+\end{theorem}
+\begin{proof}
+	We procced by a reduction 
+	from the \emph{circuit value problem (CVP)}.
+	An instance of \emph{CVP} is a directed acyclic graph $\mathcal{C}$, 
+	representing a boolean circuit: each internal node represents either an OR gate 
+	or an AND gate, while each leaf node is labelled by \emph{true} or 
+	\emph{false}. Each internal node is guaranteed to have exactly two children. 
+	Each node of $\mathcal{C}$ evaluates to a unique truth value: the value of a 
+	leaf is given by its label and the value of an internal node $v$ is given by 
+	applying the logical operator corresponding to the node to the truth values of 
+	the two children of $v$, the evaluation proceeding in a backward topological order. The task is to decide whether a given node $w$ of 
+	$\mathcal{C}$ evaluates to \emph{true}. \emph{CVP} was shown to be 
+	\P-hard (under logspace reductions) in~\cite{Ladner:1975}. 
+	In~\cite{Chatterjee&Doyen&Henzinger:2010}, the following logspace reduction 
+	from CVP to 
+	almost-sure reachability in MDPs is presented: given a boolean circuit 
+	$\mathcal{C}$, construct an MDP $\mdp_{\mathcal{C}}$ whose vertices correspond 
+	to the gates 
+	of $\mathcal{C}$. There are two actions, call them $\mathit{left}$ and $\mathit{right}$. In each vertex corresponding to an OR gate $g$, the 
+	$\mathit{left}$ action transitions with probability 1 to the vertex 
+	representing the left child of $g$, and similarly for the action 
+	$\mathit{right}$ 
+	and the right child. In a vertex corresponding to an AND gate $g$, both actions behave the same: the transition into each of the two children 
+	of $g$ with probability $\frac{1}{2}$. Vertices corresponding to leafs have self loop as the only outgoing edges, and 
+	moreover, they are coloured with the respective labels in $\mathcal{C}$. It is 
+	easy to check that a gate of $\mathcal{C}$ evaluates to $\mathit{true}$ if and 
+	only if the corresponding vertex belongs to 
+	$\winAS(\mdp_{\mathcal{C}},\Reach(\mathit{true}))$.
+\end{proof}
+
+\paragraph{Positive safety} We conclude this section by a discussion of positive safety. 
+%This objective is somewhat less prominent in the MDP literature, and hence (and due to space constraints) we omit full proof of the main theorem: the proof rests on simple extension of ideas from the previous cases and we invite the reader to reconstruct the argument as an exercise. Alternatively, positive safety can be seen as a special case of the optimal parity problem, for which a polynomial algorithm and a proof of memoryless optimality are provided in the latter parts of this chapter.
+
+
+\begin{theorem}
+\label{5-thm:pos-safety-main}
+Let $ \mdp_{\bar\genColour} $ be an MDP obtained from $ \mdp $ by changing all $ \genColour $-coloured vertices to sinks (i.e. all actions in these vertices just self loop on the vertex). Then
+$ \winPos(\mdp,\Safe(\genColour)) = \winPos(\mdp_{\bar\genColour},\Reach(\winAS(\mdp_{\bar\genColour},\Safe(\genColour))) ) $. In particular, the set $ \winPos(\mdp,\Safe(\genColour)) $ can be computed in a strongly polynomial time and there exists a memoryless deterministic strategy, computable in strongly polynomial time, that is positively winning from every vertex of $\winPos(\mdp,\Safe(\genColour))$.
+\end{theorem}
+\begin{proof}
+Clearly $ \winPos(\mdp,\Safe(\genColour)) = \winPos(\mdp_{\bar{\genColour}},\Safe(\genColour)) $ and $ \winAS(\mdp,\Safe(\genColour)) = \winAS(\mdp_{\bar{\genColour}},\Safe(\genColour)) $; and moreover the corresponding winning strategies easily transfer between the two MDPs (for a safety objective, the behaviour after visiting a $ \genColour $-coloured state is inconsequential).
+Hence, putting $ Z = \winAS(\mdp_{\bar{\genColour}},\Safe(\genColour)) $, it is sufficient to show that  $ \winPos(\mdp_{\bar{\genColour}},\Safe(\genColour)) =\winPos(\mdp_{\bar\genColour},\Reach(Z))  $  
+
+The $ \supseteq $  inclusion is clear as well as the construction of the witnessing MD strategy (in the vertices of that are outside of $ Z $, we behave as the positively winning MD strategy for reaching $ Z $, while inside $ Z $ we behave as the a.s. winning strategy for $ \Safe(\genColour) $). 
+
+For the other inclusion, let $ X = \vertices \setminus \winPos(\mdp_{\bar{\genColour}},\Reach(Z)) $. We prove that $ X\subseteq \vertices \setminus \winPos(\mdp_{\bar{\genColour}},\Safe(\genColour)) $. Assign ranks to vertices inductively as follows: each vertex coloured by $ \genColour $ gets rank $ 0 $. Now if ranks $ \leq i $ have been already assigned, then a vertex  $ v $ is assigned rank $i+1  $ if it  does  not already have a lower rank but for all actions $ a\in\actions $ there exists a vertex $ u $ of rank $ \leq i $ s.t. $ \probTranFunc(u \mid v,a) >0$. Then each vertex in $ X $ is assigned a finite rank: indeed, the set of vertices without a rank is closed and does not contain $ \genColour $-coloured vertices, hence it is contained in $ Z $. 
+Now fix any strategy $ \sigma $ starting in a vertex $v \in X $. By definition of $ X $, $ \sigma $ never reaches $ Z $ and hence never visits an unranked state. At the same time, whenever $ \sigma $ is in a ranked state, there is, by definition of ranks, a probability at least $p_{\min}  $ (the minimal edge probability in $ \mdp $) of transitioning to a lower-ranked state in the next step. Hence, in every moment, the probability of $ \sigma $ reaching a $ \genColour $-coloured state within the next $ |\vertices| $ steps is at least $ p_{\min}^{|\vertices|} $. By a straightforward adaptation of the second part of the proof of \Cref{5-thm:as-char}, $ \sigma $ eventually visits $ \vertices_{\genColour} $ with probability 1. Since $ \sigma $ was arbitrary, this shows that $ v\not \in\winPos(\mdp_{\bar{\genColour}},\Safe(\genColour)).  $
+
+The complexity follows from the results on positive reachability and a.s. safety.
+\end{proof}
+
+%As we shall see, the \P-completeness is retained for many other MDP problems 
+%studied in this chapter, and in particular, the almost-sure reachability 
+%problem can be reduced to the problem of determining optimal 
+%values in mean-payoff MDPs, for which we give a polynomial-time algorithm 
+%in~\Cref{xxx}. This would be another way of 
+%establishing~\Cref{5-thm:as-complexity}. However, the algorithm we presented in 
+%this sub-section has a certain special property: it runs in \emph{strongly 
+%polynomial time}. 
+%Indeed the algorithm  only tests whether a 
+%probability of a given transition is positive or not, for which the exact 
+%values of positive probabilities are irrelevant.
+%
+%\begin{theorem}
+%\label{5-thm:qual-reach-sp}
+%The sets $\winPos(\mdp,\Reach(\genColour))$ and  
+%$\winAS(\mdp,\Reach(\genColour))$, as well as the corresponding winning 
+%strategies, can be computed in strongly polynomial time.
+%\end{theorem}
+
+
+
+\section{Discounted payoff in MDPs}
+
+In this section, we consider MDPs with edges coloured by rational numbers 
+and with the objective $\DiscountedPayoff$, defined in the same way as in 
+\Cref{chap:payoffs}. We start the chapter by proving that using the play-based semantics for the discounted-payoff objective yields no loss of generality. 
+
+\begin{lemma}
+	\label{5-lem:disc-step-one}
+In a discounted-payoff MDP, for each strategy $ \sigma $ and each vertex $ v $ it holds $ \playPay(v, \sigma) = \stepPay(v, \sigma) $.
+\end{lemma}
+\begin{proof}
+We have 
+\begin{align*} \playPay(v,\sigma) &= \expv^\sigma_v[(1-\lambda)\lim_{k \rightarrow \infty} \sum_{i=0}^{k-1}\lambda^i \colouring(\play_i) ] = (1-\lambda) \lim_{k \rightarrow \infty} \expv^\sigma_v[\sum_{i=0}^{k-1}\lambda^i \colouring(\play_i) ] 
+\\
+&= (1-\lambda)\cdot\lim_{k \rightarrow \infty} \sum_{i=0}^{k-1}\lambda^i\expv^\sigma_v[ \colouring(\play_i) ] = \stepPay(v, \sigma).
+\end{align*}
+%\noindent
+%
+Here, the last equality on the first line follows from the dominated convergence theorem~\cite[Theorem 1.6.9]{Ash&Doleans-Dade:2000} and the following equality comes from the linearity of expectation. (To apply the dom. convergence 
+theorem, we use the fact that for each 
+$k$ we have $\DiscountedPayoff^{k}(\play)\leq \maxc.
+$)
+\end{proof}
+
+\subsection*{Optimal values and memoryless optimality}
+
+ In this sub-section we give a 
+characterization of the value vector $\Value(\mdp)$ and prove that there always exists a 
+memoryless deterministic strategy that is optimal in every vertex. Our 
+exposition follows (in a condensed form) the one in~\cite{Puterman:2005}, the techniques 
+being somewhat similar to the ones in the previous chapter.
+
+%\subsection*{Optimal Reachability}
+%
+%We now switch our attention to the general case, where we aim to compute a 
+%reachability value $\Value(v)$ of a given vertex as well as optimal 
+%strategies. 
+%We start with a characterization of $\Value(v)$ in terms of a fixed point of a 
+%certain operator, which also leads to a simple approximation algorithm. To 
+%this 
+%end, fix an arbitrary MDP $\mdp$ and a reachability objective 
+%$\Reach(\genColour)$, 
+
+We define an operator $\discOP\colon 
+\R^{\vertices}\rightarrow \R^{\vertices}$ as follows: each vector 
+$\vec{x}$%=(x_v)_{v\in \vertices}$ 
+is mapped to a vector 
+$\vec{y}
+%=(y_v)_{v\in\vertices} 
+= \discOP(\vec{x})$ such that:
+$$
+\vec{y}_v = \max_{a \in \actions} \sum_{u\in \vertices} \probTranFunc(u\mid 
+v,a) 
+\cdot\left((1-\lambda)\cdot\colouring(v,u) + \lambda\cdot \vec{x}_u \right).
+%1 & \text{if $\colouring(v)=\genColour$} \\
+%\max_{a \in \actions} \sum_{u\in\in \vertices} \probTranFunc(u\mid v,a) \cdot 
+%x_u & \text{otherwise.}
+%\end{cases}
+$$
+
+\begin{lemma}
+\label{5-lem:fixpoint}
+The operator $\discOP$ is a contraction mapping. Hence, $\discOP$ has a unique 
+fixed point $\vec{x}^*$ in $\R^{\vertices}$, and $\vec{x}^* = 
+\lim_{k\rightarrow \infty} \discOP^k(\vec{x})$, for any 
+$\vec{x}\in\R^{\vertices}$.
+\end{lemma}
+\begin{proof}
+The proof proceeds by a computation analogous to the one in the first half of 
+the proof of~\Cref{4-thm:discounted}; we just need to reason about actions 
+rather than edges (and of course, use the formula defining $\discOP$ instead of 
+the one for games). The second part follows from the Banach fixed-point theorem.
+\end{proof}
+
+We aim to prove that $\Value(\mdp)$ is the unique fixed point $\vec{x}^*$ of 
+$\discOP$. We start with an auxiliary definition.
+
+\begin{definition}
+\label{5-def:disc-safe-act}
+Let $\vec{x}\in \R^{\vertices}$. We say that an action $a$ is ""$\vec{x}$-safe"" in 
+a vertex $v$ if
+\begin{equation}
+\label{5-eq:disc-safe-act}
+a= \underset{a' \in \actions}{\arg\max} \sum_{u\in \vertices} 
+\probTranFunc(u\mid 
+v,a') 
+\cdot\left((1-\lambda)\cdot\colouring(v,u) + \lambda\cdot \vec{x}_u \right).
+\end{equation}
+\noindent
+A strategy $\sigma$ is $\vec{x}$-safe, if for 
+each play $ \play $ ending in a vertex $v$, all actions that are selected with a positive 
+probability by $\sigma$ for $\play$ are $\vec{x}$-safe in $v$.
+\end{definition}
+
+\knowledge{$\vec{x}$-safe}{notion,index={action!$\vec{x}$-safe}}
+
+Given a strategy $\sigma$ we define $\valsigma$ to be the vector such that $\vec{x}_{v}^\sigma = 
+\playPay(v,\sigma)$. For memoryless strategies, $\valsigma$ can be computed efficiently as follows:
+Each memoryless strategy $\sigma$ defines a \emph{linear} operator $\discOP_{\sigma}$ which maps each vector 
+$\vec{x}\in \R^{\vertices}$ to a vector $\vec{y}=\discOP_{\sigma}(\vec{x})$ 
+such that $$\vec{y}_v = \sum_{a\in \actions} \sigma(a\mid v) \cdot 
+\left(\sum_{u \in \vertices} 
+\probTranFunc(u \mid v,a) \cdot( (1-\lambda)\cdot \colouring(u,v) + 
+\lambda \cdot \vec{x}_u )\right).$$  
+
+\begin{lemma}
+\label{5-lem:disc-val-sigma}
+Let $\sigma$ be a memoryless strategy using rational probabilities. Then the operator $\discOP_{\sigma}$ has a unique fixed point, which is equal to $\valsigma$ and which can be computed in polynomial time.
+\end{lemma}
+\begin{proof}
+The operator $\discOP_{\sigma}$ can be seen as an instantiation of $\discOP$ in an MDP where there is no choice, since the action probabilities are chosen according to $\sigma$. \Cref{5-lem:fixpoint} shows that 
+$\vec{x}^\sigma$ is a fixed-point of $\discOP^\sigma$. Since $\discOP_{\sigma}$ is again a contraction, it has a unique fixed point; and since it is linear, the fixed point can be computed in polynomial time, e.g. by Gaussian elimination (in its polynomial bit-complexity variant known as Bareiss algorithm~\cite{Bareiss:1968}).
+\end{proof}
+
+%\noindent
+%Note that for any $\vec{x}\in\R^{\vertices}$ and any $v\in \vertices$ there is 
+%at least one action that is $\vec{x}$-safe.
+We now prove that there is a memoryless strategy ensuring outcome given by the fixed point of $\discOP$. Hence, the fixed point gives a lower bound on the values of vertices.
+
+\begin{lemma}
+\label{5-lem:disc-val-lower}
+Let $\vec{x}^*$ be the unique fixed point of $\discOP$. 
+Then there exists an MD strategy that is $\vec{x}^*$-safe. Moreover, for each $\vec{x}^*$-safe memoryless strategy it holds that  
+$\playPay(v,\sigma) =\vec{x}_v^*$ for each $v\in \vertices$.
+\end{lemma}
+\begin{proof}
+ Note that for each $\vec{x}\in \R^{\vertices}$ and each $v\in 
+\vertices$ there always exists at least one action that is $\vec{x}$-safe in 
+$v$. Hence, there is a memoryless deterministic strategy which 
+in each $v$ chooses an arbitrary (but fixed) action that is $\vec{x}^*$-safe in 
+$v$. 
+
+Now let $ \sigma $ be an arbitrary $\vec{x}^*$-safe memoryless strategy.
+By \Cref{5-lem:disc-val-sigma}, the vector $\valsigma$ is the unique fixed point of $\discOP^\sigma$.
+ But since $\sigma$ 
+is $\vec{x}^*$-safe, $\vec{x^*}$ is also a fixed point of $\discOP^\sigma$. 
+Hence, $\vec{x}^* = \vec{x}^\sigma$.
+\end{proof}
+
+It remains to prove that $\vec{x}^*$ gives, for each vertex, an upper 
+bound on the expected discounted payoff achievable by any strategy from that 
+vertex. We introduce some additional notation to be used in the proof of the 
+next lemma, as well as in some later results: namely, we denote by 
+$\dPayoffStep{k}(\play)$ the 
+discounted 
+payoff accumulated during the first $k$ steps of $\play$, i.e. the number 
+$(1-\lambda)\sum_{i=0}^{k-1} \lambda^i
+\, \colouring(\play_i)$. The following lemma can be proved by an easy induction.
+
+\begin{lemma}
+\label{5-lem:disc-iterates}
+For each $k\geq 0$ and each vertex $v$ we have 
+$$\sup_{\sigma}\expv^{\sigma}_{v}[\dPayoffStep{k}] = 
+(\discOP^k(\vec{0}))_v$$ 
+(here $\vec{0}$ is a $|\vertices|$-dimensional vector of zeroes).
+\end{lemma}
+
+The previous lemma is used to prove the required upper bound on $\Value(v)$.
+
+\begin{lemma}
+\label{5-lem:disc-val-upper}
+For each vertex $v$ it holds 
+$\Value(v)\leq \vec{x}^*_v$, where $\vec{x}^*$ is the 
+unique fixed point of $\discOP$.
+\end{lemma}
+\begin{proof}
+%An easy induction shows that 
+%for each $k\geq 0$ and each vertex $v$ we have 
+%$$\sup_{\sigma}\expv^{\sigma}_{v}[\DiscountedPayoff^{k}] = 
+%(\discOP^k(\vec{0}))_v$$ 
+%(here $\vec{0}$ is a $|\vertices|$-dimensional vector of zeroes).
+%
+We have $\DiscountedPayoff(\play) = \lim_{k\rightarrow 
+\infty}\dPayoffStep{k}(\play)$ (for each $\play$) and hence, by 
+dominated 
+convergence theorem we have $\expv^\sigma_v[\DiscountedPayoff] = 
+\lim_{k\rightarrow 
+\infty}\expv^\sigma_v[\dPayoffStep{k}]$. 
+%Now $\Reach(\genColour) = \bigcup_{k=1}^{\infty}\Reach^k(\genColour)$ and 
+Hence,
+%
+\begin{align}
+\Value(v) &= \sup_{\sigma}\expv^\sigma_v[\DiscountedPayoff] \nonumber\\
+%\sup_{\sigma}\expv^\sigma_v[\lim_{k\rightarrow 
+%\infty}\DiscountedPayoff^k]\nonumber \\
+&= \sup_{\sigma}\lim_{k\rightarrow \infty}\expv^\sigma_v[\dPayoffStep{k}] 
+\label{5-eq:disc-limit-transition}.
+%&=\sup_{k\geq 1} \sup_{\sigma}\probm^\sigma_v(\Reach^k(\genColour)) 
+%=\big(\sup_{k\geq 1} \reachOP^k(\vec{0})\big)_v = \big(\lim_{k\rightarrow 
+%\infty} \reachOP^k(\vec{0})\big)_v.
+\end{align}
+
+\noindent
+It remains to prove that the RHS of~\eqref{5-eq:disc-limit-transition} is not 
+greater than $\vec{x}^*= \lim_{k\rightarrow 
+\infty}\discOP^k(\vec{0})=\lim_{k\rightarrow \infty} 
+\sup_{\sigma}\expv^\sigma_v[\dPayoffStep{k}]$ (the last inequality follows 
+by~\Cref{5-lem:disc-iterates}). It suffices to 
+show that for each $\sigma'$ we have $\lim_{k\rightarrow 
+\infty}\expv^{\sigma'}_v\dPayoffStep{k}] \leq \lim_{k\rightarrow 
+\infty}\sup_{\sigma}\expv^\sigma_v[\dPayoffStep{k}]$. But this immediately 
+follows from the fact that the inequality holds for each concrete $k$.
+\end{proof}
+
+The following theorem summarizes the results.
+
+\begin{theorem}
+\label{5-thm:disc-val-char-mem}
+The vector of values $\Value(\mdp)$ in a discounted sum MDP $\mdp$ is the 
+unique fixed point $\vec{x}^*$ of the operator $\discOP$. Moreover, there 
+exists a 
+memoryless deterministic strategy that is optimal in every vertex.
+\end{theorem}
+\begin{proof}
+The characterization of $\Value(\mdp)$ follows directly from 
+Lemmas~\ref{5-lem:disc-val-lower} and~\ref{5-lem:disc-val-upper}. The MD 
+optimality follows from~\Cref{5-lem:disc-val-lower}.
+\end{proof}
+
+In the rest of this section we discuss several algorithms for computing the 
+values and optimal strategies in discounted-payoff MDPs.
+
+\subsection*{Value iteration}
+
+The value iteration algorithm works in the same way as in the case of 
+discounted-payoff games: we simply iterate the operator $\discOP$ on the 
+initial argument $\vec{0}$. We know that $\Value(\mdp)=\lim_{k\rightarrow 
+\infty}\discOP^k(\vec{0})$, and hence, iterating $\discOP$ yields an 
+approximation of $\Value(\mdp)$. The iteration might not reached the fixed 
+point (i.e. $\Value(\mdp)$) in a finite number of steps, but we can provide 
+simple bounds on the precision of the approximation.
+
+\begin{lemma}
+\label{5-lem:disc-val-it-convergence}
+For each $k\in \N$, $||\Value(\mdp)-\discOP^k(\vec{0}) ||_{\infty} \leq 
+\lambda^k \cdot \maxc$. (Recall that $\maxc=\max_{e\in 
+\edges}|\colouring(e)|$).	
+\end{lemma}
+\begin{proof}
+This follows immediately from~\Cref{5-lem:disc-iterates} and from the fact that 
+for each play $\play$, $\sum_{i=k}^{\infty}\lambda^i\cdot 
+\colouring(\play_i)\leq \frac{1}{1-\lambda}\cdot\lambda^k \cdot \maxc$.
+\end{proof}
+
+Similar analysis can be applied to strategies induced by the approximate 
+vectors.
+
+\begin{lemma}
+\label{5-lem:disc-val-it-eps-strategies}
+Let $\eps>0$ be arbitrary and let 
+$$k(\eps)=\left\lceil\frac{\log_2\left(\frac{\eps(1-\lambda)}{4\maxc}\right)}{\log_2(\lambda)}
+ \right\rceil .$$ Then, every 
+$\discOP^{k(\eps)}(\vec{0})$-safe memoryless strategy is $\eps$-optimal in 
+every vertex.
+\end{lemma}
+\begin{proof}
+Let $\sigma$ be any $\discOP^{k(\eps)}(\vec{0})$-safe memoryless strategy and 
+let $\discOP_{\sigma}$ be the corresponding operator. We have that
+\begin{align}
+||\Value(\mdp) - \valsigma ||_{\infty} &= ||\Value(\mdp) 
+-\discOP^{k(\eps)}(\vec{0}) +\discOP^{k(\eps)}(\vec{0}) - \valsigma 
+||_{\infty} \nonumber
+\\
+&\leq ||\Value(\mdp) -\discOP^{k(\eps)}(\vec{0}) 
+||_{\infty} + || \discOP^{k(\eps)}(\vec{0}) - \valsigma
+||_{\infty}. \label{5-eq:disc-val-it-bound}
+\end{align}
+\noindent
+The first term in~\eqref{5-eq:disc-val-it-bound} is $\leq \eps/2$ 
+by the choice of $k(\eps)$ and~\Cref{5-lem:disc-val-it-convergence}. We prove 
+that the second term 
+in~\eqref{5-eq:disc-val-it-bound} is also bounded by $\eps/2$. Note that we 
+have $\valsigma=\discOP_{\sigma}(\valsigma)$ (as was already proved 
+in~~\Cref{5-lem:disc-val-lower}) and $\discOP(\discOP^{k(\eps)}(\vec{0})) = 
+\discOP_\sigma(\discOP^{k(\eps)}(\vec{0}))$ (since $\sigma$ is 
+$\discOP^{k(\eps)}(\vec{0})$-safe). Using this we get
+\begin{align*}
+|| \discOP^{k(\eps)}(\vec{0}) - \valsigma
+||_{\infty} & = || \discOP^{k(\eps)}(\vec{0}) -\discOP^{k(\eps)+1}(\vec{0}) + 
+\discOP^{k(\eps)+1}(\vec{0}) - \valsigma
+||_{\infty}\\
+&\leq || \discOP^{k(\eps)}(\vec{0}) -\discOP^{k(\eps)+1}(\vec{0}) ||_{\infty} + 
+||\discOP^{k(\eps)+1}(\vec{0}) - \valsigma
+||_{\infty}
+\\
+&=|| \discOP^{k(\eps)}(\vec{0}) -\discOP^{k(\eps)+1}(\vec{0}) ||_{\infty} + 
+||\discOP_\sigma(\discOP^{k(\eps)}(\vec{0})) - 
+\discOP_\sigma(\valsigma)||_{\infty}\\
+%&\leq 
+%|| \discOP^{k(\eps)}(\vec{0}) -\discOP^{k(\eps)+1}(\vec{0}) ||_{\infty} + 
+%||\discOP_\sigma(\discOP^{k(\eps)}(\vec{0})) - 
+%\discOP_\sigma(\valsigma)||_{\infty}\\
+&\leq || \discOP^{k(\eps)}(\vec{0}) -\discOP^{k(\eps)+1}(\vec{0}) ||_{\infty} + 
+\lambda\cdot||(\discOP^{k(\eps)}(\vec{0})) - 
+\valsigma||_{\infty}
+\end{align*}
+
+\noindent
+Re-arranging yields $|| \discOP^{k(\eps)}(\vec{0}) - \valsigma
+||_{\infty} \leq \frac{1}{1-\lambda}\cdot|| 
+\discOP^{k(\eps)}(\vec{0}) - 
+\discOP^{k(\eps)+1}
+||_{\infty} $.
+It follows from~\Cref{5-lem:disc-val-it-convergence}  that 
+$||\discOP^{k(\eps)}(\vec{0}) -\discOP^{k(\eps)+1}(\vec{0}) ||_{\infty} 
+\leq 2\cdot\lambda^{k(\eps)}\cdot \max|\colouring|\leq 
+\frac{(1-\lambda)\eps}{2}$, the last 
+inequality holding by the choice of $k(\eps)$. Plugging this into the 
+formula above yields $|| \discOP^{k(\eps)}(\vec{0}) - \valsigma
+||_{\infty} \leq\frac{\eps}{2}$, as required. 
+%
+\end{proof}
+
+
+%TODO: vector $\valsigma$
+
+%The previous lemma shows that for a fixed discount factor $\lambda$, an 
+%$\eps$-optimal strategy can be computed in time polynomial in the size of the 
+%input MDP and in the bit-size of $\eps$. However, 
+Using a value-gap result 
+(similar to the game case, but proved using a different technique), one can 
+show that sufficiently precise iterates can be used to computate an \emph{optimal} strategy. 
+This is summarized in the following lemma due to~\cite{Tseng:1990}.
+
+\begin{lemma}
+\label{5-lem:disc-vi-optimal-strategy}
+Let $d$ be the least common multiple of denominators of the following numbers: $\lambda$, all   
+transition probabilities, and all edge colourings in $\mdp$. Next, let $\eps^* = 
+\frac{1}{d^{(3|\vertices|+3)}\cdot |\vertices|^{\frac{\vertices}{2}}}$.
+Then, any $\discOP^{k(\eps^*)}(\vec{0})$-safe memoryless deterministic strategy 
+is 
+optimal in every 
+vertex.
+\end{lemma}
+\begin{proof}
+%Let $\sigma$ be any strategy satisfying the assumptions. 
+%By~\Cref{5-lem:disc-val-it-eps-strategies}, $\sigma$ is $\eps^*$-optimal. 
+%Hence, it suffices to show that any $\eps^*$-optimal memoryless deterministic strategy is 
+%optimal.
+ Let $\sigma^*$ be any MD optimal strategy (it is guaranteed 
+to exist by~\Cref{5-thm:disc-val-char-mem}). By the same theorem, we have that 
+$\Value(\mdp)=\discOP^{\sigma}(\Value(\mdp))$. By the definition of 
+$\discOP^{\sigma}$, we can write the above equation as $\Value(\mdp)= 
+(1-\lambda)\cdot \vec{c}+\lambda \cdot P\cdot \Value(\mdp)$, where $\vec{c}$ is 
+a vector whose each 
+component 
+is a 
+sum of several terms, each term being a product of an edge colour and of a 
+transition probability; and $P$ is a matrix containing 
+transition 
+probabilities. Multiplying the equation by $d^3$ yields $d^3\Value(\mdp)= 
+d^3(1-\lambda)\cdot \vec{c}+d^3\lambda \cdot P\cdot \Value(\mdp)$. Since this equation has a unique fixed point (due to 
+$\discOP^\sigma$ being a contraction), the matrix $A = d^3(I - \lambda P)$ (where $ I $ is the unit matrix) is 
+regular, and moreover, composed of integers (ue to the choice of $ d $). By Cramer's rule, each entry of $\Value(\mdp)$ is equal to 
+$\det(B)/\det(A)$, where $B$ is a matrix obtained by replacing some column of 
+$A$ with $d^3(1-\lambda)\vec{c}$ (which is again an integer vector, due to the multiplication by $ d^3 $). Hence, each entry of $\Value(\mdp)$ is a rational number with denominator $\det(A)$. Hadamard's inequality~\cite{Garling:07} implies $|\det(A)|\leq d^{3|\vertices|}{|\vertices|}^{\frac{|\vertices|}{2}}$.
+
+Now let $\sigma$ be any $\discOP^{k(\eps^*)}(\vec{0})$-safe MD strategy. By~\Cref{5-lem:disc-val-it-eps-strategies}, $\sigma$ is $\eps^*$-optimal. We prove that all actions used by $\sigma$ are $\vec{x}^*$-safe, which means that $\sigma$ is optimal by~\Cref{5-lem:disc-val-lower}. Assume that in some vertex $v$ the strategy $\sigma$ uses action $a$ that is not $\vec{x}^*$-safe. Denote $\vec{y}=\discOP_\sigma(\vec{x}^*)$. We have $ |\vec{y}_v - \vec{x}^*_v| > 0 $, since otherwise $a$ would be $\vec{x}^*$-safe. But then we can obtain a lower bound on the difference by investigating the bitsize of the numbers involved:
+\begin{align*}
+|\vec{y}_v - \vec{x}^*_v| &= \left|\frac{d^3}{d^3}\vec{y}_v - \frac{d^3}{d^3}\vec{x}^*_v\right|
+\\
+&=\frac{1}{d^3}\left|\sum_{u \in \vertices} 
+\underbrace{d\cdot\probTranFunc(u \mid v,a)}_{\text{integer}} \cdot( \underbrace{d^2(1-\lambda)\cdot \colouring(u,v)}_{\text{integer}} + 
+\underbrace{d^2\cdot\lambda \cdot \vec{x}^*_u ) - d^3\vec{x}^*}_{\text{int. multiples of $1/\det(A)$}}\right| \\
+&\geq \frac{1}{d^3\cdot \det(A)}\geq \frac{1}{d^{(3|\vertices|+3)}\cdot{|\vertices|}^{\frac{|\vertices|}{2}}}.
+\end{align*}
+
+\noindent
+%(The difference cannot be equal to $0$, otherwise $a$ would be $\vec{x}^*$ safe.) 
+Now put $\vec{z}=\discOP_\sigma(\discOP^{k(\eps)}(\vec{0}))$. We have the following (using, on the first line, the fact that $|a+b| \geq |a|-|b|$):
+%\begin{align*}
+%	|\vec{z}_v - \vec{x}^*_v| &= |\sum_{u \in \vertices} 
+%	\probTranFunc(u | v,a) \cdot( (1-\lambda)\cdot \colouring(u,v) + 
+%	\lambda \cdot \discOP^{k(\eps)}(\vec{0})_u) - \vec{x}^*_v| && \\
+%%	
+%& = |\sum_{u \in \vertices} 
+%\probTranFunc(u | v,a) \cdot( (1-\lambda)\cdot \colouring(u,v) + 
+%\lambda \cdot (\discOP^{k(\eps)}(\vec{0})_u \underbrace{-\vec{x}^*_u)   +\discOP_\sigma(\vec{x}^*)}_{\parbox{2.5cm}{\scriptsize\text{introduce  $-\discOP_\sigma(\vec{x}^*)_v+\discOP_\sigma(\vec{x}^*)_v$}} }-\vec{x}^*_v | && \\
+%&\geq |\discOP_\sigma(\vec{x}^*)_v-\vec{x}^*_v | - |\sum_{u \in \vertices} 
+%\probTranFunc(u | v,a) \cdot( (1-\lambda)\cdot \colouring(u,v) + 
+%\lambda \cdot (\discOP^{k(\eps)}(\vec{0})_u-\vec{x}^*_u) | &&\\
+%&\geq \frac{1}{d^{3|\vertices|+3}\cdot |\vertices|^{|\vertices|}} - 
+%%
+%\end{align*}
+\begin{align*}
+	|\vec{z}_v - \vec{x}^*_v| &=
+ |\vec{z}_v-\discOP_\sigma(\vec{x}^*)_v+\discOP_\sigma(\vec{x}^*)_v-\vec{x}^*_v | 
+\geq |\discOP_\sigma(\vec{x}^*)_v-\vec{x}^*_v | - |\vec{z}_v-\discOP_\sigma(\vec{x}^*)_v |  \\
+	&\geq \frac{1}{d^{(3|\vertices|+3)}\cdot |\vertices|^{\frac{|\vertices|}{2}}} - |\discOP_\sigma(\discOP^{k(\eps)}(\vec{0}))_v-\discOP_\sigma(\vec{x}^*)_v |\quad (\text{as shown above})\\
+	&\geq \frac{1}{d^{(3|\vertices|+3)}\cdot |\vertices|^{\frac{|\vertices|}{2}}} - |\discOP_{\sigma}(\discOP^{k(\eps^*)}(\vec{0}) - \vec{x}^*)_v|  \quad (\text{since $\discOP_{\sigma}$ is linear})\\
+	&\geq \eps^* - \lambda\cdot||\discOP^{k(\eps^*)}(\vec{0}) - \vec{x}^* ||_{\infty}
+	> \eps^* - \frac{\eps^*}{2}  \quad (\text{\Cref{5-lem:disc-val-it-convergence}})\\&=\frac{\eps^*}{2}.
+%	
+%	
+%
+	%
+\end{align*}
+
+\noindent
+In particular, it must hold that $\vec{z}_v< \vec{x}^*_v$. Otherwise we would have $\discOP^{k(\eps^*)+1}(\vec{0})_v \geq \discOP_{\sigma}(\discOP^{k(\eps^*)}(\vec{0}))_v \geq \vec{x^*}_v + \frac{\eps^*}{2} $, a contradiction with $\discOP^{k(\eps^*)+1}(\vec{0})$ being an $\frac{\eps^*}{4}$-ap\-prox\-imation of $\vec{x}^*$ (by \Cref{5-lem:disc-val-it-convergence} and the choice of $k(\eps^*)$).
+
+At the same time, $|\discOP(\discOP^{k(\eps^*)}(\vec{0}))_v - \vec{x}^*|\leq \frac{\eps^*}{4}$, due to the choice of $k(\eps^*)$. Since $\vec{z}_v \leq \vec{x}_v^*$, we get $\vec{z}_v < \vec{x}_v^* - \frac{\eps}{2} \leq \discOP(\discOP^{k(\eps^*)}(\vec{0}))_v$, a contradiction with $\sigma$ being $\discOP^{k(\eps^*)}(\vec{0})$-safe. 
+\end{proof}
+
+
+\begin{corollary}
+\label{5-cor:VI-optimal-strategy-comp}
+An optimal MD strategy in discounted-payoff MDPs with a fixed discount factor can be computed in polynomial time. 
+\end{corollary}
+\begin{proof}
+The number $1/\eps^*$, where $\eps^*$ is from \Cref{5-lem:disc-vi-optimal-strategy}, has bitsize polynomial in the size of the MDP when the discount factor is fixed. Hence, the number $k(\eps^*)$ defined as in \Cref{5-lem:disc-val-it-eps-strategies} has a polynomial magnitude, so it suffices to perform only polynomially many iterations. Since each iteration requires polynomially many arithmetic operations that involve only summation and multiplication by a constant, the result follows.
+\end{proof}
+
+\subsection*{Strategy improvement, linear programming, and (strongly) 
+polynomial time}
+
+The strategy (or policy) improvement (also called strategy/policy iteration in the literature) for MDPs works similarly as for games, see \Cref{5-algo:disc-strategy-improvement}. In the algorithm, we use $\discOP_{a,v}(\vec{x})$ as a shortcut for $ \sum_{u \in \vertices}\probTranFunc(u\mid v,a)\left((1-\lambda)\cdot\colouring(v,u) + \lambda\cdot \vec{x}_u \right)$
+
+%\begin{enumerate}
+%\item Let $\sigma_0$ be any MD strategy. Put $i=0$.
+%\item Compute $\vec{x}^{\sigma_i} = \left(\expv^{\sigma_i}_v[\DiscountedPayoff]\right)_{v\in \vertices}$ (using \Cref{5-lem:disc-val-sigma}).
+%\item For each vertex $v$, check if there is an \emph{improving} action $a$, i.e. an action  such that $\sum_{u \in \vertices}\probTranFunc(u\mid v,a)\left((1-\lambda)\cdot\colouring(v,u) + \lambda\cdot \vec{x}_u \right) > \vec{x}^{\sigma_i}_v. $ If yes, then let $a_v$ be any action such that $a_v = \underset{a' \in \actions}{\arg\max} \sum_{u\in \vertices} 
+%\probTranFunc(u\mid 
+%v,a') 
+%\cdot\left((1-\lambda)\cdot\colouring(v,u) + \lambda\cdot \vec{x}_u \right)$. If there is no improving action, put $a_v = \sigma_i(v)$.
+%\item If no state admitted an improving action, return $\sigma_{i}$ as the optimal strategy. Otherwise, let $\sigma_{i+1}$ be the strategy such that $\sigma_{i+1}(v)=a_v$ for each $v\in V$; then put $i:=i+1$ and go to (2.).
+%\end{enumerate}
+
+\begin{algorithm}
+	\KwData{A discounted-payoff MDP $ \mdp $}
+%	\SetKwFunction{KwOPAS}{$\OPAS$}
+%	\SetKwProg{Fn}{Function}{:}{}
+
+	$i \leftarrow 0$\;
+	$ \sigma_i \leftarrow \text{arbitrary MD strategy} $\;
+	\Repeat{$ \sigma_{i} = \sigma_{i-1} $}{
+	compute $ \vec{x}^{\sigma_i} = \left(\expv^{\sigma_i}_v[\DiscountedPayoff]\right)_{v\in \vertices} $ \tcp*{Using \Cref{5-lem:disc-val-sigma}}
+	\ForEach{$ v \in \vertices $}{
+		$ \mathit{Improve}(v) \leftarrow \sigma_{i}(v) $\;
+		\ForEach{$ a \in \actions $}{
+			\lIf{$\discOP_{a,v}(\vec{x}^{\sigma_i}) >\discOP_{a,\mathit{Improve}(v)}(\vec{x}^{\sigma_i})$}{
+				$\mathit{Improve}(v) \leftarrow a$
+				}
+			}
+		$\sigma_{i+1}(v) \leftarrow \mathit{Improve}(v)$
+		}
+		$ i \leftarrow i+1 $
+	}
+\Return{$ \sigma_i $}
+	
+%	\Fn{\KwOPAS{\genColour,X}}{
+%		$Y \leftarrow \winPos(\mdp_X,\Reach(\genColour))$ \tcp*{Computed by \Cref{5-algo:reach-pos}}
+%		\Repeat{$Y' \neq Y$}{
+%			$Y' \leftarrow Y$\;
+%			$Y \leftarrow \safeOP(\genColour,)y$
+%		}
+%		\Return{$Y$} \tcp*{$Y$ is now a closed set}
+%	}
+	
+	\caption{An algorithm computing an optimal MD strategy in a discounted MDP}
+	\label{5-algo:disc-strategy-improvement}	
+\end{algorithm}
+
+\begin{theorem}
+\label{5-thm:disc-strat-it}
+The strategy improvement algorithm for discounted MDPs terminates in a finite (and at most exponential) number of steps and returns an optimal MD strategy.
+\end{theorem}
+\begin{proof}
+First we need to show that whenever $\sigma_{i+1}\neq \sigma_i$, then  $\vec{x}^{\sigma_{i+1}} \geq \vec{x}^{\sigma_i}$ and $\vec{x}^{\sigma_{i+1}} \neq \vec{x}^{\sigma_i}$ (we write this by $\vec{x}^{\sigma_{i+1}} \succ\vec{x}^{\sigma_i}$). So fix some $ i $ s.t. an improvement is performed in the $ i $-th iteration of the repeat-loop. We have $\discOP_{\sigma_{i+1}}(\vec{x}^{\sigma_i})\succ\discOP_{\sigma_{i}}(\vec{x}^{\sigma_i})= \vec{x}^{\sigma_i}$, i.e. $\discOP_{\sigma_{i+1}}(\vec{x}^{\sigma_i})-\vec{x}^{\sigma_i} \succ 0$. Let $P$, $\vec{c}$ be the matrix and vector such that the equation $\vec{x}=\discOP_{\sigma_{i+1}}(\vec{x})$ can be written as $\vec{x}= (1-\lambda)\cdot \vec{c}+\lambda \cdot P\cdot\vec{x}$. Since the equation $\vec{x}=\discOP_{\sigma_{i+1}}(\vec{x})$ has a unique fixed point (as $ \discOP_{\sigma_{i+1}} $ is a contraction), the matrix $ I-\lambda P $ is invertible. Then $\discOP_{\sigma_{i+1}}(\vec{x}^{\sigma_i})-\vec{x}^{\sigma_i} \succ 0$ can be written as  $(1-\lambda)\vec{c} + (\lambda P - I)\vec{x}^{\sigma_i} \succ 0 $, or equivalently $\vec{x}^{\sigma_i}\prec (1-\lambda)\vec{c}\cdot(I-\lambda P)^{-1}.$ But the RHS of this inequality is equal to the fixed point of $\discOP_{\sigma_{i+1}}$, i.e. to $\vec{x}^{\sigma_{i+1}} .$
+
+Now there are only finitely (exponentially) many MD strategies and since$\vec{x}^{\sigma_{i+1}} \succ\vec{x}^{\sigma_i}$, we have that no strategy is considered twice. Hence, the algorithm eventually terminates. Upon termination, there is no improving action, so the algorithm has found a strategy $\sigma$ whose value vector $\valsigma$ is the fixed point of $\discOP$. Such a strategy is optimal by \Cref{5-thm:disc-val-char-mem}. 
+\end{proof}
+
+
+While each of the steps (1.)--(4.) can be performed in polynomial time, the 
+worst-case number of iterations is exponential~\cite{Hollanders&Delvenne&Jungers:2012}. However, the 
+algorithm has nice properties in the case when the discount factor is fixed, as we'll see below. It is also intimately connected to the linear programming approach.
+
+We can indeed aim to directly solve 
+the equation $\vec{x} = \discOP(\vec{x})$, thus obtaining the fixed point of 
+$\discOP$, by using a suitable LP. While the operator $\discOP$ is not 
+in itself linear, solving the equation can be encoded into a linear  program. 
+The main idea can be described as follows: given some numbers $y,z$, the 
+solution $\bar{x}$ to the equation $x=\max\{y,z\}$ is exactly the smallest 
+solution to the set of inequalities $x\geq y$, $x\geq z$. Hence, to solve the 
+equation  $\vec{x} = \discOP(\vec{x})$, we set up the following linear program 
+$\lpdisc$:
+\vspace{-1em}
+
+\begin{figure}[h]
+\begin{align*}
+&\text{{minimize} $\sum_{v\in \vertices} x_v$, \textrm{ 
+subject to }}&\\
+&x_v \geq \sum_{u\in \vertices} \probTranFunc(u\mid 
+v,a)\cdot\left((1-\lambda)\cdot \colouring(v,u) + \lambda\cdot x_u \right)
+&
+\text{for all $v\in \vertices$ and $a\in \actions$.}%\\
+% z_q & \geq 0 & \text{ for all } q\in Q
+\end{align*}
+\caption{The linear program $\lpdisc$ with variables $x_v$, $v\in \vertices$.}
+\label{5-fig:disc-lp}
+\end{figure}
+
+\begin{lemma}
+\label{5-lem:disc-lp}
+The linear program $\lpdisc$ has a unique optimal solution 
+$\bar{\vec{x}}$ that satisfies $\bar{\vec{x}} = \Value(\mdp)$.
+\end{lemma}
+\begin{proof}
+Let $\vec{x}^* = \Value(\mdp)$ be the unique fixed point of $\discOP$. Clearly 
+setting $x_v = \vec{x}^*_v$ yields a feasible solution of $\lpdisc$. 
+We show 
+that $\vec{x}^*$ is actually an optimal solution, by proving that for each 
+feasible solution $\vec{x}$ it holds $\vec{x} \geq \vec{x}^*$. (This also 
+shows 
+the uniqueness, since it says that an optimal solution is the infimum of the 
+set of 
+all feasible solutions.) First, note that for any feasible solution $\vec{x}$ 
+it holds $\discOP(\vec{x})\leq \vec{x}$, by the construction of $\lpdisc$. 
+Next, if $\vec{x}$ is a feasible solution, then $\discOP(\vec{x})$ is also a 
+feasible solution; otherwise, there would be some $v$ and $a\in \actions$ 
+such that 
+\begin{align*}\discOP(\vec{x})_v &< \sum_{u\in \vertices} \probTranFunc(u\mid 
+v,a)\cdot\left((1-\lambda)\cdot \colouring(v,u) + \lambda\cdot 
+\discOP(\vec{x})_u \right) \\ &\leq \sum_{u\in \vertices} \probTranFunc(u\mid 
+v,a)\cdot\left((1-\lambda)\cdot \colouring(v,u) + \lambda\cdot \vec{x}_u 
+\right) \leq \discOP(\vec{x})_v.
+\end{align*}
+Here, the first inequality on the second line follows from 
+$\discOP(\vec{x})\leq \vec{x}$, while the second inequality follows from the 
+definition of $\discOP$. But $\discOP(\vec{x})_v < \discOP(\vec{x})_v$ is an 
+obvious contradiction. So $\discOP(\vec{x})$ is indeed a feasible solution and 
+by applying the argument above, we get $\discOP^2(\vec{x}) \leq 
+\discOP(\vec{x})$. By a simple induction, $\discOP^{i+1}(\vec{x})\leq 
+\discOP^{i}(\vec{x})\leq \vec{x}$ for each $i\geq 0.$ Hence, also $\vec{x}^* = 
+\lim_{i\rightarrow \infty} \discOP^i(\vec{x}) \leq \vec{x}$ (the first equality 
+comes from \Cref{5-lem:fixpoint}).
+\end{proof}
+
+It is known that linear programming can be solved in polynomial time by 
+interior-point techniques~\cite{Kha:1979,Karmarkar:1984}. Hence, we get the following.
+
+\begin{theorem}
+\label{5-thm:disc-polytime-lp}
+The following holds for discounted-payoff MDPs:
+\begin{enumerate}
+\item
+The value of each vertex as well as an MD optimal 
+strategy can be computed in polynomial time. 
+\item 
+The problem whether the value of a given vertex $v$ is at least a given constant 
+(say~1) is \P-complete (under logspace reductions). The hardness result holds 
+even for a fixed discount factor.
+\end{enumerate}
+\end{theorem}
+\begin{proof}(1.)
+The first part comes directly from~\Cref{5-lem:disc-lp}. Once the optimal value 
+vector $\Value(\mdp)$ is computed, we can choose any $\Value(\mdp)$-safe MD 
+strategy as the optimal one 
+(\Cref{5-lem:disc-val-lower}).
+
+(2.) Let $\lambda$ be the fixed discount factor. We show the lower 
+bound, by extending the reduction 
+from the CVP problem used for almost-sure reachability. First, we 
+transform the input circuit into an MDP in the same way as in the reachability 
+case, and we let $v$ be the vertex corresponding to a gate we wish to evaluate. 
+Assume, for a while, that each path from $v$ to a target state has the same 
+length $\ell$. Then we simply assign reward 
+$\frac{1}{(1-\lambda)\cdot\lambda^{\ell -1}}$ to each edge 
+entering a target state, and $0$ to all other edges. It is easy to check that 
+the value of $v$ in the resulting discounted MDP is equal to the value of $v$ 
+in the reachability MDP. If the reachability MDP $\mdp$ does not have the 
+``uniform 
+path length'' property, we modify it by producing $|\vertices|$ copies of 
+itself so that each new vertex carries, apart from the original name, an index 
+from $\{1,\dots,n\}$. The transition function in the new MDP mimics the 
+original one, but from vertices with index $j<n$ we transition to the 
+appropriate vertices of index $j+1$. The target vertices in the new MDP are 
+those vertices of index $n$ that correspond to a target vertex of the 
+original MDP (this does not break down the reduction, as target vertices in the original vertices can be assumed to have no outgoing edges other than self loops). This new MDP has the desired property and can be produced in a 
+logarithmic space.
+\end{proof}
+
+The previous theorem shows that discounted-payoff MDPs can be solved in 
+polynomial time even if the discount factor is not fixed (i.e., it is taken as 
+a part of the input). This is an important difference from the 2-player 
+setting. However, the proof, resting on polynomial-time solvability of linear 
+programming, leaves opened a question whether the discounted-payoff 
+MDPs be solved in strongly polynomial time.  An answer was provided by Ye~\cite{Ye:2011}: already the classic simplex 
+algorithm of Dantzig solves $\lpdisc$ in a strongly 
+polynomial time in MDPs with a fixed discount factor. Formally, Ye proved that 
+the number of iterations taken by the simplex method is bounded by 
+$\frac{|\vertices|^2\cdot (|\actions|-1)}{1-\lambda}\cdot 
+\log(\frac{|\vertices|^2}{1-\lambda})$, with each iteration requiring  
+$\mathcal{O}(|\vertices|^2\cdot |\actions|)$ arithmetic operations. This has 
+also an impact on the strategy improvement method: it can be shown that strategy 
+improvement in discounted MDPs is really just a ``re-implementation'' of the 
+simplex algorithm using a different syntax. Hence, the strongly polynomial 
+complexity bound for a fixed discount factor holds there as well.
+
+\begin{theorem}
+For MDPs with a fixed discount factor, the value of each vertex as well as an 
+optimal MD strategy can be computed in a strongly polynomial time.
+\end{theorem}
+
+\section{Mean-payoff in MDPs: General properties and linear programming}
+
+\newcommand{\MeanPayoffOld}{\MeanPayoff}
+
+We will use the $\liminf$ variant of mean-payoff:
+
+\[
+\MeanPayoffInf(\play) = \liminf_n \frac{1}{n} \sum_{i = 0}^{n-1} c(\play_i)
+\]
+
+In particular, the play-based expected mean-payoff achieved by $ \sigma $ from $ v $ is $ \playPay(v, \sigma) = \expv_v^\sigma[\MeanPayoffInf] $, while for the step-based counterpart we have $ \stepPay(v, \sigma) = \liminf_{n \rightarrow \infty} \frac{1}{n} \sum_{i=0}^{n-1} \expv_v^\sigma[\colouring(\play_i)]$.
+
+The use of $ \liminf $ is natural in the formal verification setting: taking the $\liminf$ rather than $ \limsup $ emphasizes the worst-case behaviour along a play. However, all the results in this section hold also for $\limsup$-based mean-payoff, though some proofs are more complex. See the bibliographic remarks for more details.
+%
+%In the probabilistic setting, there are two ways of defining the expected mean-payoff under a given strategy $ \sigma $. The first way follows the recipe laid out in the preliminaries to this chapter, i.e. viewing $ \MeanPayoffInf $ as a random variable in the probability space induced by $ \sigma $. In such a case, the mean-payoff achieved by $ \sigma $ from vertex $ v $ is $ \expv_v^\sigma[\MeanPayoff]$, i.e. we compute the expectation of mean-payoff over all runs. The second way does just the reverse, i.e. for each time step $i$ we compute the expected reward accumulated in that step and then compute the limit average of these one-step expectations. Formally, the mean-payoff of $ \sigma $ from $ v $ is, according to this semantics, defined as $ \liminf_{ n\rightarrow \infty }  \frac{1}{ n } \sum_{i=0}^{n-1} \expv_v^\sigma [c(\play_i)] $.
+
+In general, $\stepPay(v,\sigma)$ can be different from $ \playPay(v, \sigma) $. However, we have the following simple consequence of the dominated convergence theorem:
+\begin{lemma}
+	\label{5-lem:limit-defined}
+Let $U$ be the set of all plays $\play$  for which $\lim_{n\rightarrow \infty} \frac{1}{n} \sum_{i=0}^{n-1}[\colouring(\play_i)]$ is undefined. If $\vinit,\sigma$ are such that $\probm^\sigma_{\vinit}(U) = 0$, then $\stepPay(\vinit,\sigma) = \playPay(\vinit, \sigma) $.
+\end{lemma}
+
+
+In particular, for any finite-memory strategy $ \sigma $, the two values coincide, since applying such a strategy turns an MDP into a finite Markov chain where the existence of the limit can be inferred using decomposition into strongly connected components and applying the Ergodic theorem.
+We will show that in our case of finite-state MDPs, the two approaches coincide not only at the levels of finite-memory strategies, but also as optimality criteria: that is, no matter which of the two semantics we use, the optimal values are the same and a strategy that is optimal w.r.t. one of the semantics is also optimal for the other one. We caution the reader that such a result does not automatically transfer to more complex settings, such as infinite-state MDPs or multi-objective optimization. 
+
+%We are interested in optimizing the expected value of these functions. Under a concrete strategy, these two functions might have a different expectation. However, in finite MDPs they coincide as an optimization criterion: we will see that a strategy optimizing the expectation of one is also optimal w.r.t. the expectation of the other one. The function $\MeanPayoffInf,$ which corresponds to optimizing the worst-case performance of the modelled system, is somewhat more standard in stochastic optimization, and hence we provide full formal proofs for this one. At an appropriate place, we sketch a proof of a crucial and technically non-trivial lemma which allows our results to be lifted also to $\MeanPayoffSup$.
+
+%The main aim of the rest of this chapter is to show that: 1) similarly to mean-payoff games, memoryless deterministic strategies are sufficient for optimality in mean-payoff MDPs; but 2) unlike for games, in the MDP case the optimal strategy as well as the optimal value can be found in polynomial time. For clarity of presentation, we focus on the case when the MDP is strongly connected. This case captures the fundamental issues in analysis of mean-payoff MDPs.
+
+%This section is structured as follows: first, we show an important linear programming connection to MDPs. Then, we exploit this connection to show how to find memoryless optimal strategies in \emph{strongly connected MDPs.} We then use this as a stepping stone for solving general MDPs in the remainder of the chapter.
+
+%\begin{definition}
+%An MDP is \emph{strongly connected} if for each pair of vertices $u,v$ there exists a finite play from $u$ to $v$. 
+%\end{definition}
+
+%\subsection*{Linear Programming for Mean-Payoff MDPs}
+
+To simplify the subsequent notation, we define the \emph{expected one-step} reward of a vertex-action pair $(v,a)$ to be the number $\sum_{w\in \vertices} \probTranFunc(w\mid v,a)\cdot \colouring(v,w)$. Overloading the notation, we denote this quantity by $\colouring(v,a)$.
+
+In mean-payoff  MDPs, a crucial role is played by the linear program $\lpmp$ pictured in Figure~\ref{5-fig:mp-lin}.
+
+%\vspace{-1em}
+
+\begin{figure}[h]
+	\begin{alignat}{2}
+	\text{{maximize}} \quad &\sum_{v\in \vertices, a \in \actions} x_{(v,a)} \cdot \colouring(v,a),\quad \textrm{ 
+			subject to }\nonumber \\
+	  \sum_{\substack{u\in\vertices\\ a \in \actions}} x_{(u,a)}\cdot \probTranFunc(v\mid u,a) &= \sum_{a \in \actions} x_{v,a}
+		&\quad&\text{for all $v\in \vertices$}\label{5-eq:mdp-flow} \\
+	 \sum_{v\in\vertices,a\in \actions} x_{v,a}&=1 &&\label{5-eq:mdp-freq-1} \\
+	 x_{v,a} &\geq 0  &&\text{for all $v\in \vertices,a\in \actions$} \label{5-eq:mdp-freq-nonnegp}
+	% z_q & \geq 0 & \text{ for all } q\in Q
+	\end{alignat}
+	\caption{The linear program $\lpmp$ with variables $x_{(v,a)}$ for  $v\in \vertices,a\in \actions$.}
+	\label{5-fig:mp-lin}
+\end{figure}
+
+There is a correspondence between feasible solutions of $\lpmp$ and the strategies in the corresponding MDP. Intuitively, in a solution corresponding to a strategy $\sigma$, the value of a variable $x_{v,a}$ describes the expected frequency with which $\sigma$ visits $v$ and plays $a$ upon such a visit. These frequencies must obey the \emph{flow constraints}~\eqref{5-eq:mdp-flow} and must represent a probability distribution, which is ensured by~\eqref{5-eq:mdp-freq-1} and~\eqref{5-eq:mdp-freq-nonnegp}. The objective function then represents the expected mean payoff. Of high importance is also the linear program which is \emph{dual} to $\lpmp$. This dual program, denoted $\lpmpdual$, is pictured in Figure~\ref{5-fig:mp-dual}. (For a refresher on linear programming and duality, see, e.g.~\cite{Matousek:2007}).
+
+\begin{figure}[h]
+	\begin{alignat}{2}
+	&\text{{minimize} }\quad g \quad \textrm{ 
+		subject to }\nonumber \\
+	&g -\colouring(v,a) + \sum_{u\in\vertices}\probTranFunc(u\mid v,a)\cdot y_u \geq y_v 
+	\quad\text{for all $(v,a)\in \vertices\times \actions$}\label{5-eq:mp-lpdual}
+%	\sum_{v\in\vertices,a\in \actions} x_{v,a}&=1 && \\
+%	x_{v,a} &\geq 0  &&\text{for all $v\in \vertices,a\in \actions$}
+	% z_q & \geq 0 & \text{ for all } q\in Q
+	\end{alignat}
+	\caption{The linear program $\lpmpdual$ with variables $g$ and $y_v$ for each  $v\in \vertices$.}
+	\label{5-fig:mp-dual}
+\end{figure}
+
+\begin{remark}[Nomenclature]
+A feasible solution of $ \lpmp $ is a vector $\vec{x} \in \R^{\vertices\times \actions} $ s.t. setting $ x_{(v,a)}=\vec{x}_{(v,a)} $ for all $ (v,a) $ satisfies the constraints in $ \lpmp $. A feasible solution of $ \lpmpdual  $ is a tuple $ (g,\vec{y}) $, where $ g\in\R $ (using the same notation for the number and the variable should not cause  confusion here) and $ \vec{y}\in \R^{\vertices}$ s.t. setting the corresponding variables to numbers prescribed by $ g $ and $ \vec{y} $ satisfies the constraints.
+\end{remark}
+
+The variable $g$ in $\lpmpdual$ is often called \emph{gain} while the vector of $y$-variables is called \emph{bias.} This is because it provides information on how much does the payoff (under some strategy) accumulated up to a certain step deviate from the estimate provided by the mean-payoff value of that strategy. This is illustrated in the following lemma, which forms the first step of our analysis. 
+
+\begin{lemma}
+\label{5-lem:dual-bound-step}
+Let $({g}, \vec{y})$ be a feasible solution of $\lpmpdual$ and let $Y^{(i)}$, where $i\geq 0$, be a random variable such that $Y^{(i)}(\play)= \vec{y}_{\ing(\pi_i)}.$ Then for each strategy $\sigma$, each vertex $\vinit$, and each $n\geq 0$ it holds $\expv^\sigma_{\vinit}[\sum_{i=0}^{n-1}\colouring(\play_i)]\leq n\cdot {g}- \vec{y}_{\vinit} +\expv^\sigma_{\vinit} [Y^{(n)}]$.	
+\end{lemma}
+\begin{proof}
+By induction on $n$. For $n=0$, both sides are equal to 0. Now assume that the inequality holds for some $n\geq 0$. By the induction hypothesis
+\begin{align}
+\expv^\sigma_{\vinit}[\sum_{i=0}^{n}\colouring(\play_i)] &= \expv^\sigma_{\vinit}[\sum_{i=0}^{n-1}\colouring(\play_i)] + \expv^\sigma_{\vinit}[\colouring(\play_n)] \leq n{g}- \vec{y}_{\vinit} +\expv^\sigma_{\vinit} [Y^{(n)}] + \expv^\sigma_{\vinit}[\colouring(\play_n)] \label{5-eq:mpdual-1}
+\end{align}
+
+\begingroup
+\allowdisplaybreaks
+\noindent
+We now obtain a bound for the third term on the RHS of~\eqref{5-eq:mpdual-1}. In the following, we denote by $\Pi_n$ the set of all plays of length $n$. Then we have
+\begin{align*}
+\expv^\sigma_v [Y^{(n)}]&= \sum_{v\in\vertices}  \vec{y}_v\cdot\probm^\sigma_{\vinit}(\ing(\pi_n)=v)
+=\sum_{v\in\vertices}  \vec{y}_v\cdot \bigg(\sum_{\substack{\play'\in \Pi_n\\ \last(\play')=v}}\probm^\sigma_{\vinit}(\play') \bigg) \\
+&=\sum_{v\in\vertices}  \vec{y}_v\cdot \bigg(\sum_{\substack{\play'\in \Pi_n\\ \last(\play')=v}}\probm^\sigma_{\vinit}(\play')\cdot\big(\underbrace{\sum_{a\in\actions}\sigma(a\mid \play')}_{=1} \big)\bigg) \\
+&= \sum_{\substack{v\in\vertices\\ a \in \actions}}  \vec{y}_v\cdot \bigg(\sum_{\substack{\play'\in \Pi_n\\ \last(\play')=v}}\probm^\sigma_{\vinit}(\play')\cdot\sigma(a\mid \play')\bigg)\\
+\text{(by~\eqref{5-eq:mp-lpdual})}\hspace{3mm}
+&{\leq}\sum_{\substack{v\in\vertices\\ a\in \actions}} \bigg( {g} -\colouring(v,a) + \sum_{u\in\vertices}\probTranFunc(u\mid v,a)\cdot  \vec{y}_u\bigg)\cdot\bigg(\sum_{\substack{\play'\in \Pi_n\\ \last(\play')=v}}\probm^\sigma_{\vinit}(\play')\cdot\sigma(a\mid \play')\bigg)\\
+&= {g}\cdot\underbrace{\sum_{\substack{v\in\vertices\\ a\in \actions}}\sum_{\substack{\play'\in \Pi_n\\ \last(\play')=v}}\probm^\sigma_{\vinit}(\play')\cdot\sigma(a\mid \play')}_{=1}\\&\quad-\underbrace{\sum_{\substack{v\in\vertices\\ a\in \actions}}\sum_{\substack{\play'\in \Pi_n\\ \last(\play')=v}}\probm^\sigma_{\vinit}(\play')\cdot\sigma(a\mid \play')\cdot\colouring(v,a)}_{=\expv^\sigma_{\vinit}[\colouring(\play_n)]}\\
+&\quad +\underbrace{\sum_{\substack{v,u\in \vertices\\ a \in \actions}}\sum_{\substack{\play'\in \Pi_n\\ \last(\play')=v}} \probm^\sigma_{\vinit}(\play')\cdot\sigma(a\mid \play')\cdot \probTranFunc(u\mid v,a)\cdot  \vec{y}_u}_{=\expv^\sigma_{\vinit}[Y^{(n+1)}]}.
+\end{align*}
+\endgroup
+
+Plugging this into~\eqref{5-eq:mpdual-1} yields the desired $\expv^\sigma_{\vinit}[\sum_{i=0}^{n}\colouring(\play_i)] \leq (n+1) {g}- \vec{y}_{\vinit} + \expv^\sigma_{\vinit}[Y^{(n+1)}]$. 
+%We remark that the equalities on the last three lines of the above computations follow directly from the definition of $\probm^\sigma_{\vinit}$ and we leave the formal proof to the reader as an exercise.
+\end{proof}
+
+\begin{corollary}
+\label{5-cor:mp-value-bound}
+Let $g$ be the objective value of some feasible solution of $\lpmpdual$. Then for every strategy $\sigma$ and every vertex $\vinit$ it holds $\playPay(\vinit,\sigma) \leq \stepPay(\vinit,\sigma) \leq g$.
+\end{corollary}
+\begin{proof}
+Let $ ({g}, \vec{y})$ be any feasible solution of $\lpmpdual$.
+By \Cref{5-lem:dual-bound-step} we have, for every $n\geq 0$, that $\expv^\sigma_{\vinit}[\frac{1}{n}\sum_{i=0}^{n-1}\colouring(\play_i)]\leq g - \frac{ \vec{y}_{\vinit}}{n}+ \frac{1}{n}\expv^\sigma_{\vinit} [Y^{(n)}]$. Since $ \vec{y}_{\vinit}$ is a constant and $|\expv^\sigma_{\vinit} [Y^{(n)}]|$ is bounded by the constant $ \max_{v\in \vertices}|\vec{y}_v|$ that is independent of $n$, the last two terms on the RHS vanish as $n$ goes to $\infty$. Hence, also $\stepPay(\vinit,\sigma) = \liminf_{n\rightarrow \infty} \expv^\sigma_{\vinit}[\frac{1}{n}\sum_{i=0}^{n-1}\colouring(\play_i)] \leq g$. It remains to show that we have $\playPay(\vinit,\sigma) \leq \stepPay(\vinit,\sigma)$, but this immediately follows from the Fatou's lemma~\cite[Theorem 1.6.8]{Ash&Doleans-Dade:2000}.
+\end{proof}
+
+\begin{corollary}
+\label{5-cor:lpmp-optimal-exists}
+Both the linear programs $\lpmp$ and $\lpmpdual$ have a feasible solution. Hence, both have an optimal solution and the optimal values of the objective functions in these programs are equal.
+\end{corollary}
+\begin{proof}
+One can easily construct a feasible solution for $\lpmpdual$ by setting all the $y$-variables to $0$ and $g$ to $\maxc$. By the duality theorem for linear programming, to show that also $\lpmp$ has feasible solution it suffices to show that the objective function of $\lpmpdual$ is bounded from below. But this follows from \Cref{5-cor:mp-value-bound}, since there is at least one strategy $\sigma$ giving us the lower bound (in particular, the objective function is bounded from below by $-\maxc$). The second part follows immediately by linear programming duality.
+\end{proof}
+
+
+%\textbf{Petr: Add sketch for $\MeanPayoffSup$ (via martingale bound)}
+
+%The following lemma lifts~\Cref{5-cor:mp-value-bound} to $\MeanPayoffSup$.
+
+\section{Mean-payoff optimality in strongly connected MDPs}
+
+As shown in the previous section, the optimal solution of any of the programs $\lpmp$, $\lpmpdual$ gives us an upper bound on the optimal value. In this sub-section we show that in strongly connected MDPs: a) a value of every vertex is the same; b) from a solution of $\lpmp$ one can extract a memoryless deterministic strategy $\sigma$ whose expected mean-payoff is well defined (i.e., the preconditions of \Cref{5-lem:limit-defined} are satisfied)) and equal to the objective value of the solution. Moreover, if the solution in question is optimal, then $ \sigma $ is optimal for both $\playPay$- and $\stepPay$-semantics.
+
+\begin{definition}
+\label{5-def:scc-mdp}
+An MDP is \emph{strongly connected} if for each pair of vertices $u,v$ there exists a strategy which, when starting in $u$, reaches $v$ with a positive probability. 
+\end{definition}
+
+For the rest of this section we fix an optimal solution $\lpsol{x}_{v,a}$ of $\lpmp$. We denote by $\solvset$ the set of all vertices for which there exists action $a$ s.t. $\lpsol{x}_{v,a}>0.$ From the shape of $\lpmp$ it follows that $\solvset$ is non-empty and closed, and hence we can consider a sub-MDP $\mdp_{\solvset}$ induced by $\solvset$. In $\mdp_{\solvset}$ we then define a memoryless randomized strategy $\sigma$ by putting $$\sigma(a\mid v)=\frac{\lpsol{x}_{(v,a)}}{\sum_{b\in \actions}\lpsol{x}_{(v,b)}}.$$
+
+Fixing a strategy $\sigma$ yields a \emph{Markov chain} $\mdp_\solvset^{\sigma}$. Markov chain can be viewed as an MDP with a single action (and hence, with no non-determinism). $\mdp_{\solvset}^\sigma$ in particular can be viewed an MDP with the same vertices, edges, and colouring as $\mdp_\solvset$, but with a single action (as non-determinism was already resolved by $\sigma$). The probability of transitioning from a vertex $u$ to a vertex $v$ in a Markov chain is denoted by $\mcprob_{u,v}$. In $\mdp_{\solvset}^{\sigma}$ we have $\mcprob_{u,v}=\sum_{a\in \actions} \probTranFunc(v\mid u,a)\cdot\sigma(a\mid u)$, the right-hand side being computed in the original MDP $\mdp$. Both $\mdp_\solvset$ and $\mdp_{\solvset}^{\sigma}$ have the same sets of plays and for each initial vertex, the probability measure induced by $\sigma$ in $\mdp$ equals the probability measure arising (under the unique policy) in $\mdp_{\solvset}^{\sigma}$. Hence, to prove anything about $\sigma$ it suffices to analyse $\mdp_{\solvset}^{\sigma}$.
+
+\paragraph{A refresher on Markov chains.} We review some fundamental notions of Markov chain theory~\cite{Norris:1998}. A Markov chain that is strongly connected is called \emph{irreducible}. The one-step transition probabilities in a Markov chain can be arranged into a square matrix $\mcprob$, which has one row and one column for each vertex. The cell in the row corresponding to a vertex $u$ and in the column corresponding to a vertex $v$ bears the value $\mcprob_{u,v}$ defined above. An easy induction shows that the matrix $\mcprob^k$ contains $k$-step transition probabilities. That is, the probability of being in $v$ after $k$ steps from vertex $u$ is equal to the $(u,v)$-cell of $\mcprob^k$, which we denote by $\mcprob^{(k)}_{u,v}$.
+
+A vertex $u$ of a Markov chain is \emph{recurrent} if, when starting from $u$, it is revisited infinitely often with probability $1$. On the other hand, if the probability that $u$ is re-visited only finitely often is one, then the vertex is \emph{transient}. It is known~\cite[Theorem 1.5.3]{Norris:1998} that each vertex of a finite Markov chain is either recurrent or transient, and that these two properties can be equivalently characterized as follows: vertex $u$ is recurrent if and only if  $\sum_{k=0}^{\infty}\mcprob^{(k)}_{u,u}=\infty$, otherwise it is transient.
+
+An \emph{invariant distribution} in a Markov chain with a vertex set $\vertices$ is a $|\vertices|$-dimensional non-negative row vector $\invdist$ which adds up to $1$ and satisfies $ \invdist\cdot \mcprob = \invdist$.
+
+The following lemma holds for arbitrary finite Markov chains.
+
+\begin{lemma}
+	\label{5-lem:MC-inv-rec}
+Let $\invdist$ be an invariant distribution and $v$ a vertex such that $\invdist_v > 0$. Then $v$ is recurrent.	
+\end{lemma}
+\begin{proof}
+Let $n$ be the number of vertices in the chain and $p_{\min}$ the minimum non-zero entry of $\mcprob$.
+Assume, for the sake of contradiction, that $v$ is transient. We show that in such a case, for each vertex $u$ it holds $\lim_{k\rightarrow\infty} \mcprob^{(k)}_{u,v} = 0$. For $u=v$ this is immediate, since the sum $\sum_{k=0}^{\infty}\mcprob^{(k)}_{v,v}$ converges for  transient $v$. Otherwise, let $f_{u,v,i}$ be the probability that a play starting in $u$ visits $v$ for the \emph{first time} in exactly $i$ steps. Then $\mcprob^{(k)}_{u,v}=\sum_{i=0}^k f_{u,v,i}\cdot \mcprob^{(k-i)}_{v,v}$. Now when starting in a vertex from which $v$ is reachable with a positive probability, at least one of the following events happens with probability $\geq p_{\min}^n$ in the first $n$ steps: either we reach a vertex from which $v$ is not reachable with positive probability, or we reach $v$. If neither of the events happens, we are, after $n$ steps, still in a vertex from which $v$ can be reached with a positive probability. In such a case, the argument can be inductively repeated (analogously to the proof of \Cref{5-thm:as-char}) to show that $f_{u,v,i}\leq (1-p_{\min}^n)^{\lfloor\frac{i}{n}\rfloor}\leq (1-p_{\min}^n)^{\frac{i-n}{n}}$.
+
+Since $\sum_{k=0}^{\infty}\mcprob^{(k)}_{v,v}$ converges, for each $\eps>0$ there exists $j_\eps$ such that $\sum_{i=j_{\eps}}^{\infty}\mcprob^{(i)}_{v,v} < \frac{\eps}{2}$. Similarly, there exists $\ell_\eps$ such that $$\sum_{i=\ell_{\eps}}^{\infty}{(1-p_{\min}^n)^{\frac{i-n}{n}}} = \frac{(1-p_{\min}^n)^{\frac{\ell_\eps}{n}}}{\left(1-(1-p_{\min}^n)^{\frac{1}{n}}\right)\cdot(1-p_{\min}^n)}< \frac{\eps}{2},$$ and hence $\sum_{i=\ell_{\eps}}^{\infty} f_{u,v,i}< \frac{\eps}{2}.$
+
+Now we put $m_{\eps}=\max\{j_\eps,\ell_\eps\}$. For any $k\geq 2m_{\eps}$ we have $\mcprob^{(k)}_{u,v}=\sum_{i=0}^k f_{u,v,i}\cdot \mcprob^{(k-i)}_{v,v} \leq \sum_{i=m_{\eps}}^{k}f_{u,v,i} + \sum_{i=0}^{m_{\eps}}\mcprob^{(k-i)}_{v,v}\leq\sum_{i=m_{\eps}}^{k}f_{u,v,i} + \sum_{i=m_{\eps}}^{k}\mcprob^{(i)}_{v,v}<\eps$ (note that all the series involved are non-negative). This proves that $\mcprob^{(k)}_{u,v}$ vanishes in the limit.
+
+Finally, we derive the contradiction. Since $\invdist$ satisfies $\invdist\cdot \mcprob = \invdist$, we also have $\invdist\cdot \mcprob^k = \invdist$ for all $k$. Hence, the $v$-component of $\invdist\cdot \mcprob^k$ is equal to $\invdist_v>0$. But as shown above, the $v$-column of $\mcprob^k$ converges to the all-zero vector as $k\rightarrow \infty$, so also $(\invdist\cdot \mcprob^k)_v$ vanishes in the limit, a contradiction.
+\end{proof}
+
+\noindent
+\paragraph{Towards the optimality of $ \sigma $.} We now turn back to the chain $\mdp_{\solvset}^{\sigma}$, where the memoryless strategy $ \sigma $ is obtained from the optimal solution of $ \lpmp $. In general, $ \mdp_{\solvset}^{\sigma} $ does not have to be irreducible. Hence, we use the following lemma and its corollary to extract an irreducible sub-chain, to which we can apply known results of Markov chain theory.
+
+\begin{lemma}
+\label{5-lem:mc-rec}
+Let $\bar{\invdist}$ be a vector such that for each $v\in \solvset$ it holds $\bar{\invdist}_v=\sum_{a\in \actions} \lpsol{x}_{v,a}$. Then $\bar{\invdist}$ is an invariant distribution of $\mdp_{\solvset}^{\sigma}$. Consequently, all vertices of $\mdp_{\solvset}^{\sigma}$ are recurrent.
+\end{lemma}
+\begin{proof}
+The first part follows directly from the fact that $\lpsol{x}_{v,a}$ is a feasible solution of $\lpmp$. The second part follows from~\Cref{5-lem:MC-inv-rec} and from the fact that $\bar\invdist$ is positive (by the definition of $\solvset$).
+\end{proof}
+
+\begin{corollary}
+\label{5-cor:mp-scc-extraction}
+The set $\solvset$ can be partitioned into subsets $\solvset_1,\solvset_2,\dots,\solvset_m$ such that each $\solvset_i$ induces a strongly connected sub-chain of $\mdp_{\solvset}^{\sigma}$.
+\end{corollary}
+\begin{proof}
+Let $v\in\solvset$ be arbitrary and let $U_v\subseteq \solvset$ be the set of all vertices reachable with positive probability from $v$ in $\mdp_{\solvset}^{\sigma}$. Then $v$ is reachable (in $\mdp_{\solvset}^{\sigma}$) with positive probability from each $u\in U_v$: otherwise, there would be a positive probability of never revisiting $v$, a contradiction with each vertex being recurrent in $\mdp_{\solvset}^{\sigma}$ (\Cref{5-lem:mc-rec}). Hence, $U_v$ induces a strongly connected ``sub-MDP'' (or sub-chain) of $\mdp_{\solvset}^{\sigma}$. It is easy to show that if $U_v \neq U_w$ for some $v\neq w $, then the two sets must be disjoint.
+\end{proof}
+
+Hence, we can extract from $\solvset$ a set $Q$ inducing a strongly-connected sub-chain of $\mdp_{\solvset}^{\sigma}$, which we denote $\mdp^{\sigma}_{Q}$. The set $Q$ also induces a strongly connected sub-MDP of $\mdp$ denoted by $\mdp_Q$. The chain $\mdp^{\sigma}_{Q}$ arises by fixing, in $\mdp_Q$, a strategy formed by a restriction of $\sigma$ to $Q$. We use the following powerful theorem to analyse $\mdp^{\sigma}_{Q}$.
+
+\begin{theorem}[""Ergodic theorem""; see Theorem~1.10.2 in~\cite{Norris:1998}]
+\label{5-thm:ergodic} In a strongly connected Markov chain (with a finite set of vertices $\vertices$) there exists a unique invariant distribution $\invdist$. Moreover, for every vector $\vec{h}\in \R^{\vertices}$ the following equation holds with probability 1:
+\[
+\lim_{n \rightarrow \infty} \frac{1}{n} \sum_{i=0}^{n-1}\vec{h}_{\ing(\pi_i)} = \sum_{v\in\vertices} \invdist_v\cdot \vec{h}_v.
+\]
+(In particular, the limit is well-defined with probability 1).
+\end{theorem}
+
+\knowledge{Ergodic theorem}{notion,index={Ergodic theorem}}
+
+We can use the Ergodic theorem to shows that the expected mean-payoff achieved by $\sigma$ in $\mdp_{Q}$ matches the optimal value of $ \lpmp $, in a very strong sense: the probability of a play having a mean-payoff equal to this optimal value is 1 under $ \sigma $.
+
+\begin{theorem}
+\label{5-cor:mp-scc-optimality}
+Let $\sigma_Q$ be the restriction of $\sigma$ to $Q$. Then for every $v\in Q$ it holds that $\probm^{\sigma_Q}_{\mdp_Q,v}(\MeanPayoffInf = r^*)=1$, where $r^*$ is the is the optimal value of $\lpmp$. 
+%As a consequence, $\expv_{\mdp_W,v}^{\sigma_W}[\MeanPayoffInf]=\expv_{\mdp_W,v}^{\sigma_W}[\MeanPayoffInf]=r^*$. 
+\end{theorem}
+\begin{proof}
+Let $ \vec{w}\in\R^{\vertices \times\actions} $ be a vector sych that $\vec{w}_{(v,a)}=\lpsol{x}_{(v,a)}/\sum_{(q,a)\in Q\times\actions} \lpsol{x}_{(q,a)}$ for every $(v,a)\in Q\times \actions$, and $\vec{w}_{(v,a)}=0$ for all other $(v,a)$. We claim that $ \vec{w} $ is also an optimal solution of $\lpmp$. 
+
+To prove feasibility, note that setting $\vec{w}_{(v,a)}=0$ for each $v\in \vertices\setminus Q$ does not break the constraints~\eqref{5-eq:mdp-flow}. This is because $Q$ induces a strongly connected sub-chain of $\mdp_{\solvset}^{\sigma}$, and hence there are no $v\in \vertices$, $u\in \vertices\setminus Q$ such that $\lpsol{x}_{(u,a)}\cdot \probTranFunc(v\mid u,a)>0$. Next,~\eqref{5-eq:mdp-flow} is invariant w.r.t. multiplication of variables by a constant, so normalizing the remaining values preserves~\eqref{5-eq:mdp-flow} and ensures that~\eqref{5-eq:mdp-freq-1} holds. 
+
+To prove optimality, assume that the objective value of $\vec{w}$ is smaller than $r^*$. Then we can mirror the construction from the previous paragraph and produce a feasible solution ${\hat{\vec{w}}_{(v,a)}}$ whose $(Q\times\actions)$-indexed components are zero and the rest are normalized components of $\lpsol{x}$. Then $r^*$ is a convex combination of the objective values of $\vec{w}$ and $\hat{\vec{w}}$, so $\hat{\vec{w}}$ must have a strictly larger value than $r^*$, a contradiction with the latter's optimality.
+
+We now plug $ \vec{w} $ into the ergodic theorem as follows: As in~\Cref{5-lem:mc-rec}, it easy to prove that setting $\invdist_v=\sum_{a\in\actions}\vec{w}_{(v,a)}$ yields an invariant distribution. Now put $\vec{h}_v=\sum_{a\in\actions}\sigma(a\mid v)\cdot \colouring(v,a)$ ($ =  \sum_{w \in \vertices} \mcprob_{v,w}\cdot \colouring(v,w)$). From the Ergodic theorem we get that $\lim_{n \rightarrow \infty} \frac{1}{n} \sum_{i=0}^{n-1}\vec{h}_{\ing(\pi_i)}$ almost-surely exists and equals 
+\begin{align}
+\sum_{v\in Q} \invdist_v\cdot \vec{h}_v &= \sum_{v\in \vertices} \left(\big(\sum_{d\in\actions}\vec{w}_{(v,d)}\big)\cdot \big(\sum_{a\in\actions}\sigma(a\mid v)\cdot \colouring(v,a) \big)\right) \nonumber\\
+&= \sum_{v\in Q} \left(\Bigg( \frac{\sum_{d\in\actions}\lpsol{x}_{(v,d)}}{\sum\limits_{\substack{q\in Q\\ b\in \actions}} \lpsol{x}_{(q,b)}} \Bigg)\cdot \Bigg( \frac{\sum_{a\in\actions}\lpsol{x}_{(v,a)}\cdot\colouring(v,a)}{\sum\limits_{d\in  \actions} \lpsol{x}_{(v,d)}} \Bigg) \right) \nonumber\\
+&= \frac{1}{\sum\limits_{\substack{q\in Q\\ b\in \actions}} \lpsol{x}_{(q,b)}}\cdot\sum\limits_{\substack{v\in Q\\ a\in\actions}} \lpsol{x}_{(v,a)}\cdot \colouring(v,a) = \sum\limits_{\substack{v\in Q\\ a\in\actions}} \vec{w}_{(v,a)}\cdot\colouring(v,a) =r^*.\label{5-eq:ergodic-use}
+\end{align}
+
+%\noindent
+It remains to take a step from the left-hand side of~\eqref{5-eq:ergodic-use} towards the mean payoff. To this end, we construct a new Markov chain $\mdp_Q'$ from $\mdp_Q$ by ``splitting'' every edge $(u,v)$ with a new dummy vertex $d_{u,v}$ (i.e., $d_{u,v}$ has one edge incoming from $u$ with probability $\mcprob_{u,v}$ and one edge outgoing to $v$ with probability $1$). In $\mdp_Q'$ we define a vector $\vec{h}'$ s.t. for each vertex $d_{u,v}$ the vector $ \vec{h}' $ has the $ d_{u,v} $-component equal to $\colouring(u,v)$, while the components corresponding to the original vertices are zero. It is easy to check that $\mdp_Q'$  is strongly connected and that it has an invariant distribution $\invdist'$ defined by $\invdist'_v=\invdist_v/2$ for $v$ in $Q$ and $\invdist'_{d_{u,v}}=\frac{\invdist_u\cdot\mcprob_{u,v}}{2}$ for $(u,v)$ an edge of $\mdp_Q$.
+Also, by easy induction, for each play $\play$ of length $n$ in $\mdp_Q$ it holds $\frac{1}{n}\sum_{i=0}^{n-1}\colouring(\play_i) = \frac{1}{n}\sum_{i=0}^{2n-1}\vec{h}'_{\ing(\play_i')}$, where $\play'$ is the unique play in $\mdp_Q'$ obtained from $\play$ by splitting edges with appropriate dummy vertices. Hence, 
+\begin{equation}
+\label{5-eq:mc-opt-limit}
+\lim_{n\rightarrow \infty}\frac{1}{n}\sum_{i=0}^{n-1}\colouring(\play_i) = 2\cdot \lim_{n\rightarrow \infty}\frac{1}{n}\sum_{i=0}^{n-1}\vec{h}'_{\ing(\play_i')},\end{equation} provided that both limits exist. By the ergodic theorem  applied to $\mdp_Q'$, we have that the RHS  limit in~\eqref{5-eq:mc-opt-limit} is defined with probability 1 and equal to
+\begin{align*}
+\underbrace{\sum_{v\in Q} \invdist'_v \cdot \vec{h}'_{v}}_{=0} + \sum_{u,v\in Q} \invdist'_{d_{u,v}}\cdot \vec{h}'_{d_{u,v}} = \frac{1}{2}\sum_{u\in Q}\invdist_u\cdot\left( \sum_{v\in Q}\mcprob_{u,v}\cdot \colouring(u,v)\right)\\ =\frac{1}{2}\sum_{u\in Q} \invdist_u\cdot \vec{h}_u=\frac{r^*}{2},
+\end{align*}
+\noindent
+the last equality being shown above. Plugging this into~\eqref{5-eq:mc-opt-limit} yields that if a limit on the LHS (i.e., the mean payoff of a play) is well-defined with probability 1, then it is equal to $r^*$ also with probability 1. But if there was a set $L$ of positive probability in $\mdp_Q$ with $\lim_{n \rightarrow \infty}\frac{1}{n}\sum_{i=0}^{n-1}\colouring(\play_i)$ undefined for each $\play\in L$, by splitting the plays in $L$ we would obtain a positive-probability set of plays in $\mdp_Q'$ in which $\lim_{n \rightarrow \infty}\frac{1}{n}\sum_{i=0}^{n-1}\vec{h}'_{\ing(\play_i')}$ is also undefined, a contradiction with the ergodic theorem. 
+%
+%%
+%
+%\begin{align*}
+%\expv^{\bar\sigma_W}_{\mdp_{W},v}[\lim_{n \rightarrow \infty} \frac{1}{n} \sum_{i=0}^{n-1}h(\ing(\pi_i))] &= \lim_{n \rightarrow \infty} \frac{1}{n}\sum_{i=0}^{n-1}\expv^{\bar\sigma_W}_{\mdp_{W},v}[h(\ing(\pi_i))]\\
+%&= \lim_{n \rightarrow \infty} \frac{1}{n}\sum_{i=0}^{n-1}\sum_{w\in W}\left(\probm^{\bar\sigma_W}_{\mdp_{W},v}(\ing(\play_i)=w)\cdot \sum_{a\in\actions}\bar\sigma_W(a\mid v)\cdot \colouring(v,a)\right)\\
+%&= \lim_{n \rightarrow \infty} \frac{1}{n}\sum_{i=0}^{n-1}\expv^{\bar\sigma_W}_{\mdp_{W},v}[\colouring(\play_i) ] = \expv^{\bar\sigma_W}_{\mdp_{W},v}[ \lim_{n \rightarrow \infty} \frac{1}{n}\sum_{i=0}^{n-1} \colouring(\play_i)].
+%\end{align*}
+%
+%\noindent
+%The first equality follows from the dominated convergence theorem and from the fact that the limit-average of $h$ is a.s. defined. For the last equality, we need to show that also $\lim_{n \rightarrow \infty} \frac{1}{n}\sum_{i=0}^{n-1} \colouring(\play_i)$ is a.s. defined. To this end, we construct a new Markov chain $\mdp_W'$ from $\mdp_W$ by ``splitting'' every edge $(u,v)$ with a new dummy vertex $d_{u,v}$ (i.e., $d_{u,v}$ has one edge incoming from $u$ with probability $\mcprob_{u,v}$ and one edge outgoing to $v$ with probability $1$). In $\mdp_W'$ we define a function $h'$ mapping each $d_{u,v}$ to $\colouring(u,v)$, and each other vertex to $0$. It is straightforward to check that $\mdp_W'$ is strongly connected and that for each play $\play$ of length $n$ in $\mdp_W$ it holds $\sum_{i=0}^{n-1}\colouring(\play_i) = \sum_{i=0}^{2n-1}h'(\ing(\play_i'))$, where $\play'$ is the unique play in $\mdp_W'$ obtained from $\play$ by splitting edges with dummy vertices. Hence, we have $ $
+%
+% Hence, if there was a set $L$ of positive probability in $\mdp_W$ with $\lim_{n \rightarrow \infty}\frac{1}{n}\sum_{i=0}^{n-1}\colouring(\play_i)$ undefined for each $\play\in L$, by splitting the plays in $L$ we would obtain a positive-probability set of plays in $\mdp_W'$ in which $\lim_{n \rightarrow \infty}\frac{1}{n}\sum_{i=0}^{n-1}h'(\ing(\play_i'))$ is also undefined, a contradiction with the ergodic theorem.
+\end{proof}
+
+So far, we have constructed an optimal strategy $\sigma_Q$ but only on the part $Q$ of the original MDP $\mdp$. To conclude the construction, we define a memoryless strategy $\sigma^*$ in $\mdp$ as follows: we fix a memoryless deterministic strategy $\sigma_{=1}$ that is winning, from each vertex of $\mdp,$ for the objective of almost-sure reaching of $Q$ (such a strategy exists since $\mdp$ is strongly connected, see also \Cref{5-thm:as-char}. Then we put $\sigma^*(v)=\sigma_{=1}(v)$ if $v\not\in Q$ and $\sigma^*(v)=\sigma_Q(v)$ otherwise. Hence, starting in any vertex, $\sigma^*$ eventually reaches $Q$ with probability 1 and then it starts behaving as $\sigma_Q$. The optimality of such a strategy follows from the prefix independence of mean payoff, as argued in the next theorem.
+
+\begin{theorem}
+\label{5-thm:mp-valcomp} For any sequence of numbers $c_0,c_1,\dots$ and any $k\in\N$ it holds $\liminf_{n\rightarrow \infty}\frac{1}{n}\sum_{i=0}^{n-1}c_i = \liminf_{m\rightarrow \infty}\frac{1}{m}\sum_{i=0}^{m-1}c_{k+i}$. As a consequence, 
+for every vertex $v$ in $\mdp$ it holds $\probm^{\sigma_Q}_{\mdp_Q,v}(\MeanPayoffInf=r^*)=1,$ where $r^*$ is the optimal value of $\lpmp$. Hence, $\expv^{\sigma^*}_v[\MeanPayoffInf]= r^*$.
+\end{theorem}
+\begin{proof}
+%For any sequence of numbers $c_0,c_1,\dots$ and any $k\in\N$ it holds $\liminf_{n\rightarrow \infty}\frac{1}{n}\sum_{i=0}^{n-1}c_i = \liminf_{m\rightarrow \infty}\frac{1}{m}\sum_{i=0}^{m-1}c_{k+i}$. This is because
+We have
+\begin{align*}
+\liminf_{n\rightarrow \infty}\frac{c_0 + \cdots c_{n-1}}{n} &= \liminf_{n\rightarrow \infty}\left(\underbrace{\frac{k}{n}}_{\mathrlap{\text{vanishes for } n\rightarrow \infty}}\cdot\frac{c_0 + \cdots + c_{k-1}}{k} + \underbrace{\frac{n-k}{n}}_{\mathrlap{\rightarrow 1 \text{ for } n\rightarrow \infty}}\cdot\frac{c_k+\cdot+c_{n-1}}{n-k} \right)\\
+&=\liminf_{m\rightarrow\infty} \frac{c_k+\dots+c_{k+m-1}}{m}.
+\end{align*} A similar argument holds for $\limsup.$
+
+With probability 1, a play has an infinite suffix consisting of plays from $\mdp_Q^{\sigma}$, and thus also $\MeanPayoffInf$ and $\MeanPayoffSup$ determined by this suffix. By \Cref{5-cor:mp-scc-optimality}, these quantities are equal to $r^*$ with probability 1.
+\end{proof}
+
+\noindent
+The following theorem summarizes the computational aspects.
+
+\begin{theorem}
+\label{5-thm:mp-rand-opt-main}
+In a strongly connected mean-payoff MDP, one can compute, in polynomial time, a memoryless randomized strategy which is optimal from every vertex, as well as the (single) optimal value of every vertex.
+\end{theorem}
+\begin{proof}
+We obtain, in polynomial time, an optimal solution of $\lpmp$, with the optimal objective value being the optimal value of every vertex (\Cref{5-thm:mp-valcomp}). We then use this optimal solution $\lpsol{x}$ to construct the strategy $\sigma$ and the  Markov chain $\mdp_{\solvset}^{\sigma}$. From this chain we extract a strongly connected subset of vertices $Q$ (in polynomial time, by a simple graph reachability analysis). With the subset in hand, we can construct strategies $\sigma_Q$ and $\sigma_{=1}$, all polynomial-time computations (see \Cref{5-thm:as-char}). These two strategies are then combined to produce the optimal strategy $\sigma^*$.
+\end{proof}
+
+\subsection*{Deterministic optimality in strongly connected MDPs}
+
+It remains to prove that we can actually compute a memoryless~\emph{deterministic} strategy that is optimal in every vertex. Looking back at the construction that resulted in \Cref{5-thm:mp-rand-opt-main}, we see that the optimal strategy $\sigma^*$ might be randomized because the computed optimal solution $\lpsol{x}$ of $\lpmp$ can contain two components $(v,a)$, $(v,b)$ with $a\neq b$ and both $\lpsol{x}_{(v,a)}$ and $\lpsol{x}_{(v,b)}$ being positive. To prove memoryless deterministic optimality, we will show that there is always an optimal solution which yields a deterministic strategy, and that such a solution can be obtained in polynomial time.
+
+The previous section implicitly defined two mappings: First, a mapping $\Psi$, which maps every solution $ \vec{x} $ of $\lpmp$ to a memoryless strategy in some sub-MDP of $\mdp$, by putting $\Psi(\vec{x}) = \sigma$ where $\sigma(a\mid v) = \vec{x}_{(v,a)}/\sum_{b\in \actions}\vec{x}_{(v,b)}$. Second, mapping $\Xi$, which maps each memoryless strategy $\sigma$ that induces a strongly connected Markov chain to a solution $\Xi(\sigma)$ of $\lpmp$ such that $\Xi(\sigma)_{(v,a)}=\invdist_v\cdot \sigma(a\mid v)$, where $\invdist$ is the unique invariant distribution of the chain induced by $\sigma$.
+\begin{lemma}
+\label{5-lem:sol-strat-correspondence}
+Let $X$ be the set containing exactly those solutions $\vec{x}$ of $\lpmp$ for which the strategy  $\Psi(\vec{x})$ induces a strongly connected Markov chain. Then the mappings $\Psi$ and $\Xi$ are bijections between $X$ and the set of all memoryless strategies in some sub-MDP of $\mdp$ that induce a strongly connected Markov chain.
+\end{lemma}
+\begin{proof}
+A straightforward computation shows that $\Xi\circ\Psi$ and $\Psi\circ\Xi$ are identity functions on the respective sets.
+\end{proof}
+
+\begin{definition}
+	\label{5-def:pure-lp}
+A solution $\vec{x}$ of $\lpmp$	is \emph{pure} if for every vertex $v$ there is at most one action $a$ such that $\vec{x}_{(v,a)}>0$.
+\end{definition}
+
+\noindent
+The following lemma follows from the way in which strategies $\sigma$ and $\sigma^*$ were constructed in the previous sub-section.
+
+\begin{lemma}
+	\label{5-lem:pure-lpsol}
+Let $\lpsol{x}$ be a pure optimal solution of $\lpmp$ and denote $ S = \{v \in \vertices\mid \exists a \text{ s.t. }\lpsol{x}_{(v,a)}>0\} $. Then the strategy $\sigma=\Psi(\lpsol{x})$ is an MD strategy in $\mdp_{\solvset}$. Hence, in such a case, the strategy $\sigma^*$ constructed from $ \sigma $ as in \Cref{5-thm:mp-rand-opt-main} is an optimal MD strategy in $\mdp$.
+\end{lemma}
+
+It remains to show how to find a pure optimal solution of $\lpmp$. To this end we exploit some fundamental properties of linear programs.
+
+A linear program is in the \emph{standard} (or equational) form if its set of constraints can be expressed as $A\cdot \vec{x} = \vec{b}$, $\vec{x}\geq 0$, where $\vec{x}$ is a vector of variables, $\vec{b}$ is a non-negative vector, and $A$ is a matrix of an appropriate dimension. In this notation, all the vectors are column vectors, i.e. $A$ has one column per each variable. Note that $\lpmp$ is a program in the standard form. A feasible solution $\vec{x}$ of such a program is \emph{basic} if the columns of $A$ corresponding to variables whose value is positive in $\vec{x}$ form a linearly independent set of vectors. Since the maximal number of linearly independent columns equals the maximal number of linearly independent rows (a number called a \emph{rank} of $A$), we know that each basic feasible solution has at most as many positive entries as there are rows of $A$. 
+
+The next two lemmas prove some fundamental properties of basic feasible solutions.
+
+\begin{lemma}
+\label{5-lem:basic-cond-unique}
+Assume that a linear program in a standard form has two basic feasible solutions $\vec{x},\vec{x}'$ such that both solutions have the same set of non-zero components, and the cardinality of this set equals the number of equality constraints in the program. Then $\vec{x}=\vec{x}'$.
+\end{lemma}
+\begin{proof}
+Write $A\cdot \vec{x} = \vec{b}$ the equational constraints of the LP.
+If $\vec{x}$ is a basic feasible solution, then it solves the equation $A_{N} \cdot \vec{x}_N = \vec{b}$, where $A_N$ ($  N$ stands for ``non-zero'') is obtained from $A$ by removing all columns corresponding to zero components of $\vec{x}$, and   $\vec{x}_N$ is obtained from $\vec{x}$ by removing all zero components. 
+
+Since $\vec{x}$ has as many non-zero components as there are rows of $A$, it follows that $A_N$ is a square matrix. Since $\vec{x}$ is a basic solution, $A_N$ is regular (its columns are linearly independent) and $\vec{x}=A_{N}^{-1}\cdot \vec{b}$ is uniquely determined by $A_N$. Repeating the same argument for $\vec{x}'$ yields $\vec{x}'=A_{N}^{-1}\cdot \vec{b}= \vec{x}$.
+\end{proof}
+
+\begin{lemma}
+\label{5-lem:basic-sol}
+If a linear program in a standard form has an optimal solution, then it has also a basic optimal solution. Moreover, a basic optimal solution can be found in polynomial time.
+\end{lemma}
+\begin{proof}[Sketch]
+The existence of a basic optimal solution is a well-known linear programming fact, e.g. the standard simplex algorithm works by traversing the set of basic feasible solutions until it finds an optimal one~\cite{Matousek:2007}. For computing an optimal basic solution, we can use one of the polynomial-time interior-point methods for linear programming, such as the path-following method~\cite{Karmarkar:1984,Gonzaga:1992}. While these methods work by traversing the interior of the polyhedron of feasible solutions, they converge, in polynomial time, to a point that is closer to the optimal basic solution than to all the other basic solutions. By a process called \emph{purification,} such a point can be then converted to the closest basic solution, i.e. to the optimal one~\cite{Gonzaga:1992}.
+\end{proof}
+
+
+
+
+
+
+%\noindent
+%Now the linear program $\lpmp$ has $|\vertices|+1$ constraints, so by the above argument its basic solutions have at most $|\vertices|+1$ non-zero entries. To obtain a deterministic strategy, we need to push this bound further.
+
+\begin{theorem}
+\label{5-thm:lpmp-basic-dim}
+One can find, in polynomial time, an optimal deterministic strategy in a given strongly connected  mean-payoff MDP.
+\end{theorem}
+\begin{proof}
+First, we use~\Cref{5-lem:basic-sol} to find a basic optimal solution $\lpsol{x}$ of $\lpmp$.
+We check if it is pure. If yes, we are done. Otherwise,
+%
+%Assume that there is a basic feasible solution $\lpsol{x}$ of $\lpmp$ that is not pure. Then 
+there is $v\in \vertices$ and two distinct actions $a,b$ such that $\lpsol{x}_{(v,a)}>0$ and $\lpsol{x}_{(v,b)}>0.$ Let $ S = \{v \in \vertices\mid \exists a \text{ s.t. }\lpsol{x}_{(v,a)}>0\} $. By~\Cref{5-cor:mp-scc-extraction}, we can partition $\solvset$ into several subsets, each of which induces a strongly connected sub-MDP of $\mdp$. Let $Q$ be a class of this partition containing $v$. We have that the optimal mean-payoff value of every vertex in $\mdp_Q$ is the same as in $\mdp$. This is because, 
+as in the beginning of the proof of~\Cref{5-cor:mp-scc-optimality}, we can transform $\lpsol{x}$ into another optimal solution of the same value as $\lpsol{x}$ which has non-zero entries only for components indexed by $(q,a)$ with $q\in Q$. All these computations can be easily implemented in polynomial time. 
+%The solution $\tilde{x}$ is still non-pure (since positivity of entries within $W$ has not changed) and basic (since a subset of a linearly independent set of columns is still linearly independent).
+
+We argue that $Q$ is a strict subset of $\vertices$. Indeed, assume that $Q=\vertices$. Then $\lpsol{x}$ induces a randomized strategy $\sigma$ in $\mdp$. Moreover, since $\lpsol{x}$ is a basic solution, it has at most $|\vertices|+1$ positive entries, and since it is non-pure, it must have exactly $n+1$ positive entries, i.e. \Cref{5-lem:basic-cond-unique} is applicable to $\lpsol{x}$, since $\lpmp$ has exactly $|\vertices|+1$ constraints. Now we define a new strategy $\sigma'$ in $\mdp$ by slightly changing the behaviour in $v$. To this end, choose some $\eps>0$ and put $\sigma'(a\mid v)=\sigma(a\mid v)-\eps$ and $\sigma'(b\mid v)=\sigma(b\mid v)+\eps$; we choose $\eps$ small enough so that both quantities are still non-zero. The chain $\mdp^{\sigma'}$ is still strongly connected. Now let $\vec{x}' = \Xi(\sigma')$. Then $\vec{x}'$ is a solution of $\lpmp$ which is still basic, with a set of non-zero components being the same as in $\lpsol{x}$. At the same time, $\vec{x}'\neq \lpsol{x}$, since $\sigma\neq {\sigma'}$ and $\Xi$ is a bijection (\Cref{5-lem:sol-strat-correspondence}). But this is a contradiction with \Cref{5-lem:basic-cond-unique}.
+
+Hence, $\mdp_Q$ is a strict sub-MDP of $\mdp$ in which the value of every vertex is the same as in the original MDP. We can perform a recursive call of the aforementioned computation on $\mdp_Q$ (compute basic optimal solution of $\lpmp$, check purity, possibly extract and recurse on a sub-MDP).
+The depth of recursion is bounded by $|\vertices|$, so the running time is polynomial. Since each sub-MDP obtained during the recursion is non-empty, and the size of the MDPs decreases, the recursion must eventually terminate with a basic optimal solution (in some sub-MDP $\mdp'$) that is pure. This yields a memoryless deterministic strategy in $\mdp'$ whose value is equal to the optimal value in $\mdp.$ Such a strategy can be extended to whole $\mdp$ by solving almost sure reachability to $ \mdp' $, as described in the previous sub-section.
+%
+%As such,  In particular, $\tilde{x}$ has exactly $|W|+1$ positive entries (due to its non-purity), which is the number of constraints in $\lpmp^{W}$. Hence,~\Cref{5-lem:basic-unique} applies to $\tilde{x}$.
+%
+%Since the solution $\tilde{x}$ is not pure, it induces a randomized strategy $\tilde\sigma$ in $\mdp_W$ (a restriction of $\bar\sigma$ to $\mdp_W$). 
+%
+%Now we define a new strategy $\sigma$ in $\mdp_W$ by slightly changing the behaviour in $v$. To this end, choose some $\eps>0$ and put $\sigma(a\mid v)=\tilde\sigma(a\mid v)-\eps$ and $\sigma(a\mid v)=\tilde\sigma(a\mid v)+\eps$; we choose $\eps$ small enough so that both quantities are still non-zero. The chain $\mdp^\sigma$ (whose transition matrix we denote $\mcprob$) is still strongly connected. Now let $x = \Xi(\sigma)$. Then $x$ is a solution of $\lpmp$ which is still basic, with a set of non-zero components being the same as in $\lpsol{x}$. At the same time, $x\neq \tilde{x}$, since $\sigma\neq \tilde{\sigma}$ and $\Xi$ is a bijection (\Cref{5-lem:sol-strat-correspondence}). But this is a contradiction, since there cannot be two basic feasible solutions with the same set of non-zero components. 
+%Indeed, write $A\cdot x = b$ the equational constraints in $\lpmp$ (i.e., $b$ is a vector with all but last component being zero, the last component equals 1). 
+%   
+\end{proof}
+
+%\textbf{PETR: Say that $x$ and $\tilde{x}$ have a full column rank in $\mdp_W$.}
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+%
+%\begin{lemma}
+%\label{5-lem:strat-to-lpsol}
+%Each strategy $\sigma$ induces a solution $\lpsol{x}$ of $\lpmp$ whose objective value is at least $\expv^\sigma_v[\MeanPayoff].$
+%\end{lemma}
+%\begin{proof}
+%
+%\end{proof}
+
+
+
+%
+%\noindent
+%To formally state the connection between the operator $\reachOP$ and the 
+%reachability values, we denote by $\DiscountedPayoff^{k}(\play)$ the 
+%discounted 
+%payoff accumulated during the first $k$ steps of $\play$, i.e. the number 
+%$(1-\lambda)\sum_{i=0}^{k-1} \lambda^i
+%\, \colouring(\play_i)$. 
+%The following 
+%lemma can be proved by an easy induction.
+%%
+%\begin{lemma}
+%\label{5-lem:disc-iterates}
+%For each $k\geq 0$ and each vertex $v$ it holds that 
+%$$\sup_{\sigma}\expv^{\sigma}_{v}[\DiscountedPayoff^{k}] = 
+%(\discOP^k(\vec{0}))_v$$ 
+%(here $\vec{0}$ is a $|\vertices|$-dimensional vector of zeroes).
+%\end{lemma}
+%%
+%%
+%%\noindent
+%Now $\DiscountedPayoff(\play) = \lim_{k\rightarrow 
+%\infty}\DiscountedPayoff^{k}(\play)$ (for each $\play$) and hence, by 
+%dominated 
+%convergence theorem it holds that $\expv^\sigma_v[\DiscountedPayoff] = 
+%\lim_{k\rightarrow 
+%\infty}\expv^\sigma_v[\DiscountedPayoff^{k}]$. (We use the fact that for each 
+%$k$ we have $\DiscountedPayoff^{k}(\play)\leq \max_{e\in 
+%\edges}\colouring(e).
+%$)
+%%Now $\Reach(\genColour) = \bigcup_{k=1}^{\infty}\Reach^k(\genColour)$ and 
+%Hence 
+%%
+%\begin{align*}
+%\Value(v) &= \sup_{\sigma}\expv^\sigma_v[\DiscountedPayoff] = 
+%\sup_{\sigma}\expv^\sigma_v[\lim_{k\rightarrow \infty}\DiscountedPayoff^k]\\
+%&= \sup_{\sigma}\lim_{k\rightarrow \infty}\expv^\sigma_v[\DiscountedPayoff^k]
+%\\
+%&=\sup_{k\geq 1} \sup_{\sigma}\probm^\sigma_v(\Reach^k(\genColour)) 
+%=\big(\sup_{k\geq 1} \reachOP^k(\vec{0})\big)_v = \big(\lim_{k\rightarrow 
+%\infty} \reachOP^k(\vec{0})\big)_v.
+%\end{align*}
+%
+
+
+
+%\noindent
+%Note that the last equality in the first line follows from (XXX - SET UP SOME 
+%PROB MEASURE PROPERTIES IN PRELIMS), while the last equality on the second 
+%line 
+%holds since the sequence 
+%$\big(\reachOP(\vec{0})\big)_v,\big(\reachOP^2(\vec{0})\big)_v,\dots$ is 
+%non-decreasing. Denoting by $\Value(\mdp)$ the $|\vertices|$-dimensional 
+%vector 
+%s.t. $\Value(\mdp)_v=\Value(v)$, we get the following.
+%
+%\begin{theorem}
+%\label{5-lem:reach-value-limit}
+%We have $\Value(\mdp)=\lim_{k\rightarrow \infty} \reachOP^k(\vec{0})$.
+%\end{theorem}
+%
+%The previous theorem yields a simple algorithm for approximation of 
+%reachability values, so called \emph{value iteration.} The algorithm simply 
+%consists of iterating $\reachOP$ with initial seed $\vec{0}$, which yields 
+%better and better approximation of optimal values of all vertices. A 
+%disadvantage of value iteration is that it might not converge to the true 
+%reachability values in a finite number of steps, which is the case, e.g. for 
+%the MDP in Figure~\ref{xxx}. However,...
+%
+%% NOTE ON A MORE EFFICIENT COMPUTATION, MAYBE ALSO FOR POS
+
+
+
+%enColour)) $.
+%\end{theorem}
+
+% U POS TROCHU PREORGANIZOVAT, AT JE TAM HEZKY VIDET NOTION TOHO RANKU
+
+
+
+
+
+
+
+
+
+
+%=\play_1\play_2\cdots \play_k = 
+%(v_0,v_1)(v_1,v_2)\cdots(v_{k-1},v_k)$ we put
+%\begin{equation}
+%\label{5-eq:cylinder-probs}
+%\cylProb(\play) = 
+%\begin{cases}
+%0 & \text{if } v_0 \neq \vinit\\
+%\prod_{i=1}^{k} \sum_{a \in \actions}\sigma(a\mid )
+%\end{cases}
+%\end{equation}
+
+
+
+\section{End components}
+
+To solve mean-payoff optimization in general MDPs, as well as general optimization problems for $\omega$-regular objectives, we need to introduce a crucial notion of an \emph{end component}.
+
+\begin{definition}
+	\label{5-def:ec}
+An \emph{end component (EC)} of an MDP is any set $\mec$ of vertices having the following two properties:
+\begin{itemize}
+ \item For each $u \in \mec$ there exists an action $ a $ that is ""\emph{$ \mec$-safe}"" in $ u $, i.e. satisfies that for all vertices  $v$ with $ \probTranFunc(v \mid u,a) > 0 $ it holds $ v \in \mec $.
+ \item For each pair of distinct vertices $ u,v \in \mec$ there is a path from $ u $ to $ v $ visiting only the states from $\mec$.
+\end{itemize}
+In other words, $ \mec $ is an EC of $ \mdp $ if and only if $ \mec $ is a closed set and the sub-MDP $ \mdp_\mec $ is strongly connected. 
+\end{definition}
+
+\knowledge{$\mec$-safe}{notion,index={action!$\mec$-safe}}
+
+\noindent
+From the player's point of view, the following property of ECs is important.
+
+\begin{lemma}
+		\label{5-lem:EC-sweep}
+Let $\mec$ be an EC and $v \in \mec$. Then there is an MD strategy $\sigma$ which, when starting in a vertex inside $\mec$, never visits a vertex outside of $ \mec $ and at the same time ensures that with probability one, the vertex $v$ is visited infinitely often. Moreover, $\sigma$ can be computed in polynomial time.
+\end{lemma}
+\begin{proof}
+%
+%For the finite-memory construction, note that for each vertex $v\in \mec$ there is an MD strategy in $ \mdp_\mec $ ensuring that $v$ is reached with probability 1 from any initial vertex in $ \mec $. Indeed, it holds that  $\OPAS(v,\mec)=\mec$, so the result follows from \Cref{5-thm:as-char}. To construct the required strategy, we enumerate the vertices of $ \mec $ in some fixed order $ u_1, u_2, \dots u_\ell $ and employ a strategy which initially behaves as a winning strategy for almost-sure reachability of $ u_1 $, once $ u_1 $ is reached it starts to behave as a winning strategy for a.s. reaching $ u_2 $, etc.; this continues until $ u_\ell $ is reached, in which case we switch back to reaching $ u_1 $ and loop through this sequence of strategies forever. Clearly, memory of size $ \ell $ is sufficient for such looping. That all vertices of $ \mec $ are visited infinitely often follows by an easy induction.
+%
+%For the MR construction, take a strategy which in each vertex $ u\in \mec $ uniformly randomizes between all actions that are $ \mec$-safe in $ u $. Applying such a strategy yields a strongly connected Markov chain. Using similar arguments as in the previous paragraph, we can show that in such a chain the probability of reaching $ v $ from $ u $ is 1, for any pair of vertices $ u,v $. The rest again follows by an easy induction. 
+%For the 
+From \Cref{5-thm:as-char} we know that we can compute, in polynomial time, an MD strategy $\sigma$ in the sub-MDP $ \mdp_\mec $ ensuring that $v$ is reached with probability 1 from any initial vertex in $ \mec $. Indeed, this is because $\mec = \winPos(\mdp_M,\Reach(v))$, due to the second condition in the definition of a MEC. Since $\mec$ is closed, this strategy never leaves $\mec$. Whenever, the strategy leaves $v$, it guarantees that we return to $v$ with probability 1. Hence, for each $k$, the probability of event $V_k$ --- visiting $v$ at least $k$ times --- is $1$. Since $V_{k+1}\subseteq V_k$, it follows that also the probability of $\bigcap_{i=1}^\infty V_i$ is equal to $1$, which is what we aimed to prove.
+\end{proof}
+
+The main reason for introducing ECs is that they are crucial for understanding the limiting behaviour of MDPs.
+
+\begin{definition}
+\label{5-def:inf}
+We denote by $\Inf(\play)$ the set of vertices that appear infinitely often along a play $ \play $.
+\end{definition}
+
+\begin{lemma}
+\label{5-lem:EC-inf}
+For any $ \vinit $ and $ \sigma $ it holds $ \probm^\sigma_{\vinit} ( \{\play \mid \Inf(\play) \text{ is an EC }  \}) = 1 $. 
+\end{lemma}
+\begin{proof}
+Assume the converse. Then in some MDP there is a set of vertices $ X $ which is not an EC but satisfies $ \probm^\sigma_{\vinit}(\Inf = X ) > 0 $. Since $ X $ is not an EC, there is a vertex $ v \in X $ in which any (even randomized) choice of action results in leaving $ X $ with probability at least $  p_{\min} > 0$ (recall that $ p_{\min} $ is the smallest non-zero edge probability in the MDP).
+
+Let $ \mathit{Stay}_k $ be the set of plays in $\{\Inf = X \}$ which, from step $ k $ on, never visit a vertex outside of $ X $. Since $ \{\Inf = X \}  = \bigcup_{i=1}^{\infty} \mathit{Stay}_i$, by union bound we get $ \probm^\sigma_{\vinit}(\mathit{Stay}_{k_0})>0 $ for some  $ k_0\in \N $. Let $ \mathit{Vis}_j $ denote the set of all plays in $ \mathit{Stay}_{k_0} $ that visit $ v $ at least $ j $ times \emph{after} the step $ k_0 $. Since $  \mathit{Stay}_{k_0} \subseteq \{\Inf = X\}$, we have $  \mathit{Stay}_{k_0} \cap \mathit{Vis}_j = \mathit{Stay}_{k_0} $ for each $ j $. But an easy induction shows that  $ \probm_{\vinit}^\sigma (\mathit{Stay}_{k_0} \cap \mathit{Vis}_{j+1} ) \leq \probm_{\vinit}^\sigma(\{\Ing(\play_{k_0}) \in X \})\cdot p_{\min}^j$, since every visit to $ v $ brings a  risk at least $p_{\min}$ of falling out of $ X $. The latter number converges to zero, so $ \probm_{\vinit}^\sigma (\mathit{Stay}_{k_0}) = \lim_{j\rightarrow \infty}\probm_{\vinit}^\sigma (\mathit{Stay}_{k_0}) = \lim_{j\rightarrow \infty}\probm_{\vinit}^\sigma (\mathit{Stay}_{k_0} \cap\mathit{Vis}_{j+1}) =  0$, a contradiction.
+\end{proof}
+
+In general, there can be exponentially many end components in an MDP (e.g. for a complete underlying graph and one action per edge, each subset of vertices is an EC). However, we can usually restrict to analysing \emph{maximal} ECs.
+
+\begin{definition}
+	\label{5-def:mec}
+An end component $ \mec $ is a \emph{maximal end component (MEC)} if no other end-component $ \mec' $ is a superset of $ \mec $. We denote by $\mecs(\mdp)$ the set of all MECs of $\mdp.$
+\end{definition} 
+
+If two ECs have a non-empty intersection, then their union is again an EC. Hence, every EC is contained in exactly one MEC, and the total number of MECs is bounded by $ |\vertices| $, since two distinct MECs must be disjoint. Moreover, the decomposition of an MDP into MECs can be computed in polynomial time.
+
+\begin{algorithm}
+	\KwData{An MDP $ \mdp $}
+	\SetKwFunction{FTreat}{Treat}
+	\SetKwProg{Fn}{Function}{:}{}
+	
+	$\textit{List} \leftarrow \emptyset$ \tcp*{List of found MECs}
+	
+	$ G \leftarrow (\vertices,\edges) $ \tcp*{The underlying graph of $ \mdp $} 
+	
+	\While{$G$ is non-empty}{
+	Decompose $ G $ into strongly connected components;
+	
+	$ R \leftarrow \emptyset $ \tcp*{The list of vertices to remove.}
+	\ForEach{bottom SCC $ B $ of $ G $}{
+		$ B $ is a MEC of $ \mdp $, add it to $ \textit{List} $;\\
+		$ R \leftarrow R \cup (\vertices \setminus \winAS(\mdp,\Safe(\vertices\setminus B)))$ \tcp*{Schedule removal of vertices from which $B$ cannot be avoided in $\mdp$.}
+		} % DEFINE SAFETY OPERAOR
+	remove vertices in $R$ from $G$ along with adjacent edges
+	}
+	
+	
+	
+	\Return{$\textit{List}$}
+	\caption{Algorithm for MEC decomposition of an MDP.}
+	\label{5-algo:MEC-decomposition}
+\end{algorithm}
+
+\begin{theorem}
+\label{5-thm:MEC-decomposition-complexity}
+The set of all MECs in a given MDP can be computed in polynomial time.
+\end{theorem}
+\begin{proof}
+There are several known algorithms, a simple one is pictured in \Cref{5-algo:MEC-decomposition}. Each iteration goes as follows: we first take the underlying directed graph of the MDP and find its strongly connected components using some of the well-known polynomial algorithms~\cite{Cormen&Leiserson&Rivest&Stein:2009}. We identify the bottom SCCs, i.e. those from which there is no outgoing edge in the graph. It is easy to see that each such SCC must form a MEC of $\mdp$, and conversely, each MDP has at least one MEC that is also a bottom SCC of its underlying graph. Moreover, for each such bottom SCC $B $ we compute the \emph{random attractor} of $B$, i.e. the set of vertices of $\mdp$ from which $B$ cannot be avoided under any strategy. To this end, we compute, in polynomial time, the almost-surely winning set $ \winAS(\mdp,\Safe(\vertices \setminus B)) $ which is the largest largest (w.r.t. set inclusion) subset of $\vertices$ from which the player can ensure to stay in $\vertices \setminus B$ forever (i.e. the complement of the random attractor of $B$). The computation can be done in polynomial time by \Cref{5-thm:safety-main}). No vertex of the random attractor of $B$ can belong to a MEC different from $ B $: such a MEC would be disjoint from $ B $ bu the player could not force avoiding $ B $ from within this MEC, a contradiction with MEC being a closed set. Hence, all MECs of $\mdp$ which are not a bottom SCC of $G$ are subsets of $\winAS(\mdp,\Safe(\vertices \setminus B)) \subseteq \vertices \setminus R$, so we can remove all vertices in $R$ from the graph and continue to the next iteration (note that removing vertices in $R$ from $\mdp$ again yields a MDP, since the complement of $R$ is an intersection of closed sets, and thus again a closed set). The main loop performs at most $|\vertices|$ iterations, which yields the polynomial complexity.
+\end{proof}
+
+\section{Reductions to optimal reachability}
+
+The MEC decomposition can be used to reduce several optimization problems (including general mean-payoff optimization) to optimizing reachability probability. Recall that in the optimal reachability problem, we are given an MDP $\mdp$ (with coloured vertices) and a colour $\Win \in\colours$. The task is to find a strategy $\sigma$ that maximizes $ \probm^\sigma_{\vinit}(\Reach(\Win))$, the probability of reaching a vertex coloured by $\Win$. The main result on reachability MDPs, which we prove in \Cref{5-sec:general-reachability}, is as follows:
+
+\begin{theorem}
+\label{5-thm:quant-reachability-main}
+In reachability MDPs, the value of each vertex is rational and computable in polynomial time. Moreover, we can compute, in polynomial time, a memoryless deterministic strategy that is optimal in every vertex.
+\end{theorem}
+
+\subsection*{From optimal B\"uchi to reachability}
+
+
+In B\"uchi MDPs, the vertices are assigned colours from the set $\{1,2\}$ and our aim is to find a strategy maximizing $ \probm^\sigma_{\vinit}(\Buchi)$, i.e. maximizing the probability that a vertex coloured by $2$ is visited infinitely often.
+We say that a MEC $\mec$ of a B\"uchi MDP is \emph{good} if it contains a vertex coloured by 2.
+
+\begin{theorem}
+\label{5-thm:quant-buchi}
+In B\"uchi MDPs, the value of each vertex is rational and computable in polynomial time. Moreover, we can compute, in polynomial time, a memoryless deterministic strategy that is optimal in every vertex.
+\end{theorem}
+\begin{proof}
+Let $\mdp_b$ be a B\"uchi MDP and let $\mdp_r$ be a reachability MDP obtained from $\mdp_b$ by repainting each vertex belonging to a good MEC with the colour $\Win$. Note that $\mdp_r$ can be computed in polynomial time by performing the MEC decomposition of $\mdp_b$ (\Cref{5-algo:MEC-decomposition}) and checking goodness of each MEC.
+
+We prove that the value of each vertex in $\mdp_b$ is equal to the value of the corresponding vertex in $\mdp_r$.
+
+First, fix any $\sigma$ and $\vinit$ (due to equality of underlying graphs, we can view these as a strategy/initial vertex both in $\mdp_b$ and $\mdp_r$). By \Cref{5-lem:EC-inf}, the probability of visiting infinitely often a vertex outside of a MEC is 0. Hence, the probability of visiting infinitely often a vertex coloured by 2 (in $\mdp_b$) is the same as the probability of visiting infinitely often a vertex coloured by 2 which belongs to (a necessarily good) MEC, which is in turn bounded from above by the probability that $\sigma$ visits (in $\mdp_r$) a vertex coloured by $\Win$.
+
+Conversely, let $\sigma^*$ be the MD reachability-optimal strategy in $\mdp_r$ (which exists by~\Cref{5-thm:quant-reachability-main}). We construct a strategy $\sigma$ in $\mdp_b$ which achieves, in every vertex, the same B\"uchi-value as the reachability value achieved in that vertex by $\sigma^*$ in $\mdp_r$. Outside of any good MEC, $\sigma$ behaves exactly as $\sigma^*$. Inside a good MEC $\mec$, $\sigma$ behaves as the MD strategy from \Cref{5-lem:EC-sweep}, ensuring that some fixed vertex in $\mec$ of colour $2$ is almost-surely visited infinitely often. Since $\sigma$ is stitched together from MD strategies on non-overlapping domains, it is memoryless deterministic and it ensures that once a good MEC is reached, the B\"uchi condition is satisfied almost-surely.
+
+The construction of $\sigma$ in the aforementioned paragraph is effective: given the optimal strategy $\sigma^*$ for reachability, $\sigma$ can be constructed in polynomial time.
+\end{proof}
+
+\subsection*{From optimal parity to optimal reachability}
+
+In parity MDPs, the vertices are labelled by colours form the set $\{1,\dots,d\}$ (w.l.o.g. we stipulate that $d\leq |\vertices|$) and the goal is to find a strategy maximizing $ \probm^\sigma_{\vinit}(\Parity),$ i.e. maximizing the probability that the largest priority appearing infinitely often along a play is even.
+
+\begin{theorem}
+	\label{5-thm:parity-main}
+	In Parity MDPs, the value of each vertex is rational and computable in polynomial time. Moreover, we can compute, in polynomial time, a memoryless deterministic strategy that is optimal in every vertex.
+\end{theorem}
+\begin{proof}
+Let $\mdp_p$ be a parity MDP. We will proceed similarly to \Cref{5-thm:quant-buchi}, constructing a reachability MDP $\mdp_r$ with the same underlying graph as $\mdp_p$.
+
+To this end, let $\mdp_i$ be the largest sub-MDP of $\mdp_p$ containing only the vertices of priority $\leq i$. Formally, we set $\vertices_i = \winAS(\mdp_p,\Safe(\colouring^{-1}(\{i+1,\ldots,d\})) )$ and define $\mdp_i$ to be the sub-MDP induced by $\vertices_i$ (note that $\mdp_i$ might be empty). We say that a vertex of $\mdp_p$ is $i$-good if it is contained in some MEC $\mec$ of $\mdp_i$ such that the largest vertex priority inside $\mec$ is equal to $i$. We say that a vertex is even-good if it is $i$-good for some even $i$. We set up a reachability MDP $\mdp_r$ by taking $\mdp_p$ and re-colouring each its even-good vertex with colour $\Win$. To do this, we need to compute, for each even priority $i$, the MDP $\mdp_i$ and its MEC-decomposition. This can be done in polynomial time (\Cref{5-algo:MEC-decomposition}). 
+
+We again prove that the value of every vertex in $\mdp_p$ is equal to the value of the corresponding vertex in $\mdp_r$.
+
+Let $\sigma$ and $\vinit$ be arbitrary. By~\Cref{5-lem:EC-inf}, $\probm^\sigma_{\mdp_p,\vinit}(\Parity)$ is equal to the probability that $\Inf(\play)$  is an EC in which the largest priority is even. But each such EC is also an EC of some $\mdp_i$ with even $i$, and thus is also contained in a MEC of a $\mdp_i$ in which the largest priority is $ i $. Hence, $\probm^\sigma_{\mdp_p,\vinit}(\Parity)\leq \probm^\sigma_{\mdp_r,\vinit}(\Reach(\Win))$.
+
+Conversely, let $\sigma^*$ be the MD reachability-optimal strategy in $\mdp_r$. We construct an MD strategy $\sigma$ in $\mdp_p$ as follows: in a vertex $v$ which is not even-good, $\sigma$ behaves as $\sigma^*$. For a vertex $v$ that is even-good, we identify the smallest even $i$ such that $v$ is $i$-good. 
+This means that $v$ belongs to some MEC $\mec$ of $\mdp_i$ in which the largest priority is $i$. 
+By \Cref{5-lem:EC-sweep}, we can compute, in polynomial time, an MD strategy $\sigma_M$ which ensures that the largest-priority vertex in $(\mdp_i)_\mec$ is visited infinitely often, and we set $\sigma(v)$ to $\sigma_M(v)$. Note that given $\sigma^*$, the strategy $\sigma$ can be constructed in polynomial time. It remains to show that $\probm^\sigma_{\mdp_p,\vinit}(\Parity)\geq \probm^{\sigma^*}_{\mdp_r,\vinit}(\Reach(\Win))$.
+
+By the construction of $\sigma$, once we reach a vertex which is $i$-good for some even $i$, all the following vertices will be $j$-good for some even $j\leq i$. From this and from \Cref{5-lem:EC-inf} it follows that $\probm^{\sigma^*}_{\mdp_r,\vinit}(\Reach(\Win))$ is equal to the probability that $\sigma$ produces a play $\play$ with the following property: $\exists i \text{ even}$ such that all but finitely many vertices on $\play$ are $i$-good but are not $j$-good for any even $j<i$. This can be in turn rephrased as the probability that $\Inf(\play)$ is an EC whose all vertices are $i$-good for some even $i$ but none of them is $j$-good for an even $j<i$; we call such an EC \emph{$i$-definite}. But within such an EC, $\sigma$ forever behaves as $\sigma_M$ for some MEC $\mdp$ of $\mdp_i$ in which the maximal priority is $i$. Hence, once an $i$-definite EC is reached, the strategy almost-surely ensures that priority $i$ is visited infinitely often and ensures that no larger priority is ever visited. It follows that  $\probm^{\sigma^*}_{\mdp_r,\vinit}(\Reach(\Win)) = \probm^{\sigma}_{\mdp_p,\vinit}(\inf(\play) \text{ is $i$-definite for even }i ) = \probm^{\sigma}_{\mdp_p,\vinit}(\Parity).$
+\end{proof}
+
+\subsection*{From general mean-payoff to optimal reachability}
+
+We already know how to solve strongly connected mean-payoff MDPs. We now combine this result with MEC decomposition to reduce the general (not strongly connected) mean-payoff optimization to MDP reachability.
+
+We start with a strengthening of \Cref{5-thm:mp-valcomp}.
+
+\begin{lemma}
+\label{5-lem:MEC-mp-strict-bound}
+Let $\mdp$ be a strongly connected mean-payoff MDP and $r^*$ the value of each of its vertices. Then, for each $\sigma$ and $\vinit$ we have $\probm^\sigma_{\vinit}(\MeanPayoffInf > r^*) = 0 $.
+\end{lemma}
+\begin{proof}
+Assume that the statement is not true. Then there exist $\sigma,\vinit$ as well as numbers $\epsilon,\delta>0 $ and $n_0 \in \N$ s.t. the probability of the following set of plays $X_{\epsilon,n_0}$ is at least $\delta$: a play $\play$ belongs to $X_{\epsilon,n_0}$ if for every $n\geq n_0$ it holds $\frac{1}{n}\sum_{i=0}^{n-1}\colouring(\play_i) \geq x^* + \eps$. We construct a new strategy $\sigma'$, which proceeds in a series of episodes. Every episode starts in $\vinit$, and for the first $n_0$ steps of the, episode $\sigma'$ mimics $\sigma$. After that, it checks, in every step $n$, whether the payoff accumulated since the start of the episode is at least $n\cdot(r^* + \eps)$. If this holds, we mimic $\sigma$ for one more step. If the inequality is violated, we immediately ``restart,'' i.e. return to $\vinit$ (can be performed with probability $1$ due to the MDP being strongly connected) and once in $\vinit$, start a new episode which mimics $\sigma$ from the beginning. By our assumption, the probability of not performing a reset in a given episode is at least $\delta>0$. Hence, with probability $1$ we witness only finitely many resets, after which we produce a play whose suffix has mean-payoff at least $r^* + e$. By prefix independence of mean-payoff (\Cref{5-thm:mp-valcomp}), $\expv^{\sigma'}_{\vinit} [\MeanPayoffInf] \geq r^* + \eps,$ a contradiction.
+\end{proof}
+
+We will need to strengthen the previous lemma so that it applies not only to strongly connected MDPs, but also to MECs in some larger MDPs. The strengthening is performed in the following two lemmas. The first lemma says that once we exit a MEC, with some positive probability we will never return.
+
+\begin{lemma}
+\label{5-lem:MEC-noreturn}
+Let $ \mec $ be a MEC of an MDP $ \mdp $ and let $ v\in \mec $, $ a\in \actions $ be such that $ a $ \emph{is not} $ \mec $-safe in $ v $. Then there exists $ t $ s.t. $ \probTranFunc(t\mid v,a)>0 $ and  $ t \not \in \winAS(\mdp,\Reach(\mec)) $.
+\end{lemma}
+\begin{proof}
+Assume that $ a $ is not $ \mec $-safe in $ v $ and that all $ t $'s with $ \probTranFunc(t\mid v,a)>0 $ belong to $ \winAS(\mdp,\Reach(\mec)) $. Fix the MD strategy $  \sigma $ which is almost-surely winning for reaching $ \mec $ from each vertex of $ \winAS(\mdp,\Reach(\mec)) $ (\Cref{5-thm:as-char}). For each $ t $ s.t.  $ \probTranFunc(t\mid v,a)>0 $, let $ \mec_t $ denote the set of vertices which can be (with a positive probability) visited under $ \sigma $. Put $ \mec' = \mec \cup (\bigcup_{t\in \vertices,\probTranFunc(t\mid v,a)>0}\mec_t )$. Then $ \mec' $ is closed, since $ \mec $ is closed and since for every $ u $ in some $ \mec_t $ there exists an action (the one selected by $ \sigma $ for $ u $) under which we surely stay in $ \mec_t $. Moreover, the $ \mec'$-induced sub-MDP is strongly connected: each $ t $ with $ \probTranFunc(t\mid v,a)>0 $ is reachable from within $ \mec $ (through $ v $) and thus each vertex in some $\mec_t $ is reachable from $ \mec $. In turn, from each vertex in some $ \mec_t $ (where $ \probTranFunc(t\mid v,a)>0 $) we can reach $ \mec $ without leaving $ \mec_t $, due to the definition of $ \sigma $. Hence, $ \mec' $ is a MEC which strictly contains $ \mec $, a contradiction with the maximality of $ \mec. $
+\end{proof} 
+
+Given a play $\play$ and strategy $\sigma$, we define a \emph{slice} of $\sigma$ as a strategy $\slice{\sigma}{\play}$ such that for each $\play'$ starting in $\last(\play)$ it holds $\slice{\sigma}{\play}(\play') = \sigma(\play\play')$, while on other plays $\slice{\sigma}{\play}$ just mimics $\sigma$.
+
+%An \emph{exit} from a MEC $\mec$ is a tuple $(v,a)$, where $v$ is a vertex of $\mec$ and $ a $ is an action enabled in $v$ s.t. $\probTranFunc(u \mid v,a )>0$ for some $u\not\in \mec$. A strategy $\sigma$ is \emph{stable} in $\vinit$ if it satisfies the following implication for every MEC $\mec$: if $\probm^\sigma_{\vinit}(\Inf(\play) \subseteq \mec) > 0$, then $\sigma$ never selects, in a vertex $v$ of $\mec$, an action $a$ such that $(v,a)$ is an exit from $\mec$. A MEC violating this implication is called \emph{unstable} under $\sigma$. Informally, a stable strategy partitions MECs into ``good ones'' from which we never leave, and ``bad ones'' in which we never stay. 
+
+%\begin{lemma}
+%\label{5-lem:MEC-stable}
+%Let $\mdp$ be a mean-payoff MDP. Further, let $\mec$ be an MDP and $x$ the optimal mean payoff value of every vertex in the strongly connected sub-MDP induced by $\mec$. Then the set $E$ of all plays that have $\inf(\play)=\mec$ and at the same time mean payoff greater than $x$ has probability zero under any strategy $\sigma$.
+%\end{lemma}
+%\begin{proof}
+%Assume, for contradiction, that there is $\delta > 0$ such that the probability of $E$ is at least $\delta$. Note that we do not immediately have a contradiction with \Cref{xxx}, since $\sigma$ might leave $\mec$. However, there must be $i\geq 0$ such that the probability of leaving $\mec$ after more than $i$ steps is at most $\frac{\delta}{2}$ (otherwise we would leave $\mec$ a.s.). Consider a strategy $\sigma_i$ which mimics $\sigma$, but whenever it is in $v$ after more than $i$ steps, an instruction to play an $\mec$-unsafe action is overriden by some $\mec$-safe action. Since the probability of encountering the override is at most $\frac{\delta}{2}$, the probability of $E$ under $\sigma_i$ is still at least $\frac{\delta}{2}$. But then there is a play prefix $\play_{\leq k}$ such that the probability of $E$ under SLICE (which never leaves $\mec$) from $\last(\play_{\leq k})$ is still positive, a contradiction with \Cref{xxx}.	
+%\end{proof}
+
+%_{_{%
+\begin{lemma}
+		\label{5-lem:MEC-stable}
+%	Let $\mdp$ be a mean-payoff MDP. 
+%	For every $\eps>0$ there is a stable $\eps$-optimal strategy $\sigma'$. Moreover, 
+	Let $\mec$ be a MEC of $\mdp$ and $r^*$ the mean-payoff value of every vertex in the strongly connected sub-MDP induced by $\mec$. Then the set $E$ of all plays that have $\Inf(\play)\subseteq\mec$ and at the same time mean payoff greater than $r$ has probability zero under any strategy $\sigma$.
+	%\label{5-lem:MEC-stable}
+%Let $\mdp$ be a mean-payoff MDP. 
+%For every $\sigma,\vinit$ and $\eps>0$ there is a stable strategy $\sigma'$ s.t. $\expv^\sigma_{\vinit}[\MeanPayoffInf] \leq \expv^{\sigma'}_{\vinit}[\MeanPayoffInf]. $ Moreover, let $\mec$ be an MDP and $x$ the optimal mean payoff value of every vertex in the strongly connected sub-MDP induced by $\mec$. Then the set $E$ of all plays that have $\inf(\play)=\mec$ and at the same time mean payoff greater than $x$ has probability zero under any strategy $\sigma$.
+\end{lemma}
+\begin{proof}
+%	Let $\mec_1,\dots,\mec_\ell$ be all MECs of $\mdp$.
+%We show how to incrementally (by induction on index $i$) construct a $\frac{\eps\cdot i}{\ell}$-optimal strategy such that for each $1 \leq i \leq \ell$, the MECs $\mec_j$ with $j\leq i$ are ``stable'' in the sense that $\probm^\sigma_{\vinit}(\Inf(\play) \subseteq \mec) > 0$ implies that $\mec$ is never left.
+%
+%The base and induction cases are proved analogously, so fix $1\leq i \leq \ell$ and let $\mec = \mec_i$. Let $p$ be the infimum, over all $\frac{\eps}{\ell}$-optimal strategies, of probabilities that $\Inf =\mec$. Fix $\frac{\eps}{\ell}$-optimal strategy $\sigma$ such that $\probm_{\vinit}^\sigma(\Inf(\play)=\mec)\leq p + p_{\min}$, where $p_{\min}$ is the minimal nonzero probability in $\mdp$. Auppose that $\mec = \mec_i$ is unstable under $\sigma$. We will modify $\sigma$ to make $\mec$ stable.  To simplify notation, we will assume in the rest of the proof that $\vinit$ is in $\mec$. If this is not the case, we would need to perform a ``surgery'' on $\sigma$, modifying its behaviour after entering $\mec$. 
+%Formally, for each play $\play$  which enters $\mec$ we would need take the shortest prefix $\play_{\leq_i}$ whose last edge leads into a vertex $w$ of $\mec$ and apply the modification described below on  $\slice{\sigma}{\play_{\leq _i}}$ from the initial vertex $w$. 
+%To simplify notation, we can assume that $\vinit$ is in $\mec$, otherwise we would take $\vinit$ to be any vertex of $\mec$ 
+
+% Denote by $r$  the optimal mean-payoff value of every vertex in the strongly connected sub-MDP $\mdp_\mec$ induced by $\mec$ (\Cref{5-thm:mp-valcomp}). We claim that under $\sigma$, the probability of event $E$ consisting of all plays that stay in $\mec$ forever and have mean-payoff greater than $r$ is zero. 
+ Assume, for contradiction, that there is a strategy $\sigma$ and $\delta > 0$ such that the probability of $E$ under $ \sigma  $ is at least $\delta$. Note that we do not immediately have a contradiction with \Cref{5-lem:MEC-mp-strict-bound}, since $\sigma$ might leave $\mec$ (and then return back). 
+ 
+ We say that a play $ \play $ \emph{cheats} in step $ i $ if it is inside $ \mec $ in $ i $-th step and outside of $ \mec $ in the next step (which can only be caused by an $ \mec $-unsafe action being played). From \Cref{5-lem:MEC-noreturn} we have that there is $ p>0 $ s.t. upon every exit from $ \mec $ we return with probability at most $ (1-p) $. Hence, the probability that a play cheats infinitely often is $ 0 $. It follows that there is $ k\in \N $ s.t. $ \probm_{\vinit}^\sigma(\play \text{ cheats after $\geq k $ steps}) \leq (\delta\cdot p_{\min})/4 $, where $ p_{\min} $ is the smallest non-zero edge probability in $ \mdp $. 
+ 
+ Whenever we are in some $ v\in \mec $ and play an action that is not $ \mec $-safe in $ v $, this results into a cheat with  probability at least $ p_{\min} $. Thus, the total probability that this happens after at least $ k $ steps, i.e. the quantity \begin{equation}\label{5-eq:mec-cheat}q= \sum_{i \geq k}\;\sum_{v\in \mec}\;\sum_{a \text{ not $ \mec $-safe in v}}\expv^\sigma_{\vinit}[ \actevent{\sigma}{a}{i}\cdot\indicator{ \out(\play_i)= v} ] , \end{equation}
+ is bounded by $ \probm_{\vinit}^\sigma(\play \text{ cheats after more than $ k $ steps})/p_{\min} \leq \delta/4$.
+ 
+ Let's go back to $ E $ now. On each play in $ E $ there is a step $ i $ from which on the play stays in $ \mec $ forever: we say that the play is $ i $-definite and we denote by $E_k$ the set of all $ i $-definite plays in $ E $. By union bound, there is $ \ell \in \N, \ell \geq k $ s.t. $ \probm_{\vinit}^\sigma(E_\ell)  \geq \delta/2$. 
+ 
+ We define a new strategy $ \sigma' $ as follows: on each play prefix, $ \sigma' $ by default mimics $ \sigma $, except for the case when at least $ \ell $ steps have elapsed, the current vertex $ v $ is in $ \mec $, and $ \sigma $ prescribes to play, with positive probability, an action which is not $ \mec $ safe in $ v $. In such a case, $ \sigma $ is overridden and we play any action that is $ \mec $-safe in $ v $ instead (after which we return to simulating $ \sigma $, until the override kicks in again). The probability that such an override happens is bounded by the quantity $ q $ from~\eqref{5-eq:mec-cheat}, and hence by $ \delta/4 $. Since  $ \probm_{\vinit}^\sigma(E_\ell)  \geq \delta/2$, at least half the measure of $ E_{\ell} $ stays untouched by the overrides; hence  $ \probm_{\vinit}^{\sigma'}(E_\ell)\geq \delta/4 $.
+ 
+ We are ready to apply the final argument. There are only finitely many plays of length $ \ell $. Hence, by union bound, there is a play $ \play $ of length $ \ell $ such that $\probm_{\vinit}^{\sigma'}(E_\ell \cap \cylinder(\play))>0$. Consider the strategy  $\slice{\sigma'}{\play}$. 
+ Starting in $ \last(\play) $, we have that $\slice{\sigma'}{\play}$ never leaves $ \mec $, due to the overrides in $ \sigma' $. Hence, $\slice{\sigma'}{\play}$ can be seen as a strategy in the strongly connected MDP $ \mdp_\mec $. Now consider the set $ E'=\{\play'\mid \play'\exists\play''\in E \text{ s.t. } \play''=\play\play'\} $. Then $ \probm_{\last(\play)}^{\slice{\sigma'}{\play}}(E') = \probm_{\vinit}^{\sigma'}(E_\ell \cap \cylinder(\play))>0 $; but due to the prefix independence of mean payoff, all plays in $ E' $ have payoff $ > r^* $, a contradiction with \Cref{5-lem:MEC-mp-strict-bound}.
+% 
+% Instead, note that .
+% Since $ E = \bigcup_{k= 0}^{\infty} E_k$, 
+%% However, there must be $i\geq 0$ such that the probability of leaving $\mec$ after more than $i$ steps is at most $\frac{\delta}{2}$ (otherwise we would leave $\mec$ almost-surely). 
+% Consider a strategy $\sigma_\ell$ which mimics $\sigma$, but whenever it is in $v$ after more than $\ell$ steps, any instruction to play an $\mec$-unsafe action is overridden by some $\mec$-safe action. This override does not affect any prefixed of plays
+% 
+%  Since the probability of encountering the override is at most $\frac{\delta}{2}$, the probability of $E$ under $\sigma_i$ is still at least $\frac{\delta}{2}$. But then there is a play prefix $\play_{\leq k}$ such that the probability of $E$ under $\sigma_{\play_{\leq _k}}$ (which never leaves $\mec$) from $\last(\play_{\leq k})$ is still positive, a contradiction with \Cref{5-lem:MEC-mp-strict-bound}.
+%
+%% COMMENT ON SLICING IN PRELIMS
+%% IS THE NOTION OF CONSISTENCY DEFINED
+%
+%% Next, for each exit  $(v,a)$  from $\mec$, denote $p_{\mathit{leave}}=\sum_{u\not\in \mec}\probTranFunc(u \mid v,a)$ and $q_{(v,a)} = \frac{\sum_{u\not\in \mec}\probTranFunc(u \mid v,a)\cdot \val(u)  }{p_{\mathit{leave}}}$, where $\val(u)$ is the optimal mean-payoff value achievable from $u$ in $\mdp.$ Note that the optimal value of every vertex in $\mec$ (when taken as an a part of the whole MDP $\mdp$) is bounded by a maximal element of the set $B = \{r\} \cup \{q_{(v,a)} \mid (v,a)\text{ an exit of } \mec \}$. This is because a value of each strategy is bounded by a convex combination of elements of $B$: after exiting a $\mec$, we cannot do better than the optimal strategy in the corresponding exit vertex, while inside $\mec$ we cannot do better than $r$ with positive probability (as shown in the previous paragraph).
+%%
+%%For each exit $(v,a)$, consider an MD strategy $\sigma_{(v,a)}$ which starts inside $\mec$; while in $\mec$ it  mimics the strategy from \Cref{5-lem:EC-sweep} (i.e. strives to visit $v$ infinitely often), with an exception of vertex $v$, where it always selects $a$. Once exiting $\mec$, $\sigma_{(v,a)}$ starts to behave as an $\frac{\eps(i-1)}{\ell}$-optimal strategy from the current vertex (by induction, we can assume that MECs $\mec_1,\dots,\mec_{i-1}$ are stable under these strategies), and continues playing like this forever (even if returning to $\mec$). Since the probability of exiting $\mec$ is bounded away from $0$ upon each visit of $v$, and $\sigma_{(v,a)}$ ensures that the probability of staying in $\mec$ and visiting $v$ only finitely many times is zero, $\sigma_{(v,a)}$ exits $\mec$ almost-surely and due to the prefix independence (\Cref{5-thm:mp-valcomp}) the mean payoff of $\sigma_{(v,a)}$ is $\sum_{j=0}^\infty (1-p_{\mathit{leave}})^j\cdot p_{\mathit{leave}} \cdot (q_{(v,a)}-\frac{\eps(i-1)}{\ell}) = q_{(v,a)}-\frac{\eps(i-1)}{\ell}$ (each $j$ corresponding to the event of leaving $\mec$ after $j+1$ visits of $v$).
+%%
+%%To remove the instability of $\mec$, consider the maximal element of $B$. If it is $r$, we can instrument $\sigma$ to behave like the optimal MD strategy in $\mdp_\mec$, thus achieving mean-payoff $r$. If the maximum is realized by some $q_{(v,a)}$, we modify $\sigma$ to behave as the strategy $\sigma_{(v,a)}$ from the previous paragraph. This yields mean-payoff at least $\value(\vinit)-\frac{\eps}{\ell}-\frac{\eps(i-1)}{\ell}$. In both cases, we are within $\frac{\eps(i-1)}{\ell}$ of the optimal value.
+%
+%To finish the proof, we need to iterate the construction proceeding from the bottom MECs upwards (we say that a MEC $\mec_1$ is below $\mec_2$)
+\end{proof}
+
+\begin{theorem}
+\label{5-thm:general-mp-main}
+	In mean-payoff MDPs, the value of each vertex is rational and computable in polynomial time. Moreover, we can compute, in polynomial time, a memoryless deterministic strategy that is optimal in every vertex.
+\end{theorem}
+\begin{proof}
+First, note that we can w.l.o.g. restrict to MDPs in which each edge is coloured by a number between $0$ and $ 1 $. To see this, let $\mdp$ be an MDP and $a,b$ any two numbers, with $a$ non-negative. We can construct an MDP $\mdp'$ by re-colouring each edge $(u,v)$ of $\mdp$ with colour $a\cdot \colouring(u,v)+b$, where $\colouring$ is the original colouring in $\mdp$. It is then easy to see that for each strategy $\sigma$ it holds $\expv_{\mdp,\vinit}^\sigma[\MeanPayoffInf]=(\expv_{\mdp',\vinit}^\sigma[\MeanPayoffInf]/a)-b$, so a strategy optimizing the mean payoff in $\mdp'$ is also optimal in $\mdp$. Hence, we always can re-scale the colouring into the unit interval while preserving the optimization criterion.
+
+So now let $\mdp_\smallmp$ be a mean-payoff MDP with edge-colouring $\colouring$. We construct, in polynomial time, a new reachability MDP $\mdp_r$ as follows: first, we compute the MEC decomposition of $\mdp_\smallmp$ (\Cref{5-algo:MEC-decomposition}). Let $\mec_1,\dots,\mec_k$ be all the resulting MECs. For each MEC $\mec_i$ we compute the optimal mean-payoff value $r_i^*$ in the sub-MDP induced by $\mec_i$ (which is shared by all vertices of this sub-MDP, by \Cref{5-thm:mp-valcomp}), along with the corresponding memoryless deterministic optimal strategy. We already know how to do this in polynomial time (\Cref{5-thm:mp-rand-opt-main,5-thm:lpmp-basic-dim}). Now we add new vertices $\vgood$, $\vbad$, both with self loops, and edges incoming to these vertices from each vertex that belongs to some MEC of $\mdp_\smallmp$. The vertex $\vgood$ is the only vertex coloured by $\Win$ in $\mdp_r$. Finally, we add a new action $\finact$ which behaves as follows: For each vertex $v$ belonging to a MEC $\mec_i$ we set $\probTranFunc(\vgood\mid v,\finact) = r^*_i$ and $\probTranFunc(\vbad\mid v,\finact) = 1-r^*_i $. In a non-MEC vertex $ v $, we put $ \probTranFunc(v,\finact) = \probTranFunc(v,a) $ for some $ a\in \actions $, $ a\neq \finact $, so that no new behaviour is introduced in these vertices.
+
+We show that for any original vertex (i.e. all vertices but $\vgood,\vbad$) the optimal values in both MDPs are the same and the optimal strategies are easily transferable from one MDP to the other.
+
+First, let $\sigma$ be an $\eps$-optimal strategy in $\mdp_\smallmp$. 
+%By \Cref{5-lem:MEC-stable} we can assume that $\sigma$ is stable. 
+We have $\expv^\sigma_{\vinit}[\MeanPayoffInf] = \sum_{i=1}^k\expv^\sigma_{\vinit}[\MeanPayoffInf\cdot \indicator{\Inf\subseteq\mec_i}] \leq \sum_{i=1}^k \expv^\sigma_{\vinit}[r_i^*\cdot \indicator{\Inf=\mec_i}] = \sum_{i=1}^k r_i^* \cdot \probm_{\vinit}^\sigma(\Inf=\mec_i) $; here the first equation follows from \Cref{5-lem:EC-inf} and the subsequent inequality from \Cref{5-lem:MEC-stable}. Moreover, for each $i$ there is a number $n_0^i$ such that the probability of all plays that stay inside $\mec_i$ in all the steps from $n_0^i$ to infinity is at least $\probm_{\vinit}^\sigma(\Inf\subseteq\mec_i) - \frac{\eps}{k} $. Let $n_0 = \max_{1\leq i \leq k} n^i_0$.
+
+We construct a reachability strategy $\sigma_r$ which mimics $\sigma$ for the first $n_0$ steps. After $n_0$ steps it performs a switch: if the current vertex is in some $\mec_i$ we immediately play the action $\finact$, otherwise we start to behave arbitrarily. We have $\probm_{\vinit}^{\sigma_r}(\Reach(\Win)) \geq \sum_{i=1}^{k} r_i^* \cdot \probm_{\vinit}^{\sigma_r}(\last(\play_{\leq n_0}) \in \mec_i ) \geq \sum_{i=1}^k r_i^* \cdot \probm_{\vinit}^\sigma(\Inf\subseteq\mec_i) - \eps \geq \expv^\sigma_{\vinit}[\MeanPayoffInf] -\eps$, the last equality shown in the previous paragraph. Since $\sigma$ is $\eps$-optimal for mean-payoff, $\probm_{\vinit}^{\sigma_r}(\Reach(\Win))$ is at most $2\eps$ away from the mean-payoff value of $ v $. Since $\eps>0$ was chosen arbitrarily, we get that the reachability value in $\mdp_{r}$ is at least as large as the mean-payoff value in $\mdp_{\smallmp}$.
+
+Conversely, let $\sigma^*$ be the optimal MD strategy in $\mdp_r$. We say that $\sigma^*$ ends in a vertex $v$ if $\sigma^*(v)=\finact$. We can assume that if $\sigma^*$ ends in some $v \in \mec_i$ then it ends in all vertices of $\mec_i$. This is because whenever $\sigma^*$ ends in some vertex $v \in \mec_i$, the reachability value of $v$ must be equal to $r^*_i$, otherwise playing $\finact$ would not be optimal here. But the optimal reachability value in every vertex of a given MEC is the same (due to \Cref{5-lem:EC-sweep}), so if playing $\finact$ is optimal in some vertex of $\mec_i$, it is optimal in all such vertices. Now we can define an MD strategy $\sigma_{\smallmp}$ in $\mdp_\smallmp$ to initially mimic $\sigma^*$, and upon encountering any MEC $\mec_i$ in which $\sigma^*$ ends, immediately switch to the MD strategy that is optimal in the mean-payoff sub-MDP $\mdp_i$. We have $\expv^{\sigma_{\smallmp}}_{\vinit}[\MeanPayoffInf]  =  \sum_{i=1}^{k} \probm^{\sigma^*}_{\vinit}(\text{end in }\mec_i)\cdot r^*_i = \probm^{\sigma^*}_{\vinit} (\Reach(\Win)). $ Since $\sigma^*$ as well as the optimal strategies in all $\mec_i$ can be computed in polynomial time (\Cref{5-thm:quant-reachability-main,5-thm:lpmp-basic-dim}), we get the result.
+%
+\end{proof}
+
+
+\section{Optimal reachability}
+\label{5-sec:general-reachability}
+
+In this final section, we prove \Cref{5-thm:quant-reachability-main}. The proof bears many similarities to the methods for discounted MDPs, hence we only sketch the process and point out the key differences. Throughout the section we assume that \emph{targets are sinks}, i.e. that a vertex coloured by $\Win$ has only a self loop as the single outgoing edge. Modifying an MDP to accommodate this does not influence reachability probabilities in any way.
+
+Consider the reachability operator $\ReachOp\colon[0,1]^{\vertices}\rightarrow [0,1]^{\vertices}$ such that for $\vec{y} = \ReachOp(\vec{x})$ it holds
+
+\[
+\vec{y}_v = \begin{cases}
+
+ \max_{a\in \actions} \sum_{u\in \vertices} \probTranFunc(u \mid v,a)\cdot x_u & \colouring(v) \neq \Win \\
+ 1 & \colouring(v) = \Win.
+\end{cases} 
+\]
+
+\begin{lemma}
+\label{5-lem:quant-reach-operator-fixed-point}
+For each initial vector $\vec{x}$, the limit $\lim_{k \rightarrow \infty}\ReachOp^k(\vec{x})$ exists. Moreover, if $\vec{x} \leq \ReachOp(\vec{x})$, then the limit is equal to the least fixed point of $\ReachOp$ that is greater than or equal to $\vec{x}$; if $\ReachOp(\vec{x})\leq \vec{x}$, then the limit is equal to the greatest fixed point of $\ReachOp$ that is less than or equal to $\vec{x}$.
+\end{lemma}
+\begin{proof}
+The existence of the limit follows from the monotonicity of $\ReachOp$.
+In addition, it can be easily checked that the set $[0,1]^{\vertices}$ is a directed complete partial order and that $\ReachOp$ is a Scott-continuous operator on this set. Hence, the result follows from the Kleene's theorem (see also Tarski-Kantorovich principle).
+\end{proof}
+
+We denote by $\Reach^k(\Win)$ the set of all plays that reach $\Win$ within the first $k$ steps. Clearly, for each $\sigma$ and $\vinit$ we have $\lim_{k \rightarrow \infty} \probm^\sigma_{\vinit}(\Reach^k(\Win)) = \probm^\sigma_{\vinit}(\Reach(\Win))$.
+
+\begin{lemma}
+\label{5-lem:quant-reach-step-operator}
+For each $k\in \N$ and $v\in \vertices$, $\ReachOp^k(\vec{0})_v = \sup_{\sigma}\probm^\sigma_v(\Reach^k(\Win))$. In particular, the vector $\vec{x}^* = \lim_{k \rightarrow\infty} \ReachOp^k(\vec{0})$ is the least fixed point of $ \ReachOp $ and it is equal to the vector of reachability values. 
+\end{lemma}
+\begin{proof}
+The first part can be proved by a straightforward induction, the second part follows by \Cref{5-lem:quant-reach-operator-fixed-point} and a simple limiting argument.
+\end{proof}
+
+
+
+
+Similarly to \Cref{5-def:disc-safe-act} we say that an action $a$ is $\vec{x}$-safe in $v$ if it holds that $a= \underset{a' \in \actions}{\arg\max} \sum_{u\in \vertices} 
+\probTranFunc(u\mid v,a') \cdot\vec{x}_u.$ Recall that a strategy $\sigma$ is $\vec{x}$-safe if all actions selected in a vertex with non-zero probability are $\vec{x}$-safe in that vertex. 
+
+\begin{lemma}
+\label{5-lem:quant-reach-value-distribution}
+Let $ \vec{x}^* $ be as in \Cref{5-lem:quant-reach-step-operator}. 
+Next, let $Z^{(n)}$ be a random variable which for a given time step $n$ looks at the current vertex $v$ after $n$ steps and returns the value $\vec{x}^*_v$. Then for every $\vec{x}^*$-safe strategy $\sigma$ it holds $\expv^\sigma_{\vinit}[Z^{(n)}] = \vec{x}^*_{\vinit}$. Moreover, it holds $\expv^\sigma_{\vinit}[Z^{(n)}\cdot \indicator{\colouring{(\Out{(\play_{n})})}=\Win}] = \probm^\sigma_{\vinit}(\Reach^n(\Win)).$
+\end{lemma}
+\begin{proof}
+By an easy induction on $n$, using the fact that target states are  sinks.
+\end{proof}
+
+
+
+Now an analogue of \Cref{5-lem:disc-val-lower} does not hold for reachability: a strategy playing only $\vec{x}^*$-safe actions might not be optimal (indeed, it might not reach $\Win$ at all). Instead, we proceed as follows: Let $\mdp^*$ be an MDP in which we ``disable'', in each state $v$, all actions that are not $\vec{x}^*$-safe in $v$. This can be formally done by adding a new non-target sink vertex $ \mathit{sink} $, an edge from each original vertex to $ \mathit{sink} $, and stipulating that each action $a$ that is disabled in a vertex $ v $ chooses, when played in $ v $ in $ \mdp^*$, the edge leading to $ \mathit{sink} $ with probability 1. 
+
+\begin{lemma}
+\label{5-lem:quant-reach-pruning-unsafe}
+The vectors of reachability values $ \Value(\mdp)$ and $\Value(\mdp^*) $ are equal.
+In particular, $ \winPos(\mdp,\Reach(\Win)) = \winPos(\mdp^*,\Reach(\Win)).$
+\end{lemma}
+\begin{proof}
+%Assume the converse. Among all vertices in $\winPos(\mdp,\Reach(\Win))$ that do not belong to $\winPos(\mdp^*,\Reach(\Win))$, let $v$ be the one that minimizes the length of the shortest play from $v$ to a vertex coloured by $\Win$ (if there are more such $v$, we can choose among them arbitrarily). Let $(v,u)$ be the first edge on the corresponding shortest play. 
+Let $\vec{x}^*$ again denote the vector of optimal values in $\mdp$. If all actions in $ \mdp $ are $\vec{x}^*$-safes, then the lemma clearly holds. Otherwise there is some $\delta\in(0,1)$ such that for each action $a$ that is not $\vec{x}^*$-safe in some vertex $ v $ it holds $\sum_{u\in \vertices} \probTranFunc(u\mid v,a) \cdot\vec{x}_u \leq \vec{x}^*_v - \delta$.
+
+Let $\epsilon \in(0,\delta)$ be arbitrary and fix an $\epsilon$-optimal strategy $\sigma$ in $\mdp$. We will show that there is a $(2\eps/\delta)$-optimal  strategy $\sigma'$ which only uses $\vec{x}^*$-safe actions. Since $\eps$ can be chosen arbitrarily close to $0$, this shows that $\vec{x}^*$-safe strategies can get arbitrarily close to the value, hence $\Value(\mdp^*)=\Value(\mdp)$.
+
+The strategy $\sigma'$ initially mimics $\sigma$ up to the first point in time when an action that is not $\vec{x}^*$-safe in the current vertex is to be selected. At this point $\sigma'$ switches to behave as any $\vec{x}^*$-safe strategy. To analyse the value achieved by $\sigma'$, we need to bound the probability of the event $\mathit{NonSafe}$ that the switch occurs. By the same reasoning as in \Cref{5-lem:quant-reach-value-distribution}, we can show that for all $n$ it holds $\probm^\sigma_{\vinit}(\Reach^n(\Win)) \leq \expv^\sigma_{\vinit}[Z^{(n)}] \leq  \vec{x}^*_{\vinit}- \delta\cdot\probm_{\vinit}^\sigma(\mathit{NonSafe^{(n)}})$, where $\mathit{NonSafe^{(n)}}$ is the probability that a switch occurs in the first $n$ steps. By taking $n$ to the limit we get $\probm^\sigma_{\vinit}(\Reach(\Win)) \leq \vec{x}^*_{\vinit}- \delta\cdot\probm_{\vinit}^\sigma(\mathit{NonSafe})$. At the same time $\vec{x}^*_{\vinit}-\eps\leq  \probm^\sigma_{\vinit}(\Reach(\Win))$. Combining these two inequalities yields $\probm_{\vinit}^\sigma(\mathit{NonSafe}) \leq  \frac{\eps}{\delta}.$ Now clearly $\probm_{\vinit}^{\sigma'}(\Reach(\Win)) \geq \vec{x}^*_{\vinit} - \eps - \probm_{\vinit}^{\sigma}(\mathit{NonSafe}) \geq \vec{x}^*_{\vinit} - \eps - \eps/\delta \geq \vec{x}^*_{\vinit} -2\eps/\delta$.
+\end{proof}
+
+\begin{lemma}
+\label{5-lem:quant-reach-strat-contsruction}
+Given the vector $\vec{x}^*$ of optimal reachability values, we can compute, in polynomial time, the optimal MD reachability strategy in $\mdp$.
+\end{lemma}
+\begin{proof}
+Given $\vec{x}^*$, we construct the MDP $\mdp^*$ and compute the winning strategy $\sigma$ for positive reachability in $\mdp^*$. We already know that $\sigma$ can be taken memoryless and computed in polynomial time (\Cref{5-thm:positive-char}). We claim that $\sigma$ is an optimal reachability strategy in $\mdp$. By \Cref{5-lem:quant-reach-pruning-unsafe} it suffices to show that $\sigma$ is optimal in $\mdp^*$. Let $W$ be the winning region for positive reachability in $\mdp^*$. Since $\sigma$ is memoryless, with probability $1$ we reach either $\Win$ or a vertex of value $0$ (from which we cannot return to $W$ anymore); in other words, for almost all plays $\play$ we have that $\indicator{\Out(\play_n)\in W}$ eventually equals $\indicator{\colouring(\Out(\play_n)) = \Win}$. Hence, using \Cref{5-lem:quant-reach-value-distribution} we get $\vec{x}^*_{\vinit} = \lim_{n\rightarrow\infty}\expv^\sigma_{\vinit}[Z^{(n)}] = \expv^\sigma_{\vinit}[\lim_{n\rightarrow\infty} Z^{(n)}] = \expv^\sigma_{\vinit}[\lim_{n\rightarrow\infty} Z^{(n)}\cdot\indicator{\Out(\play_n)\in W}] = \expv^\sigma_{\vinit}[\lim_{n\rightarrow\infty} Z^{(n)}\cdot \indicator{\colouring(\Out(\play_{n})) = \Win } ] = \probm_{\vinit}^\sigma(\Reach(\Win))$. Here, the third equality holds since $ \vec{x}^*_v $ is zero for $ v\not\in W $, while the  swapping of expectations and limits can be performed due to the dominated convergence theorem.
+\end{proof}
+
+To finish the proof of \Cref{5-thm:quant-reachability-main}, it remains to prove that the vector of optimal values $\vec{x}^*$ can be computed in polynomial time. We again employ linear programming. 
+
+\begin{figure}[h]
+	\begin{align*}
+	&\text{minimize} \sum_{v\in \vertices} x_v, \text{ subject to }&\\
+	x_v &=1 &\text{if $\colouring({v}) = \Win$}\\
+	x_v &=0 &\text{if $v \not \in \winPos(\mdp,\Reach(\Win))$  } \\
+	x_v &\geq \sum_{u\in \vertices} \probTranFunc(u\mid v,a)\cdot x_u	&\text{for all other $v\in \vertices$ and $a\in \actions$.}%\\
+	% z_q & \geq 0 & \text{ for all } q\in Q
+	\end{align*}
+	\caption{The linear program $\lpreach$ with variables $x_v$, $v\in \vertices$.}
+	\label{5-fig:reach-lp}
+\end{figure}
+
+\begin{lemma}
+	\label{5-lem:quant-reach-lp}
+	The linear program $\lpreach$ in \Cref{5-fig:reach-lp} has a unique optimal solution 
+	$\bar{\vec{x}}$ such that $\bar{\vec{x}} = \vec{x}^*$.
+\end{lemma}
+\begin{proof}
+Clearly $\vec{x}^*$ is a feasible solution of $\lpreach$. Similarly to \Cref{5-lem:disc-lp} we prove that each feasible solution $\vec{x}$ of $\lpreach$ satisfies $\vec{x}\geq \vec{x}^*$. We can proceed analogously  to \Cref{5-lem:disc-lp}, just replacing the operator $\discOP$ with $\ReachOp$. The proof can be mimicked up to the point where we get that $\lim_{k\rightarrow \infty} \ReachOp^k (\vec{x}) \leq \vec{x}$ (the limit exists by \Cref{5-lem:quant-reach-operator-fixed-point}). Since $\ReachOp(\vec{x})\leq \vec{x}$ for each feasible solution $\vec{x}$, from \Cref{5-lem:quant-reach-operator-fixed-point} we get that the limit is a fixed point of $\ReachOp$, and in hence it is greater or equal to the least fixed point of $\ReachOp$, i.e. $\vec{x}^*$ (\Cref{5-lem:quant-reach-step-operator}). Hence, also $\vec{x} \geq \lim_{k\rightarrow \infty} \ReachOp^k (\vec{x}_0)\geq \vec{x}^*$. 
+\end{proof}
+
+\noindent
+Lemmas \ref{5-lem:quant-reach-strat-contsruction} and \ref{5-lem:quant-reach-lp} give us \Cref{5-thm:quant-reachability-main}.
+
+\section*{Bibliographic References}
+
+There is a broad field of study related to Markov decision processes, with a history going as far as  1950's~\cite{Bellman:1957}. It is beyond the scope of this chapter to provide a comprehensive overview of the related literature. Nonetheless, in this section we provide pointers to the most significant works connected to our techniques as well as to works that can serve as a starting point for a further study.
+
+One of the most widely used references for MDP-related research is the textbook by Puterman~\cite{Puterman:2005}. The textbook views MDPs from an operations research point-of-view, focusing on finite-horizon, discounted, total-reward, and average reward (an alternative name for mean-payoff) objectives. Regular objectives fall outside of the book's focus, though reachability can be viewed as a special case of the ``positive bounded total reward'' objectives studied in the book. An in-depth study of the textbook will impart to its reader the knowledge of many useful techniques for MDP analysis, though a reader who is a newcomer to MDPs might feel somewhat intimidated by its sheer volume and generality. In this chapter, we follow Puterman's exposition mainly in the discounted payoff, albeit in a rather condensed form. 
+
+For mean-payoff MDPs,~\cite{Puterman:2005} follows similar blueprint as in the discounted case: first characterizing the optimal values via a suitable optimality equation and then deriving the value iteration, strategy improvement, and linear programming methods from this characterization. We use the linear programming as our foundational stone, focusing on the relationship between strategies and feasible solutions of the program. We note that value and strategy iteration for mean-payoff MDPs come with super-polynomial lower bounds, see, e.g.~\cite{Fearnley:2010,Fearnley:2010b}, or~\cite{Puterman:2005}, where it is shown that strategy improvement converges at least as fast as value iteration.
+
+Also,~\cite{Puterman:2005} makes the initial analysis of mean-payoff MDPs in the context of \emph{unichain} MDPs, and then extends to arbitrary MDPs, with strongly connected MDPs treated as a special case of the latter. While unichain is an important theoretical concept, in the context of formal methods and automata it is preferable to work with strongly connected MDPs. We also note that all the results in the mean-payoff sections hold also for $\MeanPayoffSup$. Almost all of the proofs are the same, with an important exception of \Cref{5-cor:mp-value-bound}, where Fatou's lemma cannot be used to prove that $\playPay(\vinit,\sigma) \leq \stepPay(\vinit,\sigma)$. Instead, we could use \emph{martingale techniques} here. Martingales are an important concept in probability theory~\cite{Wil:1991}, with applications e.g. in analysis of infinite-state MDPs and stochastic games~\cite{Brazdil&Brozek&Etessami&Kucera:2011}. We can use martingales to strengthen \Cref{5-lem:dual-bound-step} by showing that the probability  of $\sum_{i=0}^{n-1}\colouring(\play_i) \geq \sqrt{n}\cdot \expv^\sigma_{\vinit}[\sum_{i=0}^{n-1}\colouring(\play_i)]$ converges (with an exponential rate of decay) to $0$ as $n\rightarrow \infty$, which allows us to prove the required bound for $\limsup$.
+
+ The notion of a (M)EC as well as many techniques we use in the EC section are due to de Alfaro, whose thesis \cite{dA:1997} details the evolution of the concept and its relation to similar notions. The algorithm for MEC decomposition is taken from~\cite{Chatterjee&Henzinger:2011}, where more advanced algorithms as well as use of MECs in parity MDPs are discussed.
+
+For an overview of literature related to verification of temporal properties in MDPs, we refer the reader to the monograph~\cite{Baier&Katoen:2008}.
+
+MDPs are also used as a prime model in reinforcement learning (RL), one of the classical yet rapidly evolving sub-fields of AI. For RL-centric view of MDPs, we point the reader towards the textbooks \cite{Sutton&Barto:2018,Bertsekas:2017}.
+
+
+
+
+
+
+
+
+%\renewcommand{\MeanPayoff}{\MeanPayoffOld}
+
+%\section{Intro, Motivation, Definitions}
+%
+%
+%
+%\begin{itemize}
+%	\item Formalism incorporating both non-determinism and stochastic uncertainty.
+%	\item Motivating example (prob of error in a system)?
+%	\item Formal definition: MC, intuition on how the probability of sets of runs is computed, classes of strategies, strategy (a tree), classes of strategies.
+%\end{itemize}
+%
+%\section{Qualitative Reachability} 
+%
+%\begin{itemize}
+%	\item Easy illustration of the concept of almost-sure and positive-probability event in an MDP.
+%	\item Qualitative algorithm, illustrate difference from non-stochastic/game reachability(?)
+%\end{itemize}
+%
+%\section{Quantitative Reachability}
+%Illustrate main algorithms, discuss advantages/drawbacks (+ pointers to literature):
+%\begin{itemize}
+%	\item Linear programming approach.
+%	\item Value iteration.
+%	\item Maybe mention strategy iteration?
+%\end{itemize}
+%
+%\section{Qualitative and Quantitative B\"uchi, Parity, etc.}
+%\begin{itemize}
+%\item Introduce a concept of (M)ECs and its importance for analysis.
+%\item Show that these problems can be solved by computing MECs + reachability analysis.
+%\end{itemize}
+%
+%\section{Mean payoff}
+%
+%\begin{itemize}
+%\item A representative example of reward objectives in MDPs.
+%\item Linear programming solution.
+%\item Maybe mention connection to counter-MDPs (vie LP duality and martingales).
+%\end{itemize}
+%
+%\section{Further Discussion / or Model Checking}
+%
+%Briefly discuss further objectives + pointers to literature. Alternatively, discuss how model checking of an MDP wrt $\omega$-regular properties is performed (in particular, the need for the product with deterministic automaton).

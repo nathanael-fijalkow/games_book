@@ -1,0 +1,1660 @@
+%\def\payoff{\textsf{payoff}}
+\def\payoff{\ensuremath{f}}
+%\def\Act{\textsf{Act}}
+\def\Act{A}
+\def\Agt{\mathcal{P}}
+\def\move{\textsf{move}}
+\def\Out{\textsf{Out}}
+\def\Dev{\textsf{Dev}}
+\def\maxinf{\text{\rm maxinf}}
+\def\pes{\textsf{pes}}
+\def\opt{\textsf{opt}}
+\def\proj{\textsf{proj}}
+\def\devg{\textsf{DevGame}}
+% \section*{Outline}
+% \begin{itemize}
+% \item Introduction
+% \item Nash Equilibria in Games in normal form
+% \item Nash Equilibria in $\Omega$-regular games
+% \item Admissible strategies
+% \end{itemize}
+
+% \begin{itemize}
+% \item Check notations, outcome, play etc.
+% \item Always specify start vertex in $\Out$
+% \end{itemize}
+\section{Introduction}
+\label{14-section:introduction}
+
+In two player games seen so far, players had objectives that are
+opposite to each other's, so we were able to define them giving only
+Eve's objective. Adam was seen as a purely adversarial player. Such games
+are called \emph{zero-sum} games since, in a quantitative setting, the
+sum of the payoffs of the two players would sum up to zero in any
+outcome. However, the objectives of the players are not entirely
+conflicting in all games.
+In particular, in multiplayer games, that is,
+games with more than two players, the binary view of zero-sum games
+does not make sense;
+%In particular, multiplayer games, that is,
+%games with more than two players, cannot be zero-sum by definition;
+but there are also interesting examples of non-zero sum games with only two
+players (we will see one below). In this setting, winning strategies are
+no longer suitable to describe rational behaviors since the opponents
+should no longer be seen as purely adversarial. In fact, when the
+objectives of the players are not opposite, some cooperation becomes
+possible. Then, rather than assuming that opponents are purely
+adversarial, it is interesting to study the possible outcomes when they
+are simply \emph{rational}, that is, follow the best strategy for their
+own objectives. The notion of equilibria we will study in this chapter
+aims at describing such rational behaviors.
+
+If one is expecting for sure some specific strategies to be played by the
+opponents, then the most rational response is to choose the
+\emph{best response}, that is, the strategy that is optimal for the
+player against the given strategies of the other players. Thus, if we
+assign strategies to players, and if the players are all aware of the
+strategies of the other players, then each player will be willing to
+change their strategy if theirs does not turn out to be a best response.
+Such a situation is seen as unstable and is undesirable in many
+applications of game theory. \emph{Nash equilibrium} is defined simply
+as a stable situation in such a setting: a strategy profile in which the
+strategy of each player is a best response to the rest of the
+strategies. Thus, no player has any incentive to change their strategy.
+
+We will see the formal definition of a Nash equilibrium in the next
+section. Let us first consider the following example.
+
+The following Hawk-Dove game was first presented by the biologists Smith
+and Price, and shown in Table~\ref{14-tab:hawk-dove}.
+Here, two animals are fighting for ressources and can choose to
+either act as a hawk or as a dove.
+If both player choose hawk they will have to fight for resources, and
+thus only get payoff 0. If only one chooses hawk, they get a high payoff of
+4, because they get all the valuable resources for themselves, while the dove
+gets 1: they get plenty of resources but gets hunted. When they both choose
+dove, they both get a payoff of 3: they have to share resources but do not get
+hunted.
+
+When a player chooses hawk then the best payoff for the opponent is
+obtained by choosing dove, so as to avoid fighting for resources.
+So, dove is the best response to hawk. Reciprocally, the best response to
+dove is to play hawk. There are two ``equilibria'': (Hawk, Dove) and
+(Dove, Hawk), where no player has an interest in changing their
+strategy. Note that the highest payoff a player can ensure
+(against all adversary strategies) is only~$1$.
+%however that none of the players has a winning strategy.
+%\todo{What does winning strategy mean??}
+%\todo{Say rather that the best players can ensure is 1 by playing Dove}
+
+Nash showed the existence of such equilibria in any normal-form game
+\footnote{normal-form games are also called matrix games, and some
+specific form was defined in \Cref{chap:concurrent}.},
+which may require randomized strategies. This result
+revolutionized the field of economics, where it is used to analyze
+competitions between firms or government economic policies for example.
+Game theory and the concept of Nash equilibrium are now applied to
+diverse fields: in finance to analyse the evolution of market prices, in
+biology to understand the evolution of some species, in political
+sciences to explain public choices made by parties.
+
+\begin{table}
+  \caption{The Hawk-Dove game. Each column corresponds to a strategy of
+    \(P_1\) and each line to a strategy of \(P_2\).}
+  \label{14-tab:hawk-dove}
+  \begin{center}
+    \begin{tabular}[c]{|@{~}l@{~}|@{~}c@{~} @{~}c@{~}|}
+      \hline
+      & Hawk & Dove \\
+      \hline
+      Hawk & 0 , 0 & 1 , 4 \\
+      Dove & 4 , 1 & 3 , 3 \\
+      \hline
+    \end{tabular}
+  \end{center}
+\end{table}
+
+\medskip
+In this chapter, we will first study the computation of Nash
+equilibria in multiplayer concurrent games with $\omega$-regular
+%\todo{Replace omega by $\omega$?}
+objectives. The algorithms we present here differ from those that were
+given for normal-form games since ours are infinite-duration with
+omega-regular objectives. We will then present extensions of this notion
+such as secure and
+robust equilibria. The second result we develop is
+the notion of admissibility: this is a different approach to the study
+of rational behaviours and consist in eliminating for each player
+irrational choices of strategies.
+
+\section{Nash Equilibria in Games in Normal
+Form}\label{14-section:nash-equilibria-in-games-in-normal-form}
+
+% \include{normal-form.tex}
+The normal form games we consider differ from the matrix games of \Cref{chap:concurrent}, in that each player has their own payoff.
+So for instance, when player 1 chooses column Hawk, and player 2 chooses
+row Dove, the payoff for player 1 is $\payoff_{P_1}(\text{Hawk}, \text{Dove}) = 4$.
+%\todo{The first chapter uses $f$ for quantitative objectes. Should we do the same?}
+Let us call a vector of strategies specifying a strategy for each player a \emph{strategy profile}. In normal-form games, each cell of the table~$\Delta$ corresponds to a strategy profile.
+
+\begin{definition}
+  A \emph{Nash equilibrium} is a \emph{stable} strategy profile in which
+  strategy is a best response against the other strategies.
+\end{definition}
+Thus a Nash equilibrium is a stable situation in the sense that
+no player has an incentive in changing their strategy.
+Nash proved that when
+players are allowed to randomise among all their strategies, there always
+exists a Nash equilibrium.
+
+\begin{theorem}[Existence of Nash equilibria]
+In every normal-form game with a finite number of
+players, each having a finite number of pure strategies, there exists a
+randomised Nash equilibrium.
+\end{theorem}
+
+Note that not all games contain pure Nash equilibria.
+For example, in the rock-paper-scissors game, the best response to rock
+is paper, to paper is scissors, and to scissors is rock, so none of these
+pure strategies can be an equilibrium.
+
+For finding a pure Nash equilibrium in a normal-form game, there is a simple
+polynomial time algorithm.
+For each strategy profile, we look for each player whether they have a better
+response than their current strategy.
+If no player has a better response, the strategy profile is a Nash equilibrium,
+otherwise we move to the next one, and if none satisfies the condition then there is no equilibrium.
+
+%\subsection{Multiplayer Games for Synthesis}\label{multiplayer-games-for-synthesis}
+
+\begin{example}[Medium Access Control]
+Consider a medium access control
+problem, where several users share access to a wireless channel. A
+communication over the channel is successful if there are no collisions,
+that is, if a single user is transmitting their message only. During each
+slot, each user chooses either to transmit or to idle. Intuitively, the
+number of packets transmitted without collision decreases with
+the number of users emitting in the same slot. Furthermore each attempt
+at transmitting has a cost. An example payoff for two players,
+is represented in Table~\ref{ex:medium-access}.
+
+\begin{table}
+  \caption{A game of medium access.}
+  \label{ex:medium-access}
+  \begin{center}
+    \begin{tabular}[c]{|@{\hspace{1em}}l@{\hspace{1em}}|@{\hspace{1em}}c@{\hspace{1em}}c@{\hspace{1em}}|}
+      \hline
+      & Emit & Wait\\
+      \hline
+      Emit & -1, -1 & 2, 0\\
+      Wait & 0 , 2 & 0, 0\\
+      \hline
+    \end{tabular}
+  \end{center}
+\end{table}
+\end{example}
+We encourage the reader to find the Nash equilibria of the above game.
+
+The game described above corresponds to a single slot of this system. In
+a practical scenario, there would be a succession of slots and the payoff would be
+the sum of payoffs over all slots. Normal-form games are thus not
+sufficient to represent games with repetitions and to study the
+evolution of the behaviours as the game evolves.
+
+One possibilty to model repetition is to use
+\emph{games in extensive form} which are games played on finite trees.
+However such games only model a fixed number of repetitions unlike
+infinite or arbitrary duration games as studied in this book. We thus
+study, in the rest of this chapter, algorithms for games played on
+graphs.
+
+\section{Nash Equilibria in Omega-Regular
+Games}\label{nash-equilibria-in-omega-regular-games}
+
+\subsection{Definitions}\label{definition}
+
+\begin{definition}
+  A multiplayer \emph{arena} \(\mathcal{A}\) with~$k$ players is a tuple
+  % \(\langle V, Agt, Act,Tab,(c_A)_{A\in Agt_i} \rangle \), where:
+  \(\langle V, \Act,\Delta,(c_P)_{P\in \Agt} \rangle \), where:
+%  \todo{First chapter uses $A$ for actions}
+%  \todo{$A$ for players shoould be replaced by $P_i$ and $c_A$ by $C_i$}
+
+  \begin{itemize}
+
+  \item
+    \(V\) is a finite set of vertices;
+  \item
+    \(\Agt = \{1,2,\ldots,k\}\) is the set of players;
+  \item
+    \(\Act\) is a finite set of actions, a tuple \((a_P)_{P \in \Agt}\)
+    containing one action \(a_P\) for each player $A$ is called a
+    \emph{move}, thus \(\Act^k\) is the set of possible moves;
+  \item
+    \(\Delta : V \times \Act^k \to V\) is the transition function which
+    associates to a pair of vertices and moves the resulting state;
+  \item
+    \((c_P)_{P \in \Agt}\) is a tuple of colouring functions
+    with~$c_P : V \rightarrow C$ for each~$P \in \Agt$.
+  \end{itemize}
+\end{definition}
+
+\begin{example}
+A simple three-player concurrent game is represented in \Cref{14-fig:example1}.
+Vertices are $v_0$, $v_1$, $v_2$, $v_3$ and $v_4$.
+%\todo{replace $s_i$s by $v_i$s}
+Players are named $P_1$, $P_2$, $P_3$.
+The set of actions is $\Act = \{ a , b\}$.
+The transition relation is given by the edges in the graph, for instance
+$\Delta(s_0, (a, b, a))$ is $v_1$. In our figures, $\ast$ represents
+an arbitrary action.
+The colouring function is represented below vertices as tuples ranging over players.
+For instance, a vertex labelled by $(1,1,0)$ assigns
+the first two players the colour~$1$, and the third player the colour~$0$,
+In particular, $c_{P_1}(v_2) = 1$, and $c_{P_3}(v_2)= 0$.
+\end{example}
+
+\begin{figure}
+  \begin{center}
+    \begin{tikzpicture}
+      \draw (0,0) node[draw, inner sep=7pt] (I) {$v_0$};
+      \draw (I.-90) node[below] {$1, 1, 1$};
+      \draw (4,1) node[draw, inner sep=7pt] (C1) {$v_1$};
+      \draw (C1.-100) node[below] {$1, 1, 0$};
+      \draw (4,-1) node[draw, inner sep=7pt] (C2) {$v_2$};
+      \draw (C2.-90) node[below] {$1, 1, 0$};
+      \draw (1.5, 2) node[draw, inner sep=7pt] (S1) {$v_3$};
+      \draw (S1.-90) node[below] {$0, 1, 1$};
+      \draw (1.5,-2) node[draw, inner sep=7pt] (S2) {$v_4$};
+      \draw (S2.-90) node[below] {$1, 0, 1$};
+      \draw[-latex'] (-1, 0) -- (I);
+      \draw[-latex'] (I) -- node[sloped, text width=1cm]{$a, b, \ast$ \\ $b, a, \ast$} (C1);
+      \draw[-latex'] (I) -- node[sloped, text width=1cm]{$a, a, \ast$ \\ $b, b, \ast$} (C2);
+      \draw[-latex'] (C1) -- node[left]{$\ast, \ast, a$} (C2);
+      % \draw[-latex'] (C2) -- node[right]{$a, a$} (C1);
+      \draw[-latex'] (C1) -- node[above]{$\ast, \ast, b$} (S1);
+      \draw[-latex'] (C2) -- node[below]{$\ast, b, \ast$} (S2);
+      \draw[-latex', rounded corners] (C2) -- +(1,1) -- node[right]{$\ast, a, \ast$} (C1);
+      \draw[-latex'] (S1) -- node[above, sloped, pos=0.3]{$\ast, \ast, \ast$} (I);
+      \draw[-latex'] (S2) -- node[above, sloped, pos=0.3]{$\ast, \ast, \ast$} (I);
+    \end{tikzpicture}
+
+    % \begin{tikzpicture}
+    %   \draw (0,0) node[draw, inner sep=7pt] (I) {$s_0$};
+    %   \draw (I.-90) node[below] {$1, 1, 1$};
+    %   \draw (4,1) node[draw, inner sep=7pt] (C1) {$s_1$};
+    %   \draw (C1.-100) node[below] {$1, 1, 0$};
+    %   \draw (4,-1) node[draw, inner sep=7pt] (C2) {$s_2$};
+    %   \draw (C2.-90) node[below] {$1, 1, 0$};
+    %   \draw (1.5, 2) node[draw, inner sep=7pt] (S1) {$s_3$};
+    %   \draw (S1.-90) node[below] {$0, 1, 1$};
+    %   \draw (1.5,-2) node[draw, inner sep=7pt] (S2) {$s_4$};
+    %   \draw (S2.-90) node[below] {$1, 0, 1$};
+    %   \draw[-latex'] (-1, 0) -- (I);
+    %   \draw[-latex'] (I) -- node[sloped, text width=1cm]{$a, b, \ast$ \\ $b, a, \ast$} (C1);
+    %   \draw[-latex'] (I) -- node[sloped, text width=1cm]{$a, a, \ast$ \\ $b, b, \ast$} (C2);
+    %   \draw[-latex'] (C1) -- node[left]{$\ast, \ast, a$} (C2);
+    %   % \draw[-latex'] (C2) -- node[right]{$a, a$} (C1);
+    %   \draw[-latex'] (C1) -- node[above]{$\ast, \ast, b$} (S1);
+    %   \draw[-latex'] (C2) -- node[below]{$\ast, b, \ast$} (S2);
+    %   \draw[-latex', rounded corners] (C2) -- +(1,1) -- node[right]{$\ast, a, \ast$} (C1);
+    %   \draw[-latex'] (S1) -- node[above, sloped, pos=0.3]{$\ast, \ast, \ast$} (I);
+    %   \draw[-latex'] (S2) -- node[above, sloped, pos=0.3]{$\ast, \ast, \ast$} (I);
+    % \end{tikzpicture}
+    \caption{Example of a three-player concurrent arena.
+      The symbol $\ast$ on edges can be replaced by either $a$ or $b$.}
+    \label{14-fig:example1}
+  \end{center}
+\end{figure}
+
+
+% \begin{definition}[History and plays]
+A \emph{history} of the multiplayer arena
+% \todo{For the first chapter this is a finite play}
+\({\mathcal A}\) is a finite sequence of states and moves ending with a
+state, i.e.~a word in \((V \cdot \Act^\Agt)^* \cdot V\). Note that unlike
+for two player games we include actions in the history, because knowing
+the source and target vertices does not mean you know which player chose
+which actions.
+%\end{definition}
+
+For a history~$\pi$, we write \(\pi_i\) the $i$-th vertex of $\pi$, starting from $0$, and
+%\todo{$\pi_i$ corresponds to an edge rather than a vertex: Je ne trouve pas \c ca grave}
+\(\move_i(\pi)\) its $i$-th move, thus
+\(\pi = \pi_0 \cdot \move_0(\pi \cdot \pi_1 \cdots \move_{n-1}(\pi)\cdot \pi_n\), and
+with this notation $\move_i(\pi)_P$ is the $i$-th action of player $P$ in $h$.
+The length $|\pi|$ of such a history is $n + 1$. We write
+$\last(\pi)$ the last vertex of h, i.e. \(\pi_{|\pi|-1}\).
+A play \(\rho\) is an
+infinite sequence of vertices and moves, i.e.~an element of
+\((V \cdot \Act^{\Agt})^\omega\).
+
+\def\Coalition{\ensuremath{\mathcal{C}}}
+\begin{definition}[Strategy and coalition]
+  A strategy is a function which associates an action to each history.
+  We often write $\sigma_A$ for a strategy of player $P$.
+  A coalition $\Coalition$ is a set of players in $\Agt$, and we write
+  % \todo{$\Coalition$ could be confused with colours}
+  $-\Coalition$ for the remaining players, that is $-\Coalition = Agt \setminus \Coalition$.
+  Let \(\Coalition\) be a coalition, a strategy \(\sigma_\Coalition\) for \(\Coalition\) is a function
+  which associates a strategy \(\sigma_P\) to each player \(P\in \Coalition\).
+  Given a strategy $\sigma_\Coalition$, when it is clear from the context, we simply
+  write \(\sigma_P\) for \(\sigma_\Coalition(P)\).
+\end{definition}
+
+\begin{definition}[Outcomes]
+  A history \(\pi\) is compatible
+  with the strategy \(\sigma_\Coalition\) for coalition~$\Coalition$ if, for all \(k < |\pi| - 1\) and all
+  \(P \in \Coalition\), \((\move_k(\pi))_P = \sigma_P(\pi{\le k})\), and
+  \(\Delta(\pi_k, \move_k(\pi)) = \pi_{k+1}\). A play \(\rho\) is compatible with
+  the strategy \(\sigma_\Coalition\) if all its prefixes are. We write
+  % \todo{The first chapter would rather write $\pi^{v_0}_{\sigma_\Coalition}$}
+  \(\Out_{\mathcal{A}}(v_0, \sigma_\Coalition)\) for the set of plays in \(\mathcal{A}\) that
+  are compatible with strategy \(\sigma_\Coalition\) and have initial vertex
+  \(v_0\). Let \(\Out_{\mathcal{A}}(\sigma_\Coalition)\) denote the union
+  of \(\Out_{\mathcal{A}}(v_0, \sigma_\Coalition)\) for all~$v_0$,
+  and \(\Out_{\mathcal{A}}(v_0)\) the union of all \(\Out_{\mathcal{A}}(v_0, \sigma_\Coalition)\).
+  The subscript~$\mathcal{A}$ can be omitted if it is clear from the context.
+  These paths are called \emph{outcomes} of \(\sigma_\Coalition\) from
+  \(v_0\). 
+%We write \(\Out_{\mathcal A}\) the set of all plays that are
+%compatible with some strategy \(\sigma_{\Agt}\) of \(\Agt\) regardless of the initial vertex. 
+\end{definition}
+Note that
+when the coalition \(\Coalition\) is composed of all the players
+the outcome from a given state is unique.
+
+\begin{example}
+  Consider in the example of \Cref{14-fig:example1}, the following
+  strategies:
+  \begin{itemize}
+  \item $P_1$ always plays $a$, i.e. $\sigma_{P_1}(\pi) = a$ for all histories $\pi$;
+  \item $P_2$ plays $a$ in $v_0$ if it is the first state and then always plays $b$, i.e. $\sigma_{P_2}(v_0) = a$ and $\sigma_{P_2}(\pi) = b$ for all $\pi \ne v_0$;
+  \item $P_3$ always plays $b$, i.e. $\sigma_{P_3}(\pi) = b$.
+  \end{itemize}
+  The outcome from $v_0$ in that case is
+  \begin{align*}
+    \Out(v_0, \sigma_{\{P_1, P_2, P_3\}}) ~ = & ~ v_0 \cdot (a, a, b) \cdot v_2 \cdot (a, b, b)
+                                                \cdot v_4 \cdot (a, b, b) \cdot\\
+                                              & \left(v_0 \cdot (a, b, b)
+                                                \cdot v_1 \cdot (a, b, b)
+                                                \cdot v_3 \cdot (a, b, b)\right)^\omega
+  \end{align*}
+\end{example}
+
+
+\begin{definition}[Multiplayer game]
+  A \emph{payoff} function associates a real number to each outcome.
+  We will be mostly be interested in solving games with qualitative
+  objectives, that is payoffs that take values $0$ and $1$.
+%  In that case we talk about \emph{qualitative objectives} 
+%  \todo{we hould talk of qualitative objective, and maybe quantitative objective rather than payoff}
+  A \emph{multiplayer game} \((\mathcal{A}, (\payoff_P)_{P \in \Agt})\) is given by a multiplayer arena $\mathcal{A}$, an initial
+  vertex $v_0$ and payoff function $\payoff_P$ for each player~$P$.
+  When $\payoff_P$ is qualitative we simply write $\Omega_P$
+  for the corresponding objective.
+\end{definition}
+
+
+\subsection{The Nash equilibrium problem}
+\label{14-subsection:algorithm-for-finding-nash-equilibria}
+
+In this section we will present an algorithm to compute
+Nash equilibria in
+multiplayer games.
+The problem we are interested in is to decide the existence of a Nash
+equilibrium in which the objectives of a given set of players are
+satisfied.
+
+\begin{svgraybox}
+\decisionproblem{
+\parbox[t]{0.75\textwidth}{Multiplayer game $(\mathcal{A}, (\payoff_P)_{P \in \Agt})$, payoff
+  bounds $(b_P)_{P\in\ \Agt}$, and initial vertex~$v_0$}
+}{
+  \parbox[t]{0.75\textwidth}{is there
+a Nash equilibrium $\sigma_{\Agt}$ such that for all
+$P \in \Agt, \payoff_P(\Out({v_0,\sigma_{\Agt}})) \ge b_P$?}}
+\end{svgraybox}
+\todo{OS: I don't know how to fix this alignment issue}
+
+The algorithm is based on a reduction to zero-sum two-players games,
+which allows us to use algorithms presented in the previous chapters of
+this book. More precisely, we present the \emph{deviator game}, which is
+a transformation of a concurrent multiplayer game into a turn-based
+zero-sum game, such that there are strong links between equilibria in
+the former and winning strategies in the latter. The proofs of
+this section are independent of the type of objectives we consider.
+
+\subsection{Deviators}\label{14-subsection:deviators}
+
+A central notion we use is that of \emph{deviators}. These are the
+players who have played different moves from those prescribed in a given
+profile, thus causing a deviation from the expected outcome. Formally, a
+deviator from move
+\(a_{\Agt}\) to \(a'_{\Agt}\) is a player
+\(D \in \Agt\) such that \(a_D \ne a'_D\) . We denote the set of
+deviators by \[
+        \Dev(a_{\Agt} , a'_{\Agt} ) = \{D \in \Agt \mid a_D \ne a'_D \}.
+\] We extend the definition to pairs of histories and strategies by
+taking the union of deviator sets of each step along the history.
+Formally,
+\[
+\Dev(\pi, \sigma_{\Agt}) = \bigcup_{0\le i < |h|}~ \Dev(\move_i(\pi), \sigma_{\Agt}(\pi_{\le i})).
+\]
+For an infinite play \(\rho\), we define
+%\todo{should use $\pi$ rather than $\rho$. I don't think it's a problem to use $\pi$ for histories and~$\rho$ for infinite plays}
+\(\Dev(\rho, \sigma_{\Agt} ) = \bigcup_{i \in \mathbb{N}} \Dev(\move_i(\rho), \sigma_{\Agt}(\rho_{\le i} ))\).
+Intuitively, having chosen a strategy profile \(\sigma_{\Agt}\) and
+observed a play \(\rho\), deviators represent the players that must have
+changed their strategies from \(\sigma_{\Agt}\) in order to generate
+\(\rho\).
+
+\begin{lemma}\label{14-lem:deviator}
+Given a play \(\rho\), strategy profile~$\sigma_\Agt$, a coalition \(\Coalition\)
+contains \(\Dev(\rho)\), if and only if, there exists a strategy
+\(\sigma'_\Coalition\) such that \(\Out(\rho_1, \sigma_{-\Coalition}, \sigma'_\Coalition) = \rho\).
+\end{lemma}
+\begin{proof}
+Assume that coalition \(\Coalition\) contains
+\(\Dev(\rho, \sigma_{\Agt})\). We define the strategy \(\sigma_\Coalition\) to be
+such that for all \(i\in \mathbb{N}\),
+\(\sigma_\Coalition(\rho_{\le i} ) = (\move_i(\rho))_\Coalition\). By hypothesis, we have,
+for all indices \(i\),
+\(\Dev(\move_i(\rho), \sigma_{\Agt}(\rho_{\leq i})) \subseteq \Coalition\), so for
+all players \(A\not\in \Coalition\),
+\(\sigma_A(\rho_{\le i}) = (\move_i(\rho))_A\). Then
+\(\Delta(\rho_i, \sigma'_\Coalition(\rho_{\le i}), \sigma_{-\Coalition}(\rho_{\le i})) = \rho_{i+1}\).
+Hence \(\rho\) is the outcome of the profile
+\((\sigma_{-\Coalition}, \sigma'_\Coalition)\).
+
+For the other direction, let \(\sigma_{\Agt}\) be a strategy profile,
+\(\sigma'_\Coalition\) a strategy for coalition \(\Coalition\), and
+\(\rho \in Out_G(\rho_0 , \sigma_{-\Coalition}, \sigma'_\Coalition)\). We have for all
+indices \(i\) that
+\(\move_i(\rho) = (\sigma_{-\Coalition}(\rho_{\le i}), \sigma'_\Coalition(\rho_{\le i}))\).
+Therefore for all players \(A \not\in \Coalition\),
+\((\move_i(\rho))_A = \sigma_A(\rho_{\le i})\). Then
+\(\Dev(\move_i(\rho), \sigma_{\Agt}(\rho_{\le i})) \subseteq \Coalition\). Hence
+\(\Dev(\rho, \sigma_{\Agt}) \subseteq \Coalition\).
+\end{proof}
+
+\begin{example}
+  In the example of \Cref{14-fig:example1}, we consider again the strategies,
+  such that for all histories $\pi$, $\sigma_{P_1}(\pi) = a$,
+  $\sigma_{P_2}(v_0) = a$ and if $\pi \ne v_0$, $\sigma_{P_2}(\pi) = b$,
+  and $\sigma_{P_3}(\pi) = b$.
+  Then $\Dev(v_0 \cdot (a, a, b) \cdot v_2 \cdot (a, a, b) \cdot v_1 \cdot
+  (a, b, a) \cdot v_2, \sigma_{\Agt})$ is the union of:
+  \begin{itemize}
+  \item $\Dev(\sigma_{\Agt}(v_0), (a, a, b)) = \Dev((a, a, b), (a, a, b)) = \varnothing$
+  \item $\Dev(\sigma_{\Agt}(v_0 \cdot (a, a, b) \cdot v_2), (a, a, b)) =
+    \Dev( (a, b, b), (a, a, b)) = \{P_2\}$
+  \item $\Dev(\sigma_{\Agt}(v_0 \cdot (a, a, b) \cdot v_2 \cdot (a, a, b) \cdot v_1), (a, b, a)) =
+    \Dev( (a, b, b), (a, b, a)) = \{P_3\}$.
+  \end{itemize}
+  We obtain
+  $\Dev(v_0 \cdot (a, a, b) \cdot v_2 \cdot (a, a, b) \cdot v_1 \cdot
+  (a, b, a) \cdot v_2, \sigma_{\Agt}) = \{ P_2, P_3\}$.
+  This means that both $P_2$ and $P_3$ need to change their strategies
+  from $\sigma_{\Agt}$ to obtain the given history.
+\end{example}
+
+Note that Nash equilibria are defined only with respect to deviations by
+single players, that is, we require all players to achieve worse or equal
+payoffs than the prescribed profile when they single-handedly change
+strategies. Thus, only the outcomes with singleton deviator sets
+will be of interest for us in the next section where we present the algorithm.
+
+% Note that Nash equilibria are defined only with respect to deviations by
+% single players.
+% In fact, the case of deviators exceeding size 2 (two players
+% simultaneously changing their strategies) should be of no matter to us.
+% Indeed, we will see that when this happens, the two player game of our
+% reduction can be stopped.
+
+
+
+\subsection{Deviator Game}\label{deviator-game}
+We now present an algorithm to reduce multiplayer games to two-player games
+using the notion of deviators we just defined.
+%We now use the notion of deviators to draw a link between multiplayer
+%games and a two-player game.
+Given a \emph{game}
+\(\mathcal{G} = (\mathcal{A}, (\payoff_A)_{A \in \Agt})\),
+%\todo{use $\mathcal{G}$ rather than $G$}
+we define the deviator game, denoted \(\devg(\mathcal{G})\).
+%\todo{would $\textsf{DevGame}(\mathcal{G})$ be clearer?}
+Intuitively, in this game, Eve needs to play
+according to an equilibrium, while Adam tries to find a profitable
+deviation for any player. The vertices are \(V' = V \times 2^{\Agt}\),
+where the second component, a subset of \(\Agt\), records the deviators
+of the current history.
+
+At each step, Eve chooses an action profile, and Adam chooses the move
+that will apply. Adam can either respect Eve's choice, or pick a
+different action profile in which case the deviators will be added to
+the second component of the vertex. The game begins in
+\((v_0 , \varnothing)\) and then proceeds as follows: from a vertex
+\((v, D)\), Eve chooses an action profile \(a_{\Agt}\), and Adam chooses
+a possibly different one \(a'_{\Agt}\). The next vertex is
+\((\Delta(v, a'_{\Agt} ), D \cup \Dev(a_{\Agt} , a'_{\Agt} ))\).
+
+\begin{example}
+  An example of a partial construction of the deviator game for the
+  example of \Cref{14-fig:example1}, is given in figure~\Cref{14-fig:ex-dev}.
+  We cannot represent the full construction here, as there are 40 vertices.
+\end{example}
+\begin{figure}
+  \begin{center}
+    \begin{tikzpicture}
+      \draw (0,0) node[draw, inner sep=7pt] (I) {$v_0, \varnothing$};
+      \draw (80:4) node[draw, inner sep=7pt] (S10) {$v_1, \varnothing$};
+      \draw (62:4.5) node[draw, inner sep=7pt] (S11) {$v_1, \{P_1\}$};
+      \draw (44:5) node[draw, inner sep=7pt] (S12) {$v_1, \{P_2\}$};
+      \draw (26:6) node[draw, inner sep=7pt] (S13) {$v_1, \{P_3\}$};
+      \draw (8:7) node[draw, inner sep=7pt] (S14) {$v_1, \{P_1, P_2\}$};
+      \draw (-8:6) node[draw, inner sep=7pt] (S15) {$v_1, \{P_1, P_3\}$};
+      \draw (-26:5) node[draw, inner sep=7pt] (S16) {$v_1, \{P_2, p_3\}$};
+      \draw (-44:4.5) node[draw, inner sep=7pt] (S17) {$v_1, \{P_1, P_2, P_3\}$};
+      \draw (-76:4) node[draw, inner sep=7pt] (C2) {$v_2, \varnothing$};
+      \draw (-88:4) node[below] {$\dots$};
+      \draw[-latex'] (-1, 0) -- (I);
+      \draw[-latex'] (I) -- node[sloped, text width=1cm]{$(a, b, a), (a, b, a)$  \\ $(b, a, a), (b, a, a)$} (S10);
+      \draw[-latex'] (I) -- node[sloped, text width=1cm]{$(a, a, a), (b, a, a)$ \\ $(a, b, a), (b, a, b)$} (S11);
+      \draw[-latex'] (I) -- node[sloped, text width=1cm]{$(a, a, a), (a, b, a)$ \\ $(b, b, a), (b, a, a)$} (S12);
+      \draw[-latex'] (I) -- node[sloped, text width=1cm]{$(a, b, a), (a, b, b)$ \\ $(b, a, a), (b, a, b)$} (S13);
+      \draw[-latex'] (I) -- node[sloped, text width=1cm]{$(a, b, a), (b, a, a)$ \\ $(b, a, a), (a, b, a)$} (S14);
+      \draw[-latex'] (I) -- node[sloped, text width=1cm]{$(a, a, a), (b, a, b)$ \\ $(b, b, a), (a, b, b)$} (S15);
+      \draw[-latex'] (I) -- node[sloped, text width=1cm]{$(a, a, a), (a, b, b)$ \\ $(b, b, a), (b, a, b)$} (S16);
+      \draw[-latex'] (I) -- node[sloped, text width=1cm]{$(a, b, a), (b, a, b)$ \\ $(b, a, a), (a, b, b)$} (S17);
+      \draw[-latex'] (I) -- node[sloped, text width=1cm]{$(a, a, a), (a, a, a)$ \\ $(b, b, b), (b, b, b)$} (C2);
+    \end{tikzpicture}
+    \caption{Example a deviator game construction.}
+    \label{14-fig:ex-dev}
+  \end{center}
+\end{figure}
+
+We define projections \(\proj_{V}\) and \(\proj_{\Dev}\) from \(V'\) to
+% \todo{$\pi$ can be confused with plays, should we use $\textsf{proj}_V$?}
+\(V\) and from \(V'\) to \(2^{\Agt}\) respectively, as well as
+\(\proj_{\Act}\) from \(Act^{\Agt} \times Act^{\Agt}\) to \(Act^{\Agt}\) which
+maps to the second component of the product, that is, Adam's action.
+
+For a history or play \(\rho\), define \(\pi_{\Out}(\rho)\) as the play
+\(\rho'\) for which, \(\rho'_i = \proj_V(\rho_i)\) and
+\(\move_i(\rho') = \proj_{\Act}(\move_i(\rho))\) for all~$i$. This is thus the play
+induced by Adam's actions.
+Let us also denote~$\Dev(\rho) = \proj_{\Dev}(\last(\rho))$.
+
+We can associate a strategy of Eve to each strategy profile
+\(\sigma_{\Agt}\) such that she chooses the moves prescribed by
+\(\sigma_{\Agt}\) at each history of \(\devg(\mathcal{G})\). Formally, we write
+\(\kappa(\sigma_{\Agt})\) for the strategy defined by
+\(\kappa(\sigma_{\Agt})(\pi) = \sigma_{\Agt}(\proj_{\Out}(\pi))\) for all histories~$\pi$.
+
+The following lemma states the correctness of the construction of the
+deviator game \(\devg(\mathcal{G})\), in the sense that it records the set of
+deviators in the strategy profile suggested by Adam with respect to the
+strategy profile suggested by Eve.
+
+\begin{lemma}\label{14-prop:correctness-deviator-game}
+  Let $\mathcal{G}$ be a multiplayer game, $v$ a vertex, \(\sigma_{\Agt}\) a
+  strategy profile, and \(\sigma_{\exists} = \kappa(\sigma_{\Agt})\) the
+  associated strategy in the deviator game.
+
+  \begin{enumerate}
+    \def\labelenumi{\arabic{enumi}.}
+  \item
+    If \(\rho \in \Out_{\devg(\mathcal{G})}((v,\emptyset),\sigma_\exists)\), then
+    \(\Dev(\proj_{\Out}(\rho), \sigma_{\Agt} ) = \Dev(\rho)\).
+  \item
+    If \(\rho \in \Out_G(v)\) and for all index \(i\),
+    \(\rho'_i = (\rho_i , \Dev(\rho_{\le i} , \sigma_{\Agt}))\) and
+    \(\move_i(\rho') = (\sigma_{\Agt} (\rho_{\le i} ), \move_i(\rho))\), then
+    \(\rho' \in \Out_{\devg(\mathcal{G})}((v,\emptyset), \sigma_\exists)\).
+  \end{enumerate}
+\end{lemma}
+\begin{proof}
+  We prove that for all $i$,
+  \(\Dev(\proj_{\Out}(\rho_{\le i} , \sigma_{\Agt}) = \proj_{\Dev} (\rho_{\le i} )\),
+which implies the property. The property holds for i = 0, since
+initially both sets are empty. Assume now that it holds for \(i \ge 0\).
+Then:
+\begin{align*}
+  \Dev(\proj_{\Out}(\rho_{\le i+1}) , \sigma_{\Agt} ) = & \Dev(\proj_{\Out}(\rho_{\le i}), \sigma_{\Agt} ) \cup \Dev(\sigma_{\Agt} (\proj_{\Out}(\rho_{\le i})), \proj_{\Act} (\move_{i+1} (\rho))) \\
+  & \text{(by definition of deviators)}\\
+  =& \Dev (\rho_{\le i} ) \cup \Dev(\sigma_{\Agt} (\proj_{\Out} (\rho_{\le i}), \proj_{\Act} (\move_{i+1} (\rho))) \\
+  & \text{(by induction hypothesis)} \\
+  = & \Dev (\rho_{\le i} ) \cup \Dev(\sigma_\exists (\rho_{\le i} ), \proj_{\Act} (\move_{i+1}(\rho))) \\
+  & \text{(by definition of \(\sigma_\exists\) )}\\
+  = & \Dev (\rho_{\le i} ) \cup \Dev(\move_{i+1}(\rho)) \\
+  & \text{(by assumption \(\rho \in \Out_{\devg(\mathcal{G})} ((v,\emptyset), \sigma_\exists)\))}\\
+  = & \Dev(\rho_{\le i+1} ) \\
+  & \text{(by construction of \(\devg(\mathcal{G})\))} \\
+\end{align*}
+
+Which concludes the induction.
+
+We now prove the second part. The property is shown by induction. It
+holds for \(v_0\). Assume it is true up to index \(i>0\), then
+\begin{align*}
+\Delta'(\rho'_i , \sigma_\exists(\rho'_{\le i}), \move_i(\rho)) = &
+\Delta'((\rho_i , \Dev(\rho_{\le i} , \sigma_{\Agt})), \sigma_{\exists} (\rho'_{\le i} ), \move_i(\rho))\\
+&  \text{(by definition of \(\rho'\))} \\
+= & \Delta(\rho_i , \move_i(\rho)), \Dev(\rho_{\le i}, \sigma_{\Agt}) \cup \Dev(\sigma_{\exists}(\rho'_{\le i}), \rho_{i+1} )) \\
+&  \text{(by construction of \(\Delta'\) )}\\
+= & (\rho_{i+1} , \Dev(\rho_{\le i}, \sigma_{\Agt} ) \cup \Dev(\sigma_{\exists}(\rho'_{\le i}), \rho_{i+1} )) \\
+& \text{(since \(\rho\) is an outcome of the game)} \\
+= & (\rho_{i+1} , \Dev(\rho_{\le i} , \sigma_{\Agt} ) \cup \Dev(\sigma_{\Agt} (\rho_{\le i}), \rho_{i+1} )) \\
+& \text{(by construction of \(\sigma_\exists\))} \\
+= & (\rho_{i+1} , \Dev(\rho_{\le i+1} , \sigma_{\Agt} ))\\
+& \text{(by definition of deviators)} \\
+= & \rho'_{i+1}. \\
+\end{align*}
+\end{proof}
+
+%\subsection{Objectives in the Deviator
+%Game}\label{objectives-in-the-deviator-game}
+
+The objective of Eve in the deviator game is defined so that winning
+strategies correspond to equilibria of the original game. First, as an
+intermediary step, given coalition \(\Coalition\), player \(P\) and
+bound \(b\), we will construct an objective stating that we can ensure
+that the payoff of $P$ will not exceed $b$ even if players in $\Coalition$ change
+their strategies.
+Consider the following objective in \(\devg(\mathcal{G})\):
+\[
+  \Omega(\Coalition, P, b) = \{\rho \in \Out_{\devg(\mathcal{G})} \mid \Dev(\rho) \subseteq \Coalition \Rightarrow \payoff_P(\proj_{\Out}(\rho)) \le b\}.
+\]
+Intuitively, this says that if only players
+in $\Coalition$ deviated from the strategy suggested by Eve, then the payoff
+of $P$ is smaller than $b$.
+We now show that a strategy ensuring bound \(b\) for the payoff of
+$P$ against coalition \(\Coalition\) corresponds to a winning strategy for
+\(\Omega(\Coalition, P, b)\) in the deviator game.
+
+\begin{lemma} \label{14-lem:omegaCAg}
+  Let \(\Coalition \subseteq \Agt\) be a coalition,
+  \(\sigma_{\Agt}\) be a strategy profile, \(b \in \mathbb{R}\) a bound,
+  and \(P\) a player. For all strategies \(\sigma'_\Coalition\), vertex~$v_0$,
+  and coalition \Coalition, \(\payoff_P(\Out_{\devg(\mathcal{G})}(v_0, \sigma_{-\Coalition}, \sigma'_\Coalition)) \le b\) if, and
+  only if, \(\kappa(\sigma_{\Agt})\) is winning in \(\devg(\mathcal{G})\) for objective
+  \(\Omega(\Coalition, P, b)\).
+\end{lemma}
+\begin{proof} Let \(\rho\) be an outcome of
+  \(\sigma_\exists=\kappa(\sigma_{\Agt}) \in \devg(\mathcal{G})\). By Lemma
+  \ref{14-prop:correctness-deviator-game}, we have that
+  \(\Dev(\rho) = \Dev(\proj_V(\rho),\sigma_{\Agt})\). By Lemma
+  \ref{14-lem:deviator}, \(\proj_V(\rho)\) is the outcome of
+  \((\sigma_{-\Dev(\rho)},\sigma'_{\Dev(\rho)})\) for some
+  \(\sigma'_{\Dev(\rho)}\). If \(\Dev(\rho) \subseteq \Coalition\), then
+  \(\payoff_P(\proj_V(\rho)) = \payoff_P(\sigma_{-\Coalition},\sigma_{\Coalition\setminus \Dev(\rho)}, \sigma'_{\Dev(\rho)}) = \payoff_P(\sigma_{-\Coalition},\sigma''_{\Coalition})\)
+  where \(\sigma''_P = \sigma'_P\) if \(P \in \Dev(\rho)\) and \(\sigma_P\)
+  otherwise. By hypothesis, this payoff is smaller than or equal to \(b\).
+  This holds for
+  all outcomes \(\rho\) of \(\sigma_\exists\), thus \(\sigma_\exists\) is
+  a winning strategy for \(\Omega(\Coalition,P,b)\).
+
+  For the other direction, assume \(\sigma_\exists = \kappa(\sigma_{\Agt})\)
+  is a winning strategy in \(\devg(\mathcal{G})\) for \(\Omega(\Coalition,P,b)\). Let
+  \(\sigma'_\Coalition\) be a strategy for \(\Coalition\) and \(\rho\) the outcome of
+  \((\sigma'_{\Coalition},\sigma_{-{\Coalition}})\). By
+  Lem.~\ref{14-lem:deviator},
+  \(\Dev(\rho,\sigma_{\Agt}) \subseteq \Coalition\). By
+  Lem.~\ref{14-prop:correctness-deviator-game},
+  \(\rho'= (\rho_j, \Dev(\rho_{\le j},\sigma_{\Agt}))_{j\in \mathbb{N}}\) is
+  an outcome of \(\sigma_\exists\). We have that
+  \(\Dev(\rho') = \Dev(\rho,\sigma_{\Agt}) \subseteq \Coalition\). Since
+  \(\sigma_\exists\) is winning, \(\rho\) is such that
+  \(\payoff_P(\proj_V(\rho)) \le b\). Since
+  \(\payoff_{P}(\proj_V(\rho')) = \payoff_{P}(\rho)\),
+  this shows that for all strategies \(\sigma'_\Coalition\),
+  \(\payoff_P(\sigma_{-\Coalition},\sigma'_\Coalition) \le b\).
+\end{proof}
+
+Now, Eve can show that there is a Nash equilibrium in a given game
+by proving that whenever there is a single deviator,
+the deviating player does not gain more than without the deviation,
+while she does not have to prove anything on plays involving several
+deviators.
+
+\begin{theorem}\label{14-thm:dev-nash}
+  Let \(\mathcal{G} = (\mathcal{A}, (\payoff_P)_{P \in \Agt})\) be a game, \(\sigma_{\Agt}\) a strategy
+  profile in \(\mathcal{G}\), vertex~$v_0$, and \(F = (\payoff_P(\Out_{\mathcal{A}}(v_0,\sigma_{\Agt})))_{P\in \Agt}\)
+  the payoff
+  profile of \(\sigma_{\Agt}\) from~$v_0$. The strategy profile \(\sigma_{\Agt}\) is a
+  Nash equilibrium if, and only if, strategy \(\kappa(\sigma_{\Agt})\) is
+  winning in \(\devg(\mathcal{A})\) for the objective \(N(F)\) defined by:
+  \[N(F) = \{\rho \mid |\Dev(\rho)| \ne 1\}
+    \cup \bigcup_{P\in \Agt} \{\rho \mid \Dev(\rho) = \{P\}
+    \land \payoff_P(\proj_{\Out}(\rho)) \le F_P\}.\]
+\end{theorem}
+\begin{proof} By \Cref{14-lem:omegaCAg}, \(\sigma_{\Agt}\) is a Nash
+  equilibrium if, and only if, for each player \(P\),
+%  \todo{What is this $\pi$? Check this proof}
+  \(\kappa(\sigma_{\Agt})\) is winning for
+  % \(\Omega(\{A\}, A, \payoff_A(\sigma_{\Agt})\).
+  \(\Omega(\{P\}, P, F_P)\).
+  So it is enough to show that for each player \(P\),
+  \(\kappa(\sigma_{\Agt})\) is winning for
+  \(\Omega(\{P\},P, F_P)\) if,
+  % \(\Omega(\{A\},A, \payoff_A(\sigma_{\Agt})\) if,
+  and only if, \(\kappa(\sigma_{\Agt})\) is winning for \(N(F)\).
+
+  \textbf{Implication} Let \(\rho\) be an outcome of
+  \(\kappa(\sigma_{\Agt})\).
+
+\begin{itemize}
+
+\item
+  If \(|\Dev(\rho)| \ne 1\), then \(\rho\) is in \(N(F)\) by
+  definition.
+\item
+  If \(|\Dev(\rho)| = 1\), then for \(\{P\} = \Dev(\rho)\),
+  \(\payoff_P(\proj_{\Out}(\rho)) \leq F_P\) because
+  \(\kappa(\sigma_{\Agt})\) is winning for
+  \(\Omega(\Dev(\rho), P, F_P)\). Therefore \(\rho\) is
+  in \(N(F)\).
+\end{itemize}
+
+This holds for all outcomes \(\rho\) of \(\kappa(\sigma_{\Agt})\) and shows
+that \(\kappa(\sigma_{\Agt})\) is winning for \(N(F)\).
+
+\textbf{Reverse implication} %Let \(P\) be such that strategy
+Assume that
+\(\kappa(\sigma_{\Agt})\) is winning for \(N(F)\). We now show that
+\(\kappa(\sigma_{\Agt})\) is winning for
+\(\Omega(\{P\},P, F_P)\) for each player \(P\). Let
+\(\rho\) be an outcome of \(\kappa(\sigma_{\Agt})\), we have
+\(\rho \in N(F)\). We show that \(\rho\) belongs to
+\(\Omega(\{P\}, P, F_P)\):
+
+\begin{itemize}
+
+\item
+  If \(\Dev(\rho) = \varnothing\) then \(\rho = \Out(v_0, \sigma_{\Agt})\) and
+  \(\payoff_P(\rho) = F_P\), so \(\rho\) is in
+  \(\Omega(\{P\},P, F_P)\)
+\item
+  If \(\Dev(\rho) \not\subseteq \{ P \}\), then
+  \(\rho \in \Omega(\Coalition,P,F_P)\) by definition.
+\item
+  Otherwise \(\Dev(\rho) = \{P\}\). Since \(\rho \in N(F)\),
+  \(\payoff_P(\rho) \le F_P\). Hence
+  \(\rho \in \Omega(\Coalition,P,F_P)\).
+\end{itemize}
+
+This holds for all outcomes \(\rho\) of \(\kappa(\sigma_{\Agt})\) and shows
+it is winning for \(\Omega(\{P\},P,F_P)\) for each
+player \(P\in \Agt\), which shows that \(\sigma_{\Agt}\) is a Nash
+equilibrium.
+\end{proof}
+
+%\fbox{Give an example}
+
+\subsubsection{Algorithm for Parity
+Objectives}\label{14-subsection:algorithm-for-parity-objectives}
+We now focus on the case of Parity objectives.
+Recall that
+Each player $P$ has
+a colouring function $c_P : V \rightarrow \mathbb{N}$, inducing the parity objective $\Omega_A$.
+%
+%\todo{$c_A$ should be $C_i$ and already given in the definition of game}
+%the set of paths for which the maximum of the colours seen
+%infinitely often is even.
+%\todo{The book's definition is that the largest must be even}
+Thus the payoff $\payoff_Ps$ assigns 1 to paths belonging to $\Omega_A$ and 0
+to the others.
+
+We now give an algorithm for the Nash equilibrium problem with parity
+objectives. Given a payoff for each player \((F_P)_{P\in \Agt} \),
+we can deduce from the previous theorem an algorithm that
+constructs a Nash equilibrium if there exists one. We construct the
+deviator game and note that we can reduce the number of vertices as
+follows: since  \(\Dev(\rho_{\le k})\) is nondecreasing,
+we know that \Eve wins whenever this set has at least two elements.
+In the construction, states with at least two deviators can be replaced by a
+sink vertex that is winning for \Eve. This means that the constructed
+game has at most \(n \times (|\Agt| + 1) + 1\) states.
+
+The objective can be expressed as a Parity condition in the following
+way:
+
+\begin{itemize}
+\item
+  for each vertex \(v' = (v, \{ P \})\), \(c'(v') = c_P(v) + 1\) if
+  \(F_P = 0\) and \(2 \cdot \max_v c_P(v) \) otherwise;
+\item
+  for each vertex \(v' = (v, D)\) with \(|D| \ne 1\), \(c'(v') = 2 \cdot \max_v c_P(v)\)
+  i.e.~it is winning for Eve.
+\end{itemize}
+
+Notice that the colouring function $c'$ inverts the parity
+in the case where there is a single deviator who is losing in the
+prescribed strategy profile (that is, $F_P=0$). In fact,
+when~$F_P=1$, the player cannot obtain more since they are already winning
+so the colour is set to $2\cdot \max_v c_P(v) $ which is winning for \Eve.
+
+\begin{lemma}
+  We have \(\maxinf(c'(\rho_i)) \in 2 \mathbb{N}\) if, and
+  only if, \(\rho\in N(F)\),
+  where $N(F)$ is as defined in \Cref{14-thm:dev-nash}.
+\end{lemma}
+\begin{proof} For the implication, we will prove the contrapositive.
+Let \(\rho\) be a play not in \(N(F)\), then since the deviators can only
+increase along a play, we have that \(\Dev(\rho) = \{ P \}\) for some
+player \(P\) and \(\payoff_P(\rho) > F_P\). This means
+\(F_P = 0\) and \(\maxinf(c_P(\rho_i)) \in 2 \mathbb{N}\). By
+definition of \(c'\) this implies that
+\(\maxinf(c'(\rho_i)) \in 2 \mathbb{N} + 1\) which proves the
+implication.
+
+For the other implication, let \(\rho\) be such that
+\(\maxinf(c'(\rho_i)) \in 2 \mathbb{N} + 1\). By definition of
+\(c'\) this means \(\rho\) contains infinitely many states of the form
+\((v, \{P\})\) with \(F_P = 0\). Since the deviators only increase
+along the run, there is a player \(P\) such that \(\rho\) stays in the
+component \(V \times \{P\}\) after some index \(k\). Then for \(i\geq k\),
+\(c'(\rho_i) = c_P(\rho_i)+1\), hence
+\(\maxinf(c'(\rho_i)) = \maxinf(c_P(\rho_i)) + 1\).
+Therefore \(\maxinf(c_P(\rho_i)) \in 2 \mathbb{N}\), which means
+\(\payoff_P(\rho) = 1 > F_P\). By definition of \(N(F)\),
+\(\rho\not\in N(F)\).
+\end{proof}
+
+Given that the size of the game is polynomial and that parity games can
+be decided in quasipolynomial time (see \Cref{3-corollary:quasipoly}), the preceeding lemma
+implies the following theorem.
+
+\begin{theorem}
+For parity games, there is a quasipolynomial algorithm to decide whether there is a Nash
+equilibrium with a given payoff.
+\end{theorem}
+
+\subsection{Extensions of Nash
+Equilibria}\label{14-subsection:extensions-of-nash-equilibria}
+
+\subsubsection{Subgame Perfect
+Equilibria}\label{14-subsection:subgame-perfect-equilibria}
+
+Nash equilibria present the disadvantage that once a player has deviated,
+the others will try to punish him, forgetting everything about their own
+objectives.
+If we were to observe the game after this point of
+deviation, it would not look like the players are playing rationally and
+in fact it would not correspond to a Nash equilibrium. The concept of
+\emph{subgame perfect equilibria} refines the concept of Nash
+equilibrium by imposing that at each step of the history, the strategy
+behaves like Nash equilibrium if we were to start the game now. Formally,
+let us write \(\sigma_P \circ h\) the strategy which maps all histories
+\(h'\) to \(\sigma_P(h \cdot h')\), that is the strategy that behave
+like \(\sigma_P\) after \(h\). Then \((\sigma_P)_{P\in \Agt}\) is a
+\emph{subgame perfect equilibrium} if for all histories \(h\),
+\((\sigma_P \circ h)_{P \in \Agt}\) is a Nash equilibrium.
+
+Imposing such a strong restriction is justified by the fact that subgame
+perfect Nash equilibria exist for a large class of games. In particular
+subgame perfect equilibria always exist in turn-based games with
+reachability objectives.
+
+\begin{example}
+  Consider the example of \Cref{14-fig:ex-subgame}.
+  There is a Nash equilibria whose outcome goes through states
+  $v_0 \rightarrow v_1 \rightarrow \Omega_1$.
+  In this equilibrium, Player $1$ should play $b$ in $v_2$,
+  so that the best response of Player~$2$ is to play~$a$ at~$v_0$.
+  Intuitively, player $1$ is threatening player $2$, to make them
+  both lose from $v_2$, but this threat is not credible,
+  and the profile is not a subgame perfect equilibrium.
+  In fact, once $v_2$ is reached it is better for Player $1$
+  to play $a$ so it is unlikely that the player will execute the said threat.
+  The only subgame perfect equilibrium of this game ends in 
+  the vertex satisfying both
+  $\Omega_1$ and $\Omega_2$.
+\end{example}
+\begin{figure}
+\begin{center}  
+\begin{tikzpicture}
+  \draw (0,0) node[draw, inner sep=7pt] (V0) {$v_0$};
+  \draw (3,1) node[draw, inner sep=7pt] (V1) {$v_1$};
+  \draw (3,-1) node[draw, inner sep=7pt] (V2) {$v_2$};
+  \draw (6,2) node[draw, inner sep=7pt] (V3) {$\Omega_1$};
+  \draw (6,0.6) node[draw, inner sep=7pt] (V4) {$\Omega_2$};
+  \draw (6,-0.6) node[draw, inner sep=7pt] (V5) {$\Omega_1, \Omega_2$};
+  \draw (6,-2) node[draw, inner sep=7pt] (V6) {$\varnothing$};
+
+  \draw[-latex'] (-1, 0) -- (V0);
+  \draw[-latex'] (V0) -- node[sloped, text width=1cm, above]{$(\ast, a)$} (V1);
+  \draw[-latex'] (V0) -- node[sloped, text width=1cm, above]{$(\ast, b)$} (V2);
+  \draw[-latex'] (V1) -- node[sloped, text width=1cm, above]{$(a, \ast)$} (V3);
+  \draw[-latex'] (V1) -- node[sloped, text width=1cm, above]{$(b, \ast)$} (V4);
+  \draw[-latex'] (V2) -- node[sloped, text width=1cm, above]{$(a, \ast)$} (V5);
+  \draw[-latex'] (V2) -- node[sloped, text width=1cm, above]{$(b, \ast)$} (V6);
+  \draw[-latex'] (V3) .. controls +(2,1) and +(2,-1) .. (V3);
+  \draw[-latex'] (V4) .. controls +(2,1) and +(2,-1) .. (V4);
+  \draw[-latex'] (V5) .. controls +(2,1) and +(2,-1) .. (V5);
+  \draw[-latex'] (V6) .. controls +(2,1) and +(2,-1) .. (V6);
+\end{tikzpicture}
+\caption{Two-player game with reachability objectives. The goal of
+  player 1 is to reach a state labeled with $\Omega_1$ and that of
+  player 2 is to reach a state labeled with $\Omega_2$. }
+\label{14-fig:ex-subgame}
+\end{center}
+\end{figure}
+
+\subsubsection{Robust equilibria}\label{robust-equilibria.}
+The notion of robust equilibria refines Nash equilibria in two ways:
+
+\begin{itemize}
+
+\item
+  a robust equilibrium is \emph{resilient}, i.e.~when a small coalition
+  change its strategy, none of the players of the coalition improves their
+  payoff;
+\item
+  it is \emph{immune}, i.e.~when a small coalition changes its strategy,
+  it does not decrease the payoffs of the non-deviating players.
+\end{itemize}
+
+The size of small coalitions is determined by parameter \(k\) for
+resilience and \(t\) for immunity. When a strategy is both
+\(k\)-resilient and \(t\)-immune, it is called a \((k,t)\)-robust
+equilibrium.
+
+The motivation behind this concept is to address these two weaknesses of
+Nash equilibra:
+
+\begin{itemize}
+
+\item
+  There is no guarantee on payoffs when two (or more) players deviate together.
+  Such a situation can occur in networks if the same person controls several devices
+  (a laptop and a phone for instance) and can then coordinate their
+  behaviours. In this case, the devices would be considered as different
+  players and Nash equilibria can offer no guarantee.
+\item
+  When a deviation occurs, the strategies of the equilibrium can punish
+  the deviating user without any regard for the payoffs of the others. This
+  can result in a situation where, because of a faulty device, nobody
+  can use the protocol anymore.
+\end{itemize}
+
+By comparison, finding resilient equilibria with \(k>1\), 
+ensures that clients have no interest in forming coalitions (up
+to size \(k\)), and finding immune equilibria with \(t>0\)
+ensures that other clients will not suffer from some players (up to
+\(t\)) behaving differently from what was expected.
+
+The deviator construction can be reused for finding such equilibria. We
+only need to adapt the objectives. Given a game \(G=(\mathcal{A}, (\payoff_P)_{P \in \Agt})\), a
+strategy profile \(\sigma_{\Agt}\), and parameters \(k\), \(t\), we have
+
+\begin{itemize}
+
+\item
+  The strategy profile \(\sigma_{\Agt}\) is \(k\)-resilient if, and only
+  if, strategy \(\kappa(\sigma_{\Agt})\) is winning in \(\devg(\mathcal{A})\) for the
+  \emph{resilience objective} \(\mathcal{R}(k,F)\) where
+  \(F = (\payoff_P(\Out_{\mathcal{A}}(v_0, \sigma_{\Agt})))_{P \in \Agt}\) is the payoff profile of
+  \(\sigma_{\Agt}\) and \(\mathcal{R}(k,F)\) is defined by:
+  \[
+    \begin{array}{ll}
+      \mathcal{R}(k,F) = & \{ \rho \in \Out_{\devg(\mathcal{A})}\mid ~ |\Dev(\rho)| > k \} \\
+                          &\cup
+                            \{ \rho  \in \Out_{\devg(\mathcal{A})} \mid ~ |\Dev(\rho)| = k \land \forall P \in \Dev(\rho).\ \payoff_{P}(\proj_{\Out}(\rho)) \le F_P\} \\
+                          & \cup \{ \rho  \in \Out_{\devg(\mathcal{A})}\mid ~ |\Dev(\rho)| < k \land \forall P \in \Agt.\ \payoff_{P}(\proj_{\Out}(\rho)) \le F_P\}.
+    \end{array}
+  \]
+
+\item
+  The strategy profile \(\sigma_{\Agt}\) is \(t\)-immune if, and only if,
+  strategy \(\kappa(\sigma_{\Agt})\) is winning for the \emph{immunity
+  objective} \(\mathcal{I}(t,F)\) where
+  \(F = (\payoff(\Out_{\mathcal{A}}(v_0, \sigma_{\Agt})))_{P \in \Agt}\) is the payoff profile of
+  \(\sigma_{\Agt}\) and \(\mathcal{I}(t,F)\) is defined by:
+  \[
+    \begin{array}{ll}
+    \mathcal{I}(t,F) = & \{ \rho  \in \Out_{\devg(\mathcal{A})} \mid |\Dev(\rho)| > t \}  \\
+      & \cup \{ \rho  \in \Out_{\devg(\mathcal{A})} \mid ~ \forall P \in \Agt \setminus \Dev(\rho).\  F_P \le \payoff_{P}(\proj_{\Out}(\rho)) \}.
+    \end{array}
+  \]
+\item
+  The strategy profile \(\sigma_{\Agt}\) is a \((k,t)\)-robust profile in
+  \(G\) if, and only if, \(\kappa(\sigma_{\Agt})\) is winning for the
+  \emph{robustness objective}
+  \[
+        \mathcal{R}(k,t,F)= \mathcal{R}(k,F) \cap \mathcal{I}(t,F),
+        \] where
+        \(F = (\payoff_P(\Out_{\mathcal{A}}(v_0, \sigma_{\Agt})))_{P \in \Agt}\) is the payoff profile of
+        \(\sigma_{\Agt}\).
+\end{itemize}
+
+We omit the proof and encourage the reader to do it by themselves.
+
+\subsubsection{Extension to games with hidden
+actions}\label{extension-to-games-with-hidden-actions}
+In most practical cases, players only have a partial view of the
+state of the system; so they may not be able, for instance, to
+detect a deviating player immediately.
+Studying equilibria in general imperfect information as in \Cref{chap:signal} 
+would be well adapted in such situations.
+Unfortunately, these games are too powerful in general since
+the existence of Nash equilibria is undecidable in this case.
+
+Nevertheless, the problem is decidable for a restricted form of imperfect
+information where the players observe the visited states
+but do not see the played actions; thus the actions are \emph{hidden}.
+%In this restricted setting, one recovers decidability.
+
+We will thus consider strategies defined as functions from \(V^*\) to \(Act\),
+which represents the fact that players' decision can only depend on observed
+sequence of states but not on other players' actions.
+
+In this case, deviators cannot be defined as obviously as before, as it may
+not always be possible to identify one unique deviator responsible for a
+deviation. The construction will thus maintain a set of \emph{suspects}, those players that might have been
+responsible for the observed deviation.
+Formally, suspects for an edge \((v, v')\) with respect to a move
+\((a_P)_{P\in \Agt}\) are players \(P\) such that there is \(a'_P\) and
+\(\Delta(a'_P, a_{-P}) = (v, v')\). Rather than computing the
+union of deviators along a history, we now consider the intersection of
+suspects. That is, if at vertex~$v$, the suspect set is~$S$, and the strategy profile is~$\sigma_\Agt$,
+and if the next vertex is~$v'$, then
+the suspect set becomes~$S \cap \{ P \in \Agt \mid \exists a'_P, \Delta(a'_P, a_{-P}) = (v, v')\}$.
+
+%Here, if there is no deviation at all, then all players are suspects, and we assume only one player
+%will deviate (this is enough for Nash equilibria).
+
+The \emph{suspect game} can be defined just like the deviator game by replacing the deviators component
+by the suspects component.
+The objective for Eve is that no suspect player improves their payoff. In fact, in
+case of deviation, we know that the deviator belongs to the set of suspects although
+we cannot know which one has deviated for sure so Eve must ensure this for all suspects.
+
+\begin{example}
+  Consider the example of figure~\ref{fig:hidden}.
+  If actions were visible there would be an equilibrium ending in the
+  state labeled with $\Omega_3$: player 3 simply has to punish the player
+  who would deviate from this path.
+  But if we now consider hidden actions, in case of a deviation, player 3
+  would observe that the play went arrives in $v_1$ instead of $v_2$
+  and both Player 1 and Player 2 are suspects.
+  Since Player 3 cannot punish both players at the same time, there is no
+  Nash equilibrium ending satisfying $\Omega_3$.
+\end{example}
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}
+  \draw (0,0) node[draw, inner sep=7pt] (V0) {$v_0$};
+  \draw (3,1) node[draw, inner sep=7pt] (V1) {$v_1$};
+  \draw (3,-1) node[draw, inner sep=7pt] (V2) {$v_2$};
+  \draw (6,2) node[draw, inner sep=7pt] (V3) {$\Omega_1$};
+  \draw (6,0.6) node[draw, inner sep=7pt] (V4) {$\Omega_2$};
+  \draw (6,-0.6) node[draw, inner sep=7pt] (V5) {$\Omega_3$};
+  \draw (6,-2) node[draw, inner sep=7pt] (V6) {$\varnothing$};
+
+  \draw[-latex'] (-1, 0) -- (V0);
+  \draw[-latex'] (V0) -- node[sloped, text width=1cm]{$(a, a, \ast)$\\$(b, b, \ast)$} (V1);
+  \draw[-latex'] (V0) -- node[sloped, text width=1cm]{$(a, b, \ast)$ \\ $(b, a, \ast)$} (V2);
+  \draw[-latex'] (V1) -- node[sloped, text width=1cm, above]{$(\ast, \ast, a)$} (V3);
+  \draw[-latex'] (V1) -- node[sloped, text width=1cm, above]{$(\ast, \ast, b)$} (V4);
+  \draw[-latex'] (V2) -- node[sloped, text width=1cm, above]{$(\ast, \ast, a)$} (V5);
+  \draw[-latex'] (V2) -- node[sloped, text width=1cm, above]{$(\ast, \ast, b)$} (V6);
+  \draw[-latex'] (V3) .. controls +(2,1) and +(2,-1) .. (V3);
+  \draw[-latex'] (V4) .. controls +(2,1) and +(2,-1) .. (V4);
+  \draw[-latex'] (V5) .. controls +(2,1) and +(2,-1) .. (V5);
+  \draw[-latex'] (V6) .. controls +(2,1) and +(2,-1) .. (V6);
+k\end{tikzpicture}
+\caption{Three-player game with hidden actions. The goal of
+  player $i$ is to reach a state labeled with $\Omega_i$.}
+\label{fig:hidden}
+\end{center}
+\end{figure}
+
+\section{Admissible strategies}\label{admissible-strategies}
+Nash equilibria and their variants seen so far describe stable situations
+from which players have no incentive to deviate. This however is of limited use
+in some situations. First, the stability relies on the fact that all players are informed
+of the strategy profile to be played; that is, some central authority needs to publicly
+announce the strategies for all players. Second, each equilibrium describes a single possible
+situation. If there are several equilibria, it is not clear which one is to be chosen.
+
+Rather than concentrating on particular equilibria, game theorists have studied
+reasonings players may follow in order to exclude some strategies that are necessarily worse than others.
+These worse strategies are called \emph{dominated}.
+By formalizing dominated and non-dominated strategies for a given player, one can then predict the behavior of rational players
+since such a player would never use a dominated strategy but rather always pick the best one available.
+
+In this section, we will formalize dominated strategies and show how these can be computed in games.
+We then briefly show that this reasoning can be repeated, and present the iterated elimination of dominated strategies.
+
+\subsection{Definition}\label{definition-1}
+The notion of \emph{dominance} is used to compare strategies 
+with respect to payoffs they yield against the rest of the players' strategies.
+Consider the example of \ref{14-tab:normal-adm}.
+Given a strategy of the second player, playing $B$ is always at least as good
+as playing $A$ for the first player.
+In fact, again~$C$, $B$ yields a payoff of~$4$ which is better than $3$, the payoff of~$A$;
+and against $D$, both yield~$0$.
+The strategy $B$ is said to dominate $A$. Intuitively, 
+$B$ is either better or as good as~$A$ \emph{in all situations}, so 
+playing~$B$ is the rational choice for Player~$1$.
+
+Furthermore, by this analysis, Player~$2$ knows that Player~$1$ will player~$B$.
+Given this information, the best response of Player~$1$ is to play~$C$.
+By \emph{iterated elimination}, we established that
+%We say that the game is solvable by \emph{iterated elimination},
+$(B, C)$ should be the only strategy profile to be played by players following this reasoning.
+
+\begin{table}
+  \caption{A normal form game solvable by iterated elimination.}
+  \label{14-tab:normal-adm}
+  \begin{center}
+    \begin{tabular}[c]{|@{\hspace{1em}}l@{\hspace{1em}}|@{\hspace{1em}}c@{\hspace{1em}}c@{\hspace{1em}}|}
+      \hline
+      & A & B \\
+      \hline
+      C & 3, 3 & 4, 1\\
+      D & 0 , 4 & 0, 0\\
+      \hline
+    \end{tabular}
+  \end{center}
+\end{table}
+
+Let us formalize this notion.
+
+\begin{definition}[Dominance]
+Let \(S \subseteq \mathcal{S}^{\Agt}\) be a set of the form
+\(S = S_1 \times S_2 \times \cdots \times S_n\) which we will call a
+rectangular set. Let \(\sigma,\sigma' \in S_i\). Strategy \(\sigma\)
+\emph{very weakly dominates} strategy \(\sigma'\) with respect to \(S\),
+written \(\sigma_i \ge_S \sigma'_i\), if from all vertices \(v_0\):
+
+\[
+  \forall \sigma_{-i} \in S_{-i}, \payoff_i(\Out(v_0,\sigma'_i,\sigma_{-i}))
+  \ge
+  \payoff_i(\Out(v_0, \sigma_i, \sigma_{-i})).
+\]
+
+Strategy \(\sigma_i\) \emph{weakly dominates} strategy \(\sigma'_i\)
+in \(S\), written \(\sigma >_S \sigma'\), if
+\(\sigma \ge_S \sigma'\) and \(\neg(\sigma' \le_S \sigma)\).
+%A strategy
+%\(\sigma \in S_i\) is weakly dominated in \(S\) if there exists
+%\(\sigma' \in S_i\) such that \(\sigma' >_S \sigma\).
+A strategy that is
+not weakly dominated in \(S\) is \emph{admissible} in \(S\). The
+subscripts on \(\ge_S\) and \(>_S\) are omitted when the sets of
+strategies are clear from the context.
+\end{definition}
+
+Algorithms rely on the notion of \emph{optimistic} and
+\emph{pessimistic value} of a history. The pessimistic value is the
+maximum payoff that a player can ensure in the worst case within the strategy set~$S$.
+The optimistic value is
+the best the player can achieve with the help of other players, given the strategy set~$S$.
+
+
+\begin{definition}[Values] The \emph{pessimistic value} of a strategy
+\(\sigma_i\) for a history \(h\) with respect to a rectangular set of
+strategies \(S\), is
+
+\begin{itemize}
+\item
+  \(\pes_i(S,h,\sigma_i) = \inf_{\sigma_{-i} \in S_{-i}} \payoff_{i}(h \cdot \Out(\last(h), \sigma_i,\sigma_{-i})).\)
+\end{itemize}
+
+The \emph{pessimistic value of a history} \(h\) for \(A_i\) with respect
+to a rectangular set of strategies \(S\) is given by:
+
+\begin{itemize}
+
+\item
+  \(\pes_i(S,h) = \sup_{\sigma_i \in S_i} \pes_i(S,s,\sigma_i).\)
+\end{itemize}
+
+The \emph{optimistic value} of a strategy \(\sigma_i\) for a history
+\(h\) with respect to a rectangular set of strategies \(S\) is given by:
+
+\begin{itemize}
+
+\item
+  \(\opt_i(S,h,\sigma_i) = \sup_{\sigma_{-i} \in S_{-i}} \payoff_i (h_{\le |h|-2} \cdot \Out(\last(h), \sigma_i,\sigma_{-i})).\)
+\end{itemize}
+
+The \emph{optimistic value} of a history \(h\) for \(A_{i}\) with
+respect to a rectangular set of strategies \(S\) is given by:
+
+\begin{itemize}
+
+\item
+  \(\opt_i(S,h) = \sup_{\sigma_i \in S_i} \payoff_{i}(\opt_i(S,h,\sigma_i))\)
+\end{itemize}
+\end{definition}
+
+We will first consider the case where~$S$ is the set of all strategies,
+and omit~$S$ in the above notations.
+
+\subsection{Simple Safety games}\label{simple-safety-games}
+
+\begin{figure}
+\begin{center}  
+\begin{tikzpicture}
+\draw (0,0) node[draw, inner sep=2pt, circle] (I) {$v_0$};
+\draw (I.-90) node[below] {};
+\draw (4,1) node[draw, circle, inner sep=2pt] (C1) {$v_1$};
+\draw (C1.-100) node[below] {};
+\draw (4,-1) node[draw, circle, inner sep=2pt, circle] (C2) {$v_2$};
+%\draw (C2) node[draw,circle, inner sep=2pt] {$v_2$};
+%\draw (C2.-90) node[below] {};
+\draw (8, 1) node[draw, circle, inner sep=2pt] (S1) {$v_3$};
+\draw (S1.-90) node[below] {$-1, -1, 0$};
+\draw (8,-1) node[draw, circle, inner sep=2pt] (S2) {$v_4$};
+\draw (S2.-90) node[below] {$-1, 0, -1$};
+\draw[-latex'] (-1, 0) -- (I);
+\draw[-latex'] (I) -- node[above]{$(*,a,*)$} (C1);
+\draw[-latex'] (I) -- node[below]{$(*,b,*)$} (C2);
+\draw[-latex'] (C1) --node[left]{$(a,*,*)$} (C2);
+\draw[-latex'] (C1) -- node[above]{$(b,*,*)$} (S1);
+\draw[-latex'] (C2) -- node[above]{$(*,*,a)$} (S2);
+\draw[-latex', rounded corners] (C2) -- +(1,1) -- node[right]{$(*,*,b)$}(C1);
+\end{tikzpicture}
+\caption{Example of a three-player turn-based simple safety game.
+%  Square represent vertices controlled by player 1, circle those of player 2, diamond those of player 3. 
+Numbers below states describe the safety objective, for instance $-1, -1, 0$ is losing for player 1 and 2.
+}
+\label{14-fig:simple-safety}
+\end{center}
+\end{figure}
+
+Simple safety games, are safety games in which there are no transitions
+from losing vertices to non-losing ones. Restricting to this particular
+class of game makes the problem simpler because the objective becomes
+prefix independent.
+Any safety game can be converted to an equivalent simple safety game
+by encoding in the states which players have visited so far a losing
+state. Note that this translation can be exponential in the number of
+players.
+
+For simple safety games, the pessimistic and optimistic values do not depend
+on the full history but only on the last state: for all histories
+\(\pes_i(h) = \pes_i(\last(h))\) and \(\opt_i(h) = \opt_i(\last(h))\).
+
+Note that in safety games (and any qualitative games) values can be only
+1 (for winning) and 0 (for losing) and since the pessimistic value is
+always less than the optimistic one, the pair \((\pes_i, \opt_i)\) can
+only take three values: \((0, 0)\), \((0, 1)\) and \((1, 1)\).
+
+Intuitively, players should avoid decreasing this pair of values if they can.
+In fact, the characterization of admissible strategies we give below will be based on this
+simple observation.
+
+\begin{example}
+  An example of a simple safety game is given in \Cref{14-fig:simple-safety}.
+  In this game, player 1 controls $v_1$ where its optimistic
+  value is $0$, as it is possible that the outcome will never reach
+  $v_3$ or $v_4$.
+  However $v_3$ has optimistic value $-1$ for player 1, as it is a losing
+  state for player 1.
+  Going from $v_1$ to $v_3$ is a bad choice for player 1, and
+  it is indeed dominated by the strategy that would always choose to go
+  to $v_2$.
+  In state $v_3$, player 3 has pessimistic value $0$ since it can ensure not
+  visiting $v_4$.
+  The winning strategy for player 3 which is to always go to $v_1$ is also
+  the only non-dominated strategy.
+  For player 2, from state $v_0$, both choices lead to a state with values
+  $(-1, 0)$ so no choice is particularly better and both strategies are
+  non-dominated.
+\end{example}
+
+\begin{definition} Let \(D_i\) be the set of edges
+\((v,v') \in E\) such that \(v \in V_i\) %is controlled by player
+%\(i\) and
+\(\pes_i(v) > \pes_i(v')\) or \(\opt_i(v) > \opt_i(v')\). These
+are called \emph{dominated edges}.
+\end{definition}
+
+\begin{theorem}[Characterisation of Admissible Strategies]
+  \label{14-thm:adm}
+Admissible
+strategies for player \(A_i\) are the strategies that never take actions
+in \(D_i\).
+\end{theorem}
+\begin{proof} We show that if \(A_i\) plays an admissible strategy
+\(\sigma_i\) then the value cannot decrease on a transition controled by
+\(A_i\). Let \(\rho \in \Out(\sigma_i,\sigma_{-i})\), and \(k\) an index
+such that \(\rho_k \in V_i\). Let \((v, v') = \sigma_i(\rho_{\le k})\):
+
+\begin{itemize}
+
+\item
+  If \(\pes_i(\rho_k)=1\), then \(\sigma_i\) has to be winning against
+  all strategies \(\sigma_{-i}\) of \(A_{-i}\), otherwise it would be
+  weakly dominated by such a strategy. Since there is no such strategy
+  from a state with value \(\pes_i \leq 0\), we must have \(\pes_i(v')=1\).
+\item
+  If \(\opt_i(\rho_k) = 1\), then, by definition, there is a profile \(\sigma'\) such that
+  \(\rho = \payoff(\Out(v, \sigma')) = 1\).
+  Assume that $\opt_i(v')=0$. Then~$\sigma_i$ is dominated by the strategy
+  $\sigma_i''$ obtained from~$\sigma_i$ by making it switch to~$\sigma'$ at~$v$.
+  In fact, $\sigma_i$ is losing against all strategies of~$-i$, while~$\sigma_i''$
+  is winning at least against~$\sigma_{-i}'$.
+  %Note that
+%  \(h \cdot v \cdot v'\) is a prefix of \(\rho\). If \(\opt_i(s')=0\),
+%  there can be no such profile, thus \(\opt_i(s') = 1\).
+\item
+  If $\pes_i(v)=0$ or $\opt_i(s) = 0$, then the value cannot decrease further.
+\end{itemize}
+
+In the other direction, let \(\sigma_i,\sigma_i'\) be two strategies of
+player \(A_i\) and assume \(\sigma_i' >_S \sigma_i\). We will prove
+\(\sigma_i\) takes a transition in \(D_i\) at some point.
+
+Let us fix some objects before developing the proof. There is a vertex
+\(v\) and strategy profile \(\sigma_{-i} \in S_{-i}\) such that
+\(\payoff(\Out(v,\sigma_i',\sigma_{-i}))=1 \wedge \payoff(\Out(v,\sigma_i,\sigma_{-i})=0\).
+Let \(\rho = \Out(v,\sigma_i,\sigma_{-i})\) and
+\(\rho' = \Out(v,\sigma_i',\sigma_{-i})\). Consider the first position
+where these runs differ: write \(\rho = w \cdot s' \cdot s_2 \cdot w'\)
+and \(\rho' = w \cdot s' \cdot s_1 \cdot w''\).
+
+The following are simple facts that can be seen easily:
+
+\begin{itemize}
+\item
+  \(s' \in V_i\), because the strategy of the other players
+  are identical in the two runs.
+\item
+  \(\opt_i(s_1) = 1\) because
+  \(\payoff(\Out(v,\sigma_i',\sigma_{-i}))=1\)
+\item
+  \(\pes_i(s_2) = 0\) because
+  \(\payoff(\Out(v,\sigma_i,\sigma_{-i}))=0\)
+\end{itemize}
+
+If \(\opt_i(s_2) = 0\) or \(\pes_i(s_1) = 1\) then
+\(s' \rightarrow s_2 \in D_i\) so \(\sigma_i\) takes a transition of
+\(D_i\). The remaining case to complete the proof is \(\opt_i(s_2) = 1\)
+and \(\pes_i(s_1) = 0\).
+Let us assume that~$\sigma_i$ does not take any edges from~$D_i$.
+We will show that there is
+a strategy for~$-i$ against which $\sigma_i$ wins and~$\sigma_i'$ loses,
+which contradicts the hypothesis that~$\sigma_i'$ weakly dominates~$\sigma_i$.
+
+We first construct a profile \(\sigma_{-i}^2 \in S_{-i}\) such that
+\(\payoff(\Out(s_2,\sigma_i,\sigma_{-i}^2))=1\).
+%For any history  \(h\) with \(\last(h)\notin V_i\), 
+%we must have 
+%\(\sigma^2_{-i} \in S_{-i}\), 
+%\(\opt_i(\sigma^2_{-i}(h)) = 0\) then
+%\(\opt_i(last(h))=0\). Thus 
+Strategy \(\sigma_{-i}^2\in S_{-i}\) never decreases
+the optimistic value from \(1\) to \(0\) since the optimistic value is nonincreasing.
+By assumption, \(\sigma_i\)
+itself does not decrease the value of \(A_i\) because it does not take
+transitions of~\(D_i\). So the outcome of \((\sigma_i,\sigma_{-i}^2)\)
+never reaches a state of optimistic value \(0\). Hence it never reaches
+a state in \(Bad_i\) and therefore it is winning for \(A_i\).
+
+Let us now consider a profile \(\sigma_{-i}^1 \in S_{-i}\) such that
+\(\payoff(\sigma_i',\sigma_{-i}^1)=0\) from \(s_1\). Such a strategy exists
+because
+\(\pes_i(s_1) = 0\), so~$\sigma_i'$ is not a winning strategy.
+Then there exists a
+strategy profile \(\sigma_{-i}^1\) such that \(\sigma_i'\) loses from
+\(s_1\).
+
+Now consider strategy profile \(\sigma_{-i}'\) that plays like
+\(\sigma_{-i}\) if the play does not start with \(w\);
+and otherwise switches to
+\(\sigma_{-i}^1\) at history \(ws_1\) and to \(\sigma_{-i}^2\) at history \(ws_2\).
+Formally, given a history \(h\), \(\sigma_{-i}'(h) =\)
+
+\begin{itemize}
+\item
+  \(\sigma_{-i}^1( h')\) if \(w \cdot s_1\) is a prefix of \(h\) and
+  \(w \cdot s_1 \cdot h' = h\)
+\item
+  \(\sigma_{-i}^2( h')\) if \(w \cdot s_2\) is a prefix of \(h\) and
+  \(w \cdot s_2 \cdot h' = h\)
+\item
+  \(\sigma_{-i}(h)\) otherwise
+\end{itemize}
+
+Clearly we have
+\(\payoff_i(\Out_s(\sigma_i,\sigma_{-i}'))= 1 \wedge \payoff_i(\Out_s(\sigma_i',\sigma_{-i}')) = 0\),
+which contradicts \(\sigma_i' \ge_S \sigma_i\).
+\end{proof}
+
+\subsection{Parity games}\label{parity-games}
+
+The caracterization given for simple safety game is not enough for
+parity objectives, as we will see in the following example.
+
+\begin{figure}
+  \begin{center}
+    \begin{tikzpicture}
+      \draw (0,0) node[draw, circle, inner sep=4pt] (I) {$v_0$};
+      \draw (I.-90) node[below] {};
+      \draw (4,0) node[draw, inner sep=4pt, circle] (C1) {$v_1$};
+      \draw (C1.-100) node[below] {};
+      \draw (8,0) node[draw, circle, inner sep=4pt] (C2) {$\Omega_1$};
+      \draw (I.-90) node[below] {$1$};
+      \draw (C1.-90) node[below] {$1$};
+      \draw (C2.-90) node[below] {$2$};
+      \draw[-latex'] (-1, 0) -- (I);
+      \draw[-latex'] (I) -- node[above]{$(a,*)$} (C1);
+      \draw[-latex'] (I) ..controls +(1,2) and +(-1,2)  .. node[above]{$(b,*)$}  (I);
+      \draw[-latex'] (C1) -- node[above]{$(*,a)$}(C2);
+      \draw[-latex'] (C1) .. controls +(-2, -2) ..  node[above]{$(*,b)$} (I);
+      \draw[-latex', rounded corners] (C2)..controls +(1,2) and +(-1,2) .. node[above]{$(a,*)$}(C2);
+    \end{tikzpicture}
+    \caption{Parity game where the objective for player 1 is to visit
+      $\Omega_1$ infinitely often. Player 1 controls square vertices and player 2
+      round vertices.}
+    \label{fig:adm-parity}
+  \end{center}
+\end{figure}
+
+\begin{example}
+  Consider the example in figure~\ref{fig:adm-parity}.
+  In this example, although the strategy that always stays in $v_0$
+  does not decrease the value of player 1, it is dominated because
+  it has no chance of winning.
+  By contrast the strategy that always go to $v_1$ has a chance of
+  being helped by player 2 and actualy reaching $\Omega_1$ it therefore
+  dominates the first strategy.
+\end{example}
+
+However the fact that an admissible strategy should not decrease its own
+value still holds. Assuming strategy \(\sigma_i\) of player \(P_i\) does
+not decrease its own value, we can classify its outcome in three
+categories according to their ultimate values.
+
+\begin{itemize}
+\item
+  either ultimately \(\opt_i = 0\), in which case all strategies are
+  losing, and thus any strategy is admissible
+\item
+  or ultimately \(\pes_i = 1\), in which case admissible strategies are
+  exactly the winning ones
+\item
+  or ultimately \(\pes_i = 0\) and \(\opt_i = 1\). We will focus on this
+case which is more involved.
+\end{itemize}
+
+From a state of value \(0\), an admissible strategy of \(P_i\) should
+allow a winning play for \(P_i\) with the help of other players.
+
+We write \(H_i\) for set of vertices \(v\) controlled by a player
+\(P_j\ne P_i\) that have at least two successors of optimistic value
+\(1\). Formally, the \emph{help-states} $H_i$ of player \(P_i\) are defined
+as:
+\[
+ \bigcup_{P_j\in \Agt \setminus\{i\}} \left\{ s \in V_j \mid \exists s',s'',\ s' \neq s'' \wedge\ s\rightarrow s' \land s \rightarrow s'' \wedge\ \opt_i(s') = 1 \wedge\ \opt_i(s'') = 1 \right\}.
+\]
+
+Intuitively, admissible strategies in the case satisfying \(\pes_i = 0\) and \(\opt_i = 1\)
+are those that visit infinitely often help states. In fact, letting other players make choices
+means that the player is allowing the possibility of them helping to achieve the objective.
+More precisely, we have the following property whose proof is omitted.
+\begin{lemma}
+Let \(v\in V\), \(P_i\in \Agt\) and \(\rho\) a play be
+such that \(\exists^\infty k. \opt_{i}(\rho_k) = 1\). There exists
+\(\sigma_i\) admissible such that \(\rho \in \Out(v, \sigma_i)\) if, and
+only if, \(\payoff_i(\rho) = 1\) or
+\(\exists^\infty k. \rho_k \in H_i\).
+\end{lemma}
+
+\subsection{Iterated elimination}\label{iterated-elimination}
+
+Once each player is restricted to use admissible strategies, they can
+further refine their choices knowing that other players will not be using dominated strategies.
+We already saw this in the example of \Cref{14-tab:normal-adm}.
+In fact, once player~$1$ has eliminated strategy~$A$ (which is dominated by~$B$),
+player~$2$ can use this information since its best response against the remaining strategies is~$C$.
+In more complex games, this reasoning can be repeated and take several steps before converging.
+This repeated process is called \emph{iterated elimination of dominated strategies}.
+
+We now define this process formally.
+\begin{definition}[Iterated elimination]
+The \emph{sequence of iterative elimination} is a sequence of rectangular strategy sets defined as follows.
+$S^0 = (S_i^0)_{P_i \in \Agt}$ is the set of all strategies.
+For $k~\geq 0$, if we write $S^k = (S_i)_{P_i \in \Agt}$,
+then~$S^{k+1}_i$ is the set of strategies in~$S^{k}_i$ that are not dominated in~$S^k$.
+\end{definition}
+
+Thus, the step~$1$ of the sequence of iterative elimination corresponds
+to admissible strategies defined above. Let us call them $1$-admissible.
+In step 2, we again compute strategies that are dominated by only
+considering $1$-admissible strategies for all players, and repeat.
+Strategies that survive all step of elimination are said \emph{iteratively admissible}.
+% \todo{What is an admissible strategy? Is it just the first step or the limit?}
+
+\begin{theorem}
+  In parity games, the sequence of iterative elimination converges, and it reaches a non-empty fixpoint.
+\end{theorem}
+We prove this result only for simple safety games since the case of parity conditions is too complex for the scope of this book.
+
+Intuitively, given a game~$G$, \Cref{14-thm:adm} tells us that any strategy for player~$P_i$ that avoids using edges~$D_i$ is admissible. So if we remove all edges~$\cup_{P_i \in \Agt} D_i$ from the
+game to obtain a new game called~$G_1$, then all strategies of~$G_1$ (for all players) are admissible in~$G$, and conversely.
+We can then repeat this process to~$G_1$: we construct~$G_2$ by eliminating all dominated edges
+in~$G_1$, and get that admissible strategies in~$G_1$ are exactly all strategies of~$G_2$,
+which correspond to~$2$-admissible strategies, and so on.
+
+Since the size of the games decrease at each step, this process necessarily stops.
+It remains to show that the limit game~$G_\infty$ contains strategies. We will show that
+all vertices have at least one outgoing edge in~$G_\infty$.
+It suffices to show that the sets~$D_i$ never contains all edges leaving a vertex.
+Let us consider any game~$G_j$.
+For a vertex~$v \in V_i$ with~$\pes_i(v)=0$ and~$\opt_i(v)=0$, none of the edges are dominated.
+For a vertex~$v \in V_i$ with~$\pes_i(v)=1$ (and necessarily~$\opt_i(v)=1$), there exists a winning strategy in~$G_j$ so
+there must be a successor~$v'$ with~$\pes_i(v')=1$ which is not dominated.
+Last, for a vertex~$v \in V_i$ with~$\pes_i(v)=0$ and~$\opt_i(v)=1$, there exists a winning play from~$v$ so for some successor~$v'$ we must have~$\opt_i(v')=1$ which is an edge that is not dominated.
+
+\section*{Bibliographic references}\label{other-results}
+
+
+
+
+Most results about equilibria fall into two-categories: they either prove
+that equilibria always exist for some class of games, or they characterize
+the complexity of finding a particular one.
+
+
+\subsection*{Existence results}
+Several authors have noticed that Nash equilibria always exist in turn-based
+game for some classes of objectives, in particular this is true of
+$\omega$-regular objectives.
+The most general result of that kind, shows that this is true for all objectives
+for which there exists finite memory optimal strategies~\cite{LeRoux&Pauly:2018}.
+
+%\subsubsection*{Nash theorem}
+The notion of equilibrium we now call Nash equilibrium was
+defined in the article of Nash~\cite{Nash:1950} in which he proves the
+existence for a class of normal form game.
+The Hawk-dove game we presented as an example in the first part of
+this chapter is also called game of chicken.
+The first reference to this game was by Smith and Price \cite{Smith&Price:1973}.
+The example of medium of access control we presented as a motivation was
+studied from a game theoric point of view in \cite{MacKenzie&Wicker:2003}.
+
+%\subsubsection*{Subgame perfect equilibria}
+The notion of subgame perfect equilibria is interesting because in games on
+trees (or extensive games), for which they were originaly introduced, they
+always exist. This results can be extended to game played on graph.
+In particular subgame perfect equilibria always exist in reachability
+games~\cite{Brihaye&Bruyere&DePril&Gimbert:2012}.
+
+\subsection*{Algorithms and complexity results}
+
+\mynote{Work here}
+existence of Nash equilibria by Nash~\cite{Nash:1950,Nash:1951},
+and Kuhn's theorem by Kuhn~\cite{Kuhn:1953}.
+
+%\subsubsection*{Link between determinacy and existence of Nash equilibria}
+The deviator construction and the algorithm presented in this chapter are based on \cite{Bouyer&Brenguier&Markey&Ummels:2011,Brenguier:2012}.
+Algorithms on admissible strategies on infinite games and the complexity of the related problems
+were studied in
+\cite{Berwanger:2007,Brenguier&Raskin&Sassolas:2014}.
+\todo{Romain: please check the refs}
+
+
+%\subsubsection*{Stochastic and imperfect information games}
+Imperfect information games in the context of multiplayer games are difficult.
+As soon as there are ``information forks'' interesting problems are indecidable.
+Deciding whether two players can ensure an objective against a third player
+is undecidable.
+As a corollary the Nash equilibrium problem is also undecidable~\cite{Pnueli&Rosner:1990}.
+The problem of Nash equilibrium is also undecidable in stochastic games even
+with only three players~\cite{Bouyer&Markey&Stan:2014}.
+
+%\subsubsection*{LP techniques for mixed equilibria}
+In the first section we presented a polynomial algorithm for
+finding pure Nash equilibria in normal form games.
+It is actually also possible to find a mixed Nash equilibria in
+polynomial time using linear programming.
+The same extends to finding memoryless mixed Nash equilibria in concurrent
+games, and even resilient equilbria~\cite{Brenguier:2016},.
+
+%\subsubsection*{Action-graph games}\label{14-subsection:action-graph-games}
+Action-graphs are succinct representation of matrix games. Indeed,
+representing games with matrices can be costly when the number of
+players increases. The size of the matrix is in fact exponential in the
+number of players: when each player has two strategies there are
+\(2^{\Agt}\) cells in the table.
+The action-graph representation is more compact, and the representation can be
+exponentially smaller.
+Because of that, the algorithm is no longer polynomial.
+If there are no constraints on the Nash equilibrium we are looking for, the
+complexity of the problem cannot be characterized using classical classes
+like \NP-completness because equilibria always
+exists and thus the answer to the decision problem would always be true.
+The characterization of the complexity was done using the PPAD class~\cite{Daskalakis&Goldberg&Papadimitriou:2009}.
+% Computer scientist wanted to show that this was
+%indeed a difficult problem. Usally we do this by showing that the
+%corresponding decision problems are NP-hard. However existence of Nash
+%equilibrium cannot be made into a decision problem, because they always
+% exist (the answer is always true so the problem is trivial). To
+%characterize the complexity of this problem, the PPAD complexity class
+%was created, and it can be shown that finding a Nash equilibrium in an
+% action-graph game is a PPAD complete problem.
+% \fbox{J'ai l'impression que ce paragrahphe est un peu trop rapide et n'apporte pas grand chose au lecteur.
+% Ca n'a pas d'importance pour le reste du chapitre non plus.}
+% \fbox{We can shorten it, and point to the relevent paper}
+
+%\subsubsection*{Strategy logic}
+
+Nash equilibria with LTL objectives is expressible in logics such as
+strategy logic \cite{Chatterjee&Henzinger&Piterman:2010} or ATL$^\ast$~\cite{Alur&Henzinger&Kupferman:2002}, as well as other extensions of this equilibria.
+However, satisfiability in these logic is difficult: it is
+2\EXP-complete for ATL$^\ast$ and undecidable for
+strategy logic in general.
+An decidable fragment of strategy logic has been identified \cite{Mogavero&Murano&Perelli&Vardi:2012},
+but remains difficult; it is 2\EXP-complete.
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../13_standalone"
+%%% End:

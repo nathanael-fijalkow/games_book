@@ -1,0 +1,33 @@
+\documentclass[preview,border=0mm,convert={density=600,outext=.png}]{standalone}
+			\usepackage{tikz}
+\usetikzlibrary{automata,shapes,patterns,calc,arrows}
+			\input{tikz-style.tex}
+\input{macros.tex}
+			\begin{document}
+\begin{tikzpicture}
+  \begin{scope}[xscale=1.4,yscale=1.6]
+  \path (0,0) node[coordinate] (root) {};
+  \foreach \x/\n in {-2/00,
+  				-1/0,
+  				0/\varepsilon}
+    {\draw (root) -- node[below] {$\n$} (\x,-1) node[coordinate] (n\x) {};}
+  \foreach \x/\n in {1/10,
+  				2/1}
+    {\draw (root) -- node[below left] {$\n$} (\x,-1) node[coordinate] (n\x) {};}
+
+  \foreach \s/\x/\n in {-2/-2/\varepsilon,
+					-1/-1.4/0,
+					-1/-.6/\varepsilon,
+    				1/.6/0,
+    				1/1.4/\varepsilon,
+    				2/2/\varepsilon}
+    {\draw (n\s) -- node[right] {$\n$} (\x,-2);}
+  \foreach \s/\x/\n in {0/-.4/00,
+				    0/-.2/0,
+				    0/0/\varepsilon,
+				    0/.2/10,
+				    0/.4/1}
+    {\draw (n\s) -- (\x,-2) node[below] {\begin{small}$\n$\end{small}};}
+  \end{scope}
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,164 @@
+\begin{theorem}
+\label{2-thm:Rabin_complexity}
+Solving Rabin games is $\NP$-complete.
+\end{theorem}
+
+In order to simplify the reduction for proving~\cref{2-thm:Rabin_complexity} let us make some remarks about colouring functions.
+We defined colouring functions as $\col : V \to C$, meaning that we label vertices.
+Let us discuss here three more general definitions and how to reduce them to the vertex colouring functions
+in the case of Rabin games.
+\begin{itemize}
+	\item Partial colouring functions: $\col : V \to C \cup \set{\emptyset}$.
+
+We introduce a new Rabin pair $(R,G)$ and colour all uncoloured vertices by $G$.
+The Rabin condition will never be satisfied because of this new addition 
+since the colour $R$ does not appear at all in the game.
+
+	\item Edge colouring functions: $\col : E \to C$.
+
+We reduce from an edge colouring function to a partial vertex colouring function as illustrated in~\cref{2-fig:reduction_edge_colouring}:
+we add a dummy vertex for each edge and colour it with the colour of its edge, leaving already existing vertices without colours. 
+
+\begin{figure}[!ht]
+\centering
+  \begin{tikzpicture}[scale=1.3]
+    \node[s-eve] (v0) at (0,0)   {$v_0$};
+    \node[s-eve] (v1) at (1.5,0) {$v_1$};
+	\node        (t)  at (2.75,0)   {\Large becomes}; 
+	
+    \node[s-eve] (v0b) at (4,0) {$\begin{array}{c} v_0 \\ \ \end{array}$};
+    \node[s-eve] (e) at (5.5,0) {$\begin{array}{c} e \\ c \end{array}$};
+    \node[s-eve] (v1b) at (7,0) {$\begin{array}{c} v_1 \\ \ \end{array}$};
+    % create edges
+    \path[arrow]
+      (v0) edge node[above] {\LARGE $c$} (v1)
+      (v0b) edge (e)
+      (e) edge (v1b);
+  \end{tikzpicture}
+\caption{Reduction from edge colouring to partial vertex colouring.}
+\label{2-fig:reduction_edge_colouring}
+\end{figure}
+	
+	\item Multiset colouring functions: $\col : V \to 2^C$.
+	
+We reduce from a multiset colouring function to a vertex colouring function as illustrated in~\cref{2-fig:reduction_multiset_colouring}: 
+for each vertex $v$ coloured by a set $S$ we add a dummy vertex for each colour $c \in S$ and replace $v$ by the line of dummy vertices.
+
+\begin{figure}[!ht]
+\centering
+  \begin{tikzpicture}[scale=1.3]
+    \node (u1) at (0,.7) {};
+    \node (u2) at (0,.05) {};
+    \node (u3) at (0,-.7) {};
+    \node[s-eve] (v) at (1.3,0)   {$\begin{array}{c} v \\ \set{c_1,c_2} \end{array}$};
+    \node (w1) at (2.6,.7) {};
+    \node (w2) at (2.6,.05) {};
+    \node (w3) at (2.6,-.7) {};
+	\node        (t)  at (3.6,0)   {\Large becomes}; 
+	
+    \node (u1b) at (4.7,.7) {};
+    \node (u2b) at (4.7,.05) {};
+    \node (u3b) at (4.7,-.7) {};
+    \node[s-eve] (v1) at (6,0) {$\begin{array}{c} v_1 \\ c_1 \end{array}$};
+    \node[s-eve] (v2) at (7.5,0) {$\begin{array}{c} v_2 \\ c_2 \end{array}$};
+    \node (w1b) at (8.8,.7) {};
+    \node (w2b) at (8.8,.05) {};
+    \node (w3b) at (8.8,-.7) {};
+    % create edges
+    \path[arrow]
+      (u1) edge (v)
+      (u2) edge (v)
+      (u3) edge (v)
+      (v) edge (w1)
+      (v) edge (w2)
+      (v) edge (w3)
+      (v1) edge (v2)
+      (u1b) edge (v1)
+      (u2b) edge (v1)
+      (u3b) edge (v1)
+      (v2) edge (w1b)
+      (v2) edge (w2b)
+      (v2) edge (w3b);
+  \end{tikzpicture}
+\caption{Reduction from multiset edge colouring to vertex colouring, here for two colours.}
+\label{2-fig:reduction_multiset_colouring}
+\end{figure}
+	
+\end{itemize}
+The three reductions described above yield equivalent Rabin games which are at most polynomially larger.
+We note that they are not general reductions in the sense that they use properties of the Rabin objecttives.
+In the reduction below we use these more general definitions to simplify the presentation.
+
+\begin{proof}
+The proof that solving Rabin games is in $\NP$ follows the same lines as for solving parity games: the algorithm guesses a positional strategy and checks whether it is indeed winning. This requires proving that solving Rabin games where Adam control all vertices can be done in polynomial time, which is indeed true and easy to see so we will not elaborate further on this.
+
+To prove the $\NP$-hardness we reduce the satisfiability problem for boolean formulas in conjunctive normal form ($\SAT$) to solving Rabin games. 
+
+Let $\Phi$ be a formula in conjunctive normal form with $n$ variables $x_1 \ldots x_n$ and $m$ clauses $C_1 \dots C_m$, where each $C_j$ is of the form $\ell_{j_1} \vee \ell_{j_2} \vee \ell_{j_3}$:
+\[
+\Phi = \bigwedge_{j=1}^m \ell_{j_1} \vee \ell_{j_2} \vee \ell_{j_3}.
+\]
+A literal $\ell$ is either a variable $x$ or its negation $\bar{x}$, and we write $\bar{\ell}$ for the negation of a literal.
+The question whether $\Phi$ is satisfiable reads: does there exist a valuation $\mathbf{v} : \set{x_1,\dots,x_n} \to \set{0,1}$
+satisfying $\Phi$.
+
+We construct a Rabin game $\game$ with $m+1$ vertices (one per clause, all controlled by Eve, plus a unique vertex controlled by Adam), 
+$4m$ edges ($4$ per clause), and $2n$ Rabin pairs (one per literal).
+We will show that the formula $\Phi$ is satisfiable if and only if Eve has a winning strategy in the Rabin game $\game$.
+
+We first describe the Rabin condition. 
+There is a Rabin pair $(R_\ell,G_\ell)$ for each literal~$\ell$, so the Rabin condition requires that there exists a literal $\ell$ such that $R_\ell$ is visited infinitely many times and $G_\ell$ is not.
+Let us now describe the arena. 
+A play consists in an infinite sequence of rounds, where in each round first Adam chooses a clause and second Eve chooses a literal in this clause. 
+When Eve chooses a literal $\ell$ she visits $R_\ell$ and $G_{\bar{\ell}}$.
+This completes the description of the Rabin game $\game$, it is illustrated in \cref{2-fig:hardness_Rabin}.
+Let us now prove that this yields a reduction from $\SAT$ to solving Rabin games.
+
+\vskip1em
+Let us first assume that $\Phi$ is satisfiable, and let $\mathbf{v}$ be a satisfying assignment: there is a literal $\ell$ in each clause satisfied by $\mathbf{v}$. 
+Let $\sigma$ be the memoryless strategy choosing such a literal in each clause. 
+We argue that in any play consistent with $\sigma$ there is at least one litteral $\ell$ that Eve chooses infinitely many times without ever choosing $\bar{\ell}$: this implies that $R_\ell$ is visited infinitely often and $G_\ell$ is not.
+Indeed, some clause is chosen infinitely many times, so the corresponding literal chosen by Eve is also chosen infinitely many times.
+Since all the literals chosen by Eve satisfy the same assignment $\mathbf{v}$ she does not choose both a literal and its negation, so she never chooses $\bar{\ell}$. 
+It follows that $\sigma$ is a winning strategy for Eve.
+
+Conversely, let us assume that Eve has a winning strategy.
+Thanks to \cref{2-thm:Rabin_positional_determinacy} she has a positional winning strategy $\sigma$. 
+We argue that $\sigma$ cannot choose some literal $\ell$ in some clause $C$ and the literal $\bar{\ell}$ in another clause $C'$.
+If this would be the case, consider the strategy of Adam alternating between the two clauses $C$ and $C'$ and play it against $\sigma$:
+both $\ell$ and $\bar{\ell}$ are chosen infinitely many times, and no other literals.
+Hence $R_\ell, G_\ell, R_{\bar{\ell}}$, and $G_{\bar{\ell}}$ are all visited infinitely many times, 
+implying that this play does not satisfy $\Rabin$, contradicting that $\sigma$ is winning.
+
+There exists a valuation $\mathbf{v}$ which satisfies each literal chosen by Eve, implying that it satisfies $\Phi$ which is then satisfiable.
+\end{proof}
+
+\begin{figure}
+\centering
+  \begin{tikzpicture}[scale=1.3]
+    \node[s-adam] (v0) at (2,2.5) {};
+    \node[s-eve] (v1) at (0,3.6) {$\ x \vee y \vee z\ $};
+    \node[s-eve] (v2) at (4.3,2.7) {$\ x \vee \bar{y} \vee \bar{z}\ $};
+    \node[s-eve] (v3) at (1.7,0) {$\ \bar{x} \vee y \vee \bar{z}\ $};
+
+    % create edges
+    \path[arrow]
+      (v0) edge[bend right] (v1)
+      (v0) edge[bend right] (v2)
+      (v0) edge[bend right] (v3)
+
+      (v1) edge[bend left = 45] node[above, pos = 0.35] {$R_x$} node[right, pos = 0.55] {$G_{\bar{x}}$} (v0)
+      (v1) edge[bend right] node[above, pos = 0.35] {$R_y$} node[above, pos = 0.65] {$G_{\bar{y}}$} (v0)
+      (v1) edge[bend right = 45] node[below, pos = 0.25] {$R_z$} node[below, pos = 0.55] {$G_{\bar{z}}$} (v0)
+
+      (v2) edge[bend left = 45] node[below, pos = 0.25] {$R_x$} node[below, pos = 0.55] {$G_{\bar{x}}$}(v0)
+      (v2) edge[bend right] node[below, pos = 0.35] {$R_{\bar{y}}$} node[below, pos = 0.65] {$G_{y}$} (v0)
+      (v2) edge[bend right = 45] node[above, pos = 0.35] {$R_{\bar{z}}$} node[above, pos = 0.65] {$G_{z}$} (v0)
+
+      (v3) edge[bend left = 45] node[left, pos = 0.35] {$R_{\bar{x}}$} node[left, pos = 0.65] {$G_{x}$} (v0)
+      (v3) edge[bend right] node[left, pos = 0.35] {$R_y$} node[left, pos = 0.65] {$G_{\bar{y}}$} (v0)
+      (v3) edge[bend right = 45] node[right, pos = 0.35] {$R_{\bar{z}}$} node[right, pos = 0.65] {$G_{z}$} (v0);
+  \end{tikzpicture}
+\caption{The Rabin game for $\Phi = (x \vee y \vee z) \bigwedge (x \vee \bar{y} \vee \bar{z}) \bigwedge (\bar{x} \vee y \vee \bar{z})$.}
+\label{2-fig:hardness_Rabin}
+\end{figure}

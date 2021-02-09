@@ -1,0 +1,875 @@
+
+__Outline__:
+
+1. Nash Equilibria in Games in normal form
+  * Normal Form games
+  * Action-graph game
+  * Multiplayer game for synthesis
+2. Nash equilibria in infinite games
+  * Motivating example
+  * Definition of Multiplayer games on automata
+  * Reduction to a two player game
+3. Link between determinacy and existence of Nash equilibria
+4. Some extensions of Nash equilibria
+5. Admissible strategies
+6. Pointers to other concept
+
+__Todo:__  (estimate of the complexity)
+
+* Present Nash Theorem (2)
+* Figure for the example of Multiplayer game on automata (2)
+* Check proofs and notations
+* Link between determinacy and existence (3)
+* Example of admissibility in normal form game (2)
+* Definition iterated elimination (2)
+* Property of fixpoint for iterated elimination (2)
+* Section about other results (4)
+
+# Nash Equilibria in Games in Normal Form
+*(This part should be about 2.5 pages long)*
+
+## Normal form games:
+In two player games, each player has an objective opposite to the other one,
+so there is only one condition to concider (which is either good or bad depending on the point of view you take).
+We talk in that case of zero-sum games, because the payoff for one player is the opposite for the other.
+When we have multiple players, one condition is generally not enough.
+Note that even two player games can be non-zero sum (prisoners dilema is a famous example of that).
+When games are not zero-sum, in particular when there
+are more than two players, winning strategies are no longer suitable to describe
+rational behaviors. In particular when the objectives of the players are not
+opposite, cooperation should be possible. Then, instead of considering that the
+opponent can play any strategy, we will assume that they are, also, rational. The
+notion of equilibria aims at describing rational behaviors.
+
+If we are expecting
+some strategy from the adversaries then it is rational to play the best response,
+that is the strategy that maximizes the payoff if the strategies of the opponents
+are fixed. The solution for non zero-sum games is a strategy for each player,
+such that knowing what the others are going to play, none of them is interested
+in changing her own. In other terms, each strategy is a best response to the
+other strategies.
+
+For example consider the Hawk-Dove game, first presented by the biologists
+Smith and Price *(add citation in the biblio section?)*.
+*(We could also concider directly medium-access control here)*.
+One such game is given in matrix form in Table 1.2.
+Two animals are fighting over some prey and can choose to either act as a hawk
+or as a dove. If a player chooses hawk then for the opponent the best payoff
+is obtained by playing dove.
+We say that dove is the best response to hawk.
+Reciprocally the best response to dove is to play hawk. There are two "stable"
+situations (Hawk, Dove) and (Dove, Hawk), in the sense that no player has an
+interest in changing her strategy.
+Nash showed the existence of such equilibria in any normal-form game (citation?),
+which again requires mixed strategies. This result has revolutionized the field
+of economics, where it is used to analyze competitions between firms or government
+economic policies for example. Game theory and the concept of Nash
+equilibrium are now applied to diverse fields: in finance to analyze the evolution
+of market prices, in biology to understand the evolution of some species,
+in political sciences to explain public choices made by parties.
+
+
+Table: The Hawk-Dove game.
+
+|      | Hawk  | Dove  |
+|------|-------|-------|
+| Hawk | 0 , 0 | 1 , 4 |
+| Dove | 4 , 1 | 3 , 3 |
+
+__Definition__:
+A normal form game is given by set of players $Players$,
+a set of strategies $Strat_P$ for each player $P \in Players$ and a payoff function
+${\tt payoff}_P : \prod_{P \in Players} Strat_P \to \mathbb{R}$.
+
+The goal of each player is to maximize its payoff, and the payoff of each player can depend on
+the strategy of all the others.
+Every players decide of its strategy independently.
+
+__Example__:
+In the Hawk-Dove game, there are two players we will boringly call $P_1$ and $P_2$.
+Possible strategies are $Strat_{P_1} = Strat_{P_2} = \{ Hawk, Dove \}$.
+You can deduce the payoff function from the matrix in Table(reference to table),
+${\tt payoff}_{P_1}(Hawk, Hawk) = 0$, ${\tt payoff}_{P_1}(Hawk, Dove) = 4$, etc...
+
+__Nash equilibrium and Existence Theorem__:
+
+A Nash equilibrium is a stable situation in the sense that no player has
+an interest in changing its strategy.
+Formally: it is a strategy profile $\sigma_P$ such that for all player 
+$A_i\in P$, and all strategy $\sigma'_{A_i}$, 
+${\tt payoff}(\sigma'_{A_i}, \sigma_{P\setminus A_i}) \le {\tt payoff}(\sigma_{A_i}, \sigma_{P\setminus A_i})$.
+Nash proved that when player are allowed to randomise among all there strategies,
+there always exists a Nash equilibrium.
+
+__Algorithm__: *Should we present an algorithm in polynomial time to find pure Nash equilibria?* 
+
+## Action-graph games
+*This part does not bring much technically but if think it is useful to make a remark 
+about those games, in case people come across them in their research for instance*
+
+Representing games with matrices can be costly when the number of players increase,
+because the size of the matrix is exponential in the number of players:
+when each player has two strategies there are $2^{|Players|}$ cells in the table.
+To represent more efficiently this games, computer scientist came up with the concept of action-graph
+game which is a more compact representation.
+
+In this more compact representation, the algorithm is no longer polynomial since the representation can
+be exponentially smaller.
+Computer scientist wanted to show that this was indeed a difficult problem.
+Usally we do this by showing that the corresponding decision problems are NP-hard.
+However existence of Nash equilibrium cannot be made into a decision problem, because they always exist
+(the answer is always true so the problem is trivial).
+To characterize the complexity of this problem, the PPAD complexity class was created.
+
+## Multiplayer games for synthesis
+
+Lets take an example which will be relevent for program/controller synthesis.
+
+__Medium Access Control__:
+Several users share access to a wireless channel.
+During each slot, they can choose to either transmit or wait for the next slot.
+The probability that a user is successful in its transmission decreases with
+the number of users emitting in the same slot.
+Furthermore each attempt at transmitting has its cost.
+The payoff thus increases with the number of successful transmissions but decreases
+with the number of attempts.
+The expected reward for one slot and two players, is represented in Table(reference)
+assuming a cost of 2 for each transmission, a reward of 4 for a successful transmission,
+a probability 1 to be successful if only one player emit, and of 1
+if they both transmit at the same time.
+
+
+Table: A game of medium access.
+
+|      | Emit  | Wait |
+|------|-------|------|
+| Emit | -1, -1| 2, 0 |
+| Wait | 0 , 2 | 0, 0 |
+
+For a real situation, one step is not enough and there would be
+a succession of slots and the payoff is then the accumulation of the payoff for
+each slot.
+We see here the limitation of normal form games, as they do not model repetition and how
+the game could evolve as it is played.
+
+One attempt to model that is to use extensive form games where we unfold several turns has a tree.
+The problem is then, when do we stop the unfolding?
+Games on automata generalize extensive games and address this problem.
+We will now focus on multiplayer-games played on automata.
+
+__Exercice:__ What are/is the Nash equilibrium/a in the medium access games?
+
+# Nash Equilibria in Omega-Regular Games
+
+(This part should be about 5 pages long)
+
+We first need a formal definition of a multiplayer game.
+We choose to make them concurrent: in a given state, each player decide of its action in parallel.
+The alternative would have been to make it turn based, as we did in the two player case.
+Concurrent games are strictly more expressive than turn-based games in general.
+However in the two player case they have the same expressive power, which is why we could
+restrict to turn-based in the other sections of this book.
+
+## Motivating example
+
+*I like the following example, but I'm not sure it is not too complicated*
+
+In the design of network protocols, when many users are interacting, it is best to avoid deviation. 
+As an example, consider a program for a server that distributes files, of
+which a part is represented in the next program:
+
+~~~~~~~~~~~~~~~~
+clients = new socket[2];
+void listen1() {
+    Socket socket = serverSocket.accept();
+    if(clients[0].isConnected())
+	   clients[1] = socket;
+	listen1();
+}
+
+void listen2() {
+    Socket socket = serverSocket.accept();
+    if(clients[0].isConnected())
+	   && socket.remoteSocketAddress() 
+	      != clients[0].remoteSocketAddress())
+         clients[1] = socket;
+	else
+        clients[0] = socket;
+    listen2();
+}
+
+void sendFiles1() {
+    if(clients[0].isConnected()) {
+        send(clients[0]);
+        clients[0].close();
+	}
+    else if(clients[1].isConnected()) {
+        send(clients[1]);
+        clients[1].close();
+    }
+	sendFiles1();
+}
+
+void sendFiles2() {
+    if(clients[0].isConnected()) {
+        send(clients[0]);
+        clients[0].close();
+	}
+    if(clients[1].isConnected()) {
+        send(clients[1]);
+        clients[1].close();
+	} 
+	sendFiles2();
+}
+~~~~~~~~~~~~~~~~
+
+The functions listen and send files will be run in parallel by the server. 
+The choice which of `listen1` and `listen2` to run, and which of `sendFiles1` and `sendFiles2` have not been fixed yet and we wish to analyse the robustness of the different alternatives.
+This program uses a table clients to keep track of the clients which are connected. 
+Notice that the table has fixed size 2, which means that if 3 clients
+try to connect at the same time, one of them may have its socket overwritten in
+the table and will have to reconnect later to get the file.
+We want to know what strategy the clients should use and make sure clients cannot
+exploit the protocol to get their files faster than the normal usage.
+
+We consider different strategies to chose between the possible alternatives in
+the program. 
+The strategy that chooses alternatives listen1 and sendFiles1 does not give Nash equilibria even for just two clients: Player 1 can always reconnect just after its socket was closed, so that `clients[0]` points to player 1 once again.
+In this way, it can deviate from any profile to never have to wait for the file.
+Since the second player could do the same thing, no profile is a Nash equiliria.
+
+For the same reasons, the choice `listen2`, `sendFiles1` of the server does not give a Nash equilibrium. 
+The choice `listen1`, `sendFiles2` does not give a Nash equilibrium either, since player 1
+can launch a new connection after player 2 to overwrite `clients[1]`.
+The choice `listen2`, `sendFiles2` is the one that may give the best solution. 
+
+We will model the interaction of this program as a concurrent game after giving the necessary definitions.
+
+## Definition
+
+A multiplayer arena $A$ is
+a tuple $V, Agt, Act,Tab,(c_A)_{A\in Agt_i}$, where:
+
+  * $V$ is a finite set of vertices;
+  * $Agt$ is a finite set of players;
+  * $Act$ is a finite set of actions, a tuple $(a_A)_{A \in Agt}$ containing one action
+  $a_A$ for each player A is called a move;
+  * $Tab : V \times Act^{Agt} \to V$ is the transition function, it associates
+  with a given vertex and a given move, the resulting state;
+  * $(c_A)_{A \in Agt}$ is a tuple of coloring function, one for each player which define its objectives.
+  
+
+In multiplayer arena $A$, whenever we arrive at a vertex $v$, the players simultaneously
+select an action. 
+This results in a move $a_{Agt}$; the next state of the game is then $Tab(s, a_{Agt})$.
+This process starts from $s_0$ and is repeated to form an infinite
+sequence of states.
+
+__Example__
+We modelled the
+interaction of this program as a concurrent game for a situation with 2 potential
+clients in Figure ... 
+The labels represent the content of the table clients: 0
+means no connection, 1 means connected with player 1 and 2 connected with
+player 2; and the instruction that the function send files is executing. Because
+the game is quite big we represent only the part where player 1 connects before
+player 2 and the rest of the graph can be deduced by symmetry. The actions of
+the players are either to wait (action w) or to connect (action ch or ct). Symbol
+$\ast$ means any possible action. Note that in the case both player try to connect at
+the same time we simulate a matching penny game in order to determine which
+one will be treated first, this is the reason why we have two different possible
+actions to connect (ch for “head” and ct for “tail”). Clients have a positive
+reward when we send them the file they requested, this corresponds for Player i
+to states labelled with send(i).
+If both clients try to connect in the same slot, we use a matching penny game
+to decide which request was the first to arrive. 
+
+*Add figure*
+
+__History and plays__: A history of the multiplayer arena ${\mathcal A}$ is a finite sequence of states
+and moves ending with a state, i.e. an word in $(V \cdot Act^{Agt}) \cdot V$.
+Note that unlike for two player games we include actions in the history, because knowing the source and target vertices does not mean you know which player chose what actions.
+
+We write $h_i$ the i-th vertex of h, starting from 0, and $move_i(h)$ its i-th move, thus
+$h = h_0 \cdot move_0(h) \cdot h_1 \cdots move_{n-1}(h)\cdot h_n$.
+The length |h| of such a history is n + 1.
+We write last(h) the last vertex of h, i.e. $h_{|h|-1}$.
+A play $\rho$ is an infinite sequence of
+vertices and moves, i.e. an element of $(V \cdot Act^{Agt})^\omega$.
+
+__Outcomes__: Let $C$ be a coalition, i.e. a subset of the players in $Agt$, and $\sigma_C$ a strategy for $C$. 
+A history $h$ is compatible with the strategy $\sigma_C$ if, for all $k < |h| - 1$ and all $A \in C$, $(move_k(h))_A = \sigma_A(h{\le k})$, and $Tab(h_k, move_k(h)) = h_{k+1}$. 
+A play $\rho$ is compatible with the strategy $\sigma_C$ if all its prefixes are. 
+We write $Out_A(v_0, \sigma_C)$ for the set of plays in $A$
+that are compatible with strategy $\sigma_C$ of $C$ and have initial vertex $v_0$.
+These paths are called outcomes of $\sigma_C$ from $v_0$.
+We write $Out_{\mathcal A}$ the set of plays that are compatible with some strategy. 
+Note that when the coalition $C$ is composed of all the players (and the strategies are deterministic *I don't know whether this is assumed on not*) the outcome is unique.
+
+
+## Reduction to a two-player game
+
+We use a correspondence with zero-sum two-players game, so that we can reuse algorithms
+presented in the other sections of this book.
+We present the deviator game, which is a transformation of multiplayer game into a turn-based zero-sum game, such that there are strong links between equilibria in the first one and winning
+strategies in the second one. 
+Note that the proofs of this section are independent from the type of objectives we consider.
+
+### Deviator 
+The basic notion we use is that of deviators. 
+It identifies players that cause the current deviation from the expected
+outcome. 
+A deviator from move $a_{Agt}$ to $(a')_{Agt}$ is a player $D \in Agt$ such that
+$a_D \ne a'_D$ . 
+We write this set of deviators: $Dev(a_{Agt} , a'_{Agt} ) = \{A \in Agt \mid a_A \ne a'_A \}$. 
+We extend the definition to histories and strategies by taking the union of deviator
+sets.
+Formally $Dev(h, \sigma_{Agt}) = \bigcup_{0\le i < |h|}.~ Dev(move_i(h), \sigma_{Agt}(h_{\le i}))$.
+It naturally extends to plays: if $\rho$ is a play, then $Dev(\rho, \sigma_{Agt} ) = \bigcup_{i \in \mathbb{N}} Dev(move_i(\rho), \sigma_{Agt}(\rho_{\le i} ))$.
+Intuitively, given an play $\rho$ and a strategy profile $\sigma_{Agt}$, deviators represent
+the agents that need to change their strategies from $\sigma_{Agt}$ in order to obtain the
+play $\rho$.
+
+Note that in Nash equilibria we are only interested by deviations of one of the players, so the case of deviators exceeding size 2, should be of no matter to us.
+Indeed, we will see that this case will always be winning for Eve, so we may as well stop the game when this happens.
+
+__Lemma__ Given a play $\rho$, coalition $C$ contains $Dev(\rho)$, if and only if, there exists a strategy $\sigma'_C$ such that $Out(\sigma_{-C}, \sigma'_C) = \rho$.
+
+__Proof__
+First for the implication, assume coalition $C$ contains $Dev(\rho, \sigma_{Agt})$.
+We define the strategy $\sigma_C$ to be such that for all $i\in \mathbb{N}$, 
+$\sigma_C(\rho_{\le i} ) = (move_i(\rho))_C$. 
+We have that for all indices $i$, $Dev(\rho_{i+1}, \sigma_{Agt}(move_i(\rho))) \subseteq C$. 
+Therefore for all agents $A\not\in C$, $\sigma_A(\rho_{\le i}) = (move_i(\rho))_A$. 
+Then $Tab(\rho_i, \sigma'_C(\rho_{\le i}), \sigma_{-C}(\rho_{\le i})) = \rho_{i+1}$. 
+Hence $\rho$ is the outcome of the profile $(\sigma_{-C}, \sigma'_C)$.
+
+In the other direction, let $\sigma_{Agt}$ be a strategy profile, $\sigma_C$
+a strategy for coalition $C$, and $\rho \in Out_G(\rho_0 , \sigma_{-C}, \sigma_C)$.
+We have for all indices $i$ that $move_i(\rho) = (\sigma_{-C}(\rho_{\le i}), \sigma'_C(\rho_{\le i}))$.
+Therefore for all agents $A \not\in C$, $(move_i(\rho))_A = \sigma_A(\rho_{\le i})$.
+Then $Dev(move_i(\rho), \sigma_{Agt}(\rho_{\le i})) \subseteq C$.
+Hence $Dev(\rho, \sigma_{Agt}) \subseteq C$.
+
+
+### Deviator Game
+We now use the notion of deviators to draw a link between multiplayer games
+and a two-player game.
+Given a game $G$, we define the deviator game $D(G)$.
+Intuitively Eve needs to play according to an equilibrium, while Adam tries to find a deviation of a player which will profit this player.
+The states are in $V' = V \times 2^{Agt}$, where the second component, a subset of $Agt$, records the deviators of the current history.
+
+At each step, Eve chooses an action profile, and Adam chooses the move that will apply, but this can be at the price of adding players to the D component when he does not follow the choice of Eve.
+The game begins in $(v_0 , \varnothing)$ and then proceeds as follows: from a state $(s, D)$, Eve chooses
+an action profile $a_{Agt}$ and Adam chooses a second one $a'_{Agt}$ (they may be equal), then the next state is
+$(Tab(s, a'_{Agt} ), D \cup Dev(a_{Agt} , a'_{Agt} ))$.
+
+We define projections $\pi_{V}$ , $\pi_{Dev}$ and $\pi_{Act}$ from $V'$ to $V$,
+from $V'$ to $2^{Agt}$ and from $Act^{Agt} \times Act^{Agt}$ to $Act^{Agt}$ respectively.
+
+The following lemma states the correctness of the construction of the deviator
+game, in the sense that it records the set of deviators in the strategy profile
+suggested by Adam with respect to the strategy profile suggested by Eve.
+
+*to do: some definitions are missing for the following lemma*
+
+__Lemma .__  Let G be a game and $\sigma_{Agt}$ be a strategy profile and $\sigma_{\exists} = \kappa(\sigma_{Agt})$
+the associated strategy in the deviator game.
+
+1. If $\rho \in Out_{D(G)}(\sigma_\exists)$, then $Dev(\pi(Out(\rho), \sigma_{Agt} ) = \delta(\rho)$.
+2. If $\rho \in Out_G$ and $\rho' = ((\rho_i , Dev(\rho_{\le i} , \sigma_{Agt} )) \cdot (\sigma_{Agt} (\rho_{\le i} ), move_i(\rho))) i\in \mathbb{N}$ then $\rho' \in Out_{D(G)} (\sigma_\exists)$.
+
+__Proof__
+We prove that for all i, $Dev(\pi_Out(\rho_{\le i} , \sigma_{Agt}) = \pi_Dev (\rho_{\le i} )$,
+which implies the property. The property holds for i = 0, since initially both
+sets are empty. Assume now that it holds for $i \ge 0$.
+$Dev(\pi_{Out}(\rho_{\le i+1} , \sigma_{Agt} ) =$
+
+  * $Dev(\pi_{Out}(\rho_{\le i}, \sigma_{Agt} ) \cup Dev(\sigma_{Agt} (\pi_{Out}(\rho_{\le i} ), \pi_{Act} (move_{i+1} (\rho))))))$ (by definition of deviators)
+  * $\pi_{Dev} (\rho_{\le i} ) \cup Dev(\sigma_{Agt} (\pi_{Act} (\rho)_{\le i} ), \pi_{Act} (move_{i+1} (\rho)))$ (by induction hypothesis)
+  * $\pi_{Dev} (\rho_{\le i} ) \cup Dev(\sigma_\exists (\rho_{\le i} ), \pi Act (move_{i+1}(\rho)))$
+    (by definition of $\sigma_\exists$ )
+  * $\pi_{Dev} (\rho_{\le i} ) \cup Dev(move_{i+1}(\rho))$
+    (by assumption $\rho \in Out_{D(G)} (\sigma_\exists)$)
+  * $\pi_{Dev}(\rho_{\le i+1} )$ (by construction of $D(G)$)
+
+Which concludes the induction.
+
+We now prove the second part. The property is shown by induction. It holds for the initial
+state. Assume it is true until index i, then
+$Tab'(\rho'_i , \sigma_\exists(\rho'_{\le i}), move_i(\rho)) =$ 
+
+  * $Tab'((\rho_i , Dev(\rho_{\le i} , \sigma_{Agt})), \sigma_{\exists} (\rho'_{\le i} ), move_i(\rho))$ 
+  (by definition of $\rho'$ )
+  * $(Tab(\rho_i , move_i(\rho)), Dev(\rho_{\le i}, \sigma_{Agt}) \cup Dev(\sigma_{\exists}(\rho'_{\le i}), \rho_{i+1} ))$ (by construction of $Tab'$ )
+  * $(\rho_{i+1} , Dev(\rho_{\le i}, \sigma_{Agt} ) \cup Dev(\sigma_{\exists}(\rho'_{\le i}), \rho_{i+1} ))$ (since $\rho$ is an outcome of the game)
+  * $(\rho_{i+1} , Dev(\rho_{\le i} , \sigma_{Agt} ) \cup Dev(\sigma_{Agt} (\rho_{\le i}), \rho_{i+1} ))$ (by construction of $\sigma_\exists$)
+  * $(\rho_{i+1} , Dev(\rho_{\le i+1} , \sigma_{Agt} ))$ (by definition of deviators)
+  * $\rho'_{i+1}$
+
+
+### Objectives in the Deviator Game
+
+The objective of Eve in the deviator game is defined so that winning strategies correspond to
+equilibria of the original game. 
+First, as an intermediary step, consider objective $\Omega(C, A, g) = \{\rho \mid \delta(\rho) \subseteq C \Rightarrow {\tt payoff}_A(\pi_{Out}(\rho)) \in g\}$.
+It is such that a profile which ensures some goal $g$ against coalition $C$ corresponds to a winning strategy for $\Omega(C, A, g)$ in the deviator game.
+
+__Lemma .__
+Let $C \subseteq Agt$ be a coalition, $\sigma_{Agt}$ be a strategy profile, $g \subset V^\omega$ a goal and $A$ a
+player. 
+We have that for all strategies $\sigma'_C$ for coalition C, ${\tt payoff}_A(\sigma_{-C}, \sigma'_C) \in g$
+if, and only if, $\kappa(\sigma_{Agt})$ is winning in $D(G)$ for objective $\Omega(C, A, g)$.
+
+*Note: define projection $\kappa_V$ and $\kappa$ for strategies, $Dev$ for an infinite path in D(G) *.
+
+__Proof__
+Let $\rho$ be an outcome of $\sigma_\exists=\kappa(\sigma_{Agt})$.
+  By Lem.~\ref{prop:correctness-deviator-game}, we have that $Dev(\rho) = Dev(\kappa_V(\rho),\sigma_{Agt})$.
+  By Lem.~\ref{lem:deviator-path}, $\kappa_V(\rho)$ is the outcome of $(\sigma_{-Dev(\rho)},\sigma'_{Dev(\rho)})$ for some $\sigma'_{Dev(\rho)}$.
+  If $Dev(\rho) \subseteq C$, then $\texttt{payoff}_A(\kappa_V(\rho)) = \texttt{payoff}_A(\sigma_{-C},\sigma_{C\setminus Dev(\rho)}, \sigma'_{Dev(\rho)}) = \texttt{payoff}_A(\sigma_{-C},\sigma''_{C})$ where $\sigma''_A = \sigma'_A$ if $A \in Dev(\rho)$ and $\sigma_A$ otherwise.
+  By hypothesis, this payoff belongs to $g$.
+  This holds for all outcomes~$\rho$ of $\sigma_\exists$, thus $\sigma_\exists$ is a winning strategy for $\Omega(C,A,g)$.
+
+In the other direction, assume $\sigma_\exists = \kappa(\sigma_{Agt})$ is a winning strategy in $D(G)$ for $\Omega(C,A,g)$.
+Let $\sigma'_C$ be a strategy for $C$ and $\rho$ the outcome of $(\sigma'_{C},\sigma_{-{C}})$.
+By Lem.~\ref{lem:deviator-path}, $Dev(\rho,\sigma_{Agt}) \subseteq C$.
+By Lem.~\ref{prop:correctness-deviator-game}, $\rho'= (\rho_j, Dev(\rho_{\le j},\sigma_{Agt}))_{j\in \mathbb{N}}$ is an outcome of $\sigma_\exists$.
+We have that $Dev(\rho') = Dev(\rho,\sigma_{Agt}) \subseteq C$.
+Since $\sigma_\exists$ is winning, $\rho$ is such that $\texttt{payoff}_A(\kappa(\rho)) \in g$.
+Since $\texttt{payoff}_{A}(\kappa_V(\rho')) = \texttt{payoff}_{A}(\rho)$, this shows that for all strategy $\sigma'_C$, $\texttt{payoff}_A(\sigma_{-C},\sigma'_C) \in g$ 
+  
+  
+  
+Now if Eve wants to prove there is a Nash equilibria, if there is one deviator, she has to prove it does not gain anything, and if there is more than one she has nothing to prove.
+
+__Theorem .__ 
+Let $G$ be a game, $\sigma_{Agt}$ a strategy profile in $G$, $p = {\tt payoff}(Out(\sigma_{Agt}))$ the payoff profile of $\sigma_{Agt}$.
+The strategy profile $\sigma_{Agt}$ is a Nash equilibrium if, and only if, strategy $\kappa(\sigma_{Agt})$ is winning in $D(G)$ for the objective $N(p)$ defined
+by: $N(p) = \{\rho \mid |\delta(\rho)| \ne 1\} 
+ \cup \bigcup_{A\in Agt} \{\rho | |\delta(\rho)| = \{A\}
+\land {\tt payoff}_A(\pi_{Out}(\rho)) \le p(A)\}$.
+
+__Proof__
+By *previous Lemma*, $\sigma_{Agt}$ is a Nash equilibrium if, and only if, for each 
+player $A$, $\pi(\sigma_{Agt})$ is winning for 
+$\Omega(\{A\}, A, \rbrack -\infty, \texttt{payoff}_A(\sigma_{Agt})\rbrack)$.
+So it is enough to show that for each player $A$, $\pi(\sigma_{Agt})$ is winning
+for $\Omega(\{A\},A,\rbrack-\infty,\texttt{payoff}_A(\sigma_{Agt})\rbrack)$
+if, and only if, $\pi(\sigma_{Agt})$ is winning for $N(k,p)$.
+
+__Implication__
+Let $\rho$ be an outcome of $\pi(\sigma_{Agt})$.
+
+  * If $|Dev(\rho)| \ne 1$, then $\rho$ is in $N(k,p)$ by definition.
+  * If $|Dev(\rho)| = 1$, then for $\{A\} = Dev(\rho)$, 
+	$\texttt{payoff}_A(\pi(\rho)) \in \rbrack-\infty,p(A)\rbrack$ because
+	$\pi(\sigma_{Agt})$ is winning for $\Omega(Dev(\rho), A,\rbrack-\infty,p(A)\rbrack)$.
+    Therefore $\rho$ is in $N(k,p)$.
+
+This holds for all outcome $\rho$ of $\pi(\sigma_{Agt})$ and shows that 
+$\pi(\sigma_{Agt})$ is winning for $N(k,p)$.
+
+__Reverse implication__
+Let $p$ be such that strategy $\pi(\sigma_{Agt})$ is winning for $N(k,p)$.
+We now show that $\pi(\sigma_{Agt})$ is winning for 
+$\Omega(\{A\},\rbrack-\infty,p(A)\rbrack)$ for each player $A$.
+Let $\rho$ be an outcome of $\pi(\sigma_{Agt})$, we have $\rho \in N(k,p)$.
+We show that $\rho$ belongs to $\Omega(\{A\}, A, \rbrack -\infty, p(A)\rbrack)$:
+
+  * If $Dev(\rho) = \varnothing$ then $\rho = Out(\sigma_{Agt})$ and $\texttt{payoff}(\rho) = p$, 
+    so $\rho$ in $\Omega(\{A\},A,\rbrack -\infty, p(A)\rbrack)$
+  * If $Dev(\rho) \not\subseteq \{ A \}$, then $\rho \in \Omega(C,A,\rbrack -\infty, p(A)\rbrack)$ by definition.
+  * Otherwise $Dev(\rho) = \{A\}$.
+    Since $\rho \in N(k,p)$, $\texttt{payoff}_A(\rho) \le p(A)$ and
+	therefore $\texttt{payoff}_A(\rho) \in \rbrack -\infty, p(A) \rbrack$.
+    Hence $\rho \in \Omega(C,A,\rbrack -\infty, p(A)\rbrack)$.
+
+This holds for all outcome $\rho$ of $\pi(\sigma_{Agt})$ and shows it is winning
+for $\Omega(\{A\},A,\rbrack-\infty,p(A)\rbrack)$ for each player $A$ in $Agt$, 
+which shows that $\sigma_{Agt}$ is a Nash equilibrium.
+$\square$
+
+
+### Algorithm for parity
+
+Assume the objective for each player given by a parity condition.
+Given a payoff $p$ we can deduce from the previous theorem an algorithm that constructs a Nash equilibrium if there exists one.
+We construct the deviator game and note that we can reduce the number of states: 
+when $Dev(\rho_{\le k})$ reach a size greater than $1$ it will never decrease and thus we know that Eve will win.
+During construction these states can be replaced by a sink state winning for Eve.
+This means the constructed game has at most $n \times (|Agt| + 1) + 1$ states.
+
+The objective can be expressed as a Parity condition the following way:
+
+  - for each vertex $v' = (v, \{ A \})$, $c'(v') = c_A(v) + 1$ if $p(A) = 0$ and $0$ otherwise;
+  - for each vertex $v' = (v, D)$ with $|D| \ne 1$, $c'(v') = 0$ i.e. it is winning for Eve.
+  
+*Note: do we have to define the payoff for a parity game here?*
+  
+__Lemma__
+$\texttt{maxinf}(c'(\rho_i)) \in 2 \mathbb{N}$ if, and only if, $\rho\in N(p)$.
+
+__Proof__
+For the implication, we will prove the contrapositive.
+let $\rho$ that is not in $N(p)$, then since the deviators can only increase 
+along a play, we have that $\delta(\rho) = \{ A \}$ for some player $A$
+and $\texttt{payoff}_A(\rho) > p(A)$.
+This means $p(A) = 0$ and $\texttt{maxinf}(c_A(\rho_i)) \in 2 \mathbb{N}$.
+By definition of $c'$ this implies that $\texttt{maxinf}(c'(\rho_i)) \in 2 \mathbb{N} + 1$
+This prooves the implication.
+
+For the other implication, let $\rho$ be such that $\texttt{maxinf}(c'(\rho_i)) \in 2 \mathbb{N} + 1$.
+By definition of $c'$ this means $\rho$ contains infinitely many states of the 
+form $(v, \{A\})$ with $p(A) = 0$.
+Since the deviators only increase along the run, there is a player $A$ such that
+$\rho$ stays in the component $V \times \{A\}$ after some index $k$.
+Then for $i$ after index $k$, $c'(\rho_i) = c_A(\rho_i)$, hence 
+$\texttt{maxinf}(c'(\rho_i)) = \texttt{maxinf}(c_A(\rho_i)) + 1$.
+Therefore $\texttt{maxinf}(c_A(\rho_i)) \in 2 \mathbb{N}$, which means $\texttt{payoff}_A(\rho) = 1 > p(A)$.
+By definition of $N(p)$, $\rho\not\in N(p)$.
+$\square$
+
+Given that the size of the game is polynomial and that parity games can be
+decided in nondeterministic polynomial time, the preceeding lemma implies the
+following theorem.
+
+
+__Theorem__
+There is an NP algorithm to decide if there is a Nash equilibrium with a 
+particular payoff.
+
+
+## Extensions of Nash equilibria
+
+### Subgame perfect equilibria
+
+Nash equilibria present the disavantage that once a player has deviated, 
+the others will try to punish him, forgetting everything about their own
+objectives.
+If we were to observe the game after this point of deviation, it would not look 
+like the players are playing rationaly and in fact it does not look like a 
+Nash equilibrium.
+The concept of Subgame perfect equilibria tries to refine the concept of Nash 
+equilibrium by imposing that at each step of the history, the strategy behave
+like Nash equilibrium if we were to start the game now.
+Formally, let use write $\sigma_A \circ h$ the strategy which maps all histories
+$h'$ to $\sigma_A(h \cdot h')$, that is the strategy that behave like $\sigma_A$
+after $h$.
+Then $(\sigma_A)_{A\in Agt}$ is a *subgame perfect equilibrium* if for all 
+history $h$, $(\sigma_A \circ h)_{A \in Agt}$ is a Nash equilibrium.
+
+Imposing such a strong restriction is justified by the fact that subgame perfect
+Nash equilibria exist for a large class of games.
+In particular subgame perfect equilibria always exist in turn-based games with 
+reachability objectives.
+
+*Note: This is a result of Brihaye Bruyère, De Pril, Gimber, I don't know if 
+there is a similar result for parity games*
+
+__Example__
+....
+
+
+*Note: should we talk about Secure equilibria since it is not really multiplayer*
+
+### Robust equilibria.
+
+The notion of robust equilibria refines Nash equilibria in two ways:
+
+  * a robust equilibrium is *resilient*, i.e. when a small coalition of player 
+    change its strategy, it can not improve the payoff of one of its players;
+  * it is *immune*, i.e. when a small coalition changes its strategy, it will 
+    not lower the payoff of the non-deviating players.
+
+The size of small coalitions is determined by some parameters $k$ for resilience and $t$ for immunity.
+When a strategy is both $k$-resilient and $t$-immune, it is called a $(k,t)$-robust equilibrium.
+
+The motivation behind this concept is to address these two weaknesses of Nash equilibra:
+
+  * There is no guarantee when two (or more) users deviate together.
+	It can happen on a network that the same person controls several devices 
+	(a laptop and a phone for instance) and can then coordinate there behavior.
+	In that case, the devices would be considered as different agents and Nash
+	equilibria offers no guarantee.
+  * When a deviation occurs, the strategies of the equilibrium can punish the
+	deviating user without any regard for payoffs of the others.
+    This can result in a situation where, because of a faulty device, nobody
+	can use the protocol anymore.
+
+By comparison, finding resilient equilibria with $k$ greater than $1$, ensures 
+that clients have no interest in forming coalitions (up to size $k$), and
+finding immune equilibria with $t$ greater than $0$ ensures that other clients
+will not suffer from some agents (up to $t$) behaving differently from what was expected.
+
+The deviator construction can be reused for finding such equilibria.
+We only need to adapt the objectives need to change.
+Given a game $G$, a strategy profile $\sigma_{Agt}$, and $k$, $t$ integers:
+
+  * The strategy profile $\sigma_{Agt}$ is $k$-resilient if, and only if, strategy
+    $\pi(\sigma_{Agt})$ is winning in $Dev$ for the *resilience objective*
+	$\mathcal{R}e(k,p)$ where $p = \texttt{payoff}(Out(\sigma_{Agt}))$ is the 
+	payoff profile of $\sigma_{Agt}$ and $\mathcal{R}e(k,p)$ is defined by:
+	$\mathcal{R}e(k,p) = \{ \rho \mid ~ |Dev(\rho)| > k \} \cup
+	\{ \rho \mid  ~ |Dev(\rho)| = k \land \forall A \in Dev(\rho).\ \texttt{payoff}_{A}(\pi(\rho)) \le p(A)\}$
+	$\cup \{ \rho \mid  ~ |Dev(\rho)| < k \land \forall A \in Agt.\ \texttt{payoff}_{A}(\pi(\rho)) \le p(A)\}$
+  * The strategy profile $\sigma_{Agt}$ is $t$-immune if, and only if, 
+	strategy $\pi(\sigma_{Agt})$ is winning for the *immunity objective* 
+	$\mathcal{I}(t,p)$ where $p = \texttt{payoff}(Out(\sigma_{Agt}))$ is the 
+	payoff profile of $\sigma_{Agt}$ and $\mathcal{I}(t,p)$ is defined by:
+  $\mathcal{I}(t,p) = \{ \rho \mid |Dev(\rho)| > t \} 
+  \cup \{ \rho \mid ~ \forall A \in Agt \setminus Dev(\rho).\  p(A) \le \texttt{payoff}_{A}(\pi(\rho)) \}$
+  * The strategy profile $\sigma_{Agt}$ is a $(k,t)$-robust profile in $G$ if, 
+    and only if, $\pi(\sigma_{Agt})$ is winning for the *robustness objective* 
+	$\mathcal{R}(k,t,p)= \mathcal{R}e(k,p) \cap \mathcal{I}(t,p)$ where
+	$p = \texttt{payoff}(Out(\sigma_{Agt}))$ is the payoff profile of $\sigma_{Agt}$.
+
+*Note: we need to have defined projection on the deviator game for strategies*
+The proof can be done as an exercise.
+
+### Extension to games with hidden actions
+
+To represent network interaction, it makes sense to model the fact that players
+can have different information about the network.
+Unfortunately, in games with imperfect information over the states, the existence
+of Nash equilibria is undecidable.
+It is because of "forks" of information between the different players.
+However a restriction that is decidable is the case where only the actions are
+invisible.
+To model this, we concider strategies that only observe states of the system 
+instead of edges, hence a strategy $\sigma$ is now a function from $V^*$ to $Act$.
+
+In this version the deviators are not has obvious as before, as it may not 
+always be possible to identify one unique deviator responsible for a deviation.
+The construction for decidability use a notion of suspect.
+Suspects for a transition $(v, v')$ with respect to a move $(a_A)_{A\in Agt}$
+are players $A$ such that there is $a'_A$ and $Tab(a'_A, a_{-A}) = (v, v')$.
+Along a history instead of taking the union of deviators, we take the 
+intersection of suspects: note that if there is no deviation everyone is 
+suspect, and we assume only one player will deviate (this is enough for Nash
+equilibria).
+
+A construction similar that deviators, is done replacing the deviator component
+by a suspect component.
+Then the objective for Eve is that no suspect player improve its payoff.
+The reason is that we know the deviator is among them but we don't know which one.
+
+__Example__ 
+...
+
+### Extension to resilient and immune equilibria
+The same construction can be reused for related concepts.
+*We can give the definition of these concepts but leave the proofs as exercise*.
+
+### Link between determinacy and existence
+Results of Stephane Leroux, Julie de Pril. *Idea but no formal proof?*
+
+
+
+# Admissible strategies
+
+## Normal form games
+
+## Definition
+
+__Dominance__
+
+*Remark: I give here the notion in a quantitative setting although it may not be needed..*
+
+Let $S \subseteq \mathcal{S}^{Agt}$ be a set of the form $S = S_1 \times S_2 \times \cdots \times S_n$ which we will call a rectangular set.
+Let $\sigma,\sigma' \in S_i$.
+Strategy $\sigma$ *very weakly dominates* strategy $\sigma'$ with
+respect to $S$, written $\sigma_i \ge_S \sigma'_i$, if from all states $s$:
+
+  * $\forall \sigma_{-i} \in S_{-i}, \texttt{payoff}_i(Out_s(\sigma'_i,\sigma_{-i})) \ge \texttt{payoff}_i(Out_s(\sigma_i,\sigma_{-i})).$
+
+Strategy $\sigma_i$ *weakly dominates* strategy $\sigma'_i$ with respect to $S$, written $\sigma >_S \sigma'$, if $\sigma \ge_S \sigma'$ and $\neg(\sigma' \le_S \sigma)$. 
+A strategy $\sigma \in S_i$ is weakly dominated in $S$ if there exists $\sigma' \in S_i$ such that $\sigma' >_S \sigma$.
+A strategy that is not weakly dominated in $S$ is *admissible* in $S$.
+The subscripts on $\ge_S$ and $>_S$ is omitted when the sets of strategies are clear within the context.
+
+
+
+*Remark: I give here the notion of value that is used in quantitative games, because I find it easier to generalize and a bit more natural to define*
+
+
+Algorithms rely on the notion of \emph{optimistic} and \emph{pessimistic value}
+of a history.
+The pessimistic value is the maximum payoff that a player can secure, restricting
+the strategies to the ones that have not been eliminated so far.
+The optimistic value is the best the player can achieve if others player help 
+him, with the same restriction on strategies.
+
+__Definition: Values__
+The *pessimistic value* of a strategy $\sigma_i$ for a history $h$ with respect
+to a rectangular set of strategies $S$, is
+  
+  * $pes_i(S,h,\sigma_i) = \inf_{\sigma_{-i} \in S_{-i}} \texttt{payoff}_{i}(h \cdot Out_{last(h)}(\sigma_i,\sigma_{-i})).$
+
+The *pessimistic value of a history* $h$ for $A_i$
+with respect to a rectangular set of strategies $S$ is given by:
+
+  * $pes_i(S,h) = \sup_{\sigma_i \in S_i} pes_i(S,s,\sigma_i).$
+  
+The *optimistic value* of a strategy $\sigma_i$ for a history $h$ with respect to 
+a rectangular set of strategies $S$ is given by:
+
+  * $opt_i(S,h,\sigma_i) = \sup_{\sigma_{-i} \in S_{-i}} \texttt{payoff}_i (h_{\le |h|-2} \cdot Out_{last(h)}(\sigma_i,\sigma_{-i})).$
+
+The *optimistic value* of a history $h$ for $A_{i}$ with respect to a 
+rectangular set of strategies $S$ is given by:
+
+  * $opt_i(S,h) = \sup_{\sigma_i \in S_i} \texttt{payoff}_{i}(opt_i(S,h,\sigma_i))$
+
+## Simple Safety games
+
+Simple safety games, are safety games in which there are no transition from 
+losing vertices to non-losing one.
+Restricting to this particular class of game makes the problem simpler because
+the objective becomes prefix independent.
+The pessimistic and optimistic value do not depend on the full history but only
+on the last state: for all history $pes_i(h) = pes_i(last(h))$ and 
+$opt_i(h) = opt_i(last(h))$.
+
+Note that in safety games (and any qualitative game) values can be only 1 (for
+winning) and 0 (for losing) and since the pessimistic value is always less than
+the optimistic one, the pair $(pes_i, opt_i)$ can only take three values: 
+$(0, 0)$, $(0, 1)$ and $(1, 1)$.
+Intuitively, making this value pair decrease is bad, and this is formalized by
+showing admissible strategies correspond exactly to strategy that do not 
+decrease their own value in their turn.
+
+__Definition__
+We write $D_i$ for the set of edges $v \rightarrow v' \in E$, such that $v$ is controlled by player $A_i$ and $pes_i(v) > pes_i(v')$ or $opt_i(v) > opt_i(v')$.
+These are called *dominated edges*.
+ 
+__Theorem: characterisation of addmissible startegies__
+Admissible strategies for player $A_i$ are the strategies that never take
+actions in $D_i$.
+
+__Proof__
+We show that if $A_i$ plays an admissible strategy $\sigma_i$ then
+the value cannot decrease on a transition controled by $A_i$.
+Let $\rho \in Out(\sigma_i,\sigma_{-i})$, and $k$ an index such that
+$\rho_k \in V_i$.
+Let $(v, v') = \sigma_i(\rho_{\le k})$:
+
+  * If $pes_i(\rho_k)=1$, then $\sigma_i$ has to be winning against all strategies $\sigma_{-i}$ of $A_{-i}$, otherwise it would be weakly dominated by such a strategy.
+    Since there is no such strategy from a state with value $pes_i \leq 0$, $pes_i(s')=1$.
+  * If $opt_i(s) = 1$, then there is a profile $\sigma_{-i}$ such that $\rho = \texttt{payoff}(Out(\sigma_i,\sigma_{-i})) = 1$.
+    Note that $h \cdot s \cdot s'$ is a prefix of $\rho$.
+    If $opt_i(s')=0$, there can be no such profile, thus $opt_i(s') = 1$.
+  * If $opt_i(s) = 0$, the value cannot decrease.
+
+
+In the other direction, let $\sigma_i,\sigma_i'$ be two strategies of player $A_i$
+and assume $\sigma_i' >_S \sigma_i$. 
+We will prove $\sigma_i$ takes a transition in $D_i$ at some point.
+
+Lets fix some objects before digging into the proof.
+There is a state $s$ and strategy profile $\sigma_{-i} \in S_{-i}$ such that $\texttt{payoff}(Out_s(\sigma_i',\sigma_{-i}))=1 \wedge \texttt{payoff}(Out_s(\sigma_i,\sigma_{-i})=0$.
+Let $\rho = Out_s(\sigma_i,\sigma_{-i})$ and $\rho' = Out_s(\sigma_i',\sigma_{-i})$.
+Consider the first position where these runs differ: write $\rho = w \cdot s' \cdot s_2 \cdot w'$ and $\rho' = w \cdot s' \cdot s_1 \cdot w''$.
+
+There are some simple facts, we can note right away: 
+
+  * $s'$ belongs to $A_i$, because the strategy of the other players are identical in the two runs.
+  * $opt_i(s_1) = 1$ because $\texttt{payoff}(Out(\sigma_i',\sigma_{-i}))=1$
+  * $pes_i(s_2) = 0$ because $\texttt{payoff}(Out(\sigma_i,\sigma_{-i}))=0$
+
+If $opt_i(s_2) = 0$ or $pes_i(s_1) = 1$ then $s' \rightarrow s_2 \in D_i$ so $\sigma_i$ takes a transition of $D_i$.
+The remaining case to complete the proof is $opt_i(s_2) = 1$ and $pes_i(s_1) = 0$.
+We will show that this case leads to a contradiction.
+
+We first construct a profile $\sigma_{-i}^2 \in S_{-i}$ such that $\texttt{payoff}(\sigma_i,\sigma_{-i}^2)=1$ from $s_2$.
+Let $h$ be a history such that $last(h)\notin V_i$, if for all $\sigma^2_{-i} \in S_{-i}$, $opt_i(\sigma^2_{-i}(h)) = 0$ then $opt_i(last(h))=0$.
+Thus $\sigma_{-i}^2\in S_{-i}$ never decreases the optimistic value from $1$ to $0$.
+The strategy $\sigma_i$ itself does not decrease the value of $A_i$ because it does not take transitions of $D_i$.
+So the outcome of $(\sigma_i,\sigma_{-i}^2)$ never reaches a state of optimistic value $0$.
+Hence it never reaches a state in $Bad_i$ and therefore it is winning for $A_i$.
+
+We now show there is a profile $\sigma_{-i}^1 \in S_{-i}$ such that $\texttt{payoff}(\sigma_i',\sigma_{-i}^1)=0$ from $s_1$.
+Since $pes_i(s_1) = 0$ so there is no winning strategy for $A_i$ from $s_1$ against all strategies $\sigma_{-i}$.
+Then there exists a strategy profile $\sigma_{-i}^1$ such that $\sigma_i'$
+loses from $s_1$.
+
+Now consider strategy profile $\sigma_{-i}'$ that plays like $\sigma_{-i}$ if the play does not start with $w$, then $\sigma_{-i}^1$ after $s_1$ and $\sigma_{-i}^2$ after $s_2$.
+Formally, given a history $h$, $\sigma_{-i}'(h) =$
+
+  * $\sigma_{-i}^1( h')$ if $w \cdot s_1$ is a prefix of $h$ and $w \cdot s_1 \cdot h' = h$
+  * $\sigma_{-i}^2( h')$ if $w \cdot s_2$ is a prefix of $h$ and $w \cdot s_2 \cdot h' = h$
+  * $\sigma_{-i}(h)$ otherwise
+
+Clearly we have $\texttt{payoff}_i(Out_s(\sigma_i,\sigma_{-i}'))= 1 \wedge
+\texttt{payoff}_i(Out_s(\sigma_i',\sigma_{-i}')) = 0$, which contradicts 
+$\sigma_i' \ge_S \sigma_i$.
+
+$\square$
+
+Once we know how to solve simple safety games, we can easily solve safety games
+by converting the safety game to an equivalent safety game by encoding in the
+states which players have visited a losing state.
+Note that this translation can be exponential in the number of players.
+
+## Parity games
+
+The caracterization given for simple safety game is not enough for parity objectives.
+
+*Illustrate on an example why it is not the case.*
+
+However the fact that an admissible strategy should not decrease its own value still holds.
+Assuming strategy $\sigma_i$ of player $A_i$ does not decrease its own value, 
+we can classify its outcome in three categories according to their ultimate values.
+
+  * either ultimately $opt_i = 0$, in which case all strategies are losing, 
+    and thus any strategy is admissible
+  * or ultimately $pes_i = 1$, in which case admissible strategies are exactely
+    the winning ones
+  * or ultimately $pes_i = 0$ and $opt_i = 1$, this case is more involved and 
+    we will now focus on that case.
+	
+	
+From a state of value $0$, an admissible strategy of $A_i$ should allow a 
+winning run for $A_i$ with the help of other players.
+
+We write $H_i$ for set of states $s$ controlled by a player $A_j\ne A_i$
+that have at least two successors of optimistic value $1$.
+Formally, the *help-states* of player $A_i$ are defined as: 
+ $H_i = \bigcup_{A_j\in Agt \setminus\{i\}} \left\{ s \in V_j \mid \exists s',s'',\ s' \neq s'' 
+\wedge\ s\rightarrow s' \land s \rightarrow s''
+\wedge\ opt_i(s') = 1 \wedge\ opt_i(s'') = 1 \right\}$
+
+These states have the following property.
+
+
+__Lemma__
+Let $s\in V$, $A_i\in Agt$ and $\rho$ a play be such that
+$\exists^\infty k. opt_{i}(\rho_k) = 1$.
+There exists $\sigma_i$ admissible such that $\rho \in Out_s(\sigma_i)$ if, 
+and only if, $payoff_i(\rho) = 1$ or $\exists^\infty k. \rho_k \in H_i$.
+
+
+## Iterated elimination 
+__Definition: iterated elimination__
+
+__Theorem: fixpoint exists and is non-empty__ (not proved)
+
+
+# Other results
+
+  * Indecidability of winning strategies for imperfect information games
+  * Remorse-free strategies (optionnel)
+
+* Strategy logic
+  * Equilibria in Stochastic Games
+  * Indecidability for stochastic games
+  * Algorithm for memoryless strategis in stochastic games
+    (use existential theory of reals)
+
+
+
+# Pointers
+
+Reference for medium access control:
+A.B. MacKenzie, S. Wicker. Stability of multipacket slotted aloha with
+selfish users and perfect information. IEEE INFOCOM, 3:1583–1590, 2003.

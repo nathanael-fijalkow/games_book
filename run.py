@@ -3,14 +3,12 @@ import sys
 
 from script import translate
 
-#### Usage:
-## python run.py 1 Introduction
-
 nb_chap = sys.argv[1]
 title_chap = sys.argv[2]
+path = sys.argv[3]
 
-def extract_from_main():
-	f = open(nb_chap + "_" + title_chap + "/main.tex", "r")
+def extract_from_index():
+	f = open(path + "index.tex", "r")
 	content = f.read()
 
 	# Match:
@@ -19,18 +17,16 @@ def extract_from_main():
 	# \input{intro}
 
 	s_in = r"\\section\*?\{{(.*?)\}}\n\\label\{{{}-sec:.*?\}}\n\\input\{{(.*?)\}}"
-
 	list_section = re.findall(s_in.format(nb_chap), content)
-
 	f.close()
 
 	for (title,file) in list_section:
-		translate(nb_chap, title_chap, file, title)
+		translate(nb_chap, file, path, title)
+		
+	# We finish with index
+	translate(nb_chap, "index", path, title_chap)
 
-	# We finish with main
-	translate(nb_chap, title_chap, "main", title_chap)
-
-	f = open(nb_chap + "_" + title_chap + "/main.md", "r")
+	f = open(path + "index.md", "r")
 	content = f.read()
 	f.close()
 
@@ -40,9 +36,10 @@ def extract_from_main():
 	# Remove the inputs
 	content = re.sub(s_in.format(nb_chap), '', content)
 
-	g = open(nb_chap + "_" + title_chap + "/main.md", "w")
+	# content = content + "\n ```{tableofcontents}```"
+
+	g = open(path + "index.md", "w")
 	g.write(content)
 	g.close()
 
-
-extract_from_main()
+extract_from_index()

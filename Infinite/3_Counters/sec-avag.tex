@@ -1,0 +1,60 @@
+\Cref{12-th-undec} shows that "vector games" are too powerful to be
+algorithmically relevant, except in dimension one where
+\cref{12-th-dim1} applies.  This prompts the study of restricted kinds
+of "vector games", which might be decidable in arbitrary dimension.
+This section introduces one such restriction, called
+\emph{"asymmetry"}, which turns out to be very fruitful: it yields
+decidable games (see \cref{12-complexity}), and is
+related to another class of games on counter systems called "energy
+games" (see \cref{12-resource}).
+
+\paragraph{Asymmetric Games} A "vector system"
+$\?V=(\Loc,\Act,\Loc_\mEve,\Loc_\mAdam,\dd)$ is
+""asymmetric""\index{asymmetry|see{vector system}} if, for all
+locations $\loc\in\Loc_\mAdam$ controlled by \Adam and all actions
+$(\loc\step{\vec u}\loc')\in\Act$ originating from those,
+$\vec u=\vec 0$ the "zero vector".  In other words, \Adam may only
+change the current location, and cannot interact directly with the
+counters.
+
+\begin{example}\label{12-ex-avg}
+  \Cref{12-fig-avg} presents an "asymmetric vector system" of
+  dimension two with locations partitioned as $\Loc_\mEve=\{\loc,\loc_{2,1},\loc_{\text-1,0}\}$ and $\Loc_\mAdam=\{\loc'\}$% , and actions
+  %  $\{\loc\step{-1,-1}\loc,\loc\step{-1,0}\loc',\loc'\step{-1,0}\loc,\loc'\step{2,1}\loc\}$
+  .  We omit the labels on the actions originating from \Adam's
+  locations, since those are necessarily the "zero vector".  It is
+  worth observing that this "vector system" behaves quite differently
+  from the one of \cref{12-ex-mwg} on \cpageref{12-ex-mwg}: for
+  instance, in $\loc'(0,1)$, \Adam can now ensure that the "sink" will
+  be reached by playing the action $\loc'\step{0,0}\loc_{\text-1,0}$,
+  whereas in \cref{12-ex-mwg}, the action $\loc'\step{-1,0}\loc$
+  was just inhibited by the "natural semantics".
+\end{example}
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[auto,on grid,node distance=2.5cm]
+    \node[s-eve,inner sep=3pt](0){$\loc$};
+    \node[s-adam,right=of 0,inner sep=2pt](1){$\loc'$};
+    \node[s-eve,above left=1cm and 1.2cm of 1](2){$\loc_{2,1}$};
+    \node[s-eve,below left=1cm and 1.2cm of 1](3){$\loc_{\text-1,0}$};
+    %\node[eve,left=of 0](4){$\loc_1$};
+    \path[arrow,every node/.style={font=\footnotesize,inner sep=1}]
+    (0) edge[loop left] node {$-1,-1$} ()
+    (0) edge[bend right=10] node {$-1,0$} (1)
+    (1) edge[bend right=10]  (2)
+    (1) edge[bend left=10] (3)
+    (2) edge[swap,bend right=10] node{$2,1$} (0)
+    (3) edge[bend left=10] node{$-1,0$} (0);
+  \end{tikzpicture}
+  \caption{\label{12-fig-avg} An "asymmetric vector system".}
+\end{figure}
+
+\subsection{The Case of Configuration Reachability}
+\label{12-sub-reach}
+\input{sec-avag-reach}
+
+\subsection{Asymmetric Monotone Games}
+\label{12-sub-mono}
+\input{sec-avag-mono}
+
+% Local IspellDict: british
