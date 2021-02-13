@@ -31,6 +31,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
@@ -46,8 +47,8 @@
     <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"set": ["\\left\\{ #1 \\right\\}", 1], "Eve": "\\textrm{Eve}", "Adam": "\\textrm{Adam}", "N": "\\mathbb{N}", "Z": "\\mathbb{Z}", "Zinfty": "\\Z \\cup \\set{\\pm \\infty}", "R": "\\mathbb{R}", "Rinfty": "\\R \\cup \\set{\\pm \\infty}", "Q": "\\mathbb{Q}", "Qinfty": "\\Q \\cup \\set{\\pm \\infty}", "argmax": "\\text{argmax}", "argmin": "\\text{argmin}", "Op": "\\mathbb{O}", "Prob": "\\mathbb{P}", "dist": "\\mathcal{D}", "Dist": "\\dist", "supp": "\\text{supp}", "game": "\\mathcal{G}", "Game": "\\game", "arena": "\\mathcal{A}", "Arena": "\\arena", "col": "\\textsf{col}", "Col": "\\col", "mEve": "\\mathrm{Eve}", "mAdam": "\\mathrm{Adam}", "mRandom": "\\mathrm{Random}", "vertices": "V", "VE": "V_\\mEve", "VA": "V_\\mAdam", "VR": "V_\\mRandom", "ing": "\\text{In}", "Ing": "\\ing", "out": "\\text{Out}", "Out": "\\out", "dest": "\\Delta", "WE": "W_\\mEve", "WA": "W_\\mAdam", "Paths": "\\text{Paths}", "play": "\\pi", "first": "\\text{first}", "last": "\\text{last}", "mem": "\\mathcal{M}", "Mem": "\\mem", "Pre": "\\text{Pre}", "PreE": "\\text{Pre}_\\mEve", "PreA": "\\text{Pre}_\\mAdam", "Attr": "\\text{Attr}", "AttrE": "\\text{Attr}_\\mEve", "AttrA": "\\text{Attr}_\\mAdam", "rank": "\\text{rank}", "Win": "\\textsc{Win}", "Lose": "\\textsc{Lose}", "Value": "\\text{val}", "ValueE": "\\text{val}_\\mEve", "ValueA": "\\text{val}_\\mAdam", "val": "\\Value", "Automaton": "\\mathbf{A}", "Safe": "\\mathtt{Safe}", "Reach": "\\mathtt{Reach}", "Buchi": "\\mathtt{Buchi}", "CoBuchi": "\\mathtt{CoBuchi}", "Parity": "\\mathtt{Parity}", "Muller": "\\mathtt{Muller}", "Rabin": "\\mathtt{Rabin}", "Streett": "\\mathtt{Streett}", "MeanPayoff": "\\mathtt{MeanPayoff}", "DiscountedPayoff": "\\mathtt{DiscountedPayoff}", "Energy": "\\mathtt{Energy}", "TotalPayoff": "\\mathtt{TotalPayoff}", "ShortestPath": "\\mathtt{ShortestPath}", "Sup": "\\mathtt{Sup}", "Inf": "\\mathtt{Inf}", "LimSup": "\\mathtt{LimSup}", "LimInf": "\\mathtt{LimInf}"}}, "tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -117,13 +118,13 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="computation.html">
-     Computational models
+    <a class="reference internal" href="objectives.html">
+     Objectives
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="objectives.html">
-     Objectives
+    <a class="reference internal" href="computation.html">
+     Computational models
     </a>
    </li>
    <li class="toctree-l2">
@@ -177,6 +178,11 @@
  </span>
 </p>
 <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Classic/index.html">
+   Classic
+  </a>
+ </li>
  <li class="toctree-l1 collapsible-parent">
   <a class="reference internal" href="../Classic/2_Regular/index.html">
    Regular
@@ -392,6 +398,60 @@
                 
   <div class="section" id="reductions">
 <span id="sec-reductions"></span><h1>Reductions<a class="headerlink" href="#reductions" title="Permalink to this headline">¶</a></h1>
+<div class="math notranslate nohighlight">
+\[\newcommand{\Eve}{\textrm{Eve}}
+\newcommand{\Adam}{\textrm{Adam}}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
+\newcommand{\argmax}{\text{argmax}}
+\newcommand{\argmin}{\text{argmin}}
+\newcommand{\Op}{\mathbb{O}}
+\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\text{supp}} 
+\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
+\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
+\newcommand{\mEve}{\mathrm{Eve}}
+\newcommand{\mAdam}{\mathrm{Adam}}
+\newcommand{\mRandom}{\mathrm{Random}}
+\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
+\newcommand{\ing}{\text{In}}
+\newcommand{\Ing}{\ing}
+\newcommand{\out}{\text{Out}}
+\newcommand{\Out}{\out}
+\newcommand{\dest}{\Delta} 
+\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
+\newcommand{\Paths}{\text{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\text{first}} \newcommand{\last}{\text{last}} 
+\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
+\newcommand{\Pre}{\text{Pre}} \newcommand{\PreE}{\text{Pre}_\mEve} \newcommand{\PreA}{\text{Pre}_\mAdam} \newcommand{\Attr}{\text{Attr}} \newcommand{\AttrE}{\text{Attr}_\mEve} \newcommand{\AttrA}{\text{Attr}_\mAdam} \newcommand{\rank}{\text{rank}}
+\renewcommand{\Win}{\textsc{Win}} 
+\renewcommand{\Lose}{\textsc{Lose}} 
+\newcommand{\Value}{\text{val}} 
+\newcommand{\ValueE}{\text{val}_\mEve} 
+\newcommand{\ValueA}{\text{val}_\mAdam}
+\newcommand{\val}{\Value} 
+\newcommand{\Automaton}{\mathbf{A}} 
+\newcommand{\Safe}{\mathtt{Safe}}
+\newcommand{\Reach}{\mathtt{Reach}} 
+\newcommand{\Buchi}{\mathtt{Buchi}} 
+\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
+\newcommand{\Parity}{\mathtt{Parity}} 
+\newcommand{\Muller}{\mathtt{Muller}} 
+\newcommand{\Rabin}{\mathtt{Rabin}} 
+\newcommand{\Streett}{\mathtt{Streett}} 
+\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
+\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
+\newcommand{\Energy}{\mathtt{Energy}}
+\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
+\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
+\newcommand{\Sup}{\mathtt{Sup}}
+\newcommand{\Inf}{\mathtt{Inf}}
+\newcommand{\LimSup}{\mathtt{LimSup}}
+\newcommand{\LimInf}{\mathtt{LimInf}}\]</div>
 <p>Automata and memory structures can be used to construct reductions between games.
 Automata operate at the level of objectives, independently of the colouring function and the arena,
 while memory structures work at the level of conditions, hence depend on the graph.</p>
@@ -416,8 +476,9 @@ The arena is <span class="math notranslate nohighlight">\(\arena \times \Automat
 The colouring function is defined by <span class="math notranslate nohighlight">\(\col'((v,q)) = \col_\Automaton(q,\col(v))\)</span>.
 The game is <span class="math notranslate nohighlight">\(\game \times \Automaton = (\arena \times \Automaton, \Omega'[\col'])\)</span>.</p>
 <p>The following lemma states two consequences to the fact that <span class="math notranslate nohighlight">\(\Omega\)</span> reduces to <span class="math notranslate nohighlight">\(\Omega'\)</span>.</p>
-<div class="lemma admonition" id="lem-automata-reduction">
-<p class="admonition-title">Lemma</p>
+<div class="proof lemma admonition" id="1-lem:automata_reduction">
+<p class="admonition-title"><span class="caption-number">Lemma 21 </span> ((needs title))</p>
+<div class="lemma-content section" id="proof-content">
 <p>If <span class="math notranslate nohighlight">\(\Omega\)</span> reduces to <span class="math notranslate nohighlight">\(\Omega'\)</span> through the automaton <span class="math notranslate nohighlight">\(\Automaton\)</span> with <span class="math notranslate nohighlight">\(S\)</span> states, then
 Eve has a winning strategy in <span class="math notranslate nohighlight">\(\Game\)</span> from <span class="math notranslate nohighlight">\(v_0\)</span> if and only if she has a winning strategy in <span class="math notranslate nohighlight">\(\Game \times \Automaton\)</span> from <span class="math notranslate nohighlight">\((v_0,q_0)\)</span>.</p>
 <p>Consequently, the following properties hold:</p>
@@ -427,7 +488,7 @@ Then there exists an algorithm for solving games with objectives <span class="ma
 <li><p>If <span class="math notranslate nohighlight">\(\Omega'\)</span> is determined with finite memory strategies of size <span class="math notranslate nohighlight">\(m\)</span>, then <span class="math notranslate nohighlight">\(\Omega\)</span> is determined with finite memory stragies of size <span class="math notranslate nohighlight">\(m \cdot S\)</span>.</p></li>
 </ul>
 </div>
-<p>Since the next type of reduction extends this one and the two proofs are very similar we will prove this lemma as a corollary of the next one.</p>
+</div><p>Since the next type of reduction extends this one and the two proofs are very similar we will prove this lemma as a corollary of the next one.</p>
 <p>Reductions between objectives using automata are very general:
 they operate at the level of objectives and therefore completely ignore the arena.</p>
 </div>
@@ -442,14 +503,15 @@ We construct the arena <span class="math notranslate nohighlight">\(\arena \time
 We first define the graph <span class="math notranslate nohighlight">\(G \times M\)</span> whose set of vertices is <span class="math notranslate nohighlight">\(V \times M\)</span> and set of edges <span class="math notranslate nohighlight">\(E_M\)</span> is defined as follows:
 for every edge <span class="math notranslate nohighlight">\(e = (v,v') \in E\)</span> and state <span class="math notranslate nohighlight">\(m \in M\)</span> there is an edge <span class="math notranslate nohighlight">\(e_m\)</span> from <span class="math notranslate nohighlight">\((v,m)\)</span> to <span class="math notranslate nohighlight">\((v',\delta(m,e))\)</span>.
 The arena is <span class="math notranslate nohighlight">\(\arena \times \mem = (G \times M, \VE \times M, \VA \times M)\)</span>.</p>
-<div class="fact admonition">
-<p class="admonition-title">Fact</p>
+<div class="proof observation admonition" id="observation-1">
+<p class="admonition-title"><span class="caption-number">Observation 22 </span> ((needs title))</p>
+<div class="observation-content section" id="proof-content">
 <p>There is a one-to-one correspondence between plays <span class="math notranslate nohighlight">\(\pi = v_0 v_1 \dots\)</span> in <span class="math notranslate nohighlight">\(\arena\)</span>
 and plays <span class="math notranslate nohighlight">\(\pi'\)</span> in <span class="math notranslate nohighlight">\(\arena \times \mem\)</span> from <span class="math notranslate nohighlight">\((v_0,m_0)\)</span>:
 the play <span class="math notranslate nohighlight">\(\pi' = (v_0, m_0) (v_1, m_1) (v_2, m_2) \ldots\)</span>
 is defined by <span class="math notranslate nohighlight">\(m_{i+1} = \delta(m_i, (v_{i},v_{i+1}))\)</span>.</p>
 </div>
-<p>Let <span class="math notranslate nohighlight">\(W\)</span> be a condition on <span class="math notranslate nohighlight">\(\arena\)</span> and <span class="math notranslate nohighlight">\(W'\)</span> a condition on <span class="math notranslate nohighlight">\(\arena \times \Mem\)</span>.
+</div><p>Let <span class="math notranslate nohighlight">\(W\)</span> be a condition on <span class="math notranslate nohighlight">\(\arena\)</span> and <span class="math notranslate nohighlight">\(W'\)</span> a condition on <span class="math notranslate nohighlight">\(\arena \times \Mem\)</span>.
 We say that <span class="math notranslate nohighlight">\(W\)</span> reduces to <span class="math notranslate nohighlight">\(W'\)</span> if for all plays <span class="math notranslate nohighlight">\(\play\)</span> in <span class="math notranslate nohighlight">\(\arena\)</span>,
 we have</p>
 <div class="math notranslate nohighlight">
@@ -458,8 +520,9 @@ we have</p>
 \]</div>
 <p>Let <span class="math notranslate nohighlight">\(\Mem\)</span> and <span class="math notranslate nohighlight">\(\Mem'\)</span> two memory structure over the same graph,
 we let <span class="math notranslate nohighlight">\(\Mem \times \Mem'\)</span> denote the memory structure obtained by direct product.</p>
-<div class="lemma admonition" id="lem-memory-structure-reduction">
-<p class="admonition-title">Lemma</p>
+<div class="proof lemma admonition" id="1-lem:memory_structure_reduction">
+<p class="admonition-title"><span class="caption-number">Lemma 23 </span> ((needs title))</p>
+<div class="lemma-content section" id="proof-content">
 <p>If <span class="math notranslate nohighlight">\(W\)</span> reduces to <span class="math notranslate nohighlight">\(W'\)</span> through the memory structure <span class="math notranslate nohighlight">\(\mem\)</span>, then
 Eve has a winning strategy in <span class="math notranslate nohighlight">\(\Game = (\Arena,W)\)</span> from <span class="math notranslate nohighlight">\(v_0\)</span> if and only if
 she has a winning strategy in <span class="math notranslate nohighlight">\(\Game \times \Mem = (\Arena \times \Mem, W')\)</span> from <span class="math notranslate nohighlight">\((v_0,m_0)\)</span>.</p>
@@ -467,7 +530,7 @@ she has a winning strategy in <span class="math notranslate nohighlight">\(\Game
 then she has a winning strategy in <span class="math notranslate nohighlight">\(\Game\)</span> from <span class="math notranslate nohighlight">\(v\)</span> using <span class="math notranslate nohighlight">\(\Mem \times \Mem'\)</span> as memory structure.
 In particular if the strategy in <span class="math notranslate nohighlight">\(\Game \times \Mem\)</span> is memoryless, then the strategy in <span class="math notranslate nohighlight">\(\Game\)</span> uses <span class="math notranslate nohighlight">\(\Mem\)</span> as memory structure.</p>
 </div>
-<div class="dropdown tip admonition">
+</div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
 <p>A winning strategy in <span class="math notranslate nohighlight">\(\Game\)</span> directly induces a winning strategy in <span class="math notranslate nohighlight">\(\Game \times \Mem\)</span> simply by ignoring the additional information
 and thanks to the equivalence above because <span class="math notranslate nohighlight">\(W\)</span> reduces to <span class="math notranslate nohighlight">\(W'\)</span>.
@@ -482,7 +545,7 @@ We construct a strategy <span class="math notranslate nohighlight">\(\sigma'\)</
 <p>The correspondence between plays in <span class="math notranslate nohighlight">\(\arena\)</span> and <span class="math notranslate nohighlight">\(\arena \times \mem\)</span> maps plays consistent with <span class="math notranslate nohighlight">\(\sigma\)</span> to plays consistent with <span class="math notranslate nohighlight">\(\sigma'\)</span>,
 which together with the fact that <span class="math notranslate nohighlight">\(W\)</span> reduces to <span class="math notranslate nohighlight">\(W'\)</span> implies that <span class="math notranslate nohighlight">\(\sigma'\)</span> is a winning strategy in <span class="math notranslate nohighlight">\(\Game\)</span> from <span class="math notranslate nohighlight">\(v\)</span>.</p>
 </div>
-<p>To obtain  <a class="reference internal" href="#lem-automata-reduction"><span class="std std-ref">Lemma</span></a> as a corollary of  <a class="reference internal" href="#lem-memory-structure-reduction"><span class="std std-ref">Lemma</span></a>
+<p>To obtain  <a class="reference internal" href="#1-lem:automata_reduction">Lemma 21</a> as a corollary of  <a class="reference internal" href="#1-lem:memory_structure_reduction">Lemma 23</a>
 we observe that a reduction between objectives using an automaton induces a reduction between the induced conditions using a memory structure.
 Formally, let us assume that <span class="math notranslate nohighlight">\(\Omega\)</span> reduces to <span class="math notranslate nohighlight">\(\Omega'\)</span>,
 and let <span class="math notranslate nohighlight">\(\Automaton = (Q, q_0, \delta, \Omega'[\col_\Automaton])\)</span> such that <span class="math notranslate nohighlight">\(L(\Automaton) = \Omega\)</span>.
@@ -493,8 +556,8 @@ We then define <span class="math notranslate nohighlight">\(\col'(v,q) = \col_\A
 <p>We note that <span class="math notranslate nohighlight">\(\Omega[\col]\)</span> reduces to <span class="math notranslate nohighlight">\(\Omega'[\col']\)</span>: for all plays <span class="math notranslate nohighlight">\(\play\)</span> in <span class="math notranslate nohighlight">\(\Arena\)</span>, we have
 <span class="math notranslate nohighlight">\(\play \in \Omega[\col]\)</span> if and only if <span class="math notranslate nohighlight">\(\play' \in \Omega'[\col']\)</span>: this is a reformulation of the fact that <span class="math notranslate nohighlight">\(L(\Automaton) = \Omega\)</span>.</p>
 <p>We construct the game <span class="math notranslate nohighlight">\(\Game' = (\Arena \times \Mem, \Omega'[\col'])\)</span>.
-Thanks to  <a class="reference internal" href="#lem-memory-structure-reduction"><span class="std std-ref">Lemma</span></a> the two games have the same winner and a strategy in the latter induce a strategy in the former
-by composing with the memory structure <span class="math notranslate nohighlight">\(\Mem\)</span>, implying  <a class="reference internal" href="#lem-automata-reduction"><span class="std std-ref">Lemma</span></a>.</p>
+Thanks to  <a class="reference internal" href="#1-lem:memory_structure_reduction">Lemma 23</a> the two games have the same winner and a strategy in the latter induce a strategy in the former
+by composing with the memory structure <span class="math notranslate nohighlight">\(\Mem\)</span>, implying  <a class="reference internal" href="#1-lem:automata_reduction">Lemma 21</a>.</p>
 </div>
 </div>
 
@@ -536,7 +599,7 @@ by composing with the memory structure <span class="math notranslate nohighlight
         
           By a set of authors coordinated by Nathana&euml;l Fijalkow<br/>
         
-            &copy; Copyright 2020.<br/>
+            &copy; Copyright 2021.<br/>
       </p>
     </div>
   </footer>

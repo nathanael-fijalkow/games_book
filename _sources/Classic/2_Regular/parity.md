@@ -1,6 +1,61 @@
 (2-sec:parity)=
 # An exponential time algorithm for parity games
 
+```{math}
+\newcommand{\Eve}{\textrm{Eve}}
+\newcommand{\Adam}{\textrm{Adam}}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
+\newcommand{\argmax}{\text{argmax}}
+\newcommand{\argmin}{\text{argmin}}
+\newcommand{\Op}{\mathbb{O}}
+\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\text{supp}} 
+\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
+\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
+\newcommand{\mEve}{\mathrm{Eve}}
+\newcommand{\mAdam}{\mathrm{Adam}}
+\newcommand{\mRandom}{\mathrm{Random}}
+\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
+\newcommand{\ing}{\text{In}}
+\newcommand{\Ing}{\ing}
+\newcommand{\out}{\text{Out}}
+\newcommand{\Out}{\out}
+\newcommand{\dest}{\Delta} 
+\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
+\newcommand{\Paths}{\text{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\text{first}} \newcommand{\last}{\text{last}} 
+\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
+\newcommand{\Pre}{\text{Pre}} \newcommand{\PreE}{\text{Pre}_\mEve} \newcommand{\PreA}{\text{Pre}_\mAdam} \newcommand{\Attr}{\text{Attr}} \newcommand{\AttrE}{\text{Attr}_\mEve} \newcommand{\AttrA}{\text{Attr}_\mAdam} \newcommand{\rank}{\text{rank}}
+\renewcommand{\Win}{\textsc{Win}} 
+\renewcommand{\Lose}{\textsc{Lose}} 
+\newcommand{\Value}{\text{val}} 
+\newcommand{\ValueE}{\text{val}_\mEve} 
+\newcommand{\ValueA}{\text{val}_\mAdam}
+\newcommand{\val}{\Value} 
+\newcommand{\Automaton}{\mathbf{A}} 
+\newcommand{\Safe}{\mathtt{Safe}}
+\newcommand{\Reach}{\mathtt{Reach}} 
+\newcommand{\Buchi}{\mathtt{Buchi}} 
+\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
+\newcommand{\Parity}{\mathtt{Parity}} 
+\newcommand{\Muller}{\mathtt{Muller}} 
+\newcommand{\Rabin}{\mathtt{Rabin}} 
+\newcommand{\Streett}{\mathtt{Streett}} 
+\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
+\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
+\newcommand{\Energy}{\mathtt{Energy}}
+\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
+\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
+\newcommand{\Sup}{\mathtt{Sup}}
+\newcommand{\Inf}{\mathtt{Inf}}
+\newcommand{\LimSup}{\mathtt{LimSup}}
+\newcommand{\LimInf}{\mathtt{LimInf}}
+```
 Recall that the parity objective extends B&uuml;chi and coB&uuml;chi objectives:
 
 $$
@@ -9,11 +64,10 @@ $$
 
 
 
-```{admonition} Theorem
-:class: theorem
-:name: 2-thm:parity
+```{prf:theorem} (needs title)
+:label: 2-thm:parity
 
-Parity objectives are uniformly positionally determined for both players\footnote{See \cref{2-rmk:finite_infinite} for the case of infinite games.}.
+Parity objectives are uniformly positionally determined for both players (See \cref{2-rmk:finite_infinit) for the case of infinite games.}.
 There exists an algorithm for computing the winning regions of parity games in exponential time,
 and more precisely of complexity $O(m n^d)$.
 The space complexity of $O(nd)$.
@@ -22,18 +76,17 @@ Furthermore, solving parity games is in $\NP \cap \coNP$.
 
 ```
 
-To prove  {ref}`Theorem <2-thm:parity>` we first construct a recursive algorithm for computing the winning regions of parity games.
+To prove  {prf:ref}`2-thm:parity` we first construct a recursive algorithm for computing the winning regions of parity games.
 The algorithm is often called Zielonka's algorithm, or more accurately McNaughton Zielonka's algorithm.
-We refer to the reference section {ref}`Section <2-sec:references>` for a discussion on this nomenclature.
+We refer to the reference section Section {ref}`2-sec:references` for a discussion on this nomenclature.
 We will see that the positionaly determinacy result for both players will be a consequence of the analysis of the algorithm.
 The $\NP \cap \coNP$ complexity bounds will be discussed at the end of this section.
 
 The following lemma induces (half of) the recursive algorithm.
 Identifying a colour and its set of vertices we write $d$ for the set of vertices of priority $d$.
 
-```{admonition} Lemma
-:class: lemma
-:name: 2-lem:zielonka_even
+```{prf:lemma} (needs title)
+:label: 2-lem:zielonka_even
 
 Let $\Game$ be a parity game with priorities in $[1,d]$, and $d$ even.
 Let $\Game'$ be the subgame of $\Game$ induced by $V \setminus \AttrE(d)$.
@@ -90,9 +143,8 @@ implying that $\sigma$ is winning from $\WE(\Game'')$ in $\Game$.
 To get the full algorithm we need the analogous lemma for the case where the maximal priority is odd.
 We do not prove the following lemma as it is the exact dual of the previous lemma, and the proof is the same swapping the two players.
 
-```{admonition} Lemma
-:class: lemma
-:name: 2-lem:zielonka_odd
+```{prf:lemma} (needs title)
+:label: 2-lem:zielonka_odd
 
 Let $\Game$ be a parity game with priorities in $[1,d]$, and $d$ odd.
 Let $\Game'$ be the subgame of $\Game$ induced by $V \setminus \AttrA(d)$.
@@ -103,9 +155,9 @@ then $\WA(\Game) = \WA(\Game'')$.
 
 ```
 
-The algorithm is presented in pseudocode in  {ref}`Algorithm <2-algo:zielonka>`.
+The algorithm is presented in pseudocode in  Algorithm {ref}`2-algo:zielonka`.
 
-The proofs of  {ref}`Lemma <2-lem:zielonka_even>` and  {ref}`Lemma <2-lem:zielonka_odd>` also imply that parity games are positionally determined for both players.
+The proofs of  {prf:ref}`2-lem:zielonka_even` and  {prf:ref}`2-lem:zielonka_odd` also imply that parity games are positionally determined for both players.
 Indeed, winning strategies are defined as disjoint unions of strategies constructed inductively.
 
 
@@ -126,7 +178,7 @@ in one recursive call is $O(m)$.
 Thus the overall time complexity is $O(m n^d)$.
 
 
-We finish the proof of  {ref}`Theorem <2-thm:parity>` by sketching the argument that solving parity games is in $\NP \cap \coNP$.
+We finish the proof of  {prf:ref}`2-thm:parity` by sketching the argument that solving parity games is in $\NP \cap \coNP$.
 The first observation is that computing the winning regions of the one player variants of parity games can be done in polynomial time
 through a simple graph analysis that we do not detail here.
 The $\NP$ and $\coNP$ algorithms are the following: guess a winning positional strategy,
@@ -134,50 +186,10 @@ and check whether it is winning by computing the winning regions of the one play
 Guessing a strategy for Eve is a witness that the answer is yes so it yields an $\NP$ algorithm,
 and guessing a strategy for Adam yields a $\coNP$ algorithm.
 
-{ref}`Chapter <3-chap:parity>` is devoted to the study of advanced algorithms for parity games.
+ Chapter {ref}`3-chap:parity` is devoted to the study of advanced algorithms for parity games.
 
-\begin{algorithm}
- \KwData{A parity game $\Game$ with priorities in $[1,d]$}
- \SetKwFunction{FSolveEven}{SolveEven}
- \SetKwFunction{FSolveOdd}{SolveOdd}
- \SetKwProg{Fn}{Function}{:}{}
- \DontPrintSemicolon
-
-\Fn{\FSolveEven{$\Game$}}{
-
-Let $\Game'$ the subgame of $\Game$ induced by $V \setminus \AttrE(d)$
-
-$X \leftarrow$ \FSolveOdd{$\Game'$}
-
-\If{$X = \emptyset$}{\Return{$V$}}
-\Else{
-Let $\Game''$ the subgame of $\Game$ induced by $V \setminus \AttrA(X)$
-
-\FSolveEven{$\Game''$}
-}
-}
-
-\Fn{\FSolveOdd{$\Game$}}{
-\If{$d = 1$}{\Return{$V$}}
-
-Let $\Game'$ the subgame of $\Game$ induced by $V \setminus \AttrA(d)$
-
-$X \leftarrow$ \FSolveEven{$\Game'$}
-
-\If{$X = \emptyset$}{\Return{$V$}}
-\Else{
-Let $\Game''$ the subgame of $\Game$ induced by $V \setminus \AttrE(X)$
-
-\FSolveOdd{$\Game''$}
-}
-}
-
-\If{$d$ is even}{
-\FSolveEven{$\Game$}
-}
-\Else{
-\FSolveOdd{$\Game$}
-}
-\caption{A recursive algorithm for computing the winning regions of parity games.}
-\label{2-algo:zielonka}
-\end{algorithm}
+```{figure} /../2-algo:zielonka.png
+:name: 2-algo:zielonka
+:align: center
+A recursive algorithm for computing the winning regions of parity games.
+```

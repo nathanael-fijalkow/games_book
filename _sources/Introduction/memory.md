@@ -1,6 +1,61 @@
 (1-sec:memory)=
 # Memory
 
+```{math}
+\newcommand{\Eve}{\textrm{Eve}}
+\newcommand{\Adam}{\textrm{Adam}}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
+\newcommand{\argmax}{\text{argmax}}
+\newcommand{\argmin}{\text{argmin}}
+\newcommand{\Op}{\mathbb{O}}
+\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\text{supp}} 
+\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
+\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
+\newcommand{\mEve}{\mathrm{Eve}}
+\newcommand{\mAdam}{\mathrm{Adam}}
+\newcommand{\mRandom}{\mathrm{Random}}
+\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
+\newcommand{\ing}{\text{In}}
+\newcommand{\Ing}{\ing}
+\newcommand{\out}{\text{Out}}
+\newcommand{\Out}{\out}
+\newcommand{\dest}{\Delta} 
+\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
+\newcommand{\Paths}{\text{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\text{first}} \newcommand{\last}{\text{last}} 
+\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
+\newcommand{\Pre}{\text{Pre}} \newcommand{\PreE}{\text{Pre}_\mEve} \newcommand{\PreA}{\text{Pre}_\mAdam} \newcommand{\Attr}{\text{Attr}} \newcommand{\AttrE}{\text{Attr}_\mEve} \newcommand{\AttrA}{\text{Attr}_\mAdam} \newcommand{\rank}{\text{rank}}
+\renewcommand{\Win}{\textsc{Win}} 
+\renewcommand{\Lose}{\textsc{Lose}} 
+\newcommand{\Value}{\text{val}} 
+\newcommand{\ValueE}{\text{val}_\mEve} 
+\newcommand{\ValueA}{\text{val}_\mAdam}
+\newcommand{\val}{\Value} 
+\newcommand{\Automaton}{\mathbf{A}} 
+\newcommand{\Safe}{\mathtt{Safe}}
+\newcommand{\Reach}{\mathtt{Reach}} 
+\newcommand{\Buchi}{\mathtt{Buchi}} 
+\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
+\newcommand{\Parity}{\mathtt{Parity}} 
+\newcommand{\Muller}{\mathtt{Muller}} 
+\newcommand{\Rabin}{\mathtt{Rabin}} 
+\newcommand{\Streett}{\mathtt{Streett}} 
+\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
+\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
+\newcommand{\Energy}{\mathtt{Energy}}
+\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
+\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
+\newcommand{\Sup}{\mathtt{Sup}}
+\newcommand{\Inf}{\mathtt{Inf}}
+\newcommand{\LimSup}{\mathtt{LimSup}}
+\newcommand{\LimInf}{\mathtt{LimInf}}
+```
 A strategy can be a very complicated object, in particular it is infinite.
 Indeed, it is a function $\sigma : \Paths \to E$,
 which means that in order to choose the next move the strategy considers everything played so far: 
@@ -33,8 +88,7 @@ $$
 
 It is equipped with the condition $W$ inherited from $\Game$.
 
-```{admonition} Fact
-:class: fact
+```{prf:observation} (needs title)
 
 Let $\Game$ be a game with condition $W$, $\sigma$ a positional strategy, and $v$ a vertex.
 Then the strategy $\sigma$ is winning from $v$ if and only if all infinite paths in $\Game[\sigma]$ from $v$ satisfy $W$.
@@ -49,9 +103,8 @@ if Eve has a winning strategy from $v$, then she has a positional winning strate
 As we discussed earlier, the task of solving a game does not include constructing winning strategies.
 We present a general binary search technique for doing so assuming positional determinacy.
 
-```{admonition} Lemma
-:class: lemma
-:name: 1-lem:constructing_winning_strategy
+```{prf:lemma} (needs title)
+:label: 1-lem:constructing_winning_strategy
 
 Let $\Omega$ be a positionally determined qualitative objective.
 If there exists an algorithm $A$ for solving games with objective $\Omega$,
@@ -86,8 +139,8 @@ calls to a solving algorithm.
 We say that $\Omega$ is positionally determined for both players if both $\Omega$ and its complement $C^\omega \setminus \Omega$ are positionally determined.
 If the positional determinacy only holds for Eve we say that such objectives are half-positional. 
 
-Parity objectives are positionally determined for both players; this will be proved in  {ref}`Chapter <2-chap:regular>`.
-We illustrate it on  {ref}`Figure <1-fig:parity_game_example_positional>` by annotating  {ref}`Figure <1-fig:parity_game_example>` with the positional winning strategies for both players.
+Parity objectives are positionally determined for both players; this will be proved in  Chapter {ref}`2-chap:regular`.
+We illustrate it on  Figure {ref}`1-fig:parity_game_example_positional` by annotating  Figure {ref}`1-fig:parity_game_example` with the positional winning strategies for both players.
 
 ```{figure} ./../../1-fig:parity_game_example_positional.png
 :name: 1-fig:parity_game_example_positional
@@ -99,12 +152,11 @@ The example of a parity game given in \cref{1-fig:parity_game_example
 We say that a quantitative objective $\Phi$ is positionally determined if 
 for every game $\game$ with objective $\Phi$ and every vertex $v$,
 there exists a positional optimal strategy from $v$.
-Let us state the quantitative counterpart of {ref}`Lemma <1-lem:constructing_winning_strategy>`.
+Let us state the quantitative counterpart of {prf:ref}`1-lem:constructing_winning_strategy`.
 The proof is the same.
 
-```{admonition} Lemma
-:class: lemma
-:name: 1-lem:constructing_winning_strategy_quantitative
+```{prf:lemma} (needs title)
+:label: 1-lem:constructing_winning_strategy_quantitative
 
 Let $\Omega$ be a positionally determined quantitative objective.
 If there exists an algorithm $A$ for computing the value of games with objective $\Omega$,
@@ -123,9 +175,8 @@ Eve has a positional strategy which is optimal from every vertex.
 
 Being uniformly positionally determined is a stronger property than being positionally determined, but in most cases an objective satisfies either both or none, as for example if the objective is prefix independent.
 
-```{admonition} Lemma
-:class: lemma
-:name: 1-lem:from_positional_to_uniformly_positional
+```{prf:lemma} (needs title)
+:label: 1-lem:from_positional_to_uniformly_positional
 
 If an objective is positionally determined and prefix independent then it is uniformly positionally determined.
 
@@ -141,7 +192,7 @@ Thanks to~\cref{1-fact:winning_prefix_independent_qualitative}
 the strategy $\sigma_v$ is winning from all vertices reachable by a play consistent with $\sigma_v$ starting from $v$.
 Without loss of generality let us assume that $\sigma_v$ is only defined on these vertices.
 
-We fix $\le$ a total order on the set of vertices\footnote{The argument we give in this proof extends to infinite games whose set of vertices can be well ordered. A well-order is a total order such that every non-empty subset has a least element, which is exactly the property we need in this proof.}.
+We fix $\le$ a total order on the set of vertices (The argument we give in this proof extends to infinite games whose set of vertices can be well ordered. A well-order is a total order such that every non-empty subset has a least element, which is exactly the property we need in this proof).
 We let $\sigma$ be the positional strategy defined by $\sigma(u)$ is $\sigma_v(u)$ where $v$ is the least vertex (with respect to $\le$) such that $\sigma_v$ is defined on $u$. We say that $\sigma$ uses $\sigma_v$ at $u$.
 
 We argue that $\sigma$ is winning from $\WE(\game)$. 
@@ -187,7 +238,7 @@ There are several variants of this definition covering cases where the memory is
 and uniformly over all vertices or not.
 
 
-We give in  {ref}`Figure <1-fig:memory_required>` an example of a game where Eve has a winning strategy using two memory states
+We give in  Figure {ref}`1-fig:memory_required` an example of a game where Eve has a winning strategy using two memory states
 but no positional winning strategy. 
 Let us consider the condition $\Buchi[\set{v_1}] \wedge \Buchi[\set{v_2}]$, meaning that a play is winning if both $v_1$ and $v_2$ are visited infinitely many times. A positional strategy would either always choose to go left to $v_1$ or to the right to $v_2$, hence does not satisfy the condition. 
 Some memory is required to switch between the two.

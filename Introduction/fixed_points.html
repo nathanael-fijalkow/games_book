@@ -31,6 +31,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
@@ -46,8 +47,8 @@
     <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"set": ["\\left\\{ #1 \\right\\}", 1], "Eve": "\\textrm{Eve}", "Adam": "\\textrm{Adam}", "N": "\\mathbb{N}", "Z": "\\mathbb{Z}", "Zinfty": "\\Z \\cup \\set{\\pm \\infty}", "R": "\\mathbb{R}", "Rinfty": "\\R \\cup \\set{\\pm \\infty}", "Q": "\\mathbb{Q}", "Qinfty": "\\Q \\cup \\set{\\pm \\infty}", "argmax": "\\text{argmax}", "argmin": "\\text{argmin}", "Op": "\\mathbb{O}", "Prob": "\\mathbb{P}", "dist": "\\mathcal{D}", "Dist": "\\dist", "supp": "\\text{supp}", "game": "\\mathcal{G}", "Game": "\\game", "arena": "\\mathcal{A}", "Arena": "\\arena", "col": "\\textsf{col}", "Col": "\\col", "mEve": "\\mathrm{Eve}", "mAdam": "\\mathrm{Adam}", "mRandom": "\\mathrm{Random}", "vertices": "V", "VE": "V_\\mEve", "VA": "V_\\mAdam", "VR": "V_\\mRandom", "ing": "\\text{In}", "Ing": "\\ing", "out": "\\text{Out}", "Out": "\\out", "dest": "\\Delta", "WE": "W_\\mEve", "WA": "W_\\mAdam", "Paths": "\\text{Paths}", "play": "\\pi", "first": "\\text{first}", "last": "\\text{last}", "mem": "\\mathcal{M}", "Mem": "\\mem", "Pre": "\\text{Pre}", "PreE": "\\text{Pre}_\\mEve", "PreA": "\\text{Pre}_\\mAdam", "Attr": "\\text{Attr}", "AttrE": "\\text{Attr}_\\mEve", "AttrA": "\\text{Attr}_\\mAdam", "rank": "\\text{rank}", "Win": "\\textsc{Win}", "Lose": "\\textsc{Lose}", "Value": "\\text{val}", "ValueE": "\\text{val}_\\mEve", "ValueA": "\\text{val}_\\mAdam", "val": "\\Value", "Automaton": "\\mathbf{A}", "Safe": "\\mathtt{Safe}", "Reach": "\\mathtt{Reach}", "Buchi": "\\mathtt{Buchi}", "CoBuchi": "\\mathtt{CoBuchi}", "Parity": "\\mathtt{Parity}", "Muller": "\\mathtt{Muller}", "Rabin": "\\mathtt{Rabin}", "Streett": "\\mathtt{Streett}", "MeanPayoff": "\\mathtt{MeanPayoff}", "DiscountedPayoff": "\\mathtt{DiscountedPayoff}", "Energy": "\\mathtt{Energy}", "TotalPayoff": "\\mathtt{TotalPayoff}", "ShortestPath": "\\mathtt{ShortestPath}", "Sup": "\\mathtt{Sup}", "Inf": "\\mathtt{Inf}", "LimSup": "\\mathtt{LimSup}", "LimInf": "\\mathtt{LimInf}"}}, "tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -117,13 +118,13 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="computation.html">
-     Computational models
+    <a class="reference internal" href="objectives.html">
+     Objectives
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="objectives.html">
-     Objectives
+    <a class="reference internal" href="computation.html">
+     Computational models
     </a>
    </li>
    <li class="toctree-l2">
@@ -177,6 +178,11 @@
  </span>
 </p>
 <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Classic/index.html">
+   Classic
+  </a>
+ </li>
  <li class="toctree-l1 collapsible-parent">
   <a class="reference internal" href="../Classic/2_Regular/index.html">
    Regular
@@ -392,6 +398,60 @@
                 
   <div class="section" id="generic-fixed-point-algorithms">
 <span id="sec-fixed-points"></span><h1>Generic fixed point algorithms<a class="headerlink" href="#generic-fixed-point-algorithms" title="Permalink to this headline">¶</a></h1>
+<div class="math notranslate nohighlight">
+\[\newcommand{\Eve}{\textrm{Eve}}
+\newcommand{\Adam}{\textrm{Adam}}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
+\newcommand{\argmax}{\text{argmax}}
+\newcommand{\argmin}{\text{argmin}}
+\newcommand{\Op}{\mathbb{O}}
+\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\text{supp}} 
+\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
+\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
+\newcommand{\mEve}{\mathrm{Eve}}
+\newcommand{\mAdam}{\mathrm{Adam}}
+\newcommand{\mRandom}{\mathrm{Random}}
+\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
+\newcommand{\ing}{\text{In}}
+\newcommand{\Ing}{\ing}
+\newcommand{\out}{\text{Out}}
+\newcommand{\Out}{\out}
+\newcommand{\dest}{\Delta} 
+\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
+\newcommand{\Paths}{\text{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\text{first}} \newcommand{\last}{\text{last}} 
+\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
+\newcommand{\Pre}{\text{Pre}} \newcommand{\PreE}{\text{Pre}_\mEve} \newcommand{\PreA}{\text{Pre}_\mAdam} \newcommand{\Attr}{\text{Attr}} \newcommand{\AttrE}{\text{Attr}_\mEve} \newcommand{\AttrA}{\text{Attr}_\mAdam} \newcommand{\rank}{\text{rank}}
+\renewcommand{\Win}{\textsc{Win}} 
+\renewcommand{\Lose}{\textsc{Lose}} 
+\newcommand{\Value}{\text{val}} 
+\newcommand{\ValueE}{\text{val}_\mEve} 
+\newcommand{\ValueA}{\text{val}_\mAdam}
+\newcommand{\val}{\Value} 
+\newcommand{\Automaton}{\mathbf{A}} 
+\newcommand{\Safe}{\mathtt{Safe}}
+\newcommand{\Reach}{\mathtt{Reach}} 
+\newcommand{\Buchi}{\mathtt{Buchi}} 
+\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
+\newcommand{\Parity}{\mathtt{Parity}} 
+\newcommand{\Muller}{\mathtt{Muller}} 
+\newcommand{\Rabin}{\mathtt{Rabin}} 
+\newcommand{\Streett}{\mathtt{Streett}} 
+\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
+\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
+\newcommand{\Energy}{\mathtt{Energy}}
+\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
+\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
+\newcommand{\Sup}{\mathtt{Sup}}
+\newcommand{\Inf}{\mathtt{Inf}}
+\newcommand{\LimSup}{\mathtt{LimSup}}
+\newcommand{\LimInf}{\mathtt{LimInf}}\]</div>
 <p>Let <span class="math notranslate nohighlight">\(X\)</span> be a set and <span class="math notranslate nohighlight">\(\Op : X \to X\)</span> a function that we call an operator, we say that <span class="math notranslate nohighlight">\(x \in X\)</span> is a fixed point of <span class="math notranslate nohighlight">\(\Op\)</span> if <span class="math notranslate nohighlight">\(\Op(x) = x\)</span>.
 Fixed points will appear extensively in this book.
 We describe here two general approaches for computing them: Banach’s and Kleene’s fixed point theorems.</p>
@@ -402,8 +462,9 @@ It is said complete if all Cauchy sequences converge.
 The typical example of a complete space is <span class="math notranslate nohighlight">\(\R^d\)</span> for some <span class="math notranslate nohighlight">\(d \in \N\)</span> equipped with the infinity norm <span class="math notranslate nohighlight">\(||x|| = \max_{i \in [1,d]} |x_i|\)</span>.</p>
 <p>An operator <span class="math notranslate nohighlight">\(\Op : X \to X\)</span> is contracting if there exists <span class="math notranslate nohighlight">\(\lambda &lt; 1\)</span> such that for all <span class="math notranslate nohighlight">\(x,y \in X\)</span> we have
 <span class="math notranslate nohighlight">\(||\Op(x) - \Op(y)|| \le \lambda \cdot ||x - y||\)</span>.</p>
-<div class="theorem admonition" id="thm-banach">
-<p class="admonition-title">Theorem (Banach’s fixed point theorem)</p>
+<div class="proof theorem admonition" id="1-thm:banach">
+<p class="admonition-title"><span class="caption-number">Theorem 26 </span> (Banach’s fixed point theorem)</p>
+<div class="theorem-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\((X,||\cdot||)\)</span> be a complete space and <span class="math notranslate nohighlight">\(\Op : X \to X\)</span> a contracting operator, then <span class="math notranslate nohighlight">\(\Op\)</span> has a unique fixed point <span class="math notranslate nohighlight">\(x_*\)</span>.
 For any <span class="math notranslate nohighlight">\(x_0 \in X\)</span>, the sequence <span class="math notranslate nohighlight">\((\Op^k(x_0))_{k \in \N}\)</span> converges towards <span class="math notranslate nohighlight">\(x_*\)</span> and the rate of convergence is given by</p>
 <div class="math notranslate nohighlight">
@@ -411,7 +472,7 @@ For any <span class="math notranslate nohighlight">\(x_0 \in X\)</span>, the seq
 ||\Op^k(x_0) - x_*|| \le \frac{\lambda^k}{1 - \lambda} \cdot ||\Op(x_0) - x_0||.
 \]</div>
 </div>
-</div>
+</div></div>
 <div class="section" id="kleene-s-fixed-point-theorem">
 <h2>Kleene’s fixed point theorem<a class="headerlink" href="#kleene-s-fixed-point-theorem" title="Permalink to this headline">¶</a></h2>
 <p>Let us consider a lattice <span class="math notranslate nohighlight">\((X,\le)\)</span>: the binary relation <span class="math notranslate nohighlight">\(\le\)</span> is a partial order, and every pair of elements has a least upper bound and a greatest lower bound. It is a complete lattice if every set has a least upper bound and a greatest lower bound.
@@ -423,8 +484,9 @@ inflationary if for all <span class="math notranslate nohighlight">\(x \in X\)</
 and preserves suprema if <span class="math notranslate nohighlight">\(\Op(\sup_n x_n) = \sup_n \Op(x_n)\)</span> for all increasing sequences <span class="math notranslate nohighlight">\((x_n)_{n \in \N}\)</span>.
 The twin notions are deflationary if <span class="math notranslate nohighlight">\(x \ge \Op(x)\)</span> and preserves infima defined accordingly.</p>
 <p>We say that <span class="math notranslate nohighlight">\(x\)</span> is a pre-fixed point if <span class="math notranslate nohighlight">\(\Op(x) \le x\)</span> and a post-fixed point if <span class="math notranslate nohighlight">\(\Op(x) \ge x\)</span>.</p>
-<div class="theorem admonition" id="thm-kleene">
-<p class="admonition-title">Theorem (Kleene’s fixed point theorem)</p>
+<div class="proof theorem admonition" id="1-thm:kleene">
+<p class="admonition-title"><span class="caption-number">Theorem 27 </span> (Kleene’s fixed point theorem)</p>
+<div class="theorem-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\((X,\le)\)</span> be a complete lattice and <span class="math notranslate nohighlight">\(\Op : X \to X\)</span> a monotonic operator, then <span class="math notranslate nohighlight">\(\Op\)</span> has a least fixed point
 which is also the least pre-fixed point.</p>
 <p>Furthermore:</p>
@@ -433,29 +495,23 @@ which is also the least pre-fixed point.</p>
 <li><p>if <span class="math notranslate nohighlight">\(\Op\)</span> preserves suprema then the least fixed point of <span class="math notranslate nohighlight">\(\Op\)</span> is <span class="math notranslate nohighlight">\(\sup \set{ \Op^k(\bot) :  k \in \N}\)</span>.</p></li>
 </ul>
 </div>
-<p>Under the same assumptions <span class="math notranslate nohighlight">\(\Op\)</span> has a greatest fixed point which is the greatest post-fixed point and can be computed in similar ways,
+</div><p>Under the same assumptions <span class="math notranslate nohighlight">\(\Op\)</span> has a greatest fixed point which is the greatest post-fixed point and can be computed in similar ways,
 replacing inflationary by deflationary and preserves suprema by preserves infima.</p>
 <p>The typical example of a complete lattice and one that we will use often in this book is the powerset of a set equipped with the inclusion between subsets. The least element is the empty set, the greatest element the full set, and least and greatest upper bounds are given by union and intersection.
 An example of an infinite complete lattice is <span class="math notranslate nohighlight">\(\Rinfty\)</span> equipped with the natural order.</p>
-<p>We state a variant of  <a class="reference internal" href="#thm-kleene"><span class="std std-ref">Theorem</span></a> for a set of operators <span class="math notranslate nohighlight">\(\Op_i : X \to X\)</span> for <span class="math notranslate nohighlight">\(i \in I\)</span>.
+<p>We state a variant of  <a class="reference internal" href="#1-thm:kleene">Theorem 27</a> for a set of operators <span class="math notranslate nohighlight">\(\Op_i : X \to X\)</span> for <span class="math notranslate nohighlight">\(i \in I\)</span>.
 Naturally we say that <span class="math notranslate nohighlight">\(x \in X\)</span> is a fixed point of the set of operators <span class="math notranslate nohighlight">\((\Op_i)_{i \in I}\)</span> if for all <span class="math notranslate nohighlight">\(i \in I\)</span> we have <span class="math notranslate nohighlight">\(\Op_i(x) = x\)</span>.</p>
-<div class="theorem admonition" id="thm-kleene-set-operators">
-<p class="admonition-title">Theorem (Kleene’s fixed point theorem for a finite lattice and a set of operators)</p>
+<div class="proof theorem admonition" id="1-thm:kleene_set_operators">
+<p class="admonition-title"><span class="caption-number">Theorem 28 </span> (Kleene’s fixed point theorem for a finite lattice and a set of operators)</p>
+<div class="theorem-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\((X,\le)\)</span> be a finite lattice and <span class="math notranslate nohighlight">\(\Op_i : X \to X\)</span> a set of monotonic operators for <span class="math notranslate nohighlight">\(i \in I\)</span>, then <span class="math notranslate nohighlight">\((\Op_i)_{i \in I}\)</span> has a least fixed point.
-The non-deterministic algorithm given in  <span class="xref std std-ref">Algorithm</span> computes the least fixed point of <span class="math notranslate nohighlight">\((\Op_i)_{i \in I}\)</span>.</p>
+The non-deterministic algorithm given in  Algorithm <a class="reference internal" href="#algo-fixed-point"><span class="std std-ref">The generic non-deterministic least fixed point algorithm for a set of monotonic operators.</span></a> computes the least fixed point of <span class="math notranslate nohighlight">\((\Op_i)_{i \in I}\)</span>.</p>
 </div>
-<p>Under the same assumptions <span class="math notranslate nohighlight">\((\Op_i)_{i \in I}\)</span> has a greatest fixed point which is computed by the dual algorithm.</p>
-<p>\begin{algorithm}
-\KwData{<span class="math notranslate nohighlight">\((X,\le)\)</span> a finite lattice and <span class="math notranslate nohighlight">\(\Op_i : X \to X\)</span> a set of monotonic operators for <span class="math notranslate nohighlight">\(i \in I\)</span>}</p>
-<p><span class="math notranslate nohighlight">\(x \leftarrow \bot\)</span></p>
-<p>\Repeat{<span class="math notranslate nohighlight">\(x\)</span> is a fixed point of <span class="math notranslate nohighlight">\((\Op_i)_{i \in I}\)</span>}{
-Choose <span class="math notranslate nohighlight">\(i \in I\)</span> such that <span class="math notranslate nohighlight">\(\neg (\Op_i(x) \le x)\)</span></p>
-<p><span class="math notranslate nohighlight">\(x \leftarrow \max(x, \Op_i(x))\)</span>
-}</p>
-<p>\Return{<span class="math notranslate nohighlight">\(x\)</span>}
-\caption{The generic non-deterministic least fixed point algorithm for a set of monotonic operators.}
-\label{1-algo:fixed_point}
-\end{algorithm}</p>
+</div><p>Under the same assumptions <span class="math notranslate nohighlight">\((\Op_i)_{i \in I}\)</span> has a greatest fixed point which is computed by the dual algorithm.</p>
+<div class="figure align-center" id="algo-fixed-point">
+<img alt="../1-algo:fixed_point.png" src="../1-algo:fixed_point.png" />
+<p class="caption"><span class="caption-number">Fig. 7 </span><span class="caption-text">The generic non-deterministic least fixed point algorithm for a set of monotonic operators.</span><a class="headerlink" href="#algo-fixed-point" title="Permalink to this image">¶</a></p>
+</div>
 </div>
 </div>
 
@@ -497,7 +553,7 @@ Choose <span class="math notranslate nohighlight">\(i \in I\)</span> such that <
         
           By a set of authors coordinated by Nathana&euml;l Fijalkow<br/>
         
-            &copy; Copyright 2020.<br/>
+            &copy; Copyright 2021.<br/>
       </p>
     </div>
   </footer>

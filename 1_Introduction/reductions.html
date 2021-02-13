@@ -1,0 +1,628 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reductions &#8212; Games on graphs</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Traps and subgames" href="subgames.html" />
+    <link rel="prev" title="Memory" href="memory.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/cover.jpg" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Games on graphs</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../book.html">
+   Games on Graphs
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  1_Introduction
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active collapsible-parent">
+  <a class="reference internal" href="index.html">
+   Introduction
+  </a>
+  <ul class="current collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="intro.html">
+     What is this book about?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="simple.html">
+     A first model of games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="objectives.html">
+     Objectives
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="computation.html">
+     Computational models
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="automata.html">
+     Automata
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="memory.html">
+     Memory
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Reductions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="subgames.html">
+     Traps and subgames
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="fixed_points.html">
+     Generic fixed point algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="value_iteration.html">
+     Value iteration algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="strategy_improvement.html">
+     Strategy improvement algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Classic
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Classic/index.html">
+   Classic
+  </a>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../2_Regular/index.html">
+   Regular
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/attractors.html">
+     A linear time algorithm for reachability games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/buchi.html">
+     A quadratic time algorithm for Büchi games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/parity.html">
+     An exponential time algorithm for parity games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/muller.html">
+     Rabin, Streett, and Muller games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/zielonka.html">
+     The Zielonka tree
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../3_Parity/index.html">
+   Parity
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/strategy_improvement.html">
+     An exponential time strategy improvement algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/zielonka.html">
+     A quasipolynomial time attractor decomposition algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/separation.html">
+     A quasipolynomial time separating automata algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/value_iteration.html">
+     A quasipolynomial time value iteration algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/relationships.html">
+     Comparing the three families of algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../4_Payoffs/index.html">
+   Payoffs
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/notations.html">
+     Notations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/qualitative.html">
+     Refining qualitative objectives with quantities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/mean_payoff.html">
+     Mean payoff games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/discounted_payoff.html">
+     Discounted payoff games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/shortest_path.html">
+     Shortest path games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/total_payoff.html">
+     Total payoff games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/1_Introduction/reductions.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reductions-between-objectives-using-automata">
+   Reductions between objectives using automata
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reductions-between-conditions-using-memory-structures">
+   Reductions between conditions using memory structures
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="reductions">
+<span id="sec-reductions"></span><h1>Reductions<a class="headerlink" href="#reductions" title="Permalink to this headline">¶</a></h1>
+<div class="math notranslate nohighlight">
+\[\newcommand{\Eve}{\textrm{Eve}}
+\newcommand{\Adam}{\textrm{Adam}}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
+\newcommand{\argmax}{\text{argmax}}
+\newcommand{\argmin}{\text{argmin}}
+\newcommand{\Op}{\mathbb{O}}
+\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\text{supp}} 
+\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
+\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
+\newcommand{\mEve}{\mathrm{Eve}}
+\newcommand{\mAdam}{\mathrm{Adam}}
+\newcommand{\mRandom}{\mathrm{Random}}
+\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
+\newcommand{\ing}{\text{In}}
+\newcommand{\Ing}{\ing}
+\newcommand{\out}{\text{Out}}
+\newcommand{\Out}{\out}
+\newcommand{\dest}{\Delta} 
+\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
+\newcommand{\Paths}{\text{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\text{first}} \newcommand{\last}{\text{last}} 
+\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
+\newcommand{\Pre}{\text{Pre}} \newcommand{\PreE}{\text{Pre}_\mEve} \newcommand{\PreA}{\text{Pre}_\mAdam} \newcommand{\Attr}{\text{Attr}} \newcommand{\AttrE}{\text{Attr}_\mEve} \newcommand{\AttrA}{\text{Attr}_\mAdam} \newcommand{\rank}{\text{rank}}
+\renewcommand{\Win}{**Win**} 
+\renewcommand{\Lose}{**Lose**} 
+\newcommand{\Value}{\text{val}} 
+\newcommand{\ValueE}{\text{val}_\mEve} 
+\newcommand{\ValueA}{\text{val}_\mAdam}
+\newcommand{\val}{\Value} 
+\newcommand{\Automaton}{\mathbf{A}} 
+\newcommand{\Safe}{\mathtt{Safe}}
+\newcommand{\Reach}{\mathtt{Reach}} 
+\newcommand{\Buchi}{\mathtt{Buchi}} 
+\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
+\newcommand{\Parity}{\mathtt{Parity}} 
+\newcommand{\Muller}{\mathtt{Muller}} 
+\newcommand{\Rabin}{\mathtt{Rabin}} 
+\newcommand{\Streett}{\mathtt{Streett}} 
+\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
+\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
+\newcommand{\Energy}{\mathtt{Energy}}
+\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
+\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
+\newcommand{\Sup}{\mathtt{Sup}}
+\newcommand{\Inf}{\mathtt{Inf}}
+\newcommand{\LimSup}{\mathtt{LimSup}}
+\newcommand{\LimInf}{\mathtt{LimInf}}\]</div>
+<p>Automata and memory structures can be used to construct reductions between games.
+Automata operate at the level of objectives, independently of the colouring function and the arena,
+while memory structures work at the level of conditions, hence depend on the graph.</p>
+<div class="section" id="reductions-between-objectives-using-automata">
+<h2>Reductions between objectives using automata<a class="headerlink" href="#reductions-between-objectives-using-automata" title="Permalink to this headline">¶</a></h2>
+<p>Let <span class="math notranslate nohighlight">\(\Omega\)</span> a qualitative objective over the set of colours <span class="math notranslate nohighlight">\(C\)</span>, and <span class="math notranslate nohighlight">\(\Omega'\)</span> a second qualitative objective.
+We say that <span class="math notranslate nohighlight">\(\Omega\)</span> reduces to <span class="math notranslate nohighlight">\(\Omega'\)</span> if there exists a <strong>deterministic</strong> automaton <span class="math notranslate nohighlight">\(\Automaton\)</span> over the alphabet <span class="math notranslate nohighlight">\(C\)</span> with acceptance objective <span class="math notranslate nohighlight">\(\Omega'\)</span> defining <span class="math notranslate nohighlight">\(\Omega\)</span>, <strong>i.e.</strong> such that <span class="math notranslate nohighlight">\(L(\Automaton) = \Omega\)</span>.</p>
+<p>This implies that we can transform a game <span class="math notranslate nohighlight">\(\Game\)</span> with objective <span class="math notranslate nohighlight">\(\Omega\)</span> into an equivalent one <span class="math notranslate nohighlight">\(\Game \times \Automaton\)</span> with objective <span class="math notranslate nohighlight">\(\Omega'\)</span> by composing <span class="math notranslate nohighlight">\(\Game\)</span> with <span class="math notranslate nohighlight">\(\Automaton\)</span>:
+the automaton reads the sequence of colours from <span class="math notranslate nohighlight">\(C\)</span> induced by the play and
+produces a new sequence of colours which is accepted if its satisfies <span class="math notranslate nohighlight">\(\Omega'\)</span>.</p>
+<p>Formally, let <span class="math notranslate nohighlight">\(\arena\)</span> an arena and</p>
+<div class="math notranslate nohighlight">
+\[
+\Automaton = (Q,q_0,\delta : Q \times C \to Q,\Omega'[\col_\Automaton])
+\]</div>
+<p>a deterministic automaton with <span class="math notranslate nohighlight">\(\col_\Automaton : Q \times C \to C'\)</span>.
+We construct the arena <span class="math notranslate nohighlight">\(\arena \times \Automaton\)</span> as follows.
+We first define the graph <span class="math notranslate nohighlight">\(G \times Q\)</span> whose set of vertices is <span class="math notranslate nohighlight">\(V \times Q\)</span> and set of edges is defined as follows:
+for every edge <span class="math notranslate nohighlight">\(e = (v,v') \in E\)</span> and state <span class="math notranslate nohighlight">\(q \in Q\)</span> there is an edge <span class="math notranslate nohighlight">\(e_q\)</span> from <span class="math notranslate nohighlight">\((v,q)\)</span> to <span class="math notranslate nohighlight">\((v',\delta(q,\col(v)))\)</span>:
+the second component computes the run of <span class="math notranslate nohighlight">\(\Automaton\)</span> on the sequence of colours induced by the play.
+The arena is <span class="math notranslate nohighlight">\(\arena \times \Automaton = (G \times Q, \VE \times Q, \VA \times Q)\)</span>.
+The colouring function is defined by <span class="math notranslate nohighlight">\(\col'((v,q)) = \col_\Automaton(q,\col(v))\)</span>.
+The game is <span class="math notranslate nohighlight">\(\game \times \Automaton = (\arena \times \Automaton, \Omega'[\col'])\)</span>.</p>
+<p>The following lemma states two consequences to the fact that <span class="math notranslate nohighlight">\(\Omega\)</span> reduces to <span class="math notranslate nohighlight">\(\Omega'\)</span>.</p>
+<div class="proof lemma admonition" id="1-lem:automata_reduction">
+<p class="admonition-title"><span>Lemma </span> (needs title 1-lem:automata_reduction)</p>
+<div class="lemma-content section" id="proof-content">
+<p>If <span class="math notranslate nohighlight">\(\Omega\)</span> reduces to <span class="math notranslate nohighlight">\(\Omega'\)</span> through the automaton <span class="math notranslate nohighlight">\(\Automaton\)</span> with <span class="math notranslate nohighlight">\(S\)</span> states, then
+Eve has a winning strategy in <span class="math notranslate nohighlight">\(\Game\)</span> from <span class="math notranslate nohighlight">\(v_0\)</span> if and only if she has a winning strategy in <span class="math notranslate nohighlight">\(\Game \times \Automaton\)</span> from <span class="math notranslate nohighlight">\((v_0,q_0)\)</span>.</p>
+<p>Consequently, the following properties hold:</p>
+<ul class="simple">
+<li><p>Assume that there exists an algorithm for solving games with objective <span class="math notranslate nohighlight">\(\Omega'\)</span> with complexity <span class="math notranslate nohighlight">\(T(n,m)\)</span>.
+Then there exists an algorithm for solving games with objectives <span class="math notranslate nohighlight">\(\Omega\)</span> of complexity <span class="math notranslate nohighlight">\(T(n \cdot S, m \cdot S)\)</span>.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(\Omega'\)</span> is determined with finite memory strategies of size <span class="math notranslate nohighlight">\(m\)</span>, then <span class="math notranslate nohighlight">\(\Omega\)</span> is determined with finite memory stragies of size <span class="math notranslate nohighlight">\(m \cdot S\)</span>.</p></li>
+</ul>
+</div>
+</div><p>Since the next type of reduction extends this one and the two proofs are very similar we will prove this lemma as a corollary of the next one.</p>
+<p>Reductions between objectives using automata are very general:
+they operate at the level of objectives and therefore completely ignore the arena.</p>
+</div>
+<div class="section" id="reductions-between-conditions-using-memory-structures">
+<h2>Reductions between conditions using memory structures<a class="headerlink" href="#reductions-between-conditions-using-memory-structures" title="Permalink to this headline">¶</a></h2>
+<p>Reductions between conditions using memory structures extend the previous ones, the main difference being that
+the memory structure reads the sequences of edges and produces a sequence of memory states.
+The edges contain more information than the sequence of colours (which is what the automaton reads),
+and this information is dependent on the graph.</p>
+<p>Formally, let <span class="math notranslate nohighlight">\(\arena\)</span> an arena and <span class="math notranslate nohighlight">\(\mem\)</span> a memory structure.
+We construct the arena <span class="math notranslate nohighlight">\(\arena \times \mem\)</span> as follows.
+We first define the graph <span class="math notranslate nohighlight">\(G \times M\)</span> whose set of vertices is <span class="math notranslate nohighlight">\(V \times M\)</span> and set of edges <span class="math notranslate nohighlight">\(E_M\)</span> is defined as follows:
+for every edge <span class="math notranslate nohighlight">\(e = (v,v') \in E\)</span> and state <span class="math notranslate nohighlight">\(m \in M\)</span> there is an edge <span class="math notranslate nohighlight">\(e_m\)</span> from <span class="math notranslate nohighlight">\((v,m)\)</span> to <span class="math notranslate nohighlight">\((v',\delta(m,e))\)</span>.
+The arena is <span class="math notranslate nohighlight">\(\arena \times \mem = (G \times M, \VE \times M, \VA \times M)\)</span>.</p>
+<div class="proof observation admonition" id="observation-1">
+<p class="admonition-title"><span class="caption-number">Observation 10 </span> (needs title and label)</p>
+<div class="observation-content section" id="proof-content">
+<p>There is a one-to-one correspondence between plays <span class="math notranslate nohighlight">\(\pi = v_0 v_1 \dots\)</span> in <span class="math notranslate nohighlight">\(\arena\)</span>
+and plays <span class="math notranslate nohighlight">\(\pi'\)</span> in <span class="math notranslate nohighlight">\(\arena \times \mem\)</span> from <span class="math notranslate nohighlight">\((v_0,m_0)\)</span>:
+the play <span class="math notranslate nohighlight">\(\pi' = (v_0, m_0) (v_1, m_1) (v_2, m_2) \ldots\)</span>
+is defined by <span class="math notranslate nohighlight">\(m_{i+1} = \delta(m_i, (v_{i},v_{i+1}))\)</span>.</p>
+<p>:label:<br />
+There is a one-to-one correspondence between plays <span class="math notranslate nohighlight">\(\pi = v_0 v_1 \dots\)</span> in <span class="math notranslate nohighlight">\(\arena\)</span>
+and plays <span class="math notranslate nohighlight">\(\pi'\)</span> in <span class="math notranslate nohighlight">\(\arena \times \mem\)</span> from <span class="math notranslate nohighlight">\((v_0,m_0)\)</span>:
+the play <span class="math notranslate nohighlight">\(\pi' = (v_0, m_0) (v_1, m_1) (v_2, m_2) \ldots\)</span>
+is defined by <span class="math notranslate nohighlight">\(m_{i+1} = \delta(m_i, (v_{i},v_{i+1}))\)</span>.</p>
+<p>:nonumber:</p>
+<p>There is a one-to-one correspondence between plays <span class="math notranslate nohighlight">\(\pi = v_0 v_1 \dots\)</span> in <span class="math notranslate nohighlight">\(\arena\)</span>
+and plays <span class="math notranslate nohighlight">\(\pi'\)</span> in <span class="math notranslate nohighlight">\(\arena \times \mem\)</span> from <span class="math notranslate nohighlight">\((v_0,m_0)\)</span>:
+the play <span class="math notranslate nohighlight">\(\pi' = (v_0, m_0) (v_1, m_1) (v_2, m_2) \ldots\)</span>
+is defined by <span class="math notranslate nohighlight">\(m_{i+1} = \delta(m_i, (v_{i},v_{i+1}))\)</span>.</p>
+</div>
+</div><p>Let <span class="math notranslate nohighlight">\(W\)</span> be a condition on <span class="math notranslate nohighlight">\(\arena\)</span> and <span class="math notranslate nohighlight">\(W'\)</span> a condition on <span class="math notranslate nohighlight">\(\arena \times \Mem\)</span>.
+We say that <span class="math notranslate nohighlight">\(W\)</span> reduces to <span class="math notranslate nohighlight">\(W'\)</span> if for all plays <span class="math notranslate nohighlight">\(\play\)</span> in <span class="math notranslate nohighlight">\(\arena\)</span>,
+we have</p>
+<div class="math notranslate nohighlight">
+\[
+\play \in W \Longleftrightarrow \play' \in W'.
+\]</div>
+<p>Let <span class="math notranslate nohighlight">\(\Mem\)</span> and <span class="math notranslate nohighlight">\(\Mem'\)</span> two memory structure over the same graph,
+we let <span class="math notranslate nohighlight">\(\Mem \times \Mem'\)</span> denote the memory structure obtained by direct product.</p>
+<div class="proof lemma admonition" id="1-lem:memory_structure_reduction">
+<p class="admonition-title"><span>Lemma </span> (needs title 1-lem:memory_structure_reduction)</p>
+<div class="lemma-content section" id="proof-content">
+<p>If <span class="math notranslate nohighlight">\(W\)</span> reduces to <span class="math notranslate nohighlight">\(W'\)</span> through the memory structure <span class="math notranslate nohighlight">\(\mem\)</span>, then
+Eve has a winning strategy in <span class="math notranslate nohighlight">\(\Game = (\Arena,W)\)</span> from <span class="math notranslate nohighlight">\(v_0\)</span> if and only if
+she has a winning strategy in <span class="math notranslate nohighlight">\(\Game \times \Mem = (\Arena \times \Mem, W')\)</span> from <span class="math notranslate nohighlight">\((v_0,m_0)\)</span>.</p>
+<p>More specifically, if Eve has a winning strategy in <span class="math notranslate nohighlight">\(\Game \times \Mem\)</span> from <span class="math notranslate nohighlight">\((v,m_0)\)</span> using <span class="math notranslate nohighlight">\(\Mem'\)</span> as memory structure,
+then she has a winning strategy in <span class="math notranslate nohighlight">\(\Game\)</span> from <span class="math notranslate nohighlight">\(v\)</span> using <span class="math notranslate nohighlight">\(\Mem \times \Mem'\)</span> as memory structure.
+In particular if the strategy in <span class="math notranslate nohighlight">\(\Game \times \Mem\)</span> is memoryless, then the strategy in <span class="math notranslate nohighlight">\(\Game\)</span> uses <span class="math notranslate nohighlight">\(\Mem\)</span> as memory structure.</p>
+</div>
+</div><div class="dropdown tip admonition">
+<p class="admonition-title">Proof</p>
+<p>A winning strategy in <span class="math notranslate nohighlight">\(\Game\)</span> directly induces a winning strategy in <span class="math notranslate nohighlight">\(\Game \times \Mem\)</span> simply by ignoring the additional information
+and thanks to the equivalence above because <span class="math notranslate nohighlight">\(W\)</span> reduces to <span class="math notranslate nohighlight">\(W'\)</span>.
+For the converse implication, let <span class="math notranslate nohighlight">\(\sigma\)</span> be a winning strategy in <span class="math notranslate nohighlight">\(\Game \times \Mem\)</span> using <span class="math notranslate nohighlight">\(\Mem'\)</span> as memory structure.
+Recall that <span class="math notranslate nohighlight">\(\sigma\)</span> is defined through the function <span class="math notranslate nohighlight">\(\sigma : (\VE \times M) \times M' \to E_M\)</span>.
+Let <span class="math notranslate nohighlight">\(p : E_M \to E\)</span> mapping the edge <span class="math notranslate nohighlight">\(e_m\)</span> to <span class="math notranslate nohighlight">\(e\)</span>.
+We construct a strategy <span class="math notranslate nohighlight">\(\sigma'\)</span> in <span class="math notranslate nohighlight">\(\Game\)</span> using <span class="math notranslate nohighlight">\(\Mem \times \Mem'\)</span> as memory structure by</p>
+<div class="math notranslate nohighlight">
+\[
+\sigma'(v, (m,m')) = p(\sigma((v,m), m')).
+\]</div>
+<p>The correspondence between plays in <span class="math notranslate nohighlight">\(\arena\)</span> and <span class="math notranslate nohighlight">\(\arena \times \mem\)</span> maps plays consistent with <span class="math notranslate nohighlight">\(\sigma\)</span> to plays consistent with <span class="math notranslate nohighlight">\(\sigma'\)</span>,
+which together with the fact that <span class="math notranslate nohighlight">\(W\)</span> reduces to <span class="math notranslate nohighlight">\(W'\)</span> implies that <span class="math notranslate nohighlight">\(\sigma'\)</span> is a winning strategy in <span class="math notranslate nohighlight">\(\Game\)</span> from <span class="math notranslate nohighlight">\(v\)</span>.</p>
+</div>
+<p>To obtain  <a class="reference internal" href="#1-lem:automata_reduction">Lemma </a> as a corollary of  <a class="reference internal" href="#1-lem:memory_structure_reduction">Lemma </a>
+we observe that a reduction between objectives using an automaton induces a reduction between the induced conditions using a memory structure.
+Formally, let us assume that <span class="math notranslate nohighlight">\(\Omega\)</span> reduces to <span class="math notranslate nohighlight">\(\Omega'\)</span>,
+and let <span class="math notranslate nohighlight">\(\Automaton = (Q, q_0, \delta, \Omega'[\col_\Automaton])\)</span> such that <span class="math notranslate nohighlight">\(L(\Automaton) = \Omega\)</span>.
+Let <span class="math notranslate nohighlight">\(\Game = (\Arena, \Omega[\col])\)</span> a game.</p>
+<p>We first define the memory structure <span class="math notranslate nohighlight">\(\Mem = (Q, q_0, \delta')\)</span>: the transition function is <span class="math notranslate nohighlight">\(\delta' : Q \times E \to Q\)</span>, it is defined
+by <span class="math notranslate nohighlight">\(\delta'(q,(v,v')) = \delta(q, \col(v))\)</span>.
+We then define <span class="math notranslate nohighlight">\(\col'(v,q) = \col_\Automaton(q, \col(v))\)</span>.</p>
+<p>We note that <span class="math notranslate nohighlight">\(\Omega[\col]\)</span> reduces to <span class="math notranslate nohighlight">\(\Omega'[\col']\)</span>: for all plays <span class="math notranslate nohighlight">\(\play\)</span> in <span class="math notranslate nohighlight">\(\Arena\)</span>, we have
+<span class="math notranslate nohighlight">\(\play \in \Omega[\col]\)</span> if and only if <span class="math notranslate nohighlight">\(\play' \in \Omega'[\col']\)</span>: this is a reformulation of the fact that <span class="math notranslate nohighlight">\(L(\Automaton) = \Omega\)</span>.</p>
+<p>We construct the game <span class="math notranslate nohighlight">\(\Game' = (\Arena \times \Mem, \Omega'[\col'])\)</span>.
+Thanks to  <a class="reference internal" href="#1-lem:memory_structure_reduction">Lemma </a> the two games have the same winner and a strategy in the latter induce a strategy in the former
+by composing with the memory structure <span class="math notranslate nohighlight">\(\Mem\)</span>, implying  <a class="reference internal" href="#1-lem:automata_reduction">Lemma </a>.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./1_Introduction"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="memory.html" title="previous page">Memory</a>
+    <a class='right-next' id="next-link" href="subgames.html" title="next page">Traps and subgames</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By a set of authors coordinated by Nathana&euml;l Fijalkow<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

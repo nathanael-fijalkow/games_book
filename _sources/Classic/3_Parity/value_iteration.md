@@ -1,9 +1,64 @@
 (3-sec:value_iteration)=
 # A quasipolynomial time value iteration algorithm
 
-```{admonition} Theorem
-:class: theorem
-:name: 3-thm:value_iteration_quasipoly
+```{math}
+\newcommand{\Eve}{\textrm{Eve}}
+\newcommand{\Adam}{\textrm{Adam}}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
+\newcommand{\argmax}{\text{argmax}}
+\newcommand{\argmin}{\text{argmin}}
+\newcommand{\Op}{\mathbb{O}}
+\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\text{supp}} 
+\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
+\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
+\newcommand{\mEve}{\mathrm{Eve}}
+\newcommand{\mAdam}{\mathrm{Adam}}
+\newcommand{\mRandom}{\mathrm{Random}}
+\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
+\newcommand{\ing}{\text{In}}
+\newcommand{\Ing}{\ing}
+\newcommand{\out}{\text{Out}}
+\newcommand{\Out}{\out}
+\newcommand{\dest}{\Delta} 
+\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
+\newcommand{\Paths}{\text{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\text{first}} \newcommand{\last}{\text{last}} 
+\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
+\newcommand{\Pre}{\text{Pre}} \newcommand{\PreE}{\text{Pre}_\mEve} \newcommand{\PreA}{\text{Pre}_\mAdam} \newcommand{\Attr}{\text{Attr}} \newcommand{\AttrE}{\text{Attr}_\mEve} \newcommand{\AttrA}{\text{Attr}_\mAdam} \newcommand{\rank}{\text{rank}}
+\renewcommand{\Win}{\textsc{Win}} 
+\renewcommand{\Lose}{\textsc{Lose}} 
+\newcommand{\Value}{\text{val}} 
+\newcommand{\ValueE}{\text{val}_\mEve} 
+\newcommand{\ValueA}{\text{val}_\mAdam}
+\newcommand{\val}{\Value} 
+\newcommand{\Automaton}{\mathbf{A}} 
+\newcommand{\Safe}{\mathtt{Safe}}
+\newcommand{\Reach}{\mathtt{Reach}} 
+\newcommand{\Buchi}{\mathtt{Buchi}} 
+\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
+\newcommand{\Parity}{\mathtt{Parity}} 
+\newcommand{\Muller}{\mathtt{Muller}} 
+\newcommand{\Rabin}{\mathtt{Rabin}} 
+\newcommand{\Streett}{\mathtt{Streett}} 
+\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
+\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
+\newcommand{\Energy}{\mathtt{Energy}}
+\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
+\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
+\newcommand{\Sup}{\mathtt{Sup}}
+\newcommand{\Inf}{\mathtt{Inf}}
+\newcommand{\LimSup}{\mathtt{LimSup}}
+\newcommand{\LimInf}{\mathtt{LimInf}}
+```
+
+```{prf:theorem} (needs title)
+:label: 3-thm:value_iteration_quasipoly
 
 There exists a value iteration algorithm for solving parity games in time 
 
@@ -16,7 +71,7 @@ The space complexity of the algorithm is $O(m + n \log(d))$.
 
 ```
 
-We rely on the high-level presentation of value iteration algorithms given in  {ref}`Section <1-sec:value_iteration>`.
+We rely on the high-level presentation of value iteration algorithms given in  Section {ref}`1-sec:value_iteration`.
 Let $\game = (\arena,\Parity[\col])$ a parity game with $n$ vertices and priorities in $[1,d]$,
 and without loss of generality $d$ is even.
 
@@ -39,7 +94,7 @@ $$
 $$
 
 such that $\val^\game$ is the greatest fixed point of $\Op$.
-The algorithm would then simply use  {ref}`Theorem <1-thm:kleene>` to compute $\val^\game$ by iterating the operator $\Op$.
+The algorithm would then simply use  {prf:ref}`1-thm:kleene` to compute $\val^\game$ by iterating the operator $\Op$.
 
 Let us look at this question using the notion of progress measures, which are post-fixed points of $\Op$,
 meaning $\mu$ such that $\mu \le \Op(\mu)$. 
@@ -60,57 +115,13 @@ and a tree $t$ of height $h + 1$ is an ordered list $[t_1,\dots,t_k]$ of subtree
 We consider two parameters for trees: the height, and the size which is defined to be the number of branches (equivalently, the number of leaves).
 All trees we consider have height $h = d/2$.
 
-\begin{figure*}[!ht]
-\centering
-\begin{tikzpicture}
-  \begin{scope}[xscale=1,yscale=1.6]
-  \path (0,0) node[coordinate] (root) {};
-  \foreach \x in {-2,...,2}
-    {\draw (root) -- (\x,-1) node[coordinate] (n\x) {};}
-  \foreach \s/\x/\n in {-2/-2/,
-    -1/-1.4/,-1/-.6/,
-    0/-.4/,0/-.2/,0/0/,0/.2/,0/.4/,
-    1/.6/,1/1.4/,
-    2/2/}
-    {\draw (n\s) -- (\x,-2) node[below] {$\n$};}
-  \end{scope}
-
-  \begin{scope}[xscale=.6,yscale=1]
-  \path (6,-1) node[coordinate] (root) {};
-  \foreach \x in {-1,0,1}
-    {\draw[red, thick] (root) -- (6+\x,-2) node[coordinate] (m\x) {};}
-  \foreach \s/\x in {-1/-1.4,
-    -1/-.6,
-    0/-.4,
-    0/.4,
-    1/1}
-    {\draw[red, thick] (m\s) -- (6+\x,-3);}
-
-  \path (10,-1) node[coordinate] (root) {};
-  \foreach \x in {-2,1}
-    {\draw (root) -- (10+\x,-2) node[coordinate] (o\x) {};}
-  \foreach \x in {-1,0,2}
-    {\draw[red, thick] (root) -- (10+\x,-2) node[coordinate] (o\x) {};}
-  \foreach \s/\x in {-2/-2,
-    0/-.4,
-    0/-.2,
-    0/.2,
-    1/.6,
-    1/1.4}
-    {\draw (o\s) -- (10+\x,-3);}
-  \foreach \s/\x in {-1/-1.4,
-    -1/-.6,
-    0/0,
-    0/.4,
-    2/2}
-    {\draw[red, thick] (o\s) -- (10+\x,-3);}
-  \end{scope}
-\end{tikzpicture}
-\caption{On the left, a tree for $d = 4$, which is the smallest $(5,2)$-universal tree:
+```{figure} ./../../3-fig:example_universal.png
+:name: 3-fig:example_universal
+:align: center
+On the left, a tree for $d = 4$, which is the smallest $(5,2)$-universal tree:
 it has size $11$ (meaning it has $11$ branches).
-On the right, a tree of size $5$ and one possible embedding into the universal tree.}
-\label{3-fig:example_universal}
-\end{figure*}
+On the right, a tree of size $5$ and one possible embedding into the universal tree.
+```
 
 We say that a tree $t$ embeds into another tree $T$ if:
 
@@ -119,14 +130,13 @@ We say that a tree $t$ embeds into another tree $T$ if:
 there exist $i_1 < \dots < i_k$ such that for all $j \in [1,k]$ we have that $t_j$ embeds into $T_{i_j}$.
 
 
-```{admonition} Definition
-:class: definition
+```{prf:definition} (needs title)
 
 A tree is $(n,h)$-**universal** if it embeds all trees of size $n$ and height $h$.
 
 ```
 
-We refer to  {ref}`Figure <3-fig:example_universal>` for an example of a $(5,2)$-universal tree.
+We refer to  Figure {ref}`3-fig:example_universal` for an example of a $(5,2)$-universal tree.
 A first example of an $(n,h)$-universal tree is the tree where each node has degree $n$:
 formally we define it recursively by $T_{n,0}$ is a leaf, and $T_{n,h+1} = [\underbrace{T_{n,h},\dots,T_{n,h}}_{n \text{ copies}}]$.
 It has size $n^h$.
@@ -135,9 +145,8 @@ It has size $n^h$.
 
 We present an inductive construction of a quasipolynomial universal tree.
 
-```{admonition} Theorem
-:class: theorem
-:name: 3-thm:universal_tree
+```{prf:theorem} (needs title)
+:label: 3-thm:universal_tree
 
 There exists an $(n,h)$-universal tree with size $f(n,h)$, where $\mu$ satisfies the following:
 $$\begin{array}{lll}
@@ -178,7 +187,7 @@ $$
 [T^1_{\text{left}},\dots,T^k_{\text{left}},\ T_\text{middle},\ T^1_{\text{right}},\dots,T^{k'}_{\text{right}}].
 $$
 
-The construction is illustrated in  {ref}`Figure <3-fig:smallest_tree_construction>`.
+The construction is illustrated in  Figure {ref}`3-fig:smallest_tree_construction`.
 
 ```{figure} ./../../3-fig:smallest_tree_construction.png
 :name: 3-fig:smallest_tree_construction
@@ -207,7 +216,7 @@ so it embeds into $T_\text{right}$ by induction hypothesis.
 
 ```
 
-\noindent The construction given in the proof yields the smallest $(5,2)$-universal tree illustrated in {ref}`Figure <3-fig:example_universal>`.
+\noindent The construction given in the proof yields the smallest $(5,2)$-universal tree illustrated in  Figure {ref}`3-fig:example_universal`.
 
 ### Ordering the branches
 
@@ -230,32 +239,17 @@ if $b_{\ge p}\ <\ b'_{\ge p}$.
 *  For $p$ even, we say that $b \vartriangleleft_p b'$ 
 if $b_{\ge p}\ \le\ b'_{\ge p}$.
 
-To interpret $\vartriangleleft_p$ on the tree, we label the levels by priorities from bottom to top as in {ref}`Figure <3-fig:example_universal>`.
+To interpret $\vartriangleleft_p$ on the tree, we label the levels by priorities from bottom to top as in  Figure {ref}`3-fig:example_universal`.
 Then $b \vartriangleleft_p b'$ if and only if the $p$-truncated branch of $b$ is to the left of the $p$-truncated branch of $b'$,
 strictly if $p$ is odd, and non-strictly if $p$ is even.
 
-\begin{figure*}[!ht]
-\centering
-\begin{tikzpicture}
-  \begin{scope}[xscale=1.4,yscale=1.6]
-  \path (0,0) node[coordinate] (root) {};
-  \foreach \x in {-2,...,2}
-    {\draw (root) -- (\x,-1) node[coordinate] (n\x) {};}
-  \foreach \s/\x/\n in {-2/-2/,
-    -1/-1.4/,-1/-.6/,
-    0/-.4/,0/-.2/w,0/0/,0/.2/,0/.4/,
-    1/.6/v,1/1.4/u,
-    2/2/}
-    {\draw (n\s) -- (\x,-2) node[below] {$\n$};}
-  \foreach \y/\l in {0.2/4,.7/3,1.2/2,1.7/1}
-    {\draw (2.5,-\y) node {\begin{Huge}\l\end{Huge}};}
-  \end{scope}
-\end{tikzpicture}
-\caption{Illustration of the relations $\vartriangleleft_p$.}
-\label{3-fig:example_relations}
-\end{figure*}
+```{figure} ./../../3-fig:example_relations.png
+:name: 3-fig:example_relations
+:align: center
+Illustration of the relations $\vartriangleleft_p$.
+```
 
-We refer to  {ref}`Figure <3-fig:example_relations>` for some examples:
+We refer to  Figure {ref}`3-fig:example_relations` for some examples:
 
 $$
 v \vartriangleleft_1 u \quad ; \quad  
@@ -267,9 +261,8 @@ $$
 
 
 
-```{admonition} Lemma
-:class: lemma
-:name: 3-lem:properties_tree
+```{prf:lemma} (needs title)
+:label: 3-lem:properties_tree
 
 The relations $\vartriangleleft_p$ for $p \in [1,d]$ induced by a tree $t$ satisfy the following properties:
 
@@ -283,9 +276,8 @@ The relations $\vartriangleleft_p$ for $p \in [1,d]$ induced by a tree $t$ satis
 
 The following observation rephrases the notion of embeddings between trees using the ordering on branches.
 
-```{admonition} Fact
-:class: fact
-:name: 3-fact:embedding
+```{prf:observation} (needs title)
+:label: 3-fact:embedding
 
 Let $t,T$ be two trees.
 Then $t$ embeds into $T$ if and only if there exists a function $\mu : B_t \to B_T$
@@ -344,25 +336,23 @@ $$
 
 The following theorem is our first and main step towards proving the characterisation principle.
 
-```{admonition} Theorem
-:class: theorem
-:name: 3-thm:progress_measure
+```{prf:theorem} (needs title)
+:label: 3-thm:progress_measure
 
 Let $\Game$ be a parity game and $v$ a vertex.
 Then Eve wins from $v$ if and only if there exists a tree $t$ and a progress measure $\mu : V \to Y_t$ such that $\mu(v) \neq \bot$.
 
 ```
 
-In order to prove  {ref}`Theorem <3-thm:progress_measure>`, we first consider the case of parity graphs.
+In order to prove  {prf:ref}`3-thm:progress_measure`, we first consider the case of parity graphs.
 A progress measure in a parity graph is a function $\mu : V \to Y_t$ such that 
 for all edges $(v,v') \in E$ we have $\mu(v) \vartriangleleft_{\col(v)} \mu(v')$.
 
 Recall that a graph satisfies parity from $v$ if all infinite paths from $v$ satisfy parity.
 This is equivalent to asking whether all cycles reachable from $v$ are even, meaning the maximal priority appearing in the cycle is even.
 
-```{admonition} Lemma
-:class: lemma
-:name: 3-lem:progress_measure
+```{prf:lemma} (needs title)
+:label: 3-lem:progress_measure
 
 Let $G$ be a parity graph and $v$ a vertex.
 Then $G$ satisfies parity from $v$ if and only if 
@@ -392,7 +382,7 @@ $$
 \vartriangleleft_{\col(v_{k-1})} \mu(v_k) \vartriangleleft_{\col(v_k)} \mu(v_1).
 $$
 
-The second item of  {ref}`Lemma <3-lem:properties_tree>` implies that $\mu(v_1) \vartriangleleft_{\col(v_1)} \mu(v_1)$, 
+The second item of  {prf:ref}`3-lem:properties_tree` implies that $\mu(v_1) \vartriangleleft_{\col(v_1)} \mu(v_1)$, 
 which contradicts the third item since $\vartriangleleft_{\col(v_1)}$ is non-reflexive given that $\col(v_1)$ is odd.
 
 
@@ -452,13 +442,13 @@ and in the second case because $\mu(v) = \bot$.
 
 ```
 
-We can now prove  {ref}`Theorem <3-thm:progress_measure>`.
+We can now prove  {prf:ref}`3-thm:progress_measure`.
 
 ```{admonition} Proof
 :class: dropdown tip
 
 Assume that Eve wins from $v$ and let $\sigma$ be a positional strategy.
-The parity graph $\Game[\sigma]$ satisfies parity from $v$, so thanks to  {ref}`Lemma <3-lem:progress_measure>`
+The parity graph $\Game[\sigma]$ satisfies parity from $v$, so thanks to  {prf:ref}`3-lem:progress_measure`
 there exists a tree $t$ and a function $\mu : V \to Y_t$ such that $\mu(v) \neq \bot$
 and for all edges $(v,v') \in E$ we have $\mu(v) \vartriangleleft_{\col(v)} \mu(v')$.
 We remark that $\mu : V \to Y_t$ is actually a progress measure: the condition for $v \in \VE$ is ensured by the edge $\sigma(v)$,
@@ -468,17 +458,16 @@ and the condition for $v \in \VA$ by assumption on $\mu$.
 Conversely, assume that there exists a tree $t$ and a progress measure $\mu : V \to Y_t$.
 It induces a positional strategy defined by $\sigma(v) = (v,v')$ such that $\mu(v) \vartriangleleft_{\col(v)} \mu(v')$.
 We argue that $\sigma$ is a winning strategy from any vertex $v$ such that $\mu(v) \neq \bot$.
-This is a consequence of  {ref}`Lemma <3-lem:progress_measure>` for the parity graph $\Game[\sigma]$.
+This is a consequence of  {prf:ref}`3-lem:progress_measure` for the parity graph $\Game[\sigma]$.
 
 ```
 
-{ref}`Theorem <3-thm:progress_measure>` is very close to the characterisation principle we are after,
+ {prf:ref}`3-thm:progress_measure` is very close to the characterisation principle we are after,
 the only difference being that the lattice $(Y_t,\le)$ depends on an existentially quantified tree $t$.
 This is where we use universal trees:
 
-```{admonition} Corollary
-:class: corollary
-:name: 3-cor:progress_measure
+```{prf:corollary} (needs title)
+:label: 3-cor:progress_measure
 
 Let $\Game$ be a parity game with $n$ vertices and priorities in $[1,d]$, and $v$ a vertex.
 Let $T$ be a $(n,d/2)$-universal tree.
@@ -490,14 +479,14 @@ Then Eve wins from $v$ if and only if there exists a progress measure $\mu : V \
 ```{admonition} Proof
 :class: dropdown tip
 
-Assume that Eve wins from $v$, thanks to  {ref}`Theorem <3-thm:progress_measure>` there exists a tree $t$ and a progress measure $\mu : V \to Y_t$ 
+Assume that Eve wins from $v$, thanks to  {prf:ref}`3-thm:progress_measure` there exists a tree $t$ and a progress measure $\mu : V \to Y_t$ 
 such that $\mu(v) \neq \bot$.
 Since $T$ is $(n,d/2)$-universal and $t$ has at most $n$ branches, $t$ embeds into $T$,
 which thanks to \cref{3-fact:embedding} implies that there exists $\mu' : B_t \to B_T$ respecting the relations $\vartriangleleft$.
 We extend it to $\mu' : Y_t \to Y_T$ by $\mu'(\bot) = \bot$.
 Then the composition $\mu' \circ \mu : V \to Y_T$ is a progress measure such that $(\mu' \circ \mu)(v) \neq \bot$. 
 
-The converse implication is a direct consequence of  {ref}`Theorem <3-thm:progress_measure>`.
+The converse implication is a direct consequence of  {prf:ref}`3-thm:progress_measure`.
 
 ```
 
@@ -510,8 +499,8 @@ It induces both a lattice $(Y_T,\le)$ and a monotonic function $\delta_T : Y_T \
 which in turn induces a monotonic operator $\Op_T : F_V \to F_V$.
 Since $T$ is fixed we do not specify the subscript $T$ for all these objects.
 
-The last step is to construct an algorithm returning the maximal progress measure relying on Kleene's fixed point theorem (stated as  {ref}`Theorem <1-thm:kleene>`).
-The generic algorithm is explained in  {ref}`Section <1-sec:value_iteration>`, let us instantiate it here.
+The last step is to construct an algorithm returning the maximal progress measure relying on Kleene's fixed point theorem (stated as  {prf:ref}`1-thm:kleene`).
+The generic algorithm is explained in  Section {ref}`1-sec:value_iteration`, let us instantiate it here.
 
 For the complexity analysis it is useful to decompose $\Op$ into a set of operators:
 
@@ -535,29 +524,16 @@ The operator $\Op_v$ in action: $\Op_v(\mu)(v)$ is the maximal leaf (meaning the
 which satisfies $\Op_v(\mu)(v) \vartriangleleft_3 \mu(v')$ and $\Op_v(\mu)(v) \vartriangleleft_3 \mu(v'')$.
 ```
 
-The pseudocode for the algorithm is given in  {ref}`Algorithm <3-algo:value_iteration>`, 
+The pseudocode for the algorithm is given in  Algorithm {ref}`3-algo:value_iteration`, 
 where we let $\ell_{\max}$ denote the maximal leaf in $T$.
 
-\begin{algorithm}[ht]
- \KwData{A parity game with $n$ vertices priorities in $[1,d]$ and a $(n,d/2)$-universal tree $T$.}
- \DontPrintSemicolon
+```{figure} /../3-algo:value_iteration.png
+:name: 3-algo:value_iteration
+:align: center
+The value iteration algorithm.
+```
 
-\For{$v \in V$}{
-$\mu(v) \leftarrow \ell_{\max}$
-}
-     
-\Repeat{$\forall v \in V,\ \mu \le \Op_v(\mu)$}{
-Choose $v \in V$ which is neglected
-
-$\mu \leftarrow \min(\mu, \Op_v(\mu))$}
-
-\Return{$\mu$}
-\caption{The value iteration algorithm.}
-\label{3-algo:value_iteration}
-\end{algorithm}
-
-```{admonition} Theorem
-:class: theorem
+```{prf:theorem} (needs title)
 
 For all $(n, d/2)$-universal tree $T$, for all parity games $\game$ with $n$ vertices and priorities in $[1,d]$,
 the value iteration algorithm over the tree $T$ returns the maximal progress measure $\mu$ for $\game$ over $T$.
@@ -584,7 +560,7 @@ Let us write $\Delta$ for the complexity of checking whether $\mu(v) \vartriangl
 Hence checking whether $v$ is neglected costs 
 $O(|\Ing^{-1}(v)| \cdot \Delta)$, where $|\Ing^{-1}(v)|$ is the number of outgoing edges of $v$.
 
-A naive implementation of  {ref}`Algorithm <3-algo:value_iteration>` would in each repeat loop go through every vertex $v$ 
+A naive implementation of  Algorithm {ref}`3-algo:value_iteration` would in each repeat loop go through every vertex $v$ 
 to check whether it is neglected.
 This would incur a linear cost: $\sum_{v \in V} O(|\Ing^{-1}(v)| \cdot \Delta) = O(m \cdot \Delta)$.
 Thus the overall complexity would be
@@ -594,16 +570,16 @@ O((m \cdot \Delta) \cdot (n \cdot |T|)) = O(nm \cdot \Delta \cdot |T|).
 $$
 
 Typically $\Delta$ is small (we will see that for a well chosen universal tree $T$ it is polylogarithmic in $n$ and $d$),
-and $T$ is the dominating factor (quasipolynomial in $n$ and $d$ thanks to  {ref}`Theorem <3-thm:universal_tree>`).
+and $T$ is the dominating factor (quasipolynomial in $n$ and $d$ thanks to  {prf:ref}`3-thm:universal_tree`).
 
 We first explain that using a better data structure we can maintain the list of vertices $v$ such that $\neg (\mu \le \Op_v(\mu))$,
 saving a linear factor in the complexity.
-We then discuss the cost $\Delta$ by choosing an appropriate encoding of the quasipolynomial universal tree constructed in {ref}`Theorem <3-thm:universal_tree>`.
+We then discuss the cost $\Delta$ by choosing an appropriate encoding of the quasipolynomial universal tree constructed in {prf:ref}`3-thm:universal_tree`.
 
 ### Data structure
 
-We use a data structure similar to the attractor computation presented in  {ref}`Section <2-sec:attractors>`.
-The pseudocode is given in  {ref}`Algorithm <3-algo:value_iteration_data_structure>`.
+We use a data structure similar to the attractor computation presented in  Section {ref}`2-sec:attractors`.
+The pseudocode is given in  Algorithm {ref}`3-algo:value_iteration_data_structure`.
 We did not provide the pseudocode for the functions $\texttt{Init}$ and $\texttt{Update}$.
 
 The data structure consists of the following objects:
@@ -612,7 +588,7 @@ The data structure consists of the following objects:
 *  a set $S$ of vertices (each vertex appears at most once in $S$, the order in which vertices are stored and retrieved from the set does not matter);
 *  for each vertex of Eve a number of edges.
 
-For our complexity analysis we use the unit cost RAM model, see  {ref}`Section <1-sec:computation>` for details.
+For our complexity analysis we use the unit cost RAM model, see  Section {ref}`1-sec:computation` for details.
 In the case at hand let us choose for the machine word size $w = \log(m) + \log(d)$, 
 so that an edge together with its priority can be stored in one machine word.
 The space complexity of this data structure depends on the encoding of $T$, which we will discuss later.
@@ -630,7 +606,7 @@ for the latter each of them is checked and added to $S$ when required.
 By monotonicity, neglected vertices remain neglected so all vertices in $S$ (minus $v$) are still neglected.
 Hence the invariant is satisfied.
 
-The invariant implies that the algorithm indeed implements {ref}`Algorithm <3-algo:value_iteration>` hence returns the maximal progress measure, 
+The invariant implies that the algorithm indeed implements Algorithm {ref}`3-algo:value_iteration` hence returns the maximal progress measure, 
 but it also has implications on the complexity.
 Indeed one iteration of the repeat loop over some vertex $v$ involves 
 
@@ -652,61 +628,16 @@ O\left(
 $$
 
 
-\begin{algorithm}
- \KwData{A parity game with $n$ vertices priorities in $[1,d]$ and a $(n,d/2)$-universal tree $T$.}
- \SetKwFunction{FTreat}{Treat}
- \SetKwFunction{FVI}{ValueIteration}
- \SetKwFunction{FInit}{Initialise}
- \SetKwFunction{FUpdate}{Update}
- \SetKwProg{Fn}{Function}{:}{}
- \DontPrintSemicolon
- 
-\Fn{\FVI{}}{
 
-\FInit{$\mu$, $\text{number}$-$\text{neglected}$-$\text{edges}$, $S$}
-
-
-
-\Repeat{$S$ empty}{
-Choose some $v$ in $S$ and remove it from $S$
-
-$\mu \leftarrow \min(\mu, \Op_v(\mu))$
-
-\FUpdate{$\text{number}$-$\text{neglected}$-$\text{edges}(v)$}
-
-\For{$e \in E$ \text{ such that } $\Out(e) = v$}{
-\If{$e$ is neglected}{
-\FTreat($e$)
-}
-}
-}
-
-\Return{$\mu$}
-}
-
-
-\Fn{\FTreat{$e$}}{
-$v \leftarrow \Ing(e)$
-
-\If{$v \in \VA$ and $v \notin S$}{
-Add $v$ to $S$
-}
-
-\If{$v \in \VE$ and $v \notin S$}{
-$\text{number}$-$\text{neglected}$-$\text{edges}(v) \leftarrow \text{number}$-$\text{neglected}$-$\text{edges}(v) + 1$
-
-\If{$\text{number}$-$\text{neglected}$-$\text{edges}(v) = $ number of outgoing edges of $v$}{
-Add $v$ to $S$
-}
-}
-}
-\caption{The value iteration algorithm with explicit data structure.}
-\label{3-algo:value_iteration_data_structure}
-\end{algorithm}
+```{figure} /../3-algo:value_iteration_data_structure.png
+:name: 3-algo:value_iteration_data_structure
+:align: center
+The value iteration algorithm with explicit data structure.
+```
 
 ### Encoding branches
 
-Let us fix $T$ to be the quasipolynomial universal tree constructed in  {ref}`Theorem <3-thm:universal_tree>`.
+Let us fix $T$ to be the quasipolynomial universal tree constructed in  {prf:ref}`3-thm:universal_tree`.
 
 In our definition of trees we say that a tree is an ordered list of subtrees $[t_1,\dots,t_k]$,
 so we use $[1,k]$ with the natural order for ordering the subtrees.
@@ -739,7 +670,7 @@ The branches of $T$ are:
 *  branches of $T_\text{middle}$ augmented with a new component $\varepsilon$;
 *  branches of $T_\text{right}$ where the first component is prefixed with a $1$.
 
-We call this encoding the succinct encoding, it is illustrated in  {ref}`Figure <3-fig:tree_encoded>` for the $(5,2)$-universal tree.
+We call this encoding the succinct encoding, it is illustrated in  Figure {ref}`3-fig:tree_encoded` for the $(5,2)$-universal tree.
 The leftmost branch is $(00,\varepsilon)$, and the middle branch $(\varepsilon,\varepsilon)$.
 In general, the inductive construction implies that every branch is a tuple $(D_{d-1},\dots,D_1)$ 
 such that the sum of the lengths of the directions $D_i$ is at most $\log(n)$.
@@ -757,4 +688,4 @@ $$
 O\left(nm \log(n) \log(d) \cdot  \binom{\lceil \log(n) \rceil + d/2 - 1}{\lceil \log(n) \rceil} \right),
 $$
 
-as stated in  {ref}`Theorem <3-thm:value_iteration_quasipoly>`.
+as stated in  {prf:ref}`3-thm:value_iteration_quasipoly`.

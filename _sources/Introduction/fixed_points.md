@@ -1,6 +1,61 @@
 (1-sec:fixed_points)=
 # Generic fixed point algorithms
 
+```{math}
+\newcommand{\Eve}{\textrm{Eve}}
+\newcommand{\Adam}{\textrm{Adam}}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
+\newcommand{\argmax}{\text{argmax}}
+\newcommand{\argmin}{\text{argmin}}
+\newcommand{\Op}{\mathbb{O}}
+\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\text{supp}} 
+\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
+\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
+\newcommand{\mEve}{\mathrm{Eve}}
+\newcommand{\mAdam}{\mathrm{Adam}}
+\newcommand{\mRandom}{\mathrm{Random}}
+\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
+\newcommand{\ing}{\text{In}}
+\newcommand{\Ing}{\ing}
+\newcommand{\out}{\text{Out}}
+\newcommand{\Out}{\out}
+\newcommand{\dest}{\Delta} 
+\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
+\newcommand{\Paths}{\text{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\text{first}} \newcommand{\last}{\text{last}} 
+\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
+\newcommand{\Pre}{\text{Pre}} \newcommand{\PreE}{\text{Pre}_\mEve} \newcommand{\PreA}{\text{Pre}_\mAdam} \newcommand{\Attr}{\text{Attr}} \newcommand{\AttrE}{\text{Attr}_\mEve} \newcommand{\AttrA}{\text{Attr}_\mAdam} \newcommand{\rank}{\text{rank}}
+\renewcommand{\Win}{\textsc{Win}} 
+\renewcommand{\Lose}{\textsc{Lose}} 
+\newcommand{\Value}{\text{val}} 
+\newcommand{\ValueE}{\text{val}_\mEve} 
+\newcommand{\ValueA}{\text{val}_\mAdam}
+\newcommand{\val}{\Value} 
+\newcommand{\Automaton}{\mathbf{A}} 
+\newcommand{\Safe}{\mathtt{Safe}}
+\newcommand{\Reach}{\mathtt{Reach}} 
+\newcommand{\Buchi}{\mathtt{Buchi}} 
+\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
+\newcommand{\Parity}{\mathtt{Parity}} 
+\newcommand{\Muller}{\mathtt{Muller}} 
+\newcommand{\Rabin}{\mathtt{Rabin}} 
+\newcommand{\Streett}{\mathtt{Streett}} 
+\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
+\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
+\newcommand{\Energy}{\mathtt{Energy}}
+\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
+\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
+\newcommand{\Sup}{\mathtt{Sup}}
+\newcommand{\Inf}{\mathtt{Inf}}
+\newcommand{\LimSup}{\mathtt{LimSup}}
+\newcommand{\LimInf}{\mathtt{LimInf}}
+```
 Let $X$ be a set and $\Op : X \to X$ a function that we call an operator, we say that $x \in X$ is a fixed point of $\Op$ if $\Op(x) = x$.
 Fixed points will appear extensively in this book. 
 We describe here two general approaches for computing them: Banach's and Kleene's fixed point theorems.
@@ -14,9 +69,8 @@ The typical example of a complete space is $\R^d$ for some $d \in \N$ equipped w
 An operator $\Op : X \to X$ is contracting if there exists $\lambda < 1$ such that for all $x,y \in X$ we have
 $||\Op(x) - \Op(y)|| \le \lambda \cdot ||x - y||$.
 
-```{admonition} Theorem (Banach's fixed point theorem)
-:class: theorem
-:name: 1-thm:banach
+```{prf:theorem} Banach's fixed point theorem
+:label: 1-thm:banach
 
 Let $(X,||\cdot||)$ be a complete space and $\Op : X \to X$ a contracting operator, then $\Op$ has a unique fixed point $x_*$.
 For any $x_0 \in X$, the sequence $(\Op^k(x_0))_{k \in \N}$ converges towards $x_*$ and the rate of convergence is given by
@@ -44,9 +98,8 @@ The twin notions are deflationary if $x \ge \Op(x)$ and preserves infima defined
 
 We say that $x$ is a pre-fixed point if $\Op(x) \le x$ and a post-fixed point if $\Op(x) \ge x$.
 
-```{admonition} Theorem (Kleene's fixed point theorem)
-:class: theorem
-:name: 1-thm:kleene
+```{prf:theorem} Kleene's fixed point theorem
+:label: 1-thm:kleene
 
 Let $(X,\le)$ be a complete lattice and $\Op : X \to X$ a monotonic operator, then $\Op$ has a least fixed point
 which is also the least pre-fixed point.
@@ -65,33 +118,22 @@ The typical example of a complete lattice and one that we will use often in this
 An example of an infinite complete lattice is $\Rinfty$ equipped with the natural order.
 
 
-We state a variant of  {ref}`Theorem <1-thm:kleene>` for a set of operators $\Op_i : X \to X$ for $i \in I$.
+We state a variant of  {prf:ref}`1-thm:kleene` for a set of operators $\Op_i : X \to X$ for $i \in I$.
 Naturally we say that $x \in X$ is a fixed point of the set of operators $(\Op_i)_{i \in I}$ if for all $i \in I$ we have $\Op_i(x) = x$.
 
-```{admonition} Theorem (Kleene's fixed point theorem for a finite lattice and a set of operators)
-:class: theorem
-:name: 1-thm:kleene_set_operators
+```{prf:theorem} Kleene's fixed point theorem for a finite lattice and a set of operators
+:label: 1-thm:kleene_set_operators
 
 Let $(X,\le)$ be a finite lattice and $\Op_i : X \to X$ a set of monotonic operators for $i \in I$, then $(\Op_i)_{i \in I}$ has a least fixed point.
-The non-deterministic algorithm given in  {ref}`Algorithm <1-algo:fixed_point>` computes the least fixed point of $(\Op_i)_{i \in I}$.
+The non-deterministic algorithm given in  Algorithm {ref}`1-algo:fixed_point` computes the least fixed point of $(\Op_i)_{i \in I}$.
 
 ```
 
 Under the same assumptions $(\Op_i)_{i \in I}$ has a greatest fixed point which is computed by the dual algorithm.
 
-\begin{algorithm}
- \KwData{$(X,\le)$ a finite lattice and $\Op_i : X \to X$ a set of monotonic operators for $i \in I$}
-
-$x \leftarrow \bot$ 
-
-\Repeat{$x$ is a fixed point of $(\Op_i)_{i \in I}$}{
-Choose $i \in I$ such that $\neg (\Op_i(x) \le x)$
-
-$x \leftarrow \max(x, \Op_i(x))$ 
-}
-
-\Return{$x$}
-\caption{The generic non-deterministic least fixed point algorithm for a set of monotonic operators.}
-\label{1-algo:fixed_point}
-\end{algorithm}
+```{figure} /../1-algo:fixed_point.png
+:name: 1-algo:fixed_point
+:align: center
+The generic non-deterministic least fixed point algorithm for a set of monotonic operators.
+```
 

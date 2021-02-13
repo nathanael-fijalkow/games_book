@@ -1,15 +1,70 @@
 (3-sec:strategy_improvement)=
 # An exponential time strategy improvement algorithm
 
-```{admonition} Theorem
-:class: theorem
-:name: 3-thm:strategy_improvement
+```{math}
+\newcommand{\Eve}{\textrm{Eve}}
+\newcommand{\Adam}{\textrm{Adam}}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
+\newcommand{\argmax}{\text{argmax}}
+\newcommand{\argmin}{\text{argmin}}
+\newcommand{\Op}{\mathbb{O}}
+\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\text{supp}} 
+\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
+\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
+\newcommand{\mEve}{\mathrm{Eve}}
+\newcommand{\mAdam}{\mathrm{Adam}}
+\newcommand{\mRandom}{\mathrm{Random}}
+\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
+\newcommand{\ing}{\text{In}}
+\newcommand{\Ing}{\ing}
+\newcommand{\out}{\text{Out}}
+\newcommand{\Out}{\out}
+\newcommand{\dest}{\Delta} 
+\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
+\newcommand{\Paths}{\text{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\text{first}} \newcommand{\last}{\text{last}} 
+\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
+\newcommand{\Pre}{\text{Pre}} \newcommand{\PreE}{\text{Pre}_\mEve} \newcommand{\PreA}{\text{Pre}_\mAdam} \newcommand{\Attr}{\text{Attr}} \newcommand{\AttrE}{\text{Attr}_\mEve} \newcommand{\AttrA}{\text{Attr}_\mAdam} \newcommand{\rank}{\text{rank}}
+\renewcommand{\Win}{\textsc{Win}} 
+\renewcommand{\Lose}{\textsc{Lose}} 
+\newcommand{\Value}{\text{val}} 
+\newcommand{\ValueE}{\text{val}_\mEve} 
+\newcommand{\ValueA}{\text{val}_\mAdam}
+\newcommand{\val}{\Value} 
+\newcommand{\Automaton}{\mathbf{A}} 
+\newcommand{\Safe}{\mathtt{Safe}}
+\newcommand{\Reach}{\mathtt{Reach}} 
+\newcommand{\Buchi}{\mathtt{Buchi}} 
+\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
+\newcommand{\Parity}{\mathtt{Parity}} 
+\newcommand{\Muller}{\mathtt{Muller}} 
+\newcommand{\Rabin}{\mathtt{Rabin}} 
+\newcommand{\Streett}{\mathtt{Streett}} 
+\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
+\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
+\newcommand{\Energy}{\mathtt{Energy}}
+\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
+\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
+\newcommand{\Sup}{\mathtt{Sup}}
+\newcommand{\Inf}{\mathtt{Inf}}
+\newcommand{\LimSup}{\mathtt{LimSup}}
+\newcommand{\LimInf}{\mathtt{LimInf}}
+```
+
+```{prf:theorem} (needs title)
+:label: 3-thm:strategy_improvement
 
 There exists a strategy improvement algorithm for solving parity games in exponential time.
 
 ```
 
-We rely on the high-level presentation of strategy improvement algorithms given in  {ref}`Section <1-sec:strategy_improvement>`.
+We rely on the high-level presentation of strategy improvement algorithms given in  Section {ref}`1-sec:strategy_improvement`.
 In a nutshell: the algorithm constructs a sequence of strategies, the next one being an improvement over the current one,
 until reaching an optimal strategy.
 
@@ -33,8 +88,7 @@ equivalently all infinite paths in $\Game[\sigma]$ satisfy parity, not requiring
 We say that a cycle is even if the maximal priority along the cycle is even, and it is odd otherwise. 
 Respecting parity is characterised using cycles:
 
-```{admonition} Fact
-:class: fact
+```{prf:observation} (needs title)
 
 A strategy $\sigma$ respects parity if and only if all cycles in $\Game[\sigma]$ are even.
 
@@ -44,7 +98,7 @@ The algorithm will only manipulate strategies respecting parity.
 
 \paragraph{\bf Evaluating a strategy.}
 The first question is: given a strategy $\sigma$, how to evaluate it (in order to later improve it)?
-As explained in  {ref}`Section <1-sec:strategy_improvement>` towards this goal we define a value function $\val^{\sigma} : V \to Y$.
+As explained in  Section {ref}`1-sec:strategy_improvement` towards this goal we define a value function $\val^{\sigma} : V \to Y$.
 
 We let $\val^{\sigma}(v) = \min_\tau \val(\play_{\sigma,\tau}^v)$ where $\tau$ ranges over (general) strategies for Adam, so we first need to define the value of the play $\play = \play_{\sigma,\tau}^v$.
 If $\play$ is stopped, then $\val(\play)$ is the tuple $(p_1, p_2, \dots, p_d)$ where $p_i$ is the number of times that priority $p$ appears on the play.
@@ -100,8 +154,7 @@ $$
 
 Since $\delta$ is monotonic so is $\Op$.
 
-```{admonition} Fact
-:class: fact
+```{prf:observation} (needs title)
 
 The function $\val^\sigma$ is a fixed point of $\Op$ in $F^\sigma_V$.
 
@@ -116,9 +169,8 @@ The problem is for a vertex $v$ such that no plays starting from $v$ are stopped
 we can have either $\mu(v) = \top$ or $\mu(v) = \bot$, irrespective of whether the play satisfies parity or not.
 From this discussion we obtain the following result.
 
-```{admonition} Lemma
-:class: lemma
-:name: 3-lem:greatest_fixed_point
+```{prf:lemma} (needs title)
+:label: 3-lem:greatest_fixed_point
 
 If $\sigma$ respects parity, then $\val^{\sigma}$ is the greatest fixed point of $\Op$ in $F^\sigma_V$.
 
@@ -146,46 +198,18 @@ It may not hold that $\sigma_0$ respects parity since $\game$ may contain odd cy
 This can be checked in linear time and the attractor to the corresponding vertices removed from the game.
 After this preprocessing $\sigma_0$ indeed respects parity.
 
-The pseudocode of the algorithm is given in  {ref}`Algorithm <3-algo:strategy_improvement>`.
+The pseudocode of the algorithm is given in  Algorithm {ref}`3-algo:strategy_improvement`.
 
-\begin{algorithm}
- \KwData{A parity game $\game$}
- \SetKwBlock{Repeat}{repeat}{}
- \DontPrintSemicolon
- 
- $i \leftarrow 0$
- 
- \For{$v\in \VE$}{
-   $\sigma_0(v) \leftarrow \siblank$
- }
-
- $C \leftarrow \set{v \in V : v \text{ contained in an odd cycle in } \game[\sigma_0]}$
-
- $\Game \leftarrow \Game \setminus \AttrA(C)$
- 
- \Repeat{
-   Compute $\val^{\sigma_i}$ 
-
-\If{$\exists e_i = (v_i,v'_i) \in E \text{ switchable}$}{
-$\sigma_{i+1} \leftarrow \sigma_i[v_i \to e_i]$
-
-$i \leftarrow i + 1$
-
-} 
-\Else{
-\Return{$\set{v \in V : \val^{\sigma_i}(v) = \top}$}
-}
- }
-
- \caption{The strategy improvement algorithm for parity games.}
-\label{3-algo:strategy_improvement}
-\end{algorithm}
+```{figure} /../3-algo:strategy_improvement.png
+:name: 3-algo:strategy_improvement
+:align: center
+The strategy improvement algorithm for parity games.
+```
 
 \paragraph{\bf Proof of correctness.}
 We start by stating a very simple property of $\delta$, which is key in the arguments below.
 
-```{admonition} Fact
-:class: fact
+```{prf:observation} (needs title)
 
 Let $t \in Y$ and $p_1,\dots,p_k \in [1,d]$ such that $t$ and $\delta(t,p_1 \dots p_k)$ are neither $\top$ nor $\bot$.
 Then $t \le \delta(t,p_1 \dots p_k)$ if and only if $\max \set{p_1,\dots,p_k}$ is even.
@@ -194,9 +218,8 @@ Then $t \le \delta(t,p_1 \dots p_k)$ if and only if $\max \set{p_1,\dots,p_k}$ i
 
 The following lemma states the two important properties of $(Y,\le)$ and $\delta$.
 
-```{admonition} Lemma
-:class: lemma
-:name: 3-lem:key_property
+```{prf:lemma} (needs title)
+:label: 3-lem:key_property
 
 Let $G$ a parity graph (with no stopping option).
 
@@ -222,7 +245,7 @@ $$
 
 For all $i \in [0,k-1]$ we have $\mu(v_i) \le \delta(\mu(v_{i+1 \mod k}),\col(v_i))$.
 By monotonicity of $\delta$ this implies $\mu(v_1) \le \delta(\mu(v_1),\col(v_{k-1}) \cdots \col(v_0))$.
-Thanks to  {ref}`Lemma <3-lem:key_property>` this implies that the maximum priority in $\set{\col(v_0),\dots,\col(v_{k-1})}$ is even.
+Thanks to  {prf:ref}`3-lem:key_property` this implies that the maximum priority in $\set{\col(v_0),\dots,\col(v_{k-1})}$ is even.
 
 ```
 
@@ -231,10 +254,9 @@ A progress measure for $\Game[\sigma]$ is a post-fixed point of $\Op$ in $F^\sig
 it is a function $\mu : V \to Y$ such that $\mu(v) = \emptyset$ if $\sigma(v) = \siblank$ and $\mu \le \Op(\mu)$,
 which means that $\mu(v) \le \min \set{ \delta(\mu(v'),\col(v)) : (v,v') \in E}$.
 
-We now rely on  {ref}`Lemma <3-lem:greatest_fixed_point>` and  {ref}`Lemma <3-lem:key_property>` to prove the two principles: progress and optimality.
+We now rely on  {prf:ref}`3-lem:greatest_fixed_point` and  {prf:ref}`3-lem:key_property` to prove the two principles: progress and optimality.
 
-```{admonition} Lemma (Progress)
-:class: lemma
+```{prf:lemma} Progress
 Let $\sigma$ a strategy respecting parity and $e = (v,v')$ a switchable edge.
 We let $\sigma'$ denote $\sigma[v \to e]$.
 Then $\sigma'$ respects parity and $\sigma < \sigma'$.
@@ -261,13 +283,13 @@ indeed either $e'$ is an edge in $\Game[\sigma]$ and this is by definition of $\
 or $e' = e$ and the inequality was proved just above.
 
 Since $\sigma$ respects parity $\val^\sigma$ does not take the value $\bot$.
-But we cannot apply (the first item of)  {ref}`Lemma <3-lem:key_property>` yet because $\val^\sigma$ may have value $\top$.
+But we cannot apply (the first item of)  {prf:ref}`3-lem:key_property` yet because $\val^\sigma$ may have value $\top$.
 However by definition of $\val^\sigma$ for all vertices $s$ such that $\val^\sigma(s) = \top$ all paths from $s$ satisfy parity,
 so it is enough to consider the parity graph obtained from $\Game[\sigma']$ by removing all such vertices.
-The first item of  {ref}`Lemma <3-lem:key_property>` implies that it satisfies parity, hence $\Game[\sigma']$ as well.
+The first item of  {prf:ref}`3-lem:key_property` implies that it satisfies parity, hence $\Game[\sigma']$ as well.
 
 
-At this point we know that $\sigma'$ respects parity, which thanks to  {ref}`Lemma <3-lem:greatest_fixed_point>`
+At this point we know that $\sigma'$ respects parity, which thanks to  {prf:ref}`3-lem:greatest_fixed_point`
 implies that $\val^{\sigma'}$ is the greatest fixed point of $\Op$ in $F^{\sigma'}_V$.
 
 We now argue that $\val^\sigma$ is a progress measure for $\game[\sigma']$.
@@ -287,8 +309,7 @@ $\val^\sigma(v) < \val^{\sigma'}(v)$.
 ```
 
 
-```{admonition} Lemma (Optimality)
-:class: lemma
+```{prf:lemma} Optimality
 Let $\sigma$ a strategy respecting parity that has no switchable edges, then 
 $\sigma$ is winning from all vertices of $\WE(\Game)$.
 
@@ -313,7 +334,7 @@ Let us consider $\Game[\tau]$ the parity graph obtained from $\Game$ by restrict
 to those prescribed by $\tau$.
 We argue that for all edges $(v,,v')$ in $\game[\tau]$, we have 
 $\val^{\sigma}(v) \ge \delta(\val^{\sigma}(v'),\col(v))$.
-Once this is proved we conclude using the second item of  {ref}`Lemma <3-lem:key_property>` implying that $\Game[\tau]$ satisfies the complement of parity.
+Once this is proved we conclude using the second item of  {prf:ref}`3-lem:key_property` implying that $\Game[\tau]$ satisfies the complement of parity.
 
 The first case is when $v \in \VE$. 
 Let $\sigma(v) = (v,u)$.

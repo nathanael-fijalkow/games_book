@@ -1,14 +1,68 @@
 (2-sec:attractors)=
 # A linear time algorithm for reachability games
 
+```{math}
+\newcommand{\Eve}{\textrm{Eve}}
+\newcommand{\Adam}{\textrm{Adam}}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
+\newcommand{\argmax}{\text{argmax}}
+\newcommand{\argmin}{\text{argmin}}
+\newcommand{\Op}{\mathbb{O}}
+\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\text{supp}} 
+\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
+\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
+\newcommand{\mEve}{\mathrm{Eve}}
+\newcommand{\mAdam}{\mathrm{Adam}}
+\newcommand{\mRandom}{\mathrm{Random}}
+\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
+\newcommand{\ing}{\text{In}}
+\newcommand{\Ing}{\ing}
+\newcommand{\out}{\text{Out}}
+\newcommand{\Out}{\out}
+\newcommand{\dest}{\Delta} 
+\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
+\newcommand{\Paths}{\text{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\text{first}} \newcommand{\last}{\text{last}} 
+\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
+\newcommand{\Pre}{\text{Pre}} \newcommand{\PreE}{\text{Pre}_\mEve} \newcommand{\PreA}{\text{Pre}_\mAdam} \newcommand{\Attr}{\text{Attr}} \newcommand{\AttrE}{\text{Attr}_\mEve} \newcommand{\AttrA}{\text{Attr}_\mAdam} \newcommand{\rank}{\text{rank}}
+\renewcommand{\Win}{\textsc{Win}} 
+\renewcommand{\Lose}{\textsc{Lose}} 
+\newcommand{\Value}{\text{val}} 
+\newcommand{\ValueE}{\text{val}_\mEve} 
+\newcommand{\ValueA}{\text{val}_\mAdam}
+\newcommand{\val}{\Value} 
+\newcommand{\Automaton}{\mathbf{A}} 
+\newcommand{\Safe}{\mathtt{Safe}}
+\newcommand{\Reach}{\mathtt{Reach}} 
+\newcommand{\Buchi}{\mathtt{Buchi}} 
+\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
+\newcommand{\Parity}{\mathtt{Parity}} 
+\newcommand{\Muller}{\mathtt{Muller}} 
+\newcommand{\Rabin}{\mathtt{Rabin}} 
+\newcommand{\Streett}{\mathtt{Streett}} 
+\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
+\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
+\newcommand{\Energy}{\mathtt{Energy}}
+\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
+\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
+\newcommand{\Sup}{\mathtt{Sup}}
+\newcommand{\Inf}{\mathtt{Inf}}
+\newcommand{\LimSup}{\mathtt{LimSup}}
+\newcommand{\LimInf}{\mathtt{LimInf}}
+```
 Recall that the objective $\Reach$ requires that the colour $\Win$ appears at least once and 
 $\Safe$ requires the the colour $\Lose$ never appears.
 We identify the colour $\Win$ with $\col^{-1}(\Win)$ the set of vertices labelled $\Win$,
 so we write $v \in \Win$ when $\col(v) = \Win$, and similarly for $\Lose$.
 
-```{admonition} Theorem
-:class: theorem
-:name: 2-thm:reachability
+```{prf:theorem} (needs title)
+:label: 2-thm:reachability
 
 Reachability objectives are uniformly positionally determined for both players.
 There exists an algorithm for computing the winning regions of reachability games in linear time and space.
@@ -20,14 +74,14 @@ The first sentence implies that safety games are also uniformly positionally det
 and both positional determinacy results hold for infinite games.
 
 The complexity results are stated in the unit cost RAM model with machine word size $w = \log(m)$ with $m$ the number of edges.
-We refer to  {ref}`Section <1-sec:computation>` for more details about the model, which is in subtle ways different than the Turing model.
+We refer to  Section {ref}`1-sec:computation` for more details about the model, which is in subtle ways different than the Turing model.
 The complexity would be slightly different in the Turing model: an additional $\log(m)$ factor would be incurred for manipulating numbers of order $m$, which the unit cost RAM model allows us to conveniently hide.
 
 In the litterature the complexity $O(n + m)$ is often reported for solving reachability games.
 Since we make the assumption that every vertex has an outgoing edge this implies that $n \le m$, so $O(n + m) = O(m)$.
 
 
-Towards proving  {ref}`Theorem <2-thm:reachability>` let us introduce some notations.
+Towards proving  {prf:ref}`2-thm:reachability` let us introduce some notations.
 Let us consider a reachability game $\Game = (\arena, \Reach[\col])$.
 For a subset $F \subseteq V$, we let $\PreE(F) \subseteq V$ the set of vertices from which Eve can ensure 
 that the next vertex is in $F$:
@@ -47,9 +101,9 @@ $$
 
 We note that this operator is monotonic when equipping the powerset of vertices with the inclusion preorder:
 if $F \subseteq F'$ then $\PreE(F) \subseteq \PreE(F')$.
-Hence  {ref}`Theorem <1-thm:kleene>` applies: this operator has a least fixed point 
+Hence  {prf:ref}`1-thm:kleene` applies: this operator has a least fixed point 
 which we call the attractor of $\Win$ for Eve and write $\AttrE(\Win)$,
-and it is computed by the following sequence\footnote{For technical convenience we shift the sequence by one, ignoring the first term which is the empty set}:
+and it is computed by the following sequence (For technical convenience we shift the sequence by one, ignoring the first term which is the empty se):
 we let $\AttrE^0(\Win) = \Win$ and 
 
 $$
@@ -60,20 +114,19 @@ This constructs a sequence $(\AttrE^{k}(\Win))_{k \in \N}$ of non-decreasing sub
 If the game is finite and $n$ is the number of vertices, 
 the sequence stabilises after at most $n-1$ steps, **i.e.** $\AttrE^{n-1}(\Win) = \AttrE^{n}(\Win) = \AttrE(\Win)$.
 
-Let us drop the finiteness assumption: if the game is infinite but has finite outdegree, meaning that for any vertex there is a finite number of outgoing edges, then the operator above preserves suprema so thanks to  {ref}`Theorem <1-thm:kleene>` 
+Let us drop the finiteness assumption: if the game is infinite but has finite outdegree, meaning that for any vertex there is a finite number of outgoing edges, then the operator above preserves suprema so thanks to  {prf:ref}`1-thm:kleene` 
 we have $\AttrE(\Win) = \bigcup_{k \in \N} \AttrE^k(\Win)$.
 In full generality the operator does not preserve suprema and the use of ordinals is necessary:
 we define the sequence $(\AttrE^{\alpha}(\Win))$ indexed by ordinals up to the cardinal of $\Game$,
 the case of a limit ordinal $\alpha$ being $\AttrE^{\alpha}(\Win) = \bigcup_{\beta < \alpha} \AttrE^{\beta}(\Win)$.
 We then show that $\AttrE(\Win)$ is the union of all elements in this sequence.
 
-We do not elaborate further this most general case but note that the overhead is mostly technical, the proof below of  {ref}`Lemma <2-lem:reachability>` can be adapted with little changes using a transfinite induction.
+We do not elaborate further this most general case but note that the overhead is mostly technical, the proof below of  {prf:ref}`2-lem:reachability` can be adapted with little changes using a transfinite induction.
 
-The following lemma shows how the attractor yields a solution to reachability games and directly implies  {ref}`Theorem <2-thm:reachability>`.
+The following lemma shows how the attractor yields a solution to reachability games and directly implies  {prf:ref}`2-thm:reachability`.
 
-```{admonition} Lemma
-:class: lemma
-:name: 2-lem:reachability
+```{prf:lemma} (needs title)
+:label: 2-lem:reachability
 
 Let $\game$ a reachability game.
 Then $\WE(\game) = \AttrE(\Win)$, and:
@@ -126,9 +179,9 @@ in other words $\tau$ ensures $\Safe[\Win]$ from $V \setminus \AttrE(\Win)$.
 
 ```
 
-{ref}`Algorithm <2-algo:reachability>` is an efficient implementation of the attractor computation.
-Let us emphasise that it does not compute the sequence $(\AttrE^k(\Win))_{k \in \N}$ as suggested in  {ref}`Lemma <2-lem:reachability>`.
-In  {ref}`Section <4-sec:shortest_path>` we will generalise this algorithm to a quantitative setting 
+ Algorithm {ref}`2-algo:reachability` is an efficient implementation of the attractor computation.
+Let us emphasise that it does not compute the sequence $(\AttrE^k(\Win))_{k \in \N}$ as suggested in  {prf:ref}`2-lem:reachability`.
+In  Section {ref}`4-sec:shortest_path` we will generalise this algorithm to a quantitative setting 
 and construct an algorithm which does compute (as a special case) the sequence $(\AttrE^k(\Win))_{k \in \N}$,
 however with a higher complexity.
 
@@ -142,7 +195,7 @@ The data structure contains the following objects:
 *  a set $S$ of vertices (the order in which vertices are stored and retrieved from $S$ does not matter),
 *  for each vertex of Adam a number of edges.
 
-Recall that we are using the unit cost RAM model, see  {ref}`Section <1-sec:computation>`; 
+Recall that we are using the unit cost RAM model, see  Section {ref}`1-sec:computation`; 
 since the machine word size is $w = \log(m)$, a number of edges can be stored in one machine word.
 Hence the space complexity of the data structure of $O(n)$,
 which together with the size of the input yields a space complexity $O(m)$.
@@ -171,72 +224,25 @@ Both inclusions are easily obtained using a case analysis.
 
 The invariant implies the correctness of the algorithm: when $S$ is empty we obtain that $A = \AttrE(\Win)$.
 
-```{admonition} Remark
-:class: remark
+```{prf:remark} (needs title)
 
 We note that in the complexity analysis the cost of manipulating (and in particular decrementing) the counters for the number of edges is constant, which holds in the unit cost RAM model of computation.
 The same algorithm analysed in the Turing model of computation would have an additional $O(\log(n))$ multiplicative factor in the time complexity to take this into account.
 
 ```
 
-\begin{algorithm}
- \KwData{A reachability game.}
- \SetKwFunction{FTreat}{Treat}
- \SetKwFunction{FAttr}{Attractor}
- \SetKwProg{Fn}{Function}{:}{}
- \DontPrintSemicolon
- 
-\Fn{\FAttr{}}{
-$A \leftarrow \Win$
 
-$S \leftarrow \Win$ 
-
-\For{$v \in \VA$}{
-        $\text{number}$-$\text{edges}(v) \leftarrow $ number of outgoing edges of $v$
-}    
-
-
-\Repeat{$S$ empty}{
-Choose some $v'$ in $S$ and remove it from $S$
-
-        \For{$e$ incoming edge to $v'$}{
-\FTreat($e$)    
-        }
-}
-
-\Return{$A$}
-}
-
-
-\Fn{\FTreat{$e$}}{
-$v \leftarrow \Ing(e)$
-
-\If{$v \in \VA$ and $v \notin A$}{
-$\text{number}$-$\text{edges}(v) \leftarrow \text{number}$-$\text{edges}(v) - 1$
-
-\If{$\text{number}$-$\text{edges}(v) = 0$}{
-Add $v$ to $A$
-
-Add $v$ to $S$
-}
-}
-
-\If{$v \in \VE$ and $v \notin A$}{
-Add $v$ to $A$
-
-Add $v$ to $S$
-}
-}
-\caption{The linear time algorithm for reachability games.}
-\label{2-algo:reachability}
-\end{algorithm}
+```{figure} /../2-algo:reachability.png
+:name: 2-algo:reachability
+:align: center
+The linear time algorithm for reachability games.
+```
 
 
 The notion of attractors induces a common way of constructing traps as stated in the following very useful lemma.
 
-```{admonition} Lemma
-:class: lemma
-:name: 2-lem:attractors_trap
+```{prf:lemma} (needs title)
+:label: 2-lem:attractors_trap
 
 Let $\Game$ a game and $F \subseteq V$ a subset of edges.
 Then $V \setminus \AttrE(F)$ is a trap for Eve and symmetrically $V \setminus \AttrA(F)$ is a trap for Adam.

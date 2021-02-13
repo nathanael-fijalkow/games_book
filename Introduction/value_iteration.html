@@ -31,6 +31,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
@@ -46,8 +47,8 @@
     <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"set": ["\\left\\{ #1 \\right\\}", 1], "Eve": "\\textrm{Eve}", "Adam": "\\textrm{Adam}", "N": "\\mathbb{N}", "Z": "\\mathbb{Z}", "Zinfty": "\\Z \\cup \\set{\\pm \\infty}", "R": "\\mathbb{R}", "Rinfty": "\\R \\cup \\set{\\pm \\infty}", "Q": "\\mathbb{Q}", "Qinfty": "\\Q \\cup \\set{\\pm \\infty}", "argmax": "\\text{argmax}", "argmin": "\\text{argmin}", "Op": "\\mathbb{O}", "Prob": "\\mathbb{P}", "dist": "\\mathcal{D}", "Dist": "\\dist", "supp": "\\text{supp}", "game": "\\mathcal{G}", "Game": "\\game", "arena": "\\mathcal{A}", "Arena": "\\arena", "col": "\\textsf{col}", "Col": "\\col", "mEve": "\\mathrm{Eve}", "mAdam": "\\mathrm{Adam}", "mRandom": "\\mathrm{Random}", "vertices": "V", "VE": "V_\\mEve", "VA": "V_\\mAdam", "VR": "V_\\mRandom", "ing": "\\text{In}", "Ing": "\\ing", "out": "\\text{Out}", "Out": "\\out", "dest": "\\Delta", "WE": "W_\\mEve", "WA": "W_\\mAdam", "Paths": "\\text{Paths}", "play": "\\pi", "first": "\\text{first}", "last": "\\text{last}", "mem": "\\mathcal{M}", "Mem": "\\mem", "Pre": "\\text{Pre}", "PreE": "\\text{Pre}_\\mEve", "PreA": "\\text{Pre}_\\mAdam", "Attr": "\\text{Attr}", "AttrE": "\\text{Attr}_\\mEve", "AttrA": "\\text{Attr}_\\mAdam", "rank": "\\text{rank}", "Win": "\\textsc{Win}", "Lose": "\\textsc{Lose}", "Value": "\\text{val}", "ValueE": "\\text{val}_\\mEve", "ValueA": "\\text{val}_\\mAdam", "val": "\\Value", "Automaton": "\\mathbf{A}", "Safe": "\\mathtt{Safe}", "Reach": "\\mathtt{Reach}", "Buchi": "\\mathtt{Buchi}", "CoBuchi": "\\mathtt{CoBuchi}", "Parity": "\\mathtt{Parity}", "Muller": "\\mathtt{Muller}", "Rabin": "\\mathtt{Rabin}", "Streett": "\\mathtt{Streett}", "MeanPayoff": "\\mathtt{MeanPayoff}", "DiscountedPayoff": "\\mathtt{DiscountedPayoff}", "Energy": "\\mathtt{Energy}", "TotalPayoff": "\\mathtt{TotalPayoff}", "ShortestPath": "\\mathtt{ShortestPath}", "Sup": "\\mathtt{Sup}", "Inf": "\\mathtt{Inf}", "LimSup": "\\mathtt{LimSup}", "LimInf": "\\mathtt{LimInf}"}}, "tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -117,13 +118,13 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="computation.html">
-     Computational models
+    <a class="reference internal" href="objectives.html">
+     Objectives
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="objectives.html">
-     Objectives
+    <a class="reference internal" href="computation.html">
+     Computational models
     </a>
    </li>
    <li class="toctree-l2">
@@ -177,6 +178,11 @@
  </span>
 </p>
 <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Classic/index.html">
+   Classic
+  </a>
+ </li>
  <li class="toctree-l1 collapsible-parent">
   <a class="reference internal" href="../Classic/2_Regular/index.html">
    Regular
@@ -402,10 +408,64 @@
                 
   <div class="section" id="value-iteration-algorithms">
 <span id="sec-value-iteration"></span><h1>Value iteration algorithms<a class="headerlink" href="#value-iteration-algorithms" title="Permalink to this headline">¶</a></h1>
+<div class="math notranslate nohighlight">
+\[\newcommand{\Eve}{\textrm{Eve}}
+\newcommand{\Adam}{\textrm{Adam}}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
+\newcommand{\argmax}{\text{argmax}}
+\newcommand{\argmin}{\text{argmin}}
+\newcommand{\Op}{\mathbb{O}}
+\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\text{supp}} 
+\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
+\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
+\newcommand{\mEve}{\mathrm{Eve}}
+\newcommand{\mAdam}{\mathrm{Adam}}
+\newcommand{\mRandom}{\mathrm{Random}}
+\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
+\newcommand{\ing}{\text{In}}
+\newcommand{\Ing}{\ing}
+\newcommand{\out}{\text{Out}}
+\newcommand{\Out}{\out}
+\newcommand{\dest}{\Delta} 
+\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
+\newcommand{\Paths}{\text{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\text{first}} \newcommand{\last}{\text{last}} 
+\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
+\newcommand{\Pre}{\text{Pre}} \newcommand{\PreE}{\text{Pre}_\mEve} \newcommand{\PreA}{\text{Pre}_\mAdam} \newcommand{\Attr}{\text{Attr}} \newcommand{\AttrE}{\text{Attr}_\mEve} \newcommand{\AttrA}{\text{Attr}_\mAdam} \newcommand{\rank}{\text{rank}}
+\renewcommand{\Win}{\textsc{Win}} 
+\renewcommand{\Lose}{\textsc{Lose}} 
+\newcommand{\Value}{\text{val}} 
+\newcommand{\ValueE}{\text{val}_\mEve} 
+\newcommand{\ValueA}{\text{val}_\mAdam}
+\newcommand{\val}{\Value} 
+\newcommand{\Automaton}{\mathbf{A}} 
+\newcommand{\Safe}{\mathtt{Safe}}
+\newcommand{\Reach}{\mathtt{Reach}} 
+\newcommand{\Buchi}{\mathtt{Buchi}} 
+\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
+\newcommand{\Parity}{\mathtt{Parity}} 
+\newcommand{\Muller}{\mathtt{Muller}} 
+\newcommand{\Rabin}{\mathtt{Rabin}} 
+\newcommand{\Streett}{\mathtt{Streett}} 
+\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
+\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
+\newcommand{\Energy}{\mathtt{Energy}}
+\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
+\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
+\newcommand{\Sup}{\mathtt{Sup}}
+\newcommand{\Inf}{\mathtt{Inf}}
+\newcommand{\LimSup}{\mathtt{LimSup}}
+\newcommand{\LimInf}{\mathtt{LimInf}}\]</div>
 <p>In this section and the next we discuss two families of fixed point algorithms for solving games.
 The goal is to highlight the main ingredients for constructing algorithms in these two families.
 If the descriptions below are too abstract it may be useful to see concrete instantiations:
-we refer to  <span class="xref std std-ref">Chapter</span> for archetypical examples, and also to  <span class="xref std std-ref">Chapter</span>.</p>
+we refer to  Chapter <span class="xref std std-ref">4-chap:payoffs</span> for archetypical examples, and also to  Chapter <span class="xref std std-ref">3-chap:parity</span>.</p>
 <div class="section" id="the-value-function">
 <h2>The value function<a class="headerlink" href="#the-value-function" title="Permalink to this headline">¶</a></h2>
 <p>The key ingredient of a value iteration algorithm is a value function.
@@ -434,17 +494,18 @@ The value function is <span class="math notranslate nohighlight">\(\Value^{\game
 \]</div>
 <p>As above we write <span class="math notranslate nohighlight">\(\Value^{\sigma}\)</span> for <span class="math notranslate nohighlight">\(\inf_{\tau}\ \val(\pi_{\sigma,\tau}^v)\)</span>.</p>
 <p>The following principle implies that computing the value function in particular yields the winning regions.</p>
-<div class="principle admonition">
-<p class="admonition-title">Principle (Characterisation of the winning regions)</p>
+<div class="proof property admonition" id="property-0">
+<p class="admonition-title"><span class="caption-number">Property 29 </span> (Characterisation of the winning regions)</p>
+<div class="property-content section" id="proof-content">
 <p>For all vertices <span class="math notranslate nohighlight">\(v\)</span> we have that Eve wins from <span class="math notranslate nohighlight">\(v\)</span> if and only if <span class="math notranslate nohighlight">\(\Value^{\game}(v) \neq \bot\)</span>, where <span class="math notranslate nohighlight">\(\bot\)</span> is the least element in <span class="math notranslate nohighlight">\(Y\)</span>.</p>
 </div>
-<p>In the remainder of this section we assume the existence of a value function <span class="math notranslate nohighlight">\(\Value^{\game} : V \to Y\)</span> (note that choosing <span class="math notranslate nohighlight">\(Y = \Rinfty\)</span> covers the quantitative case) and fix as a goal to either compute or approximate it.</p>
+</div><p>In the remainder of this section we assume the existence of a value function <span class="math notranslate nohighlight">\(\Value^{\game} : V \to Y\)</span> (note that choosing <span class="math notranslate nohighlight">\(Y = \Rinfty\)</span> covers the quantitative case) and fix as a goal to either compute or approximate it.</p>
 </div>
 <div class="section" id="fixed-point">
 <h2>Fixed point<a class="headerlink" href="#fixed-point" title="Permalink to this headline">¶</a></h2>
 <p>We let <span class="math notranslate nohighlight">\(F_V\)</span> denote the set of functions <span class="math notranslate nohighlight">\(V \to Y\)</span>, it is a lattice when equipped with the componentwise (partial) order induced by <span class="math notranslate nohighlight">\(Y\)</span>:
 we say that <span class="math notranslate nohighlight">\(\mu \le \mu'\)</span> if for all vertices <span class="math notranslate nohighlight">\(v\)</span> we have <span class="math notranslate nohighlight">\(\mu(v) \le \mu'(v)\)</span>.</p>
-<p>The second ingredient is a function <span class="math notranslate nohighlight">\(\delta : Y \times C \to Y\)</span> inducing an operator <span class="math notranslate nohighlight">\(\Op : F_V \to F_V\)</span> defined by\footnote{This form is for two player games, the operator has to be adapted to more complex settings such as stochastic or concurrent games.} and satisfying the following principle:</p>
+<p>The second ingredient is a function <span class="math notranslate nohighlight">\(\delta : Y \times C \to Y\)</span> inducing an operator <span class="math notranslate nohighlight">\(\Op : F_V \to F_V\)</span> defined by (This form is for two player games, the operator has to be adapted to more complex settings such as stochastic or concurrent games) and satisfying the following principle:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \Op(\mu)(v) = 
@@ -453,11 +514,12 @@ we say that <span class="math notranslate nohighlight">\(\mu \le \mu'\)</span> i
 \min \set{\delta( \mu(v'), \col(v)) : (v,v') \in E} &amp; \text{ if } v \in \VA.
 \end{cases}
 \end{split}\]</div>
-<div class="principle admonition">
-<p class="admonition-title">Principle (Fixed point)</p>
+<div class="proof property admonition" id="property-1">
+<p class="admonition-title"><span class="caption-number">Property 30 </span> (Fixed point)</p>
+<div class="property-content section" id="proof-content">
 <p>The function <span class="math notranslate nohighlight">\(\val^{\game}\)</span> is a fixed point of the operator <span class="math notranslate nohighlight">\(\Op\)</span>.</p>
 </div>
-<p>This fixed point principle is often tightly related to the fact the <span class="math notranslate nohighlight">\(\Game\)</span> is positionally determined for both players.
+</div><p>This fixed point principle is often tightly related to the fact the <span class="math notranslate nohighlight">\(\Game\)</span> is positionally determined for both players.
 The fact that <span class="math notranslate nohighlight">\(\val^{\game} = \Op(\val^{\game})\)</span> means that from a vertex <span class="math notranslate nohighlight">\(v\)</span>,
 the value <span class="math notranslate nohighlight">\(\val^{\game}(v)\)</span> can be computed locally, <strong>i.e.</strong> by considering the maximum or the minimum over all edges <span class="math notranslate nohighlight">\((v,v')\)</span>
 of a function <span class="math notranslate nohighlight">\(\delta\)</span> of <span class="math notranslate nohighlight">\(\val^{\game}(v')\)</span> and of <span class="math notranslate nohighlight">\(\col(v)\)</span>.
@@ -465,14 +527,15 @@ The choice of minimum or maximum corresponds to the goal of the players: Eve wan
 </div>
 <div class="section" id="fixed-point-through-contraction">
 <h2>Fixed point through contraction<a class="headerlink" href="#fixed-point-through-contraction" title="Permalink to this headline">¶</a></h2>
-<p>Let us first consider the family of value iteration algorithms based on Banach’s fixed point theorem as stated in  <a class="reference internal" href="fixed_points.html#thm-banach"><span class="std std-ref">Theorem</span></a>
+<p>Let us first consider the family of value iteration algorithms based on Banach’s fixed point theorem as stated in  <a class="reference internal" href="fixed_points.html#1-thm:banach">Theorem 26</a>
 and let us fix as a goal to approximate <span class="math notranslate nohighlight">\(\Value^{\game}\)</span>.
 We equip <span class="math notranslate nohighlight">\(F_V\)</span> with a norm <span class="math notranslate nohighlight">\(||\cdot||\)</span>.</p>
-<div class="principle admonition">
-<p class="admonition-title">Principle (Fixed point through contraction)</p>
+<div class="proof property admonition" id="property-2">
+<p class="admonition-title"><span class="caption-number">Property 31 </span> (Fixed point through contraction)</p>
+<div class="property-content section" id="proof-content">
 <p>The operator <span class="math notranslate nohighlight">\(\Op\)</span> is contracting in the complete space <span class="math notranslate nohighlight">\((F_V,||\cdot||)\)</span> implying that <span class="math notranslate nohighlight">\(\Value^{\game}\)</span> is the unique fixed point of <span class="math notranslate nohighlight">\(\Op\)</span>.</p>
 </div>
-<p>The algorithm is the following:
+</div><p>The algorithm is the following:
 we choose some <span class="math notranslate nohighlight">\(\Value_0 : V \to Y\)</span> and then compute the sequence <span class="math notranslate nohighlight">\((\Value_k)_{k \in \N}\)</span> defined by <span class="math notranslate nohighlight">\(\Value_{k+1} = \Op(\Value_k)\)</span>
 until we get the desired quality of approximation for <span class="math notranslate nohighlight">\(\Value^{\game}\)</span>.
 We have</p>
@@ -486,14 +549,16 @@ Hence to get an <span class="math notranslate nohighlight">\(\varepsilon\)</span
 </div>
 <div class="section" id="fixed-point-through-monotonicity">
 <h2>Fixed point through monotonicity<a class="headerlink" href="#fixed-point-through-monotonicity" title="Permalink to this headline">¶</a></h2>
-<p>The second family of algorithms is based on Kleene’s fixed point theorem as stated in  <a class="reference internal" href="fixed_points.html#thm-kleene"><span class="std std-ref">Theorem</span></a>.</p>
-<div class="principle admonition">
-<p class="admonition-title">Principle (Fixed point through monotonicity)</p>
+<p>The second family of algorithms is based on Kleene’s fixed point theorem as stated in  <a class="reference internal" href="fixed_points.html#1-thm:kleene">Theorem 27</a>.</p>
+<div class="proof property admonition" id="property-3">
+<p class="admonition-title"><span class="caption-number">Property 32 </span> (Fixed point through monotonicity)</p>
+<div class="property-content section" id="proof-content">
 <p>The function <span class="math notranslate nohighlight">\(\delta\)</span> is monotonic (meaning that if <span class="math notranslate nohighlight">\(y \le y'\)</span> then for all colours <span class="math notranslate nohighlight">\(c\)</span> we have <span class="math notranslate nohighlight">\(\delta(y,c) \le \delta(y',c)\)</span>)
 and <span class="math notranslate nohighlight">\(\val^{\game}\)</span> is the greatest fixed point of the monotonic operator <span class="math notranslate nohighlight">\(\Op\)</span>.</p>
 </div>
-<div class="remark admonition">
-<p class="admonition-title">Remark</p>
+</div><div class="proof remark admonition" id="remark-4">
+<p class="admonition-title"><span class="caption-number">Remark 33 </span> ((needs title))</p>
+<div class="remark-content section" id="proof-content">
 <p>It is possible to define the value function as the <strong>least</strong> fixed point of <span class="math notranslate nohighlight">\(\Op\)</span>,
 and this is equivalent up to some inversions in the lattice <span class="math notranslate nohighlight">\((Y,\le)\)</span> and the operator <span class="math notranslate nohighlight">\(\Op\)</span>.
 There are two reasons why we chose to define the value function as the <strong>greatest</strong> fixed point of <span class="math notranslate nohighlight">\(\Op\)</span>.
@@ -501,7 +566,7 @@ The first is that this implies that the operator <span class="math notranslate n
 and the second is that with this convention losing from <span class="math notranslate nohighlight">\(v\)</span> is equivalent to <span class="math notranslate nohighlight">\(\Value^{\game}(v) = \bot\)</span>,
 while in the other convention it is equivalent to <span class="math notranslate nohighlight">\(\Value^{\game}(v) = \top\)</span>, where <span class="math notranslate nohighlight">\(\top\)</span> is the greatest element in <span class="math notranslate nohighlight">\(Y\)</span>.</p>
 </div>
-<p><a class="reference internal" href="fixed_points.html#thm-kleene"><span class="std std-ref">Theorem</span></a> states that <span class="math notranslate nohighlight">\(\Value^{\game}\)</span> is also the greatest post-fixed point.
+</div><p><a class="reference internal" href="fixed_points.html#1-thm:kleene">Theorem 27</a> states that <span class="math notranslate nohighlight">\(\Value^{\game}\)</span> is also the greatest post-fixed point.
 Recall that a post-fixed point is <span class="math notranslate nohighlight">\(\mu\)</span> such that <span class="math notranslate nohighlight">\(\mu \le \Op(\mu)\)</span>, which in this context we call a progress measure.
 Expanding the definitions: for all vertices <span class="math notranslate nohighlight">\(v\)</span>, we have</p>
 <div class="math notranslate nohighlight">
@@ -520,11 +585,12 @@ Expanding the definitions: for all vertices <span class="math notranslate nohigh
 \end{array}
 \end{split}\]</div>
 <p>The characterisation principle can be equivalently stated as follows.</p>
-<div class="principle admonition">
-<p class="admonition-title">Principle (Characterisation of the winning regions – equivalent formulation with progress measures)</p>
+<div class="proof property admonition" id="property-5">
+<p class="admonition-title"><span class="caption-number">Property 34 </span> (Characterisation of the winning regions – equivalent formulation with progress measures)</p>
+<div class="property-content section" id="proof-content">
 <p>For all vertices <span class="math notranslate nohighlight">\(v\)</span> we have Eve wins from <span class="math notranslate nohighlight">\(v\)</span> if and only if there exists a progress measure <span class="math notranslate nohighlight">\(\mu\)</span> such that <span class="math notranslate nohighlight">\(\mu(v) \neq \bot\)</span>.</p>
 </div>
-<p>The third information given by  <a class="reference internal" href="fixed_points.html#thm-kleene"><span class="std std-ref">Theorem</span></a> is that <span class="math notranslate nohighlight">\(\Value^{\game}\)</span> is the limit of the sequence <span class="math notranslate nohighlight">\((\Op^k(\top))_{k \in \N}\)</span>.</p>
+</div><p>The third information given by  <a class="reference internal" href="fixed_points.html#1-thm:kleene">Theorem 27</a> is that <span class="math notranslate nohighlight">\(\Value^{\game}\)</span> is the limit of the sequence <span class="math notranslate nohighlight">\((\Op^k(\top))_{k \in \N}\)</span>.</p>
 <p>If <span class="math notranslate nohighlight">\(Y\)</span> is a finite lattice then so is <span class="math notranslate nohighlight">\(F_V\)</span>, and the algorithm for computing <span class="math notranslate nohighlight">\(\Value^{\game}\)</span> is as follows:
 we let <span class="math notranslate nohighlight">\(\Value_0\)</span> defined by <span class="math notranslate nohighlight">\(\Value_0(v) = \top\)</span> and then compute the sequence <span class="math notranslate nohighlight">\((\Value_k)_{k \in \N}\)</span> defined by
 <span class="math notranslate nohighlight">\(\Value_{k+1} = \min(\Op(\Value_k), \Value_k)\)</span>.
@@ -532,8 +598,9 @@ There exists <span class="math notranslate nohighlight">\(k\)</span> such that <
 from which we obtain the winning regions thanks to the characterisation principle.
 A naive upper bound on <span class="math notranslate nohighlight">\(k\)</span> is <span class="math notranslate nohighlight">\(|F_V| \le |Y|^n\)</span>, but usually a finer analysis of the algorithm yields better bounds on the number of iterations to reach the fixed point.</p>
 <p>If <span class="math notranslate nohighlight">\(Y\)</span> is not finite that the sequence <span class="math notranslate nohighlight">\((\Value_k)_{k \in \N}\)</span> converges towards <span class="math notranslate nohighlight">\(\Value^{\game}\)</span> and further analysis is required to evaluate the convergence speed.</p>
-<div class="remark admonition">
-<p class="admonition-title">Remark</p>
+<div class="proof remark admonition" id="remark-6">
+<p class="admonition-title"><span class="caption-number">Remark 35 </span> ((needs title))</p>
+<div class="remark-content section" id="proof-content">
 <p>It is sometimes useful to define instead of the operator <span class="math notranslate nohighlight">\(\Op\)</span> a set of operators <span class="math notranslate nohighlight">\((\Op_v)_{v \in V}\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -545,9 +612,9 @@ A naive upper bound on <span class="math notranslate nohighlight">\(k\)</span> i
 \end{cases}
 \end{split}\]</div>
 <p>The fixed points of <span class="math notranslate nohighlight">\(\Op\)</span> and of the set of operators <span class="math notranslate nohighlight">\((\Op_v)_{v \in V}\)</span> are the same
-and the ideas described above can be applied using  <a class="reference internal" href="fixed_points.html#thm-kleene-set-operators"><span class="std std-ref">Theorem</span></a> instead of  <a class="reference internal" href="fixed_points.html#thm-kleene"><span class="std std-ref">Theorem</span></a>.</p>
+and the ideas described above can be applied using  <a class="reference internal" href="fixed_points.html#1-thm:kleene_set_operators">Theorem 28</a> instead of  <a class="reference internal" href="fixed_points.html#1-thm:kleene">Theorem 27</a>.</p>
 </div>
-</div>
+</div></div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -588,7 +655,7 @@ and the ideas described above can be applied using  <a class="reference internal
         
           By a set of authors coordinated by Nathana&euml;l Fijalkow<br/>
         
-            &copy; Copyright 2020.<br/>
+            &copy; Copyright 2021.<br/>
       </p>
     </div>
   </footer>
