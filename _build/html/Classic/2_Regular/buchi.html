@@ -31,6 +31,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
@@ -46,8 +47,8 @@
     <script src="../../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"set": ["\\left\\{ #1 \\right\\}", 1], "Eve": "\\textrm{Eve}", "Adam": "\\textrm{Adam}", "N": "\\mathbb{N}", "Z": "\\mathbb{Z}", "Zinfty": "\\Z \\cup \\set{\\pm \\infty}", "R": "\\mathbb{R}", "Rinfty": "\\R \\cup \\set{\\pm \\infty}", "Q": "\\mathbb{Q}", "Qinfty": "\\Q \\cup \\set{\\pm \\infty}", "argmax": "\\text{argmax}", "argmin": "\\text{argmin}", "Op": "\\mathbb{O}", "Prob": "\\mathbb{P}", "dist": "\\mathcal{D}", "Dist": "\\dist", "supp": "\\text{supp}", "game": "\\mathcal{G}", "Game": "\\game", "arena": "\\mathcal{A}", "Arena": "\\arena", "col": "\\textsf{col}", "Col": "\\col", "mEve": "\\mathrm{Eve}", "mAdam": "\\mathrm{Adam}", "mRandom": "\\mathrm{Random}", "vertices": "V", "VE": "V_\\mEve", "VA": "V_\\mAdam", "VR": "V_\\mRandom", "ing": "\\text{In}", "Ing": "\\ing", "out": "\\text{Out}", "Out": "\\out", "dest": "\\Delta", "WE": "W_\\mEve", "WA": "W_\\mAdam", "Paths": "\\text{Paths}", "play": "\\pi", "first": "\\text{first}", "last": "\\text{last}", "mem": "\\mathcal{M}", "Mem": "\\mem", "Pre": "\\text{Pre}", "PreE": "\\text{Pre}_\\mEve", "PreA": "\\text{Pre}_\\mAdam", "Attr": "\\text{Attr}", "AttrE": "\\text{Attr}_\\mEve", "AttrA": "\\text{Attr}_\\mAdam", "rank": "\\text{rank}", "Win": "\\textsc{Win}", "Lose": "\\textsc{Lose}", "Value": "\\text{val}", "ValueE": "\\text{val}_\\mEve", "ValueA": "\\text{val}_\\mAdam", "val": "\\Value", "Automaton": "\\mathbf{A}", "Safe": "\\mathtt{Safe}", "Reach": "\\mathtt{Reach}", "Buchi": "\\mathtt{Buchi}", "CoBuchi": "\\mathtt{CoBuchi}", "Parity": "\\mathtt{Parity}", "Muller": "\\mathtt{Muller}", "Rabin": "\\mathtt{Rabin}", "Streett": "\\mathtt{Streett}", "MeanPayoff": "\\mathtt{MeanPayoff}", "DiscountedPayoff": "\\mathtt{DiscountedPayoff}", "Energy": "\\mathtt{Energy}", "TotalPayoff": "\\mathtt{TotalPayoff}", "ShortestPath": "\\mathtt{ShortestPath}", "Sup": "\\mathtt{Sup}", "Inf": "\\mathtt{Inf}", "LimSup": "\\mathtt{LimSup}", "LimInf": "\\mathtt{LimInf}"}}, "tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -117,13 +118,13 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../Introduction/computation.html">
-     Computational models
+    <a class="reference internal" href="../../Introduction/objectives.html">
+     Objectives
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../Introduction/objectives.html">
-     Objectives
+    <a class="reference internal" href="../../Introduction/computation.html">
+     Computational models
     </a>
    </li>
    <li class="toctree-l2">
@@ -177,6 +178,11 @@
  </span>
 </p>
 <ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   Classic
+  </a>
+ </li>
  <li class="toctree-l1 current active collapsible-parent">
   <a class="reference internal" href="index.html">
    Regular
@@ -392,21 +398,77 @@
                 
   <div class="section" id="a-quadratic-time-algorithm-for-buchi-games">
 <span id="sec-buchi"></span><h1>A quadratic time algorithm for Büchi games<a class="headerlink" href="#a-quadratic-time-algorithm-for-buchi-games" title="Permalink to this headline">¶</a></h1>
+<div class="math notranslate nohighlight">
+\[\newcommand{\Eve}{\textrm{Eve}}
+\newcommand{\Adam}{\textrm{Adam}}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
+\newcommand{\argmax}{\text{argmax}}
+\newcommand{\argmin}{\text{argmin}}
+\newcommand{\Op}{\mathbb{O}}
+\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\text{supp}} 
+\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
+\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
+\newcommand{\mEve}{\mathrm{Eve}}
+\newcommand{\mAdam}{\mathrm{Adam}}
+\newcommand{\mRandom}{\mathrm{Random}}
+\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
+\newcommand{\ing}{\text{In}}
+\newcommand{\Ing}{\ing}
+\newcommand{\out}{\text{Out}}
+\newcommand{\Out}{\out}
+\newcommand{\dest}{\Delta} 
+\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
+\newcommand{\Paths}{\text{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\text{first}} \newcommand{\last}{\text{last}} 
+\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
+\newcommand{\Pre}{\text{Pre}} \newcommand{\PreE}{\text{Pre}_\mEve} \newcommand{\PreA}{\text{Pre}_\mAdam} \newcommand{\Attr}{\text{Attr}} \newcommand{\AttrE}{\text{Attr}_\mEve} \newcommand{\AttrA}{\text{Attr}_\mAdam} \newcommand{\rank}{\text{rank}}
+\renewcommand{\Win}{\textsc{Win}} 
+\renewcommand{\Lose}{\textsc{Lose}} 
+\newcommand{\Value}{\text{val}} 
+\newcommand{\ValueE}{\text{val}_\mEve} 
+\newcommand{\ValueA}{\text{val}_\mAdam}
+\newcommand{\val}{\Value} 
+\newcommand{\Automaton}{\mathbf{A}} 
+\newcommand{\Safe}{\mathtt{Safe}}
+\newcommand{\Reach}{\mathtt{Reach}} 
+\newcommand{\Buchi}{\mathtt{Buchi}} 
+\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
+\newcommand{\Parity}{\mathtt{Parity}} 
+\newcommand{\Muller}{\mathtt{Muller}} 
+\newcommand{\Rabin}{\mathtt{Rabin}} 
+\newcommand{\Streett}{\mathtt{Streett}} 
+\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
+\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
+\newcommand{\Energy}{\mathtt{Energy}}
+\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
+\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
+\newcommand{\Sup}{\mathtt{Sup}}
+\newcommand{\Inf}{\mathtt{Inf}}
+\newcommand{\LimSup}{\mathtt{LimSup}}
+\newcommand{\LimInf}{\mathtt{LimInf}}\]</div>
 <p>Recall that the objective <span class="math notranslate nohighlight">\(\Buchi\)</span> requires that the colour <span class="math notranslate nohighlight">\(\Win\)</span> appears infinitely many times
 and <span class="math notranslate nohighlight">\(\CoBuchi\)</span> requires that the colour <span class="math notranslate nohighlight">\(\Lose\)</span> appears finitely many times.</p>
-<div class="theorem admonition" id="thm-buchi">
-<p class="admonition-title">Theorem</p>
-<p>Büchi objectives are uniformly positionally determined for both players\footnote{See \cref{2-rmk:finite_infinite} for the case of infinite games.}.
+<div class="proof theorem admonition" id="2-thm:Buchi">
+<p class="admonition-title"><span class="caption-number">Theorem 44 </span> ((needs title))</p>
+<div class="theorem-content section" id="proof-content">
+<p>Büchi objectives are uniformly positionally determined for both players (See \cref{2-rmk:finite_infinit) for the case of infinite games.}.
 There exists an algorithm for computing the winning regions of Büchi games in quadratic time, more precisely <span class="math notranslate nohighlight">\(O(mn)\)</span>,
 and linear space, more precisely <span class="math notranslate nohighlight">\(O(m)\)</span>.</p>
 </div>
-<p>The first sentence implies that CoBüchi games are also uniformly positionally determined.
+</div><p>The first sentence implies that CoBüchi games are also uniformly positionally determined.
 We present two different yet very similar algorithms.</p>
 <div class="section" id="a-first-algorithm">
 <h2>A first algorithm<a class="headerlink" href="#a-first-algorithm" title="Permalink to this headline">¶</a></h2>
-<p>The following lemma implies  <a class="reference internal" href="#thm-buchi"><span class="std std-ref">Theorem</span></a>.</p>
-<div class="lemma admonition" id="lem-buchi-second">
-<p class="admonition-title">Lemma</p>
+<p>The following lemma implies  <a class="reference internal" href="#2-thm:Buchi">Theorem 44</a>.</p>
+<div class="proof lemma admonition" id="2-lem:Buchi_second">
+<p class="admonition-title"><span class="caption-number">Lemma 45 </span> ((needs title))</p>
+<div class="lemma-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\Game\)</span> be a Büchi game.</p>
 <ul class="simple">
 <li><p>If <span class="math notranslate nohighlight">\(\AttrE(\Win) = V\)</span>, then <span class="math notranslate nohighlight">\(\WE(\Game) = V\)</span>.</p></li>
@@ -415,7 +477,7 @@ let <span class="math notranslate nohighlight">\(\Game'\)</span> be the subgame 
 then <span class="math notranslate nohighlight">\(\WE(\Game) = \WE(\Game')\)</span>.</p></li>
 </ul>
 </div>
-<div class="dropdown tip admonition">
+</div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
 <p>We prove the first item.</p>
 <p>Let <span class="math notranslate nohighlight">\(\sigma_a\)</span> be an attractor strategy ensuring to reach <span class="math notranslate nohighlight">\(\Win\)</span> from <span class="math notranslate nohighlight">\(\AttrE(\Win)\)</span>, and <span class="math notranslate nohighlight">\(\sigma_p\)</span> any (positional) strategy from <span class="math notranslate nohighlight">\(\Win\)</span>.
@@ -459,33 +521,20 @@ Consider a winning strategy from <span class="math notranslate nohighlight">\(\W
 Since <span class="math notranslate nohighlight">\(\Game'\)</span> is a trap for Adam, any play consistent with <span class="math notranslate nohighlight">\(\sigma\)</span> stays forever in <span class="math notranslate nohighlight">\(\WE(\Game')\)</span>,
 implying that <span class="math notranslate nohighlight">\(\sigma\)</span> is winning from <span class="math notranslate nohighlight">\(\WE(\Game')\)</span> in <span class="math notranslate nohighlight">\(\Game\)</span>.</p>
 </div>
-<p>The algorithm is presented in pseudocode in  <span class="xref std std-ref">Algorithm</span>.
+<p>The algorithm is presented in pseudocode in  Algorithm <a class="reference internal" href="#algo-buchi-first"><span class="std std-ref">The first quadratic time algorithm for solving B{“uchi} games.</span></a>.
 For the complexity analysis, the algorithm performs at most <span class="math notranslate nohighlight">\(n\)</span> recursive calls
 and each of them involves two attractor computations, implying the time complexity <span class="math notranslate nohighlight">\(O(mn)\)</span>.</p>
-<p>\begin{algorithm}
-\KwData{A Büchi game.}
-\SetKwFunction{FSolve}{Solve}
-\SetKwProg{Fn}{Function}{:}{}
-\DontPrintSemicolon</p>
-<p>\Fn{\FSolve{<span class="math notranslate nohighlight">\(\Game\)</span>}}{
-<span class="math notranslate nohighlight">\(X \leftarrow \AttrE(\Win)\)</span></p>
-<p>\If{<span class="math notranslate nohighlight">\(X = V\)</span>}{
-\Return{<span class="math notranslate nohighlight">\(V\)</span>}
-}
-\Else{
-Let <span class="math notranslate nohighlight">\(\Game'\)</span> the subgame of <span class="math notranslate nohighlight">\(\Game\)</span> induced by <span class="math notranslate nohighlight">\(V \setminus \AttrA(X)\)</span></p>
-<p>\Return{<span class="math notranslate nohighlight">\(\FSolve{\)</span>\Game’<span class="math notranslate nohighlight">\(}\)</span>}
-}
-}
-\caption{The first quadratic time algorithm for solving B{“uchi} games.}
-\label{2-algo:Buchi_first}
-\end{algorithm}</p>
+<div class="figure align-center" id="algo-buchi-first">
+<img alt="../2-algo:Buchi_first.png" src="../2-algo:Buchi_first.png" />
+<p class="caption"><span class="caption-number">Fig. 9 </span><span class="caption-text">The first quadratic time algorithm for solving B{“uchi} games.</span><a class="headerlink" href="#algo-buchi-first" title="Permalink to this image">¶</a></p>
+</div>
 </div>
 <div class="section" id="a-second-algorithm">
 <h2>A second algorithm<a class="headerlink" href="#a-second-algorithm" title="Permalink to this headline">¶</a></h2>
-<p>The following lemma induces a different algorithm, it also implies  <a class="reference internal" href="#thm-buchi"><span class="std std-ref">Theorem</span></a>.</p>
-<div class="lemma admonition" id="lem-buchi">
-<p class="admonition-title">Lemma</p>
+<p>The following lemma induces a different algorithm, it also implies  <a class="reference internal" href="#2-thm:Buchi">Theorem 44</a>.</p>
+<div class="proof lemma admonition" id="2-lem:Buchi">
+<p class="admonition-title"><span class="caption-number">Lemma 46 </span> ((needs title))</p>
+<div class="lemma-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\game\)</span> a Büchi game.
 Then <span class="math notranslate nohighlight">\(\WE(\game)\)</span> is the greatest fixed point of the monotonic operator</p>
 <div class="math notranslate nohighlight">
@@ -493,9 +542,9 @@ Then <span class="math notranslate nohighlight">\(\WE(\game)\)</span> is the gre
 Y \mapsto \AttrE \left( \Win \cap \PreE(Y) \right).
 \]</div>
 </div>
-<div class="dropdown tip admonition">
+</div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
-<p>Thanks to  <a class="reference internal" href="../../Introduction/fixed_points.html#thm-kleene"><span class="std std-ref">Theorem</span></a> the fixed point computation is realised by setting <span class="math notranslate nohighlight">\(Y_0 = V\)</span>
+<p>Thanks to  <a class="reference internal" href="../../Introduction/fixed_points.html#1-thm:kleene">Theorem 27</a> the fixed point computation is realised by setting <span class="math notranslate nohighlight">\(Y_0 = V\)</span>
 and <span class="math notranslate nohighlight">\(Y_{k+1} = Y_k \cap \AttrE \left(\Win \cap \PreE(Y_k) \right)\)</span>.
 This constructs a non-increasing sequence <span class="math notranslate nohighlight">\((Y_k)_{k \in \N}\)</span> of subsets of <span class="math notranslate nohighlight">\(V\)</span>
 satisfying the property:
@@ -552,26 +601,19 @@ so the next vertex has rank at most <span class="math notranslate nohighlight">\
 Thus along any play consistent with <span class="math notranslate nohighlight">\(\tau\)</span>, the rank never increases and each time a vertex in <span class="math notranslate nohighlight">\(\Win\)</span> is reached the rank decreases,
 implying that it satisfies <span class="math notranslate nohighlight">\(\CoBuchi[\Win]\)</span>.</p>
 </div>
-<p><a class="reference internal" href="#lem-buchi"><span class="std std-ref">Lemma</span></a> directly transfers to  <span class="xref std std-ref">Algorithm</span>.</p>
-<p>\begin{algorithm}
-\KwData{A Büchi game.}</p>
-<p><span class="math notranslate nohighlight">\(Y_0 \leftarrow V\)</span></p>
-<p><span class="math notranslate nohighlight">\(k \leftarrow 0\)</span></p>
-<p>\Repeat{<span class="math notranslate nohighlight">\(Y_{k+1} = Y_k\)</span>}{
-<span class="math notranslate nohighlight">\(Y_{k+1} \leftarrow Y_k \cap \AttrE \left( \Win \cap \PreE(Y_k) \right)\)</span></p>
-<p><span class="math notranslate nohighlight">\(k \leftarrow k + 1\)</span>
-}</p>
-<p>\Return{<span class="math notranslate nohighlight">\(Y_k\)</span>}
-\caption{The second quadratic time algorithm for solving B{“uchi} games.}
-\label{2-algo:Buchi_second}
-\end{algorithm}</p>
-<div class="remark admonition">
-<p class="admonition-title">Remark</p>
+<p><a class="reference internal" href="#2-lem:Buchi">Lemma 46</a> directly transfers to  Algorithm <a class="reference internal" href="#algo-buchi-second"><span class="std std-ref">The second quadratic time algorithm for solving B{“uchi} games.</span></a>.</p>
+<div class="figure align-center" id="algo-buchi-second">
+<img alt="../2-algo:Buchi_second.png" src="../2-algo:Buchi_second.png" />
+<p class="caption"><span class="caption-number">Fig. 10 </span><span class="caption-text">The second quadratic time algorithm for solving B{“uchi} games.</span><a class="headerlink" href="#algo-buchi-second" title="Permalink to this image">¶</a></p>
+</div>
+<div class="proof remark admonition" id="remark-3">
+<p class="admonition-title"><span class="caption-number">Remark 47 </span> ((needs title))</p>
+<div class="remark-content section" id="proof-content">
 <p>Both algorithms have the same complexity but they are not equivalent: the number of recursive calls of the first algorithm
 may be strictly smaller than the number of iterations of the repeat loop in the second algorithm.
 Both can be extended into (different) algorithms for parity games and beyond; in this chapter we will work with the first algorithm.</p>
 </div>
-</div>
+</div></div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -612,7 +654,7 @@ Both can be extended into (different) algorithms for parity games and beyond; in
         
           By a set of authors coordinated by Nathana&euml;l Fijalkow<br/>
         
-            &copy; Copyright 2020.<br/>
+            &copy; Copyright 2021.<br/>
       </p>
     </div>
   </footer>

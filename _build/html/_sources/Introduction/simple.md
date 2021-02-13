@@ -1,6 +1,61 @@
 (1-sec:simple)=
 # A first model of games
 
+```{math}
+\newcommand{\Eve}{\textrm{Eve}}
+\newcommand{\Adam}{\textrm{Adam}}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
+\newcommand{\argmax}{\text{argmax}}
+\newcommand{\argmin}{\text{argmin}}
+\newcommand{\Op}{\mathbb{O}}
+\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\text{supp}} 
+\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
+\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
+\newcommand{\mEve}{\mathrm{Eve}}
+\newcommand{\mAdam}{\mathrm{Adam}}
+\newcommand{\mRandom}{\mathrm{Random}}
+\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
+\newcommand{\ing}{\text{In}}
+\newcommand{\Ing}{\ing}
+\newcommand{\out}{\text{Out}}
+\newcommand{\Out}{\out}
+\newcommand{\dest}{\Delta} 
+\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
+\newcommand{\Paths}{\text{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\text{first}} \newcommand{\last}{\text{last}} 
+\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
+\newcommand{\Pre}{\text{Pre}} \newcommand{\PreE}{\text{Pre}_\mEve} \newcommand{\PreA}{\text{Pre}_\mAdam} \newcommand{\Attr}{\text{Attr}} \newcommand{\AttrE}{\text{Attr}_\mEve} \newcommand{\AttrA}{\text{Attr}_\mAdam} \newcommand{\rank}{\text{rank}}
+\renewcommand{\Win}{\textsc{Win}} 
+\renewcommand{\Lose}{\textsc{Lose}} 
+\newcommand{\Value}{\text{val}} 
+\newcommand{\ValueE}{\text{val}_\mEve} 
+\newcommand{\ValueA}{\text{val}_\mAdam}
+\newcommand{\val}{\Value} 
+\newcommand{\Automaton}{\mathbf{A}} 
+\newcommand{\Safe}{\mathtt{Safe}}
+\newcommand{\Reach}{\mathtt{Reach}} 
+\newcommand{\Buchi}{\mathtt{Buchi}} 
+\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
+\newcommand{\Parity}{\mathtt{Parity}} 
+\newcommand{\Muller}{\mathtt{Muller}} 
+\newcommand{\Rabin}{\mathtt{Rabin}} 
+\newcommand{\Streett}{\mathtt{Streett}} 
+\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
+\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
+\newcommand{\Energy}{\mathtt{Energy}}
+\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
+\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
+\newcommand{\Sup}{\mathtt{Sup}}
+\newcommand{\Inf}{\mathtt{Inf}}
+\newcommand{\LimSup}{\mathtt{LimSup}}
+\newcommand{\LimInf}{\mathtt{LimInf}}
+```
 The first model we define is the common denominator of most models studied in this book:
 
 *  $2$-player,
@@ -86,8 +141,7 @@ An example of an arena. Circles are controlled by Eve and squares by Adam.
 ```
 Our definition of an arena does not include the initial vertex. 
 
-```{admonition} Convention
-:class: convention
+```{prf:remark} (needs title)
 
 We assume that all vertices have an outgoing edge.
 This is for technical convenience, as it implies that we do not need to explain what happens when a play cannot be prolonged.
@@ -176,8 +230,7 @@ $$
 
 
 
-```{admonition} Remark
-:class: remark
+```{prf:remark} (needs title)
 
 In our definition the colouring function labels vertices.
 Another more general definition would label edges, and yet another relaxation would be to allow partial functions,
@@ -194,8 +247,7 @@ or partial colouring functions.
 
 We can now give the following definitions.
 
-```{admonition} Definition (Games)
-:class: definition
+```{prf:definition} Games
 
 *  A graph is a tuple $G = (V,E)$ where $V$ is a set of vertices
 and $E$ is a set of edges.
@@ -235,12 +287,11 @@ $(\arena,\Paths_\omega \setminus W)$ and the qualitative game $(\arena,-f)$.
 Indeed for the latter Adam wants to minimise $f$, which is equivalent to maximising $-f$.
 The term zero sum comes from this: the total outcome for the two players is $f + (-f)$, meaning zero.
 
-```{admonition} Remark
-:class: remark
+```{prf:remark} (needs title)
 
 Unless otherwise stated we assume that graphs are finite, meaning that there are finitely many vertices (hence finitely many edges).
 We equivalently say that the arena or the game is finite.
-Part {ref}`part:infinite` will study games over infinite graphs.
+ Part {ref}`part:infinite` will study games over infinite graphs.
 
 ```
 
@@ -266,8 +317,7 @@ The analogous notation for Adam is $\WA(\game)$.
 
 We say that a strategy is optimal if it is winning from all vertices in $\WE(\game)$.
 
-```{admonition} Fact
-:class: fact
+```{prf:observation} (needs title)
 
 For all qualitative games $\game$ we have $\WE(\game) \cap \WA(\game) = \emptyset$.
 
@@ -291,9 +341,8 @@ hence it does not fit in the definitions given so far), where neither player has
 Whenever $\WE(\game) \cup \WA(\game) = V$, we say that the game is determined.
 Being determined can be understood as follows: the outcome can be determined before playing assuming both players play optimally since one of them can ensure to win whatever is the strategy of the opponent.
 
-```{admonition} Theorem
-:class: theorem
-:name: 1-thm:borel_determinacy
+```{prf:theorem} (needs title)
+:label: 1-thm:borel_determinacy
 
 Qualitative games with Borel conditions are determined.
 
@@ -392,8 +441,7 @@ $$
 $$
 
 
-```{admonition} Fact
-:class: fact
+```{prf:observation} (needs title)
 
 For all quantitative games $\game$ and vertex $v$ we have $\ValueE^{\game}(v) \le \ValueA^{\game}(v)$.
 
@@ -419,9 +467,8 @@ Similarly as for the qualitative case, being determined can be understood as fol
 We say that a quantitative objective $f : C^\omega \to \Rinfty$ is Borel if for all $x \in \R$,
 the qualitative objective $f_{\ge x} \subseteq C^\omega$ is a Borel set.
 
-```{admonition} Corollary
-:class: corollary
-:name: 1-cor:borel_determinacy
+```{prf:corollary} (needs title)
+:label: 1-cor:borel_determinacy
 
 Quantitative games with Borel conditions are determined, meaning that
 for all quantitative games $\game$ we have $\ValueE^{\game} = \ValueA^{\game}$.
@@ -435,7 +482,7 @@ If $\ValueE^{\game}(v) = \infty$ then thanks to the inequality above $\ValueA^{\
 Assume $\ValueE^{\game}(v) = -\infty$ and let $r$ be a real number.
 (The argument is actually the same as for the finite case but for the sake of clarity we treat them independently.)
 We consider $f_{\ge r}$.
-By definition, this a qualitative Borel condition, so {ref}`Theorem <1-thm:borel_determinacy>` implies that it is determined.
+By definition, this a qualitative Borel condition, so  {prf:ref}`1-thm:borel_determinacy` implies that it is determined.
 Since Eve cannot have a winning strategy for $f_{\ge r}$, as this would contradict the definition of $\ValueE^{\game}(v)$,
 this implies that Adam has a winning strategy for $f_{\ge r}$, 
 meaning a strategy $\tau$ such that every play $\play$ starting from $v$ consistent with $\tau$ satisfy $f(\play) < r$.
@@ -444,7 +491,7 @@ Since this is true for any real number $r$, this implies $\ValueA^{\game}(v) = -
 
 Let us now assume that $x = \ValueE^{\game}(v)$ is finite and let $\varepsilon > 0$.
 We consider $f_{\ge x + \varepsilon}$.
-By definition, this a qualitative Borel condition, so {ref}`Theorem <1-thm:borel_determinacy>` implies that it is determined.
+By definition, this a qualitative Borel condition, so  {prf:ref}`1-thm:borel_determinacy` implies that it is determined.
 Since Eve cannot have a winning strategy for $f_{\ge x + \varepsilon}$, as this would contradict the definition of $\ValueE^{\game}(v)$,
 this implies that Adam has a winning strategy for $f_{\ge x + \varepsilon}$, 
 meaning a strategy $\tau$ such that every play $\play$ starting from $v$ consistent with $\tau$ satisfy $f(\play) < x + \varepsilon$.
@@ -496,8 +543,7 @@ Especially in this case, it may be enough to approximate the value, which is ind
 by repeatingly applying an algorithm solving the value problem one can approximate the value to any given precision,
 using a binary search.
 
-```{admonition} Lemma
-:class: lemma
+```{prf:lemma} (needs title)
 
 If there exists an algorithm $A$ for solving the value problem of a class of games, 
 then there exists an algorithm for approximating the value of games in this class within precision $\varepsilon$ 
@@ -543,9 +589,8 @@ $$
 
 
 
-```{admonition} Fact
-:class: fact
-:name: 1-fact:winning_prefix_independent_qualitative
+```{prf:observation} (needs title)
+:label: 1-fact:winning_prefix_independent_qualitative
 
 Let $\Game$ be a qualitative game with objective $\Omega$ closed under removing prefixes,
 $\sigma$ a winning strategy from $v$,
@@ -565,8 +610,7 @@ the play $\play'$ is winning. Thus $\sigma_{\mid \play}$ is winning from $v'$.
 ```
 
 
-```{admonition} Corollary
-:class: corollary
+```{prf:corollary} (needs title)
 
 Let $\Game$ be a qualitative game with objective $\Omega$ closed under removing prefixes and $\sigma$ a winning strategy from $v$.
 Then all vertices reachable from $v$ by a play consistent with $\sigma$ are winning.
@@ -585,9 +629,8 @@ we have $\Phi(\rho') \ge \Phi(\rho \rho')$;
 
 The fact above extends to quantitative objectives with the same proof.
 
-```{admonition} Fact
-:class: fact
-:name: 1-fact:winning_prefix_independent_quantitative
+```{prf:observation} (needs title)
+:label: 1-fact:winning_prefix_independent_quantitative
 
 Let $\Game$ be a quantitative game with objective $\Phi$ monotonic under removing prefixes,
 $\sigma$ a strategy ensuring $x$ from $v$, and $\play$ a finite play consistent with $\sigma$ starting from $v$.
@@ -606,8 +649,7 @@ this implies that $\Phi(\play') \ge x$. Thus $\sigma_{\mid \play}$ ensures $x$ f
 ```
 
 
-```{admonition} Corollary
-:class: corollary
+```{prf:corollary} (needs title)
 
 Let $\Game$ be a quantitative game with objective $\Phi$ monotonic under removing prefixes and $\sigma$ an optimal strategy from $v$.
 Then for all vertices $v'$ reachable from $v$ by a play consistent with $\sigma$ we have $\val^{\game}(v) \le \val^{\game}(v')$.

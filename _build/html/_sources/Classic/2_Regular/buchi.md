@@ -1,14 +1,68 @@
 (2-sec:buchi)=
 # A quadratic time algorithm for B&uuml;chi games
 
+```{math}
+\newcommand{\Eve}{\textrm{Eve}}
+\newcommand{\Adam}{\textrm{Adam}}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
+\newcommand{\argmax}{\text{argmax}}
+\newcommand{\argmin}{\text{argmin}}
+\newcommand{\Op}{\mathbb{O}}
+\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\text{supp}} 
+\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
+\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
+\newcommand{\mEve}{\mathrm{Eve}}
+\newcommand{\mAdam}{\mathrm{Adam}}
+\newcommand{\mRandom}{\mathrm{Random}}
+\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
+\newcommand{\ing}{\text{In}}
+\newcommand{\Ing}{\ing}
+\newcommand{\out}{\text{Out}}
+\newcommand{\Out}{\out}
+\newcommand{\dest}{\Delta} 
+\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
+\newcommand{\Paths}{\text{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\text{first}} \newcommand{\last}{\text{last}} 
+\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
+\newcommand{\Pre}{\text{Pre}} \newcommand{\PreE}{\text{Pre}_\mEve} \newcommand{\PreA}{\text{Pre}_\mAdam} \newcommand{\Attr}{\text{Attr}} \newcommand{\AttrE}{\text{Attr}_\mEve} \newcommand{\AttrA}{\text{Attr}_\mAdam} \newcommand{\rank}{\text{rank}}
+\renewcommand{\Win}{\textsc{Win}} 
+\renewcommand{\Lose}{\textsc{Lose}} 
+\newcommand{\Value}{\text{val}} 
+\newcommand{\ValueE}{\text{val}_\mEve} 
+\newcommand{\ValueA}{\text{val}_\mAdam}
+\newcommand{\val}{\Value} 
+\newcommand{\Automaton}{\mathbf{A}} 
+\newcommand{\Safe}{\mathtt{Safe}}
+\newcommand{\Reach}{\mathtt{Reach}} 
+\newcommand{\Buchi}{\mathtt{Buchi}} 
+\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
+\newcommand{\Parity}{\mathtt{Parity}} 
+\newcommand{\Muller}{\mathtt{Muller}} 
+\newcommand{\Rabin}{\mathtt{Rabin}} 
+\newcommand{\Streett}{\mathtt{Streett}} 
+\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
+\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
+\newcommand{\Energy}{\mathtt{Energy}}
+\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
+\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
+\newcommand{\Sup}{\mathtt{Sup}}
+\newcommand{\Inf}{\mathtt{Inf}}
+\newcommand{\LimSup}{\mathtt{LimSup}}
+\newcommand{\LimInf}{\mathtt{LimInf}}
+```
 Recall that the objective $\Buchi$ requires that the colour $\Win$ appears infinitely many times
 and $\CoBuchi$ requires that the colour $\Lose$ appears finitely many times.
 
-```{admonition} Theorem
-:class: theorem
-:name: 2-thm:Buchi
+```{prf:theorem} (needs title)
+:label: 2-thm:Buchi
 
-B&uuml;chi objectives are uniformly positionally determined for both players\footnote{See \cref{2-rmk:finite_infinite} for the case of infinite games.}.
+B&uuml;chi objectives are uniformly positionally determined for both players (See \cref{2-rmk:finite_infinit) for the case of infinite games.}.
 There exists an algorithm for computing the winning regions of B&uuml;chi games in quadratic time, more precisely $O(mn)$,
 and linear space, more precisely $O(m)$.
 
@@ -19,11 +73,10 @@ We present two different yet very similar algorithms.
 
 ## A first algorithm
 
-The following lemma implies  {ref}`Theorem <2-thm:Buchi>`.
+The following lemma implies  {prf:ref}`2-thm:Buchi`.
 
-```{admonition} Lemma
-:class: lemma
-:name: 2-lem:Buchi_second
+```{prf:lemma} (needs title)
+:label: 2-lem:Buchi_second
 
 Let $\Game$ be a B&uuml;chi game.
 
@@ -88,39 +141,22 @@ implying that $\sigma$ is winning from $\WE(\Game')$ in $\Game$.
 
 ```
 
-The algorithm is presented in pseudocode in  {ref}`Algorithm <2-algo:Buchi_first>`.
+The algorithm is presented in pseudocode in  Algorithm {ref}`2-algo:Buchi_first`.
 For the complexity analysis, the algorithm performs at most $n$ recursive calls
 and each of them involves two attractor computations, implying the time complexity $O(mn)$.
 
-\begin{algorithm}
- \KwData{A B&uuml;chi game.}
- \SetKwFunction{FSolve}{Solve}
- \SetKwProg{Fn}{Function}{:}{}
- \DontPrintSemicolon
-
-\Fn{\FSolve{$\Game$}}{
-$X \leftarrow \AttrE(\Win)$
-
-\If{$X = V$}{
-\Return{$V$}
-}
-\Else{
-Let $\Game'$ the subgame of $\Game$ induced by $V \setminus \AttrA(X)$
-
-\Return{$\FSolve{$\Game'$}$}
-}
-}
-\caption{The first quadratic time algorithm for solving B{\"uchi} games.}
-\label{2-algo:Buchi_first}
-\end{algorithm}
+```{figure} /../2-algo:Buchi_first.png
+:name: 2-algo:Buchi_first
+:align: center
+The first quadratic time algorithm for solving B{\"uchi} games.
+```
 
 ## A second algorithm
 
-The following lemma induces a different algorithm, it also implies  {ref}`Theorem <2-thm:Buchi>`.
+The following lemma induces a different algorithm, it also implies  {prf:ref}`2-thm:Buchi`.
 
-```{admonition} Lemma
-:class: lemma
-:name: 2-lem:Buchi
+```{prf:lemma} (needs title)
+:label: 2-lem:Buchi
 
 Let $\game$ a B&uuml;chi game.
 Then $\WE(\game)$ is the greatest fixed point of the monotonic operator 
@@ -136,7 +172,7 @@ $$
 ```{admonition} Proof
 :class: dropdown tip
 
-Thanks to  {ref}`Theorem <1-thm:kleene>` the fixed point computation is realised by setting $Y_0 = V$
+Thanks to  {prf:ref}`1-thm:kleene` the fixed point computation is realised by setting $Y_0 = V$
 and $Y_{k+1} = Y_k \cap \AttrE \left(\Win \cap \PreE(Y_k) \right)$.
 This constructs a non-increasing sequence $(Y_k)_{k \in \N}$ of subsets of $V$
 satisfying the property:
@@ -203,28 +239,15 @@ implying that it satisfies $\CoBuchi[\Win]$.
 
 ```
 
-{ref}`Lemma <2-lem:Buchi>` directly transfers to  {ref}`Algorithm <2-algo:Buchi_second>`.
+ {prf:ref}`2-lem:Buchi` directly transfers to  Algorithm {ref}`2-algo:Buchi_second`.
 
-\begin{algorithm}
- \KwData{A B&uuml;chi game.}
+```{figure} /../2-algo:Buchi_second.png
+:name: 2-algo:Buchi_second
+:align: center
+The second quadratic time algorithm for solving B{\"uchi} games.
+```
 
-$Y_0 \leftarrow V$ 
-
-$k \leftarrow 0$ 
-     
-\Repeat{$Y_{k+1} = Y_k$}{
-$Y_{k+1} \leftarrow Y_k \cap \AttrE \left( \Win \cap \PreE(Y_k) \right)$ 
-
-$k \leftarrow k + 1$
-}
-
-\Return{$Y_k$}
-\caption{The second quadratic time algorithm for solving B{\"uchi} games.}
-\label{2-algo:Buchi_second}
-\end{algorithm}
-
-```{admonition} Remark
-:class: remark
+```{prf:remark} (needs title)
 
 Both algorithms have the same complexity but they are not equivalent: the number of recursive calls of the first algorithm
 may be strictly smaller than the number of iterations of the repeat loop in the second algorithm.

@@ -1,6 +1,61 @@
 (4-sec:shortest_path)=
 # Shortest path games
 
+```{math}
+\newcommand{\Eve}{\textrm{Eve}}
+\newcommand{\Adam}{\textrm{Adam}}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
+\newcommand{\argmax}{\text{argmax}}
+\newcommand{\argmin}{\text{argmin}}
+\newcommand{\Op}{\mathbb{O}}
+\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\text{supp}} 
+\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
+\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
+\newcommand{\mEve}{\mathrm{Eve}}
+\newcommand{\mAdam}{\mathrm{Adam}}
+\newcommand{\mRandom}{\mathrm{Random}}
+\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
+\newcommand{\ing}{\text{In}}
+\newcommand{\Ing}{\ing}
+\newcommand{\out}{\text{Out}}
+\newcommand{\Out}{\out}
+\newcommand{\dest}{\Delta} 
+\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
+\newcommand{\Paths}{\text{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\text{first}} \newcommand{\last}{\text{last}} 
+\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
+\newcommand{\Pre}{\text{Pre}} \newcommand{\PreE}{\text{Pre}_\mEve} \newcommand{\PreA}{\text{Pre}_\mAdam} \newcommand{\Attr}{\text{Attr}} \newcommand{\AttrE}{\text{Attr}_\mEve} \newcommand{\AttrA}{\text{Attr}_\mAdam} \newcommand{\rank}{\text{rank}}
+\renewcommand{\Win}{\textsc{Win}} 
+\renewcommand{\Lose}{\textsc{Lose}} 
+\newcommand{\Value}{\text{val}} 
+\newcommand{\ValueE}{\text{val}_\mEve} 
+\newcommand{\ValueA}{\text{val}_\mAdam}
+\newcommand{\val}{\Value} 
+\newcommand{\Automaton}{\mathbf{A}} 
+\newcommand{\Safe}{\mathtt{Safe}}
+\newcommand{\Reach}{\mathtt{Reach}} 
+\newcommand{\Buchi}{\mathtt{Buchi}} 
+\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
+\newcommand{\Parity}{\mathtt{Parity}} 
+\newcommand{\Muller}{\mathtt{Muller}} 
+\newcommand{\Rabin}{\mathtt{Rabin}} 
+\newcommand{\Streett}{\mathtt{Streett}} 
+\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
+\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
+\newcommand{\Energy}{\mathtt{Energy}}
+\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
+\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
+\newcommand{\Sup}{\mathtt{Sup}}
+\newcommand{\Inf}{\mathtt{Inf}}
+\newcommand{\LimSup}{\mathtt{LimSup}}
+\newcommand{\LimInf}{\mathtt{LimInf}}
+```
 The quantitative objective $\Sup$ generalises the qualitative
 objective $\Reach$ by stating numerical preferences on the target. 
 Another quantitative extension of the reachability objective is to quantify the cost of a path towards the target.
@@ -38,15 +93,14 @@ Hence for a vertex $v$ there are three possibilities:
 *  $\val(v) = \infty$, meaning that Eve can ensure to reach $\Win$ with arbitrarily negative cost.
 
 As we will see, detecting whether $\val(v) = -\infty$ is easy: this is equivalent to asking whether 
-$v \notin \AttrE(\Win)$ as stated in  {ref}`Lemma <4-lem:detecting_minus_infinity>`.
-The second case where $\val(v) \in \Z$ will be an occasion to revisit the attractor computation from  {ref}`Section <2-sec:reachability>`
+$v \notin \AttrE(\Win)$ as stated in  {prf:ref}`4-lem:detecting_minus_infinity`.
+The second case where $\val(v) \in \Z$ will be an occasion to revisit the attractor computation from  Section {ref}`2-sec:reachability`
 in a quantitative setting.
 Most of the difficulty lies in the third case, where 
 
 
-```{admonition} Lemma
-:class: lemma
-:name: 4-lem:detecting_minus_infinity
+```{prf:lemma} (needs title)
+:label: 4-lem:detecting_minus_infinity
 
 Let $\Game$ a shortest path game and $v$ a vertex.
 Then $\val(v) = -\infty$ if and only if $v \notin \AttrE(\Win)$.
@@ -72,21 +126,19 @@ However, if she never reaches $\Win$ the outcome is $-\infty$.
 
 ## Shortest path games with non-negative weights
 
-```{admonition} Theorem
-:class: theorem
-:name: 4-thm:shortest path-positive
+```{prf:theorem} (needs title)
+:label: 4-thm:shortest path-positive
 
-Shortest path games with non-negative weights are uniformly positionally determined for both players\footnote{This positionality result does not extend to infinite games.}.
+Shortest path games with non-negative weights are uniformly positionally determined for both players (This positionality result does not extend to infinite games).
 There exists a value iteration algorithm for computing the value function of these games in polynomial time and space.
 \mynote{More precisely}, 
 
 ```
 
-We rely on the high-level presentation of value iteration algorithms given in  {ref}`Section <1-sec:value_iteration>`.
+We rely on the high-level presentation of value iteration algorithms given in  Section {ref}`1-sec:value_iteration`.
 
-```{admonition} Lemma
-:class: lemma
-:name: 4-lem:optimal_strategies_shortest_path_games
+```{prf:lemma} (needs title)
+:label: 4-lem:optimal_strategies_shortest_path_games
 
 Let $\Game$ be a shortest path game with non-negative weights, then there exists an optimal strategy $\sigma$ for Eve.
 
@@ -102,8 +154,8 @@ This implies that the supremum is indeed a maximum.
 
 ```
 
-{ref}`Figure <1-fig:optimal_strategies_shortest_path_game>` shows that the assumption that all weights are non-negative 
-in  {ref}`Lemma <4-lem:optimal_strategies_shortest_path_games>` is necessary.
+ Figure {ref}`1-fig:optimal_strategies_shortest_path_game` shows that the assumption that all weights are non-negative 
+in  {prf:ref}`4-lem:optimal_strategies_shortest_path_games` is necessary.
 
 We consider the complete lattice $Y = -\N \cup \set{-\infty}$ equipped with the natural order and the function $\delta : Y \times C \to Y$ defined by
 
@@ -126,11 +178,10 @@ $$
 \end{cases}
 $$
 
-Thanks to  {ref}`Theorem <1-thm:kleene>`, the operator $\Op$ has a greatest fixed point which is also the greatest post-fixed point of $\Op$.
+Thanks to  {prf:ref}`1-thm:kleene`, the operator $\Op$ has a greatest fixed point which is also the greatest post-fixed point of $\Op$.
 The latter are functions $f \in F_V$ such that $f \le \Op(f)$ and called progress measures.
 
-```{admonition} Lemma
-:class: lemma
+```{prf:lemma} (needs title)
 
 Let $\Game$ be a shortest path game with non-negative weights, then $\val$ is the greatest fixed point of $\Op$.
 
@@ -148,7 +199,7 @@ We show the following two properties:
 Since the greatest fixed point of $\Op$ is also the greatest progress measure, this implies the result.
 
 We show the first item.
-Thanks to  {ref}`Lemma <4-lem:optimal_strategies_shortest_path_games>` there exists $\sigma$ an optimal strategy for Eve.
+Thanks to  {prf:ref}`4-lem:optimal_strategies_shortest_path_games` there exists $\sigma$ an optimal strategy for Eve.
 Consider a vertex $v$.
 If $v \in \VE$ we need to show that 
 
@@ -192,54 +243,16 @@ and then $f(v) \le \sup_{\sigma} \val^\sigma(v) = \val(v)$.
 
 ```
 
-Thanks to  {ref}`Theorem <1-thm:kleene>` $\val$ can be computed by a greatest fixed point algorithm.
+Thanks to  {prf:ref}`1-thm:kleene` $\val$ can be computed by a greatest fixed point algorithm.
 To obtain the announced complexity we carefully define the data structure.
 
-The pseudocode is given in  {ref}`Algorithm <4-algo:value_iteration_shortest_path_non_negative>`.
+The pseudocode is given in  Algorithm {ref}`4-algo:value_iteration_shortest_path_non_negative`.
 
-\begin{algorithm}
- \KwData{A shortest path game with non-negative weights.}
- \SetKwFunction{FTreat}{Treat}
- \SetKwFunction{FInit}{Initialisation}
- \SetKwFunction{FVI}{ValueIteration}
- \SetKwProg{Fn}{Function}{:}{}
- \DontPrintSemicolon
- 
-\Fn{\FVI{}}{
-\FInit{$\ell_V, \ell_E$}
-
-$S \leftarrow V$
-
-
-\Repeat{$S$ empty}{
-Choose $v$ in $S$ minimal with respect to $\ell_V$ and remove it from $S$
-
-\FTreat($v$) 
-}
-
-\Return{$\ell_V$}
-}
-
-
-\Fn{\FTreat{$v$}}{
-\For{$e = (u,c,v) \in E$}{
-
-\If{$u \in \VE$}{
-$\ell_E(e) \leftarrow \max(c + \ell_V(v),\ell_E(e))$ 
-
-$\ell_V(u) \leftarrow \max(\ell_E(e),\ell_V(u))$ 
-}
-
-\If{$v \in \VE$}{
-$\ell_E(e) \leftarrow \min(c + \ell_V(v),\ell_E(e))$ 
-
-$\ell_V(u) \leftarrow \min(\ell_E(e),\ell_V(u))$ 
-}
-}
-}
-\caption{The value iteration algorithm for shortest path games with non-negative weights.}
-\label{4-algo:value_iteration_shortest_path_non_negative}
-\end{algorithm}
+```{figure} /../4-algo:value_iteration_shortest_path_non_negative.png
+:name: 4-algo:value_iteration_shortest_path_non_negative
+:align: center
+The value iteration algorithm for shortest path games with non-negative weights.
+```
 
 ```{admonition} Proof
 :class: dropdown tip
@@ -304,7 +317,7 @@ $\ell_V(u) \leftarrow \min(\ell_E(e),\ell_V(u))$
 
 However, contrary to the previous payoffs, the **positional**
 determinacy result no longer holds as shows the example
-in {ref}`Figure <4-fig:memory>`. In this game, there are two positional
+in Figure {ref}`4-fig:memory`. In this game, there are two positional
 strategies for Adam: $\tau_1(v_1)=(v_1,v_0)$ and
 $\tau_2(v_1)=(v_1,v_2)$. Strategy $\tau_1$ does not guarantee Adam to
 reach the target, since Eve can play the cycle $(v_1,v_0)$ forever and
@@ -337,9 +350,8 @@ reach a target of $\Win$ while controlling a negative cycle along the
 way. As previously announced, this is closely related with mean payoff
 games:
 
-```{admonition} Theorem (\cite{Brihaye&Geeraerts&HaddadA&Monmege:2017})
-:class: theorem
-:name: 4-thm:-infty-MP
+```{prf:theorem} \cite{Brihaye&Geeraerts&HaddadA&Monmege:2017}
+:label: 4-thm:-infty-MP
 
   Let $\arena$ be an arena.
   
@@ -387,7 +399,7 @@ games:
   the negative cycle by modifying his strategy. Therefore, Eve cannot
   have a positional strategy securing a non-negative mean payoff: by
   positional determinacy of mean payoff games
-  ( {ref}`Theorem <4-thm:mean_payoff_positional>`), Eve cannot have any strategy securing
+  ( {prf:ref}`4-thm:mean_payoff_positional`), Eve cannot have any strategy securing
   a non-negative mean payoff.
 
   \medskip For the second item, without loss of generality, suppose
@@ -436,7 +448,7 @@ $$y_v =
 
 Notice the similarity with respect to the $\Lift$ operator used in the
 value iteration algorithm for mean payoff
-( {ref}`Algorithm <4-algo:value_iteration_MP>`): the following arguments are thus
+( Algorithm {ref}`4-algo:value_iteration_MP`): the following arguments are thus
 very resembling to the ones already presented in the case of
 mean payoff. Here, we obtain a more precise information though, since
 it directly gives us the values for the shortest path objective
@@ -448,9 +460,8 @@ following lemma (where we again let $W=\max_{(v,c,v')\in E} |c|$), we
 know that finite values are bounded below, so that an intermediate
 step of speed-up can detect the vertices of value $-\infty$.
 
-```{admonition} Lemma
-:class: lemma
-:name: 4-lem:-infty
+```{prf:lemma} (needs title)
+:label: 4-lem:-infty
 
   In a shortest path game $\game$, all vertices $v$ with a value
   $\Value(v)<-(n-1) W$ have value $\Value(v)=-\infty$.
@@ -462,7 +473,7 @@ step of speed-up can detect the vertices of value $-\infty$.
 
   Consider a strategy $\tau$ of Adam securing a value $<-(n-1) W$
   from a given vertex $v$. We show that in the mean payoff game
-  $\game'$ described in {ref}`Theorem <4-thm:-infty-MP>`, vertex $v$ has value
+  $\game'$ described in {prf:ref}`4-thm:-infty-MP`, vertex $v$ has value
   $<0$, which allows us to conclude. Let $\sigma$ be a positional
   strategy of Eve. By hypothesis, the play $\pi$ starting in $v$ and
   following the profile $(\sigma,\tau)$ has a payoff
@@ -496,9 +507,8 @@ stabilisation of the sequence at index $N$ allows one to show by
 induction that $N$ steps suffice for Adam to guarantee that he has
 reached a target vertex while getting the optimal value.
 
-```{admonition} Theorem (\cite{Brihaye&Geeraerts&HaddadA&Monmege:2017})
-:class: theorem
-:name: 4-thm:SP-pseudopoly-algo
+```{prf:theorem} \cite{Brihaye&Geeraerts&HaddadA&Monmege:2017}
+:label: 4-thm:SP-pseudopoly-algo
 
   We can compute in pseudopolynomial time the values of a
   shortest path game. 

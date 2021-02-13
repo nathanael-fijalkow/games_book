@@ -8,9 +8,11 @@
 :align: center
 ```
 
+## Table of contents
 ```{tableofcontents}
 ```
 
+## Authors
 Coordinated by Nathana&euml;l Fijalkow
 
 Written by (in alphabetical order):
@@ -18,12 +20,13 @@ Nathalie Bertrand, Romain Brenguier, Patricia Bouyer-Decitre, Arnaud Carayol, Jo
 
 
 
+
 ```{toctree}
 :hidden:
 :titlesonly:
-:caption: Introduction
+:caption: 1_Introduction
 
-Introduction/index
+1_Introduction/index
 ```
 
 
@@ -32,7 +35,8 @@ Introduction/index
 :titlesonly:
 :caption: Classic
 
-Classic/2_Regular/index
-Classic/3_Parity/index
-Classic/4_Payoffs/index
+Classic/index
+2_Regular/index
+3_Parity/index
+4_Payoffs/index
 ```

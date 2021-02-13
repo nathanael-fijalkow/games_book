@@ -1,0 +1,58 @@
+\documentclass[preview,border=0mm,convert={density=600,outext=.png}]{standalone}
+\input{norenew_macros.tex}
+\input{2_Regular/macros_local.tex}
+\usepackage{amsfonts}
+\usepackage[norelsize,ruled,vlined,noend]{algorithm2e}
+\begin{document}
+\begin{algorithm}[H]
+
+ \KwData{A reachability game.}
+ \SetKwFunction{FTreat}{Treat}
+ \SetKwFunction{FAttr}{Attractor}
+ \SetKwProg{Fn}{Function}{:}{}
+ \DontPrintSemicolon
+ 
+\Fn{\FAttr{}}{
+	$A \leftarrow \Win$
+
+	$S \leftarrow \Win$ 
+
+	\For{$v \in \VA$}{
+        $\textrm{number}$-$\textrm{edges}(v) \leftarrow $ number of outgoing edges of $v$
+	}    
+	
+	\vskip1em
+	\Repeat{$S$ empty}{
+		Choose some $v'$ in $S$ and remove it from $S$
+
+        \For{$e$ incoming edge to $v'$}{
+			\FTreat($e$)    
+        }
+	}
+
+	\Return{$A$}
+}
+
+\vskip1em
+\Fn{\FTreat{$e$}}{
+	$v \leftarrow \Ing(e)$
+	
+	\If{$v \in \VA$ and $v \notin A$}{
+		$\textrm{number}$-$\textrm{edges}(v) \leftarrow \textrm{number}$-$\textrm{edges}(v) - 1$
+
+		\If{$\textrm{number}$-$\textrm{edges}(v) = 0$}{
+			Add $v$ to $A$
+
+			Add $v$ to $S$
+		}
+	}
+		
+	\If{$v \in \VE$ and $v \notin A$}{
+		Add $v$ to $A$
+
+		Add $v$ to $S$
+	}
+}
+
+\end{algorithm}
+\end{document}

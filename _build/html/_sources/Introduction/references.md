@@ -1,15 +1,70 @@
 (1-sec:references)=
 # Bibliographic references
 
+```{math}
+\newcommand{\Eve}{\textrm{Eve}}
+\newcommand{\Adam}{\textrm{Adam}}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
+\newcommand{\argmax}{\text{argmax}}
+\newcommand{\argmin}{\text{argmin}}
+\newcommand{\Op}{\mathbb{O}}
+\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\text{supp}} 
+\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
+\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
+\newcommand{\mEve}{\mathrm{Eve}}
+\newcommand{\mAdam}{\mathrm{Adam}}
+\newcommand{\mRandom}{\mathrm{Random}}
+\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
+\newcommand{\ing}{\text{In}}
+\newcommand{\Ing}{\ing}
+\newcommand{\out}{\text{Out}}
+\newcommand{\Out}{\out}
+\newcommand{\dest}{\Delta} 
+\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
+\newcommand{\Paths}{\text{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\text{first}} \newcommand{\last}{\text{last}} 
+\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
+\newcommand{\Pre}{\text{Pre}} \newcommand{\PreE}{\text{Pre}_\mEve} \newcommand{\PreA}{\text{Pre}_\mAdam} \newcommand{\Attr}{\text{Attr}} \newcommand{\AttrE}{\text{Attr}_\mEve} \newcommand{\AttrA}{\text{Attr}_\mAdam} \newcommand{\rank}{\text{rank}}
+\renewcommand{\Win}{\textsc{Win}} 
+\renewcommand{\Lose}{\textsc{Lose}} 
+\newcommand{\Value}{\text{val}} 
+\newcommand{\ValueE}{\text{val}_\mEve} 
+\newcommand{\ValueA}{\text{val}_\mAdam}
+\newcommand{\val}{\Value} 
+\newcommand{\Automaton}{\mathbf{A}} 
+\newcommand{\Safe}{\mathtt{Safe}}
+\newcommand{\Reach}{\mathtt{Reach}} 
+\newcommand{\Buchi}{\mathtt{Buchi}} 
+\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
+\newcommand{\Parity}{\mathtt{Parity}} 
+\newcommand{\Muller}{\mathtt{Muller}} 
+\newcommand{\Rabin}{\mathtt{Rabin}} 
+\newcommand{\Streett}{\mathtt{Streett}} 
+\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
+\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
+\newcommand{\Energy}{\mathtt{Energy}}
+\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
+\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
+\newcommand{\Sup}{\mathtt{Sup}}
+\newcommand{\Inf}{\mathtt{Inf}}
+\newcommand{\LimSup}{\mathtt{LimSup}}
+\newcommand{\LimInf}{\mathtt{LimInf}}
+```
 The study of games, usually called game theory, has a very long history rooted in mathematics, logic, and economics, among other fields.
 Foundational ideas and notions emerged from set theory with for instance backward induction by Zermelo {cite}`Zermelo:1913`, 
-and topology with determinacy results by Martin {cite}`Martin:1975` (stated as  {ref}`Theorem <1-thm:borel_determinacy>` in this chapter),
+and topology with determinacy results by Martin {cite}`Martin:1975` (stated as  {prf:ref}`1-thm:borel_determinacy` in this chapter),
 and Banach-Mazur and Gale-Stewart games {cite}`Gale&Stewart:1953`.
 
 The topic of this book is a small part of game theory: we focus on infinite duration games played on graphs.
-In this chapter we defined deterministic games, meaning games with no source of randomness, which will be the focus of Part {ref}`part:classic`.
-Part {ref}`part:stochastic` introduces stochastic games, which were initially studied in mathematics.
-We refer to {ref}`Section <6-sec:references>` for more bibliographic references on stochastic games,
+In this chapter we defined deterministic games, meaning games with no source of randomness, which will be the focus of  Part {ref}`part:classic`.
+ Part {ref}`part:stochastic` introduces stochastic games, which were initially studied in mathematics.
+We refer to Section {ref}`6-sec:references` for more bibliographic references on stochastic games,
 and focus in this chapter on references for deterministic games.
 
 The model presented in this chapter emerged from the study of automata theory and logic, where it is used as a tool for various purposes.
@@ -36,7 +91,7 @@ The celebrated paper of Gurevich and Harrington {cite}`Gurevich&Harrington:1982`
 
 
 Both lines of work have been highly influential in automata theory and logic;
-we refer to the reference section in {ref}`Chapter <2-chap:regular>` for more bibliographic references on this connection.
+we refer to the reference section in Chapter {ref}`2-chap:regular` for more bibliographic references on this connection.
 They bind automata theory and logic to the study of games on graphs and provide motivations and questions many of which are still open today.
 
 
@@ -47,10 +102,11 @@ The following quote is due to Hodges {cite}`Hodges:1993`:
 
 Let us mention model checking games, which are used for checking whether a model satisfies a formula.
 They often form both a theoretical tool for understanding the model checking problem and proving its properties, as well as an algorithmic backend for effectively deciding properties of a logical formalism (we refer to {cite}`Graedel:2002` for a survey on model checking games).
-Another important construction of a game for understanding logical properties is the Ehrenfeucht-Fra&iuml;ss&eacute; games {cite}`Ehrenfeucht:1961,Fraissé:1950,Fraissé:1953` whose goal is to determine whether two models are equivalent against a logical formalism.
+Another important construction of a game for understanding logical properties is the Ehrenfeucht-Fra&iuml;ss&eacute; games {cite}`Ehrenfeucht:1961,Fraisse:1950,Fraisse:1953` whose goal is to determine whether two models are equivalent against a logical formalism.
 
 
 
 ```{bibliography}
 :style: unsrtalpha
+:filter: cited and chap == "1"
 ```

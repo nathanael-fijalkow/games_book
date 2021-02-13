@@ -31,6 +31,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
@@ -46,8 +47,8 @@
     <script src="../../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"set": ["\\left\\{ #1 \\right\\}", 1], "Eve": "\\textrm{Eve}", "Adam": "\\textrm{Adam}", "N": "\\mathbb{N}", "Z": "\\mathbb{Z}", "Zinfty": "\\Z \\cup \\set{\\pm \\infty}", "R": "\\mathbb{R}", "Rinfty": "\\R \\cup \\set{\\pm \\infty}", "Q": "\\mathbb{Q}", "Qinfty": "\\Q \\cup \\set{\\pm \\infty}", "argmax": "\\text{argmax}", "argmin": "\\text{argmin}", "Op": "\\mathbb{O}", "Prob": "\\mathbb{P}", "dist": "\\mathcal{D}", "Dist": "\\dist", "supp": "\\text{supp}", "game": "\\mathcal{G}", "Game": "\\game", "arena": "\\mathcal{A}", "Arena": "\\arena", "col": "\\textsf{col}", "Col": "\\col", "mEve": "\\mathrm{Eve}", "mAdam": "\\mathrm{Adam}", "mRandom": "\\mathrm{Random}", "vertices": "V", "VE": "V_\\mEve", "VA": "V_\\mAdam", "VR": "V_\\mRandom", "ing": "\\text{In}", "Ing": "\\ing", "out": "\\text{Out}", "Out": "\\out", "dest": "\\Delta", "WE": "W_\\mEve", "WA": "W_\\mAdam", "Paths": "\\text{Paths}", "play": "\\pi", "first": "\\text{first}", "last": "\\text{last}", "mem": "\\mathcal{M}", "Mem": "\\mem", "Pre": "\\text{Pre}", "PreE": "\\text{Pre}_\\mEve", "PreA": "\\text{Pre}_\\mAdam", "Attr": "\\text{Attr}", "AttrE": "\\text{Attr}_\\mEve", "AttrA": "\\text{Attr}_\\mAdam", "rank": "\\text{rank}", "Win": "\\textsc{Win}", "Lose": "\\textsc{Lose}", "Value": "\\text{val}", "ValueE": "\\text{val}_\\mEve", "ValueA": "\\text{val}_\\mAdam", "val": "\\Value", "Automaton": "\\mathbf{A}", "Safe": "\\mathtt{Safe}", "Reach": "\\mathtt{Reach}", "Buchi": "\\mathtt{Buchi}", "CoBuchi": "\\mathtt{CoBuchi}", "Parity": "\\mathtt{Parity}", "Muller": "\\mathtt{Muller}", "Rabin": "\\mathtt{Rabin}", "Streett": "\\mathtt{Streett}", "MeanPayoff": "\\mathtt{MeanPayoff}", "DiscountedPayoff": "\\mathtt{DiscountedPayoff}", "Energy": "\\mathtt{Energy}", "TotalPayoff": "\\mathtt{TotalPayoff}", "ShortestPath": "\\mathtt{ShortestPath}", "Sup": "\\mathtt{Sup}", "Inf": "\\mathtt{Inf}", "LimSup": "\\mathtt{LimSup}", "LimInf": "\\mathtt{LimInf}"}}, "tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -117,13 +118,13 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../Introduction/computation.html">
-     Computational models
+    <a class="reference internal" href="../../Introduction/objectives.html">
+     Objectives
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../Introduction/objectives.html">
-     Objectives
+    <a class="reference internal" href="../../Introduction/computation.html">
+     Computational models
     </a>
    </li>
    <li class="toctree-l2">
@@ -177,6 +178,11 @@
  </span>
 </p>
 <ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   Classic
+  </a>
+ </li>
  <li class="toctree-l1 collapsible-parent">
   <a class="reference internal" href="../2_Regular/index.html">
    Regular
@@ -373,6 +379,60 @@
                 
   <div class="section" id="total-payoff-games">
 <span id="sec-total-payoff"></span><h1>Total payoff games<a class="headerlink" href="#total-payoff-games" title="Permalink to this headline">¶</a></h1>
+<div class="math notranslate nohighlight">
+\[\newcommand{\Eve}{\textrm{Eve}}
+\newcommand{\Adam}{\textrm{Adam}}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
+\newcommand{\argmax}{\text{argmax}}
+\newcommand{\argmin}{\text{argmin}}
+\newcommand{\Op}{\mathbb{O}}
+\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\text{supp}} 
+\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
+\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
+\newcommand{\mEve}{\mathrm{Eve}}
+\newcommand{\mAdam}{\mathrm{Adam}}
+\newcommand{\mRandom}{\mathrm{Random}}
+\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
+\newcommand{\ing}{\text{In}}
+\newcommand{\Ing}{\ing}
+\newcommand{\out}{\text{Out}}
+\newcommand{\Out}{\out}
+\newcommand{\dest}{\Delta} 
+\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
+\newcommand{\Paths}{\text{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\text{first}} \newcommand{\last}{\text{last}} 
+\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
+\newcommand{\Pre}{\text{Pre}} \newcommand{\PreE}{\text{Pre}_\mEve} \newcommand{\PreA}{\text{Pre}_\mAdam} \newcommand{\Attr}{\text{Attr}} \newcommand{\AttrE}{\text{Attr}_\mEve} \newcommand{\AttrA}{\text{Attr}_\mAdam} \newcommand{\rank}{\text{rank}}
+\renewcommand{\Win}{\textsc{Win}} 
+\renewcommand{\Lose}{\textsc{Lose}} 
+\newcommand{\Value}{\text{val}} 
+\newcommand{\ValueE}{\text{val}_\mEve} 
+\newcommand{\ValueA}{\text{val}_\mAdam}
+\newcommand{\val}{\Value} 
+\newcommand{\Automaton}{\mathbf{A}} 
+\newcommand{\Safe}{\mathtt{Safe}}
+\newcommand{\Reach}{\mathtt{Reach}} 
+\newcommand{\Buchi}{\mathtt{Buchi}} 
+\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
+\newcommand{\Parity}{\mathtt{Parity}} 
+\newcommand{\Muller}{\mathtt{Muller}} 
+\newcommand{\Rabin}{\mathtt{Rabin}} 
+\newcommand{\Streett}{\mathtt{Streett}} 
+\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
+\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
+\newcommand{\Energy}{\mathtt{Energy}}
+\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
+\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
+\newcommand{\Sup}{\mathtt{Sup}}
+\newcommand{\Inf}{\mathtt{Inf}}
+\newcommand{\LimSup}{\mathtt{LimSup}}
+\newcommand{\LimInf}{\mathtt{LimInf}}\]</div>
 <p>Yet another interesting quantitative objective—that is closely
 related with shortest path objective—is the total payoff defined by</p>
 <div class="math notranslate nohighlight">
@@ -413,8 +473,9 @@ mean payoff or discounted payoff games, we give a general recipe
 defined by Gimbert and Zielonka \cite{Gimbert&amp;Zielonka:2004}. They define
 sufficient conditions for a quantitative objective to fulfil the
 positional determinacy.</p>
-<div class="definition admonition" id="def-fairly-mixing">
-<p class="admonition-title">Definition</p>
+<div class="proof definition admonition" id="4-def:fairly-mixing">
+<p class="admonition-title"><span class="caption-number">Definition 129 </span> ((needs title))</p>
+<div class="definition-content section" id="proof-content">
 <p>A payoff <span class="math notranslate nohighlight">\(\mathsf{P}\colon C^\omega\to \overline R\)</span> is <strong>fairly
 mixing</strong> if:
 \begin{enumerate}</p>
@@ -441,27 +502,30 @@ infinite sets, then</p></li>
     j_k\in J\}\)</span>.
 \end{enumerate}</p>
 </div>
-<p>It is not difficult to convince oneself that</p>
-<div class="proposition admonition" id="prop-objectives-fairly">
-<p class="admonition-title">Proposition</p>
+</div><p>It is not difficult to convince oneself that</p>
+<div class="proof proposition admonition" id="4-prop:objectives-fairly">
+<p class="admonition-title"><span class="caption-number">Proposition 130 </span> ((needs title))</p>
+<div class="proposition-content section" id="proof-content">
 <p>Quantitative objectives <span class="math notranslate nohighlight">\(\Inf\)</span>, <span class="math notranslate nohighlight">\(\Sup\)</span>, <span class="math notranslate nohighlight">\(\LimInf\)</span>, <span class="math notranslate nohighlight">\(\LimSup\)</span>,
 <span class="math notranslate nohighlight">\(\Parity\)</span> (mapping <span class="math notranslate nohighlight">\(1\)</span> to sequences whose the greatest colour seen
 infinitely often is even), <span class="math notranslate nohighlight">\(\MeanPayoff\)</span>,
 <span class="math notranslate nohighlight">\(\DiscountedPayoff_\lambda\)</span>, <span class="math notranslate nohighlight">\(\TotalPayoff\)</span> are fairly mixing
 payoffs.</p>
 </div>
-<p>Then, a rather technical proof by induction on the number of vertices
+</div><p>Then, a rather technical proof by induction on the number of vertices
 in the arena allows one to get the following strong result:</p>
-<div class="theorem admonition" id="thm-fairly-mixing">
-<p class="admonition-title">Theorem (\cite{Gimbert&amp;Zielonka:2004})</p>
+<div class="proof theorem admonition" id="4-thm:fairly-mixing">
+<p class="admonition-title"><span class="caption-number">Theorem 131 </span> (\cite{Gimbert&amp;Zielonka:2004})</p>
+<div class="theorem-content section" id="proof-content">
 <p>If <span class="math notranslate nohighlight">\(\mathsf P\)</span> is a fairly mixing payoff function, then all finite
 games <span class="math notranslate nohighlight">\((\arena,\mathsf P)\)</span> are positionally determined.</p>
 </div>
-<div class="corollary admonition" id="cor-tp-determinacy">
-<p class="admonition-title">Corollary</p>
+</div><div class="proof corollary admonition" id="4-cor:TP-determinacy">
+<p class="admonition-title"><span class="caption-number">Corollary 132 </span> ((needs title))</p>
+<div class="corollary-content section" id="proof-content">
 <p>Total payoff games are positionally determined.</p>
 </div>
-<p>In particular, it gives <span class="math notranslate nohighlight">\(\NP\cap\coNP\)</span> complexity to solve
+</div><p>In particular, it gives <span class="math notranslate nohighlight">\(\NP\cap\coNP\)</span> complexity to solve
 total payoff games, since one-player total payoff games can be solved
 in polynomial time using Floyd-Warshall algorithm to compute all-pairs
 shortest path in a weighted graph. Obtaining a deterministic algorithm
@@ -480,7 +544,7 @@ by:</p>
 problematic is the fact that the value of the game may be different
 from the greatest and lowest fixed points, forbidding to find the
 correct fixed point easily. Consider for example the total payoff game
-of <a class="reference internal" href="#fig-totalpayoff"><span class="std std-ref">Figure</span></a>. Operator <span class="math notranslate nohighlight">\(F\)</span> is then
+of Figure <a class="reference internal" href="#fig-totalpayoff"><span class="std std-ref">A total payoff game</span></a>. Operator <span class="math notranslate nohighlight">\(F\)</span> is then
 <span class="math notranslate nohighlight">\(F(x_0,x_1,x_2) = \big(\max(x_1-1,x_2-2),x_0+1,x_0+2\big)\)</span>. Its fixed
 points are all vectors <span class="math notranslate nohighlight">\((a,a+1,a+2)\)</span> with <span class="math notranslate nohighlight">\(a\in \overline R\)</span>: in
 particular, its greatest fixed point is <span class="math notranslate nohighlight">\((+\infty, +\infty, +\infty)\)</span>
@@ -490,13 +554,14 @@ the optimal value vector is <span class="math notranslate nohighlight">\((0,1,2)
 points exists, relying upon the encoding of a total payoff game into a
 pseudopolynomial size shortest path game—still with the same
 costs—resulting in a pseudopolynomial time algorithm.</p>
-<div class="theorem admonition" id="thm-tp-optimal-strategies">
-<p class="admonition-title">Theorem (\cite{Brihaye&amp;Geeraerts&amp;HaddadA&amp;Monmege:2017})</p>
+<div class="proof theorem admonition" id="4-thm:TP-optimal-strategies">
+<p class="admonition-title"><span class="caption-number">Theorem 133 </span> (\cite{Brihaye&amp;Geeraerts&amp;HaddadA&amp;Monmege:2017})</p>
+<div class="theorem-content section" id="proof-content">
 <p>We can compute the optimal values of total payoff games, as well as
 positional optimal strategies for both players, with a
 pseudopolynomial time complexity.</p>
 </div>
-<div class="dropdown tip admonition">
+</div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
 <p>[Sketch of proof]
 Let <span class="math notranslate nohighlight">\(\arena\)</span> be the arena of the total payoff game. Consider an
@@ -533,7 +598,7 @@ deteriorating the time complexity.</p>
 </div>
 <div class="figure align-center" id="fig-totalpayoff">
 <img alt="../../_images/4-fig:totalpayoff.png" src="../../_images/4-fig:totalpayoff.png" />
-<p class="caption"><span class="caption-number">Fig. 22 </span><span class="caption-text">A total payoff game</span><a class="headerlink" href="#fig-totalpayoff" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 38 </span><span class="caption-text">A total payoff game</span><a class="headerlink" href="#fig-totalpayoff" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 
@@ -575,7 +640,7 @@ deteriorating the time complexity.</p>
         
           By a set of authors coordinated by Nathana&euml;l Fijalkow<br/>
         
-            &copy; Copyright 2020.<br/>
+            &copy; Copyright 2021.<br/>
       </p>
     </div>
   </footer>

@@ -1,14 +1,70 @@
 (3-sec:separation)=
 # A quasipolynomial time separating automata algorithm
 
+```{math}
+\newcommand{\Eve}{\textrm{Eve}}
+\newcommand{\Adam}{\textrm{Adam}}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
+\newcommand{\argmax}{\text{argmax}}
+\newcommand{\argmin}{\text{argmin}}
+\newcommand{\Op}{\mathbb{O}}
+\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\text{supp}} 
+\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
+\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
+\newcommand{\mEve}{\mathrm{Eve}}
+\newcommand{\mAdam}{\mathrm{Adam}}
+\newcommand{\mRandom}{\mathrm{Random}}
+\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
+\newcommand{\ing}{\text{In}}
+\newcommand{\Ing}{\ing}
+\newcommand{\out}{\text{Out}}
+\newcommand{\Out}{\out}
+\newcommand{\dest}{\Delta} 
+\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
+\newcommand{\Paths}{\text{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\text{first}} \newcommand{\last}{\text{last}} 
+\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
+\newcommand{\Pre}{\text{Pre}} \newcommand{\PreE}{\text{Pre}_\mEve} \newcommand{\PreA}{\text{Pre}_\mAdam} \newcommand{\Attr}{\text{Attr}} \newcommand{\AttrE}{\text{Attr}_\mEve} \newcommand{\AttrA}{\text{Attr}_\mAdam} \newcommand{\rank}{\text{rank}}
+\renewcommand{\Win}{\textsc{Win}} 
+\renewcommand{\Lose}{\textsc{Lose}} 
+\newcommand{\Value}{\text{val}} 
+\newcommand{\ValueE}{\text{val}_\mEve} 
+\newcommand{\ValueA}{\text{val}_\mAdam}
+\newcommand{\val}{\Value} 
+\newcommand{\Automaton}{\mathbf{A}} 
+\newcommand{\Safe}{\mathtt{Safe}}
+\newcommand{\Reach}{\mathtt{Reach}} 
+\newcommand{\Buchi}{\mathtt{Buchi}} 
+\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
+\newcommand{\Parity}{\mathtt{Parity}} 
+\newcommand{\Muller}{\mathtt{Muller}} 
+\newcommand{\Rabin}{\mathtt{Rabin}} 
+\newcommand{\Streett}{\mathtt{Streett}} 
+\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
+\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
+\newcommand{\Energy}{\mathtt{Energy}}
+\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
+\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
+\newcommand{\Sup}{\mathtt{Sup}}
+\newcommand{\Inf}{\mathtt{Inf}}
+\newcommand{\LimSup}{\mathtt{LimSup}}
+\newcommand{\LimInf}{\mathtt{LimInf}}
+```
+
 ## The separation framework
 
 We describe a general approach for reducing parity games to safety games.
-{ref}`Section <1-sec:reductions>` constructs reductions between objectives using automata: 
+ Section {ref}`1-sec:reductions` constructs reductions between objectives using automata: 
 in the case at hand parity reduces to safety if there exists a deterministic automaton $\Automaton$ over the alphabet $[1,d]$
 with acceptance objective $\Safe$ and defining $\Parity([1,d])$,
 meaning $L(\Automaton) = \Parity([1,d])$.
-With such an automaton in hand {ref}`Lemma <1-lem:automata_reduction>` implies the following reduction:
+With such an automaton in hand {prf:ref}`1-lem:automata_reduction` implies the following reduction:
 from a parity game $\game$ construct the safety game $\game \times \Automaton$ satisfying that
 Eve has a winning strategy in $\Game$ from $v_0$ if and only if she has a winning strategy in $\Game \times \Automaton$ from $(v_0,q_0)$.
 
@@ -49,8 +105,7 @@ and that a strategy $\sigma$ is winning from $v$ if and only if the parity graph
 We say that an automaton reads, accepts, or rejects a path $\pi$ in a parity graph, 
 which is an abuse because what the automaton reads is the induced sequence of colours $\col(\pi)$.
 
-```{admonition} Definition
-:class: definition
+```{prf:definition} (needs title)
 
 An automaton $\Automaton$ is $(n,d)$-**separating** if the two following properties hold.
 
@@ -72,7 +127,7 @@ $$
 \end{array}}.
 $$
 
-The definition of $(n,d)$-separating automata is illustrated in  {ref}`Figure <3-fig:separation>` and can be summarised
+The definition of $(n,d)$-separating automata is illustrated in  Figure {ref}`3-fig:separation` and can be summarised
 as $\Parity_{\mid n} \subseteq L(\Automaton) \subseteq \Parity$.
 
 ```{figure} ./../../3-fig:separation.png
@@ -83,9 +138,8 @@ The separation problem.
 
 The following lemma shows the definition of separating automata in action.
 
-```{admonition} Lemma
-:class: lemma
-:name: 3-lem:separating_automata
+```{prf:lemma} (needs title)
+:label: 3-lem:separating_automata
 
 Let $\Automaton$ an $(n,d)$-separating automaton.
 Then for all parity games $\game = (\arena,\Parity[\col])$ with $n$ vertices and priorities in $[1,d]$, 
@@ -114,7 +168,7 @@ $\WE(\arena,L(\Automaton)[\col]) \subseteq \WE(\game)$.
 
 ```
 
-The last step is to explain how to solve a game with objective $L(\Automaton)$, as already discussed in {ref}`Section <1-sec:reductions>`.
+The last step is to explain how to solve a game with objective $L(\Automaton)$, as already discussed in Section {ref}`1-sec:reductions`.
 Let $\Game = (\arena, L(\Automaton)[\col])$.
 We construct a safety game by making the synchronised product of the arena with the automaton:
 
@@ -130,9 +184,8 @@ The arena is $\arena \times \Automaton = (G \times Q, \VE \times Q, \VA \times Q
 Using the convention for safety automata that the rejecting transitions are precisely those leading to the rejecting state $\bot$,
 the colouring function is defined by $\col'(v,q) = \Win$ if $q \neq \bot$, and $\Lose$ otherwise.
 
-```{admonition} Fact
-:class: fact
-:name: 3-fact:reduction
+```{prf:observation} (needs title)
+:label: 3-fact:reduction
 
 Eve has a winning strategy in $\game$ from $v_0$ if and only if
 she has a winning strategy in $\Game \times \Automaton$ from $(v_0,q_0)$.
@@ -140,8 +193,7 @@ she has a winning strategy in $\Game \times \Automaton$ from $(v_0,q_0)$.
 ```
 
 
-```{admonition} Theorem
-:class: theorem
+```{prf:theorem} (needs title)
 
 Let $\Automaton$ an $(n,d)$-separating automaton.
 There exists an algorithm for solving parity games of complexity $O(m \cdot |\Automaton|)$.
@@ -152,9 +204,9 @@ There exists an algorithm for solving parity games of complexity $O(m \cdot |\Au
 :class: dropdown tip
 
 Let $\Game$ a parity game with $n$ vertices and priorities in $[1,d]$.
-Thanks to {ref}`Lemma <3-lem:separating_automata>` and \cref{3-fact:reduction}, solving $\Game$
+Thanks to {prf:ref}`3-lem:separating_automata` and \cref{3-fact:reduction}, solving $\Game$
 is equivalent to solving the safety game $\Game \times \Automaton$.
-Thanks to {ref}`Theorem <2-thm:reachability>` solving safety games can be done in time linear in the number of edges.
+Thanks to {prf:ref}`2-thm:reachability` solving safety games can be done in time linear in the number of edges.
 This yields an algorithm for solving parity games whose running time is $O(m \cdot |\Automaton|)$.
 
 ```
@@ -163,9 +215,8 @@ In the remainder of this section we give a construction for a quasipolynomial $(
 
 ## The original separating automaton
 
-```{admonition} Theorem
-:class: theorem
-:name: 3-thm:original_separating_automaton
+```{prf:theorem} (needs title)
+:label: 3-thm:original_separating_automaton
 
 There exists an $(n,d)$-separating automaton of size $n^{O(\log d)}$,
 inducing an algorithm for solving parity games of complexity $n^{O(\log d)}$.
@@ -199,7 +250,7 @@ $p_l \le p_{j_{2^i}}$.
 A $2$-sequence.
 ```
 
-{ref}`Figure <3-fig:isequence>` gives an example of a $2$-sequence. The circled
+ Figure {ref}`3-fig:isequence` gives an example of a $2$-sequence. The circled
 priorities are the indices used in the sequence. Note that there are exactly
 $2^2 = 4$ indices used, and that every circled priority is even. Inner
 domination is satisfied because every priority that is between two circled
@@ -211,9 +262,8 @@ priorities that come after it.
 The relationship between $i$-sequences and parity games is explained by the
 following lemma.
 
-```{admonition} Lemma
-:class: lemma
-:name: 3-lem:isequencewin
+```{prf:lemma} (needs title)
+:label: 3-lem:isequencewin
 
 Suppose that Adam and Eve play positional strategies in the parity game,
 and let $\pi$ the resulting play.
@@ -283,7 +333,7 @@ sequence.
 An example sequence that corresponds to the record $\siblank 8 4 2$.
 ```
 
-{ref}`Figure <3-fig:ds>` shows an example sequence that is consistent with the
+ Figure {ref}`3-fig:ds` shows an example sequence that is consistent with the
 record that sets $b_3 = \siblank$, $b_2 = 8$, $b_1 = 4$, and $b_0 = 2$.
 The red $2$-sequence is represented by $b_2 = 8$, which is the last priority of
 the $2$-sequence. The blue $1$-sequence starts after the end of the
@@ -332,14 +382,14 @@ Again, if there is no such index $i$, then the record is not modified.
 An example of a Step 1 update applied to the sequence and record from~\cref{3-fig:ds
 ```
 Intuitively, Step 1 attempts to combine the $i$-sequences in the existing record
-into a longer $i$-sequence. Suppose that we have read the sequence shown in {ref}`Figure <3-fig:ds>`, 
+into a longer $i$-sequence. Suppose that we have read the sequence shown in Figure {ref}`3-fig:ds`, 
 that we have compute the record $\siblank 8 4 2$, and that the next priority in the sequence is $4$.
-{ref}`Figure <3-fig:ds1>` shows the result of applying Step 1 to this situation.
+ Figure {ref}`3-fig:ds1` shows the result of applying Step 1 to this situation.
 Observe that $3$ is the largest index $i$ such that for all $j < i$ we have that
 $b_j$ is even, so Step 1 will output the record $4 \siblank \siblank \siblank$.
 
 So in this circumstance, Step 1 claims that we have now seen a $3$-sequence.
-{ref}`Figure <3-fig:ds1>` shows why this is correct: the $0$-sequence of $b_0$, the
+ Figure {ref}`3-fig:ds1` shows why this is correct: the $0$-sequence of $b_0$, the
 $1$-sequence of $b_1$, and the $2$-sequence of $b_2$ can be merged together,
 along with the new priority, to create a $3$-sequence. Observe that inner
 domination in this new $3$-sequence is satisfied due to the outer domination
@@ -356,8 +406,8 @@ An example of a Step 2 update applied to the sequence and record from~\cref{3-fi
 ```
 
 Step 2 ensures that the outer domination property holds. 
-In {ref}`Figure <3-fig:ds2>`, we show the result of applying Step 2 to the record
-$\siblank 8 4 2$ that corresponds to the sequence shown in {ref}`Figure <3-fig:ds>`,
+In Figure {ref}`3-fig:ds2`, we show the result of applying Step 2 to the record
+$\siblank 8 4 2$ that corresponds to the sequence shown in Figure {ref}`3-fig:ds`,
 when the next priority in the sequence is $9$. Observe that since $9 > 8$, the
 outer domination property for the $2$-sequence ending at $8$ now fails to hold,
 and likewise for the sequences ending at $4$ and $2$. Hence, Step 2 deletes the
@@ -374,8 +424,7 @@ We must now argue that the record data structure and update rule is sufficient
 to decide the winner of a parity game. The following lemma states that a record
 will never falsely claim that an $i$-sequence has occurred.
 
-```{admonition} Lemma
-:class: lemma
+```{prf:lemma} (needs title)
 
 Let $b_k, b_{k-1}, \dots, b_0$ the record for a sequence of priorities $\pi$.
 If $b_i \ne \siblank$, then $\pi$ contains an $i$-sequence.
@@ -413,7 +462,7 @@ exactly the same point as the sequence corresponding to $b_{i-1}$, and so the
 order property still holds.
 
 *  For Step 2 updates, we only need to argue that the value of $b'_i$
-correspond to an $i$ sequence. This can be constructed as we showed in {ref}`Figure <3-fig:ds2>`: 
+correspond to an $i$ sequence. This can be constructed as we showed in Figure {ref}`3-fig:ds2`: 
 take the $i$-sequence that corresponds to $b_i$, and
 replace the final priority with the new priority. Observe that the final
 priority of an $i$-sequence is permitted to be odd, and so this new sequence
@@ -432,8 +481,7 @@ However, the proof is somewhat tedious, and this statement is actually stronger
 than what we need. To argue that the record can determine the winner of a parity
 game, the following weaker lemma suffices. 
 
-```{admonition} Lemma
-:class: lemma
+```{prf:lemma} (needs title)
 
 Let $\pi$ an infinite play that is winning for Eve. For all $k$, there exists
 a prefix of $\pi$ such that $b_k \ne \siblank$.
@@ -464,10 +512,9 @@ $b_k = p \ne \siblank$, if we have not done so already.
 ```
 
 Hence, if Eve wins the parity game, then she has a strategy to eventually ensure
-that $b_k \ne \siblank$. Combining the two lemmas above, with {ref}`Lemma <3-lem:isequencewin>` gives the following corollary.
+that $b_k \ne \siblank$. Combining the two lemmas above, with {prf:ref}`3-lem:isequencewin` gives the following corollary.
 
-```{admonition} Corollary
-:class: corollary
+```{prf:corollary} (needs title)
 
 Suppose that we monitor the play of a parity game with a record $b_{\lceil \log
 n \rceil}, \dots, b_0$. Eve has a strategy that ensures $b_{\lceil \log n

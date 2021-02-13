@@ -1,6 +1,61 @@
 (4-sec:mean_payoff)=
 # Mean payoff games
 
+```{math}
+\newcommand{\Eve}{\textrm{Eve}}
+\newcommand{\Adam}{\textrm{Adam}}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
+\newcommand{\argmax}{\text{argmax}}
+\newcommand{\argmin}{\text{argmin}}
+\newcommand{\Op}{\mathbb{O}}
+\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\text{supp}} 
+\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
+\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
+\newcommand{\mEve}{\mathrm{Eve}}
+\newcommand{\mAdam}{\mathrm{Adam}}
+\newcommand{\mRandom}{\mathrm{Random}}
+\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
+\newcommand{\ing}{\text{In}}
+\newcommand{\Ing}{\ing}
+\newcommand{\out}{\text{Out}}
+\newcommand{\Out}{\out}
+\newcommand{\dest}{\Delta} 
+\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
+\newcommand{\Paths}{\text{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\text{first}} \newcommand{\last}{\text{last}} 
+\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
+\newcommand{\Pre}{\text{Pre}} \newcommand{\PreE}{\text{Pre}_\mEve} \newcommand{\PreA}{\text{Pre}_\mAdam} \newcommand{\Attr}{\text{Attr}} \newcommand{\AttrE}{\text{Attr}_\mEve} \newcommand{\AttrA}{\text{Attr}_\mAdam} \newcommand{\rank}{\text{rank}}
+\renewcommand{\Win}{\textsc{Win}} 
+\renewcommand{\Lose}{\textsc{Lose}} 
+\newcommand{\Value}{\text{val}} 
+\newcommand{\ValueE}{\text{val}_\mEve} 
+\newcommand{\ValueA}{\text{val}_\mAdam}
+\newcommand{\val}{\Value} 
+\newcommand{\Automaton}{\mathbf{A}} 
+\newcommand{\Safe}{\mathtt{Safe}}
+\newcommand{\Reach}{\mathtt{Reach}} 
+\newcommand{\Buchi}{\mathtt{Buchi}} 
+\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
+\newcommand{\Parity}{\mathtt{Parity}} 
+\newcommand{\Muller}{\mathtt{Muller}} 
+\newcommand{\Rabin}{\mathtt{Rabin}} 
+\newcommand{\Streett}{\mathtt{Streett}} 
+\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
+\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
+\newcommand{\Energy}{\mathtt{Energy}}
+\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
+\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
+\newcommand{\Sup}{\mathtt{Sup}}
+\newcommand{\Inf}{\mathtt{Inf}}
+\newcommand{\LimSup}{\mathtt{LimSup}}
+\newcommand{\LimInf}{\mathtt{LimInf}}
+```
 A natural approach for aggregating an infinite sequence of weights is to consider the arithmetic mean.
 Since the sequence $(\frac{1}{k} \sum_{i = 0}^{k-1} \rho_i)_{k \in \N}$ may not converge,
 we can either consider the limit superior or the limit inferior, leading to the two definitions:
@@ -21,9 +76,8 @@ We will first prove that they are prefix independent, then that they are positio
 and then construct algorithms for solving them and compute the value function.
 The best known time complexity for both problems is pseudopolynomial, meaning polynomial when the numerical inputs are given in unary.
 
-```{admonition} Lemma
-:class: lemma
-:name: 4-lem:prefix_independence_mean_payoff
+```{prf:lemma} (needs title)
+:label: 4-lem:prefix_independence_mean_payoff
 
 $\MeanPayoff^+$ is prefix independent.
 
@@ -48,10 +102,10 @@ for a fixed $p \in \N$:
 Note that by duality this implies that $\MeanPayoff^-$ is also prefix independent.
 
 In the setting we consider in this chapter, meaning two player zero sum games of perfect information, 
-the two objectives are equivalent, which will be a corollary of {ref}`Theorem <4-thm:mean_payoff_positional>`.
-We refer to {ref}`Theorem <13-thm:MMP-Eve>` for a setting where limit superior and limit inferior are not equivalent.
+the two objectives are equivalent, which will be a corollary of {prf:ref}`4-thm:mean_payoff_positional`.
+We refer to {prf:ref}`13-thm:MMP-Eve` for a setting where limit superior and limit inferior are not equivalent.
 
-As an example, consider the mean payoff game represented in {ref}`Figure <4-fig:MP>`. 
+As an example, consider the mean payoff game represented in Figure {ref}`4-fig:MP`. 
 As we will show later, the positional strategies defined below are optimal strategies for Eve and Adam:
 
 $$
@@ -95,9 +149,8 @@ A mean payoff game.
 
 ## Positional determinacy via first cycle games
 
-```{admonition} Theorem
-:class: theorem
-:name: 4-thm:mean_payoff_positional
+```{prf:theorem} (needs title)
+:label: 4-thm:mean_payoff_positional
 
 Limit superior mean payoff objectives are uniformly positionally determined for both players.
 
@@ -132,7 +185,7 @@ The cycle decomposition breaks down $\pi$ into (possibly interleaved) cycles and
 every vertex in $\pi$ either belongs to exactly one cycle in $\Cycles(\pi)$ or to $\widehat{\pi}$.
 For instance for $\pi = v_0 v_1 v_2 v_3 v_2 v_4 v_1 v_5$
 we have $\Cycles(\pi) = (c_1 = v_2 v_3 ; c_2 = v_1 v_2 v_4)$ and $\widehat{\pi} = v_0 v_1 v_5$,
-as illustrated in {ref}`Figure <4-fig:example_cycle_decomposition>`.
+as illustrated in Figure {ref}`4-fig:example_cycle_decomposition`.
 
 ```{figure} ./../../4-fig:example_cycle_decomposition.png
 :name: 4-fig:example_cycle_decomposition
@@ -226,7 +279,7 @@ This follows as above from the linearity of the arithmetic mean and the cycle de
 Let us now prove that $\val^{\game} = \val^{\game_{\text{FC}}}$ using the two claims.
 We first need to establish that $\game_{\text{FC}}$ is determined: 
 one argument is that $\FirstCycle$ is a Borel condition, 
-hence determinacy follows from the general Borel determinacy result ( {ref}`Theorem <1-thm:borel_determinacy>`),
+hence determinacy follows from the general Borel determinacy result ( {prf:ref}`1-thm:borel_determinacy`),
 another simpler argument is that $\FirstCycle$ is a finite duration condition,
 meaning that the outcome of the play is determined with a finite number of steps (at most $n$),
 hence determinacy follows from an easier direct argument for finite duration games.
@@ -319,7 +372,7 @@ implying that $\MeanPayoff^+(\pi) \ge x$.
 We prove that $\val^{\game} = \val^{\game_{\text{FCR}(v)}}$ using the two claims
 following the same arguments as in the first step.
 In particular we need to establish that $\game_{\text{FCR}(v)}$ is determined,
-and again it either follows from the general Borel determinacy result ( {ref}`Theorem <1-thm:borel_determinacy>`)
+and again it either follows from the general Borel determinacy result ( {prf:ref}`1-thm:borel_determinacy`)
 or by determinacy for finite duration games.
 
 
@@ -367,11 +420,10 @@ which is also optimal in $\game_{\text{FC}}$ thanks to the equality $\val^{\game
 
 ```
 
-Let us extract from the proof of {ref}`Theorem <4-thm:mean_payoff_positional>` a more general positionality result via first cycle games.
+Let us extract from the proof of {prf:ref}`4-thm:mean_payoff_positional` a more general positionality result via first cycle games.
 
-```{admonition} Theorem
-:class: theorem
-:name: 4-thm:first_cycle_games
+```{prf:theorem} (needs title)
+:label: 4-thm:first_cycle_games
 
 Let $\Phi$ a quantitative objective over the set of colours $C$.
 Let $f : C^* \to \R$ satisfying the following properties,
@@ -402,10 +454,8 @@ and the third item to prove the equivalence with first cycle games with reset;
 the equivalence between the two types of first cycle games yield the positionality of these games,
 implying the positionality of games with objective $\Phi$.
 
-```{admonition} Corollary
-:class: corollary
-\hfill
-\label{4-cor:rational-MP}
+```{prf:corollary} (needs title)
+:label: 4-cor:rational-MP
 
 *  Limit superior and limit inferior mean payoff games are equivalent:
 for every arena $\arena$ and colouring function $\col : E \to \Z$,
@@ -425,7 +475,7 @@ where $W$ is the largest weight appearing in $\Game$ in absolute value.
 ```{admonition} Proof
 :class: dropdown tip
 
-Thanks to  {ref}`Theorem <4-thm:mean_payoff_positional>`, there exist $\sigma_+$ and $\tau_+$ optimal positional strategies in $\game_+$
+Thanks to  {prf:ref}`4-thm:mean_payoff_positional`, there exist $\sigma_+$ and $\tau_+$ optimal positional strategies in $\game_+$
 and $\sigma_-$ and $\tau_-$ optimal positional strategies in $\game_-$ (for the latter by duality).
 By definition $\val^{\game_+}(v) = \MeanPayoff^+(\pi^v_{\sigma_+,\tau_+})$ and $\val^{\game_-}(v) = \MeanPayoff^-(\pi^v_{\sigma_-,\tau_-})$.
 Since $\MeanPayoff^- \le \MeanPayoff^+$ we already have $\val^{\game_-} \le \val^{\game_+}$.
@@ -460,9 +510,8 @@ thus $\val^\game(v)$ is the mean of at most $n$ weights from $\game$.
 
 The positional determinacy of mean payoff games easily gives an upper bound on the complexity of **solving** these games.
 
-```{admonition} Theorem
-:class: theorem
-:name: 4-thm:MP-NPcoNP
+```{prf:theorem} (needs title)
+:label: 4-thm:MP-NPcoNP
 
 Solving mean payoff games is in $\NP\cap\coNP$.
 
@@ -474,29 +523,28 @@ Solving mean payoff games is in $\NP\cap\coNP$.
 The first ingredient for this proof is a polynomial time algorithm for solving the one player variants of mean payoff games.
 Indeed, they correspond to the minimum cycle mean problem in a weighted graph,
 which can be solved in polynomial time by a dynamic programming algorithm.
-The second ingredient is the positional determinacy result proved in {ref}`Theorem <4-thm:mean_payoff_positional>`.
+The second ingredient is the positional determinacy result proved in {prf:ref}`4-thm:mean_payoff_positional`.
 
 Let us show the $\NP$ membership. 
 Consider a mean payoff game $\Game$, a vertex $v$ and a threshold $x \in \Qinfty$.
-Thanks to {ref}`Theorem <4-thm:mean_payoff_positional>`, we know that there exist an optimal positional strategy for Eve.
+Thanks to {prf:ref}`4-thm:mean_payoff_positional`, we know that there exist an optimal positional strategy for Eve.
 With a non-deterministic Turing machine, we may guess a positional strategy for Eve, and check that it ensures $x$ in $\Game$ from $v$. 
 
 Let us now show the $\coNP$ membership. 
 By determinacy of mean payoff games, whether Eve **cannot** ensure $x$ in $\Game$ from $v$ 
 is equivalent to whether Adam can ensure $x$ in $\Game$ from $v$.
-Again thanks to {ref}`Theorem <4-thm:mean_payoff_positional>`, we know that there exist an optimal positional strategy for Adam.
+Again thanks to {prf:ref}`4-thm:mean_payoff_positional`, we know that there exist an optimal positional strategy for Adam.
 With a non-deterministic Turing machine, we may guess a positional strategy for Adam, and check that it ensures $x$ in $\Game$ from $v$. 
 
 ```
 
-We can turn the non-deterministic algorithm given in {ref}`Theorem <4-thm:MP-NPcoNP>` into a deterministic algorithm 
+We can turn the non-deterministic algorithm given in {prf:ref}`4-thm:MP-NPcoNP` into a deterministic algorithm 
 with exponential complexity since there are exponential many positional strategies.
 
 We now show that solving mean payoff games is at least as hard as solving parity games.
 
-```{admonition} Theorem
-:class: theorem
-:name: 4-thm:parity2MP
+```{prf:theorem} (needs title)
+:label: 4-thm:parity2MP
 
   Solving parity games reduce in polynomial time to solving mean payoff games with threshold $0$.
 
@@ -525,7 +573,7 @@ and since there are at most $n$ vertices in total the largest priority dominates
 We claim that $\WE(\game) = \WE(\game')$.
 
 Let $\sigma$ be a positional strategy winning from $\WE(\game)$, we show that $\sigma$ is also winning from $\WE(\game)$ in $\Game'$.
-Since mean payoff are uniformly positionally determined for both players (see {ref}`Theorem <4-thm:mean_payoff_positional>`),
+Since mean payoff are uniformly positionally determined for both players (see {prf:ref}`4-thm:mean_payoff_positional`),
 there exists $\tau$ a positional strategy winning from $\WA(\game')$.
 Let $v \in \WE(\game)$, we consider $\pi = \pi^v_{\sigma,\tau}$ the play consistent with $\sigma$ and $\tau$ starting from $v$.
 Since $\sigma$ and $\tau$ are positional, $\pi$ is a simple path followed by a simple cycle $c$.
@@ -536,24 +584,23 @@ The converse implication is proved similarly swapping the two players.
 
 ```
 
-We note that we did not construct a reduction between objectives as defined in {ref}`Section <1-sec:reductions>`:
+We note that we did not construct a reduction between objectives as defined in Section {ref}`1-sec:reductions`:
 indeed it is not true that $\Parity$ reduces to $\MeanPayoff_{\ge 0}$, the reduction depends on the number $n$ of vertices.
 
-As a corollary of {ref}`Theorem <4-thm:MP-NPcoNP>`, this polynomial reduction gives an alternative proof of the fact
+As a corollary of {prf:ref}`4-thm:MP-NPcoNP`, this polynomial reduction gives an alternative proof of the fact
 that solving parity games is in $\NP \cap \coNP$.
 
 ## A strategy improvement algorithm
 
-```{admonition} Theorem
-:class: theorem
-:name: 4-thm:strategy_improvement
+```{prf:theorem} (needs title)
+:label: 4-thm:strategy_improvement
 
 There exists a strategy improvement algorithm for solving mean payoff games in \mynote{FILL IN}.
 
 ```
 
-We rely on the high-level presentation of strategy improvement algorithms given in  {ref}`Section <1-sec:strategy_improvement>`.
-The algorithm is very similar and actually extends the strategy improvement algorithm for parity games presented in {ref}`Section <3-sec:strategy_improvement>`.
+We rely on the high-level presentation of strategy improvement algorithms given in  Section {ref}`1-sec:strategy_improvement`.
+The algorithm is very similar and actually extends the strategy improvement algorithm for parity games presented in Section {ref}`3-sec:strategy_improvement`.
 
 \paragraph{\bf Adding the option of stopping the game.}
 Let $\game$ be a mean payoff game with weights in $[-W,W]$.
@@ -576,8 +623,7 @@ equivalently all infinite paths in $\Game[\sigma]$ satisfy mean payoff, not requ
 We say that a cycle is non-negative if the sum of the weights in the cycle is non-negative, and it is negative otherwise. 
 Respecting mean payoff is characterised using cycles:
 
-```{admonition} Fact
-:class: fact
+```{prf:observation} (needs title)
 
 A strategy $\sigma$ respects mean payoff if and only if all cycles in $\Game[\sigma]$ are non-negative.
 
@@ -587,7 +633,7 @@ The algorithm will only manipulate strategies respecting mean payoff.
 
 \paragraph{\bf Evaluating a strategy.}
 The first question is: given a strategy $\sigma$, how to evaluate it (in order to later improve it)?
-As explained in  {ref}`Section <1-sec:strategy_improvement>` towards this goal we define a value function $\val^{\sigma} : V \to Y$.
+As explained in  Section {ref}`1-sec:strategy_improvement` towards this goal we define a value function $\val^{\sigma} : V \to Y$.
 
 We let $\val^{\sigma}(v) = \min_\tau \val(\play_{\sigma,\tau}^v)$ where $\tau$ ranges over (general) strategies for Adam, so we first need to define the value of the play $\play = \play_{\sigma,\tau}^v$.
 If $\play$ is stopped, then $\val(\play)$ is the sum of the weights in $\play$.
@@ -626,8 +672,7 @@ $$
 
 Since $\delta$ is monotonic so is $\Op$.
 
-```{admonition} Fact
-:class: fact
+```{prf:observation} (needs title)
 
 The function $\val^\sigma$ is a fixed point of $\Op$ in $F^\sigma_V$.
 
@@ -642,9 +687,8 @@ The problem is for a vertex $v$ such that no plays starting from $v$ are stopped
 we can have either $\mu(v) = \top$ or $\mu(v) = \bot$, irrespective of whether the play satisfies mean payoff or not.
 From this discussion we obtain the following result.
 
-```{admonition} Lemma
-:class: lemma
-:name: 3-lem:greatest_fixed_point
+```{prf:lemma} (needs title)
+:label: 3-lem:greatest_fixed_point
 
 If $\sigma$ respects mean payoff, then $\val^{\sigma}$ is the greatest fixed point of $\Op$ in $F^\sigma_V$.
 
@@ -672,46 +716,18 @@ It may not hold that $\sigma_0$ respects mean payoff since $\game$ may contain n
 This can be checked in linear time and the attractor to the corresponding vertices removed from the game.
 After this preprocessing $\sigma_0$ indeed respects mean payoff.
 
-The pseudocode of the algorithm is given in  {ref}`Algorithm <4-algo:strategy_improvement>`.
+The pseudocode of the algorithm is given in  Algorithm {ref}`4-algo:strategy_improvement`.
 
-\begin{algorithm}
- \KwData{A mean payoff game $\game$}
- \SetKwBlock{Repeat}{repeat}{}
- \DontPrintSemicolon
- 
- $i \leftarrow 0$
- 
- \For{$v\in \VE$}{
-   $\sigma_0(v) \leftarrow \siblank$
- }
-
- $C \leftarrow \set{v \in V : v \text{ contained in a negative cycle in } \game[\sigma_0]}$
-
- $\Game \leftarrow \Game \setminus \AttrA(C)$
- 
- \Repeat{
-   Compute $\val^{\sigma_i}$ 
-
-\If{$\exists e_i = (v_i,v'_i) \in E \text{ switchable}$}{
-$\sigma_{i+1} \leftarrow \sigma_i[v_i \to e_i]$
-
-$i \leftarrow i + 1$
-
-} 
-\Else{
-\Return{$\set{v \in V : \val^{\sigma_i}(v) = \top}$}
-}
- }
-
- \caption{The strategy improvement algorithm for mean payoff games.}
-\label{4-algo:strategy_improvement}
-\end{algorithm}
+```{figure} /../4-algo:strategy_improvement.png
+:name: 4-algo:strategy_improvement
+:align: center
+The strategy improvement algorithm for mean payoff games.
+```
 
 \paragraph{\bf Proof of correctness.}
 We start by stating a very simple property of $\delta$, which is key in the arguments below.
 
-```{admonition} Fact
-:class: fact
+```{prf:observation} (needs title)
 
 Let $t \in Y$ and $w_1,\dots,w_k \in [-W,W]$ such that $t$ and $\delta(t,w_1 \dots w_k)$ are neither $\top$ nor $\bot$.
 Then $t \le \delta(t,w_1 \dots w_k)$ if and only if $\sum_{i \in [1,k]} w_i \ge 0$.
@@ -720,9 +736,8 @@ Then $t \le \delta(t,w_1 \dots w_k)$ if and only if $\sum_{i \in [1,k]} w_i \ge 
 
 The following lemma states the two important properties of $(Y,\le)$ and $\delta$.
 
-```{admonition} Lemma
-:class: lemma
-:name: 3-lem:key_property
+```{prf:lemma} (needs title)
+:label: 3-lem:key_property
 
 Let $G$ a mean payoff graph (with no stopping option).
 
@@ -748,7 +763,7 @@ $$
 
 For all $i \in [0,k-1]$ we have $\mu(v_i) \le \delta(\mu(v_{i+1 \mod k}),\col(v_i))$.
 By monotonicity of $\delta$ this implies $\mu(v_1) \le \delta(\mu(v_1),\col(v_{k-1}) \cdots \col(v_0))$.
-Thanks to  {ref}`Lemma <3-lem:key_property>` this implies that $\sum_{i \in [0,k-1]} \col(v_i) \ge 0$.
+Thanks to  {prf:ref}`3-lem:key_property` this implies that $\sum_{i \in [0,k-1]} \col(v_i) \ge 0$.
 
 ```
 
@@ -757,10 +772,9 @@ A progress measure for $\Game[\sigma]$ is a post-fixed point of $\Op$ in $F^\sig
 it is a function $\mu : V \to Y$ such that $\mu(v) = \emptyset$ if $\sigma(v) = \siblank$ and $\mu \le \Op(\mu)$,
 which means that $\mu(v) \le \min \set{ \delta(\mu(v'),\col(v)) : (v,v') \in E}$.
 
-We now rely on  {ref}`Lemma <3-lem:greatest_fixed_point>` and  {ref}`Lemma <3-lem:key_property>` to prove the two principles: progress and optimality.
+We now rely on  {prf:ref}`3-lem:greatest_fixed_point` and  {prf:ref}`3-lem:key_property` to prove the two principles: progress and optimality.
 
-```{admonition} Lemma (Progress)
-:class: lemma
+```{prf:lemma} Progress
 Let $\sigma$ a strategy respecting mean payoff and $e = (v,v')$ a switchable edge.
 We let $\sigma'$ denote $\sigma[v \to e]$.
 Then $\sigma'$ respects mean payoff and $\sigma < \sigma'$.
@@ -787,13 +801,13 @@ indeed either $e'$ is an edge in $\Game[\sigma]$ and this is by definition of $\
 or $e' = e$ and the inequality was proved just above.
 
 Since $\sigma$ respects mean payoff $\val^\sigma$ does not take the value $\bot$.
-But we cannot apply (the first item of)  {ref}`Lemma <3-lem:key_property>` yet because $\val^\sigma$ may have value $\top$.
+But we cannot apply (the first item of)  {prf:ref}`3-lem:key_property` yet because $\val^\sigma$ may have value $\top$.
 However by definition of $\val^\sigma$ for all vertices $s$ such that $\val^\sigma(s) = \top$ all paths from $s$ satisfy mean payoff,
 so it is enough to consider the mean payoff graph obtained from $\Game[\sigma']$ by removing all such vertices.
-The first item of  {ref}`Lemma <3-lem:key_property>` implies that it satisfies mean payoff, hence $\Game[\sigma']$ as well.
+The first item of  {prf:ref}`3-lem:key_property` implies that it satisfies mean payoff, hence $\Game[\sigma']$ as well.
 
 
-At this point we know that $\sigma'$ respects mean payoff, which thanks to  {ref}`Lemma <3-lem:greatest_fixed_point>`
+At this point we know that $\sigma'$ respects mean payoff, which thanks to  {prf:ref}`3-lem:greatest_fixed_point`
 implies that $\val^{\sigma'}$ is the greatest fixed point of $\Op$ in $F^{\sigma'}_V$.
 
 We now argue that $\val^\sigma$ is a progress measure for $\game[\sigma']$.
@@ -813,8 +827,7 @@ $\val^\sigma(v) < \val^{\sigma'}(v)$.
 ```
 
 
-```{admonition} Lemma (Optimality)
-:class: lemma
+```{prf:lemma} Optimality
 Let $\sigma$ a strategy respecting mean payoff that has no switchable edges, then 
 $\sigma$ is winning from all vertices of $\WE(\Game)$.
 
@@ -839,7 +852,7 @@ Let us consider $\Game[\tau]$ the mean payoff graph obtained from $\Game$ by res
 to those prescribed by $\tau$.
 We argue that for all edges $(v,,v')$ in $\game[\tau]$, we have 
 $\val^{\sigma}(v) \ge \delta(\val^{\sigma}(v'),\col(v))$.
-Once this is proved we conclude using the second item of  {ref}`Lemma <3-lem:key_property>` implying that $\Game[\tau]$ satisfies the complement of mean payoff.
+Once this is proved we conclude using the second item of  {prf:ref}`3-lem:key_property` implying that $\Game[\tau]$ satisfies the complement of mean payoff.
 
 The first case is when $v \in \VE$. 
 Let $\sigma(v) = (v,u)$.
@@ -917,9 +930,8 @@ $(\sum_{i=1}^k c_i)-k\alpha$, with $c_i$ the original weights of
 edges. There are still $\bigO(n^2W)$ possible weights of this
 form, which implies that
 
-```{admonition} Theorem (\cite{Bjorklund&Vorobyov:2007})
-:class: theorem
-:name: 4-thm:MP-strategy-improvement-binary-search
+```{prf:theorem} \cite{Bjorklund&Vorobyov:2007}
+:label: 4-thm:MP-strategy-improvement-binary-search
 
   Strategy improvement algorithm with a binary search computes the
   values of a mean payoff game in time
@@ -965,9 +977,8 @@ all progress measures a complete lattice. It is not empty, since the
 function mapping each vertex to $-\infty$ is a progress
 measure. Therefore, there exists a greatest progress measure.
 
-```{admonition} Theorem
-:class: theorem
-:name: 4-thm:greatest-progress-measure
+```{prf:theorem} (needs title)
+:label: 4-thm:greatest-progress-measure
 
   Let $\game$ be a mean payoff game. The greatest progress measure $\mu$
   of $\game$ is such that Eve can guarantee a non-negative mean payoff
@@ -1037,22 +1048,14 @@ $$\Lift(\mu)(v) =
  where $\downward{k}\colon \Rbar\to \Rbar$ is the
 mapping defined by $\downward k(x) = x$ if $x\geq k$, and
 $\downward k(x) = -\infty$ otherwise. The overall method, very
-simple, is given in {ref}`Algorithm <4-algo:value_iteration_MP>`. 
+simple, is given in Algorithm {ref}`4-algo:value_iteration_MP`. 
 
-\begin{algorithm}[ht]
- \KwData{A mean payoff game}
 
-\For{$v \in V$}{
-$\mu(v) \leftarrow 0$
-}
-     
-\lRepeat{$\mu = \Lift(\mu)$}{
-$\mu \leftarrow \Lift(\mu)$}
-
-\Return{$\{v\in V\mid \mu(v)\neq -\infty\}$}
-\caption{The value iteration algorithm.}
-\label{4-algo:value_iteration_MP}
-\end{algorithm}
+```{figure} /../4-algo:value_iteration_MP.png
+:name: 4-algo:value_iteration_MP
+:align: center
+The value iteration algorithm.
+```
 
 The co-domain of $\Lift$ are functions
 $V\to \{-\infty,-nW+1,-nW+2,\ldots,0\}$, i.e.~a finite set of
@@ -1068,7 +1071,7 @@ which must map every vertex $v\in\WE$ to the minimum between $0$ and
 the weight of a finite path (as we have seen in the previous proof):
 this weight is thus at least $-(n-1)W$, so that it is correct to
 jump directly to $-\infty$ when we reach a value less than
-that. Therefore, by  {ref}`Theorem <4-thm:greatest-progress-measure>`, the value
+that. Therefore, by  {prf:ref}`4-thm:greatest-progress-measure`, the value
 iteration algorithm returns the set of winning vertices for Eve.
 
 We finally study the complexity of this algorithm. The
@@ -1088,9 +1091,8 @@ $$\sum_{v\in V}\bigO\big((|\mathrm{post}(v)| +
   |\mathrm{pre}(v)|)nW\big) = \bigO(mn W)$$
 
 
-```{admonition} Theorem (\cite{Brim&Chaloupka&Doyen&Gentilini&Raskin:2011})
-:class: theorem
-:name: 4-thm:MP-value-iteration-Brim
+```{prf:theorem} \cite{Brim&Chaloupka&Doyen&Gentilini&Raskin:2011}
+:label: 4-thm:MP-value-iteration-Brim
 
   Value iteration algorithm finds the set $\WE$ of vertices from which
   Eve can guarantee a non-negative mean payoff in a game $\game$ with a
@@ -1102,9 +1104,8 @@ As a corollary, we can compute the values of all vertices in a
 mean payoff game, using a similar binary search as explained before for
 strategy improvement:
 
-```{admonition} Theorem (\cite{Brim&Chaloupka&Doyen&Gentilini&Raskin:2011})
-:class: theorem
-:name: 4-thm:MP-value-iteration-Brim-binary-search
+```{prf:theorem} \cite{Brim&Chaloupka&Doyen&Gentilini&Raskin:2011}
+:label: 4-thm:MP-value-iteration-Brim-binary-search
 
   Value iteration algorithm with a binary search allows one to compute
   the values of a mean payoff game in time

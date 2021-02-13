@@ -29,4 +29,3 @@ The reductions operate at the level of the conditions and preserve the structure
 suggesting that parity games is a special case of mean payoff games, and similarly for mean payoff games and discounted payoff games.
 
 The best algorithms for mean payoff and discounted payoff games are subexponential (and use randomisation): the quasipolynomial time algorithms for parity games have not (yet?) been extended to mean payoff and discounted payoff games.
- ```{tableofcontents}```

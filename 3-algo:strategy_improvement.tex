@@ -1,0 +1,39 @@
+\documentclass[preview,border=0mm,convert={density=600,outext=.png}]{standalone}
+\input{norenew_macros.tex}
+\input{3_Parity/macros_local.tex}
+\usepackage{amsfonts}
+\usepackage[norelsize,ruled,vlined,noend]{algorithm2e}
+\begin{document}
+\begin{algorithm}[H]
+
+ \KwData{A parity game $\game$}
+ \SetKwBlock{Repeat}{repeat}{}
+ \DontPrintSemicolon
+ 
+ $i \leftarrow 0$
+ 
+ \For{$v\in \VE$}{
+   $\sigma_0(v) \leftarrow \siblank$
+ }
+
+ $C \leftarrow \set{v \in V : v \textrm{ contained in an odd cycle in } \game[\sigma_0]}$
+
+ $\Game \leftarrow \Game \setminus \AttrA(C)$
+ 
+ \Repeat{
+   Compute $\val^{\sigma_i}$ 
+
+	\If{$\exists e_i = (v_i,v'_i) \in E \textrm{ switchable}$}{
+		$\sigma_{i+1} \leftarrow \sigma_i[v_i \to e_i]$
+		
+		$i \leftarrow i + 1$
+
+	} 
+	\Else{
+		\Return{$\set{v \in V : \val^{\sigma_i}(v) = \top}$}
+	}
+ }
+
+ 
+\end{algorithm}
+\end{document}

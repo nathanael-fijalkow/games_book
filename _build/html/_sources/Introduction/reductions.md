@@ -1,6 +1,61 @@
 (1-sec:reductions)=
 # Reductions
 
+```{math}
+\newcommand{\Eve}{\textrm{Eve}}
+\newcommand{\Adam}{\textrm{Adam}}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
+\newcommand{\argmax}{\text{argmax}}
+\newcommand{\argmin}{\text{argmin}}
+\newcommand{\Op}{\mathbb{O}}
+\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\text{supp}} 
+\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
+\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
+\newcommand{\mEve}{\mathrm{Eve}}
+\newcommand{\mAdam}{\mathrm{Adam}}
+\newcommand{\mRandom}{\mathrm{Random}}
+\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
+\newcommand{\ing}{\text{In}}
+\newcommand{\Ing}{\ing}
+\newcommand{\out}{\text{Out}}
+\newcommand{\Out}{\out}
+\newcommand{\dest}{\Delta} 
+\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
+\newcommand{\Paths}{\text{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\text{first}} \newcommand{\last}{\text{last}} 
+\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
+\newcommand{\Pre}{\text{Pre}} \newcommand{\PreE}{\text{Pre}_\mEve} \newcommand{\PreA}{\text{Pre}_\mAdam} \newcommand{\Attr}{\text{Attr}} \newcommand{\AttrE}{\text{Attr}_\mEve} \newcommand{\AttrA}{\text{Attr}_\mAdam} \newcommand{\rank}{\text{rank}}
+\renewcommand{\Win}{\textsc{Win}} 
+\renewcommand{\Lose}{\textsc{Lose}} 
+\newcommand{\Value}{\text{val}} 
+\newcommand{\ValueE}{\text{val}_\mEve} 
+\newcommand{\ValueA}{\text{val}_\mAdam}
+\newcommand{\val}{\Value} 
+\newcommand{\Automaton}{\mathbf{A}} 
+\newcommand{\Safe}{\mathtt{Safe}}
+\newcommand{\Reach}{\mathtt{Reach}} 
+\newcommand{\Buchi}{\mathtt{Buchi}} 
+\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
+\newcommand{\Parity}{\mathtt{Parity}} 
+\newcommand{\Muller}{\mathtt{Muller}} 
+\newcommand{\Rabin}{\mathtt{Rabin}} 
+\newcommand{\Streett}{\mathtt{Streett}} 
+\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
+\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
+\newcommand{\Energy}{\mathtt{Energy}}
+\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
+\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
+\newcommand{\Sup}{\mathtt{Sup}}
+\newcommand{\Inf}{\mathtt{Inf}}
+\newcommand{\LimSup}{\mathtt{LimSup}}
+\newcommand{\LimInf}{\mathtt{LimInf}}
+```
 Automata and memory structures can be used to construct reductions between games.
 Automata operate at the level of objectives, independently of the colouring function and the arena,
 while memory structures work at the level of conditions, hence depend on the graph.
@@ -31,9 +86,8 @@ The game is $\game \times \Automaton = (\arena \times \Automaton, \Omega'[\col']
 
 The following lemma states two consequences to the fact that $\Omega$ reduces to $\Omega'$.
 
-```{admonition} Lemma
-:class: lemma
-:name: 1-lem:automata_reduction
+```{prf:lemma} (needs title)
+:label: 1-lem:automata_reduction
 
 If $\Omega$ reduces to $\Omega'$ through the automaton $\Automaton$ with $S$ states, then 
 Eve has a winning strategy in $\Game$ from $v_0$ if and only if she has a winning strategy in $\Game \times \Automaton$ from $(v_0,q_0)$.
@@ -65,8 +119,7 @@ We first define the graph $G \times M$ whose set of vertices is $V \times M$ and
 for every edge $e = (v,v') \in E$ and state $m \in M$ there is an edge $e_m$ from $(v,m)$ to $(v',\delta(m,e))$.
 The arena is $\arena \times \mem = (G \times M, \VE \times M, \VA \times M)$.
 
-```{admonition} Fact
-:class: fact
+```{prf:observation} (needs title)
  
 There is a one-to-one correspondence between plays $\pi = v_0 v_1 \dots$ in $\arena$ 
 and plays $\pi'$ in $\arena \times \mem$ from $(v_0,m_0)$:
@@ -87,9 +140,8 @@ $$
 Let $\Mem$ and $\Mem'$ two memory structure over the same graph, 
 we let $\Mem \times \Mem'$ denote the memory structure obtained by direct product.
 
-```{admonition} Lemma
-:class: lemma
-:name: 1-lem:memory_structure_reduction
+```{prf:lemma} (needs title)
+:label: 1-lem:memory_structure_reduction
 
 If $W$ reduces to $W'$ through the memory structure $\mem$, then
 Eve has a winning strategy in $\Game = (\Arena,W)$ from $v_0$ if and only if 
@@ -120,7 +172,7 @@ which together with the fact that $W$ reduces to $W'$ implies that $\sigma'$ is 
 
 ```
 
-To obtain  {ref}`Lemma <1-lem:automata_reduction>` as a corollary of  {ref}`Lemma <1-lem:memory_structure_reduction>`
+To obtain  {prf:ref}`1-lem:automata_reduction` as a corollary of  {prf:ref}`1-lem:memory_structure_reduction`
 we observe that a reduction between objectives using an automaton induces a reduction between the induced conditions using a memory structure.
 Formally, let us assume that $\Omega$ reduces to $\Omega'$, 
 and let $\Automaton = (Q, q_0, \delta, \Omega'[\col_\Automaton])$ such that $L(\Automaton) = \Omega$.
@@ -134,5 +186,5 @@ We note that $\Omega[\col]$ reduces to $\Omega'[\col']$: for all plays $\play$ i
 $\play \in \Omega[\col]$ if and only if $\play' \in \Omega'[\col']$: this is a reformulation of the fact that $L(\Automaton) = \Omega$.
 
 We construct the game $\Game' = (\Arena \times \Mem, \Omega'[\col'])$.
-Thanks to  {ref}`Lemma <1-lem:memory_structure_reduction>` the two games have the same winner and a strategy in the latter induce a strategy in the former
-by composing with the memory structure $\Mem$, implying  {ref}`Lemma <1-lem:automata_reduction>`.
+Thanks to  {prf:ref}`1-lem:memory_structure_reduction` the two games have the same winner and a strategy in the latter induce a strategy in the former
+by composing with the memory structure $\Mem$, implying  {prf:ref}`1-lem:automata_reduction`.

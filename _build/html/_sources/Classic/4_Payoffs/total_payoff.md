@@ -1,6 +1,61 @@
 (4-sec:total_payoff)=
 # Total payoff games
 
+```{math}
+\newcommand{\Eve}{\textrm{Eve}}
+\newcommand{\Adam}{\textrm{Adam}}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
+\newcommand{\argmax}{\text{argmax}}
+\newcommand{\argmin}{\text{argmin}}
+\newcommand{\Op}{\mathbb{O}}
+\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\text{supp}} 
+\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
+\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
+\newcommand{\mEve}{\mathrm{Eve}}
+\newcommand{\mAdam}{\mathrm{Adam}}
+\newcommand{\mRandom}{\mathrm{Random}}
+\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
+\newcommand{\ing}{\text{In}}
+\newcommand{\Ing}{\ing}
+\newcommand{\out}{\text{Out}}
+\newcommand{\Out}{\out}
+\newcommand{\dest}{\Delta} 
+\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
+\newcommand{\Paths}{\text{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\text{first}} \newcommand{\last}{\text{last}} 
+\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
+\newcommand{\Pre}{\text{Pre}} \newcommand{\PreE}{\text{Pre}_\mEve} \newcommand{\PreA}{\text{Pre}_\mAdam} \newcommand{\Attr}{\text{Attr}} \newcommand{\AttrE}{\text{Attr}_\mEve} \newcommand{\AttrA}{\text{Attr}_\mAdam} \newcommand{\rank}{\text{rank}}
+\renewcommand{\Win}{\textsc{Win}} 
+\renewcommand{\Lose}{\textsc{Lose}} 
+\newcommand{\Value}{\text{val}} 
+\newcommand{\ValueE}{\text{val}_\mEve} 
+\newcommand{\ValueA}{\text{val}_\mAdam}
+\newcommand{\val}{\Value} 
+\newcommand{\Automaton}{\mathbf{A}} 
+\newcommand{\Safe}{\mathtt{Safe}}
+\newcommand{\Reach}{\mathtt{Reach}} 
+\newcommand{\Buchi}{\mathtt{Buchi}} 
+\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
+\newcommand{\Parity}{\mathtt{Parity}} 
+\newcommand{\Muller}{\mathtt{Muller}} 
+\newcommand{\Rabin}{\mathtt{Rabin}} 
+\newcommand{\Streett}{\mathtt{Streett}} 
+\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
+\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
+\newcommand{\Energy}{\mathtt{Energy}}
+\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
+\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
+\newcommand{\Sup}{\mathtt{Sup}}
+\newcommand{\Inf}{\mathtt{Inf}}
+\newcommand{\LimSup}{\mathtt{LimSup}}
+\newcommand{\LimInf}{\mathtt{LimInf}}
+```
 Yet another interesting quantitative objective---that is closely
 related with shortest path objective---is the total payoff defined by
 
@@ -45,9 +100,8 @@ defined by Gimbert and Zielonka \cite{Gimbert&Zielonka:2004}. They define
 sufficient conditions for a quantitative objective to fulfil the
 positional determinacy.
 
-```{admonition} Definition
-:class: definition
-:name: 4-def:fairly-mixing
+```{prf:definition} (needs title)
+:label: 4-def:fairly-mixing
 
   A payoff $\mathsf{P}\colon C^\omega\to \overline R$ is **fairly
     mixing** if:
@@ -79,9 +133,8 @@ $$\inf(\mathcal{P}_I\cup \mathcal{P}_J) \leq
 
 It is not difficult to convince oneself that
 
-```{admonition} Proposition
-:class: proposition
-:name: 4-prop:objectives-fairly
+```{prf:proposition} (needs title)
+:label: 4-prop:objectives-fairly
 
   Quantitative objectives $\Inf$, $\Sup$, $\LimInf$, $\LimSup$,
   $\Parity$ (mapping $1$ to sequences whose the greatest colour seen
@@ -94,9 +147,8 @@ It is not difficult to convince oneself that
 Then, a rather technical proof by induction on the number of vertices
 in the arena allows one to get the following strong result:
 
-```{admonition} Theorem (\cite{Gimbert&Zielonka:2004})
-:class: theorem
-:name: 4-thm:fairly-mixing
+```{prf:theorem} \cite{Gimbert&Zielonka:2004}
+:label: 4-thm:fairly-mixing
 
   If $\mathsf P$ is a fairly mixing payoff function, then all finite
   games $(\arena,\mathsf P)$ are positionally determined.
@@ -104,9 +156,8 @@ in the arena allows one to get the following strong result:
 ```
 
 
-```{admonition} Corollary
-:class: corollary
-:name: 4-cor:TP-determinacy
+```{prf:corollary} (needs title)
+:label: 4-cor:TP-determinacy
 
   Total payoff games are positionally determined.
 
@@ -133,7 +184,7 @@ Indeed, this operator may have several fixed points, and even more
 problematic is the fact that the value of the game may be different
 from the greatest and lowest fixed points, forbidding to find the
 correct fixed point easily. Consider for example the total payoff game
-of {ref}`Figure <4-fig:totalpayoff>`. Operator $F$ is then
+of Figure {ref}`4-fig:totalpayoff`. Operator $F$ is then
 $F(x_0,x_1,x_2) = \big(\max(x_1-1,x_2-2),x_0+1,x_0+2\big)$. Its fixed
 points are all vectors $(a,a+1,a+2)$ with $a\in \overline R$: in
 particular, its greatest fixed point is $(+\infty, +\infty, +\infty)$
@@ -145,9 +196,8 @@ points exists, relying upon the encoding of a total payoff game into a
 pseudopolynomial size shortest path game---still with the same
 costs---resulting in a pseudopolynomial time algorithm.
 
-```{admonition} Theorem (\cite{Brihaye&Geeraerts&HaddadA&Monmege:2017})
-:class: theorem
-:name: 4-thm:TP-optimal-strategies
+```{prf:theorem} \cite{Brihaye&Geeraerts&HaddadA&Monmege:2017}
+:label: 4-thm:TP-optimal-strategies
 
   We can compute the optimal values of total payoff games, as well as
   positional optimal strategies for both players, with a

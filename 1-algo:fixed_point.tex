@@ -1,0 +1,22 @@
+\documentclass[preview,border=0mm,convert={density=600,outext=.png}]{standalone}
+\input{norenew_macros.tex}
+\input{1_Introduction/macros_local.tex}
+\usepackage{amsfonts}
+\usepackage[norelsize,ruled,vlined,noend]{algorithm2e}
+\begin{document}
+\begin{algorithm}[H]
+
+ \KwData{$(X,\le)$ a finite lattice and $\Op_i : X \to X$ a set of monotonic operators for $i \in I$}
+
+$x \leftarrow \bot$ 
+
+\Repeat{$x$ is a fixed point of $(\Op_i)_{i \in I}$}{
+	Choose $i \in I$ such that $\neg (\Op_i(x) \le x)$
+
+	$x \leftarrow \max(x, \Op_i(x))$ 
+}
+
+\Return{$x$}
+
+\end{algorithm}
+\end{document}

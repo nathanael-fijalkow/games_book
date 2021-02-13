@@ -1,73 +1,77 @@
 (3-sec:zielonka)=
 # A quasipolynomial time attractor decomposition algorithm
 
-```{admonition} Theorem
-:class: theorem
+```{math}
+\newcommand{\Eve}{\textrm{Eve}}
+\newcommand{\Adam}{\textrm{Adam}}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
+\newcommand{\argmax}{\text{argmax}}
+\newcommand{\argmin}{\text{argmin}}
+\newcommand{\Op}{\mathbb{O}}
+\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\text{supp}} 
+\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
+\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
+\newcommand{\mEve}{\mathrm{Eve}}
+\newcommand{\mAdam}{\mathrm{Adam}}
+\newcommand{\mRandom}{\mathrm{Random}}
+\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
+\newcommand{\ing}{\text{In}}
+\newcommand{\Ing}{\ing}
+\newcommand{\out}{\text{Out}}
+\newcommand{\Out}{\out}
+\newcommand{\dest}{\Delta} 
+\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
+\newcommand{\Paths}{\text{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\text{first}} \newcommand{\last}{\text{last}} 
+\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
+\newcommand{\Pre}{\text{Pre}} \newcommand{\PreE}{\text{Pre}_\mEve} \newcommand{\PreA}{\text{Pre}_\mAdam} \newcommand{\Attr}{\text{Attr}} \newcommand{\AttrE}{\text{Attr}_\mEve} \newcommand{\AttrA}{\text{Attr}_\mAdam} \newcommand{\rank}{\text{rank}}
+\renewcommand{\Win}{\textsc{Win}} 
+\renewcommand{\Lose}{\textsc{Lose}} 
+\newcommand{\Value}{\text{val}} 
+\newcommand{\ValueE}{\text{val}_\mEve} 
+\newcommand{\ValueA}{\text{val}_\mAdam}
+\newcommand{\val}{\Value} 
+\newcommand{\Automaton}{\mathbf{A}} 
+\newcommand{\Safe}{\mathtt{Safe}}
+\newcommand{\Reach}{\mathtt{Reach}} 
+\newcommand{\Buchi}{\mathtt{Buchi}} 
+\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
+\newcommand{\Parity}{\mathtt{Parity}} 
+\newcommand{\Muller}{\mathtt{Muller}} 
+\newcommand{\Rabin}{\mathtt{Rabin}} 
+\newcommand{\Streett}{\mathtt{Streett}} 
+\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
+\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
+\newcommand{\Energy}{\mathtt{Energy}}
+\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
+\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
+\newcommand{\Sup}{\mathtt{Sup}}
+\newcommand{\Inf}{\mathtt{Inf}}
+\newcommand{\LimSup}{\mathtt{LimSup}}
+\newcommand{\LimInf}{\mathtt{LimInf}}
+```
+
+```{prf:theorem} (needs title)
 
 There exists a quasipolynomial time algorithm for solving parity games, and more specifically of complexity $n^{O(\log n)}$.
 
 ```
 
-\begin{algorithm}
- \KwData{A parity game $\Game$ with priorities in $[1,d]$}
- \SetKwFunction{FSolveEven}{SolveEven}
- \SetKwFunction{FSolveOdd}{SolveOdd}
- \SetKwProg{Fn}{Function}{:}{}
- \DontPrintSemicolon
 
-\Fn{\FSolveEven{$\Game$}}{
+```{figure} /../3-algo:zielonka_even.png
+:name: 3-algo:zielonka_even
+:align: center
+The recursive algorithm for computing the winning region of parity games.
+```
 
-$i \leftarrow -1$ 
-
-$V_0 \leftarrow V$
-
-\Repeat{$\WA(\Game_i) = \emptyset$}{
-$i \leftarrow i + 1$
-
-Let $\Game_i$ the subgame of $\Game$ induced by $V_i \setminus \AttrE^{\Game_i}(d)$
-
-$\WE(\Game_i) \leftarrow$ \FSolveOdd{$\Game_i$}
-
-$V_{i+1} \leftarrow V_i \setminus \AttrA^{\Game}( \WA(\Game_i) )$ 
-}
-
-\Return{$V_i$}
-}
-
-\Fn{\FSolveOdd{$\Game$}}{
-\If{$d = 1$}{
-\Return{$V$}
-}
-
-$i \leftarrow -1$ 
-
-$V_0 \leftarrow V$
-
-\Repeat{$\WE(\Game_i) = \emptyset$}{
-$i \leftarrow i + 1$
-
-Let $\Game_i$ the subgame of $\Game$ induced by $V_i \setminus \AttrA^{\Game_i}(d)$
-
-$\WA(\Game_i) \leftarrow$ \FSolveEven{$\Game_i$}
-
-$V_{i+1} \leftarrow V_i \setminus \AttrE^{\Game}( \WE(\Game_i) )$ 
-}
-
-\Return{$V_i$}
-}
-
-\If{$d$ is even}{
-\Return{\FSolveEven{$\Game$}}
-}
-\Else{
-\Return{\FSolveOdd{$\Game$}}
-}
-\caption{The recursive algorithm for computing the winning region of parity games.}
-\label{3-algo:zielonka_even}
-\end{algorithm}
-
-We revisit the exponential recursive algorithm presented in  {ref}`Section <2-sec:parity>`.
-We refer to  {ref}`Algorithm <3-algo:zielonka_even>` for an equivalent presentation of this algorithm, 
+We revisit the exponential recursive algorithm presented in  Section {ref}`2-sec:parity`.
+We refer to  Algorithm {ref}`3-algo:zielonka_even` for an equivalent presentation of this algorithm, 
 where we make explicit all recursive calls involving the maximal priority $d$.
 The benefit of doing this is to make the following observation:
 during the $i$\textsuperscript{th} recursive call for $d$, the algorithm removes from the game $\Game$ the subset 
@@ -86,59 +90,19 @@ As before, they are two mutually recursive procedures, $\textsl{SolveE}$ and $\t
 At an intuitive level, the objective of $\textsl{SolveE}(\Game,s_{\mEve},s_{\mAdam})$ 
 is to return a (non-empty whenever possible) dominion for Eve of size at most $s_{\mEve}$.
 
-We spell out the pseudocode of $\textsl{SolveE}$ in  {ref}`Algorithm <3-algo:quasipoly_zielonka_even>`, leaving out the perfectly symmetric $\textsl{SolveA}$.
+We spell out the pseudocode of $\textsl{SolveE}$ in  Algorithm {ref}`3-algo:quasipoly_zielonka_even`, leaving out the perfectly symmetric $\textsl{SolveA}$.
 The base cases are when there is only one priority, in which case Eve wins everywhere if the priority is even, and Adam wins everywhere if the priority is odd.
 
-\begin{algorithm}
- \KwData{A parity game $\Game$ with priorities in $[1,d]$, and $d$ even, two parameters $s_{\mEve}$ and $s_{\mAdam}$}
- \SetKwFunction{FTreat}{Treat}
- \SetKwProg{Fn}{Function}{:}{}
-
-Let $i = 0$ and $V_0 = V$
-
-Let $\H_0$ the subgame of $\Game$ induced by $V_0$
-
-Let $\Game_0$ the subgame of $\H_0$ induced by $V_0 \setminus \AttrE^{\H_0}(d)$
-
-
-\Fn{\FTreat{$X_i$}}{
-Let $V_{i+1} = V_i \setminus \AttrA^{\H_i}(X_i)$
-
-Let $\H_{i+1}$ the subgame of $\H_i$ induced by $V_{i+1}$
-
-Let $\Game_{i+1}$ the subgame of $\H_{i+1}$ induced by $V_{i+1} \setminus \AttrE^{\H_{i+1}}(d)$
-
-$i = i + 1$
-}
-
-
-\tcp{recursive calls for small dominions}
-\While{$X_i = \textsl{SolveA}(\Game_i, s_{\mEve}, \lfloor s_{\mAdam} / 2 \rfloor) \neq \emptyset$}{
-\FTreat($X_i$)
-}
-
-\tcp{one recursive call for a large dominion}
-
-\If{$X_i = \textsl{SolveA}(\Game_i, s_{\mEve}, s_{\mAdam}) \neq \emptyset$}{
-\FTreat($X_i$) 
-}
-
-\tcp{recursive calls for small dominions}
-\While{$X_i = \textsl{SolveA}(\Game_i, s_{\mEve}, \lfloor s_{\mAdam} / 2 \rfloor) \neq \emptyset$}{
-\FTreat($X_i$) 
-}
-
-\Return{$V_i$}
-\caption{A recursive quasipolynomial algorithm for computing the winning regions of parity games -- the procedure $\textsl{SolveE}$.}
-\label{3-algo:quasipoly_zielonka_even}
-\end{algorithm}
+```{figure} /../3-algo:quasipoly_zielonka_even.png
+:name: 3-algo:quasipoly_zielonka_even
+:align: center
+A recursive quasipolynomial algorithm for computing the winning regions of parity games -- the procedure $\textsl{SolveE}$.
+```
 
 We need three simple facts about traps.
 
-```{admonition} Fact
-:class: fact
-:name: 3-fact:traps
-\hfill
+```{prf:observation} (needs title)
+:label: 3-fact:traps
 
 *  Let $S$ be a trap for Eve in the game $\Game$ and $X$ a set of vertices, 
 then $S \setminus \AttrE(X)$ is a trapfor Eve in the subgame of $\Game$ induced by $V \setminus \AttrE(X)$.
@@ -151,10 +115,8 @@ then $Z$ is a trap for Eve in $\Game$.
 
 The following lemma implies the correctness of the algorithm.
 
-```{admonition} Lemma
-:class: lemma
-:name: 3-lem:correctness_quasipoly_zielonka
-\hfill
+```{prf:lemma} (needs title)
+:label: 3-lem:correctness_quasipoly_zielonka
 
 *  For all dominions $S$ for Eve, if $|S| \le s_{\mEve}$, then $S \subseteq \textsl{SolveE}(\Game,s_{\mEve},s_{\mAdam})$.
 *  For all dominions $S$ for Adam, if $|S| \le s_{\mAdam}$, then $S \cap \textsl{SolveE}(\Game,s_{\mEve},s_{\mAdam}) = \emptyset$.
@@ -162,7 +124,7 @@ The following lemma implies the correctness of the algorithm.
 ```
 
 Indeed, $\WE(\Game)$ and $\WA(\Game)$ are dominions for Eve and Adam in $\Game$, 
-so  {ref}`Lemma <3-lem:correctness_quasipoly_zielonka>` implies that $\textsl{SolveE}(\Game,n,n) = \WE(\Game)$.
+so  {prf:ref}`3-lem:correctness_quasipoly_zielonka` implies that $\textsl{SolveE}(\Game,n,n) = \WE(\Game)$.
 
 ```{admonition} Proof
 :class: dropdown tip
@@ -259,7 +221,7 @@ We apply the external inductive hypothesis to the dominion $Z_{i_{\ell}}$ for Ad
 for the parameter $\lfloor s_{\mAdam} / 2 \rfloor$: if $|Z_{i_{\ell}}| \le \lfloor s_{\mAdam} / 2 \rfloor$, then
 $Z_{i_{\ell}} \subseteq \textsl{SolveA}(\Game_{i_{\ell}},s_{\mEve},\lfloor s_{\mAdam} / 2 \rfloor)$,
 implying that $Z_{i_{\ell}}$ is empty, which by the first property above implies that $S_{i_{\ell}}$ is empty,
-thus $S_{i_{\infty}}$ as well, proving the second item of  {ref}`Lemma <3-lem:correctness_quasipoly_zielonka>`.
+thus $S_{i_{\infty}}$ as well, proving the second item of  {prf:ref}`3-lem:correctness_quasipoly_zielonka`.
 Excluding this case, we then analyse the situation where 
 $|Z_{i_{\ell}}| > \lfloor s_{\mAdam} / 2 \rfloor$. 
 
@@ -291,7 +253,7 @@ $Z_{i_{\infty}} \subseteq \textsl{SolveA}(\Game_{i_{\infty}},s_{\mEve},\lfloor s
 The premise holds because $|S_{i_\ell + 1}| \le \lfloor s_{\mAdam} / 2 \rfloor$, the sequence $(S_i)_i$ is non-increasing, 
 $i_\ell < i_\infty$, and $Z_{i_{\infty}} \subseteq S_{i_\infty}$.
 Hence $Z_{i_\infty}$ is empty. Thanks to the first property above for $Z_i$, this implies that $S_{i_\infty}$ is empty.
-This finishes the proof of the second item of  {ref}`Lemma <3-lem:correctness_quasipoly_zielonka>`.
+This finishes the proof of the second item of  {prf:ref}`3-lem:correctness_quasipoly_zielonka`.
 
 ```
 
