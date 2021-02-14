@@ -12,30 +12,30 @@
 \newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
-\newcommand{\argmax}{\text{argmax}}
-\newcommand{\argmin}{\text{argmin}}
+\newcommand{\argmax}{\textrm{argmax}}
+\newcommand{\argmin}{\textrm{argmin}}
 \newcommand{\Op}{\mathbb{O}}
-\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\text{supp}} 
+\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\textrm{supp}} 
 \newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
 \newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
 \newcommand{\mEve}{\mathrm{Eve}}
 \newcommand{\mAdam}{\mathrm{Adam}}
 \newcommand{\mRandom}{\mathrm{Random}}
 \newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
-\newcommand{\ing}{\text{In}}
+\newcommand{\ing}{\textrm{In}}
 \newcommand{\Ing}{\ing}
-\newcommand{\out}{\text{Out}}
+\newcommand{\out}{\textrm{Out}}
 \newcommand{\Out}{\out}
 \newcommand{\dest}{\Delta} 
 \newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
-\newcommand{\Paths}{\text{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\text{first}} \newcommand{\last}{\text{last}} 
+\newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
 \newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
-\newcommand{\Pre}{\text{Pre}} \newcommand{\PreE}{\text{Pre}_\mEve} \newcommand{\PreA}{\text{Pre}_\mAdam} \newcommand{\Attr}{\text{Attr}} \newcommand{\AttrE}{\text{Attr}_\mEve} \newcommand{\AttrA}{\text{Attr}_\mAdam} \newcommand{\rank}{\text{rank}}
-\renewcommand{\Win}{**Win**} 
-\renewcommand{\Lose}{**Lose**} 
-\newcommand{\Value}{\text{val}} 
-\newcommand{\ValueE}{\text{val}_\mEve} 
-\newcommand{\ValueA}{\text{val}_\mAdam}
+\newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
+\renewcommand{\Win}{\textrm{Win}} 
+\renewcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Value}{\textrm{val}} 
+\newcommand{\ValueE}{\textrm{val}_\mEve} 
+\newcommand{\ValueA}{\textrm{val}_\mAdam}
 \newcommand{\val}{\Value} 
 \newcommand{\Automaton}{\mathbf{A}} 
 \newcommand{\Safe}{\mathtt{Safe}}
@@ -55,6 +55,10 @@
 \newcommand{\Inf}{\mathtt{Inf}}
 \newcommand{\LimSup}{\mathtt{LimSup}}
 \newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NP}{\textrm{NP}}
+\newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\PTIME}{\textrm{PTIME}}
 ```
 The first model we define is the common denominator of most models studied in this book:
 
@@ -67,20 +71,20 @@ game.
 
 ## Players
 
-The term **$2$-player** means that there are two players, Eve and Adam.
+The term $2$-player means that there are two players, Eve and Adam.
 Many, many different names have been used: Player $0$ and Player $1$, 
 Player I and Player II as in descriptive complexity,
-{\'E}lo&iuml;se and Ab&eacute;lard, Circle and Square, corresponding to the graphical representation, 
+&Eacute;lo&iuml;se and Ab&eacute;lard, Circle and Square, corresponding to the graphical representation, 
 Even and Odd, mostly for parity objectives, Player and Opponent, Pathfinder and Verifier in the context of automata,
 Max and Min, which makes sense for quantitative objectives,
 and this is only a very partial list of names they have been given.
 In the names Eve and Adam, the first letters refer to $\exists$ and $\forall$ suggesting a duality between them.
 We will make use of their gender to distinguish between them, so we speak of her or his strategy.
 
-We speak of **$1$-player** games when there is only one player.
+We speak of $1$-player games when there is only one player.
 In the context of stochastic games, we refer to random as a third player, and more precisely as half a player.
-Hence a **$2\half$-player** game is a stochastic game with two players,
-and a **$1\half$-player** game is a stochastic game with one player.
+Hence a $2\frac{1}{2}$-player game is a stochastic game with two players,
+and a $1\frac{1}{2}$-player game is a stochastic game with one player.
 
 The situation where there are more than two players is called multiplayer games.
 
@@ -140,22 +144,8 @@ is played out, in particular they see the other player's moves.
 An example of an arena. Circles are controlled by Eve and squares by Adam.
 ```
 Our definition of an arena does not include the initial vertex. 
-
-```{prf:remark} needs title and label 
 We assume that all vertices have an outgoing edge.
 This is for technical convenience, as it implies that we do not need to explain what happens when a play cannot be prolonged.
- 
-:label: 
-We assume that all vertices have an outgoing edge.
-This is for technical convenience, as it implies that we do not need to explain what happens when a play cannot be prolonged.
-
-:nonumber:
-
-We assume that all vertices have an outgoing edge.
-This is for technical convenience, as it implies that we do not need to explain what happens when a play cannot be prolonged.
-
-```
-
 
 ## Playing
 
@@ -239,7 +229,6 @@ $$
 
 
 ```{admonition} Remark
-
 In our definition the colouring function labels vertices.
 Another more general definition would label edges, and yet another relaxation would be to allow partial functions,
 meaning that some vertices (or edges) are not labelled by a colour.
@@ -248,7 +237,6 @@ whenever we use a different definition we will make it explicit by referring for
 or partial colouring functions.
 
 ```
-
 
 
 ## Games
@@ -298,7 +286,6 @@ Indeed for the latter Adam wants to minimise $f$, which is equivalent to maximis
 The term zero sum comes from this: the total outcome for the two players is $f + (-f)$, meaning zero.
 
 ```{admonition} Remark
-
 Unless otherwise stated we assume that graphs are finite, meaning that there are finitely many vertices (hence finitely many edges).
 We equivalently say that the arena or the game is finite.
  Part {ref}`part:infinite` will study games over infinite graphs.
@@ -327,12 +314,8 @@ The analogous notation for Adam is $\WA(\game)$.
 
 We say that a strategy is optimal if it is winning from all vertices in $\WE(\game)$.
 
-```{prf:observation} needs title and label 
-For all qualitative games $\game$ we have $\WE(\game) \cap \WA(\game) = \emptyset$.
- 
-:label: 
-For all qualitative games $\game$ we have $\WE(\game) \cap \WA(\game) = \emptyset$.
-
+```{prf:observation} Winning regions are disjoint
+:label: 1-fact:winning_regions_disjoint
 :nonumber:
 
 For all qualitative games $\game$ we have $\WE(\game) \cap \WA(\game) = \emptyset$.
@@ -357,7 +340,7 @@ hence it does not fit in the definitions given so far), where neither player has
 Whenever $\WE(\game) \cup \WA(\game) = V$, we say that the game is determined.
 Being determined can be understood as follows: the outcome can be determined before playing assuming both players play optimally since one of them can ensure to win whatever is the strategy of the opponent.
 
-```{prf:theorem} needs title 1-thm:borel_determinacy
+```{prf:theorem} Borel determinacy
 :label: 1-thm:borel_determinacy
 :nonumber:
 
@@ -380,7 +363,9 @@ to make complexity theoretic statements.
 
 For qualitative games, solving the game means solving the following decision problem:
 
-\decisionproblem{A qualitative game $\game$ and a vertex $v$}{Does Eve win $\game$ from $v$?}
+**INPUT**: A qualitative game $\game$ and a vertex $v$
+
+**QUESTION**: Does Eve win $\game$ from $v$?
 
 ```
 
@@ -391,7 +376,9 @@ This is called computing the winning regions.
 
 For qualitative games, computing the winning regions means solving the following computational task:
 
-\task{A qualitative game $\game$}{$\WE(\game)$ and $\WA(\game)$}
+**INPUT**: A qualitative game $\game$
+
+**COMPUTE**: $\WE(\game)$ and $\WA(\game)$
 
 ```
 
@@ -401,7 +388,9 @@ The third problem is constructing a winning strategy.
 
 For qualitative games, constructing a winning strategy means solving the following computational task:
 
-\task{A qualitative game $\game$ and a vertex $v$}{A winning strategy for Eve from $v$}
+**INPUT**: A qualitative game $\game$ and a vertex $v$
+
+**COMPUTE**: A winning strategy for Eve from $v$
 
 ```
 
@@ -458,12 +447,8 @@ $$
 $$
 
 
-```{prf:observation} needs title and label 
-For all quantitative games $\game$ and vertex $v$ we have $\ValueE^{\game}(v) \le \ValueA^{\game}(v)$.
- 
-:label: 
-For all quantitative games $\game$ and vertex $v$ we have $\ValueE^{\game}(v) \le \ValueA^{\game}(v)$.
-
+```{prf:observation} Comparison of values for Eve and Adam
+:label: 1-fact:comparaison_values_eve_adam
 :nonumber:
 
 For all quantitative games $\game$ and vertex $v$ we have $\ValueE^{\game}(v) \le \ValueA^{\game}(v)$.
@@ -490,7 +475,7 @@ Similarly as for the qualitative case, being determined can be understood as fol
 We say that a quantitative objective $f : C^\omega \to \Rinfty$ is Borel if for all $x \in \R$,
 the qualitative objective $f_{\ge x} \subseteq C^\omega$ is a Borel set.
 
-```{prf:corollary} needs title 1-cor:borel_determinacy
+```{prf:corollary} Borel determinacy for quantitative games
 :label: 1-cor:borel_determinacy
 :nonumber:
 
@@ -535,8 +520,9 @@ The first is solving the game.
 
 For quantitative games, solving the game means solving the following decision problem:
 
-\decisionproblem{A quantitative game $\game$, a vertex $v$, \\ &
-and a threshold $x \in \Qinfty$}{Does Eve have a strategy ensuring $x$ from $v$?}
+**INPUT**: A quantitative game $\game$, a vertex $v$, and a threshold $x \in \Qinfty$
+
+**QUESTION**: Does Eve have a strategy ensuring $x$ from $v$?
 
 ```
 
@@ -545,8 +531,9 @@ A very close problem is the value problem.
 
 For quantitative games, solving the value problem means solving the following decision problem:
 
-\decisionproblem{A quantitative game $\game$, a vertex $v$, \\ &
-and a threshold $x \in \Qinfty$}{Is it true that $\Value^{\game}(v) \ge x$?}
+**INPUT**: A quantitative game $\game$, a vertex $v$, and a threshold $x \in \Qinfty$
+
+**QUESTION**: Is it true that $\Value^{\game}(v) \ge x$?
 
 ```
 
@@ -558,7 +545,9 @@ The value problem is directly related to computing the value.
 
 For quantitative games, computing the value means solving the following computational task:
 
-\task{A quantitative game $\game$ and a vertex $v$}{$\Value^{\game}(v)$}
+**INPUT**: A quantitative game $\game$ and a vertex $v$
+
+**COMPUTE**: $\Value^{\game}(v)$
 
 ```
 
@@ -567,16 +556,8 @@ Especially in this case, it may be enough to approximate the value, which is ind
 by repeatingly applying an algorithm solving the value problem one can approximate the value to any given precision,
 using a binary search.
 
-```{prf:lemma} needs title and label 
-If there exists an algorithm $A$ for solving the value problem of a class of games, 
-then there exists an algorithm for approximating the value of games in this class within precision $\varepsilon$ 
-using $\log(\frac{1}{\varepsilon})$ calls to the algorithm $A$.
- 
-:label: 
-If there exists an algorithm $A$ for solving the value problem of a class of games, 
-then there exists an algorithm for approximating the value of games in this class within precision $\varepsilon$ 
-using $\log(\frac{1}{\varepsilon})$ calls to the algorithm $A$.
-
+```{prf:lemma} Binary search for computing the value
+:label: 1-lem:binary_search_computing_value
 :nonumber:
 
 If there exists an algorithm $A$ for solving the value problem of a class of games, 
@@ -590,7 +571,9 @@ The following problem is global, in the same way as computing the winning region
 
 For quantitative games, computing the value function means solving the following computational task:
 
-\task{A quantitative game $\game$}{The value function $\Value^{\game} : V \to \Rinfty$}
+**INPUT**: A quantitative game $\game$
+
+**COMPUTE**: The value function $\Value^{\game} : V \to \Rinfty$
 
 ```
 
@@ -599,7 +582,9 @@ Finally, we are sometimes interested in constructing optimal strategies provided
 
 For quantitative games, constructing an optimal strategy means solving the following computational task:
 
-\task{A quantitative game $\game$ and a vertex $v$}{An optimal strategy from $v$}
+**INPUT**: A quantitative game $\game$ and a vertex $v$
+
+**COMPUTE**: An optimal strategy from $v$
 
 ```
 A close variant is to construct $\varepsilon$-optimal strategies, usually with $\varepsilon$ given as input.
@@ -623,7 +608,7 @@ $$
 
 
 
-```{prf:observation} needs title 1-fact:winning_prefix_independent_qualitative
+```{prf:observation} Winning for prefix independent objectives
 :label: 1-fact:winning_prefix_independent_qualitative
 :nonumber:
 
@@ -645,14 +630,8 @@ the play $\play'$ is winning. Thus $\sigma_{\mid \play}$ is winning from $v'$.
 ```
 
 
-```{prf:corollary} needs title and label 
-Let $\Game$ be a qualitative game with objective $\Omega$ closed under removing prefixes and $\sigma$ a winning strategy from $v$.
-Then all vertices reachable from $v$ by a play consistent with $\sigma$ are winning.
- 
-:label: 
-Let $\Game$ be a qualitative game with objective $\Omega$ closed under removing prefixes and $\sigma$ a winning strategy from $v$.
-Then all vertices reachable from $v$ by a play consistent with $\sigma$ are winning.
-
+```{prf:corollary} Reachable vertices of a winning strategy for prefix independent objectives
+:label: 1-cor:reachable_vertices_prefix_independent
 :nonumber:
 
 Let $\Game$ be a qualitative game with objective $\Omega$ closed under removing prefixes and $\sigma$ a winning strategy from $v$.
@@ -672,7 +651,7 @@ we have $\Phi(\rho') \ge \Phi(\rho \rho')$;
 
 The fact above extends to quantitative objectives with the same proof.
 
-```{prf:observation} needs title 1-fact:winning_prefix_independent_quantitative
+```{prf:observation} Winning for prefix independent objectives, quantitative case
 :label: 1-fact:winning_prefix_independent_quantitative
 :nonumber:
 
@@ -693,14 +672,8 @@ this implies that $\Phi(\play') \ge x$. Thus $\sigma_{\mid \play}$ ensures $x$ f
 ```
 
 
-```{prf:corollary} needs title and label 
-Let $\Game$ be a quantitative game with objective $\Phi$ monotonic under removing prefixes and $\sigma$ an optimal strategy from $v$.
-Then for all vertices $v'$ reachable from $v$ by a play consistent with $\sigma$ we have $\val^{\game}(v) \le \val^{\game}(v')$.
- 
-:label: 
-Let $\Game$ be a quantitative game with objective $\Phi$ monotonic under removing prefixes and $\sigma$ an optimal strategy from $v$.
-Then for all vertices $v'$ reachable from $v$ by a play consistent with $\sigma$ we have $\val^{\game}(v) \le \val^{\game}(v')$.
-
+```{prf:corollary} Comparison of values along a play
+:label: 1-cor:comparison_values_along_play
 :nonumber:
 
 Let $\Game$ be a quantitative game with objective $\Phi$ monotonic under removing prefixes and $\sigma$ an optimal strategy from $v$.

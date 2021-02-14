@@ -23,30 +23,30 @@
 \newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
-\newcommand{\argmax}{\text{argmax}}
-\newcommand{\argmin}{\text{argmin}}
+\newcommand{\argmax}{\textrm{argmax}}
+\newcommand{\argmin}{\textrm{argmin}}
 \newcommand{\Op}{\mathbb{O}}
-\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\text{supp}} 
+\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\textrm{supp}} 
 \newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
 \newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
 \newcommand{\mEve}{\mathrm{Eve}}
 \newcommand{\mAdam}{\mathrm{Adam}}
 \newcommand{\mRandom}{\mathrm{Random}}
 \newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
-\newcommand{\ing}{\text{In}}
+\newcommand{\ing}{\textrm{In}}
 \newcommand{\Ing}{\ing}
-\newcommand{\out}{\text{Out}}
+\newcommand{\out}{\textrm{Out}}
 \newcommand{\Out}{\out}
 \newcommand{\dest}{\Delta} 
 \newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
-\newcommand{\Paths}{\text{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\text{first}} \newcommand{\last}{\text{last}} 
+\newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
 \newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
-\newcommand{\Pre}{\text{Pre}} \newcommand{\PreE}{\text{Pre}_\mEve} \newcommand{\PreA}{\text{Pre}_\mAdam} \newcommand{\Attr}{\text{Attr}} \newcommand{\AttrE}{\text{Attr}_\mEve} \newcommand{\AttrA}{\text{Attr}_\mAdam} \newcommand{\rank}{\text{rank}}
-\renewcommand{\Win}{**Win**} 
-\renewcommand{\Lose}{**Lose**} 
-\newcommand{\Value}{\text{val}} 
-\newcommand{\ValueE}{\text{val}_\mEve} 
-\newcommand{\ValueA}{\text{val}_\mAdam}
+\newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
+\renewcommand{\Win}{\textrm{Win}} 
+\renewcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Value}{\textrm{val}} 
+\newcommand{\ValueE}{\textrm{val}_\mEve} 
+\newcommand{\ValueA}{\textrm{val}_\mAdam}
 \newcommand{\val}{\Value} 
 \newcommand{\Automaton}{\mathbf{A}} 
 \newcommand{\Safe}{\mathtt{Safe}}
@@ -66,6 +66,10 @@
 \newcommand{\Inf}{\mathtt{Inf}}
 \newcommand{\LimSup}{\mathtt{LimSup}}
 \newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NP}{\textrm{NP}}
+\newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\PTIME}{\textrm{PTIME}}
 ```
 From a practical point of view, the modelling of a real-world
 situation via mean payoff games requires that only the long-term
@@ -106,7 +110,7 @@ $$(1-\lambda)\sum_{i=0}^{\infty} \lambda^{ri} \sum_{j=0}^{r-1}
 that tends towards the average-payoff $\frac 1 r\sum_{j=0}^{r-1} w_j$
 when $\lambda$ tends to $1$.
 
-The weighted game of Figure {ref}`4-fig:MP` can also be equipped with a
+The weighted game of {numref}`4-fig:MP` can also be equipped with a
 discounted payoff. If $\lambda$ is close to $1$, for instance
 $\lambda=0.9$, then optimal strategies are the same as for the
 mean payoff objective: $\sigma^*(0)=1$, $\sigma^*(2)=3$,
@@ -275,7 +279,7 @@ $$\vec x = (1-\lambda) \vec c + \lambda Q \vec x\,.$$
 
 ```
 
-For the discounted payoff game of Figure {ref}`4-fig:MP`, the contracting
+For the discounted payoff game of {numref}`4-fig:MP`, the contracting
 operator is:
 
 $$F\left(
@@ -410,7 +414,7 @@ of Eve, we also compute the best response of Adam, that is the best
 (positional) strategy $\tau$ he must play to achieve the lowest payoff
 possible for Eve.
 
-For the discounted payoff game of Figure {ref}`4-fig:MP` with $\lambda=0.5$,
+For the discounted payoff game of {numref}`4-fig:MP` with $\lambda=0.5$,
 if we start from Eve's strategy $\sigma(0)=4$ and $\sigma(2)=2$, the
 simplified contraction mapping in the one-player remaining game is
 given by:
@@ -464,7 +468,7 @@ vertex $2$.
 \medskip
 
 We now come back to the general case by describing more precisely the
-algorithm in Algorithm {ref}`4-algo:DP-strategy-improvement`, and prove its
+algorithm in {numref}`4-algo:DP-strategy-improvement`, and prove its
 correctness.  For a particular strategy $\sigma$ for Eve, once
 $\Value^\sigma$ computed, we can check whether
 $F(\Value^\sigma)=\Value^\sigma$ (with $F$ the more general operator
@@ -669,7 +673,7 @@ Therefore, the value iteration algoritm consists at iterating the
 contracting mapping $F$ for a certain number $K$ of steps which is
 polynomial with respect to the arena, each of the steps being
 performed in time $O(m)$, and then finish the computation by a
-rounding procedure (see Algorithm {ref}`4-algo:DP-value-iteration`). In the
+rounding procedure (see {numref}`4-algo:DP-value-iteration`). In the
 overall, it thus has complexity $O(K m)$.
 
 ```{figure} ./../4-algo:DP-value-iteration.png
