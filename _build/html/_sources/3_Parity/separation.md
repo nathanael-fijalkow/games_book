@@ -17,30 +17,30 @@
 \newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
-\newcommand{\argmax}{\text{argmax}}
-\newcommand{\argmin}{\text{argmin}}
+\newcommand{\argmax}{\textrm{argmax}}
+\newcommand{\argmin}{\textrm{argmin}}
 \newcommand{\Op}{\mathbb{O}}
-\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\text{supp}} 
+\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\textrm{supp}} 
 \newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
 \newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
 \newcommand{\mEve}{\mathrm{Eve}}
 \newcommand{\mAdam}{\mathrm{Adam}}
 \newcommand{\mRandom}{\mathrm{Random}}
 \newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
-\newcommand{\ing}{\text{In}}
+\newcommand{\ing}{\textrm{In}}
 \newcommand{\Ing}{\ing}
-\newcommand{\out}{\text{Out}}
+\newcommand{\out}{\textrm{Out}}
 \newcommand{\Out}{\out}
 \newcommand{\dest}{\Delta} 
 \newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
-\newcommand{\Paths}{\text{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\text{first}} \newcommand{\last}{\text{last}} 
+\newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
 \newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
-\newcommand{\Pre}{\text{Pre}} \newcommand{\PreE}{\text{Pre}_\mEve} \newcommand{\PreA}{\text{Pre}_\mAdam} \newcommand{\Attr}{\text{Attr}} \newcommand{\AttrE}{\text{Attr}_\mEve} \newcommand{\AttrA}{\text{Attr}_\mAdam} \newcommand{\rank}{\text{rank}}
-\renewcommand{\Win}{**Win**} 
-\renewcommand{\Lose}{**Lose**} 
-\newcommand{\Value}{\text{val}} 
-\newcommand{\ValueE}{\text{val}_\mEve} 
-\newcommand{\ValueA}{\text{val}_\mAdam}
+\newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
+\renewcommand{\Win}{\textrm{Win}} 
+\renewcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Value}{\textrm{val}} 
+\newcommand{\ValueE}{\textrm{val}_\mEve} 
+\newcommand{\ValueA}{\textrm{val}_\mAdam}
 \newcommand{\val}{\Value} 
 \newcommand{\Automaton}{\mathbf{A}} 
 \newcommand{\Safe}{\mathtt{Safe}}
@@ -60,6 +60,10 @@
 \newcommand{\Inf}{\mathtt{Inf}}
 \newcommand{\LimSup}{\mathtt{LimSup}}
 \newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NP}{\textrm{NP}}
+\newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\PTIME}{\textrm{PTIME}}
 ```
 
 ## The separation framework
@@ -149,7 +153,7 @@ $$
 \end{array}}.
 $$
 
-The definition of $(n,d)$-separating automata is illustrated in  Figure {ref}`3-fig:separation` and can be summarised
+The definition of $(n,d)$-separating automata is illustrated in  {numref}`3-fig:separation` and can be summarised
 as $\Parity_{\mid n} \subseteq L(\Automaton) \subseteq \Parity$.
 
 ```{figure} ./../3-fig:separation.png
@@ -284,7 +288,7 @@ $p_l \le p_{j_{2^i}}$.
 A $2$-sequence.
 ```
 
- Figure {ref}`3-fig:isequence` gives an example of a $2$-sequence. The circled
+ {numref}`3-fig:isequence` gives an example of a $2$-sequence. The circled
 priorities are the indices used in the sequence. Note that there are exactly
 $2^2 = 4$ indices used, and that every circled priority is even. Inner
 domination is satisfied because every priority that is between two circled
@@ -370,7 +374,7 @@ sequence.
 An example sequence that corresponds to the record $\siblank 8 4 2$.
 ```
 
- Figure {ref}`3-fig:ds` shows an example sequence that is consistent with the
+ {numref}`3-fig:ds` shows an example sequence that is consistent with the
 record that sets $b_3 = \siblank$, $b_2 = 8$, $b_1 = 4$, and $b_0 = 2$.
 The red $2$-sequence is represented by $b_2 = 8$, which is the last priority of
 the $2$-sequence. The blue $1$-sequence starts after the end of the
@@ -420,14 +424,14 @@ Again, if there is no such index $i$, then the record is not modified.
 An example of a Step 1 update applied to the sequence and record from~\cref{3-fig:ds
 ```
 Intuitively, Step 1 attempts to combine the $i$-sequences in the existing record
-into a longer $i$-sequence. Suppose that we have read the sequence shown in Figure {ref}`3-fig:ds`, 
+into a longer $i$-sequence. Suppose that we have read the sequence shown in {numref}`3-fig:ds`, 
 that we have compute the record $\siblank 8 4 2$, and that the next priority in the sequence is $4$.
- Figure {ref}`3-fig:ds1` shows the result of applying Step 1 to this situation.
+ {numref}`3-fig:ds1` shows the result of applying Step 1 to this situation.
 Observe that $3$ is the largest index $i$ such that for all $j < i$ we have that
 $b_j$ is even, so Step 1 will output the record $4 \siblank \siblank \siblank$.
 
 So in this circumstance, Step 1 claims that we have now seen a $3$-sequence.
- Figure {ref}`3-fig:ds1` shows why this is correct: the $0$-sequence of $b_0$, the
+ {numref}`3-fig:ds1` shows why this is correct: the $0$-sequence of $b_0$, the
 $1$-sequence of $b_1$, and the $2$-sequence of $b_2$ can be merged together,
 along with the new priority, to create a $3$-sequence. Observe that inner
 domination in this new $3$-sequence is satisfied due to the outer domination
@@ -444,8 +448,8 @@ An example of a Step 2 update applied to the sequence and record from~\cref{3-fi
 ```
 
 Step 2 ensures that the outer domination property holds. 
-In Figure {ref}`3-fig:ds2`, we show the result of applying Step 2 to the record
-$\siblank 8 4 2$ that corresponds to the sequence shown in Figure {ref}`3-fig:ds`,
+In {numref}`3-fig:ds2`, we show the result of applying Step 2 to the record
+$\siblank 8 4 2$ that corresponds to the sequence shown in {numref}`3-fig:ds`,
 when the next priority in the sequence is $9$. Observe that since $9 > 8$, the
 outer domination property for the $2$-sequence ending at $8$ now fails to hold,
 and likewise for the sequences ending at $4$ and $2$. Hence, Step 2 deletes the
@@ -509,7 +513,7 @@ exactly the same point as the sequence corresponding to $b_{i-1}$, and so the
 order property still holds.
 
 *  For Step 2 updates, we only need to argue that the value of $b'_i$
-correspond to an $i$ sequence. This can be constructed as we showed in Figure {ref}`3-fig:ds2`: 
+correspond to an $i$ sequence. This can be constructed as we showed in {numref}`3-fig:ds2`: 
 take the $i$-sequence that corresponds to $b_i$, and
 replace the final priority with the new priority. Observe that the final
 priority of an $i$-sequence is permitted to be odd, and so this new sequence

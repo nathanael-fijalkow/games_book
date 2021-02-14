@@ -30,9 +30,10 @@ As above we write $\Value^{\sigma}$ for $\inf_{\tau}\ \val(\pi_{\sigma,\tau}^v)$
 
 The following principle implies that computing the value function in particular yields the winning regions.
 
-\begin{principle}[Characterisation of the winning regions]
+\begin{property}[Characterisation of the winning regions]
+\label{1-property:characterisation_winning_regions}
 For all vertices $v$ we have that Eve wins from $v$ if and only if $\Value^{\game}(v) \neq \bot$, where $\bot$ is the least element in $Y$.
-\end{principle}
+\end{property}
 
 In the remainder of this section we assume the existence of a value function $\Value^{\game} : V \to Y$ (note that choosing $Y = \Rinfty$ covers the quantitative case) and fix as a goal to either compute or approximate it.
 
@@ -49,9 +50,10 @@ The second ingredient is a function $\delta : Y \times C \to Y$ inducing an oper
 \end{cases}
 \]
 
-\begin{principle}[Fixed point]
+\begin{property}[Fixed point]
+\label{1-property:fixed_point}
 The function $\val^{\game}$ is a fixed point of the operator $\Op$.
-\end{principle}
+\end{property}
 This fixed point principle is often tightly related to the fact the $\Game$ is positionally determined for both players.
 The fact that $\val^{\game} = \Op(\val^{\game})$ means that from a vertex $v$, 
 the value $\val^{\game}(v)$ can be computed locally, \textit{i.e.} by considering the maximum or the minimum over all edges $(v,v')$ 
@@ -63,9 +65,10 @@ Let us first consider the family of value iteration algorithms based on Banach's
 and let us fix as a goal to approximate $\Value^{\game}$.
 We equip $F_V$ with a norm $||\cdot||$.
 
-\begin{principle}[Fixed point through contraction]
+\begin{property}[Fixed point through contraction]
+\label{1-property:fixed_point_contraction}
 The operator $\Op$ is contracting in the complete space $(F_V,||\cdot||)$ implying that $\Value^{\game}$ is the unique fixed point of $\Op$.
-\end{principle}
+\end{property}
 
 The algorithm is the following:
 we choose some $\Value_0 : V \to Y$ and then compute the sequence $(\Value_k)_{k \in \N}$ defined by $\Value_{k+1} = \Op(\Value_k)$
@@ -81,10 +84,11 @@ $k = O \left( \frac{\log(\varepsilon)}{\log(\lambda)} \right)$ iterations.
 \subsection*{Fixed point through monotonicity}
 The second family of algorithms is based on Kleene's fixed point theorem as stated in \cref{1-thm:kleene}.
 
-\begin{principle}[Fixed point through monotonicity]
+\begin{property}[Fixed point through monotonicity]
+\label{1-property:fixed_point_monotonicity}
 The function $\delta$ is monotonic (meaning that if $y \le y'$ then for all colours $c$ we have $\delta(y,c) \le \delta(y',c)$)
 and $\val^{\game}$ is the greatest fixed point of the monotonic operator $\Op$.
-\end{principle}
+\end{property}
 
 \begin{remark}
 It is possible to define the value function as the \textit{least} fixed point of $\Op$, 
@@ -113,9 +117,10 @@ which is equivalent to the more familiar definition of progress measures: for al
 \]
 The characterisation principle can be equivalently stated as follows.
 
-\begin{principle}[Characterisation of the winning regions, equivalent formulation with progress measures]
+\begin{property}[Characterisation of the winning regions, equivalent formulation with progress measures]
+\label{1-property:progress_measure}
 For all vertices $v$ we have Eve wins from $v$ if and only if there exists a progress measure $\mu$ such that $\mu(v) \neq \bot$.
-\end{principle}
+\end{property}
 
 The third information given by \cref{1-thm:kleene} is that $\Value^{\game}$ is the limit of the sequence $(\Op^k(\top))_{k \in \N}$.
 

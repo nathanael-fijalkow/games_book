@@ -59,13 +59,540 @@ The ""Rabin"" objectives are the complement of the Streett objectives:
 \]
 
 \subsection*{McNaughton algorithm: an exponential time algorithm for Muller games}
-\input{mcnaughton}
+\begin{theorem}[Muller games]
+\label{2-thm:muller}
+Muller objectives are determined with finite memory strategies of size $d!$\footnote{See \cref{2-rmk:finite_infinite} for the case of infinite games.}.
+There exists an algorithm for computing the winning regions of Muller games in exponential time,
+and more specifically of complexity $O(m d (dn)^d)$, and in polynomial space, and more specifically $O(dm)$.
+\end{theorem}
+The presentation of the recursive algorithm for computing the winning regions of Muller games follows the exact same lines as for parity games:
+indeed, the Muller objective extends the parity objective, and specialising the algorithm for Muller games to parity games
+yields the algorithm we presented above.
+%As for parity games, our proof is by induction over the number of colours but it uses the finiteness of the games.
+%The finite memory determinacy actually holds for infinite games and the proof we present can be adapted to obtain this result.
+
+The following lemma induces the recursive algorithm for computing the winning regions of Muller games.
+
+\begin{lemma}
+\label{2-lem:Muller_even}
+Let $\Game$ be a Muller game such that $C \in \F$.
+For each $c \in C$, let $\Game_c$ be the subgame of $\Game$ induced by $V \setminus \AttrE(c)$.
+\begin{itemize}
+	\item If for all $c \in C$, we have $\WA(\Game_c) = \emptyset$, then $\WE(\Game) = V$.
+	\item If there exists $c \in C$ such that $\WA(\Game_c) \neq \emptyset$,
+	let $\Game'$ be the subgame of $\Game$ induced by $V \setminus \AttrA( \WA(\Game_c) )$,
+	then $\WE(\Game) = \WE(\Game')$.	
+\end{itemize}
+\end{lemma}
+
+\begin{proof}
+We prove the first item.
+
+For each $c \in C$, let $\sigma_c$ be an attractor strategy ensuring to reach $c$ from $\AttrE(c)$,
+and consider a winning strategy for Eve from $V \setminus \AttrE(c)$ in $\Game_c$, it induces a strategy $\sigma'_c$ in $\Game$.
+We construct a strategy $\sigma$ in $\Game$ which will simulate the strategies above in turn; to do so it uses $C$ as top-level memory states.
+(We note that the strategies $\sigma'_c$ may use memory as well, so $\sigma$ may actually use more memory than just $C$.)
+The strategy $\sigma$ with memory $c$ simulates $\sigma_c$ from $\AttrE(c)$ and $\sigma'_c$ from $V \setminus \AttrE(c)$,
+and if it ever reaches $c$ it updates its memory state to $c + 1$ and $1$ if $c = d$.
+Any play consistent with $\sigma$ either updates its memory state infinitely many times, 
+or eventually remains in $V \setminus \AttrE(c)$ and is eventually consistent with $\sigma'_c$.
+In the first case it sees each colour infinitely many times, and since $C \in \F$ the play satisfies $\Muller(\F)$, 
+and in the other case since $\sigma'_c$ is winning the play satisfies $\Muller(\F)$.
+Thus $\sigma$ is winning from $V$.
+
+We now look at the second item.
+
+Let $\tau_a$ denote an attractor strategy from $\AttrA(\WA(\Game_c)) \setminus \WA(\Game_c)$.
+Consider a winning strategy for Adam from $\WA(\Game_c)$ in $\Game_c$, it induces a strategy $\tau_c$ in $\Game$.
+Since $V \setminus \AttrE(c)$ is a "trap" for Eve, this implies that $\tau_c$ is a winning strategy in $\Game$.
+Consider now a winning strategy in the game $\Game'$ from $\WA(\Game')$, it induces a strategy $\tau'$ in $\Game$.
+The set $V \setminus \AttrA( \WA(\Game_c) )$ may not be a trap for Eve, so we cannot conclude that $\tau'$ is a winning strategy in $\Game$,
+and it indeed may not be.
+We construct a strategy $\tau$ in $\Game$ as the (disjoint) union of the strategy $\tau_a$ on $\AttrA(\WA(\Game_c)) \setminus \WA(\Game_c)$,
+the strategy $\tau_c$ on $\WA(\Game_c)$ and the strategy $\tau'$ on $\WA(\Game')$.
+We argue that $\tau$ is winning from $\AttrA( \WA(\Game_c) ) \cup \WA(\Game')$ in $\Game$.
+Indeed, any play consistent with this strategy in $\Game$ either stays forever in $\WA(\Game')$ hence is consistent with $\tau'$
+or enters $\AttrA( \WA(\Game_c) )$, so it is eventually consistent with $\tau_c$.
+In both cases this implies that the play is winning.
+Thus we have proved that $\AttrA( \WA(\Game_c) ) \cup \WA(\Game') \subseteq \WA(\Game)$.
+
+We now show that $\WE(\Game') \subseteq \WE(\Game)$, which implies the converse inclusion.
+Consider a winning strategy from $\WE(\Game')$ in $\Game'$, it induces a strategy $\sigma$ in $\Game$.
+Since $\Game'$ is a "trap" for Adam, any play consistent with $\sigma$ stays forever in $\WE(\Game')$, 
+implying that $\sigma$ is winning from $\WE(\Game')$ in $\Game$.
+\end{proof}
+
+To get the full algorithm we need the analogous lemma for the case where $C \notin \F$.
+We do not prove it as it is the exact dual of the previous lemma, and the proof is the same swapping the two players.
+
+\begin{lemma}
+\label{2-lem:Muller_odd}
+Let $\Game$ be a Muller game such that $C \notin \F$.
+For each $c \in C$, let $\Game_c$ be the subgame of $\Game$ induced by $V \setminus \AttrA(c)$.
+\begin{itemize}
+	\item If for all $c \in C$, we have $\WE(\Game_c) = \emptyset$, then $\WA(\Game) = V$.
+	\item If there exists $c \in C$ such that $\WE(\Game_c) \neq \emptyset$,
+	let $\Game'$ be the subgame of $\Game$ induced by $V \setminus \AttrE( \WE(\Game_c) )$,
+	then $\WA(\Game) = \WA(\Game')$.	
+\end{itemize}
+\end{lemma}
+
+The algorithm is presented in pseudocode in \Cref{2-algo:mcnaughton}.
+We only give the case where $C \in \F$, the other case being symmetric.
+The base case is when there is only one colour $c$, in wich case Eve wins everywhere if $\F = \set{c}$
+and Adam wins everywhere if $\F = \emptyset$.
+
+We now perform a complexity analysis of the algorithm.
+
+Let us start with time complexity and write $f(n,d)$ for the number of recursive calls performed by the algorithm on Muller games with $n$ vertices and $d$ colours.
+We have $f(n,1) = f(0,d) = 0$, with the general induction:
+\[
+f(n,d) \le d \cdot f(n,d-1) + f(n-1,d) + d + 1.
+\]
+The term $d \cdot f(n,d-1)$ corresponds to the recursive call to $\Game_c$ for each $c \in C$,
+the term $f(n-1,d)$ to the recursive call to $\Game'$.
+We obtain $f(n,d) \le d n \cdot f(n,d-1) + (d+1)n$,
+so $f(n,d) \le (d+1)n (1 + dn + (dn)^2 + \dots + (dn)^{d-2}) = O((dn)^d)$.
+In each recursive call we perform $d+1$ attractor computations so the number of operations in one recursive call is $O(dm)$.
+Thus the overall time complexity is $O(m d (dn)^d)$.
+
+%The space complexity is bounded by $O(nd)$.
+
+The proofs of \cref{2-lem:Muller_even} and \cref{2-lem:Muller_odd} also imply that Muller games are determined with finite memory of size $d!$.
+We do not make it more precise here because an improved analysis of the memory requirements will be conducted in \cref{2-sec:zielonka}
+using a variant of this algorithm.
+
+\begin{algorithm}
+ \KwData{A Muller game $\Game$ over $C = [1,d]$}
+ \SetKwFunction{FSolveIn}{SolveIn}
+ \SetKwFunction{FSolveOut}{SolveOut}
+ \SetKwProg{Fn}{Function}{:}{}
+
+\Fn{\FSolveIn{$\Game$}}{
+	\If{$d = 1$}{
+		\If{$\F = \set{1}$}{
+			\Return{$V$}
+		}
+		\Else{
+			\Return{$\emptyset$}
+		}
+	}
+
+	\For{$c \in C$}{
+		Let $\Game_c$ the subgame of $\Game$ induced by $V \setminus \AttrE(c)$
+	
+		\If{$C \setminus \set{c} \in \F$}{
+			$\WE(\Game_c) \leftarrow$ \FSolveIn($\Game_c$)
+		}
+		\Else{
+			$\WA(\Game_c) \leftarrow$ \FSolveOut($\Game_c$)
+		}
+	}
+
+	\If{$\forall c \in C,\ \WA(\Game_c) = \emptyset$}{
+		\Return{$V$}
+	}
+	\Else{
+		Let $c$ such that $\WA(\Game_c) \neq \emptyset$
+
+		Let $\Game'$ the subgame of $\Game$ induced by $V \setminus \AttrA( \WA(\Game_c) )$
+
+		$\WE(\Game') \leftarrow$ \FSolveIn($\Game'$)
+					
+		\Return{$\WE(\Game')$}
+	}
+}
+\vskip1em
+\Fn{\FSolveOut{$\Game$}}{
+	Symmetric to \FSolveIn
+}
+\vskip1em
+\If{$C \in \F$}{
+	\FSolveIn{$\Game$}
+}
+\Else{
+	\FSolveOut{$\Game$}
+}
+\caption{A recursive algorithm for computing the winning regions of Muller games.}
+\label{2-algo:mcnaughton}
+\end{algorithm}
 
 \subsection*{Positional determinacy for Rabin games}
-\input{positional_rabin}
+\begin{theorem}\label{2-thm:Rabin_positional_determinacy}
+Rabin games are uniformly "positionally determined".
+\end{theorem}
+\Cref{2-thm:Rabin_positional_determinacy} holds for infinite games.
+However the proof we give here only applies to finite games and does not easily extend to infinite ones.
+A different approach is required to obtain the positionality result for infinite games, see \cref{2-thm:characterisation_Zielonka_tree}.
+
+\begin{proof}
+We proceed by induction over the following quantity: total outdegree of vertices controlled by Eve minus number of vertices controller by Eve.
+Since we assume that every vertex has an outgoing edge, the base case is when each vertex of Eve has only one successor. 
+In that case Eve has only one strategy and it is positional, so the property holds.
+    
+In the inductive step, we consider a Rabin game $\game$ where Eve has a winning strategy $\sigma$.
+Let $v \in \VE$ with at least two successors. 
+We partition the outgoing edges of $v$ in two non-empty subsets which we call $E^v_1$ and $E^v_2$.
+Let us define two games $\game_1$ and $\game_2$: the game $\game_1$ is obtained from $\game$ by removing the edges from $E^v_2$, and symmetrically for $\game_2$.
+
+We claim that Eve has a winning strategy in either $\game_1$ or $\game_2$.
+Let us assume towards contradiction that this is not the case: then there exist $\tau_1$ and $\tau_2$ two strategies for Adam
+which are winning in $\game_1$ and $\game_2$ respectively.
+We construct a strategy $\tau$ for Adam in $\game$ as follows: it has two modes, $1$ and $2$. The initial mode is $1$, and the strategy simulates $\tau_1$ from the mode $1$ and $\tau_2$ from the mode $2$. Whenever $v$ is visited, the mode is adjusted: if the outgoing edge is in $E^v_1$ then the new mode is $1$, otherwise it is $2$.
+To be more specific: when simulating $\tau_1$ we play ignoring the parts of the play using mode $2$, so removing them yields a play consistent with $\tau_1$. The same goes for $\tau_2$.
+
+Consider a play $\play$ consistent with $\sigma$ and $\tau$. 
+Since $\sigma$ is winning, the play $\play$ is winning. It can be decomposed following which mode the play is in:
+\[
+\begin{array}{ccccccccc}
+\text{mode } 1 & \overbrace{v_0 \cdots v}^{\play_1^0} & & 
+\overbrace{v \cdots v}^{\play_1^1} & & \ \cdots \\
+\text{mode } 2 && \underbrace{v \cdots v}_{\play_2^0} 
+& & \underbrace{v \cdots v}_{\play_2^1} & \ \cdots
+\end{array}
+\]
+where $\play_1 = \play_1^0 \play_1^1 \cdots$ is consistent with $\tau_1$ and $\play_2 = \play_2^0 \play_2^1 \cdots$ is consistent with $\tau_2$.
+Since $\tau_1$ and $\tau_2$ are winning strategies for Adam, $\play_1$ and $\play_2$ do not satisfy $\Rabin$.
+
+\vskip1em
+There are two cases: the decomposition is either finite or infinite.
+If it is finite we get a contradiction: since $\play$ is winning and $\Rabin$ is prefix independent any suffix of $\play$ is winning as well, contradicting that it is consistent with either $\tau_1$ or $\tau_2$ hence cannot be winning.
+
+In the second case to get a contradiction we observe the following property of the Rabin objective:
+let $(\rho_1^\ell)_{\ell \in \N}$ and $(\rho_2^\ell)_{\ell \in \N}$ such that:
+\[
+\begin{array}{lccccccccccc}
+& \rho_1 & = & \rho_1^0 & & \rho_1^1 & & \cdots & \rho_1^\ell & & \cdots & \notin \Rabin \\
+\text{and} & \rho_2 & = & & \rho_2^0 & & \rho_2^1 & \cdots & & \rho_2^\ell & \cdots & \notin \Rabin, \\ 
+\text{then: } & \rho_1 \Join \rho_2 & = & \rho_1^0 & \rho_2^0 & \rho_1^1 & \rho_2^1 & \cdots & \rho_1^\ell & \rho_2^\ell & \cdots & \notin \Rabin.
+\end{array}
+\]
+Indeed, since neither $\rho_1$ nor $\rho_2$ satisfy $\Rabin$, in both for all $i \in [1,d]$ if $R_i \in \Inf(\rho)$, then $G_i \in \Inf(\rho)$.
+Since $\Inf(\rho_1~\Join~\rho_2) = \Inf(\rho_1) \cup \Inf(\rho_2)$, this implies that $\rho_1 \Join \rho_2$ does not satisfy $\Rabin$.
+
+This directly yields a contradiction: neither $\play_1$ nor $\play_2$ satisfy $\Rabin$, yet their shuffle $\play$ does.
+\end{proof}
+
+The proof of \cref{2-thm:Rabin_positional_determinacy} yields a stronger result: every "prefix independent" submixing objective is "positionally determined" over finite arenas, where the ""submixing property"" is defined as follows for the objective $\Omega$:
+\[
+\begin{array}{lccccccccccc}
+\text{if} & \rho_1 & = & \rho_1^0 & & \rho_1^1 & & \cdots & \rho_1^\ell & & \cdots & \notin \Omega \\
+\text{and} & \rho_2 & = & & \rho_2^0 & & \rho_2^1 & \cdots & & \rho_2^\ell & \cdots & \notin \Omega, \\ 
+\text{then: } & \rho_1 \Join \rho_2 & = & \rho_1^0 & \rho_2^0 & \rho_1^1 & \rho_2^1 & \cdots & \rho_1^\ell & \rho_2^\ell & \cdots & \notin \Omega.
+\end{array}
+\]
+
+\begin{theorem}
+\label{2-thm:submixing_positional}
+Every "prefix independent" "submixing" objective is uniformly "positionally determined" over finite arenas.
+\end{theorem}
 
 \subsection*{The complexity of solving Rabin games}
-\input{complexity_rabin}
+\begin{theorem}
+\label{2-thm:Rabin_complexity}
+Solving Rabin games is $\NP$-complete.
+\end{theorem}
+
+In order to simplify the reduction for proving~\cref{2-thm:Rabin_complexity} let us make some remarks about colouring functions.
+We defined colouring functions as $\col : V \to C$, meaning that we label vertices.
+Let us discuss here three more general definitions and how to reduce them to the vertex colouring functions
+in the case of Rabin games.
+\begin{itemize}
+	\item Partial colouring functions: $\col : V \to C \cup \set{\emptyset}$.
+
+We introduce a new Rabin pair $(R,G)$ and colour all uncoloured vertices by $G$.
+The Rabin condition will never be satisfied because of this new addition 
+since the colour $R$ does not appear at all in the game.
+
+	\item Edge colouring functions: $\col : E \to C$.
+
+We reduce from an edge colouring function to a partial vertex colouring function as illustrated in~\cref{2-fig:reduction_edge_colouring}:
+we add a dummy vertex for each edge and colour it with the colour of its edge, leaving already existing vertices without colours. 
+
+\begin{figure}[!ht]
+\centering
+  \begin{tikzpicture}[scale=1.3]
+    \node[s-eve] (v0) at (0,0)   {$v_0$};
+    \node[s-eve] (v1) at (1.5,0) {$v_1$};
+	\node        (t)  at (2.75,0)   {\Large becomes}; 
+	
+    \node[s-eve] (v0b) at (4,0) {$\begin{array}{c} v_0 \\ \ \end{array}$};
+    \node[s-eve] (e) at (5.5,0) {$\begin{array}{c} e \\ c \end{array}$};
+    \node[s-eve] (v1b) at (7,0) {$\begin{array}{c} v_1 \\ \ \end{array}$};
+    % create edges
+    \path[arrow]
+      (v0) edge node[above] {\LARGE $c$} (v1)
+      (v0b) edge (e)
+      (e) edge (v1b);
+  \end{tikzpicture}
+\caption{Reduction from edge colouring to partial vertex colouring.}
+\label{2-fig:reduction_edge_colouring}
+\end{figure}
+	
+	\item Multiset colouring functions: $\col : V \to 2^C$.
+	
+We reduce from a multiset colouring function to a vertex colouring function as illustrated in~\cref{2-fig:reduction_multiset_colouring}: 
+for each vertex $v$ coloured by a set $S$ we add a dummy vertex for each colour $c \in S$ and replace $v$ by the line of dummy vertices.
+
+\begin{figure}[!ht]
+\centering
+  \begin{tikzpicture}[scale=1.3]
+    \node (u1) at (0,.7) {};
+    \node (u2) at (0,.05) {};
+    \node (u3) at (0,-.7) {};
+    \node[s-eve] (v) at (1.3,0)   {$\begin{array}{c} v \\ \set{c_1,c_2} \end{array}$};
+    \node (w1) at (2.6,.7) {};
+    \node (w2) at (2.6,.05) {};
+    \node (w3) at (2.6,-.7) {};
+	\node        (t)  at (3.6,0)   {\Large becomes}; 
+	
+    \node (u1b) at (4.7,.7) {};
+    \node (u2b) at (4.7,.05) {};
+    \node (u3b) at (4.7,-.7) {};
+    \node[s-eve] (v1) at (6,0) {$\begin{array}{c} v_1 \\ c_1 \end{array}$};
+    \node[s-eve] (v2) at (7.5,0) {$\begin{array}{c} v_2 \\ c_2 \end{array}$};
+    \node (w1b) at (8.8,.7) {};
+    \node (w2b) at (8.8,.05) {};
+    \node (w3b) at (8.8,-.7) {};
+    % create edges
+    \path[arrow]
+      (u1) edge (v)
+      (u2) edge (v)
+      (u3) edge (v)
+      (v) edge (w1)
+      (v) edge (w2)
+      (v) edge (w3)
+      (v1) edge (v2)
+      (u1b) edge (v1)
+      (u2b) edge (v1)
+      (u3b) edge (v1)
+      (v2) edge (w1b)
+      (v2) edge (w2b)
+      (v2) edge (w3b);
+  \end{tikzpicture}
+\caption{Reduction from multiset edge colouring to vertex colouring, here for two colours.}
+\label{2-fig:reduction_multiset_colouring}
+\end{figure}
+	
+\end{itemize}
+The three reductions described above yield equivalent Rabin games which are at most polynomially larger.
+We note that they are not general reductions in the sense that they use properties of the Rabin objecttives.
+In the reduction below we use these more general definitions to simplify the presentation.
+
+\begin{proof}
+The proof that solving Rabin games is in $\NP$ follows the same lines as for solving parity games: the algorithm guesses a positional strategy and checks whether it is indeed winning. This requires proving that solving Rabin games where Adam control all vertices can be done in polynomial time, which is indeed true and easy to see so we will not elaborate further on this.
+
+To prove the $\NP$-hardness we reduce the satisfiability problem for boolean formulas in conjunctive normal form ($\SAT$) to solving Rabin games. 
+
+Let $\Phi$ be a formula in conjunctive normal form with $n$ variables $x_1 \ldots x_n$ and $m$ clauses $C_1 \dots C_m$, where each $C_j$ is of the form $\ell_{j_1} \vee \ell_{j_2} \vee \ell_{j_3}$:
+\[
+\Phi = \bigwedge_{j=1}^m \ell_{j_1} \vee \ell_{j_2} \vee \ell_{j_3}.
+\]
+A literal $\ell$ is either a variable $x$ or its negation $\bar{x}$, and we write $\bar{\ell}$ for the negation of a literal.
+The question whether $\Phi$ is satisfiable reads: does there exist a valuation $\mathbf{v} : \set{x_1,\dots,x_n} \to \set{0,1}$
+satisfying $\Phi$.
+
+We construct a Rabin game $\game$ with $m+1$ vertices (one per clause, all controlled by Eve, plus a unique vertex controlled by Adam), 
+$4m$ edges ($4$ per clause), and $2n$ Rabin pairs (one per literal).
+We will show that the formula $\Phi$ is satisfiable if and only if Eve has a winning strategy in the Rabin game $\game$.
+
+We first describe the Rabin condition. 
+There is a Rabin pair $(R_\ell,G_\ell)$ for each literal~$\ell$, so the Rabin condition requires that there exists a literal $\ell$ such that $R_\ell$ is visited infinitely many times and $G_\ell$ is not.
+Let us now describe the arena. 
+A play consists in an infinite sequence of rounds, where in each round first Adam chooses a clause and second Eve chooses a literal in this clause. 
+When Eve chooses a literal $\ell$ she visits $R_\ell$ and $G_{\bar{\ell}}$.
+This completes the description of the Rabin game $\game$, it is illustrated in \cref{2-fig:hardness_Rabin}.
+Let us now prove that this yields a reduction from $\SAT$ to solving Rabin games.
+
+\vskip1em
+Let us first assume that $\Phi$ is satisfiable, and let $\mathbf{v}$ be a satisfying assignment: there is a literal $\ell$ in each clause satisfied by $\mathbf{v}$. 
+Let $\sigma$ be the memoryless strategy choosing such a literal in each clause. 
+We argue that in any play consistent with $\sigma$ there is at least one litteral $\ell$ that Eve chooses infinitely many times without ever choosing $\bar{\ell}$: this implies that $R_\ell$ is visited infinitely often and $G_\ell$ is not.
+Indeed, some clause is chosen infinitely many times, so the corresponding literal chosen by Eve is also chosen infinitely many times.
+Since all the literals chosen by Eve satisfy the same assignment $\mathbf{v}$ she does not choose both a literal and its negation, so she never chooses $\bar{\ell}$. 
+It follows that $\sigma$ is a winning strategy for Eve.
+
+Conversely, let us assume that Eve has a winning strategy.
+Thanks to \cref{2-thm:Rabin_positional_determinacy} she has a positional winning strategy $\sigma$. 
+We argue that $\sigma$ cannot choose some literal $\ell$ in some clause $C$ and the literal $\bar{\ell}$ in another clause $C'$.
+If this would be the case, consider the strategy of Adam alternating between the two clauses $C$ and $C'$ and play it against $\sigma$:
+both $\ell$ and $\bar{\ell}$ are chosen infinitely many times, and no other literals.
+Hence $R_\ell, G_\ell, R_{\bar{\ell}}$, and $G_{\bar{\ell}}$ are all visited infinitely many times, 
+implying that this play does not satisfy $\Rabin$, contradicting that $\sigma$ is winning.
+
+There exists a valuation $\mathbf{v}$ which satisfies each literal chosen by Eve, implying that it satisfies $\Phi$ which is then satisfiable.
+\end{proof}
+
+\begin{figure}
+\centering
+  \begin{tikzpicture}[scale=1.3]
+    \node[s-adam] (v0) at (2,2.5) {};
+    \node[s-eve] (v1) at (0,3.6) {$\ x \vee y \vee z\ $};
+    \node[s-eve] (v2) at (4.3,2.7) {$\ x \vee \bar{y} \vee \bar{z}\ $};
+    \node[s-eve] (v3) at (1.7,0) {$\ \bar{x} \vee y \vee \bar{z}\ $};
+
+    % create edges
+    \path[arrow]
+      (v0) edge[bend right] (v1)
+      (v0) edge[bend right] (v2)
+      (v0) edge[bend right] (v3)
+
+      (v1) edge[bend left = 45] node[above, pos = 0.35] {$R_x$} node[right, pos = 0.55] {$G_{\bar{x}}$} (v0)
+      (v1) edge[bend right] node[above, pos = 0.35] {$R_y$} node[above, pos = 0.65] {$G_{\bar{y}}$} (v0)
+      (v1) edge[bend right = 45] node[below, pos = 0.25] {$R_z$} node[below, pos = 0.55] {$G_{\bar{z}}$} (v0)
+
+      (v2) edge[bend left = 45] node[below, pos = 0.25] {$R_x$} node[below, pos = 0.55] {$G_{\bar{x}}$}(v0)
+      (v2) edge[bend right] node[below, pos = 0.35] {$R_{\bar{y}}$} node[below, pos = 0.65] {$G_{y}$} (v0)
+      (v2) edge[bend right = 45] node[above, pos = 0.35] {$R_{\bar{z}}$} node[above, pos = 0.65] {$G_{z}$} (v0)
+
+      (v3) edge[bend left = 45] node[left, pos = 0.35] {$R_{\bar{x}}$} node[left, pos = 0.65] {$G_{x}$} (v0)
+      (v3) edge[bend right] node[left, pos = 0.35] {$R_y$} node[left, pos = 0.65] {$G_{\bar{y}}$} (v0)
+      (v3) edge[bend right = 45] node[right, pos = 0.35] {$R_{\bar{z}}$} node[right, pos = 0.65] {$G_{z}$} (v0);
+  \end{tikzpicture}
+\caption{The Rabin game for $\Phi = (x \vee y \vee z) \bigwedge (x \vee \bar{y} \vee \bar{z}) \bigwedge (\bar{x} \vee y \vee \bar{z})$.}
+\label{2-fig:hardness_Rabin}
+\end{figure}
 
 \subsection*{The complexity of solving Muller games}    
-\input{complexity_muller}
+\begin{theorem}
+\label{2-thm:complexity_Muller}
+Solving Muller games is $\PSPACE$-complete.
+\end{theorem}
+
+As for the previous reduction, in the Muller game constructed in the reduction below we label edges rather than vertices,
+and some edges have more than one colour.
+As for Rabin games this can be reduced to the original definition of colouring functions (labelling vertices with exactly one colour each) with a polynomial increase in size.
+%However having uncoloured edges in the context of Muller objectives is a priori more general.
+
+\begin{proof}
+The $\PSPACE$ algorithm was constructed in \cref{2-thm:muller}.
+
+To prove the $\PSPACE$-hardness we reduce the evaluation of quantified boolean formulas in disjunctive normal form ($\QBF$) to solving Muller games. 
+
+Let $\Psi$ be a quantified boolean formula in disjunctive normal form with $n$ variables $x_1 \ldots x_n$ and $m$ clauses $C_1 \dots C_m$, where each $C_j$ is of the form $\ell_{j_1} \wedge \ell_{j_2} \wedge \ell_{j_3}$:
+\[
+\Psi = \exists x_1,\forall x_2,\ldots,\exists x_n,\ \Phi(x_1,\dots,x_n) \text{ and } 
+\Phi(x_1,\dots,x_n) = \bigvee_{j=1}^m \ell_{j_1} \wedge \ell_{j_2} \wedge \ell_{j_3}.
+\]
+
+We construct a Muller game $\Game$ with $m+1$ vertices (one per clause, all controlled by Adam, plus a unique vertex controlled by Eve), $4m$ edges ($4$ per clause), and $2n$ colours (one per literal).
+We will show that the formula $\Psi$ evaluates to true if and only if Eve has a winning strategy in the Muller game $\Game$.
+
+We first describe the Muller condition. 
+The set of colours is the set of literals.
+We let $x$ denote the lowest quantified variable such that $x$ or $\bar{x}$ is visited infinitely many times. 
+The Muller condition requires that:
+\begin{itemize}
+	\item either $x$ is existential and only one of $x$ and $\bar{x}$ is visited infinitely many times,
+	\item or $x$ is universal and both $x$ and $\bar{x}$ are visited infinitely many times,
+\end{itemize}
+and for all variables $y$ quantified after $x$, both $y$ and $\bar{y}$ are visited infinitely many times.
+Formally, let $S_{> i} = \set{x_q, \bar{x_q} : q > p}$ and:
+\[
+\F = \set{ S_{> p},\ \set{x_p} \cup S_{> p},\ \set{\bar{x_p}} \cup S_{> p} : x_p \text{ existential}} \cup \set{ S_{\ge p} : x_p \text{ universal}}.
+\]
+Note that $\F$ contains $O(n)$ elements.
+
+Let us now describe the arena. A play consists in an infinite sequence of rounds, where in each round first Eve chooses
+a clause and second Adam chooses a literal $\ell$ in this clause corresponding to some variable $x_p$, 
+and visits the colour $\ell$ as well as each colour in $S_{> p}$.
+
+The reduction is illustrated in~\cref{2-fig:hardness_Muller}.
+Note that the edges from the vertex controlled by Eve to the other ones do not have a colour,
+which does not fit our definitions.
+For this reason we introduce a new colour $c$ and colour all these edges by $c$.
+We define a new Muller objective by adding $c$ to each set in $\F$: 
+since every play in the game visit $c$ infinitely many times, the two games are equivalent.
+We note that this construction works for this particular game but not in general.
+
+\vskip1em
+For a valuation $\mathbf{v} : \set{x_1,\dots,x_n} \to \set{0,1}$ and $p \in [1,n]$,
+we write $\Psi_{\mathbf{v},p}$ for the formula obtained from $\Psi$ by fixing the variables $x_1,\dots,x_{p-1}$
+to $\mathbf{v}(x_1),\dots,\mathbf{v}(x_{p-1})$ and quantifying only over the remaining variables.
+Let us say that a valuation $\mathbf{v}$ is \textit{positive} if for every $p \in [1,n]$, the formula $\Psi_{\mathbf{v},p}$ evaluates to true,
+and similarly a valuation is \textit{negative} if for every $p \in [1,n]$, the formula $\Psi_{\mathbf{v},p}$ evaluates to false.
+
+\vskip1em
+Let us first assume that $\Psi$ evaluates to true. 
+We construct a winning strategy $\sigma$ for Eve.
+It uses \textit{positive} valuations over the variables $x_1,\ldots,x_n$ as memory states. 
+Note that the fact that $\Psi$ evaluates to true implies that there exists a positive valuation. 
+Let us choose an arbitrary positive valuation as initial valuation.
+We first explain what the strategy $\sigma$ does and then how to update its memory.
+
+Assume that the current valuation is $\mathbf{v}$, since it is positive there exists a clause satisfying $\mathbf{v}$, the strategy $\sigma$ chooses such a clause. 
+Therefore, any literal that Adam chooses is necessarily true under $\mathbf{v}$.
+
+The memory is updated as follows: 
+assume that the current valuation is $\mathbf{v}$ and that Adam chose a literal corresponding to the variable $x_p$. 
+If $x_p$ is existential the valuation is unchanged.
+If $x_p$ is universal, we construct a new positive valuation as follows. 
+We swap the value of $x_p$ in $\mathbf{v}$ and write $\mathbf{v}[x_p]$ for this new valuation. 
+Since $\mathbf{v}$ is positive and $x_p$ is universally quantified, the formula $\Psi_{\mathbf{v}[x_p],p+1}$ evaluates to true,
+so there exists a positive valuation $\mathbf{v}_{p+1} : \set{x_{p+1},\dots,x_n} \to \set{0,1}$ for this formula.
+The new valuation is defined as follows:
+\[
+\mathbf{v}'(x_q) = 
+\begin{cases}
+\mathbf{v}(x_q) & \text{ if } q < p, \\[.5em]
+\overline{\mathbf{v}(x_q)} & \text{ if } q = p, \\
+\mathbf{v}_{p+1}(x_q) & \text{ if } q > p,
+\end{cases}
+\]
+it is positive by construction.
+
+Let $\play$ be a play consistent with $\sigma$ and $x_p$ be the lowest quantified variable chosen infinitely many times by Adam. 
+First, all colours in $S_{> p}$ are visited infinitely many times (when visiting $x$ or $\bar{x}$).
+Let us look at the sequence $(\mathbf{v}_i(x_p))_{i \in \N}$ where $\mathbf{v}_i$ is the valuation in the $i$\textsuperscript{th} round.
+If $x_p$ is existential, the sequence is ultimately constant as it can only change when a lower quantified variable is visited.
+If $x_p$ is universal, the value changes each time the variable $x_p$ is chosen.
+Since any literal that Adam chooses is necessarily true under the current valuation, 
+this implies that in both cases $\play$ satisfies $\Muller(\F)$.
+
+\vskip1em
+For the converse implication we show that if $\Psi$ evaluates to false, then there exists a winning strategy $\tau$ for Adam.
+The construction is similar but using \textit{negative} valuations.
+The memory states are negative valuations. The initial valuation is any negative valuation.
+If the current valuation is $\mathbf{v}$ and Eve chose the clause $C$, since the valuation is negative $\mathbf{v}$ does not satisfy $C$,
+the strategy $\tau$ chooses a literal in $C$ witnessing this failure. 
+The memory is updated as follows: assume that the current valuation is $\mathbf{v}$ and that the strategy $\tau$ chose a literal corresponding to the variable $x_p$. 
+If $x_p$ is universal the valuation is unchanged.
+If $x_p$ is existential, we proceed as above to construct another negative valuation where the value of $x_p$ is swapped.
+
+Let $\play$ be a play consistent with $\tau$ and $x$ be the lowest quantified variable chosen infinitely many times by Adam. 
+As before, we look at the sequence $(\mathbf{v}_i(x))_{i \in \N}$ where $\mathbf{v}_i$ is the valuation in the $i$\textsuperscript{th} round.
+If $x$ is existential, the value changes each time the variable $x$ is chosen.
+If $x$ is universal, the sequence is ultimately constant.
+Since any literal that Adam chooses is necessarily false under the current valuation, 
+this implies that in both cases $\play$ does not satisfy $\Muller(\F)$.
+\end{proof}
+
+\begin{figure}
+\centering
+  \begin{tikzpicture}[scale=1.3]
+\node[s-eve] (v0) at (2,2.5) {};
+\node[s-adam] (v1) at (0,3.6) {$\ x \vee y \vee z\ $};
+\node[s-adam] (v2) at (4.3,2.7) {$\ x \vee \bar{y} \vee \bar{z}\ $};
+\node[s-adam] (v3) at (1.7,0) {$\ \bar{x} \vee y \vee \bar{z}\ $};
+
+% create edges
+\path[arrow]
+  (v0) edge[bend right] (v1)
+  (v0) edge[bend right] (v2)
+  (v0) edge[bend right] (v3)
+
+  (v1) edge[bend left = 45] node[above, pos = 0.35] {$x$} node[above right, pos = 0.55] {$S_{> x}$} (v0)
+  (v1) edge[bend right] node[above, pos = 0.35] {$y$} node[above, pos = 0.65] {$S_{> y}$} (v0)
+  (v1) edge[bend right = 45] node[below, pos = 0.25] {$z$} node[below, pos = 0.55] {$S_{> z}$} (v0)
+
+  (v2) edge[bend left = 45] node[below, pos = 0.25] {$x$} node[below, pos = 0.55] {$S_{> x}$}(v0)
+  (v2) edge[bend right] node[below, pos = 0.35] {$\bar{y}$} node[below, pos = 0.65] {$S_{> y}$} (v0)
+  (v2) edge[bend right = 45] node[above, pos = 0.35] {$\bar{z}$} node[above left, pos = 0.65] {$S_{> z}$} (v0)
+
+  (v3) edge[bend left = 45] node[left, pos = 0.35] {$\bar{x}$} node[left, pos = 0.65] {$S_{> x}$} (v0)
+  (v3) edge[bend right] node[left, pos = 0.35] {$y$} node[left, pos = 0.65] {$S_{> y}$} (v0)
+  (v3) edge[bend right = 45] node[right, pos = 0.35] {$\bar{z}$} node[right, pos = 0.65] {$S_{> z}$} (v0);
+  \end{tikzpicture}
+\caption{The Muller game for $\Psi = \exists x, \forall y, \exists z, (x \wedge y \wedge z) \bigvee (x \wedge \bar{y} \wedge \bar{z}) \bigvee (\bar{x} \wedge y \wedge \bar{z})$. For a variable $v$ we write $S_{> v}$ for the set of literals corresponding to variables quantified after $v$, so for instance $S_{> x} = \set{y,\bar{y},z,\bar{z}}$.}
+\label{2-fig:hardness_Muller}
+\end{figure}

@@ -12,7 +12,8 @@ def chapter_transformer():
 	f = open(path + "index.tex", "r")
 	content = f.read()
 
-	# Match:
+	# Find sections
+
 	# \section{What is this book about?}
 	# \label{1-sec:intro}
 	# \input{intro}

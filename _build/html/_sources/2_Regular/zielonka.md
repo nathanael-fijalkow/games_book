@@ -17,30 +17,30 @@
 \newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
-\newcommand{\argmax}{\text{argmax}}
-\newcommand{\argmin}{\text{argmin}}
+\newcommand{\argmax}{\textrm{argmax}}
+\newcommand{\argmin}{\textrm{argmin}}
 \newcommand{\Op}{\mathbb{O}}
-\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\text{supp}} 
+\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\textrm{supp}} 
 \newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
 \newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
 \newcommand{\mEve}{\mathrm{Eve}}
 \newcommand{\mAdam}{\mathrm{Adam}}
 \newcommand{\mRandom}{\mathrm{Random}}
 \newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
-\newcommand{\ing}{\text{In}}
+\newcommand{\ing}{\textrm{In}}
 \newcommand{\Ing}{\ing}
-\newcommand{\out}{\text{Out}}
+\newcommand{\out}{\textrm{Out}}
 \newcommand{\Out}{\out}
 \newcommand{\dest}{\Delta} 
 \newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
-\newcommand{\Paths}{\text{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\text{first}} \newcommand{\last}{\text{last}} 
+\newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
 \newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
-\newcommand{\Pre}{\text{Pre}} \newcommand{\PreE}{\text{Pre}_\mEve} \newcommand{\PreA}{\text{Pre}_\mAdam} \newcommand{\Attr}{\text{Attr}} \newcommand{\AttrE}{\text{Attr}_\mEve} \newcommand{\AttrA}{\text{Attr}_\mAdam} \newcommand{\rank}{\text{rank}}
-\renewcommand{\Win}{**Win**} 
-\renewcommand{\Lose}{**Lose**} 
-\newcommand{\Value}{\text{val}} 
-\newcommand{\ValueE}{\text{val}_\mEve} 
-\newcommand{\ValueA}{\text{val}_\mAdam}
+\newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
+\renewcommand{\Win}{\textrm{Win}} 
+\renewcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Value}{\textrm{val}} 
+\newcommand{\ValueE}{\textrm{val}_\mEve} 
+\newcommand{\ValueA}{\textrm{val}_\mAdam}
 \newcommand{\val}{\Value} 
 \newcommand{\Automaton}{\mathbf{A}} 
 \newcommand{\Safe}{\mathtt{Safe}}
@@ -60,6 +60,10 @@
 \newcommand{\Inf}{\mathtt{Inf}}
 \newcommand{\LimSup}{\mathtt{LimSup}}
 \newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NP}{\textrm{NP}}
+\newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\PTIME}{\textrm{PTIME}}
 ```
 The Zielonka tree is a combinatorial structure associated with a Muller objective which very neatly exposes its properties.
 As a warm-up we first present its predecessor the LAR construction, and then show the properties of Zielonka trees.
@@ -157,7 +161,7 @@ $S_i \in \Muller(\F) \Longleftrightarrow S \notin \Muller(\F)$.
 ```
 
 
- Figure {ref}`2-fig:Zielonka_tree_example` represents the Zielonka tree for $\Muller(\F)$ with 
+ {numref}`2-fig:Zielonka_tree_example` represents the Zielonka tree for $\Muller(\F)$ with 
 
 $$
 \F = \set{\set{2}, \set{3}, \set{4}, \set{1,2}, \set{1,3}, \set{1,3,4}, \set{2,3,4}, \set{1,2,3,4}}.
@@ -196,7 +200,7 @@ using stated based transitions we would have add a multiplicative factor $d$.
 Without loss of generality $C \in \F$ (otherwise we consider the complement $\Muller(2^C \setminus \F)$).
 We number the levels of $T_\F$ from the leaves to the root such that nodes labelled by sets in $\F$ are even
 and the other ones odd (this will be used for defining the parity condition).
-See  Figure {ref}`2-fig:Zielonka_tree_example` for a possible numeration of the levels (on the right hand side), the other options being shifts of this numeration by an even number.
+See  {numref}`2-fig:Zielonka_tree_example` for a possible numeration of the levels (on the right hand side), the other options being shifts of this numeration by an even number.
 
 The set of states of $\Zielonka_\F$ is the set of branches of $T_\F$.
 We represent a branch by $(S_1,\dots,S_k)$
@@ -210,7 +214,7 @@ The transition function is defined as follows:
 $\delta(b,c)$ is the next branch (in the lexicographic order from left to right and in a cyclic way) which coincides with $b$ up to $\support(b,c)$.
 The priority of this transition is given by the level on which $\support(b,c)$ sits.
 
-This is best understood on an example: on  Figure {ref}`2-fig:Zielonka_tree_example`
+This is best understood on an example: on  {numref}`2-fig:Zielonka_tree_example`
 consider the branch $b$ represented by dashed nodes, reading the colour $2$ we consider branches starting with $(\set{1,2,3,4}, \set{1,2,3})$
 because $\support(b,2) = \set{1,2,3}$.
 The next branch after $b$ is $(\set{1,2,3,4}, \set{1,2,3},\set{1,2},\set{1})$ (because we cycle: the node after $\set{1,3}$ is $\set{1,2}$).
@@ -286,7 +290,7 @@ the Muller objective is of polynomial size when represented by a Zielonka DAG (b
 The second and most interesting use of the Zielonka tree is for characterising the memory requirements.
 
 Note that a node in the Zielonka tree $T_\F$ represents another Muller objective, over the set of colours labelling this node.
-For instance in  Figure {ref}`2-fig:Zielonka_tree_example` the node labelled $\set{1,2,3}$ corresponds to $\Muller(\F')$ with
+For instance in  {numref}`2-fig:Zielonka_tree_example` the node labelled $\set{1,2,3}$ corresponds to $\Muller(\F')$ with
 $\F' = \set{\set{2}, \set{3}, \set{1,2}, \set{1,3}}$.
 
 ```{prf:definition} needs title and label 
@@ -331,7 +335,7 @@ there are two cases:
 
 ```
 
-For the Muller objective represented in  Figure {ref}`2-fig:Zielonka_tree_example`, we have $m_\F = 3$.
+For the Muller objective represented in  {numref}`2-fig:Zielonka_tree_example`, we have $m_\F = 3$.
 In the following result we consider **partial** colouring functions: $\col : V \to C \cup \set{\emptyset}$,
 meaning that some vertices can be left uncolored (formally, labelled $\emptyset$).
 
@@ -351,7 +355,7 @@ Let $\F = \set{ \set{1,2} }$: the objective $\Muller(\F)$ requires that both $1$
 The Zielonka tree $T_\F$ has three nodes $\set{1,2}, \set{1}$, and $\set{2}$, and $m_\F = 2$.
 Indeed $\Muller(\F)$ is determined with finite memory strategies of size $2$:
 intuitively the memory structure is used to remember which colour was last seen.
-A game with a partial colouring function where two memory states is necessary is presented in Figure {ref}`2-fig:lower_bound_zielonka`.
+A game with a partial colouring function where two memory states is necessary is presented in {numref}`2-fig:lower_bound_zielonka`.
 However, $\Muller(\F)$ is positionally determined for games with total colouring functions (as we have defined them originally):
 intuitively since every vertex has colour either $1$ or $2$, there is no need to remember which colour was last seen.
 
@@ -473,7 +477,7 @@ then $\WA(\Game) = \WA(\Game')$.
 ## Revisiting Streett, Rabin, and parity objectives
 
 Let us look at the Streett, Rabin, and parity objectives under the new light shed by  {prf:ref}`2-thm:characterisation_Zielonka_tree`.
-It is instructive to look at the Zielonka tree of a Rabin objective, illustrated in  Figure {ref}`2-fig:Zielonka_tree_Rabin`.
+It is instructive to look at the Zielonka tree of a Rabin objective, illustrated in  {numref}`2-fig:Zielonka_tree_Rabin`.
 It has a simple recursive structure: the Zielonka tree of the Rabin objective for $d$ pairs contains $d$ copies
 of the Zielonka tree of the Rabin objective for $d-1$ pairs.
 Naturally, this implies that $m_{\Rabin} = 1$, so  {prf:ref}`2-thm:characterisation_Zielonka_tree` induces the positional determinacy result

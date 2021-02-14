@@ -8,7 +8,7 @@ The first model we define is the common denominator of most models studied in th
 game.
 
 \subsection*{Players}
-The term ``\textit{$2$-player}'' means that there are two ""players"", Eve and Adam.
+The term ``$2$-player'' means that there are two ""players"", Eve and Adam.
 Many, many different names have been used: Player $0$ and Player $1$, 
 Player I and Player II as in descriptive complexity,
 {\'E}lo{\"i}se and Ab{\'e}lard, Circle and Square, corresponding to the graphical representation, 
@@ -18,10 +18,10 @@ and this is only a very partial list of names they have been given.
 In the names Eve and Adam, the first letters refer to $\exists$ and $\forall$ suggesting a duality between them.
 We will make use of their gender to distinguish between them, so we speak of her or his strategy.
 
-We speak of ``\textit{$1$-player}'' games when there is only one player.
+We speak of ``$1$-player'' games when there is only one player.
 In the context of stochastic games, we refer to random as a third player, and more precisely as half a player.
-Hence a ``\textit{$2\half$-player}'' game is a stochastic game with two players,
-and a ``\textit{$1\half$-player}'' game is a stochastic game with one player.
+Hence a ``$2\frac{1}{2}$-player'' game is a stochastic game with two players,
+and a ``$1\frac{1}{2}$-player'' game is a stochastic game with one player.
 
 The situation where there are more than two players is called multiplayer games.
 
@@ -108,10 +108,8 @@ is played out, in particular they see the other player's moves.
 \end{figure}
 Our definition of an arena does not include the initial vertex. %which is a design choice of minor importance.
 
-\begin{convention}
 We assume that all vertices have an outgoing edge.
 This is for technical convenience, as it implies that we do not need to explain what happens when a play cannot be prolonged.
-\end{convention}
 
 \subsection*{Playing}
 The interaction between the two players consists in moving a token on the vertices of the arena.
@@ -189,15 +187,6 @@ whenever we use a different definition we will make it explicit by referring for
 or partial colouring functions.
 \end{remark}
 
-%\begin{convention}
-%An edge $e$ is fully determined by its incoming vertex $v = \ing(e)$, its colour $c = \col(e)$, and its outgoing vertex $v' = \out(e)$,
-%so we write $(v,c,v')$ for specifying an edge. 
-%This means that we can see $E$ as a subset of $V \times C \times V$,
-%and that we often identify a colour $c$ with the set $\col^{-1}(c)$ of edges of colour $c$.
-%However, the reason why we did not include the colouring function $\col$ in the definition of the arena is to be able 
-%to reason about the arena independently of~$\col$, for instance by using different colouring functions over the same arena.
-%\end{convention}
-
 \subsection*{Games}
 We can now give the following definitions.
 
@@ -266,7 +255,8 @@ The analogous notation for Adam is $\WA(\game)$.
 
 We say that a strategy is ""optimal"" if it is winning from all vertices in $\WE(\game)$.
 
-\begin{fact}
+\begin{fact}[Winning regions are disjoint]
+\label{1-fact:winning_regions_disjoint}
 For all qualitative games $\game$ we have $\WE(\game) \cap \WA(\game) = \emptyset$.
 \end{fact}
 \begin{proof}
@@ -284,7 +274,7 @@ hence it does not fit in the definitions given so far), where neither player has
 Whenever $\WE(\game) \cup \WA(\game) = V$, we say that the game is ""determined"".
 Being determined can be understood as follows: the outcome can be determined before playing assuming both players play optimally since one of them can ensure to win whatever is the strategy of the opponent.
 
-\begin{theorem}
+\begin{theorem}[Borel determinacy]
 \label{1-thm:borel_determinacy}
 Qualitative games with Borel conditions are determined.
 \end{theorem}
@@ -368,7 +358,8 @@ Symmetrically, we let $\ValueA^{\game}(v)$ denote
 \[
 \inf_{\tau} \sup_{\sigma} f(\play_{\sigma,\tau}^{v}).
 \]
-\begin{fact}
+\begin{fact}[Comparison of values for Eve and Adam]
+\label{1-fact:comparaison_values_eve_adam}
 For all quantitative games $\game$ and vertex $v$ we have $\ValueE^{\game}(v) \le \ValueA^{\game}(v)$.
 \end{fact}
 \begin{proof}
@@ -386,7 +377,7 @@ Similarly as for the qualitative case, being determined can be understood as fol
 We say that a quantitative objective $f : C^\omega \to \Rinfty$ is Borel if for all $x \in \R$,
 the qualitative objective $f_{\ge x} \subseteq C^\omega$ is a Borel set.
 
-\begin{corollary}
+\begin{corollary}[Borel determinacy for quantitative games]
 \label{1-cor:borel_determinacy}
 Quantitative games with Borel conditions are determined, meaning that
 for all quantitative games $\game$ we have $\ValueE^{\game} = \ValueA^{\game}$.
@@ -422,16 +413,14 @@ The first is solving the game.
 \begin{svgraybox}
 For quantitative games, ``solving the game'' means solving the following decision problem:
 \vskip1em
-\decisionproblem{A "quantitative game" $\game$, a vertex $v$, \\ &
-and a threshold $x \in \Qinfty$}{Does Eve have a strategy ensuring $x$ from $v$?}
+\decisionproblem{A "quantitative game" $\game$, a vertex $v$, and a threshold $x \in \Qinfty$}{Does Eve have a strategy ensuring $x$ from $v$?}
 \end{svgraybox}
 
 A very close problem is the ""value problem"".
 \begin{svgraybox}
 For quantitative games, ``solving the value problem'' means solving the following decision problem:
 \vskip1em
-\decisionproblem{A "quantitative game" $\game$, a vertex $v$, \\ &
-and a threshold $x \in \Qinfty$}{Is it true that $\Value^{\game}(v) \ge x$?}
+\decisionproblem{A "quantitative game" $\game$, a vertex $v$, and a threshold $x \in \Qinfty$}{Is it true that $\Value^{\game}(v) \ge x$?}
 \end{svgraybox}
 
 The two problems of "solving a game" and the "value problem" are not quite equivalent: 
@@ -449,7 +438,8 @@ Especially in this case, it may be enough to approximate the value, which is ind
 by repeatingly applying an algorithm solving the value problem one can approximate the value to any given precision,
 using a binary search.
 
-\begin{lemma}
+\begin{lemma}[Binary search for computing the value]
+\label{1-lem:binary_search_computing_value}
 If there exists an algorithm $A$ for solving the value problem of a class of games, 
 then there exists an algorithm for approximating the value of games in this class within precision $\varepsilon$ 
 using $\log(\frac{1}{\varepsilon})$ calls to the algorithm $A$.
@@ -486,7 +476,7 @@ Let $\play$ be a finite play consistent with $\sigma$, we write $\sigma_{\mid \p
 \sigma_{\mid \play}(\play') = \sigma(\play \play').
 \]
 
-\begin{fact}
+\begin{fact}[Winning for prefix independent objectives]
 \label{1-fact:winning_prefix_independent_qualitative}
 Let $\Game$ be a qualitative game with objective $\Omega$ closed under removing prefixes,
 $\sigma$ a winning strategy from $v$,
@@ -500,7 +490,8 @@ implying that it is winning, and since $\Omega$ is closed under removing prefixe
 the play $\play'$ is winning. Thus $\sigma_{\mid \play}$ is winning from~$v'$.
 \end{proof}
 
-\begin{corollary}
+\begin{corollary}[Reachable vertices of a winning strategy for prefix independent objectives]
+\label{1-cor:reachable_vertices_prefix_independent}
 Let $\Game$ be a qualitative game with objective $\Omega$ closed under removing prefixes and $\sigma$ a winning strategy from $v$.
 Then all vertices reachable from $v$ by a play consistent with $\sigma$ are winning.
 \end{corollary}
@@ -516,7 +507,7 @@ Similarly, a quantitative objective $\Phi$ is:
 	\item ""prefix independent"" if it is monotonic under both adding and removing prefixes.
 \end{itemize}
 The fact above extends to quantitative objectives with the same proof.
-\begin{fact}
+\begin{fact}[Winning for prefix independent objectives, quantitative case]
 \label{1-fact:winning_prefix_independent_quantitative}
 Let $\Game$ be a quantitative game with objective $\Phi$ monotonic under removing prefixes,
 $\sigma$ a strategy ensuring $x$ from $v$, and $\play$ a finite play consistent with $\sigma$ starting from $v$.
@@ -529,7 +520,8 @@ implying that $\Phi(\play \play') \ge x$, and since $\Phi$ is monotonic under re
 this implies that $\Phi(\play') \ge x$. Thus $\sigma_{\mid \play}$ ensures $x$ from $v'$.
 \end{proof}
 
-\begin{corollary}
+\begin{corollary}[Comparison of values along a play]
+\label{1-cor:comparison_values_along_play}
 Let $\Game$ be a quantitative game with objective $\Phi$ monotonic under removing prefixes and $\sigma$ an optimal strategy from $v$.
 Then for all vertices $v'$ reachable from $v$ by a play consistent with $\sigma$ we have $\val^{\game}(v) \le \val^{\game}(v')$.
 \end{corollary}

@@ -12,30 +12,30 @@
 \newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
-\newcommand{\argmax}{\text{argmax}}
-\newcommand{\argmin}{\text{argmin}}
+\newcommand{\argmax}{\textrm{argmax}}
+\newcommand{\argmin}{\textrm{argmin}}
 \newcommand{\Op}{\mathbb{O}}
-\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\text{supp}} 
+\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\textrm{supp}} 
 \newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
 \newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
 \newcommand{\mEve}{\mathrm{Eve}}
 \newcommand{\mAdam}{\mathrm{Adam}}
 \newcommand{\mRandom}{\mathrm{Random}}
 \newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
-\newcommand{\ing}{\text{In}}
+\newcommand{\ing}{\textrm{In}}
 \newcommand{\Ing}{\ing}
-\newcommand{\out}{\text{Out}}
+\newcommand{\out}{\textrm{Out}}
 \newcommand{\Out}{\out}
 \newcommand{\dest}{\Delta} 
 \newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
-\newcommand{\Paths}{\text{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\text{first}} \newcommand{\last}{\text{last}} 
+\newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
 \newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
-\newcommand{\Pre}{\text{Pre}} \newcommand{\PreE}{\text{Pre}_\mEve} \newcommand{\PreA}{\text{Pre}_\mAdam} \newcommand{\Attr}{\text{Attr}} \newcommand{\AttrE}{\text{Attr}_\mEve} \newcommand{\AttrA}{\text{Attr}_\mAdam} \newcommand{\rank}{\text{rank}}
-\renewcommand{\Win}{**Win**} 
-\renewcommand{\Lose}{**Lose**} 
-\newcommand{\Value}{\text{val}} 
-\newcommand{\ValueE}{\text{val}_\mEve} 
-\newcommand{\ValueA}{\text{val}_\mAdam}
+\newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
+\renewcommand{\Win}{\textrm{Win}} 
+\renewcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Value}{\textrm{val}} 
+\newcommand{\ValueE}{\textrm{val}_\mEve} 
+\newcommand{\ValueA}{\textrm{val}_\mAdam}
 \newcommand{\val}{\Value} 
 \newcommand{\Automaton}{\mathbf{A}} 
 \newcommand{\Safe}{\mathtt{Safe}}
@@ -55,6 +55,10 @@
 \newcommand{\Inf}{\mathtt{Inf}}
 \newcommand{\LimSup}{\mathtt{LimSup}}
 \newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NP}{\textrm{NP}}
+\newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\PTIME}{\textrm{PTIME}}
 ```
 Automata and memory structures can be used to construct reductions between games.
 Automata operate at the level of objectives, independently of the colouring function and the arena,
@@ -86,7 +90,7 @@ The game is $\game \times \Automaton = (\arena \times \Automaton, \Omega'[\col']
 
 The following lemma states two consequences to the fact that $\Omega$ reduces to $\Omega'$.
 
-```{prf:lemma} needs title 1-lem:automata_reduction
+```{prf:lemma} Automata reductions
 :label: 1-lem:automata_reduction
 :nonumber:
 
@@ -120,20 +124,10 @@ We first define the graph $G \times M$ whose set of vertices is $V \times M$ and
 for every edge $e = (v,v') \in E$ and state $m \in M$ there is an edge $e_m$ from $(v,m)$ to $(v',\delta(m,e))$.
 The arena is $\arena \times \mem = (G \times M, \VE \times M, \VA \times M)$.
 
-```{prf:observation} needs title and label  
-There is a one-to-one correspondence between plays $\pi = v_0 v_1 \dots$ in $\arena$ 
-and plays $\pi'$ in $\arena \times \mem$ from $(v_0,m_0)$:
-the play $\pi' = (v_0, m_0) (v_1, m_1) (v_2, m_2) \ldots$
-is defined by $m_{i+1} = \delta(m_i, (v_{i},v_{i+1}))$.
- 
-:label:  
-There is a one-to-one correspondence between plays $\pi = v_0 v_1 \dots$ in $\arena$ 
-and plays $\pi'$ in $\arena \times \mem$ from $(v_0,m_0)$:
-the play $\pi' = (v_0, m_0) (v_1, m_1) (v_2, m_2) \ldots$
-is defined by $m_{i+1} = \delta(m_i, (v_{i},v_{i+1}))$.
-
+```{prf:observation} Strategies with memory
+:label: 1-fact:strategies_memory
 :nonumber:
- 
+
 There is a one-to-one correspondence between plays $\pi = v_0 v_1 \dots$ in $\arena$ 
 and plays $\pi'$ in $\arena \times \mem$ from $(v_0,m_0)$:
 the play $\pi' = (v_0, m_0) (v_1, m_1) (v_2, m_2) \ldots$
@@ -153,7 +147,7 @@ $$
 Let $\Mem$ and $\Mem'$ two memory structure over the same graph, 
 we let $\Mem \times \Mem'$ denote the memory structure obtained by direct product.
 
-```{prf:lemma} needs title 1-lem:memory_structure_reduction
+```{prf:lemma} Memory structure reductions
 :label: 1-lem:memory_structure_reduction
 :nonumber:
 

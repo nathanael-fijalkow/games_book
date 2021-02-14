@@ -23,30 +23,30 @@
 \newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
-\newcommand{\argmax}{\text{argmax}}
-\newcommand{\argmin}{\text{argmin}}
+\newcommand{\argmax}{\textrm{argmax}}
+\newcommand{\argmin}{\textrm{argmin}}
 \newcommand{\Op}{\mathbb{O}}
-\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\text{supp}} 
+\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\textrm{supp}} 
 \newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
 \newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
 \newcommand{\mEve}{\mathrm{Eve}}
 \newcommand{\mAdam}{\mathrm{Adam}}
 \newcommand{\mRandom}{\mathrm{Random}}
 \newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
-\newcommand{\ing}{\text{In}}
+\newcommand{\ing}{\textrm{In}}
 \newcommand{\Ing}{\ing}
-\newcommand{\out}{\text{Out}}
+\newcommand{\out}{\textrm{Out}}
 \newcommand{\Out}{\out}
 \newcommand{\dest}{\Delta} 
 \newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
-\newcommand{\Paths}{\text{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\text{first}} \newcommand{\last}{\text{last}} 
+\newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
 \newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
-\newcommand{\Pre}{\text{Pre}} \newcommand{\PreE}{\text{Pre}_\mEve} \newcommand{\PreA}{\text{Pre}_\mAdam} \newcommand{\Attr}{\text{Attr}} \newcommand{\AttrE}{\text{Attr}_\mEve} \newcommand{\AttrA}{\text{Attr}_\mAdam} \newcommand{\rank}{\text{rank}}
-\renewcommand{\Win}{**Win**} 
-\renewcommand{\Lose}{**Lose**} 
-\newcommand{\Value}{\text{val}} 
-\newcommand{\ValueE}{\text{val}_\mEve} 
-\newcommand{\ValueA}{\text{val}_\mAdam}
+\newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
+\renewcommand{\Win}{\textrm{Win}} 
+\renewcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Value}{\textrm{val}} 
+\newcommand{\ValueE}{\textrm{val}_\mEve} 
+\newcommand{\ValueA}{\textrm{val}_\mAdam}
 \newcommand{\val}{\Value} 
 \newcommand{\Automaton}{\mathbf{A}} 
 \newcommand{\Safe}{\mathtt{Safe}}
@@ -66,6 +66,10 @@
 \newcommand{\Inf}{\mathtt{Inf}}
 \newcommand{\LimSup}{\mathtt{LimSup}}
 \newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NP}{\textrm{NP}}
+\newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\PTIME}{\textrm{PTIME}}
 ```
 A natural approach for aggregating an infinite sequence of weights is to consider the arithmetic mean.
 Since the sequence $(\frac{1}{k} \sum_{i = 0}^{k-1} \rho_i)_{k \in \N}$ may not converge,
@@ -117,7 +121,7 @@ In the setting we consider in this chapter, meaning two player zero sum games of
 the two objectives are equivalent, which will be a corollary of {prf:ref}`4-thm:mean_payoff_positional`.
 We refer to {prf:ref}`13-thm:MMP-Eve` for a setting where limit superior and limit inferior are not equivalent.
 
-As an example, consider the mean payoff game represented in Figure {ref}`4-fig:MP`. 
+As an example, consider the mean payoff game represented in {numref}`4-fig:MP`. 
 As we will show later, the positional strategies defined below are optimal strategies for Eve and Adam:
 
 $$
@@ -198,7 +202,7 @@ The cycle decomposition breaks down $\pi$ into (possibly interleaved) cycles and
 every vertex in $\pi$ either belongs to exactly one cycle in $\Cycles(\pi)$ or to $\widehat{\pi}$.
 For instance for $\pi = v_0 v_1 v_2 v_3 v_2 v_4 v_1 v_5$
 we have $\Cycles(\pi) = (c_1 = v_2 v_3 ; c_2 = v_1 v_2 v_4)$ and $\widehat{\pi} = v_0 v_1 v_5$,
-as illustrated in Figure {ref}`4-fig:example_cycle_decomposition`.
+as illustrated in {numref}`4-fig:example_cycle_decomposition`.
 
 ```{figure} ./../4-fig:example_cycle_decomposition.png
 :name: 4-fig:example_cycle_decomposition
@@ -752,7 +756,7 @@ It may not hold that $\sigma_0$ respects mean payoff since $\game$ may contain n
 This can be checked in linear time and the attractor to the corresponding vertices removed from the game.
 After this preprocessing $\sigma_0$ indeed respects mean payoff.
 
-The pseudocode of the algorithm is given in  Algorithm {ref}`4-algo:strategy_improvement`.
+The pseudocode of the algorithm is given in  {numref}`4-algo:strategy_improvement`.
 
 ```{figure} ./../4-algo:strategy_improvement.png
 :name: 4-algo:strategy_improvement
@@ -1102,7 +1106,7 @@ $$\Lift(\mu)(v) =
  where $\downward{k}\colon \Rbar\to \Rbar$ is the
 mapping defined by $\downward k(x) = x$ if $x\geq k$, and
 $\downward k(x) = -\infty$ otherwise. The overall method, very
-simple, is given in Algorithm {ref}`4-algo:value_iteration_MP`. 
+simple, is given in {numref}`4-algo:value_iteration_MP`. 
 
 
 ```{figure} ./../4-algo:value_iteration_MP.png

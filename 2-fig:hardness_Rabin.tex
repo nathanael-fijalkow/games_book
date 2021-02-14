@@ -1,0 +1,32 @@
+\documentclass[preview,border=0mm,convert={density=600,outext=.png}]{standalone}
+\usepackage{tikz}
+\usetikzlibrary{automata,shapes,patterns,calc,arrows}
+\input{tikz-style.tex}
+\input{norenew_macros.tex}
+\input{2_Regular/macros_local.tex}
+\usepackage{amsfonts}
+\begin{document}
+\begin{tikzpicture}[scale=1.3]
+    \node[s-adam] (v0) at (2,2.5) {};
+    \node[s-eve] (v1) at (0,3.6) {$\ x \vee y \vee z\ $};
+    \node[s-eve] (v2) at (4.3,2.7) {$\ x \vee \bar{y} \vee \bar{z}\ $};
+    \node[s-eve] (v3) at (1.7,0) {$\ \bar{x} \vee y \vee \bar{z}\ $};
+
+        \path[arrow]
+      (v0) edge[bend right] (v1)
+      (v0) edge[bend right] (v2)
+      (v0) edge[bend right] (v3)
+
+      (v1) edge[bend left = 45] node[above, pos = 0.35] {$R_x$} node[right, pos = 0.55] {$G_{\bar{x}}$} (v0)
+      (v1) edge[bend right] node[above, pos = 0.35] {$R_y$} node[above, pos = 0.65] {$G_{\bar{y}}$} (v0)
+      (v1) edge[bend right = 45] node[below, pos = 0.25] {$R_z$} node[below, pos = 0.55] {$G_{\bar{z}}$} (v0)
+
+      (v2) edge[bend left = 45] node[below, pos = 0.25] {$R_x$} node[below, pos = 0.55] {$G_{\bar{x}}$}(v0)
+      (v2) edge[bend right] node[below, pos = 0.35] {$R_{\bar{y}}$} node[below, pos = 0.65] {$G_{y}$} (v0)
+      (v2) edge[bend right = 45] node[above, pos = 0.35] {$R_{\bar{z}}$} node[above, pos = 0.65] {$G_{z}$} (v0)
+
+      (v3) edge[bend left = 45] node[left, pos = 0.35] {$R_{\bar{x}}$} node[left, pos = 0.65] {$G_{x}$} (v0)
+      (v3) edge[bend right] node[left, pos = 0.35] {$R_y$} node[left, pos = 0.65] {$G_{\bar{y}}$} (v0)
+      (v3) edge[bend right = 45] node[right, pos = 0.35] {$R_{\bar{z}}$} node[right, pos = 0.65] {$G_{z}$} (v0);
+  \end{tikzpicture}
+\end{document}

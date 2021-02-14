@@ -9,11 +9,16 @@ def section_transformer(nb_chap, file_name, path, title):
 
 	#### Add macros
 
+	f = open("macros_complexity.tex", "r")
+	macros_complexity = f.read()
+	content = macros_complexity + "```\n" + content
+	f.close()
+
 	f = open("macros.tex", "r")
 	macros = f.read()
 	macros = re.sub(r'%(.*?)\n', r'', macros)
 	macros = re.sub(r'\n\n', r'\n', macros)
-	content = macros + "```\n" + content
+	content = macros + content
 	f.close()
 
 	f = open(path + "macros_local.tex", "r")
@@ -22,6 +27,10 @@ def section_transformer(nb_chap, file_name, path, title):
 	macros_local = re.sub(r'\n\n', r'\n', macros_local)
 	content = "```{math}\n" + macros_local + content
 	f.close()
+
+	#### Add illustration 
+	if file_name == "index":
+		content = "```{image} ./../" + nb_chap + ".jpg\n:alt: illustration\n:class: bg-primary mb-1\n:width: 400px\n:align: center\n```\n" + content
 
 	#### Add title and reference to it
 	content = "(" + nb_chap + "-sec:" + file_name + ")=\n# " + title + "\n\n" + content
@@ -80,8 +89,14 @@ def section_transformer(nb_chap, file_name, path, title):
 	content = re.sub(r'\{\\"e}', r'&euml;', content) 
 	content = re.sub(r'\{\\"i}', r'&iuml;', content)
 	content = re.sub(r'\{\\\'e}', r'&eacute;', content)
+	content = re.sub(r'\{\\\'E}', r'&Eacute;', content)
 	content = re.sub(r'\{\\\`e}', r'&egrave;', content)
 	content = re.sub(r'\{\\\'n}', r'&#324;', content)
+
+	#### Deal with decisionproblems and tasks
+
+	content = re.sub(r'\\decisionproblem\{([\s\S]*?)\}\{([\s\S]*?)\}\n', r'**INPUT**: \1\n\n**QUESTION**: \2\n', content)
+	content = re.sub(r'\\task\{([\s\S]*?)\}\{([\s\S]*?)\}\n', r'**INPUT**: \1\n\n**COMPUTE**: \2\n', content)
 
 	#### Deal with subsections and subsubsections
 
@@ -172,7 +187,7 @@ def section_transformer(nb_chap, file_name, path, title):
 	("definition","definition"), \
 	("convention","remark"), \
 	("proposition","proposition"), \
-	("principle","property") \
+	("property","property") \
 	]
 
 	for (short_name, long_name) in l:
@@ -185,7 +200,7 @@ def section_transformer(nb_chap, file_name, path, title):
 	#### Deal with remarks
 
 	p = r'\\begin\{{remark\}}([\s\S]*?)\\end\{{remark\}}'
-	s = r'\n```{{admonition}} Remark\n\1\n```\n'
+	s = r'\n```{{admonition}} Remark\1\n```\n'
 	content = re.sub(p.format(short_name,short_name), s.format(long_name), content)
 
 	#### Deal with proof
@@ -193,15 +208,13 @@ def section_transformer(nb_chap, file_name, path, title):
 	content = re.sub(r'\\begin\{proof\}([\s\S]*?)\\end\{proof\}', \
 		r'\n```{admonition} Proof\n:class: dropdown tip\n\1\n```\n', content)
 
-	#### Deal with references to (sub)*sections and others
+	#### Deal with references to (sub)*sections
 
 	p = r"~?\\[cC]ref\{{(\d*?)-{}:(.*?)\}}"
 	s = r" {} {{ref}}`\1-{}:\2`"
 
 	l = [\
 	("chap","Chapter"), \
-	("fig","Figure"), \
-	("algo","Algorithm"), \
 	("sec","Section"), \
 	("subsec","Subsection") \
 	]
@@ -209,7 +222,20 @@ def section_transformer(nb_chap, file_name, path, title):
 	for (short_name, long_name) in l:
 		content = re.sub(p.format(short_name), s.format(long_name, short_name), content)
 
+	#### Deal with references to parts
+
 	content = re.sub(r'~?\\[cC]ref\{part:(.*?)\}', r' Part {ref}`part:\1`', content)
+
+	#### Deal with references to figures and algorithms
+
+	p = r"~?\\[cC]ref\{{(\d*?)-{}:(.*?)\}}"
+	s = r" {{numref}}`\1-{}:\2`"
+
+	l = ["fig", "algo"]
+
+	for short_name in l:
+		content = re.sub(p.format(short_name), s.format(short_name), content)
+
 
 	#### Deal with references to theorems and others
 

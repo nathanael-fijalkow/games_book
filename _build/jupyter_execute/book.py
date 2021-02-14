@@ -24,7 +24,7 @@ Nathalie Bertrand, Romain Brenguier, Patricia Bouyer-Decitre, Arnaud Carayol, Jo
 ```{toctree}
 :hidden:
 :titlesonly:
-:caption: 1_Introduction
+:caption: Introduction
 
 1_Introduction/index
 ```
@@ -35,7 +35,6 @@ Nathalie Bertrand, Romain Brenguier, Patricia Bouyer-Decitre, Arnaud Carayol, Jo
 :titlesonly:
 :caption: Classic
 
-Classic/index
 2_Regular/index
 3_Parity/index
 4_Payoffs/index

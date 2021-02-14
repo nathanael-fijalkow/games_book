@@ -1,7 +1,6 @@
 Value iteration algorithms manipulate value functions and never construct any strategy, at least explicitly.
 This is a key difference with strategy improvement algorithms (also called policy iteration algorithms) whose fundamental idea is to maintain and improve a strategy.
 We assume that the games we consider in this section are positionally determined, therefore all strategies are assumed to be positional.
-\mynote{explain $\delta$}
 
 \vskip1em
 Let us consider a game $\game$ and set as a goal to construct an optimal strategy for Eve.
@@ -23,14 +22,16 @@ The difficulty is that $e = (v,u)$ being switchable does not mean that it is a b
 but only according to the value function $\val^{\sigma}$, so it is not clear that $\sigma[v \to e]$ is better than $\sigma$.
 Strategy improvement algorithms depend on the following two principles.
 
-\begin{principle}[Progress]
+\begin{property}[Progress]
+\label{1-property:progress}
 Let $\sigma$ be a strategy and let $e = (v,u)$ be a switchable edge. 
 Then $\sigma < \sigma[v \to e]$.
-\end{principle}
+\end{property}
 
-\begin{principle}[Optimality]
+\begin{property}[Optimality]
+\label{1-property:optimality}
 Let $\sigma$ be a strategy that has no switchable edges, then $\sigma$ is optimal.
-\end{principle}
+\end{property}
 
 The algorithm is the following: start at an initial strategy $\sigma_0$. 
 In each round $i$ compute $\val^{\sigma_i}$ and look for a switchable edge.

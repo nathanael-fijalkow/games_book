@@ -1,7 +1,6 @@
 import os 
 
 os.chdir('.') 
-print(os.getcwd()) 
 
 def rename_main_into_index():
 	for f in os.listdir('.'):

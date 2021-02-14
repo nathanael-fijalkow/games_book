@@ -12,30 +12,30 @@
 \newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
-\newcommand{\argmax}{\text{argmax}}
-\newcommand{\argmin}{\text{argmin}}
+\newcommand{\argmax}{\textrm{argmax}}
+\newcommand{\argmin}{\textrm{argmin}}
 \newcommand{\Op}{\mathbb{O}}
-\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\text{supp}} 
+\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\textrm{supp}} 
 \newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
 \newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
 \newcommand{\mEve}{\mathrm{Eve}}
 \newcommand{\mAdam}{\mathrm{Adam}}
 \newcommand{\mRandom}{\mathrm{Random}}
 \newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
-\newcommand{\ing}{\text{In}}
+\newcommand{\ing}{\textrm{In}}
 \newcommand{\Ing}{\ing}
-\newcommand{\out}{\text{Out}}
+\newcommand{\out}{\textrm{Out}}
 \newcommand{\Out}{\out}
 \newcommand{\dest}{\Delta} 
 \newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
-\newcommand{\Paths}{\text{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\text{first}} \newcommand{\last}{\text{last}} 
+\newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
 \newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
-\newcommand{\Pre}{\text{Pre}} \newcommand{\PreE}{\text{Pre}_\mEve} \newcommand{\PreA}{\text{Pre}_\mAdam} \newcommand{\Attr}{\text{Attr}} \newcommand{\AttrE}{\text{Attr}_\mEve} \newcommand{\AttrA}{\text{Attr}_\mAdam} \newcommand{\rank}{\text{rank}}
-\renewcommand{\Win}{**Win**} 
-\renewcommand{\Lose}{**Lose**} 
-\newcommand{\Value}{\text{val}} 
-\newcommand{\ValueE}{\text{val}_\mEve} 
-\newcommand{\ValueA}{\text{val}_\mAdam}
+\newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
+\renewcommand{\Win}{\textrm{Win}} 
+\renewcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Value}{\textrm{val}} 
+\newcommand{\ValueE}{\textrm{val}_\mEve} 
+\newcommand{\ValueA}{\textrm{val}_\mAdam}
 \newcommand{\val}{\Value} 
 \newcommand{\Automaton}{\mathbf{A}} 
 \newcommand{\Safe}{\mathtt{Safe}}
@@ -55,6 +55,10 @@
 \newcommand{\Inf}{\mathtt{Inf}}
 \newcommand{\LimSup}{\mathtt{LimSup}}
 \newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NP}{\textrm{NP}}
+\newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\PTIME}{\textrm{PTIME}}
 ```
 A strategy can be a very complicated object, in particular it is infinite.
 Indeed, it is a function $\sigma : \Paths \to E$,
@@ -88,14 +92,8 @@ $$
 
 It is equipped with the condition $W$ inherited from $\Game$.
 
-```{prf:observation} needs title and label 
-Let $\Game$ be a game with condition $W$, $\sigma$ a positional strategy, and $v$ a vertex.
-Then the strategy $\sigma$ is winning from $v$ if and only if all infinite paths in $\Game[\sigma]$ from $v$ satisfy $W$.
- 
-:label: 
-Let $\Game$ be a game with condition $W$, $\sigma$ a positional strategy, and $v$ a vertex.
-Then the strategy $\sigma$ is winning from $v$ if and only if all infinite paths in $\Game[\sigma]$ from $v$ satisfy $W$.
-
+```{prf:observation} Game induced by a positional strategy
+:label: 1-fact:game_induced_positional_strategy
 :nonumber:
 
 Let $\Game$ be a game with condition $W$, $\sigma$ a positional strategy, and $v$ a vertex.
@@ -111,7 +109,7 @@ if Eve has a winning strategy from $v$, then she has a positional winning strate
 As we discussed earlier, the task of solving a game does not include constructing winning strategies.
 We present a general binary search technique for doing so assuming positional determinacy.
 
-```{prf:lemma} needs title 1-lem:constructing_winning_strategy
+```{prf:lemma} Binary search for constructing positional strategies
 :label: 1-lem:constructing_winning_strategy
 :nonumber:
 
@@ -149,7 +147,7 @@ We say that $\Omega$ is positionally determined for both players if both $\Omega
 If the positional determinacy only holds for Eve we say that such objectives are half-positional. 
 
 Parity objectives are positionally determined for both players; this will be proved in  Chapter {ref}`2-chap:regular`.
-We illustrate it on  Figure {ref}`1-fig:parity_game_example_positional` by annotating  Figure {ref}`1-fig:parity_game_example` with the positional winning strategies for both players.
+We illustrate it on  {numref}`1-fig:parity_game_example_positional` by annotating  {numref}`1-fig:parity_game_example` with the positional winning strategies for both players.
 
 ```{figure} ./../1-fig:parity_game_example_positional.png
 :name: 1-fig:parity_game_example_positional
@@ -164,7 +162,7 @@ there exists a positional optimal strategy from $v$.
 Let us state the quantitative counterpart of {prf:ref}`1-lem:constructing_winning_strategy`.
 The proof is the same.
 
-```{prf:lemma} needs title 1-lem:constructing_winning_strategy_quantitative
+```{prf:lemma} Binary search for constructive winning strategies, quantitative case
 :label: 1-lem:constructing_winning_strategy_quantitative
 :nonumber:
 
@@ -185,7 +183,7 @@ Eve has a positional strategy which is optimal from every vertex.
 
 Being uniformly positionally determined is a stronger property than being positionally determined, but in most cases an objective satisfies either both or none, as for example if the objective is prefix independent.
 
-```{prf:lemma} needs title 1-lem:from_positional_to_uniformly_positional
+```{prf:lemma} From positional to uniformly positional prefix independent objectives
 :label: 1-lem:from_positional_to_uniformly_positional
 :nonumber:
 
@@ -249,7 +247,7 @@ There are several variants of this definition covering cases where the memory is
 and uniformly over all vertices or not.
 
 
-We give in  Figure {ref}`1-fig:memory_required` an example of a game where Eve has a winning strategy using two memory states
+We give in  {numref}`1-fig:memory_required` an example of a game where Eve has a winning strategy using two memory states
 but no positional winning strategy. 
 Let us consider the condition $\Buchi[\set{v_1}] \wedge \Buchi[\set{v_2}]$, meaning that a play is winning if both $v_1$ and $v_2$ are visited infinitely many times. A positional strategy would either always choose to go left to $v_1$ or to the right to $v_2$, hence does not satisfy the condition. 
 Some memory is required to switch between the two.

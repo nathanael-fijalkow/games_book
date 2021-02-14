@@ -17,30 +17,30 @@
 \newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
-\newcommand{\argmax}{\text{argmax}}
-\newcommand{\argmin}{\text{argmin}}
+\newcommand{\argmax}{\textrm{argmax}}
+\newcommand{\argmin}{\textrm{argmin}}
 \newcommand{\Op}{\mathbb{O}}
-\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\text{supp}} 
+\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\textrm{supp}} 
 \newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
 \newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
 \newcommand{\mEve}{\mathrm{Eve}}
 \newcommand{\mAdam}{\mathrm{Adam}}
 \newcommand{\mRandom}{\mathrm{Random}}
 \newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
-\newcommand{\ing}{\text{In}}
+\newcommand{\ing}{\textrm{In}}
 \newcommand{\Ing}{\ing}
-\newcommand{\out}{\text{Out}}
+\newcommand{\out}{\textrm{Out}}
 \newcommand{\Out}{\out}
 \newcommand{\dest}{\Delta} 
 \newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
-\newcommand{\Paths}{\text{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\text{first}} \newcommand{\last}{\text{last}} 
+\newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
 \newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
-\newcommand{\Pre}{\text{Pre}} \newcommand{\PreE}{\text{Pre}_\mEve} \newcommand{\PreA}{\text{Pre}_\mAdam} \newcommand{\Attr}{\text{Attr}} \newcommand{\AttrE}{\text{Attr}_\mEve} \newcommand{\AttrA}{\text{Attr}_\mAdam} \newcommand{\rank}{\text{rank}}
-\renewcommand{\Win}{**Win**} 
-\renewcommand{\Lose}{**Lose**} 
-\newcommand{\Value}{\text{val}} 
-\newcommand{\ValueE}{\text{val}_\mEve} 
-\newcommand{\ValueA}{\text{val}_\mAdam}
+\newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
+\renewcommand{\Win}{\textrm{Win}} 
+\renewcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Value}{\textrm{val}} 
+\newcommand{\ValueE}{\textrm{val}_\mEve} 
+\newcommand{\ValueA}{\textrm{val}_\mAdam}
 \newcommand{\val}{\Value} 
 \newcommand{\Automaton}{\mathbf{A}} 
 \newcommand{\Safe}{\mathtt{Safe}}
@@ -60,6 +60,10 @@
 \newcommand{\Inf}{\mathtt{Inf}}
 \newcommand{\LimSup}{\mathtt{LimSup}}
 \newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NP}{\textrm{NP}}
+\newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\PTIME}{\textrm{PTIME}}
 ```
 
 ```{prf:theorem} needs title 3-thm:value_iteration_quasipoly
@@ -148,7 +152,7 @@ A tree is $(n,h)$-**universal** if it embeds all trees of size $n$ and height $h
 
 ```
 
-We refer to  Figure {ref}`3-fig:example_universal` for an example of a $(5,2)$-universal tree.
+We refer to  {numref}`3-fig:example_universal` for an example of a $(5,2)$-universal tree.
 A first example of an $(n,h)$-universal tree is the tree where each node has degree $n$:
 formally we define it recursively by $T_{n,0}$ is a leaf, and $T_{n,h+1} = [\underbrace{T_{n,h},\dots,T_{n,h}}_{n \text{ copies}}]$.
 It has size $n^h$.
@@ -200,7 +204,7 @@ $$
 [T^1_{\text{left}},\dots,T^k_{\text{left}},\ T_\text{middle},\ T^1_{\text{right}},\dots,T^{k'}_{\text{right}}].
 $$
 
-The construction is illustrated in  Figure {ref}`3-fig:smallest_tree_construction`.
+The construction is illustrated in  {numref}`3-fig:smallest_tree_construction`.
 
 ```{figure} ./../3-fig:smallest_tree_construction.png
 :name: 3-fig:smallest_tree_construction
@@ -229,7 +233,7 @@ so it embeds into $T_\text{right}$ by induction hypothesis.
 
 ```
 
-\noindent The construction given in the proof yields the smallest $(5,2)$-universal tree illustrated in  Figure {ref}`3-fig:example_universal`.
+\noindent The construction given in the proof yields the smallest $(5,2)$-universal tree illustrated in  {numref}`3-fig:example_universal`.
 
 ## Ordering the branches
 
@@ -252,7 +256,7 @@ if $b_{\ge p}\ <\ b'_{\ge p}$.
 *  For $p$ even, we say that $b \vartriangleleft_p b'$ 
 if $b_{\ge p}\ \le\ b'_{\ge p}$.
 
-To interpret $\vartriangleleft_p$ on the tree, we label the levels by priorities from bottom to top as in  Figure {ref}`3-fig:example_universal`.
+To interpret $\vartriangleleft_p$ on the tree, we label the levels by priorities from bottom to top as in  {numref}`3-fig:example_universal`.
 Then $b \vartriangleleft_p b'$ if and only if the $p$-truncated branch of $b$ is to the left of the $p$-truncated branch of $b'$,
 strictly if $p$ is odd, and non-strictly if $p$ is even.
 
@@ -262,7 +266,7 @@ strictly if $p$ is odd, and non-strictly if $p$ is even.
 Illustration of the relations $\vartriangleleft_p$.
 ```
 
-We refer to  Figure {ref}`3-fig:example_relations` for some examples:
+We refer to  {numref}`3-fig:example_relations` for some examples:
 
 $$
 v \vartriangleleft_1 u \quad ; \quad  
@@ -542,7 +546,7 @@ The operator $\Op_v$ in action: $\Op_v(\mu)(v)$ is the maximal leaf (meaning the
 which satisfies $\Op_v(\mu)(v) \vartriangleleft_3 \mu(v')$ and $\Op_v(\mu)(v) \vartriangleleft_3 \mu(v'')$.
 ```
 
-The pseudocode for the algorithm is given in  Algorithm {ref}`3-algo:value_iteration`, 
+The pseudocode for the algorithm is given in  {numref}`3-algo:value_iteration`, 
 where we let $\ell_{\max}$ denote the maximal leaf in $T$.
 
 ```{figure} ./../3-algo:value_iteration.png
@@ -586,7 +590,7 @@ Let us write $\Delta$ for the complexity of checking whether $\mu(v) \vartriangl
 Hence checking whether $v$ is neglected costs 
 $O(|\Ing^{-1}(v)| \cdot \Delta)$, where $|\Ing^{-1}(v)|$ is the number of outgoing edges of $v$.
 
-A naive implementation of  Algorithm {ref}`3-algo:value_iteration` would in each repeat loop go through every vertex $v$ 
+A naive implementation of  {numref}`3-algo:value_iteration` would in each repeat loop go through every vertex $v$ 
 to check whether it is neglected.
 This would incur a linear cost: $\sum_{v \in V} O(|\Ing^{-1}(v)| \cdot \Delta) = O(m \cdot \Delta)$.
 Thus the overall complexity would be
@@ -605,7 +609,7 @@ We then discuss the cost $\Delta$ by choosing an appropriate encoding of the qua
 ## Data structure
 
 We use a data structure similar to the attractor computation presented in  Section {ref}`2-sec:attractors`.
-The pseudocode is given in  Algorithm {ref}`3-algo:value_iteration_data_structure`.
+The pseudocode is given in  {numref}`3-algo:value_iteration_data_structure`.
 We did not provide the pseudocode for the functions $\texttt{Init}$ and $\texttt{Update}$.
 
 The data structure consists of the following objects:
@@ -632,7 +636,7 @@ for the latter each of them is checked and added to $S$ when required.
 By monotonicity, neglected vertices remain neglected so all vertices in $S$ (minus $v$) are still neglected.
 Hence the invariant is satisfied.
 
-The invariant implies that the algorithm indeed implements Algorithm {ref}`3-algo:value_iteration` hence returns the maximal progress measure, 
+The invariant implies that the algorithm indeed implements {numref}`3-algo:value_iteration` hence returns the maximal progress measure, 
 but it also has implications on the complexity.
 Indeed one iteration of the repeat loop over some vertex $v$ involves 
 
@@ -696,7 +700,7 @@ The branches of $T$ are:
 *  branches of $T_\text{middle}$ augmented with a new component $\varepsilon$;
 *  branches of $T_\text{right}$ where the first component is prefixed with a $1$.
 
-We call this encoding the succinct encoding, it is illustrated in  Figure {ref}`3-fig:tree_encoded` for the $(5,2)$-universal tree.
+We call this encoding the succinct encoding, it is illustrated in  {numref}`3-fig:tree_encoded` for the $(5,2)$-universal tree.
 The leftmost branch is $(00,\varepsilon)$, and the middle branch $(\varepsilon,\varepsilon)$.
 In general, the inductive construction implies that every branch is a tuple $(D_{d-1},\dots,D_1)$ 
 such that the sum of the lengths of the directions $D_i$ is at most $\log(n)$.
