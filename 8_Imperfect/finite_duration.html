@@ -1,0 +1,1206 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Finite duration &#8212; Games on graphs</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/style.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Infinite duration" href="infinite_duration.html" />
+    <link rel="prev" title="Games with Signals" href="index.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/cover.jpg" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Games on graphs</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <p class="caption collapsible-parent">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../1_Introduction/index.html">
+   Introduction
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/intro.html">
+     What is this book about?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/simple.html">
+     A first model of games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/objectives.html">
+     Objectives
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/computation.html">
+     Computational models
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/automata.html">
+     Automata
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/memory.html">
+     Memory
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/reductions.html">
+     Reductions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/subgames.html">
+     Traps and subgames
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/fixed_points.html">
+     Generic fixed point algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/value_iteration.html">
+     Value iteration algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/strategy_improvement.html">
+     Strategy improvement algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Classic
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../2_Regular/index.html">
+   Regular Games
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/attractors.html">
+     Reachability games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/buchi.html">
+     Büchi games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/parity.html">
+     Parity games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/muller.html">
+     Rabin, Streett, and Muller games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/zielonka.html">
+     Zielonka tree
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../3_Parity/index.html">
+   Parity Games
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/strategy_improvement.html">
+     An exponential time strategy improvement algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/zielonka.html">
+     A quasipolynomial time attractor decomposition algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/separation.html">
+     A quasipolynomial time separating automata algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/value_iteration.html">
+     A quasipolynomial time value iteration algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/relationships.html">
+     Comparing the three families of algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../4_Payoffs/index.html">
+   Games with Payoffs
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/notations.html">
+     Notations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/qualitative.html">
+     Refining qualitative objectives with quantities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/mean_payoff.html">
+     Mean payoff games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/discounted_payoff.html">
+     Discounted payoff games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/shortest_path.html">
+     Shortest path games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/total_payoff.html">
+     Total payoff games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Stochastic
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../5_MDP/index.html">
+   Markov Decision Processes
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/notations.html">
+     Notations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/reachability.html">
+     Positive and almost-sure reachability and safety in MDPs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/discounted.html">
+     Discounted payoff in MDPs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/mean_payoff_properties.html">
+     Mean-payoff in MDPs: General properties and linear programming
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/mean_payoff_strongly_connected.html">
+     Mean-payoff optimality in strongly connected MDPs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/end_components.html">
+     End components
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/reductions.html">
+     Reductions to optimal reachability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/optimal_reachability.html">
+     Optimal reachability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../6_Stochastic/index.html">
+   Stochastic Games
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../6_Stochastic/notations.html">
+     Notations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../6_Stochastic/determinacy.html">
+     Positional determinacy of stochastic reachability games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../6_Stochastic/relations.html">
+     Relations between all games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../6_Stochastic/algos.html">
+     Algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../6_Stochastic/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Information
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../7_Concurrent/index.html">
+   Concurrent Games
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../7_Concurrent/notations.html">
+     Notations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../7_Concurrent/matrix_games.html">
+     Matrix games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../7_Concurrent/discounted.html">
+     Concurrent discounted games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../7_Concurrent/reachability.html">
+     Concurrent reachability games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../7_Concurrent/mean_payoff.html">
+     Concurrent mean-payoff games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../7_Concurrent/discounted.html">
+     Concurrent discounted games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../7_Concurrent/references.html">
+     Bibilographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 current active collapsible-parent">
+  <a class="reference internal" href="index.html">
+   Games with Signals
+  </a>
+  <ul class="current collapse-ul">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Finite duration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="#min-left-1-x-3-1-y-3-1-x-9-1-y-right-right-frac-1-4-max-x-y-in-0-1-2-min-left-4-6y-6-2x-6y-br-right">
+     \min\left(
+{(1-x) +  3 (1-y)},
+{3(1-x) - 9(1-y)}
+\right)\right)\
+=&amp;
+\frac{1}{4}\max_{(x,y)\in[0,1]^2}
+\min\left(
+4 - 6y,
+-6 -2x + 6y
+     <br/>
+     \right)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="infinite_duration.html">
+     Infinite duration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Finite duration
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#min-left-1-x-3-1-y-3-1-x-9-1-y-right-right-frac-1-4-max-x-y-in-0-1-2-min-left-4-6y-6-2x-6y-br-right">
+   \min\left(
+{(1-x) +  3 (1-y)},
+{3(1-x) - 9(1-y)}
+\right)\right)\
+=&amp;
+\frac{1}{4}\max_{(x,y)\in[0,1]^2}
+\min\left(
+4 - 6y,
+-6 -2x + 6y
+   <br/>
+   \right)
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="finite-duration">
+<span id="sec-finite-duration"></span><h1>Finite duration<a class="headerlink" href="#finite-duration" title="Permalink to this headline">¶</a></h1>
+<div class="math notranslate nohighlight">
+\[\newcommand{\probimp}[3]{\mathbb{P}^{#1}_{#2}\left({#3}\right)}
+\newcommand{\rand}{{\tt rand}}
+\newcommand{\Isafe}{{\tt ISafe}}
+\newcommand{\LL}{\mathcal{L}}
+\newcommand{\KK}{\mathcal{K}}
+\newcommand{\LLE}{\LL_{\text{Eve},=1}}
+\newcommand{\LLA}{\LL_{\text{Adam},&gt;0}}
+\newcommand{\can}{\textsf{max}}
+\newcommand{\targets}{TT}
+\newcommand{\bh}{\setminus}
+\newcommand{\signauxdeux}{T}
+\newcommand{\actionsun}{A}
+\newcommand{\Act}{\text{Act}}
+\newcommand{\ini}{\delta_0}
+\newcommand{\Eve}{\textrm{Eve}}
+\newcommand{\Adam}{\textrm{Adam}}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
+\newcommand{\argmax}{\textrm{argmax}}
+\newcommand{\argmin}{\textrm{argmin}}
+\newcommand{\Op}{\mathbb{O}}
+\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\textrm{supp}} 
+\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
+\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
+\newcommand{\mEve}{\mathrm{Eve}}
+\newcommand{\mAdam}{\mathrm{Adam}}
+\newcommand{\mRandom}{\mathrm{Random}}
+\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
+\newcommand{\ing}{\textrm{In}}
+\newcommand{\Ing}{\ing}
+\newcommand{\out}{\textrm{Out}}
+\newcommand{\Out}{\out}
+\newcommand{\dest}{\Delta} 
+\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
+\newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
+\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
+\newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
+\newcommand{\Win}{\textrm{Win}} 
+\newcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Value}{\textrm{val}} 
+\newcommand{\ValueE}{\textrm{val}_\mEve} 
+\newcommand{\ValueA}{\textrm{val}_\mAdam}
+\newcommand{\val}{\Value} 
+\newcommand{\Automaton}{\mathbf{A}} 
+\newcommand{\Safe}{\mathtt{Safe}}
+\newcommand{\Reach}{\mathtt{Reach}} 
+\newcommand{\Buchi}{\mathtt{Buchi}} 
+\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
+\newcommand{\Parity}{\mathtt{Parity}} 
+\newcommand{\Muller}{\mathtt{Muller}} 
+\newcommand{\Rabin}{\mathtt{Rabin}} 
+\newcommand{\Streett}{\mathtt{Streett}} 
+\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
+\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
+\newcommand{\Energy}{\mathtt{Energy}}
+\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
+\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
+\newcommand{\Sup}{\mathtt{Sup}}
+\newcommand{\Inf}{\mathtt{Inf}}
+\newcommand{\LimSup}{\mathtt{LimSup}}
+\newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NL}{\textrm{NL}}
+\newcommand{\PTIME}{\textrm{PTIME}}
+\newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
+\newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
+\newcommand{\PSPACE}{\textrm{PSPACE}}\]</div>
+<p>We start with some results on the very interesting class of game
+with finite duration.</p>
+<p>A game has <strong>finite duration</strong>
+if there is a set of absorbing vertices <span class="math notranslate nohighlight">\(L\)</span>, called <strong>leaves</strong>,
+such that every play eventually reaches <span class="math notranslate nohighlight">\(L\)</span>.
+In other words, the directed graph <span class="math notranslate nohighlight">\((V,E)\)</span> induced by all pairs <span class="math notranslate nohighlight">\((v,w)\)</span>
+such that
+<span class="math notranslate nohighlight">\(\exists a,b\in A, s,t \in S, \Delta(v,a,b)(w,s,t) &gt; 0\)</span>
+is acyclic, except for self loops on leaves.</p>
+<p>Moreover, <span class="math notranslate nohighlight">\(C\)</span> is the set of real numbers,
+colours are called <strong>payoffs</strong>.
+At the moment the play <span class="math notranslate nohighlight">\(\pi\)</span> reaches a leaf <span class="math notranslate nohighlight">\(\ell\in L\)</span>
+for the first time,
+the game is essentially over:
+Eve receives the sum of payoffs seen to far,
+denoted <span class="math notranslate nohighlight">\({\tt pay}(\pi)\)</span> and all future payoffs are <span class="math notranslate nohighlight">\(0\)</span>.
+Such plays are called <strong>terminal plays</strong>.</p>
+<p>Once a terminal play occurs, the game is over.
+For this reason, in this section we restrict realisable sequences of signals
+to the ones occurring in terminal plays and their prefixes.
+This guarantees finiteness of <span class="math notranslate nohighlight">\(R_E\)</span> and <span class="math notranslate nohighlight">\(R_A\)</span> since</p>
+<div class="math notranslate nohighlight">
+\[
+R_E \cup R_A \subseteq S^{\leq n}\enspace.
+\]</div>
+<p>An initial distribution <span class="math notranslate nohighlight">\(\ini\)</span> and two strategies <span class="math notranslate nohighlight">\(\sigma\)</span> and <span class="math notranslate nohighlight">\(\tau\)</span> of Eve and Adam naturally induce a probability distribution <span class="math notranslate nohighlight">\(\mathbb{P}_{\ini}^{\sigma,\tau}\)</span>
+on the set of terminal plays starting in one of the vertices <span class="math notranslate nohighlight">\(v_0, \ini(v_0)&gt;0\)</span>.
+Players have opposite interests:
+Eve seeks to maximize her expected payoff</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbb{E}_{\ini}^{\sigma,\tau}= \sum_{\text{ terminal plays }\pi} 
+\mathbb{P}_{\ini}^{\sigma,\tau}(\pi) \cdot {\pay}(\pi)\enspace,
+\]</div>
+<p>while Adam wants to minimize it.</p>
+<p>\subsection{Existence and computability of the value}</p>
+<p>Next theorem gathers several folklore results.</p>
+<div class="proof theorem admonition" id="thm:finiteimperfecthaveval">
+<p class="admonition-title"><span class="caption-number">Theorem 243 </span> (NEEDS TITLE thm:finiteimperfecthaveval)</p>
+<div class="theorem-content section" id="proof-content">
+<p>A game with finite duration and imperfect information has a value:
+for every initial distribution <span class="math notranslate nohighlight">\(\ini\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[
+\sup_\sigma \inf_\tau \mathbb{E}_{\ini}^{\sigma,\tau}
+~=~
+ \inf_\tau \sup_\sigma \mathbb{E}_{\ini}^{\sigma,\tau}\enspace.
+\]</div>
+<p>This value is denoted <span class="math notranslate nohighlight">\(\val(\ini)\)</span>
+and is computable~\footnote{provided payoffs are presented in a way
+compatible with linear solvers, typically
+rational values.}.
+Both players have optimal strategies.</p>
+</div>
+</div><blockquote>
+<div><p><strong>Reduction to normal form.</strong></p>
+</div></blockquote>
+<p>The main ingredient for proving this theorem is a transformation
+of the game into a matrix game called its <strong>normal form</strong>.</p>
+<p>The intuition is that a player,
+instead of choosing progressively her actions
+as she receives new signals,
+may choose once for all at the beginning of the game
+how to react to every possible sequence of signals
+she might receive in the future.</p>
+<p>Fix an initial distribution <span class="math notranslate nohighlight">\(\ini\)</span>.
+In the normal form version the game,
+Eve  picks
+a <strong>deterministic</strong> strategy
+<span class="math notranslate nohighlight">\(\sigma : R_E \to A\)</span>
+while simultaneously
+Adam picks
+<span class="math notranslate nohighlight">\(\tau : R_A \to A\)</span>.
+Then the game is over
+and Eve receives payoff
+<span class="math notranslate nohighlight">\(\mathbb{E}_{\ini}^{\sigma,\tau}\)</span>.
+There are finitely many such deterministic strategies,
+thus the normal form game is a <strong>matrix game</strong>.
+See Section~\ref{sec:matrixgames} for more details
+about matrix games.</p>
+<blockquote>
+<div><p><strong>An example.</strong></p>
+</div></blockquote>
+<p>In the simplified poker example,
+the reduction is as follows.</p>
+<p>We rely on the formal description of the game
+at the end of Section~\ref{subsec:formalimp}
+and perform two simplifications.
+First, we only consider strategies playing moves according to the rules,
+other strategies are strategically useless.</p>
+<p>Deterministic strategies of Eve are
+mappings <span class="math notranslate nohighlight">\(\sigma : \{\spadesuit,\blacksquare\}
+\to\{ {\tt check},{\tt raise}\}\)</span>.
+Adam has only two deterministic strategies:
+after the sequence <span class="math notranslate nohighlight">\(\circ {\tt Raised}\)</span>,
+he should choose between
+actions <span class="math notranslate nohighlight">\({\tt call}\)</span> and <span class="math notranslate nohighlight">\({\tt fold}\)</span>.</p>
+<p>The normal form is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{c|c|c}
+&amp;  {\tt call} &amp;{\tt fold}\\
+\hline
+\spadesuit\to {\tt check},  \blacksquare\to {\tt check}
+&amp; -0.5 &amp; -0.5\\
+\hline
+\spadesuit\to {\tt raise},  \blacksquare\to {\tt check}
+&amp; 0 &amp; -0.5\\
+\hline
+\spadesuit\to {\tt raise},  \blacksquare\to {\tt raise}
+&amp; -1.5 &amp; +1\\
+\hline
+\spadesuit\to {\tt check},  \blacksquare\to {\tt raise}
+&amp; -2 &amp; +1\\
+\end{array}
+\end{split}\]</div>
+<p>The first line corresponds to Eve never raising,
+thus her odds are +1 euro at <span class="math notranslate nohighlight">\(25\and -1 at \)</span>75$-0.5<span class="math notranslate nohighlight">\(.
+The third line corresponds to Eve always raising.
+If Adam calls then her odds are +3 at \)</span>25\and -3 at $75\If Adam folds, she gets payoff +1.</p>
+<p>Remark that the rows where Eve checks with <span class="math notranslate nohighlight">\(\spadesuit\)</span>
+are dominated by the corresponding row where Eve does not.
+Thus checking with <span class="math notranslate nohighlight">\(\spadesuit\)</span> (slow playing) has no strategic interest,
+and  by elimination of weakly dominated strategies,
+the normal form game is equivalent to:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{c|c|c}
+&amp;  {\tt call} &amp;{\tt fold}\\
+\hline
+\spadesuit\to {\tt raise},  \blacksquare\to {\tt check}
+&amp; 0 &amp; -0.5\\
+\hline
+\spadesuit\to {\tt raise},  \blacksquare\to {\tt raise}
+&amp; -1.5 &amp; 1\\
+\end{array}
+\end{split}\]</div>
+<p>The value of this game is <span class="math notranslate nohighlight">\(-\frac{1}{4}\)</span>.
+Eve has a unique optimal strategy which consists in playing the top row with probability
+<span class="math notranslate nohighlight">\(\frac{5}{6}\)</span>.
+In other words, she should bluff with probability <span class="math notranslate nohighlight">\(\frac{1}{6}\)</span> when she receives <span class="math notranslate nohighlight">\(\blacksquare\)</span>.
+Adam has a unique optimal strategy which consists in calling or folding
+with equal probability <span class="math notranslate nohighlight">\(\frac{1}{2}\)</span>\enspace.</p>
+<blockquote>
+<div><p><strong>Proof of Theorem~\ref{thm:finiteimperfecthaveval</strong></p>
+</div></blockquote>
+<p>.}
+The example illustrates
+the correspondance between behavioural strategies in the finite-duration game on one side
+and mixed strategies in the normal form game on the other.
+In the general case, the correspondance can be stated as follows.</p>
+<p>\newcommand{\Strat}{\text{Strat}}</p>
+<div class="proof lemma admonition" id="lem:impinffinite">
+<p class="admonition-title"><span class="caption-number">Lemma 244 </span> (NEEDS TITLE lem:impinffinite)</p>
+<div class="lemma-content section" id="proof-content">
+<p>Denote <span class="math notranslate nohighlight">\(\Strat\)</span> the set of behavioural strategies,
+<span class="math notranslate nohighlight">\(\Strat_d\)</span> the subset of deterministic strategies
+and <span class="math notranslate nohighlight">\(\dist(\Strat_d)\)</span> the set of strategies in the normal form game.</p>
+<ol class="simple">
+<li><p>[i)]
+There is a mapping
+<span class="math notranslate nohighlight">\(
+\Phi : \Strat \to \dist(\Strat_d)
+\)</span>
+which preserves payoffs:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[
+\forall \sigma,\tau \in \Strat,
+\mathbb{E}_{\ini}^{\sigma,\tau}
+=
+\sum_{\sigma',\tau' \in \Strat_d}\Phi(\sigma)(\sigma')\cdot\Phi(\tau)(\tau') 
+\cdot\mathbb{E}_{\ini}^{\sigma',\tau'}\enspace.
+\]</div>
+<ol class="simple">
+<li><p>[ii)]
+Since actions are observable,
+there is a mapping
+<span class="math notranslate nohighlight">\(
+\Phi' : \dist(\Strat_d) \to \Strat 
+\)</span>
+which preserves payoffs:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[
+\forall \Sigma,T \in \dist(\Strat),
+\sum_{\sigma',\tau' \in \Strat_d}\Sigma(\sigma') T(\tau')
+\mathbb{E}_{\ini}^{\sigma',\tau'}
+=
+\mathbb{E}_{\ini}^{\Phi'(\sigma),\Phi'(\tau)}
+\enspace.
+\]</div>
+<ol class="simple">
+<li><p>[iii)]
+<span class="math notranslate nohighlight">\(\Phi'\circ \Phi\)</span> is the identity.</p></li>
+</ol>
+</div>
+</div><p>We assumed earlier that each player can observe
+its own actions. This hypothesis is necessary for ii) and iii)
+to hold in general.</p>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Proof</p>
+<p>We start with i).
+Intuitively,
+all random choices of actions performed by
+a behavioural strategy <span class="math notranslate nohighlight">\(\sigma\)</span> of Eve can be done at the beginning of the play.
+Playing <span class="math notranslate nohighlight">\(\sigma\)</span>
+is equivalent to playing each deterministic strategy <span class="math notranslate nohighlight">\(\sigma'\)</span>
+with probability</p>
+<div class="math notranslate nohighlight">
+\[
+\Phi(\sigma)(\sigma') = 
+\Pi_{u \in R_E} \sigma(u)(\sigma'(u))\enspace.
+\]</div>
+<p>We prove ii).
+Let <span class="math notranslate nohighlight">\(\Sigma\in\dist(\Strat)\)</span>. The definition of the behavioural strategy
+<span class="math notranslate nohighlight">\(\sigma=\Phi'(\Sigma)\)</span> is as follows.
+Let <span class="math notranslate nohighlight">\(s_0\ldots s_k\)</span> be a finite sequence of signals.
+Since actions are observable, this defines unambigously
+the sequence of corresponding actions <span class="math notranslate nohighlight">\(a_0\ldots a_k\)</span>
+where <span class="math notranslate nohighlight">\(a_i = \Act(s_i)\)</span>.
+We set <span class="math notranslate nohighlight">\(\sigma(s_0\ldots s_k)(a)\)</span> to be the probability that a
+deterministic strategy
+chosen with <span class="math notranslate nohighlight">\(\Sigma\)</span> chooses action <span class="math notranslate nohighlight">\(a\)</span> after signals
+<span class="math notranslate nohighlight">\(s_0\ldots s_k\)</span>, conditioned on the fact that it has already
+chosen action <span class="math notranslate nohighlight">\(a_0\ldots a_k\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\sigma(s_0\ldots s_k)(a) 
+=
+\Sigma\left(\sigma'(s_0\ldots s_k)=a \mid \forall 0\leq i \leq k,
+ \sigma'(s_0\ldots s_{i-1})=\Act(s_i)\right)\enspace,
+\]</div>
+<p>where the vertical pipe denotes a conditional probability.</p>
+</div>
+<p>We proceed with the proof of  Theorem~\ref{thm:finiteimperfecthaveval}.
+According to Theorem~\ref{lem:mat},
+the normal form has a value and optimal strategies
+for each player.
+Denote <span class="math notranslate nohighlight">\(\val_N\)</span> the value
+and <span class="math notranslate nohighlight">\(\Sigma^\sharp\)</span> and <span class="math notranslate nohighlight">\(T^\sharp\)</span> the optimal strategies.
+Let <span class="math notranslate nohighlight">\(\sigma^\sharp=\Phi'(\Sigma^\sharp)\)</span>.
+Then <span class="math notranslate nohighlight">\(\sigma^\sharp\)</span> ensures a payoff
+of at least <span class="math notranslate nohighlight">\(\val_N\)</span> in the imperfect information game,
+because for every strategy <span class="math notranslate nohighlight">\(\tau\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbb{E}_{\ini}^{\sigma^\sharp,\tau}
+=
+\mathbb{E}_{\ini}^{\Phi'(\Sigma^\sharp),\Phi'(\Phi(\tau))}
+=
+\sum_{\sigma',\tau' \in \Strat_d}\Sigma^\sharp(\sigma') \Phi(\tau)(\tau')
+\mathbb{E}_{\ini}^{\sigma',\tau'}
+\geq \val_N\enspace,
+\]</div>
+<p>where the first equalities are applications of
+Lemma~\ref{lem:impinffinite}
+and the inequality is by optimality of <span class="math notranslate nohighlight">\(\Sigma^\sharp\)</span>.
+Symmetrically,
+<span class="math notranslate nohighlight">\(\tau^\sharp=\Phi'(T^\sharp)\)</span> guarantees
+<span class="math notranslate nohighlight">\(\forall \sigma,\mathbb{E}_{\ini}^{\sigma,\tau^\sharp}\leq\val_N\)</span>.
+Thus the value of the game with finite duration
+is <span class="math notranslate nohighlight">\(\val_N\)</span> and <span class="math notranslate nohighlight">\(\sigma^\sharp\)</span>
+and <span class="math notranslate nohighlight">\(\tau^\sharp\)</span> are optimal.\qed</p>
+<p>\subsection{ The Koller-Meggido-von Stengel reduction to linear programming}</p>
+<p>The reduction of a finite-duration game with imperfect information
+to its normal form proves that the value exists and
+is computable.
+However the corresponding algorithm is computationally
+very expensive, it requires solving
+a linear program of size roughly doubly-exponential in the size
+of the original game, since the normal form is a matrix
+index by <span class="math notranslate nohighlight">\(A^{R_E} \times A^{R_A}\)</span> and the set of signal sequences
+might contain all sequences of <span class="math notranslate nohighlight">\(S\)</span> of length <span class="math notranslate nohighlight">\(\leq n\)</span>.</p>
+<p>Koller, Meggido and von Stengel did provide a
+more efficient direct reduction to linear programming.
+Strategies of Eve in the normal form game live
+in <span class="math notranslate nohighlight">\(\RR^{A^{R_E}}\)</span>
+while her strategies in the game with imperfect information
+live in a space
+with exponentially fewer dimensions, namely
+<span class="math notranslate nohighlight">\(\RR^{R_E\times A}\)</span>.
+The direct reduction avoids this dimensional blowup.</p>
+<div class="proof theorem admonition" id="theorem-2">
+<p class="admonition-title"><span class="caption-number">Theorem 245 </span> (NEEDS TITLE AND LABEL)</p>
+<div class="theorem-content section" id="proof-content">
+<p>The value of a game with imperfect information
+can be computed by a linear program with
+<span class="math notranslate nohighlight">\(|R_E| + |R_A|\)</span> variables.</p>
+<p>:label:
+The value of a game with imperfect information
+can be computed by a linear program with
+<span class="math notranslate nohighlight">\(|R_E| + |R_A|\)</span> variables.</p>
+<p>The value of a game with imperfect information
+can be computed by a linear program with
+<span class="math notranslate nohighlight">\(|R_E| + |R_A|\)</span> variables.</p>
+</div>
+</div><p>As a consequence, in the particular case where the game graph is a tree
+then <span class="math notranslate nohighlight">\(|R_E|\leq n\)</span> and <span class="math notranslate nohighlight">\(|R_A|\leq n\)</span>
+and the value can be computed in polynomial time,
+like stated in <span id="id1">[<span>stengel</span>]</span>.</p>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Proof</p>
+<p>The construction of the linear program relies on three key ideas.</p>
+<p>First, representing a behavioral strategy <span class="math notranslate nohighlight">\(\sigma:R_E \to \dist(A)\)</span>
+of Eve as a <strong>plan</strong> <span class="math notranslate nohighlight">\(\pi:R_E  \to [0,1]\)</span>
+recursively defined by <span class="math notranslate nohighlight">\(\pi(\epsilon) = 1\)</span>
+and for every <span class="math notranslate nohighlight">\(s_0\cdots s_n \in R_E, s\in S\)</span>,
+\begin{align*}
+&amp; \pi(s_0\cdots s_n\cdot s) = \pi(s_0\cdots s_n) \cdot
+\sigma(s_0\cdots s_n)(\Act(s))\enspace.
+\end{align*}
+Remind that actions are observable and <span class="math notranslate nohighlight">\(\Act(s)\)</span>
+denotes the action that Eve has just played
+before receiving signal <span class="math notranslate nohighlight">\(s\)</span>.
+In the linear program, plans are represented by variables
+<span class="math notranslate nohighlight">\(\left(p_r\right)_{r \in R_E}\)</span>.
+Valuations corresponding to plans can be characterized by
+the following equalities.
+First, <span class="math notranslate nohighlight">\(p_\epsilon = 1\)</span>.
+Second, for every
+<span class="math notranslate nohighlight">\(s_0\ldots s_{n-1}s,s_0\ldots s_{n-1}s' \in R_E\)</span>,
+\begin{align*}
+(\Act(s)=\Act(s’)) \implies \left(p_{s_0\ldots s_{n-1}s}= p_{s_0\ldots s_{n-1}s’}\right)\enspace.
+\end{align*}
+We denote <span class="math notranslate nohighlight">\(p_{s_0\ldots s_{n-1}a}\)</span> the common value of
+all <span class="math notranslate nohighlight">\(p_{s_0\ldots s_{n-1}s}\)</span> with <span class="math notranslate nohighlight">\(a=\Act(s)\)</span>.
+The third equality is
+<span class="math notranslate nohighlight">\(p_{s_0\ldots s_{n-1}}=\sum_{a\in A} p_{s_0\ldots s_{n-1}a}\)</span> \enspace.</p>
+<p>The second key idea is to introduce variables evaluating the contribution of a
+(realisable) sequence
+of signals of Adam to the total expected payoff Eve.
+These contributions are represented by variables <span class="math notranslate nohighlight">\((v_r)_{r \in R_A}\)</span>.</p>
+<p>The third key idea is to aggregate the product of transition
+probabilities along a play.
+For every play <span class="math notranslate nohighlight">\((v_0,a_0,b_0,s_0,t_0,c_0),\ldots,(v_k,a_k,b_k,s_k,t_k,c_k)\)</span>
+we denote <span class="math notranslate nohighlight">\(\mathbb{E}(\pi)\)</span> the product of all transition
+probabilities of <span class="math notranslate nohighlight">\(\pi\)</span> and <span class="math notranslate nohighlight">\(r_{E}(\pi)\)</span> the sequence of signals of Eve in this play:
+\begin{align*}
+&amp;\mathbb{E}(\pi) = \ini(v_0)\cdot \Delta(v_0,a_0,b_0,s_0,t_0,c_0)
+\cdots \Delta(v_k,a_k,b_k,s_k,t_k,c_k)\
+&amp; r_{E}(\pi) = s_0,s_1,\ldots,s_k\enspace.
+\end{align*}</p>
+<p>We show that the following linear program with variables
+<span class="math notranslate nohighlight">\((p_r)_{r \in R_E}\)</span>, <span class="math notranslate nohighlight">\((v_r)_{r\in R_A}\)</span>
+has an optimal solution which equals to <span class="math notranslate nohighlight">\(\val(\ini)\)</span>.
+For every sequences of signals <span class="math notranslate nohighlight">\(r \in R_A\)</span>
+we denote <span class="math notranslate nohighlight">\(T_A(r)\)</span> the (possibly empty)
+set of terminal plays whose sequence of signals for Adam is <span class="math notranslate nohighlight">\(r\)</span>.</p>
+<p>\begin{align}
+&amp;\text{Maximise <span class="math notranslate nohighlight">\(v_{\epsilon}\)</span> subject to}
+\notag\
+\notag\
+\notag&amp;\text{<span class="math notranslate nohighlight">\(\left(p_r\right)_{r \in R_E}\)</span> is a plan of Eve}
+\notag\
+\notag\
+\notag\forall r \in R_A,
+\forall a \in A,&amp;
+\
+&amp;
+\label{eq:implp2}
+v_{r} \leq \sum\limits_{\substack{rs \in R_A\s \in S, \Act(s)=a}}
+v_{rs}~+~\sum\limits_{\pi \in T(r)} \mathbb{E}(\pi) \cdot \pay(\pi) \cdot
+p_{r_E(\pi)}
+\end{align}</p>
+<p>For our purpose,
+it is enough to establish
+that the optimal solution of the LP
+is</p>
+<div class="math notranslate nohighlight">
+\[
+\val(\ini) = \sup_\sigma \min\limits_{\tau\text{ deterministic}} \mathbb{E}_{\ini}^{\sigma,\tau}\enspace.
+\]</div>
+<p>The reason is that in a matrix game,
+for every fixed strategy of Eve,
+Adam can minimize the payoff by playing a single action
+with probability <span class="math notranslate nohighlight">\(1\)</span>.
+Thus, according to the reduction to normal form seen in the previous chapter,
+for every strategy <span class="math notranslate nohighlight">\(\sigma\)</span> of Eve,
+there is a <strong>deterministic</strong> strategy <span class="math notranslate nohighlight">\(\tau\)</span> of Adam
+which minimizes <span class="math notranslate nohighlight">\(\mathbb{E}_{\ini}^{\sigma,\tau}\)</span>.</p>
+<p>We show first that for every feasible solution
+<span class="math notranslate nohighlight">\((p_r)_{r \in R_E}\)</span>, <span class="math notranslate nohighlight">\((v_r)_{r\in R_A}\)</span> of the linear program,
+the strategy <span class="math notranslate nohighlight">\(\sigma\)</span> corresponding to the plan <span class="math notranslate nohighlight">\((p_r)_{r \in R_E}\)</span>
+guarantees that for every <strong>deterministic</strong> strategy <span class="math notranslate nohighlight">\(\tau\)</span>,
+<span class="math notranslate nohighlight">\(\mathbb{E}_{\ini}^{\sigma,\tau} \geq v_\epsilon\)</span>.
+Since <span class="math notranslate nohighlight">\(\tau\)</span> is deterministic
+then <span class="math notranslate nohighlight">\(\mathbb{E}_{\ini}^{\sigma,\tau}\)</span>
+is the sum of all <span class="math notranslate nohighlight">\(\mathbb{E}(\pi) \cdot \pay(\pi) \cdot 
+p_{r_E(\pi)}\)</span> over plays <span class="math notranslate nohighlight">\(\pi\)</span> played according to <span class="math notranslate nohighlight">\(\tau\)</span>
+thus a trivial induction shows <span class="math notranslate nohighlight">\(\mathbb{E}_{\ini}^{\sigma,\tau}\geq v_\epsilon\)</span>.</p>
+<p>We show now that to every strategy <span class="math notranslate nohighlight">\(\sigma\)</span> of Eve,
+and to every deterministic optimal answer <span class="math notranslate nohighlight">\(\tau\)</span> of Adam,
+corresponds a feasible solution of the program
+such that <span class="math notranslate nohighlight">\(v_\epsilon = \mathbb{E}_{\ini}^{\sigma,\tau}\)</span>.
+Let  <span class="math notranslate nohighlight">\((p_r)_{r \in R_E}\)</span> the plan corresponding to <span class="math notranslate nohighlight">\(\sigma\)</span>.
+For every <span class="math notranslate nohighlight">\(r\in R_A\)</span> define <span class="math notranslate nohighlight">\(v_r\)</span> be the expected payoff of Eve
+in an auxiliary game where she plays <span class="math notranslate nohighlight">\(\sigma\)</span>
+and Adam plays <span class="math notranslate nohighlight">\(\tau\)</span> and the payoff of Eve is turned to <span class="math notranslate nohighlight">\(0\)</span>
+whenever Adam signals sequence does not start with <span class="math notranslate nohighlight">\(r\)</span>.
+We show that the linear constraint~\eqref{eq:implp2} holds for every <span class="math notranslate nohighlight">\(r\in R_A\)</span>
+and action <span class="math notranslate nohighlight">\(a\)</span>.
+Since <span class="math notranslate nohighlight">\(\tau\)</span> is deterministic then~\eqref{eq:implp2} is an equality
+whenever <span class="math notranslate nohighlight">\(a=\tau(r)\)</span>.
+And since <span class="math notranslate nohighlight">\(\tau\)</span> is an optimal answer to <span class="math notranslate nohighlight">\(\sigma\)</span>,
+it is locally optimal in the sense where playing an action
+different from <span class="math notranslate nohighlight">\(\tau(r)\)</span> after <span class="math notranslate nohighlight">\(r\)</span> cannot be profitable to Adam,
+hence~\eqref{eq:implp2} holds.
+Finally, <span class="math notranslate nohighlight">\((p_r)_{r \in R_E}\)</span>, <span class="math notranslate nohighlight">\((v_r)_{r\in R_A}\)</span> is a feasible solution.</p>
+</div>
+<blockquote>
+<div><p><strong>An example.</strong></p>
+</div></blockquote>
+<p>The following linear program computes the value
+of the simplified poker example.
+<span class="math notranslate nohighlight">\(\text{Maximise \)</span>v_{\epsilon}<span class="math notranslate nohighlight">\( subject to}\)</span>
+\begin{align*}
+\forall r \in R_E,~&amp; 0\leq p_r \leq 1\
+&amp;p_{\spadesuit,{\tt check} } +  p_{\spadesuit,{\tt raise} } = 1\
+&amp;p_{\blacksquare,{\tt check} } +  p_{\blacksquare,{\tt raise} } = 1\
+&amp;v_\epsilon \leq v_\circ \leq v_{\circ, {\tt check}} + v_{\circ, {\tt raise}}\
+&amp;v_{\circ, {\tt check}}\leq  \frac{1}{4} \cdot p_{\spadesuit,{\tt check} } \cdot (+1)</p>
+<ul class="simple">
+<li><p>\frac{3}{4} \cdot p_{\blacksquare,{\tt check} } \cdot (-1)\
+&amp;v_{\circ, {\tt raise}} \leq \frac{1}{4} \cdot p_{\spadesuit,{\tt raise} } \cdot (+1) + \frac{3}{4} \cdot p_{\blacksquare,{\tt raise} } \cdot (+1)\
+&amp;v_{\circ, {\tt raise}} \leq \frac{1}{4} \cdot p_{\spadesuit,{\tt raise} } \cdot (+3) + \frac{3}{4} \cdot p_{\blacksquare,{\tt raise} } \cdot (-3)
+\end{align*}
+Setting <span class="math notranslate nohighlight">\(x=p_{\spadesuit,{\tt check} }\)</span>
+and <span class="math notranslate nohighlight">\(y=  p_{\blacksquare,{\tt check} }\)</span>,
+the solution is
+\begin{align*}
+&amp;
+\frac{1}{4}\max_{(x,y)\in[0,1]^2}
+\left(
+{x - 3y}</p></li>
+<li></li>
+</ul>
+</div>
+<div class="section" id="min-left-1-x-3-1-y-3-1-x-9-1-y-right-right-frac-1-4-max-x-y-in-0-1-2-min-left-4-6y-6-2x-6y-br-right">
+<h1>\min\left(
+{(1-x) +  3 (1-y)},
+{3(1-x) - 9(1-y)}
+\right)\right)\
+=&amp;
+\frac{1}{4}\max_{(x,y)\in[0,1]^2}
+\min\left(
+4 - 6y,
+-6 -2x + 6y<br />
+\right)<a class="headerlink" href="#min-left-1-x-3-1-y-3-1-x-9-1-y-right-right-frac-1-4-max-x-y-in-0-1-2-min-left-4-6y-6-2x-6y-br-right" title="Permalink to this headline">¶</a></h1>
+<p>\frac{1}{4}\max_{y\in[0,1]}
+\min\left(
+4 - 6y,
+-6 + 6y<br />
+\right)
+\enspace,
+\end{align*}
+which is maximal when <span class="math notranslate nohighlight">\(y=\frac{5}{6}\)</span>
+and the solution is <span class="math notranslate nohighlight">\(-\frac{1}{4}\)</span>.</p>
+<blockquote>
+<div><p><strong>Nose scratch variant.</strong></p>
+</div></blockquote>
+<p>Assume now that Eve does not have the perfect poker face:
+whenever she has <span class="math notranslate nohighlight">\(\spadesuit\)</span> she scratches
+her nose with probability <span class="math notranslate nohighlight">\(\frac{1}{2}\)</span> whereas
+in general it happens only with probability <span class="math notranslate nohighlight">\(\frac{1}{6}\)</span>.
+Only Adam is aware of this sign,
+which he receives
+as a private signal <span class="math notranslate nohighlight">\(s\)</span> (scratch) or <span class="math notranslate nohighlight">\(n\)</span> (no scratch).</p>
+<p>Compared to the perfect poker face situation,
+the situation is slightly better for Adam:
+the value drops from <span class="math notranslate nohighlight">\(-\frac{1}{4}\)</span>
+to <span class="math notranslate nohighlight">\((-\frac{1}{4} -\frac{1}{10})\)</span>.
+The optimal bluff frequency of Eve decreases
+from <span class="math notranslate nohighlight">\(\frac{1}{6}\)</span> to <span class="math notranslate nohighlight">\(\frac{1}{10}\)</span>.
+Computation details follow.</p>
+<p>\begin{align*}
+&amp;\text{Maximise <span class="math notranslate nohighlight">\(v_{\epsilon}\)</span> subject to}
+\
+\forall u \in R_E,~&amp; 0\leq p_u \leq 1\
+&amp;p_{\spadesuit,{\tt c} } +  p_{\spadesuit,{\tt r} } = 1~~~~~p_{\blacksquare,{\tt c} } +  p_{\blacksquare,{\tt r} } = 1\
+&amp;v_\epsilon \leq v_{\tt s} + v_{\tt n}~~~~~v_{\tt s} \leq v_ + v_~~~~~
+v_{\tt n} \leq v_ + v_\
+&amp;v_{{\tt sc} } \leq
+\frac{1}{4}\cdot\frac{1}{2} \cdot p_{\spadesuit,{\tt c} } \cdot (+1)</p>
+<ul class="simple">
+<li><p>\frac{3}{4}\cdot \frac{1}{6} \cdot p_{\blacksquare,{\tt c} } \cdot (-1)\
+&amp;v_{{\tt nc} } \leq
+\frac{1}{4}\cdot\frac{1}{2} \cdot p_{\spadesuit,{\tt c} } \cdot (+1)</p></li>
+<li><p>\frac{3}{4} \cdot\frac{5}{6} \cdot p_{\blacksquare,{\tt c} } \cdot (-1)\
+&amp;v_ \leq \frac{1}{4}\cdot \frac{1}{2}\cdot p_{\spadesuit,{\tt r} } \cdot (+1)</p></li>
+<li><p>\frac{3}{4} \cdot\frac{1}{6}\cdot p_{\blacksquare,{\tt r} } \cdot (+1)\
+&amp;v_ \leq \frac{1}{4}\cdot \frac{1}{2}\cdot p_{\spadesuit,{\tt r} } \cdot (+3)</p></li>
+<li><p>\frac{3}{4} \cdot\frac{1}{6}\cdot p_{\blacksquare,{\tt r} } \cdot (-3)\
+&amp;v_ \leq \frac{1}{4}\cdot \frac{1}{2}\cdot p_{\spadesuit,{\tt r} } \cdot (+1)</p></li>
+<li><p>\frac{3}{4} \cdot\frac{5}{6}\cdot p_{\blacksquare,{\tt r} } \cdot (+1)\
+&amp;v_ \leq \frac{1}{4}\cdot \frac{1}{2}\cdot p_{\spadesuit,{\tt r} } \cdot (+3)</p></li>
+<li><p>\frac{3}{4} \cdot\frac{5}{6}\cdot p_{\blacksquare,{\tt r} } \cdot (-3)
+\end{align*}
+Set <span class="math notranslate nohighlight">\(y=p_{\blacksquare,{\tt c} }\)</span>.
+Some elementary simplifications lead to the equivalent program:
+\begin{align*}
+\max_{0\leq y \leq 1} \frac{1}{8} \left(\min\left( 8 -12y,-10 +8y
+,  6  - 8y,-12  +12y \right) \right)
+\end{align*}
+The optimum is reached when <span class="math notranslate nohighlight">\(8y-10=8-12y\)</span>
+i.e. when <span class="math notranslate nohighlight">\(p_{\blacksquare,{\tt c} }=\frac{9}{10}\)</span>
+and is equal to <span class="math notranslate nohighlight">\(-\frac{7}{20}=-\frac{1}{4}-\frac{1}{10}\)</span> .</p></li>
+</ul>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./8_Imperfect"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="index.html" title="previous page">Games with Signals</a>
+    <a class='right-next' id="next-link" href="infinite_duration.html" title="next page">Infinite duration</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By a set of authors coordinated by Nathana&euml;l Fijalkow<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

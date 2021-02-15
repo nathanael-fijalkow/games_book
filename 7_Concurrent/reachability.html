@@ -1,0 +1,1009 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Concurrent reachability games &#8212; Games on graphs</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/style.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Concurrent mean-payoff games" href="mean_payoff.html" />
+    <link rel="prev" title="Concurrent discounted games" href="discounted.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/cover.jpg" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Games on graphs</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <p class="caption collapsible-parent">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../1_Introduction/index.html">
+   Introduction
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/intro.html">
+     What is this book about?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/simple.html">
+     A first model of games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/objectives.html">
+     Objectives
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/computation.html">
+     Computational models
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/automata.html">
+     Automata
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/memory.html">
+     Memory
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/reductions.html">
+     Reductions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/subgames.html">
+     Traps and subgames
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/fixed_points.html">
+     Generic fixed point algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/value_iteration.html">
+     Value iteration algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/strategy_improvement.html">
+     Strategy improvement algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Classic
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../2_Regular/index.html">
+   Regular Games
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/attractors.html">
+     Reachability games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/buchi.html">
+     Büchi games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/parity.html">
+     Parity games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/muller.html">
+     Rabin, Streett, and Muller games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/zielonka.html">
+     Zielonka tree
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../3_Parity/index.html">
+   Parity Games
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/strategy_improvement.html">
+     An exponential time strategy improvement algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/zielonka.html">
+     A quasipolynomial time attractor decomposition algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/separation.html">
+     A quasipolynomial time separating automata algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/value_iteration.html">
+     A quasipolynomial time value iteration algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/relationships.html">
+     Comparing the three families of algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../4_Payoffs/index.html">
+   Games with Payoffs
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/notations.html">
+     Notations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/qualitative.html">
+     Refining qualitative objectives with quantities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/mean_payoff.html">
+     Mean payoff games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/discounted_payoff.html">
+     Discounted payoff games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/shortest_path.html">
+     Shortest path games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/total_payoff.html">
+     Total payoff games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Stochastic
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../5_MDP/index.html">
+   Markov Decision Processes
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/notations.html">
+     Notations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/reachability.html">
+     Positive and almost-sure reachability and safety in MDPs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/discounted.html">
+     Discounted payoff in MDPs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/mean_payoff_properties.html">
+     Mean-payoff in MDPs: General properties and linear programming
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/mean_payoff_strongly_connected.html">
+     Mean-payoff optimality in strongly connected MDPs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/end_components.html">
+     End components
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/reductions.html">
+     Reductions to optimal reachability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/optimal_reachability.html">
+     Optimal reachability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../6_Stochastic/index.html">
+   Stochastic Games
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../6_Stochastic/notations.html">
+     Notations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../6_Stochastic/determinacy.html">
+     Positional determinacy of stochastic reachability games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../6_Stochastic/relations.html">
+     Relations between all games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../6_Stochastic/algos.html">
+     Algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../6_Stochastic/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Information
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active collapsible-parent">
+  <a class="reference internal" href="index.html">
+   Concurrent Games
+  </a>
+  <ul class="current collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="notations.html">
+     Notations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="matrix_games.html">
+     Matrix games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="discounted.html">
+     Concurrent discounted games
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Concurrent reachability games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="mean_payoff.html">
+     Concurrent mean-payoff games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="discounted.html">
+     Concurrent discounted games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="references.html">
+     Bibilographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../8_Imperfect/index.html">
+   Games with Signals
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../8_Imperfect/finite_duration.html">
+     Finite duration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../8_Imperfect/finite_duration.html#min-left-1-x-3-1-y-3-1-x-9-1-y-right-right-frac-1-4-max-x-y-in-0-1-2-min-left-4-6y-6-2x-6y-br-right">
+     \min\left(
+{(1-x) +  3 (1-y)},
+{3(1-x) - 9(1-y)}
+\right)\right)\
+=&amp;
+\frac{1}{4}\max_{(x,y)\in[0,1]^2}
+\min\left(
+4 - 6y,
+-6 -2x + 6y
+     <br/>
+     \right)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../8_Imperfect/infinite_duration.html">
+     Infinite duration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../8_Imperfect/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="concurrent-reachability-games">
+<span id="sec-reachability"></span><h1>Concurrent reachability games<a class="headerlink" href="#concurrent-reachability-games" title="Permalink to this headline">¶</a></h1>
+<div class="math notranslate nohighlight">
+\[\newcommand{\ValueOp}{\text{valOp}}
+\newcommand{\rk}{\text{rk}}
+\newcommand{\crgLim}{\text{crgLim1}}
+\newcommand{\Eve}{\textrm{Eve}}
+\newcommand{\Adam}{\textrm{Adam}}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
+\newcommand{\argmax}{\textrm{argmax}}
+\newcommand{\argmin}{\textrm{argmin}}
+\newcommand{\Op}{\mathbb{O}}
+\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\textrm{supp}} 
+\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
+\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
+\newcommand{\mEve}{\mathrm{Eve}}
+\newcommand{\mAdam}{\mathrm{Adam}}
+\newcommand{\mRandom}{\mathrm{Random}}
+\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
+\newcommand{\ing}{\textrm{In}}
+\newcommand{\Ing}{\ing}
+\newcommand{\out}{\textrm{Out}}
+\newcommand{\Out}{\out}
+\newcommand{\dest}{\Delta} 
+\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
+\newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
+\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
+\newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
+\newcommand{\Win}{\textrm{Win}} 
+\newcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Value}{\textrm{val}} 
+\newcommand{\ValueE}{\textrm{val}_\mEve} 
+\newcommand{\ValueA}{\textrm{val}_\mAdam}
+\newcommand{\val}{\Value} 
+\newcommand{\Automaton}{\mathbf{A}} 
+\newcommand{\Safe}{\mathtt{Safe}}
+\newcommand{\Reach}{\mathtt{Reach}} 
+\newcommand{\Buchi}{\mathtt{Buchi}} 
+\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
+\newcommand{\Parity}{\mathtt{Parity}} 
+\newcommand{\Muller}{\mathtt{Muller}} 
+\newcommand{\Rabin}{\mathtt{Rabin}} 
+\newcommand{\Streett}{\mathtt{Streett}} 
+\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
+\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
+\newcommand{\Energy}{\mathtt{Energy}}
+\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
+\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
+\newcommand{\Sup}{\mathtt{Sup}}
+\newcommand{\Inf}{\mathtt{Inf}}
+\newcommand{\LimSup}{\mathtt{LimSup}}
+\newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NL}{\textrm{NL}}
+\newcommand{\PTIME}{\textrm{PTIME}}
+\newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
+\newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
+\newcommand{\PSPACE}{\textrm{PSPACE}}\]</div>
+<p>In this section we consider concurrent reachability games.
+Intuitively, unlike concurrent discounted games, these games cares only about the final part of the play.
+This, while perhaps not clear directly from the definitions, makes the games somewhat harder. For instance, the value iteration algorithm requires double-exponential time.
+Note that like for concurrent discounted games, if we force Eve to follow some strategy, the game reduces to a MDP and there exists optimal positional strategies.</p>
+<p>We will not prove the following known lemma. We will however, show the weaker statement that the decision problem for the value can be done in PSPACE.</p>
+<div class="proof lemma admonition" id="lemm:reach_determined">
+<p class="admonition-title"><span class="caption-number">Lemma 221 </span> (NEEDS TITLE lemm:reach_determined)</p>
+<div class="lemma-content section" id="proof-content">
+<p>Concurrent reachability games are determined. Also, finding the value of a concurrent reachability game can be done in TFNP[NP]</p>
+</div>
+</div><p>We will argue that there might not be optimal strategies for Eve in concurrent reachability games.
+The game we will use will later be a member of a family of games that requires high patience to play well.</p>
+<p>The snowball game (or purgatory 1) is defined as follows:
+There are 3 vertices, the goal vertex <span class="math notranslate nohighlight">\(\Win\)</span>, <span class="math notranslate nohighlight">\(\bot\)</span> (an absorbing vertex) and a vertex 1, which has a 2x2 matrix, such that <span class="math notranslate nohighlight">\(\dest(x,r,c)\)</span> is a dirac distribution over (1)
+<span class="math notranslate nohighlight">\(\Win\)</span> for <span class="math notranslate nohighlight">\(r=c\)</span>, (2) <span class="math notranslate nohighlight">\(1\)</span> for <span class="math notranslate nohighlight">\(r&lt;c\)</span> and (3) <span class="math notranslate nohighlight">\(\bot\)</span> for <span class="math notranslate nohighlight">\(r&gt;c\)</span>.
+When we illustrate the game, we write view the goal vertex <span class="math notranslate nohighlight">\(\Win\)</span> as being an absorbing vertex with color 1.
+There is an illustration of the snowball game in \ref{fig:snowball}.</p>
+<div class="figure align-center" id="fig-snowball">
+<img alt="7_Concurrent/./../fig:snowball.png" src="7_Concurrent/./../fig:snowball.png" />
+<p class="caption"><span class="caption-number">Fig. 48 </span><span class="caption-text">The snowball game or purgatory 1, in which no optimal strategy exists for Eve</span><a class="headerlink" href="#fig-snowball" title="Permalink to this image">¶</a></p>
+</div>
+<p>For any <span class="math notranslate nohighlight">\(\epsilon&gt;0\)</span>, consider the stationary strategy for Eve that plays the first action with probability <span class="math notranslate nohighlight">\(1-\epsilon\)</span>.
+If Adam plays the left column always, play will reach <span class="math notranslate nohighlight">\(\Win\)</span> with pr. <span class="math notranslate nohighlight">\(1-\epsilon\)</span>. If Adam plays the right column always, play reaches <span class="math notranslate nohighlight">\(\Win\)</span> with pr. 1. Hence, the strategy for Eve is <span class="math notranslate nohighlight">\(\epsilon\)</span>-optimal and the value of the vertex is 1.</p>
+<p>On the other hand, if Adam plays the right column whenever Eve plays the first action with pr. 1, and otherwise plays the first action,
+then in the last round in the vertex there must be a positive pr. that play goes to vertex 0. Hence, Eve has no optimal strategy.</p>
+<div class="proof lemma admonition" id="lemm:no_opt_reach">
+<p class="admonition-title"><span class="caption-number">Lemma 222 </span> (NEEDS TITLE lemm:no_opt_reach)</p>
+<div class="lemma-content section" id="proof-content">
+<p>Eve need not have an optimal strategy in a concurrent reachability game</p>
+</div>
+</div><p>The following lemma states some classical results for concurrent reachability games that we will not prove.</p>
+<div class="proof lemma admonition" id="lemm:reach_class">
+<p class="admonition-title"><span class="caption-number">Lemma 223 </span> (NEEDS TITLE lemm:reach_class)</p>
+<div class="lemma-content section" id="proof-content">
+<ul class="simple">
+<li><p>For any <span class="math notranslate nohighlight">\(\epsilon&gt;0\)</span>, there are always <span class="math notranslate nohighlight">\(\epsilon\)</span>-optimal stationary strategies for Eve and optimal stationary strategies for Adam.</p></li>
+<li><p>The value iteration algorithm converges to the optimal value and is defined exactly like for concurrent discounted games, except that <span class="math notranslate nohighlight">\(\gamma=0\)</span> and the target vertex has value 1 in the first iteration</p></li>
+<li><p>The values <span class="math notranslate nohighlight">\(v\)</span> are the least fix-point (i.e., every other fix-point <span class="math notranslate nohighlight">\(v'\)</span> is such that for all <span class="math notranslate nohighlight">\(i\)</span> <span class="math notranslate nohighlight">\(v_i\leq v'\)</span>) of the value iteration operator <span class="math notranslate nohighlight">\(\ValueOp\)</span></p></li>
+</ul>
+</div>
+</div><p>(Note that the games are not symmetric, in that Eve tries to reach a node and Adam tries to stay away from it, and in particular, even though Eve need not have an optimal strategy in a concurrent reachability game, Adam always has one)</p>
+<p>The decision problem for the existential first order theory over the reals is the following decision problem:
+Given a function <span class="math notranslate nohighlight">\(F:\R^n\rightarrow \{\text{true},\text{false}\}\)</span>, is there an vector <span class="math notranslate nohighlight">\(v\)</span> such that <span class="math notranslate nohighlight">\(F(v)\)</span> is true?
+The function <span class="math notranslate nohighlight">\(F\)</span> must be an well-formed (i.e. connected with logical and, or and not) quantifier-free formula over polynomial inequalities.
+E.g. <span class="math notranslate nohighlight">\(x^2y+z\geq 5\wedge \neg (xz\leq 3)\)</span> would be such a function.</p>
+<div class="proof lemma admonition" id="lemma-3">
+<p class="admonition-title"><span class="caption-number">Lemma 224 </span> (NEEDS TITLE AND LABEL)</p>
+<div class="lemma-content section" id="proof-content">
+<p>The decision problem for the existential theory over the reals is in PSPACE</p>
+<p>:label:
+The decision problem for the existential theory over the reals is in PSPACE</p>
+<p>The decision problem for the existential theory over the reals is in PSPACE</p>
+</div>
+</div><p>We will now, given a number <span class="math notranslate nohighlight">\(c\)</span>, encode the problem whether the value in a concurrent reachability game is  <span class="math notranslate nohighlight">\(&lt;c\)</span>, starting from some vertex <span class="math notranslate nohighlight">\(x\)</span>.
+The idea is that we can describe a fix-point of the value iteration operator, i.e.
+we can describe that <span class="math notranslate nohighlight">\(v_i=\Value[M^i(v)]_i\)</span>. Since we know that the values are the least fix-point, we can then just add the condition that <span class="math notranslate nohighlight">\(v_x&lt;c\)</span>.
+We can describe the value of a matrix game by guessing a strategy for each player, <span class="math notranslate nohighlight">\(\sigma\)</span> for Eve and <span class="math notranslate nohighlight">\(\tau\)</span> for Adam, and then checking that these strategies are optimal by showing that the outcome obtained by following Eve’s strategy is equal to what is obtained by following Adam’s.
+I.e. we check that for Eve’s strategy, the least outcome obtained when Adam plays any given column is <span class="math notranslate nohighlight">\(v_i\)</span> and similar for Adam.
+We describe that as <span class="math notranslate nohighlight">\(v_i=\min_{a\in [m]} (\sigma M^i_{*,a}(v))\)</span> and <span class="math notranslate nohighlight">\(v_i=\max_{a\in [m]} (\tau M^i_{a,*}(v))\)</span>, where <span class="math notranslate nohighlight">\(M^i_{*,j}(v)\)</span> is the <span class="math notranslate nohighlight">\(j\)</span>-th column of <span class="math notranslate nohighlight">\(M^i(v)\)</span> and <span class="math notranslate nohighlight">\(M^i_{j,*}(v)\)</span> is the <span class="math notranslate nohighlight">\(j\)</span>-th row for all <span class="math notranslate nohighlight">\(j\)</span>.
+We can express that <span class="math notranslate nohighlight">\(x=\min(a_1,a_2,\dots,a_n)\)</span> for any number <span class="math notranslate nohighlight">\(n\)</span> and any polynomials <span class="math notranslate nohighlight">\(a_1,a_2,a_n\)</span>, in the first order theory of the reals by stating that</p>
+<div class="math notranslate nohighlight">
+\[
+x\leq a_1\wedge x\leq a_2\wedge \dots \wedge x\leq a_n \wedge (x=a_1\vee x=a_2\vee \dots \vee x=a_n) \enspace .\]</div>
+<p>Similarly, one can also describe that <span class="math notranslate nohighlight">\(x=\max(a_1,a_2,\dots,a_n)\)</span> for any number <span class="math notranslate nohighlight">\(n\)</span> and any polynomials <span class="math notranslate nohighlight">\(a_1,a_2,a_n\)</span>.</p>
+<p>We can similarly make a statement that <span class="math notranslate nohighlight">\(v_x\leq c\)</span>. Using that PSPACE is equal to co-PSPACE, we also get that we can find if <span class="math notranslate nohighlight">\(v_x\geq c\)</span> and <span class="math notranslate nohighlight">\(v_x&gt;c\)</span> and therefore also <span class="math notranslate nohighlight">\(v_x=c\)</span> and <span class="math notranslate nohighlight">\(v_x\neq c\)</span>, all in PSPACE.</p>
+<div class="proof lemma admonition" id="lemma-4">
+<p class="admonition-title"><span class="caption-number">Lemma 225 </span> (NEEDS TITLE AND LABEL)</p>
+<div class="lemma-content section" id="proof-content">
+<p>Decision problems for the values in a concurrent reachability game is in PSPACE</p>
+<p>:label:
+Decision problems for the values in a concurrent reachability game is in PSPACE</p>
+<p>Decision problems for the values in a concurrent reachability game is in PSPACE</p>
+</div>
+</div><p>The set of vertices that have value 0 can be found in polynomial time. This is because, the set of vertices that have value 0 in the time limited game of length <span class="math notranslate nohighlight">\(n\)</span> has also value 0 in all other time limited games. That this is so is easy to see by considering that Eve plays an <span class="math notranslate nohighlight">\(\epsilon\)</span>-optimal strategy for <span class="math notranslate nohighlight">\(v&gt;\epsilon\)</span>, where <span class="math notranslate nohighlight">\(v\)</span> is the value of the vertex with the lowest value. The game then devolves to a MDP for Adam, and the statement is true for such.</p>
+<div class="proof lemma admonition" id="lemm:find_0_reach">
+<p class="admonition-title"><span class="caption-number">Lemma 226 </span> (NEEDS TITLE lemm:find_0_reach)</p>
+<div class="lemma-content section" id="proof-content">
+<p>The set of vertices of value 0 in a concurrent reachability game can be found in polynomial time</p>
+</div>
+</div><p>Next, we will also argue that we can find the set of vertices <span class="math notranslate nohighlight">\(S_1\)</span> that have value 1 in polynomial time as well.
+For notational convenience, for stationary strategies <span class="math notranslate nohighlight">\(\sigma,\tau\)</span> we will, for a set <span class="math notranslate nohighlight">\(x\)</span> and a set of vertices <span class="math notranslate nohighlight">\(S\)</span> use</p>
+<div class="math notranslate nohighlight">
+\[
+F^{\sigma,\tau}(x,S):=\sum_{r\in A_1}\sum_{c\in A_2}\sum_{x'\in S}\sigma(x)(r)\tau(x)(c)\delta(x,r,c)(x')\enspace ,\]</div>
+<p>i.e. the probability when the players follows <span class="math notranslate nohighlight">\(\sigma,\tau\)</span> to go from <span class="math notranslate nohighlight">\(x\)</span> directly to a vertex in <span class="math notranslate nohighlight">\(S\)</span>.</p>
+<p>For a set <span class="math notranslate nohighlight">\(S\)</span>, containing <span class="math notranslate nohighlight">\(\Win\)</span> and a non-empty subset <span class="math notranslate nohighlight">\(S'\subseteq(S\setminus \{\Win\})\)</span> and a vertex <span class="math notranslate nohighlight">\(x\in S'\)</span>, let the {\em subset property} be the following:
+For each <span class="math notranslate nohighlight">\(\epsilon&gt;0\)</span>, there is a strategy <span class="math notranslate nohighlight">\(\sigma\)</span> for Eve, such that for any strategy <span class="math notranslate nohighlight">\(\tau\)</span> for Adam, <span class="math notranslate nohighlight">\(F^{\sigma,\tau}(x,S\setminus S')\cdot \epsilon &gt;F^{\sigma,\tau}(x,V\setminus S)\)</span>.</p>
+<p>For a set <span class="math notranslate nohighlight">\(S\)</span>, containing <span class="math notranslate nohighlight">\(\Win\)</span>, let the {\em value-1-property} be that the subset property is satisfied for each <span class="math notranslate nohighlight">\(S'\subseteq(S\setminus \{\Win\})\)</span> (with some <span class="math notranslate nohighlight">\(x\in S'\)</span>).
+For a set <span class="math notranslate nohighlight">\(S\)</span> satisfying the value-1-property, we will define some subsets.
+Let <span class="math notranslate nohighlight">\(S^0\)</span> be the set consisting of <span class="math notranslate nohighlight">\(\Win\)</span>.
+Let <span class="math notranslate nohighlight">\(S^i\)</span>, for each <span class="math notranslate nohighlight">\(i\geq 1\)</span> be the set of vertices such that for each <span class="math notranslate nohighlight">\(x\in S^i\)</span>,
+the vertex <span class="math notranslate nohighlight">\(x\)</span> satisfies the subset property for <span class="math notranslate nohighlight">\(S'\)</span> and <span class="math notranslate nohighlight">\(S=\bigcup_{j=0}^{i-1}S^j\)</span>.
+Let <span class="math notranslate nohighlight">\(\ell\)</span> be the largest number such that <span class="math notranslate nohighlight">\(S^\ell\)</span> is non-empty (note that <span class="math notranslate nohighlight">\(S^i\)</span>, for <span class="math notranslate nohighlight">\(i&gt;\ell\)</span> must then be empty).</p>
+<p>We will be using the following lemma.</p>
+<div class="proof lemma admonition" id="lemma-6">
+<p class="admonition-title"><span class="caption-number">Lemma 227 </span> (NEEDS TITLE AND LABEL)</p>
+<div class="lemma-content section" id="proof-content">
+<p>The set of vertices <span class="math notranslate nohighlight">\(S_1\)</span> of value 1 satisfies the value-1-property</p>
+<p>:label:
+The set of vertices <span class="math notranslate nohighlight">\(S_1\)</span> of value 1 satisfies the value-1-property</p>
+<p>The set of vertices <span class="math notranslate nohighlight">\(S_1\)</span> of value 1 satisfies the value-1-property</p>
+</div>
+</div><div class="dropdown tip admonition">
+<p class="admonition-title">Proof</p>
+<p>The proof is by contradiction. Thus, there is an <span class="math notranslate nohighlight">\(S\)</span> (not containing <span class="math notranslate nohighlight">\(\Win\)</span>) such that <span class="math notranslate nohighlight">\(S_1\)</span> and <span class="math notranslate nohighlight">\(S\)</span> does not satisfy the subset property for any <span class="math notranslate nohighlight">\(x\in S\)</span>. I.e. for some constant <span class="math notranslate nohighlight">\(\epsilon&gt;0\)</span>,
+<span class="math notranslate nohighlight">\(F^{\sigma,\tau}(x,S_1\setminus S)\epsilon \leq F^{\sigma,\tau}(x,V\setminus S_1)\)</span> for any strategy <span class="math notranslate nohighlight">\(\sigma\)</span> for Eve and some strategy <span class="math notranslate nohighlight">\(\tau_{\sigma}\)</span> for Adam and for every <span class="math notranslate nohighlight">\(x\in S\)</span>.
+But then, all vertices in <span class="math notranslate nohighlight">\(S\)</span> have value <span class="math notranslate nohighlight">\(\leq (1-\epsilon)+\epsilon V_{\max}\)</span> where <span class="math notranslate nohighlight">\(v_{\max}&lt;1\)</span> is the largest value of a vertex in <span class="math notranslate nohighlight">\(V\setminus S_1\)</span>.
+This is because to get to <span class="math notranslate nohighlight">\(\Win\)</span> from <span class="math notranslate nohighlight">\(S\)</span>, it must leave <span class="math notranslate nohighlight">\(S\)</span> and in that step, the probability to go to a vertex in  <span class="math notranslate nohighlight">\(V\setminus S_1\)</span> (from which one cannot obtain more than <span class="math notranslate nohighlight">\(v_{\max}\)</span>) is at least the constant <span class="math notranslate nohighlight">\(\epsilon\)</span>.</p>
+</div>
+<p>We will argue that this is a precise characterization of <span class="math notranslate nohighlight">\(S_1\)</span> next.</p>
+<div class="proof lemma admonition" id="lemma-7">
+<p class="admonition-title"><span class="caption-number">Lemma 228 </span> (NEEDS TITLE AND LABEL)</p>
+<div class="lemma-content section" id="proof-content">
+<p>Consider a set <span class="math notranslate nohighlight">\(S'\)</span> satisfying the value-1-property.
+Then each vertex of <span class="math notranslate nohighlight">\(S'\)</span> has value 1.\label{lem:sufficent_for_value1}</p>
+<p>:label:
+Consider a set <span class="math notranslate nohighlight">\(S'\)</span> satisfying the value-1-property.
+Then each vertex of <span class="math notranslate nohighlight">\(S'\)</span> has value 1.\label{lem:sufficent_for_value1}</p>
+<p>Consider a set <span class="math notranslate nohighlight">\(S'\)</span> satisfying the value-1-property.
+Then each vertex of <span class="math notranslate nohighlight">\(S'\)</span> has value 1.\label{lem:sufficent_for_value1}</p>
+</div>
+</div><div class="dropdown tip admonition">
+<p class="admonition-title">Proof</p>
+<p>We will for all <span class="math notranslate nohighlight">\(i\)</span> and any <span class="math notranslate nohighlight">\(\epsilon&gt;0\)</span> construct a strategy <span class="math notranslate nohighlight">\(\sigma_{i,\epsilon}\)</span> for Eve that starting from a vertex in <span class="math notranslate nohighlight">\(\bigcup_{j=i}^n S^j\)</span> will eventually get to <span class="math notranslate nohighlight">\(S^{i-1}\)</span> with probability at least <span class="math notranslate nohighlight">\(1-\epsilon\)</span> (especially, the strategy <span class="math notranslate nohighlight">\(\sigma_{1,\epsilon}\)</span> is <span class="math notranslate nohighlight">\(\epsilon\)</span>-optimal). We will do it using backwards induction in <span class="math notranslate nohighlight">\(i\)</span> and thus start from <span class="math notranslate nohighlight">\(i=\ell\)</span>.</p>
+<p>Note that the base case for <span class="math notranslate nohighlight">\(i=\ell\)</span> follows directly from the condition.
+We now for any <span class="math notranslate nohighlight">\(\epsilon&gt;0\)</span> will find a strategy <span class="math notranslate nohighlight">\(\sigma_{i,\epsilon}\)</span>, given that we have a strategy <span class="math notranslate nohighlight">\(\sigma_{i+1,\epsilon'}\)</span> for any <span class="math notranslate nohighlight">\(\epsilon'&gt;0\)</span>.
+The idea is that the subset property gives a strategy <span class="math notranslate nohighlight">\(\sigma\)</span> such that for all <span class="math notranslate nohighlight">\(\tau\)</span>, <span class="math notranslate nohighlight">\(F^{\sigma,\tau}(x,S'\setminus S)\epsilon/2 &gt;F^{\sigma,\tau}(x,V\setminus S')\)</span>, for <span class="math notranslate nohighlight">\(S=\bigcup_{j=i}^{n} S^j\)</span>.
+Note that in expectation, following this strategy, we go to some other vertex in <span class="math notranslate nohighlight">\(S\)</span> with at least some fixed probability <span class="math notranslate nohighlight">\(p\)</span> (that could be quite close to 1).
+Hence, in expectation, we need to be in such a vertex <span class="math notranslate nohighlight">\(1/(1-p)\)</span> times before entering either <span class="math notranslate nohighlight">\(S'\setminus S\)</span> or <span class="math notranslate nohighlight">\(V\setminus S'\)</span>.
+We therefore follow the strategy <span class="math notranslate nohighlight">\(\sigma_{i+1,\epsilon'}\)</span> in <span class="math notranslate nohighlight">\(\bigcup_{j=i+1}^n S^j\)</span>, where <span class="math notranslate nohighlight">\(\epsilon'=\frac{\epsilon}{2(1-p)}\)</span>.
+The inductive construction then follows by applying union bound over the <span class="math notranslate nohighlight">\(1/(1-p)\)</span> times we are in <span class="math notranslate nohighlight">\(S^i\)</span>.</p>
+</div>
+<p>Note that the lemmas together shows that <span class="math notranslate nohighlight">\(S_1\)</span> is the largest set satisfying value-1-property.</p>
+<p>Our algorithm, \crgLim, for finding <span class="math notranslate nohighlight">\(S_1\)</span> is then as follows:
+Assign to each vertex <span class="math notranslate nohighlight">\(x\)</span> a rank <span class="math notranslate nohighlight">\(\rk_x\)</span>, a value in <span class="math notranslate nohighlight">\(0,1,\dots,n,\bot\)</span>, starting with <span class="math notranslate nohighlight">\(\rk_x=0\)</span>.
+Let <span class="math notranslate nohighlight">\(\overline{S}^i\)</span> be the set of vertices of rank <span class="math notranslate nohighlight">\(i\)</span>.
+Let <span class="math notranslate nohighlight">\(\overline{S}_1=V\setminus S^{\bot}\)</span>.
+We increment (where a rank is less than another if it is a smaller number. Also, all other ranks are below <span class="math notranslate nohighlight">\(\bot\)</span>) the rank of a non-goal vertex <span class="math notranslate nohighlight">\(x\in \overline{S}^i\)</span>, whenever it does not satisfy the subset property for <span class="math notranslate nohighlight">\(S=\overline{S}_1\)</span> and <span class="math notranslate nohighlight">\(S'=\bigcup_{j=i}^n \overline{S}^j\)</span>.
+Note that no vertex can satisfy the subset property for rank 0, since <span class="math notranslate nohighlight">\(S'\)</span> is all vertices.
+Whenever a stable configuration is reached, output <span class="math notranslate nohighlight">\(\overline{S}_1\)</span>.</p>
+<div class="proof lemma admonition" id="lemma-8">
+<p class="admonition-title"><span class="caption-number">Lemma 229 </span> (NEEDS TITLE AND LABEL)</p>
+<div class="lemma-content section" id="proof-content">
+<p>The output of the \crgLim\ algorithm is correct</p>
+<p>:label:
+The output of the \crgLim\ algorithm is correct</p>
+<p>The output of the \crgLim\ algorithm is correct</p>
+</div>
+</div><div class="dropdown tip admonition">
+<p class="admonition-title">Proof</p>
+<p>The idea is that we want <span class="math notranslate nohighlight">\(S^i=\overline{S}^i\)</span> at termination.
+Note that the subset property is harder to satisfy for a vertex <span class="math notranslate nohighlight">\(x\)</span> if we remove vertices from <span class="math notranslate nohighlight">\(S\)</span> or from <span class="math notranslate nohighlight">\((S\setminus S')\)</span>.
+Thus, if at some time we have that <span class="math notranslate nohighlight">\(x\)</span> does not satisfy the subset property for <span class="math notranslate nohighlight">\(S=\overline{S}_1\)</span> and <span class="math notranslate nohighlight">\(S'=\bigcup_{j=i}^n \overline{S}^j\)</span>, then it does not do so for <span class="math notranslate nohighlight">\(S\)</span> being any subset of <span class="math notranslate nohighlight">\(\overline{S}_1\)</span> or <span class="math notranslate nohighlight">\((S\setminus S')\)</span> being any subset of <span class="math notranslate nohighlight">\(\bigcup_{j=0}^{i-1} \overline{S}^j\)</span>.
+However, initially <span class="math notranslate nohighlight">\(S_1\supseteq\overline{S}_1\)</span> (being all vertices) and <span class="math notranslate nohighlight">\(\bigcup_{j=i}^n S^j\supseteq \bigcup_{j=0}^{i-1} \overline{S}^j\)</span> for all <span class="math notranslate nohighlight">\(i\)</span>. But we must have that <span class="math notranslate nohighlight">\(S_1\supseteq\overline{S}_1\)</span> and <span class="math notranslate nohighlight">\(\bigcup_{j=i}^n S^j\supseteq \bigcup_{j=0}^{i-1} \overline{S}^j\)</span> for all <span class="math notranslate nohighlight">\(i\)</span>, at all latter points as well, since in the last iteration it was satisfied, for all <span class="math notranslate nohighlight">\(i\)</span> and all <span class="math notranslate nohighlight">\(x\in S^i\)</span>, we have that the subset property is satisfied for <span class="math notranslate nohighlight">\(S=\overline{S}_1\)</span> and <span class="math notranslate nohighlight">\(S'=\bigcup_{j=i}^n \overline{S}^j\)</span>, because we have that <span class="math notranslate nohighlight">\(S\supseteq S_1\)</span> and <span class="math notranslate nohighlight">\((S\setminus S')=\bigcup_{j=1}^{i-1} \overline{S}^j\supseteq \bigcup_{j=1}^{i-1} S^j\)</span>.
+On the other hand, eventually no vertex gets it rank incremented (since there are a finite number of ranks and vertices) and the algorithm terminates with a set <span class="math notranslate nohighlight">\(\overline{S}_1\supseteq S_1\)</span> satisfying the value-1-property. Since <span class="math notranslate nohighlight">\(S_1\)</span> is the largest such set, we have that <span class="math notranslate nohighlight">\(\overline{S}_1=S_1\)</span>.</p>
+</div>
+<p>We will now consider the running time of the algorithm.
+We will consider that we can decide whether a pair of sets <span class="math notranslate nohighlight">\(S\)</span> and <span class="math notranslate nohighlight">\(S'\)</span> satisfies the subset property for a vertex <span class="math notranslate nohighlight">\(x\)</span> can be solved in <span class="math notranslate nohighlight">\(O(k)\)</span> time.
+Let <span class="math notranslate nohighlight">\(S_x\)</span> be the set of vertices that can be visited in a play immediately after <span class="math notranslate nohighlight">\(x\)</span>. Observe that <span class="math notranslate nohighlight">\(|S_x|\)</span> is a lower bound on the number of arrows from matrix <span class="math notranslate nohighlight">\(x\)</span> in our illustration of the game.
+Consider a vertex <span class="math notranslate nohighlight">\(x\)</span> and a rank <span class="math notranslate nohighlight">\(i\)</span>, and we want to find an upper bound on the computation we do on <span class="math notranslate nohighlight">\(x\)</span> while it has rank <span class="math notranslate nohighlight">\(i\)</span>.
+Clearly, we only need to consider incrementing the rank of <span class="math notranslate nohighlight">\(x\)</span> whenever a vertex in <span class="math notranslate nohighlight">\(S_x\)</span> has changed its value and only if it is changed to either <span class="math notranslate nohighlight">\(i\)</span> (from <span class="math notranslate nohighlight">\(i-1\)</span>) or to <span class="math notranslate nohighlight">\(\bot\)</span> (from <span class="math notranslate nohighlight">\(n\)</span>), because otherwise, the sets <span class="math notranslate nohighlight">\(S\)</span> and <span class="math notranslate nohighlight">\(S'\)</span> have not changed.
+Thus, we only do at most <span class="math notranslate nohighlight">\(2|S_x|+1\)</span> checks whether <span class="math notranslate nohighlight">\(x\)</span> satisfies the subset property.
+There are <span class="math notranslate nohighlight">\(n+1\)</span> ranks, so in total for <span class="math notranslate nohighlight">\(x\)</span>, we use at most <span class="math notranslate nohighlight">\((n+1)(2|S_x|+1)\)</span> checks.
+Hence, in total over all <span class="math notranslate nohighlight">\(x\)</span>, we do <span class="math notranslate nohighlight">\(O(n\sum_{x} |S_x|)\)</span> checks.</p>
+<div class="proof lemma admonition" id="lemma-9">
+<p class="admonition-title"><span class="caption-number">Lemma 230 </span> (NEEDS TITLE AND LABEL)</p>
+<div class="lemma-content section" id="proof-content">
+<p>The run time of the \crgLim\ algorithm is <span class="math notranslate nohighlight">\(O(nk\sum_{x} |S_x|)\)</span> times</p>
+<p>:label:
+The run time of the \crgLim\ algorithm is <span class="math notranslate nohighlight">\(O(nk\sum_{x} |S_x|)\)</span> times</p>
+<p>The run time of the \crgLim\ algorithm is <span class="math notranslate nohighlight">\(O(nk\sum_{x} |S_x|)\)</span> times</p>
+</div>
+</div><p>We will then finally consider how to check whether <span class="math notranslate nohighlight">\(x\)</span> satisfies the subset property for a pair of sets <span class="math notranslate nohighlight">\(S\)</span> and <span class="math notranslate nohighlight">\(S'\)</span>.
+We will do so by constructing a strategy <span class="math notranslate nohighlight">\(\sigma=\sigma(\epsilon)\)</span> for Eve satisfying the property for any fixed <span class="math notranslate nohighlight">\(\epsilon&gt;0\)</span>.
+We will construct the strategy  <span class="math notranslate nohighlight">\(\sigma\)</span> from some sequence of pairs of sets (of rows and columns) <span class="math notranslate nohighlight">\((R_1,C_1),(R_2,C_2),\dots,(R_{\ell},C_{\ell})\)</span>. We will let <span class="math notranslate nohighlight">\(C_i^*=\bigcup_{j=1}^i C_j\)</span> and similar for <span class="math notranslate nohighlight">\(R^*_i\)</span>.
+For convenience, we also define <span class="math notranslate nohighlight">\(C_0^*\)</span> as the empty set of columns.
+We will define <span class="math notranslate nohighlight">\(R_i\)</span> from <span class="math notranslate nohighlight">\(C_{i-1}^*\)</span> as each row <span class="math notranslate nohighlight">\(r\not\in R_{i-1}^*\)</span> such that, for all <span class="math notranslate nohighlight">\(c\not\in C^*_{i-1}\)</span>, we have that <span class="math notranslate nohighlight">\(F^{r,c}(x,V\setminus S)=0\)</span>.
+We will define <span class="math notranslate nohighlight">\(C_i\not\in C_{i=1}^*\)</span> from <span class="math notranslate nohighlight">\(R_i\)</span> as each column <span class="math notranslate nohighlight">\(c\)</span> such that there is a <span class="math notranslate nohighlight">\(r\in R_i\)</span> such that
+<span class="math notranslate nohighlight">\(F^{r,c}(x,S\setminus S')&gt;0\)</span>.
+The set <span class="math notranslate nohighlight">\(R^{*}_{\ell}\)</span> is the first set such that <span class="math notranslate nohighlight">\(R^*_{\ell+1}\)</span> is empty (clearly, by construction all sets <span class="math notranslate nohighlight">\(R_i,C_i\)</span> for <span class="math notranslate nohighlight">\(i&gt;\ell\)</span> would also be empty).</p>
+<div class="proof lemma admonition" id="lemma-10">
+<p class="admonition-title"><span class="caption-number">Lemma 231 </span> (NEEDS TITLE AND LABEL)</p>
+<div class="lemma-content section" id="proof-content">
+<p>There is a strategy <span class="math notranslate nohighlight">\(\sigma(\epsilon)\)</span> for all <span class="math notranslate nohighlight">\(\epsilon&gt;0\)</span> iff <span class="math notranslate nohighlight">\(C_{\ell}^*\)</span> is the set of all columns</p>
+<p>:label:
+There is a strategy <span class="math notranslate nohighlight">\(\sigma(\epsilon)\)</span> for all <span class="math notranslate nohighlight">\(\epsilon&gt;0\)</span> iff <span class="math notranslate nohighlight">\(C_{\ell}^*\)</span> is the set of all columns</p>
+<p>There is a strategy <span class="math notranslate nohighlight">\(\sigma(\epsilon)\)</span> for all <span class="math notranslate nohighlight">\(\epsilon&gt;0\)</span> iff <span class="math notranslate nohighlight">\(C_{\ell}^*\)</span> is the set of all columns</p>
+</div>
+</div><div class="dropdown tip admonition">
+<p class="admonition-title">Proof</p>
+<p>We will first argue that if <span class="math notranslate nohighlight">\(C_{\ell}^{*}\)</span> is not all columns <span class="math notranslate nohighlight">\(C\)</span>, then the strategy <span class="math notranslate nohighlight">\(\tau\)</span> that plays uniformly over <span class="math notranslate nohighlight">\(C'=(C\setminus C_{\ell}^*)\)</span> shows that no strategy <span class="math notranslate nohighlight">\(\sigma(\epsilon)\)</span> exists for small enough <span class="math notranslate nohighlight">\(\epsilon&gt;0\)</span>. This is because any row <span class="math notranslate nohighlight">\(r\)</span> such that <span class="math notranslate nohighlight">\(F^{r,c}(x,S\setminus S')&gt;0\)</span> for some <span class="math notranslate nohighlight">\(c\in C'\)</span> is also such that <span class="math notranslate nohighlight">\(F^{r,c'}(x,V\setminus S)&gt;0\)</span> for some column <span class="math notranslate nohighlight">\(c'\in C'\)</span>. This is because otherwise <span class="math notranslate nohighlight">\(r\)</span> would be in <span class="math notranslate nohighlight">\(R^i\)</span> for some <span class="math notranslate nohighlight">\(i\)</span> and then <span class="math notranslate nohighlight">\(c\)</span> would be in <span class="math notranslate nohighlight">\(C_{\ell}^*\)</span>. Hence, the probability <span class="math notranslate nohighlight">\(F^{r,c'}(x,V\setminus S)\)</span> cannot be more than a constant factor smaller than <span class="math notranslate nohighlight">\(F^{r,c}(x,S\setminus S')\)</span>.</p>
+<p>Otherwise, if <span class="math notranslate nohighlight">\(C_{\ell}^*=C\)</span>, then let <span class="math notranslate nohighlight">\(\sigma(\epsilon)\)</span> be the strategy that picks an <span class="math notranslate nohighlight">\(i\)</span> from the distribution <span class="math notranslate nohighlight">\(\dist\)</span> and then plays an action in <span class="math notranslate nohighlight">\(R^i\)</span> uniformly at random. The distribution <span class="math notranslate nohighlight">\(\dist\)</span> is such that for all <span class="math notranslate nohighlight">\(j\in \{1,\dots,\ell-1\}\)</span> we have <span class="math notranslate nohighlight">\(\Pr^{\dist}[i=j]\epsilon\delta_{\min}/m=\Pr^{\dist}[i&gt;j]\)</span>.</p>
+<p>To argue that <span class="math notranslate nohighlight">\(\sigma=\sigma(\epsilon)\)</span> satisfies the subset property for <span class="math notranslate nohighlight">\(x,S,S'\)</span>
+consider each column <span class="math notranslate nohighlight">\(c\)</span>. We have that <span class="math notranslate nohighlight">\(c\in C^j\)</span> for some <span class="math notranslate nohighlight">\(j\)</span>.
+Let <span class="math notranslate nohighlight">\(p\)</span> be the pr. with which a row in <span class="math notranslate nohighlight">\(R^j\)</span> is played by <span class="math notranslate nohighlight">\(\sigma\)</span> and thus, <span class="math notranslate nohighlight">\(F^{\sigma,c}(x,S\setminus S')\geq p\delta_{\min}&gt;0\)</span>.
+Any row <span class="math notranslate nohighlight">\(r\)</span> such that <span class="math notranslate nohighlight">\(F^{r,c}(x,V\setminus S)&gt;0\)</span> must be outside <span class="math notranslate nohighlight">\(R^*_j\)</span> by construction (and if such a row exists <span class="math notranslate nohighlight">\(j&lt;\ell\)</span>).
+We play such rows with pr. <span class="math notranslate nohighlight">\(\leq \Pr^{\dist}[i&gt;j]\)</span> and thus <span class="math notranslate nohighlight">\(\Pr^{\dist}[i&gt;j]\geq F^{\sigma,c}(x,V\setminus S)\)</span>.
+We have that <span class="math notranslate nohighlight">\(pm&gt;\Pr^{\dist}[i=j]\)</span> (strict because <span class="math notranslate nohighlight">\(j&lt;\ell\)</span>) and thus,</p>
+<div class="math notranslate nohighlight">
+\[
+F^{\sigma,c}(x,S\setminus S')\epsilon\geq p\delta_{\min}\epsilon&gt;\delta_{\min}\epsilon/m\Pr^{\dist}\nolimits[i=j]\geq 
+\Pr^{\dist}\nolimits[i&gt;j]\geq F^{\sigma,c}(x,V\setminus S) \enspace .\]</div>
+<p>This completes the proof of the lemma.</p>
+</div>
+<p>Our algorithm for checking if a vertex <span class="math notranslate nohighlight">\(x\)</span> satisfies the subset property for sets <span class="math notranslate nohighlight">\(S,S'\)</span> is as follows:
+We will construct the sequence of sets <span class="math notranslate nohighlight">\((R_1,C_1),(R_2,C_2),\dots,(R_{\ell},C_{\ell})\)</span>.
+To do so we will use a datastructure.
+The datastructure has the following properties:
+Initially, for each column <span class="math notranslate nohighlight">\(c\)</span>, we will make a list <span class="math notranslate nohighlight">\(L_c\)</span> of the rows <span class="math notranslate nohighlight">\(r\)</span> such that <span class="math notranslate nohighlight">\(F^{r,c}(x,V\setminus S)&gt;0\)</span>.
+We will also have a counter for each row <span class="math notranslate nohighlight">\(r\)</span> that initially contains how many such columns there are.
+Finally for each row <span class="math notranslate nohighlight">\(r\)</span>, there is a list <span class="math notranslate nohighlight">\(L_r\)</span> of columns such that <span class="math notranslate nohighlight">\(F^{r,c}(x,S\setminus S')&gt;0\)</span>.</p>
+<p>The algorithm then uses the datastructure as follows:
+Let <span class="math notranslate nohighlight">\(i\leftarrow 1\)</span>.
+Add all the rows with the counter at 0 to <span class="math notranslate nohighlight">\(R^i\)</span>.
+If <span class="math notranslate nohighlight">\(R^i\)</span> is the empty set, return whether <span class="math notranslate nohighlight">\(C_{i-1}^*\)</span> is all columns.
+For each row <span class="math notranslate nohighlight">\(r\)</span> in <span class="math notranslate nohighlight">\(R^i\)</span> go through <span class="math notranslate nohighlight">\(c\in L_r\)</span> and subtract 1 from the counter of each row in <span class="math notranslate nohighlight">\(L_c\)</span>. If a counter reach 0, add it to <span class="math notranslate nohighlight">\(R^{i+1}\)</span>.
+Increment <span class="math notranslate nohighlight">\(i\)</span>.
+Go to line 3.</p>
+<p>The total time is <span class="math notranslate nohighlight">\(O(\sum_{r,c}|\supp(\dest(x,r,c))|)\)</span> for the algorithm.</p>
+<div class="proof lemma admonition" id="lemma-11">
+<p class="admonition-title"><span class="caption-number">Lemma 232 </span> (NEEDS TITLE AND LABEL)</p>
+<div class="lemma-content section" id="proof-content">
+<p>We can check whether a vertex <span class="math notranslate nohighlight">\(x\)</span> satisfies the subset property for sets <span class="math notranslate nohighlight">\(S\)</span> and <span class="math notranslate nohighlight">\(S'\)</span> in time</p>
+<div class="math notranslate nohighlight">
+\[O(\sum_{r,c}|\supp(\dest(x,r,c))|)\]</div>
+<p>:label:
+We can check whether a vertex <span class="math notranslate nohighlight">\(x\)</span> satisfies the subset property for sets <span class="math notranslate nohighlight">\(S\)</span> and <span class="math notranslate nohighlight">\(S'\)</span> in time</p>
+<div class="math notranslate nohighlight">
+\[O(\sum_{r,c}|\supp(\dest(x,r,c))|)\]</div>
+<p>We can check whether a vertex <span class="math notranslate nohighlight">\(x\)</span> satisfies the subset property for sets <span class="math notranslate nohighlight">\(S\)</span> and <span class="math notranslate nohighlight">\(S'\)</span> in time</p>
+<div class="math notranslate nohighlight">
+\[O(\sum_{r,c}|\supp(\dest(x,r,c))|)\]</div>
+</div>
+</div><p>We therefore get that</p>
+<div class="proof lemma admonition" id="lem:val1">
+<p class="admonition-title"><span class="caption-number">Lemma 233 </span> (NEEDS TITLE lem:val1)</p>
+<div class="lemma-content section" id="proof-content">
+<p>\label{lemm:find_1_reach}
+We can find the set of vertices of value 1 in time <span class="math notranslate nohighlight">\(O(n\sum_{x} |S_x|\sum_{r,c}|\supp(\dest(x,r,c))|)\)</span></p>
+</div>
+</div><p>Next, we will give a lower bound for patience, i.e. that in some games, the patience for every <span class="math notranslate nohighlight">\(\epsilon\)</span>-optimal stationary strategy must be high.
+For a number <span class="math notranslate nohighlight">\(k\)</span>, let purgatory <span class="math notranslate nohighlight">\(k\)</span> be the following game:
+There are <span class="math notranslate nohighlight">\(2+k\)</span> vertices, <span class="math notranslate nohighlight">\(\Win\)</span> (which is vertex 0), one vertex <span class="math notranslate nohighlight">\(\bot\)</span> which is absorbing and each other vertex <span class="math notranslate nohighlight">\(i\in \{1,\dots, k\}\)</span> has a 2x2 matrix, such that <span class="math notranslate nohighlight">\(\dest(x,r,c)\)</span> is a dirac distribution over (1)
+<span class="math notranslate nohighlight">\(i-1\)</span> for <span class="math notranslate nohighlight">\(r=c\)</span>, (2) <span class="math notranslate nohighlight">\(k\)</span> for <span class="math notranslate nohighlight">\(r&lt;c\)</span> and (3) <span class="math notranslate nohighlight">\(\bot\)</span> for <span class="math notranslate nohighlight">\(r&gt;c\)</span>.
+There is an illustration of Purgatory <span class="math notranslate nohighlight">\(4\)</span> in Figure \ref{fig:purgatory}.</p>
+<div class="figure align-center" id="fig-purgatory">
+<img alt="7_Concurrent/./../fig:purgatory.png" src="7_Concurrent/./../fig:purgatory.png" />
+<p class="caption"><span class="caption-number">Fig. 49 </span><span class="caption-text">Purgatory <span class="math notranslate nohighlight">\(4\)</span>. For clarity, the colors are omitted, except that <span class="math notranslate nohighlight">\(0^*\)</span> corresponds to an edge to an absorbing vertex different from <span class="math notranslate nohighlight">\(\Win\)</span> and <span class="math notranslate nohighlight">\(1^*\)</span> corresponds to an edge to <span class="math notranslate nohighlight">\(\Win\)</span></span><a class="headerlink" href="#fig-purgatory" title="Permalink to this image">¶</a></p>
+</div>
+<p>It is easy to see that all vertices but <span class="math notranslate nohighlight">\(\bot\)</span> is in <span class="math notranslate nohighlight">\(S_1\)</span>, using the value 1 property.</p>
+<div class="proof lemma admonition" id="lem:purgatory">
+<p class="admonition-title"><span class="caption-number">Lemma 234 </span> (NEEDS TITLE lem:purgatory)</p>
+<div class="lemma-content section" id="proof-content">
+<p>For any <span class="math notranslate nohighlight">\(0&lt;\epsilon&lt;1/2\)</span> and any <span class="math notranslate nohighlight">\(k\geq 1\)</span>, there is a unique strategy for Eve with least patience which is <span class="math notranslate nohighlight">\(\epsilon\)</span>-optimal in purgatory <span class="math notranslate nohighlight">\(k\)</span>. That strategy has patience <span class="math notranslate nohighlight">\(\epsilon^{-2^{k-1}}\)</span></p>
+</div>
+</div><div class="dropdown tip admonition">
+<p class="admonition-title">Proof</p>
+<p>We will find the best strategy with patience <span class="math notranslate nohighlight">\(1/p\)</span> for any number <span class="math notranslate nohighlight">\(0&lt;p&lt;1/2\)</span>.
+It is clear that the best strategy with patience <span class="math notranslate nohighlight">\(1/p\)</span> is to play the strategy that maximizes the pr. of eventually reaching <span class="math notranslate nohighlight">\(i\)</span> from vertex <span class="math notranslate nohighlight">\(j\)</span> for all <span class="math notranslate nohighlight">\(j&gt;i\)</span> while having patience <span class="math notranslate nohighlight">\(1/p\)</span>.
+Let <span class="math notranslate nohighlight">\(x_k=1-p\)</span> and let <span class="math notranslate nohighlight">\(x_i=1-\sqrt{1-x_{i+1}}\)</span>. We will argue that <span class="math notranslate nohighlight">\(x_i\)</span> is the probability of eventually reaching vertex <span class="math notranslate nohighlight">\(i-1\)</span> from vertex <span class="math notranslate nohighlight">\(k\)</span> for all <span class="math notranslate nohighlight">\(i\in \{1,\dots,k\}\)</span> and that there is a unique best strategy with patience <span class="math notranslate nohighlight">\(1/p\)</span>.</p>
+<p>The unique best strategy in vertex <span class="math notranslate nohighlight">\(k\)</span> is to play the top action with pr. <span class="math notranslate nohighlight">\(1-p\)</span> and the bottom action with pr. <span class="math notranslate nohighlight">\(p\)</span>. This ensures that the pr. <span class="math notranslate nohighlight">\(x_k\)</span> of reaching <span class="math notranslate nohighlight">\(k-1\)</span> from <span class="math notranslate nohighlight">\(k\)</span> is <span class="math notranslate nohighlight">\(1-p\)</span> if Adam plays the left column.</p>
+<p>Consider now vertex <span class="math notranslate nohighlight">\(i\in \{1,\dots,k-1\}\)</span>.
+For the purpose of finding good strategies in <span class="math notranslate nohighlight">\(i\)</span>, we can view vertex <span class="math notranslate nohighlight">\(i\)</span>, when Eve plays her best strategy in <span class="math notranslate nohighlight">\(j&gt;i\)</span> and Adam plays a best response, as a smaller reachability game with 3 vertices, i.e. <span class="math notranslate nohighlight">\(i-1\)</span> (as <span class="math notranslate nohighlight">\(\Win\)</span>), <span class="math notranslate nohighlight">\(\bot\)</span> and <span class="math notranslate nohighlight">\(i\)</span>, where <span class="math notranslate nohighlight">\(\dest(i,r,c)\)</span> is (1) a dirac distribution over <span class="math notranslate nohighlight">\(i-1\)</span> for <span class="math notranslate nohighlight">\(r=c\)</span>, (2) a dirac distribution over <span class="math notranslate nohighlight">\(\bot\)</span> for <span class="math notranslate nohighlight">\(r&gt;c\)</span> and (3) a distribution that goes to <span class="math notranslate nohighlight">\(\bot\)</span> with pr. <span class="math notranslate nohighlight">\(1-x_{i-1}\)</span> and to <span class="math notranslate nohighlight">\(i\)</span> with the remaining pr. for <span class="math notranslate nohighlight">\(r&lt;c\)</span>. See Figure \ref{fig:1purgatory}</p>
+<p>Let <span class="math notranslate nohighlight">\(p_i\)</span> be the probability with which a strategy <span class="math notranslate nohighlight">\(\sigma\)</span> plays the top row in vertex <span class="math notranslate nohighlight">\(i\)</span>.
+We can then consider the game as a MDP, since we have fixed a stationary strategy for one of the players.
+It is clear that the pr. to reach <span class="math notranslate nohighlight">\(i-1\)</span> from <span class="math notranslate nohighlight">\(i\)</span> if Adam plays the right column is strictly increasing in <span class="math notranslate nohighlight">\(p_i\)</span> and the pr. to reach <span class="math notranslate nohighlight">\(i-1\)</span> from <span class="math notranslate nohighlight">\(i\)</span> if Adam plays the left column is strictly decreasing in <span class="math notranslate nohighlight">\(p_i\)</span>. We will consider the strategy such that the pr. of reaching <span class="math notranslate nohighlight">\(i-1\)</span> is equal no matter which column Adam plays (by the previous statement, this strategy must then be optimal).
+Observe that the pr. of reaching <span class="math notranslate nohighlight">\(i-1\)</span> if Adam always plays the left column is <span class="math notranslate nohighlight">\(p_i\)</span> (which is then also the pr. to reach <span class="math notranslate nohighlight">\(i-1\)</span> from <span class="math notranslate nohighlight">\(i\)</span>) and if he always plays the right column it is  <span class="math notranslate nohighlight">\(p_i x_i p_i+(1-p_i)\)</span> (using that the pr. of reaching <span class="math notranslate nohighlight">\(i-1\)</span> from <span class="math notranslate nohighlight">\(i\)</span> is <span class="math notranslate nohighlight">\(p_i\)</span>).
+Thus, we have that</p>
+<div class="math notranslate nohighlight">
+\[
+p_i=p_i x_i p_i+(1-p_i)\Rightarrow 0=p_i^2/2 x_i-p_i+1/2 \Rightarrow p_i=\frac{1\pm \sqrt{1-x_i}}{x_i}\enspace .\]</div>
+<p>We see that <span class="math notranslate nohighlight">\(\frac{1+ \sqrt{1-x_i}}{x_i}&gt;1\)</span> and thus the solution is <span class="math notranslate nohighlight">\(p_i=\frac{1- \sqrt{1-x_i}}{x_i}\)</span> or that <span class="math notranslate nohighlight">\((x_{i-1}=)x_ip_i=1- \sqrt{1-x_i}\)</span>.</p>
+<p>Consider now that the strategy is exactly <span class="math notranslate nohighlight">\(\epsilon\)</span>-optimal, implying that <span class="math notranslate nohighlight">\(x_1=1-\epsilon\)</span>.
+We will argue that <span class="math notranslate nohighlight">\(p=\epsilon^{2^{k-1}}\)</span>.
+We will do so by arguing  using induction in <span class="math notranslate nohighlight">\(i\)</span> that <span class="math notranslate nohighlight">\(x_i=1-\epsilon^{2^{k-1}}\)</span>, since <span class="math notranslate nohighlight">\(x_k=1-p\)</span> (this also shows that the strategy is indeed using patience <span class="math notranslate nohighlight">\(1/p\)</span> since the probabilities in the other vertices, which are <span class="math notranslate nohighlight">\(p_i=\frac{x_{i-1}}{x_i}\)</span>, are strictly above <span class="math notranslate nohighlight">\(1/p\)</span>).
+We have already noted that  <span class="math notranslate nohighlight">\(x_1=1-\epsilon=1-\epsilon^{2^0}\)</span>.
+We will next argue that <span class="math notranslate nohighlight">\(x_i=1-\epsilon^{2^{k-1}}\)</span>, for <span class="math notranslate nohighlight">\(i\geq 2\)</span> using that <span class="math notranslate nohighlight">\(x_{i-1}=1-\epsilon^{2^{k-2}}\)</span>.
+We have that</p>
+<div class="math notranslate nohighlight">
+\[
+1-\epsilon^{2^{k-2}}=x_{i-1}=1-\sqrt{1-x_{i}}\Rightarrow \sqrt{1-x_{i}}= \epsilon^{2^{k-2}}\Rightarrow
+1-\epsilon^{2^{k-1}}=x_i\enspace .
+\]</div>
+<p>This completes the proof of the lemma.</p>
+</div>
+<p>Concurrent reachability games are not symmetric in the players. E.g. Adam always have an optimal strategy but Eve might not. We will next argue that Adam still requires double exponential patience to play well.</p>
+<p>Consider the following game called purgatory duel <span class="math notranslate nohighlight">\(k\)</span> which can be viewed as a symmetric version of purgatory <span class="math notranslate nohighlight">\(k\)</span>.
+There are <span class="math notranslate nohighlight">\(3+2k\)</span> vertices, <span class="math notranslate nohighlight">\(\Win\)</span> (which is vertex 0), one vertex <span class="math notranslate nohighlight">\(\bot\)</span> which is absorbing (and is also vertex <span class="math notranslate nohighlight">\(0'\)</span>), and the start vertex <span class="math notranslate nohighlight">\(s\)</span> and each other vertex <span class="math notranslate nohighlight">\(\{1,\dots, k,1',\dots,k'\}\)</span> has a 2x2 matrix. Each vertex <span class="math notranslate nohighlight">\(x\in \{1,\dots, k\}\)</span> is such that <span class="math notranslate nohighlight">\(\dest(x,r,c)\)</span> is a dirac distribution over (1) <span class="math notranslate nohighlight">\(x-1\)</span> for <span class="math notranslate nohighlight">\(r=c\)</span>, (2) <span class="math notranslate nohighlight">\(s\)</span> for <span class="math notranslate nohighlight">\(r&lt;c\)</span> and (3) <span class="math notranslate nohighlight">\(\bot\)</span> for <span class="math notranslate nohighlight">\(r&gt;c\)</span>.
+Each vertex <span class="math notranslate nohighlight">\(x'\in \{1',\dots, k'\}\)</span> is such that <span class="math notranslate nohighlight">\(\dest(x',r,c)\)</span> is a dirac distribution over (1) <span class="math notranslate nohighlight">\(x-1'\)</span> for <span class="math notranslate nohighlight">\(r=c\)</span>, (2) <span class="math notranslate nohighlight">\(s\)</span> for <span class="math notranslate nohighlight">\(r&lt;c\)</span> and (3) <span class="math notranslate nohighlight">\(\Win\)</span> for <span class="math notranslate nohighlight">\(r&gt;c\)</span>. The start vertex is 1x1 matrix and is such that <span class="math notranslate nohighlight">\(\dest(s,r,c)\)</span> is a uniform distribution over <span class="math notranslate nohighlight">\(k\)</span> and <span class="math notranslate nohighlight">\(k'\)</span>.
+There is a illustration of Purgatory Duel <span class="math notranslate nohighlight">\(2\)</span> in Figure \ref{fig:purgatoryduel}.</p>
+<div class="figure align-center" id="fig-purgatoryduel">
+<img alt="7_Concurrent/./../fig:purgatoryduel.png" src="7_Concurrent/./../fig:purgatoryduel.png" />
+<p class="caption"><span class="caption-number">Fig. 50 </span><span class="caption-text">Purgatory duel <span class="math notranslate nohighlight">\(2\)</span>. For clarity, the colors are omitted, except that <span class="math notranslate nohighlight">\(0^*\)</span> corresponds to an edge to an absorbing vertex different from <span class="math notranslate nohighlight">\(\Win\)</span> and <span class="math notranslate nohighlight">\(1^*\)</span> corresponds to an edge to <span class="math notranslate nohighlight">\(\Win\)</span></span><a class="headerlink" href="#fig-purgatoryduel" title="Permalink to this image">¶</a></p>
+</div>
+<p>We will say that a strategy <span class="math notranslate nohighlight">\(\sigma\)</span> for Eve mirrors a strategy <span class="math notranslate nohighlight">\(\tau\)</span> for Adam, if <span class="math notranslate nohighlight">\(\sigma(i)=\tau(i')\)</span> and <span class="math notranslate nohighlight">\(\sigma(i')=\tau(i)\)</span> for all <span class="math notranslate nohighlight">\(i\)</span>.
+Similarly, <span class="math notranslate nohighlight">\(\tau\)</span> mirrors <span class="math notranslate nohighlight">\(\sigma\)</span>.</p>
+<div class="proof lemma admonition" id="lemma-14">
+<p class="admonition-title"><span class="caption-number">Lemma 235 </span> (NEEDS TITLE AND LABEL)</p>
+<div class="lemma-content section" id="proof-content">
+<p>The value of vertex <span class="math notranslate nohighlight">\(s\)</span> is <span class="math notranslate nohighlight">\(1/2\)</span>. Also, for any <span class="math notranslate nohighlight">\(\epsilon&gt;0\)</span>, any <span class="math notranslate nohighlight">\((1/2-\epsilon)\)</span>-optimal strategy <span class="math notranslate nohighlight">\(\tau\)</span> for Adam does not follow a dirac distribution in <span class="math notranslate nohighlight">\(i'\)</span> for any <span class="math notranslate nohighlight">\(i'\in\{1',\dots,k'\}\)</span>. Finally, every <span class="math notranslate nohighlight">\(\epsilon\)</span>-optimal strategy is a mirror of an <span class="math notranslate nohighlight">\(\epsilon\)</span>-optimal strategy</p>
+<p>:label:
+The value of vertex <span class="math notranslate nohighlight">\(s\)</span> is <span class="math notranslate nohighlight">\(1/2\)</span>. Also, for any <span class="math notranslate nohighlight">\(\epsilon&gt;0\)</span>, any <span class="math notranslate nohighlight">\((1/2-\epsilon)\)</span>-optimal strategy <span class="math notranslate nohighlight">\(\tau\)</span> for Adam does not follow a dirac distribution in <span class="math notranslate nohighlight">\(i'\)</span> for any <span class="math notranslate nohighlight">\(i'\in\{1',\dots,k'\}\)</span>. Finally, every <span class="math notranslate nohighlight">\(\epsilon\)</span>-optimal strategy is a mirror of an <span class="math notranslate nohighlight">\(\epsilon\)</span>-optimal strategy</p>
+<p>The value of vertex <span class="math notranslate nohighlight">\(s\)</span> is <span class="math notranslate nohighlight">\(1/2\)</span>. Also, for any <span class="math notranslate nohighlight">\(\epsilon&gt;0\)</span>, any <span class="math notranslate nohighlight">\((1/2-\epsilon)\)</span>-optimal strategy <span class="math notranslate nohighlight">\(\tau\)</span> for Adam does not follow a dirac distribution in <span class="math notranslate nohighlight">\(i'\)</span> for any <span class="math notranslate nohighlight">\(i'\in\{1',\dots,k'\}\)</span>. Finally, every <span class="math notranslate nohighlight">\(\epsilon\)</span>-optimal strategy is a mirror of an <span class="math notranslate nohighlight">\(\epsilon\)</span>-optimal strategy</p>
+</div>
+</div><div class="dropdown tip admonition">
+<p class="admonition-title">Proof</p>
+<p>First, the value of vertex <span class="math notranslate nohighlight">\(s\)</span> is at most <span class="math notranslate nohighlight">\(1/2\)</span>. This is because Adam can mirror any strategy <span class="math notranslate nohighlight">\(\sigma\)</span> for Eve. This ensures that any play reaching <span class="math notranslate nohighlight">\(\Win\)</span> is mirrored by an equally likely play reaching <span class="math notranslate nohighlight">\(\bot\)</span>. Thus, then the players follows these strategies, the pr. to reach <span class="math notranslate nohighlight">\(\Win\)</span> is equal to the pr. to reach <span class="math notranslate nohighlight">\(\bot\)</span> (there might also be some positive pr. to not reach neither, but Adam also wins those plays).</p>
+<p>Fix <span class="math notranslate nohighlight">\(\epsilon&gt;0\)</span> and consider a strategy <span class="math notranslate nohighlight">\(\tau\)</span> for Eve that plays a dirac distribution in <span class="math notranslate nohighlight">\(i'\in\{1',\dots,k'\}\)</span>. Then <span class="math notranslate nohighlight">\(\tau\)</span> is not <span class="math notranslate nohighlight">\((1/2-\epsilon)\)</span>-optimal. We can see that as follows: Let <span class="math notranslate nohighlight">\(\sigma\)</span> be the strategy for Eve that plays <span class="math notranslate nohighlight">\(r=1\)</span> when in <span class="math notranslate nohighlight">\(j'\in \{(i+1)',\dots,k'\}\)</span> and the action which is not equal to <span class="math notranslate nohighlight">\(\tau(i')\)</span> when in <span class="math notranslate nohighlight">\(i'\)</span>. This ensures that the play will always reach either <span class="math notranslate nohighlight">\(\Win\)</span> or <span class="math notranslate nohighlight">\(s\)</span> from <span class="math notranslate nohighlight">\(k'\)</span>. But then  Eve can play an <span class="math notranslate nohighlight">\((\epsilon/2)\)</span>-optimal strategy for purgatory <span class="math notranslate nohighlight">\(k\)</span> in <span class="math notranslate nohighlight">\(\{1,\dots,k\}\)</span>, ensuring that <span class="math notranslate nohighlight">\(\Win\)</span> is reached with pr. at least <span class="math notranslate nohighlight">\(1-\epsilon/2\)</span>. But then <span class="math notranslate nohighlight">\(\tau\)</span> is not <span class="math notranslate nohighlight">\((1/2-\epsilon)\)</span>-optimal.</p>
+<p>Consider that Adam is following a strategy <span class="math notranslate nohighlight">\(\tau\)</span> that is not playing a dirac distribution in <span class="math notranslate nohighlight">\(i'\in\{1',\dots,k'\}\)</span> and Eve is playing an arbitrary strategy <span class="math notranslate nohighlight">\(\sigma\)</span>. Then, eventually play reaches <span class="math notranslate nohighlight">\(\Win\)</span> or <span class="math notranslate nohighlight">\(\bot\)</span> with pr. 1,  because in every <span class="math notranslate nohighlight">\(k+1\)</span> steps, either <span class="math notranslate nohighlight">\(s\)</span> is visited or either <span class="math notranslate nohighlight">\(\Win\)</span> or <span class="math notranslate nohighlight">\(\bot\)</span> is reached, and after <span class="math notranslate nohighlight">\(s\)</span> has been visited, <span class="math notranslate nohighlight">\(k'\)</span> is next half the time and from <span class="math notranslate nohighlight">\(k'\)</span> <span class="math notranslate nohighlight">\(\bot\)</span> is reached with positive pr.</p>
+<p>Consider an <span class="math notranslate nohighlight">\(\epsilon\)</span>-optimal strategy <span class="math notranslate nohighlight">\(\tau\)</span> for Adam, for <span class="math notranslate nohighlight">\(\epsilon&lt;1/2\)</span>.
+Then, let Eve’s mirror strategy to <span class="math notranslate nohighlight">\(\tau\)</span> be <span class="math notranslate nohighlight">\(\sigma_{\tau}\)</span>. Now, either <span class="math notranslate nohighlight">\(\Win\)</span> or <span class="math notranslate nohighlight">\(\bot\)</span> is reached and because the strategies mirrors each other, the pr. to reach <span class="math notranslate nohighlight">\(\Win\)</span> is equal to that of reaching <span class="math notranslate nohighlight">\(\bot\)</span>. Thus, we see that the value is at most <span class="math notranslate nohighlight">\(1/2\)</span>, implying that it is exactly <span class="math notranslate nohighlight">\(1/2\)</span>.</p>
+<p>It also follows that the strategies that are <span class="math notranslate nohighlight">\(\epsilon\)</span>-optimal mirrors each other.</p>
+</div>
+<p>We will now argue that Eve’s (and thus Adam’s) <span class="math notranslate nohighlight">\(\frac{1}{4}\)</span>-optimal strategies requires high patience.</p>
+<p>To do so we will use the following lemma, showing that you can sometimes modify a concurrent game (or any of its special cases) and get a game with less value. While the proof is explicitly for concurrent reachability games, the proof is basically identical for concurrent discounted and mean-payoff games.
+In a game <span class="math notranslate nohighlight">\(G\)</span>, for a vertex <span class="math notranslate nohighlight">\(v\)</span> and a duration <span class="math notranslate nohighlight">\(T\)</span>, let <span class="math notranslate nohighlight">\(v^T_G\)</span> be the value of the time-limited game with duration <span class="math notranslate nohighlight">\(T\)</span>.</p>
+<div class="proof lemma admonition" id="lem:change_succ">
+<p class="admonition-title"><span class="caption-number">Lemma 236 </span> (NEEDS TITLE lem:change_succ)</p>
+<div class="lemma-content section" id="proof-content">
+<p>Consider a concurrent reachability game <span class="math notranslate nohighlight">\(G\)</span> and a pair of vertices <span class="math notranslate nohighlight">\(u,v\)</span>, such that for all <span class="math notranslate nohighlight">\(T\)</span>, we have that <span class="math notranslate nohighlight">\(u^T_G\geq v^T_G\)</span>. Consider a vertex <span class="math notranslate nohighlight">\(w\)</span> such that for a pair of actions, <span class="math notranslate nohighlight">\((r,c)\)</span> we have that <span class="math notranslate nohighlight">\(v\in \supp(\dest(w,r,c))\)</span>. Consider an alternate game <span class="math notranslate nohighlight">\(G'\)</span> equal to <span class="math notranslate nohighlight">\(G\)</span>, except that some of the probability mass is moved from <span class="math notranslate nohighlight">\(v\)</span> to <span class="math notranslate nohighlight">\(u\)</span> when playing <span class="math notranslate nohighlight">\((r,c)\)</span> in <span class="math notranslate nohighlight">\(w\)</span>, i.e. <span class="math notranslate nohighlight">\(0&lt;\dest(G,w,r,c)(v)-\dest(G',w,r,c)(v)=\dest(G',w,r,c)(u)-\dest(G,w,r,c)(u)\)</span>.
+Then for all vertices <span class="math notranslate nohighlight">\(z\)</span> we have that <span class="math notranslate nohighlight">\(z^T_G\leq z^T_{G'}\)</span></p>
+</div>
+</div><div class="dropdown tip admonition">
+<p class="admonition-title">Proof</p>
+<p>The proof is by induction in <span class="math notranslate nohighlight">\(T\)</span>.
+The proof is trivial for <span class="math notranslate nohighlight">\(T=0\)</span>, because <span class="math notranslate nohighlight">\(z^T_G=0= z^T_{G'}\)</span> for all non-goal vertices (and the goal vertex <span class="math notranslate nohighlight">\(\Win\)</span> has value 1).
+For <span class="math notranslate nohighlight">\(T\geq 1\)</span>, we have that <span class="math notranslate nohighlight">\(z^{T-1}_G\leq z^{T-1}_{G'}\)</span>.
+But, matrix games are monotone in their entries, so it follows directly that for <span class="math notranslate nohighlight">\(z\neq w\)</span> we have that <span class="math notranslate nohighlight">\(z^{T}_G\leq z^{T}_{G'}\)</span>.
+Consider the matrix for <span class="math notranslate nohighlight">\(w^T_G\)</span> compared to <span class="math notranslate nohighlight">\(w^T_{G'}\)</span>. All entries but the one for <span class="math notranslate nohighlight">\((r,c)\)</span> are smaller directly by induction. We also have that <span class="math notranslate nohighlight">\(v^T_{G}\leq u^T_{G}\leq u^T_{G'}\)</span>, the first inequality by definition and the second by induction. We thus see that all entries in <span class="math notranslate nohighlight">\(w^T_{G}\)</span> are smaller than in <span class="math notranslate nohighlight">\(w^T_{G'}\)</span>.
+The lemma follows.</p>
+</div>
+<p>We are now ready to find the patience in concurrent reachability games.</p>
+<div class="proof lemma admonition" id="lemma-16">
+<p class="admonition-title"><span class="caption-number">Lemma 237 </span> (NEEDS TITLE AND LABEL)</p>
+<div class="lemma-content section" id="proof-content">
+<p>Any <span class="math notranslate nohighlight">\((1/4)\)</span>-optimal strategy, for either player, in purgatory duel <span class="math notranslate nohighlight">\(k\)</span> has patience at least <span class="math notranslate nohighlight">\((3/4)^{-2^{k-1}}\)</span> for each <span class="math notranslate nohighlight">\(k\)</span></p>
+<p>:label:
+Any <span class="math notranslate nohighlight">\((1/4)\)</span>-optimal strategy, for either player, in purgatory duel <span class="math notranslate nohighlight">\(k\)</span> has patience at least <span class="math notranslate nohighlight">\((3/4)^{-2^{k-1}}\)</span> for each <span class="math notranslate nohighlight">\(k\)</span></p>
+<p>Any <span class="math notranslate nohighlight">\((1/4)\)</span>-optimal strategy, for either player, in purgatory duel <span class="math notranslate nohighlight">\(k\)</span> has patience at least <span class="math notranslate nohighlight">\((3/4)^{-2^{k-1}}\)</span> for each <span class="math notranslate nohighlight">\(k\)</span></p>
+</div>
+</div><div class="dropdown tip admonition">
+<p class="admonition-title">Proof</p>
+<p>We will show that the lemma is true for Eve’s strategies and that it is true for Adam’s follows from Lemma \ref{lem:change_succ}.
+Consider an <span class="math notranslate nohighlight">\((1/4)\)</span>-optimal strategy <span class="math notranslate nohighlight">\(\sigma\)</span> for Eve. Fixing this strategy for Eve, we get a MDP for Adam. Clearly, in this MDP <span class="math notranslate nohighlight">\(G'\)</span>, we have that <span class="math notranslate nohighlight">\(0=\bot^T_{G'}\leq s^T_{G'}\)</span> for all <span class="math notranslate nohighlight">\(T\)</span>. We can thus apply Lemma \ref{lem:change_succ} to changing <span class="math notranslate nohighlight">\(\dest(1',1,1)\)</span> from <span class="math notranslate nohighlight">\(\bot\)</span> to <span class="math notranslate nohighlight">\(s\)</span>. In the resulting game <span class="math notranslate nohighlight">\(G''\)</span>,
+we still have that <span class="math notranslate nohighlight">\(0=\bot^T_{G''}\leq s^T_{G''}\)</span> and thus, we can change <span class="math notranslate nohighlight">\(\dest(1',2,2)\)</span> from <span class="math notranslate nohighlight">\(\bot\)</span> to <span class="math notranslate nohighlight">\(s\)</span>.
+Let the next game be <span class="math notranslate nohighlight">\(G^*\)</span>.
+Thus, for any <span class="math notranslate nohighlight">\(i'\in \{1',\dots,k'\}\)</span>, the plays from <span class="math notranslate nohighlight">\(i'\)</span> to <span class="math notranslate nohighlight">\(\bot\)</span> in <span class="math notranslate nohighlight">\(G^*\)</span> all goes through <span class="math notranslate nohighlight">\(s\)</span>. Note that Adam can ensure that the play reaches <span class="math notranslate nohighlight">\(s\)</span> from <span class="math notranslate nohighlight">\(i'\)</span> and thus, when he plays optimally, do so.
+Thus, whenever <span class="math notranslate nohighlight">\(s\)</span> is entered and Adam plays optimally, <span class="math notranslate nohighlight">\(k\)</span> is enter eventually with pr. 1.
+For the purpose of the value, we can thus disregard <span class="math notranslate nohighlight">\(s\)</span> and vertices in <span class="math notranslate nohighlight">\(\{1',\dots,k'\}\)</span> and just view each edge going to <span class="math notranslate nohighlight">\(s\)</span> as going to <span class="math notranslate nohighlight">\(k\)</span> instead.
+But the resulting game is purgatory <span class="math notranslate nohighlight">\(k\)</span> (in which Eve has fixed his strategy) and Eve is playing a strategy that gives value at least <span class="math notranslate nohighlight">\(1/4\)</span>, which requires  at least <span class="math notranslate nohighlight">\((3/4)^{-2^{k-1}}\)</span> patience, by Lemma \ref{lem:purgatory}.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./7_Concurrent"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="discounted.html" title="previous page">Concurrent discounted games</a>
+    <a class='right-next' id="next-link" href="mean_payoff.html" title="next page">Concurrent mean-payoff games</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By a set of authors coordinated by Nathana&euml;l Fijalkow<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>
