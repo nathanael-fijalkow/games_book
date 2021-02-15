@@ -58,7 +58,9 @@
 \newcommand{\NL}{\textrm{NL}}
 \newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
 \newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
 ```
 Automata and memory structures can be used to construct reductions between games.
@@ -92,7 +94,6 @@ The following lemma states two consequences to the fact that $\Omega$ reduces to
 
 ```{prf:lemma} Automata reductions
 :label: 1-lem:automata_reduction
-:nonumber:
 
 If $\Omega$ reduces to $\Omega'$ through the automaton $\Automaton$ with $S$ states, then 
 Eve has a winning strategy in $\Game$ from $v_0$ if and only if she has a winning strategy in $\Game \times \Automaton$ from $(v_0,q_0)$.
@@ -125,7 +126,6 @@ The arena is $\arena \times \mem = (G \times M, \VE \times M, \VA \times M)$.
 
 ```{prf:observation} Strategies with memory
 :label: 1-fact:strategies_memory
-:nonumber:
 
 There is a one-to-one correspondence between plays $\pi = v_0 v_1 \dots$ in $\arena$ 
 and plays $\pi'$ in $\arena \times \mem$ from $(v_0,m_0)$:
@@ -148,7 +148,6 @@ we let $\Mem \times \Mem'$ denote the memory structure obtained by direct produc
 
 ```{prf:lemma} Memory structure reductions
 :label: 1-lem:memory_structure_reduction
-:nonumber:
 
 If $W$ reduces to $W'$ through the memory structure $\mem$, then
 Eve has a winning strategy in $\Game = (\Arena,W)$ from $v_0$ if and only if 

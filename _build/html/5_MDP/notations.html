@@ -507,14 +507,16 @@
 \newcommand{\NL}{\textrm{NL}}
 \newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
 \newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}\end{aligned}\end{align} \]</div>
 <p>We write vectors in boldface: <span class="math notranslate nohighlight">\( \vec{x}, \vec{y}, \)</span> etc. For a vector <span class="math notranslate nohighlight">\( \vec{x} \)</span> indexed by a set <span class="math notranslate nohighlight">\( I \)</span> (i.e. <span class="math notranslate nohighlight">\( \vec{x}\in \mathbb{R}^I \)</span>) we denote by <span class="math notranslate nohighlight">\( \vec{x}_i \)</span> the value of the component whose index is  <span class="math notranslate nohighlight">\(i\in I  \)</span>.</p>
 <p>A (discrete) probability distribution over a finite or countably infinite set <span class="math notranslate nohighlight">\(A\)</span> is a function <span class="math notranslate nohighlight">\(\discProbDist A \colon \rightarrow [0,1]\)</span> such that <span class="math notranslate nohighlight">\(\sum_{a\in A}\discProbDist(a)=1\)</span>. The support of such a distribution <span class="math notranslate nohighlight">\(\discProbDist\)</span> is the set of all <span class="math notranslate nohighlight">\(a\in A\)</span> with <span class="math notranslate nohighlight">\(\discProbDist(a)&gt;0\)</span>. A distribution <span class="math notranslate nohighlight">\(f\)</span> is called Dirac if its support has size 1.
 We denote by <span class="math notranslate nohighlight">\(\dist(A)\)</span> the set of all probability distributions over <span class="math notranslate nohighlight">\(A\)</span>.</p>
 <p>We also deal with probabilities over uncountable sets of events. This is accomplished via the standard notion of a <strong>probability space.</strong></p>
 <div class="proof definition admonition" id="5-def:probspace">
-<p class="admonition-title"><span>Definition </span> (Probability space)</p>
+<p class="admonition-title"><span class="caption-number">Definition 132 </span> (Probability space)</p>
 <div class="definition-content section" id="proof-content">
 <p>A probability space is a triple
 <span class="math notranslate nohighlight">\((\sampleSpace,\sigmaAlg,\probm)\)</span> where</p>
@@ -540,7 +542,7 @@ a function such that for every <span class="math notranslate nohighlight">\(a\in
 <span class="math notranslate nohighlight">\(\{\omega\in \Omega\mid \rvar(\omega)\leq a\}\)</span> belongs to <span class="math notranslate nohighlight">\(\mathcal{F}\)</span>. We denote by <span class="math notranslate nohighlight">\(\expv[\rvar]\)</span> the expected value of a random variable <span class="math notranslate nohighlight">\(\rvar\)</span>~(see Chapter 5 in <span id="id1">[<span>Bil:1995</span>]</span> for a formal definition).</p>
 <p>We first give a syntactic notion of an MDP which is an analogue of the notion of an arena for games.</p>
 <div class="proof definition admonition" id="5-def:MDP">
-<p class="admonition-title"><span>Definition </span> (MDP)</p>
+<p class="admonition-title"><span class="caption-number">Definition 133 </span> (MDP)</p>
 <div class="definition-content section" id="proof-content">
 <p>A Markov decision process is a tuple <span class="math notranslate nohighlight">\((\vertices,\edges,\probTranFunc,\colouring)\)</span>. The meaning of <span class="math notranslate nohighlight">\(\vertices\)</span>, <span class="math notranslate nohighlight">\(\edges\)</span>, and <span class="math notranslate nohighlight">\(\colouring\)</span> is the same as for games, i.e. <span class="math notranslate nohighlight">\(\vertices\)</span> is a finite set of vertices, <span class="math notranslate nohighlight">\(\edges\subseteq \vertices\times\vertices\)</span> is a set of edges and <span class="math notranslate nohighlight">\(\colouring\colon \edges \rightarrow \colours\)</span> a mapping of edges to a set of colours. However, the meaning of <span class="math notranslate nohighlight">\(\probTranFunc\)</span> is now different: <span class="math notranslate nohighlight">\(\probTranFunc\)</span> is a partial probabilistic transition function of type <span class="math notranslate nohighlight">\(\probTranFunc\colon \vertices \times \actions \rightarrow \dist(\edges)\)</span>, such that the support of <span class="math notranslate nohighlight">\(\probTranFunc(v,a)\)</span> only contains edges outgoing from <span class="math notranslate nohighlight">\(v\)</span>.
 We usually write <span class="math notranslate nohighlight">\(\probTranFunc(v'\mid v,a)\)</span> as a shorthand for <span class="math notranslate nohighlight">\(\probTranFunc(v,a)((v,v'))\)</span>, i.e. the probability of transitioning from <span class="math notranslate nohighlight">\(v\)</span> to <span class="math notranslate nohighlight">\(v'\)</span> under action <span class="math notranslate nohighlight">\(a\)</span>.</p>

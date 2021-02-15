@@ -75,7 +75,9 @@
 \newcommand{\NL}{\textrm{NL}}
 \newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
 \newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
 ```
 Written by Benjamin Monmege

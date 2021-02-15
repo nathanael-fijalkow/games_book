@@ -63,7 +63,9 @@
 \newcommand{\NL}{\textrm{NL}}
 \newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
 \newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
 ```
 At the beginning of the chapter we described three families of algorithms: 
@@ -92,7 +94,7 @@ These two families are in a strong sense equivalent:
 *  An $(n,d)$-separating automaton induces an $(n,d/2)$-universal tree of the same size;
 *  An $(n,d/2)$-universal tree induces an $(n,d)$-separating automaton of the same size.
 
-:nonumber:
+
 
 *  An $(n,d)$-separating automaton induces an $(n,d/2)$-universal tree of the same size;
 *  An $(n,d/2)$-universal tree induces an $(n,d)$-separating automaton of the same size.

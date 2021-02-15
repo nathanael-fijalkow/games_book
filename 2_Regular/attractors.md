@@ -63,7 +63,9 @@
 \newcommand{\NL}{\textrm{NL}}
 \newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
 \newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
 ```
 Recall that the objective $\Reach$ requires that the colour $\Win$ appears at least once and 
@@ -73,7 +75,6 @@ so we write $v \in \Win$ when $\col(v) = \Win$, and similarly for $\Lose$.
 
 ```{prf:theorem} Positional determinacy and complexity of reachability games
 :label: 2-thm:reachability
-:nonumber:
 
 Reachability objectives are uniformly positionally determined for both players.
 There exists an algorithm for computing the winning regions of reachability games in linear time and space.
@@ -114,9 +115,12 @@ We note that this operator is monotonic when equipping the powerset of vertices 
 if $F \subseteq F'$ then $\PreE(F) \subseteq \PreE(F')$.
 Hence  {prf:ref}`1-thm:kleene` applies: this operator has a least fixed point 
 which we call the attractor of $\Win$ for Eve and write $\AttrE(\Win)$,
-and it is computed by the following sequence```{margin}
-For technical convenience we shift the sequence by one, ignoring the first term which is the empty se```:
-we let $\AttrE^0(\Win) = \Win$ and 
+and it is computed by the following sequence: we let $\AttrE^0(\Win) = \Win$ and
+
+```{margin}
+For technical convenience we shift the sequence by one, ignoring the first term which is the empty set```
+
+ 
 
 $$
 \AttrE^{k+1}(\Win) = \AttrE^{k}(\Win)\ \cup\ \PreE(\AttrE^{k}(\Win)).
@@ -139,7 +143,6 @@ The following lemma shows how the attractor yields a solution to reachability ga
 
 ```{prf:lemma} Characterisation of the winning region of reachability games using attractors
 :label: 2-lem:reachability
-:nonumber:
 
 Let $\game$ a reachability game.
 Then $\WE(\game) = \AttrE(\Win)$, and:
@@ -255,7 +258,6 @@ The notion of attractors induces a common way of constructing traps as stated in
 
 ```{prf:lemma} Attractors induce traps
 :label: 2-lem:attractors_trap
-:nonumber:
 
 Let $\Game$ a game and $F \subseteq V$ a subset of edges.
 Then $V \setminus \AttrE(F)$ is a trap for Eve and symmetrically $V \setminus \AttrA(F)$ is a trap for Adam.

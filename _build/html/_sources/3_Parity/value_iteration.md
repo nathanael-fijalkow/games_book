@@ -63,13 +63,14 @@
 \newcommand{\NL}{\textrm{NL}}
 \newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
 \newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
 ```
 
 ```{prf:theorem} NEEDS TITLE 3-thm:value_iteration_quasipoly
 :label: 3-thm:value_iteration_quasipoly
-:nonumber:
 
 There exists a value iteration algorithm for solving parity games in time 
 
@@ -146,8 +147,6 @@ A tree is $(n,h)$-**universal** if it embeds all trees of size $n$ and height $h
 :label: 
 A tree is $(n,h)$-**universal** if it embeds all trees of size $n$ and height $h$.
 
-:nonumber:
-
 A tree is $(n,h)$-**universal** if it embeds all trees of size $n$ and height $h$.
 
 ```
@@ -162,7 +161,6 @@ We present an inductive construction of a quasipolynomial universal tree.
 
 ```{prf:theorem} NEEDS TITLE 3-thm:universal_tree
 :label: 3-thm:universal_tree
-:nonumber:
 
 There exists an $(n,h)$-universal tree with size $f(n,h)$, where $\mu$ satisfies the following:
 
@@ -281,7 +279,6 @@ $$
 
 ```{prf:lemma} NEEDS TITLE 3-lem:properties_tree
 :label: 3-lem:properties_tree
-:nonumber:
 
 The relations $\vartriangleleft_p$ for $p \in [1,d]$ induced by a tree $t$ satisfy the following properties:
 
@@ -297,7 +294,6 @@ The following observation rephrases the notion of embeddings between trees using
 
 ```{prf:observation} NEEDS TITLE 3-fact:embedding
 :label: 3-fact:embedding
-:nonumber:
 
 Let $t,T$ be two trees.
 Then $t$ embeds into $T$ if and only if there exists a function $\mu : B_t \to B_T$
@@ -357,7 +353,6 @@ The following theorem is our first and main step towards proving the characteris
 
 ```{prf:theorem} NEEDS TITLE 3-thm:progress_measure
 :label: 3-thm:progress_measure
-:nonumber:
 
 Let $\Game$ be a parity game and $v$ a vertex.
 Then Eve wins from $v$ if and only if there exists a tree $t$ and a progress measure $\mu : V \to Y_t$ such that $\mu(v) \neq \bot$.
@@ -373,7 +368,6 @@ This is equivalent to asking whether all cycles reachable from $v$ are even, mea
 
 ```{prf:lemma} NEEDS TITLE 3-lem:progress_measure
 :label: 3-lem:progress_measure
-:nonumber:
 
 Let $G$ be a parity graph and $v$ a vertex.
 Then $G$ satisfies parity from $v$ if and only if 
@@ -489,7 +483,6 @@ This is where we use universal trees:
 
 ```{prf:corollary} NEEDS TITLE 3-cor:progress_measure
 :label: 3-cor:progress_measure
-:nonumber:
 
 Let $\Game$ be a parity game with $n$ vertices and priorities in $[1,d]$, and $v$ a vertex.
 Let $T$ be a $(n,d/2)$-universal tree.
@@ -561,8 +554,6 @@ the value iteration algorithm over the tree $T$ returns the maximal progress mea
 :label: 
 For all $(n, d/2)$-universal tree $T$, for all parity games $\game$ with $n$ vertices and priorities in $[1,d]$,
 the value iteration algorithm over the tree $T$ returns the maximal progress measure $\mu$ for $\game$ over $T$.
-
-:nonumber:
 
 For all $(n, d/2)$-universal tree $T$, for all parity games $\game$ with $n$ vertices and priorities in $[1,d]$,
 the value iteration algorithm over the tree $T$ returns the maximal progress measure $\mu$ for $\game$ over $T$.

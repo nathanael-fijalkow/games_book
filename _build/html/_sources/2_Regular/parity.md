@@ -63,7 +63,9 @@
 \newcommand{\NL}{\textrm{NL}}
 \newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
 \newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
 ```
 Recall that the parity objective extends B&uuml;chi and coB&uuml;chi objectives:
@@ -76,10 +78,13 @@ $$
 
 ```{prf:theorem} Positional determinacy and complexity of parity games
 :label: 2-thm:parity
-:nonumber:
 
-Parity objectives are uniformly positionally determined for both players```{margin}
-See \cref{2-rmk:finite_infinit``` for the case of infinite games.}.
+Parity objectives are uniformly positionally determined for both players
+
+```{margin}
+See \cref{2-rmk:finite_infinite```
+
+ for the case of infinite games.}.
 There exists an algorithm for computing the winning regions of parity games in exponential time,
 and more precisely of complexity $O(m n^d)$.
 The space complexity of $O(nd)$.
@@ -99,7 +104,6 @@ Identifying a colour and its set of vertices we write $d$ for the set of vertice
 
 ```{prf:lemma} Fixed point characterisation of the winning regions for parity games
 :label: 2-lem:zielonka_even
-:nonumber:
 
 Let $\Game$ be a parity game with priorities in $[1,d]$, and $d$ even.
 Let $\Game'$ be the subgame of $\Game$ induced by $V \setminus \AttrE(d)$.
@@ -158,7 +162,6 @@ We do not prove the following lemma as it is the exact dual of the previous lemm
 
 ```{prf:lemma} Dual fixed point characterisation of the winning regions for parity games
 :label: 2-lem:zielonka_odd
-:nonumber:
 
 Let $\Game$ be a parity game with priorities in $[1,d]$, and $d$ odd.
 Let $\Game'$ be the subgame of $\Game$ induced by $V \setminus \AttrA(d)$.

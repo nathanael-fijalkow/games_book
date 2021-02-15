@@ -473,10 +473,12 @@
 \newcommand{\NL}{\textrm{NL}}
 \newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
 \newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}\]</div>
 <div class="proof theorem admonition" id="3-thm:quasipolynomial_mcnaughton_zielonka_algorithm">
-<p class="admonition-title"><span>Theorem </span> (Quasipolynomial McNaughton Zielonka algorithm)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 68 </span> (Quasipolynomial McNaughton Zielonka algorithm)</p>
 <div class="theorem-content section" id="proof-content">
 <p>There exists a quasipolynomial time algorithm for solving parity games, and more specifically of complexity <span class="math notranslate nohighlight">\(n^{O(\log n)}\)</span>.</p>
 </div>
@@ -509,7 +511,7 @@ The base cases are when there is only one priority, in which case Eve wins every
 </div>
 <p>We need three simple facts about traps.</p>
 <div class="proof observation admonition" id="3-fact:traps">
-<p class="admonition-title"><span>Observation </span> (Facts about traps)</p>
+<p class="admonition-title"><span class="caption-number">Observation 69 </span> (Facts about traps)</p>
 <div class="observation-content section" id="proof-content">
 <ul class="simple">
 <li><p>Let <span class="math notranslate nohighlight">\(S\)</span> be a trap for Eve in the game <span class="math notranslate nohighlight">\(\Game\)</span> and <span class="math notranslate nohighlight">\(X\)</span> a set of vertices,
@@ -522,7 +524,7 @@ then <span class="math notranslate nohighlight">\(Z\)</span> is a trap for Eve i
 </div>
 </div><p>The following lemma implies the correctness of the algorithm.</p>
 <div class="proof lemma admonition" id="3-lem:correctness_quasipoly_zielonka">
-<p class="admonition-title"><span>Lemma </span> (Correctness of the quasipolynomial McNaughton Zielonka algorithm)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 70 </span> (Correctness of the quasipolynomial McNaughton Zielonka algorithm)</p>
 <div class="lemma-content section" id="proof-content">
 <ul class="simple">
 <li><p>For all dominions <span class="math notranslate nohighlight">\(S\)</span> for Eve, if <span class="math notranslate nohighlight">\(|S| \le s_{\mEve}\)</span>, then <span class="math notranslate nohighlight">\(S \subseteq \textsl{SolveE}(\Game,s_{\mEve},s_{\mAdam})\)</span>.</p></li>
@@ -530,7 +532,7 @@ then <span class="math notranslate nohighlight">\(Z\)</span> is a trap for Eve i
 </ul>
 </div>
 </div><p>Indeed, <span class="math notranslate nohighlight">\(\WE(\Game)\)</span> and <span class="math notranslate nohighlight">\(\WA(\Game)\)</span> are dominions for Eve and Adam in <span class="math notranslate nohighlight">\(\Game\)</span>,
-so  <a class="reference internal" href="#3-lem:correctness_quasipoly_zielonka">Lemma </a> implies that <span class="math notranslate nohighlight">\(\textsl{SolveE}(\Game,n,n) = \WE(\Game)\)</span>.</p>
+so  <a class="reference internal" href="#3-lem:correctness_quasipoly_zielonka">Lemma 70</a> implies that <span class="math notranslate nohighlight">\(\textsl{SolveE}(\Game,n,n) = \WE(\Game)\)</span>.</p>
 <div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
 <p>The proof is by induction on the number of priorities: indeed all recursive calls to <span class="math notranslate nohighlight">\(\textsl{SolveA}\)</span> are for games with one less priority.
@@ -614,7 +616,7 @@ Since the sequence <span class="math notranslate nohighlight">\((S_i)_i\)</span>
 for the parameter <span class="math notranslate nohighlight">\(\lfloor s_{\mAdam} / 2 \rfloor\)</span>: if <span class="math notranslate nohighlight">\(|Z_{i_{\ell}}| \le \lfloor s_{\mAdam} / 2 \rfloor\)</span>, then
 <span class="math notranslate nohighlight">\(Z_{i_{\ell}} \subseteq \textsl{SolveA}(\Game_{i_{\ell}},s_{\mEve},\lfloor s_{\mAdam} / 2 \rfloor)\)</span>,
 implying that <span class="math notranslate nohighlight">\(Z_{i_{\ell}}\)</span> is empty, which by the first property above implies that <span class="math notranslate nohighlight">\(S_{i_{\ell}}\)</span> is empty,
-thus <span class="math notranslate nohighlight">\(S_{i_{\infty}}\)</span> as well, proving the second item of  <a class="reference internal" href="#3-lem:correctness_quasipoly_zielonka">Lemma </a>.
+thus <span class="math notranslate nohighlight">\(S_{i_{\infty}}\)</span> as well, proving the second item of  <a class="reference internal" href="#3-lem:correctness_quasipoly_zielonka">Lemma 70</a>.
 Excluding this case, we then analyse the situation where
 <span class="math notranslate nohighlight">\(|Z_{i_{\ell}}| &gt; \lfloor s_{\mAdam} / 2 \rfloor\)</span>.</p>
 <p>We apply again the external inductive hypothesis to <span class="math notranslate nohighlight">\(Z_{i_\ell}\)</span>, but this time
@@ -641,7 +643,7 @@ for the parameter <span class="math notranslate nohighlight">\(\lfloor s_{\mAdam
 The premise holds because <span class="math notranslate nohighlight">\(|S_{i_\ell + 1}| \le \lfloor s_{\mAdam} / 2 \rfloor\)</span>, the sequence <span class="math notranslate nohighlight">\((S_i)_i\)</span> is non-increasing,
 <span class="math notranslate nohighlight">\(i_\ell &lt; i_\infty\)</span>, and <span class="math notranslate nohighlight">\(Z_{i_{\infty}} \subseteq S_{i_\infty}\)</span>.
 Hence <span class="math notranslate nohighlight">\(Z_{i_\infty}\)</span> is empty. Thanks to the first property above for <span class="math notranslate nohighlight">\(Z_i\)</span>, this implies that <span class="math notranslate nohighlight">\(S_{i_\infty}\)</span> is empty.
-This finishes the proof of the second item of  <a class="reference internal" href="#3-lem:correctness_quasipoly_zielonka">Lemma </a>.</p>
+This finishes the proof of the second item of  <a class="reference internal" href="#3-lem:correctness_quasipoly_zielonka">Lemma 70</a>.</p>
 </div>
 <p>We obtain an algorithm for computing the winning regions of parity games using <span class="math notranslate nohighlight">\(\textsl{SolveE}(\Game,n,n)\)</span>,
 where <span class="math notranslate nohighlight">\(\Game\)</span> is a parity game with <span class="math notranslate nohighlight">\(n\)</span> vertices.</p>

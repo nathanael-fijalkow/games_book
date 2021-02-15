@@ -542,7 +542,9 @@
 \newcommand{\NL}{\textrm{NL}}
 \newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
 \newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}\]</div>
 <p>The first model we define is the common denominator of most models studied in this book:</p>
 <ul class="simple">
@@ -700,7 +702,7 @@ or partial colouring functions.</p>
 <h2>Games<a class="headerlink" href="#games" title="Permalink to this headline">¶</a></h2>
 <p>We can now give the following definitions.</p>
 <div class="proof definition admonition" id="Games">
-<p class="admonition-title"><span>Definition </span> (NEEDS LABEL Games)</p>
+<p class="admonition-title"><span class="caption-number">Definition 1 </span> (NEEDS LABEL Games)</p>
 <div class="definition-content section" id="proof-content">
 <ul class="simple">
 <li><p>A graph is a tuple <span class="math notranslate nohighlight">\(G = (V,E)\)</span> where <span class="math notranslate nohighlight">\(V\)</span> is a set of vertices
@@ -754,7 +756,7 @@ A vertex in <span class="math notranslate nohighlight">\(\WE(\game)\)</span> is 
 The analogous notation for Adam is <span class="math notranslate nohighlight">\(\WA(\game)\)</span>.</p>
 <p>We say that a strategy is optimal if it is winning from all vertices in <span class="math notranslate nohighlight">\(\WE(\game)\)</span>.</p>
 <div class="proof observation admonition" id="1-fact:winning_regions_disjoint">
-<p class="admonition-title"><span>Observation </span> (Winning regions are disjoint)</p>
+<p class="admonition-title"><span class="caption-number">Observation 2 </span> (Winning regions are disjoint)</p>
 <div class="observation-content section" id="proof-content">
 <p>For all qualitative games <span class="math notranslate nohighlight">\(\game\)</span> we have <span class="math notranslate nohighlight">\(\WE(\game) \cap \WA(\game) = \emptyset\)</span>.</p>
 </div>
@@ -772,7 +774,7 @@ hence it does not fit in the definitions given so far), where neither player has
 <p>Whenever <span class="math notranslate nohighlight">\(\WE(\game) \cup \WA(\game) = V\)</span>, we say that the game is determined.
 Being determined can be understood as follows: the outcome can be determined before playing assuming both players play optimally since one of them can ensure to win whatever is the strategy of the opponent.</p>
 <div class="proof theorem admonition" id="1-thm:borel_determinacy">
-<p class="admonition-title"><span>Theorem </span> (Borel determinacy)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 3 </span> (Borel determinacy)</p>
 <div class="theorem-content section" id="proof-content">
 <p>Qualitative games with Borel conditions are determined.</p>
 </div>
@@ -851,7 +853,7 @@ If <span class="math notranslate nohighlight">\(\ValueE^{\game}(v)\)</span> is f
 \inf_{\tau} \sup_{\sigma} f(\play_{\sigma,\tau}^{v}).
 \]</div>
 <div class="proof observation admonition" id="1-fact:comparaison_values_eve_adam">
-<p class="admonition-title"><span>Observation </span> (Comparison of values for Eve and Adam)</p>
+<p class="admonition-title"><span class="caption-number">Observation 4 </span> (Comparison of values for Eve and Adam)</p>
 <div class="observation-content section" id="proof-content">
 <p>For all quantitative games <span class="math notranslate nohighlight">\(\game\)</span> and vertex <span class="math notranslate nohighlight">\(v\)</span> we have <span class="math notranslate nohighlight">\(\ValueE^{\game}(v) \le \ValueA^{\game}(v)\)</span>.</p>
 </div>
@@ -870,7 +872,7 @@ Similarly as for the qualitative case, being determined can be understood as fol
 <p>We say that a quantitative objective <span class="math notranslate nohighlight">\(f : C^\omega \to \Rinfty\)</span> is Borel if for all <span class="math notranslate nohighlight">\(x \in \R\)</span>,
 the qualitative objective <span class="math notranslate nohighlight">\(f_{\ge x} \subseteq C^\omega\)</span> is a Borel set.</p>
 <div class="proof corollary admonition" id="1-cor:borel_determinacy">
-<p class="admonition-title"><span>Corollary </span> (Borel determinacy for quantitative games)</p>
+<p class="admonition-title"><span class="caption-number">Corollary 5 </span> (Borel determinacy for quantitative games)</p>
 <div class="corollary-content section" id="proof-content">
 <p>Quantitative games with Borel conditions are determined, meaning that
 for all quantitative games <span class="math notranslate nohighlight">\(\game\)</span> we have <span class="math notranslate nohighlight">\(\ValueE^{\game} = \ValueA^{\game}\)</span>.</p>
@@ -881,7 +883,7 @@ for all quantitative games <span class="math notranslate nohighlight">\(\game\)<
 Assume <span class="math notranslate nohighlight">\(\ValueE^{\game}(v) = -\infty\)</span> and let <span class="math notranslate nohighlight">\(r\)</span> be a real number.
 (The argument is actually the same as for the finite case but for the sake of clarity we treat them independently.)
 We consider <span class="math notranslate nohighlight">\(f_{\ge r}\)</span>.
-By definition, this a qualitative Borel condition, so  <a class="reference internal" href="#1-thm:borel_determinacy">Theorem </a> implies that it is determined.
+By definition, this a qualitative Borel condition, so  <a class="reference internal" href="#1-thm:borel_determinacy">Theorem 3</a> implies that it is determined.
 Since Eve cannot have a winning strategy for <span class="math notranslate nohighlight">\(f_{\ge r}\)</span>, as this would contradict the definition of <span class="math notranslate nohighlight">\(\ValueE^{\game}(v)\)</span>,
 this implies that Adam has a winning strategy for <span class="math notranslate nohighlight">\(f_{\ge r}\)</span>,
 meaning a strategy <span class="math notranslate nohighlight">\(\tau\)</span> such that every play <span class="math notranslate nohighlight">\(\play\)</span> starting from <span class="math notranslate nohighlight">\(v\)</span> consistent with <span class="math notranslate nohighlight">\(\tau\)</span> satisfy <span class="math notranslate nohighlight">\(f(\play) &lt; r\)</span>.
@@ -889,7 +891,7 @@ In other words, <span class="math notranslate nohighlight">\(\ValueA^{\tau}(v) =
 Since this is true for any real number <span class="math notranslate nohighlight">\(r\)</span>, this implies <span class="math notranslate nohighlight">\(\ValueA^{\game}(v) = -\infty\)</span>.</p>
 <p>Let us now assume that <span class="math notranslate nohighlight">\(x = \ValueE^{\game}(v)\)</span> is finite and let <span class="math notranslate nohighlight">\(\varepsilon &gt; 0\)</span>.
 We consider <span class="math notranslate nohighlight">\(f_{\ge x + \varepsilon}\)</span>.
-By definition, this a qualitative Borel condition, so  <a class="reference internal" href="#1-thm:borel_determinacy">Theorem </a> implies that it is determined.
+By definition, this a qualitative Borel condition, so  <a class="reference internal" href="#1-thm:borel_determinacy">Theorem 3</a> implies that it is determined.
 Since Eve cannot have a winning strategy for <span class="math notranslate nohighlight">\(f_{\ge x + \varepsilon}\)</span>, as this would contradict the definition of <span class="math notranslate nohighlight">\(\ValueE^{\game}(v)\)</span>,
 this implies that Adam has a winning strategy for <span class="math notranslate nohighlight">\(f_{\ge x + \varepsilon}\)</span>,
 meaning a strategy <span class="math notranslate nohighlight">\(\tau\)</span> such that every play <span class="math notranslate nohighlight">\(\play\)</span> starting from <span class="math notranslate nohighlight">\(v\)</span> consistent with <span class="math notranslate nohighlight">\(\tau\)</span> satisfy <span class="math notranslate nohighlight">\(f(\play) &lt; x + \varepsilon\)</span>.
@@ -930,7 +932,7 @@ Especially in this case, it may be enough to approximate the value, which is ind
 by repeatingly applying an algorithm solving the value problem one can approximate the value to any given precision,
 using a binary search.</p>
 <div class="proof lemma admonition" id="1-lem:binary_search_computing_value">
-<p class="admonition-title"><span>Lemma </span> (Binary search for computing the value)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 6 </span> (Binary search for computing the value)</p>
 <div class="lemma-content section" id="proof-content">
 <p>If there exists an algorithm <span class="math notranslate nohighlight">\(A\)</span> for solving the value problem of a class of games,
 then there exists an algorithm for approximating the value of games in this class within precision <span class="math notranslate nohighlight">\(\varepsilon\)</span>
@@ -969,7 +971,7 @@ in other words whether a sequence satisfies <span class="math notranslate nohigh
 \sigma_{\mid \play}(\play') = \sigma(\play \play').
 \]</div>
 <div class="proof observation admonition" id="1-fact:winning_prefix_independent_qualitative">
-<p class="admonition-title"><span>Observation </span> (Winning for prefix independent objectives)</p>
+<p class="admonition-title"><span class="caption-number">Observation 7 </span> (Winning for prefix independent objectives)</p>
 <div class="observation-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\Game\)</span> be a qualitative game with objective <span class="math notranslate nohighlight">\(\Omega\)</span> closed under removing prefixes,
 <span class="math notranslate nohighlight">\(\sigma\)</span> a winning strategy from <span class="math notranslate nohighlight">\(v\)</span>,
@@ -984,7 +986,7 @@ implying that it is winning, and since <span class="math notranslate nohighlight
 the play <span class="math notranslate nohighlight">\(\play'\)</span> is winning. Thus <span class="math notranslate nohighlight">\(\sigma_{\mid \play}\)</span> is winning from <span class="math notranslate nohighlight">\(v'\)</span>.</p>
 </div>
 <div class="proof corollary admonition" id="1-cor:reachable_vertices_prefix_independent">
-<p class="admonition-title"><span>Corollary </span> (Reachable vertices of a winning strategy for prefix independent objectives)</p>
+<p class="admonition-title"><span class="caption-number">Corollary 8 </span> (Reachable vertices of a winning strategy for prefix independent objectives)</p>
 <div class="corollary-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\Game\)</span> be a qualitative game with objective <span class="math notranslate nohighlight">\(\Omega\)</span> closed under removing prefixes and <span class="math notranslate nohighlight">\(\sigma\)</span> a winning strategy from <span class="math notranslate nohighlight">\(v\)</span>.
 Then all vertices reachable from <span class="math notranslate nohighlight">\(v\)</span> by a play consistent with <span class="math notranslate nohighlight">\(\sigma\)</span> are winning.</p>
@@ -1000,7 +1002,7 @@ we have <span class="math notranslate nohighlight">\(\Phi(\rho') \ge \Phi(\rho \
 </ul>
 <p>The fact above extends to quantitative objectives with the same proof.</p>
 <div class="proof observation admonition" id="1-fact:winning_prefix_independent_quantitative">
-<p class="admonition-title"><span>Observation </span> (Winning for prefix independent objectives, quantitative case)</p>
+<p class="admonition-title"><span class="caption-number">Observation 9 </span> (Winning for prefix independent objectives, quantitative case)</p>
 <div class="observation-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\Game\)</span> be a quantitative game with objective <span class="math notranslate nohighlight">\(\Phi\)</span> monotonic under removing prefixes,
 <span class="math notranslate nohighlight">\(\sigma\)</span> a strategy ensuring <span class="math notranslate nohighlight">\(x\)</span> from <span class="math notranslate nohighlight">\(v\)</span>, and <span class="math notranslate nohighlight">\(\play\)</span> a finite play consistent with <span class="math notranslate nohighlight">\(\sigma\)</span> starting from <span class="math notranslate nohighlight">\(v\)</span>.
@@ -1014,7 +1016,7 @@ implying that <span class="math notranslate nohighlight">\(\Phi(\play \play') \g
 this implies that <span class="math notranslate nohighlight">\(\Phi(\play') \ge x\)</span>. Thus <span class="math notranslate nohighlight">\(\sigma_{\mid \play}\)</span> ensures <span class="math notranslate nohighlight">\(x\)</span> from <span class="math notranslate nohighlight">\(v'\)</span>.</p>
 </div>
 <div class="proof corollary admonition" id="1-cor:comparison_values_along_play">
-<p class="admonition-title"><span>Corollary </span> (Comparison of values along a play)</p>
+<p class="admonition-title"><span class="caption-number">Corollary 10 </span> (Comparison of values along a play)</p>
 <div class="corollary-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\Game\)</span> be a quantitative game with objective <span class="math notranslate nohighlight">\(\Phi\)</span> monotonic under removing prefixes and <span class="math notranslate nohighlight">\(\sigma\)</span> an optimal strategy from <span class="math notranslate nohighlight">\(v\)</span>.
 Then for all vertices <span class="math notranslate nohighlight">\(v'\)</span> reachable from <span class="math notranslate nohighlight">\(v\)</span> by a play consistent with <span class="math notranslate nohighlight">\(\sigma\)</span> we have <span class="math notranslate nohighlight">\(\val^{\game}(v) \le \val^{\game}(v')\)</span>.</p>

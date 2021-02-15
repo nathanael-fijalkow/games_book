@@ -58,7 +58,9 @@
 \newcommand{\NL}{\textrm{NL}}
 \newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
 \newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
 ```
 The first model we define is the common denominator of most models studied in this book:
@@ -238,7 +240,6 @@ We can now give the following definitions.
 
 ```{prf:definition} NEEDS LABEL Games
 :label: Games
-:nonumber:
 
 *  A graph is a tuple $G = (V,E)$ where $V$ is a set of vertices
 and $E$ is a set of edges.
@@ -308,7 +309,6 @@ We say that a strategy is optimal if it is winning from all vertices in $\WE(\ga
 
 ```{prf:observation} Winning regions are disjoint
 :label: 1-fact:winning_regions_disjoint
-:nonumber:
 
 For all qualitative games $\game$ we have $\WE(\game) \cap \WA(\game) = \emptyset$.
 
@@ -334,7 +334,6 @@ Being determined can be understood as follows: the outcome can be determined bef
 
 ```{prf:theorem} Borel determinacy
 :label: 1-thm:borel_determinacy
-:nonumber:
 
 Qualitative games with Borel conditions are determined.
 
@@ -439,7 +438,6 @@ $$
 
 ```{prf:observation} Comparison of values for Eve and Adam
 :label: 1-fact:comparaison_values_eve_adam
-:nonumber:
 
 For all quantitative games $\game$ and vertex $v$ we have $\ValueE^{\game}(v) \le \ValueA^{\game}(v)$.
 
@@ -467,7 +465,6 @@ the qualitative objective $f_{\ge x} \subseteq C^\omega$ is a Borel set.
 
 ```{prf:corollary} Borel determinacy for quantitative games
 :label: 1-cor:borel_determinacy
-:nonumber:
 
 Quantitative games with Borel conditions are determined, meaning that
 for all quantitative games $\game$ we have $\ValueE^{\game} = \ValueA^{\game}$.
@@ -547,7 +544,6 @@ using a binary search.
 
 ```{prf:lemma} Binary search for computing the value
 :label: 1-lem:binary_search_computing_value
-:nonumber:
 
 If there exists an algorithm $A$ for solving the value problem of a class of games, 
 then there exists an algorithm for approximating the value of games in this class within precision $\varepsilon$ 
@@ -598,7 +594,6 @@ $$
 
 ```{prf:observation} Winning for prefix independent objectives
 :label: 1-fact:winning_prefix_independent_qualitative
-:nonumber:
 
 Let $\Game$ be a qualitative game with objective $\Omega$ closed under removing prefixes,
 $\sigma$ a winning strategy from $v$,
@@ -620,7 +615,6 @@ the play $\play'$ is winning. Thus $\sigma_{\mid \play}$ is winning from $v'$.
 
 ```{prf:corollary} Reachable vertices of a winning strategy for prefix independent objectives
 :label: 1-cor:reachable_vertices_prefix_independent
-:nonumber:
 
 Let $\Game$ be a qualitative game with objective $\Omega$ closed under removing prefixes and $\sigma$ a winning strategy from $v$.
 Then all vertices reachable from $v$ by a play consistent with $\sigma$ are winning.
@@ -641,7 +635,6 @@ The fact above extends to quantitative objectives with the same proof.
 
 ```{prf:observation} Winning for prefix independent objectives, quantitative case
 :label: 1-fact:winning_prefix_independent_quantitative
-:nonumber:
 
 Let $\Game$ be a quantitative game with objective $\Phi$ monotonic under removing prefixes,
 $\sigma$ a strategy ensuring $x$ from $v$, and $\play$ a finite play consistent with $\sigma$ starting from $v$.
@@ -662,7 +655,6 @@ this implies that $\Phi(\play') \ge x$. Thus $\sigma_{\mid \play}$ ensures $x$ f
 
 ```{prf:corollary} Comparison of values along a play
 :label: 1-cor:comparison_values_along_play
-:nonumber:
 
 Let $\Game$ be a quantitative game with objective $\Phi$ monotonic under removing prefixes and $\sigma$ an optimal strategy from $v$.
 Then for all vertices $v'$ reachable from $v$ by a play consistent with $\sigma$ we have $\val^{\game}(v) \le \val^{\game}(v')$.

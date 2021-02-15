@@ -69,7 +69,9 @@
 \newcommand{\NL}{\textrm{NL}}
 \newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
 \newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
 ```
 From a practical point of view, the modelling of a real-world
@@ -161,7 +163,6 @@ $\vec x$ afterwards: for all $v\in V$, we thus let
 
 ```{prf:theorem} NEEDS TITLE 4-thm:discounted
 :label: 4-thm:discounted
-:nonumber:
 
   Discounted payoff games are positionally determined.
 
@@ -227,7 +228,6 @@ then obtain the theorem:
 
 ```{prf:theorem} NEEDS TITLE 4-thm:disc-up
 :label: 4-thm:disc-up
-:nonumber:
 
   Discounted payoff games with integer costs and rational discount
   factor $\lambda$ can be solved in $\UP\cap\coUP$.
@@ -370,7 +370,6 @@ $$F_\sigma(\vec x)_v = \min_{(v,v')\in E}[(1-\lambda)c(v,v')+\lambda x_{v'}].$$
 
 ```{prf:proposition} NEEDS TITLE 4-lem:one-player-DP
 :label: 4-lem:one-player-DP
-:nonumber:
 
   We can compute in polynomial time the optimal value of a one-player
   discounted payoff game, by finding the unique fixed point
@@ -492,7 +491,6 @@ The strategy improvement algorithm for discounted payoff games.
 
 ```{prf:theorem} NEEDS TITLE 4-thm:DP-strategy-improvement-correctness
 :label: 4-thm:DP-strategy-improvement-correctness
-:nonumber:
 
   Strategy improvement algorithm computes the value of the game, as
   well as a positional optimal strategy for Eve, in exponential time. 
@@ -594,7 +592,6 @@ manner as for~\cref{4-cor:rational-MP} in the mean payoff setting:
 
 ```{prf:lemma} Upper bound on rational values in mean payoff games
 :label: 4-lem:rational-discounted
-:nonumber:
 
   If the arena has integer costs and $\lambda=\frac a b\in (0,1)$,
   then for all vertices $v\in V$, $D\times \Value(v)\in \Z$, with
@@ -645,7 +642,6 @@ absolute values.
 
 ```{prf:lemma} NEEDS TITLE 4-lem:number-steps-VI-discounted
 :label: 4-lem:number-steps-VI-discounted
-:nonumber:
 
   Let $K\in \N$ at most
   $\frac{1}{-\log_2\lambda} \left(\frac{n(n+3)}{2}\log_2b +
@@ -685,7 +681,6 @@ The value iteration algorithm for discounted payoff games.
 
 ```{prf:theorem} NEEDS TITLE 4-thm:DP-value-iteration
 :label: 4-thm:DP-value-iteration
-:nonumber:
 
   Value iteration algorithm computes in pseudopolynomial time the
   value vector of a given discounted payoff game with only rational
@@ -714,7 +709,6 @@ seen in Section {ref}`1-sec:memory`:
 
 ```{prf:theorem} NEEDS TITLE 4-thm:DP-strategies
 :label: 4-thm:DP-strategies
-:nonumber:
 
   In a discounted payoff game with integer costs and rational discount
   factor $\lambda = a/b$, optimal strategies for both players can be
@@ -753,7 +747,6 @@ approximation:
 
 ```{prf:theorem} NEEDS TITLE 4-thm:MP-Zwick-Paterson
 :label: 4-thm:MP-Zwick-Paterson
-:nonumber:
 
   Let $\arena$ be an arena with integer costs. Let
   $\lambda\in(0,1)$. We let $\Value(v)$ be the value of vertex $v$ in
@@ -875,7 +868,6 @@ mean payoff games. More precisely,
 
 ```{prf:theorem} NEEDS TITLE 4-thm:MP-direct-value-iteration
 :label: 4-thm:MP-direct-value-iteration
-:nonumber:
 
   The direct value iteration algorithm computes the values of a
   mean payoff game in complexity $O(mn^3W)$.
@@ -892,7 +884,6 @@ before:
 
 ```{prf:corollary} NEEDS TITLE 4-col:UP
 :label: 4-col:UP
-:nonumber:
 
   Deciding the winner (with respect to a threshold) for mean payoff
   games, and deciding the winner for parity games, can be done in

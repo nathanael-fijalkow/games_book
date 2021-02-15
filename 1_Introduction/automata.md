@@ -58,7 +58,9 @@
 \newcommand{\NL}{\textrm{NL}}
 \newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
 \newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
 ```
 The study of games is deeply intertwined with automata over infinite words and trees.
@@ -68,7 +70,6 @@ for a survey on automata theory over infinite objects (words and trees) and logi
 
 ```{prf:definition} Automata
 :label: 1-def:automata
-:nonumber:
 
 Let $\Sigma$ be an alphabet.
 An automaton over the alphabet $\Sigma$ is a tuple $\Automaton = (Q,q_0,\Delta,A)$ where:
@@ -115,7 +116,6 @@ As for games the objective qualifies the automaton, so we speak of a parity auto
 
 ```{prf:theorem} Omega-regular languages
 :label: 1-thm:omega_regular_languages
-:nonumber:
 
 Non-deterministic B&uuml;chi, CoB&uuml;chi, parity, and deterministic parity automata define the same class of languages called $\omega$-regular languages.
 

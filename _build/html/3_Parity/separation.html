@@ -492,7 +492,9 @@
 \newcommand{\NL}{\textrm{NL}}
 \newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
 \newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}\]</div>
 <div class="section" id="the-separation-framework">
 <h2>The separation framework<a class="headerlink" href="#the-separation-framework" title="Permalink to this headline">¶</a></h2>
@@ -501,7 +503,7 @@ Section <a class="reference internal" href="../1_Introduction/reductions.html#se
 in the case at hand parity reduces to safety if there exists a deterministic automaton <span class="math notranslate nohighlight">\(\Automaton\)</span> over the alphabet <span class="math notranslate nohighlight">\([1,d]\)</span>
 with acceptance objective <span class="math notranslate nohighlight">\(\Safe\)</span> and defining <span class="math notranslate nohighlight">\(\Parity([1,d])\)</span>,
 meaning <span class="math notranslate nohighlight">\(L(\Automaton) = \Parity([1,d])\)</span>.
-With such an automaton in hand <a class="reference internal" href="../1_Introduction/reductions.html#1-lem:automata_reduction">Lemma </a> implies the following reduction:
+With such an automaton in hand <a class="reference internal" href="../1_Introduction/reductions.html#1-lem:automata_reduction">Lemma 18</a> implies the following reduction:
 from a parity game <span class="math notranslate nohighlight">\(\game\)</span> construct the safety game <span class="math notranslate nohighlight">\(\game \times \Automaton\)</span> satisfying that
 Eve has a winning strategy in <span class="math notranslate nohighlight">\(\Game\)</span> from <span class="math notranslate nohighlight">\(v_0\)</span> if and only if she has a winning strategy in <span class="math notranslate nohighlight">\(\Game \times \Automaton\)</span> from <span class="math notranslate nohighlight">\((v_0,q_0)\)</span>.</p>
 <p>Unfortunately, it can be shown (using a topological argument) that there is no such automaton.
@@ -534,7 +536,7 @@ and that a strategy <span class="math notranslate nohighlight">\(\sigma\)</span>
 <p>We say that an automaton reads, accepts, or rejects a path <span class="math notranslate nohighlight">\(\pi\)</span> in a parity graph,
 which is an abuse because what the automaton reads is the induced sequence of colours <span class="math notranslate nohighlight">\(\col(\pi)\)</span>.</p>
 <div class="proof definition admonition" id="3-def:separating_automata">
-<p class="admonition-title"><span>Definition </span> (Separating automata)</p>
+<p class="admonition-title"><span class="caption-number">Definition 71 </span> (Separating automata)</p>
 <div class="definition-content section" id="proof-content">
 <p>An automaton <span class="math notranslate nohighlight">\(\Automaton\)</span> is <span class="math notranslate nohighlight">\((n,d)\)</span>-<strong>separating</strong> if the two following properties hold.</p>
 <ul class="simple">
@@ -561,7 +563,7 @@ as <span class="math notranslate nohighlight">\(\Parity_{\mid n} \subseteq L(\Au
 </div>
 <p>The following lemma shows the definition of separating automata in action.</p>
 <div class="proof lemma admonition" id="3-lem:separating_automata">
-<p class="admonition-title"><span>Lemma </span> (Game equivalence using separating automata)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 72 </span> (Game equivalence using separating automata)</p>
 <div class="lemma-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\Automaton\)</span> an <span class="math notranslate nohighlight">\((n,d)\)</span>-separating automaton.
 Then for all parity games <span class="math notranslate nohighlight">\(\game = (\arena,\Parity[\col])\)</span> with <span class="math notranslate nohighlight">\(n\)</span> vertices and priorities in <span class="math notranslate nohighlight">\([1,d]\)</span>,
@@ -597,13 +599,13 @@ The arena is <span class="math notranslate nohighlight">\(\arena \times \Automat
 Using the convention for safety automata that the rejecting transitions are precisely those leading to the rejecting state <span class="math notranslate nohighlight">\(\bot\)</span>,
 the colouring function is defined by <span class="math notranslate nohighlight">\(\col'(v,q) = \Win\)</span> if <span class="math notranslate nohighlight">\(q \neq \bot\)</span>, and <span class="math notranslate nohighlight">\(\Lose\)</span> otherwise.</p>
 <div class="proof observation admonition" id="3-fact:reduction">
-<p class="admonition-title"><span>Observation </span> (Reduction to safety games using separating automata)</p>
+<p class="admonition-title"><span class="caption-number">Observation 73 </span> (Reduction to safety games using separating automata)</p>
 <div class="observation-content section" id="proof-content">
 <p>Eve has a winning strategy in <span class="math notranslate nohighlight">\(\game\)</span> from <span class="math notranslate nohighlight">\(v_0\)</span> if and only if
 she has a winning strategy in <span class="math notranslate nohighlight">\(\Game \times \Automaton\)</span> from <span class="math notranslate nohighlight">\((v_0,q_0)\)</span>.</p>
 </div>
 </div><div class="proof theorem admonition" id="3-thm:algorithm_separating_automata">
-<p class="admonition-title"><span>Theorem </span> (Algorithm using separating automata)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 74 </span> (Algorithm using separating automata)</p>
 <div class="theorem-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\Automaton\)</span> an <span class="math notranslate nohighlight">\((n,d)\)</span>-separating automaton.
 There exists an algorithm for solving parity games of complexity <span class="math notranslate nohighlight">\(O(m \cdot |\Automaton|)\)</span>.</p>
@@ -611,9 +613,9 @@ There exists an algorithm for solving parity games of complexity <span class="ma
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
 <p>Let <span class="math notranslate nohighlight">\(\Game\)</span> a parity game with <span class="math notranslate nohighlight">\(n\)</span> vertices and priorities in <span class="math notranslate nohighlight">\([1,d]\)</span>.
-Thanks to <a class="reference internal" href="#3-lem:separating_automata">Lemma </a> and \cref{3-fact:reduction}, solving <span class="math notranslate nohighlight">\(\Game\)</span>
+Thanks to <a class="reference internal" href="#3-lem:separating_automata">Lemma 72</a> and \cref{3-fact:reduction}, solving <span class="math notranslate nohighlight">\(\Game\)</span>
 is equivalent to solving the safety game <span class="math notranslate nohighlight">\(\Game \times \Automaton\)</span>.
-Thanks to <a class="reference internal" href="../2_Regular/attractors.html#2-thm:reachability">Theorem </a> solving safety games can be done in time linear in the number of edges.
+Thanks to <a class="reference internal" href="../2_Regular/attractors.html#2-thm:reachability">Theorem 33</a> solving safety games can be done in time linear in the number of edges.
 This yields an algorithm for solving parity games whose running time is <span class="math notranslate nohighlight">\(O(m \cdot |\Automaton|)\)</span>.</p>
 </div>
 <p>In the remainder of this section we give a construction for a quasipolynomial <span class="math notranslate nohighlight">\((n,d)\)</span>-separating automaton.</p>
@@ -621,7 +623,7 @@ This yields an algorithm for solving parity games whose running time is <span cl
 <div class="section" id="the-original-separating-automaton">
 <h2>The original separating automaton<a class="headerlink" href="#the-original-separating-automaton" title="Permalink to this headline">¶</a></h2>
 <div class="proof theorem admonition" id="3-thm:original_separating_automaton">
-<p class="admonition-title"><span>Theorem </span> (The original separating automaton)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 75 </span> (The original separating automaton)</p>
 <div class="theorem-content section" id="proof-content">
 <p>There exists an <span class="math notranslate nohighlight">\((n,d)\)</span>-separating automaton of size <span class="math notranslate nohighlight">\(n^{O(\log d)}\)</span>,
 inducing an algorithm for solving parity games of complexity <span class="math notranslate nohighlight">\(n^{O(\log d)}\)</span>.</p>
@@ -688,7 +690,7 @@ priorities that come after it.</p>
 <p>The relationship between <span class="math notranslate nohighlight">\(i\)</span>-sequences and parity games is explained by the
 following lemma.</p>
 <div class="proof lemma admonition" id="3-lem:isequencewin">
-<p class="admonition-title"><span>Lemma </span> (Completeness for the separating automaton)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 76 </span> (Completeness for the separating automaton)</p>
 <div class="lemma-content section" id="proof-content">
 <p>Suppose that Adam and Eve play positional strategies in the parity game,
 and let <span class="math notranslate nohighlight">\(\pi\)</span> the resulting play.</p>
@@ -918,7 +920,7 @@ priority at a time, using the update rule that we have described.</p>
 to decide the winner of a parity game. The following lemma states that a record
 will never falsely claim that an <span class="math notranslate nohighlight">\(i\)</span>-sequence has occurred.</p>
 <div class="proof lemma admonition" id="3-lem:correctness_separating_automata">
-<p class="admonition-title"><span>Lemma </span> (Correctness for the separating automaton)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 77 </span> (Correctness for the separating automaton)</p>
 <div class="lemma-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(b_k, b_{k-1}, \dots, b_0\)</span> the record for a sequence of priorities <span class="math notranslate nohighlight">\(\pi\)</span>.
 If <span class="math notranslate nohighlight">\(b_i \ne \siblank\)</span>, then <span class="math notranslate nohighlight">\(\pi\)</span> contains an <span class="math notranslate nohighlight">\(i\)</span>-sequence.</p>
@@ -967,7 +969,7 @@ However, the proof is somewhat tedious, and this statement is actually stronger
 than what we need. To argue that the record can determine the winner of a parity
 game, the following weaker lemma suffices.</p>
 <div class="proof lemma admonition" id="3-lem:weaker_correctness_separating_automaton">
-<p class="admonition-title"><span>Lemma </span> (Weaker correctness for the separating automaton)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 78 </span> (Weaker correctness for the separating automaton)</p>
 <div class="lemma-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\pi\)</span> an infinite play that is winning for Eve. For all <span class="math notranslate nohighlight">\(k\)</span>, there exists
 a prefix of <span class="math notranslate nohighlight">\(\pi\)</span> such that <span class="math notranslate nohighlight">\(b_k \ne \siblank\)</span>.</p>
@@ -991,9 +993,9 @@ priority is <span class="math notranslate nohighlight">\(p\)</span>. Thus, after
 <span class="math notranslate nohighlight">\(b_k = p \ne \siblank\)</span>, if we have not done so already.</p>
 </div>
 <p>Hence, if Eve wins the parity game, then she has a strategy to eventually ensure
-that <span class="math notranslate nohighlight">\(b_k \ne \siblank\)</span>. Combining the two lemmas above, with <a class="reference internal" href="#3-lem:isequencewin">Lemma </a> gives the following corollary.</p>
+that <span class="math notranslate nohighlight">\(b_k \ne \siblank\)</span>. Combining the two lemmas above, with <a class="reference internal" href="#3-lem:isequencewin">Lemma 76</a> gives the following corollary.</p>
 <div class="proof corollary admonition" id="3-cor:correctness_reduction_separating_automaton">
-<p class="admonition-title"><span>Corollary </span> (Correctness of the reduction for the separating automaton)</p>
+<p class="admonition-title"><span class="caption-number">Corollary 79 </span> (Correctness of the reduction for the separating automaton)</p>
 <div class="corollary-content section" id="proof-content">
 <p>Suppose that we monitor the play of a parity game with a record <span class="math notranslate nohighlight">\(b_{\lceil \log
 n \rceil}, \dots, b_0\)</span>. Eve has a strategy that ensures <span class="math notranslate nohighlight">\(b_{\lceil \log n

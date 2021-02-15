@@ -102,14 +102,15 @@
 \newcommand{\NL}{\textrm{NL}}
 \newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
 \newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
 ```
 As shown in the previous section, the optimal solution of any of the programs $\lpmp$, $\lpmpdual$ gives us an upper bound on the optimal value. In this sub-section we show that in strongly connected MDPs: a) a value of every vertex is the same; b) from a solution of $\lpmp$ one can extract a memoryless deterministic strategy $\sigma$ whose expected mean-payoff is well defined (i.e., the preconditions of  {prf:ref}`5-lem:limit-defined` are satisfied)) and equal to the objective value of the solution. Moreover, if the solution in question is optimal, then $ \sigma $ is optimal for both $\playPay$- and $\stepPay$-semantics.
 
 ```{prf:definition} NEEDS TITLE 5-def:scc-mdp
 :label: 5-def:scc-mdp
-:nonumber:
 
 An MDP is **strongly connected** if for each pair of vertices $u,v$ there exists a strategy which, when starting in $u$, reaches $v$ with a positive probability. 
 
@@ -139,8 +140,6 @@ Let $\invdist$ be an invariant distribution and $v$ a vertex such that $\invdist
 :label: 
 \label{5-lem:MC-inv-rec}
 Let $\invdist$ be an invariant distribution and $v$ a vertex such that $\invdist_v > 0$. Then $v$ is recurrent.
-
-:nonumber:
 
 \label{5-lem:MC-inv-rec}
 Let $\invdist$ be an invariant distribution and $v$ a vertex such that $\invdist_v > 0$. Then $v$ is recurrent.
@@ -173,7 +172,6 @@ Finally, we derive the contradiction. Since $\invdist$ satisfies $\invdist\cdot 
 
 ```{prf:lemma} NEEDS TITLE 5-lem:mc-rec
 :label: 5-lem:mc-rec
-:nonumber:
 
 Let $\bar{\invdist}$ be a vector such that for each $v\in \solvset$ it holds $\bar{\invdist}_v=\sum_{a\in \actions} \lpsol{x}_{v,a}$. Then $\bar{\invdist}$ is an invariant distribution of $\mdp_{\solvset}^{\sigma}$. Consequently, all vertices of $\mdp_{\solvset}^{\sigma}$ are recurrent.
 
@@ -189,7 +187,6 @@ The first part follows directly from the fact that $\lpsol{x}_{v,a}$ is a feasib
 
 ```{prf:corollary} NEEDS TITLE 5-cor:mp-scc-extraction
 :label: 5-cor:mp-scc-extraction
-:nonumber:
 
 The set $\solvset$ can be partitioned into subsets $\solvset_1,\solvset_2,\dots,\solvset_m$ such that each $\solvset_i$ induces a strongly connected sub-chain of $\mdp_{\solvset}^{\sigma}$.
 
@@ -206,7 +203,6 @@ Hence, we can extract from $\solvset$ a set $Q$ inducing a strongly-connected su
 
 ```{prf:theorem} Ergodic theorem; see Theorem~1.10.2 in {cite}`Norris:1998`
 :label: 5-thm:ergodic
-:nonumber:
  In a strongly connected Markov chain (with a finite set of vertices $\vertices$) there exists a unique invariant distribution $\invdist$. Moreover, for every vector $\vec{h}\in \R^{\vertices}$ the following equation holds with probability 1:
 
 $$
@@ -222,7 +218,6 @@ We can use the Ergodic theorem to shows that the expected mean-payoff achieved b
 
 ```{prf:theorem} NEEDS TITLE 5-cor:mp-scc-optimality
 :label: 5-cor:mp-scc-optimality
-:nonumber:
 
 Let $\sigma_Q$ be the restriction of $\sigma$ to $Q$. Then for every $v\in Q$ it holds that $\probm^{\sigma_Q}_{\mdp_Q,v}(\MeanPayoffInf = r^*)=1$, where $r^*$ is the is the optimal value of $\lpmp$. 
 
@@ -261,7 +256,6 @@ So far, we have constructed an optimal strategy $\sigma_Q$ but only on the part 
 
 ```{prf:theorem} NEEDS TITLE 5-thm:mp-valcomp
 :label: 5-thm:mp-valcomp
-:nonumber:
  For any sequence of numbers $c_0,c_1,\dots$ and any $k\in\N$ it holds $\liminf_{n\rightarrow \infty}\frac{1}{n}\sum_{i=0}^{n-1}c_i = \liminf_{m\rightarrow \infty}\frac{1}{m}\sum_{i=0}^{m-1}c_{k+i}$. As a consequence, 
 for every vertex $v$ in $\mdp$ it holds $\probm^{\sigma_Q}_{\mdp_Q,v}(\MeanPayoffInf=r^*)=1,$ where $r^*$ is the optimal value of $\lpmp$. Hence, $\expv^{\sigma^*}_v[\MeanPayoffInf]= r^*$.
 
@@ -286,7 +280,6 @@ The following theorem summarizes the computational aspects.
 
 ```{prf:theorem} NEEDS TITLE 5-thm:mp-rand-opt-main
 :label: 5-thm:mp-rand-opt-main
-:nonumber:
 
 In a strongly connected mean-payoff MDP, one can compute, in polynomial time, a memoryless randomized strategy which is optimal from every vertex, as well as the (single) optimal value of every vertex.
 
@@ -308,7 +301,6 @@ The previous section implicitly defined two mappings: First, a mapping $\Psi$, w
 
 ```{prf:lemma} NEEDS TITLE 5-lem:sol-strat-correspondence
 :label: 5-lem:sol-strat-correspondence
-:nonumber:
 
 Let $X$ be the set containing exactly those solutions $\vec{x}$ of $\lpmp$ for which the strategy  $\Psi(\vec{x})$ induces a strongly connected Markov chain. Then the mappings $\Psi$ and $\Xi$ are bijections between $X$ and the set of all memoryless strategies in some sub-MDP of $\mdp$ that induce a strongly connected Markov chain.
 
@@ -330,8 +322,6 @@ A solution $\vec{x}$ of $\lpmp$is **pure** if for every vertex $v$ there is at m
 \label{5-def:pure-lp}
 A solution $\vec{x}$ of $\lpmp$is **pure** if for every vertex $v$ there is at most one action $a$ such that $\vec{x}_{(v,a)}>0$.
 
-:nonumber:
-
 \label{5-def:pure-lp}
 A solution $\vec{x}$ of $\lpmp$is **pure** if for every vertex $v$ there is at most one action $a$ such that $\vec{x}_{(v,a)}>0$.
 
@@ -349,8 +339,6 @@ Let $\lpsol{x}$ be a pure optimal solution of $\lpmp$ and denote $ S = \{v \in \
 \label{5-lem:pure-lpsol}
 Let $\lpsol{x}$ be a pure optimal solution of $\lpmp$ and denote $ S = \{v \in \vertices\mid \exists a \text{ s.t. }\lpsol{x}_{(v,a)}>0\} $. Then the strategy $\sigma=\Psi(\lpsol{x})$ is an MD strategy in $\mdp_{\solvset}$. Hence, in such a case, the strategy $\sigma^*$ constructed from $ \sigma $ as in  {prf:ref}`5-thm:mp-rand-opt-main` is an optimal MD strategy in $\mdp$.
 
-:nonumber:
-
 \label{5-lem:pure-lpsol}
 Let $\lpsol{x}$ be a pure optimal solution of $\lpmp$ and denote $ S = \{v \in \vertices\mid \exists a \text{ s.t. }\lpsol{x}_{(v,a)}>0\} $. Then the strategy $\sigma=\Psi(\lpsol{x})$ is an MD strategy in $\mdp_{\solvset}$. Hence, in such a case, the strategy $\sigma^*$ constructed from $ \sigma $ as in  {prf:ref}`5-thm:mp-rand-opt-main` is an optimal MD strategy in $\mdp$.
 
@@ -364,7 +352,6 @@ The next two lemmas prove some fundamental properties of basic feasible solution
 
 ```{prf:lemma} NEEDS TITLE 5-lem:basic-cond-unique
 :label: 5-lem:basic-cond-unique
-:nonumber:
 
 Assume that a linear program in a standard form has two basic feasible solutions $\vec{x},\vec{x}'$ such that both solutions have the same set of non-zero components, and the cardinality of this set equals the number of equality constraints in the program. Then $\vec{x}=\vec{x}'$.
 
@@ -383,7 +370,6 @@ Since $\vec{x}$ has as many non-zero components as there are rows of $A$, it fol
 
 ```{prf:lemma} NEEDS TITLE 5-lem:basic-sol
 :label: 5-lem:basic-sol
-:nonumber:
 
 If a linear program in a standard form has an optimal solution, then it has also a basic optimal solution. Moreover, a basic optimal solution can be found in polynomial time.
 
@@ -403,7 +389,6 @@ The existence of a basic optimal solution is a well-known linear programming fac
 
 ```{prf:theorem} NEEDS TITLE 5-thm:lpmp-basic-dim
 :label: 5-thm:lpmp-basic-dim
-:nonumber:
 
 One can find, in polynomial time, an optimal deterministic strategy in a given strongly connected  mean-payoff MDP.
 

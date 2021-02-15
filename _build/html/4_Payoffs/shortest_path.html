@@ -507,7 +507,9 @@
 \newcommand{\NL}{\textrm{NL}}
 \newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
 \newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}\]</div>
 <p>The quantitative objective <span class="math notranslate nohighlight">\(\Sup\)</span> generalises the qualitative
 objective <span class="math notranslate nohighlight">\(\Reach\)</span> by stating numerical preferences on the target.
@@ -544,12 +546,12 @@ Recall that by definition:</p>
 <li><p><span class="math notranslate nohighlight">\(\val(v) = \infty\)</span>, meaning that Eve can ensure to reach <span class="math notranslate nohighlight">\(\Win\)</span> with arbitrarily negative cost.</p></li>
 </ul>
 <p>As we will see, detecting whether <span class="math notranslate nohighlight">\(\val(v) = -\infty\)</span> is easy: this is equivalent to asking whether
-<span class="math notranslate nohighlight">\(v \notin \AttrE(\Win)\)</span> as stated in  <a class="reference internal" href="#4-lem:detecting_minus_infinity">Lemma </a>.
+<span class="math notranslate nohighlight">\(v \notin \AttrE(\Win)\)</span> as stated in  <a class="reference internal" href="#4-lem:detecting_minus_infinity">Lemma 120</a>.
 The second case where <span class="math notranslate nohighlight">\(\val(v) \in \Z\)</span> will be an occasion to revisit the attractor computation from Section <a class="reference internal" href="../2_Regular/attractors.html#sec-attractors"><span class="std std-ref">Reachability games</span></a>
 in a quantitative setting.
 Most of the difficulty lies in the third case, where</p>
 <div class="proof lemma admonition" id="4-lem:detecting_minus_infinity">
-<p class="admonition-title"><span>Lemma </span> (NEEDS TITLE 4-lem:detecting_minus_infinity)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 120 </span> (NEEDS TITLE 4-lem:detecting_minus_infinity)</p>
 <div class="lemma-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\Game\)</span> a shortest path game and <span class="math notranslate nohighlight">\(v\)</span> a vertex.
 Then <span class="math notranslate nohighlight">\(\val(v) = -\infty\)</span> if and only if <span class="math notranslate nohighlight">\(v \notin \AttrE(\Win)\)</span>.</p>
@@ -568,15 +570,20 @@ However, if she never reaches <span class="math notranslate nohighlight">\(\Win\
 <div class="section" id="shortest-path-games-with-non-negative-weights">
 <h2>Shortest path games with non-negative weights<a class="headerlink" href="#shortest-path-games-with-non-negative-weights" title="Permalink to this headline">¶</a></h2>
 <div class="proof theorem admonition" id="4-thm:shortest path-positive">
-<p class="admonition-title"><span>Theorem </span> (NEEDS TITLE 4-thm:shortest path-positive)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 121 </span> (NEEDS TITLE 4-thm:shortest path-positive)</p>
 <div class="theorem-content section" id="proof-content">
-<p>Shortest path games with non-negative weights are uniformly positionally determined for both players<code class="docutils literal notranslate"><span class="pre">{margin}</span> <span class="pre">This</span> <span class="pre">positionality</span> <span class="pre">result</span> <span class="pre">does</span> <span class="pre">not</span> <span class="pre">extend</span> <span class="pre">to</span> <span class="pre">infinite</span> <span class="pre">games</span></code>.
+<p>Shortest path games with non-negative weights are uniformly positionally determined for both players</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>This positionality result does not extend to infinite games.```</p>
+<p>.
 There exists a value iteration algorithm for computing the value function of these games in polynomial time and space.
 \mynote{More precisely},</p>
 </div>
+</div>
 </div><p>We rely on the high-level presentation of value iteration algorithms given in Section <a class="reference internal" href="../1_Introduction/value_iteration.html#sec-value-iteration"><span class="std std-ref">Value iteration algorithms</span></a>.</p>
 <div class="proof lemma admonition" id="4-lem:optimal_strategies_shortest_path_games">
-<p class="admonition-title"><span>Lemma </span> (NEEDS TITLE 4-lem:optimal_strategies_shortest_path_games)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 122 </span> (NEEDS TITLE 4-lem:optimal_strategies_shortest_path_games)</p>
 <div class="lemma-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\Game\)</span> be a shortest path game with non-negative weights, then there exists an optimal strategy <span class="math notranslate nohighlight">\(\sigma\)</span> for Eve.</p>
 </div>
@@ -587,7 +594,7 @@ There exists a value iteration algorithm for computing the value function of the
 This implies that the supremum is indeed a maximum.</p>
 </div>
 <p><a class="reference internal" href="#fig-optimal-strategies-shortest-path-game"><span class="std std-numref">Fig. 35</span></a> shows that the assumption that all weights are non-negative
-in  <a class="reference internal" href="#4-lem:optimal_strategies_shortest_path_games">Lemma </a> is necessary.</p>
+in  <a class="reference internal" href="#4-lem:optimal_strategies_shortest_path_games">Lemma 122</a> is necessary.</p>
 <p>We consider the complete lattice <span class="math notranslate nohighlight">\(Y = -\N \cup \set{-\infty}\)</span> equipped with the natural order and the function <span class="math notranslate nohighlight">\(\delta : Y \times C \to Y\)</span> defined by</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -607,15 +614,14 @@ Note that <span class="math notranslate nohighlight">\(\delta\)</span> is monoto
 \min \set{\delta( f(v'), w) : (v,w,v') \in E} &amp; \text{ if } v \in \VA.
 \end{cases}
 \end{split}\]</div>
-<p>Thanks to  <a class="reference internal" href="../1_Introduction/fixed_points.html#1-thm:kleene">Theorem </a>, the operator <span class="math notranslate nohighlight">\(\Op\)</span> has a greatest fixed point which is also the greatest post-fixed point of <span class="math notranslate nohighlight">\(\Op\)</span>.
+<p>Thanks to  <a class="reference internal" href="../1_Introduction/fixed_points.html#1-thm:kleene">Theorem 24</a>, the operator <span class="math notranslate nohighlight">\(\Op\)</span> has a greatest fixed point which is also the greatest post-fixed point of <span class="math notranslate nohighlight">\(\Op\)</span>.
 The latter are functions <span class="math notranslate nohighlight">\(f \in F_V\)</span> such that <span class="math notranslate nohighlight">\(f \le \Op(f)\)</span> and called progress measures.</p>
 <div class="proof lemma admonition" id="lemma-3">
-<p class="admonition-title"><span class="caption-number">Lemma 10 </span> (NEEDS TITLE AND LABEL)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 123 </span> (NEEDS TITLE AND LABEL)</p>
 <div class="lemma-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\Game\)</span> be a shortest path game with non-negative weights, then <span class="math notranslate nohighlight">\(\val\)</span> is the greatest fixed point of <span class="math notranslate nohighlight">\(\Op\)</span>.</p>
 <p>:label:
 Let <span class="math notranslate nohighlight">\(\Game\)</span> be a shortest path game with non-negative weights, then <span class="math notranslate nohighlight">\(\val\)</span> is the greatest fixed point of <span class="math notranslate nohighlight">\(\Op\)</span>.</p>
-<p>:nonumber:</p>
 <p>Let <span class="math notranslate nohighlight">\(\Game\)</span> be a shortest path game with non-negative weights, then <span class="math notranslate nohighlight">\(\val\)</span> is the greatest fixed point of <span class="math notranslate nohighlight">\(\Op\)</span>.</p>
 </div>
 </div><div class="dropdown tip admonition">
@@ -627,7 +633,7 @@ Let <span class="math notranslate nohighlight">\(\Game\)</span> be a shortest pa
 </ul>
 <p>Since the greatest fixed point of <span class="math notranslate nohighlight">\(\Op\)</span> is also the greatest progress measure, this implies the result.</p>
 <p>We show the first item.
-Thanks to  <a class="reference internal" href="#4-lem:optimal_strategies_shortest_path_games">Lemma </a> there exists <span class="math notranslate nohighlight">\(\sigma\)</span> an optimal strategy for Eve.
+Thanks to  <a class="reference internal" href="#4-lem:optimal_strategies_shortest_path_games">Lemma 122</a> there exists <span class="math notranslate nohighlight">\(\sigma\)</span> an optimal strategy for Eve.
 Consider a vertex <span class="math notranslate nohighlight">\(v\)</span>.
 If <span class="math notranslate nohighlight">\(v \in \VE\)</span> we need to show that</p>
 <div class="math notranslate nohighlight">
@@ -663,7 +669,7 @@ This is easily shown for finite plays by induction on the length and then for in
 This implies that <span class="math notranslate nohighlight">\(f(v) \le \val^\sigma(v) = \inf_\tau \ShortestPath(\play^v_{\sigma,\tau})\)</span>,
 and then <span class="math notranslate nohighlight">\(f(v) \le \sup_{\sigma} \val^\sigma(v) = \val(v)\)</span>.</p>
 </div>
-<p>Thanks to  <a class="reference internal" href="../1_Introduction/fixed_points.html#1-thm:kleene">Theorem </a> <span class="math notranslate nohighlight">\(\val\)</span> can be computed by a greatest fixed point algorithm.
+<p>Thanks to  <a class="reference internal" href="../1_Introduction/fixed_points.html#1-thm:kleene">Theorem 24</a> <span class="math notranslate nohighlight">\(\val\)</span> can be computed by a greatest fixed point algorithm.
 To obtain the announced complexity we carefully define the data structure.</p>
 <p>The pseudocode is given in <a class="reference internal" href="#algo-value-iteration-shortest-path-non-negative"><span class="std std-numref">Fig. 36</span></a>.</p>
 <div class="figure align-center" id="algo-value-iteration-shortest-path-non-negative">
@@ -757,7 +763,7 @@ reach a target of <span class="math notranslate nohighlight">\(\Win\)</span> whi
 way. As previously announced, this is closely related with mean payoff
 games: <span id="id2">[<a class="reference internal" href="references.html#id90"><span>BGHM17</span></a>]</span></p>
 <div class="proof theorem admonition" id="4-thm:-infty-MP">
-<p class="admonition-title"><span>Theorem </span> (NEEDS TITLE 4-thm:-infty-MP)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 124 </span> (NEEDS TITLE 4-thm:-infty-MP)</p>
 <div class="theorem-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\arena\)</span> be an arena.</p>
 <ul class="simple">
@@ -801,7 +807,7 @@ mean payoff. If <span class="math notranslate nohighlight">\(v'\in \VA\)</span>,
 the negative cycle by modifying his strategy. Therefore, Eve cannot
 have a positional strategy securing a non-negative mean payoff: by
 positional determinacy of mean payoff games
-( <a class="reference internal" href="mean_payoff.html#4-thm:mean_payoff_positional">Theorem </a>), Eve cannot have any strategy securing
+( <a class="reference internal" href="mean_payoff.html#4-thm:mean_payoff_positional">Theorem 92</a>), Eve cannot have any strategy securing
 a non-negative mean payoff.</p>
 <p>\medskip For the second item, without loss of generality, suppose
 that <span class="math notranslate nohighlight">\(\arena\)</span> is a bipartite arena,
@@ -856,7 +862,7 @@ following lemma (where we again let <span class="math notranslate nohighlight">\
 know that finite values are bounded below, so that an intermediate
 step of speed-up can detect the vertices of value <span class="math notranslate nohighlight">\(-\infty\)</span>.</p>
 <div class="proof lemma admonition" id="4-lem:-infty">
-<p class="admonition-title"><span>Lemma </span> (NEEDS TITLE 4-lem:-infty)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 125 </span> (NEEDS TITLE 4-lem:-infty)</p>
 <div class="lemma-content section" id="proof-content">
 <p>In a shortest path game <span class="math notranslate nohighlight">\(\game\)</span>, all vertices <span class="math notranslate nohighlight">\(v\)</span> with a value
 <span class="math notranslate nohighlight">\(\Value(v)&lt;-(n-1) W\)</span> have value <span class="math notranslate nohighlight">\(\Value(v)=-\infty\)</span>.</p>
@@ -865,7 +871,7 @@ step of speed-up can detect the vertices of value <span class="math notranslate 
 <p class="admonition-title">Proof</p>
 <p>Consider a strategy <span class="math notranslate nohighlight">\(\tau\)</span> of Adam securing a value <span class="math notranslate nohighlight">\(&lt;-(n-1) W\)</span>
 from a given vertex <span class="math notranslate nohighlight">\(v\)</span>. We show that in the mean payoff game
-<span class="math notranslate nohighlight">\(\game'\)</span> described in <a class="reference internal" href="#4-thm:-infty-MP">Theorem </a>, vertex <span class="math notranslate nohighlight">\(v\)</span> has value
+<span class="math notranslate nohighlight">\(\game'\)</span> described in <a class="reference internal" href="#4-thm:-infty-MP">Theorem 124</a>, vertex <span class="math notranslate nohighlight">\(v\)</span> has value
 <span class="math notranslate nohighlight">\(&lt;0\)</span>, which allows us to conclude. Let <span class="math notranslate nohighlight">\(\sigma\)</span> be a positional
 strategy of Eve. By hypothesis, the play <span class="math notranslate nohighlight">\(\pi\)</span> starting in <span class="math notranslate nohighlight">\(v\)</span> and
 following the profile <span class="math notranslate nohighlight">\((\sigma,\tau)\)</span> has a payoff
@@ -898,7 +904,7 @@ induction that <span class="math notranslate nohighlight">\(N\)</span> steps suf
 reached a target vertex while getting the optimal value.</p>
 <p><span id="id3">[<a class="reference internal" href="references.html#id90"><span>BGHM17</span></a>]</span></p>
 <div class="proof theorem admonition" id="4-thm:SP-pseudopoly-algo">
-<p class="admonition-title"><span>Theorem </span> (NEEDS TITLE 4-thm:SP-pseudopoly-algo)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 126 </span> (NEEDS TITLE 4-thm:SP-pseudopoly-algo)</p>
 <div class="theorem-content section" id="proof-content">
 <p>We can compute in pseudopolynomial time the values of a
 shortest path game.</p>

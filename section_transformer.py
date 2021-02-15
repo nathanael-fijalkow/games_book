@@ -60,7 +60,7 @@ def section_transformer(nb_chap, file_name, path, title, label):
 	#### Reshape quotes
 	content = re.sub(r'\`\`(.*?)\'\'', r'''\1''', content)
 	#### Rewrite footnotes
-	content = re.sub(r'\\footnote\{(.*?).\}', r'```{margin}\n\1```', content)
+	content = re.sub(r'\\footnote\{(.*?)\}', r'\n\n```{margin}\n\1```\n\n', content)
 
 	#### Deal with accents
 	content = re.sub(r'\{\\"u}', r'&uuml;', content)
@@ -245,19 +245,23 @@ def section_transformer(nb_chap, file_name, path, title, label):
 
 	# if it has a title and a label
 	p1 = r'\\begin\{{{}\}}\[(.*?)\]\n?\\label\{{(.*?)\}}([\s\S]*?)\\end\{{{}\}}'
-	s1 = r'\n```{{prf:{}}} \1\n:label: \2\n:nonumber:\n\3\n```\n'
+	# s1 = r'\n```{{prf:{}}} \1\n:label: \2\n:nonumber:\n\3\n```\n'
+	s1 = r'\n```{{prf:{}}} \1\n:label: \2\n\3\n```\n'
 
 	# just a label
 	p2 = r'\\begin\{{{}\}}\n?\\label\{{(.*?)\}}([\s\S]*?)\\end\{{{}\}}'
-	s2 = r'\n```{{prf:{}}} NEEDS TITLE \1\n:label: \1\n:nonumber:\n\2\n```\n'
+	# s2 = r'\n```{{prf:{}}} NEEDS TITLE \1\n:label: \1\n:nonumber:\n\2\n```\n'
+	s2 = r'\n```{{prf:{}}} NEEDS TITLE \1\n:label: \1\n\2\n```\n'
 
 	# just a title
 	p3 = r'\\begin\{{{}\}}\[(.*?)\]\n?([\s\S]*?)\\end\{{{}\}}'
-	s3 = r'\n```{{prf:{}}} NEEDS LABEL \1\n:label: \1\n:nonumber:\n\2\n```\n'
+	# s3 = r'\n```{{prf:{}}} NEEDS LABEL \1\n:label: \1\n:nonumber:\n\2\n```\n'
+	s3 = r'\n```{{prf:{}}} NEEDS LABEL \1\n:label: \1\n\2\n```\n'
 
 	# none
 	p4 = r'\\begin\{{{}\}}([\s\S]*?)\\end\{{{}\}}'
-	s4 = r'\n```{{prf:{}}} NEEDS TITLE AND LABEL \1 \n:label: \1\n:nonumber:\n\1\n```\n'
+	# s4 = r'\n```{{prf:{}}} NEEDS TITLE AND LABEL \1 \n:label: \1\n:nonumber:\n\1\n```\n'
+	s4 = r'\n```{{prf:{}}} NEEDS TITLE AND LABEL \1 \n:label: \1\n\1\n```\n'
 
 	l = [\
 	("theorem","theorem"), \

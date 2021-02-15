@@ -102,14 +102,15 @@
 \newcommand{\NL}{\textrm{NL}}
 \newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
 \newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
 ```
 The MEC decomposition can be used to reduce several optimization problems (including general mean-payoff optimization) to optimizing reachability probability. Recall that in the optimal reachability problem, we are given an MDP $\mdp$ (with coloured vertices) and a colour $\Win \in\colours$. The task is to find a strategy $\sigma$ that maximizes $ \probm^\sigma_{\vinit}(\Reach(\Win))$, the probability of reaching a vertex coloured by $\Win$. The main result on reachability MDPs, which we prove in Section {ref}`5-sec:general-reachability`, is as follows:
 
 ```{prf:theorem} NEEDS TITLE 5-thm:quant-reachability-main
 :label: 5-thm:quant-reachability-main
-:nonumber:
 
 In reachability MDPs, the value of each vertex is rational and computable in polynomial time. Moreover, we can compute, in polynomial time, a memoryless deterministic strategy that is optimal in every vertex.
 
@@ -123,7 +124,6 @@ We say that a MEC $\mec$ of a B&uuml;chi MDP is **good** if it contains a vertex
 
 ```{prf:theorem} NEEDS TITLE 5-thm:quant-buchi
 :label: 5-thm:quant-buchi
-:nonumber:
 
 In B&uuml;chi MDPs, the value of each vertex is rational and computable in polynomial time. Moreover, we can compute, in polynomial time, a memoryless deterministic strategy that is optimal in every vertex.
 
@@ -156,8 +156,6 @@ In Parity MDPs, the value of each vertex is rational and computable in polynomia
 :label: 
 \label{5-thm:parity-main}
 In Parity MDPs, the value of each vertex is rational and computable in polynomial time. Moreover, we can compute, in polynomial time, a memoryless deterministic strategy that is optimal in every vertex.
-
-:nonumber:
 
 \label{5-thm:parity-main}
 In Parity MDPs, the value of each vertex is rational and computable in polynomial time. Moreover, we can compute, in polynomial time, a memoryless deterministic strategy that is optimal in every vertex.
@@ -192,7 +190,6 @@ We start with a strengthening of  {prf:ref}`5-thm:mp-valcomp`.
 
 ```{prf:lemma} NEEDS TITLE 5-lem:MEC-mp-strict-bound
 :label: 5-lem:MEC-mp-strict-bound
-:nonumber:
 
 Let $\mdp$ be a strongly connected mean-payoff MDP and $r^*$ the value of each of its vertices. Then, for each $\sigma$ and $\vinit$ we have $\probm^\sigma_{\vinit}(\MeanPayoffInf > r^*) = 0 $.
 
@@ -209,7 +206,6 @@ We will need to strengthen the previous lemma so that it applies not only to str
 
 ```{prf:lemma} NEEDS TITLE 5-lem:MEC-noreturn
 :label: 5-lem:MEC-noreturn
-:nonumber:
 
 Let $ \mec $ be a MEC of an MDP $ \mdp $ and let $ v\in \mec $, $ a\in \actions $ be such that $ a $ **is not** $ \mec $-safe in $ v $. Then there exists $ t $ s.t. $ \probTranFunc(t\mid v,a)>0 $ and  $ t \not \in \winAS(\mdp,\Reach(\mec)) $.
 
@@ -234,8 +230,6 @@ Let $\mec$ be a MEC of $\mdp$ and $r^*$ the mean-payoff value of every vertex in
 :label: 
 \label{5-lem:MEC-stable}
 Let $\mec$ be a MEC of $\mdp$ and $r^*$ the mean-payoff value of every vertex in the strongly connected sub-MDP induced by $\mec$. Then the set $E$ of all plays that have $\Inf(\play)\subseteq\mec$ and at the same time mean payoff greater than $r$ has probability zero under any strategy $\sigma$.
-
-:nonumber:
 
 \label{5-lem:MEC-stable}
 Let $\mec$ be a MEC of $\mdp$ and $r^*$ the mean-payoff value of every vertex in the strongly connected sub-MDP induced by $\mec$. Then the set $E$ of all plays that have $\Inf(\play)\subseteq\mec$ and at the same time mean payoff greater than $r$ has probability zero under any strategy $\sigma$.
@@ -264,7 +258,6 @@ Let $\mec$ be a MEC of $\mdp$ and $r^*$ the mean-payoff value of every vertex in
 
 ```{prf:theorem} NEEDS TITLE 5-thm:general-mp-main
 :label: 5-thm:general-mp-main
-:nonumber:
 
 In mean-payoff MDPs, the value of each vertex is rational and computable in polynomial time. Moreover, we can compute, in polynomial time, a memoryless deterministic strategy that is optimal in every vertex.
 

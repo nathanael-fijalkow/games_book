@@ -507,7 +507,9 @@
 \newcommand{\NL}{\textrm{NL}}
 \newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
 \newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}\end{aligned}\end{align} \]</div>
 <p>\newcommand{\MeanPayoffOld}{\MeanPayoff}</p>
 <p>We will use the <span class="math notranslate nohighlight">\(\liminf\)</span> variant of mean-payoff:</p>
@@ -519,14 +521,13 @@
 <p>The use of <span class="math notranslate nohighlight">\( \liminf \)</span> is natural in the formal verification setting: taking the <span class="math notranslate nohighlight">\(\liminf\)</span> rather than <span class="math notranslate nohighlight">\( \limsup \)</span> emphasizes the worst-case behaviour along a play. However, all the results in this section hold also for <span class="math notranslate nohighlight">\(\limsup\)</span>-based mean-payoff, though some proofs are more complex. See the bibliographic remarks for more details.</p>
 <p>In general, <span class="math notranslate nohighlight">\(\stepPay(v,\sigma)\)</span> can be different from <span class="math notranslate nohighlight">\( \playPay(v, \sigma) \)</span>. However, we have the following simple consequence of the dominated convergence theorem:</p>
 <div class="proof lemma admonition" id="lemma-0">
-<p class="admonition-title"><span class="caption-number">Lemma 13 </span> (NEEDS TITLE AND LABEL)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 158 </span> (NEEDS TITLE AND LABEL)</p>
 <div class="lemma-content section" id="proof-content">
 <p>\label{5-lem:limit-defined}
 Let <span class="math notranslate nohighlight">\(U\)</span> be the set of all plays <span class="math notranslate nohighlight">\(\play\)</span>  for which <span class="math notranslate nohighlight">\(\lim_{n\rightarrow \infty} \frac{1}{n} \sum_{i=0}^{n-1}[\colouring(\play_i)]\)</span> is undefined. If <span class="math notranslate nohighlight">\(\vinit,\sigma\)</span> are such that <span class="math notranslate nohighlight">\(\probm^\sigma_{\vinit}(U) = 0\)</span>, then <span class="math notranslate nohighlight">\(\stepPay(\vinit,\sigma) = \playPay(\vinit, \sigma) \)</span>.</p>
 <p>:label:
 \label{5-lem:limit-defined}
 Let <span class="math notranslate nohighlight">\(U\)</span> be the set of all plays <span class="math notranslate nohighlight">\(\play\)</span>  for which <span class="math notranslate nohighlight">\(\lim_{n\rightarrow \infty} \frac{1}{n} \sum_{i=0}^{n-1}[\colouring(\play_i)]\)</span> is undefined. If <span class="math notranslate nohighlight">\(\vinit,\sigma\)</span> are such that <span class="math notranslate nohighlight">\(\probm^\sigma_{\vinit}(U) = 0\)</span>, then <span class="math notranslate nohighlight">\(\stepPay(\vinit,\sigma) = \playPay(\vinit, \sigma) \)</span>.</p>
-<p>:nonumber:</p>
 <p>\label{5-lem:limit-defined}
 Let <span class="math notranslate nohighlight">\(U\)</span> be the set of all plays <span class="math notranslate nohighlight">\(\play\)</span>  for which <span class="math notranslate nohighlight">\(\lim_{n\rightarrow \infty} \frac{1}{n} \sum_{i=0}^{n-1}[\colouring(\play_i)]\)</span> is undefined. If <span class="math notranslate nohighlight">\(\vinit,\sigma\)</span> are such that <span class="math notranslate nohighlight">\(\probm^\sigma_{\vinit}(U) = 0\)</span>, then <span class="math notranslate nohighlight">\(\stepPay(\vinit,\sigma) = \playPay(\vinit, \sigma) \)</span>.</p>
 </div>
@@ -563,7 +564,7 @@ subject to }\nonumber \
 </div>
 <p>The variable <span class="math notranslate nohighlight">\(g\)</span> in <span class="math notranslate nohighlight">\(\lpmpdual\)</span> is often called <strong>gain</strong> while the vector of <span class="math notranslate nohighlight">\(y\)</span>-variables is called <strong>bias.</strong> This is because it provides information on how much does the payoff (under some strategy) accumulated up to a certain step deviate from the estimate provided by the mean-payoff value of that strategy. This is illustrated in the following lemma, which forms the first step of our analysis.</p>
 <div class="proof lemma admonition" id="5-lem:dual-bound-step">
-<p class="admonition-title"><span>Lemma </span> (NEEDS TITLE 5-lem:dual-bound-step)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 159 </span> (NEEDS TITLE 5-lem:dual-bound-step)</p>
 <div class="lemma-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(({g}, \vec{y})\)</span> be a feasible solution of <span class="math notranslate nohighlight">\(\lpmpdual\)</span> and let <span class="math notranslate nohighlight">\(Y^{(i)}\)</span>, where <span class="math notranslate nohighlight">\(i\geq 0\)</span>, be a random variable such that <span class="math notranslate nohighlight">\(Y^{(i)}(\play)= \vec{y}_{\ing(\pi_i)}.\)</span> Then for each strategy <span class="math notranslate nohighlight">\(\sigma\)</span>, each vertex <span class="math notranslate nohighlight">\(\vinit\)</span>, and each <span class="math notranslate nohighlight">\(n\geq 0\)</span> it holds <span class="math notranslate nohighlight">\(\expv^\sigma_{\vinit}[\sum_{i=0}^{n-1}\colouring(\play_i)]\leq n\cdot {g}- \vec{y}_{\vinit} +\expv^\sigma_{\vinit} [Y^{(n)}]\)</span>.</p>
 </div>
@@ -590,17 +591,17 @@ subject to }\nonumber \
 <p>Plugging this into~\eqref{5-eq:mpdual-1} yields the desired <span class="math notranslate nohighlight">\(\expv^\sigma_{\vinit}[\sum_{i=0}^{n}\colouring(\play_i)] \leq (n+1) {g}- \vec{y}_{\vinit} + \expv^\sigma_{\vinit}[Y^{(n+1)}]\)</span>.</p>
 </div>
 <div class="proof corollary admonition" id="5-cor:mp-value-bound">
-<p class="admonition-title"><span>Corollary </span> (NEEDS TITLE 5-cor:mp-value-bound)</p>
+<p class="admonition-title"><span class="caption-number">Corollary 160 </span> (NEEDS TITLE 5-cor:mp-value-bound)</p>
 <div class="corollary-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(g\)</span> be the objective value of some feasible solution of <span class="math notranslate nohighlight">\(\lpmpdual\)</span>. Then for every strategy <span class="math notranslate nohighlight">\(\sigma\)</span> and every vertex <span class="math notranslate nohighlight">\(\vinit\)</span> it holds <span class="math notranslate nohighlight">\(\playPay(\vinit,\sigma) \leq \stepPay(\vinit,\sigma) \leq g\)</span>.</p>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
 <p>Let <span class="math notranslate nohighlight">\( ({g}, \vec{y})\)</span> be any feasible solution of <span class="math notranslate nohighlight">\(\lpmpdual\)</span>.
-By  <a class="reference internal" href="#5-lem:dual-bound-step">Lemma </a> we have, for every <span class="math notranslate nohighlight">\(n\geq 0\)</span>, that <span class="math notranslate nohighlight">\(\expv^\sigma_{\vinit}[\frac{1}{n}\sum_{i=0}^{n-1}\colouring(\play_i)]\leq g - \frac{ \vec{y}_{\vinit}}{n}+ \frac{1}{n}\expv^\sigma_{\vinit} [Y^{(n)}]\)</span>. Since <span class="math notranslate nohighlight">\( \vec{y}_{\vinit}\)</span> is a constant and <span class="math notranslate nohighlight">\(|\expv^\sigma_{\vinit} [Y^{(n)}]|\)</span> is bounded by the constant <span class="math notranslate nohighlight">\( \max_{v\in \vertices}|\vec{y}_v|\)</span> that is independent of <span class="math notranslate nohighlight">\(n\)</span>, the last two terms on the RHS vanish as <span class="math notranslate nohighlight">\(n\)</span> goes to <span class="math notranslate nohighlight">\(\infty\)</span>. Hence, also <span class="math notranslate nohighlight">\(\stepPay(\vinit,\sigma) = \liminf_{n\rightarrow \infty} \expv^\sigma_{\vinit}[\frac{1}{n}\sum_{i=0}^{n-1}\colouring(\play_i)] \leq g\)</span>. It remains to show that we have <span class="math notranslate nohighlight">\(\playPay(\vinit,\sigma) \leq \stepPay(\vinit,\sigma)\)</span>, but this immediately follows from the Fatou’s lemma~\cite[Theorem 1.6.8]{Ash&amp;Doleans-Dade:2000}.</p>
+By  <a class="reference internal" href="#5-lem:dual-bound-step">Lemma 159</a> we have, for every <span class="math notranslate nohighlight">\(n\geq 0\)</span>, that <span class="math notranslate nohighlight">\(\expv^\sigma_{\vinit}[\frac{1}{n}\sum_{i=0}^{n-1}\colouring(\play_i)]\leq g - \frac{ \vec{y}_{\vinit}}{n}+ \frac{1}{n}\expv^\sigma_{\vinit} [Y^{(n)}]\)</span>. Since <span class="math notranslate nohighlight">\( \vec{y}_{\vinit}\)</span> is a constant and <span class="math notranslate nohighlight">\(|\expv^\sigma_{\vinit} [Y^{(n)}]|\)</span> is bounded by the constant <span class="math notranslate nohighlight">\( \max_{v\in \vertices}|\vec{y}_v|\)</span> that is independent of <span class="math notranslate nohighlight">\(n\)</span>, the last two terms on the RHS vanish as <span class="math notranslate nohighlight">\(n\)</span> goes to <span class="math notranslate nohighlight">\(\infty\)</span>. Hence, also <span class="math notranslate nohighlight">\(\stepPay(\vinit,\sigma) = \liminf_{n\rightarrow \infty} \expv^\sigma_{\vinit}[\frac{1}{n}\sum_{i=0}^{n-1}\colouring(\play_i)] \leq g\)</span>. It remains to show that we have <span class="math notranslate nohighlight">\(\playPay(\vinit,\sigma) \leq \stepPay(\vinit,\sigma)\)</span>, but this immediately follows from the Fatou’s lemma~\cite[Theorem 1.6.8]{Ash&amp;Doleans-Dade:2000}.</p>
 </div>
 <div class="proof corollary admonition" id="5-cor:lpmp-optimal-exists">
-<p class="admonition-title"><span>Corollary </span> (NEEDS TITLE 5-cor:lpmp-optimal-exists)</p>
+<p class="admonition-title"><span class="caption-number">Corollary 161 </span> (NEEDS TITLE 5-cor:lpmp-optimal-exists)</p>
 <div class="corollary-content section" id="proof-content">
 <p>Both the linear programs <span class="math notranslate nohighlight">\(\lpmp\)</span> and <span class="math notranslate nohighlight">\(\lpmpdual\)</span> have a feasible solution. Hence, both have an optimal solution and the optimal values of the objective functions in these programs are equal.</p>
 </div>

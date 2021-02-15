@@ -102,7 +102,9 @@
 \newcommand{\NL}{\textrm{NL}}
 \newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
 \newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
 ```
  
@@ -138,7 +140,6 @@ We have the following simple characterization of the positively winning set:
 
 ```{prf:theorem} Characterisation of the positively winning set
 :label: 5-thm:positive-char
-:nonumber:
 
 For each vertex $v$, the following conditions are equivalent:
 
@@ -165,8 +166,12 @@ colour $\genColour$ and $\cylinder(\pi)$ is the basic cylinder determined by
 $\pi$. Since $X$ is a countable set, from the property (3.) of a probability 
 measure it follows that $\probm^\sigma_{\mdp,v}(\Reach(\genColour))>0$ if and 
 only if there exists $\play\in X$ with 
-$\probm^\sigma_{\mdp,v}(\cylinder(\play))>0$.```{margin}
-Arguments of this style are said to invoke a union bound.``` For the latter to hold, it must 
+$\probm^\sigma_{\mdp,v}(\cylinder(\play))>0$.
+
+```{margin}
+Arguments of this style are said to invoke a union bound. ```
+
+ For the latter to hold, it must 
 be that either $\play=\emptyPlay$, in which case $\colours(v)=\genColour$, or 
 $\play$ is a non-empty play initiated in $v$ and reaching a colour 
 $\genColour$, as required.
@@ -195,7 +200,6 @@ vertex belongs to $\winPos(\mdp,\Reach(\genColour))$.
 
 ```{prf:corollary} Complexity of deciding positive reachability
 :label: 5-cor:pos-complexity
-:nonumber:
 
 The problem of deciding whether a given vertex of a given MDP belongs to 
 $\winPos(\mdp,\Reach(\genColour))$ is \NL-complete. Moreover, the set $\winPos(\mdp,\Reach(\genColour))$ can be computed in linear time.
@@ -242,7 +246,6 @@ This operator gives rise to a notion of a closed set, which is important for the
 
 ```{prf:definition} Closed set in an MDP
 :label: 5-def:closed_set_MDP
-:nonumber:
 
 A set $X$ of vertices is closed if $ \safeOP(X)=X$. A sub-MDP of an MDP $ \mdp $ defined by a closed subset $X$ of $ \mdp $'s states is the MDP $\mdp_X = (X,\edges_X,\probTranFunc_X,\colouring_X)$ defined as follows:
 
@@ -261,7 +264,6 @@ Now consider the iteration of $ X, \safeOP(X),\safeOP^2(X),\ldots $ of the safet
 
 ```{prf:lemma} Inclusion of the least fixed of the safety operator
 :label: 5-lem:safety-iteration
-:nonumber:
 
 The fixed point of iterating $ \safeOP $ on some initial set $ X $ of $ \mdp $'s vertices is the largest (w.r.t. inclusion) closed set contained in $ X $. In particular, a vertex of $ X $ which does not belong to the fixpoint cannot belong to  $\winAS(\mdp,\Safe(\vertices \setminus X))$.
 
@@ -290,7 +292,6 @@ An algorithm computing $\winAS(\mdp,\Safe(\genColour))$
 
 ```{prf:theorem} Complexity of the almost-sure safety winning set
 :label: 5-thm:safety-main
-:nonumber:
 
 {numref}`5-algo:safety` computes the set $\winAS(\mdp,\Safe(\genColour))$ in strongly polynomial time. Moreover, there exists a memoryless deterministic strategy, computable in polynomial time, that is almost-surely winning from every vertex of $\winAS(\mdp,\Safe(\genColour))$.
 
@@ -318,7 +319,6 @@ With a.s. safety solved, we go back to a.s. reachability, which is solved via {n
 
 ```{prf:theorem} Algorithm for the almost-sure reachability winning set
 :label: 5-thm:as-char
-:nonumber:
 
 {numref}`5-algo:reach-as` computes $\winAS(\mdp,\Reach(\genColour))$ in strongly polynomial time. Moreover, there is an MD strategy, computable in strongly polynomial time, that is almost-surely winning from every vertex of $\winAS(\mdp,\Reach(\genColour))$.
 
@@ -356,7 +356,6 @@ We also have a complementary hardness result.
 
 ```{prf:theorem} Complexity of the almost-sure reachability winning set
 :label: 5-thm:as-complexity
-:nonumber:
 
 The problem of determining whether a given vertex of a given MDP belongs to 
 $\winAS(\mdp,\Reach(\genColour))$ is \P-complete.
@@ -403,7 +402,6 @@ $\winAS(\mdp_{\mathcal{C}},\Reach(\mathit{true}))$.
 
 ```{prf:theorem} Algorithm for the positive safety winning set
 :label: 5-thm:pos-safety-main
-:nonumber:
 
 Let $ \mdp_{\bar\genColour} $ be an MDP obtained from $ \mdp $ by changing all $ \genColour $-coloured vertices to sinks (i.e. all actions in these vertices just self loop on the vertex). Then
 $ \winPos(\mdp,\Safe(\genColour)) = \winPos(\mdp_{\bar\genColour},\Reach(\winAS(\mdp_{\bar\genColour},\Safe(\genColour))) ) $. In particular, the set $ \winPos(\mdp,\Safe(\genColour)) $ can be computed in a strongly polynomial time and there exists a memoryless deterministic strategy, computable in strongly polynomial time, that is positively winning from every vertex of $\winPos(\mdp,\Safe(\genColour))$.

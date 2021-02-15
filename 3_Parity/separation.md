@@ -63,7 +63,9 @@
 \newcommand{\NL}{\textrm{NL}}
 \newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
 \newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
 ```
 
@@ -116,7 +118,6 @@ which is an abuse because what the automaton reads is the induced sequence of co
 
 ```{prf:definition} Separating automata
 :label: 3-def:separating_automata
-:nonumber:
 
 An automaton $\Automaton$ is $(n,d)$-**separating** if the two following properties hold.
 
@@ -151,7 +152,6 @@ The following lemma shows the definition of separating automata in action.
 
 ```{prf:lemma} Game equivalence using separating automata
 :label: 3-lem:separating_automata
-:nonumber:
 
 Let $\Automaton$ an $(n,d)$-separating automaton.
 Then for all parity games $\game = (\arena,\Parity[\col])$ with $n$ vertices and priorities in $[1,d]$, 
@@ -198,7 +198,6 @@ the colouring function is defined by $\col'(v,q) = \Win$ if $q \neq \bot$, and $
 
 ```{prf:observation} Reduction to safety games using separating automata
 :label: 3-fact:reduction
-:nonumber:
 
 Eve has a winning strategy in $\game$ from $v_0$ if and only if
 she has a winning strategy in $\Game \times \Automaton$ from $(v_0,q_0)$.
@@ -208,7 +207,6 @@ she has a winning strategy in $\Game \times \Automaton$ from $(v_0,q_0)$.
 
 ```{prf:theorem} Algorithm using separating automata
 :label: 3-thm:algorithm_separating_automata
-:nonumber:
 
 Let $\Automaton$ an $(n,d)$-separating automaton.
 There exists an algorithm for solving parity games of complexity $O(m \cdot |\Automaton|)$.
@@ -232,7 +230,6 @@ In the remainder of this section we give a construction for a quasipolynomial $(
 
 ```{prf:theorem} The original separating automaton
 :label: 3-thm:original_separating_automaton
-:nonumber:
 
 There exists an $(n,d)$-separating automaton of size $n^{O(\log d)}$,
 inducing an algorithm for solving parity games of complexity $n^{O(\log d)}$.
@@ -303,7 +300,6 @@ following lemma.
 
 ```{prf:lemma} Completeness for the separating automaton
 :label: 3-lem:isequencewin
-:nonumber:
 
 Suppose that Adam and Eve play positional strategies in the parity game,
 and let $\pi$ the resulting play.
@@ -546,7 +542,6 @@ will never falsely claim that an $i$-sequence has occurred.
 
 ```{prf:lemma} Correctness for the separating automaton
 :label: 3-lem:correctness_separating_automata
-:nonumber:
 
 Let $b_k, b_{k-1}, \dots, b_0$ the record for a sequence of priorities $\pi$.
 If $b_i \ne \siblank$, then $\pi$ contains an $i$-sequence.
@@ -605,7 +600,6 @@ game, the following weaker lemma suffices.
 
 ```{prf:lemma} Weaker correctness for the separating automaton
 :label: 3-lem:weaker_correctness_separating_automaton
-:nonumber:
 
 Let $\pi$ an infinite play that is winning for Eve. For all $k$, there exists
 a prefix of $\pi$ such that $b_k \ne \siblank$.
@@ -640,7 +634,6 @@ that $b_k \ne \siblank$. Combining the two lemmas above, with {prf:ref}`3-lem:is
 
 ```{prf:corollary} Correctness of the reduction for the separating automaton
 :label: 3-cor:correctness_reduction_separating_automaton
-:nonumber:
 
 Suppose that we monitor the play of a parity game with a record $b_{\lceil \log
 n \rceil}, \dots, b_0$. Eve has a strategy that ensures $b_{\lceil \log n

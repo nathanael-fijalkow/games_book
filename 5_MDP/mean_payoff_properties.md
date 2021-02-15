@@ -102,7 +102,9 @@
 \newcommand{\NL}{\textrm{NL}}
 \newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
 \newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
 ```
 \newcommand{\MeanPayoffOld}{\MeanPayoff}
@@ -128,8 +130,6 @@ Let $U$ be the set of all plays $\play$  for which $\lim_{n\rightarrow \infty} \
 :label: 
 \label{5-lem:limit-defined}
 Let $U$ be the set of all plays $\play$  for which $\lim_{n\rightarrow \infty} \frac{1}{n} \sum_{i=0}^{n-1}[\colouring(\play_i)]$ is undefined. If $\vinit,\sigma$ are such that $\probm^\sigma_{\vinit}(U) = 0$, then $\stepPay(\vinit,\sigma) = \playPay(\vinit, \sigma) $.
-
-:nonumber:
 
 \label{5-lem:limit-defined}
 Let $U$ be the set of all plays $\play$  for which $\lim_{n\rightarrow \infty} \frac{1}{n} \sum_{i=0}^{n-1}[\colouring(\play_i)]$ is undefined. If $\vinit,\sigma$ are such that $\probm^\sigma_{\vinit}(U) = 0$, then $\stepPay(\vinit,\sigma) = \playPay(\vinit, \sigma) $.
@@ -182,7 +182,6 @@ The variable $g$ in $\lpmpdual$ is often called **gain** while the vector of $y$
 
 ```{prf:lemma} NEEDS TITLE 5-lem:dual-bound-step
 :label: 5-lem:dual-bound-step
-:nonumber:
 
 Let $({g}, \vec{y})$ be a feasible solution of $\lpmpdual$ and let $Y^{(i)}$, where $i\geq 0$, be a random variable such that $Y^{(i)}(\play)= \vec{y}_{\ing(\pi_i)}.$ Then for each strategy $\sigma$, each vertex $\vinit$, and each $n\geq 0$ it holds $\expv^\sigma_{\vinit}[\sum_{i=0}^{n-1}\colouring(\play_i)]\leq n\cdot {g}- \vec{y}_{\vinit} +\expv^\sigma_{\vinit} [Y^{(n)}]$.
 
@@ -219,7 +218,6 @@ Plugging this into~\eqref{5-eq:mpdual-1} yields the desired $\expv^\sigma_{\vini
 
 ```{prf:corollary} NEEDS TITLE 5-cor:mp-value-bound
 :label: 5-cor:mp-value-bound
-:nonumber:
 
 Let $g$ be the objective value of some feasible solution of $\lpmpdual$. Then for every strategy $\sigma$ and every vertex $\vinit$ it holds $\playPay(\vinit,\sigma) \leq \stepPay(\vinit,\sigma) \leq g$.
 
@@ -236,7 +234,6 @@ By  {prf:ref}`5-lem:dual-bound-step` we have, for every $n\geq 0$, that $\expv^\
 
 ```{prf:corollary} NEEDS TITLE 5-cor:lpmp-optimal-exists
 :label: 5-cor:lpmp-optimal-exists
-:nonumber:
 
 Both the linear programs $\lpmp$ and $\lpmpdual$ have a feasible solution. Hence, both have an optimal solution and the optimal values of the objective functions in these programs are equal.
 

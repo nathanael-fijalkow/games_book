@@ -58,7 +58,9 @@
 \newcommand{\NL}{\textrm{NL}}
 \newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
 \newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
 ```
 Let $X$ be a set and $\Op : X \to X$ a function that we call an operator, we say that $x \in X$ is a fixed point of $\Op$ if $\Op(x) = x$.
@@ -75,7 +77,6 @@ $||\Op(x) - \Op(y)|| \le \lambda \cdot ||x - y||$.
 
 ```{prf:theorem} Banach fixed point theorem
 :label: 1-thm:banach
-:nonumber:
 
 Let $(X,||\cdot||)$ be a complete space and $\Op : X \to X$ a contracting operator, then $\Op$ has a unique fixed point $x_*$.
 For any $x_0 \in X$, the sequence $(\Op^k(x_0))_{k \in \N}$ converges towards $x_*$ and the rate of convergence is given by
@@ -104,7 +105,6 @@ We say that $x$ is a pre-fixed point if $\Op(x) \le x$ and a post-fixed point if
 
 ```{prf:theorem} Kleene fixed point theorem
 :label: 1-thm:kleene
-:nonumber:
 
 Let $(X,\le)$ be a complete lattice and $\Op : X \to X$ a monotonic operator, then $\Op$ has a least fixed point
 which is also the least pre-fixed point.
@@ -128,7 +128,6 @@ Naturally we say that $x \in X$ is a fixed point of the set of operators $(\Op_i
 
 ```{prf:theorem} Kleene fixed point theorem for a finite lattice and a set of operators
 :label: 1-thm:kleene_set_operators
-:nonumber:
 
 Let $(X,\le)$ be a finite lattice and $\Op_i : X \to X$ a set of monotonic operators for $i \in I$, then $(\Op_i)_{i \in I}$ has a least fixed point.
 The non-deterministic algorithm given in {numref}`1-algo:fixed_point` computes the least fixed point of $(\Op_i)_{i \in I}$.

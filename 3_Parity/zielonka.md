@@ -63,13 +63,14 @@
 \newcommand{\NL}{\textrm{NL}}
 \newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
 \newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
 ```
 
 ```{prf:theorem} Quasipolynomial McNaughton Zielonka algorithm
 :label: 3-thm:quasipolynomial_mcnaughton_zielonka_algorithm
-:nonumber:
 
 There exists a quasipolynomial time algorithm for solving parity games, and more specifically of complexity $n^{O(\log n)}$.
 
@@ -115,7 +116,6 @@ We need three simple facts about traps.
 
 ```{prf:observation} Facts about traps
 :label: 3-fact:traps
-:nonumber:
 
 *  Let $S$ be a trap for Eve in the game $\Game$ and $X$ a set of vertices, 
 then $S \setminus \AttrE(X)$ is a trapfor Eve in the subgame of $\Game$ induced by $V \setminus \AttrE(X)$.
@@ -130,7 +130,6 @@ The following lemma implies the correctness of the algorithm.
 
 ```{prf:lemma} Correctness of the quasipolynomial McNaughton Zielonka algorithm
 :label: 3-lem:correctness_quasipoly_zielonka
-:nonumber:
 
 *  For all dominions $S$ for Eve, if $|S| \le s_{\mEve}$, then $S \subseteq \textsl{SolveE}(\Game,s_{\mEve},s_{\mAdam})$.
 *  For all dominions $S$ for Adam, if $|S| \le s_{\mAdam}$, then $S \cap \textsl{SolveE}(\Game,s_{\mEve},s_{\mAdam}) = \emptyset$.

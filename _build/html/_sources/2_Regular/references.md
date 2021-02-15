@@ -63,7 +63,9 @@
 \newcommand{\NL}{\textrm{NL}}
 \newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
 \newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
 ```
 
@@ -139,7 +141,7 @@ The study of the complexity of solving Muller games is due to Dawar and Hunter {
 The $\PSPACE$-completeness results stated in {prf:ref}`2-thm:complexity_Muller,2-thm:Muller_games_DAG` only concern two representations for Muller objectives. There are several others, which are not equally succinct.
 For all representations but one the $\PSPACE$-completeness result holds; the only exception is the explicit representation
 where the condition is specified by listing all sets of vertices in $\F$.
-Surprisingly, solving Muller games with the explicit representation is in $\P$ as shown by Horn {cite}`Horn:2008`.
+Surprisingly, solving Muller games with the explicit representation is in $\PTIME$ as shown by Horn {cite}`Horn:2008`.
 
 
 Our proof of positionality for Rabin objectives for {prf:ref}`2-thm:Rabin_positional_determinacy` 

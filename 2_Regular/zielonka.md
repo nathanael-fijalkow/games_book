@@ -63,7 +63,9 @@
 \newcommand{\NL}{\textrm{NL}}
 \newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
 \newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
 ```
 The Zielonka tree is a combinatorial structure associated with a Muller objective which very neatly exposes its properties.
@@ -75,7 +77,6 @@ Muller objectives can be reduced to parity objectives, see Section {ref}`1-sec:r
 
 ```{prf:theorem} Latest Appeareance Record (LAR) construction
 :label: 2-thm:LAR
-:nonumber:
 
 Let $C = [1,d]$ be a set of colours and $\Muller(\F)$ a Muller objective.
 There exists a deterministic parity automaton $\LAR_\F$ over the alphabet $C$ defining $\Muller(\F)$.
@@ -147,7 +148,6 @@ The Zielonka tree is an improved take on the LAR.
 
 ```{prf:definition} Zielonka tree
 :label: definition:zielonka_tree
-:nonumber:
 
 Let $\Muller(\F)$ be a Muller objective over the set of colours $C$.
 The Zielonka tree $T_\F$ of $\Muller(\F)$ is a rooted tree with nodes labelled by subsets of colours, 
@@ -182,7 +182,6 @@ A branch in a tree is a path from the root to a leaf.
 
 ```{prf:theorem} Reduction from Muller to parity games using the Zielonka tree automaton
 :label: 2-thm:reduction_parity_Zielonka_tree
-:nonumber:
 
 Let $C = [1,d]$ be a set of colours and $\Muller(\F)$ a Muller objective.
 There exists a deterministic parity automaton $\Zielonka_\F$ over the alphabet $C$ defining $\Muller(\F)$.
@@ -257,7 +256,6 @@ is of polynomial size, implying the following result.
 
 ```{prf:theorem} Complexity of solving Muller games represented by the Zielonka tree
 :label: 2-thm:complexity_Muller_games_representation_Zielonka_tree
-:nonumber:
 
 Solving Muller games where the condition is represented by a Zielonka tree is in $\NP \cap \coNP$.
 
@@ -270,7 +268,6 @@ However with this representation solving Muller games is again $\PSPACE$-complet
 
 ```{prf:theorem} Complexity of solving Muller games represented by the Zielonka DAG
 :label: 2-thm:Muller_games_DAG
-:nonumber:
 
 Solving Muller games where the condition is represented by a Zielonka DAG is $\PSPACE$-complete.
 
@@ -289,7 +286,6 @@ $\F' = \set{\set{2}, \set{3}, \set{1,2}, \set{1,3}}$.
 
 ```{prf:definition} Memory requirements for Muller objectives
 :label: 2-def:memory_requirements_Muller_objectives
-:nonumber:
 
 Let $\Muller(\F)$ be a Muller objective over the set of colours $C$.
 We define $m_\F$ by induction:
@@ -311,7 +307,6 @@ meaning that some vertices can be left uncolored (formally, labelled $\emptyset$
 
 ```{prf:theorem} Memory requirements for Muller games
 :label: 2-thm:characterisation_Zielonka_tree
-:nonumber:
 
 Muller objectives $\Muller(\F)$ are determined with finite memory strategies of size $m_\F$
 for games with **partial colouring functions**.
@@ -348,7 +343,6 @@ The following lemma is an improved variant of  {prf:ref}`2-lem:Muller_even`.
 
 ```{prf:lemma} Fixed point characterisation of the winning regions for Muller games using the Zielonka tree
 :label: 2-lem:McNaughton_Zielonka_even
-:nonumber:
 
 Let $\Game$ be a Muller game with objective $\Muller(\F)$ such that $C \in \F$.
 Let $C_1, \dots, C_k$ be the maximal subsets of $C$ such that $C_i \notin \F$.
@@ -428,7 +422,6 @@ The corresponding lemma when $C \notin \F$ is stated below, its proof is analogo
 
 ```{prf:lemma} Dual fixed point characterisation of the winning regions for Muller games using the Zielonka tree
 :label: 2-lem:McNaughton_Zielonka_odd
-:nonumber:
 
 Let $\Game$ be a Muller game such that $C \notin \F$.
 Let $C_1, \dots, C_k$ be the maximal subsets of $C$ such that $C_i \in \F$.
@@ -463,7 +456,6 @@ Recall that we defined Streett objectives using closure under union, and Rabin o
 
 ```{prf:theorem} Characterisation of positionally determined Muller objectives
 :label: 2-thm:characterisation_positionally_determined_Muller_objectives
-:nonumber:
 
 Let $\Muller(\F)$ be a Muller objective.
 

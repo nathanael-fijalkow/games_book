@@ -58,7 +58,9 @@
 \newcommand{\NL}{\textrm{NL}}
 \newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
 \newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
 ```
 A strategy can be a very complicated object, in particular it is infinite.
@@ -94,7 +96,6 @@ It is equipped with the condition $W$ inherited from $\Game$.
 
 ```{prf:observation} Game induced by a positional strategy
 :label: 1-fact:game_induced_positional_strategy
-:nonumber:
 
 Let $\Game$ be a game with condition $W$, $\sigma$ a positional strategy, and $v$ a vertex.
 Then the strategy $\sigma$ is winning from $v$ if and only if all infinite paths in $\Game[\sigma]$ from $v$ satisfy $W$.
@@ -111,7 +112,6 @@ We present a general binary search technique for doing so assuming positional de
 
 ```{prf:lemma} Binary search for constructing positional strategies
 :label: 1-lem:constructing_winning_strategy
-:nonumber:
 
 Let $\Omega$ be a positionally determined qualitative objective.
 If there exists an algorithm $A$ for solving games with objective $\Omega$,
@@ -164,7 +164,6 @@ The proof is the same.
 
 ```{prf:lemma} Binary search for constructive winning strategies, quantitative case
 :label: 1-lem:constructing_winning_strategy_quantitative
-:nonumber:
 
 Let $\Omega$ be a positionally determined quantitative objective.
 If there exists an algorithm $A$ for computing the value of games with objective $\Omega$,
@@ -184,7 +183,6 @@ Being uniformly positionally determined is a stronger property than being positi
 
 ```{prf:lemma} From positional to uniformly positional prefix independent objectives
 :label: 1-lem:from_positional_to_uniformly_positional
-:nonumber:
 
 If an objective is positionally determined and prefix independent then it is uniformly positionally determined.
 
@@ -200,8 +198,12 @@ Thanks to~\cref{1-fact:winning_prefix_independent_qualitative}
 the strategy $\sigma_v$ is winning from all vertices reachable by a play consistent with $\sigma_v$ starting from $v$.
 Without loss of generality let us assume that $\sigma_v$ is only defined on these vertices.
 
-We fix $\le$ a total order on the set of vertices```{margin}
-The argument we give in this proof extends to infinite games whose set of vertices can be well ordered. A well-order is a total order such that every non-empty subset has a least element, which is exactly the property we need in this proof```.
+We fix $\le$ a total order on the set of vertices
+
+```{margin}
+The argument we give in this proof extends to infinite games whose set of vertices can be well ordered. A well-order is a total order such that every non-empty subset has a least element, which is exactly the property we need in this proof.```
+
+.
 We let $\sigma$ be the positional strategy defined by $\sigma(u)$ is $\sigma_v(u)$ where $v$ is the least vertex (with respect to $\le$) such that $\sigma_v$ is defined on $u$. We say that $\sigma$ uses $\sigma_v$ at $u$.
 
 We argue that $\sigma$ is winning from $\WE(\game)$. 

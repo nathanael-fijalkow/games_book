@@ -69,7 +69,9 @@
 \newcommand{\NL}{\textrm{NL}}
 \newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
 \newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
 ```
 In this section we define quantitative objectives extending the qualitative objectives $\Safe$, $\Reach$, $\Buchi$, and $\CoBuchi$.
@@ -111,7 +113,6 @@ The analyses and algorithms for solving games with $\Reach$, $\Safe$, $\Buchi$, 
 
 ```{prf:theorem} NEEDS TITLE 4-thm:sup-inf-limsup-liminf
 :label: 4-thm:sup-inf-limsup-liminf
-:nonumber:
 
 Games with objectives $\Sup$ and $\LimSup$ are uniformly positionally determined for both players.
 There exists an algorithm for computing the value function of both games in polynomial time and space.

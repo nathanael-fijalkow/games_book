@@ -63,7 +63,9 @@
 \newcommand{\NL}{\textrm{NL}}
 \newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
 \newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
 ```
 Recall that the objective $\Buchi$ requires that the colour $\Win$ appears infinitely many times
@@ -71,10 +73,13 @@ and $\CoBuchi$ requires that the colour $\Lose$ appears finitely many times.
 
 ```{prf:theorem} Positional determinacy and complexity of Buchi games
 :label: 2-thm:Buchi
-:nonumber:
 
-B&uuml;chi objectives are uniformly positionally determined for both players```{margin}
-See \cref{2-rmk:finite_infinit``` for the case of infinite games.}.
+B&uuml;chi objectives are uniformly positionally determined for both players
+
+```{margin}
+See \cref{2-rmk:finite_infinite```
+
+ for the case of infinite games.}.
 There exists an algorithm for computing the winning regions of B&uuml;chi games in quadratic time, more precisely $O(mn)$,
 and linear space, more precisely $O(m)$.
 
@@ -88,7 +93,6 @@ The following lemma implies  {prf:ref}`2-thm:Buchi`.
 
 ```{prf:lemma} Fixed point characterisation of the winning region for Buchi games
 :label: 2-lem:Buchi_second
-:nonumber:
 
 Let $\Game$ be a B&uuml;chi game.
 
@@ -168,7 +172,6 @@ The following lemma induces a different algorithm, it also implies  {prf:ref}`2-
 
 ```{prf:lemma} Second fixed point characterisation of the winning region for Buchi games
 :label: 2-lem:Buchi
-:nonumber:
 
 Let $\game$ a B&uuml;chi game.
 Then $\WE(\game)$ is the greatest fixed point of the monotonic operator 

@@ -58,7 +58,9 @@
 \newcommand{\NL}{\textrm{NL}}
 \newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
 \newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
 ```
 Value iteration algorithms manipulate value functions and never construct any strategy, at least explicitly.
@@ -89,7 +91,6 @@ Strategy improvement algorithms depend on the following two principles.
 
 ```{prf:property} Progress
 :label: 1-property:progress
-:nonumber:
 
 Let $\sigma$ be a strategy and let $e = (v,u)$ be a switchable edge. 
 Then $\sigma < \sigma[v \to e]$.
@@ -99,7 +100,6 @@ Then $\sigma < \sigma[v \to e]$.
 
 ```{prf:property} Optimality
 :label: 1-property:optimality
-:nonumber:
 
 Let $\sigma$ be a strategy that has no switchable edges, then $\sigma$ is optimal.
 

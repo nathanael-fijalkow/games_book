@@ -492,7 +492,9 @@
 \newcommand{\NL}{\textrm{NL}}
 \newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
 \newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}\]</div>
 <p>A strategy can be a very complicated object, in particular it is infinite.
 Indeed, it is a function <span class="math notranslate nohighlight">\(\sigma : \Paths \to E\)</span>,
@@ -521,7 +523,7 @@ E[\sigma] = \set{e = (v,v') \in E : v \in \VA \text{ or } \left( v \in \VE \text
 \]</div>
 <p>It is equipped with the condition <span class="math notranslate nohighlight">\(W\)</span> inherited from <span class="math notranslate nohighlight">\(\Game\)</span>.</p>
 <div class="proof observation admonition" id="1-fact:game_induced_positional_strategy">
-<p class="admonition-title"><span>Observation </span> (Game induced by a positional strategy)</p>
+<p class="admonition-title"><span class="caption-number">Observation 14 </span> (Game induced by a positional strategy)</p>
 <div class="observation-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\Game\)</span> be a game with condition <span class="math notranslate nohighlight">\(W\)</span>, <span class="math notranslate nohighlight">\(\sigma\)</span> a positional strategy, and <span class="math notranslate nohighlight">\(v\)</span> a vertex.
 Then the strategy <span class="math notranslate nohighlight">\(\sigma\)</span> is winning from <span class="math notranslate nohighlight">\(v\)</span> if and only if all infinite paths in <span class="math notranslate nohighlight">\(\Game[\sigma]\)</span> from <span class="math notranslate nohighlight">\(v\)</span> satisfy <span class="math notranslate nohighlight">\(W\)</span>.</p>
@@ -532,7 +534,7 @@ if Eve has a winning strategy from <span class="math notranslate nohighlight">\(
 <p>As we discussed earlier, the task of solving a game does not include constructing winning strategies.
 We present a general binary search technique for doing so assuming positional determinacy.</p>
 <div class="proof lemma admonition" id="1-lem:constructing_winning_strategy">
-<p class="admonition-title"><span>Lemma </span> (Binary search for constructing positional strategies)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 15 </span> (Binary search for constructing positional strategies)</p>
 <div class="lemma-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\Omega\)</span> be a positionally determined qualitative objective.
 If there exists an algorithm <span class="math notranslate nohighlight">\(A\)</span> for solving games with objective <span class="math notranslate nohighlight">\(\Omega\)</span>,
@@ -568,10 +570,10 @@ We illustrate it on <a class="reference internal" href="#fig-parity-game-example
 <p>We say that a quantitative objective <span class="math notranslate nohighlight">\(\Phi\)</span> is positionally determined if
 for every game <span class="math notranslate nohighlight">\(\game\)</span> with objective <span class="math notranslate nohighlight">\(\Phi\)</span> and every vertex <span class="math notranslate nohighlight">\(v\)</span>,
 there exists a positional optimal strategy from <span class="math notranslate nohighlight">\(v\)</span>.
-Let us state the quantitative counterpart of <a class="reference internal" href="#1-lem:constructing_winning_strategy">Lemma </a>.
+Let us state the quantitative counterpart of <a class="reference internal" href="#1-lem:constructing_winning_strategy">Lemma 15</a>.
 The proof is the same.</p>
 <div class="proof lemma admonition" id="1-lem:constructing_winning_strategy_quantitative">
-<p class="admonition-title"><span>Lemma </span> (Binary search for constructive winning strategies, quantitative case)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 16 </span> (Binary search for constructive winning strategies, quantitative case)</p>
 <div class="lemma-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\Omega\)</span> be a positionally determined quantitative objective.
 If there exists an algorithm <span class="math notranslate nohighlight">\(A\)</span> for computing the value of games with objective <span class="math notranslate nohighlight">\(\Omega\)</span>,
@@ -587,7 +589,7 @@ Similarly, a quantitative objective <span class="math notranslate nohighlight">\
 Eve has a positional strategy which is optimal from every vertex.</p>
 <p>Being uniformly positionally determined is a stronger property than being positionally determined, but in most cases an objective satisfies either both or none, as for example if the objective is prefix independent.</p>
 <div class="proof lemma admonition" id="1-lem:from_positional_to_uniformly_positional">
-<p class="admonition-title"><span>Lemma </span> (From positional to uniformly positional prefix independent objectives)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 17 </span> (From positional to uniformly positional prefix independent objectives)</p>
 <div class="lemma-content section" id="proof-content">
 <p>If an objective is positionally determined and prefix independent then it is uniformly positionally determined.</p>
 </div>
@@ -598,13 +600,18 @@ For each <span class="math notranslate nohighlight">\(v \in \WE(\game)\)</span> 
 Thanks to~\cref{1-fact:winning_prefix_independent_qualitative}
 the strategy <span class="math notranslate nohighlight">\(\sigma_v\)</span> is winning from all vertices reachable by a play consistent with <span class="math notranslate nohighlight">\(\sigma_v\)</span> starting from <span class="math notranslate nohighlight">\(v\)</span>.
 Without loss of generality let us assume that <span class="math notranslate nohighlight">\(\sigma_v\)</span> is only defined on these vertices.</p>
-<p>We fix <span class="math notranslate nohighlight">\(\le\)</span> a total order on the set of vertices<code class="docutils literal notranslate"><span class="pre">{margin}</span> <span class="pre">The</span> <span class="pre">argument</span> <span class="pre">we</span> <span class="pre">give</span> <span class="pre">in</span> <span class="pre">this</span> <span class="pre">proof</span> <span class="pre">extends</span> <span class="pre">to</span> <span class="pre">infinite</span> <span class="pre">games</span> <span class="pre">whose</span> <span class="pre">set</span> <span class="pre">of</span> <span class="pre">vertices</span> <span class="pre">can</span> <span class="pre">be</span> <span class="pre">well</span> <span class="pre">ordered.</span> <span class="pre">A</span> <span class="pre">well-order</span> <span class="pre">is</span> <span class="pre">a</span> <span class="pre">total</span> <span class="pre">order</span> <span class="pre">such</span> <span class="pre">that</span> <span class="pre">every</span> <span class="pre">non-empty</span> <span class="pre">subset</span> <span class="pre">has</span> <span class="pre">a</span> <span class="pre">least</span> <span class="pre">element,</span> <span class="pre">which</span> <span class="pre">is</span> <span class="pre">exactly</span> <span class="pre">the</span> <span class="pre">property</span> <span class="pre">we</span> <span class="pre">need</span> <span class="pre">in</span> <span class="pre">this</span> <span class="pre">proof</span></code>.
+<p>We fix <span class="math notranslate nohighlight">\(\le\)</span> a total order on the set of vertices</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>The argument we give in this proof extends to infinite games whose set of vertices can be well ordered. A well-order is a total order such that every non-empty subset has a least element, which is exactly the property we need in this proof.```</p>
+<p>.
 We let <span class="math notranslate nohighlight">\(\sigma\)</span> be the positional strategy defined by <span class="math notranslate nohighlight">\(\sigma(u)\)</span> is <span class="math notranslate nohighlight">\(\sigma_v(u)\)</span> where <span class="math notranslate nohighlight">\(v\)</span> is the least vertex (with respect to <span class="math notranslate nohighlight">\(\le\)</span>) such that <span class="math notranslate nohighlight">\(\sigma_v\)</span> is defined on <span class="math notranslate nohighlight">\(u\)</span>. We say that <span class="math notranslate nohighlight">\(\sigma\)</span> uses <span class="math notranslate nohighlight">\(\sigma_v\)</span> at <span class="math notranslate nohighlight">\(u\)</span>.</p>
 <p>We argue that <span class="math notranslate nohighlight">\(\sigma\)</span> is winning from <span class="math notranslate nohighlight">\(\WE(\game)\)</span>.
 Consider a play consistent with <span class="math notranslate nohighlight">\(\sigma\)</span> starting from some vertex in <span class="math notranslate nohighlight">\(\WE(\game)\)</span> and look at the sequence of strategies it uses.
 By definition this sequence is non-increasing (with respect to <span class="math notranslate nohighlight">\(\le\)</span>), hence it is stationary.
 In other words the play is eventually consistent with some strategy <span class="math notranslate nohighlight">\(\sigma_v\)</span>, implying that this suffix satisfies <span class="math notranslate nohighlight">\(\Omega\)</span>.
 Since <span class="math notranslate nohighlight">\(\Omega\)</span> is prefix independent this means that the play itself satisfies <span class="math notranslate nohighlight">\(\Omega\)</span>, so <span class="math notranslate nohighlight">\(\sigma\)</span> is indeed winning.</p>
+</div>
 </div>
 </div>
 <div class="section" id="finite-memory-strategies-label-1-finite-memory">

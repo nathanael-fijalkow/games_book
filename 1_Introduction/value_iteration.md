@@ -58,7 +58,9 @@
 \newcommand{\NL}{\textrm{NL}}
 \newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
 \newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
 ```
 In this section and the next we discuss two families of fixed point algorithms for solving games.
@@ -101,7 +103,6 @@ The following principle implies that computing the value function in particular 
 
 ```{prf:property} Characterisation of the winning regions
 :label: 1-property:characterisation_winning_regions
-:nonumber:
 
 For all vertices $v$ we have that Eve wins from $v$ if and only if $\Value^{\game}(v) \neq \bot$, where $\bot$ is the least element in $Y$.
 
@@ -113,8 +114,12 @@ In the remainder of this section we assume the existence of a value function $\V
 We let $F_V$ denote the set of functions $V \to Y$, it is a lattice when equipped with the componentwise (partial) order induced by $Y$:
 we say that $\mu \le \mu'$ if for all vertices $v$ we have $\mu(v) \le \mu'(v)$.
 
-The second ingredient is a function $\delta : Y \times C \to Y$ inducing an operator $\Op : F_V \to F_V$ defined by```{margin}
-This form is for two player games, the operator has to be adapted to more complex settings such as stochastic or concurrent games``` and satisfying the following principle:
+The second ingredient is a function $\delta : Y \times C \to Y$ inducing an operator $\Op : F_V \to F_V$ defined by
+
+```{margin}
+This form is for two player games, the operator has to be adapted to more complex settings such as stochastic or concurrent games.```
+
+ and satisfying the following principle:
 
 $$
 \Op(\mu)(v) = 
@@ -128,7 +133,6 @@ $$
 
 ```{prf:property} Fixed point
 :label: 1-property:fixed_point
-:nonumber:
 
 The function $\val^{\game}$ is a fixed point of the operator $\Op$.
 
@@ -147,7 +151,6 @@ We equip $F_V$ with a norm $||\cdot||$.
 
 ```{prf:property} Fixed point through contraction
 :label: 1-property:fixed_point_contraction
-:nonumber:
 
 The operator $\Op$ is contracting in the complete space $(F_V,||\cdot||)$ implying that $\Value^{\game}$ is the unique fixed point of $\Op$.
 
@@ -171,7 +174,6 @@ The second family of algorithms is based on Kleene's fixed point theorem as stat
 
 ```{prf:property} Fixed point through monotonicity
 :label: 1-property:fixed_point_monotonicity
-:nonumber:
 
 The function $\delta$ is monotonic (meaning that if $y \le y'$ then for all colours $c$ we have $\delta(y,c) \le \delta(y',c)$)
 and $\val^{\game}$ is the greatest fixed point of the monotonic operator $\Op$.
@@ -213,7 +215,6 @@ The characterisation principle can be equivalently stated as follows.
 
 ```{prf:property} Characterisation of the winning regions, equivalent formulation with progress measures
 :label: 1-property:progress_measure
-:nonumber:
 
 For all vertices $v$ we have Eve wins from $v$ if and only if there exists a progress measure $\mu$ such that $\mu(v) \neq \bot$.
 

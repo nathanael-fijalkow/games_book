@@ -492,24 +492,31 @@
 \newcommand{\NL}{\textrm{NL}}
 \newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
 \newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}\]</div>
 <p>Recall that the objective <span class="math notranslate nohighlight">\(\Buchi\)</span> requires that the colour <span class="math notranslate nohighlight">\(\Win\)</span> appears infinitely many times
 and <span class="math notranslate nohighlight">\(\CoBuchi\)</span> requires that the colour <span class="math notranslate nohighlight">\(\Lose\)</span> appears finitely many times.</p>
 <div class="proof theorem admonition" id="2-thm:Buchi">
-<p class="admonition-title"><span>Theorem </span> (Positional determinacy and complexity of Buchi games)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 36 </span> (Positional determinacy and complexity of Buchi games)</p>
 <div class="theorem-content section" id="proof-content">
-<p>Büchi objectives are uniformly positionally determined for both players<code class="docutils literal notranslate"><span class="pre">{margin}</span> <span class="pre">See</span> <span class="pre">\cref{2-rmk:finite_infinit</span></code> for the case of infinite games.}.
+<p>Büchi objectives are uniformly positionally determined for both players</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>See \cref{2-rmk:finite_infinite```</p>
+<p>for the case of infinite games.}.
 There exists an algorithm for computing the winning regions of Büchi games in quadratic time, more precisely <span class="math notranslate nohighlight">\(O(mn)\)</span>,
 and linear space, more precisely <span class="math notranslate nohighlight">\(O(m)\)</span>.</p>
+</div>
 </div>
 </div><p>The first sentence implies that CoBüchi games are also uniformly positionally determined.
 We present two different yet very similar algorithms.</p>
 <div class="section" id="a-first-algorithm">
 <h2>A first algorithm<a class="headerlink" href="#a-first-algorithm" title="Permalink to this headline">¶</a></h2>
-<p>The following lemma implies  <a class="reference internal" href="#2-thm:Buchi">Theorem </a>.</p>
+<p>The following lemma implies  <a class="reference internal" href="#2-thm:Buchi">Theorem 36</a>.</p>
 <div class="proof lemma admonition" id="2-lem:Buchi_second">
-<p class="admonition-title"><span>Lemma </span> (Fixed point characterisation of the winning region for Buchi games)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 37 </span> (Fixed point characterisation of the winning region for Buchi games)</p>
 <div class="lemma-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\Game\)</span> be a Büchi game.</p>
 <ul class="simple">
@@ -573,9 +580,9 @@ and each of them involves two attractor computations, implying the time complexi
 </div>
 <div class="section" id="a-second-algorithm">
 <h2>A second algorithm<a class="headerlink" href="#a-second-algorithm" title="Permalink to this headline">¶</a></h2>
-<p>The following lemma induces a different algorithm, it also implies  <a class="reference internal" href="#2-thm:Buchi">Theorem </a>.</p>
+<p>The following lemma induces a different algorithm, it also implies  <a class="reference internal" href="#2-thm:Buchi">Theorem 36</a>.</p>
 <div class="proof lemma admonition" id="2-lem:Buchi">
-<p class="admonition-title"><span>Lemma </span> (Second fixed point characterisation of the winning region for Buchi games)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 38 </span> (Second fixed point characterisation of the winning region for Buchi games)</p>
 <div class="lemma-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\game\)</span> a Büchi game.
 Then <span class="math notranslate nohighlight">\(\WE(\game)\)</span> is the greatest fixed point of the monotonic operator</p>
@@ -586,7 +593,7 @@ Y \mapsto \AttrE \left( \Win \cap \PreE(Y) \right).
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
-<p>Thanks to  <a class="reference internal" href="../1_Introduction/fixed_points.html#1-thm:kleene">Theorem </a> the fixed point computation is realised by setting <span class="math notranslate nohighlight">\(Y_0 = V\)</span>
+<p>Thanks to  <a class="reference internal" href="../1_Introduction/fixed_points.html#1-thm:kleene">Theorem 24</a> the fixed point computation is realised by setting <span class="math notranslate nohighlight">\(Y_0 = V\)</span>
 and <span class="math notranslate nohighlight">\(Y_{k+1} = Y_k \cap \AttrE \left(\Win \cap \PreE(Y_k) \right)\)</span>.
 This constructs a non-increasing sequence <span class="math notranslate nohighlight">\((Y_k)_{k \in \N}\)</span> of subsets of <span class="math notranslate nohighlight">\(V\)</span>
 satisfying the property:
@@ -643,7 +650,7 @@ so the next vertex has rank at most <span class="math notranslate nohighlight">\
 Thus along any play consistent with <span class="math notranslate nohighlight">\(\tau\)</span>, the rank never increases and each time a vertex in <span class="math notranslate nohighlight">\(\Win\)</span> is reached the rank decreases,
 implying that it satisfies <span class="math notranslate nohighlight">\(\CoBuchi[\Win]\)</span>.</p>
 </div>
-<p><a class="reference internal" href="#2-lem:Buchi">Lemma </a> directly transfers to <a class="reference internal" href="#algo-buchi-second"><span class="std std-numref">Fig. 10</span></a>.</p>
+<p><a class="reference internal" href="#2-lem:Buchi">Lemma 38</a> directly transfers to <a class="reference internal" href="#algo-buchi-second"><span class="std std-numref">Fig. 10</span></a>.</p>
 <div class="figure align-center" id="algo-buchi-second">
 <img alt="../_images/2-algo:Buchi_second.png" src="../_images/2-algo:Buchi_second.png" />
 <p class="caption"><span class="caption-number">Fig. 10 </span><span class="caption-text">The second quadratic time algorithm for solving B{“uchi} games.</span><a class="headerlink" href="#algo-buchi-second" title="Permalink to this image">¶</a></p>

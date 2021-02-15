@@ -69,7 +69,9 @@
 \newcommand{\NL}{\textrm{NL}}
 \newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
 \newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
 ```
 A natural approach for aggregating an infinite sequence of weights is to consider the arithmetic mean.
@@ -94,7 +96,6 @@ The best known time complexity for both problems is pseudopolynomial, meaning po
 
 ```{prf:lemma} NEEDS TITLE 4-lem:prefix_independence_mean_payoff
 :label: 4-lem:prefix_independence_mean_payoff
-:nonumber:
 
 $\MeanPayoff^+$ is prefix independent.
 
@@ -168,7 +169,6 @@ A mean payoff game.
 
 ```{prf:theorem} NEEDS TITLE 4-thm:mean_payoff_positional
 :label: 4-thm:mean_payoff_positional
-:nonumber:
 
 Limit superior mean payoff objectives are uniformly positionally determined for both players.
 
@@ -467,7 +467,6 @@ Let us extract from the proof of {prf:ref}`4-thm:mean_payoff_positional` a more 
 
 ```{prf:theorem} NEEDS TITLE 4-thm:first_cycle_games
 :label: 4-thm:first_cycle_games
-:nonumber:
 
 Let $\Phi$ a quantitative objective over the set of colours $C$.
 Let $f : C^* \to \R$ satisfying the following properties,
@@ -500,7 +499,6 @@ implying the positionality of games with objective $\Phi$.
 
 ```{prf:corollary} NEEDS TITLE 4-cor:rational-MP
 :label: 4-cor:rational-MP
-:nonumber:
 
 *  Limit superior and limit inferior mean payoff games are equivalent:
 for every arena $\arena$ and colouring function $\col : E \to \Z$,
@@ -556,7 +554,6 @@ The positional determinacy of mean payoff games easily gives an upper bound on t
 
 ```{prf:theorem} NEEDS TITLE 4-thm:MP-NPcoNP
 :label: 4-thm:MP-NPcoNP
-:nonumber:
 
 Solving mean payoff games is in $\NP\cap\coNP$.
 
@@ -590,7 +587,6 @@ We now show that solving mean payoff games is at least as hard as solving parity
 
 ```{prf:theorem} NEEDS TITLE 4-thm:parity2MP
 :label: 4-thm:parity2MP
-:nonumber:
 
   Solving parity games reduce in polynomial time to solving mean payoff games with threshold $0$.
 
@@ -640,7 +636,6 @@ that solving parity games is in $\NP \cap \coNP$.
 
 ```{prf:theorem} NEEDS TITLE 4-thm:strategy_improvement
 :label: 4-thm:strategy_improvement
-:nonumber:
 
 There exists a strategy improvement algorithm for solving mean payoff games in \mynote{FILL IN}.
 
@@ -676,8 +671,6 @@ A strategy $\sigma$ respects mean payoff if and only if all cycles in $\Game[\si
  
 :label: 
 A strategy $\sigma$ respects mean payoff if and only if all cycles in $\Game[\sigma]$ are non-negative.
-
-:nonumber:
 
 A strategy $\sigma$ respects mean payoff if and only if all cycles in $\Game[\sigma]$ are non-negative.
 
@@ -734,8 +727,6 @@ The function $\val^\sigma$ is a fixed point of $\Op$ in $F^\sigma_V$.
 :label: 
 The function $\val^\sigma$ is a fixed point of $\Op$ in $F^\sigma_V$.
 
-:nonumber:
-
 The function $\val^\sigma$ is a fixed point of $\Op$ in $F^\sigma_V$.
 
 ```
@@ -751,7 +742,6 @@ From this discussion we obtain the following result.
 
 ```{prf:lemma} NEEDS TITLE 4-lem:greatest_fixed_point
 :label: 4-lem:greatest_fixed_point
-:nonumber:
 
 If $\sigma$ respects mean payoff, then $\val^{\sigma}$ is the greatest fixed point of $\Op$ in $F^\sigma_V$.
 
@@ -801,8 +791,6 @@ Then $t \le \delta(t,w_1 \dots w_k)$ if and only if $\sum_{i \in [1,k]} w_i \ge 
 Let $t \in Y$ and $w_1,\dots,w_k \in [-W,W]$ such that $t$ and $\delta(t,w_1 \dots w_k)$ are neither $\top$ nor $\bot$.
 Then $t \le \delta(t,w_1 \dots w_k)$ if and only if $\sum_{i \in [1,k]} w_i \ge 0$.
 
-:nonumber:
-
 Let $t \in Y$ and $w_1,\dots,w_k \in [-W,W]$ such that $t$ and $\delta(t,w_1 \dots w_k)$ are neither $\top$ nor $\bot$.
 Then $t \le \delta(t,w_1 \dots w_k)$ if and only if $\sum_{i \in [1,k]} w_i \ge 0$.
 
@@ -812,7 +800,6 @@ The following lemma states the two important properties of $(Y,\le)$ and $\delta
 
 ```{prf:lemma} NEEDS TITLE 4-lem:key_property
 :label: 4-lem:key_property
-:nonumber:
 
 Let $G$ a mean payoff graph (with no stopping option).
 
@@ -851,7 +838,6 @@ We now rely on  {prf:ref}`4-lem:greatest_fixed_point` and  {prf:ref}`4-lem:key_p
 
 ```{prf:lemma} NEEDS LABEL Progress
 :label: Progress
-:nonumber:
 Let $\sigma$ a strategy respecting mean payoff and $e = (v,v')$ a switchable edge.
 We let $\sigma'$ denote $\sigma[v \to e]$.
 Then $\sigma'$ respects mean payoff and $\sigma < \sigma'$.
@@ -906,7 +892,6 @@ $\val^\sigma(v) < \val^{\sigma'}(v)$.
 
 ```{prf:lemma} NEEDS LABEL Optimality
 :label: Optimality
-:nonumber:
 Let $\sigma$ a strategy respecting mean payoff that has no switchable edges, then 
 $\sigma$ is winning from all vertices of $\WE(\Game)$.
 
@@ -1014,7 +999,6 @@ form, which implies that
 
 ```{prf:theorem} NEEDS TITLE 4-thm:MP-strategy-improvement-binary-search
 :label: 4-thm:MP-strategy-improvement-binary-search
-:nonumber:
 
   Strategy improvement algorithm with a binary search computes the
   values of a mean payoff game in time
@@ -1061,7 +1045,6 @@ measure. Therefore, there exists a greatest progress measure.
 
 ```{prf:theorem} NEEDS TITLE 4-thm:greatest-progress-measure
 :label: 4-thm:greatest-progress-measure
-:nonumber:
 
   Let $\game$ be a mean payoff game. The greatest progress measure $\mu$
   of $\game$ is such that Eve can guarantee a non-negative mean payoff
@@ -1176,7 +1159,6 @@ $$\sum_{v\in V}\bigO\big((|\mathrm{post}(v)| +
 
 ```{prf:theorem} NEEDS TITLE 4-thm:MP-value-iteration-Brim
 :label: 4-thm:MP-value-iteration-Brim
-:nonumber:
 
   Value iteration algorithm finds the set $\WE$ of vertices from which
   Eve can guarantee a non-negative mean payoff in a game $\game$ with a
@@ -1190,7 +1172,6 @@ strategy improvement:
 
 ```{prf:theorem} NEEDS TITLE 4-thm:MP-value-iteration-Brim-binary-search
 :label: 4-thm:MP-value-iteration-Brim-binary-search
-:nonumber:
 
   Value iteration algorithm with a binary search allows one to compute
   the values of a mean payoff game in time

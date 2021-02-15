@@ -102,7 +102,9 @@
 \newcommand{\NL}{\textrm{NL}}
 \newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
 \newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
 ```
 We write vectors in boldface: $ \vec{x}, \vec{y}, $ etc. For a vector $ \vec{x} $ indexed by a set $ I $ (i.e. $ \vec{x}\in \mathbb{R}^I $) we denote by $ \vec{x}_i $ the value of the component whose index is  $i\in I  $. 
@@ -114,7 +116,6 @@ We also deal with probabilities over uncountable sets of events. This is accompl
 
 ```{prf:definition} Probability space
 :label: 5-def:probspace
-:nonumber:
 
 A probability space is a triple
 $(\sampleSpace,\sigmaAlg,\probm)$ where
@@ -151,7 +152,6 @@ We first give a syntactic notion of an MDP which is an analogue of the notion of
 
 ```{prf:definition} MDP
 :label: 5-def:MDP
-:nonumber:
 
 A Markov decision process is a tuple $(\vertices,\edges,\probTranFunc,\colouring)$. The meaning of $\vertices$, $\edges$, and $\colouring$ is the same as for games, i.e. $\vertices$ is a finite set of vertices, $\edges\subseteq \vertices\times\vertices$ is a set of edges and $\colouring\colon \edges \rightarrow \colours$ a mapping of edges to a set of colours. However, the meaning of $\probTranFunc$ is now different: $\probTranFunc$ is a partial probabilistic transition function of type $\probTranFunc\colon \vertices \times \actions \rightarrow \dist(\edges)$, such that the support of $\probTranFunc(v,a)$ only contains edges outgoing from $v$.
  We usually write $\probTranFunc(v'\mid v,a)$ as a shorthand for $\probTranFunc(v,a)((v,v'))$, i.e. the probability of transitioning from $v$ to $v'$ under action $a$.
