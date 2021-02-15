@@ -63,13 +63,14 @@
 \newcommand{\NL}{\textrm{NL}}
 \newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
 \newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
 ```
 
 ```{prf:theorem} NEEDS TITLE 3-thm:strategy_improvement
 :label: 3-thm:strategy_improvement
-:nonumber:
 
 There exists a strategy improvement algorithm for solving parity games in exponential time.
 
@@ -105,8 +106,6 @@ A strategy $\sigma$ respects parity if and only if all cycles in $\Game[\sigma]$
  
 :label: 
 A strategy $\sigma$ respects parity if and only if all cycles in $\Game[\sigma]$ are even.
-
-:nonumber:
 
 A strategy $\sigma$ respects parity if and only if all cycles in $\Game[\sigma]$ are even.
 
@@ -180,8 +179,6 @@ The function $\val^\sigma$ is a fixed point of $\Op$ in $F^\sigma_V$.
 :label: 
 The function $\val^\sigma$ is a fixed point of $\Op$ in $F^\sigma_V$.
 
-:nonumber:
-
 The function $\val^\sigma$ is a fixed point of $\Op$ in $F^\sigma_V$.
 
 ```
@@ -197,7 +194,6 @@ From this discussion we obtain the following result.
 
 ```{prf:lemma} NEEDS TITLE 3-lem:greatest_fixed_point
 :label: 3-lem:greatest_fixed_point
-:nonumber:
 
 If $\sigma$ respects parity, then $\val^{\sigma}$ is the greatest fixed point of $\Op$ in $F^\sigma_V$.
 
@@ -247,8 +243,6 @@ Then $t \le \delta(t,p_1 \dots p_k)$ if and only if $\max \set{p_1,\dots,p_k}$ i
 Let $t \in Y$ and $p_1,\dots,p_k \in [1,d]$ such that $t$ and $\delta(t,p_1 \dots p_k)$ are neither $\top$ nor $\bot$.
 Then $t \le \delta(t,p_1 \dots p_k)$ if and only if $\max \set{p_1,\dots,p_k}$ is even.
 
-:nonumber:
-
 Let $t \in Y$ and $p_1,\dots,p_k \in [1,d]$ such that $t$ and $\delta(t,p_1 \dots p_k)$ are neither $\top$ nor $\bot$.
 Then $t \le \delta(t,p_1 \dots p_k)$ if and only if $\max \set{p_1,\dots,p_k}$ is even.
 
@@ -258,7 +252,6 @@ The following lemma states the two important properties of $(Y,\le)$ and $\delta
 
 ```{prf:lemma} NEEDS TITLE 3-lem:key_property
 :label: 3-lem:key_property
-:nonumber:
 
 Let $G$ a parity graph (with no stopping option).
 
@@ -297,7 +290,6 @@ We now rely on  {prf:ref}`3-lem:greatest_fixed_point` and  {prf:ref}`3-lem:key_p
 
 ```{prf:lemma} NEEDS LABEL Progress
 :label: Progress
-:nonumber:
 Let $\sigma$ a strategy respecting parity and $e = (v,v')$ a switchable edge.
 We let $\sigma'$ denote $\sigma[v \to e]$.
 Then $\sigma'$ respects parity and $\sigma < \sigma'$.
@@ -352,7 +344,6 @@ $\val^\sigma(v) < \val^{\sigma'}(v)$.
 
 ```{prf:lemma} NEEDS LABEL Optimality
 :label: Optimality
-:nonumber:
 Let $\sigma$ a strategy respecting parity that has no switchable edges, then 
 $\sigma$ is winning from all vertices of $\WE(\Game)$.
 

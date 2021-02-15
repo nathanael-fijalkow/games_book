@@ -58,7 +58,9 @@
 \newcommand{\NL}{\textrm{NL}}
 \newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
 \newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
 ```
 
@@ -147,7 +149,6 @@ Solving a linear program is finding an optimal assignment $x^*$ of the variables
 
 ```{prf:theorem} Linear programming
 :label: 1-thm:linear_programming
-:nonumber:
 
 There exists a polynomial time algorithm for solving linear programs.
 

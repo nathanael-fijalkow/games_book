@@ -69,7 +69,9 @@
 \newcommand{\NL}{\textrm{NL}}
 \newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
 \newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
 ```
 The quantitative objective $\Sup$ generalises the qualitative
@@ -117,7 +119,6 @@ Most of the difficulty lies in the third case, where
 
 ```{prf:lemma} NEEDS TITLE 4-lem:detecting_minus_infinity
 :label: 4-lem:detecting_minus_infinity
-:nonumber:
 
 Let $\Game$ a shortest path game and $v$ a vertex.
 Then $\val(v) = -\infty$ if and only if $v \notin \AttrE(\Win)$.
@@ -145,10 +146,13 @@ However, if she never reaches $\Win$ the outcome is $-\infty$.
 
 ```{prf:theorem} NEEDS TITLE 4-thm:shortest path-positive
 :label: 4-thm:shortest path-positive
-:nonumber:
 
-Shortest path games with non-negative weights are uniformly positionally determined for both players```{margin}
-This positionality result does not extend to infinite games```.
+Shortest path games with non-negative weights are uniformly positionally determined for both players
+
+```{margin}
+This positionality result does not extend to infinite games.```
+
+.
 There exists a value iteration algorithm for computing the value function of these games in polynomial time and space.
 \mynote{More precisely}, 
 
@@ -158,7 +162,6 @@ We rely on the high-level presentation of value iteration algorithms given in Se
 
 ```{prf:lemma} NEEDS TITLE 4-lem:optimal_strategies_shortest_path_games
 :label: 4-lem:optimal_strategies_shortest_path_games
-:nonumber:
 
 Let $\Game$ be a shortest path game with non-negative weights, then there exists an optimal strategy $\sigma$ for Eve.
 
@@ -206,8 +209,6 @@ Let $\Game$ be a shortest path game with non-negative weights, then $\val$ is th
  
 :label: 
 Let $\Game$ be a shortest path game with non-negative weights, then $\val$ is the greatest fixed point of $\Op$.
-
-:nonumber:
 
 Let $\Game$ be a shortest path game with non-negative weights, then $\val$ is the greatest fixed point of $\Op$.
 
@@ -379,7 +380,6 @@ games: {cite}`Brihaye&Geeraerts&HaddadA&Monmege:2017`
 
 ```{prf:theorem} NEEDS TITLE 4-thm:-infty-MP
 :label: 4-thm:-infty-MP
-:nonumber:
 
   Let $\arena$ be an arena.
   
@@ -489,7 +489,6 @@ step of speed-up can detect the vertices of value $-\infty$.
 
 ```{prf:lemma} NEEDS TITLE 4-lem:-infty
 :label: 4-lem:-infty
-:nonumber:
 
   In a shortest path game $\game$, all vertices $v$ with a value
   $\Value(v)<-(n-1) W$ have value $\Value(v)=-\infty$.
@@ -539,7 +538,6 @@ reached a target vertex while getting the optimal value.
 
 ```{prf:theorem} NEEDS TITLE 4-thm:SP-pseudopoly-algo
 :label: 4-thm:SP-pseudopoly-algo
-:nonumber:
 
   We can compute in pseudopolynomial time the values of a
   shortest path game. 

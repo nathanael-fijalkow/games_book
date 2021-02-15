@@ -69,7 +69,9 @@
 \newcommand{\NL}{\textrm{NL}}
 \newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
 \newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
 ```
 Yet another interesting quantitative objective---that is closely
@@ -118,7 +120,6 @@ positional determinacy.
 
 ```{prf:definition} NEEDS TITLE 4-def:fairly-mixing
 :label: 4-def:fairly-mixing
-:nonumber:
 
   A payoff $\mathsf{P}\colon C^\omega\to \overline R$ is **fairly
     mixing** if:
@@ -155,7 +156,6 @@ It is not difficult to convince oneself that
 
 ```{prf:proposition} NEEDS TITLE 4-prop:objectives-fairly
 :label: 4-prop:objectives-fairly
-:nonumber:
 
   Quantitative objectives $\Inf$, $\Sup$, $\LimInf$, $\LimSup$,
   $\Parity$ (mapping $1$ to sequences whose the greatest colour seen
@@ -171,7 +171,6 @@ in the arena allows one to get the following strong result:
 
 ```{prf:theorem} NEEDS TITLE 4-thm:fairly-mixing
 :label: 4-thm:fairly-mixing
-:nonumber:
 
   If $\mathsf P$ is a fairly mixing payoff function, then all finite
   games $(\arena,\mathsf P)$ are positionally determined.
@@ -181,7 +180,6 @@ in the arena allows one to get the following strong result:
 
 ```{prf:corollary} NEEDS TITLE 4-cor:TP-determinacy
 :label: 4-cor:TP-determinacy
-:nonumber:
 
   Total payoff games are positionally determined.
 
@@ -223,7 +221,6 @@ costs---resulting in a pseudopolynomial time algorithm.
 
 ```{prf:theorem} NEEDS TITLE 4-thm:TP-optimal-strategies
 :label: 4-thm:TP-optimal-strategies
-:nonumber:
 
   We can compute the optimal values of total payoff games, as well as
   positional optimal strategies for both players, with a

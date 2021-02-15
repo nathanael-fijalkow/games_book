@@ -502,7 +502,9 @@
 \newcommand{\NL}{\textrm{NL}}
 \newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
 \newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}\]</div>
 <p>The prefix independent objectives we studied so far are Büchi, CoBüchi, and their joint extension the parity objectives.
 The definition of the latter may seem a bit arbitrary; the study of Muller objectives will show how parity objectives naturally emerge as a well-behaved class of objectives.</p>
@@ -527,7 +529,7 @@ We say that <span class="math notranslate nohighlight">\(\F\)</span> is closed u
 Let us define Streett objectives as the subclass of Muller objectives given by <span class="math notranslate nohighlight">\(\F\)</span> closed under union.
 The following purely combinatorial lemma gives a nice characterisation of these objectives.</p>
 <div class="proof lemma admonition" id="2-lem:characterisation_Streett">
-<p class="admonition-title"><span>Lemma </span> (Characterisation of Streett among Muller objectives)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 42 </span> (Characterisation of Streett among Muller objectives)</p>
 <div class="lemma-content section" id="proof-content">
 <p>A collection <span class="math notranslate nohighlight">\(\F \subseteq 2^C\)</span> is closed under union if and only if there exists a set of pairs <span class="math notranslate nohighlight">\((R_i,G_i)_{i \in [1,d]}\)</span>
 with <span class="math notranslate nohighlight">\(R_i,G_i \subseteq C\)</span> such that <span class="math notranslate nohighlight">\(X \in \F\)</span> is equivalent to for all <span class="math notranslate nohighlight">\(i \in [1,d]\)</span>,
@@ -563,18 +565,23 @@ with this terminology the Streett objective requires that every request made inf
 <div class="section" id="mcnaughton-algorithm-an-exponential-time-algorithm-for-muller-games">
 <h2>McNaughton algorithm: an exponential time algorithm for Muller games<a class="headerlink" href="#mcnaughton-algorithm-an-exponential-time-algorithm-for-muller-games" title="Permalink to this headline">¶</a></h2>
 <div class="proof theorem admonition" id="2-thm:muller">
-<p class="admonition-title"><span>Theorem </span> (Finite memory determinacy and complexity for Muller games)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 43 </span> (Finite memory determinacy and complexity for Muller games)</p>
 <div class="theorem-content section" id="proof-content">
-<p>Muller objectives are determined with finite memory strategies of size <span class="math notranslate nohighlight">\(d!\)</span><code class="docutils literal notranslate"><span class="pre">{margin}</span> <span class="pre">See</span> <span class="pre">\cref{2-rmk:finite_infinit</span></code> for the case of infinite games.}.
+<p>Muller objectives are determined with finite memory strategies of size <span class="math notranslate nohighlight">\(d!\)</span></p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>See \cref{2-rmk:finite_infinite```</p>
+<p>for the case of infinite games.}.
 There exists an algorithm for computing the winning regions of Muller games in exponential time,
 and more specifically of complexity <span class="math notranslate nohighlight">\(O(m d (dn)^d)\)</span>, and in polynomial space, and more specifically <span class="math notranslate nohighlight">\(O(dm)\)</span>.</p>
+</div>
 </div>
 </div><p>The presentation of the recursive algorithm for computing the winning regions of Muller games follows the exact same lines as for parity games:
 indeed, the Muller objective extends the parity objective, and specialising the algorithm for Muller games to parity games
 yields the algorithm we presented above.</p>
 <p>The following lemma induces the recursive algorithm for computing the winning regions of Muller games.</p>
 <div class="proof lemma admonition" id="2-lem:Muller_even">
-<p class="admonition-title"><span>Lemma </span> (Fixed point characterisation of the winning regions for Muller games)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 44 </span> (Fixed point characterisation of the winning regions for Muller games)</p>
 <div class="lemma-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\Game\)</span> be a Muller game such that <span class="math notranslate nohighlight">\(C \in \F\)</span>.
 For each <span class="math notranslate nohighlight">\(c \in C\)</span>, let <span class="math notranslate nohighlight">\(\Game_c\)</span> be the subgame of <span class="math notranslate nohighlight">\(\Game\)</span> induced by <span class="math notranslate nohighlight">\(V \setminus \AttrE(c)\)</span>.</p>
@@ -621,7 +628,7 @@ implying that <span class="math notranslate nohighlight">\(\sigma\)</span> is wi
 <p>To get the full algorithm we need the analogous lemma for the case where <span class="math notranslate nohighlight">\(C \notin \F\)</span>.
 We do not prove it as it is the exact dual of the previous lemma, and the proof is the same swapping the two players.</p>
 <div class="proof lemma admonition" id="2-lem:Muller_odd">
-<p class="admonition-title"><span>Lemma </span> (Dual fixed point characterisation of the winning regions for Muller games)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 45 </span> (Dual fixed point characterisation of the winning regions for Muller games)</p>
 <div class="lemma-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\Game\)</span> be a Muller game such that <span class="math notranslate nohighlight">\(C \notin \F\)</span>.
 For each <span class="math notranslate nohighlight">\(c \in C\)</span>, let <span class="math notranslate nohighlight">\(\Game_c\)</span> be the subgame of <span class="math notranslate nohighlight">\(\Game\)</span> induced by <span class="math notranslate nohighlight">\(V \setminus \AttrA(c)\)</span>.</p>
@@ -649,7 +656,7 @@ We obtain <span class="math notranslate nohighlight">\(f(n,d) \le d n \cdot f(n,
 so <span class="math notranslate nohighlight">\(f(n,d) \le (d+1)n (1 + dn + (dn)^2 + \dots + (dn)^{d-2}) = O((dn)^d)\)</span>.
 In each recursive call we perform <span class="math notranslate nohighlight">\(d+1\)</span> attractor computations so the number of operations in one recursive call is <span class="math notranslate nohighlight">\(O(dm)\)</span>.
 Thus the overall time complexity is <span class="math notranslate nohighlight">\(O(m d (dn)^d)\)</span>.</p>
-<p>The proofs of  <a class="reference internal" href="#2-lem:Muller_even">Lemma </a> and  <a class="reference internal" href="#2-lem:Muller_odd">Lemma </a> also imply that Muller games are determined with finite memory of size <span class="math notranslate nohighlight">\(d!\)</span>.
+<p>The proofs of  <a class="reference internal" href="#2-lem:Muller_even">Lemma 44</a> and  <a class="reference internal" href="#2-lem:Muller_odd">Lemma 45</a> also imply that Muller games are determined with finite memory of size <span class="math notranslate nohighlight">\(d!\)</span>.
 We do not make it more precise here because an improved analysis of the memory requirements will be conducted in Section <a class="reference internal" href="zielonka.html#sec-zielonka"><span class="std std-ref">Zielonka tree</span></a>
 using a variant of this algorithm.</p>
 <div class="figure align-center" id="algo-mcnaughton">
@@ -660,13 +667,13 @@ using a variant of this algorithm.</p>
 <div class="section" id="positional-determinacy-for-rabin-games">
 <h2>Positional determinacy for Rabin games<a class="headerlink" href="#positional-determinacy-for-rabin-games" title="Permalink to this headline">¶</a></h2>
 <div class="proof theorem admonition" id="2-thm:Rabin_positional_determinacy">
-<p class="admonition-title"><span>Theorem </span> (Positional determinacy for Rabin games)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 46 </span> (Positional determinacy for Rabin games)</p>
 <div class="theorem-content section" id="proof-content">
 <p>Rabin games are uniformly positionally determined.</p>
 </div>
-</div><p><a class="reference internal" href="#2-thm:Rabin_positional_determinacy">Theorem </a> holds for infinite games.
+</div><p><a class="reference internal" href="#2-thm:Rabin_positional_determinacy">Theorem 46</a> holds for infinite games.
 However the proof we give here only applies to finite games and does not easily extend to infinite ones.
-A different approach is required to obtain the positionality result for infinite games, see  <a class="reference internal" href="zielonka.html#2-thm:characterisation_Zielonka_tree">Theorem </a>.</p>
+A different approach is required to obtain the positionality result for infinite games, see  <a class="reference internal" href="zielonka.html#2-thm:characterisation_Zielonka_tree">Theorem 56</a>.</p>
 <div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
 <p>We proceed by induction over the following quantity: total outdegree of vertices controlled by Eve minus number of vertices controller by Eve.
@@ -710,7 +717,7 @@ let <span class="math notranslate nohighlight">\((\rho_1^\ell)_{\ell \in \N}\)</
 Since <span class="math notranslate nohighlight">\(\Inf(\rho_1~\Join~\rho_2) = \Inf(\rho_1) \cup \Inf(\rho_2)\)</span>, this implies that <span class="math notranslate nohighlight">\(\rho_1 \Join \rho_2\)</span> does not satisfy <span class="math notranslate nohighlight">\(\Rabin\)</span>.</p>
 <p>This directly yields a contradiction: neither <span class="math notranslate nohighlight">\(\play_1\)</span> nor <span class="math notranslate nohighlight">\(\play_2\)</span> satisfy <span class="math notranslate nohighlight">\(\Rabin\)</span>, yet their shuffle <span class="math notranslate nohighlight">\(\play\)</span> does.</p>
 </div>
-<p>The proof of  <a class="reference internal" href="#2-thm:Rabin_positional_determinacy">Theorem </a> yields a stronger result: every prefix independent submixing objective is positionally determined over finite arenas, where the submixing property is defined as follows for the objective <span class="math notranslate nohighlight">\(\Omega\)</span>:</p>
+<p>The proof of  <a class="reference internal" href="#2-thm:Rabin_positional_determinacy">Theorem 46</a> yields a stronger result: every prefix independent submixing objective is positionally determined over finite arenas, where the submixing property is defined as follows for the objective <span class="math notranslate nohighlight">\(\Omega\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{array}{lccccccccccc}
@@ -720,7 +727,7 @@ Since <span class="math notranslate nohighlight">\(\Inf(\rho_1~\Join~\rho_2) = \
 \end{array}
 \end{split}\]</div>
 <div class="proof theorem admonition" id="2-thm:submixing_positional">
-<p class="admonition-title"><span>Theorem </span> (Submixing property implies uniform positional determinacy)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 47 </span> (Submixing property implies uniform positional determinacy)</p>
 <div class="theorem-content section" id="proof-content">
 <p>Every prefix independent submixing objective is uniformly positionally determined over finite arenas.</p>
 </div>
@@ -728,11 +735,11 @@ Since <span class="math notranslate nohighlight">\(\Inf(\rho_1~\Join~\rho_2) = \
 <div class="section" id="the-complexity-of-solving-rabin-games">
 <h2>The complexity of solving Rabin games<a class="headerlink" href="#the-complexity-of-solving-rabin-games" title="Permalink to this headline">¶</a></h2>
 <div class="proof theorem admonition" id="2-thm:Rabin_complexity">
-<p class="admonition-title"><span>Theorem </span> (Complexity of solving Rabin games)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 48 </span> (Complexity of solving Rabin games)</p>
 <div class="theorem-content section" id="proof-content">
 <p>Solving Rabin games is <span class="math notranslate nohighlight">\(\NP\)</span>-complete.</p>
 </div>
-</div><p>In order to simplify the reduction for proving <a class="reference internal" href="#2-thm:Rabin_complexity">Theorem </a> let us make some remarks about colouring functions.
+</div><p>In order to simplify the reduction for proving <a class="reference internal" href="#2-thm:Rabin_complexity">Theorem 48</a> let us make some remarks about colouring functions.
 We defined colouring functions as <span class="math notranslate nohighlight">\(\col : V \to C\)</span>, meaning that we label vertices.
 Let us discuss here three more general definitions and how to reduce them to the vertex colouring functions
 in the case of Rabin games.</p>
@@ -792,7 +799,7 @@ Indeed, some clause is chosen infinitely many times, so the corresponding litera
 Since all the literals chosen by Eve satisfy the same assignment <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> she does not choose both a literal and its negation, so she never chooses <span class="math notranslate nohighlight">\(\bar{\ell}\)</span>.
 It follows that <span class="math notranslate nohighlight">\(\sigma\)</span> is a winning strategy for Eve.</p>
 <p>Conversely, let us assume that Eve has a winning strategy.
-Thanks to  <a class="reference internal" href="#2-thm:Rabin_positional_determinacy">Theorem </a> she has a positional winning strategy <span class="math notranslate nohighlight">\(\sigma\)</span>.
+Thanks to  <a class="reference internal" href="#2-thm:Rabin_positional_determinacy">Theorem 46</a> she has a positional winning strategy <span class="math notranslate nohighlight">\(\sigma\)</span>.
 We argue that <span class="math notranslate nohighlight">\(\sigma\)</span> cannot choose some literal <span class="math notranslate nohighlight">\(\ell\)</span> in some clause <span class="math notranslate nohighlight">\(C\)</span> and the literal <span class="math notranslate nohighlight">\(\bar{\ell}\)</span> in another clause <span class="math notranslate nohighlight">\(C'\)</span>.
 If this would be the case, consider the strategy of Adam alternating between the two clauses <span class="math notranslate nohighlight">\(C\)</span> and <span class="math notranslate nohighlight">\(C'\)</span> and play it against <span class="math notranslate nohighlight">\(\sigma\)</span>:
 both <span class="math notranslate nohighlight">\(\ell\)</span> and <span class="math notranslate nohighlight">\(\bar{\ell}\)</span> are chosen infinitely many times, and no other literals.
@@ -808,7 +815,7 @@ implying that this play does not satisfy <span class="math notranslate nohighlig
 <div class="section" id="the-complexity-of-solving-muller-games">
 <h2>The complexity of solving Muller games}<a class="headerlink" href="#the-complexity-of-solving-muller-games" title="Permalink to this headline">¶</a></h2>
 <div class="proof theorem admonition" id="Complexity of solving Muller games">
-<p class="admonition-title"><span>Theorem </span> (NEEDS LABEL Complexity of solving Muller games)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 49 </span> (NEEDS LABEL Complexity of solving Muller games)</p>
 <div class="theorem-content section" id="proof-content">
 <p>\label{2-thm:complexity_Muller
 Solving Muller games is <span class="math notranslate nohighlight">\(\PSPACE\)</span>-complete.</p>
@@ -818,7 +825,7 @@ and some edges have more than one colour.
 As for Rabin games this can be reduced to the original definition of colouring functions (labelling vertices with exactly one colour each) with a polynomial increase in size.</p>
 <div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
-<p>The <span class="math notranslate nohighlight">\(\PSPACE\)</span> algorithm was constructed in  <a class="reference internal" href="#2-thm:muller">Theorem </a>.</p>
+<p>The <span class="math notranslate nohighlight">\(\PSPACE\)</span> algorithm was constructed in  <a class="reference internal" href="#2-thm:muller">Theorem 43</a>.</p>
 <p>To prove the <span class="math notranslate nohighlight">\(\PSPACE\)</span>-hardness we reduce the evaluation of quantified boolean formulas in disjunctive normal form (<span class="math notranslate nohighlight">\(\QBF\)</span>) to solving Muller games.</p>
 <p>Let <span class="math notranslate nohighlight">\(\Psi\)</span> be a quantified boolean formula in disjunctive normal form with <span class="math notranslate nohighlight">\(n\)</span> variables <span class="math notranslate nohighlight">\(x_1 \ldots x_n\)</span> and <span class="math notranslate nohighlight">\(m\)</span> clauses <span class="math notranslate nohighlight">\(C_1 \dots C_m\)</span>, where each <span class="math notranslate nohighlight">\(C_j\)</span> is of the form <span class="math notranslate nohighlight">\(\ell_{j_1} \wedge \ell_{j_2} \wedge \ell_{j_3}\)</span>:</p>
 <div class="math notranslate nohighlight">

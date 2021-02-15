@@ -58,7 +58,9 @@
 \newcommand{\NL}{\textrm{NL}}
 \newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
 \newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
 ```
 Let us consider a game $\Game$ and a set $X$ of vertices.
@@ -83,7 +85,6 @@ that every vertex has an outgoing edge.
 
 ```{prf:observation} Traps induce subgames
 :label: 1-fact:traps_induce_subgames
-:nonumber:
 
 Let $\Game$ be a game, $X$ a trap for Adam, and $\sigma$ a winning strategy for Eve in the subgame $\Game[X]$.
 Then $\sigma$ induces a winning strategy in $\Game$.
@@ -102,7 +103,6 @@ We present some simple facts about traps, here stated for Adam but easily transp
 
 ```{prf:observation} Traps
 :label: 1-fact:traps
-:nonumber:
 
 Let $\Game$ a game.
 

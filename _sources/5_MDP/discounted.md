@@ -102,7 +102,9 @@
 \newcommand{\NL}{\textrm{NL}}
 \newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
 \newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
 ```
 In this section, we consider MDPs with edges coloured by rational numbers 
@@ -116,8 +118,6 @@ In a discounted-payoff MDP, for each strategy $ \sigma $ and each vertex $ v $ i
 :label: 
 \label{5-lem:disc-step-one}
 In a discounted-payoff MDP, for each strategy $ \sigma $ and each vertex $ v $ it holds $ \playPay(v, \sigma) = \stepPay(v, \sigma) $.
-
-:nonumber:
 
 \label{5-lem:disc-step-one}
 In a discounted-payoff MDP, for each strategy $ \sigma $ and each vertex $ v $ it holds $ \playPay(v, \sigma) = \stepPay(v, \sigma) $.
@@ -165,7 +165,6 @@ $$
 
 ```{prf:lemma} NEEDS TITLE 5-lem:fixpoint
 :label: 5-lem:fixpoint
-:nonumber:
 
 The operator $\discOP$ is a contraction mapping. Hence, $\discOP$ has a unique 
 fixed point $\vec{x}^*$ in $\R^{\vertices}$, and $\vec{x}^* = 
@@ -189,7 +188,6 @@ $\discOP$. We start with an auxiliary definition.
 
 ```{prf:definition} NEEDS TITLE 5-def:disc-safe-act
 :label: 5-def:disc-safe-act
-:nonumber:
 
 Let $\vec{x}\in \R^{\vertices}$. We say that an action $a$ is $\vec{x}$-safe in 
 a vertex $v$ if
@@ -223,7 +221,6 @@ $$
 
 ```{prf:lemma} NEEDS TITLE 5-lem:disc-val-sigma
 :label: 5-lem:disc-val-sigma
-:nonumber:
 
 Let $\sigma$ be a memoryless strategy using rational probabilities. Then the operator $\discOP_{\sigma}$ has a unique fixed point, which is equal to $\valsigma$ and which can be computed in polynomial time.
 
@@ -241,7 +238,6 @@ We now prove that there is a memoryless strategy ensuring outcome given by the f
 
 ```{prf:lemma} NEEDS TITLE 5-lem:disc-val-lower
 :label: 5-lem:disc-val-lower
-:nonumber:
 
 Let $\vec{x}^*$ be the unique fixed point of $\discOP$. 
 Then there exists an MD strategy that is $\vec{x}^*$-safe. Moreover, for each $\vec{x}^*$-safe memoryless strategy it holds that  
@@ -278,7 +274,6 @@ $(1-\lambda)\sum_{i=0}^{k-1} \lambda^i
 
 ```{prf:lemma} NEEDS TITLE 5-lem:disc-iterates
 :label: 5-lem:disc-iterates
-:nonumber:
 
 For each $k\geq 0$ and each vertex $v$ we have 
 
@@ -295,7 +290,6 @@ The previous lemma is used to prove the required upper bound on $\Value(v)$.
 
 ```{prf:lemma} NEEDS TITLE 5-lem:disc-val-upper
 :label: 5-lem:disc-val-upper
-:nonumber:
 
 For each vertex $v$ it holds 
 $\Value(v)\leq \vec{x}^*_v$, where $\vec{x}^*$ is the 
@@ -336,7 +330,6 @@ The following theorem summarizes the results.
 
 ```{prf:theorem} NEEDS TITLE 5-thm:disc-val-char-mem
 :label: 5-thm:disc-val-char-mem
-:nonumber:
 
 The vector of values $\Value(\mdp)$ in a discounted sum MDP $\mdp$ is the 
 unique fixed point $\vec{x}^*$ of the operator $\discOP$. Moreover, there 
@@ -369,7 +362,6 @@ simple bounds on the precision of the approximation.
 
 ```{prf:lemma} NEEDS TITLE 5-lem:disc-val-it-convergence
 :label: 5-lem:disc-val-it-convergence
-:nonumber:
 
 For each $k\in \N$, $||\Value(\mdp)-\discOP^k(\vec{0}) ||_{\infty} \leq 
 \lambda^k \cdot \maxc$. (Recall that $\maxc=\max_{e\in 
@@ -391,7 +383,6 @@ vectors.
 
 ```{prf:lemma} NEEDS TITLE 5-lem:disc-val-it-eps-strategies
 :label: 5-lem:disc-val-it-eps-strategies
-:nonumber:
 
 Let $\eps>0$ be arbitrary and let 
 
@@ -470,7 +461,6 @@ This is summarized in the following lemma due to {cite}`Tseng:1990`.
 
 ```{prf:lemma} NEEDS TITLE 5-lem:disc-vi-optimal-strategy
 :label: 5-lem:disc-vi-optimal-strategy
-:nonumber:
 
 Let $d$ be the least common multiple of denominators of the following numbers: $\lambda$, all   
 transition probabilities, and all edge colourings in $\mdp$. Next, let $\eps^* = 
@@ -536,7 +526,6 @@ At the same time, $|\discOP(\discOP^{k(\eps^*)}(\vec{0}))_v - \vec{x}^*|\leq \fr
 
 ```{prf:corollary} NEEDS TITLE 5-cor:VI-optimal-strategy-comp
 :label: 5-cor:VI-optimal-strategy-comp
-:nonumber:
 
 An optimal MD strategy in discounted-payoff MDPs with a fixed discount factor can be computed in polynomial time. 
 
@@ -581,7 +570,6 @@ $ i \leftarrow i+1 $
 
 ```{prf:theorem} NEEDS TITLE 5-thm:disc-strat-it
 :label: 5-thm:disc-strat-it
-:nonumber:
 
 The strategy improvement algorithm for discounted MDPs terminates in a finite (and at most exponential) number of steps and returns an optimal MD strategy.
 
@@ -626,7 +614,6 @@ v,a)\cdot\left((1-\lambda)\cdot \colouring(v,u) + \lambda\cdot x_u \right)
 
 ```{prf:lemma} NEEDS TITLE 5-lem:disc-lp
 :label: 5-lem:disc-lp
-:nonumber:
 
 The linear program $\lpdisc$ has a unique optimal solution 
 $\bar{\vec{x}}$ that satisfies $\bar{\vec{x}} = \Value(\mdp)$.
@@ -672,7 +659,6 @@ interior-point techniques {cite}`Kha:1979,Karmarkar:1984`. Hence, we get the fol
 
 ```{prf:theorem} NEEDS TITLE 5-thm:disc-polytime-lp
 :label: 5-thm:disc-polytime-lp
-:nonumber:
 
 The following holds for discounted-payoff MDPs:
 
@@ -742,8 +728,6 @@ optimal MD strategy can be computed in a strongly polynomial time.
 :label: 
 For MDPs with a fixed discount factor, the value of each vertex as well as an 
 optimal MD strategy can be computed in a strongly polynomial time.
-
-:nonumber:
 
 For MDPs with a fixed discount factor, the value of each vertex as well as an 
 optimal MD strategy can be computed in a strongly polynomial time.

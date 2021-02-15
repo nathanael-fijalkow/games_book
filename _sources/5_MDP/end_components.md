@@ -102,7 +102,9 @@
 \newcommand{\NL}{\textrm{NL}}
 \newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
 \newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
 ```
 To solve mean-payoff optimization in general MDPs, as well as general optimization problems for $\omega$-regular objectives, we need to introduce a crucial notion of an **end component**.
@@ -124,8 +126,6 @@ An **end component (EC)** of an MDP is any set $\mec$ of vertices having the fol
  *  For each pair of distinct vertices $ u,v \in \mec$ there is a path from $ u $ to $ v $ visiting only the states from $\mec$.
 
 In other words, $ \mec $ is an EC of $ \mdp $ if and only if $ \mec $ is a closed set and the sub-MDP $ \mdp_\mec $ is strongly connected. 
-
-:nonumber:
 
 \label{5-def:ec}
 An **end component (EC)** of an MDP is any set $\mec$ of vertices having the following two properties:
@@ -149,8 +149,6 @@ Let $\mec$ be an EC and $v \in \mec$. Then there is an MD strategy $\sigma$ whic
 \label{5-lem:EC-sweep}
 Let $\mec$ be an EC and $v \in \mec$. Then there is an MD strategy $\sigma$ which, when starting in a vertex inside $\mec$, never visits a vertex outside of $ \mec $ and at the same time ensures that with probability one, the vertex $v$ is visited infinitely often. Moreover, $\sigma$ can be computed in polynomial time.
 
-:nonumber:
-
 \label{5-lem:EC-sweep}
 Let $\mec$ be an EC and $v \in \mec$. Then there is an MD strategy $\sigma$ which, when starting in a vertex inside $\mec$, never visits a vertex outside of $ \mec $ and at the same time ensures that with probability one, the vertex $v$ is visited infinitely often. Moreover, $\sigma$ can be computed in polynomial time.
 
@@ -167,7 +165,6 @@ The main reason for introducing ECs is that they are crucial for understanding t
 
 ```{prf:definition} NEEDS TITLE 5-def:inf
 :label: 5-def:inf
-:nonumber:
 
 We denote by $\Inf(\play)$ the set of vertices that appear infinitely often along a play $ \play $.
 
@@ -176,7 +173,6 @@ We denote by $\Inf(\play)$ the set of vertices that appear infinitely often alon
 
 ```{prf:lemma} NEEDS TITLE 5-lem:EC-inf
 :label: 5-lem:EC-inf
-:nonumber:
 
 For any $ \vinit $ and $ \sigma $ it holds $ \probm^\sigma_{\vinit} ( \{\play \mid \Inf(\play) \text{ is an EC }  \}) = 1 $. 
 
@@ -200,8 +196,6 @@ An end component $ \mec $ is a **maximal end component (MEC)** if no other end-c
 :label: 
 \label{5-def:mec}
 An end component $ \mec $ is a **maximal end component (MEC)** if no other end-component $ \mec' $ is a superset of $ \mec $. We denote by $\mecs(\mdp)$ the set of all MECs of $\mdp.$
-
-:nonumber:
 
 \label{5-def:mec}
 An end component $ \mec $ is a **maximal end component (MEC)** if no other end-component $ \mec' $ is a superset of $ \mec $. We denote by $\mecs(\mdp)$ the set of all MECs of $\mdp.$
@@ -238,7 +232,6 @@ $ R \leftarrow R \cup (\vertices \setminus \winAS(\mdp,\Safe(\vertices\setminus 
 
 ```{prf:theorem} NEEDS TITLE 5-thm:MEC-decomposition-complexity
 :label: 5-thm:MEC-decomposition-complexity
-:nonumber:
 
 The set of all MECs in a given MDP can be computed in polynomial time.
 

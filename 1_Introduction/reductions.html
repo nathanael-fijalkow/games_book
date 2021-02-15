@@ -487,7 +487,9 @@
 \newcommand{\NL}{\textrm{NL}}
 \newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
 \newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}\]</div>
 <p>Automata and memory structures can be used to construct reductions between games.
 Automata operate at the level of objectives, independently of the colouring function and the arena,
@@ -514,7 +516,7 @@ The colouring function is defined by <span class="math notranslate nohighlight">
 The game is <span class="math notranslate nohighlight">\(\game \times \Automaton = (\arena \times \Automaton, \Omega'[\col'])\)</span>.</p>
 <p>The following lemma states two consequences to the fact that <span class="math notranslate nohighlight">\(\Omega\)</span> reduces to <span class="math notranslate nohighlight">\(\Omega'\)</span>.</p>
 <div class="proof lemma admonition" id="1-lem:automata_reduction">
-<p class="admonition-title"><span>Lemma </span> (Automata reductions)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 18 </span> (Automata reductions)</p>
 <div class="lemma-content section" id="proof-content">
 <p>If <span class="math notranslate nohighlight">\(\Omega\)</span> reduces to <span class="math notranslate nohighlight">\(\Omega'\)</span> through the automaton <span class="math notranslate nohighlight">\(\Automaton\)</span> with <span class="math notranslate nohighlight">\(S\)</span> states, then
 Eve has a winning strategy in <span class="math notranslate nohighlight">\(\Game\)</span> from <span class="math notranslate nohighlight">\(v_0\)</span> if and only if she has a winning strategy in <span class="math notranslate nohighlight">\(\Game \times \Automaton\)</span> from <span class="math notranslate nohighlight">\((v_0,q_0)\)</span>.</p>
@@ -541,7 +543,7 @@ We first define the graph <span class="math notranslate nohighlight">\(G \times 
 for every edge <span class="math notranslate nohighlight">\(e = (v,v') \in E\)</span> and state <span class="math notranslate nohighlight">\(m \in M\)</span> there is an edge <span class="math notranslate nohighlight">\(e_m\)</span> from <span class="math notranslate nohighlight">\((v,m)\)</span> to <span class="math notranslate nohighlight">\((v',\delta(m,e))\)</span>.
 The arena is <span class="math notranslate nohighlight">\(\arena \times \mem = (G \times M, \VE \times M, \VA \times M)\)</span>.</p>
 <div class="proof observation admonition" id="1-fact:strategies_memory">
-<p class="admonition-title"><span>Observation </span> (Strategies with memory)</p>
+<p class="admonition-title"><span class="caption-number">Observation 19 </span> (Strategies with memory)</p>
 <div class="observation-content section" id="proof-content">
 <p>There is a one-to-one correspondence between plays <span class="math notranslate nohighlight">\(\pi = v_0 v_1 \dots\)</span> in <span class="math notranslate nohighlight">\(\arena\)</span>
 and plays <span class="math notranslate nohighlight">\(\pi'\)</span> in <span class="math notranslate nohighlight">\(\arena \times \mem\)</span> from <span class="math notranslate nohighlight">\((v_0,m_0)\)</span>:
@@ -558,7 +560,7 @@ we have</p>
 <p>Let <span class="math notranslate nohighlight">\(\Mem\)</span> and <span class="math notranslate nohighlight">\(\Mem'\)</span> two memory structure over the same graph,
 we let <span class="math notranslate nohighlight">\(\Mem \times \Mem'\)</span> denote the memory structure obtained by direct product.</p>
 <div class="proof lemma admonition" id="1-lem:memory_structure_reduction">
-<p class="admonition-title"><span>Lemma </span> (Memory structure reductions)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 20 </span> (Memory structure reductions)</p>
 <div class="lemma-content section" id="proof-content">
 <p>If <span class="math notranslate nohighlight">\(W\)</span> reduces to <span class="math notranslate nohighlight">\(W'\)</span> through the memory structure <span class="math notranslate nohighlight">\(\mem\)</span>, then
 Eve has a winning strategy in <span class="math notranslate nohighlight">\(\Game = (\Arena,W)\)</span> from <span class="math notranslate nohighlight">\(v_0\)</span> if and only if
@@ -582,7 +584,7 @@ We construct a strategy <span class="math notranslate nohighlight">\(\sigma'\)</
 <p>The correspondence between plays in <span class="math notranslate nohighlight">\(\arena\)</span> and <span class="math notranslate nohighlight">\(\arena \times \mem\)</span> maps plays consistent with <span class="math notranslate nohighlight">\(\sigma\)</span> to plays consistent with <span class="math notranslate nohighlight">\(\sigma'\)</span>,
 which together with the fact that <span class="math notranslate nohighlight">\(W\)</span> reduces to <span class="math notranslate nohighlight">\(W'\)</span> implies that <span class="math notranslate nohighlight">\(\sigma'\)</span> is a winning strategy in <span class="math notranslate nohighlight">\(\Game\)</span> from <span class="math notranslate nohighlight">\(v\)</span>.</p>
 </div>
-<p>To obtain  <a class="reference internal" href="#1-lem:automata_reduction">Lemma </a> as a corollary of  <a class="reference internal" href="#1-lem:memory_structure_reduction">Lemma </a>
+<p>To obtain  <a class="reference internal" href="#1-lem:automata_reduction">Lemma 18</a> as a corollary of  <a class="reference internal" href="#1-lem:memory_structure_reduction">Lemma 20</a>
 we observe that a reduction between objectives using an automaton induces a reduction between the induced conditions using a memory structure.
 Formally, let us assume that <span class="math notranslate nohighlight">\(\Omega\)</span> reduces to <span class="math notranslate nohighlight">\(\Omega'\)</span>,
 and let <span class="math notranslate nohighlight">\(\Automaton = (Q, q_0, \delta, \Omega'[\col_\Automaton])\)</span> such that <span class="math notranslate nohighlight">\(L(\Automaton) = \Omega\)</span>.
@@ -593,8 +595,8 @@ We then define <span class="math notranslate nohighlight">\(\col'(v,q) = \col_\A
 <p>We note that <span class="math notranslate nohighlight">\(\Omega[\col]\)</span> reduces to <span class="math notranslate nohighlight">\(\Omega'[\col']\)</span>: for all plays <span class="math notranslate nohighlight">\(\play\)</span> in <span class="math notranslate nohighlight">\(\Arena\)</span>, we have
 <span class="math notranslate nohighlight">\(\play \in \Omega[\col]\)</span> if and only if <span class="math notranslate nohighlight">\(\play' \in \Omega'[\col']\)</span>: this is a reformulation of the fact that <span class="math notranslate nohighlight">\(L(\Automaton) = \Omega\)</span>.</p>
 <p>We construct the game <span class="math notranslate nohighlight">\(\Game' = (\Arena \times \Mem, \Omega'[\col'])\)</span>.
-Thanks to  <a class="reference internal" href="#1-lem:memory_structure_reduction">Lemma </a> the two games have the same winner and a strategy in the latter induce a strategy in the former
-by composing with the memory structure <span class="math notranslate nohighlight">\(\Mem\)</span>, implying  <a class="reference internal" href="#1-lem:automata_reduction">Lemma </a>.</p>
+Thanks to  <a class="reference internal" href="#1-lem:memory_structure_reduction">Lemma 20</a> the two games have the same winner and a strategy in the latter induce a strategy in the former
+by composing with the memory structure <span class="math notranslate nohighlight">\(\Mem\)</span>, implying  <a class="reference internal" href="#1-lem:automata_reduction">Lemma 18</a>.</p>
 </div>
 </div>
 

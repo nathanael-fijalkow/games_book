@@ -69,7 +69,9 @@
 \newcommand{\NL}{\textrm{NL}}
 \newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
 \newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
 ```
 One player variants due to Karp {cite}`Karp:1978`
@@ -83,7 +85,7 @@ This chapter has been the occasion to start revealing a ladder of
 reductions going up from parity games to discounted payoff games,
 going through mean payoff games: it shows that parity games are the
 simplest fragment of games from a computational perspective, in
-$\UP\cap \coUP$. In~\cref{chap:stochastic}, the last reduction from
+$\UP\cap \coUP$. In Chapter {ref}`6-chap:stochastic`, the last reduction from
 discounted payoff games to simple stochastic games will complete the
 computational landscape.
 
@@ -93,8 +95,8 @@ shown. It is much later that Zwick and
 Paterson {cite}`Zwick&Paterson:1996` first obtained the
 pseudopolynomial value iteration algorithm to solve them, while
 introducing discounted payoff games (that had been first studied in a
-probabilistic setting as will be studied in~\cref{chap:MDP} and
-\cref{chap:stochastic}).
+probabilistic setting as will be studied in Chapter {ref}`5-chap:MDP` and
+Chapter {ref}`6-chap:stochastic`).
 
 We have followed the proof of Ehrenfeucht and
 Mycielski {cite}`Ehrebfeucht&Mycielski:1979` to prove the positional
@@ -128,7 +130,7 @@ The **value iteration algorithm** has been developed by Brim,
 Chaloupka, Doyen, Gentilini, and
 Raskin {cite}`Brim&Chaloupka&Doyen&Gentilini&Raskin:2011`. They also
 introduce and solve the so-called **energy games**, that will be
-studied more carefully in~\cref{12-avag}. As for the strategy
+studied more carefully in Chapter {ref}`12-chap:counters`. As for the strategy
 improvement algorithm, it is paired with a binary search to compute
 the values of the game (and not only decide whether Eve can guarantee
 a positive mean payoff). Comin and Rizzi {cite}`Comin&Rizzi:2017` have

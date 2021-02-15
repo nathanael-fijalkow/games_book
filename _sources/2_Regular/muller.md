@@ -63,7 +63,9 @@
 \newcommand{\NL}{\textrm{NL}}
 \newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
 \newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
 ```
 The prefix independent objectives we studied so far are B&uuml;chi, CoB&uuml;chi, and their joint extension the parity objectives.
@@ -97,7 +99,6 @@ The following purely combinatorial lemma gives a nice characterisation of these 
 
 ```{prf:lemma} Characterisation of Streett among Muller objectives
 :label: 2-lem:characterisation_Streett
-:nonumber:
 
 A collection $\F \subseteq 2^C$ is closed under union if and only if there exists a set of pairs $(R_i,G_i)_{i \in [1,d]}$
 with $R_i,G_i \subseteq C$ such that $X \in \F$ is equivalent to for all $i \in [1,d]$, 
@@ -145,10 +146,13 @@ $$
 
 ```{prf:theorem} Finite memory determinacy and complexity for Muller games
 :label: 2-thm:muller
-:nonumber:
 
-Muller objectives are determined with finite memory strategies of size $d!$```{margin}
-See \cref{2-rmk:finite_infinit``` for the case of infinite games.}.
+Muller objectives are determined with finite memory strategies of size $d!$
+
+```{margin}
+See \cref{2-rmk:finite_infinite```
+
+ for the case of infinite games.}.
 There exists an algorithm for computing the winning regions of Muller games in exponential time,
 and more specifically of complexity $O(m d (dn)^d)$, and in polynomial space, and more specifically $O(dm)$.
 
@@ -162,7 +166,6 @@ The following lemma induces the recursive algorithm for computing the winning re
 
 ```{prf:lemma} Fixed point characterisation of the winning regions for Muller games
 :label: 2-lem:Muller_even
-:nonumber:
 
 Let $\Game$ be a Muller game such that $C \in \F$.
 For each $c \in C$, let $\Game_c$ be the subgame of $\Game$ induced by $V \setminus \AttrE(c)$.
@@ -220,7 +223,6 @@ We do not prove it as it is the exact dual of the previous lemma, and the proof 
 
 ```{prf:lemma} Dual fixed point characterisation of the winning regions for Muller games
 :label: 2-lem:Muller_odd
-:nonumber:
 
 Let $\Game$ be a Muller game such that $C \notin \F$.
 For each $c \in C$, let $\Game_c$ be the subgame of $\Game$ induced by $V \setminus \AttrA(c)$.
@@ -267,7 +269,6 @@ A recursive algorithm for computing the winning regions of Muller games.
 
 ```{prf:theorem} Positional determinacy for Rabin games
 :label: 2-thm:Rabin_positional_determinacy
-:nonumber:
 
 Rabin games are uniformly positionally determined.
 
@@ -346,7 +347,6 @@ $$
 
 ```{prf:theorem} Submixing property implies uniform positional determinacy
 :label: 2-thm:submixing_positional
-:nonumber:
 
 Every prefix independent submixing objective is uniformly positionally determined over finite arenas.
 
@@ -357,7 +357,6 @@ Every prefix independent submixing objective is uniformly positionally determine
 
 ```{prf:theorem} Complexity of solving Rabin games
 :label: 2-thm:Rabin_complexity
-:nonumber:
 
 Solving Rabin games is $\NP$-complete.
 
@@ -460,7 +459,6 @@ The Rabin game for $\Phi = (x \vee y \vee z) \bigwedge (x \vee \bar{y} \vee \bar
 
 ```{prf:theorem} NEEDS LABEL Complexity of solving Muller games
 :label: Complexity of solving Muller games
-:nonumber:
 \label{2-thm:complexity_Muller
 Solving Muller games is $\PSPACE$-complete.
 
