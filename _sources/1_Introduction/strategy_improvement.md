@@ -31,8 +31,8 @@
 \newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
 \newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
 \newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\renewcommand{\Win}{\textrm{Win}} 
-\renewcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Win}{\textrm{Win}} 
+\newcommand{\Lose}{\textrm{Lose}} 
 \newcommand{\Value}{\textrm{val}} 
 \newcommand{\ValueE}{\textrm{val}_\mEve} 
 \newcommand{\ValueA}{\textrm{val}_\mAdam}
@@ -55,10 +55,11 @@
 \newcommand{\Inf}{\mathtt{Inf}}
 \newcommand{\LimSup}{\mathtt{LimSup}}
 \newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NL}{\textrm{NL}}
+\newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\PTIME}{\textrm{PTIME}}
 ```
 Value iteration algorithms manipulate value functions and never construct any strategy, at least explicitly.
 This is a key difference with strategy improvement algorithms (also called policy iteration algorithms) whose fundamental idea is to maintain and improve a strategy.
@@ -116,9 +117,9 @@ Note that any such sequence must be finite, since at each step we strictly incre
 
 If both progress and optimality principles hold as stated this yields a strategy improvement algorithm computing the optimal strategy.
 Unfortunately such ideal properties rarely hold and it is often necessary to state and prove weaker properties,
-we refer to  Chapter {ref}`3-chap:parity,4-chap:payoffs` for examples.
+we refer to Chapter {ref}`3-chap:parity,4-chap:payoffs` for examples.
 
-```{admonition} Remark
+```{admonition} Remark 
 In the description above we did not specify which switchable edge to choose.
 Actually strategy improvement algorithms often switch more than one edge at a time, making this question worse: 
 which subset of the switchable edges should be chosen? 

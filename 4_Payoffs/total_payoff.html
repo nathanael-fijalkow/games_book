@@ -173,22 +173,22 @@
 <ul class="current nav sidenav_l1">
  <li class="toctree-l1 collapsible-parent">
   <a class="reference internal" href="../2_Regular/index.html">
-   Regular
+   Regular Games
   </a>
   <ul class="collapse-ul">
    <li class="toctree-l2">
     <a class="reference internal" href="../2_Regular/attractors.html">
-     A linear time algorithm for reachability games
+     Reachability games
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../2_Regular/buchi.html">
-     A quadratic time algorithm for Büchi games
+     Büchi games
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../2_Regular/parity.html">
-     An exponential time algorithm for parity games
+     Parity games
     </a>
    </li>
    <li class="toctree-l2">
@@ -198,7 +198,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../2_Regular/zielonka.html">
-     The Zielonka tree
+     Zielonka tree
     </a>
    </li>
    <li class="toctree-l2">
@@ -212,7 +212,7 @@
  </li>
  <li class="toctree-l1 collapsible-parent">
   <a class="reference internal" href="../3_Parity/index.html">
-   Parity
+   Parity Games
   </a>
   <ul class="collapse-ul">
    <li class="toctree-l2">
@@ -251,7 +251,7 @@
  </li>
  <li class="toctree-l1 current active collapsible-parent">
   <a class="reference internal" href="index.html">
-   Payoffs
+   Games with Payoffs
   </a>
   <ul class="current collapse-ul">
    <li class="toctree-l2">
@@ -286,6 +286,67 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Stochastic
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../5_MDP/index.html">
+   Markov Decision Processes
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/notations.html">
+     Notations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/reachability.html">
+     Positive and almost-sure reachability and safety in MDPs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/discounted.html">
+     Discounted payoff in MDPs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/mean_payoff_properties.html">
+     Mean-payoff in MDPs: General properties and linear programming
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/mean_payoff_strongly_connected.html">
+     Mean-payoff optimality in strongly connected MDPs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/end_components.html">
+     End components
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/reductions.html">
+     Reductions to optimal reachability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/optimal_reachability.html">
+     Optimal reachability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/references.html">
      Bibliographic references
     </a>
    </li>
@@ -391,8 +452,8 @@
 \newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
 \newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
 \newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\renewcommand{\Win}{\textrm{Win}} 
-\renewcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Win}{\textrm{Win}} 
+\newcommand{\Lose}{\textrm{Lose}} 
 \newcommand{\Value}{\textrm{val}} 
 \newcommand{\ValueE}{\textrm{val}_\mEve} 
 \newcommand{\ValueA}{\textrm{val}_\mAdam}
@@ -415,10 +476,11 @@
 \newcommand{\Inf}{\mathtt{Inf}}
 \newcommand{\LimSup}{\mathtt{LimSup}}
 \newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NL}{\textrm{NL}}
+\newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
 \newcommand{\coNP}{\textrm{coNP}}
-\newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\PTIME}{\textrm{PTIME}}\]</div>
+\newcommand{\PSPACE}{\textrm{PSPACE}}\]</div>
 <p>Yet another interesting quantitative objective—that is closely
 related with shortest path objective—is the total payoff defined by</p>
 <div class="math notranslate nohighlight">
@@ -456,16 +518,15 @@ but, contrary to shortest path games, positional strategies are now
 sufficient for both players to play optimally in total payoff
 games. Instead of giving yet another distinct proof, like for
 mean payoff or discounted payoff games, we give a general recipe
-defined by Gimbert and Zielonka \cite{Gimbert&amp;Zielonka:2004}. They define
+defined by Gimbert and Zielonka <span id="id1">[<a class="reference internal" href="../2_Regular/references.html#id60"><span>GZ04</span></a>]</span>. They define
 sufficient conditions for a quantitative objective to fulfil the
 positional determinacy.</p>
 <div class="proof definition admonition" id="4-def:fairly-mixing">
-<p class="admonition-title"><span>Definition </span> (needs title 4-def:fairly-mixing)</p>
+<p class="admonition-title"><span>Definition </span> (NEEDS TITLE 4-def:fairly-mixing)</p>
 <div class="definition-content section" id="proof-content">
 <p>A payoff <span class="math notranslate nohighlight">\(\mathsf{P}\colon C^\omega\to \overline R\)</span> is <strong>fairly
-mixing</strong> if:
-\begin{enumerate}</p>
-<ul class="simple">
+mixing</strong> if:</p>
+<ol class="simple">
 <li><p>for all <span class="math notranslate nohighlight">\(x\in C^+\)</span>, <span class="math notranslate nohighlight">\(y_0,y_1\in C^\omega\)</span>, if
 <span class="math notranslate nohighlight">\(\mathsf{P}(y_0)\leq \mathsf{P}(y_1)\)</span> then
 <span class="math notranslate nohighlight">\(\mathsf{P}(xy_0)\leq \mathsf{P}(xy_1)\)</span>;</p></li>
@@ -476,7 +537,7 @@ mixing</strong> if:
 <span class="math notranslate nohighlight">\(x_i\in C^+\)</span> such that <span class="math notranslate nohighlight">\(x_0x_1x_2\cdots\)</span> contains only a finite
 number of colours, and <span class="math notranslate nohighlight">\(I\uplus J=\N\)</span> is a partition of <span class="math notranslate nohighlight">\(\N\)</span> into two
 infinite sets, then</p></li>
-</ul>
+</ol>
 <div class="math notranslate nohighlight">
 \[\inf(\mathcal{P}_I\cup \mathcal{P}_J) \leq
       \mathsf{P}(x_0x_1x_2\cdots) \leq \sup(\mathcal{P}_I\cup
@@ -485,12 +546,11 @@ infinite sets, then</p></li>
 <span class="math notranslate nohighlight">\(\mathcal P_I=\{\mathsf{P}(x_{i_0}x_{i_1}x_{i_2}\cdots)\mid i_k\in
     I\}\)</span> and
 <span class="math notranslate nohighlight">\(\mathcal{P}_J=\{\mathsf{P}(x_{j_0}x_{j_1}x_{j_2}\cdots)\mid
-    j_k\in J\}\)</span>.
-\end{enumerate}</p>
+    j_k\in J\}\)</span>.</p>
 </div>
 </div><p>It is not difficult to convince oneself that</p>
 <div class="proof proposition admonition" id="4-prop:objectives-fairly">
-<p class="admonition-title"><span>Proposition </span> (needs title 4-prop:objectives-fairly)</p>
+<p class="admonition-title"><span>Proposition </span> (NEEDS TITLE 4-prop:objectives-fairly)</p>
 <div class="proposition-content section" id="proof-content">
 <p>Quantitative objectives <span class="math notranslate nohighlight">\(\Inf\)</span>, <span class="math notranslate nohighlight">\(\Sup\)</span>, <span class="math notranslate nohighlight">\(\LimInf\)</span>, <span class="math notranslate nohighlight">\(\LimSup\)</span>,
 <span class="math notranslate nohighlight">\(\Parity\)</span> (mapping <span class="math notranslate nohighlight">\(1\)</span> to sequences whose the greatest colour seen
@@ -500,15 +560,15 @@ payoffs.</p>
 </div>
 </div><p>Then, a rather technical proof by induction on the number of vertices
 in the arena allows one to get the following strong result:
-\cite{Gimbert&amp;Zielonka:2004}</p>
+<span id="id2">[<a class="reference internal" href="../2_Regular/references.html#id60"><span>GZ04</span></a>]</span></p>
 <div class="proof theorem admonition" id="4-thm:fairly-mixing">
-<p class="admonition-title"><span>Theorem </span> (needs title 4-thm:fairly-mixing)</p>
+<p class="admonition-title"><span>Theorem </span> (NEEDS TITLE 4-thm:fairly-mixing)</p>
 <div class="theorem-content section" id="proof-content">
 <p>If <span class="math notranslate nohighlight">\(\mathsf P\)</span> is a fairly mixing payoff function, then all finite
 games <span class="math notranslate nohighlight">\((\arena,\mathsf P)\)</span> are positionally determined.</p>
 </div>
 </div><div class="proof corollary admonition" id="4-cor:TP-determinacy">
-<p class="admonition-title"><span>Corollary </span> (needs title 4-cor:TP-determinacy)</p>
+<p class="admonition-title"><span>Corollary </span> (NEEDS TITLE 4-cor:TP-determinacy)</p>
 <div class="corollary-content section" id="proof-content">
 <p>Total payoff games are positionally determined.</p>
 </div>
@@ -531,7 +591,7 @@ by:</p>
 problematic is the fact that the value of the game may be different
 from the greatest and lowest fixed points, forbidding to find the
 correct fixed point easily. Consider for example the total payoff game
-of <a class="reference internal" href="#fig-totalpayoff"><span class="std std-numref">Fig. 43</span></a>. Operator <span class="math notranslate nohighlight">\(F\)</span> is then
+of <a class="reference internal" href="#fig-totalpayoff"><span class="std std-numref">Fig. 38</span></a>. Operator <span class="math notranslate nohighlight">\(F\)</span> is then
 <span class="math notranslate nohighlight">\(F(x_0,x_1,x_2) = \big(\max(x_1-1,x_2-2),x_0+1,x_0+2\big)\)</span>. Its fixed
 points are all vectors <span class="math notranslate nohighlight">\((a,a+1,a+2)\)</span> with <span class="math notranslate nohighlight">\(a\in \overline R\)</span>: in
 particular, its greatest fixed point is <span class="math notranslate nohighlight">\((+\infty, +\infty, +\infty)\)</span>
@@ -541,9 +601,9 @@ the optimal value vector is <span class="math notranslate nohighlight">\((0,1,2)
 points exists, relying upon the encoding of a total payoff game into a
 pseudopolynomial size shortest path game—still with the same
 costs—resulting in a pseudopolynomial time algorithm.
-\cite{Brihaye&amp;Geeraerts&amp;HaddadA&amp;Monmege:2017}</p>
+<span id="id3">[<a class="reference internal" href="references.html#id90"><span>BGHM17</span></a>]</span></p>
 <div class="proof theorem admonition" id="4-thm:TP-optimal-strategies">
-<p class="admonition-title"><span>Theorem </span> (needs title 4-thm:TP-optimal-strategies)</p>
+<p class="admonition-title"><span>Theorem </span> (NEEDS TITLE 4-thm:TP-optimal-strategies)</p>
 <div class="theorem-content section" id="proof-content">
 <p>We can compute the optimal values of total payoff games, as well as
 positional optimal strategies for both players, with a
@@ -586,7 +646,7 @@ deteriorating the time complexity.</p>
 </div>
 <div class="figure align-center" id="fig-totalpayoff">
 <img alt="../_images/4-fig:totalpayoff.png" src="../_images/4-fig:totalpayoff.png" />
-<p class="caption"><span class="caption-number">Fig. 43 </span><span class="caption-text">A total payoff game</span><a class="headerlink" href="#fig-totalpayoff" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 38 </span><span class="caption-text">A total payoff game</span><a class="headerlink" href="#fig-totalpayoff" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 

@@ -58,6 +58,7 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Markov Decision Processes" href="../5_MDP/index.html" />
     <link rel="prev" title="Total payoff games" href="total_payoff.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -172,22 +173,22 @@
 <ul class="current nav sidenav_l1">
  <li class="toctree-l1 collapsible-parent">
   <a class="reference internal" href="../2_Regular/index.html">
-   Regular
+   Regular Games
   </a>
   <ul class="collapse-ul">
    <li class="toctree-l2">
     <a class="reference internal" href="../2_Regular/attractors.html">
-     A linear time algorithm for reachability games
+     Reachability games
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../2_Regular/buchi.html">
-     A quadratic time algorithm for Büchi games
+     Büchi games
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../2_Regular/parity.html">
-     An exponential time algorithm for parity games
+     Parity games
     </a>
    </li>
    <li class="toctree-l2">
@@ -197,7 +198,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../2_Regular/zielonka.html">
-     The Zielonka tree
+     Zielonka tree
     </a>
    </li>
    <li class="toctree-l2">
@@ -211,7 +212,7 @@
  </li>
  <li class="toctree-l1 collapsible-parent">
   <a class="reference internal" href="../3_Parity/index.html">
-   Parity
+   Parity Games
   </a>
   <ul class="collapse-ul">
    <li class="toctree-l2">
@@ -250,7 +251,7 @@
  </li>
  <li class="toctree-l1 current active collapsible-parent">
   <a class="reference internal" href="index.html">
-   Payoffs
+   Games with Payoffs
   </a>
   <ul class="current collapse-ul">
    <li class="toctree-l2">
@@ -285,6 +286,67 @@
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Stochastic
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../5_MDP/index.html">
+   Markov Decision Processes
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/notations.html">
+     Notations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/reachability.html">
+     Positive and almost-sure reachability and safety in MDPs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/discounted.html">
+     Discounted payoff in MDPs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/mean_payoff_properties.html">
+     Mean-payoff in MDPs: General properties and linear programming
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/mean_payoff_strongly_connected.html">
+     Mean-payoff optimality in strongly connected MDPs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/end_components.html">
+     End components
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/reductions.html">
+     Reductions to optimal reachability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/optimal_reachability.html">
+     Optimal reachability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/references.html">
      Bibliographic references
     </a>
    </li>
@@ -390,8 +452,8 @@
 \newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
 \newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
 \newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\renewcommand{\Win}{\textrm{Win}} 
-\renewcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Win}{\textrm{Win}} 
+\newcommand{\Lose}{\textrm{Lose}} 
 \newcommand{\Value}{\textrm{val}} 
 \newcommand{\ValueE}{\textrm{val}_\mEve} 
 \newcommand{\ValueA}{\textrm{val}_\mAdam}
@@ -414,14 +476,15 @@
 \newcommand{\Inf}{\mathtt{Inf}}
 \newcommand{\LimSup}{\mathtt{LimSup}}
 \newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NL}{\textrm{NL}}
+\newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
 \newcommand{\coNP}{\textrm{coNP}}
-\newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\PTIME}{\textrm{PTIME}}\]</div>
-<p>One player variants due to Karp <span id="id1">[<a class="reference internal" href="#id95"><span>Kar78</span></a>]</span></p>
+\newcommand{\PSPACE}{\textrm{PSPACE}}\]</div>
+<p>One player variants due to Karp <span id="id1">[<a class="reference internal" href="#id99"><span>Kar78</span></a>]</span></p>
 <p><a class="reference internal" href="shortest_path.html#4-thm:shortest path-positive">Theorem </a>
-\cite{Khachiyan&amp;al:2008}</p>
-<p>NP and coNP: \cite{Puri:1995}?</p>
+<span id="id2">[<a class="reference internal" href="#id100"><span>KBB+08</span></a>]</span></p>
+<p>NP and coNP: <span id="id3">[<a class="reference internal" href="#id102"><span>Pur95</span></a>]</span>?</p>
 <p>This chapter has been the occasion to start revealing a ladder of
 reductions going up from parity games to discounted payoff games,
 going through mean payoff games: it shows that parity games are the
@@ -430,53 +493,53 @@ simplest fragment of games from a computational perspective, in
 discounted payoff games to simple stochastic games will complete the
 computational landscape.</p>
 <p>Mean payoff games have been first studied by Ehrenfeucht and Mycielski
-in <span id="id2">[<a class="reference internal" href="#id92"><span>EM79</span></a>]</span> where positional determinacy is
+in <span id="id4">[<a class="reference internal" href="#id96"><span>EM79</span></a>]</span> where positional determinacy is
 shown. It is much later that Zwick and
-Paterson <span id="id3">[<a class="reference internal" href="#id99"><span>ZP96</span></a>]</span> first obtained the
+Paterson <span id="id5">[<a class="reference internal" href="#id103"><span>ZP96</span></a>]</span> first obtained the
 pseudopolynomial value iteration algorithm to solve them, while
 introducing discounted payoff games (that had been first studied in a
 probabilistic setting as will be studied in~\cref{chap:MDP} and
 \cref{chap:stochastic}).</p>
 <p>We have followed the proof of Ehrenfeucht and
-Mycielski <span id="id4">[<a class="reference internal" href="#id92"><span>EM79</span></a>]</span> to prove the positional
+Mycielski <span id="id6">[<a class="reference internal" href="#id96"><span>EM79</span></a>]</span> to prove the positional
 determinacy of mean payoff games. In 2004, Bj”orklund, Sandberg and
-Vorobyov \cite{Bjorklund&amp;Sandberg&amp;Vorobyov:2004} claimed a simpler
+Vorobyov <span id="id7">[<a class="reference internal" href="#id92"><span>BjorklundSV04</span></a>]</span> claimed a simpler
 proof that works directly, with no back-and-forth reasoning between
 the first cycle objective and the original mean payoff one: however,
 their proof technique has been shown incorrect by Aminof and
-Rubin <span id="id5">[<a class="reference internal" href="#id85"><span>AR17</span></a>]</span>, who also correct it by studying
+Rubin <span id="id8">[<a class="reference internal" href="#id89"><span>AR17</span></a>]</span>, who also correct it by studying
 further the first-cycle games.</p>
 <p>We gave several algorithms to solve mean payoff games, apart from the
-one of Zwick and Paterson <span id="id6">[<a class="reference internal" href="#id99"><span>ZP96</span></a>]</span>.</p>
+one of Zwick and Paterson <span id="id9">[<a class="reference internal" href="#id103"><span>ZP96</span></a>]</span>.</p>
 <p>The <strong>strategy improvement technique</strong> is due to Bj”orklund and
-Vorobyov <span id="id7">[<a class="reference internal" href="#id89"><span>BjorklundV07</span></a>]</span>, presented via the new notion
+Vorobyov <span id="id10">[<a class="reference internal" href="#id93"><span>BjorklundV07</span></a>]</span>, presented via the new notion
 of <strong>longest shortest path problem (LSP)</strong>. Other solutions to
 obtain a strategy iteration algorithm for mean payoff games work by
 adding gain and bias variables to the system, as may be studied
-in <span id="id8">[<a class="reference internal" href="#id93"><span>FV96</span></a>]</span> for concurrent mean payoff games.  Strategy
+in <span id="id11">[<a class="reference internal" href="#id97"><span>FV96</span></a>]</span> for concurrent mean payoff games.  Strategy
 improvement methods (for parity games or payoff games) are very close
 to the simplex method to solve linear programs. A more thorough
-comparison can be found in \cite{Allamigeon&amp;Benchimol&amp;al:2014}.  Lifshits and
-Pavlov <span id="id9">[<a class="reference internal" href="#id97"><span>LP07</span></a>]</span> use the potential techniques of strategy
+comparison can be found in <span id="id12">[<a class="reference internal" href="#id88"><span>ABGJ14</span></a>]</span>.  Lifshits and
+Pavlov <span id="id13">[<a class="reference internal" href="#id101"><span>LP07</span></a>]</span> use the potential techniques of strategy
 improvement for mean payoff games, with a reweighting of the arena in
 order to obtain a <span class="math notranslate nohighlight">\(\bigO(mn2^{n}\log W)\)</span> algorithm (it may
 then be useful if weights are much bigger than the number of
 vertices).</p>
 <p>The <strong>value iteration algorithm</strong> has been developed by Brim,
 Chaloupka, Doyen, Gentilini, and
-Raskin <span id="id10">[<a class="reference internal" href="#id87"><span>BCD+11</span></a>]</span>. They also
+Raskin <span id="id14">[<a class="reference internal" href="#id91"><span>BCD+11</span></a>]</span>. They also
 introduce and solve the so-called <strong>energy games</strong>, that will be
 studied more carefully in~\cref{12-avag}. As for the strategy
 improvement algorithm, it is paired with a binary search to compute
 the values of the game (and not only decide whether Eve can guarantee
-a positive mean payoff). Comin and Rizzi <span id="id11">[<a class="reference internal" href="#id91"><span>CR17</span></a>]</span> have
+a positive mean payoff). Comin and Rizzi <span id="id15">[<a class="reference internal" href="#id95"><span>CR17</span></a>]</span> have
 improved it to obtain a <span class="math notranslate nohighlight">\(\bigO(n^2 m W)\)</span> upper-bound, without
 the <span class="math notranslate nohighlight">\(\log(n)+\log(W)\)</span> term due to binary search.</p>
 <p>We have motivated our study of quantitative games with the
 <span class="math notranslate nohighlight">\(\ShortestPath\)</span> objective, a very natural generalisation of both
 (qualitative) reachability games and shortest path problems in
 classical graph theory. The longest shortest path problem (LSP) of
-Bj”orklund and Vorobyov <span id="id12">[<a class="reference internal" href="#id89"><span>BjorklundV07</span></a>]</span>, though a
+Bj”orklund and Vorobyov <span id="id16">[<a class="reference internal" href="#id93"><span>BjorklundV07</span></a>]</span>, though a
 priori close, is indeed quite different. The requirement is there to
 find the best possible <strong>positional</strong> strategy of Eve, so that the
 length of the shortest path from every vertex to a target is as large
@@ -499,7 +562,7 @@ when only non-negative weights appear on transitions, but no
 polynomial solution is known (as for mean payoff or parity games) for
 the general case. The best known at the time this chapter is written
 is a polynomial time fragment consisting of <strong>divergent
-shortest path games</strong> <span id="id13">[<a class="reference internal" href="#id90"><span>BGMR17</span></a>]</span> in which
+shortest path games</strong> <span id="id17">[<a class="reference internal" href="#id94"><span>BGMR17</span></a>]</span> in which
 the arena is supposed to contain no cycles of weight 0: this a priori
 weak property indeed partition the strongly connected components of
 the arena into the ones where all cycles are positive, and the ones
@@ -511,38 +574,50 @@ shortest path game and the detection of vertices of negative optimale
 value in the corresponding mean payoff games: however it is still open
 to know the computational complexity of solving shortest path games
 that are supposed to have no vertices of value <span class="math notranslate nohighlight">\(-\infty\)</span>.</p>
-<p id="id14"><dl class="citation">
-<dt class="label" id="id96"><span class="brackets">KBB+08</span></dt>
-<dd><p>Leonid G. Khachiyan, Endre Boros, Konrad Borys, Khaled Elbassioni, Vladimir Gurvich, Gabor Rudolf, and Jihui Zhao. On short paths interdiction problems: total and node-wise limited interdiction. <em>Theory of Computing Systems</em>, 43:204–233, 2008.</p>
-</dd>
-<dt class="label" id="id95"><span class="brackets"><a class="fn-backref" href="#id1">Kar78</a></span></dt>
-<dd><p>Richard M. Karp. A characterization of the minimum cycle mean in a digraph. <em>Discrete Mathematics</em>, 23:309–311, 1978.</p>
-</dd>
-<dt class="label" id="id92"><span class="brackets">EM79</span><span class="fn-backref">(<a href="#id2">1</a>,<a href="#id4">2</a>)</span></dt>
-<dd><p>Andrzej Ehrenfeucht and Jan Mycielski. Positional strategies for mean payoff games. <em>International Journal of Game Theory</em>, 8(2):109–113, 1979.</p>
-</dd>
-<dt class="label" id="id99"><span class="brackets">ZP96</span><span class="fn-backref">(<a href="#id3">1</a>,<a href="#id6">2</a>)</span></dt>
-<dd><p>Uri Zwick and Mike Paterson. The complexity of mean payoff games. <em>Theoretical Computer Science</em>, 158:343–359, 1996.</p>
-</dd>
-<dt class="label" id="id85"><span class="brackets"><a class="fn-backref" href="#id5">AR17</a></span></dt>
-<dd><p>Benjamin Aminof and Sasha Rubin. First-cycle games. <em>Information and Computation</em>, 254:195–216, 2017.</p>
-</dd>
-<dt class="label" id="id89"><span class="brackets">BjorklundV07</span><span class="fn-backref">(<a href="#id7">1</a>,<a href="#id12">2</a>)</span></dt>
+<p id="id18"><dl class="citation">
+<dt class="label" id="id93"><span class="brackets">BjorklundV07</span><span class="fn-backref">(<a href="#id10">1</a>,<a href="#id16">2</a>)</span></dt>
 <dd><p>Henrik Björklund and Sergei Vorobyov. A combinatorial strongly subexponential strategy improvement algorithm for mean payoff games. <em>Discrete Applied Mathematics</em>, 155:210–229, 2007.</p>
 </dd>
-<dt class="label" id="id93"><span class="brackets"><a class="fn-backref" href="#id8">FV96</a></span></dt>
-<dd><p>Jerzy Filar and Koos Vrieze. <em>Competitive Markov Decision Processes</em>. Springer-Verlag, 1996.</p>
-</dd>
-<dt class="label" id="id97"><span class="brackets"><a class="fn-backref" href="#id9">LP07</a></span></dt>
-<dd><p>Yuri M. Lifshits and Dmitri S. Pavlov. Potential theory for mean payoff games. <em>Journal of Mathematical Sciences</em>, 145(3):4967–4974, 2007.</p>
-</dd>
-<dt class="label" id="id87"><span class="brackets"><a class="fn-backref" href="#id10">BCD+11</a></span></dt>
+<dt class="label" id="id91"><span class="brackets"><a class="fn-backref" href="#id14">BCD+11</a></span></dt>
 <dd><p>Luboš Brim, Jakub Chaloupka, Laurent Doyen, Rafaella Gentilini, and Jean-François Raskin. Faster algorithms for mean-payoff games. <em>Formal Methods for System Design</em>, 38(2):97–118, 2011.</p>
 </dd>
-<dt class="label" id="id91"><span class="brackets"><a class="fn-backref" href="#id11">CR17</a></span></dt>
+<dt class="label" id="id100"><span class="brackets"><a class="fn-backref" href="#id2">KBB+08</a></span></dt>
+<dd><p>Leonid G. Khachiyan, Endre Boros, Konrad Borys, Khaled Elbassioni, Vladimir Gurvich, Gabor Rudolf, and Jihui Zhao. On short paths interdiction problems: total and node-wise limited interdiction. <em>Theory of Computing Systems</em>, 43:204–233, 2008.</p>
+</dd>
+<dt class="label" id="id90"><span class="brackets">BGHM17</span></dt>
+<dd><p>Thomas Brihaye, Gilles Geeraerts, Axel Haddad, and Benjamin Monmege. Pseudopolynomial iterative algorithm to solve total-payoff games and min-cost reachability games. <em>Acta Informatica</em>, 54(1):85–125, 2017.</p>
+</dd>
+<dt class="label" id="id99"><span class="brackets"><a class="fn-backref" href="#id1">Kar78</a></span></dt>
+<dd><p>Richard M. Karp. A characterization of the minimum cycle mean in a digraph. <em>Discrete Mathematics</em>, 23:309–311, 1978.</p>
+</dd>
+<dt class="label" id="id102"><span class="brackets"><a class="fn-backref" href="#id3">Pur95</a></span></dt>
+<dd><p>Anuj Puri. <em>Theory of Hybrid Systems and Discrete Event Systems</em>. PhD thesis, University of California at Berkeley, 1995.</p>
+</dd>
+<dt class="label" id="id96"><span class="brackets">EM79</span><span class="fn-backref">(<a href="#id4">1</a>,<a href="#id6">2</a>)</span></dt>
+<dd><p>Andrzej Ehrenfeucht and Jan Mycielski. Positional strategies for mean payoff games. <em>International Journal of Game Theory</em>, 8(2):109–113, 1979.</p>
+</dd>
+<dt class="label" id="id103"><span class="brackets">ZP96</span><span class="fn-backref">(<a href="#id5">1</a>,<a href="#id9">2</a>)</span></dt>
+<dd><p>Uri Zwick and Mike Paterson. The complexity of mean payoff games. <em>Theoretical Computer Science</em>, 158:343–359, 1996.</p>
+</dd>
+<dt class="label" id="id92"><span class="brackets"><a class="fn-backref" href="#id7">BjorklundSV04</a></span></dt>
+<dd><p>Henrik Björklund, Sven Sandberg, and Sergei Vorobyov. Memoryless determinacy of parity and mean payoff games: a simple proof. <em>Theoretical Computer Science</em>, 310:365–378, 2004.</p>
+</dd>
+<dt class="label" id="id89"><span class="brackets"><a class="fn-backref" href="#id8">AR17</a></span></dt>
+<dd><p>Benjamin Aminof and Sasha Rubin. First-cycle games. <em>Information and Computation</em>, 254:195–216, 2017.</p>
+</dd>
+<dt class="label" id="id97"><span class="brackets"><a class="fn-backref" href="#id11">FV96</a></span></dt>
+<dd><p>Jerzy Filar and Koos Vrieze. <em>Competitive Markov Decision Processes</em>. Springer-Verlag, 1996.</p>
+</dd>
+<dt class="label" id="id88"><span class="brackets"><a class="fn-backref" href="#id12">ABGJ14</a></span></dt>
+<dd><p>Xavier Allamigeon, Pascal Benchimol, Stéphane Gaubert, and Michael Joswig. Combinatorial simplex algorithms can solve mean payoff games. <em>SIAM Journal on Optimization</em>, 24(4):2096–2117, 2014.</p>
+</dd>
+<dt class="label" id="id101"><span class="brackets"><a class="fn-backref" href="#id13">LP07</a></span></dt>
+<dd><p>Yuri M. Lifshits and Dmitri S. Pavlov. Potential theory for mean payoff games. <em>Journal of Mathematical Sciences</em>, 145(3):4967–4974, 2007.</p>
+</dd>
+<dt class="label" id="id95"><span class="brackets"><a class="fn-backref" href="#id15">CR17</a></span></dt>
 <dd><p>Carlo Comin and Romeo Rizzi. Improved pseudo-polynomial bound for the value problem and optimal strategy synthesis in mean payoff games. <em>Algorithmica</em>, 77(4):995–1021, 2017.</p>
 </dd>
-<dt class="label" id="id90"><span class="brackets"><a class="fn-backref" href="#id13">BGMR17</a></span></dt>
+<dt class="label" id="id94"><span class="brackets"><a class="fn-backref" href="#id17">BGMR17</a></span></dt>
 <dd><p>Damien Busatto-Gaston, Benjamin Monmege, and Pierre-Alain Reynier. Optimal reachability in divergent weighted timed games. In <em>Proceedings of the International Conference on the Foundations of Software Science and Computational Structures, FoSSaCS'</em>, volume 10203 of LNCS, 162–178. Springer-Verlag, 2017.</p>
 </dd>
 </dl>
@@ -578,6 +653,7 @@ that are supposed to have no vertices of value <span class="math notranslate noh
     <div class='prev-next-bottom'>
         
     <a class='left-prev' id="prev-link" href="total_payoff.html" title="previous page">Total payoff games</a>
+    <a class='right-next' id="next-link" href="../5_MDP/index.html" title="next page">Markov Decision Processes</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

@@ -36,8 +36,8 @@
 \newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
 \newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
 \newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\renewcommand{\Win}{\textrm{Win}} 
-\renewcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Win}{\textrm{Win}} 
+\newcommand{\Lose}{\textrm{Lose}} 
 \newcommand{\Value}{\textrm{val}} 
 \newcommand{\ValueE}{\textrm{val}_\mEve} 
 \newcommand{\ValueA}{\textrm{val}_\mAdam}
@@ -60,17 +60,18 @@
 \newcommand{\Inf}{\mathtt{Inf}}
 \newcommand{\LimSup}{\mathtt{LimSup}}
 \newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NL}{\textrm{NL}}
+\newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\PTIME}{\textrm{PTIME}}
 ```
 At the beginning of the chapter we described three families of algorithms: 
 strategy improvement, attractor decomposition, and value iterations.
 
 
-Let us first clarify the relationship between the separation framework discussed in  Section {ref}`3-sec:separation`
-and the value iteration paradigm presented in  Section {ref}`3-sec:value_iteration`.
+Let us first clarify the relationship between the separation framework discussed in Section {ref}`3-sec:separation`
+and the value iteration paradigm presented in Section {ref}`3-sec:value_iteration`.
 Both are families of algorithms: 
 
 *  An $(n,d)$-separating automaton $\Automaton$ induces an algorithm for solving parity games in time 
@@ -80,7 +81,7 @@ proportional to $|T|$ where $|T|$ is the size of $T$, meaning the number of leav
 
 These two families are in a strong sense equivalent:
 
-```{prf:theorem} needs title and label 
+```{prf:theorem} NEEDS TITLE AND LABEL 
 
 *  An $(n,d)$-separating automaton induces an $(n,d/2)$-universal tree of the same size;
 *  An $(n,d/2)$-universal tree induces an $(n,d)$-separating automaton of the same size.
@@ -126,7 +127,7 @@ which are then interleaved to organise the recursive calls of the algorithm.
 
 
 Since both value iteration and attractor decomposition algorithms are connected to the combinatorial notion of universal trees,
-the next question is whether the construction given in  Section {ref}`3-sec:value_iteration` is optimal.
+the next question is whether the construction given in Section {ref}`3-sec:value_iteration` is optimal.
 The answer is unfortunately yes, there exists a lower bound on the size of universal trees which matches this construction up to polynomial factors.
 
 

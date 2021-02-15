@@ -173,22 +173,22 @@
 <ul class="nav sidenav_l1">
  <li class="toctree-l1 collapsible-parent">
   <a class="reference internal" href="../2_Regular/index.html">
-   Regular
+   Regular Games
   </a>
   <ul class="collapse-ul">
    <li class="toctree-l2">
     <a class="reference internal" href="../2_Regular/attractors.html">
-     A linear time algorithm for reachability games
+     Reachability games
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../2_Regular/buchi.html">
-     A quadratic time algorithm for Büchi games
+     Büchi games
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../2_Regular/parity.html">
-     An exponential time algorithm for parity games
+     Parity games
     </a>
    </li>
    <li class="toctree-l2">
@@ -198,7 +198,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../2_Regular/zielonka.html">
-     The Zielonka tree
+     Zielonka tree
     </a>
    </li>
    <li class="toctree-l2">
@@ -212,7 +212,7 @@
  </li>
  <li class="toctree-l1 collapsible-parent">
   <a class="reference internal" href="../3_Parity/index.html">
-   Parity
+   Parity Games
   </a>
   <ul class="collapse-ul">
    <li class="toctree-l2">
@@ -251,7 +251,7 @@
  </li>
  <li class="toctree-l1 collapsible-parent">
   <a class="reference internal" href="../4_Payoffs/index.html">
-   Payoffs
+   Games with Payoffs
   </a>
   <ul class="collapse-ul">
    <li class="toctree-l2">
@@ -286,6 +286,67 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../4_Payoffs/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Stochastic
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../5_MDP/index.html">
+   Markov Decision Processes
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/notations.html">
+     Notations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/reachability.html">
+     Positive and almost-sure reachability and safety in MDPs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/discounted.html">
+     Discounted payoff in MDPs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/mean_payoff_properties.html">
+     Mean-payoff in MDPs: General properties and linear programming
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/mean_payoff_strongly_connected.html">
+     Mean-payoff optimality in strongly connected MDPs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/end_components.html">
+     End components
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/reductions.html">
+     Reductions to optimal reachability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/optimal_reachability.html">
+     Optimal reachability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/references.html">
      Bibliographic references
     </a>
    </li>
@@ -454,8 +515,8 @@
 \newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
 \newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
 \newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\renewcommand{\Win}{\textrm{Win}} 
-\renewcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Win}{\textrm{Win}} 
+\newcommand{\Lose}{\textrm{Lose}} 
 \newcommand{\Value}{\textrm{val}} 
 \newcommand{\ValueE}{\textrm{val}_\mEve} 
 \newcommand{\ValueA}{\textrm{val}_\mAdam}
@@ -478,10 +539,11 @@
 \newcommand{\Inf}{\mathtt{Inf}}
 \newcommand{\LimSup}{\mathtt{LimSup}}
 \newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NL}{\textrm{NL}}
+\newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
 \newcommand{\coNP}{\textrm{coNP}}
-\newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\PTIME}{\textrm{PTIME}}\]</div>
+\newcommand{\PSPACE}{\textrm{PSPACE}}\]</div>
 <p>The first model we define is the common denominator of most models studied in this book:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(2\)</span>-player,</p></li>
@@ -638,7 +700,7 @@ or partial colouring functions.</p>
 <h2>Games<a class="headerlink" href="#games" title="Permalink to this headline">¶</a></h2>
 <p>We can now give the following definitions.</p>
 <div class="proof definition admonition" id="Games">
-<p class="admonition-title"><span>Definition </span> (needs label Games)</p>
+<p class="admonition-title"><span>Definition </span> (NEEDS LABEL Games)</p>
 <div class="definition-content section" id="proof-content">
 <ul class="simple">
 <li><p>A graph is a tuple <span class="math notranslate nohighlight">\(G = (V,E)\)</span> where <span class="math notranslate nohighlight">\(V\)</span> is a set of vertices

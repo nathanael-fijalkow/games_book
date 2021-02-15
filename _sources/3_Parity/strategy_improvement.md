@@ -36,8 +36,8 @@
 \newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
 \newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
 \newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\renewcommand{\Win}{\textrm{Win}} 
-\renewcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Win}{\textrm{Win}} 
+\newcommand{\Lose}{\textrm{Lose}} 
 \newcommand{\Value}{\textrm{val}} 
 \newcommand{\ValueE}{\textrm{val}_\mEve} 
 \newcommand{\ValueA}{\textrm{val}_\mAdam}
@@ -60,13 +60,14 @@
 \newcommand{\Inf}{\mathtt{Inf}}
 \newcommand{\LimSup}{\mathtt{LimSup}}
 \newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NL}{\textrm{NL}}
+\newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\PTIME}{\textrm{PTIME}}
 ```
 
-```{prf:theorem} needs title 3-thm:strategy_improvement
+```{prf:theorem} NEEDS TITLE 3-thm:strategy_improvement
 :label: 3-thm:strategy_improvement
 :nonumber:
 
@@ -74,7 +75,7 @@ There exists a strategy improvement algorithm for solving parity games in expone
 
 ```
 
-We rely on the high-level presentation of strategy improvement algorithms given in  Section {ref}`1-sec:strategy_improvement`.
+We rely on the high-level presentation of strategy improvement algorithms given in Section {ref}`1-sec:strategy_improvement`.
 In a nutshell: the algorithm constructs a sequence of strategies, the next one being an improvement over the current one,
 until reaching an optimal strategy.
 
@@ -99,7 +100,7 @@ equivalently all infinite paths in $\Game[\sigma]$ satisfy parity, not requiring
 We say that a cycle is even if the maximal priority along the cycle is even, and it is odd otherwise. 
 Respecting parity is characterised using cycles:
 
-```{prf:observation} needs title and label 
+```{prf:observation} NEEDS TITLE AND LABEL 
 A strategy $\sigma$ respects parity if and only if all cycles in $\Game[\sigma]$ are even.
  
 :label: 
@@ -116,7 +117,7 @@ The algorithm will only manipulate strategies respecting parity.
 > **Evaluating a strategy.**
 
 The first question is: given a strategy $\sigma$, how to evaluate it (in order to later improve it)?
-As explained in  Section {ref}`1-sec:strategy_improvement` towards this goal we define a value function $\val^{\sigma} : V \to Y$.
+As explained in Section {ref}`1-sec:strategy_improvement` towards this goal we define a value function $\val^{\sigma} : V \to Y$.
 
 We let $\val^{\sigma}(v) = \min_\tau \val(\play_{\sigma,\tau}^v)$ where $\tau$ ranges over (general) strategies for Adam, so we first need to define the value of the play $\play = \play_{\sigma,\tau}^v$.
 If $\play$ is stopped, then $\val(\play)$ is the tuple $(p_1, p_2, \dots, p_d)$ where $p_i$ is the number of times that priority $p$ appears on the play.
@@ -173,7 +174,7 @@ $$
 
 Since $\delta$ is monotonic so is $\Op$.
 
-```{prf:observation} needs title and label 
+```{prf:observation} NEEDS TITLE AND LABEL 
 The function $\val^\sigma$ is a fixed point of $\Op$ in $F^\sigma_V$.
  
 :label: 
@@ -194,7 +195,7 @@ The problem is for a vertex $v$ such that no plays starting from $v$ are stopped
 we can have either $\mu(v) = \top$ or $\mu(v) = \bot$, irrespective of whether the play satisfies parity or not.
 From this discussion we obtain the following result.
 
-```{prf:lemma} needs title 3-lem:greatest_fixed_point
+```{prf:lemma} NEEDS TITLE 3-lem:greatest_fixed_point
 :label: 3-lem:greatest_fixed_point
 :nonumber:
 
@@ -226,7 +227,7 @@ It may not hold that $\sigma_0$ respects parity since $\game$ may contain odd cy
 This can be checked in linear time and the attractor to the corresponding vertices removed from the game.
 After this preprocessing $\sigma_0$ indeed respects parity.
 
-The pseudocode of the algorithm is given in  {numref}`3-algo:strategy_improvement`.
+The pseudocode of the algorithm is given in {numref}`3-algo:strategy_improvement`.
 
 ```{figure} ./../3-algo:strategy_improvement.png
 :name: 3-algo:strategy_improvement
@@ -238,7 +239,7 @@ The strategy improvement algorithm for parity games.
 
 We start by stating a very simple property of $\delta$, which is key in the arguments below.
 
-```{prf:observation} needs title and label 
+```{prf:observation} NEEDS TITLE AND LABEL 
 Let $t \in Y$ and $p_1,\dots,p_k \in [1,d]$ such that $t$ and $\delta(t,p_1 \dots p_k)$ are neither $\top$ nor $\bot$.
 Then $t \le \delta(t,p_1 \dots p_k)$ if and only if $\max \set{p_1,\dots,p_k}$ is even.
  
@@ -255,7 +256,7 @@ Then $t \le \delta(t,p_1 \dots p_k)$ if and only if $\max \set{p_1,\dots,p_k}$ i
 
 The following lemma states the two important properties of $(Y,\le)$ and $\delta$.
 
-```{prf:lemma} needs title 3-lem:key_property
+```{prf:lemma} NEEDS TITLE 3-lem:key_property
 :label: 3-lem:key_property
 :nonumber:
 
@@ -294,7 +295,7 @@ which means that $\mu(v) \le \min \set{ \delta(\mu(v'),\col(v)) : (v,v') \in E}$
 
 We now rely on  {prf:ref}`3-lem:greatest_fixed_point` and  {prf:ref}`3-lem:key_property` to prove the two principles: progress and optimality.
 
-```{prf:lemma} needs label Progress
+```{prf:lemma} NEEDS LABEL Progress
 :label: Progress
 :nonumber:
 Let $\sigma$ a strategy respecting parity and $e = (v,v')$ a switchable edge.
@@ -349,7 +350,7 @@ $\val^\sigma(v) < \val^{\sigma'}(v)$.
 ```
 
 
-```{prf:lemma} needs label Optimality
+```{prf:lemma} NEEDS LABEL Optimality
 :label: Optimality
 :nonumber:
 Let $\sigma$ a strategy respecting parity that has no switchable edges, then 

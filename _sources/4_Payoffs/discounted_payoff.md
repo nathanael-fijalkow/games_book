@@ -42,8 +42,8 @@
 \newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
 \newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
 \newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\renewcommand{\Win}{\textrm{Win}} 
-\renewcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Win}{\textrm{Win}} 
+\newcommand{\Lose}{\textrm{Lose}} 
 \newcommand{\Value}{\textrm{val}} 
 \newcommand{\ValueE}{\textrm{val}_\mEve} 
 \newcommand{\ValueA}{\textrm{val}_\mAdam}
@@ -66,10 +66,11 @@
 \newcommand{\Inf}{\mathtt{Inf}}
 \newcommand{\LimSup}{\mathtt{LimSup}}
 \newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NL}{\textrm{NL}}
+\newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\PTIME}{\textrm{PTIME}}
 ```
 From a practical point of view, the modelling of a real-world
 situation via mean payoff games requires that only the long-term
@@ -158,7 +159,7 @@ $\vec x$ afterwards: for all $v\in V$, we thus let
   \end{cases}\label{4-eq:F-contraction}
 \end{equation}
 
-```{prf:theorem} needs title 4-thm:discounted
+```{prf:theorem} NEEDS TITLE 4-thm:discounted
 :label: 4-thm:discounted
 :nonumber:
 
@@ -224,7 +225,7 @@ solved by an unambiguous Turing machine running in polynomial time,
 and $\coUP$ the class of problems whose complement are in $\UP$, we
 then obtain the theorem:
 
-```{prf:theorem} needs title 4-thm:disc-up
+```{prf:theorem} NEEDS TITLE 4-thm:disc-up
 :label: 4-thm:disc-up
 :nonumber:
 
@@ -367,7 +368,7 @@ $$F_\sigma(\vec x)_v = \min_{(v,v')\in E}[(1-\lambda)c(v,v')+\lambda x_{v'}].$$
 
 
 
-```{prf:proposition} needs title 4-lem:one-player-DP
+```{prf:proposition} NEEDS TITLE 4-lem:one-player-DP
 :label: 4-lem:one-player-DP
 :nonumber:
 
@@ -489,7 +490,7 @@ better value, to ensure the termination of the algorithm).
 The strategy improvement algorithm for discounted payoff games.
 ```
 
-```{prf:theorem} needs title 4-thm:DP-strategy-improvement-correctness
+```{prf:theorem} NEEDS TITLE 4-thm:DP-strategy-improvement-correctness
 :label: 4-thm:DP-strategy-improvement-correctness
 :nonumber:
 
@@ -591,7 +592,7 @@ based on the following technical lemma stating that $\Value(v)$ is a
 rational number with a denominator that we can bound, in a similar
 manner as for~\cref{4-cor:rational-MP} in the mean payoff setting:
 
-```{prf:lemma} needs title 4-lem:rational-discounted
+```{prf:lemma} Upper bound on rational values in mean payoff games
 :label: 4-lem:rational-discounted
 :nonumber:
 
@@ -642,7 +643,7 @@ rounding leads to the correct optimal value vector. In the following,
 we let again $W = \max_{(v,c,v')\in E} |c|$ the maximal weight on edges of the arena, in
 absolute values.
 
-```{prf:lemma} needs title 4-lem:number-steps-VI-discounted
+```{prf:lemma} NEEDS TITLE 4-lem:number-steps-VI-discounted
 :label: 4-lem:number-steps-VI-discounted
 :nonumber:
 
@@ -682,7 +683,7 @@ overall, it thus has complexity $O(K m)$.
 The value iteration algorithm for discounted payoff games.
 ```
 
-```{prf:theorem} needs title 4-thm:DP-value-iteration
+```{prf:theorem} NEEDS TITLE 4-thm:DP-value-iteration
 :label: 4-thm:DP-value-iteration
 :nonumber:
 
@@ -711,7 +712,7 @@ Once the optimal values are known, finding some positional optimal
 strategies for both players still requires to work, as we have already
 seen in Section {ref}`1-sec:memory`:
 
-```{prf:theorem} needs title 4-thm:DP-strategies
+```{prf:theorem} NEEDS TITLE 4-thm:DP-strategies
 :label: 4-thm:DP-strategies
 :nonumber:
 
@@ -725,8 +726,7 @@ seen in Section {ref}`1-sec:memory`:
 
 
 ## Polynomial reduction from mean payoff games to
-  discounted payoff games
-\label{4-sec:mean_payoff-values}
+  discounted payoff games}\label{4-sec:mean_payoff-values
 
 Building upon the pseudopolynomial time algorithm for
 discounted payoff, we now describe a classical encoding of mean payoff
@@ -751,7 +751,7 @@ interpreting the mean payoff game as a discounted payoff game with a
 nicely chosen $\lambda$, we are able to find such a good
 approximation:
 
-```{prf:theorem} needs title 4-thm:MP-Zwick-Paterson
+```{prf:theorem} NEEDS TITLE 4-thm:MP-Zwick-Paterson
 :label: 4-thm:MP-Zwick-Paterson
 :nonumber:
 
@@ -873,7 +873,7 @@ representation of $\lambda$: here, it is therefore polynomial in
 $4n^2(n-1)W$ which leads to a pseudopolynomial complexity to solve
 mean payoff games. More precisely,
 
-```{prf:theorem} needs title 4-thm:MP-direct-value-iteration
+```{prf:theorem} NEEDS TITLE 4-thm:MP-direct-value-iteration
 :label: 4-thm:MP-direct-value-iteration
 :nonumber:
 
@@ -890,7 +890,7 @@ Notice that the previous encoding implies a better theoretical
 complexity for mean payoff and parity games, that what we obtained
 before:
 
-```{prf:corollary} needs title 4-col:UP
+```{prf:corollary} NEEDS TITLE 4-col:UP
 :label: 4-col:UP
 :nonumber:
 

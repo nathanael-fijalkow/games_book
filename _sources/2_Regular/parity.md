@@ -1,5 +1,5 @@
 (2-sec:parity)=
-# An exponential time algorithm for parity games
+# Parity games
 
 ```{math}
 \newcommand{\F}{\mathcal{F}} 
@@ -36,8 +36,8 @@
 \newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
 \newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
 \newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\renewcommand{\Win}{\textrm{Win}} 
-\renewcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Win}{\textrm{Win}} 
+\newcommand{\Lose}{\textrm{Lose}} 
 \newcommand{\Value}{\textrm{val}} 
 \newcommand{\ValueE}{\textrm{val}_\mEve} 
 \newcommand{\ValueA}{\textrm{val}_\mAdam}
@@ -60,10 +60,11 @@
 \newcommand{\Inf}{\mathtt{Inf}}
 \newcommand{\LimSup}{\mathtt{LimSup}}
 \newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NL}{\textrm{NL}}
+\newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\PTIME}{\textrm{PTIME}}
 ```
 Recall that the parity objective extends B&uuml;chi and coB&uuml;chi objectives:
 
@@ -73,11 +74,12 @@ $$
 
 
 
-```{prf:theorem} needs title 2-thm:parity
+```{prf:theorem} Positional determinacy and complexity of parity games
 :label: 2-thm:parity
 :nonumber:
 
-Parity objectives are uniformly positionally determined for both players (See \cref{2-rmk:finite_infinit) for the case of infinite games.}.
+Parity objectives are uniformly positionally determined for both players```{margin}
+See \cref{2-rmk:finite_infinit``` for the case of infinite games.}.
 There exists an algorithm for computing the winning regions of parity games in exponential time,
 and more precisely of complexity $O(m n^d)$.
 The space complexity of $O(nd)$.
@@ -95,7 +97,7 @@ The $\NP \cap \coNP$ complexity bounds will be discussed at the end of this sect
 The following lemma induces (half of) the recursive algorithm.
 Identifying a colour and its set of vertices we write $d$ for the set of vertices of priority $d$.
 
-```{prf:lemma} needs title 2-lem:zielonka_even
+```{prf:lemma} Fixed point characterisation of the winning regions for parity games
 :label: 2-lem:zielonka_even
 :nonumber:
 
@@ -154,7 +156,7 @@ implying that $\sigma$ is winning from $\WE(\Game'')$ in $\Game$.
 To get the full algorithm we need the analogous lemma for the case where the maximal priority is odd.
 We do not prove the following lemma as it is the exact dual of the previous lemma, and the proof is the same swapping the two players.
 
-```{prf:lemma} needs title 2-lem:zielonka_odd
+```{prf:lemma} Dual fixed point characterisation of the winning regions for parity games
 :label: 2-lem:zielonka_odd
 :nonumber:
 
@@ -167,7 +169,7 @@ then $\WA(\Game) = \WA(\Game'')$.
 
 ```
 
-The algorithm is presented in pseudocode in  {numref}`2-algo:zielonka`.
+The algorithm is presented in pseudocode in {numref}`2-algo:zielonka`.
 
 The proofs of  {prf:ref}`2-lem:zielonka_even` and  {prf:ref}`2-lem:zielonka_odd` also imply that parity games are positionally determined for both players.
 Indeed, winning strategies are defined as disjoint unions of strategies constructed inductively.
@@ -198,7 +200,7 @@ and check whether it is winning by computing the winning regions of the one play
 Guessing a strategy for Eve is a witness that the answer is yes so it yields an $\NP$ algorithm,
 and guessing a strategy for Adam yields a $\coNP$ algorithm.
 
- Chapter {ref}`3-chap:parity` is devoted to the study of advanced algorithms for parity games.
+Chapter {ref}`3-chap:parity` is devoted to the study of advanced algorithms for parity games.
 
 ```{figure} ./../2-algo:zielonka.png
 :name: 2-algo:zielonka

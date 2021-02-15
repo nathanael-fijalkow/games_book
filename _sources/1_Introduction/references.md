@@ -31,8 +31,8 @@
 \newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
 \newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
 \newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\renewcommand{\Win}{\textrm{Win}} 
-\renewcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Win}{\textrm{Win}} 
+\newcommand{\Lose}{\textrm{Lose}} 
 \newcommand{\Value}{\textrm{val}} 
 \newcommand{\ValueE}{\textrm{val}_\mEve} 
 \newcommand{\ValueA}{\textrm{val}_\mAdam}
@@ -55,10 +55,11 @@
 \newcommand{\Inf}{\mathtt{Inf}}
 \newcommand{\LimSup}{\mathtt{LimSup}}
 \newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NL}{\textrm{NL}}
+\newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\PTIME}{\textrm{PTIME}}
 ```
 The study of games, usually called game theory, has a very long history rooted in mathematics, logic, and economics, among other fields.
 Foundational ideas and notions emerged from set theory with for instance backward induction by Zermelo {cite}`Zermelo:1913`, 
@@ -101,9 +102,9 @@ They bind automata theory and logic to the study of games on graphs and provide 
 
 Beyond these two examples there are many applications of games in theoretical computer science and logic in particular.
 The following quote is due to Hodges {cite}`Hodges:1993`:
-
-> An extraordinary number of basic ideas in model theory can be expressed in terms of games.
-
+\begin{quotation}
+An extraordinary number of basic ideas in model theory can be expressed in terms of games.
+\end{quotation}
 Let us mention model checking games, which are used for checking whether a model satisfies a formula.
 They often form both a theoretical tool for understanding the model checking problem and proving its properties, as well as an algorithmic backend for effectively deciding properties of a logical formalism (we refer to {cite}`Graedel:2002` for a survey on model checking games).
 Another important construction of a game for understanding logical properties is the Ehrenfeucht-Fra&iuml;ss&eacute; games {cite}`Ehrenfeucht:1961,Fraisse:1950,Fraisse:1953` whose goal is to determine whether two models are equivalent against a logical formalism.

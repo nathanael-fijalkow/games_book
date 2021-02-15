@@ -1,5 +1,5 @@
 (2-sec:attractors)=
-# A linear time algorithm for reachability games
+# Reachability games
 
 ```{math}
 \newcommand{\F}{\mathcal{F}} 
@@ -36,8 +36,8 @@
 \newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
 \newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
 \newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\renewcommand{\Win}{\textrm{Win}} 
-\renewcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Win}{\textrm{Win}} 
+\newcommand{\Lose}{\textrm{Lose}} 
 \newcommand{\Value}{\textrm{val}} 
 \newcommand{\ValueE}{\textrm{val}_\mEve} 
 \newcommand{\ValueA}{\textrm{val}_\mAdam}
@@ -60,17 +60,18 @@
 \newcommand{\Inf}{\mathtt{Inf}}
 \newcommand{\LimSup}{\mathtt{LimSup}}
 \newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NL}{\textrm{NL}}
+\newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\PTIME}{\textrm{PTIME}}
 ```
 Recall that the objective $\Reach$ requires that the colour $\Win$ appears at least once and 
 $\Safe$ requires the the colour $\Lose$ never appears.
 We identify the colour $\Win$ with $\col^{-1}(\Win)$ the set of vertices labelled $\Win$,
 so we write $v \in \Win$ when $\col(v) = \Win$, and similarly for $\Lose$.
 
-```{prf:theorem} needs title 2-thm:reachability
+```{prf:theorem} Positional determinacy and complexity of reachability games
 :label: 2-thm:reachability
 :nonumber:
 
@@ -84,7 +85,7 @@ The first sentence implies that safety games are also uniformly positionally det
 and both positional determinacy results hold for infinite games.
 
 The complexity results are stated in the unit cost RAM model with machine word size $w = \log(m)$ with $m$ the number of edges.
-We refer to  Section {ref}`1-sec:computation` for more details about the model, which is in subtle ways different than the Turing model.
+We refer to Section {ref}`1-sec:computation` for more details about the model, which is in subtle ways different than the Turing model.
 The complexity would be slightly different in the Turing model: an additional $\log(m)$ factor would be incurred for manipulating numbers of order $m$, which the unit cost RAM model allows us to conveniently hide.
 
 In the litterature the complexity $O(n + m)$ is often reported for solving reachability games.
@@ -113,7 +114,8 @@ We note that this operator is monotonic when equipping the powerset of vertices 
 if $F \subseteq F'$ then $\PreE(F) \subseteq \PreE(F')$.
 Hence  {prf:ref}`1-thm:kleene` applies: this operator has a least fixed point 
 which we call the attractor of $\Win$ for Eve and write $\AttrE(\Win)$,
-and it is computed by the following sequence (For technical convenience we shift the sequence by one, ignoring the first term which is the empty se):
+and it is computed by the following sequence```{margin}
+For technical convenience we shift the sequence by one, ignoring the first term which is the empty se```:
 we let $\AttrE^0(\Win) = \Win$ and 
 
 $$
@@ -135,7 +137,7 @@ We do not elaborate further this most general case but note that the overhead is
 
 The following lemma shows how the attractor yields a solution to reachability games and directly implies  {prf:ref}`2-thm:reachability`.
 
-```{prf:lemma} needs title 2-lem:reachability
+```{prf:lemma} Characterisation of the winning region of reachability games using attractors
 :label: 2-lem:reachability
 :nonumber:
 
@@ -190,9 +192,9 @@ in other words $\tau$ ensures $\Safe[\Win]$ from $V \setminus \AttrE(\Win)$.
 
 ```
 
- {numref}`2-algo:reachability` is an efficient implementation of the attractor computation.
+{numref}`2-algo:reachability` is an efficient implementation of the attractor computation.
 Let us emphasise that it does not compute the sequence $(\AttrE^k(\Win))_{k \in \N}$ as suggested in  {prf:ref}`2-lem:reachability`.
-In  Section {ref}`4-sec:shortest_path` we will generalise this algorithm to a quantitative setting 
+In Section {ref}`4-sec:shortest_path` we will generalise this algorithm to a quantitative setting 
 and construct an algorithm which does compute (as a special case) the sequence $(\AttrE^k(\Win))_{k \in \N}$,
 however with a higher complexity.
 
@@ -206,7 +208,7 @@ The data structure contains the following objects:
 *  a set $S$ of vertices (the order in which vertices are stored and retrieved from $S$ does not matter),
 *  for each vertex of Adam a number of edges.
 
-Recall that we are using the unit cost RAM model, see  Section {ref}`1-sec:computation`; 
+Recall that we are using the unit cost RAM model, see Section {ref}`1-sec:computation`; 
 since the machine word size is $w = \log(m)$, a number of edges can be stored in one machine word.
 Hence the space complexity of the data structure of $O(n)$,
 which together with the size of the input yields a space complexity $O(m)$.
@@ -235,7 +237,7 @@ Both inclusions are easily obtained using a case analysis.
 
 The invariant implies the correctness of the algorithm: when $S$ is empty we obtain that $A = \AttrE(\Win)$.
 
-```{admonition} Remark
+```{admonition} Remark 
 We note that in the complexity analysis the cost of manipulating (and in particular decrementing) the counters for the number of edges is constant, which holds in the unit cost RAM model of computation.
 The same algorithm analysed in the Turing model of computation would have an additional $O(\log(n))$ multiplicative factor in the time complexity to take this into account.
 
@@ -251,7 +253,7 @@ The linear time algorithm for reachability games.
 
 The notion of attractors induces a common way of constructing traps as stated in the following very useful lemma.
 
-```{prf:lemma} needs title 2-lem:attractors_trap
+```{prf:lemma} Attractors induce traps
 :label: 2-lem:attractors_trap
 :nonumber:
 

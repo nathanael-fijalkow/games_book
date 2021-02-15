@@ -42,8 +42,8 @@
 \newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
 \newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
 \newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\renewcommand{\Win}{\textrm{Win}} 
-\renewcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Win}{\textrm{Win}} 
+\newcommand{\Lose}{\textrm{Lose}} 
 \newcommand{\Value}{\textrm{val}} 
 \newcommand{\ValueE}{\textrm{val}_\mEve} 
 \newcommand{\ValueA}{\textrm{val}_\mAdam}
@@ -66,17 +66,18 @@
 \newcommand{\Inf}{\mathtt{Inf}}
 \newcommand{\LimSup}{\mathtt{LimSup}}
 \newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NL}{\textrm{NL}}
+\newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\PTIME}{\textrm{PTIME}}
 ```
 One player variants due to Karp {cite}`Karp:1978`
 
  {prf:ref}`4-thm:shortest path-positive`
-\cite{Khachiyan&al:2008}
+{cite}`Khachiyan&al:2008`
 
-NP and coNP: \cite{Puri:1995}?
+NP and coNP: {cite}`Puri:1995`?
 
 This chapter has been the occasion to start revealing a ladder of
 reductions going up from parity games to discounted payoff games,
@@ -98,7 +99,7 @@ probabilistic setting as will be studied in~\cref{chap:MDP} and
 We have followed the proof of Ehrenfeucht and
 Mycielski {cite}`Ehrebfeucht&Mycielski:1979` to prove the positional
 determinacy of mean payoff games. In 2004, Bj\"orklund, Sandberg and
-Vorobyov \cite{Bjorklund&Sandberg&Vorobyov:2004} claimed a simpler
+Vorobyov {cite}`Bjorklund&Sandberg&Vorobyov:2004` claimed a simpler
 proof that works directly, with no back-and-forth reasoning between
 the first cycle objective and the original mean payoff one: however,
 their proof technique has been shown incorrect by Aminof and
@@ -116,7 +117,7 @@ adding gain and bias variables to the system, as may be studied
 in {cite}`Filar&Vrieze:1996` for concurrent mean payoff games.  Strategy
 improvement methods (for parity games or payoff games) are very close
 to the simplex method to solve linear programs. A more thorough
-comparison can be found in \cite{Allamigeon&Benchimol&al:2014}.  Lifshits and
+comparison can be found in {cite}`Allamigeon&Benchimol&al:2014`.  Lifshits and
 Pavlov {cite}`Lifshits&Pavlov:2007` use the potential techniques of strategy
 improvement for mean payoff games, with a reweighting of the arena in
 order to obtain a $\bigO(mn2^{n}\log W)$ algorithm (it may

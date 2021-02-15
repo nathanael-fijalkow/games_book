@@ -31,8 +31,8 @@
 \newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
 \newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
 \newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\renewcommand{\Win}{\textrm{Win}} 
-\renewcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Win}{\textrm{Win}} 
+\newcommand{\Lose}{\textrm{Lose}} 
 \newcommand{\Value}{\textrm{val}} 
 \newcommand{\ValueE}{\textrm{val}_\mEve} 
 \newcommand{\ValueA}{\textrm{val}_\mAdam}
@@ -55,17 +55,17 @@
 \newcommand{\Inf}{\mathtt{Inf}}
 \newcommand{\LimSup}{\mathtt{LimSup}}
 \newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NL}{\textrm{NL}}
+\newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\PTIME}{\textrm{PTIME}}
 ```
 Let $X$ be a set and $\Op : X \to X$ a function that we call an operator, we say that $x \in X$ is a fixed point of $\Op$ if $\Op(x) = x$.
 Fixed points will appear extensively in this book. 
 We describe here two general approaches for computing them: Banach's and Kleene's fixed point theorems.
 
 ## Banach fixed point theorem
-
 Let us consider a set $X$ equipped with some norm $||\cdot||$.
 It is said complete if all Cauchy sequences converge.
 The typical example of a complete space is $\R^d$ for some $d \in \N$ equipped with the infinity norm $||x|| = \max_{i \in [1,d]} |x_i|$.
@@ -90,7 +90,6 @@ $$
 
 
 ## Kleene fixed point theorem
-
 Let us consider a lattice $(X,\le)$: the binary relation $\le$ is a partial order, and every pair of elements has a least upper bound and a greatest lower bound. It is a complete lattice if every set has a least upper bound and a greatest lower bound.
 A lattice is finite if the set $X$ is finite.
 Note that finite lattices are always complete.
@@ -132,7 +131,7 @@ Naturally we say that $x \in X$ is a fixed point of the set of operators $(\Op_i
 :nonumber:
 
 Let $(X,\le)$ be a finite lattice and $\Op_i : X \to X$ a set of monotonic operators for $i \in I$, then $(\Op_i)_{i \in I}$ has a least fixed point.
-The non-deterministic algorithm given in  {numref}`1-algo:fixed_point` computes the least fixed point of $(\Op_i)_{i \in I}$.
+The non-deterministic algorithm given in {numref}`1-algo:fixed_point` computes the least fixed point of $(\Op_i)_{i \in I}$.
 
 ```
 
