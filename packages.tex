@@ -1,0 +1,151 @@
+%% better include hyperref early
+\usepackage{url,hyperref}
+\usepackage{pdfpages}
+
+%% \let\qed\relax
+%% \let\qedsymbol\relax
+%% \let\smartqed\relax
+%% \let\proof\relax
+%% \let\endproof\relax
+%% \let\theoremstyle\relax
+%% \let\newtheoremstyle\relax
+%% \usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{thmtools}
+
+\newtheorem{convention}{Convention}
+
+\usepackage{mathptmx}
+%\usepackage{helvet}
+\usepackage{courier}
+
+\usepackage{type1cm}         
+
+\usepackage{graphicx}       
+\usepackage{xcolor}      
+
+\usepackage[bottom]{footmisc}
+
+\usepackage[obeyFinal,colorinlistoftodos]{todonotes}
+%% note NM: \todo conflicts with \qed of package ntheorem (loaded by svmono)
+%% also, the qed symbol of ntheorem is a bit complex to manipulate
+%% (see https://tex.stackexchange.com/questions/197775/qed-sign-does-not-always-occur-with-package-ntheorem)
+%% ntheorem definit des ``mark'' dans book.aux aux endroits ou il veut mettre de qed. Cf. option thmmarks.
+%% voir https://tex.stackexchange.com/questions/296434/with-ntheorem-thmmarks-and-no-amsthm-defining-the-proof-environment-right
+
+\usepackage{multirow,array,booktabs}
+\usepackage{pdflscape}
+\usepackage{afterpage}
+%\usepackage{caption}
+%\usepackage{subcaption}
+%%%%%% Complexity package %%%%%%%%%%
+
+\usepackage[small,full]{complexity}
+
+%%%%%% Algorithm package %%%%%%%%%%
+
+\usepackage[norelsize,ruled,algochapter,vlined]{algorithm2e}
+
+%%%%%% Font package %%%%%%%%%%
+\usepackage{dsfont}
+
+%%%%%% References package %%%%%%%%%%
+
+%\usepackage{url}
+\usepackage{cleveref}
+
+\crefname{algocf}{Algorithm}{Algorithms}
+\Crefname{algocf}{Algorithm}{Algorithms}
+\crefname{section}{Sect.}{Sects.}
+\crefname{subsection}{Sect.}{Sects.}
+\crefname{subsubsection}{Sect.}{Sects.}
+\Crefname{section}{Section}{Sections}
+\Crefname{subsection}{Section}{Sections}
+\Crefname{subsubsection}{Section}{Sections}
+\crefname{chapter}{Chap.}{Chaps.}
+\Crefname{chapter}{Chapter}{Chapters}
+\crefname{page}{p.}{pp.}
+\Crefname{page}{Page}{Pages}
+\crefname{figure}{Fig.}{Figs.}
+\Crefname{figure}{Figure}{Figures}
+\crefname{table}{Table}{Tables}
+\Crefname{table}{Table}{Tables}
+\crefname{equation}{}{}
+\Crefname{equation}{Equation}{Equations}
+\crefname{theorem}{Thm.}{Thms.}
+\Crefname{theorem}{Theorem}{Theorems}
+\crefname{problem}{Pb.}{Pbs.}
+\Crefname{problem}{Problem}{Problems}
+\crefname{lemma}{Lem.}{Lems.}
+\Crefname{lemma}{Lemma}{Lemmata}
+\crefname{corollary}{Cor.}{Cors.}
+\Crefname{corollary}{Corollary}{Corollaries}
+\crefname{claim}{Claim}{Claims}
+\Crefname{claim}{Claim}{Claims}
+\Crefname{corollary}{Corollary}{Corollaries}
+\crefname{proposition}{Prop.}{Props.}
+\Crefname{proposition}{Proposition}{Propositions}
+\crefname{definition}{Def.}{Defs.}
+\Crefname{definition}{Definition}{Definitions}
+\crefname{claim}{Claim}{Claims}
+\Crefname{claim}{Claim}{Claims}
+\crefname{fact}{Fact}{Facts}
+\Crefname{fact}{Fact}{Facts}
+\crefname{example}{Ex.}{Exs.}
+\Crefname{example}{Example}{Examples}
+\crefname{remark}{Rmk.}{Rmks.}
+\Crefname{remark}{Remark}{Remarks}
+\crefname{algorithm}{Alg.}{Algs.}
+\Crefname{algorithm}{Algorithm}{Algorithms}
+
+\usepackage{wasysym} % for frownie/smiley (Chap. 6)
+% !!! has to be loaded before knowledge !!!
+\usepackage{bookmark}
+
+%%%%%% Knowledge package %%%%%%%%%%
+
+\usepackage{makeidx}         % allows index generation
+\usepackage{multicol}        % used for the two-column index
+\usepackage[hyperref,quotation,notion]{knowledge}
+\def\knowledgeIntroIndexStyle#1{\textbf{#1}}
+
+%%%%%% Local package %%%%%%%
+%\usepackage{wasysym} % for frownie/smiley
+%\def\smiley{+}
+%\def\frownie{-}
+%\def\wasyfamily{\fontencoding{U}\fontfamily{wasy}\selectfont}
+%\def\smiley     {\mbox{\wasyfamily\char44}}
+%\def\frownie    {\mbox{\wasyfamily\char47}}
+
+
+%%%%%% Tikz package %%%%%%%%%%
+
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usetikzlibrary{automata}
+\usetikzlibrary{shapes,snakes}
+\usetikzlibrary{calc}
+\usetikzlibrary{patterns}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{positioning}
+\tikzstyle{every node}=[font=\small]
+\tikzstyle{eve}=[circle,minimum size=.3cm,draw=gray!90,inner sep=1pt,fill=gray!20,very thick]
+\tikzstyle{adam}=[rounded corners=.5,regular polygon,regular polygon
+  sides=4,minimum size=.4cm,draw=gray!90,inner sep=1pt,fill=gray!20,very thick]
+\tikzstyle{every edge}=[draw,>=stealth',shorten >=1pt]
+\tikzstyle{win}=[fill=green!50,draw=green!70!black]
+\tikzstyle{lose}=[fill=white,draw=red!70!black]
+
+%% added by NM, used but apparently not defined elsewhere:
+\tikzstyle{state}=[draw,circle,minimum size=5mm]
+\tikzstyle{accepting}=[double]
+
+%%%%%% This one must go after Knowledge %%%%%%%%
+
+\usepackage{subcaption}
+
+\usepackage{mathtools}
+
+%\usepackage{tcolorbox}
+

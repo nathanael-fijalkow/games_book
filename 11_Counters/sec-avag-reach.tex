@@ -1,0 +1,204 @@
+
+In spite of the restriction to "asymmetric" "vector systems",
+"configuration reachability" remains undecidable.
+\begin{theorem}\label{12-th-asym-undec}
+  "Configuration reachability" "asymmetric vector games", both with
+  "given" and with "existential initial credit", are undecidable in
+  any dimension $\dd\geq 2$.
+\end{theorem}
+\begin{proof}
+  We first reduce from the "halting problem" of "deterministic Minsky
+  machines" to "configuration reachability" with "given initial
+  credit".  Given an instance of the "halting problem", i.e., given
+  $\?M=(\Loc,\Act,\dd)$ and an initial location $\loc_0$ where we
+  assume without loss of generality that $\?M$ checks that all its
+  counters are zero before going to $\loc_\mathtt{halt}$, we construct
+  an "asymmetric vector system"
+  $\?V\eqdef(\Loc\uplus\Loc_{\eqby?0}\uplus\Loc_{\dd},\Act',\Loc\uplus\Loc'_{\eqby?0},\Loc_{\eqby?0},\dd)$
+  where all the original locations and $\Loc_{\dd}$ are
+  controlled by~\Eve and $\Loc_{\eqby?0}$ is controlled by~\Adam.
+
+  \begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[auto,on grid,node distance=1.5cm]
+      \node(to){$\mapsto$};
+      \node[anchor=east,left=2.5cm of to](mm){"deterministic Minsky machine"};
+      \node[anchor=west,right=2.5cm of to](mwg){"asymmetric vector system"};
+      \node[below=.7cm of to](map){$\rightsquigarrow$};
+      \node[left=2.75cm of map](0){$\loc$};
+      \node[right=of 0](1){$\loc'$};
+      \node[right=1.25cm of map,s-eve](2){$\loc$};
+      \node[right=of 2,s-eve](3){$\loc'$};
+      \node[below=2.5cm of map](map2){$\rightsquigarrow$};
+      \node[left=2.75cm of map2](4){$\loc$};
+      \node[below right=.5cm and 1.5cm of 4](5){$\loc''$};
+      \node[above right=.5cm and 1.5cm of 4](6){$\loc'$};
+      \node[right=1.25cm of map2,s-eve](7){$\loc$};
+      \node[below right=.5cm and 1.5cm of 7,s-eve](8){$\loc''$};
+      \node[above right=.5cm and 1.5cm of 7,s-adam,inner sep=-1.5pt](9){$\loc'_{i\eqby?0}$};
+      \node[below right=.5cm and 1.5cm of 9,s-eve](10){$\loc'$};
+      \node[above right=.5cm and 1.5cm of 9,s-eve](11){$\loc_{i}$};
+      \node[right=of 11,s-eve,inner sep=0pt](12){$\loc_{\mathtt{halt}}$};
+      \path[arrow,every node/.style={font=\scriptsize}]
+      (0) edge node{$\vec e_i$} (1)
+      (2) edge node{$\vec e_i$} (3)
+      (4) edge[swap] node{$-\vec e_i$} (5)
+      (4) edge node{$i\eqby?0$} (6)
+      (7) edge[swap] node{$-\vec e_i$} (8)
+      (7) edge node{$\vec 0$} (9)
+      (9) edge[swap] node{$\vec 0$} (10)
+      (9) edge node{$\vec 0$} (11)
+      (11) edge node{$\vec 0$} (12)
+      (11) edge[loop above] node{$\forall j\neq i\mathbin.-\vec e_j$}();
+    \end{tikzpicture}
+    \caption{\label{12-fig-asym-undec}Schema of the reduction in the proof of \cref{12-th-asym-undec}.}
+  \end{figure}
+
+  We
+  use $\Loc_{\eqby?0}$ and $\Loc_{\dd}$ as two sets of locations disjoint from~$\Loc$ defined by
+  \begin{align*}
+    \Loc_{\eqby?0}&\eqdef\{\loc'_{i\eqby?0}\in\Loc\times\{1,\dots,\dd\}\mid\exists\loc\in\Loc\mathbin.(\loc\step{i\eqby?0}\loc')\in\Act\}\\
+    \Loc_{\dd}&\eqdef\{\loc_{i}\mid 1\leq i\leq \dd\}
+    \intertext{and define the set of actions by (see \cref{12-fig-asym-undec})}
+    \Act'&\eqdef\{\loc\step{\vec
+          e_i}\loc'\mid(\loc\step{\vec e_i}\loc')\in\Act\}\cup\{\loc\step{-\vec e_i}\loc''\mid(\loc\step{-\vec e_i}\loc'')\in\Act\}\\
+    &\:\cup\:\{\loc\step{\vec
+      0}\loc'_{i\eqby?0},\;\;\:\loc'_{i\eqby?0}\!\!\step{\vec
+      0}\loc',\;\;\:\loc'_{i\eqby?0}\!\!\step{\vec 0}\loc_{i}\mid
+      (\loc\step{i\eqby?0}\loc')\in\Act\}\\
+    &\:\cup\:\{\loc_i\!\step{-\vec e_j}\loc_{i},\;\;\:\loc_{i}\!\step{\vec
+      0}\loc_\mathtt{halt}\mid 1\leq i,j\leq\dd, j\neq i\}\;.
+  \end{align*}
+  We use $\loc_0(\vec 0)$ as initial configuration and
+  $\loc_\mathtt{halt}(\vec 0)$ as target configuration for the
+  constructed "configuration reachability" instance.  Here is the crux
+  of the argument why \Eve has a winning strategy to reach
+  $\loc_\mathtt{halt}(\vec 0)$ from $\loc_0(\vec 0)$ if and only if
+  the "Minsky machine@deterministic Minsky machine" halts, i.e., if
+  and only if the "Minsky machine@deterministic Minsky machine"
+  reaches $\loc_\mathtt{halt}(\vec 0)$.
+  %
+  Consider any configuration $\loc(\vec v)$.  If
+  $(\loc\step{\vec e_i}\loc')\in\Act$, \Eve has no choice but to apply
+  $\loc\step{\vec e_i}\loc'$ and go to the configuration
+  $\loc'(\vec v+\vec e_i)$ also reached in one step in~$\?M$.  If
+  $\{\loc\step{i\eqby?0}\loc',\loc\step{-\vec e_i}\loc''\}\in\Act$ and
+  $\vec v(i)=0$, due to the "natural semantics", \Eve cannot use the
+  action $\loc\step{-\vec e_i}\loc''$, thus she must use
+  $\loc\step{\vec 0}\loc'_{i\eqby?0}$.  Then, either \Adam plays
+  $\loc'_{i\eqby?0}\!\!\step{\vec 0}\loc'$ and \Eve regains the
+  control in $\loc'(\vec v)$, which was also the configuration reached
+  in one step in~$\?M$, or \Adam plays
+  $\loc'_{i\eqby?0}\!\!\step{\vec 0}\loc_{i}$ and \Eve
+  regains the control in $\loc_{i}(\vec v)$ with
+  $\vec v(i)=0$.  Using the actions
+  $\loc_{i}\!\step{-\vec e_j}\loc_{i}$ for
+  $j\neq i$, \Eve can then reach $\loc_{i}(\vec 0)$ and move
+  to $\loc_\mathtt{halt}(\vec 0)$.  Finally, if
+  $\{\loc\step{i\eqby?0}\loc',\loc\step{-\vec e_i}\loc''\}\in\Act$ and
+  $\vec v(i)>0$, \Eve can choose: if she uses
+  $\loc\step{-\vec e_i}\loc''$, she ends in the configuration
+  $\loc''(\vec v-\vec e_i)$ also reached in one step in~$\?M$.  In
+  fact, she should not use $\loc\step{\vec 0}\loc'_{i\eqby?0}$,
+  because \Adam would then have the opportunity to apply
+  $\loc'_{i\eqby?0}\!\!\step{\vec 0}\loc_{i}$, and in
+  $\loc_{i}(\vec v)$ with $\vec v(i)>0$, there is no way to
+  reach a configuration with an empty $i$th component, let alone to
+  reach $\loc_\mathtt{halt}(\vec 0)$.  Thus, if $\?M$ halts, then \Eve
+  has a winning strategy that mimics the unique "play"
+  of~$\?M$, and conversely, if \Eve wins, then necessarily she had to
+  follow the "play" of~$\?M$ and thus the machine halts.
+
+  \medskip Finally, regarding the "existential initial credit"
+  variant, the arguments used in the proof of \cref{12-th-undec} apply
+  similarly to show that it is also undecidable.
+\end{proof}
+
+In dimension~one, \cref{12-th-dim1} applies, thus "configuration
+reachability" is decidable in \EXPSPACE.  This bound is actually
+tight.
+\begin{theorem}\label{12-th-asym-dim1}
+  "Configuration reachability" "asymmetric vector games", both with
+  "given" and with "existential initial credit",
+  are \EXPSPACE-complete in dimension~one.
+\end{theorem}
+\begin{proof}
+  Let us first consider the "existential initial credit" variant.  We
+  proceed as in \cref{12-countdown-given,12-countdown-exist} and
+  reduce from the acceptance problem for a deterministic Turing
+  machine working in exponential space $m=2^{p(n)}$.  The reduction is
+  mostly the same as in \cref{12-countdown-given}, with a few changes.
+  Consider the integer $m-n$ from that reduction.  While this is an
+  exponential value, it can be written as $m-n=\sum_{0\leq e\leq
+  p(n)}2^{e}\cdot b_e$ for a polynomial number of bits $b_0,\dots,b_{p(n)}$.
+  For all $0\leq d\leq p(n)$, we define $m_d\eqdef \sum_{0\leq e\leq
+  d}2^{e}\cdot b_e$; thus $m-n+1=m_{p(n)}+1$.
+
+  We define now the sets of
+  locations
+  \begin{align*}
+    \Loc_\mEve&\eqdef\{\loc_0,\smiley\}
+      \cup\{\loc_\gamma\mid\gamma\in\Gamma'\}
+      \cup\{\loc_\gamma^k\mid 1\leq k\leq 3\}
+      \cup\{\loc_{=j}\mid 0<j\leq n\}\\
+      &\:\cup\:\{\loc_{1\leq?\leq m_d+1}\mid 0\leq d\leq
+  p(n)\}\cup\{\loc_{1\leq?\leq 2^d}\mid 1\leq d\leq p(n)\}\;,\\
+    \Loc_\mAdam&\eqdef\{\loc_{(\gamma_1,\gamma_2,\gamma_3)}\mid\gamma_1,\gamma_2,\gamma_3\in\Gamma'\}\;.
+  \end{align*}
+  The intention behind the locations $\loc_{=j}\in\Loc_\mEve$ is
+  that \Eve can reach~$\smiley(0)$ from a configuration $\loc_{=j}(c)$ if
+  and only if $c=j$; we define accordingly~$\Act$ with the
+  action $\loc_{=j}\step{-j}\smiley$.
+  Similarly, \Eve should be able to reach~$\smiley(0)$ from
+  $\loc_{1\leq?\leq m_d+1}(c)$ for $0\leq d\leq p(n)$ if and only if
+  $1\leq c\leq m_d+1$,
+  which is implemented by the following actions: if $b_{d+1}=1$, then
+  \begin{align*}
+    \loc_{1\leq?\leq m_{d+1}+1}&\step{0}\loc_{1\leq?\leq 2^{d+1}}\;,&
+    \loc_{1\leq?\leq m_{d+1}+1}&\step{-2^{d+1}}\loc_{1\leq ?\leq m_{d}+1}\;,
+    \intertext{and if $b_{d+1}=0$,}
+    \loc_{1\leq?\leq m_{d+1}+1}&\step{0}\loc_{1\leq ?\leq m_{d}+1}\;,
+    \intertext{and finally}
+    \loc_{1\leq?\leq m_0+1}&\step{-b_0}\loc_{=1}\;,&\loc_{1\leq?\leq m_0+1}&\step{0}\loc_{=1}\;,
+    \intertext{where for all $1\leq d\leq p(n)$, $\loc_{1\leq?\leq 2^d}(c)$ allows to
+    reach $\smiley(0)$ if and only if $1\leq c\leq 2^d$:}
+    \loc_{1\leq?\leq 2^{d+1}}&\step{-2^{d}}\loc_{1\leq?\leq
+                               2^d}\;,&\loc_{1\leq?\leq
+                                        2^{d+1}}&\step{0}\loc_{1\leq?\leq
+                                                  2^d}\;,\\\loc_{1\leq?\leq
+    2^1}&\step{-1}\loc_{=1}\;,&\loc_{1\leq?\leq 2^1}&\step{0}\loc_{=1}\;.
+  \end{align*}
+
+  The remainder of the reduction is now very similar to the reduction shown
+  in \cref{12-countdown-given}.
+  Regarding initialisation, \Eve can choose her initial position,
+  which we implement by the actions
+  \begin{align*}
+    \loc_0 &\step{-1} \loc_0 & \loc_0 &\step{-1}\loc_{(q_\mathrm{final},a)}&&\text{for $a\in\Gamma$}\;.
+    \intertext{Outside the boundary cases, the game is implemented by
+    the following actions:}
+    \loc_\gamma&\step{-m}\loc_{(\gamma_1,\gamma_2,\gamma_3)}&&&&\text{for
+  $\gamma_1,\gamma_2,\gamma_3\vdash\gamma$}\;,\\ \loc_{(\gamma_1,\gamma_2,\gamma_3)}&\step{0}\loc^k_{\gamma_k}&\loc^k_{\gamma_k}&\step{-k}\loc_{\gamma_k}&&\text{for
+  $k\in\{1,2,3\}$}\;.
+  \intertext{We handle the endmarker positions via the following
+  actions, where \Eve proceeds along the left edge
+  of \cref{12-fig-exp} until she reaches the initial left endmarker:}
+   \loc_\emkl&\step{-m-2}\loc_\emkl\;,& \loc_\emkl&\step{-1}\loc_{=1}\;,& \loc_\emkr&\step{-m-1}\loc_\emkl\;.
+  \intertext{For the positions inside the input word $w=a_1\cdots
+  a_n$, we use the actions}
+  \loc_{(q_0,a_1)}&\step{-2}\loc_{=1}\;,&\loc_{a_j}&\step{-2}\loc_{=j}&&\text{for
+  $1<j\leq n$}\;.
+  \intertext{Finally, for the blank symbols of~$C_1$, which should be
+  associated with a counter value~$c$ such that $n+3\leq c\leq m+3$,
+  i.e., such that $1\leq c-n-2\leq m-n+1=m_{p(n)}+1$, we use the
+  action}
+  \loc_\blank&\step{-n-2}\loc_{1\leq?\leq m_{p(n)}+1}\;.
+  \end{align*}
+
+  Regarding the "given initial credit" variant, we add a new location
+  $\loc'_0$ controlled by \Eve and let her choose her initial credit
+  when starting from $\loc'_0(0)$ by using the new actions
+  $\loc'_0\step{1}\loc'_0$ and $\loc'_0\step{0}\loc_0$.
+\end{proof}
+
+% Local IspellDict: british

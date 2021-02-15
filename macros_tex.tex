@@ -1,0 +1,50 @@
+\input{tikz-style}
+%% Theorem environments
+\undef{\example}
+\undef{\endexample}
+\undef{\claim}
+\undef{\endclaim}
+%\newtheorem{example}{Example}[section]
+\spdefaulttheorem{example}{Example}{\itshape}{}
+\spdefaulttheorem{claim}{Claim}{\itshape}{}
+%\newtheorem{fact}{Fact}
+%\newtheorem{principle}{Principle}
+\spdefaulttheorem{fact}{Fact}{\bfseries}{}
+\spdefaulttheorem{principle}{Principle}{\itshape}{}
+
+\newcommand{\decisionproblem}[2]{\begin{tabular}[t]{rl}\textbf{INPUT:} & #1 \\\textbf{QUESTION:} & #2\end{tabular}}
+\newcommand{\task}[2]{\begin{tabular}[t]{rl}\textbf{INPUT:} & #1 \\\textbf{OUTPUT:} & #2\end{tabular}}
+
+\newcommand{\slopefrac}[2]{\leavevmode\kern.1em
+  \raise .5ex\hbox{\the\scriptfont0 #1}\kern-.1em
+  /\kern-.15em\lower .25ex\hbox{\the\scriptfont0 #2}}
+\newcommand{\half}{\slopefrac{1}{2}}
+
+
+\newcommand{\mynote}[1]{\textcolor{red}{ #1 }}
+
+
+\newcommand{\kEXP}[1][\mathit{k}]{{\ComplexityFont{#1}}\ComplexityFont{EXP}}
+\newcommand{\LOGSPACE}{\ComplexityFont{LOGSPACE}}
+\newcommand{\logspace}{\LOGSPACE}
+\newcommand{\QBF}{\ensuremath{\mathsf{QBF}}}
+
+
+
+%% standalone include/input/...
+\def\chapterdir{.}
+\newcommand{\chapterinput}[1]{%
+  \begingroup%
+  \def\chapterdir{#1}%
+  \let\oldinput\input%
+  \let\oldinclude\include%
+  \let\oldincludegraphics\includegraphics%
+  \renewcommand{\include}[1]{\oldinclude{\chapterdir/##1}}
+  \renewcommand{\input}[1]{\oldinput{\chapterdir/##1}}
+  \renewcommand{\includegraphics}[2][]{\oldincludegraphics[##1]{\chapterdir/##2}}
+  \oldinput{#1/index}%
+  \endgroup%
+}
+\providecommand{\mymoot}[1]{}
+\renewcommand{\paragraph}[1]{\runinhead{#1}}
+\renewcommand{\subparagraph}[1]{\subruninhead{#1}}

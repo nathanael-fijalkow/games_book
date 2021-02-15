@@ -1,0 +1,30 @@
+\subsubsection{Capped Semantics}
+\label{12-capping}
+
+In resource-conscious systems, there is often a maximal capacity for
+resources: for instance, a battery cannot be charged any further once
+full.  We can model this by providing an alternative semantics
+for vector systems.  Given a capacity $C\in\+N$, for a vector~$\vec v$
+in~$\+N^\dd$, let us write $\capp v$ for the vector `capped' at~$C$:
+for all~$1\leq i\leq\dd$, $\capp v(i)\eqdef\vec v(i)$ if $\vec v(i)<C$
+and $\capp v\eqdef C$ if $\vec v(i)\geq C$.  We define for a
+capacity~$C\in\+N$ the ""capped semantics""
+$\capped(\?V)=(V^C,\overline{E}^C,\VE^C,\VA^C)$ of a "vector system"~$\?V$ by
+\begin{align*}
+  V^C&\eqdef\{\loc(\vec v)\mid\loc\in\Loc\text{ and }\|\vec v\|<C\}\;,\\
+  \overline{E}^C&\eqdef \{(\loc(\vec v),\loc'(\capp{v+\vec u})\mid\loc\step{\vec
+       u}\loc'\in\Act\text{ and }\vec v+\vec u\geq\vec 0\}\\
+     &\:\cup\:\{(\loc(\vec v),\sink)\mid\forall\loc\step{\vec
+               u}\loc'\in\Act\mathbin.\vec v+\vec u\not\geq\vec
+               0\}
+     \cup\{(\sink,\sink)\}\;.
+\end{align*}
+As usual, $\VE^C\eqdef V^C\cap\Loc_\mEve\times\+N^\dd$ and
+$\VA^C\eqdef V^C\cap\Loc_\mAdam\times\+N^\dd$.  This is the same as
+the "energy semantics" where we cap the vectors resulting from actions
+in~$\Act$.  All the configurations in this arena have "norm" less
+than~$C$, thus $|V^C|=|\Loc| C^\dd+1$, and the qualitative games of
+\cref{chap:regular} are decidable over this "arena".
+
+
+% Local IspellDict: british

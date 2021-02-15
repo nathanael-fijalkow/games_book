@@ -1,0 +1,88 @@
+\input{local_macros}
+\input{12_knowledge}
+\input{sec-intro}
+
+\input{acks}
+\ifstandalone
+\listoftodos[Todo List]
+\tableofcontents
+\fi
+
+\section{Vector Games}
+\label{12-counters}
+\input{sec-counters}
+
+\section{Games in Dimension One}
+\label{12-dim1}
+\input{sec-dim1}
+
+\section{Asymmetric Games}
+\label{12-avag}
+\input{sec-avag}
+
+\section{Resource-Conscious Games}
+\label{12-resource}
+"Vector games" are very well suited for reasoning about systems
+manipulating discrete resources, modelled as counters.  However, in
+the "natural semantics", actions that would deplete some resource,
+i.e., that would make some counter go negative, are simply inhibited.
+In models of real-world systems monitoring resources like a gas
+tank or a battery, a depleted resource would be considered as a system
+failure.  In the "energy games" of \cref{12-energy}, those situations
+are accordingly considered as winning for \Adam.  Moreover, if we are
+modelling systems with a bounded capacity for storing resources, a
+counter exceeding some bound might also be considered as a failure,
+which will be considered with "bounding games" in \cref{12-bounding}.
+
+These resource-conscious games can be seen as providing alternative
+semantics for "vector systems".  They will also be instrumental in
+establishing complexity upper bounds for "monotonic" "asymmetric vector
+games" later in \cref{12-complexity}, and are strongly related to
+"multidimensional" "mean-payoff" games, as will be explained in
+\cref{13-sec:MPEG} of \cref{chap:multiobjective}.
+
+\input{sec-energy}
+%\input{sec-capping}
+\input{sec-bounding}
+
+\section{The Complexity of Asymmetric Monotone Games}
+\label{12-complexity}
+
+Unlike general "vector games" and "configuration reachability"
+"asymmetric" ones, "coverability", "non-termination", and
+"parity@parity vector game" "asymmetric vector games" are decidable.
+We survey in this section the best known complexity bounds for every
+case; see \cref{12-tbl-cmplx} at the end of the chapter for a summary.
+
+\subsection{Upper Bounds}
+\label{12-sub-up}
+We begin with complexity upper bounds.  The main results are that
+"parity@parity vector game" games with "existential initial credit"
+can be solved in \coNP, but are in \kEXP[2] with "given initial
+credit".  In both cases however, the complexity is pseudo-polynomial
+if both the dimension~$\dd$ and the number of priorities~$d$ are
+fixed, which is rather good news: one can hope that, in practice, both
+the number of different resources (encoded by the counters) and the
+complexity of the functional specification (encoded by the parity
+condition) are tiny compared to the size of the system.
+
+\input{sec-upper}
+
+\subsection{Lower Bounds}
+\label{12-sub-low}
+Let us turn our attention to complexity lower bounds for "monotonic"
+"asymmetric vector games".  It turns out that most of the upper bounds
+shown in \cref{12-sub-up} are tight.
+\input{sec-lower}
+  
+\subsection{Dimension One}
+\label{12-sub-mono-dim1}
+\input{sec-avag-dim1}
+
+\section*{Bibliographic Notes}
+\label{12-refs}
+\markright{Bibliographic Notes}
+\ifstandalone\addcontentsline{toc}{section}{Bibliographic Notes}\fi%
+\input{sec-refs}
+
+% Local IspellDict: british
