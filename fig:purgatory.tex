@@ -1,0 +1,34 @@
+\documentclass[preview,border=0mm,convert={density=600,outext=.png}]{standalone}
+\usepackage{tikz}
+\usetikzlibrary{automata,shapes,patterns,calc,arrows}
+\input{tikz-style.tex}
+\input{norenew_macros.tex}
+\input{7_Concurrent/macros_local.tex}
+\usepackage{amsfonts}
+\begin{document}
+\begin{tikzpicture}[node distance=3cm,-{stealth},shorten >=2pt]
+
+\ma{s2}[$3:$]{2}{2};
+\ma[shift={($(s2)+(0,3cm)$)}]{s1}[$4:$]{2}{2};
+\ma[shift={($(s2)+(3cm,0)$)}]{s3}[$2:$]{2}{2};
+\ma[shift={($(s3)+(3cm,0)$)}]{s4}[$1:$]{2}{2};
+
+\draw (s2-1-2.center) to (s1);
+\draw (s3-1-2.center) to[bend right] (s1);
+\draw (s4-1-2.center) to[bend right] (s1);
+
+\foreach \x/\y in {2/3,3/4} {
+\draw (s\x-2-2.center) to (s\y);
+\draw (s\x-1-1.center) to[out=70] (s\y);
+}
+\foreach \x in {1,2,3,4} \node at (s\x-2-1.center) {$0^*$};
+\draw (s1-2-2.center) to (s2-1-2);
+\draw (s1-1-1.center) to[out=200] (s2-1-1);
+
+\niceloop{s1-1-2};
+
+\node at (s4-1-1.center) {$1^*$};
+\node at (s4-2-2.center) {$1^*$};
+
+\end{tikzpicture}
+\end{document}

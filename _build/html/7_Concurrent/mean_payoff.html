@@ -1,0 +1,754 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Concurrent mean-payoff games &#8212; Games on graphs</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/style.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Bibilographic references" href="references.html" />
+    <link rel="prev" title="Concurrent reachability games" href="reachability.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/cover.jpg" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Games on graphs</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <p class="caption collapsible-parent">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../1_Introduction/index.html">
+   Introduction
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/intro.html">
+     What is this book about?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/simple.html">
+     A first model of games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/objectives.html">
+     Objectives
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/computation.html">
+     Computational models
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/automata.html">
+     Automata
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/memory.html">
+     Memory
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/reductions.html">
+     Reductions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/subgames.html">
+     Traps and subgames
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/fixed_points.html">
+     Generic fixed point algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/value_iteration.html">
+     Value iteration algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/strategy_improvement.html">
+     Strategy improvement algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Classic
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../2_Regular/index.html">
+   Regular Games
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/attractors.html">
+     Reachability games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/buchi.html">
+     Büchi games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/parity.html">
+     Parity games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/muller.html">
+     Rabin, Streett, and Muller games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/zielonka.html">
+     Zielonka tree
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../3_Parity/index.html">
+   Parity Games
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/strategy_improvement.html">
+     An exponential time strategy improvement algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/zielonka.html">
+     A quasipolynomial time attractor decomposition algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/separation.html">
+     A quasipolynomial time separating automata algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/value_iteration.html">
+     A quasipolynomial time value iteration algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/relationships.html">
+     Comparing the three families of algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../4_Payoffs/index.html">
+   Games with Payoffs
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/notations.html">
+     Notations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/qualitative.html">
+     Refining qualitative objectives with quantities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/mean_payoff.html">
+     Mean payoff games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/discounted_payoff.html">
+     Discounted payoff games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/shortest_path.html">
+     Shortest path games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/total_payoff.html">
+     Total payoff games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Stochastic
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../5_MDP/index.html">
+   Markov Decision Processes
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/notations.html">
+     Notations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/reachability.html">
+     Positive and almost-sure reachability and safety in MDPs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/discounted.html">
+     Discounted payoff in MDPs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/mean_payoff_properties.html">
+     Mean-payoff in MDPs: General properties and linear programming
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/mean_payoff_strongly_connected.html">
+     Mean-payoff optimality in strongly connected MDPs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/end_components.html">
+     End components
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/reductions.html">
+     Reductions to optimal reachability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/optimal_reachability.html">
+     Optimal reachability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../6_Stochastic/index.html">
+   Stochastic Games
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../6_Stochastic/notations.html">
+     Notations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../6_Stochastic/determinacy.html">
+     Positional determinacy of stochastic reachability games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../6_Stochastic/relations.html">
+     Relations between all games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../6_Stochastic/algos.html">
+     Algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../6_Stochastic/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Information
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active collapsible-parent">
+  <a class="reference internal" href="index.html">
+   Concurrent Games
+  </a>
+  <ul class="current collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="notations.html">
+     Notations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="matrix_games.html">
+     Matrix games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="discounted.html">
+     Concurrent discounted games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="reachability.html">
+     Concurrent reachability games
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Concurrent mean-payoff games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="discounted.html">
+     Concurrent discounted games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="references.html">
+     Bibilographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../8_Imperfect/index.html">
+   Games with Signals
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../8_Imperfect/finite_duration.html">
+     Finite duration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../8_Imperfect/finite_duration.html#min-left-1-x-3-1-y-3-1-x-9-1-y-right-right-frac-1-4-max-x-y-in-0-1-2-min-left-4-6y-6-2x-6y-br-right">
+     \min\left(
+{(1-x) +  3 (1-y)},
+{3(1-x) - 9(1-y)}
+\right)\right)\
+=&amp;
+\frac{1}{4}\max_{(x,y)\in[0,1]^2}
+\min\left(
+4 - 6y,
+-6 -2x + 6y
+     <br/>
+     \right)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../8_Imperfect/infinite_duration.html">
+     Infinite duration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../8_Imperfect/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="concurrent-mean-payoff-games">
+<span id="sec-mean-payoff"></span><h1>Concurrent mean-payoff games<a class="headerlink" href="#concurrent-mean-payoff-games" title="Permalink to this headline">¶</a></h1>
+<div class="math notranslate nohighlight">
+\[\newcommand{\ValueOp}{\text{valOp}}
+\newcommand{\rk}{\text{rk}}
+\newcommand{\crgLim}{\text{crgLim1}}
+\newcommand{\Eve}{\textrm{Eve}}
+\newcommand{\Adam}{\textrm{Adam}}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
+\newcommand{\argmax}{\textrm{argmax}}
+\newcommand{\argmin}{\textrm{argmin}}
+\newcommand{\Op}{\mathbb{O}}
+\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\textrm{supp}} 
+\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
+\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
+\newcommand{\mEve}{\mathrm{Eve}}
+\newcommand{\mAdam}{\mathrm{Adam}}
+\newcommand{\mRandom}{\mathrm{Random}}
+\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
+\newcommand{\ing}{\textrm{In}}
+\newcommand{\Ing}{\ing}
+\newcommand{\out}{\textrm{Out}}
+\newcommand{\Out}{\out}
+\newcommand{\dest}{\Delta} 
+\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
+\newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
+\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
+\newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
+\newcommand{\Win}{\textrm{Win}} 
+\newcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Value}{\textrm{val}} 
+\newcommand{\ValueE}{\textrm{val}_\mEve} 
+\newcommand{\ValueA}{\textrm{val}_\mAdam}
+\newcommand{\val}{\Value} 
+\newcommand{\Automaton}{\mathbf{A}} 
+\newcommand{\Safe}{\mathtt{Safe}}
+\newcommand{\Reach}{\mathtt{Reach}} 
+\newcommand{\Buchi}{\mathtt{Buchi}} 
+\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
+\newcommand{\Parity}{\mathtt{Parity}} 
+\newcommand{\Muller}{\mathtt{Muller}} 
+\newcommand{\Rabin}{\mathtt{Rabin}} 
+\newcommand{\Streett}{\mathtt{Streett}} 
+\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
+\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
+\newcommand{\Energy}{\mathtt{Energy}}
+\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
+\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
+\newcommand{\Sup}{\mathtt{Sup}}
+\newcommand{\Inf}{\mathtt{Inf}}
+\newcommand{\LimSup}{\mathtt{LimSup}}
+\newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NL}{\textrm{NL}}
+\newcommand{\PTIME}{\textrm{PTIME}}
+\newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
+\newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
+\newcommand{\PSPACE}{\textrm{PSPACE}}\]</div>
+<p>In this section we consider concurrent mean-payoff games.
+We will show that in general, any  <span class="math notranslate nohighlight">\(\epsilon\)</span>-optimal strategy in some concurrent mean-payoff games are quite complex.
+We will first, however, show that finding the value of a concurrent mean-payoff game can be done in polynomial space.</p>
+<div class="proof lemma admonition" id="lemm:class_meanpayoff">
+<p class="admonition-title"><span class="caption-number">Lemma 238 </span> (NEEDS TITLE lemm:class_meanpayoff)</p>
+<div class="lemma-content section" id="proof-content">
+<p>Concurrent mean-payoff games are determined and the value is the limit of the value of the corresponding time-limited game as well as the limit of the corresponding discounted game, for the discount factor going to 0 from above.
+There is an polynomial time algorithm, ala Lemma~\ref{lem:val1}, for finding the set of vertices where a finite memory strategy suffice to ensure <span class="math notranslate nohighlight">\(1-\epsilon\)</span> (recall that all rewards are in <span class="math notranslate nohighlight">\(\{0,1\}\)</span>).
+For any fixed number <span class="math notranslate nohighlight">\(n\)</span>, there is a polynomial time algorithm for approximating the value in a concurrent mean-payoff game with <span class="math notranslate nohighlight">\(n\)</span> vertices (i.e. the running time is polynomial in the number of actions)</p>
+</div>
+</div><p>We will not show this lemma, but simply note that the <span class="math notranslate nohighlight">\(\epsilon\)</span>-optimal strategies known for general concurrent mean-payoff games  can be viewed as playing the corresponding discounted game with a variable discount factor that depends on how nice the rewards has been up to now. Basically, in each round you play the optimal strategy in the corresponding discounted game with a discount factor <span class="math notranslate nohighlight">\(\gamma\)</span>. Whenever
+your rewards are close to or better than the value, you decrease <span class="math notranslate nohighlight">\(\gamma\)</span> towards 0 and in each round your rewards are much worse than the value you let <span class="math notranslate nohighlight">\(\gamma\)</span> increase, except not bigger than the initial <span class="math notranslate nohighlight">\(\gamma\)</span> in the first round. Much of this section will argue that many natural candidates for simpler types of strategies does not work.</p>
+<p>We will show that approximating the value, however, can, as mentioned, be done in polynomial space. The proof relies on Proposition~22 from <span id="id1">[<span>HKLMT:2011</span>]</span>, stating the following:</p>
+<div class="proof proposition admonition" id="proposition-1">
+<p class="admonition-title"><span class="caption-number">Proposition 239 </span> (NEEDS TITLE AND LABEL)</p>
+<div class="proposition-content section" id="proof-content">
+<p>Let <span class="math notranslate nohighlight">\(\epsilon=2^{-j}\)</span>, where <span class="math notranslate nohighlight">\(j\)</span> is some positive integer, and the probabilities be rational numbers where the nominator and denominator have bitsize at most <span class="math notranslate nohighlight">\(\tau\)</span>. Also, let <span class="math notranslate nohighlight">\(\lambda=\epsilon^{\tau m^{O(n^2)}}\)</span>. Consider some state <span class="math notranslate nohighlight">\(s\)</span> and let the value of that state in the <span class="math notranslate nohighlight">\(\lambda\)</span> discounted game be <span class="math notranslate nohighlight">\(v_{\lambda}\)</span> and the value in mean-payoff game be <span class="math notranslate nohighlight">\(v\)</span>, then <span class="math notranslate nohighlight">\(|v-v_{\lambda}|&lt;\epsilon\)</span>.</p>
+<p>:label:
+Let <span class="math notranslate nohighlight">\(\epsilon=2^{-j}\)</span>, where <span class="math notranslate nohighlight">\(j\)</span> is some positive integer, and the probabilities be rational numbers where the nominator and denominator have bitsize at most <span class="math notranslate nohighlight">\(\tau\)</span>. Also, let <span class="math notranslate nohighlight">\(\lambda=\epsilon^{\tau m^{O(n^2)}}\)</span>. Consider some state <span class="math notranslate nohighlight">\(s\)</span> and let the value of that state in the <span class="math notranslate nohighlight">\(\lambda\)</span> discounted game be <span class="math notranslate nohighlight">\(v_{\lambda}\)</span> and the value in mean-payoff game be <span class="math notranslate nohighlight">\(v\)</span>, then <span class="math notranslate nohighlight">\(|v-v_{\lambda}|&lt;\epsilon\)</span>.</p>
+<p>Let <span class="math notranslate nohighlight">\(\epsilon=2^{-j}\)</span>, where <span class="math notranslate nohighlight">\(j\)</span> is some positive integer, and the probabilities be rational numbers where the nominator and denominator have bitsize at most <span class="math notranslate nohighlight">\(\tau\)</span>. Also, let <span class="math notranslate nohighlight">\(\lambda=\epsilon^{\tau m^{O(n^2)}}\)</span>. Consider some state <span class="math notranslate nohighlight">\(s\)</span> and let the value of that state in the <span class="math notranslate nohighlight">\(\lambda\)</span> discounted game be <span class="math notranslate nohighlight">\(v_{\lambda}\)</span> and the value in mean-payoff game be <span class="math notranslate nohighlight">\(v\)</span>, then <span class="math notranslate nohighlight">\(|v-v_{\lambda}|&lt;\epsilon\)</span>.</p>
+</div>
+</div><p>We will use that to again reduce to the existential theory over the reals.
+For a fixed discount factor <span class="math notranslate nohighlight">\(\gamma\)</span>, we can easily express the value of the corresponding discounted game, like we expressed the value of a concurrent reachability game.
+We have that the value <span class="math notranslate nohighlight">\(v\)</span> is then <span class="math notranslate nohighlight">\(v=\lim_{\gamma\rightarrow 0^+} f(\gamma)\)</span>, where <span class="math notranslate nohighlight">\(f\)</span> is the found expression.
+I.e. for any <span class="math notranslate nohighlight">\(\epsilon\)</span>, there is a <span class="math notranslate nohighlight">\(\gamma'\)</span> such that for all <span class="math notranslate nohighlight">\(\gamma&lt;\gamma\)</span>, we have that <span class="math notranslate nohighlight">\(|f(\gamma)-v|\leq \epsilon\)</span>.
+Also, that <span class="math notranslate nohighlight">\(v&gt;c\)</span> means that there is <span class="math notranslate nohighlight">\(\epsilon\)</span>, such that <span class="math notranslate nohighlight">\(v-\epsilon&gt;c\)</span>.</p>
+<p>The problem is thus to come up with a polynomial sized formula to express that <span class="math notranslate nohighlight">\(\lambda\)</span> is <span class="math notranslate nohighlight">\(\epsilon^{\tau m^{O(n^2)}}=2^{-j \tau m^{O(n^2)}}\)</span>.</p>
+<p>That can be done as follows, using <span class="math notranslate nohighlight">\(\ell=O(n^2)\cdot \log(m)+\log(j\tau)\)</span> many variables, <span class="math notranslate nohighlight">\(v_0,v_1,\dots v_{\ell-1}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+v_0=1/2
+\]</div>
+<p>and for all <span class="math notranslate nohighlight">\(0&lt;i&lt; \ell\)</span>, we have that</p>
+<div class="math notranslate nohighlight">
+\[
+v_i=v_{i-1}\cdot v_{i-1}.
+\]</div>
+<p>Using induction, we see that <span class="math notranslate nohighlight">\(v_i=2^{-2^{i}}\)</span>, i.e., <span class="math notranslate nohighlight">\(v_1=1/2=2^{-2^0}\)</span> and</p>
+<div class="math notranslate nohighlight">
+\[
+v_i=v_{i-1}\cdot v_{i-1}=2^{-2^{i-1}}\cdot 2^{-2^{i-1}}=2^{-2^{i-1}-2^{i-1}}=2^{-2^{i}}\]</div>
+<p>In particular,</p>
+<div class="math notranslate nohighlight">
+\[
+v_{\ell-1}=2^{-2^{\ell}}=2^{-2^{O(n^2)\cdot \log(m)+\log(j\tau)}}=2^{-j\tau m^{O(n^2)}}
+\]</div>
+<p>is the value we wanted for <span class="math notranslate nohighlight">\(\lambda\)</span>.
+Thus, for a given number <span class="math notranslate nohighlight">\(v\)</span>, we can test if the value of a concurrent  <span class="math notranslate nohighlight">\(\lambda\)</span>-discounted game is above <span class="math notranslate nohighlight">\(v+\epsilon\)</span>, which, using the proposition above, implies that <span class="math notranslate nohighlight">\(v\)</span> is below the value of the corresponding concurrent mean-payoff game. On the other hand, the proposition also implies that if the value of the concurrent  <span class="math notranslate nohighlight">\(\lambda\)</span>-discounted game is below <span class="math notranslate nohighlight">\(v-\epsilon\)</span>, then the value of the concurrent mean-payoff game is below <span class="math notranslate nohighlight">\(v\)</span>. Being able to answer these questions lets you easily approximate the value of a concurrent mean-payoff using binary search.</p>
+<p>We get the following lemma.</p>
+<div class="proof lemma admonition" id="lemma-2">
+<p class="admonition-title"><span class="caption-number">Lemma 240 </span> (NEEDS TITLE AND LABEL)</p>
+<div class="lemma-content section" id="proof-content">
+<p>Approximating the value of a concurrent mean-payoff game can be in done in polynomial space</p>
+<p>:label:
+Approximating the value of a concurrent mean-payoff game can be in done in polynomial space</p>
+<p>Approximating the value of a concurrent mean-payoff game can be in done in polynomial space</p>
+</div>
+</div><p>We will now consider a specific, well-studied example of a concurrent mean-payoff game, since it shows that many natural kinds of strategies do not suffice in general.
+The game is called the big match and is defined as follows:
+There are 3 vertices, <span class="math notranslate nohighlight">\(\{0,s,1\}\)</span>, where the vertices in <span class="math notranslate nohighlight">\(\{0,1\}\)</span> are absorbing, and with value equal to their name.
+The last vertex <span class="math notranslate nohighlight">\(s\)</span> has a 2x2-matrix and for all <span class="math notranslate nohighlight">\(i,j\)</span> for <span class="math notranslate nohighlight">\(i\neq j\)</span>, we have that
+<span class="math notranslate nohighlight">\(c(s,1,1)=1\)</span>, and for <span class="math notranslate nohighlight">\(i\neq 1\neq j\)</span> we have that <span class="math notranslate nohighlight">\(c(s,1,1)=0\)</span>.
+Also,  <span class="math notranslate nohighlight">\(\dest(s,1,i)=s\)</span> for each <span class="math notranslate nohighlight">\(i\)</span>, <span class="math notranslate nohighlight">\(\dest(s,2,1)=0\)</span> and <span class="math notranslate nohighlight">\(\dest(s,2,2)=1\)</span>. There is an illustration in Figure \ref{fig:bm}.
+The value of the Big Match is <span class="math notranslate nohighlight">\(1/2\)</span>.</p>
+<div class="figure align-center" id="fig-bm">
+<img alt="7_Concurrent/./../fig:bm.png" src="7_Concurrent/./../fig:bm.png" />
+<p class="caption"><span class="caption-number">Fig. 51 </span><span class="caption-text">The Big Match</span><a class="headerlink" href="#fig-bm" title="Permalink to this image">¶</a></p>
+</div>
+<p>Consider a finite-memory strategy <span class="math notranslate nohighlight">\(\sigma\)</span> for Eve. We will argue that <span class="math notranslate nohighlight">\(\sigma\)</span> cannot guarantee <span class="math notranslate nohighlight">\(\epsilon\)</span> (any strategy can guarantee <span class="math notranslate nohighlight">\(-1\)</span>, since the colors are between <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(1\)</span>) for any <span class="math notranslate nohighlight">\(0&lt;\epsilon\)</span>. Let <span class="math notranslate nohighlight">\(\tau\)</span> be the stationary strategy for Adam that plays <span class="math notranslate nohighlight">\(1\)</span> with pr. <span class="math notranslate nohighlight">\(\epsilon/2\)</span>.
+Then playing <span class="math notranslate nohighlight">\(\sigma\)</span> against <span class="math notranslate nohighlight">\(\tau\)</span>, we get an Markov chain, where the vertex space is pairs of memory states and game vertices.
+In Markov chains, eventually, with pr. 1, a set of vertices <span class="math notranslate nohighlight">\(S\)</span> is reached such that the set of vertices visited infinitely often is <span class="math notranslate nohighlight">\(S\)</span>. Such a set is called ergodic.
+The set <span class="math notranslate nohighlight">\(S\)</span> can clearly only contain 1 game vertex, since whenever <span class="math notranslate nohighlight">\(s\)</span> is left, it is never entered again.
+Hence, if <span class="math notranslate nohighlight">\(S\)</span> contains <span class="math notranslate nohighlight">\(s\)</span>, the pr. that play will ever reach <span class="math notranslate nohighlight">\(\{0,1\}\)</span> is 0.
+In the MC we get from the players playing <span class="math notranslate nohighlight">\(\sigma\)</span> and <span class="math notranslate nohighlight">\(\tau\)</span>, let <span class="math notranslate nohighlight">\(T_{\epsilon/2}\)</span> be such that with pr. <span class="math notranslate nohighlight">\(\epsilon/2\)</span> some ergodic set has been reached.
+Let <span class="math notranslate nohighlight">\(\tau'\)</span> be the strategy that plays <span class="math notranslate nohighlight">\(\tau\)</span> for <span class="math notranslate nohighlight">\(T_{\epsilon/2}\)</span> and afterwards plays <span class="math notranslate nohighlight">\(2\)</span>.</p>
+<p>When <span class="math notranslate nohighlight">\(\sigma\)</span> is played against <span class="math notranslate nohighlight">\(\tau'\)</span>, either we reach <span class="math notranslate nohighlight">\(\{0,1\}\)</span> and Adam plays 1 only finitely many times, while in <span class="math notranslate nohighlight">\(s\)</span> (the latter because there are only finitely many numbers below <span class="math notranslate nohighlight">\(T_{\epsilon/2}\)</span>). Thus, for Eve to win a play, the play needs to reach vertex 1. There are two ways to do so, either Eve stops before <span class="math notranslate nohighlight">\(T_{\epsilon/2}\)</span> or after. In the former case, the pr. to reach <span class="math notranslate nohighlight">\(1\)</span> is only <span class="math notranslate nohighlight">\(\epsilon/2\)</span> (because Adam needs to play <span class="math notranslate nohighlight">\(2\)</span> at the time, which is only done with pr. <span class="math notranslate nohighlight">\(\epsilon/2\)</span>). The latter only happens with pr. <span class="math notranslate nohighlight">\(\epsilon/2\)</span> by definition of <span class="math notranslate nohighlight">\(T_{\epsilon/2}\)</span> (because, Adam could play <span class="math notranslate nohighlight">\(2\)</span> for an arbitrary number of steps while following <span class="math notranslate nohighlight">\(\tau\)</span> but <span class="math notranslate nohighlight">\(s\)</span> would not be left anyway).</p>
+<p>We get the following lemma.</p>
+<div class="proof lemma admonition" id="lemm:no_finite_meanpayoff">
+<p class="admonition-title"><span class="caption-number">Lemma 241 </span> (NEEDS TITLE lemm:no_finite_meanpayoff)</p>
+<div class="lemma-content section" id="proof-content">
+<p>No finite memory strategy can guarantee more than <span class="math notranslate nohighlight">\(0\)</span> in the Big Match.</p>
+</div>
+</div><p>The principle of sunken cost states that, when acting rationally, one should disregard cost already paid. We will next argue that this does not apply (naively) to the Big Match.
+A strategy following the principle of sunken cost would not depend on past cost paid and thus, in each step <span class="math notranslate nohighlight">\(T\)</span>, there is a pr. <span class="math notranslate nohighlight">\(p_T\)</span> of stopping for Eve.
+Such strategies are called Markov strategies in the Big Match.
+Fix some Markov strategy <span class="math notranslate nohighlight">\(\sigma\)</span> for Eve. We will argue, like before, that <span class="math notranslate nohighlight">\(\sigma\)</span> cannot guarantee more than <span class="math notranslate nohighlight">\(\epsilon\)</span> for any <span class="math notranslate nohighlight">\(\epsilon&gt;0\)</span>.
+Note that Eve does not depend on the choices of Adam and thus, either she stops with pr. 1 or she does not.
+In the former case, Adam just plays <span class="math notranslate nohighlight">\(1\)</span> forever. When Eve stops, the vertex reached is thus <span class="math notranslate nohighlight">\(-1\)</span>.
+Alternately, if Eve does not stop with pr. 1, there must be a time <span class="math notranslate nohighlight">\(T\)</span>, such that she only stops with pr. <span class="math notranslate nohighlight">\(\epsilon\)</span> after <span class="math notranslate nohighlight">\(T\)</span> (this is actually also the case even if she stops with pr. 1).
+Adam’s strategy is then to play <span class="math notranslate nohighlight">\(1\)</span> for <span class="math notranslate nohighlight">\(T\)</span> steps and <span class="math notranslate nohighlight">\(2\)</span> thereafter. Observe that the pr. to reach <span class="math notranslate nohighlight">\(1\)</span> is thus at most <span class="math notranslate nohighlight">\(\epsilon\)</span>, in that it must be that Eve stops after <span class="math notranslate nohighlight">\(T\)</span>. If she does not stop (or stops in <span class="math notranslate nohighlight">\(0\)</span>), there will be only finitely many 1s.</p>
+<p>We see the following:</p>
+<div class="proof lemma admonition" id="lemm:no_markov_meanpayoff">
+<p class="admonition-title"><span class="caption-number">Lemma 242 </span> (NEEDS TITLE lemm:no_markov_meanpayoff)</p>
+<div class="lemma-content section" id="proof-content">
+<p>No Markov strategy can guarantee more than <span class="math notranslate nohighlight">\(0\)</span> in the Big Match</p>
+</div>
+</div></div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./7_Concurrent"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="reachability.html" title="previous page">Concurrent reachability games</a>
+    <a class='right-next' id="next-link" href="references.html" title="next page">Bibilographic references</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By a set of authors coordinated by Nathana&euml;l Fijalkow<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

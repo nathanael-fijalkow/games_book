@@ -47,4 +47,15 @@ Nathalie Bertrand, Romain Brenguier, Patricia Bouyer-Decitre, Arnaud Carayol, Jo
 :caption: Stochastic
 
 5_MDP/index
+6_Stochastic/index
+```
+
+
+```{toctree}
+:hidden:
+:titlesonly:
+:caption: Information
+
+7_Concurrent/index
+8_Imperfect/index
 ```

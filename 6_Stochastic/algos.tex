@@ -1,22 +1,19 @@
-{\color{gray} \begin{itemize}
-\item Reduction to stopping games (Condon92)
-\item Value iteration algorithms: discuss for instance Shapley's
-  algorithm?
-\item Strategy improvement algorithms: there are several
-  possibilities, like the one ``converge-from-below'' in Condon93, or
-  the one by Hugo+Florian. We would prefer the second one.
-\item mathematical programming: algo taken from Condon93?
-\item mention/develop randomised algorithms? 
-\end{itemize}
-}
+%{\color{gray} \begin{itemize}
+%\item Reduction to stopping games (Condon92)
+%\item Value iteration algorithms: discuss for instance Shapley's
+%  algorithm?
+%\item Strategy improvement algorithms: there are several
+%  possibilities, like the one ``converge-from-below'' in Condon93, or
+%  the one by Hugo+Florian. We would prefer the second one.
+%\item mathematical programming: algo taken from Condon93?
+%\item mention/develop randomised algorithms? 
+%\end{itemize}
+%}
 
 We have shown that stochastic reachability games are central to the (quantitative) analysis of stochastic games. 
 We have indeed reduced the quantitative analysis of all kinds of stochastic games to stochastic reachability games. We will now present algorithms for stochastic reachability games.
 
 \subsection{Value iteration}
-
-\subsubsection{Simple stochastic games}
-
 
 \begin{definition}
   A stochastic arena $\arena = (\vertices,E,\delta)$ is said to be
@@ -40,7 +37,7 @@ called a \emph{simple stochastic game}.
   There exists a polynomial time transformation from stochastic games
   to simple stochastic games, which preserves the values.
 \end{proposition}
-More precisely, \fbox{...}
+More precisely,
 
 \begin{proof}
   Let $\arena = (\vertices,E,\delta)$ be an arbitrary stochastic
@@ -58,53 +55,7 @@ More precisely, \fbox{...}
 
   \begin{figure}[htbp]
     \centering
-%     \begin{tikzpicture}
-%       [evev/.style = {circle, draw, align=center, anchor=north, inner sep=0, minimum size=.5cm},
-%       adamv/.style = {rectangle, draw, align=center, anchor = north, inner sep=0, minimum size=.5cm},
-%       randomv/.style = {diamond, draw, align=center, anchor = north, inner sep=0, minimum size=.5cm}]
-%     %[every loop/.style={min distance=10mm,in=105,out=75,looseness=0}]
-
-%     \node[randomv] (init) at (-4,-.5) {$v$};
-%     \node[randomv] (rv) at (-4,-1.5) {$v_2$};
-%     \node[adamv] (av) at (-5,-1.5) {$v_1$};    
-%     \node[evev] (ev) at (-3,-1.5) {$v_3$};
-    
-%     \path[-latex'] (init) edge[loop,out=330,in=30,looseness=8] node [right] {$\frac 1 5$} (init)
-%     (init) edge node[left] {$\frac 1 {10}$} (av)
-%     (init) edge node[left] {$\frac 3 {10}$} (rv)
-%     (init) edge node[right] {$\frac 2 {5}$} (ev)
-%     ;
-    
-    
-% \node[randomv] (root) at (0,0) {$v$};
-% \node[randomv] (left) at (-.75,-1) {};
-% \node[randomv] (right) at (.75,-1) {};
-% \node[adamv] (lleft) at (-1.5,-2) {$v_1$};
-% \node[randomv] (rleft) at (0,-2) {$v_2$};
-% \node[evev] (rright) at (.75,-2) {$v_3$};
-
-% \path[-latex'] (root) edge node[left] {$\frac 2 5$}  (left)
-% (root) edge node[right] {$\frac 3 5$}  (right)
-% (left) edge node[left] {$\frac 1 4$} (lleft)
-% (left) edge node[right] {$\frac 3 4$} (rleft)
-% (right) edge node[right] {$\frac 2 3$} (rright)
-% (right) edge[out=70,in=0] node[right] {$\frac 1 3$} (root)
-% % (ab) edge [loop] (ab)
-% % (notb) edge  node [above] {} (notab)
-% % (notab) edge   (ab)
-% % (ab) edge[out=195,in=-15] (notab)
-% % (ab) edge[out=205,in=-25] (notb)
-% ;
-
-%     \end{tikzpicture}
-
-    %% 2nd version - Nico Style
     \begin{tikzpicture}[scale=1.3]
-%      [evev/.style = {circle, draw, align=center, anchor=north, inner sep=0, minimum size=.5cm},
-%      adamv/.style = {rectangle, draw, align=center, anchor = north, inner sep=0, minimum size=.5cm},
-%      randomv/.style = {diamond, draw, align=center, anchor = north, inner sep=0, minimum size=.5cm}]
-    %[every loop/.style={min distance=10mm,in=105,out=75,looseness=0}]
-
     \node[s-random] (init) at (-4,-.5) {$v$};
     \node[s-random] (rv) at (-4,-1.5) {$v_2$};
     \node[s-adam] (av) at (-5,-1.5) {$v_1$};    
@@ -130,20 +81,10 @@ More precisely, \fbox{...}
 (left) edge node[right] {$\frac 3 4$} (rleft)
 (right) edge node[right] {$\frac 2 3$} (rright)
 (right) edge[out=70,in=0] node[right] {$\frac 1 3$} (root)
-% (ab) edge [loop] (ab)
-% (notb) edge  node [above] {} (notab)
-% (notab) edge   (ab)
-% (ab) edge[out=195,in=-15] (notab)
-% (ab) edge[out=205,in=-25] (notb)
-;
-
     \end{tikzpicture}
 \caption{From general random vertices to binary ones.}
     \label{6-fig:gen2binary}
   \end{figure}
-  % Of course, this transformation also applies to \Eve and \Adam
-  % vertices with more than two successors. It is even simpler since
-  % there is no need to normalize and add up probabilities.
 
   It remains to explain how to simulate a discrete probability
   distribution from say vertex $v$ to vertices $v_1$ and $v_2$ with
@@ -253,41 +194,41 @@ More precisely, \fbox{...}
 \end{definition}
 
 
-\begin{theorem}
+\begin{theorem}[Reduction to stopping games]
+\label{6-thm:reduction_stopping_games}
 For every simple stochastic game, one can build a  stopping  one, such that the value is $> \frac{1}{2}$ is the original game iff it is $>\frac{1}{2}$ in the stopping game. 
 \end{theorem}
-
 
 Caution: the transformation from general SSG to stopping
 SSG does not preserve the value! more precisely, one can approximate
 up to an arbitrary precision the value in an SSG by the value in a
 stopping one by decreasing the fixed termination probability at each step.
 
-\begin{proposition}
-  Let $\game$ be a stopping simple stochastic game. Then, the operator
-  $\mathfrak{F}$ has a unique fixpoint.
+\begin{proposition}[Fixed point characterisation for stopping simple stochastic games]
+\label{6-prop:fixed_point_characterisation_stopping_ssg}
+Let $\game$ be a stopping simple stochastic game. Then, the operator $\mathfrak{F}$ has a unique fixpoint.
 \end{proposition}
 
 The first proof of determinacy of those games already gave a first
 value iteration algorithm. This was first due to Shapley under the
 hypothesis of stopping games.
 
-\nat{Add another value iteration algo? such as the one in Condon93}
+%\nat{Add another value iteration algo? such as the one in Condon93}
 
-\fbox{exemple ??}
+%\fbox{exemple ??}
 
 \subsection{Strategy enumeration and strategy improvement algorithms}
 
-\pat{Ce chapitre reprend pour l'essentiel l'algo de GH09, avec des
-  arguments basiques (et pas de martingales)}
+%\pat{Ce chapitre reprend pour l'essentiel l'algo de GH09, avec des
+%  arguments basiques (et pas de martingales)}
+%
+%\pat{\fbox{Pat} ce qui me reste \`a faire au 22 novembre : la
+%  r\'eduction aux jeux normalis\'es; relire la preuve, en particulier
+%  la fin; des intuitions sur les vertex qui sont profitables ou pas
+%  pour les joueurs.}
 
-\pat{\fbox{Pat} ce qui me reste \`a faire au 22 novembre : la
-  r\'eduction aux jeux normalis\'es; relire la preuve, en particulier
-  la fin; des intuitions sur les vertex qui sont profitables ou pas
-  pour les joueurs.}
 
-
-We have seen in Section~\ref{stoch:sec:values} that stochastic
+We have seen in~\cref{6-sec:determinacy} that stochastic
 reachability games are positionally determined: there are optimal
  pure positional strategies for both players. We present here a
 strategy improvement algorithm to compute the values at each vertex of
@@ -321,8 +262,7 @@ conclude with the strategy improvement algorithm
 %   (prefix independent) $\omega$-regular winning objectives.
 % \end{enumerate}
 
-\subsubsection{Computing almost-sure winning or almost-sure losing
-  states}
+\subsubsection{Computing almost-sure winning or almost-sure losing states}
 \label{6-subsubsec:first}
 
 The algorithms we will present assume that games are
@@ -470,7 +410,7 @@ We can then define for every $v \in \vertices$:
 \end{array}
 \]
 which can be easily computed using systems of linear
-equations. \pat{refs \`a un chapitre avant ??}
+equations. %\pat{refs \`a un chapitre avant ??}
 
 
 The rest of this section is devoted to a proof of the following
@@ -652,13 +592,13 @@ self-consistent.
 
   The fifth item is straightforward hence omitted.  \qed
 \end{proof}
-\pat{end-of-proof marker missing}
+%\pat{end-of-proof marker missing}
 
 As a consequence of Lemma~\ref{stoch:lemma2}, we get that $\val_\perm$
 is a fixpoint of Bellman's equations, hence it is larger than (or
 equal to) the least fixpoint of Bellman's equations, that is $\val^*$:
-\pat{peut-etre faire attention aux notations : je crois qu'on n'a pas
-  utilis\'e la notation $\val^*$ avant}
+%\pat{peut-etre faire attention aux notations : je crois qu'on n'a pas
+%  utilis\'e la notation $\val^*$ avant}
 
 \begin{corollary}
   Assume $\perm$ is self-consistent.  Then for every $v \in
@@ -735,9 +675,9 @@ will not be able to prevent the game converging to $\vlose$ and $\vwin$.
   \probm^v_{\sigma_\perm,\tau}(\exists l \ge 0,\ V_l = \vwin \mid V_0
   \ne \vlose) = 1
   \]
-  hence with the statement. \qed
+  hence with the statement.
 \end{proof}
-\pat{end-of-proof marker missing}
+%\pat{end-of-proof marker missing}
 
 
 \begin{lemma}
@@ -885,27 +825,8 @@ will not be able to prevent the game converging to $\vlose$ and $\vwin$.
     \item $\val^*(\vlose) = 0$ and $\val^*(\vwin) = 1$;
     \item for every $1 \le i \le k$, for every $v \in W_\perm^i$,
       $\val^*(v) = \val^*(\perm_i)$.
-    % \item For every $v \in \Evevertices$,
-    %   \[
-    %   \val^*(v) = \val^*(\sigma_\perm(v)) = \max_{w\ \text{s.t.}\
-    %     (v,w) \in E} \val^*(w)
-    %   \]
-    % \item For every $v \in \Adamvertices$,
-    %   \[
-    %   \val^*(v) = \val^*(\tau_\perm(v)) = \min_{w\ \text{s.t.}\ (v,w)
-    %     \in E} \val^*(w)
-    %   \]
-    %   % \item For every $v \in \Randomvertices$,
-    %   %   \[
-    %   %   \val_\perm(v) = \sum_{w\ \text{s.t.}\ (v,w) \in E}
-    %   %   \delta(v)(w)
-    %   %   \cdot \val_\perm(w)
-    %   %   \]
-    % \item For every $v \in \Randomvertices$, $\val^*(v) = \sum_{w\
-    %     \text{s.t.}\ (v,w) \in E} \delta(v)(w) \cdot \val^*(w)$.
     \end{enumerate}
   \end{lemma}
-  \pat{I don't know why there is this box at the end of the lemma}
 
   \begin{proof}
     Notice that item 1 is obvious. 
@@ -937,8 +858,7 @@ will not be able to prevent the game converging to $\vlose$ and $\vwin$.
 
     % \medskip The proof of the second equalities in items 3 and 4 is
     % absolutely similar to the same proof in
-    % Lemma~\ref{stoch:lemma2}. Hence it is omitted. \pat{je ne suis pas
-    %   s\^ure que ce soit utile -> enlever et simplifier le lemme}
+    % Lemma~\ref{stoch:lemma2}. Hence it is omitted.
     This allows to conclude item 2, hence the lemma.
   \end{proof}
 
@@ -967,8 +887,7 @@ will not be able to prevent the game converging to $\vlose$ and $\vwin$.
     \end{array}\right.
   \]
   Since $\perm$ is live this system has a unique solution!  Hence
-  $\val^* = \val_\perm$, and $\perm$ is self-consistent. \qed
-  \pat{the end-of-proof marker is missing}
+  $\val^* = \val_\perm$, and $\perm$ is self-consistent.
 \end{proof}
 
 It remains to show that there always exist  a live permutation
@@ -1034,9 +953,8 @@ will help building an appropriate live permutation.
   \end{eqnarray*}
   where $\beta = \max \{\val^*(w) \mid w \in Y \setminus Z\} <
   \val^*(v)$.  Hence, we get $\val^*(v) \le \beta < \val^*(v)$. This
-  is a contradiction. \qed 
+  is a contradiction.
 \end{proof}
-\pat{end-of-proof marker is missing}
 
 \begin{lemma}
   \label{stoch:lemma-existence}
@@ -1096,8 +1014,8 @@ exponential.
 \subsubsection{Strategy improvement algorithm}
 \label{6subsubsec:algo-strat-improv}
 
-\pat{\fbox{Pat} Cette preuve a \'et\'e plus difficile \`a
-  dig\'erer... j'esp\`ere qu'il n'y a pas d'erreur}
+%\pat{\fbox{Pat} Cette preuve a \'et\'e plus difficile \`a
+%  dig\'erer... j'esp\`ere qu'il n'y a pas d'erreur}
 
 We will describe a strategy improvement algorithm, which may avoid
 enumerating all permutations. Note that there is nevertheless no
@@ -1181,11 +1099,10 @@ The last property is harder to argue; it expresses the fact that the
 new permutation $\perm'$ improves over $\perm$.  % We give the steps of
 % the proof, but not full details.
 
-\begin{proof}%[Sketch of proof]
-  \pat{J'esp\`ere ne pas m'\^etre embrouill\'ee avec toutes ces
-    notations $\val$...}
+\begin{proof}
+%  \pat{J'esp\`ere ne pas m'\^etre embrouill\'ee avec toutes ces notations $\val$...}
   Since $\perm'$ is live and self-consistent in $\game[\sigma_\perm]$,
-  by Corollary~\ref{stoch:coro}, extending the previous notations, we
+  by~\cref{6-cor:}, extending the previous notations, we
   get that
   $\val^*_{\game[\sigma_\perm]} =
   \val_{\game[\sigma_\perm],\perm'}$. Now, since $\perm'$ is
@@ -1199,15 +1116,17 @@ new permutation $\perm'$ improves over $\perm$.  % We give the steps of
   We consider the following family of strategies for \Eve in $\game$:
   for every $n$, $\sigma^{(n)}$ is the strategy where \Eve plays
   according to $\sigma_{\perm'}$ up to its $n$-th visit to a random
-  vertex, and then switches to $\sigma_\perm$. We can then prove:
+  vertex, and then switches to $\sigma_\perm$. 
+\end{proof} 
+We can then prove:
 %  by
   % induction (this is however not immediate) that the sequence
   % $(\val_{\game,\sigma^{(n)}})_n$ is non-decreasing. \pat{Or we add
   %   the next lemma}
-  \begin{lemma}
-    The sequence $(\val_{\game,\sigma^{(n)}})_n$ is non-decreasing.
-  \end{lemma}
-  \pat{why end-of-proof marker here?}
+\begin{lemma}[Converge of the sequence of values]
+\label{6-lem:convergence_sequence_values}
+The sequence $(\val_{\game,\sigma^{(n)}})_n$ is non-decreasing.
+\end{lemma}
 
   \begin{proof}
     We do the proof by induction on $n$.  We focus on $n=0$, and prove

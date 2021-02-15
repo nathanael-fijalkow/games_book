@@ -1,0 +1,920 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Positional determinacy of stochastic reachability games &#8212; Games on graphs</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/style.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Relations between all games" href="relations.html" />
+    <link rel="prev" title="Notations" href="notations.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/cover.jpg" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Games on graphs</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <p class="caption collapsible-parent">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../1_Introduction/index.html">
+   Introduction
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/intro.html">
+     What is this book about?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/simple.html">
+     A first model of games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/objectives.html">
+     Objectives
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/computation.html">
+     Computational models
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/automata.html">
+     Automata
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/memory.html">
+     Memory
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/reductions.html">
+     Reductions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/subgames.html">
+     Traps and subgames
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/fixed_points.html">
+     Generic fixed point algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/value_iteration.html">
+     Value iteration algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/strategy_improvement.html">
+     Strategy improvement algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Classic
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../2_Regular/index.html">
+   Regular Games
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/attractors.html">
+     Reachability games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/buchi.html">
+     Büchi games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/parity.html">
+     Parity games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/muller.html">
+     Rabin, Streett, and Muller games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/zielonka.html">
+     Zielonka tree
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../3_Parity/index.html">
+   Parity Games
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/strategy_improvement.html">
+     An exponential time strategy improvement algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/zielonka.html">
+     A quasipolynomial time attractor decomposition algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/separation.html">
+     A quasipolynomial time separating automata algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/value_iteration.html">
+     A quasipolynomial time value iteration algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/relationships.html">
+     Comparing the three families of algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../4_Payoffs/index.html">
+   Games with Payoffs
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/notations.html">
+     Notations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/qualitative.html">
+     Refining qualitative objectives with quantities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/mean_payoff.html">
+     Mean payoff games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/discounted_payoff.html">
+     Discounted payoff games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/shortest_path.html">
+     Shortest path games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/total_payoff.html">
+     Total payoff games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Stochastic
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../5_MDP/index.html">
+   Markov Decision Processes
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/notations.html">
+     Notations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/reachability.html">
+     Positive and almost-sure reachability and safety in MDPs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/discounted.html">
+     Discounted payoff in MDPs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/mean_payoff_properties.html">
+     Mean-payoff in MDPs: General properties and linear programming
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/mean_payoff_strongly_connected.html">
+     Mean-payoff optimality in strongly connected MDPs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/end_components.html">
+     End components
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/reductions.html">
+     Reductions to optimal reachability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/optimal_reachability.html">
+     Optimal reachability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 current active collapsible-parent">
+  <a class="reference internal" href="index.html">
+   Stochastic Games
+  </a>
+  <ul class="current collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="notations.html">
+     Notations
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Positional determinacy of stochastic reachability games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="relations.html">
+     Relations between all games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="algos.html">
+     Algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Information
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../7_Concurrent/index.html">
+   Concurrent Games
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../7_Concurrent/notations.html">
+     Notations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../7_Concurrent/matrix_games.html">
+     Matrix games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../7_Concurrent/discounted.html">
+     Concurrent discounted games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../7_Concurrent/reachability.html">
+     Concurrent reachability games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../7_Concurrent/mean_payoff.html">
+     Concurrent mean-payoff games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../7_Concurrent/discounted.html">
+     Concurrent discounted games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../7_Concurrent/references.html">
+     Bibilographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../8_Imperfect/index.html">
+   Games with Signals
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../8_Imperfect/finite_duration.html">
+     Finite duration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../8_Imperfect/finite_duration.html#min-left-1-x-3-1-y-3-1-x-9-1-y-right-right-frac-1-4-max-x-y-in-0-1-2-min-left-4-6y-6-2x-6y-br-right">
+     \min\left(
+{(1-x) +  3 (1-y)},
+{3(1-x) - 9(1-y)}
+\right)\right)\
+=&amp;
+\frac{1}{4}\max_{(x,y)\in[0,1]^2}
+\min\left(
+4 - 6y,
+-6 -2x + 6y
+     <br/>
+     \right)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../8_Imperfect/infinite_duration.html">
+     Infinite duration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../8_Imperfect/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="positional-determinacy-of-stochastic-reachability-games">
+<span id="sec-determinacy"></span><h1>Positional determinacy of stochastic reachability games<a class="headerlink" href="#positional-determinacy-of-stochastic-reachability-games" title="Permalink to this headline">¶</a></h1>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\newcommand{\adist}{\ensuremath{f}}
+\newcommand{\probm}{\mathbb{P}}
+\newcommand{\lfp}{**lfp**}
+\newcommand{\vwin}{\ensuremath{v_{\textsc{win}}}}
+\newcommand{\vlose}{\ensuremath{v_{\textsc{lose}}}}
+\newcommand{\Adamvertices}{\VA}
+\newcommand{\Evevertices}{\VE}
+\newcommand{\Randomvertices}{\vertices_{\text{Rand}}}
+\newcommand{\perm}{\pi}
+\newcommand{\DetAtt}{\ensuremath{**DetAtt**}}\\\newcommand{\weight}{\mathbf{w}} \newcommand{\nats}{\mathbb{N}}\newcommand{\Eve}{\textrm{Eve}}
+\newcommand{\Adam}{\textrm{Adam}}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
+\newcommand{\argmax}{\textrm{argmax}}
+\newcommand{\argmin}{\textrm{argmin}}
+\newcommand{\Op}{\mathbb{O}}
+\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\textrm{supp}} 
+\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
+\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
+\newcommand{\mEve}{\mathrm{Eve}}
+\newcommand{\mAdam}{\mathrm{Adam}}
+\newcommand{\mRandom}{\mathrm{Random}}
+\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
+\newcommand{\ing}{\textrm{In}}
+\newcommand{\Ing}{\ing}
+\newcommand{\out}{\textrm{Out}}
+\newcommand{\Out}{\out}
+\newcommand{\dest}{\Delta} 
+\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
+\newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
+\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
+\newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
+\newcommand{\Win}{\textrm{Win}} 
+\newcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Value}{\textrm{val}} 
+\newcommand{\ValueE}{\textrm{val}_\mEve} 
+\newcommand{\ValueA}{\textrm{val}_\mAdam}
+\newcommand{\val}{\Value} 
+\newcommand{\Automaton}{\mathbf{A}} 
+\newcommand{\Safe}{\mathtt{Safe}}
+\newcommand{\Reach}{\mathtt{Reach}} 
+\newcommand{\Buchi}{\mathtt{Buchi}} 
+\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
+\newcommand{\Parity}{\mathtt{Parity}} 
+\newcommand{\Muller}{\mathtt{Muller}} 
+\newcommand{\Rabin}{\mathtt{Rabin}} 
+\newcommand{\Streett}{\mathtt{Streett}} 
+\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
+\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
+\newcommand{\Energy}{\mathtt{Energy}}
+\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
+\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
+\newcommand{\Sup}{\mathtt{Sup}}
+\newcommand{\Inf}{\mathtt{Inf}}
+\newcommand{\LimSup}{\mathtt{LimSup}}
+\newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NL}{\textrm{NL}}
+\newcommand{\PTIME}{\textrm{PTIME}}
+\newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
+\newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
+\newcommand{\PSPACE}{\textrm{PSPACE}}\end{aligned}\end{align} \]</div>
+<p>Pure memoryless determinacy for non-stochastic games with parity
+objectives was established in Chapter <a class="reference internal" href="../2_Regular/index.html#chap-regular"><span class="std std-ref">Regular Games</span></a> (see <a class="reference internal" href="../2_Regular/parity.html#2-thm:parity">Theorem 39</a>).
+In this section we extend this result to stochastic games.
+We focus on reachability objectives, since we will see in Section <a class="reference internal" href="relations.html#sec-relations"><span class="std std-ref">Relations between all games</span></a>
+that other natural objectives reduce to reachability.</p>
+<div class="proof theorem admonition" id="6-thm:determinacy">
+<p class="admonition-title"><span class="caption-number">Theorem 195 </span> (Pure positional determinacy for stochastic reachability games)</p>
+<div class="theorem-content section" id="proof-content">
+<p>Stochastic reachability games are pure positionally determined.</p>
+</div>
+</div><div class="dropdown tip admonition">
+<p class="admonition-title">Proof</p>
+<p>Let <span class="math notranslate nohighlight">\(G = (\vertices,E,\delta,\Win)\)</span> be a stochastic reachability
+game.  We define an operator <span class="math notranslate nohighlight">\(\mathfrak{F}\)</span> expressing Bellman-like
+equations for the game <span class="math notranslate nohighlight">\(G\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+  \mathfrak{F}(\nu)(v) = \left\{\begin{array}{l&#64;{~~}l}
+      1 &amp; \text{if}\ v = \Win \\
+      \max_{(v,v') \in E} \nu(v') &amp; \text{if}\ v \in \VE \\
+      \min_{(v,v') \in E} \nu(v') &amp; \text{if}\ v \in \VA \\
+      \sum_{v' \in \vertices} \delta(v)(v') \cdot \nu(v') &amp; \text{if} \in \Randomvertices
+    \end{array}\right.
+  \end{split}\]</div>
+<p>This operator, defined on the complete lattice <span class="math notranslate nohighlight">\([0,1]^{\vertices}\)</span>
+(equipped with the pointwise standard inequality) is
+monotonic. Hence it admits a least fixpoint, which we denote
+<span class="math notranslate nohighlight">\(\lfp(\mathfrak{F})\)</span>.  We show that:</p>
+<div class="proof lemma admonition" id="lemma-1">
+<p class="admonition-title"><span class="caption-number">Lemma 196 </span> (NEEDS TITLE AND LABEL)</p>
+<div class="lemma-content section" id="proof-content">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>\label{6-lem:lfpgeval}
+For every $v$:
+</pre></div>
+</div>
+<div class="math notranslate nohighlight">
+\[
+    \lfp(\mathfrak{F}) (v) \le \sup_\sigma \inf_\tau
+    \probm_{\sigma,\tau}^v(\Reach(\Win)) \le \inf_\tau \sup_\sigma
+    \probm_{\sigma,\tau}^v(\Reach(\Win)) \enspace.
+    \]</div>
+<p>:label:
+\label{6-lem:lfpgeval}
+For every <span class="math notranslate nohighlight">\(v\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+    \lfp(\mathfrak{F}) (v) \le \sup_\sigma \inf_\tau
+    \probm_{\sigma,\tau}^v(\Reach(\Win)) \le \inf_\tau \sup_\sigma
+    \probm_{\sigma,\tau}^v(\Reach(\Win)) \enspace.
+    \]</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>\label{6-lem:lfpgeval}
+For every $v$:
+</pre></div>
+</div>
+<div class="math notranslate nohighlight">
+\[
+    \lfp(\mathfrak{F}) (v) \le \sup_\sigma \inf_\tau
+    \probm_{\sigma,\tau}^v(\Reach(\Win)) \le \inf_\tau \sup_\sigma
+    \probm_{\sigma,\tau}^v(\Reach(\Win)) \enspace.
+    \]</div>
+</div>
+</div></div>
+<p>\begin{proof}
+We first argue for the right inequality:
+\begin{eqnarray*}
+\forall \sigma’ \forall \tau:<br />
+\probm_{\sigma’,\tau}^v(\Reach(\Win)) &amp; \le &amp; \sup_\sigma
+\probm_{\sigma,\tau}^v(\Reach(\Win)) \
+\forall \sigma’\forall \tau :\  \inf_{\tau’}
+\probm_{\sigma’,\tau’}^v(\Reach(\Win)) &amp; \le &amp; \sup_\sigma
+\probm_{\sigma,\tau}^v(\Reach(\Win)) \
+\forall \tau:\ \sup_{\sigma’} \inf_{\tau’}
+\probm_{\sigma’,\tau’}^v(\Reach(\Win)) &amp; \le &amp; \sup_\sigma
+\probm_{\sigma,\tau}^v(\Reach(\Win)) \
+\sup_{\sigma’} \inf_{\tau’}
+\probm_{\sigma’,\tau}’^v(\Reach(\Win)) &amp; \le &amp; \inf_{\tau} \sup_\sigma
+\probm_{\sigma,\tau}^v(\Reach(\Win))
+\end{eqnarray*}</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>For proving the left inequality, it is sufficient to show that
+$v \mapsto \sup_\sigma \inf_\tau
+\probm_{\sigma,\tau}^v(\Reach(\Win))$ is a fixpoint of
+$\mathfrak{F}$.  Pick $v \in \VE$. 
+                                         \begin{eqnarray*}
+  \sup_\sigma \inf_\tau \probm_{\sigma,\tau}^v(\Reach(\Win)) &amp; = &amp;
+  \sup_\sigma \inf_\tau \sum_{v&#39;} \sigma(v)(v&#39;)  \cdot
+  \probm_{\sigma&#39;,\tau&#39;}^{v&#39;}(\Reach(\Win)) \\
+  &amp; &amp; \text{where}\ \sigma&#39;\ \text{and}\ \tau&#39;\ \text{are residual
+    strategies after}\ (v,v&#39;) \\
+  &amp; = &amp; \sup_\sigma \sum_{v&#39;} \sigma(v)(v&#39;)  \cdot \inf_\tau \probm_{\sigma&#39;,\tau&#39;}^{v&#39;}(\Reach(\Win)) \\
+  &amp; &amp; \text{since}\ \tau\ \text{is not concerned by this choice}
+  \\
+  &amp; = &amp; \max_{(v,v&#39;) \in E} \sup_{\sigma\ \text{s.t.}\
+    \sigma(v) = v&#39;} \inf_\tau
+  \probm_{\sigma&#39;,\tau&#39;}^{v&#39;}(\Reach(\Win)) \\
+  &amp; &amp; \text{since deterministic choices are the best} \\
+  &amp; = &amp; \max_{(v,v&#39;) \in E} \sup_{\sigma&#39;} \inf_{\tau&#39;}
+  \probm_{\sigma&#39;,\tau&#39;}^{v&#39;}(\Reach(\Win)) \\
+  &amp; &amp; \text{since the first choice is now fixed} \\
+  &amp; = &amp; \mathfrak{F}(\probm_{\sigma,\tau}^{\bullet}(\Reach(\Win)))(v)
+\end{eqnarray*}
+where $\probm_{\sigma,\tau}^{\bullet}(\Reach(\Win)))$ is the
+function with associates with vertex $v$ the value
+$\probm_{\sigma,\tau}^{v}(\Reach(\Win)))$.
+                                                                        
+Assume now that $v \in \VA$. 
+                                                                    \begin{eqnarray*}
+  \sup_\sigma \inf_\tau \probm_{\sigma,\tau}^v(\Reach(\Win)) &amp; = &amp;
+  \sup_\sigma \inf_\tau \sum_{v&#39;} \tau(v)(v&#39;)
+  \cdot \probm_{\sigma&#39;,\tau&#39;}^{v&#39;}(\Reach(\Win)) \\
+  &amp; &amp; \text{where}\ \sigma&#39;\ \text{and}\ \tau&#39;\ \text{are residual
+    strategies after}\ (v,v&#39;) \\
+  &amp; = &amp; \sup_\sigma \min_{(v,v&#39;) \in E} \inf_{\tau\
+    \text{s.t.}\ \tau(v) = v&#39;} 
+   \probm_{\sigma&#39;,\tau&#39;}^{v&#39;}(\Reach(\Win)) \\
+  &amp; &amp; \text{since deterministic choices are the best} \\
+  &amp; = &amp; \min_{(v,v&#39;) \in E}  \sup_{\sigma&#39;} \inf_{\tau\
+    \text{s.t.}\ \tau(v) = v&#39;} \probm_{\sigma&#39;,\tau&#39;}^{v&#39;}(\Reach(\Win)) \\
+  &amp; &amp; \text{since}\ \sigma\ \text{is not concerned with the first
+    choice} \\
+  &amp; = &amp; \mathfrak{F}(\probm_{\sigma,\tau}^{\bullet}(\Reach(\Win)))(v)
+\end{eqnarray*}
+
+Finally, let  $v \in \Randomvertices$. 
+\begin{eqnarray*}
+  \sup_\sigma \inf_\tau \probm_{\sigma,\tau}^v(\Reach(\Win)) &amp; = &amp; \sum_{v&#39;} \delta(v)(v&#39;) \cdot \sup_{\sigma&#39;} \inf_{\tau&#39;} \probm_{\sigma&#39;,\tau&#39;}^{v&#39;}(\Reach(\Win))\\
+        &amp; &amp; \text{where}\ \sigma&#39;\ \text{and}\ \tau&#39;\ \text{are residual
+            strategies after}\ (v,v&#39;) \\
+  &amp; = &amp; \mathfrak{F}(\probm_{\sigma,\tau}^{\bullet}(\Reach(\Win)))(v)
+\end{eqnarray*}
+This concludes the proof.
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+  
+```{prf:lemma} NEEDS TITLE AND LABEL 
+    \label{6-lem:lfpleval}
+    For every $v \in \vertices$:
+    
+
+$$
+    \lfp(\mathfrak{F})(v) \ge \inf_\tau \sup_\sigma
+    \probm_{\sigma,\tau}^v(\Reach(\Win)) \enspace.
+    $$
+
+   
+:label: 
+    \label{6-lem:lfpleval}
+    For every $v \in \vertices$:
+    
+
+$$
+    \lfp(\mathfrak{F})(v) \ge \inf_\tau \sup_\sigma
+    \probm_{\sigma,\tau}^v(\Reach(\Win)) \enspace.
+    $$
+
+  
+
+    \label{6-lem:lfpleval}
+    For every $v \in \vertices$:
+    
+
+$$
+    \lfp(\mathfrak{F})(v) \ge \inf_\tau \sup_\sigma
+    \probm_{\sigma,\tau}^v(\Reach(\Win)) \enspace.
+    $$
+
+  
+</pre></div>
+</div>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Proof</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Let $v \in \VA$. Since $\lfp(\mathfrak{F})$ is a fixpoint of
+$\mathfrak{F}$, and because the arena is finitely branching, there exists $v&#39;\in \vertices$ such
+that $(v,v&#39;) \in E$ and:
+</pre></div>
+</div>
+<div class="math notranslate nohighlight">
+\[
+      \lfp(\mathfrak{F})(v) = \lfp(\mathfrak{F})(v') \enspace.
+    \]</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>We define $\tau^*$ the MD strategy, that selects for every
+$v\in \VA$ such a vertex $v&#39;$, and we show now that for every
+$v \in \vertices$:
+</pre></div>
+</div>
+<div class="math notranslate nohighlight">
+\[
+    \lfp(\mathfrak{F})(v) = \sup_\sigma
+    \probm_{\sigma,\tau^*}^v(\Reach(\Win)) \enspace.
+    \]</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>When $\tau^*$ is fixed, the game becomes a finite Markov decision
+process $\game_{\tau^*}$ (in that MDP, the random vertices are
+isolated from the non-deterministic ones, see
+Remark~\ref{5-rk:??}). Note that by standard results on MDP,
+see~\ref{5-thm:quantireach} there exists $\sigma^*$ MD such that
+for every $v \in V$:
+</pre></div>
+</div>
+<div class="math notranslate nohighlight">
+\[
+    \probm_{\sigma^*,\tau^*}^v(\Reach(\Win)) = \sup_\sigma
+    \probm_{\sigma,\tau^*}^v(\Reach(\Win)) \enspace.
+    \]</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Furthermore, $\probm_{\sigma^*,\tau^*}^\bullet(\Reach(\Win))$ is
+the least fixpoint of the Bellman equations for the MDP
+$\game_{\tau^*}$ (see~\ref{5-eq:Bellman}).
+
+It remains to observe that $\lfp(\mathfrak{F})$ satisfies the
+Bellman equations of the MDP under $\tau^*$: this is true from
+\Eve vertices since equations at those vertices are the same in
+the game and in the MDP; this is true from \Adam vertices by local
+optimality of $\tau^*$. Hence we deduce that
+</pre></div>
+</div>
+<div class="math notranslate nohighlight">
+\[
+      \lfp(\mathfrak{F}) \ge
+      \probm_{\sigma^*,\tau^*}^\bullet(\Reach(\Win)) = \sup_\sigma
+      \probm_{\sigma,\tau^*}^\bullet(\Reach(\Win)) \ge \inf_\tau
+      \sup_\sigma \probm_{\sigma,\tau}^\bullet(\Reach(\Win)) \enspace.
+    \]</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>This concludes the proof of the lemma. 
+</pre></div>
+</div>
+</div>
+<p>By Lemma~\ref{6-lem:lfpgeval} and~\ref{6-lem:lfpleval}  we derive that:</p>
+<div class="math notranslate nohighlight">
+\[
+   \lfp(\mathfrak{F}) =
+   \sup_\sigma \inf_\tau 
+    \probm_{\sigma,\tau}^\bullet(\Reach(\Win)) =  \inf_\tau \sup_\sigma
+   \probm_{\sigma,\tau}^\bullet(\Reach(\Win)) = 
+   \probm_{\sigma^*,\tau^*}^\bullet(\Reach(\Win)) \enspace.
+  \]</div>
+<p>This proves that <span class="math notranslate nohighlight">\(\game\)</span> is pure memoryless determined, and that
+<span class="math notranslate nohighlight">\((\sigma^*,\tau^*)\)</span> is an optimal pure positional strategy profile.</p>
+<p>\end{proof}</p>
+<p>The proof of Theorem~\ref{6-thm:determinacy} yields an algorithm to
+compute the value of a stochastic game with reachability
+objective. Indeed, because the value in every vertex <span class="math notranslate nohighlight">\(v \in \vertices\)</span>
+agrees with <span class="math notranslate nohighlight">\(\lfp(\mathfrak{F})(v)\)</span>, it suffices to compute
+iteratively approximations of the fixpoint <span class="math notranslate nohighlight">\(\lfp(\mathfrak{F})\)</span>.  This
+provides the first value iteration algorithm for general stochastic
+reachability games.</p>
+<p>Historically this result was proven in the restricted framework of
+stopping games. The stochastic game <span class="math notranslate nohighlight">\(\game = (\arena,\Omega)\)</span> is said
+stopping whenever the arena <span class="math notranslate nohighlight">\(\arena\)</span> has two distinguished sink
+vertices <span class="math notranslate nohighlight">\(\vwin\)</span> and <span class="math notranslate nohighlight">\(\vlose\)</span>, and for all strategies <span class="math notranslate nohighlight">\(\sigma\)</span> and
+<span class="math notranslate nohighlight">\(\tau\)</span>, for every vertex <span class="math notranslate nohighlight">\(v\)</span>,
+<span class="math notranslate nohighlight">\(\probm_{\sigma,\tau}^{\arena,v}(\Reach(\{\vwin,\vlose\})) =
+1\)</span>. Whenever the game is stopping, <span class="math notranslate nohighlight">\(\mathfrak{F}\)</span> has a unique
+fixpoint, hence the value iteration algorithm can be applied from any
+initial tuple of values.</p>
+<p>Notice that the proof of Theorem~\ref{6-thm:determinacy} and the value
+iteration algorithm which derives from it do not assume that the game
+is stopping, nor that distributions are uniform.</p>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./6_Stochastic"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="notations.html" title="previous page">Notations</a>
+    <a class='right-next' id="next-link" href="relations.html" title="next page">Relations between all games</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By a set of authors coordinated by Nathana&euml;l Fijalkow<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

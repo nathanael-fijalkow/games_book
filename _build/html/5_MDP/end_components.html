@@ -354,6 +354,130 @@
   <i class="fas fa-chevron-down">
   </i>
  </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../6_Stochastic/index.html">
+   Stochastic Games
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../6_Stochastic/notations.html">
+     Notations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../6_Stochastic/determinacy.html">
+     Positional determinacy of stochastic reachability games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../6_Stochastic/relations.html">
+     Relations between all games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../6_Stochastic/algos.html">
+     Algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../6_Stochastic/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Information
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../7_Concurrent/index.html">
+   Concurrent Games
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../7_Concurrent/notations.html">
+     Notations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../7_Concurrent/matrix_games.html">
+     Matrix games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../7_Concurrent/discounted.html">
+     Concurrent discounted games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../7_Concurrent/reachability.html">
+     Concurrent reachability games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../7_Concurrent/mean_payoff.html">
+     Concurrent mean-payoff games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../7_Concurrent/discounted.html">
+     Concurrent discounted games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../7_Concurrent/references.html">
+     Bibilographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../8_Imperfect/index.html">
+   Games with Signals
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../8_Imperfect/finite_duration.html">
+     Finite duration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../8_Imperfect/finite_duration.html#min-left-1-x-3-1-y-3-1-x-9-1-y-right-right-frac-1-4-max-x-y-in-0-1-2-min-left-4-6y-6-2x-6y-br-right">
+     \min\left(
+{(1-x) +  3 (1-y)},
+{3(1-x) - 9(1-y)}
+\right)\right)\
+=&amp;
+\frac{1}{4}\max_{(x,y)\in[0,1]^2}
+\min\left(
+4 - 6y,
+-6 -2x + 6y
+     <br/>
+     \right)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../8_Imperfect/infinite_duration.html">
+     Infinite duration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../8_Imperfect/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
 </ul>
 
 </nav> <!-- To handle the deprecated key -->
@@ -608,7 +732,7 @@ Decompose <span class="math notranslate nohighlight">\( G \)</span> into strongl
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
-<p>There are several known algorithms, a simple one is pictured in <code class="xref std std-numref docutils literal notranslate"><span class="pre">5-algo:MEC-decomposition</span></code>. Each iteration goes as follows: we first take the underlying directed graph of the MDP and find its strongly connected components using some of the well-known polynomial algorithms <span id="id1">[<a class="reference internal" href="references.html#id104"><span>CLRS09</span></a>]</span>. We identify the bottom SCCs, i.e. those from which there is no outgoing edge in the graph. It is easy to see that each such SCC must form a MEC of <span class="math notranslate nohighlight">\(\mdp\)</span>, and conversely, each MDP has at least one MEC that is also a bottom SCC of its underlying graph. Moreover, for each such bottom SCC <span class="math notranslate nohighlight">\(B \)</span> we compute the <strong>random attractor</strong> of <span class="math notranslate nohighlight">\(B\)</span>, i.e. the set of vertices of <span class="math notranslate nohighlight">\(\mdp\)</span> from which <span class="math notranslate nohighlight">\(B\)</span> cannot be avoided under any strategy. To this end, we compute, in polynomial time, the almost-surely winning set <span class="math notranslate nohighlight">\( \winAS(\mdp,\Safe(\vertices \setminus B)) \)</span> which is the largest largest (w.r.t. set inclusion) subset of <span class="math notranslate nohighlight">\(\vertices\)</span> from which the player can ensure to stay in <span class="math notranslate nohighlight">\(\vertices \setminus B\)</span> forever (i.e. the complement of the random attractor of <span class="math notranslate nohighlight">\(B\)</span>). The computation can be done in polynomial time by  <a class="reference internal" href="reachability.html#5-thm:safety-main">Theorem 138</a>). No vertex of the random attractor of <span class="math notranslate nohighlight">\(B\)</span> can belong to a MEC different from <span class="math notranslate nohighlight">\( B \)</span>: such a MEC would be disjoint from <span class="math notranslate nohighlight">\( B \)</span> bu the player could not force avoiding <span class="math notranslate nohighlight">\( B \)</span> from within this MEC, a contradiction with MEC being a closed set. Hence, all MECs of <span class="math notranslate nohighlight">\(\mdp\)</span> which are not a bottom SCC of <span class="math notranslate nohighlight">\(G\)</span> are subsets of <span class="math notranslate nohighlight">\(\winAS(\mdp,\Safe(\vertices \setminus B)) \subseteq \vertices \setminus R\)</span>, so we can remove all vertices in <span class="math notranslate nohighlight">\(R\)</span> from the graph and continue to the next iteration (note that removing vertices in <span class="math notranslate nohighlight">\(R\)</span> from <span class="math notranslate nohighlight">\(\mdp\)</span> again yields a MDP, since the complement of <span class="math notranslate nohighlight">\(R\)</span> is an intersection of closed sets, and thus again a closed set). The main loop performs at most <span class="math notranslate nohighlight">\(|\vertices|\)</span> iterations, which yields the polynomial complexity.</p>
+<p>There are several known algorithms, a simple one is pictured in <code class="xref std std-numref docutils literal notranslate"><span class="pre">5-algo:MEC-decomposition</span></code>. Each iteration goes as follows: we first take the underlying directed graph of the MDP and find its strongly connected components using some of the well-known polynomial algorithms <span id="id1">[<a class="reference internal" href="references.html#id105"><span>CLRS09</span></a>]</span>. We identify the bottom SCCs, i.e. those from which there is no outgoing edge in the graph. It is easy to see that each such SCC must form a MEC of <span class="math notranslate nohighlight">\(\mdp\)</span>, and conversely, each MDP has at least one MEC that is also a bottom SCC of its underlying graph. Moreover, for each such bottom SCC <span class="math notranslate nohighlight">\(B \)</span> we compute the <strong>random attractor</strong> of <span class="math notranslate nohighlight">\(B\)</span>, i.e. the set of vertices of <span class="math notranslate nohighlight">\(\mdp\)</span> from which <span class="math notranslate nohighlight">\(B\)</span> cannot be avoided under any strategy. To this end, we compute, in polynomial time, the almost-surely winning set <span class="math notranslate nohighlight">\( \winAS(\mdp,\Safe(\vertices \setminus B)) \)</span> which is the largest largest (w.r.t. set inclusion) subset of <span class="math notranslate nohighlight">\(\vertices\)</span> from which the player can ensure to stay in <span class="math notranslate nohighlight">\(\vertices \setminus B\)</span> forever (i.e. the complement of the random attractor of <span class="math notranslate nohighlight">\(B\)</span>). The computation can be done in polynomial time by  <a class="reference internal" href="reachability.html#5-thm:safety-main">Theorem 138</a>). No vertex of the random attractor of <span class="math notranslate nohighlight">\(B\)</span> can belong to a MEC different from <span class="math notranslate nohighlight">\( B \)</span>: such a MEC would be disjoint from <span class="math notranslate nohighlight">\( B \)</span> bu the player could not force avoiding <span class="math notranslate nohighlight">\( B \)</span> from within this MEC, a contradiction with MEC being a closed set. Hence, all MECs of <span class="math notranslate nohighlight">\(\mdp\)</span> which are not a bottom SCC of <span class="math notranslate nohighlight">\(G\)</span> are subsets of <span class="math notranslate nohighlight">\(\winAS(\mdp,\Safe(\vertices \setminus B)) \subseteq \vertices \setminus R\)</span>, so we can remove all vertices in <span class="math notranslate nohighlight">\(R\)</span> from the graph and continue to the next iteration (note that removing vertices in <span class="math notranslate nohighlight">\(R\)</span> from <span class="math notranslate nohighlight">\(\mdp\)</span> again yields a MDP, since the complement of <span class="math notranslate nohighlight">\(R\)</span> is an intersection of closed sets, and thus again a closed set). The main loop performs at most <span class="math notranslate nohighlight">\(|\vertices|\)</span> iterations, which yields the polynomial complexity.</p>
 </div>
 </div>
 
