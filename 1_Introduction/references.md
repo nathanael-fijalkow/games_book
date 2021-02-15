@@ -31,8 +31,8 @@
 \newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
 \newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
 \newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\renewcommand{\Win}{\textrm{Win}} 
-\renewcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Win}{\textrm{Win}} 
+\newcommand{\Lose}{\textrm{Lose}} 
 \newcommand{\Value}{\textrm{val}} 
 \newcommand{\ValueE}{\textrm{val}_\mEve} 
 \newcommand{\ValueA}{\textrm{val}_\mAdam}
@@ -69,7 +69,7 @@ and Banach-Mazur and Gale-Stewart games {cite}`Gale&Stewart:1953`.
 The topic of this book is a small part of game theory: we focus on infinite duration games played on graphs.
 In this chapter we defined deterministic games, meaning games with no source of randomness, which will be the focus of  Part {ref}`part:classic`.
  Part {ref}`part:stochastic` introduces stochastic games, which were initially studied in mathematics.
-We refer to~Section {ref}`6-sec:references` for more bibliographic references on stochastic games,
+We refer to Section {ref}`6-sec:references` for more bibliographic references on stochastic games,
 and focus in this chapter on references for deterministic games.
 
 The model presented in this chapter emerged from the study of automata theory and logic, where it is used as a tool for various purposes.
@@ -96,15 +96,15 @@ The celebrated paper of Gurevich and Harrington {cite}`Gurevich&Harrington:1982`
 
 
 Both lines of work have been highly influential in automata theory and logic;
-we refer to the reference section in~Chapter {ref}`2-chap:regular` for more bibliographic references on this connection.
+we refer to the reference section in Chapter {ref}`2-chap:regular` for more bibliographic references on this connection.
 They bind automata theory and logic to the study of games on graphs and provide motivations and questions many of which are still open today.
 
 
 Beyond these two examples there are many applications of games in theoretical computer science and logic in particular.
 The following quote is due to Hodges {cite}`Hodges:1993`:
-
-> An extraordinary number of basic ideas in model theory can be expressed in terms of games.
-
+\begin{quotation}
+An extraordinary number of basic ideas in model theory can be expressed in terms of games.
+\end{quotation}
 Let us mention model checking games, which are used for checking whether a model satisfies a formula.
 They often form both a theoretical tool for understanding the model checking problem and proving its properties, as well as an algorithmic backend for effectively deciding properties of a logical formalism (we refer to {cite}`Graedel:2002` for a survey on model checking games).
 Another important construction of a game for understanding logical properties is the Ehrenfeucht-Fra&iuml;ss&eacute; games {cite}`Ehrenfeucht:1961,Fraisse:1950,Fraisse:1953` whose goal is to determine whether two models are equivalent against a logical formalism.

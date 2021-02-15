@@ -75,8 +75,8 @@
 \newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
 \newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
 \newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\renewcommand{\Win}{\textrm{Win}} 
-\renewcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Win}{\textrm{Win}} 
+\newcommand{\Lose}{\textrm{Lose}} 
 \newcommand{\Value}{\textrm{val}} 
 \newcommand{\ValueE}{\textrm{val}_\mEve} 
 \newcommand{\ValueA}{\textrm{val}_\mAdam}
@@ -107,7 +107,7 @@
 ```
 To solve mean-payoff optimization in general MDPs, as well as general optimization problems for $\omega$-regular objectives, we need to introduce a crucial notion of an **end component**.
 
-```{prf:definition} needs title and label 
+```{prf:definition} NEEDS TITLE AND LABEL 
 \label{5-def:ec}
 An **end component (EC)** of an MDP is any set $\mec$ of vertices having the following two properties:
 
@@ -138,10 +138,10 @@ In other words, $ \mec $ is an EC of $ \mdp $ if and only if $ \mec $ is a close
 ```
 
 
-\noindent
+
 From the player's point of view, the following property of ECs is important.
 
-```{prf:lemma} needs title and label 
+```{prf:lemma} NEEDS TITLE AND LABEL 
 \label{5-lem:EC-sweep}
 Let $\mec$ be an EC and $v \in \mec$. Then there is an MD strategy $\sigma$ which, when starting in a vertex inside $\mec$, never visits a vertex outside of $ \mec $ and at the same time ensures that with probability one, the vertex $v$ is visited infinitely often. Moreover, $\sigma$ can be computed in polynomial time.
  
@@ -165,7 +165,7 @@ From  {prf:ref}`5-thm:as-char` we know that we can compute, in polynomial time, 
 
 The main reason for introducing ECs is that they are crucial for understanding the limiting behaviour of MDPs.
 
-```{prf:definition} needs title 5-def:inf
+```{prf:definition} NEEDS TITLE 5-def:inf
 :label: 5-def:inf
 :nonumber:
 
@@ -174,7 +174,7 @@ We denote by $\Inf(\play)$ the set of vertices that appear infinitely often alon
 ```
 
 
-```{prf:lemma} needs title 5-lem:EC-inf
+```{prf:lemma} NEEDS TITLE 5-lem:EC-inf
 :label: 5-lem:EC-inf
 :nonumber:
 
@@ -193,7 +193,7 @@ Let $ \mathit{Stay}_k $ be the set of plays in $\{\Inf = X \}$ which, from step 
 
 In general, there can be exponentially many end components in an MDP (e.g. for a complete underlying graph and one action per edge, each subset of vertices is an EC). However, we can usually restrict to analysing **maximal** ECs.
 
-```{prf:definition} needs title and label 
+```{prf:definition} NEEDS TITLE AND LABEL 
 \label{5-def:mec}
 An end component $ \mec $ is a **maximal end component (MEC)** if no other end-component $ \mec' $ is a superset of $ \mec $. We denote by $\mecs(\mdp)$ the set of all MECs of $\mdp.$
  
@@ -236,7 +236,7 @@ $ R \leftarrow R \cup (\vertices \setminus \winAS(\mdp,\Safe(\vertices\setminus 
 \label{5-algo:MEC-decomposition}
 \end{algorithm}
 
-```{prf:theorem} needs title 5-thm:MEC-decomposition-complexity
+```{prf:theorem} NEEDS TITLE 5-thm:MEC-decomposition-complexity
 :label: 5-thm:MEC-decomposition-complexity
 :nonumber:
 
@@ -247,7 +247,7 @@ The set of all MECs in a given MDP can be computed in polynomial time.
 ```{admonition} Proof
 :class: dropdown tip
 
-There are several known algorithms, a simple one is pictured in  {numref}`5-algo:MEC-decomposition`. Each iteration goes as follows: we first take the underlying directed graph of the MDP and find its strongly connected components using some of the well-known polynomial algorithms {cite}`Cormen&Leiserson&Rivest&Stein:2009`. We identify the bottom SCCs, i.e. those from which there is no outgoing edge in the graph. It is easy to see that each such SCC must form a MEC of $\mdp$, and conversely, each MDP has at least one MEC that is also a bottom SCC of its underlying graph. Moreover, for each such bottom SCC $B $ we compute the **random attractor** of $B$, i.e. the set of vertices of $\mdp$ from which $B$ cannot be avoided under any strategy. To this end, we compute, in polynomial time, the almost-surely winning set $ \winAS(\mdp,\Safe(\vertices \setminus B)) $ which is the largest largest (w.r.t. set inclusion) subset of $\vertices$ from which the player can ensure to stay in $\vertices \setminus B$ forever (i.e. the complement of the random attractor of $B$). The computation can be done in polynomial time by  {prf:ref}`5-thm:safety-main`). No vertex of the random attractor of $B$ can belong to a MEC different from $ B $: such a MEC would be disjoint from $ B $ bu the player could not force avoiding $ B $ from within this MEC, a contradiction with MEC being a closed set. Hence, all MECs of $\mdp$ which are not a bottom SCC of $G$ are subsets of $\winAS(\mdp,\Safe(\vertices \setminus B)) \subseteq \vertices \setminus R$, so we can remove all vertices in $R$ from the graph and continue to the next iteration (note that removing vertices in $R$ from $\mdp$ again yields a MDP, since the complement of $R$ is an intersection of closed sets, and thus again a closed set). The main loop performs at most $|\vertices|$ iterations, which yields the polynomial complexity.
+There are several known algorithms, a simple one is pictured in {numref}`5-algo:MEC-decomposition`. Each iteration goes as follows: we first take the underlying directed graph of the MDP and find its strongly connected components using some of the well-known polynomial algorithms {cite}`Cormen&Leiserson&Rivest&Stein:2009`. We identify the bottom SCCs, i.e. those from which there is no outgoing edge in the graph. It is easy to see that each such SCC must form a MEC of $\mdp$, and conversely, each MDP has at least one MEC that is also a bottom SCC of its underlying graph. Moreover, for each such bottom SCC $B $ we compute the **random attractor** of $B$, i.e. the set of vertices of $\mdp$ from which $B$ cannot be avoided under any strategy. To this end, we compute, in polynomial time, the almost-surely winning set $ \winAS(\mdp,\Safe(\vertices \setminus B)) $ which is the largest largest (w.r.t. set inclusion) subset of $\vertices$ from which the player can ensure to stay in $\vertices \setminus B$ forever (i.e. the complement of the random attractor of $B$). The computation can be done in polynomial time by  {prf:ref}`5-thm:safety-main`). No vertex of the random attractor of $B$ can belong to a MEC different from $ B $: such a MEC would be disjoint from $ B $ bu the player could not force avoiding $ B $ from within this MEC, a contradiction with MEC being a closed set. Hence, all MECs of $\mdp$ which are not a bottom SCC of $G$ are subsets of $\winAS(\mdp,\Safe(\vertices \setminus B)) \subseteq \vertices \setminus R$, so we can remove all vertices in $R$ from the graph and continue to the next iteration (note that removing vertices in $R$ from $\mdp$ again yields a MDP, since the complement of $R$ is an intersection of closed sets, and thus again a closed set). The main loop performs at most $|\vertices|$ iterations, which yields the polynomial complexity.
 
 ```
 

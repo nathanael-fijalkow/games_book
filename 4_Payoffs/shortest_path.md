@@ -42,8 +42,8 @@
 \newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
 \newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
 \newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\renewcommand{\Win}{\textrm{Win}} 
-\renewcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Win}{\textrm{Win}} 
+\newcommand{\Lose}{\textrm{Lose}} 
 \newcommand{\Value}{\textrm{val}} 
 \newcommand{\ValueE}{\textrm{val}_\mEve} 
 \newcommand{\ValueA}{\textrm{val}_\mAdam}
@@ -115,7 +115,7 @@ in a quantitative setting.
 Most of the difficulty lies in the third case, where 
 
 
-```{prf:lemma} needs title 4-lem:detecting_minus_infinity
+```{prf:lemma} NEEDS TITLE 4-lem:detecting_minus_infinity
 :label: 4-lem:detecting_minus_infinity
 :nonumber:
 
@@ -143,11 +143,12 @@ However, if she never reaches $\Win$ the outcome is $-\infty$.
 
 ## Shortest path games with non-negative weights
 
-```{prf:theorem} needs title 4-thm:shortest path-positive
+```{prf:theorem} NEEDS TITLE 4-thm:shortest path-positive
 :label: 4-thm:shortest path-positive
 :nonumber:
 
-Shortest path games with non-negative weights are uniformly positionally determined for both players (This positionality result does not extend to infinite games).
+Shortest path games with non-negative weights are uniformly positionally determined for both players```{margin}
+This positionality result does not extend to infinite games```.
 There exists a value iteration algorithm for computing the value function of these games in polynomial time and space.
 \mynote{More precisely}, 
 
@@ -155,7 +156,7 @@ There exists a value iteration algorithm for computing the value function of the
 
 We rely on the high-level presentation of value iteration algorithms given in Section {ref}`1-sec:value_iteration`.
 
-```{prf:lemma} needs title 4-lem:optimal_strategies_shortest_path_games
+```{prf:lemma} NEEDS TITLE 4-lem:optimal_strategies_shortest_path_games
 :label: 4-lem:optimal_strategies_shortest_path_games
 :nonumber:
 
@@ -173,7 +174,7 @@ This implies that the supremum is indeed a maximum.
 
 ```
 
- {numref}`1-fig:optimal_strategies_shortest_path_game` shows that the assumption that all weights are non-negative 
+{numref}`1-fig:optimal_strategies_shortest_path_game` shows that the assumption that all weights are non-negative 
 in  {prf:ref}`4-lem:optimal_strategies_shortest_path_games` is necessary.
 
 We consider the complete lattice $Y = -\N \cup \set{-\infty}$ equipped with the natural order and the function $\delta : Y \times C \to Y$ defined by
@@ -200,7 +201,7 @@ $$
 Thanks to  {prf:ref}`1-thm:kleene`, the operator $\Op$ has a greatest fixed point which is also the greatest post-fixed point of $\Op$.
 The latter are functions $f \in F_V$ such that $f \le \Op(f)$ and called progress measures.
 
-```{prf:lemma} needs title and label 
+```{prf:lemma} NEEDS TITLE AND LABEL 
 Let $\Game$ be a shortest path game with non-negative weights, then $\val$ is the greatest fixed point of $\Op$.
  
 :label: 
@@ -271,7 +272,7 @@ and then $f(v) \le \sup_{\sigma} \val^\sigma(v) = \val(v)$.
 Thanks to  {prf:ref}`1-thm:kleene` $\val$ can be computed by a greatest fixed point algorithm.
 To obtain the announced complexity we carefully define the data structure.
 
-The pseudocode is given in  {numref}`4-algo:value_iteration_shortest_path_non_negative`.
+The pseudocode is given in {numref}`4-algo:value_iteration_shortest_path_non_negative`.
 
 ```{figure} ./../4-algo:value_iteration_shortest_path_non_negative.png
 :name: 4-algo:value_iteration_shortest_path_non_negative
@@ -311,16 +312,18 @@ The value iteration algorithm for shortest path games with non-negative weights.
   values $\Value(u)$ of each vertex $u$. Let us denote by $S_i$ and
   $\ell_i(u)$ the values of $S$ and $\ell(u)$ in iteration $i$. We
   prove the following invariants:
-  \begin{enumerate}
-  *  for all iterations $i$, $\ell_i(u)$ is equal to the value
+  
+  
+1.  for all iterations $i$, $\ell_i(u)$ is equal to the value
     $\Value_{\game_i}(u)$ in the shortest path game $\game_i$ obtained
     from $i$ by replacing the cost $c(v,w)$ of each edge with
     $+\infty$ if both endpoints $v$ and $w$ are still in $S_i$;
-  *  moreover,
+  
+2.  moreover,
     $\min\{\ell_i(v)\mid v\in S_i\}\geq \max\{\Value_{\game}(v)\mid
     v\notin S_i\}$ which generalises the greedy property crucial to
     the correctness of Dijkstra's algorithm.
-  \end{enumerate}
+  
   Since the cost of each edge in $\game_i$ only decreases along the
   various iterations, it is also the case for the values
   $\Value_{\game_i}(u)$. More precisely, the invariant shows that
@@ -339,7 +342,6 @@ The value iteration algorithm for shortest path games with non-negative weights.
 
 
 ## Detection of $-\infty$ vertices with mean payoff games
-
 However, contrary to the previous payoffs, the **positional**
 determinacy result no longer holds as shows the example
 in {numref}`4-fig:memory`. In this game, there are two positional
@@ -375,7 +377,7 @@ reach a target of $\Win$ while controlling a negative cycle along the
 way. As previously announced, this is closely related with mean payoff
 games: {cite}`Brihaye&Geeraerts&HaddadA&Monmege:2017`
 
-```{prf:theorem} needs title 4-thm:-infty-MP
+```{prf:theorem} NEEDS TITLE 4-thm:-infty-MP
 :label: 4-thm:-infty-MP
 :nonumber:
 
@@ -453,7 +455,6 @@ games: {cite}`Brihaye&Geeraerts&HaddadA&Monmege:2017`
 
 
 ## A pseudopolynomial time value iteration algorithm
-
 As shown above, we can detect vertices of value $+\infty$ and
 $-\infty$ if needed. We now explain how to compute the exact optimal
 value of other vertices, by a value iteration algorithm. Similarly to
@@ -474,7 +475,7 @@ $$y_v =
 
 Notice the similarity with respect to the $\Lift$ operator used in the
 value iteration algorithm for mean payoff
-( {numref}`4-algo:value_iteration_MP`): the following arguments are thus
+({numref}`4-algo:value_iteration_MP`): the following arguments are thus
 very resembling to the ones already presented in the case of
 mean payoff. Here, we obtain a more precise information though, since
 it directly gives us the values for the shortest path objective
@@ -486,7 +487,7 @@ following lemma (where we again let $W=\max_{(v,c,v')\in E} |c|$), we
 know that finite values are bounded below, so that an intermediate
 step of speed-up can detect the vertices of value $-\infty$.
 
-```{prf:lemma} needs title 4-lem:-infty
+```{prf:lemma} NEEDS TITLE 4-lem:-infty
 :label: 4-lem:-infty
 :nonumber:
 
@@ -536,7 +537,7 @@ reached a target vertex while getting the optimal value.
 
 {cite}`Brihaye&Geeraerts&HaddadA&Monmege:2017`
 
-```{prf:theorem} needs title 4-thm:SP-pseudopoly-algo
+```{prf:theorem} NEEDS TITLE 4-thm:SP-pseudopoly-algo
 :label: 4-thm:SP-pseudopoly-algo
 :nonumber:
 

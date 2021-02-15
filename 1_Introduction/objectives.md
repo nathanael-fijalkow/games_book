@@ -31,8 +31,8 @@
 \newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
 \newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
 \newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\renewcommand{\Win}{\textrm{Win}} 
-\renewcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Win}{\textrm{Win}} 
+\newcommand{\Lose}{\textrm{Lose}} 
 \newcommand{\Value}{\textrm{val}} 
 \newcommand{\ValueE}{\textrm{val}_\mEve} 
 \newcommand{\ValueA}{\textrm{val}_\mAdam}
@@ -71,7 +71,6 @@ there exists $\col$ such that $W = \Safe[\col]$.
 The same terminology is used for all other objectives.
 
 ## Prefix dependent qualitative objectives: safety and reachability
-
 The safety objective is the simplest qualitative objective:
 the set of colours is $\set{\Win,\Lose}$, 
 and safety requires that the colour $\Lose$ is never seen.
@@ -82,7 +81,7 @@ $$
 $$
 
 
-In the example represented in  {numref}`1-fig:safety_game_example`, 
+In the example represented in {numref}`1-fig:safety_game_example`, 
 a play is winning if if it never visits the vertex labelled $\Lose$.
 Eve wins from the four vertices on the left and loses from all the others, which is represented by the two dotted areas.
 
@@ -116,7 +115,6 @@ where $\overline{\col}$ swaps $\Win$ and $\Lose$ in $\col$.
 Consequently, if the condition for Eve is a safety condition, then the condition for Adam is a reachability condition, and conversely.
 
 ## Prefix independent qualitative objectives: B&uuml;chi, CoB&uuml;chi, and Parity
-
 Safety and reachability objectives specify which colours occur or not, hence are prefix dependent.
 We now introduce objectives specifying which colours occur infinitely many times, which will naturally be prefix independent.
 
@@ -186,7 +184,7 @@ $$
 where $\col + 1$ adds one to $\col$.
 Hence if the condition for Eve is a parity condition, then the condition for Adam is also a parity condition.
 
- {numref}`1-fig:parity_game_example` presents an example of a parity game. 
+{numref}`1-fig:parity_game_example` presents an example of a parity game. 
 The priority of a vertex is given by its label.
 
 ```{figure} ./../1-fig:parity_game_example.png
@@ -197,7 +195,6 @@ The two dotted areas represent the winning regions of each player.
 ```
 
 ## Conventions
-
 Given an objective $\Omega \subseteq C^\omega$ we use a colouring function $\col : V \to C$ to induce the condition $\Omega[\col]$.
 We extend this notation to sets of vertices and colours as follows.
 
@@ -221,7 +218,6 @@ $$
 similarly extended to colours.
 
 ## Representations for qualitative objectives
-
 For reachability, safety, B&uuml;chi, and CoB&uuml;chi conditions we need one bit per vertex to specify whether it is winning or losing,
 hence the machine word size $w = \log(m)$ implies that one machine word can store either an edge or a vertex together with this one bit of information.
 
@@ -230,9 +226,8 @@ We then choose the machine word size $w = \log(m) + \log(d)$ in such a way that 
 either an edge or a vertex together with its priority.
 
 ## Quantitative objectives
-
 In this introduction chapter we only define two quantitative objectives: mean payoff and discounted payoff.
-More objectives will be defined and studied in~Chapter {ref}`4-chap:payoffs`, and later in~Chapter {ref}`12-chap:multiobjective`.
+More objectives will be defined and studied in Chapter {ref}`4-chap:payoffs`, and later in Chapter {ref}`12-chap:multiobjective`.
 
 Mean payoff and discounted payoff use the set of colours $C = \Z$ the set of integers.
 A colour is called a weight, interpreted as a payoff for Eve.
@@ -252,7 +247,7 @@ $$
 As we shall see, in most settings the two objectives will be equivalent.
 For this reason, we often use $\MeanPayoff$ to denote $\MeanPayoff^-$.
 
- {numref}`1-fig:mp_game_example` presents an example of a mean payoff game. 
+{numref}`1-fig:mp_game_example` presents an example of a mean payoff game. 
 The weight of a vertex is given by its label.
 In this example the dotted areas represent the winning regions for the threshold is $0$, 
 **i.e.** the induced qualitative objective $\MeanPayoff_{\ge 0} = \set{\rho \in C^\omega : \MeanPayoff(\rho) \ge 0}$.
@@ -261,7 +256,7 @@ In this example the dotted areas represent the winning regions for the threshold
 :name: 1-fig:mp_game_example
 :align: center
 An example of a mean payoff game. 
-The dotted areas represent the winning regions for the qualitative objective $\MeanPayoff_{\ge 0
+The dotted areas represent the winning regions for the qualitative objective $\MeanPayoff_{\ge 0}$.
 ```
 
 
@@ -278,7 +273,6 @@ The discount factor ensures that the limit exists for sequences with bounded wei
 which is holds for all plays since a (finite) game contains finitely many different weights.
 
 ### Representations for quantitative objectives
-
 Let us consider a game $\Game$ with either a mean payoff or a discountedd payoff condition.
 Let $W$ denote the largest weight appearing in $\Game$ in absolute value.
 

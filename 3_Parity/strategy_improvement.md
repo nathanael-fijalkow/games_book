@@ -36,8 +36,8 @@
 \newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
 \newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
 \newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\renewcommand{\Win}{\textrm{Win}} 
-\renewcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Win}{\textrm{Win}} 
+\newcommand{\Lose}{\textrm{Lose}} 
 \newcommand{\Value}{\textrm{val}} 
 \newcommand{\ValueE}{\textrm{val}_\mEve} 
 \newcommand{\ValueA}{\textrm{val}_\mAdam}
@@ -67,7 +67,7 @@
 \newcommand{\PSPACE}{\textrm{PSPACE}}
 ```
 
-```{prf:theorem} needs title 3-thm:strategy_improvement
+```{prf:theorem} NEEDS TITLE 3-thm:strategy_improvement
 :label: 3-thm:strategy_improvement
 :nonumber:
 
@@ -100,7 +100,7 @@ equivalently all infinite paths in $\Game[\sigma]$ satisfy parity, not requiring
 We say that a cycle is even if the maximal priority along the cycle is even, and it is odd otherwise. 
 Respecting parity is characterised using cycles:
 
-```{prf:observation} needs title and label 
+```{prf:observation} NEEDS TITLE AND LABEL 
 A strategy $\sigma$ respects parity if and only if all cycles in $\Game[\sigma]$ are even.
  
 :label: 
@@ -174,7 +174,7 @@ $$
 
 Since $\delta$ is monotonic so is $\Op$.
 
-```{prf:observation} needs title and label 
+```{prf:observation} NEEDS TITLE AND LABEL 
 The function $\val^\sigma$ is a fixed point of $\Op$ in $F^\sigma_V$.
  
 :label: 
@@ -195,7 +195,7 @@ The problem is for a vertex $v$ such that no plays starting from $v$ are stopped
 we can have either $\mu(v) = \top$ or $\mu(v) = \bot$, irrespective of whether the play satisfies parity or not.
 From this discussion we obtain the following result.
 
-```{prf:lemma} needs title 3-lem:greatest_fixed_point
+```{prf:lemma} NEEDS TITLE 3-lem:greatest_fixed_point
 :label: 3-lem:greatest_fixed_point
 :nonumber:
 
@@ -227,7 +227,7 @@ It may not hold that $\sigma_0$ respects parity since $\game$ may contain odd cy
 This can be checked in linear time and the attractor to the corresponding vertices removed from the game.
 After this preprocessing $\sigma_0$ indeed respects parity.
 
-The pseudocode of the algorithm is given in  {numref}`3-algo:strategy_improvement`.
+The pseudocode of the algorithm is given in {numref}`3-algo:strategy_improvement`.
 
 ```{figure} ./../3-algo:strategy_improvement.png
 :name: 3-algo:strategy_improvement
@@ -239,7 +239,7 @@ The strategy improvement algorithm for parity games.
 
 We start by stating a very simple property of $\delta$, which is key in the arguments below.
 
-```{prf:observation} needs title and label 
+```{prf:observation} NEEDS TITLE AND LABEL 
 Let $t \in Y$ and $p_1,\dots,p_k \in [1,d]$ such that $t$ and $\delta(t,p_1 \dots p_k)$ are neither $\top$ nor $\bot$.
 Then $t \le \delta(t,p_1 \dots p_k)$ if and only if $\max \set{p_1,\dots,p_k}$ is even.
  
@@ -256,7 +256,7 @@ Then $t \le \delta(t,p_1 \dots p_k)$ if and only if $\max \set{p_1,\dots,p_k}$ i
 
 The following lemma states the two important properties of $(Y,\le)$ and $\delta$.
 
-```{prf:lemma} needs title 3-lem:key_property
+```{prf:lemma} NEEDS TITLE 3-lem:key_property
 :label: 3-lem:key_property
 :nonumber:
 
@@ -295,7 +295,7 @@ which means that $\mu(v) \le \min \set{ \delta(\mu(v'),\col(v)) : (v,v') \in E}$
 
 We now rely on  {prf:ref}`3-lem:greatest_fixed_point` and  {prf:ref}`3-lem:key_property` to prove the two principles: progress and optimality.
 
-```{prf:lemma} needs label Progress
+```{prf:lemma} NEEDS LABEL Progress
 :label: Progress
 :nonumber:
 Let $\sigma$ a strategy respecting parity and $e = (v,v')$ a switchable edge.
@@ -350,7 +350,7 @@ $\val^\sigma(v) < \val^{\sigma'}(v)$.
 ```
 
 
-```{prf:lemma} needs label Optimality
+```{prf:lemma} NEEDS LABEL Optimality
 :label: Optimality
 :nonumber:
 Let $\sigma$ a strategy respecting parity that has no switchable edges, then 

@@ -40,23 +40,45 @@ def section_transformer(nb_chap, file_name, path, title, label):
 
 	#### Remove comments
 	content = re.sub(r'%(.*?)\n', r'', content)
-
 	#### Remove tilde
 	content = re.sub(r'~\$', r' $', content)
-
-	#### Remove vfill
+	#### Remove hfill
 	content = re.sub(r'\\hfill', r'', content)
-
 	#### Rewrite textsuperscript
 	content = re.sub(r'\\textsuperscript\{([\s\S]*?)\}', r'\1', content)
+	#### Make sure $$ can breath
+	content = re.sub(r'\$\$', r'\n$$\n', content)
+	#### Replace \[ \] by $$ $$
+	content = re.sub(r'\\\[([\s\S]*?)\\\]', r'\n\n$$\1$$\n\n', content)
+	#### Remove vskip1em
+	content = re.sub(r'\\vskip1em', r'\n', content)
+	#### Remove noindent
+	content = re.sub(r'\\noindent', r'\n', content)
+	#### Remove svgraybox
+	content = re.sub(r'\\begin\{svgraybox\}([\s\S]*?)\\end\{svgraybox\}', \
+		r'```{admonition} Problem\n\1\n```', content)
+	#### Reshape quotes
+	content = re.sub(r'\`\`(.*?)\'\'', r'''\1''', content)
+	#### Rewrite footnotes
+	content = re.sub(r'\\footnote\{(.*?).\}', r'```{margin}\n\1```', content)
+
+	#### Deal with accents
+	content = re.sub(r'\{\\"u}', r'&uuml;', content)
+	content = re.sub(r'\{\\"e}', r'&euml;', content) 
+	content = re.sub(r'\{\\"i}', r'&iuml;', content)
+	content = re.sub(r'\{\\\'e}', r'&eacute;', content)
+	content = re.sub(r'\{\\\'E}', r'&Eacute;', content)
+	content = re.sub(r'\{\\\`e}', r'&egrave;', content)
+	content = re.sub(r'\{\\\'n}', r'&#324;', content)
+	content = re.sub(r'\{\\\'y}', r'&yacute;', content)
 
 	#### Deal with references to (sub)*sections
 
-	p1 = r"\\[cC]ref\{{(\d*?)-{}:(.*?)\}}"
-	s1 = r"{} {{ref}}`\1-{}:\2`"
+	p1 = r"~\\[cC]ref\{{(\d*?)-{}:(.*?)\}}"
+	s1 = r" {} {{ref}}`\1-{}:\2`"
 
-	p2 = r"~\\[cC]ref\{{(\d*?)-{}:(.*?)\}}"
-	s2 = r" {} {{ref}}`\1-{}:\2`"
+	p2 = r"\\[cC]ref\{{(\d*?)-{}:(.*?)\}}"
+	s2 = r"{} {{ref}}`\1-{}:\2`"
 
 	l = [\
 	("chap","Chapter"), \
@@ -74,14 +96,16 @@ def section_transformer(nb_chap, file_name, path, title, label):
 
 	#### Deal with references to figures and algorithms
 
-	p = r"~?\\[cC]ref\{{(\d*?)-{}:(.*?)\}}"
-	s = r" {{numref}}`\1-{}:\2`"
+	p1 = r"~\\[cC]ref\{{(\d*?)-{}:(.*?)\}}"
+	s1 = r" {{numref}}`\1-{}:\2`"
+	p2 = r"\\[cC]ref\{{(\d*?)-{}:(.*?)\}}"
+	s2 = r"{{numref}}`\1-{}:\2`"
 
 	l = ["fig", "algo"]
 
 	for short_name in l:
-		content = re.sub(p.format(short_name), s.format(short_name), content)
-
+		content = re.sub(p1.format(short_name), s1.format(short_name), content)
+		content = re.sub(p2.format(short_name), s2.format(short_name), content)
 
 	#### Deal with references to theorems and others
 
@@ -97,7 +121,7 @@ def section_transformer(nb_chap, file_name, path, title, label):
 
 	# remove figs and creates files
 
-	list_fig = re.findall(r'\\begin\{figure\*?\}[\s\S]*?(\\begin\{tikzpicture\}[\s\S]*?\\end\{tikzpicture\})[\s\S]*?\\caption\{[\s\S]*?\}[\s\S]*?\\label\{(.*?)\}[\s\S]*?\\end\{figure\*?\}', content)
+	list_fig = re.findall(r'\\begin\{figure\*?\}[\s\S]*?(\\begin\{tikzpicture\}[\s\S]*?\\end\{tikzpicture\})\s*?\\caption\{[\s\S]*?\}\s*?\\label\{(.*?)\}\s*?\\end\{figure\*?\}', content)
 
 	for x in list_fig:
 		h = open(x[1] + ".tex", 'w')
@@ -109,7 +133,7 @@ def section_transformer(nb_chap, file_name, path, title, label):
 \\usepackage{amsfonts}\n\
 \\begin{document}\n" + x[0] + "\n\\end{document}")
 
-	pattern = r'\\begin\{figure\*?\}[\s\S]*?\\begin\{tikzpicture\}[\s\S]*?\\end\{tikzpicture\}[\s\S]*?\\caption\{([\s\S]*?)\}[\s\S]*?\\label\{(.*?)\}[\s\S]*?\\end\{figure\*?\}'
+	pattern = r'\\begin\{figure\*?\}[\s\S]*?\\begin\{tikzpicture\}[\s\S]*?\\end\{tikzpicture\}\s*?\\caption\{([\s\S]*?)\}\s*?\\label\{(.*?)\}\s*?\\end\{figure\*?\}'
 	content = re.sub(pattern, r'\n```{figure} ./../\2.png\n:name: \2\n:align: center\n\1\n```', content)
 
 	#### Deal with algorithms
@@ -132,18 +156,10 @@ def section_transformer(nb_chap, file_name, path, title, label):
 
 	content = re.sub(r'\\begin\{algorithm\}([\s\S]*?)\\caption\{([\s\S]*?)\}\n\\label\{(.*?)\}\n\\end\{algorithm\}', \
 		r'\n```{figure} ./../\3.png\n:name: \3\n:align: center\n\2\n```', content)
-
-	#### Deal with accents
-	content = re.sub(r'\{\\"u}', r'&uuml;', content)
-	content = re.sub(r'\{\\"e}', r'&euml;', content) 
-	content = re.sub(r'\{\\"i}', r'&iuml;', content)
-	content = re.sub(r'\{\\\'e}', r'&eacute;', content)
-	content = re.sub(r'\{\\\'E}', r'&Eacute;', content)
-	content = re.sub(r'\{\\\`e}', r'&egrave;', content)
-	content = re.sub(r'\{\\\'n}', r'&#324;', content)
-	content = re.sub(r'\{\\\'y}', r'&yacute;', content)
 	
 	#### Deal with decisionproblems and tasks
+
+	### FIXME: ambiguous parsing!!!!
 
 	content = re.sub(r'\\decisionproblem\{([\s\S]*?)\}\{([\s\S]*?)\}\n', r'**INPUT**: \1\n\n**QUESTION**: \2\n', content)
 	content = re.sub(r'\\task\{([\s\S]*?)\}\{([\s\S]*?)\}\n', r'**INPUT**: \1\n\n**COMPUTE**: \2\n', content)
@@ -155,18 +171,16 @@ def section_transformer(nb_chap, file_name, path, title, label):
 	# by
 	# ## Players 
 
-	content = re.sub(r'\\subsection\*\{([\s\S]*?)\}', r'\n## \1\n', content)
-	content = re.sub(r'\\subsubsection\*\{([\s\S]*?)\}', r'\n### \1\n', content)
-
-	#### Replace \[ \] by $$ $$
-	content = re.sub(r'\\\[([\s\S]*?)\\\]', r'\n\n$$\1$$\n\n', content)
-
-	#### Remove vskip1em
-	content = re.sub(r'\\vskip1em', r'\n', content)
+	content = re.sub(r'\\subsection\*\{([\s\S]*?)\}\n', r'\n## \1\n', content)
+	content = re.sub(r'\\subsubsection\*\{([\s\S]*?)\}\n', r'\n### \1\n', content)
  
-	#### Remove vskip1em
-	content = re.sub(r'\\paragraph\*?\{\\bf (.*?)\}', r'> **\1**\n', content)
-	content = re.sub(r'\\paragraph\*?\{(.*?)\}', r'> **\1**\n', content)
+	#### Remove paragraphs
+
+	### FIXME: ambiguous parsing!!!!
+
+	content = re.sub(r'\\paragraph\*?\{\\bf (.*?)\}', r'> **\1**\n\n', content)
+	content = re.sub(r'\\paragraph\*?\{(.*?)\}', r'> **\1**\n\n', content)
+
 
 	#### Rewrite quotation
 
@@ -180,25 +194,39 @@ def section_transformer(nb_chap, file_name, path, title, label):
 	content = re.sub(r'\\begin\{quotation\}\n``([\s\S]*?)\'\'\n\\end\{quotation\}', r'\n\n> \1\n\n', content)
 
 	#### Rewrite textit and emph
+
+	### FIXME: ambiguous parsing!!!!
+
 	content = re.sub(r'\\textit\{([\s\S]*?)\}', r'**\1**', content)
 	content = re.sub(r'\\emph\{([\s\S]*?)\}', r'**\1**', content)
 	content = re.sub(r'\\textbf\{([\s\S]*?)\}', r'**\1**', content)
-
-	#### Remove svgraybox
-	content = re.sub(r'\\begin\{svgraybox\}([\s\S]*?)\\end\{svgraybox\}', \
-		r'```{admonition} Problem\n\1\n```', content)
 
 	#### Remove knowledge
 	content = re.sub(r'""(.*?)""', r'\1', content)
 	content = re.sub(r'"(.*?)"', r'\1', content)
 	content = re.sub(r'\\knowledge.*?\n', r'', content)
 
-	#### Reshape quotes
-	content = re.sub(r'\`\`(.*?)\'\'', r'''\1''', content)
 
 	#### Deal with itemize
-	content = re.sub(r'\\begin\{itemize\}([\s\S]*?)\\end\{itemize\}', r'\1', content)
-	content = re.sub(r'\\item([\s\S]*?)', r'* \1', content)
+
+	def rewrite_itemize(s):
+		return re.sub(r'\\item', r"* ", s.group(1))
+
+	content = re.sub(r'\\begin\{itemize\}([\s\S]*?)\\end\{itemize\}', rewrite_itemize, content)
+
+	#### Deal with enumerate
+
+	class rewrite_numbered_items(object):
+		def __init__(self, start = 1):
+			self.count = start - 1
+		def __call__(self, match):
+			self.count += 1
+			return "\n{}. ".format(self.count)
+
+	def rewrite_enumerate(s):
+		return re.sub(r'\\item', rewrite_numbered_items(), s.group(1))
+
+	content = re.sub(r'\\begin\{enumerate\}([\s\S]*?)\\end\{enumerate\}', rewrite_enumerate, content)
 
 	#### Deal with theorem and many other environments
 
@@ -221,15 +249,15 @@ def section_transformer(nb_chap, file_name, path, title, label):
 
 	# just a label
 	p2 = r'\\begin\{{{}\}}\n?\\label\{{(.*?)\}}([\s\S]*?)\\end\{{{}\}}'
-	s2 = r'\n```{{prf:{}}} needs title \1\n:label: \1\n:nonumber:\n\2\n```\n'
+	s2 = r'\n```{{prf:{}}} NEEDS TITLE \1\n:label: \1\n:nonumber:\n\2\n```\n'
 
 	# just a title
 	p3 = r'\\begin\{{{}\}}\[(.*?)\]\n?([\s\S]*?)\\end\{{{}\}}'
-	s3 = r'\n```{{prf:{}}} needs label \1\n:label: \1\n:nonumber:\n\2\n```\n'
+	s3 = r'\n```{{prf:{}}} NEEDS LABEL \1\n:label: \1\n:nonumber:\n\2\n```\n'
 
 	# none
 	p4 = r'\\begin\{{{}\}}([\s\S]*?)\\end\{{{}\}}'
-	s4 = r'\n```{{prf:{}}} needs title and label \1 \n:label: \1\n:nonumber:\n\1\n```\n'
+	s4 = r'\n```{{prf:{}}} NEEDS TITLE AND LABEL \1 \n:label: \1\n:nonumber:\n\1\n```\n'
 
 	l = [\
 	("theorem","theorem"), \
@@ -248,12 +276,10 @@ def section_transformer(nb_chap, file_name, path, title, label):
 		content = re.sub(p3.format(short_name,short_name), s3.format(long_name), content)
 		content = re.sub(p4.format(short_name,short_name), s4.format(long_name), content)
 
-
 	#### Deal with remarks
 
-	p = r'\\begin\{{remark\}}([\s\S]*?)\\end\{{remark\}}'
-	s = r'\n```{{admonition}} Remark\1\n```\n'
-	content = re.sub(p.format(short_name,short_name), s.format(long_name), content)
+	content = re.sub(r'\\begin\{remark\}([\s\S]*?)\\end\{remark\}', \
+		r'\n```{admonition} Remark \1\n```\n', content)
 
 	#### Deal with proof
 
@@ -268,8 +294,6 @@ def section_transformer(nb_chap, file_name, path, title, label):
 	content = re.sub(r'\t', r'', content)
 	#### Remove double newlines
 	content = re.sub(r'\n\n\n', r'\n\n', content)
-	#### Rewrite footnotes
-	content = re.sub(r'\\footnote\{(.*?).\}', r' (\1)', content)
 
 	# print(content)
 

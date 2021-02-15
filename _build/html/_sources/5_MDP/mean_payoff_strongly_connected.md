@@ -75,8 +75,8 @@
 \newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
 \newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
 \newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\renewcommand{\Win}{\textrm{Win}} 
-\renewcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Win}{\textrm{Win}} 
+\newcommand{\Lose}{\textrm{Lose}} 
 \newcommand{\Value}{\textrm{val}} 
 \newcommand{\ValueE}{\textrm{val}_\mEve} 
 \newcommand{\ValueA}{\textrm{val}_\mAdam}
@@ -107,7 +107,7 @@
 ```
 As shown in the previous section, the optimal solution of any of the programs $\lpmp$, $\lpmpdual$ gives us an upper bound on the optimal value. In this sub-section we show that in strongly connected MDPs: a) a value of every vertex is the same; b) from a solution of $\lpmp$ one can extract a memoryless deterministic strategy $\sigma$ whose expected mean-payoff is well defined (i.e., the preconditions of  {prf:ref}`5-lem:limit-defined` are satisfied)) and equal to the objective value of the solution. Moreover, if the solution in question is optimal, then $ \sigma $ is optimal for both $\playPay$- and $\stepPay$-semantics.
 
-```{prf:definition} needs title 5-def:scc-mdp
+```{prf:definition} NEEDS TITLE 5-def:scc-mdp
 :label: 5-def:scc-mdp
 :nonumber:
 
@@ -115,11 +115,15 @@ An MDP is **strongly connected** if for each pair of vertices $u,v$ there exists
 
 ```
 
-For the rest of this section we fix an optimal solution $\lpsol{x}_{v,a}$ of $\lpmp$. We denote by $\solvset$ the set of all vertices for which there exists action $a$ s.t. $\lpsol{x}_{v,a}>0.$ From the shape of $\lpmp$ it follows that $\solvset$ is non-empty and closed, and hence we can consider a sub-MDP $\mdp_{\solvset}$ induced by $\solvset$. In $\mdp_{\solvset}$ we then define a memoryless randomized strategy $\sigma$ by putting $$\sigma(a\mid v)=\frac{\lpsol{x}_{(v,a)}}{\sum_{b\in \actions}\lpsol{x}_{(v,b)}}.$$
+For the rest of this section we fix an optimal solution $\lpsol{x}_{v,a}$ of $\lpmp$. We denote by $\solvset$ the set of all vertices for which there exists action $a$ s.t. $\lpsol{x}_{v,a}>0.$ From the shape of $\lpmp$ it follows that $\solvset$ is non-empty and closed, and hence we can consider a sub-MDP $\mdp_{\solvset}$ induced by $\solvset$. In $\mdp_{\solvset}$ we then define a memoryless randomized strategy $\sigma$ by putting 
+$$
+\sigma(a\mid v)=\frac{\lpsol{x}_{(v,a)}}{\sum_{b\in \actions}\lpsol{x}_{(v,b)}}.
+$$
 
 Fixing a strategy $\sigma$ yields a **Markov chain** $\mdp_\solvset^{\sigma}$. Markov chain can be viewed as an MDP with a single action (and hence, with no non-determinism). $\mdp_{\solvset}^\sigma$ in particular can be viewed an MDP with the same vertices, edges, and colouring as $\mdp_\solvset$, but with a single action (as non-determinism was already resolved by $\sigma$). The probability of transitioning from a vertex $u$ to a vertex $v$ in a Markov chain is denoted by $\mcprob_{u,v}$. In $\mdp_{\solvset}^{\sigma}$ we have $\mcprob_{u,v}=\sum_{a\in \actions} \probTranFunc(v\mid u,a)\cdot\sigma(a\mid u)$, the right-hand side being computed in the original MDP $\mdp$. Both $\mdp_\solvset$ and $\mdp_{\solvset}^{\sigma}$ have the same sets of plays and for each initial vertex, the probability measure induced by $\sigma$ in $\mdp$ equals the probability measure arising (under the unique policy) in $\mdp_{\solvset}^{\sigma}$. Hence, to prove anything about $\sigma$ it suffices to analyse $\mdp_{\solvset}^{\sigma}$.
 
 > **A refresher on Markov chains.**
+
  We review some fundamental notions of Markov chain theory {cite}`Norris:1998`. A Markov chain that is strongly connected is called **irreducible**. The one-step transition probabilities in a Markov chain can be arranged into a square matrix $\mcprob$, which has one row and one column for each vertex. The cell in the row corresponding to a vertex $u$ and in the column corresponding to a vertex $v$ bears the value $\mcprob_{u,v}$ defined above. An easy induction shows that the matrix $\mcprob^k$ contains $k$-step transition probabilities. That is, the probability of being in $v$ after $k$ steps from vertex $u$ is equal to the $(u,v)$-cell of $\mcprob^k$, which we denote by $\mcprob^{(k)}_{u,v}$.
 
 A vertex $u$ of a Markov chain is **recurrent** if, when starting from $u$, it is revisited infinitely often with probability $1$. On the other hand, if the probability that $u$ is re-visited only finitely often is one, then the vertex is **transient**. It is known~\cite[Theorem 1.5.3]{Norris:1998} that each vertex of a finite Markov chain is either recurrent or transient, and that these two properties can be equivalently characterized as follows: vertex $u$ is recurrent if and only if  $\sum_{k=0}^{\infty}\mcprob^{(k)}_{u,u}=\infty$, otherwise it is transient.
@@ -128,7 +132,7 @@ An **invariant distribution** in a Markov chain with a vertex set $\vertices$ is
 
 The following lemma holds for arbitrary finite Markov chains.
 
-```{prf:lemma} needs title and label 
+```{prf:lemma} NEEDS TITLE AND LABEL 
 \label{5-lem:MC-inv-rec}
 Let $\invdist$ be an invariant distribution and $v$ a vertex such that $\invdist_v > 0$. Then $v$ is recurrent.
  
@@ -149,7 +153,11 @@ Let $\invdist$ be an invariant distribution and $v$ a vertex such that $\invdist
 Let $n$ be the number of vertices in the chain and $p_{\min}$ the minimum non-zero entry of $\mcprob$.
 Assume, for the sake of contradiction, that $v$ is transient. We show that in such a case, for each vertex $u$ it holds $\lim_{k\rightarrow\infty} \mcprob^{(k)}_{u,v} = 0$. For $u=v$ this is immediate, since the sum $\sum_{k=0}^{\infty}\mcprob^{(k)}_{v,v}$ converges for  transient $v$. Otherwise, let $f_{u,v,i}$ be the probability that a play starting in $u$ visits $v$ for the **first time** in exactly $i$ steps. Then $\mcprob^{(k)}_{u,v}=\sum_{i=0}^k f_{u,v,i}\cdot \mcprob^{(k-i)}_{v,v}$. Now when starting in a vertex from which $v$ is reachable with a positive probability, at least one of the following events happens with probability $\geq p_{\min}^n$ in the first $n$ steps: either we reach a vertex from which $v$ is not reachable with positive probability, or we reach $v$. If neither of the events happens, we are, after $n$ steps, still in a vertex from which $v$ can be reached with a positive probability. In such a case, the argument can be inductively repeated (analogously to the proof of  {prf:ref}`5-thm:as-char`) to show that $f_{u,v,i}\leq (1-p_{\min}^n)^{\lfloor\frac{i}{n}\rfloor}\leq (1-p_{\min}^n)^{\frac{i-n}{n}}$.
 
-Since $\sum_{k=0}^{\infty}\mcprob^{(k)}_{v,v}$ converges, for each $\eps>0$ there exists $j_\eps$ such that $\sum_{i=j_{\eps}}^{\infty}\mcprob^{(i)}_{v,v} < \frac{\eps}{2}$. Similarly, there exists $\ell_\eps$ such that $$\sum_{i=\ell_{\eps}}^{\infty}{(1-p_{\min}^n)^{\frac{i-n}{n}}} = \frac{(1-p_{\min}^n)^{\frac{\ell_\eps}{n}}}{\left(1-(1-p_{\min}^n)^{\frac{1}{n}}\right)\cdot(1-p_{\min}^n)}< \frac{\eps}{2},$$ and hence $\sum_{i=\ell_{\eps}}^{\infty} f_{u,v,i}< \frac{\eps}{2}.$
+Since $\sum_{k=0}^{\infty}\mcprob^{(k)}_{v,v}$ converges, for each $\eps>0$ there exists $j_\eps$ such that $\sum_{i=j_{\eps}}^{\infty}\mcprob^{(i)}_{v,v} < \frac{\eps}{2}$. Similarly, there exists $\ell_\eps$ such that 
+$$
+\sum_{i=\ell_{\eps}}^{\infty}{(1-p_{\min}^n)^{\frac{i-n}{n}}} = \frac{(1-p_{\min}^n)^{\frac{\ell_\eps}{n}}}{\left(1-(1-p_{\min}^n)^{\frac{1}{n}}\right)\cdot(1-p_{\min}^n)}< \frac{\eps}{2},
+$$
+ and hence $\sum_{i=\ell_{\eps}}^{\infty} f_{u,v,i}< \frac{\eps}{2}.$
 
 Now we put $m_{\eps}=\max\{j_\eps,\ell_\eps\}$. For any $k\geq 2m_{\eps}$ we have $\mcprob^{(k)}_{u,v}=\sum_{i=0}^k f_{u,v,i}\cdot \mcprob^{(k-i)}_{v,v} \leq \sum_{i=m_{\eps}}^{k}f_{u,v,i} + \sum_{i=0}^{m_{\eps}}\mcprob^{(k-i)}_{v,v}\leq\sum_{i=m_{\eps}}^{k}f_{u,v,i} + \sum_{i=m_{\eps}}^{k}\mcprob^{(i)}_{v,v}<\eps$ (note that all the series involved are non-negative). This proves that $\mcprob^{(k)}_{u,v}$ vanishes in the limit.
 
@@ -157,11 +165,13 @@ Finally, we derive the contradiction. Since $\invdist$ satisfies $\invdist\cdot 
 
 ```
 
-\noindent
+
+
 > **Towards the optimality of $ \sigma $.**
+
  We now turn back to the chain $\mdp_{\solvset}^{\sigma}$, where the memoryless strategy $ \sigma $ is obtained from the optimal solution of $ \lpmp $. In general, $ \mdp_{\solvset}^{\sigma} $ does not have to be irreducible. Hence, we use the following lemma and its corollary to extract an irreducible sub-chain, to which we can apply known results of Markov chain theory.
 
-```{prf:lemma} needs title 5-lem:mc-rec
+```{prf:lemma} NEEDS TITLE 5-lem:mc-rec
 :label: 5-lem:mc-rec
 :nonumber:
 
@@ -177,7 +187,7 @@ The first part follows directly from the fact that $\lpsol{x}_{v,a}$ is a feasib
 ```
 
 
-```{prf:corollary} needs title 5-cor:mp-scc-extraction
+```{prf:corollary} NEEDS TITLE 5-cor:mp-scc-extraction
 :label: 5-cor:mp-scc-extraction
 :nonumber:
 
@@ -210,7 +220,7 @@ $$
 
 We can use the Ergodic theorem to shows that the expected mean-payoff achieved by $\sigma$ in $\mdp_{Q}$ matches the optimal value of $ \lpmp $, in a very strong sense: the probability of a play having a mean-payoff equal to this optimal value is 1 under $ \sigma $.
 
-```{prf:theorem} needs title 5-cor:mp-scc-optimality
+```{prf:theorem} NEEDS TITLE 5-cor:mp-scc-optimality
 :label: 5-cor:mp-scc-optimality
 :nonumber:
 
@@ -242,14 +252,14 @@ Also, by easy induction, for each play $\play$ of length $n$ in $\mdp_Q$ it hold
 \begin{align*}
 \underbrace{\sum_{v\in Q} \invdist'_v \cdot \vec{h}'_{v}}_{=0} + \sum_{u,v\in Q} \invdist'_{d_{u,v}}\cdot \vec{h}'_{d_{u,v}} = \frac{1}{2}\sum_{u\in Q}\invdist_u\cdot\left( \sum_{v\in Q}\mcprob_{u,v}\cdot \colouring(u,v)\right)\\ =\frac{1}{2}\sum_{u\in Q} \invdist_u\cdot \vec{h}_u=\frac{r^*}{2},
 \end{align*}
-\noindent
+
 the last equality being shown above. Plugging this into~\eqref{5-eq:mc-opt-limit} yields that if a limit on the LHS (i.e., the mean payoff of a play) is well-defined with probability 1, then it is equal to $r^*$ also with probability 1. But if there was a set $L$ of positive probability in $\mdp_Q$ with $\lim_{n \rightarrow \infty}\frac{1}{n}\sum_{i=0}^{n-1}\colouring(\play_i)$ undefined for each $\play\in L$, by splitting the plays in $L$ we would obtain a positive-probability set of plays in $\mdp_Q'$ in which $\lim_{n \rightarrow \infty}\frac{1}{n}\sum_{i=0}^{n-1}\vec{h}'_{\ing(\play_i')}$ is also undefined, a contradiction with the ergodic theorem. 
 
 ```
 
 So far, we have constructed an optimal strategy $\sigma_Q$ but only on the part $Q$ of the original MDP $\mdp$. To conclude the construction, we define a memoryless strategy $\sigma^*$ in $\mdp$ as follows: we fix a memoryless deterministic strategy $\sigma_{=1}$ that is winning, from each vertex of $\mdp,$ for the objective of almost-sure reaching of $Q$ (such a strategy exists since $\mdp$ is strongly connected, see also  {prf:ref}`5-thm:as-char`. Then we put $\sigma^*(v)=\sigma_{=1}(v)$ if $v\not\in Q$ and $\sigma^*(v)=\sigma_Q(v)$ otherwise. Hence, starting in any vertex, $\sigma^*$ eventually reaches $Q$ with probability 1 and then it starts behaving as $\sigma_Q$. The optimality of such a strategy follows from the prefix independence of mean payoff, as argued in the next theorem.
 
-```{prf:theorem} needs title 5-thm:mp-valcomp
+```{prf:theorem} NEEDS TITLE 5-thm:mp-valcomp
 :label: 5-thm:mp-valcomp
 :nonumber:
  For any sequence of numbers $c_0,c_1,\dots$ and any $k\in\N$ it holds $\liminf_{n\rightarrow \infty}\frac{1}{n}\sum_{i=0}^{n-1}c_i = \liminf_{m\rightarrow \infty}\frac{1}{m}\sum_{i=0}^{m-1}c_{k+i}$. As a consequence, 
@@ -270,10 +280,11 @@ With probability 1, a play has an infinite suffix consisting of plays from $\mdp
 
 ```
 
-\noindent
+
+
 The following theorem summarizes the computational aspects.
 
-```{prf:theorem} needs title 5-thm:mp-rand-opt-main
+```{prf:theorem} NEEDS TITLE 5-thm:mp-rand-opt-main
 :label: 5-thm:mp-rand-opt-main
 :nonumber:
 
@@ -295,7 +306,7 @@ It remains to prove that we can actually compute a memoryless~**deterministic** 
 
 The previous section implicitly defined two mappings: First, a mapping $\Psi$, which maps every solution $ \vec{x} $ of $\lpmp$ to a memoryless strategy in some sub-MDP of $\mdp$, by putting $\Psi(\vec{x}) = \sigma$ where $\sigma(a\mid v) = \vec{x}_{(v,a)}/\sum_{b\in \actions}\vec{x}_{(v,b)}$. Second, mapping $\Xi$, which maps each memoryless strategy $\sigma$ that induces a strongly connected Markov chain to a solution $\Xi(\sigma)$ of $\lpmp$ such that $\Xi(\sigma)_{(v,a)}=\invdist_v\cdot \sigma(a\mid v)$, where $\invdist$ is the unique invariant distribution of the chain induced by $\sigma$.
 
-```{prf:lemma} needs title 5-lem:sol-strat-correspondence
+```{prf:lemma} NEEDS TITLE 5-lem:sol-strat-correspondence
 :label: 5-lem:sol-strat-correspondence
 :nonumber:
 
@@ -311,7 +322,7 @@ A straightforward computation shows that $\Xi\circ\Psi$ and $\Psi\circ\Xi$ are i
 ```
 
 
-```{prf:definition} needs title and label 
+```{prf:definition} NEEDS TITLE AND LABEL 
 \label{5-def:pure-lp}
 A solution $\vec{x}$ of $\lpmp$is **pure** if for every vertex $v$ there is at most one action $a$ such that $\vec{x}_{(v,a)}>0$.
  
@@ -326,10 +337,11 @@ A solution $\vec{x}$ of $\lpmp$is **pure** if for every vertex $v$ there is at m
 
 ```
 
-\noindent
+
+
 The following lemma follows from the way in which strategies $\sigma$ and $\sigma^*$ were constructed in the previous sub-section.
 
-```{prf:lemma} needs title and label 
+```{prf:lemma} NEEDS TITLE AND LABEL 
 \label{5-lem:pure-lpsol}
 Let $\lpsol{x}$ be a pure optimal solution of $\lpmp$ and denote $ S = \{v \in \vertices\mid \exists a \text{ s.t. }\lpsol{x}_{(v,a)}>0\} $. Then the strategy $\sigma=\Psi(\lpsol{x})$ is an MD strategy in $\mdp_{\solvset}$. Hence, in such a case, the strategy $\sigma^*$ constructed from $ \sigma $ as in  {prf:ref}`5-thm:mp-rand-opt-main` is an optimal MD strategy in $\mdp$.
  
@@ -350,7 +362,7 @@ A linear program is in the **standard** (or equational) form if its set of const
 
 The next two lemmas prove some fundamental properties of basic feasible solutions.
 
-```{prf:lemma} needs title 5-lem:basic-cond-unique
+```{prf:lemma} NEEDS TITLE 5-lem:basic-cond-unique
 :label: 5-lem:basic-cond-unique
 :nonumber:
 
@@ -369,7 +381,7 @@ Since $\vec{x}$ has as many non-zero components as there are rows of $A$, it fol
 ```
 
 
-```{prf:lemma} needs title 5-lem:basic-sol
+```{prf:lemma} NEEDS TITLE 5-lem:basic-sol
 :label: 5-lem:basic-sol
 :nonumber:
 
@@ -389,7 +401,7 @@ The existence of a basic optimal solution is a well-known linear programming fac
 
 
 
-```{prf:theorem} needs title 5-thm:lpmp-basic-dim
+```{prf:theorem} NEEDS TITLE 5-thm:lpmp-basic-dim
 :label: 5-thm:lpmp-basic-dim
 :nonumber:
 

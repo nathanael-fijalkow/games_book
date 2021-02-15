@@ -75,8 +75,8 @@
 \newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
 \newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
 \newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\renewcommand{\Win}{\textrm{Win}} 
-\renewcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Win}{\textrm{Win}} 
+\newcommand{\Lose}{\textrm{Lose}} 
 \newcommand{\Value}{\textrm{val}} 
 \newcommand{\ValueE}{\textrm{val}_\mEve} 
 \newcommand{\ValueA}{\textrm{val}_\mAdam}
@@ -121,7 +121,7 @@ The use of $ \liminf $ is natural in the formal verification setting: taking the
 
 In general, $\stepPay(v,\sigma)$ can be different from $ \playPay(v, \sigma) $. However, we have the following simple consequence of the dominated convergence theorem:
 
-```{prf:lemma} needs title and label 
+```{prf:lemma} NEEDS TITLE AND LABEL 
 \label{5-lem:limit-defined}
 Let $U$ be the set of all plays $\play$  for which $\lim_{n\rightarrow \infty} \frac{1}{n} \sum_{i=0}^{n-1}[\colouring(\play_i)]$ is undefined. If $\vinit,\sigma$ are such that $\probm^\sigma_{\vinit}(U) = 0$, then $\stepPay(\vinit,\sigma) = \playPay(\vinit, \sigma) $.
  
@@ -145,7 +145,7 @@ We will show that in our case of finite-state MDPs, the two approaches coincide 
 
 To simplify the subsequent notation, we define the **expected one-step** reward of a vertex-action pair $(v,a)$ to be the number $\sum_{w\in \vertices} \probTranFunc(w\mid v,a)\cdot \colouring(v,w)$. Overloading the notation, we denote this quantity by $\colouring(v,a)$.
 
-In mean-payoff  MDPs, a crucial role is played by the linear program $\lpmp$ pictured in Figure~\ref{5-fig:mp-lin}.
+In mean-payoff  MDPs, a crucial role is played by the linear program $\lpmp$ pictured in {numref}`5-fig:mp-lin`.
 
 \begin{figure}[h]
 \begin{alignat}{2}
@@ -173,14 +173,14 @@ subject to }\nonumber \\
 \label{5-fig:mp-dual}
 \end{figure}
 
-```{admonition} Remark[Nomenclature]
+```{admonition} Remark [Nomenclature]
 A feasible solution of $ \lpmp $ is a vector $\vec{x} \in \R^{\vertices\times \actions} $ s.t. setting $ x_{(v,a)}=\vec{x}_{(v,a)} $ for all $ (v,a) $ satisfies the constraints in $ \lpmp $. A feasible solution of $ \lpmpdual  $ is a tuple $ (g,\vec{y}) $, where $ g\in\R $ (using the same notation for the number and the variable should not cause  confusion here) and $ \vec{y}\in \R^{\vertices}$ s.t. setting the corresponding variables to numbers prescribed by $ g $ and $ \vec{y} $ satisfies the constraints.
 
 ```
 
 The variable $g$ in $\lpmpdual$ is often called **gain** while the vector of $y$-variables is called **bias.** This is because it provides information on how much does the payoff (under some strategy) accumulated up to a certain step deviate from the estimate provided by the mean-payoff value of that strategy. This is illustrated in the following lemma, which forms the first step of our analysis. 
 
-```{prf:lemma} needs title 5-lem:dual-bound-step
+```{prf:lemma} NEEDS TITLE 5-lem:dual-bound-step
 :label: 5-lem:dual-bound-step
 :nonumber:
 
@@ -198,7 +198,7 @@ By induction on $n$. For $n=0$, both sides are equal to 0. Now assume that the i
 
 \begingroup
 \allowdisplaybreaks
-\noindent
+
 We now obtain a bound for the third term on the RHS of~\eqref{5-eq:mpdual-1}. In the following, we denote by $\Pi_n$ the set of all plays of length $n$. Then we have
 \begin{align*}
 \expv^\sigma_v [Y^{(n)}]&= \sum_{v\in\vertices}  \vec{y}_v\cdot\probm^\sigma_{\vinit}(\ing(\pi_n)=v)
@@ -217,7 +217,7 @@ Plugging this into~\eqref{5-eq:mpdual-1} yields the desired $\expv^\sigma_{\vini
 ```
 
 
-```{prf:corollary} needs title 5-cor:mp-value-bound
+```{prf:corollary} NEEDS TITLE 5-cor:mp-value-bound
 :label: 5-cor:mp-value-bound
 :nonumber:
 
@@ -234,7 +234,7 @@ By  {prf:ref}`5-lem:dual-bound-step` we have, for every $n\geq 0$, that $\expv^\
 ```
 
 
-```{prf:corollary} needs title 5-cor:lpmp-optimal-exists
+```{prf:corollary} NEEDS TITLE 5-cor:lpmp-optimal-exists
 :label: 5-cor:lpmp-optimal-exists
 :nonumber:
 

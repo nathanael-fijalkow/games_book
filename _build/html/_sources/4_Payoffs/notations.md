@@ -42,8 +42,8 @@
 \newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
 \newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
 \newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\renewcommand{\Win}{\textrm{Win}} 
-\renewcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Win}{\textrm{Win}} 
+\newcommand{\Lose}{\textrm{Lose}} 
 \newcommand{\Value}{\textrm{val}} 
 \newcommand{\ValueE}{\textrm{val}_\mEve} 
 \newcommand{\ValueA}{\textrm{val}_\mAdam}
@@ -84,7 +84,7 @@ All the quantitative objectives we will study in this chapter are Borel, hence d
 $\ValueE^\game(v) = \ValueA^\game(v)$ for all vertices $v$. 
 We thus let $\Value^\game(v)$ denote this value (and $\Value(v)$ if $\Game$ is clear from the context).
 
-For complexity statements we use the unit cost RAM model as defined in~Section {ref}`1-sec:computation`.
+For complexity statements we use the unit cost RAM model as defined in Section {ref}`1-sec:computation`.
 For each objective we introduce we will discuss what is the relevant machine word size, both we can already make some preliminary remarks.
 Let us consider a game $\Game$ with an objective using the set of colours $C = \Z$
 and let $W$ denote the largest weight appearing in $\Game$ in absolute value.

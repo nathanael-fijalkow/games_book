@@ -5,7 +5,7 @@ As we will see, the key feature of the Zielonka tree of a Muller objective $\Mul
 \subsection*{The latest appearance record}
 Muller objectives can be reduced to parity objectives, see~\cref{1-sec:reductions} for an introduction to reductions between objectives.
 
-\begin{theorem}
+\begin{theorem}[Latest Appeareance Record (LAR) construction]
 \label{2-thm:LAR}
 Let $C = [1,d]$ be a set of colours and $\Muller(\F)$ a Muller objective.
 There exists a deterministic parity automaton $\LAR_\F$ over the alphabet $C$ defining $\Muller(\F)$.
@@ -165,7 +165,7 @@ The numbers on the right hand side and the dashed nodes (describing a branch) ar
 The first use of the Zielonka tree is to induce an improved reduction from Muller to parity objectives.
 A branch in a tree is a path from the root to a leaf.
 
-\begin{theorem}
+\begin{theorem}[Reduction from Muller to parity games using the Zielonka tree automaton]
 \label{2-thm:reduction_parity_Zielonka_tree}
 Let $C = [1,d]$ be a set of colours and $\Muller(\F)$ a Muller objective.
 There exists a deterministic parity automaton $\Zielonka_\F$ over the alphabet $C$ defining $\Muller(\F)$.
@@ -232,7 +232,8 @@ Since solving parity games is in $\NP \cap \coNP$,
 if we represent the Muller condition by a Zielonka tree then the automaton constructed in \cref{2-thm:reduction_parity_Zielonka_tree}
 is of polynomial size, implying the following result.
 
-\begin{theorem}
+\begin{theorem}[Complexity of solving Muller games represented by the Zielonka tree]
+\label{2-thm:complexity_Muller_games_representation_Zielonka_tree}
 Solving Muller games where the condition is represented by a Zielonka tree is in $\NP \cap \coNP$.
 \end{theorem}
 
@@ -241,7 +242,7 @@ Hence it is tempting to represent a Muller condition not with its Zielonka tree 
 where nodes labelled by the same set of colours are identified.
 However with this representation solving Muller games is again $\PSPACE$-complete:
 
-\begin{theorem}
+\begin{theorem}[Complexity of solving Muller games represented by the Zielonka DAG]
 \label{2-thm:Muller_games_DAG}
 Solving Muller games where the condition is represented by a Zielonka DAG is $\PSPACE$-complete.
 \end{theorem}
@@ -257,7 +258,8 @@ Note that a node in the Zielonka tree $T_\F$ represents another Muller objective
 For instance in \cref{2-fig:Zielonka_tree_example} the node labelled $\set{1,2,3}$ corresponds to $\Muller(\F')$ with
 $\F' = \set{\set{2}, \set{3}, \set{1,2}, \set{1,3}}$.
 
-\begin{definition}
+\begin{definition}[Memory requirements for Muller objectives]
+\label{2-def:memory_requirements_Muller_objectives}
 Let $\Muller(\F)$ be a Muller objective over the set of colours $C$.
 We define $m_\F$ by induction:
 \begin{itemize}
@@ -275,10 +277,10 @@ For the Muller objective represented in \cref{2-fig:Zielonka_tree_example}, we h
 In the following result we consider \textit{partial} colouring functions: $\col : V \to C \cup \set{\emptyset}$,
 meaning that some vertices can be left uncolored (formally, labelled $\emptyset$).
 
-\begin{theorem}
+\begin{theorem}[Memory requirements for Muller games]
 \label{2-thm:characterisation_Zielonka_tree}
 Muller objectives $\Muller(\F)$ are determined with finite memory strategies of size $m_\F$
-for games with \textit{partial colouring functions}\footnote{See \cref{2-rmk:finite_infinite} for the case of infinite games.}.
+for games with \textit{partial colouring functions}.
 This bound is tight: there exists a game with objective $\Muller(\F)$ where Eve wins using $m_\F$ memory states
 but not with less.
 \end{theorem}
@@ -311,9 +313,6 @@ but no positional winning strategy.}
 \label{2-fig:lower_bound_zielonka}
 \end{figure}
 
-
-
-
 We will not construct the lower bound, meaning the game where Eve needs $m_\F$ memory states to win.
 However, we will now prove the upper bound.
 To this end we revisit the recursive algorithm presented in \cref{2-lem:Muller_even} and \cref{2-lem:Muller_odd}.
@@ -323,7 +322,8 @@ for solving a Muller game, it is enough to recursively solve the induced Muller 
 corresponding to the children of the root of the Zielonka tree.
 The following lemma is an improved variant of \cref{2-lem:Muller_even}.
 
-\begin{lemma}\label{2-lem:McNaughton_Zielonka_even}
+\begin{lemma}[Fixed point characterisation of the winning regions for Muller games using the Zielonka tree]
+\label{2-lem:McNaughton_Zielonka_even}
 Let $\Game$ be a Muller game with objective $\Muller(\F)$ such that $C \in \F$.
 Let $C_1, \dots, C_k$ be the maximal subsets of $C$ such that $C_i \notin \F$.
 We let $\F_1,\dots,\F_k$ be the corresponding induced Muller objectives,
@@ -394,7 +394,8 @@ Since $\tau$ is a disjoint union of strategies the memory can be reused so we ca
 
 The corresponding lemma when $C \notin \F$ is stated below, its proof is analogous to the previous one by swapping the two players.
 
-\begin{lemma}\label{2-lem:McNaughton_Zielonka_odd}
+\begin{lemma}[Dual fixed point characterisation of the winning regions for Muller games using the Zielonka tree]
+\label{2-lem:McNaughton_Zielonka_odd}
 Let $\Game$ be a Muller game such that $C \notin \F$.
 Let $C_1, \dots, C_k$ be the maximal subsets of $C$ such that $C_i \in \F$.
 We let $\F_1,\dots,\F_k$ be the corresponding induced Muller objectives,
@@ -450,7 +451,8 @@ $C = \set{G_1,R_1,G_2,R_2,G_3,R_3}$.}
 
 Recall that we defined Streett objectives using closure under union, and Rabin objectives as the complement of Streett objectives.
 
-\begin{theorem}
+\begin{theorem}[Characterisation of positionally determined Muller objectives]
+\label{2-thm:characterisation_positionally_determined_Muller_objectives}
 Let $\Muller(\F)$ be a Muller objective.
 \begin{itemize}
 	\item $\Muller(\F)$ is positionally determined if and only if $\Muller(\F)$ is a Rabin objective;

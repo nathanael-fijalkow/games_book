@@ -42,8 +42,8 @@
 \newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
 \newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
 \newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\renewcommand{\Win}{\textrm{Win}} 
-\renewcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Win}{\textrm{Win}} 
+\newcommand{\Lose}{\textrm{Lose}} 
 \newcommand{\Value}{\textrm{val}} 
 \newcommand{\ValueE}{\textrm{val}_\mEve} 
 \newcommand{\ValueA}{\textrm{val}_\mAdam}
@@ -86,8 +86,7 @@ We extend the algorithm to Muller games in Section {ref}`2-sec:muller`, and disc
 Finally, Section {ref}`2-sec:zielonka` is devoted to the combinatorial notion of the Zielonka tree, 
 which beautifully explains the memory requirements for Muller games and gives additional insights into the structures of Rabin and parity objectives.
 
-```{admonition} Remark
-\label{2-rmk:finite_infinite}
+```{admonition} Remark 
 As in the rest of the book unless otherwise specified we consider finite games.
 However all positionality and finite memory determinacy results proved in this chapter hold for infinite games.
 In all cases the proofs we give use the finiteness of the games.

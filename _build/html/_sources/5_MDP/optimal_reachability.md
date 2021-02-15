@@ -75,8 +75,8 @@
 \newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
 \newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
 \newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\renewcommand{\Win}{\textrm{Win}} 
-\renewcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Win}{\textrm{Win}} 
+\newcommand{\Lose}{\textrm{Lose}} 
 \newcommand{\Value}{\textrm{val}} 
 \newcommand{\ValueE}{\textrm{val}_\mEve} 
 \newcommand{\ValueA}{\textrm{val}_\mAdam}
@@ -120,7 +120,7 @@ $$
 
 
 
-```{prf:lemma} needs title 5-lem:quant-reach-operator-fixed-point
+```{prf:lemma} NEEDS TITLE 5-lem:quant-reach-operator-fixed-point
 :label: 5-lem:quant-reach-operator-fixed-point
 :nonumber:
 
@@ -138,7 +138,7 @@ In addition, it can be easily checked that the set $[0,1]^{\vertices}$ is a dire
 
 We denote by $\Reach^k(\Win)$ the set of all plays that reach $\Win$ within the first $k$ steps. Clearly, for each $\sigma$ and $\vinit$ we have $\lim_{k \rightarrow \infty} \probm^\sigma_{\vinit}(\Reach^k(\Win)) = \probm^\sigma_{\vinit}(\Reach(\Win))$.
 
-```{prf:lemma} needs title 5-lem:quant-reach-step-operator
+```{prf:lemma} NEEDS TITLE 5-lem:quant-reach-step-operator
 :label: 5-lem:quant-reach-step-operator
 :nonumber:
 
@@ -158,7 +158,7 @@ The first part can be proved by a straightforward induction, the second part fol
 Similarly to  {prf:ref}`5-def:disc-safe-act` we say that an action $a$ is $\vec{x}$-safe in $v$ if it holds that $a= \underset{a' \in \actions}{\arg\max} \sum_{u\in \vertices} 
 \probTranFunc(u\mid v,a') \cdot\vec{x}_u.$ Recall that a strategy $\sigma$ is $\vec{x}$-safe if all actions selected in a vertex with non-zero probability are $\vec{x}$-safe in that vertex. 
 
-```{prf:lemma} needs title 5-lem:quant-reach-value-distribution
+```{prf:lemma} NEEDS TITLE 5-lem:quant-reach-value-distribution
 :label: 5-lem:quant-reach-value-distribution
 :nonumber:
 
@@ -178,7 +178,7 @@ By an easy induction on $n$, using the fact that target states are  sinks.
 
 Now an analogue of  {prf:ref}`5-lem:disc-val-lower` does not hold for reachability: a strategy playing only $\vec{x}^*$-safe actions might not be optimal (indeed, it might not reach $\Win$ at all). Instead, we proceed as follows: Let $\mdp^*$ be an MDP in which we disable, in each state $v$, all actions that are not $\vec{x}^*$-safe in $v$. This can be formally done by adding a new non-target sink vertex $ \mathit{sink} $, an edge from each original vertex to $ \mathit{sink} $, and stipulating that each action $a$ that is disabled in a vertex $ v $ chooses, when played in $ v $ in $ \mdp^*$, the edge leading to $ \mathit{sink} $ with probability 1. 
 
-```{prf:lemma} needs title 5-lem:quant-reach-pruning-unsafe
+```{prf:lemma} NEEDS TITLE 5-lem:quant-reach-pruning-unsafe
 :label: 5-lem:quant-reach-pruning-unsafe
 :nonumber:
 
@@ -199,7 +199,7 @@ The strategy $\sigma'$ initially mimics $\sigma$ up to the first point in time w
 ```
 
 
-```{prf:lemma} needs title 5-lem:quant-reach-strat-contsruction
+```{prf:lemma} NEEDS TITLE 5-lem:quant-reach-strat-contsruction
 :label: 5-lem:quant-reach-strat-contsruction
 :nonumber:
 
@@ -226,20 +226,20 @@ x_v &\geq \sum_{u\in \vertices} \probTranFunc(u\mid v,a)\cdot x_u&\text{for all 
 \label{5-fig:reach-lp}
 \end{figure}
 
-```{prf:lemma} needs title and label 
+```{prf:lemma} NEEDS TITLE AND LABEL 
 \label{5-lem:quant-reach-lp}
-The linear program $\lpreach$ in  {numref}`5-fig:reach-lp` has a unique optimal solution 
+The linear program $\lpreach$ in {numref}`5-fig:reach-lp` has a unique optimal solution 
 $\bar{\vec{x}}$ such that $\bar{\vec{x}} = \vec{x}^*$.
  
 :label: 
 \label{5-lem:quant-reach-lp}
-The linear program $\lpreach$ in  {numref}`5-fig:reach-lp` has a unique optimal solution 
+The linear program $\lpreach$ in {numref}`5-fig:reach-lp` has a unique optimal solution 
 $\bar{\vec{x}}$ such that $\bar{\vec{x}} = \vec{x}^*$.
 
 :nonumber:
 
 \label{5-lem:quant-reach-lp}
-The linear program $\lpreach$ in  {numref}`5-fig:reach-lp` has a unique optimal solution 
+The linear program $\lpreach$ in {numref}`5-fig:reach-lp` has a unique optimal solution 
 $\bar{\vec{x}}$ such that $\bar{\vec{x}} = \vec{x}^*$.
 
 ```
@@ -251,5 +251,6 @@ Clearly $\vec{x}^*$ is a feasible solution of $\lpreach$. Similarly to  {prf:ref
 
 ```
 
-\noindent
+
+
 Lemmas \ref{5-lem:quant-reach-strat-contsruction} and \ref{5-lem:quant-reach-lp} give us  {prf:ref}`5-thm:quant-reachability-main`.

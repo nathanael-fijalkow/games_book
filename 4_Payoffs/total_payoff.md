@@ -42,8 +42,8 @@
 \newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
 \newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
 \newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\renewcommand{\Win}{\textrm{Win}} 
-\renewcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Win}{\textrm{Win}} 
+\newcommand{\Lose}{\textrm{Lose}} 
 \newcommand{\Value}{\textrm{val}} 
 \newcommand{\ValueE}{\textrm{val}_\mEve} 
 \newcommand{\ValueA}{\textrm{val}_\mAdam}
@@ -116,20 +116,23 @@ defined by Gimbert and Zielonka {cite}`Gimbert&Zielonka:2004`. They define
 sufficient conditions for a quantitative objective to fulfil the
 positional determinacy.
 
-```{prf:definition} needs title 4-def:fairly-mixing
+```{prf:definition} NEEDS TITLE 4-def:fairly-mixing
 :label: 4-def:fairly-mixing
 :nonumber:
 
   A payoff $\mathsf{P}\colon C^\omega\to \overline R$ is **fairly
     mixing** if:
-  \begin{enumerate}
-  *  for all $x\in C^+$, $y_0,y_1\in C^\omega$, if
+  
+  
+1.  for all $x\in C^+$, $y_0,y_1\in C^\omega$, if
     $\mathsf{P}(y_0)\leq \mathsf{P}(y_1)$ then
     $\mathsf{P}(xy_0)\leq \mathsf{P}(xy_1)$;
-  *  for all $x\in C^+$, $y\in C^\omega$,
+  
+2.  for all $x\in C^+$, $y\in C^\omega$,
     $\min(\mathsf{P}(x^\omega),\mathsf{P}(y)) \leq \mathsf{P}(xy)\leq
     \max(\mathsf{P}(x^\omega),\mathsf{P}(y))$;
-  *  if $(x_i)_{i\in \N}$ is a sequence of non-empty words
+  
+3.  if $(x_i)_{i\in \N}$ is a sequence of non-empty words
     $x_i\in C^+$ such that $x_0x_1x_2\cdots$ contains only a finite
     number of colours, and $I\uplus J=\N$ is a partition of $\N$ into two
     infinite sets, then
@@ -144,13 +147,13 @@ $$\inf(\mathcal{P}_I\cup \mathcal{P}_J) \leq
     I\}$ and
     $\mathcal{P}_J=\{\mathsf{P}(x_{j_0}x_{j_1}x_{j_2}\cdots)\mid
     j_k\in J\}$.
-  \end{enumerate}
+  
 
 ```
 
 It is not difficult to convince oneself that
 
-```{prf:proposition} needs title 4-prop:objectives-fairly
+```{prf:proposition} NEEDS TITLE 4-prop:objectives-fairly
 :label: 4-prop:objectives-fairly
 :nonumber:
 
@@ -166,7 +169,7 @@ Then, a rather technical proof by induction on the number of vertices
 in the arena allows one to get the following strong result:
 {cite}`Gimbert&Zielonka:2004`
 
-```{prf:theorem} needs title 4-thm:fairly-mixing
+```{prf:theorem} NEEDS TITLE 4-thm:fairly-mixing
 :label: 4-thm:fairly-mixing
 :nonumber:
 
@@ -176,7 +179,7 @@ in the arena allows one to get the following strong result:
 ```
 
 
-```{prf:corollary} needs title 4-cor:TP-determinacy
+```{prf:corollary} NEEDS TITLE 4-cor:TP-determinacy
 :label: 4-cor:TP-determinacy
 :nonumber:
 
@@ -218,7 +221,7 @@ pseudopolynomial size shortest path game---still with the same
 costs---resulting in a pseudopolynomial time algorithm.
 {cite}`Brihaye&Geeraerts&HaddadA&Monmege:2017`
 
-```{prf:theorem} needs title 4-thm:TP-optimal-strategies
+```{prf:theorem} NEEDS TITLE 4-thm:TP-optimal-strategies
 :label: 4-thm:TP-optimal-strategies
 :nonumber:
 

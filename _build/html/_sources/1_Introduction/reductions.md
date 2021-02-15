@@ -31,8 +31,8 @@
 \newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
 \newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
 \newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\renewcommand{\Win}{\textrm{Win}} 
-\renewcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Win}{\textrm{Win}} 
+\newcommand{\Lose}{\textrm{Lose}} 
 \newcommand{\Value}{\textrm{val}} 
 \newcommand{\ValueE}{\textrm{val}_\mEve} 
 \newcommand{\ValueA}{\textrm{val}_\mAdam}
@@ -66,7 +66,6 @@ Automata operate at the level of objectives, independently of the colouring func
 while memory structures work at the level of conditions, hence depend on the graph.
 
 ## Reductions between objectives using automata
-
 Let $\Omega$ a qualitative objective over the set of colours $C$, and $\Omega'$ a second qualitative objective.
 We say that $\Omega$ reduces to $\Omega'$ if there exists a **deterministic** automaton $\Automaton$ over the alphabet $C$ with acceptance objective $\Omega'$ defining $\Omega$, **i.e.** such that $L(\Automaton) = \Omega$.
 
@@ -113,7 +112,6 @@ Reductions between objectives using automata are very general:
 they operate at the level of objectives and therefore completely ignore the arena.
 
 ## Reductions between conditions using memory structures
-
 Reductions between conditions using memory structures extend the previous ones, the main difference being that 
 the memory structure reads the sequences of edges and produces a sequence of memory states.
 The edges contain more information than the sequence of colours (which is what the automaton reads), 

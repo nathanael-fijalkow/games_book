@@ -31,8 +31,8 @@
 \newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
 \newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
 \newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\renewcommand{\Win}{\textrm{Win}} 
-\renewcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Win}{\textrm{Win}} 
+\newcommand{\Lose}{\textrm{Lose}} 
 \newcommand{\Value}{\textrm{val}} 
 \newcommand{\ValueE}{\textrm{val}_\mEve} 
 \newcommand{\ValueA}{\textrm{val}_\mAdam}
@@ -80,7 +80,6 @@ We assume familiarity with complexity theory and the notions of graphs and autom
 The book is divided in five parts each including two or three chapters. At the end of each chapter is a section dedicated to bibliographic references. This chapter (Chapter {ref}`1-chap:introduction`) introduces some notations and notions used throughout the book and Chapter {ref}`2-chap:regular` gives some fundamental results useful in most chapters. After that and to some extent each part is independent. As much as possible we avoid back references but some chapters naturally build on the previous ones in which case we clearly indicate this.
 
 ## Usual notations
-
 We write $[i,j]$ for the interval $\set{i,i+1,\dots,j-1,j}$, and use parentheses to exclude extremal values,
 so $[i,j)$ is $\set{i,i+1,\dots,j-1}$.
 

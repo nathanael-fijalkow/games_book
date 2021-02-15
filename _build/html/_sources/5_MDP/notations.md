@@ -75,8 +75,8 @@
 \newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
 \newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
 \newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\renewcommand{\Win}{\textrm{Win}} 
-\renewcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Win}{\textrm{Win}} 
+\newcommand{\Lose}{\textrm{Lose}} 
 \newcommand{\Value}{\textrm{val}} 
 \newcommand{\ValueE}{\textrm{val}_\mEve} 
 \newcommand{\ValueA}{\textrm{val}_\mAdam}
@@ -129,7 +129,7 @@ sets.
 
 *  $\probm$ is a probability measure on $\sigmaAlg$, i.e. a function
 $\probm\colon \sigmaAlg\rightarrow[0,1]$ such that:
-\begin{enumerate}
+
 *  $\probm(\emptyset)=0$;
 
 *  for all $A\in \sigmaAlg$ it holds $\probm(\sampleSpace \setminus
@@ -137,7 +137,7 @@ A)=1-\probm(A)$; and
 
 *  for all countable sequences of pairwise disjoint sets $A_1,A_2,\dots \in \sigmaAlg$ (i.e., $A_i \cap A_j = \emptyset$ for all $i\neq j$)
 we have $\sum_{i=1}^{\infty}\probm(A_i)=\probm(\bigcup_{i=1}^{\infty} A_i)$.
-\end{enumerate}
+
 
 ```
 
@@ -169,6 +169,7 @@ In the setting of MDPs it is technically convenient to encode regular objectives
 > **Plays and strategies in MDPs**
 
 
+
  The way in which a play is generated in an MDP is similar to games, but now encompasses a certain degree of randomness. There is a single player, say Eve, who controls all the vertices. Eve's interaction with the world described by an MDP is probabilistic. One reason is the stochasticity of the transition function, the other is the fact that in MDP settings, it is usually permitted for Eve to use randomised strategies. Formally, a randomised strategy is a function $\sigma : E^* \to \dist(A)$, which to each finite play assigns a probability distribution over actions. 
  We typically shorten $\sigma(\play)(a)$ to $\sigma(a\mid \play)$.
  
@@ -179,6 +180,7 @@ Now a play in an MDP is produced as follows: in each step, when the finite play 
 
 
 > **Formal semantics of MDPs**
+
 
 Formally, to each MDP $\mdp$, each (Eve's) strategy $\sigma$ in $\mdp$, and 
 each initial vertex $\vinit$ we assign a probability space 
@@ -245,6 +247,7 @@ In the standard MDP literature {cite}`Puterman:2005`, the plays are often define
 
 > **Objectives in MDPs**
 
+
 Similarly to plays, the notions of both qualitative and quantitative objectives 
 are inherited from the non-stochastic world of games. However, since plays in 
 MDPs are generated stochastically, even for a fixed strategy $\sigma$ there is 
@@ -292,6 +295,7 @@ Depending on the concrete quantitative objective and on the shape of $\sigma$, t
 
 
 > **Optimal strategies and decision problems**
+
 
 Let us fix an MDP $\mdp$ and an objective given by a random variable 
 $\quantObj$. The value of a vertex $v\in\vertices$ is the number 

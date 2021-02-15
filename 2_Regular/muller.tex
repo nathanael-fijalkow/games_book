@@ -25,7 +25,7 @@ We say that $\F$ is closed under union if whenever $X,Y \in \F$ then $X \cup Y \
 Let us define ""Streett"" objectives as the subclass of Muller objectives given by $\F$ closed under union.
 The following purely combinatorial lemma gives a nice characterisation of these objectives.
 
-\begin{lemma}
+\begin{lemma}[Characterisation of Streett among Muller objectives]
 \label{2-lem:characterisation_Streett}
 A collection $\F \subseteq 2^C$ is closed under union if and only if there exists a set of pairs $(R_i,G_i)_{i \in [1,d]}$
 with $R_i,G_i \subseteq C$ such that $X \in \F$ is equivalent to for all $i \in [1,d]$, 
@@ -59,7 +59,7 @@ The ""Rabin"" objectives are the complement of the Streett objectives:
 \]
 
 \subsection*{McNaughton algorithm: an exponential time algorithm for Muller games}
-\begin{theorem}[Muller games]
+\begin{theorem}[Finite memory determinacy and complexity for Muller games]
 \label{2-thm:muller}
 Muller objectives are determined with finite memory strategies of size $d!$\footnote{See \cref{2-rmk:finite_infinite} for the case of infinite games.}.
 There exists an algorithm for computing the winning regions of Muller games in exponential time,
@@ -73,7 +73,7 @@ yields the algorithm we presented above.
 
 The following lemma induces the recursive algorithm for computing the winning regions of Muller games.
 
-\begin{lemma}
+\begin{lemma}[Fixed point characterisation of the winning regions for Muller games]
 \label{2-lem:Muller_even}
 Let $\Game$ be a Muller game such that $C \in \F$.
 For each $c \in C$, let $\Game_c$ be the subgame of $\Game$ induced by $V \setminus \AttrE(c)$.
@@ -125,7 +125,7 @@ implying that $\sigma$ is winning from $\WE(\Game')$ in $\Game$.
 To get the full algorithm we need the analogous lemma for the case where $C \notin \F$.
 We do not prove it as it is the exact dual of the previous lemma, and the proof is the same swapping the two players.
 
-\begin{lemma}
+\begin{lemma}[Dual fixed point characterisation of the winning regions for Muller games]
 \label{2-lem:Muller_odd}
 Let $\Game$ be a Muller game such that $C \notin \F$.
 For each $c \in C$, let $\Game_c$ be the subgame of $\Game$ induced by $V \setminus \AttrA(c)$.
@@ -218,9 +218,12 @@ using a variant of this algorithm.
 \end{algorithm}
 
 \subsection*{Positional determinacy for Rabin games}
-\begin{theorem}\label{2-thm:Rabin_positional_determinacy}
+
+\begin{theorem}[Positional determinacy for Rabin games]
+\label{2-thm:Rabin_positional_determinacy}
 Rabin games are uniformly "positionally determined".
 \end{theorem}
+
 \Cref{2-thm:Rabin_positional_determinacy} holds for infinite games.
 However the proof we give here only applies to finite games and does not easily extend to infinite ones.
 A different approach is required to obtain the positionality result for infinite games, see \cref{2-thm:characterisation_Zielonka_tree}.
@@ -282,13 +285,14 @@ The proof of \cref{2-thm:Rabin_positional_determinacy} yields a stronger result:
 \end{array}
 \]
 
-\begin{theorem}
+\begin{theorem}[Submixing property implies uniform positional determinacy]
 \label{2-thm:submixing_positional}
 Every "prefix independent" "submixing" objective is uniformly "positionally determined" over finite arenas.
 \end{theorem}
 
 \subsection*{The complexity of solving Rabin games}
-\begin{theorem}
+
+\begin{theorem}[Complexity of solving Rabin games]
 \label{2-thm:Rabin_complexity}
 Solving Rabin games is $\NP$-complete.
 \end{theorem}
@@ -454,7 +458,8 @@ There exists a valuation $\mathbf{v}$ which satisfies each literal chosen by Eve
 \end{figure}
 
 \subsection*{The complexity of solving Muller games}    
-\begin{theorem}
+
+\begin{theorem}[Complexity of solving Muller games]
 \label{2-thm:complexity_Muller}
 Solving Muller games is $\PSPACE$-complete.
 \end{theorem}

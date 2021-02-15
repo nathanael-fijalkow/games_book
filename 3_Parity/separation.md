@@ -36,8 +36,8 @@
 \newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
 \newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
 \newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\renewcommand{\Win}{\textrm{Win}} 
-\renewcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Win}{\textrm{Win}} 
+\newcommand{\Lose}{\textrm{Lose}} 
 \newcommand{\Value}{\textrm{val}} 
 \newcommand{\ValueE}{\textrm{val}_\mEve} 
 \newcommand{\ValueA}{\textrm{val}_\mAdam}
@@ -68,7 +68,6 @@
 ```
 
 ## The separation framework
-
 We describe a general approach for reducing parity games to safety games.
 Section {ref}`1-sec:reductions` constructs reductions between objectives using automata: 
 in the case at hand parity reduces to safety if there exists a deterministic automaton $\Automaton$ over the alphabet $[1,d]$
@@ -139,7 +138,7 @@ $$
 \end{array}}.
 $$
 
-The definition of $(n,d)$-separating automata is illustrated in  {numref}`3-fig:separation` and can be summarised
+The definition of $(n,d)$-separating automata is illustrated in {numref}`3-fig:separation` and can be summarised
 as $\Parity_{\mid n} \subseteq L(\Automaton) \subseteq \Parity$.
 
 ```{figure} ./../3-fig:separation.png
@@ -181,7 +180,7 @@ $\WE(\arena,L(\Automaton)[\col]) \subseteq \WE(\game)$.
 
 ```
 
-The last step is to explain how to solve a game with objective $L(\Automaton)$, as already discussed in~Section {ref}`1-sec:reductions`.
+The last step is to explain how to solve a game with objective $L(\Automaton)$, as already discussed in Section {ref}`1-sec:reductions`.
 Let $\Game = (\arena, L(\Automaton)[\col])$.
 We construct a safety game by making the synchronised product of the arena with the automaton:
 
@@ -262,14 +261,34 @@ p_{j_k}$ or we have that $p_l \le p_{j_{k+1}}$.
 $p_t$ is dominated by $p_{j_{2^i}}$, meaning that for all $l > j_{2^i}$ we have
 $p_l \le p_{j_{2^i}}$.
 
+\begin{figure}[!ht]
+    \begin{center}
+    \begin{tikzpicture}
 
-```{figure} ./../3-fig:isequence.png
-:name: 3-fig:isequence
-:align: center
-A $2$-sequence.
-```
+    \tikzstyle{seqc}=[draw, circle]
 
- {numref}`3-fig:isequence` gives an example of a $2$-sequence. The circled
+    \node [seqc] (1) {\Large $2$};
+    \node [right of=1, node distance=1cm] (2) {\Large $1$};
+    \node [seqc, right of=2, node distance=1cm] (3) {\Large $4$};
+    \node [right of=3, node distance=1cm] (4) {\Large $3$};
+    \node [right of=4, node distance=1cm] (5) {\Large $1$};
+    \node [seqc, right of=5, node distance=1cm] (6) {\Large $2$};
+    \node [seqc, right of=6, node distance=1cm] (7) {\Large $8$};
+    \node [right of=7, node distance=1cm] (8) {\Large $7$};
+    \node [right of=8, node distance=1cm] (9) {\Large $1$};
+
+    \path[->,thick,bend left=45]
+        (1) edge (3)
+        (3) edge (6)
+        (6) edge (7)
+        ;
+    \end{tikzpicture}
+    \end{center}
+    \caption{A $2$-sequence.}
+\label{3-fig:isequence}
+\end{figure}
+
+{numref}`3-fig:isequence` gives an example of a $2$-sequence. The circled
 priorities are the indices used in the sequence. Note that there are exactly
 $2^2 = 4$ indices used, and that every circled priority is even. Inner
 domination is satisfied because every priority that is between two circled
@@ -349,13 +368,38 @@ $i$-sequence, the record data structure **does not** store the $2^i$ indices
 of this $i$-sequence, it only stores the priority of the final index of that
 sequence.
 
-```{figure} ./../3-fig:ds.png
-:name: 3-fig:ds
-:align: center
-An example sequence that corresponds to the record $\siblank 8 4 2$.
-```
+\begin{figure}[!ht]
+    \begin{center}
+    \begin{tikzpicture}
+    \tikzstyle{seqc}=[draw, circle]
+    \node [seqc,red] (1) {\Large $2$};
+    \node [right of=1, node distance=0.9cm] (2) {\Large $1$};
+    \node [seqc, red, right of=2, node distance=0.9cm] (3) {\Large $4$};
+    \node [seqc, red, right of=3, node distance=0.9cm] (4) {\Large $2$};
+    \node [seqc, red, right of=4, node distance=0.9cm] (5) {\Large $8$};
+    \node [right of=5, node distance=0.9cm] (6) {\Large $7$};
+    \node [seqc, blue, right of=6, node distance=0.9cm] (7) {\Large $2$};
+    \node [right of=7, node distance=0.9cm] (8) {\Large $1$};
+    \node [seqc, blue, right of=8, node distance=0.9cm] (9) {\Large $4$};
+    \node [right of=9, node distance=0.9cm] (10) {\Large $1$};
+    \node [seqc, grey, right of=10, node distance=0.9cm] (11) {\Large $2$};
 
- {numref}`3-fig:ds` shows an example sequence that is consistent with the
+    \path[->,thick,bend left=45,red]
+        (1) edge (3)
+        (3) edge (4)
+        (4) edge (5)
+        ;
+
+    \path[->,thick,bend left=45,blue]
+        (7) edge (9)
+        ;
+    \end{tikzpicture}
+    \end{center}
+\caption{An example sequence that corresponds to the record $\siblank 8 4 2$.}
+\label{3-fig:ds}
+\end{figure}
+
+{numref}`3-fig:ds` shows an example sequence that is consistent with the
 record that sets $b_3 = \siblank$, $b_2 = 8$, $b_1 = 4$, and $b_0 = 2$.
 The red $2$-sequence is represented by $b_2 = 8$, which is the last priority of
 the $2$-sequence. The blue $1$-sequence starts after the end of the
@@ -398,21 +442,47 @@ p & \text{if $j = i$,} \\
 \end{equation*}
 Again, if there is no such index $i$, then the record is not modified.
 
+\begin{figure}[!ht]
+    \begin{center}
+    \begin{tikzpicture}
+    \tikzstyle{seqc}=[draw, circle]
+    \node [seqc] (1) {\Large $2$};
+    \node [right of=1, node distance=0.9cm] (2) {\Large $1$};
+    \node [seqc, right of=2, node distance=0.9cm] (3) {\Large $4$};
+    \node [seqc, right of=3, node distance=0.9cm] (4) {\Large $2$};
+    \node [seqc, right of=4, node distance=0.9cm] (5) {\Large $8$};
+    \node [right of=5, node distance=0.9cm] (6) {\Large $7$};
+    \node [seqc, right of=6, node distance=0.9cm] (7) {\Large $2$};
+    \node [right of=7, node distance=0.9cm] (8) {\Large $1$};
+    \node [seqc, right of=8, node distance=0.9cm] (9) {\Large $4$};
+    \node [right of=9, node distance=0.9cm] (10) {\Large $1$};
+    \node [seqc, right of=10, node distance=0.9cm] (11) {\Large $2$};
+    \node [seqc, right of=11, node distance=0.9cm] (12) {\Large $4$};
+        
+    \path[->,thick,bend left=45]
+        (1) edge (3)
+        (3) edge (4)
+        (4) edge (5)
+        (5) edge (7)
+        (7) edge (9)
+        (9) edge (11)
+        (11) edge (12)
+        ;
 
-```{figure} ./../3-fig:ds1.png
-:name: 3-fig:ds1
-:align: center
-An example of a Step 1 update applied to the sequence and record from {numref
-```
+    \end{tikzpicture}
+    \end{center}
+    \caption{An example of a Step 1 update applied to the sequence and record from {numref}`3-fig:ds`}
+\label{3-fig:ds1}
+\end{figure}
 Intuitively, Step 1 attempts to combine the $i$-sequences in the existing record
 into a longer $i$-sequence. Suppose that we have read the sequence shown in {numref}`3-fig:ds`, 
 that we have compute the record $\siblank 8 4 2$, and that the next priority in the sequence is $4$.
- {numref}`3-fig:ds1` shows the result of applying Step 1 to this situation.
+{numref}`3-fig:ds1` shows the result of applying Step 1 to this situation.
 Observe that $3$ is the largest index $i$ such that for all $j < i$ we have that
 $b_j$ is even, so Step 1 will output the record $4 \siblank \siblank \siblank$.
 
 So in this circumstance, Step 1 claims that we have now seen a $3$-sequence.
- {numref}`3-fig:ds1` shows why this is correct: the $0$-sequence of $b_0$, the
+{numref}`3-fig:ds1` shows why this is correct: the $0$-sequence of $b_0$, the
 $1$-sequence of $b_1$, and the $2$-sequence of $b_2$ can be merged together,
 along with the new priority, to create a $3$-sequence. Observe that inner
 domination in this new $3$-sequence is satisfied due to the outer domination
@@ -422,11 +492,36 @@ at priority $2$, and we know that $8$ must dominate all priorities between the
 $8$ and the $2$ because $8$ is required to dominate **all** priorities that
 follow it.
 
-```{figure} ./../3-fig:ds2.png
-:name: 3-fig:ds2
-:align: center
-An example of a Step 2 update applied to the sequence and record from {numref
-```
+\begin{figure}[!ht]
+    \begin{center}
+    \begin{tikzpicture}
+    \tikzstyle{seqc}=[draw, circle]
+    \node [seqc] (1) {\Large $2$};
+    \node [right of=1, node distance=0.9cm] (2) {\Large $1$};
+    \node [seqc, right of=2, node distance=0.9cm] (3) {\Large $4$};
+    \node [seqc, right of=3, node distance=0.9cm] (4) {\Large $2$};
+    \node [right of=4, node distance=0.9cm] (5) {\Large $8$};
+    \node [right of=5, node distance=0.9cm] (6) {\Large $7$};
+    \node [right of=6, node distance=0.9cm] (7) {\Large $2$};
+    \node [right of=7, node distance=0.9cm] (8) {\Large $1$};
+    \node [right of=8, node distance=0.9cm] (9) {\Large $4$};
+    \node [right of=9, node distance=0.9cm] (10) {\Large $1$};
+    \node [right of=10, node distance=0.9cm] (11) {\Large $2$};
+    \node [seqc, right of=11, node distance=0.9cm] (12) {\Large $9$};
+        
+    \path[->,thick,bend left=45]
+        (1) edge (3)
+        (3) edge (4);
+
+    \path[->,thick,bend left=20]
+        (4) edge (12)
+                                        ;
+
+    \end{tikzpicture}
+    \end{center}
+    \caption{An example of a Step 2 update applied to the sequence and record from {numref}`3-fig:ds`}
+\label{3-fig:ds2}
+\end{figure}
 
 Step 2 ensures that the outer domination property holds. 
 In {numref}`3-fig:ds2`, we show the result of applying Step 2 to the record
@@ -439,6 +534,7 @@ end at $9$, thereby restoring outer domination. The resulting record is $\siblan
 9 \siblank \siblank$.
 
 > **Correctness.**
+
  
 To compute a record for a particular sequence of priorities, we start with the
 record $\siblank \siblank \dots \siblank$, and then process the sequence one

@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>A linear time algorithm for reachability games &#8212; Games on graphs</title>
+    <title>Reachability games &#8212; Games on graphs</title>
     
   <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
 
@@ -58,7 +58,7 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="A quadratic time algorithm for Büchi games" href="buchi.html" />
+    <link rel="next" title="Büchi games" href="buchi.html" />
     <link rel="prev" title="Regular Games" href="index.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -178,17 +178,17 @@
   <ul class="current collapse-ul">
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     A linear time algorithm for reachability games
+     Reachability games
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="buchi.html">
-     A quadratic time algorithm for Büchi games
+     Büchi games
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="parity.html">
-     An exponential time algorithm for parity games
+     Parity games
     </a>
    </li>
    <li class="toctree-l2">
@@ -198,7 +198,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="zielonka.html">
-     The Zielonka tree
+     Zielonka tree
     </a>
    </li>
    <li class="toctree-l2">
@@ -409,8 +409,8 @@
         
               <div>
                 
-  <div class="section" id="a-linear-time-algorithm-for-reachability-games">
-<span id="sec-attractors"></span><h1>A linear time algorithm for reachability games<a class="headerlink" href="#a-linear-time-algorithm-for-reachability-games" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="reachability-games">
+<span id="sec-attractors"></span><h1>Reachability games<a class="headerlink" href="#reachability-games" title="Permalink to this headline">¶</a></h1>
 <div class="math notranslate nohighlight">
 \[\newcommand{\F}{\mathcal{F}} 
 \newcommand{\LAR}{\mathrm{LAR}}
@@ -446,8 +446,8 @@
 \newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
 \newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
 \newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\renewcommand{\Win}{\textrm{Win}} 
-\renewcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Win}{\textrm{Win}} 
+\newcommand{\Lose}{\textrm{Lose}} 
 \newcommand{\Value}{\textrm{val}} 
 \newcommand{\ValueE}{\textrm{val}_\mEve} 
 \newcommand{\ValueA}{\textrm{val}_\mAdam}
@@ -480,7 +480,7 @@
 We identify the colour <span class="math notranslate nohighlight">\(\Win\)</span> with <span class="math notranslate nohighlight">\(\col^{-1}(\Win)\)</span> the set of vertices labelled <span class="math notranslate nohighlight">\(\Win\)</span>,
 so we write <span class="math notranslate nohighlight">\(v \in \Win\)</span> when <span class="math notranslate nohighlight">\(\col(v) = \Win\)</span>, and similarly for <span class="math notranslate nohighlight">\(\Lose\)</span>.</p>
 <div class="proof theorem admonition" id="2-thm:reachability">
-<p class="admonition-title"><span>Theorem </span> (needs title 2-thm:reachability)</p>
+<p class="admonition-title"><span>Theorem </span> (Positional determinacy and complexity of reachability games)</p>
 <div class="theorem-content section" id="proof-content">
 <p>Reachability objectives are uniformly positionally determined for both players.
 There exists an algorithm for computing the winning regions of reachability games in linear time and space.
@@ -513,7 +513,7 @@ X \mapsto \Win \cup \PreE(X).
 if <span class="math notranslate nohighlight">\(F \subseteq F'\)</span> then <span class="math notranslate nohighlight">\(\PreE(F) \subseteq \PreE(F')\)</span>.
 Hence  <a class="reference internal" href="../1_Introduction/fixed_points.html#1-thm:kleene">Theorem </a> applies: this operator has a least fixed point
 which we call the attractor of <span class="math notranslate nohighlight">\(\Win\)</span> for Eve and write <span class="math notranslate nohighlight">\(\AttrE(\Win)\)</span>,
-and it is computed by the following sequence (For technical convenience we shift the sequence by one, ignoring the first term which is the empty se):
+and it is computed by the following sequence<code class="docutils literal notranslate"><span class="pre">{margin}</span> <span class="pre">For</span> <span class="pre">technical</span> <span class="pre">convenience</span> <span class="pre">we</span> <span class="pre">shift</span> <span class="pre">the</span> <span class="pre">sequence</span> <span class="pre">by</span> <span class="pre">one,</span> <span class="pre">ignoring</span> <span class="pre">the</span> <span class="pre">first</span> <span class="pre">term</span> <span class="pre">which</span> <span class="pre">is</span> <span class="pre">the</span> <span class="pre">empty</span> <span class="pre">se</span></code>:
 we let <span class="math notranslate nohighlight">\(\AttrE^0(\Win) = \Win\)</span> and</p>
 <div class="math notranslate nohighlight">
 \[
@@ -531,7 +531,7 @@ We then show that <span class="math notranslate nohighlight">\(\AttrE(\Win)\)</s
 <p>We do not elaborate further this most general case but note that the overhead is mostly technical, the proof below of  <a class="reference internal" href="#2-lem:reachability">Lemma </a> can be adapted with little changes using a transfinite induction.</p>
 <p>The following lemma shows how the attractor yields a solution to reachability games and directly implies  <a class="reference internal" href="#2-thm:reachability">Theorem </a>.</p>
 <div class="proof lemma admonition" id="2-lem:reachability">
-<p class="admonition-title"><span>Lemma </span> (needs title 2-lem:reachability)</p>
+<p class="admonition-title"><span>Lemma </span> (Characterisation of the winning region of reachability games using attractors)</p>
 <div class="lemma-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\game\)</span> a reachability game.
 Then <span class="math notranslate nohighlight">\(\WE(\game) = \AttrE(\Win)\)</span>, and:</p>
@@ -622,7 +622,7 @@ The same algorithm analysed in the Turing model of computation would have an add
 </div>
 <p>The notion of attractors induces a common way of constructing traps as stated in the following very useful lemma.</p>
 <div class="proof lemma admonition" id="2-lem:attractors_trap">
-<p class="admonition-title"><span>Lemma </span> (needs title 2-lem:attractors_trap)</p>
+<p class="admonition-title"><span>Lemma </span> (Attractors induce traps)</p>
 <div class="lemma-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\Game\)</span> a game and <span class="math notranslate nohighlight">\(F \subseteq V\)</span> a subset of edges.
 Then <span class="math notranslate nohighlight">\(V \setminus \AttrE(F)\)</span> is a trap for Eve and symmetrically <span class="math notranslate nohighlight">\(V \setminus \AttrA(F)\)</span> is a trap for Adam.</p>
@@ -658,7 +658,7 @@ Then <span class="math notranslate nohighlight">\(V \setminus \AttrE(F)\)</span>
     <div class='prev-next-bottom'>
         
     <a class='left-prev' id="prev-link" href="index.html" title="previous page">Regular Games</a>
-    <a class='right-next' id="next-link" href="buchi.html" title="next page">A quadratic time algorithm for Büchi games</a>
+    <a class='right-next' id="next-link" href="buchi.html" title="next page">Büchi games</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

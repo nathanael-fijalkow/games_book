@@ -75,8 +75,8 @@
 \newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
 \newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
 \newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\renewcommand{\Win}{\textrm{Win}} 
-\renewcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Win}{\textrm{Win}} 
+\newcommand{\Lose}{\textrm{Lose}} 
 \newcommand{\Value}{\textrm{val}} 
 \newcommand{\ValueE}{\textrm{val}_\mEve} 
 \newcommand{\ValueA}{\textrm{val}_\mAdam}
@@ -109,7 +109,7 @@ In this section, we consider MDPs with edges coloured by rational numbers
 and with the objective $\DiscountedPayoff$, defined in the same way as in 
 \Cref{chap:payoffs}. We start the chapter by proving that using the play-based semantics for the discounted-payoff objective yields no loss of generality. 
 
-```{prf:lemma} needs title and label 
+```{prf:lemma} NEEDS TITLE AND LABEL 
 \label{5-lem:disc-step-one}
 In a discounted-payoff MDP, for each strategy $ \sigma $ and each vertex $ v $ it holds $ \playPay(v, \sigma) = \stepPay(v, \sigma) $.
  
@@ -153,13 +153,17 @@ We define an operator $\discOP\colon
 $\vec{x}$is mapped to a vector 
 $\vec{y}
 = \discOP(\vec{x})$ such that:
+
 $$
+
 \vec{y}_v = \max_{a \in \actions} \sum_{u\in \vertices} \probTranFunc(u\mid 
 v,a) 
 \cdot\left((1-\lambda)\cdot\colouring(v,u) + \lambda\cdot \vec{x}_u \right).
+
 $$
 
-```{prf:lemma} needs title 5-lem:fixpoint
+
+```{prf:lemma} NEEDS TITLE 5-lem:fixpoint
 :label: 5-lem:fixpoint
 :nonumber:
 
@@ -183,7 +187,7 @@ the one for games). The second part follows from the Banach fixed-point theorem.
 We aim to prove that $\Value(\mdp)$ is the unique fixed point $\vec{x}^*$ of 
 $\discOP$. We start with an auxiliary definition.
 
-```{prf:definition} needs title 5-def:disc-safe-act
+```{prf:definition} NEEDS TITLE 5-def:disc-safe-act
 :label: 5-def:disc-safe-act
 :nonumber:
 
@@ -196,7 +200,7 @@ a= \underset{a' \in \actions}{\arg\max} \sum_{u\in \vertices}
 v,a') 
 \cdot\left((1-\lambda)\cdot\colouring(v,u) + \lambda\cdot \vec{x}_u \right).
 \end{equation}
-\noindent
+
 A strategy $\sigma$ is $\vec{x}$-safe, if for 
 each play $ \play $ ending in a vertex $v$, all actions that are selected with a positive 
 probability by $\sigma$ for $\play$ are $\vec{x}$-safe in $v$.
@@ -208,12 +212,16 @@ Given a strategy $\sigma$ we define $\valsigma$ to be the vector such that $\vec
 \playPay(v,\sigma)$. For memoryless strategies, $\valsigma$ can be computed efficiently as follows:
 Each memoryless strategy $\sigma$ defines a **linear** operator $\discOP_{\sigma}$ which maps each vector 
 $\vec{x}\in \R^{\vertices}$ to a vector $\vec{y}=\discOP_{\sigma}(\vec{x})$ 
-such that $$\vec{y}_v = \sum_{a\in \actions} \sigma(a\mid v) \cdot 
+such that 
+$$
+\vec{y}_v = \sum_{a\in \actions} \sigma(a\mid v) \cdot 
 \left(\sum_{u \in \vertices} 
 \probTranFunc(u \mid v,a) \cdot( (1-\lambda)\cdot \colouring(u,v) + 
-\lambda \cdot \vec{x}_u )\right).$$  
+\lambda \cdot \vec{x}_u )\right).
+$$
+  
 
-```{prf:lemma} needs title 5-lem:disc-val-sigma
+```{prf:lemma} NEEDS TITLE 5-lem:disc-val-sigma
 :label: 5-lem:disc-val-sigma
 :nonumber:
 
@@ -231,7 +239,7 @@ $\vec{x}^\sigma$ is a fixed-point of $\discOP^\sigma$. Since $\discOP_{\sigma}$ 
 
 We now prove that there is a memoryless strategy ensuring outcome given by the fixed point of $\discOP$. Hence, the fixed point gives a lower bound on the values of vertices.
 
-```{prf:lemma} needs title 5-lem:disc-val-lower
+```{prf:lemma} NEEDS TITLE 5-lem:disc-val-lower
 :label: 5-lem:disc-val-lower
 :nonumber:
 
@@ -268,20 +276,24 @@ payoff accumulated during the first $k$ steps of $\play$, i.e. the number
 $(1-\lambda)\sum_{i=0}^{k-1} \lambda^i
 \, \colouring(\play_i)$. The following lemma can be proved by an easy induction.
 
-```{prf:lemma} needs title 5-lem:disc-iterates
+```{prf:lemma} NEEDS TITLE 5-lem:disc-iterates
 :label: 5-lem:disc-iterates
 :nonumber:
 
 For each $k\geq 0$ and each vertex $v$ we have 
-$$\sup_{\sigma}\expv^{\sigma}_{v}[\dPayoffStep{k}] = 
-(\discOP^k(\vec{0}))_v$$ 
+
+$$
+\sup_{\sigma}\expv^{\sigma}_{v}[\dPayoffStep{k}] = 
+(\discOP^k(\vec{0}))_v
+$$
+ 
 (here $\vec{0}$ is a $|\vertices|$-dimensional vector of zeroes).
 
 ```
 
 The previous lemma is used to prove the required upper bound on $\Value(v)$.
 
-```{prf:lemma} needs title 5-lem:disc-val-upper
+```{prf:lemma} NEEDS TITLE 5-lem:disc-val-upper
 :label: 5-lem:disc-val-upper
 :nonumber:
 
@@ -307,7 +319,7 @@ Hence,
 \label{5-eq:disc-limit-transition}.
 \end{align}
 
-\noindent
+
 It remains to prove that the RHS of~\eqref{5-eq:disc-limit-transition} is not 
 greater than $\vec{x}^*= \lim_{k\rightarrow 
 \infty}\discOP^k(\vec{0})=\lim_{k\rightarrow \infty} 
@@ -322,7 +334,7 @@ follows from the fact that the inequality holds for each concrete $k$.
 
 The following theorem summarizes the results.
 
-```{prf:theorem} needs title 5-thm:disc-val-char-mem
+```{prf:theorem} NEEDS TITLE 5-thm:disc-val-char-mem
 :label: 5-thm:disc-val-char-mem
 :nonumber:
 
@@ -355,7 +367,7 @@ approximation of $\Value(\mdp)$. The iteration might not reached the fixed
 point (i.e. $\Value(\mdp)$) in a finite number of steps, but we can provide 
 simple bounds on the precision of the approximation.
 
-```{prf:lemma} needs title 5-lem:disc-val-it-convergence
+```{prf:lemma} NEEDS TITLE 5-lem:disc-val-it-convergence
 :label: 5-lem:disc-val-it-convergence
 :nonumber:
 
@@ -377,13 +389,17 @@ for each play $\play$, $\sum_{i=k}^{\infty}\lambda^i\cdot
 Similar analysis can be applied to strategies induced by the approximate 
 vectors.
 
-```{prf:lemma} needs title 5-lem:disc-val-it-eps-strategies
+```{prf:lemma} NEEDS TITLE 5-lem:disc-val-it-eps-strategies
 :label: 5-lem:disc-val-it-eps-strategies
 :nonumber:
 
 Let $\eps>0$ be arbitrary and let 
-$$k(\eps)=\left\lceil\frac{\log_2\left(\frac{\eps(1-\lambda)}{4\maxc}\right)}{\log_2(\lambda)}
- \right\rceil .$$ Then, every 
+
+$$
+k(\eps)=\left\lceil\frac{\log_2\left(\frac{\eps(1-\lambda)}{4\maxc}\right)}{\log_2(\lambda)}
+ \right\rceil .
+$$
+ Then, every 
 $\discOP^{k(\eps)}(\vec{0})$-safe memoryless strategy is $\eps$-optimal in 
 every vertex.
 
@@ -403,7 +419,7 @@ let $\discOP_{\sigma}$ be the corresponding operator. We have that
 ||_{\infty} + || \discOP^{k(\eps)}(\vec{0}) - \valsigma
 ||_{\infty}. \label{5-eq:disc-val-it-bound}
 \end{align}
-\noindent
+
 The first term in~\eqref{5-eq:disc-val-it-bound} is $\leq \eps/2$ 
 by the choice of $k(\eps)$ and {prf:ref}`5-lem:disc-val-it-convergence`. We prove 
 that the second term 
@@ -429,7 +445,7 @@ $\discOP^{k(\eps)}(\vec{0})$-safe). Using this we get
 \valsigma||_{\infty}
 \end{align*}
 
-\noindent
+
 Re-arranging yields $|| \discOP^{k(\eps)}(\vec{0}) - \valsigma
 ||_{\infty} \leq \frac{1}{1-\lambda}\cdot|| 
 \discOP^{k(\eps)}(\vec{0}) - 
@@ -452,7 +468,7 @@ Using a value-gap result
 show that sufficiently precise iterates can be used to computate an **optimal** strategy. 
 This is summarized in the following lemma due to {cite}`Tseng:1990`.
 
-```{prf:lemma} needs title 5-lem:disc-vi-optimal-strategy
+```{prf:lemma} NEEDS TITLE 5-lem:disc-vi-optimal-strategy
 :label: 5-lem:disc-vi-optimal-strategy
 :nonumber:
 
@@ -497,7 +513,7 @@ Now let $\sigma$ be any $\discOP^{k(\eps^*)}(\vec{0})$-safe MD strategy. By {prf
 &\geq \frac{1}{d^3\cdot \det(A)}\geq \frac{1}{d^{(3|\vertices|+3)}\cdot{|\vertices|}^{\frac{|\vertices|}{2}}}.
 \end{align*}
 
-\noindent
+
 Now put $\vec{z}=\discOP_\sigma(\discOP^{k(\eps)}(\vec{0}))$. We have the following (using, on the first line, the fact that $|a+b| \geq |a|-|b|$):
 \begin{align*}
 |\vec{z}_v - \vec{x}^*_v| &=
@@ -509,7 +525,7 @@ Now put $\vec{z}=\discOP_\sigma(\discOP^{k(\eps)}(\vec{0}))$. We have the follow
 > \eps^* - \frac{\eps^*}{2}  \quad (\text{ {prf:ref}`5-lem:disc-val-it-convergence`})\\&=\frac{\eps^*}{2}.
 \end{align*}
 
-\noindent
+
 In particular, it must hold that $\vec{z}_v< \vec{x}^*_v$. Otherwise we would have $\discOP^{k(\eps^*)+1}(\vec{0})_v \geq \discOP_{\sigma}(\discOP^{k(\eps^*)}(\vec{0}))_v \geq \vec{x^*}_v + \frac{\eps^*}{2} $, a contradiction with $\discOP^{k(\eps^*)+1}(\vec{0})$ being an $\frac{\eps^*}{4}$-ap\-prox\-imation of $\vec{x}^*$ (by  {prf:ref}`5-lem:disc-val-it-convergence` and the choice of $k(\eps^*)$).
 
 At the same time, $|\discOP(\discOP^{k(\eps^*)}(\vec{0}))_v - \vec{x}^*|\leq \frac{\eps^*}{4}$, due to the choice of $k(\eps^*)$. Since $\vec{z}_v \leq \vec{x}_v^*$, we get $\vec{z}_v < \vec{x}_v^* - \frac{\eps}{2} \leq \discOP(\discOP^{k(\eps^*)}(\vec{0}))_v$, a contradiction with $\sigma$ being $\discOP^{k(\eps^*)}(\vec{0})$-safe. 
@@ -518,7 +534,7 @@ At the same time, $|\discOP(\discOP^{k(\eps^*)}(\vec{0}))_v - \vec{x}^*|\leq \fr
 
 
 
-```{prf:corollary} needs title 5-cor:VI-optimal-strategy-comp
+```{prf:corollary} NEEDS TITLE 5-cor:VI-optimal-strategy-comp
 :label: 5-cor:VI-optimal-strategy-comp
 :nonumber:
 
@@ -537,7 +553,7 @@ The number $1/\eps^*$, where $\eps^*$ is from  {prf:ref}`5-lem:disc-vi-optimal-s
 ## Strategy improvement, linear programming, and (strongly) 
 polynomial time
 
-The strategy (or policy) improvement (also called strategy/policy iteration in the literature) for MDPs works similarly as for games, see  {numref}`5-algo:disc-strategy-improvement`. In the algorithm, we use $\discOP_{a,v}(\vec{x})$ as a shortcut for $ \sum_{u \in \vertices}\probTranFunc(u\mid v,a)\left((1-\lambda)\cdot\colouring(v,u) + \lambda\cdot \vec{x}_u \right)$
+The strategy (or policy) improvement (also called strategy/policy iteration in the literature) for MDPs works similarly as for games, see {numref}`5-algo:disc-strategy-improvement`. In the algorithm, we use $\discOP_{a,v}(\vec{x})$ as a shortcut for $ \sum_{u \in \vertices}\probTranFunc(u\mid v,a)\left((1-\lambda)\cdot\colouring(v,u) + \lambda\cdot \vec{x}_u \right)$
 
 \begin{algorithm}
 \KwData{A discounted-payoff MDP $ \mdp $}
@@ -563,7 +579,7 @@ $ i \leftarrow i+1 $
 \label{5-algo:disc-strategy-improvement}
 \end{algorithm}
 
-```{prf:theorem} needs title 5-thm:disc-strat-it
+```{prf:theorem} NEEDS TITLE 5-thm:disc-strat-it
 :label: 5-thm:disc-strat-it
 :nonumber:
 
@@ -608,7 +624,7 @@ v,a)\cdot\left((1-\lambda)\cdot \colouring(v,u) + \lambda\cdot x_u \right)
 \label{5-fig:disc-lp}
 \end{figure}
 
-```{prf:lemma} needs title 5-lem:disc-lp
+```{prf:lemma} NEEDS TITLE 5-lem:disc-lp
 :label: 5-lem:disc-lp
 :nonumber:
 
@@ -654,20 +670,20 @@ comes from  {prf:ref}`5-lem:fixpoint`).
 It is known that linear programming can be solved in polynomial time by 
 interior-point techniques {cite}`Kha:1979,Karmarkar:1984`. Hence, we get the following.
 
-```{prf:theorem} needs title 5-thm:disc-polytime-lp
+```{prf:theorem} NEEDS TITLE 5-thm:disc-polytime-lp
 :label: 5-thm:disc-polytime-lp
 :nonumber:
 
 The following holds for discounted-payoff MDPs:
-\begin{enumerate}
-* 
+
+1. 
 The value of each vertex as well as an MD optimal 
 strategy can be computed in polynomial time. 
-*  
+
+2.  
 The problem whether the value of a given vertex $v$ is at least a given constant 
 (say~1) is \P-complete (under logspace reductions). The hardness result holds 
 even for a fixed discount factor.
-\end{enumerate}
 
 ```
 
@@ -719,7 +735,7 @@ improvement in discounted MDPs is really just a re-implementation of the
 simplex algorithm using a different syntax. Hence, the strongly polynomial 
 complexity bound for a fixed discount factor holds there as well.
 
-```{prf:theorem} needs title and label 
+```{prf:theorem} NEEDS TITLE AND LABEL 
 For MDPs with a fixed discount factor, the value of each vertex as well as an 
 optimal MD strategy can be computed in a strongly polynomial time.
  

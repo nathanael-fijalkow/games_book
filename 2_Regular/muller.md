@@ -36,8 +36,8 @@
 \newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
 \newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
 \newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\renewcommand{\Win}{\textrm{Win}} 
-\renewcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Win}{\textrm{Win}} 
+\newcommand{\Lose}{\textrm{Lose}} 
 \newcommand{\Value}{\textrm{val}} 
 \newcommand{\ValueE}{\textrm{val}_\mEve} 
 \newcommand{\ValueA}{\textrm{val}_\mAdam}
@@ -95,7 +95,7 @@ We say that $\F$ is closed under union if whenever $X,Y \in \F$ then $X \cup Y \
 Let us define Streett objectives as the subclass of Muller objectives given by $\F$ closed under union.
 The following purely combinatorial lemma gives a nice characterisation of these objectives.
 
-```{prf:lemma} needs title 2-lem:characterisation_Streett
+```{prf:lemma} Characterisation of Streett among Muller objectives
 :label: 2-lem:characterisation_Streett
 :nonumber:
 
@@ -143,11 +143,12 @@ $$
 
 ## McNaughton algorithm: an exponential time algorithm for Muller games
 
-```{prf:theorem} Muller games
+```{prf:theorem} Finite memory determinacy and complexity for Muller games
 :label: 2-thm:muller
 :nonumber:
 
-Muller objectives are determined with finite memory strategies of size $d!$ (See \cref{2-rmk:finite_infinit) for the case of infinite games.}.
+Muller objectives are determined with finite memory strategies of size $d!$```{margin}
+See \cref{2-rmk:finite_infinit``` for the case of infinite games.}.
 There exists an algorithm for computing the winning regions of Muller games in exponential time,
 and more specifically of complexity $O(m d (dn)^d)$, and in polynomial space, and more specifically $O(dm)$.
 
@@ -159,7 +160,7 @@ yields the algorithm we presented above.
 
 The following lemma induces the recursive algorithm for computing the winning regions of Muller games.
 
-```{prf:lemma} needs title 2-lem:Muller_even
+```{prf:lemma} Fixed point characterisation of the winning regions for Muller games
 :label: 2-lem:Muller_even
 :nonumber:
 
@@ -217,7 +218,7 @@ implying that $\sigma$ is winning from $\WE(\Game')$ in $\Game$.
 To get the full algorithm we need the analogous lemma for the case where $C \notin \F$.
 We do not prove it as it is the exact dual of the previous lemma, and the proof is the same swapping the two players.
 
-```{prf:lemma} needs title 2-lem:Muller_odd
+```{prf:lemma} Dual fixed point characterisation of the winning regions for Muller games
 :label: 2-lem:Muller_odd
 :nonumber:
 
@@ -231,7 +232,7 @@ then $\WA(\Game) = \WA(\Game')$.
 
 ```
 
-The algorithm is presented in pseudocode in  {numref}`2-algo:mcnaughton`.
+The algorithm is presented in pseudocode in {numref}`2-algo:mcnaughton`.
 We only give the case where $C \in \F$, the other case being symmetric.
 The base case is when there is only one colour $c$, in wich case Eve wins everywhere if $\F = \set{c}$
 and Adam wins everywhere if $\F = \emptyset$.
@@ -264,7 +265,7 @@ A recursive algorithm for computing the winning regions of Muller games.
 
 ## Positional determinacy for Rabin games
 
-```{prf:theorem} needs title 2-thm:Rabin_positional_determinacy
+```{prf:theorem} Positional determinacy for Rabin games
 :label: 2-thm:Rabin_positional_determinacy
 :nonumber:
 
@@ -343,7 +344,7 @@ $$
 
 
 
-```{prf:theorem} needs title 2-thm:submixing_positional
+```{prf:theorem} Submixing property implies uniform positional determinacy
 :label: 2-thm:submixing_positional
 :nonumber:
 
@@ -354,7 +355,7 @@ Every prefix independent submixing objective is uniformly positionally determine
 
 ## The complexity of solving Rabin games
 
-```{prf:theorem} needs title 2-thm:Rabin_complexity
+```{prf:theorem} Complexity of solving Rabin games
 :label: 2-thm:Rabin_complexity
 :nonumber:
 
@@ -425,7 +426,7 @@ There is a Rabin pair $(R_\ell,G_\ell)$ for each literal $\ell$, so the Rabin co
 Let us now describe the arena. 
 A play consists in an infinite sequence of rounds, where in each round first Adam chooses a clause and second Eve chooses a literal in this clause. 
 When Eve chooses a literal $\ell$ she visits $R_\ell$ and $G_{\bar{\ell}}$.
-This completes the description of the Rabin game $\game$, it is illustrated in  {numref}`2-fig:hardness_Rabin`.
+This completes the description of the Rabin game $\game$, it is illustrated in {numref}`2-fig:hardness_Rabin`.
 Let us now prove that this yields a reduction from $\SAT$ to solving Rabin games.
 
 
@@ -452,16 +453,15 @@ There exists a valuation $\mathbf{v}$ which satisfies each literal chosen by Eve
 ```{figure} ./../2-fig:hardness_Rabin.png
 :name: 2-fig:hardness_Rabin
 :align: center
-The Rabin game for $\Phi = (x \vee y \vee z) \bigwedge (x \vee \bar{y
+The Rabin game for $\Phi = (x \vee y \vee z) \bigwedge (x \vee \bar{y} \vee \bar{z}) \bigwedge (\bar{x} \vee y \vee \bar{z})$.
 ```
 
-## The complexity of solving Muller games
-    
+## The complexity of solving Muller games}    
 
-```{prf:theorem} needs title 2-thm:complexity_Muller
-:label: 2-thm:complexity_Muller
+```{prf:theorem} NEEDS LABEL Complexity of solving Muller games
+:label: Complexity of solving Muller games
 :nonumber:
-
+\label{2-thm:complexity_Muller
 Solving Muller games is $\PSPACE$-complete.
 
 ```
@@ -586,5 +586,5 @@ this implies that in both cases $\play$ does not satisfy $\Muller(\F)$.
 ```{figure} ./../2-fig:hardness_Muller.png
 :name: 2-fig:hardness_Muller
 :align: center
-The Muller game for $\Psi = \exists x, \forall y, \exists z, (x \wedge y \wedge z) \bigvee (x \wedge \bar{y
+The Muller game for $\Psi = \exists x, \forall y, \exists z, (x \wedge y \wedge z) \bigvee (x \wedge \bar{y} \wedge \bar{z}) \bigvee (\bar{x} \wedge y \wedge \bar{z})$. For a variable $v$ we write $S_{> v}$ for the set of literals corresponding to variables quantified after $v$, so for instance $S_{> x} = \set{y,\bar{y},z,\bar{z}}$.
 ```

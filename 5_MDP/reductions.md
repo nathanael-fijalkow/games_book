@@ -75,8 +75,8 @@
 \newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
 \newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
 \newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\renewcommand{\Win}{\textrm{Win}} 
-\renewcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Win}{\textrm{Win}} 
+\newcommand{\Lose}{\textrm{Lose}} 
 \newcommand{\Value}{\textrm{val}} 
 \newcommand{\ValueE}{\textrm{val}_\mEve} 
 \newcommand{\ValueA}{\textrm{val}_\mAdam}
@@ -107,7 +107,7 @@
 ```
 The MEC decomposition can be used to reduce several optimization problems (including general mean-payoff optimization) to optimizing reachability probability. Recall that in the optimal reachability problem, we are given an MDP $\mdp$ (with coloured vertices) and a colour $\Win \in\colours$. The task is to find a strategy $\sigma$ that maximizes $ \probm^\sigma_{\vinit}(\Reach(\Win))$, the probability of reaching a vertex coloured by $\Win$. The main result on reachability MDPs, which we prove in Section {ref}`5-sec:general-reachability`, is as follows:
 
-```{prf:theorem} needs title 5-thm:quant-reachability-main
+```{prf:theorem} NEEDS TITLE 5-thm:quant-reachability-main
 :label: 5-thm:quant-reachability-main
 :nonumber:
 
@@ -118,11 +118,10 @@ In reachability MDPs, the value of each vertex is rational and computable in pol
 
 ## From optimal B&uuml;chi to reachability
 
-
 In B&uuml;chi MDPs, the vertices are assigned colours from the set $\{1,2\}$ and our aim is to find a strategy maximizing $ \probm^\sigma_{\vinit}(\Buchi)$, i.e. maximizing the probability that a vertex coloured by $2$ is visited infinitely often.
 We say that a MEC $\mec$ of a B&uuml;chi MDP is **good** if it contains a vertex coloured by 2.
 
-```{prf:theorem} needs title 5-thm:quant-buchi
+```{prf:theorem} NEEDS TITLE 5-thm:quant-buchi
 :label: 5-thm:quant-buchi
 :nonumber:
 
@@ -133,7 +132,7 @@ In B&uuml;chi MDPs, the value of each vertex is rational and computable in polyn
 ```{admonition} Proof
 :class: dropdown tip
 
-Let $\mdp_b$ be a B&uuml;chi MDP and let $\mdp_r$ be a reachability MDP obtained from $\mdp_b$ by repainting each vertex belonging to a good MEC with the colour $\Win$. Note that $\mdp_r$ can be computed in polynomial time by performing the MEC decomposition of $\mdp_b$ ( {numref}`5-algo:MEC-decomposition`) and checking goodness of each MEC.
+Let $\mdp_b$ be a B&uuml;chi MDP and let $\mdp_r$ be a reachability MDP obtained from $\mdp_b$ by repainting each vertex belonging to a good MEC with the colour $\Win$. Note that $\mdp_r$ can be computed in polynomial time by performing the MEC decomposition of $\mdp_b$ ({numref}`5-algo:MEC-decomposition`) and checking goodness of each MEC.
 
 We prove that the value of each vertex in $\mdp_b$ is equal to the value of the corresponding vertex in $\mdp_r$.
 
@@ -150,7 +149,7 @@ The construction of $\sigma$ in the aforementioned paragraph is effective: given
 
 In parity MDPs, the vertices are labelled by colours form the set $\{1,\dots,d\}$ (w.l.o.g. we stipulate that $d\leq |\vertices|$) and the goal is to find a strategy maximizing $ \probm^\sigma_{\vinit}(\Parity),$ i.e. maximizing the probability that the largest priority appearing infinitely often along a play is even.
 
-```{prf:theorem} needs title and label 
+```{prf:theorem} NEEDS TITLE AND LABEL 
 \label{5-thm:parity-main}
 In Parity MDPs, the value of each vertex is rational and computable in polynomial time. Moreover, we can compute, in polynomial time, a memoryless deterministic strategy that is optimal in every vertex.
  
@@ -170,7 +169,7 @@ In Parity MDPs, the value of each vertex is rational and computable in polynomia
 
 Let $\mdp_p$ be a parity MDP. We will proceed similarly to  {prf:ref}`5-thm:quant-buchi`, constructing a reachability MDP $\mdp_r$ with the same underlying graph as $\mdp_p$.
 
-To this end, let $\mdp_i$ be the largest sub-MDP of $\mdp_p$ containing only the vertices of priority $\leq i$. Formally, we set $\vertices_i = \winAS(\mdp_p,\Safe(\colouring^{-1}(\{i+1,\ldots,d\})) )$ and define $\mdp_i$ to be the sub-MDP induced by $\vertices_i$ (note that $\mdp_i$ might be empty). We say that a vertex of $\mdp_p$ is $i$-good if it is contained in some MEC $\mec$ of $\mdp_i$ such that the largest vertex priority inside $\mec$ is equal to $i$. We say that a vertex is even-good if it is $i$-good for some even $i$. We set up a reachability MDP $\mdp_r$ by taking $\mdp_p$ and re-colouring each its even-good vertex with colour $\Win$. To do this, we need to compute, for each even priority $i$, the MDP $\mdp_i$ and its MEC-decomposition. This can be done in polynomial time ( {numref}`5-algo:MEC-decomposition`). 
+To this end, let $\mdp_i$ be the largest sub-MDP of $\mdp_p$ containing only the vertices of priority $\leq i$. Formally, we set $\vertices_i = \winAS(\mdp_p,\Safe(\colouring^{-1}(\{i+1,\ldots,d\})) )$ and define $\mdp_i$ to be the sub-MDP induced by $\vertices_i$ (note that $\mdp_i$ might be empty). We say that a vertex of $\mdp_p$ is $i$-good if it is contained in some MEC $\mec$ of $\mdp_i$ such that the largest vertex priority inside $\mec$ is equal to $i$. We say that a vertex is even-good if it is $i$-good for some even $i$. We set up a reachability MDP $\mdp_r$ by taking $\mdp_p$ and re-colouring each its even-good vertex with colour $\Win$. To do this, we need to compute, for each even priority $i$, the MDP $\mdp_i$ and its MEC-decomposition. This can be done in polynomial time ({numref}`5-algo:MEC-decomposition`). 
 
 We again prove that the value of every vertex in $\mdp_p$ is equal to the value of the corresponding vertex in $\mdp_r$.
 
@@ -191,7 +190,7 @@ We already know how to solve strongly connected mean-payoff MDPs. We now combine
 
 We start with a strengthening of  {prf:ref}`5-thm:mp-valcomp`.
 
-```{prf:lemma} needs title 5-lem:MEC-mp-strict-bound
+```{prf:lemma} NEEDS TITLE 5-lem:MEC-mp-strict-bound
 :label: 5-lem:MEC-mp-strict-bound
 :nonumber:
 
@@ -208,7 +207,7 @@ Assume that the statement is not true. Then there exist $\sigma,\vinit$ as well 
 
 We will need to strengthen the previous lemma so that it applies not only to strongly connected MDPs, but also to MECs in some larger MDPs. The strengthening is performed in the following two lemmas. The first lemma says that once we exit a MEC, with some positive probability we will never return.
 
-```{prf:lemma} needs title 5-lem:MEC-noreturn
+```{prf:lemma} NEEDS TITLE 5-lem:MEC-noreturn
 :label: 5-lem:MEC-noreturn
 :nonumber:
 
@@ -228,7 +227,7 @@ Given a play $\play$ and strategy $\sigma$, we define a **slice** of $\sigma$ as
 
 
 
-```{prf:lemma} needs title and label 
+```{prf:lemma} NEEDS TITLE AND LABEL 
 \label{5-lem:MEC-stable}
 Let $\mec$ be a MEC of $\mdp$ and $r^*$ the mean-payoff value of every vertex in the strongly connected sub-MDP induced by $\mec$. Then the set $E$ of all plays that have $\Inf(\play)\subseteq\mec$ and at the same time mean payoff greater than $r$ has probability zero under any strategy $\sigma$.
  
@@ -263,7 +262,7 @@ Let $\mec$ be a MEC of $\mdp$ and $r^*$ the mean-payoff value of every vertex in
 ```
 
 
-```{prf:theorem} needs title 5-thm:general-mp-main
+```{prf:theorem} NEEDS TITLE 5-thm:general-mp-main
 :label: 5-thm:general-mp-main
 :nonumber:
 
@@ -276,7 +275,7 @@ In mean-payoff MDPs, the value of each vertex is rational and computable in poly
 
 First, note that we can w.l.o.g. restrict to MDPs in which each edge is coloured by a number between $0$ and $ 1 $. To see this, let $\mdp$ be an MDP and $a,b$ any two numbers, with $a$ non-negative. We can construct an MDP $\mdp'$ by re-colouring each edge $(u,v)$ of $\mdp$ with colour $a\cdot \colouring(u,v)+b$, where $\colouring$ is the original colouring in $\mdp$. It is then easy to see that for each strategy $\sigma$ it holds $\expv_{\mdp,\vinit}^\sigma[\MeanPayoffInf]=(\expv_{\mdp',\vinit}^\sigma[\MeanPayoffInf]/a)-b$, so a strategy optimizing the mean payoff in $\mdp'$ is also optimal in $\mdp$. Hence, we always can re-scale the colouring into the unit interval while preserving the optimization criterion.
 
-So now let $\mdp_\smallmp$ be a mean-payoff MDP with edge-colouring $\colouring$. We construct, in polynomial time, a new reachability MDP $\mdp_r$ as follows: first, we compute the MEC decomposition of $\mdp_\smallmp$ ( {numref}`5-algo:MEC-decomposition`). Let $\mec_1,\dots,\mec_k$ be all the resulting MECs. For each MEC $\mec_i$ we compute the optimal mean-payoff value $r_i^*$ in the sub-MDP induced by $\mec_i$ (which is shared by all vertices of this sub-MDP, by  {prf:ref}`5-thm:mp-valcomp`), along with the corresponding memoryless deterministic optimal strategy. We already know how to do this in polynomial time ( {prf:ref}`5-thm:mp-rand-opt-main,5-thm:lpmp-basic-dim`). Now we add new vertices $\vgood$, $\vbad$, both with self loops, and edges incoming to these vertices from each vertex that belongs to some MEC of $\mdp_\smallmp$. The vertex $\vgood$ is the only vertex coloured by $\Win$ in $\mdp_r$. Finally, we add a new action $\finact$ which behaves as follows: For each vertex $v$ belonging to a MEC $\mec_i$ we set $\probTranFunc(\vgood\mid v,\finact) = r^*_i$ and $\probTranFunc(\vbad\mid v,\finact) = 1-r^*_i $. In a non-MEC vertex $ v $, we put $ \probTranFunc(v,\finact) = \probTranFunc(v,a) $ for some $ a\in \actions $, $ a\neq \finact $, so that no new behaviour is introduced in these vertices.
+So now let $\mdp_\smallmp$ be a mean-payoff MDP with edge-colouring $\colouring$. We construct, in polynomial time, a new reachability MDP $\mdp_r$ as follows: first, we compute the MEC decomposition of $\mdp_\smallmp$ ({numref}`5-algo:MEC-decomposition`). Let $\mec_1,\dots,\mec_k$ be all the resulting MECs. For each MEC $\mec_i$ we compute the optimal mean-payoff value $r_i^*$ in the sub-MDP induced by $\mec_i$ (which is shared by all vertices of this sub-MDP, by  {prf:ref}`5-thm:mp-valcomp`), along with the corresponding memoryless deterministic optimal strategy. We already know how to do this in polynomial time ( {prf:ref}`5-thm:mp-rand-opt-main,5-thm:lpmp-basic-dim`). Now we add new vertices $\vgood$, $\vbad$, both with self loops, and edges incoming to these vertices from each vertex that belongs to some MEC of $\mdp_\smallmp$. The vertex $\vgood$ is the only vertex coloured by $\Win$ in $\mdp_r$. Finally, we add a new action $\finact$ which behaves as follows: For each vertex $v$ belonging to a MEC $\mec_i$ we set $\probTranFunc(\vgood\mid v,\finact) = r^*_i$ and $\probTranFunc(\vbad\mid v,\finact) = 1-r^*_i $. In a non-MEC vertex $ v $, we put $ \probTranFunc(v,\finact) = \probTranFunc(v,a) $ for some $ a\in \actions $, $ a\neq \finact $, so that no new behaviour is introduced in these vertices.
 
 We show that for any original vertex (i.e. all vertices but $\vgood,\vbad$) the optimal values in both MDPs are the same and the optimal strategies are easily transferable from one MDP to the other.
 

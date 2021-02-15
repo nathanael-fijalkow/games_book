@@ -178,17 +178,17 @@
   <ul class="collapse-ul">
    <li class="toctree-l2">
     <a class="reference internal" href="../2_Regular/attractors.html">
-     A linear time algorithm for reachability games
+     Reachability games
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../2_Regular/buchi.html">
-     A quadratic time algorithm for Büchi games
+     Büchi games
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../2_Regular/parity.html">
-     An exponential time algorithm for parity games
+     Parity games
     </a>
    </li>
    <li class="toctree-l2">
@@ -198,7 +198,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../2_Regular/zielonka.html">
-     The Zielonka tree
+     Zielonka tree
     </a>
    </li>
    <li class="toctree-l2">
@@ -480,8 +480,8 @@
 \newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
 \newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
 \newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\renewcommand{\Win}{\textrm{Win}} 
-\renewcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Win}{\textrm{Win}} 
+\newcommand{\Lose}{\textrm{Lose}} 
 \newcommand{\Value}{\textrm{val}} 
 \newcommand{\ValueE}{\textrm{val}_\mEve} 
 \newcommand{\ValueA}{\textrm{val}_\mAdam}
@@ -519,7 +519,7 @@
 <p>The use of <span class="math notranslate nohighlight">\( \liminf \)</span> is natural in the formal verification setting: taking the <span class="math notranslate nohighlight">\(\liminf\)</span> rather than <span class="math notranslate nohighlight">\( \limsup \)</span> emphasizes the worst-case behaviour along a play. However, all the results in this section hold also for <span class="math notranslate nohighlight">\(\limsup\)</span>-based mean-payoff, though some proofs are more complex. See the bibliographic remarks for more details.</p>
 <p>In general, <span class="math notranslate nohighlight">\(\stepPay(v,\sigma)\)</span> can be different from <span class="math notranslate nohighlight">\( \playPay(v, \sigma) \)</span>. However, we have the following simple consequence of the dominated convergence theorem:</p>
 <div class="proof lemma admonition" id="lemma-0">
-<p class="admonition-title"><span class="caption-number">Lemma 17 </span> (needs title and label)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 13 </span> (NEEDS TITLE AND LABEL)</p>
 <div class="lemma-content section" id="proof-content">
 <p>\label{5-lem:limit-defined}
 Let <span class="math notranslate nohighlight">\(U\)</span> be the set of all plays <span class="math notranslate nohighlight">\(\play\)</span>  for which <span class="math notranslate nohighlight">\(\lim_{n\rightarrow \infty} \frac{1}{n} \sum_{i=0}^{n-1}[\colouring(\play_i)]\)</span> is undefined. If <span class="math notranslate nohighlight">\(\vinit,\sigma\)</span> are such that <span class="math notranslate nohighlight">\(\probm^\sigma_{\vinit}(U) = 0\)</span>, then <span class="math notranslate nohighlight">\(\stepPay(\vinit,\sigma) = \playPay(\vinit, \sigma) \)</span>.</p>
@@ -533,7 +533,7 @@ Let <span class="math notranslate nohighlight">\(U\)</span> be the set of all pl
 </div><p>In particular, for any finite-memory strategy <span class="math notranslate nohighlight">\( \sigma \)</span>, the two values coincide, since applying such a strategy turns an MDP into a finite Markov chain where the existence of the limit can be inferred using decomposition into strongly connected components and applying the Ergodic theorem.
 We will show that in our case of finite-state MDPs, the two approaches coincide not only at the levels of finite-memory strategies, but also as optimality criteria: that is, no matter which of the two semantics we use, the optimal values are the same and a strategy that is optimal w.r.t. one of the semantics is also optimal for the other one. We caution the reader that such a result does not automatically transfer to more complex settings, such as infinite-state MDPs or multi-objective optimization.</p>
 <p>To simplify the subsequent notation, we define the <strong>expected one-step</strong> reward of a vertex-action pair <span class="math notranslate nohighlight">\((v,a)\)</span> to be the number <span class="math notranslate nohighlight">\(\sum_{w\in \vertices} \probTranFunc(w\mid v,a)\cdot \colouring(v,w)\)</span>. Overloading the notation, we denote this quantity by <span class="math notranslate nohighlight">\(\colouring(v,a)\)</span>.</p>
-<p>In mean-payoff  MDPs, a crucial role is played by the linear program <span class="math notranslate nohighlight">\(\lpmp\)</span> pictured in Figure~\ref{5-fig:mp-lin}.</p>
+<p>In mean-payoff  MDPs, a crucial role is played by the linear program <span class="math notranslate nohighlight">\(\lpmp\)</span> pictured in <code class="xref std std-numref docutils literal notranslate"><span class="pre">5-fig:mp-lin</span></code>.</p>
 <p>\begin{figure}[h]
 \begin{alignat}{2}
 \text \quad &amp;\sum_{v\in \vertices, a \in \actions} x_{(v,a)} \cdot \colouring(v,a),\quad \textrm{
@@ -558,12 +558,12 @@ subject to }\nonumber \
 \label{5-fig:mp-dual}
 \end{figure}</p>
 <div class="admonition-remark-nomenclature admonition">
-<p class="admonition-title">Remark[Nomenclature]</p>
+<p class="admonition-title">Remark [Nomenclature]</p>
 <p>A feasible solution of <span class="math notranslate nohighlight">\( \lpmp \)</span> is a vector <span class="math notranslate nohighlight">\(\vec{x} \in \R^{\vertices\times \actions} \)</span> s.t. setting <span class="math notranslate nohighlight">\( x_{(v,a)}=\vec{x}_{(v,a)} \)</span> for all <span class="math notranslate nohighlight">\( (v,a) \)</span> satisfies the constraints in <span class="math notranslate nohighlight">\( \lpmp \)</span>. A feasible solution of <span class="math notranslate nohighlight">\( \lpmpdual  \)</span> is a tuple <span class="math notranslate nohighlight">\( (g,\vec{y}) \)</span>, where <span class="math notranslate nohighlight">\( g\in\R \)</span> (using the same notation for the number and the variable should not cause  confusion here) and <span class="math notranslate nohighlight">\( \vec{y}\in \R^{\vertices}\)</span> s.t. setting the corresponding variables to numbers prescribed by <span class="math notranslate nohighlight">\( g \)</span> and <span class="math notranslate nohighlight">\( \vec{y} \)</span> satisfies the constraints.</p>
 </div>
 <p>The variable <span class="math notranslate nohighlight">\(g\)</span> in <span class="math notranslate nohighlight">\(\lpmpdual\)</span> is often called <strong>gain</strong> while the vector of <span class="math notranslate nohighlight">\(y\)</span>-variables is called <strong>bias.</strong> This is because it provides information on how much does the payoff (under some strategy) accumulated up to a certain step deviate from the estimate provided by the mean-payoff value of that strategy. This is illustrated in the following lemma, which forms the first step of our analysis.</p>
 <div class="proof lemma admonition" id="5-lem:dual-bound-step">
-<p class="admonition-title"><span>Lemma </span> (needs title 5-lem:dual-bound-step)</p>
+<p class="admonition-title"><span>Lemma </span> (NEEDS TITLE 5-lem:dual-bound-step)</p>
 <div class="lemma-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(({g}, \vec{y})\)</span> be a feasible solution of <span class="math notranslate nohighlight">\(\lpmpdual\)</span> and let <span class="math notranslate nohighlight">\(Y^{(i)}\)</span>, where <span class="math notranslate nohighlight">\(i\geq 0\)</span>, be a random variable such that <span class="math notranslate nohighlight">\(Y^{(i)}(\play)= \vec{y}_{\ing(\pi_i)}.\)</span> Then for each strategy <span class="math notranslate nohighlight">\(\sigma\)</span>, each vertex <span class="math notranslate nohighlight">\(\vinit\)</span>, and each <span class="math notranslate nohighlight">\(n\geq 0\)</span> it holds <span class="math notranslate nohighlight">\(\expv^\sigma_{\vinit}[\sum_{i=0}^{n-1}\colouring(\play_i)]\leq n\cdot {g}- \vec{y}_{\vinit} +\expv^\sigma_{\vinit} [Y^{(n)}]\)</span>.</p>
 </div>
@@ -574,9 +574,8 @@ subject to }\nonumber \
 \expv^\sigma_{\vinit}[\sum_{i=0}^{n}\colouring(\play_i)] &amp;= \expv^\sigma_{\vinit}[\sum_{i=0}^{n-1}\colouring(\play_i)] + \expv^\sigma_{\vinit}[\colouring(\play_n)] \leq n{g}- \vec{y}<em>{\vinit} +\expv^\sigma</em>{\vinit} [Y^{(n)}] + \expv^\sigma_{\vinit}[\colouring(\play_n)] \label{5-eq:mpdual-1}
 \end{align}</p>
 <p>\begingroup
-\allowdisplaybreaks
-\noindent
-We now obtain a bound for the third term on the RHS of~\eqref{5-eq:mpdual-1}. In the following, we denote by <span class="math notranslate nohighlight">\(\Pi_n\)</span> the set of all plays of length <span class="math notranslate nohighlight">\(n\)</span>. Then we have
+\allowdisplaybreaks</p>
+<p>We now obtain a bound for the third term on the RHS of~\eqref{5-eq:mpdual-1}. In the following, we denote by <span class="math notranslate nohighlight">\(\Pi_n\)</span> the set of all plays of length <span class="math notranslate nohighlight">\(n\)</span>. Then we have
 \begin{align*}
 \expv^\sigma_v [Y^{(n)}]&amp;= \sum_{v\in\vertices}  \vec{y}<em>v\cdot\probm^\sigma</em>{\vinit}(\ing(\pi_n)=v)
 =\sum_{v\in\vertices}  \vec{y}<em>v\cdot \bigg(\sum</em>{\substack{\play’\in \Pi_n\ \last(\play’)=v}}\probm^\sigma_{\vinit}(\play’) \bigg) \
@@ -591,7 +590,7 @@ We now obtain a bound for the third term on the RHS of~\eqref{5-eq:mpdual-1}. In
 <p>Plugging this into~\eqref{5-eq:mpdual-1} yields the desired <span class="math notranslate nohighlight">\(\expv^\sigma_{\vinit}[\sum_{i=0}^{n}\colouring(\play_i)] \leq (n+1) {g}- \vec{y}_{\vinit} + \expv^\sigma_{\vinit}[Y^{(n+1)}]\)</span>.</p>
 </div>
 <div class="proof corollary admonition" id="5-cor:mp-value-bound">
-<p class="admonition-title"><span>Corollary </span> (needs title 5-cor:mp-value-bound)</p>
+<p class="admonition-title"><span>Corollary </span> (NEEDS TITLE 5-cor:mp-value-bound)</p>
 <div class="corollary-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(g\)</span> be the objective value of some feasible solution of <span class="math notranslate nohighlight">\(\lpmpdual\)</span>. Then for every strategy <span class="math notranslate nohighlight">\(\sigma\)</span> and every vertex <span class="math notranslate nohighlight">\(\vinit\)</span> it holds <span class="math notranslate nohighlight">\(\playPay(\vinit,\sigma) \leq \stepPay(\vinit,\sigma) \leq g\)</span>.</p>
 </div>
@@ -601,7 +600,7 @@ We now obtain a bound for the third term on the RHS of~\eqref{5-eq:mpdual-1}. In
 By  <a class="reference internal" href="#5-lem:dual-bound-step">Lemma </a> we have, for every <span class="math notranslate nohighlight">\(n\geq 0\)</span>, that <span class="math notranslate nohighlight">\(\expv^\sigma_{\vinit}[\frac{1}{n}\sum_{i=0}^{n-1}\colouring(\play_i)]\leq g - \frac{ \vec{y}_{\vinit}}{n}+ \frac{1}{n}\expv^\sigma_{\vinit} [Y^{(n)}]\)</span>. Since <span class="math notranslate nohighlight">\( \vec{y}_{\vinit}\)</span> is a constant and <span class="math notranslate nohighlight">\(|\expv^\sigma_{\vinit} [Y^{(n)}]|\)</span> is bounded by the constant <span class="math notranslate nohighlight">\( \max_{v\in \vertices}|\vec{y}_v|\)</span> that is independent of <span class="math notranslate nohighlight">\(n\)</span>, the last two terms on the RHS vanish as <span class="math notranslate nohighlight">\(n\)</span> goes to <span class="math notranslate nohighlight">\(\infty\)</span>. Hence, also <span class="math notranslate nohighlight">\(\stepPay(\vinit,\sigma) = \liminf_{n\rightarrow \infty} \expv^\sigma_{\vinit}[\frac{1}{n}\sum_{i=0}^{n-1}\colouring(\play_i)] \leq g\)</span>. It remains to show that we have <span class="math notranslate nohighlight">\(\playPay(\vinit,\sigma) \leq \stepPay(\vinit,\sigma)\)</span>, but this immediately follows from the Fatou’s lemma~\cite[Theorem 1.6.8]{Ash&amp;Doleans-Dade:2000}.</p>
 </div>
 <div class="proof corollary admonition" id="5-cor:lpmp-optimal-exists">
-<p class="admonition-title"><span>Corollary </span> (needs title 5-cor:lpmp-optimal-exists)</p>
+<p class="admonition-title"><span>Corollary </span> (NEEDS TITLE 5-cor:lpmp-optimal-exists)</p>
 <div class="corollary-content section" id="proof-content">
 <p>Both the linear programs <span class="math notranslate nohighlight">\(\lpmp\)</span> and <span class="math notranslate nohighlight">\(\lpmpdual\)</span> have a feasible solution. Hence, both have an optimal solution and the optimal values of the objective functions in these programs are equal.</p>
 </div>

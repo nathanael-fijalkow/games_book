@@ -31,8 +31,8 @@
 \newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
 \newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
 \newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\renewcommand{\Win}{\textrm{Win}} 
-\renewcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Win}{\textrm{Win}} 
+\newcommand{\Lose}{\textrm{Lose}} 
 \newcommand{\Value}{\textrm{val}} 
 \newcommand{\ValueE}{\textrm{val}_\mEve} 
 \newcommand{\ValueA}{\textrm{val}_\mAdam}
@@ -67,7 +67,6 @@ If the descriptions below are too abstract it may be useful to see concrete inst
 we refer to Chapter {ref}`4-chap:payoffs` for archetypical examples, and also to Chapter {ref}`3-chap:parity`.
 
 ## The value function
-
 The key ingredient of a value iteration algorithm is a value function.
 For a quantitative game $\Game$ with condition $f = \Phi[\col]$ over the set of colours $C$, 
 assuming that $\Game$ is determined it admits a value function
@@ -111,11 +110,11 @@ For all vertices $v$ we have that Eve wins from $v$ if and only if $\Value^{\gam
 In the remainder of this section we assume the existence of a value function $\Value^{\game} : V \to Y$ (note that choosing $Y = \Rinfty$ covers the quantitative case) and fix as a goal to either compute or approximate it.
 
 ## Fixed point
-
 We let $F_V$ denote the set of functions $V \to Y$, it is a lattice when equipped with the componentwise (partial) order induced by $Y$:
 we say that $\mu \le \mu'$ if for all vertices $v$ we have $\mu(v) \le \mu'(v)$.
 
-The second ingredient is a function $\delta : Y \times C \to Y$ inducing an operator $\Op : F_V \to F_V$ defined by (This form is for two player games, the operator has to be adapted to more complex settings such as stochastic or concurrent games) and satisfying the following principle:
+The second ingredient is a function $\delta : Y \times C \to Y$ inducing an operator $\Op : F_V \to F_V$ defined by```{margin}
+This form is for two player games, the operator has to be adapted to more complex settings such as stochastic or concurrent games``` and satisfying the following principle:
 
 $$
 \Op(\mu)(v) = 
@@ -142,7 +141,6 @@ of a function $\delta$ of $\val^{\game}(v')$ and of $\col(v)$.
 The choice of minimum or maximum corresponds to the goal of the players: Eve wants to maximise the outcome and Adam to minimise it.
 
 ## Fixed point through contraction
-
 Let us first consider the family of value iteration algorithms based on Banach's fixed point theorem as stated in  {prf:ref}`1-thm:banach`
 and let us fix as a goal to approximate $\Value^{\game}$.
 We equip $F_V$ with a norm $||\cdot||$.
@@ -169,7 +167,6 @@ Hence to get an $\varepsilon$-approximation of $\Value^{\game}$ it is enough to 
 $k = O \left( \frac{\log(\varepsilon)}{\log(\lambda)} \right)$ iterations.
 
 ## Fixed point through monotonicity
-
 The second family of algorithms is based on Kleene's fixed point theorem as stated in  {prf:ref}`1-thm:kleene`.
 
 ```{prf:property} Fixed point through monotonicity
@@ -182,7 +179,7 @@ and $\val^{\game}$ is the greatest fixed point of the monotonic operator $\Op$.
 ```
 
 
-```{admonition} Remark
+```{admonition} Remark 
 It is possible to define the value function as the **least** fixed point of $\Op$, 
 and this is equivalent up to some inversions in the lattice $(Y,\le)$ and the operator $\Op$.
 There are two reasons why we chose to define the value function as the **greatest** fixed point of $\Op$.
@@ -233,7 +230,7 @@ A naive upper bound on $k$ is $|F_V| \le |Y|^n$, but usually a finer analysis of
 
 If $Y$ is not finite that the sequence $(\Value_k)_{k \in \N}$ converges towards $\Value^{\game}$ and further analysis is required to evaluate the convergence speed.
 
-```{admonition} Remark
+```{admonition} Remark 
 It is sometimes useful to define instead of the operator $\Op$ a set of operators $(\Op_v)_{v \in V}$:
 
 $$

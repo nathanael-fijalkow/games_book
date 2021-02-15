@@ -31,8 +31,8 @@
 \newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
 \newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
 \newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\renewcommand{\Win}{\textrm{Win}} 
-\renewcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Win}{\textrm{Win}} 
+\newcommand{\Lose}{\textrm{Lose}} 
 \newcommand{\Value}{\textrm{val}} 
 \newcommand{\ValueE}{\textrm{val}_\mEve} 
 \newcommand{\ValueA}{\textrm{val}_\mAdam}
@@ -92,7 +92,7 @@ in games the condition is defined over sequences of vertices,
 while in automata the acceptance condition is defined over sequences of transitions (which contain more information than states).
 In other words for automata we use transition based acceptance conditions instead of state based acceptance conditions.
 This more succinct definition of automata naturally composes with games in the same way as the state based acceptance definition does,
-see~Section {ref}`1-sec:reductions`, and sometimes yields smaller automata, see~Section {ref}`2-sec:zielonka`
+see Section {ref}`1-sec:reductions`, and sometimes yields smaller automata, see Section {ref}`2-sec:zielonka`
 
 
 For a (finite or infinite) word $w = w_0 w_1 \dots$, a run $\rho = (q_0,w_0,q_1)(q_1,w_1,q_2) \dots$ over $w$ is a sequence of consecutive transitions starting from the initial state $q_0$.

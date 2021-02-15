@@ -15,7 +15,7 @@
 %\subsection*{Positive and Almost-Sure Reachability}
 
 \paragraph{Positive reachability}  
-Analogously to classical games (cf. \cref{chap:regular}), we define a one-step \emph{positive 
+Analogously to classical games (cf. \cref{2-chap:regular}), we define a one-step \emph{positive 
 probability} predecessor 
 operator, $\PrePos$,
 as follows: for $U\subseteq \vertices$ we put
@@ -42,7 +42,7 @@ fixed point in at most $n-1$ steps, where $n=|\vertices|$.
 
 We have the following simple characterization of the positively winning set:
 
-\begin{theorem}
+\begin{theorem}[Characterisation of the positively winning set]
 \label{5-thm:positive-char}
 For each vertex $v$, the following conditions are equivalent:
 \begin{enumerate}
@@ -109,7 +109,7 @@ of the lemma.
 As for complexity, we can focus on the problem of determining whether a given 
 vertex belongs to $\winPos(\mdp,\Reach(\genColour))$. 
 
-\begin{corollary}
+\begin{corollary}[Complexity of deciding positive reachability]
 \label{5-cor:pos-complexity}
 The problem of deciding whether a given vertex of a given MDP belongs to 
 $\winPos(\mdp,\Reach(\genColour))$ is \NL-complete. Moreover, the set $\winPos(\mdp,\Reach(\genColour))$ can be computed in linear time.
@@ -166,7 +166,8 @@ This operator gives rise to a notion of a closed set, which is important for the
 
 %Safety objectives in MDPs are related to the notion of a \emph{closed} set.
 
-\begin{definition}
+\begin{definition}[Closed set in an MDP]
+\label{5-def:closed_set_MDP}
 A set $X$ of vertices is ""closed"" if $ \safeOP(X)=X$. A ""sub-MDP"" of an MDP $ \mdp $ defined by a closed subset $X$ of $ \mdp $'s states is the MDP $\mdp_X = (X,\edges_X,\probTranFunc_X,\colouring_X)$ defined as follows:
 \begin{itemize}
 	\item $\edges_X$ is obtained from $\edges$ by removing edges incident to a vertex from $\vertices\setminus X$;
@@ -182,7 +183,7 @@ Intuitively, a set is closed if Eve has a strategy ensuring that she stays in th
 
 Now consider the iteration of $ X, \safeOP(X),\safeOP^2(X),\ldots $ of the safety operator. Clearly $\safeOP(X)\subseteq X$. Hence, the iteration reaches a fixed point in at most $|\vertices|$ steps. We get the following:
 
-\begin{lemma}
+\begin{lemma}[Inclusion of the least fixed of the safety operator]
 \label{5-lem:safety-iteration}
 The fixed point of iterating $ \safeOP $ on some initial set $ X $ of $ \mdp $'s vertices is the largest (w.r.t. inclusion) closed set contained in $ X $. In particular, a vertex of $ X $ which does not belong to the fixpoint cannot belong to  $\winAS(\mdp,\Safe(\vertices \setminus X))$.
 \end{lemma}
@@ -238,7 +239,7 @@ A straightforward induction on the number of iteration shows that if a vertex $ 
 \end{algorithm}
 %\noindent
 
-\begin{theorem}
+\begin{theorem}[Complexity of the almost-sure safety winning set]
 \label{5-thm:safety-main}
 \Cref{5-algo:safety} computes the set $\winAS(\mdp,\Safe(\genColour))$ in strongly polynomial time. Moreover, there exists a memoryless deterministic strategy, computable in polynomial time, that is almost-surely winning from every vertex of $\winAS(\mdp,\Safe(\genColour))$.
 \end{theorem}
@@ -271,7 +272,7 @@ $W \leftarrow \vertices$ \;
 With a.s. safety solved, we go back to a.s. reachability, which is solved via \Cref{5-algo:reach-as}. Note that in the first iteration, the algorithm computes the set %$ \winAS(\mdp,\Reach(\genColour)) \neq 
 $\winAS(\mdp,\Safe(Z))$ where $ Z =  \winPos(\mdp,\Reach(\genColour))$. We might be tempted to think that this set already equals $ \winAS(\mdp,\Reach(\genColour)) $, but this is not the case. To see this, consider an MDP with three states $ u,v,t $ and two actions $ a,b $ such that $ t $ is coloured by $ \Win $, both actions self loop in $ v $ and $ t $, and $ \probTranFunc(t \mid u,a) = \probTranFunc(v \mid u,a) = \frac{1}{2} $ while $ \probTranFunc(u \mid u,b) = 1 $. Then $ \winAS(\mdp,\Reach(\Win)) = \{t\} $ while at the same time $ \winAS(\mdp,\Safe( \winPos(\mdp,\Reach(\Win)))) = \{u,t\}$. However, iterating the computation works, as shown in the following theorem.
 
-\begin{theorem}
+\begin{theorem}[Algorithm for the almost-sure reachability winning set]
 \label{5-thm:as-char}
 \Cref{5-algo:reach-as} computes $\winAS(\mdp,\Reach(\genColour))$ in strongly polynomial time. Moreover, there is an MD strategy, computable in strongly polynomial time, that is almost-surely winning from every vertex of $\winAS(\mdp,\Reach(\genColour))$.
 \end{theorem}
@@ -305,7 +306,7 @@ We also have a complementary hardness result.
 % In total, we have the 
 %following:
 
-\begin{theorem}
+\begin{theorem}[Complexity of the almost-sure reachability winning set]
 \label{5-thm:as-complexity}
 The problem of determining whether a given vertex of a given MDP belongs to 
 $\winAS(\mdp,\Reach(\genColour))$ is \P-complete.
@@ -344,7 +345,7 @@ $\winAS(\mdp,\Reach(\genColour))$ is \P-complete.
 %This objective is somewhat less prominent in the MDP literature, and hence (and due to space constraints) we omit full proof of the main theorem: the proof rests on simple extension of ideas from the previous cases and we invite the reader to reconstruct the argument as an exercise. Alternatively, positive safety can be seen as a special case of the optimal parity problem, for which a polynomial algorithm and a proof of memoryless optimality are provided in the latter parts of this chapter.
 
 
-\begin{theorem}
+\begin{theorem}[Algorithm for the positive safety winning set]
 \label{5-thm:pos-safety-main}
 Let $ \mdp_{\bar\genColour} $ be an MDP obtained from $ \mdp $ by changing all $ \genColour $-coloured vertices to sinks (i.e. all actions in these vertices just self loop on the vertex). Then
 $ \winPos(\mdp,\Safe(\genColour)) = \winPos(\mdp_{\bar\genColour},\Reach(\winAS(\mdp_{\bar\genColour},\Safe(\genColour))) ) $. In particular, the set $ \winPos(\mdp,\Safe(\genColour)) $ can be computed in a strongly polynomial time and there exists a memoryless deterministic strategy, computable in strongly polynomial time, that is positively winning from every vertex of $\winPos(\mdp,\Safe(\genColour))$.

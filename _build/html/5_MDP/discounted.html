@@ -178,17 +178,17 @@
   <ul class="collapse-ul">
    <li class="toctree-l2">
     <a class="reference internal" href="../2_Regular/attractors.html">
-     A linear time algorithm for reachability games
+     Reachability games
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../2_Regular/buchi.html">
-     A quadratic time algorithm for Büchi games
+     Büchi games
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../2_Regular/parity.html">
-     An exponential time algorithm for parity games
+     Parity games
     </a>
    </li>
    <li class="toctree-l2">
@@ -198,7 +198,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../2_Regular/zielonka.html">
-     The Zielonka tree
+     Zielonka tree
     </a>
    </li>
    <li class="toctree-l2">
@@ -504,8 +504,8 @@
 \newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
 \newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
 \newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\renewcommand{\Win}{\textrm{Win}} 
-\renewcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Win}{\textrm{Win}} 
+\newcommand{\Lose}{\textrm{Lose}} 
 \newcommand{\Value}{\textrm{val}} 
 \newcommand{\ValueE}{\textrm{val}_\mEve} 
 \newcommand{\ValueA}{\textrm{val}_\mAdam}
@@ -537,7 +537,7 @@
 and with the objective <span class="math notranslate nohighlight">\(\DiscountedPayoff\)</span>, defined in the same way as in
 \Cref{chap:payoffs}. We start the chapter by proving that using the play-based semantics for the discounted-payoff objective yields no loss of generality.</p>
 <div class="proof lemma admonition" id="lemma-0">
-<p class="admonition-title"><span class="caption-number">Lemma 15 </span> (needs title and label)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 11 </span> (NEEDS TITLE AND LABEL)</p>
 <div class="lemma-content section" id="proof-content">
 <p>\label{5-lem:disc-step-one}
 In a discounted-payoff MDP, for each strategy <span class="math notranslate nohighlight">\( \sigma \)</span> and each vertex <span class="math notranslate nohighlight">\( v \)</span> it holds <span class="math notranslate nohighlight">\( \playPay(v, \sigma) = \stepPay(v, \sigma) \)</span>.</p>
@@ -571,14 +571,13 @@ being somewhat similar to the ones in the previous chapter.</p>
 \R^{\vertices}\rightarrow \R^{\vertices}\)</span> as follows: each vector
 <span class="math notranslate nohighlight">\(\vec{x}\)</span>is mapped to a vector
 <span class="math notranslate nohighlight">\(\vec{y}
-= \discOP(\vec{x})\)</span> such that:
-$<span class="math notranslate nohighlight">\(
-\vec{y}_v = \max_{a \in \actions} \sum_{u\in \vertices} \probTranFunc(u\mid 
+= \discOP(\vec{x})\)</span> such that:</p>
+<div class="math notranslate nohighlight">
+\[\vec{y}_v = \max_{a \in \actions} \sum_{u\in \vertices} \probTranFunc(u\mid 
 v,a) 
-\cdot\left((1-\lambda)\cdot\colouring(v,u) + \lambda\cdot \vec{x}_u \right).
-\)</span>$</p>
+\cdot\left((1-\lambda)\cdot\colouring(v,u) + \lambda\cdot \vec{x}_u \right).\]</div>
 <div class="proof lemma admonition" id="5-lem:fixpoint">
-<p class="admonition-title"><span>Lemma </span> (needs title 5-lem:fixpoint)</p>
+<p class="admonition-title"><span>Lemma </span> (NEEDS TITLE 5-lem:fixpoint)</p>
 <div class="lemma-content section" id="proof-content">
 <p>The operator <span class="math notranslate nohighlight">\(\discOP\)</span> is a contraction mapping. Hence, <span class="math notranslate nohighlight">\(\discOP\)</span> has a unique
 fixed point <span class="math notranslate nohighlight">\(\vec{x}^*\)</span> in <span class="math notranslate nohighlight">\(\R^{\vertices}\)</span>, and <span class="math notranslate nohighlight">\(\vec{x}^* = 
@@ -595,7 +594,7 @@ the one for games). The second part follows from the Banach fixed-point theorem.
 <p>We aim to prove that <span class="math notranslate nohighlight">\(\Value(\mdp)\)</span> is the unique fixed point <span class="math notranslate nohighlight">\(\vec{x}^*\)</span> of
 <span class="math notranslate nohighlight">\(\discOP\)</span>. We start with an auxiliary definition.</p>
 <div class="proof definition admonition" id="5-def:disc-safe-act">
-<p class="admonition-title"><span>Definition </span> (needs title 5-def:disc-safe-act)</p>
+<p class="admonition-title"><span>Definition </span> (NEEDS TITLE 5-def:disc-safe-act)</p>
 <div class="definition-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\vec{x}\in \R^{\vertices}\)</span>. We say that an action <span class="math notranslate nohighlight">\(a\)</span> is <span class="math notranslate nohighlight">\(\vec{x}\)</span>-safe in
 a vertex <span class="math notranslate nohighlight">\(v\)</span> if
@@ -605,9 +604,8 @@ a= \underset{a’ \in \actions}{\arg\max} \sum_{u\in \vertices}
 \probTranFunc(u\mid
 v,a’)
 \cdot\left((1-\lambda)\cdot\colouring(v,u) + \lambda\cdot \vec{x}_u \right).
-\end{equation}
-\noindent
-A strategy <span class="math notranslate nohighlight">\(\sigma\)</span> is <span class="math notranslate nohighlight">\(\vec{x}\)</span>-safe, if for
+\end{equation}</p>
+<p>A strategy <span class="math notranslate nohighlight">\(\sigma\)</span> is <span class="math notranslate nohighlight">\(\vec{x}\)</span>-safe, if for
 each play <span class="math notranslate nohighlight">\( \play \)</span> ending in a vertex <span class="math notranslate nohighlight">\(v\)</span>, all actions that are selected with a positive
 probability by <span class="math notranslate nohighlight">\(\sigma\)</span> for <span class="math notranslate nohighlight">\(\play\)</span> are <span class="math notranslate nohighlight">\(\vec{x}\)</span>-safe in <span class="math notranslate nohighlight">\(v\)</span>.</p>
 </div>
@@ -615,12 +613,15 @@ probability by <span class="math notranslate nohighlight">\(\sigma\)</span> for 
 \playPay(v,\sigma)\)</span>. For memoryless strategies, <span class="math notranslate nohighlight">\(\valsigma\)</span> can be computed efficiently as follows:
 Each memoryless strategy <span class="math notranslate nohighlight">\(\sigma\)</span> defines a <strong>linear</strong> operator <span class="math notranslate nohighlight">\(\discOP_{\sigma}\)</span> which maps each vector
 <span class="math notranslate nohighlight">\(\vec{x}\in \R^{\vertices}\)</span> to a vector <span class="math notranslate nohighlight">\(\vec{y}=\discOP_{\sigma}(\vec{x})\)</span>
-such that $<span class="math notranslate nohighlight">\(\vec{y}_v = \sum_{a\in \actions} \sigma(a\mid v) \cdot 
+such that
+$<span class="math notranslate nohighlight">\(
+\vec{y}_v = \sum_{a\in \actions} \sigma(a\mid v) \cdot 
 \left(\sum_{u \in \vertices} 
 \probTranFunc(u \mid v,a) \cdot( (1-\lambda)\cdot \colouring(u,v) + 
-\lambda \cdot \vec{x}_u )\right).\)</span>$</p>
+\lambda \cdot \vec{x}_u )\right).
+\)</span>$</p>
 <div class="proof lemma admonition" id="5-lem:disc-val-sigma">
-<p class="admonition-title"><span>Lemma </span> (needs title 5-lem:disc-val-sigma)</p>
+<p class="admonition-title"><span>Lemma </span> (NEEDS TITLE 5-lem:disc-val-sigma)</p>
 <div class="lemma-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\sigma\)</span> be a memoryless strategy using rational probabilities. Then the operator <span class="math notranslate nohighlight">\(\discOP_{\sigma}\)</span> has a unique fixed point, which is equal to <span class="math notranslate nohighlight">\(\valsigma\)</span> and which can be computed in polynomial time.</p>
 </div>
@@ -631,7 +632,7 @@ such that $<span class="math notranslate nohighlight">\(\vec{y}_v = \sum_{a\in \
 </div>
 <p>We now prove that there is a memoryless strategy ensuring outcome given by the fixed point of <span class="math notranslate nohighlight">\(\discOP\)</span>. Hence, the fixed point gives a lower bound on the values of vertices.</p>
 <div class="proof lemma admonition" id="5-lem:disc-val-lower">
-<p class="admonition-title"><span>Lemma </span> (needs title 5-lem:disc-val-lower)</p>
+<p class="admonition-title"><span>Lemma </span> (NEEDS TITLE 5-lem:disc-val-lower)</p>
 <div class="lemma-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\vec{x}^*\)</span> be the unique fixed point of <span class="math notranslate nohighlight">\(\discOP\)</span>.
 Then there exists an MD strategy that is <span class="math notranslate nohighlight">\(\vec{x}^*\)</span>-safe. Moreover, for each <span class="math notranslate nohighlight">\(\vec{x}^*\)</span>-safe memoryless strategy it holds that<br />
@@ -660,16 +661,19 @@ payoff accumulated during the first <span class="math notranslate nohighlight">\
 <span class="math notranslate nohighlight">\((1-\lambda)\sum_{i=0}^{k-1} \lambda^i
 \, \colouring(\play_i)\)</span>. The following lemma can be proved by an easy induction.</p>
 <div class="proof lemma admonition" id="5-lem:disc-iterates">
-<p class="admonition-title"><span>Lemma </span> (needs title 5-lem:disc-iterates)</p>
+<p class="admonition-title"><span>Lemma </span> (NEEDS TITLE 5-lem:disc-iterates)</p>
 <div class="lemma-content section" id="proof-content">
-<p>For each <span class="math notranslate nohighlight">\(k\geq 0\)</span> and each vertex <span class="math notranslate nohighlight">\(v\)</span> we have
-$<span class="math notranslate nohighlight">\(\sup_{\sigma}\expv^{\sigma}_{v}[\dPayoffStep{k}] = 
-(\discOP^k(\vec{0}))_v\)</span><span class="math notranslate nohighlight">\( 
-(here \)</span>\vec{0}<span class="math notranslate nohighlight">\( is a \)</span>|\vertices|$-dimensional vector of zeroes).</p>
+<p>For each <span class="math notranslate nohighlight">\(k\geq 0\)</span> and each vertex <span class="math notranslate nohighlight">\(v\)</span> we have</p>
+<div class="math notranslate nohighlight">
+\[
+\sup_{\sigma}\expv^{\sigma}_{v}[\dPayoffStep{k}] = 
+(\discOP^k(\vec{0}))_v
+\]</div>
+<p>(here <span class="math notranslate nohighlight">\(\vec{0}\)</span> is a <span class="math notranslate nohighlight">\(|\vertices|\)</span>-dimensional vector of zeroes).</p>
 </div>
 </div><p>The previous lemma is used to prove the required upper bound on <span class="math notranslate nohighlight">\(\Value(v)\)</span>.</p>
 <div class="proof lemma admonition" id="5-lem:disc-val-upper">
-<p class="admonition-title"><span>Lemma </span> (needs title 5-lem:disc-val-upper)</p>
+<p class="admonition-title"><span>Lemma </span> (NEEDS TITLE 5-lem:disc-val-upper)</p>
 <div class="lemma-content section" id="proof-content">
 <p>For each vertex <span class="math notranslate nohighlight">\(v\)</span> it holds
 <span class="math notranslate nohighlight">\(\Value(v)\leq \vec{x}^*_v\)</span>, where <span class="math notranslate nohighlight">\(\vec{x}^*\)</span> is the
@@ -689,8 +693,7 @@ Hence,
 &amp;= \sup_{\sigma}\lim_{k\rightarrow \infty}\expv^\sigma_v[\dPayoffStep{k}]
 \label{5-eq:disc-limit-transition}.
 \end{align}</p>
-<p>\noindent
-It remains to prove that the RHS of~\eqref{5-eq:disc-limit-transition} is not
+<p>It remains to prove that the RHS of~\eqref{5-eq:disc-limit-transition} is not
 greater than <span class="math notranslate nohighlight">\(\vec{x}^*= \lim_{k\rightarrow 
 \infty}\discOP^k(\vec{0})=\lim_{k\rightarrow \infty} 
 \sup_{\sigma}\expv^\sigma_v[\dPayoffStep{k}]\)</span> (the last inequality follows
@@ -702,7 +705,7 @@ follows from the fact that the inequality holds for each concrete <span class="m
 </div>
 <p>The following theorem summarizes the results.</p>
 <div class="proof theorem admonition" id="5-thm:disc-val-char-mem">
-<p class="admonition-title"><span>Theorem </span> (needs title 5-thm:disc-val-char-mem)</p>
+<p class="admonition-title"><span>Theorem </span> (NEEDS TITLE 5-thm:disc-val-char-mem)</p>
 <div class="theorem-content section" id="proof-content">
 <p>The vector of values <span class="math notranslate nohighlight">\(\Value(\mdp)\)</span> in a discounted sum MDP <span class="math notranslate nohighlight">\(\mdp\)</span> is the
 unique fixed point <span class="math notranslate nohighlight">\(\vec{x}^*\)</span> of the operator <span class="math notranslate nohighlight">\(\discOP\)</span>. Moreover, there
@@ -728,7 +731,7 @@ approximation of <span class="math notranslate nohighlight">\(\Value(\mdp)\)</sp
 point (i.e. <span class="math notranslate nohighlight">\(\Value(\mdp)\)</span>) in a finite number of steps, but we can provide
 simple bounds on the precision of the approximation.</p>
 <div class="proof lemma admonition" id="5-lem:disc-val-it-convergence">
-<p class="admonition-title"><span>Lemma </span> (needs title 5-lem:disc-val-it-convergence)</p>
+<p class="admonition-title"><span>Lemma </span> (NEEDS TITLE 5-lem:disc-val-it-convergence)</p>
 <div class="lemma-content section" id="proof-content">
 <p>For each <span class="math notranslate nohighlight">\(k\in \N\)</span>, <span class="math notranslate nohighlight">\(||\Value(\mdp)-\discOP^k(\vec{0}) ||_{\infty} \leq 
 \lambda^k \cdot \maxc\)</span>. (Recall that <span class="math notranslate nohighlight">\(\maxc=\max_{e\in 
@@ -743,12 +746,16 @@ for each play <span class="math notranslate nohighlight">\(\play\)</span>, <span
 <p>Similar analysis can be applied to strategies induced by the approximate
 vectors.</p>
 <div class="proof lemma admonition" id="5-lem:disc-val-it-eps-strategies">
-<p class="admonition-title"><span>Lemma </span> (needs title 5-lem:disc-val-it-eps-strategies)</p>
+<p class="admonition-title"><span>Lemma </span> (NEEDS TITLE 5-lem:disc-val-it-eps-strategies)</p>
 <div class="lemma-content section" id="proof-content">
-<p>Let <span class="math notranslate nohighlight">\(\eps&gt;0\)</span> be arbitrary and let
-$<span class="math notranslate nohighlight">\(k(\eps)=\left\lceil\frac{\log_2\left(\frac{\eps(1-\lambda)}{4\maxc}\right)}{\log_2(\lambda)}
- \right\rceil .\)</span><span class="math notranslate nohighlight">\( Then, every 
-\)</span>\discOP^{k(\eps)}(\vec{0})<span class="math notranslate nohighlight">\(-safe memoryless strategy is \)</span>\eps$-optimal in
+<p>Let <span class="math notranslate nohighlight">\(\eps&gt;0\)</span> be arbitrary and let</p>
+<div class="math notranslate nohighlight">
+\[
+k(\eps)=\left\lceil\frac{\log_2\left(\frac{\eps(1-\lambda)}{4\maxc}\right)}{\log_2(\lambda)}
+ \right\rceil .
+\]</div>
+<p>Then, every
+<span class="math notranslate nohighlight">\(\discOP^{k(\eps)}(\vec{0})\)</span>-safe memoryless strategy is <span class="math notranslate nohighlight">\(\eps\)</span>-optimal in
 every vertex.</p>
 </div>
 </div><div class="dropdown tip admonition">
@@ -763,9 +770,8 @@ let <span class="math notranslate nohighlight">\(\discOP_{\sigma}\)</span> be th
 &amp;\leq ||\Value(\mdp) -\discOP^{k(\eps)}(\vec{0})
 ||<em>{\infty} + || \discOP^{k(\eps)}(\vec{0}) - \valsigma
 ||</em>{\infty}. \label{5-eq:disc-val-it-bound}
-\end{align}
-\noindent
-The first term in~\eqref{5-eq:disc-val-it-bound} is <span class="math notranslate nohighlight">\(\leq \eps/2\)</span>
+\end{align}</p>
+<p>The first term in~\eqref{5-eq:disc-val-it-bound} is <span class="math notranslate nohighlight">\(\leq \eps/2\)</span>
 by the choice of <span class="math notranslate nohighlight">\(k(\eps)\)</span> and <a class="reference internal" href="#5-lem:disc-val-it-convergence">Lemma </a>. We prove
 that the second term
 in~\eqref{5-eq:disc-val-it-bound} is also bounded by <span class="math notranslate nohighlight">\(\eps/2\)</span>. Note that we
@@ -789,8 +795,7 @@ in~ <a class="reference internal" href="#5-lem:disc-val-lower">Lemma </a>) and <
 \lambda\cdot||(\discOP^{k(\eps)}(\vec{0})) -
 \valsigma||_{\infty}
 \end{align*}</p>
-<p>\noindent
-Re-arranging yields <span class="math notranslate nohighlight">\(|| \discOP^{k(\eps)}(\vec{0}) - \valsigma
+<p>Re-arranging yields <span class="math notranslate nohighlight">\(|| \discOP^{k(\eps)}(\vec{0}) - \valsigma
 ||_{\infty} \leq \frac{1}{1-\lambda}\cdot|| 
 \discOP^{k(\eps)}(\vec{0}) - 
 \discOP^{k(\eps)+1}
@@ -808,7 +813,7 @@ formula above yields <span class="math notranslate nohighlight">\(|| \discOP^{k(
 show that sufficiently precise iterates can be used to computate an <strong>optimal</strong> strategy.
 This is summarized in the following lemma due to <span id="id3">[<span>Tseng:1990</span>]</span>.</p>
 <div class="proof lemma admonition" id="5-lem:disc-vi-optimal-strategy">
-<p class="admonition-title"><span>Lemma </span> (needs title 5-lem:disc-vi-optimal-strategy)</p>
+<p class="admonition-title"><span>Lemma </span> (NEEDS TITLE 5-lem:disc-vi-optimal-strategy)</p>
 <div class="lemma-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(d\)</span> be the least common multiple of denominators of the following numbers: <span class="math notranslate nohighlight">\(\lambda\)</span>, all<br />
 transition probabilities, and all edge colourings in <span class="math notranslate nohighlight">\(\mdp\)</span>. Next, let <span class="math notranslate nohighlight">\(\eps^* = 
@@ -846,8 +851,7 @@ regular, and moreover, composed of integers (ue to the choice of <span class="ma
 \underbrace{d^2\cdot\lambda \cdot \vec{x}^<em>_u ) - d^3\vec{x}^</em>}</em>{\text{int. multiples of <span class="math notranslate nohighlight">\(1/\det(A)\)</span>}}\right| \
 &amp;\geq \frac{1}{d^3\cdot \det(A)}\geq \frac{1}{d^{(3|\vertices|+3)}\cdot{|\vertices|}^{\frac{|\vertices|}{2}}}.
 \end{align*}</p>
-<p>\noindent
-Now put <span class="math notranslate nohighlight">\(\vec{z}=\discOP_\sigma(\discOP^{k(\eps)}(\vec{0}))\)</span>. We have the following (using, on the first line, the fact that <span class="math notranslate nohighlight">\(|a+b| \geq |a|-|b|\)</span>):
+<p>Now put <span class="math notranslate nohighlight">\(\vec{z}=\discOP_\sigma(\discOP^{k(\eps)}(\vec{0}))\)</span>. We have the following (using, on the first line, the fact that <span class="math notranslate nohighlight">\(|a+b| \geq |a|-|b|\)</span>):
 \begin{align*}
 |\vec{z}_v - \vec{x}^<em>_v| &amp;=
 |\vec{z}<em>v-\discOP</em>\sigma(\vec{x}^</em>)<em>v+\discOP</em>\sigma(\vec{x}^<em>)_v-\vec{x}^</em><em>v |
@@ -859,12 +863,11 @@ Now put <span class="math notranslate nohighlight">\(\vec{z}=\discOP_\sigma(\dis
 <div><p>\eps^* - \frac{\eps^<em>}{2}  \quad (\text{ <a class="reference internal" href="#5-lem:disc-val-it-convergence">Lemma </a>})\&amp;=\frac{\eps^</em>}{2}.
 \end{align*}</p>
 </div></blockquote>
-<p>\noindent
-In particular, it must hold that <span class="math notranslate nohighlight">\(\vec{z}_v&lt; \vec{x}^*_v\)</span>. Otherwise we would have <span class="math notranslate nohighlight">\(\discOP^{k(\eps^*)+1}(\vec{0})_v \geq \discOP_{\sigma}(\discOP^{k(\eps^*)}(\vec{0}))_v \geq \vec{x^*}_v + \frac{\eps^*}{2} \)</span>, a contradiction with <span class="math notranslate nohighlight">\(\discOP^{k(\eps^*)+1}(\vec{0})\)</span> being an <span class="math notranslate nohighlight">\(\frac{\eps^*}{4}\)</span>-ap-prox-imation of <span class="math notranslate nohighlight">\(\vec{x}^*\)</span> (by  <a class="reference internal" href="#5-lem:disc-val-it-convergence">Lemma </a> and the choice of <span class="math notranslate nohighlight">\(k(\eps^*)\)</span>).</p>
+<p>In particular, it must hold that <span class="math notranslate nohighlight">\(\vec{z}_v&lt; \vec{x}^*_v\)</span>. Otherwise we would have <span class="math notranslate nohighlight">\(\discOP^{k(\eps^*)+1}(\vec{0})_v \geq \discOP_{\sigma}(\discOP^{k(\eps^*)}(\vec{0}))_v \geq \vec{x^*}_v + \frac{\eps^*}{2} \)</span>, a contradiction with <span class="math notranslate nohighlight">\(\discOP^{k(\eps^*)+1}(\vec{0})\)</span> being an <span class="math notranslate nohighlight">\(\frac{\eps^*}{4}\)</span>-ap-prox-imation of <span class="math notranslate nohighlight">\(\vec{x}^*\)</span> (by  <a class="reference internal" href="#5-lem:disc-val-it-convergence">Lemma </a> and the choice of <span class="math notranslate nohighlight">\(k(\eps^*)\)</span>).</p>
 <p>At the same time, <span class="math notranslate nohighlight">\(|\discOP(\discOP^{k(\eps^*)}(\vec{0}))_v - \vec{x}^*|\leq \frac{\eps^*}{4}\)</span>, due to the choice of <span class="math notranslate nohighlight">\(k(\eps^*)\)</span>. Since <span class="math notranslate nohighlight">\(\vec{z}_v \leq \vec{x}_v^*\)</span>, we get <span class="math notranslate nohighlight">\(\vec{z}_v &lt; \vec{x}_v^* - \frac{\eps}{2} \leq \discOP(\discOP^{k(\eps^*)}(\vec{0}))_v\)</span>, a contradiction with <span class="math notranslate nohighlight">\(\sigma\)</span> being <span class="math notranslate nohighlight">\(\discOP^{k(\eps^*)}(\vec{0})\)</span>-safe.</p>
 </div>
 <div class="proof corollary admonition" id="5-cor:VI-optimal-strategy-comp">
-<p class="admonition-title"><span>Corollary </span> (needs title 5-cor:VI-optimal-strategy-comp)</p>
+<p class="admonition-title"><span>Corollary </span> (NEEDS TITLE 5-cor:VI-optimal-strategy-comp)</p>
 <div class="corollary-content section" id="proof-content">
 <p>An optimal MD strategy in discounted-payoff MDPs with a fixed discount factor can be computed in polynomial time.</p>
 </div>
@@ -876,7 +879,7 @@ In particular, it must hold that <span class="math notranslate nohighlight">\(\v
 <div class="section" id="strategy-improvement-linear-programming-and-strongly">
 <h2>Strategy improvement, linear programming, and (strongly)<a class="headerlink" href="#strategy-improvement-linear-programming-and-strongly" title="Permalink to this headline">¶</a></h2>
 <p>polynomial time</p>
-<p>The strategy (or policy) improvement (also called strategy/policy iteration in the literature) for MDPs works similarly as for games, see  <code class="xref std std-numref docutils literal notranslate"><span class="pre">5-algo:disc-strategy-improvement</span></code>. In the algorithm, we use <span class="math notranslate nohighlight">\(\discOP_{a,v}(\vec{x})\)</span> as a shortcut for <span class="math notranslate nohighlight">\( \sum_{u \in \vertices}\probTranFunc(u\mid v,a)\left((1-\lambda)\cdot\colouring(v,u) + \lambda\cdot \vec{x}_u \right)\)</span></p>
+<p>The strategy (or policy) improvement (also called strategy/policy iteration in the literature) for MDPs works similarly as for games, see <code class="xref std std-numref docutils literal notranslate"><span class="pre">5-algo:disc-strategy-improvement</span></code>. In the algorithm, we use <span class="math notranslate nohighlight">\(\discOP_{a,v}(\vec{x})\)</span> as a shortcut for <span class="math notranslate nohighlight">\( \sum_{u \in \vertices}\probTranFunc(u\mid v,a)\left((1-\lambda)\cdot\colouring(v,u) + \lambda\cdot \vec{x}_u \right)\)</span></p>
 <p>\begin{algorithm}
 \KwData{A discounted-payoff MDP <span class="math notranslate nohighlight">\( \mdp \)</span>}</p>
 <p><span class="math notranslate nohighlight">\(i \leftarrow 0\)</span>;
@@ -899,7 +902,7 @@ compute <span class="math notranslate nohighlight">\( \vec{x}^{\sigma_i} = \left
 \label{5-algo:disc-strategy-improvement}
 \end{algorithm}</p>
 <div class="proof theorem admonition" id="5-thm:disc-strat-it">
-<p class="admonition-title"><span>Theorem </span> (needs title 5-thm:disc-strat-it)</p>
+<p class="admonition-title"><span>Theorem </span> (NEEDS TITLE 5-thm:disc-strat-it)</p>
 <div class="theorem-content section" id="proof-content">
 <p>The strategy improvement algorithm for discounted MDPs terminates in a finite (and at most exponential) number of steps and returns an optimal MD strategy.</p>
 </div>
@@ -932,7 +935,7 @@ v,a)\cdot\left((1-\lambda)\cdot \colouring(v,u) + \lambda\cdot x_u \right)
 \label{5-fig:disc-lp}
 \end{figure}</p>
 <div class="proof lemma admonition" id="5-lem:disc-lp">
-<p class="admonition-title"><span>Lemma </span> (needs title 5-lem:disc-lp)</p>
+<p class="admonition-title"><span>Lemma </span> (NEEDS TITLE 5-lem:disc-lp)</p>
 <div class="lemma-content section" id="proof-content">
 <p>The linear program <span class="math notranslate nohighlight">\(\lpdisc\)</span> has a unique optimal solution
 <span class="math notranslate nohighlight">\(\bar{\vec{x}}\)</span> that satisfies <span class="math notranslate nohighlight">\(\bar{\vec{x}} = \Value(\mdp)\)</span>.</p>
@@ -971,18 +974,20 @@ comes from  <a class="reference internal" href="#5-lem:fixpoint">Lemma </a>).</p
 <p>It is known that linear programming can be solved in polynomial time by
 interior-point techniques <span id="id6">[<span>Kha:1979</span><a class="reference internal" href="references.html#id113"><span>Kar84</span></a>]</span>. Hence, we get the following.</p>
 <div class="proof theorem admonition" id="5-thm:disc-polytime-lp">
-<p class="admonition-title"><span>Theorem </span> (needs title 5-thm:disc-polytime-lp)</p>
+<p class="admonition-title"><span>Theorem </span> (NEEDS TITLE 5-thm:disc-polytime-lp)</p>
 <div class="theorem-content section" id="proof-content">
-<p>The following holds for discounted-payoff MDPs:
-\begin{enumerate}
-*
-The value of each vertex as well as an MD optimal
-strategy can be computed in polynomial time.
-*<br />
-The problem whether the value of a given vertex <span class="math notranslate nohighlight">\(v\)</span> is at least a given constant
+<p>The following holds for discounted-payoff MDPs:</p>
+<ol class="simple">
+<li></li>
+</ol>
+<p>The value of each vertex as well as an MD optimal
+strategy can be computed in polynomial time.</p>
+<ol class="simple">
+<li></li>
+</ol>
+<p>The problem whether the value of a given vertex <span class="math notranslate nohighlight">\(v\)</span> is at least a given constant
 (say~1) is \P-complete (under logspace reductions). The hardness result holds
-even for a fixed discount factor.
-\end{enumerate}</p>
+even for a fixed discount factor.</p>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
@@ -1029,7 +1034,7 @@ improvement in discounted MDPs is really just a re-implementation of the
 simplex algorithm using a different syntax. Hence, the strongly polynomial
 complexity bound for a fixed discount factor holds there as well.</p>
 <div class="proof theorem admonition" id="theorem-15">
-<p class="admonition-title"><span class="caption-number">Theorem 16 </span> (needs title and label)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 12 </span> (NEEDS TITLE AND LABEL)</p>
 <div class="theorem-content section" id="proof-content">
 <p>For MDPs with a fixed discount factor, the value of each vertex as well as an
 optimal MD strategy can be computed in a strongly polynomial time.</p>

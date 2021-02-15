@@ -1,5 +1,5 @@
 (2-sec:buchi)=
-# A quadratic time algorithm for B&uuml;chi games
+# B&uuml;chi games
 
 ```{math}
 \newcommand{\F}{\mathcal{F}} 
@@ -36,8 +36,8 @@
 \newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
 \newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
 \newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\renewcommand{\Win}{\textrm{Win}} 
-\renewcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Win}{\textrm{Win}} 
+\newcommand{\Lose}{\textrm{Lose}} 
 \newcommand{\Value}{\textrm{val}} 
 \newcommand{\ValueE}{\textrm{val}_\mEve} 
 \newcommand{\ValueA}{\textrm{val}_\mAdam}
@@ -69,11 +69,12 @@
 Recall that the objective $\Buchi$ requires that the colour $\Win$ appears infinitely many times
 and $\CoBuchi$ requires that the colour $\Lose$ appears finitely many times.
 
-```{prf:theorem} needs title 2-thm:Buchi
+```{prf:theorem} Positional determinacy and complexity of Buchi games
 :label: 2-thm:Buchi
 :nonumber:
 
-B&uuml;chi objectives are uniformly positionally determined for both players (See \cref{2-rmk:finite_infinit) for the case of infinite games.}.
+B&uuml;chi objectives are uniformly positionally determined for both players```{margin}
+See \cref{2-rmk:finite_infinit``` for the case of infinite games.}.
 There exists an algorithm for computing the winning regions of B&uuml;chi games in quadratic time, more precisely $O(mn)$,
 and linear space, more precisely $O(m)$.
 
@@ -83,10 +84,9 @@ The first sentence implies that CoB&uuml;chi games are also uniformly positional
 We present two different yet very similar algorithms. 
 
 ## A first algorithm
-
 The following lemma implies  {prf:ref}`2-thm:Buchi`.
 
-```{prf:lemma} needs title 2-lem:Buchi_second
+```{prf:lemma} Fixed point characterisation of the winning region for Buchi games
 :label: 2-lem:Buchi_second
 :nonumber:
 
@@ -153,7 +153,7 @@ implying that $\sigma$ is winning from $\WE(\Game')$ in $\Game$.
 
 ```
 
-The algorithm is presented in pseudocode in  {numref}`2-algo:Buchi_first`.
+The algorithm is presented in pseudocode in {numref}`2-algo:Buchi_first`.
 For the complexity analysis, the algorithm performs at most $n$ recursive calls
 and each of them involves two attractor computations, implying the time complexity $O(mn)$.
 
@@ -164,10 +164,9 @@ The first quadratic time algorithm for solving B{\"uchi} games.
 ```
 
 ## A second algorithm
-
 The following lemma induces a different algorithm, it also implies  {prf:ref}`2-thm:Buchi`.
 
-```{prf:lemma} needs title 2-lem:Buchi
+```{prf:lemma} Second fixed point characterisation of the winning region for Buchi games
 :label: 2-lem:Buchi
 :nonumber:
 
@@ -252,7 +251,7 @@ implying that it satisfies $\CoBuchi[\Win]$.
 
 ```
 
- {prf:ref}`2-lem:Buchi` directly transfers to  {numref}`2-algo:Buchi_second`.
+ {prf:ref}`2-lem:Buchi` directly transfers to {numref}`2-algo:Buchi_second`.
 
 ```{figure} ./../2-algo:Buchi_second.png
 :name: 2-algo:Buchi_second
@@ -260,7 +259,7 @@ implying that it satisfies $\CoBuchi[\Win]$.
 The second quadratic time algorithm for solving B{\"uchi} games.
 ```
 
-```{admonition} Remark
+```{admonition} Remark 
 Both algorithms have the same complexity but they are not equivalent: the number of recursive calls of the first algorithm
 may be strictly smaller than the number of iterations of the repeat loop in the second algorithm.
 Both can be extended into (different) algorithms for parity games and beyond; in this chapter we will work with the first algorithm.

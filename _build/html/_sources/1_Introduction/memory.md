@@ -31,8 +31,8 @@
 \newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
 \newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
 \newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\renewcommand{\Win}{\textrm{Win}} 
-\renewcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Win}{\textrm{Win}} 
+\newcommand{\Lose}{\textrm{Lose}} 
 \newcommand{\Value}{\textrm{val}} 
 \newcommand{\ValueE}{\textrm{val}_\mEve} 
 \newcommand{\ValueA}{\textrm{val}_\mAdam}
@@ -72,7 +72,6 @@ For understanding a certain class of games a great insight is often to prove the
 as for instance positional or using finite memory.
 
 ## Positional strategies
-
 **Positional** strategies carry no memory about the play constructed so far and in choosing an edge only look at the current vertex.
 The word memoryless is sometimes used in lieu of positional.
 Formally, a positional strategy for Eve is a function 
@@ -148,12 +147,12 @@ We say that $\Omega$ is positionally determined for both players if both $\Omega
 If the positional determinacy only holds for Eve we say that such objectives are half-positional. 
 
 Parity objectives are positionally determined for both players; this will be proved in Chapter {ref}`2-chap:regular`.
-We illustrate it on  {numref}`1-fig:parity_game_example_positional` by annotating  {numref}`1-fig:parity_game_example` with the positional winning strategies for both players.
+We illustrate it on {numref}`1-fig:parity_game_example_positional` by annotating {numref}`1-fig:parity_game_example` with the positional winning strategies for both players.
 
 ```{figure} ./../1-fig:parity_game_example_positional.png
 :name: 1-fig:parity_game_example_positional
 :align: center
-The example of a parity game given in  {numref
+The example of a parity game given in {numref}`1-fig:parity_game_example` with additional positional winning strategies for both players (corresponding to dashed edges).
 ```
 
 
@@ -176,7 +175,6 @@ using $n \cdot \log(\frac{m}{n})$ calls to $A$.
 
 
 ## Uniformity
-
 A qualitative objective $\Omega$ is uniformly positionally determined if for every game $\game$ with objective $\Omega$, 
 Eve has a positional strategy which is winning from $\WE(\game)$, meaning from every vertex in $\WE(\game)$.
 Similarly, a quantitative objective $\Phi$ is uniformly positionally determined if for every game with objective $\Phi$, 
@@ -202,7 +200,8 @@ Thanks to~\cref{1-fact:winning_prefix_independent_qualitative}
 the strategy $\sigma_v$ is winning from all vertices reachable by a play consistent with $\sigma_v$ starting from $v$.
 Without loss of generality let us assume that $\sigma_v$ is only defined on these vertices.
 
-We fix $\le$ a total order on the set of vertices (The argument we give in this proof extends to infinite games whose set of vertices can be well ordered. A well-order is a total order such that every non-empty subset has a least element, which is exactly the property we need in this proof).
+We fix $\le$ a total order on the set of vertices```{margin}
+The argument we give in this proof extends to infinite games whose set of vertices can be well ordered. A well-order is a total order such that every non-empty subset has a least element, which is exactly the property we need in this proof```.
 We let $\sigma$ be the positional strategy defined by $\sigma(u)$ is $\sigma_v(u)$ where $v$ is the least vertex (with respect to $\le$) such that $\sigma_v$ is defined on $u$. We say that $\sigma$ uses $\sigma_v$ at $u$.
 
 We argue that $\sigma$ is winning from $\WE(\game)$. 
@@ -214,8 +213,7 @@ Since $\Omega$ is prefix independent this means that the play itself satisfies $
 ```
 
 
-## Finite memory strategies
-\label{1-finite memory}
+## Finite memory strategies}\label{1-finite memory
 Memoryless strategies are sometimes not enough. 
 A more powerful class of strategies is **finite memory** strategies.
 Intuitively, a finite memory strategy uses a finite state machine called a memory structure 
@@ -248,7 +246,7 @@ There are several variants of this definition covering cases where the memory is
 and uniformly over all vertices or not.
 
 
-We give in  {numref}`1-fig:memory_required` an example of a game where Eve has a winning strategy using two memory states
+We give in {numref}`1-fig:memory_required` an example of a game where Eve has a winning strategy using two memory states
 but no positional winning strategy. 
 Let us consider the condition $\Buchi[\set{v_1}] \wedge \Buchi[\set{v_2}]$, meaning that a play is winning if both $v_1$ and $v_2$ are visited infinitely many times. A positional strategy would either always choose to go left to $v_1$ or to the right to $v_2$, hence does not satisfy the condition. 
 Some memory is required to switch between the two.

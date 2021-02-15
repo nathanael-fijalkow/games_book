@@ -178,17 +178,17 @@
   <ul class="collapse-ul">
    <li class="toctree-l2">
     <a class="reference internal" href="../2_Regular/attractors.html">
-     A linear time algorithm for reachability games
+     Reachability games
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../2_Regular/buchi.html">
-     A quadratic time algorithm for Büchi games
+     Büchi games
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../2_Regular/parity.html">
-     An exponential time algorithm for parity games
+     Parity games
     </a>
    </li>
    <li class="toctree-l2">
@@ -198,7 +198,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../2_Regular/zielonka.html">
-     The Zielonka tree
+     Zielonka tree
     </a>
    </li>
    <li class="toctree-l2">
@@ -480,8 +480,8 @@
 \newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
 \newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
 \newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\renewcommand{\Win}{\textrm{Win}} 
-\renewcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Win}{\textrm{Win}} 
+\newcommand{\Lose}{\textrm{Lose}} 
 \newcommand{\Value}{\textrm{val}} 
 \newcommand{\ValueE}{\textrm{val}_\mEve} 
 \newcommand{\ValueA}{\textrm{val}_\mAdam}
@@ -518,7 +518,7 @@
 \end{cases} 
 \end{split}\end{aligned}\end{align} \]</div>
 <div class="proof lemma admonition" id="5-lem:quant-reach-operator-fixed-point">
-<p class="admonition-title"><span>Lemma </span> (needs title 5-lem:quant-reach-operator-fixed-point)</p>
+<p class="admonition-title"><span>Lemma </span> (NEEDS TITLE 5-lem:quant-reach-operator-fixed-point)</p>
 <div class="lemma-content section" id="proof-content">
 <p>For each initial vector <span class="math notranslate nohighlight">\(\vec{x}\)</span>, the limit <span class="math notranslate nohighlight">\(\lim_{k \rightarrow \infty}\ReachOp^k(\vec{x})\)</span> exists. Moreover, if <span class="math notranslate nohighlight">\(\vec{x} \leq \ReachOp(\vec{x})\)</span>, then the limit is equal to the least fixed point of <span class="math notranslate nohighlight">\(\ReachOp\)</span> that is greater than or equal to <span class="math notranslate nohighlight">\(\vec{x}\)</span>; if <span class="math notranslate nohighlight">\(\ReachOp(\vec{x})\leq \vec{x}\)</span>, then the limit is equal to the greatest fixed point of <span class="math notranslate nohighlight">\(\ReachOp\)</span> that is less than or equal to <span class="math notranslate nohighlight">\(\vec{x}\)</span>.</p>
 </div>
@@ -529,7 +529,7 @@ In addition, it can be easily checked that the set <span class="math notranslate
 </div>
 <p>We denote by <span class="math notranslate nohighlight">\(\Reach^k(\Win)\)</span> the set of all plays that reach <span class="math notranslate nohighlight">\(\Win\)</span> within the first <span class="math notranslate nohighlight">\(k\)</span> steps. Clearly, for each <span class="math notranslate nohighlight">\(\sigma\)</span> and <span class="math notranslate nohighlight">\(\vinit\)</span> we have <span class="math notranslate nohighlight">\(\lim_{k \rightarrow \infty} \probm^\sigma_{\vinit}(\Reach^k(\Win)) = \probm^\sigma_{\vinit}(\Reach(\Win))\)</span>.</p>
 <div class="proof lemma admonition" id="5-lem:quant-reach-step-operator">
-<p class="admonition-title"><span>Lemma </span> (needs title 5-lem:quant-reach-step-operator)</p>
+<p class="admonition-title"><span>Lemma </span> (NEEDS TITLE 5-lem:quant-reach-step-operator)</p>
 <div class="lemma-content section" id="proof-content">
 <p>For each <span class="math notranslate nohighlight">\(k\in \N\)</span> and <span class="math notranslate nohighlight">\(v\in \vertices\)</span>, <span class="math notranslate nohighlight">\(\ReachOp^k(\vec{0})_v = \sup_{\sigma}\probm^\sigma_v(\Reach^k(\Win))\)</span>. In particular, the vector <span class="math notranslate nohighlight">\(\vec{x}^* = \lim_{k \rightarrow\infty} \ReachOp^k(\vec{0})\)</span> is the least fixed point of <span class="math notranslate nohighlight">\( \ReachOp \)</span> and it is equal to the vector of reachability values.</p>
 </div>
@@ -540,7 +540,7 @@ In addition, it can be easily checked that the set <span class="math notranslate
 <p>Similarly to  <a class="reference internal" href="discounted.html#5-def:disc-safe-act">Definition </a> we say that an action <span class="math notranslate nohighlight">\(a\)</span> is <span class="math notranslate nohighlight">\(\vec{x}\)</span>-safe in <span class="math notranslate nohighlight">\(v\)</span> if it holds that <span class="math notranslate nohighlight">\(a= \underset{a' \in \actions}{\arg\max} \sum_{u\in \vertices} 
 \probTranFunc(u\mid v,a') \cdot\vec{x}_u.\)</span> Recall that a strategy <span class="math notranslate nohighlight">\(\sigma\)</span> is <span class="math notranslate nohighlight">\(\vec{x}\)</span>-safe if all actions selected in a vertex with non-zero probability are <span class="math notranslate nohighlight">\(\vec{x}\)</span>-safe in that vertex.</p>
 <div class="proof lemma admonition" id="5-lem:quant-reach-value-distribution">
-<p class="admonition-title"><span>Lemma </span> (needs title 5-lem:quant-reach-value-distribution)</p>
+<p class="admonition-title"><span>Lemma </span> (NEEDS TITLE 5-lem:quant-reach-value-distribution)</p>
 <div class="lemma-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\( \vec{x}^* \)</span> be as in  <a class="reference internal" href="#5-lem:quant-reach-step-operator">Lemma </a>.
 Next, let <span class="math notranslate nohighlight">\(Z^{(n)}\)</span> be a random variable which for a given time step <span class="math notranslate nohighlight">\(n\)</span> looks at the current vertex <span class="math notranslate nohighlight">\(v\)</span> after <span class="math notranslate nohighlight">\(n\)</span> steps and returns the value <span class="math notranslate nohighlight">\(\vec{x}^*_v\)</span>. Then for every <span class="math notranslate nohighlight">\(\vec{x}^*\)</span>-safe strategy <span class="math notranslate nohighlight">\(\sigma\)</span> it holds <span class="math notranslate nohighlight">\(\expv^\sigma_{\vinit}[Z^{(n)}] = \vec{x}^*_{\vinit}\)</span>. Moreover, it holds <span class="math notranslate nohighlight">\(\expv^\sigma_{\vinit}[Z^{(n)}\cdot \indicator{\colouring{(\Out{(\play_{n})})}=\Win}] = \probm^\sigma_{\vinit}(\Reach^n(\Win)).\)</span></p>
@@ -551,7 +551,7 @@ Next, let <span class="math notranslate nohighlight">\(Z^{(n)}\)</span> be a ran
 </div>
 <p>Now an analogue of  <a class="reference internal" href="discounted.html#5-lem:disc-val-lower">Lemma </a> does not hold for reachability: a strategy playing only <span class="math notranslate nohighlight">\(\vec{x}^*\)</span>-safe actions might not be optimal (indeed, it might not reach <span class="math notranslate nohighlight">\(\Win\)</span> at all). Instead, we proceed as follows: Let <span class="math notranslate nohighlight">\(\mdp^*\)</span> be an MDP in which we disable, in each state <span class="math notranslate nohighlight">\(v\)</span>, all actions that are not <span class="math notranslate nohighlight">\(\vec{x}^*\)</span>-safe in <span class="math notranslate nohighlight">\(v\)</span>. This can be formally done by adding a new non-target sink vertex <span class="math notranslate nohighlight">\( \mathit{sink} \)</span>, an edge from each original vertex to <span class="math notranslate nohighlight">\( \mathit{sink} \)</span>, and stipulating that each action <span class="math notranslate nohighlight">\(a\)</span> that is disabled in a vertex <span class="math notranslate nohighlight">\( v \)</span> chooses, when played in <span class="math notranslate nohighlight">\( v \)</span> in <span class="math notranslate nohighlight">\( \mdp^*\)</span>, the edge leading to <span class="math notranslate nohighlight">\( \mathit{sink} \)</span> with probability 1.</p>
 <div class="proof lemma admonition" id="5-lem:quant-reach-pruning-unsafe">
-<p class="admonition-title"><span>Lemma </span> (needs title 5-lem:quant-reach-pruning-unsafe)</p>
+<p class="admonition-title"><span>Lemma </span> (NEEDS TITLE 5-lem:quant-reach-pruning-unsafe)</p>
 <div class="lemma-content section" id="proof-content">
 <p>The vectors of reachability values <span class="math notranslate nohighlight">\( \Value(\mdp)\)</span> and <span class="math notranslate nohighlight">\(\Value(\mdp^*) \)</span> are equal.
 In particular, <span class="math notranslate nohighlight">\( \winPos(\mdp,\Reach(\Win)) = \winPos(\mdp^*,\Reach(\Win)).\)</span></p>
@@ -563,7 +563,7 @@ In particular, <span class="math notranslate nohighlight">\( \winPos(\mdp,\Reach
 <p>The strategy <span class="math notranslate nohighlight">\(\sigma'\)</span> initially mimics <span class="math notranslate nohighlight">\(\sigma\)</span> up to the first point in time when an action that is not <span class="math notranslate nohighlight">\(\vec{x}^*\)</span>-safe in the current vertex is to be selected. At this point <span class="math notranslate nohighlight">\(\sigma'\)</span> switches to behave as any <span class="math notranslate nohighlight">\(\vec{x}^*\)</span>-safe strategy. To analyse the value achieved by <span class="math notranslate nohighlight">\(\sigma'\)</span>, we need to bound the probability of the event <span class="math notranslate nohighlight">\(\mathit{NonSafe}\)</span> that the switch occurs. By the same reasoning as in  <a class="reference internal" href="#5-lem:quant-reach-value-distribution">Lemma </a>, we can show that for all <span class="math notranslate nohighlight">\(n\)</span> it holds <span class="math notranslate nohighlight">\(\probm^\sigma_{\vinit}(\Reach^n(\Win)) \leq \expv^\sigma_{\vinit}[Z^{(n)}] \leq  \vec{x}^*_{\vinit}- \delta\cdot\probm_{\vinit}^\sigma(\mathit{NonSafe^{(n)}})\)</span>, where <span class="math notranslate nohighlight">\(\mathit{NonSafe^{(n)}}\)</span> is the probability that a switch occurs in the first <span class="math notranslate nohighlight">\(n\)</span> steps. By taking <span class="math notranslate nohighlight">\(n\)</span> to the limit we get <span class="math notranslate nohighlight">\(\probm^\sigma_{\vinit}(\Reach(\Win)) \leq \vec{x}^*_{\vinit}- \delta\cdot\probm_{\vinit}^\sigma(\mathit{NonSafe})\)</span>. At the same time <span class="math notranslate nohighlight">\(\vec{x}^*_{\vinit}-\eps\leq  \probm^\sigma_{\vinit}(\Reach(\Win))\)</span>. Combining these two inequalities yields <span class="math notranslate nohighlight">\(\probm_{\vinit}^\sigma(\mathit{NonSafe}) \leq  \frac{\eps}{\delta}.\)</span> Now clearly <span class="math notranslate nohighlight">\(\probm_{\vinit}^{\sigma'}(\Reach(\Win)) \geq \vec{x}^*_{\vinit} - \eps - \probm_{\vinit}^{\sigma}(\mathit{NonSafe}) \geq \vec{x}^*_{\vinit} - \eps - \eps/\delta \geq \vec{x}^*_{\vinit} -2\eps/\delta\)</span>.</p>
 </div>
 <div class="proof lemma admonition" id="5-lem:quant-reach-strat-contsruction">
-<p class="admonition-title"><span>Lemma </span> (needs title 5-lem:quant-reach-strat-contsruction)</p>
+<p class="admonition-title"><span>Lemma </span> (NEEDS TITLE 5-lem:quant-reach-strat-contsruction)</p>
 <div class="lemma-content section" id="proof-content">
 <p>Given the vector <span class="math notranslate nohighlight">\(\vec{x}^*\)</span> of optimal reachability values, we can compute, in polynomial time, the optimal MD reachability strategy in <span class="math notranslate nohighlight">\(\mdp\)</span>.</p>
 </div>
@@ -582,26 +582,25 @@ x_v &amp;\geq \sum_{u\in \vertices} \probTranFunc(u\mid v,a)\cdot x_u&amp;\text{
 \label{5-fig:reach-lp}
 \end{figure}</p>
 <div class="proof lemma admonition" id="lemma-5">
-<p class="admonition-title"><span class="caption-number">Lemma 26 </span> (needs title and label)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 22 </span> (NEEDS TITLE AND LABEL)</p>
 <div class="lemma-content section" id="proof-content">
 <p>\label{5-lem:quant-reach-lp}
-The linear program <span class="math notranslate nohighlight">\(\lpreach\)</span> in  <code class="xref std std-numref docutils literal notranslate"><span class="pre">5-fig:reach-lp</span></code> has a unique optimal solution
+The linear program <span class="math notranslate nohighlight">\(\lpreach\)</span> in <code class="xref std std-numref docutils literal notranslate"><span class="pre">5-fig:reach-lp</span></code> has a unique optimal solution
 <span class="math notranslate nohighlight">\(\bar{\vec{x}}\)</span> such that <span class="math notranslate nohighlight">\(\bar{\vec{x}} = \vec{x}^*\)</span>.</p>
 <p>:label:
 \label{5-lem:quant-reach-lp}
-The linear program <span class="math notranslate nohighlight">\(\lpreach\)</span> in  <code class="xref std std-numref docutils literal notranslate"><span class="pre">5-fig:reach-lp</span></code> has a unique optimal solution
+The linear program <span class="math notranslate nohighlight">\(\lpreach\)</span> in <code class="xref std std-numref docutils literal notranslate"><span class="pre">5-fig:reach-lp</span></code> has a unique optimal solution
 <span class="math notranslate nohighlight">\(\bar{\vec{x}}\)</span> such that <span class="math notranslate nohighlight">\(\bar{\vec{x}} = \vec{x}^*\)</span>.</p>
 <p>:nonumber:</p>
 <p>\label{5-lem:quant-reach-lp}
-The linear program <span class="math notranslate nohighlight">\(\lpreach\)</span> in  <code class="xref std std-numref docutils literal notranslate"><span class="pre">5-fig:reach-lp</span></code> has a unique optimal solution
+The linear program <span class="math notranslate nohighlight">\(\lpreach\)</span> in <code class="xref std std-numref docutils literal notranslate"><span class="pre">5-fig:reach-lp</span></code> has a unique optimal solution
 <span class="math notranslate nohighlight">\(\bar{\vec{x}}\)</span> such that <span class="math notranslate nohighlight">\(\bar{\vec{x}} = \vec{x}^*\)</span>.</p>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
 <p>Clearly <span class="math notranslate nohighlight">\(\vec{x}^*\)</span> is a feasible solution of <span class="math notranslate nohighlight">\(\lpreach\)</span>. Similarly to  <a class="reference internal" href="discounted.html#5-lem:disc-lp">Lemma </a> we prove that each feasible solution <span class="math notranslate nohighlight">\(\vec{x}\)</span> of <span class="math notranslate nohighlight">\(\lpreach\)</span> satisfies <span class="math notranslate nohighlight">\(\vec{x}\geq \vec{x}^*\)</span>. We can proceed analogously  to  <a class="reference internal" href="discounted.html#5-lem:disc-lp">Lemma </a>, just replacing the operator <span class="math notranslate nohighlight">\(\discOP\)</span> with <span class="math notranslate nohighlight">\(\ReachOp\)</span>. The proof can be mimicked up to the point where we get that <span class="math notranslate nohighlight">\(\lim_{k\rightarrow \infty} \ReachOp^k (\vec{x}) \leq \vec{x}\)</span> (the limit exists by  <a class="reference internal" href="#5-lem:quant-reach-operator-fixed-point">Lemma </a>). Since <span class="math notranslate nohighlight">\(\ReachOp(\vec{x})\leq \vec{x}\)</span> for each feasible solution <span class="math notranslate nohighlight">\(\vec{x}\)</span>, from  <a class="reference internal" href="#5-lem:quant-reach-operator-fixed-point">Lemma </a> we get that the limit is a fixed point of <span class="math notranslate nohighlight">\(\ReachOp\)</span>, and in hence it is greater or equal to the least fixed point of <span class="math notranslate nohighlight">\(\ReachOp\)</span>, i.e. <span class="math notranslate nohighlight">\(\vec{x}^*\)</span> ( <a class="reference internal" href="#5-lem:quant-reach-step-operator">Lemma </a>). Hence, also <span class="math notranslate nohighlight">\(\vec{x} \geq \lim_{k\rightarrow \infty} \ReachOp^k (\vec{x}_0)\geq \vec{x}^*\)</span>.</p>
 </div>
-<p>\noindent
-Lemmas \ref{5-lem:quant-reach-strat-contsruction} and \ref{5-lem:quant-reach-lp} give us  <a class="reference internal" href="reductions.html#5-thm:quant-reachability-main">Theorem </a>.</p>
+<p>Lemmas \ref{5-lem:quant-reach-strat-contsruction} and \ref{5-lem:quant-reach-lp} give us  <a class="reference internal" href="reductions.html#5-thm:quant-reachability-main">Theorem </a>.</p>
 </div>
 
     <script type="text/x-thebe-config">
