@@ -173,7 +173,7 @@
 <ul class="current nav sidenav_l1">
  <li class="toctree-l1 current active collapsible-parent">
   <a class="reference internal" href="index.html">
-   Regular
+   Regular Games
   </a>
   <ul class="current collapse-ul">
    <li class="toctree-l2">
@@ -212,7 +212,7 @@
  </li>
  <li class="toctree-l1 collapsible-parent">
   <a class="reference internal" href="../3_Parity/index.html">
-   Parity
+   Parity Games
   </a>
   <ul class="collapse-ul">
    <li class="toctree-l2">
@@ -251,7 +251,7 @@
  </li>
  <li class="toctree-l1 collapsible-parent">
   <a class="reference internal" href="../4_Payoffs/index.html">
-   Payoffs
+   Games with Payoffs
   </a>
   <ul class="collapse-ul">
    <li class="toctree-l2">
@@ -286,6 +286,67 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../4_Payoffs/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Stochastic
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../5_MDP/index.html">
+   Markov Decision Processes
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/notations.html">
+     Notations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/reachability.html">
+     Positive and almost-sure reachability and safety in MDPs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/discounted.html">
+     Discounted payoff in MDPs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/mean_payoff_properties.html">
+     Mean-payoff in MDPs: General properties and linear programming
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/mean_payoff_strongly_connected.html">
+     Mean-payoff optimality in strongly connected MDPs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/end_components.html">
+     End components
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/reductions.html">
+     Reductions to optimal reachability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/optimal_reachability.html">
+     Optimal reachability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/references.html">
      Bibliographic references
     </a>
    </li>
@@ -438,10 +499,11 @@
 \newcommand{\Inf}{\mathtt{Inf}}
 \newcommand{\LimSup}{\mathtt{LimSup}}
 \newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NL}{\textrm{NL}}
+\newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
 \newcommand{\coNP}{\textrm{coNP}}
-\newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\PTIME}{\textrm{PTIME}}\]</div>
+\newcommand{\PSPACE}{\textrm{PSPACE}}\]</div>
 <p>The prefix independent objectives we studied so far are Büchi, CoBüchi, and their joint extension the parity objectives.
 The definition of the latter may seem a bit arbitrary; the study of Muller objectives will show how parity objectives naturally emerge as a well-behaved class of objectives.</p>
 <p>Let us start with a very general class of infinitary objectives, where infinitary means that the objective only considers the set of colours appearing infinitely many times.
@@ -471,7 +533,7 @@ The following purely combinatorial lemma gives a nice characterisation of these 
 with <span class="math notranslate nohighlight">\(R_i,G_i \subseteq C\)</span> such that <span class="math notranslate nohighlight">\(X \in \F\)</span> is equivalent to for all <span class="math notranslate nohighlight">\(i \in [1,d]\)</span>,
 if <span class="math notranslate nohighlight">\(X \cap R_i \neq \emptyset\)</span> then <span class="math notranslate nohighlight">\(X \cap G_i \neq \emptyset\)</span>.</p>
 </div>
-</div><p>We will see in  Section <a class="reference internal" href="zielonka.html#sec-zielonka"><span class="std std-ref">The Zielonka tree</span></a> a natural and optimised way to construct these pairs using the Zielonka tree.
+</div><p>We will see in Section <a class="reference internal" href="zielonka.html#sec-zielonka"><span class="std std-ref">The Zielonka tree</span></a> a natural and optimised way to construct these pairs using the Zielonka tree.
 In the meantime let us give a direct proof of this result.</p>
 <div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
@@ -491,7 +553,7 @@ The set of colours is <span class="math notranslate nohighlight">\(C = \set{G_1,
 \[
 \Streett = \set{ \rho \in C^\omega : \forall i \in [1,d],\ R_i \in \Inf(\rho) \implies G_i \in \Inf(\rho) }.
 \]</div>
-<p>It is customary to call <span class="math notranslate nohighlight">\(R_i\)</span> the <span class="math notranslate nohighlight">\(i\)</span>\textsuperscript{th} request and <span class="math notranslate nohighlight">\(G_i\)</span> the corresponding response;
+<p>It is customary to call <span class="math notranslate nohighlight">\(R_i\)</span> the <span class="math notranslate nohighlight">\(i\)</span>th request and <span class="math notranslate nohighlight">\(G_i\)</span> the corresponding response;
 with this terminology the Streett objective requires that every request made infinitely many times must be responded to infinitely many times.</p>
 <p>The Rabin objectives are the complement of the Streett objectives:</p>
 <div class="math notranslate nohighlight">
@@ -588,7 +650,7 @@ so <span class="math notranslate nohighlight">\(f(n,d) \le (d+1)n (1 + dn + (dn)
 In each recursive call we perform <span class="math notranslate nohighlight">\(d+1\)</span> attractor computations so the number of operations in one recursive call is <span class="math notranslate nohighlight">\(O(dm)\)</span>.
 Thus the overall time complexity is <span class="math notranslate nohighlight">\(O(m d (dn)^d)\)</span>.</p>
 <p>The proofs of  <a class="reference internal" href="#2-lem:Muller_even">Lemma </a> and  <a class="reference internal" href="#2-lem:Muller_odd">Lemma </a> also imply that Muller games are determined with finite memory of size <span class="math notranslate nohighlight">\(d!\)</span>.
-We do not make it more precise here because an improved analysis of the memory requirements will be conducted in  Section <a class="reference internal" href="zielonka.html#sec-zielonka"><span class="std std-ref">The Zielonka tree</span></a>
+We do not make it more precise here because an improved analysis of the memory requirements will be conducted in Section <a class="reference internal" href="zielonka.html#sec-zielonka"><span class="std std-ref">The Zielonka tree</span></a>
 using a variant of this algorithm.</p>
 <div class="figure align-center" id="algo-mcnaughton">
 <img alt="../_images/2-algo:mcnaughton.png" src="../_images/2-algo:mcnaughton.png" />
@@ -823,7 +885,7 @@ The new valuation is defined as follows:</p>
 <p>it is positive by construction.</p>
 <p>Let <span class="math notranslate nohighlight">\(\play\)</span> be a play consistent with <span class="math notranslate nohighlight">\(\sigma\)</span> and <span class="math notranslate nohighlight">\(x_p\)</span> be the lowest quantified variable chosen infinitely many times by Adam.
 First, all colours in <span class="math notranslate nohighlight">\(S_{&gt; p}\)</span> are visited infinitely many times (when visiting <span class="math notranslate nohighlight">\(x\)</span> or <span class="math notranslate nohighlight">\(\bar{x}\)</span>).
-Let us look at the sequence <span class="math notranslate nohighlight">\((\mathbf{v}_i(x_p))_{i \in \N}\)</span> where <span class="math notranslate nohighlight">\(\mathbf{v}_i\)</span> is the valuation in the <span class="math notranslate nohighlight">\(i\)</span>\textsuperscript{th} round.
+Let us look at the sequence <span class="math notranslate nohighlight">\((\mathbf{v}_i(x_p))_{i \in \N}\)</span> where <span class="math notranslate nohighlight">\(\mathbf{v}_i\)</span> is the valuation in the <span class="math notranslate nohighlight">\(i\)</span>th round.
 If <span class="math notranslate nohighlight">\(x_p\)</span> is existential, the sequence is ultimately constant as it can only change when a lower quantified variable is visited.
 If <span class="math notranslate nohighlight">\(x_p\)</span> is universal, the value changes each time the variable <span class="math notranslate nohighlight">\(x_p\)</span> is chosen.
 Since any literal that Adam chooses is necessarily true under the current valuation,
@@ -837,7 +899,7 @@ The memory is updated as follows: assume that the current valuation is <span cla
 If <span class="math notranslate nohighlight">\(x_p\)</span> is universal the valuation is unchanged.
 If <span class="math notranslate nohighlight">\(x_p\)</span> is existential, we proceed as above to construct another negative valuation where the value of <span class="math notranslate nohighlight">\(x_p\)</span> is swapped.</p>
 <p>Let <span class="math notranslate nohighlight">\(\play\)</span> be a play consistent with <span class="math notranslate nohighlight">\(\tau\)</span> and <span class="math notranslate nohighlight">\(x\)</span> be the lowest quantified variable chosen infinitely many times by Adam.
-As before, we look at the sequence <span class="math notranslate nohighlight">\((\mathbf{v}_i(x))_{i \in \N}\)</span> where <span class="math notranslate nohighlight">\(\mathbf{v}_i\)</span> is the valuation in the <span class="math notranslate nohighlight">\(i\)</span>\textsuperscript{th} round.
+As before, we look at the sequence <span class="math notranslate nohighlight">\((\mathbf{v}_i(x))_{i \in \N}\)</span> where <span class="math notranslate nohighlight">\(\mathbf{v}_i\)</span> is the valuation in the <span class="math notranslate nohighlight">\(i\)</span>th round.
 If <span class="math notranslate nohighlight">\(x\)</span> is existential, the value changes each time the variable <span class="math notranslate nohighlight">\(x\)</span> is chosen.
 If <span class="math notranslate nohighlight">\(x\)</span> is universal, the sequence is ultimately constant.
 Since any literal that Adam chooses is necessarily false under the current valuation,

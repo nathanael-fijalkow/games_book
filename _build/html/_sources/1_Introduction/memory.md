@@ -55,10 +55,11 @@
 \newcommand{\Inf}{\mathtt{Inf}}
 \newcommand{\LimSup}{\mathtt{LimSup}}
 \newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NL}{\textrm{NL}}
+\newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\PTIME}{\textrm{PTIME}}
 ```
 A strategy can be a very complicated object, in particular it is infinite.
 Indeed, it is a function $\sigma : \Paths \to E$,
@@ -146,13 +147,13 @@ calls to a solving algorithm.
 We say that $\Omega$ is positionally determined for both players if both $\Omega$ and its complement $C^\omega \setminus \Omega$ are positionally determined.
 If the positional determinacy only holds for Eve we say that such objectives are half-positional. 
 
-Parity objectives are positionally determined for both players; this will be proved in  Chapter {ref}`2-chap:regular`.
+Parity objectives are positionally determined for both players; this will be proved in Chapter {ref}`2-chap:regular`.
 We illustrate it on  {numref}`1-fig:parity_game_example_positional` by annotating  {numref}`1-fig:parity_game_example` with the positional winning strategies for both players.
 
 ```{figure} ./../1-fig:parity_game_example_positional.png
 :name: 1-fig:parity_game_example_positional
 :align: center
-The example of a parity game given in \cref{1-fig:parity_game_example
+The example of a parity game given in  {numref
 ```
 
 

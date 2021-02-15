@@ -60,10 +60,11 @@
 \newcommand{\Inf}{\mathtt{Inf}}
 \newcommand{\LimSup}{\mathtt{LimSup}}
 \newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NL}{\textrm{NL}}
+\newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\PTIME}{\textrm{PTIME}}
 ```
 The Zielonka tree is a combinatorial structure associated with a Muller objective which very neatly exposes its properties.
 As a warm-up we first present its predecessor the LAR construction, and then show the properties of Zielonka trees.
@@ -71,7 +72,7 @@ As we will see, the key feature of the Zielonka tree of a Muller objective $\Mul
 
 ## The latest appearance record
 
-Muller objectives can be reduced to parity objectives, see Section {ref}`1-sec:reductions` for an introduction to reductions between objectives.
+Muller objectives can be reduced to parity objectives, see~Section {ref}`1-sec:reductions` for an introduction to reductions between objectives.
 
 ```{prf:theorem} needs title 2-thm:LAR
 :label: 2-thm:LAR
@@ -140,7 +141,7 @@ Thus $\rho$ is accepted by $\LAR_\F$ if and only if $\Inf(\rho) \in \F$, as desi
 
 ## The Zielonka tree
 
- {prf:ref}`2-thm:LAR` implies a reduction from Muller games to parity games as explained in  Section {ref}`1-sec:reductions`.
+ {prf:ref}`2-thm:LAR` implies a reduction from Muller games to parity games as explained in Section {ref}`1-sec:reductions`.
 However this does not improve over the results we already obtained for Muller games in  {prf:ref}`2-thm:muller`,
 neither algorithmically nor for the memory requirements.
 One weakness of the LAR construction is that its size depends only on the number of colours, and not on the properties of $\F$.
@@ -175,7 +176,7 @@ Also, not all branches have the same length.
 :align: center
 The Muller tree for $\Muller(\F)$. By convention nodes labelled by a set in $\F$ are represented by a circle
 and the others by a square.
-The numbers on the right hand side and the dashed nodes (describing a branch) are both used in the proof of \cref{2-thm:reduction_parity_Zielonka_tree
+The numbers on the right hand side and the dashed nodes (describing a branch) are both used in the proof of  {prf:ref
 ```
 
 The first use of the Zielonka tree is to induce an improved reduction from Muller to parity objectives.
@@ -250,7 +251,7 @@ thus $\rho$ is accepted by $\Zielonka_\F$ if and only if $\Inf(\rho) \in \F$, as
 ```
 
 Since  {prf:ref}`2-thm:reduction_parity_Zielonka_tree` is a reduction from Muller to parity objectives,
-it implies a reduction from Muller games to parity games as explained in  Section {ref}`1-sec:reductions`,
+it implies a reduction from Muller games to parity games as explained in Section {ref}`1-sec:reductions`,
 improving over  {prf:ref}`2-thm:LAR`. 
 Since solving parity games is in $\NP \cap \coNP$,
 if we represent the Muller condition by a Zielonka tree then the automaton constructed in  {prf:ref}`2-thm:reduction_parity_Zielonka_tree`

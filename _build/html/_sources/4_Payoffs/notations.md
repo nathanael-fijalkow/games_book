@@ -66,10 +66,11 @@
 \newcommand{\Inf}{\mathtt{Inf}}
 \newcommand{\LimSup}{\mathtt{LimSup}}
 \newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NL}{\textrm{NL}}
+\newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\PTIME}{\textrm{PTIME}}
 ```
 In this chapter all objectives we consider use the set of colours $C = \Z$ the set of integers 
 (or $C = \Z \cup \set{\Win}$ for the shortest path objective), 
@@ -83,7 +84,7 @@ All the quantitative objectives we will study in this chapter are Borel, hence d
 $\ValueE^\game(v) = \ValueA^\game(v)$ for all vertices $v$. 
 We thus let $\Value^\game(v)$ denote this value (and $\Value(v)$ if $\Game$ is clear from the context).
 
-For complexity statements we use the unit cost RAM model as defined in Section {ref}`1-sec:computation`.
+For complexity statements we use the unit cost RAM model as defined in~Section {ref}`1-sec:computation`.
 For each objective we introduce we will discuss what is the relevant machine word size, both we can already make some preliminary remarks.
 Let us consider a game $\Game$ with an objective using the set of colours $C = \Z$
 and let $W$ denote the largest weight appearing in $\Game$ in absolute value.

@@ -60,16 +60,17 @@
 \newcommand{\Inf}{\mathtt{Inf}}
 \newcommand{\LimSup}{\mathtt{LimSup}}
 \newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NL}{\textrm{NL}}
+\newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\PTIME}{\textrm{PTIME}}
 ```
 
 ## The separation framework
 
 We describe a general approach for reducing parity games to safety games.
- Section {ref}`1-sec:reductions` constructs reductions between objectives using automata: 
+Section {ref}`1-sec:reductions` constructs reductions between objectives using automata: 
 in the case at hand parity reduces to safety if there exists a deterministic automaton $\Automaton$ over the alphabet $[1,d]$
 with acceptance objective $\Safe$ and defining $\Parity([1,d])$,
 meaning $L(\Automaton) = \Parity([1,d])$.
@@ -114,23 +115,8 @@ and that a strategy $\sigma$ is winning from $v$ if and only if the parity graph
 We say that an automaton reads, accepts, or rejects a path $\pi$ in a parity graph, 
 which is an abuse because what the automaton reads is the induced sequence of colours $\col(\pi)$.
 
-```{prf:definition} needs title and label 
-An automaton $\Automaton$ is $(n,d)$-**separating** if the two following properties hold.
-
-*  For all parity graphs $G$ with $n$ vertices and priorities in $[1,d]$ satisfying parity from $v$, 
-all paths from $v$ are accepted by $\Automaton$.
-
-*  All words accepted by $\Automaton$ satisfy parity.
-
- 
-:label: 
-An automaton $\Automaton$ is $(n,d)$-**separating** if the two following properties hold.
-
-*  For all parity graphs $G$ with $n$ vertices and priorities in $[1,d]$ satisfying parity from $v$, 
-all paths from $v$ are accepted by $\Automaton$.
-
-*  All words accepted by $\Automaton$ satisfy parity.
-
+```{prf:definition} Separating automata
+:label: 3-def:separating_automata
 :nonumber:
 
 An automaton $\Automaton$ is $(n,d)$-**separating** if the two following properties hold.
@@ -164,7 +150,7 @@ The separation problem.
 
 The following lemma shows the definition of separating automata in action.
 
-```{prf:lemma} needs title 3-lem:separating_automata
+```{prf:lemma} Game equivalence using separating automata
 :label: 3-lem:separating_automata
 :nonumber:
 
@@ -195,7 +181,7 @@ $\WE(\arena,L(\Automaton)[\col]) \subseteq \WE(\game)$.
 
 ```
 
-The last step is to explain how to solve a game with objective $L(\Automaton)$, as already discussed in Section {ref}`1-sec:reductions`.
+The last step is to explain how to solve a game with objective $L(\Automaton)$, as already discussed in~Section {ref}`1-sec:reductions`.
 Let $\Game = (\arena, L(\Automaton)[\col])$.
 We construct a safety game by making the synchronised product of the arena with the automaton:
 
@@ -211,7 +197,7 @@ The arena is $\arena \times \Automaton = (G \times Q, \VE \times Q, \VA \times Q
 Using the convention for safety automata that the rejecting transitions are precisely those leading to the rejecting state $\bot$,
 the colouring function is defined by $\col'(v,q) = \Win$ if $q \neq \bot$, and $\Lose$ otherwise.
 
-```{prf:observation} needs title 3-fact:reduction
+```{prf:observation} Reduction to safety games using separating automata
 :label: 3-fact:reduction
 :nonumber:
 
@@ -221,14 +207,8 @@ she has a winning strategy in $\Game \times \Automaton$ from $(v_0,q_0)$.
 ```
 
 
-```{prf:theorem} needs title and label 
-Let $\Automaton$ an $(n,d)$-separating automaton.
-There exists an algorithm for solving parity games of complexity $O(m \cdot |\Automaton|)$.
- 
-:label: 
-Let $\Automaton$ an $(n,d)$-separating automaton.
-There exists an algorithm for solving parity games of complexity $O(m \cdot |\Automaton|)$.
-
+```{prf:theorem} Algorithm using separating automata
+:label: 3-thm:algorithm_separating_automata
 :nonumber:
 
 Let $\Automaton$ an $(n,d)$-separating automaton.
@@ -251,7 +231,7 @@ In the remainder of this section we give a construction for a quasipolynomial $(
 
 ## The original separating automaton
 
-```{prf:theorem} needs title 3-thm:original_separating_automaton
+```{prf:theorem} The original separating automaton
 :label: 3-thm:original_separating_automaton
 :nonumber:
 
@@ -268,7 +248,8 @@ priorities. An $i$-sequence is a set of **indices** that splits $\pi$ into
 sub-sequences. An $i$-sequence consists of exactly $2^i$ indices $1 \le j_1 <
 j_2 < \dots < j_{2^i} \le t$, where each $j_k$ is an integer that refers to the
 priority $p_{j_k}$ from the sequence $\pi$. An $i$-sequence is required to
-satisfy the following properties.  *  **Evenness.** Each
+satisfy the following properties. 
+ *  **Evenness.** Each
 index (except possibly the last index) refers to an even priority, meaning that
 $p_{j_k}$ is an even priority for all $k < 2^i$.
 
@@ -301,7 +282,7 @@ priorities that come after it.
 The relationship between $i$-sequences and parity games is explained by the
 following lemma.
 
-```{prf:lemma} needs title 3-lem:isequencewin
+```{prf:lemma} Completeness for the separating automaton
 :label: 3-lem:isequencewin
 :nonumber:
 
@@ -421,7 +402,7 @@ Again, if there is no such index $i$, then the record is not modified.
 ```{figure} ./../3-fig:ds1.png
 :name: 3-fig:ds1
 :align: center
-An example of a Step 1 update applied to the sequence and record from~\cref{3-fig:ds
+An example of a Step 1 update applied to the sequence and record from {numref
 ```
 Intuitively, Step 1 attempts to combine the $i$-sequences in the existing record
 into a longer $i$-sequence. Suppose that we have read the sequence shown in {numref}`3-fig:ds`, 
@@ -444,7 +425,7 @@ follow it.
 ```{figure} ./../3-fig:ds2.png
 :name: 3-fig:ds2
 :align: center
-An example of a Step 2 update applied to the sequence and record from~\cref{3-fig:ds
+An example of a Step 2 update applied to the sequence and record from {numref
 ```
 
 Step 2 ensures that the outer domination property holds. 
@@ -467,14 +448,8 @@ We must now argue that the record data structure and update rule is sufficient
 to decide the winner of a parity game. The following lemma states that a record
 will never falsely claim that an $i$-sequence has occurred.
 
-```{prf:lemma} needs title and label 
-Let $b_k, b_{k-1}, \dots, b_0$ the record for a sequence of priorities $\pi$.
-If $b_i \ne \siblank$, then $\pi$ contains an $i$-sequence.
- 
-:label: 
-Let $b_k, b_{k-1}, \dots, b_0$ the record for a sequence of priorities $\pi$.
-If $b_i \ne \siblank$, then $\pi$ contains an $i$-sequence.
-
+```{prf:lemma} Correctness for the separating automaton
+:label: 3-lem:correctness_separating_automata
 :nonumber:
 
 Let $b_k, b_{k-1}, \dots, b_0$ the record for a sequence of priorities $\pi$.
@@ -532,14 +507,8 @@ However, the proof is somewhat tedious, and this statement is actually stronger
 than what we need. To argue that the record can determine the winner of a parity
 game, the following weaker lemma suffices. 
 
-```{prf:lemma} needs title and label 
-Let $\pi$ an infinite play that is winning for Eve. For all $k$, there exists
-a prefix of $\pi$ such that $b_k \ne \siblank$.
- 
-:label: 
-Let $\pi$ an infinite play that is winning for Eve. For all $k$, there exists
-a prefix of $\pi$ such that $b_k \ne \siblank$.
-
+```{prf:lemma} Weaker correctness for the separating automaton
+:label: 3-lem:weaker_correctness_separating_automaton
 :nonumber:
 
 Let $\pi$ an infinite play that is winning for Eve. For all $k$, there exists
@@ -573,16 +542,8 @@ $b_k = p \ne \siblank$, if we have not done so already.
 Hence, if Eve wins the parity game, then she has a strategy to eventually ensure
 that $b_k \ne \siblank$. Combining the two lemmas above, with {prf:ref}`3-lem:isequencewin` gives the following corollary.
 
-```{prf:corollary} needs title and label 
-Suppose that we monitor the play of a parity game with a record $b_{\lceil \log
-n \rceil}, \dots, b_0$. Eve has a strategy that ensures $b_{\lceil \log n
-\rceil} \ne \siblank$ if and only if Eve wins the parity game.
- 
-:label: 
-Suppose that we monitor the play of a parity game with a record $b_{\lceil \log
-n \rceil}, \dots, b_0$. Eve has a strategy that ensures $b_{\lceil \log n
-\rceil} \ne \siblank$ if and only if Eve wins the parity game.
-
+```{prf:corollary} Correctness of the reduction for the separating automaton
+:label: 3-cor:correctness_reduction_separating_automaton
 :nonumber:
 
 Suppose that we monitor the play of a parity game with a record $b_{\lceil \log

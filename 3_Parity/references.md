@@ -60,12 +60,13 @@
 \newcommand{\Inf}{\mathtt{Inf}}
 \newcommand{\LimSup}{\mathtt{LimSup}}
 \newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NL}{\textrm{NL}}
+\newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\PTIME}{\textrm{PTIME}}
 ```
-We refer to Section {ref}`2-sec:references` for the role of parity objectives and how they emerged in automata theory as a subclass of Muller objectives.
+We refer to~Section {ref}`2-sec:references` for the role of parity objectives and how they emerged in automata theory as a subclass of Muller objectives.
 Another related motivation comes from the works of Emerson, Jutla, and Sistla {cite}`Emerson&Jutla&Sistla:1993`,
 who showed that solving parity games is linear-time equivalent to the model-checking problem for modal $\mu$-calculus.
 This logical formalism is an established tool in program verification, and a common denominator to a wide range of modal, temporal and fixpoint logics used in various fields.
@@ -85,7 +86,7 @@ Both the proofs of Emerson and Jutla {cite}`Emerson&Jutla:1991` and of Walukiewi
 Jurdzi&#324;ski {cite}`Jurdzinski:2000` used this notion to give the first value iteration algorithm for parity games, 
 with running time $O(m n^{d/2})$.
 The algorithm is called small progress measures and is an instance of the class of value iteration algorithms we construct 
-in Section {ref}`3-sec:value_iteration` by considering the universal tree of size $n^h$.
+in~Section {ref}`3-sec:value_iteration` by considering the universal tree of size $n^h$.
 Bernet, Janin, and Walukiewicz {cite}`Bernet&Janin&Walukiewicz:2002` investigated reductions from parity games to safety games
 through the notion of permissive strategies, and constructed a separating automaton (We note that the general framework of separating automata came later, introduced by Boja&#324;czyk and Czerwi&#324;ski {cit)`Bojanczyk&Czerwinski:2018`.} corresponding to the universal tree of size $n^h$.
 
@@ -95,7 +96,7 @@ Boja&#324;czyk and Czerwi&#324;ski {cite}`Bojanczyk&Czerwinski:2018` introduce t
 
 Soon after two other quasipolynomial time algorithms emerged.
 Jurdzi&#324;ski and Lazi{\'c} {cite}`Jurdzinski&Lazic:2017` showed that the small progress measure algorithm can be adapted to a succinct progress measure algorithm, matching (and slightly improving) the quasipolynomial time complexity.
-The presentation using universal tree that we follow in Section {ref}`3-sec:value_iteration` and an almost matching lower bound on their sizes is due to Fijalkow {cite}`Fijalkow:2018`.
+The presentation using universal tree that we follow in~Section {ref}`3-sec:value_iteration` and an almost matching lower bound on their sizes is due to Fijalkow {cite}`Fijalkow:2018`.
 The connection between separating automata and universal trees was shown by Czerwi&#324;ski, Daviaud, Fijalkow, Jurdzi&#324;ski, Lazi{\'c}, and Parys {cite}`Czerwinski&Daviaud&al:2018`. 
 
 The third quasipolynomial time algorithm is due to Lehtinen {cite}`Lehtinen:2018`.
@@ -113,7 +114,7 @@ The McNaughton Zielonka's algorithm has complexity $O(m n^d)$.
 Parys {cite}`Parys:2019` constructed the fourth quasipolynomial time algorithm as an improved take over McNaughton Zielonka's algorithm.
 As for Lehtinen's algorithm, the original algorithm has a slightly worse complexity ($n^{O(\log(n))}$ instead of $n^{O(\log(d))}$).
 Lehtinen, Schewe, and Wojtczak {cite}`Lehtinen&Schewe&Wojtczak:2019` later improved the construction.
-As discussed in Section {ref}`3-sec:relationships` the complexity of this algorithm is quasipolynomial and of the form $n^{O(\log(d))}$,
+As discussed in~Section {ref}`3-sec:relationships` the complexity of this algorithm is quasipolynomial and of the form $n^{O(\log(d))}$,
 but a bit worse than the three previous algorithms since the algorithm is symmetric and has a recursion depth of $d$,
 while the value iteration algorithms only consider odd priorities hence replace $d$ by $d/2$.
 
@@ -123,7 +124,7 @@ Jurdzi&#324;ski and Morvan {cite}`Jurdzinksi&Morvan:2020` constructed a generic 
 
 
 **Strategy improvement algorithms**.
-As we will see in Chapter {ref}`4-chap:payoff`, parity games can be reduced to mean payoff games,
+As we will see in~Chapter {ref}`4-chap:payoff`, parity games can be reduced to mean payoff games,
 so any algorithm for solving mean payoff games can be used for solving parity games.
 In particular, the existing strategy improvement algorithm for mean payoff games can be run on parity games. 
 V{\"o}ge and Jurdzin&#324;ski {cite}`Voge&Jurdzinski:2000` introduced the first discrete strategy improvement for parity games,
@@ -137,7 +138,7 @@ Our proof of correctness is original. \mynote{SAY MORE?}
 The complexity was reduced to subexponential with randomised algorithms 
 by Jurdzin&#324;ski, Paterson, and Zwick {cite}`Jurdzinski&Paterson&Zwick:2008`.
 A natural question is whether there exists a quasipolynomial strategy improvement algorithm; 
-as discussed in Section {ref}`3-sec:relationships` the notion of universal trees cannot be used to achieve this,
+as discussed in~Section {ref}`3-sec:relationships` the notion of universal trees cannot be used to achieve this,
 and the question remains to this day open.
 
 

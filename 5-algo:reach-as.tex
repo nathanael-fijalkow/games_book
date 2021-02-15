@@ -1,0 +1,21 @@
+\documentclass[preview,border=0mm,convert={density=600,outext=.png}]{standalone}
+\input{norenew_macros.tex}
+\input{5_MDP/macros_local.tex}
+\usepackage{amsfonts}
+\usepackage[norelsize,ruled,vlined,noend]{algorithm2e}
+\begin{document}
+\begin{algorithm}[H]
+
+	\KwData{An MDP $ \mdp $, a colour $ \genColour $}
+\SetKwFunction{FTreat}{Treat}
+$W \leftarrow \vertices$ \;	
+\Repeat{$W' \neq W$}{
+	$W' \leftarrow W$\;
+	$Z \leftarrow \winPos(\mdp_W,\Reach(\genColour))   $ \tcp*{\Cref{5-cor:pos-complexity}}
+	$W \leftarrow \winAS(\mdp_W,\Safe(W \setminus Z))$ \tcp*{ {numref}`5-algo:safety`}
+}
+
+\Return{$W$} \tcp*{A positive winning strategy in $\mdp_W$ is now almost-surely winning from $W$ in $\mdp$.}
+
+\end{algorithm}
+\end{document}

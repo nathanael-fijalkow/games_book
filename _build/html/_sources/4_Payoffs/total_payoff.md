@@ -66,10 +66,11 @@
 \newcommand{\Inf}{\mathtt{Inf}}
 \newcommand{\LimSup}{\mathtt{LimSup}}
 \newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NL}{\textrm{NL}}
+\newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\PTIME}{\textrm{PTIME}}
 ```
 Yet another interesting quantitative objective---that is closely
 related with shortest path objective---is the total payoff defined by
@@ -111,7 +112,7 @@ but, contrary to shortest path games, positional strategies are now
 sufficient for both players to play optimally in total payoff
 games. Instead of giving yet another distinct proof, like for
 mean payoff or discounted payoff games, we give a general recipe
-defined by Gimbert and Zielonka \cite{Gimbert&Zielonka:2004}. They define
+defined by Gimbert and Zielonka {cite}`Gimbert&Zielonka:2004`. They define
 sufficient conditions for a quantitative objective to fulfil the
 positional determinacy.
 
@@ -163,7 +164,7 @@ It is not difficult to convince oneself that
 
 Then, a rather technical proof by induction on the number of vertices
 in the arena allows one to get the following strong result:
-\cite{Gimbert&Zielonka:2004}
+{cite}`Gimbert&Zielonka:2004`
 
 ```{prf:theorem} needs title 4-thm:fairly-mixing
 :label: 4-thm:fairly-mixing
@@ -215,7 +216,7 @@ Instead, to compute the value, a computation based on two nested fixed
 points exists, relying upon the encoding of a total payoff game into a
 pseudopolynomial size shortest path game---still with the same
 costs---resulting in a pseudopolynomial time algorithm.
-\cite{Brihaye&Geeraerts&HaddadA&Monmege:2017}
+{cite}`Brihaye&Geeraerts&HaddadA&Monmege:2017`
 
 ```{prf:theorem} needs title 4-thm:TP-optimal-strategies
 :label: 4-thm:TP-optimal-strategies

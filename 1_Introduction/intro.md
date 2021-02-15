@@ -55,10 +55,11 @@
 \newcommand{\Inf}{\mathtt{Inf}}
 \newcommand{\LimSup}{\mathtt{LimSup}}
 \newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NL}{\textrm{NL}}
+\newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\PTIME}{\textrm{PTIME}}
 ```
 The objective of this book is to present the state of the art on games on graphs, which is part of a larger research topic called game theory.
 Games on graphs is the field concerned with games whose rules and evolution are represented by a graph. We mostly focus on infinite duration games, but their study is deeply interleaved with finite duration games.
@@ -76,7 +77,7 @@ So the language of this book is mathematics.
 All the material presented in this book is accessible to an advanced master student or a PhD student with a background in computer science or mathematics. The goal is at the same time to present all the basic and fundamental results commonly assumed by the research community working on games on graphs, and most of the latest prominent advances.
 We assume familiarity with complexity theory and the notions of graphs and automata but as much as possible do not rely on advanced results in these fields.
 
-The book is divided in five parts each including two or three chapters. At the end of each chapter is a section dedicated to bibliographic references. This chapter ( Chapter {ref}`1-chap:introduction`) introduces some notations and notions used throughout the book and  Chapter {ref}`2-chap:regular` gives some fundamental results useful in most chapters. After that and to some extent each part is independent. As much as possible we avoid back references but some chapters naturally build on the previous ones in which case we clearly indicate this.
+The book is divided in five parts each including two or three chapters. At the end of each chapter is a section dedicated to bibliographic references. This chapter (Chapter {ref}`1-chap:introduction`) introduces some notations and notions used throughout the book and Chapter {ref}`2-chap:regular` gives some fundamental results useful in most chapters. After that and to some extent each part is independent. As much as possible we avoid back references but some chapters naturally build on the previous ones in which case we clearly indicate this.
 
 ## Usual notations
 
@@ -86,7 +87,7 @@ so $[i,j)$ is $\set{i,i+1,\dots,j-1}$.
 An alphabet $\Sigma$ is a finite set. 
 We let $\Sigma^*$ denote the set of finite sequences of $\Sigma$ (also called finite words),
 $\Sigma^+$ the subset of non-empty sequences, and $\Sigma^\omega$ the set of infinite sequences of $\Sigma$ (also called infinite words).
-For a (finite or infinite) sequence $u = u_0 u_1 \cdots$, we let $u_i$ denote the $i$\textsuperscript{th} element of $u$
+For a (finite or infinite) sequence $u = u_0 u_1 \cdots$, we let $u_i$ denote the $i$th element of $u$
 and $u_{< i}$ the prefix of $u$ of length $i$, **i.e.** the finite sequence $u_0 u_1 \cdots u_{i-1}$.
 Similarly $u_{\le i} = u_0 u_1 \cdots u_i$.
 The length of $u$ is $|u|$.

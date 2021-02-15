@@ -60,10 +60,11 @@
 \newcommand{\Inf}{\mathtt{Inf}}
 \newcommand{\LimSup}{\mathtt{LimSup}}
 \newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NL}{\textrm{NL}}
+\newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\PTIME}{\textrm{PTIME}}
 ```
 
 ```{prf:theorem} needs title 3-thm:strategy_improvement
@@ -74,7 +75,7 @@ There exists a strategy improvement algorithm for solving parity games in expone
 
 ```
 
-We rely on the high-level presentation of strategy improvement algorithms given in  Section {ref}`1-sec:strategy_improvement`.
+We rely on the high-level presentation of strategy improvement algorithms given in Section {ref}`1-sec:strategy_improvement`.
 In a nutshell: the algorithm constructs a sequence of strategies, the next one being an improvement over the current one,
 until reaching an optimal strategy.
 
@@ -116,7 +117,7 @@ The algorithm will only manipulate strategies respecting parity.
 > **Evaluating a strategy.**
 
 The first question is: given a strategy $\sigma$, how to evaluate it (in order to later improve it)?
-As explained in  Section {ref}`1-sec:strategy_improvement` towards this goal we define a value function $\val^{\sigma} : V \to Y$.
+As explained in Section {ref}`1-sec:strategy_improvement` towards this goal we define a value function $\val^{\sigma} : V \to Y$.
 
 We let $\val^{\sigma}(v) = \min_\tau \val(\play_{\sigma,\tau}^v)$ where $\tau$ ranges over (general) strategies for Adam, so we first need to define the value of the play $\play = \play_{\sigma,\tau}^v$.
 If $\play$ is stopped, then $\val(\play)$ is the tuple $(p_1, p_2, \dots, p_d)$ where $p_i$ is the number of times that priority $p$ appears on the play.

@@ -60,17 +60,18 @@
 \newcommand{\Inf}{\mathtt{Inf}}
 \newcommand{\LimSup}{\mathtt{LimSup}}
 \newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NL}{\textrm{NL}}
+\newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\PTIME}{\textrm{PTIME}}
 ```
 At the beginning of the chapter we described three families of algorithms: 
 strategy improvement, attractor decomposition, and value iterations.
 
 
-Let us first clarify the relationship between the separation framework discussed in  Section {ref}`3-sec:separation`
-and the value iteration paradigm presented in  Section {ref}`3-sec:value_iteration`.
+Let us first clarify the relationship between the separation framework discussed in Section {ref}`3-sec:separation`
+and the value iteration paradigm presented in Section {ref}`3-sec:value_iteration`.
 Both are families of algorithms: 
 
 *  An $(n,d)$-separating automaton $\Automaton$ induces an algorithm for solving parity games in time 
@@ -126,7 +127,7 @@ which are then interleaved to organise the recursive calls of the algorithm.
 
 
 Since both value iteration and attractor decomposition algorithms are connected to the combinatorial notion of universal trees,
-the next question is whether the construction given in  Section {ref}`3-sec:value_iteration` is optimal.
+the next question is whether the construction given in Section {ref}`3-sec:value_iteration` is optimal.
 The answer is unfortunately yes, there exists a lower bound on the size of universal trees which matches this construction up to polynomial factors.
 
 

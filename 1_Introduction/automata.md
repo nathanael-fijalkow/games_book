@@ -55,10 +55,11 @@
 \newcommand{\Inf}{\mathtt{Inf}}
 \newcommand{\LimSup}{\mathtt{LimSup}}
 \newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NL}{\textrm{NL}}
+\newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\PTIME}{\textrm{PTIME}}
 ```
 The study of games is deeply intertwined with automata over infinite words and trees.
 We will not elaborate much on that aspect in this book, but in a few places we will use automata.
@@ -91,7 +92,7 @@ in games the condition is defined over sequences of vertices,
 while in automata the acceptance condition is defined over sequences of transitions (which contain more information than states).
 In other words for automata we use transition based acceptance conditions instead of state based acceptance conditions.
 This more succinct definition of automata naturally composes with games in the same way as the state based acceptance definition does,
-see Section {ref}`1-sec:reductions`, and sometimes yields smaller automata, see Section {ref}`2-sec:zielonka`
+see~Section {ref}`1-sec:reductions`, and sometimes yields smaller automata, see~Section {ref}`2-sec:zielonka`
 
 
 For a (finite or infinite) word $w = w_0 w_1 \dots$, a run $\rho = (q_0,w_0,q_1)(q_1,w_1,q_2) \dots$ over $w$ is a sequence of consecutive transitions starting from the initial state $q_0$.

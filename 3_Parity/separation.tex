@@ -43,7 +43,8 @@ and that a strategy $\sigma$ is winning from $v$ if and only if the parity graph
 We say that an automaton reads, accepts, or rejects a path $\pi$ in a parity graph, 
 which is an abuse because what the automaton reads is the induced sequence of colours $\col(\pi)$.
 
-\begin{definition}
+\begin{definition}[Separating automata]
+\label{3-def:separating_automata}
 An automaton $\Automaton$ is $(n,d)$-\textit{separating} if the two following properties hold.
 \begin{itemize}
 	\item For all parity graphs $G$ with $n$ vertices and priorities in $[1,d]$ satisfying parity from $v$, 
@@ -102,7 +103,7 @@ as $\Parity_{\mid n} \subseteq L(\Automaton) \subseteq \Parity$.
 
 The following lemma shows the definition of separating automata in action.
 
-\begin{lemma}
+\begin{lemma}[Game equivalence using separating automata]
 \label{3-lem:separating_automata}
 Let $\Automaton$ an $(n,d)$-separating automaton.
 Then for all parity games $\game = (\arena,\Parity[\col])$ with $n$ vertices and priorities in $[1,d]$, 
@@ -138,13 +139,14 @@ The arena is $\arena \times \Automaton = (G \times Q, \VE \times Q, \VA \times Q
 Using the convention for safety automata that the rejecting transitions are precisely those leading to the rejecting state $\bot$,
 the colouring function is defined by $\col'(v,q) = \Win$ if $q \neq \bot$, and $\Lose$ otherwise.
 
-\begin{fact}
+\begin{fact}[Reduction to safety games using separating automata]
 \label{3-fact:reduction}
 Eve has a winning strategy in $\game$ from $v_0$ if and only if
 she has a winning strategy in $\Game \times \Automaton$ from $(v_0,q_0)$.
 \end{fact}
 
-\begin{theorem}
+\begin{theorem}[Algorithm using separating automata]
+\label{3-thm:algorithm_separating_automata}
 Let $\Automaton$ an $(n,d)$-separating automaton.
 There exists an algorithm for solving parity games of complexity $O(m \cdot |\Automaton|)$.
 \end{theorem}
@@ -159,7 +161,7 @@ This yields an algorithm for solving parity games whose running time is $O(m \cd
 In the remainder of this section we give a construction for a quasipolynomial $(n,d)$-separating automaton.
 
 \subsection*{The original separating automaton}
-\begin{theorem}
+\begin{theorem}[The original separating automaton]
 \label{3-thm:original_separating_automaton}
 There exists an $(n,d)$-separating automaton of size $n^{O(\log d)}$,
 inducing an algorithm for solving parity games of complexity $n^{O(\log d)}$.
@@ -172,7 +174,8 @@ priorities. An $i$-sequence is a set of \emph{indices} that splits $\pi$ into
 sub-sequences. An $i$-sequence consists of exactly $2^i$ indices $1 \le j_1 <
 j_2 < \dots < j_{2^i} \le t$, where each $j_k$ is an integer that refers to the
 priority $p_{j_k}$ from the sequence $\pi$. An $i$-sequence is required to
-satisfy the following properties. \begin{itemize} \item \textbf{Evenness.} Each
+satisfy the following properties. 
+\begin{itemize} \item \textbf{Evenness.} Each
 index (except possibly the last index) refers to an even priority, meaning that
 $p_{j_k}$ is an even priority for all $k < 2^i$.
 
@@ -225,7 +228,7 @@ priorities that come after it.
 The relationship between $i$-sequences and parity games is explained by the
 following lemma.
 
-\begin{lemma}
+\begin{lemma}[Completeness for the separating automaton]
 \label{3-lem:isequencewin}
 Suppose that Adam and Eve play positional strategies in the parity game,
 and let $\pi$ the resulting play.
@@ -468,7 +471,8 @@ We must now argue that the record data structure and update rule is sufficient
 to decide the winner of a parity game. The following lemma states that a record
 will never falsely claim that an $i$-sequence has occurred.
 
-\begin{lemma}
+\begin{lemma}[Correctness for the separating automaton]
+\label{3-lem:correctness_separating_automata}
 Let $b_k, b_{k-1}, \dots, b_0$ the record for a sequence of priorities $\pi$.
 If $b_i \ne \siblank$, then $\pi$ contains an $i$-sequence.
 \end{lemma}
@@ -520,7 +524,8 @@ However, the proof is somewhat tedious, and this statement is actually stronger
 than what we need. To argue that the record can determine the winner of a parity
 game, the following weaker lemma suffices. 
 
-\begin{lemma}
+\begin{lemma}[Weaker correctness for the separating automaton]
+\label{3-lem:weaker_correctness_separating_automaton}
 Let $\pi$ an infinite play that is winning for Eve. For all $k$, there exists
 a prefix of $\pi$ such that $b_k \ne \siblank$.
 \end{lemma}
@@ -547,7 +552,8 @@ $b_k = p \ne \siblank$, if we have not done so already.
 Hence, if Eve wins the parity game, then she has a strategy to eventually ensure
 that $b_k \ne \siblank$. Combining the two lemmas above, with~\cref{3-lem:isequencewin} gives the following corollary.
 
-\begin{corollary}
+\begin{corollary}[Correctness of the reduction for the separating automaton]
+\label{3-cor:correctness_reduction_separating_automaton}
 Suppose that we monitor the play of a parity game with a record $b_{\lceil \log
 n \rceil}, \dots, b_0$. Eve has a strategy that ensures $b_{\lceil \log n
 \rceil} \ne \siblank$ if and only if Eve wins the parity game.

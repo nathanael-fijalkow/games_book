@@ -1,0 +1,706 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reductions to optimal reachability &#8212; Games on graphs</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/style.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Optimal reachability" href="optimal_reachability.html" />
+    <link rel="prev" title="End components" href="end_components.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/cover.jpg" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Games on graphs</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <p class="caption collapsible-parent">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../1_Introduction/index.html">
+   Introduction
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/intro.html">
+     What is this book about?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/simple.html">
+     A first model of games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/objectives.html">
+     Objectives
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/computation.html">
+     Computational models
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/automata.html">
+     Automata
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/memory.html">
+     Memory
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/reductions.html">
+     Reductions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/subgames.html">
+     Traps and subgames
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/fixed_points.html">
+     Generic fixed point algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/value_iteration.html">
+     Value iteration algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/strategy_improvement.html">
+     Strategy improvement algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Classic
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../2_Regular/index.html">
+   Regular Games
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/attractors.html">
+     A linear time algorithm for reachability games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/buchi.html">
+     A quadratic time algorithm for Büchi games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/parity.html">
+     An exponential time algorithm for parity games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/muller.html">
+     Rabin, Streett, and Muller games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/zielonka.html">
+     The Zielonka tree
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../3_Parity/index.html">
+   Parity Games
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/strategy_improvement.html">
+     An exponential time strategy improvement algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/zielonka.html">
+     A quasipolynomial time attractor decomposition algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/separation.html">
+     A quasipolynomial time separating automata algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/value_iteration.html">
+     A quasipolynomial time value iteration algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/relationships.html">
+     Comparing the three families of algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../4_Payoffs/index.html">
+   Games with Payoffs
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/notations.html">
+     Notations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/qualitative.html">
+     Refining qualitative objectives with quantities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/mean_payoff.html">
+     Mean payoff games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/discounted_payoff.html">
+     Discounted payoff games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/shortest_path.html">
+     Shortest path games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/total_payoff.html">
+     Total payoff games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Stochastic
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active collapsible-parent">
+  <a class="reference internal" href="index.html">
+   Markov Decision Processes
+  </a>
+  <ul class="current collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="notations.html">
+     Notations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="reachability.html">
+     Positive and almost-sure reachability and safety in MDPs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="discounted.html">
+     Discounted payoff in MDPs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="mean_payoff_properties.html">
+     Mean-payoff in MDPs: General properties and linear programming
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="mean_payoff_strongly_connected.html">
+     Mean-payoff optimality in strongly connected MDPs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="end_components.html">
+     End components
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Reductions to optimal reachability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="optimal_reachability.html">
+     Optimal reachability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#from-optimal-buchi-to-reachability">
+   From optimal Büchi to reachability
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#from-optimal-parity-to-optimal-reachability">
+   From optimal parity to optimal reachability
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#from-general-mean-payoff-to-optimal-reachability">
+   From general mean-payoff to optimal reachability
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="reductions-to-optimal-reachability">
+<span id="sec-reductions"></span><h1>Reductions to optimal reachability<a class="headerlink" href="#reductions-to-optimal-reachability" title="Permalink to this headline">¶</a></h1>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\newcommand{\expv}{\mathbb{E}} \newcommand{\discProbDist}{f} \newcommand{\sampleSpace}{S} \newcommand{\sigmaAlg}{\mathcal{F}} \newcommand{\probm}{\mathbb{P}} \newcommand{\rvar}{X} \\\newcommand{\actions}{A} \newcommand{\colouring}{c} \newcommand{\probTranFunc}{\Delta} \newcommand{\edges}{E} \newcommand{\colours}{C} \newcommand{\mdp}{\mathcal{M}} \newcommand{\vinit}{v_0} \newcommand{\cylProb}{p} \newcommand{\emptyPlay}{\epsilon} \newcommand{\objective}{\Omega} \newcommand{\genColour}{\textsc{c}} \newcommand{\quantObj}{f} \newcommand{\quantObjExt}{\bar{\quantObj}} \newcommand{\indicator}[1]{\mathbf{1}_{#1}} \newcommand{\eps}{\varepsilon} \newcommand{\maxc}{\max_{\colouring}} 
+\newcommand{\winPos}{W_{&gt;0}}
+\newcommand{\winAS}{W_{=1}}
+\newcommand{\cylinder}{\mathit{Cyl}}
+\newcommand{\PrePos}{\text{Pre}_{&gt;0}}
+\newcommand{\PreAS}{\text{Pre}_{=1}}
+\newcommand{\PreOPPos}{\mathcal{P}_{&gt;0}}
+\newcommand{\OPAS}{\mathcal{P}_{=1}}
+\newcommand{\safeOP}{\mathit{Safe_{=1}}}
+\newcommand{\closed}{\mathit{Cl}}\\\newcommand{\reachOP}{\mathcal{V}}
+\newcommand{\discOP}{\mathcal{D}}
+\newcommand{\valsigma}{\vec{x}^{\sigma}}
+\newcommand{\lp}{\mathcal{L}}
+\newcommand{\lpdisc}{\lp_{\mathit{disc}}}
+\newcommand{\lpreach}{\lp_{\mathit{reach}}}
+\newcommand{\lpmp}{\lp_{\mathit{mp}}}
+\newcommand{\lpsol}[1]{\bar{\vec{#1}}}
+\newcommand{\lpsolg}[1]{\bar{#1}}
+\newcommand{\lpmpdual}{\lpmp^{\mathit{dual}}}
+\newcommand{\actevent}[3]{\actions^{#1}_{#2,#3}} 
+\newcommand{\MeanPayoffSup}{\MeanPayoff^{\;+}}
+\newcommand{\MeanPayoffInf}{\MeanPayoff^{\;-}}
+\newcommand{\mcprob}{P}
+\newcommand{\invdist}{\vec{z}}
+\newcommand{\hittime}{T}
+\newcommand{\playPay}{\textsf{p-Payoff}}
+\newcommand{\stepPay}{\textsf{s-Payoff}}
+\newcommand{\Pay}{\textsf{Payoff}}
+\newcommand{\mec}{M}
+\newcommand{\OPS}{\mathcal{S}_{=1}}
+\newcommand{\smallmp}{\mathit{mp}}
+\newcommand{\vgood}{v_{\mathit{good}}}
+\newcommand{\vbad}{v_{\mathit{bad}}}
+\newcommand{\finact}{fin}
+\newcommand{\mecs}{\mathit{MEC}}
+\newcommand{\slice}[2]{#1_{#2-}}
+\newcommand{\ReachOp}{\mathcal{R}}
+\newcommand{\dPayoffStep}[1]{\DiscountedPayoff^{\;(#1)}}
+\newcommand{\solvset}{S}
+\newcommand{\Eve}{\textrm{Eve}}
+\newcommand{\Adam}{\textrm{Adam}}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
+\newcommand{\argmax}{\textrm{argmax}}
+\newcommand{\argmin}{\textrm{argmin}}
+\newcommand{\Op}{\mathbb{O}}
+\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\textrm{supp}} 
+\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
+\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
+\newcommand{\mEve}{\mathrm{Eve}}
+\newcommand{\mAdam}{\mathrm{Adam}}
+\newcommand{\mRandom}{\mathrm{Random}}
+\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
+\newcommand{\ing}{\textrm{In}}
+\newcommand{\Ing}{\ing}
+\newcommand{\out}{\textrm{Out}}
+\newcommand{\Out}{\out}
+\newcommand{\dest}{\Delta} 
+\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
+\newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
+\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
+\newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
+\renewcommand{\Win}{\textrm{Win}} 
+\renewcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Value}{\textrm{val}} 
+\newcommand{\ValueE}{\textrm{val}_\mEve} 
+\newcommand{\ValueA}{\textrm{val}_\mAdam}
+\newcommand{\val}{\Value} 
+\newcommand{\Automaton}{\mathbf{A}} 
+\newcommand{\Safe}{\mathtt{Safe}}
+\newcommand{\Reach}{\mathtt{Reach}} 
+\newcommand{\Buchi}{\mathtt{Buchi}} 
+\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
+\newcommand{\Parity}{\mathtt{Parity}} 
+\newcommand{\Muller}{\mathtt{Muller}} 
+\newcommand{\Rabin}{\mathtt{Rabin}} 
+\newcommand{\Streett}{\mathtt{Streett}} 
+\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
+\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
+\newcommand{\Energy}{\mathtt{Energy}}
+\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
+\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
+\newcommand{\Sup}{\mathtt{Sup}}
+\newcommand{\Inf}{\mathtt{Inf}}
+\newcommand{\LimSup}{\mathtt{LimSup}}
+\newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NL}{\textrm{NL}}
+\newcommand{\PTIME}{\textrm{PTIME}}
+\newcommand{\NP}{\textrm{NP}}
+\newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\PSPACE}{\textrm{PSPACE}}\end{aligned}\end{align} \]</div>
+<p>The MEC decomposition can be used to reduce several optimization problems (including general mean-payoff optimization) to optimizing reachability probability. Recall that in the optimal reachability problem, we are given an MDP <span class="math notranslate nohighlight">\(\mdp\)</span> (with coloured vertices) and a colour <span class="math notranslate nohighlight">\(\Win \in\colours\)</span>. The task is to find a strategy <span class="math notranslate nohighlight">\(\sigma\)</span> that maximizes <span class="math notranslate nohighlight">\( \probm^\sigma_{\vinit}(\Reach(\Win))\)</span>, the probability of reaching a vertex coloured by <span class="math notranslate nohighlight">\(\Win\)</span>. The main result on reachability MDPs, which we prove in Section <span class="xref std std-ref">5-sec:general-reachability</span>, is as follows:</p>
+<div class="proof theorem admonition" id="5-thm:quant-reachability-main">
+<p class="admonition-title"><span>Theorem </span> (needs title 5-thm:quant-reachability-main)</p>
+<div class="theorem-content section" id="proof-content">
+<p>In reachability MDPs, the value of each vertex is rational and computable in polynomial time. Moreover, we can compute, in polynomial time, a memoryless deterministic strategy that is optimal in every vertex.</p>
+</div>
+</div><div class="section" id="from-optimal-buchi-to-reachability">
+<h2>From optimal Büchi to reachability<a class="headerlink" href="#from-optimal-buchi-to-reachability" title="Permalink to this headline">¶</a></h2>
+<p>In Büchi MDPs, the vertices are assigned colours from the set <span class="math notranslate nohighlight">\(\{1,2\}\)</span> and our aim is to find a strategy maximizing <span class="math notranslate nohighlight">\( \probm^\sigma_{\vinit}(\Buchi)\)</span>, i.e. maximizing the probability that a vertex coloured by <span class="math notranslate nohighlight">\(2\)</span> is visited infinitely often.
+We say that a MEC <span class="math notranslate nohighlight">\(\mec\)</span> of a Büchi MDP is <strong>good</strong> if it contains a vertex coloured by 2.</p>
+<div class="proof theorem admonition" id="5-thm:quant-buchi">
+<p class="admonition-title"><span>Theorem </span> (needs title 5-thm:quant-buchi)</p>
+<div class="theorem-content section" id="proof-content">
+<p>In Büchi MDPs, the value of each vertex is rational and computable in polynomial time. Moreover, we can compute, in polynomial time, a memoryless deterministic strategy that is optimal in every vertex.</p>
+</div>
+</div><div class="dropdown tip admonition">
+<p class="admonition-title">Proof</p>
+<p>Let <span class="math notranslate nohighlight">\(\mdp_b\)</span> be a Büchi MDP and let <span class="math notranslate nohighlight">\(\mdp_r\)</span> be a reachability MDP obtained from <span class="math notranslate nohighlight">\(\mdp_b\)</span> by repainting each vertex belonging to a good MEC with the colour <span class="math notranslate nohighlight">\(\Win\)</span>. Note that <span class="math notranslate nohighlight">\(\mdp_r\)</span> can be computed in polynomial time by performing the MEC decomposition of <span class="math notranslate nohighlight">\(\mdp_b\)</span> ( <code class="xref std std-numref docutils literal notranslate"><span class="pre">5-algo:MEC-decomposition</span></code>) and checking goodness of each MEC.</p>
+<p>We prove that the value of each vertex in <span class="math notranslate nohighlight">\(\mdp_b\)</span> is equal to the value of the corresponding vertex in <span class="math notranslate nohighlight">\(\mdp_r\)</span>.</p>
+<p>First, fix any <span class="math notranslate nohighlight">\(\sigma\)</span> and <span class="math notranslate nohighlight">\(\vinit\)</span> (due to equality of underlying graphs, we can view these as a strategy/initial vertex both in <span class="math notranslate nohighlight">\(\mdp_b\)</span> and <span class="math notranslate nohighlight">\(\mdp_r\)</span>). By  <a class="reference internal" href="end_components.html#5-lem:EC-inf">Lemma </a>, the probability of visiting infinitely often a vertex outside of a MEC is 0. Hence, the probability of visiting infinitely often a vertex coloured by 2 (in <span class="math notranslate nohighlight">\(\mdp_b\)</span>) is the same as the probability of visiting infinitely often a vertex coloured by 2 which belongs to (a necessarily good) MEC, which is in turn bounded from above by the probability that <span class="math notranslate nohighlight">\(\sigma\)</span> visits (in <span class="math notranslate nohighlight">\(\mdp_r\)</span>) a vertex coloured by <span class="math notranslate nohighlight">\(\Win\)</span>.</p>
+<p>Conversely, let <span class="math notranslate nohighlight">\(\sigma^*\)</span> be the MD reachability-optimal strategy in <span class="math notranslate nohighlight">\(\mdp_r\)</span> (which exists by <a class="reference internal" href="#5-thm:quant-reachability-main">Theorem </a>). We construct a strategy <span class="math notranslate nohighlight">\(\sigma\)</span> in <span class="math notranslate nohighlight">\(\mdp_b\)</span> which achieves, in every vertex, the same Büchi-value as the reachability value achieved in that vertex by <span class="math notranslate nohighlight">\(\sigma^*\)</span> in <span class="math notranslate nohighlight">\(\mdp_r\)</span>. Outside of any good MEC, <span class="math notranslate nohighlight">\(\sigma\)</span> behaves exactly as <span class="math notranslate nohighlight">\(\sigma^*\)</span>. Inside a good MEC <span class="math notranslate nohighlight">\(\mec\)</span>, <span class="math notranslate nohighlight">\(\sigma\)</span> behaves as the MD strategy from  <code class="xref prf prf-ref docutils literal notranslate"><span class="pre">5-lem:EC-sweep</span></code>, ensuring that some fixed vertex in <span class="math notranslate nohighlight">\(\mec\)</span> of colour <span class="math notranslate nohighlight">\(2\)</span> is almost-surely visited infinitely often. Since <span class="math notranslate nohighlight">\(\sigma\)</span> is stitched together from MD strategies on non-overlapping domains, it is memoryless deterministic and it ensures that once a good MEC is reached, the Büchi condition is satisfied almost-surely.</p>
+<p>The construction of <span class="math notranslate nohighlight">\(\sigma\)</span> in the aforementioned paragraph is effective: given the optimal strategy <span class="math notranslate nohighlight">\(\sigma^*\)</span> for reachability, <span class="math notranslate nohighlight">\(\sigma\)</span> can be constructed in polynomial time.</p>
+</div>
+</div>
+<div class="section" id="from-optimal-parity-to-optimal-reachability">
+<h2>From optimal parity to optimal reachability<a class="headerlink" href="#from-optimal-parity-to-optimal-reachability" title="Permalink to this headline">¶</a></h2>
+<p>In parity MDPs, the vertices are labelled by colours form the set <span class="math notranslate nohighlight">\(\{1,\dots,d\}\)</span> (w.l.o.g. we stipulate that <span class="math notranslate nohighlight">\(d\leq |\vertices|\)</span>) and the goal is to find a strategy maximizing <span class="math notranslate nohighlight">\( \probm^\sigma_{\vinit}(\Parity),\)</span> i.e. maximizing the probability that the largest priority appearing infinitely often along a play is even.</p>
+<div class="proof theorem admonition" id="theorem-2">
+<p class="admonition-title"><span class="caption-number">Theorem 24 </span> (needs title and label)</p>
+<div class="theorem-content section" id="proof-content">
+<p>\label{5-thm:parity-main}
+In Parity MDPs, the value of each vertex is rational and computable in polynomial time. Moreover, we can compute, in polynomial time, a memoryless deterministic strategy that is optimal in every vertex.</p>
+<p>:label:
+\label{5-thm:parity-main}
+In Parity MDPs, the value of each vertex is rational and computable in polynomial time. Moreover, we can compute, in polynomial time, a memoryless deterministic strategy that is optimal in every vertex.</p>
+<p>:nonumber:</p>
+<p>\label{5-thm:parity-main}
+In Parity MDPs, the value of each vertex is rational and computable in polynomial time. Moreover, we can compute, in polynomial time, a memoryless deterministic strategy that is optimal in every vertex.</p>
+</div>
+</div><div class="dropdown tip admonition">
+<p class="admonition-title">Proof</p>
+<p>Let <span class="math notranslate nohighlight">\(\mdp_p\)</span> be a parity MDP. We will proceed similarly to  <a class="reference internal" href="#5-thm:quant-buchi">Theorem </a>, constructing a reachability MDP <span class="math notranslate nohighlight">\(\mdp_r\)</span> with the same underlying graph as <span class="math notranslate nohighlight">\(\mdp_p\)</span>.</p>
+<p>To this end, let <span class="math notranslate nohighlight">\(\mdp_i\)</span> be the largest sub-MDP of <span class="math notranslate nohighlight">\(\mdp_p\)</span> containing only the vertices of priority <span class="math notranslate nohighlight">\(\leq i\)</span>. Formally, we set <span class="math notranslate nohighlight">\(\vertices_i = \winAS(\mdp_p,\Safe(\colouring^{-1}(\{i+1,\ldots,d\})) )\)</span> and define <span class="math notranslate nohighlight">\(\mdp_i\)</span> to be the sub-MDP induced by <span class="math notranslate nohighlight">\(\vertices_i\)</span> (note that <span class="math notranslate nohighlight">\(\mdp_i\)</span> might be empty). We say that a vertex of <span class="math notranslate nohighlight">\(\mdp_p\)</span> is <span class="math notranslate nohighlight">\(i\)</span>-good if it is contained in some MEC <span class="math notranslate nohighlight">\(\mec\)</span> of <span class="math notranslate nohighlight">\(\mdp_i\)</span> such that the largest vertex priority inside <span class="math notranslate nohighlight">\(\mec\)</span> is equal to <span class="math notranslate nohighlight">\(i\)</span>. We say that a vertex is even-good if it is <span class="math notranslate nohighlight">\(i\)</span>-good for some even <span class="math notranslate nohighlight">\(i\)</span>. We set up a reachability MDP <span class="math notranslate nohighlight">\(\mdp_r\)</span> by taking <span class="math notranslate nohighlight">\(\mdp_p\)</span> and re-colouring each its even-good vertex with colour <span class="math notranslate nohighlight">\(\Win\)</span>. To do this, we need to compute, for each even priority <span class="math notranslate nohighlight">\(i\)</span>, the MDP <span class="math notranslate nohighlight">\(\mdp_i\)</span> and its MEC-decomposition. This can be done in polynomial time ( <code class="xref std std-numref docutils literal notranslate"><span class="pre">5-algo:MEC-decomposition</span></code>).</p>
+<p>We again prove that the value of every vertex in <span class="math notranslate nohighlight">\(\mdp_p\)</span> is equal to the value of the corresponding vertex in <span class="math notranslate nohighlight">\(\mdp_r\)</span>.</p>
+<p>Let <span class="math notranslate nohighlight">\(\sigma\)</span> and <span class="math notranslate nohighlight">\(\vinit\)</span> be arbitrary. By <a class="reference internal" href="end_components.html#5-lem:EC-inf">Lemma </a>, <span class="math notranslate nohighlight">\(\probm^\sigma_{\mdp_p,\vinit}(\Parity)\)</span> is equal to the probability that <span class="math notranslate nohighlight">\(\Inf(\play)\)</span>  is an EC in which the largest priority is even. But each such EC is also an EC of some <span class="math notranslate nohighlight">\(\mdp_i\)</span> with even <span class="math notranslate nohighlight">\(i\)</span>, and thus is also contained in a MEC of a <span class="math notranslate nohighlight">\(\mdp_i\)</span> in which the largest priority is <span class="math notranslate nohighlight">\( i \)</span>. Hence, <span class="math notranslate nohighlight">\(\probm^\sigma_{\mdp_p,\vinit}(\Parity)\leq \probm^\sigma_{\mdp_r,\vinit}(\Reach(\Win))\)</span>.</p>
+<p>Conversely, let <span class="math notranslate nohighlight">\(\sigma^*\)</span> be the MD reachability-optimal strategy in <span class="math notranslate nohighlight">\(\mdp_r\)</span>. We construct an MD strategy <span class="math notranslate nohighlight">\(\sigma\)</span> in <span class="math notranslate nohighlight">\(\mdp_p\)</span> as follows: in a vertex <span class="math notranslate nohighlight">\(v\)</span> which is not even-good, <span class="math notranslate nohighlight">\(\sigma\)</span> behaves as <span class="math notranslate nohighlight">\(\sigma^*\)</span>. For a vertex <span class="math notranslate nohighlight">\(v\)</span> that is even-good, we identify the smallest even <span class="math notranslate nohighlight">\(i\)</span> such that <span class="math notranslate nohighlight">\(v\)</span> is <span class="math notranslate nohighlight">\(i\)</span>-good.
+This means that <span class="math notranslate nohighlight">\(v\)</span> belongs to some MEC <span class="math notranslate nohighlight">\(\mec\)</span> of <span class="math notranslate nohighlight">\(\mdp_i\)</span> in which the largest priority is <span class="math notranslate nohighlight">\(i\)</span>.
+By  <code class="xref prf prf-ref docutils literal notranslate"><span class="pre">5-lem:EC-sweep</span></code>, we can compute, in polynomial time, an MD strategy <span class="math notranslate nohighlight">\(\sigma_M\)</span> which ensures that the largest-priority vertex in <span class="math notranslate nohighlight">\((\mdp_i)_\mec\)</span> is visited infinitely often, and we set <span class="math notranslate nohighlight">\(\sigma(v)\)</span> to <span class="math notranslate nohighlight">\(\sigma_M(v)\)</span>. Note that given <span class="math notranslate nohighlight">\(\sigma^*\)</span>, the strategy <span class="math notranslate nohighlight">\(\sigma\)</span> can be constructed in polynomial time. It remains to show that <span class="math notranslate nohighlight">\(\probm^\sigma_{\mdp_p,\vinit}(\Parity)\geq \probm^{\sigma^*}_{\mdp_r,\vinit}(\Reach(\Win))\)</span>.</p>
+<p>By the construction of <span class="math notranslate nohighlight">\(\sigma\)</span>, once we reach a vertex which is <span class="math notranslate nohighlight">\(i\)</span>-good for some even <span class="math notranslate nohighlight">\(i\)</span>, all the following vertices will be <span class="math notranslate nohighlight">\(j\)</span>-good for some even <span class="math notranslate nohighlight">\(j\leq i\)</span>. From this and from  <a class="reference internal" href="end_components.html#5-lem:EC-inf">Lemma </a> it follows that <span class="math notranslate nohighlight">\(\probm^{\sigma^*}_{\mdp_r,\vinit}(\Reach(\Win))\)</span> is equal to the probability that <span class="math notranslate nohighlight">\(\sigma\)</span> produces a play <span class="math notranslate nohighlight">\(\play\)</span> with the following property: <span class="math notranslate nohighlight">\(\exists i \text{ even}\)</span> such that all but finitely many vertices on <span class="math notranslate nohighlight">\(\play\)</span> are <span class="math notranslate nohighlight">\(i\)</span>-good but are not <span class="math notranslate nohighlight">\(j\)</span>-good for any even <span class="math notranslate nohighlight">\(j&lt;i\)</span>. This can be in turn rephrased as the probability that <span class="math notranslate nohighlight">\(\Inf(\play)\)</span> is an EC whose all vertices are <span class="math notranslate nohighlight">\(i\)</span>-good for some even <span class="math notranslate nohighlight">\(i\)</span> but none of them is <span class="math notranslate nohighlight">\(j\)</span>-good for an even <span class="math notranslate nohighlight">\(j&lt;i\)</span>; we call such an EC <strong><span class="math notranslate nohighlight">\(i\)</span>-definite</strong>. But within such an EC, <span class="math notranslate nohighlight">\(\sigma\)</span> forever behaves as <span class="math notranslate nohighlight">\(\sigma_M\)</span> for some MEC <span class="math notranslate nohighlight">\(\mdp\)</span> of <span class="math notranslate nohighlight">\(\mdp_i\)</span> in which the maximal priority is <span class="math notranslate nohighlight">\(i\)</span>. Hence, once an <span class="math notranslate nohighlight">\(i\)</span>-definite EC is reached, the strategy almost-surely ensures that priority <span class="math notranslate nohighlight">\(i\)</span> is visited infinitely often and ensures that no larger priority is ever visited. It follows that  <span class="math notranslate nohighlight">\(\probm^{\sigma^*}_{\mdp_r,\vinit}(\Reach(\Win)) = \probm^{\sigma}_{\mdp_p,\vinit}(\inf(\play) \text{ is \)</span>i<span class="math notranslate nohighlight">\(-definite for even }i ) = \probm^{\sigma}_{\mdp_p,\vinit}(\Parity).\)</span></p>
+</div>
+</div>
+<div class="section" id="from-general-mean-payoff-to-optimal-reachability">
+<h2>From general mean-payoff to optimal reachability<a class="headerlink" href="#from-general-mean-payoff-to-optimal-reachability" title="Permalink to this headline">¶</a></h2>
+<p>We already know how to solve strongly connected mean-payoff MDPs. We now combine this result with MEC decomposition to reduce the general (not strongly connected) mean-payoff optimization to MDP reachability.</p>
+<p>We start with a strengthening of  <a class="reference internal" href="mean_payoff_strongly_connected.html#5-thm:mp-valcomp">Theorem </a>.</p>
+<div class="proof lemma admonition" id="5-lem:MEC-mp-strict-bound">
+<p class="admonition-title"><span>Lemma </span> (needs title 5-lem:MEC-mp-strict-bound)</p>
+<div class="lemma-content section" id="proof-content">
+<p>Let <span class="math notranslate nohighlight">\(\mdp\)</span> be a strongly connected mean-payoff MDP and <span class="math notranslate nohighlight">\(r^*\)</span> the value of each of its vertices. Then, for each <span class="math notranslate nohighlight">\(\sigma\)</span> and <span class="math notranslate nohighlight">\(\vinit\)</span> we have <span class="math notranslate nohighlight">\(\probm^\sigma_{\vinit}(\MeanPayoffInf &gt; r^*) = 0 \)</span>.</p>
+</div>
+</div><div class="dropdown tip admonition">
+<p class="admonition-title">Proof</p>
+<p>Assume that the statement is not true. Then there exist <span class="math notranslate nohighlight">\(\sigma,\vinit\)</span> as well as numbers <span class="math notranslate nohighlight">\(\epsilon,\delta&gt;0 \)</span> and <span class="math notranslate nohighlight">\(n_0 \in \N\)</span> s.t. the probability of the following set of plays <span class="math notranslate nohighlight">\(X_{\epsilon,n_0}\)</span> is at least <span class="math notranslate nohighlight">\(\delta\)</span>: a play <span class="math notranslate nohighlight">\(\play\)</span> belongs to <span class="math notranslate nohighlight">\(X_{\epsilon,n_0}\)</span> if for every <span class="math notranslate nohighlight">\(n\geq n_0\)</span> it holds <span class="math notranslate nohighlight">\(\frac{1}{n}\sum_{i=0}^{n-1}\colouring(\play_i) \geq x^* + \eps\)</span>. We construct a new strategy <span class="math notranslate nohighlight">\(\sigma'\)</span>, which proceeds in a series of episodes. Every episode starts in <span class="math notranslate nohighlight">\(\vinit\)</span>, and for the first <span class="math notranslate nohighlight">\(n_0\)</span> steps of the, episode <span class="math notranslate nohighlight">\(\sigma'\)</span> mimics <span class="math notranslate nohighlight">\(\sigma\)</span>. After that, it checks, in every step <span class="math notranslate nohighlight">\(n\)</span>, whether the payoff accumulated since the start of the episode is at least <span class="math notranslate nohighlight">\(n\cdot(r^* + \eps)\)</span>. If this holds, we mimic <span class="math notranslate nohighlight">\(\sigma\)</span> for one more step. If the inequality is violated, we immediately restart, i.e. return to <span class="math notranslate nohighlight">\(\vinit\)</span> (can be performed with probability <span class="math notranslate nohighlight">\(1\)</span> due to the MDP being strongly connected) and once in <span class="math notranslate nohighlight">\(\vinit\)</span>, start a new episode which mimics <span class="math notranslate nohighlight">\(\sigma\)</span> from the beginning. By our assumption, the probability of not performing a reset in a given episode is at least <span class="math notranslate nohighlight">\(\delta&gt;0\)</span>. Hence, with probability <span class="math notranslate nohighlight">\(1\)</span> we witness only finitely many resets, after which we produce a play whose suffix has mean-payoff at least <span class="math notranslate nohighlight">\(r^* + e\)</span>. By prefix independence of mean-payoff ( <a class="reference internal" href="mean_payoff_strongly_connected.html#5-thm:mp-valcomp">Theorem </a>), <span class="math notranslate nohighlight">\(\expv^{\sigma'}_{\vinit} [\MeanPayoffInf] \geq r^* + \eps,\)</span> a contradiction.</p>
+</div>
+<p>We will need to strengthen the previous lemma so that it applies not only to strongly connected MDPs, but also to MECs in some larger MDPs. The strengthening is performed in the following two lemmas. The first lemma says that once we exit a MEC, with some positive probability we will never return.</p>
+<div class="proof lemma admonition" id="5-lem:MEC-noreturn">
+<p class="admonition-title"><span>Lemma </span> (needs title 5-lem:MEC-noreturn)</p>
+<div class="lemma-content section" id="proof-content">
+<p>Let <span class="math notranslate nohighlight">\( \mec \)</span> be a MEC of an MDP <span class="math notranslate nohighlight">\( \mdp \)</span> and let <span class="math notranslate nohighlight">\( v\in \mec \)</span>, <span class="math notranslate nohighlight">\( a\in \actions \)</span> be such that <span class="math notranslate nohighlight">\( a \)</span> <strong>is not</strong> <span class="math notranslate nohighlight">\( \mec \)</span>-safe in <span class="math notranslate nohighlight">\( v \)</span>. Then there exists <span class="math notranslate nohighlight">\( t \)</span> s.t. <span class="math notranslate nohighlight">\( \probTranFunc(t\mid v,a)&gt;0 \)</span> and  <span class="math notranslate nohighlight">\( t \not \in \winAS(\mdp,\Reach(\mec)) \)</span>.</p>
+</div>
+</div><div class="dropdown tip admonition">
+<p class="admonition-title">Proof</p>
+<p>Assume that <span class="math notranslate nohighlight">\( a \)</span> is not <span class="math notranslate nohighlight">\( \mec \)</span>-safe in <span class="math notranslate nohighlight">\( v \)</span> and that all <span class="math notranslate nohighlight">\( t \)</span>‘s with <span class="math notranslate nohighlight">\( \probTranFunc(t\mid v,a)&gt;0 \)</span> belong to <span class="math notranslate nohighlight">\( \winAS(\mdp,\Reach(\mec)) \)</span>. Fix the MD strategy <span class="math notranslate nohighlight">\(  \sigma \)</span> which is almost-surely winning for reaching <span class="math notranslate nohighlight">\( \mec \)</span> from each vertex of <span class="math notranslate nohighlight">\( \winAS(\mdp,\Reach(\mec)) \)</span> ( <a class="reference internal" href="reachability.html#5-thm:as-char">Theorem </a>). For each <span class="math notranslate nohighlight">\( t \)</span> s.t.  <span class="math notranslate nohighlight">\( \probTranFunc(t\mid v,a)&gt;0 \)</span>, let <span class="math notranslate nohighlight">\( \mec_t \)</span> denote the set of vertices which can be (with a positive probability) visited under <span class="math notranslate nohighlight">\( \sigma \)</span>. Put <span class="math notranslate nohighlight">\( \mec' = \mec \cup (\bigcup_{t\in \vertices,\probTranFunc(t\mid v,a)&gt;0}\mec_t )\)</span>. Then <span class="math notranslate nohighlight">\( \mec' \)</span> is closed, since <span class="math notranslate nohighlight">\( \mec \)</span> is closed and since for every <span class="math notranslate nohighlight">\( u \)</span> in some <span class="math notranslate nohighlight">\( \mec_t \)</span> there exists an action (the one selected by <span class="math notranslate nohighlight">\( \sigma \)</span> for <span class="math notranslate nohighlight">\( u \)</span>) under which we surely stay in <span class="math notranslate nohighlight">\( \mec_t \)</span>. Moreover, the <span class="math notranslate nohighlight">\( \mec'\)</span>-induced sub-MDP is strongly connected: each <span class="math notranslate nohighlight">\( t \)</span> with <span class="math notranslate nohighlight">\( \probTranFunc(t\mid v,a)&gt;0 \)</span> is reachable from within <span class="math notranslate nohighlight">\( \mec \)</span> (through <span class="math notranslate nohighlight">\( v \)</span>) and thus each vertex in some <span class="math notranslate nohighlight">\(\mec_t \)</span> is reachable from <span class="math notranslate nohighlight">\( \mec \)</span>. In turn, from each vertex in some <span class="math notranslate nohighlight">\( \mec_t \)</span> (where <span class="math notranslate nohighlight">\( \probTranFunc(t\mid v,a)&gt;0 \)</span>) we can reach <span class="math notranslate nohighlight">\( \mec \)</span> without leaving <span class="math notranslate nohighlight">\( \mec_t \)</span>, due to the definition of <span class="math notranslate nohighlight">\( \sigma \)</span>. Hence, <span class="math notranslate nohighlight">\( \mec' \)</span> is a MEC which strictly contains <span class="math notranslate nohighlight">\( \mec \)</span>, a contradiction with the maximality of <span class="math notranslate nohighlight">\( \mec. \)</span></p>
+</div>
+<p>Given a play <span class="math notranslate nohighlight">\(\play\)</span> and strategy <span class="math notranslate nohighlight">\(\sigma\)</span>, we define a <strong>slice</strong> of <span class="math notranslate nohighlight">\(\sigma\)</span> as a strategy <span class="math notranslate nohighlight">\(\slice{\sigma}{\play}\)</span> such that for each <span class="math notranslate nohighlight">\(\play'\)</span> starting in <span class="math notranslate nohighlight">\(\last(\play)\)</span> it holds <span class="math notranslate nohighlight">\(\slice{\sigma}{\play}(\play') = \sigma(\play\play')\)</span>, while on other plays <span class="math notranslate nohighlight">\(\slice{\sigma}{\play}\)</span> just mimics <span class="math notranslate nohighlight">\(\sigma\)</span>.</p>
+<div class="proof lemma admonition" id="lemma-5">
+<p class="admonition-title"><span class="caption-number">Lemma 25 </span> (needs title and label)</p>
+<div class="lemma-content section" id="proof-content">
+<p>\label{5-lem:MEC-stable}
+Let <span class="math notranslate nohighlight">\(\mec\)</span> be a MEC of <span class="math notranslate nohighlight">\(\mdp\)</span> and <span class="math notranslate nohighlight">\(r^*\)</span> the mean-payoff value of every vertex in the strongly connected sub-MDP induced by <span class="math notranslate nohighlight">\(\mec\)</span>. Then the set <span class="math notranslate nohighlight">\(E\)</span> of all plays that have <span class="math notranslate nohighlight">\(\Inf(\play)\subseteq\mec\)</span> and at the same time mean payoff greater than <span class="math notranslate nohighlight">\(r\)</span> has probability zero under any strategy <span class="math notranslate nohighlight">\(\sigma\)</span>.</p>
+<p>:label:
+\label{5-lem:MEC-stable}
+Let <span class="math notranslate nohighlight">\(\mec\)</span> be a MEC of <span class="math notranslate nohighlight">\(\mdp\)</span> and <span class="math notranslate nohighlight">\(r^*\)</span> the mean-payoff value of every vertex in the strongly connected sub-MDP induced by <span class="math notranslate nohighlight">\(\mec\)</span>. Then the set <span class="math notranslate nohighlight">\(E\)</span> of all plays that have <span class="math notranslate nohighlight">\(\Inf(\play)\subseteq\mec\)</span> and at the same time mean payoff greater than <span class="math notranslate nohighlight">\(r\)</span> has probability zero under any strategy <span class="math notranslate nohighlight">\(\sigma\)</span>.</p>
+<p>:nonumber:</p>
+<p>\label{5-lem:MEC-stable}
+Let <span class="math notranslate nohighlight">\(\mec\)</span> be a MEC of <span class="math notranslate nohighlight">\(\mdp\)</span> and <span class="math notranslate nohighlight">\(r^*\)</span> the mean-payoff value of every vertex in the strongly connected sub-MDP induced by <span class="math notranslate nohighlight">\(\mec\)</span>. Then the set <span class="math notranslate nohighlight">\(E\)</span> of all plays that have <span class="math notranslate nohighlight">\(\Inf(\play)\subseteq\mec\)</span> and at the same time mean payoff greater than <span class="math notranslate nohighlight">\(r\)</span> has probability zero under any strategy <span class="math notranslate nohighlight">\(\sigma\)</span>.</p>
+</div>
+</div><div class="dropdown tip admonition">
+<p class="admonition-title">Proof</p>
+<p>Assume, for contradiction, that there is a strategy <span class="math notranslate nohighlight">\(\sigma\)</span> and <span class="math notranslate nohighlight">\(\delta &gt; 0\)</span> such that the probability of <span class="math notranslate nohighlight">\(E\)</span> under <span class="math notranslate nohighlight">\( \sigma  \)</span> is at least <span class="math notranslate nohighlight">\(\delta\)</span>. Note that we do not immediately have a contradiction with  <a class="reference internal" href="#5-lem:MEC-mp-strict-bound">Lemma </a>, since <span class="math notranslate nohighlight">\(\sigma\)</span> might leave <span class="math notranslate nohighlight">\(\mec\)</span> (and then return back).</p>
+<p>We say that a play <span class="math notranslate nohighlight">\( \play \)</span> <strong>cheats</strong> in step <span class="math notranslate nohighlight">\( i \)</span> if it is inside <span class="math notranslate nohighlight">\( \mec \)</span> in <span class="math notranslate nohighlight">\( i \)</span>-th step and outside of <span class="math notranslate nohighlight">\( \mec \)</span> in the next step (which can only be caused by an <span class="math notranslate nohighlight">\( \mec \)</span>-unsafe action being played). From  <a class="reference internal" href="#5-lem:MEC-noreturn">Lemma </a> we have that there is <span class="math notranslate nohighlight">\( p&gt;0 \)</span> s.t. upon every exit from <span class="math notranslate nohighlight">\( \mec \)</span> we return with probability at most <span class="math notranslate nohighlight">\( (1-p) \)</span>. Hence, the probability that a play cheats infinitely often is <span class="math notranslate nohighlight">\( 0 \)</span>. It follows that there is <span class="math notranslate nohighlight">\( k\in \N \)</span> s.t. <span class="math notranslate nohighlight">\( \probm_{\vinit}^\sigma(\play \text{ cheats after \)</span>\geq k <span class="math notranslate nohighlight">\( steps}) \leq (\delta\cdot p_{\min})/4 \)</span>, where <span class="math notranslate nohighlight">\( p_{\min} \)</span> is the smallest non-zero edge probability in <span class="math notranslate nohighlight">\( \mdp \)</span>.</p>
+<p>Whenever we are in some <span class="math notranslate nohighlight">\( v\in \mec \)</span> and play an action that is not <span class="math notranslate nohighlight">\( \mec \)</span>-safe in <span class="math notranslate nohighlight">\( v \)</span>, this results into a cheat with  probability at least <span class="math notranslate nohighlight">\( p_{\min} \)</span>. Thus, the total probability that this happens after at least <span class="math notranslate nohighlight">\( k \)</span> steps, i.e. the quantity \begin{equation}\label{5-eq:mec-cheat}q= \sum_{i \geq k};\sum_{v\in \mec};\sum_{a \text{ not <span class="math notranslate nohighlight">\( \mec \)</span>-safe in v}}\expv^\sigma_{\vinit}[ \actevent{\sigma}{a}{i}\cdot\indicator{ \out(\play_i)= v} ] , \end{equation}
+is bounded by <span class="math notranslate nohighlight">\( \probm_{\vinit}^\sigma(\play \text{ cheats after more than \)</span> k <span class="math notranslate nohighlight">\( steps})/p_{\min} \leq \delta/4\)</span>.</p>
+<p>Let’s go back to <span class="math notranslate nohighlight">\( E \)</span> now. On each play in <span class="math notranslate nohighlight">\( E \)</span> there is a step <span class="math notranslate nohighlight">\( i \)</span> from which on the play stays in <span class="math notranslate nohighlight">\( \mec \)</span> forever: we say that the play is <span class="math notranslate nohighlight">\( i \)</span>-definite and we denote by <span class="math notranslate nohighlight">\(E_k\)</span> the set of all <span class="math notranslate nohighlight">\( i \)</span>-definite plays in <span class="math notranslate nohighlight">\( E \)</span>. By union bound, there is <span class="math notranslate nohighlight">\( \ell \in \N, \ell \geq k \)</span> s.t. <span class="math notranslate nohighlight">\( \probm_{\vinit}^\sigma(E_\ell)  \geq \delta/2\)</span>.</p>
+<p>We define a new strategy <span class="math notranslate nohighlight">\( \sigma' \)</span> as follows: on each play prefix, <span class="math notranslate nohighlight">\( \sigma' \)</span> by default mimics <span class="math notranslate nohighlight">\( \sigma \)</span>, except for the case when at least <span class="math notranslate nohighlight">\( \ell \)</span> steps have elapsed, the current vertex <span class="math notranslate nohighlight">\( v \)</span> is in <span class="math notranslate nohighlight">\( \mec \)</span>, and <span class="math notranslate nohighlight">\( \sigma \)</span> prescribes to play, with positive probability, an action which is not <span class="math notranslate nohighlight">\( \mec \)</span> safe in <span class="math notranslate nohighlight">\( v \)</span>. In such a case, <span class="math notranslate nohighlight">\( \sigma \)</span> is overridden and we play any action that is <span class="math notranslate nohighlight">\( \mec \)</span>-safe in <span class="math notranslate nohighlight">\( v \)</span> instead (after which we return to simulating <span class="math notranslate nohighlight">\( \sigma \)</span>, until the override kicks in again). The probability that such an override happens is bounded by the quantity <span class="math notranslate nohighlight">\( q \)</span> from~\eqref{5-eq:mec-cheat}, and hence by <span class="math notranslate nohighlight">\( \delta/4 \)</span>. Since  <span class="math notranslate nohighlight">\( \probm_{\vinit}^\sigma(E_\ell)  \geq \delta/2\)</span>, at least half the measure of <span class="math notranslate nohighlight">\( E_{\ell} \)</span> stays untouched by the overrides; hence  <span class="math notranslate nohighlight">\( \probm_{\vinit}^{\sigma'}(E_\ell)\geq \delta/4 \)</span>.</p>
+<p>We are ready to apply the final argument. There are only finitely many plays of length <span class="math notranslate nohighlight">\( \ell \)</span>. Hence, by union bound, there is a play <span class="math notranslate nohighlight">\( \play \)</span> of length <span class="math notranslate nohighlight">\( \ell \)</span> such that <span class="math notranslate nohighlight">\(\probm_{\vinit}^{\sigma'}(E_\ell \cap \cylinder(\play))&gt;0\)</span>. Consider the strategy  <span class="math notranslate nohighlight">\(\slice{\sigma'}{\play}\)</span>.
+Starting in <span class="math notranslate nohighlight">\( \last(\play) \)</span>, we have that <span class="math notranslate nohighlight">\(\slice{\sigma'}{\play}\)</span> never leaves <span class="math notranslate nohighlight">\( \mec \)</span>, due to the overrides in <span class="math notranslate nohighlight">\( \sigma' \)</span>. Hence, <span class="math notranslate nohighlight">\(\slice{\sigma'}{\play}\)</span> can be seen as a strategy in the strongly connected MDP <span class="math notranslate nohighlight">\( \mdp_\mec \)</span>. Now consider the set <span class="math notranslate nohighlight">\( E'=\{\play'\mid \play'\exists\play''\in E \text{ s.t. } \play''=\play\play'\} \)</span>. Then <span class="math notranslate nohighlight">\( \probm_{\last(\play)}^{\slice{\sigma'}{\play}}(E') = \probm_{\vinit}^{\sigma'}(E_\ell \cap \cylinder(\play))&gt;0 \)</span>; but due to the prefix independence of mean payoff, all plays in <span class="math notranslate nohighlight">\( E' \)</span> have payoff <span class="math notranslate nohighlight">\( &gt; r^* \)</span>, a contradiction with  <a class="reference internal" href="#5-lem:MEC-mp-strict-bound">Lemma </a>.</p>
+</div>
+<div class="proof theorem admonition" id="5-thm:general-mp-main">
+<p class="admonition-title"><span>Theorem </span> (needs title 5-thm:general-mp-main)</p>
+<div class="theorem-content section" id="proof-content">
+<p>In mean-payoff MDPs, the value of each vertex is rational and computable in polynomial time. Moreover, we can compute, in polynomial time, a memoryless deterministic strategy that is optimal in every vertex.</p>
+</div>
+</div><div class="dropdown tip admonition">
+<p class="admonition-title">Proof</p>
+<p>First, note that we can w.l.o.g. restrict to MDPs in which each edge is coloured by a number between <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\( 1 \)</span>. To see this, let <span class="math notranslate nohighlight">\(\mdp\)</span> be an MDP and <span class="math notranslate nohighlight">\(a,b\)</span> any two numbers, with <span class="math notranslate nohighlight">\(a\)</span> non-negative. We can construct an MDP <span class="math notranslate nohighlight">\(\mdp'\)</span> by re-colouring each edge <span class="math notranslate nohighlight">\((u,v)\)</span> of <span class="math notranslate nohighlight">\(\mdp\)</span> with colour <span class="math notranslate nohighlight">\(a\cdot \colouring(u,v)+b\)</span>, where <span class="math notranslate nohighlight">\(\colouring\)</span> is the original colouring in <span class="math notranslate nohighlight">\(\mdp\)</span>. It is then easy to see that for each strategy <span class="math notranslate nohighlight">\(\sigma\)</span> it holds <span class="math notranslate nohighlight">\(\expv_{\mdp,\vinit}^\sigma[\MeanPayoffInf]=(\expv_{\mdp',\vinit}^\sigma[\MeanPayoffInf]/a)-b\)</span>, so a strategy optimizing the mean payoff in <span class="math notranslate nohighlight">\(\mdp'\)</span> is also optimal in <span class="math notranslate nohighlight">\(\mdp\)</span>. Hence, we always can re-scale the colouring into the unit interval while preserving the optimization criterion.</p>
+<p>So now let <span class="math notranslate nohighlight">\(\mdp_\smallmp\)</span> be a mean-payoff MDP with edge-colouring <span class="math notranslate nohighlight">\(\colouring\)</span>. We construct, in polynomial time, a new reachability MDP <span class="math notranslate nohighlight">\(\mdp_r\)</span> as follows: first, we compute the MEC decomposition of <span class="math notranslate nohighlight">\(\mdp_\smallmp\)</span> ( <code class="xref std std-numref docutils literal notranslate"><span class="pre">5-algo:MEC-decomposition</span></code>). Let <span class="math notranslate nohighlight">\(\mec_1,\dots,\mec_k\)</span> be all the resulting MECs. For each MEC <span class="math notranslate nohighlight">\(\mec_i\)</span> we compute the optimal mean-payoff value <span class="math notranslate nohighlight">\(r_i^*\)</span> in the sub-MDP induced by <span class="math notranslate nohighlight">\(\mec_i\)</span> (which is shared by all vertices of this sub-MDP, by  <a class="reference internal" href="mean_payoff_strongly_connected.html#5-thm:mp-valcomp">Theorem </a>), along with the corresponding memoryless deterministic optimal strategy. We already know how to do this in polynomial time ( <code class="xref prf prf-ref docutils literal notranslate"><span class="pre">5-thm:mp-rand-opt-main,5-thm:lpmp-basic-dim</span></code>). Now we add new vertices <span class="math notranslate nohighlight">\(\vgood\)</span>, <span class="math notranslate nohighlight">\(\vbad\)</span>, both with self loops, and edges incoming to these vertices from each vertex that belongs to some MEC of <span class="math notranslate nohighlight">\(\mdp_\smallmp\)</span>. The vertex <span class="math notranslate nohighlight">\(\vgood\)</span> is the only vertex coloured by <span class="math notranslate nohighlight">\(\Win\)</span> in <span class="math notranslate nohighlight">\(\mdp_r\)</span>. Finally, we add a new action <span class="math notranslate nohighlight">\(\finact\)</span> which behaves as follows: For each vertex <span class="math notranslate nohighlight">\(v\)</span> belonging to a MEC <span class="math notranslate nohighlight">\(\mec_i\)</span> we set <span class="math notranslate nohighlight">\(\probTranFunc(\vgood\mid v,\finact) = r^*_i\)</span> and <span class="math notranslate nohighlight">\(\probTranFunc(\vbad\mid v,\finact) = 1-r^*_i \)</span>. In a non-MEC vertex <span class="math notranslate nohighlight">\( v \)</span>, we put <span class="math notranslate nohighlight">\( \probTranFunc(v,\finact) = \probTranFunc(v,a) \)</span> for some <span class="math notranslate nohighlight">\( a\in \actions \)</span>, <span class="math notranslate nohighlight">\( a\neq \finact \)</span>, so that no new behaviour is introduced in these vertices.</p>
+<p>We show that for any original vertex (i.e. all vertices but <span class="math notranslate nohighlight">\(\vgood,\vbad\)</span>) the optimal values in both MDPs are the same and the optimal strategies are easily transferable from one MDP to the other.</p>
+<p>First, let <span class="math notranslate nohighlight">\(\sigma\)</span> be an <span class="math notranslate nohighlight">\(\eps\)</span>-optimal strategy in <span class="math notranslate nohighlight">\(\mdp_\smallmp\)</span>.
+We have <span class="math notranslate nohighlight">\(\expv^\sigma_{\vinit}[\MeanPayoffInf] = \sum_{i=1}^k\expv^\sigma_{\vinit}[\MeanPayoffInf\cdot \indicator{\Inf\subseteq\mec_i}] \leq \sum_{i=1}^k \expv^\sigma_{\vinit}[r_i^*\cdot \indicator{\Inf=\mec_i}] = \sum_{i=1}^k r_i^* \cdot \probm_{\vinit}^\sigma(\Inf=\mec_i) \)</span>; here the first equation follows from  <a class="reference internal" href="end_components.html#5-lem:EC-inf">Lemma </a> and the subsequent inequality from  <code class="xref prf prf-ref docutils literal notranslate"><span class="pre">5-lem:MEC-stable</span></code>. Moreover, for each <span class="math notranslate nohighlight">\(i\)</span> there is a number <span class="math notranslate nohighlight">\(n_0^i\)</span> such that the probability of all plays that stay inside <span class="math notranslate nohighlight">\(\mec_i\)</span> in all the steps from <span class="math notranslate nohighlight">\(n_0^i\)</span> to infinity is at least <span class="math notranslate nohighlight">\(\probm_{\vinit}^\sigma(\Inf\subseteq\mec_i) - \frac{\eps}{k} \)</span>. Let <span class="math notranslate nohighlight">\(n_0 = \max_{1\leq i \leq k} n^i_0\)</span>.</p>
+<p>We construct a reachability strategy <span class="math notranslate nohighlight">\(\sigma_r\)</span> which mimics <span class="math notranslate nohighlight">\(\sigma\)</span> for the first <span class="math notranslate nohighlight">\(n_0\)</span> steps. After <span class="math notranslate nohighlight">\(n_0\)</span> steps it performs a switch: if the current vertex is in some <span class="math notranslate nohighlight">\(\mec_i\)</span> we immediately play the action <span class="math notranslate nohighlight">\(\finact\)</span>, otherwise we start to behave arbitrarily. We have <span class="math notranslate nohighlight">\(\probm_{\vinit}^{\sigma_r}(\Reach(\Win)) \geq \sum_{i=1}^{k} r_i^* \cdot \probm_{\vinit}^{\sigma_r}(\last(\play_{\leq n_0}) \in \mec_i ) \geq \sum_{i=1}^k r_i^* \cdot \probm_{\vinit}^\sigma(\Inf\subseteq\mec_i) - \eps \geq \expv^\sigma_{\vinit}[\MeanPayoffInf] -\eps\)</span>, the last equality shown in the previous paragraph. Since <span class="math notranslate nohighlight">\(\sigma\)</span> is <span class="math notranslate nohighlight">\(\eps\)</span>-optimal for mean-payoff, <span class="math notranslate nohighlight">\(\probm_{\vinit}^{\sigma_r}(\Reach(\Win))\)</span> is at most <span class="math notranslate nohighlight">\(2\eps\)</span> away from the mean-payoff value of <span class="math notranslate nohighlight">\( v \)</span>. Since <span class="math notranslate nohighlight">\(\eps&gt;0\)</span> was chosen arbitrarily, we get that the reachability value in <span class="math notranslate nohighlight">\(\mdp_{r}\)</span> is at least as large as the mean-payoff value in <span class="math notranslate nohighlight">\(\mdp_{\smallmp}\)</span>.</p>
+<p>Conversely, let <span class="math notranslate nohighlight">\(\sigma^*\)</span> be the optimal MD strategy in <span class="math notranslate nohighlight">\(\mdp_r\)</span>. We say that <span class="math notranslate nohighlight">\(\sigma^*\)</span> ends in a vertex <span class="math notranslate nohighlight">\(v\)</span> if <span class="math notranslate nohighlight">\(\sigma^*(v)=\finact\)</span>. We can assume that if <span class="math notranslate nohighlight">\(\sigma^*\)</span> ends in some <span class="math notranslate nohighlight">\(v \in \mec_i\)</span> then it ends in all vertices of <span class="math notranslate nohighlight">\(\mec_i\)</span>. This is because whenever <span class="math notranslate nohighlight">\(\sigma^*\)</span> ends in some vertex <span class="math notranslate nohighlight">\(v \in \mec_i\)</span>, the reachability value of <span class="math notranslate nohighlight">\(v\)</span> must be equal to <span class="math notranslate nohighlight">\(r^*_i\)</span>, otherwise playing <span class="math notranslate nohighlight">\(\finact\)</span> would not be optimal here. But the optimal reachability value in every vertex of a given MEC is the same (due to  <code class="xref prf prf-ref docutils literal notranslate"><span class="pre">5-lem:EC-sweep</span></code>), so if playing <span class="math notranslate nohighlight">\(\finact\)</span> is optimal in some vertex of <span class="math notranslate nohighlight">\(\mec_i\)</span>, it is optimal in all such vertices. Now we can define an MD strategy <span class="math notranslate nohighlight">\(\sigma_{\smallmp}\)</span> in <span class="math notranslate nohighlight">\(\mdp_\smallmp\)</span> to initially mimic <span class="math notranslate nohighlight">\(\sigma^*\)</span>, and upon encountering any MEC <span class="math notranslate nohighlight">\(\mec_i\)</span> in which <span class="math notranslate nohighlight">\(\sigma^*\)</span> ends, immediately switch to the MD strategy that is optimal in the mean-payoff sub-MDP <span class="math notranslate nohighlight">\(\mdp_i\)</span>. We have <span class="math notranslate nohighlight">\(\expv^{\sigma_{\smallmp}}_{\vinit}[\MeanPayoffInf]  =  \sum_{i=1}^{k} \probm^{\sigma^*}_{\vinit}(\text{end in }\mec_i)\cdot r^*_i = \probm^{\sigma^*}_{\vinit} (\Reach(\Win)). \)</span> Since <span class="math notranslate nohighlight">\(\sigma^*\)</span> as well as the optimal strategies in all <span class="math notranslate nohighlight">\(\mec_i\)</span> can be computed in polynomial time ( <code class="xref prf prf-ref docutils literal notranslate"><span class="pre">5-thm:quant-reachability-main,5-thm:lpmp-basic-dim</span></code>), we get the result.</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./5_MDP"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="end_components.html" title="previous page">End components</a>
+    <a class='right-next' id="next-link" href="optimal_reachability.html" title="next page">Optimal reachability</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By a set of authors coordinated by Nathana&euml;l Fijalkow<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

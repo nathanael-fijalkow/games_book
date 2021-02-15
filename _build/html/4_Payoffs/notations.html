@@ -59,7 +59,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Refining qualitative objectives with quantities" href="qualitative.html" />
-    <link rel="prev" title="Payoffs" href="index.html" />
+    <link rel="prev" title="Games with Payoffs" href="index.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -173,7 +173,7 @@
 <ul class="current nav sidenav_l1">
  <li class="toctree-l1 collapsible-parent">
   <a class="reference internal" href="../2_Regular/index.html">
-   Regular
+   Regular Games
   </a>
   <ul class="collapse-ul">
    <li class="toctree-l2">
@@ -212,7 +212,7 @@
  </li>
  <li class="toctree-l1 collapsible-parent">
   <a class="reference internal" href="../3_Parity/index.html">
-   Parity
+   Parity Games
   </a>
   <ul class="collapse-ul">
    <li class="toctree-l2">
@@ -251,7 +251,7 @@
  </li>
  <li class="toctree-l1 current active collapsible-parent">
   <a class="reference internal" href="index.html">
-   Payoffs
+   Games with Payoffs
   </a>
   <ul class="current collapse-ul">
    <li class="toctree-l2 current active">
@@ -286,6 +286,67 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Stochastic
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../5_MDP/index.html">
+   Markov Decision Processes
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/notations.html">
+     Notations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/reachability.html">
+     Positive and almost-sure reachability and safety in MDPs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/discounted.html">
+     Discounted payoff in MDPs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/mean_payoff_properties.html">
+     Mean-payoff in MDPs: General properties and linear programming
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/mean_payoff_strongly_connected.html">
+     Mean-payoff optimality in strongly connected MDPs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/end_components.html">
+     End components
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/reductions.html">
+     Reductions to optimal reachability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/optimal_reachability.html">
+     Optimal reachability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/references.html">
      Bibliographic references
     </a>
    </li>
@@ -415,10 +476,11 @@
 \newcommand{\Inf}{\mathtt{Inf}}
 \newcommand{\LimSup}{\mathtt{LimSup}}
 \newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NL}{\textrm{NL}}
+\newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
 \newcommand{\coNP}{\textrm{coNP}}
-\newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\PTIME}{\textrm{PTIME}}\]</div>
+\newcommand{\PSPACE}{\textrm{PSPACE}}\]</div>
 <p>In this chapter all objectives we consider use the set of colours <span class="math notranslate nohighlight">\(C = \Z\)</span> the set of integers
 (or <span class="math notranslate nohighlight">\(C = \Z \cup \set{\Win}\)</span> for the shortest path objective),
 so a colour is called a weight interpreted as a payoff for Eve.
@@ -430,7 +492,7 @@ this is the best each player can unilaterally guarantee from the vertex <span cl
 All the quantitative objectives we will study in this chapter are Borel, hence determined thanks to \cref{1-cor:borel_determinacy}:
 <span class="math notranslate nohighlight">\(\ValueE^\game(v) = \ValueA^\game(v)\)</span> for all vertices <span class="math notranslate nohighlight">\(v\)</span>.
 We thus let <span class="math notranslate nohighlight">\(\Value^\game(v)\)</span> denote this value (and <span class="math notranslate nohighlight">\(\Value(v)\)</span> if <span class="math notranslate nohighlight">\(\Game\)</span> is clear from the context).</p>
-<p>For complexity statements we use the unit cost RAM model as defined in Section <a class="reference internal" href="../1_Introduction/computation.html#sec-computation"><span class="std std-ref">Computational models</span></a>.
+<p>For complexity statements we use the unit cost RAM model as defined in~Section <a class="reference internal" href="../1_Introduction/computation.html#sec-computation"><span class="std std-ref">Computational models</span></a>.
 For each objective we introduce we will discuss what is the relevant machine word size, both we can already make some preliminary remarks.
 Let us consider a game <span class="math notranslate nohighlight">\(\Game\)</span> with an objective using the set of colours <span class="math notranslate nohighlight">\(C = \Z\)</span>
 and let <span class="math notranslate nohighlight">\(W\)</span> denote the largest weight appearing in <span class="math notranslate nohighlight">\(\Game\)</span> in absolute value.
@@ -467,7 +529,7 @@ that needs to be given in the input.</p>
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="index.html" title="previous page">Payoffs</a>
+    <a class='left-prev' id="prev-link" href="index.html" title="previous page">Games with Payoffs</a>
     <a class='right-next' id="next-link" href="qualitative.html" title="next page">Refining qualitative objectives with quantities</a>
 
     </div>

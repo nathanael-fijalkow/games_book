@@ -55,10 +55,11 @@
 \newcommand{\Inf}{\mathtt{Inf}}
 \newcommand{\LimSup}{\mathtt{LimSup}}
 \newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NL}{\textrm{NL}}
+\newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\PTIME}{\textrm{PTIME}}
 ```
 We present in this section the main objectives and their representations.
 An objective may depend upon a set of parameters which are sometimes omitted when clear from the context.
@@ -231,7 +232,7 @@ either an edge or a vertex together with its priority.
 ## Quantitative objectives
 
 In this introduction chapter we only define two quantitative objectives: mean payoff and discounted payoff.
-More objectives will be defined and studied in Chapter {ref}`4-chap:payoffs`, and later in Chapter {ref}`12-chap:multiobjective`.
+More objectives will be defined and studied in~Chapter {ref}`4-chap:payoffs`, and later in~Chapter {ref}`12-chap:multiobjective`.
 
 Mean payoff and discounted payoff use the set of colours $C = \Z$ the set of integers.
 A colour is called a weight, interpreted as a payoff for Eve.

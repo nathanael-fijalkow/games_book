@@ -173,7 +173,7 @@
 <ul class="current nav sidenav_l1">
  <li class="toctree-l1 collapsible-parent">
   <a class="reference internal" href="../2_Regular/index.html">
-   Regular
+   Regular Games
   </a>
   <ul class="collapse-ul">
    <li class="toctree-l2">
@@ -212,7 +212,7 @@
  </li>
  <li class="toctree-l1 collapsible-parent">
   <a class="reference internal" href="../3_Parity/index.html">
-   Parity
+   Parity Games
   </a>
   <ul class="collapse-ul">
    <li class="toctree-l2">
@@ -251,7 +251,7 @@
  </li>
  <li class="toctree-l1 current active collapsible-parent">
   <a class="reference internal" href="index.html">
-   Payoffs
+   Games with Payoffs
   </a>
   <ul class="current collapse-ul">
    <li class="toctree-l2">
@@ -286,6 +286,67 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Stochastic
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../5_MDP/index.html">
+   Markov Decision Processes
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/notations.html">
+     Notations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/reachability.html">
+     Positive and almost-sure reachability and safety in MDPs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/discounted.html">
+     Discounted payoff in MDPs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/mean_payoff_properties.html">
+     Mean-payoff in MDPs: General properties and linear programming
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/mean_payoff_strongly_connected.html">
+     Mean-payoff optimality in strongly connected MDPs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/end_components.html">
+     End components
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/reductions.html">
+     Reductions to optimal reachability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/optimal_reachability.html">
+     Optimal reachability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/references.html">
      Bibliographic references
     </a>
    </li>
@@ -447,10 +508,11 @@
 \newcommand{\Inf}{\mathtt{Inf}}
 \newcommand{\LimSup}{\mathtt{LimSup}}
 \newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NL}{\textrm{NL}}
+\newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
 \newcommand{\coNP}{\textrm{coNP}}
-\newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\PTIME}{\textrm{PTIME}}\]</div>
+\newcommand{\PSPACE}{\textrm{PSPACE}}\]</div>
 <p>A natural approach for aggregating an infinite sequence of weights is to consider the arithmetic mean.
 Since the sequence <span class="math notranslate nohighlight">\((\frac{1}{k} \sum_{i = 0}^{k-1} \rho_i)_{k \in \N}\)</span> may not converge,
 we can either consider the limit superior or the limit inferior, leading to the two definitions:</p>
@@ -891,7 +953,7 @@ so thanks to the property above <span class="math notranslate nohighlight">\(\Me
 Thus <span class="math notranslate nohighlight">\(\WE(\game) \subseteq \WE(\game')\)</span>.
 The converse implication is proved similarly swapping the two players.</p>
 </div>
-<p>We note that we did not construct a reduction between objectives as defined in Section <a class="reference internal" href="../1_Introduction/reductions.html#sec-reductions"><span class="std std-ref">Reductions</span></a>:
+<p>We note that we did not construct a reduction between objectives as defined in~Section <a class="reference internal" href="../1_Introduction/reductions.html#sec-reductions"><span class="std std-ref">Reductions</span></a>:
 indeed it is not true that <span class="math notranslate nohighlight">\(\Parity\)</span> reduces to <span class="math notranslate nohighlight">\(\MeanPayoff_{\ge 0}\)</span>, the reduction depends on the number <span class="math notranslate nohighlight">\(n\)</span> of vertices.</p>
 <p>As a corollary of <a class="reference internal" href="#4-thm:MP-NPcoNP">Theorem </a>, this polynomial reduction gives an alternative proof of the fact
 that solving parity games is in <span class="math notranslate nohighlight">\(\NP \cap \coNP\)</span>.</p>
@@ -903,8 +965,8 @@ that solving parity games is in <span class="math notranslate nohighlight">\(\NP
 <div class="theorem-content section" id="proof-content">
 <p>There exists a strategy improvement algorithm for solving mean payoff games in \mynote{FILL IN}.</p>
 </div>
-</div><p>We rely on the high-level presentation of strategy improvement algorithms given in  Section <a class="reference internal" href="../1_Introduction/strategy_improvement.html#sec-strategy-improvement"><span class="std std-ref">Strategy improvement algorithms</span></a>.
-The algorithm is very similar and actually extends the strategy improvement algorithm for parity games presented in Section <a class="reference internal" href="../3_Parity/strategy_improvement.html#sec-strategy-improvement"><span class="std std-ref">An exponential time strategy improvement algorithm</span></a>.</p>
+</div><p>We rely on the high-level presentation of strategy improvement algorithms given in Section <a class="reference internal" href="../1_Introduction/strategy_improvement.html#sec-strategy-improvement"><span class="std std-ref">Strategy improvement algorithms</span></a>.
+The algorithm is very similar and actually extends the strategy improvement algorithm for parity games presented in~Section <a class="reference internal" href="../3_Parity/strategy_improvement.html#sec-strategy-improvement"><span class="std std-ref">An exponential time strategy improvement algorithm</span></a>.</p>
 <blockquote>
 <div><p><strong>Adding the option of stopping the game.</strong></p>
 </div></blockquote>
@@ -925,7 +987,7 @@ equivalently all infinite paths in <span class="math notranslate nohighlight">\(
 <p>We say that a cycle is non-negative if the sum of the weights in the cycle is non-negative, and it is negative otherwise.
 Respecting mean payoff is characterised using cycles:</p>
 <div class="proof observation admonition" id="observation-6">
-<p class="admonition-title"><span class="caption-number">Observation 16 </span> (needs title and label)</p>
+<p class="admonition-title"><span class="caption-number">Observation 10 </span> (needs title and label)</p>
 <div class="observation-content section" id="proof-content">
 <p>A strategy <span class="math notranslate nohighlight">\(\sigma\)</span> respects mean payoff if and only if all cycles in <span class="math notranslate nohighlight">\(\Game[\sigma]\)</span> are non-negative.</p>
 <p>:label:
@@ -938,7 +1000,7 @@ A strategy <span class="math notranslate nohighlight">\(\sigma\)</span> respects
 <div><p><strong>Evaluating a strategy.</strong></p>
 </div></blockquote>
 <p>The first question is: given a strategy <span class="math notranslate nohighlight">\(\sigma\)</span>, how to evaluate it (in order to later improve it)?
-As explained in  Section <a class="reference internal" href="../1_Introduction/strategy_improvement.html#sec-strategy-improvement"><span class="std std-ref">Strategy improvement algorithms</span></a> towards this goal we define a value function <span class="math notranslate nohighlight">\(\val^{\sigma} : V \to Y\)</span>.</p>
+As explained in Section <a class="reference internal" href="../1_Introduction/strategy_improvement.html#sec-strategy-improvement"><span class="std std-ref">Strategy improvement algorithms</span></a> towards this goal we define a value function <span class="math notranslate nohighlight">\(\val^{\sigma} : V \to Y\)</span>.</p>
 <p>We let <span class="math notranslate nohighlight">\(\val^{\sigma}(v) = \min_\tau \val(\play_{\sigma,\tau}^v)\)</span> where <span class="math notranslate nohighlight">\(\tau\)</span> ranges over (general) strategies for Adam, so we first need to define the value of the play <span class="math notranslate nohighlight">\(\play = \play_{\sigma,\tau}^v\)</span>.
 If <span class="math notranslate nohighlight">\(\play\)</span> is stopped, then <span class="math notranslate nohighlight">\(\val(\play)\)</span> is the sum of the weights in <span class="math notranslate nohighlight">\(\play\)</span>.
 Otherwise <span class="math notranslate nohighlight">\(\val(\play)\)</span> is <span class="math notranslate nohighlight">\(\top\)</span> if <span class="math notranslate nohighlight">\(\play\)</span> satisfies mean payoff, and <span class="math notranslate nohighlight">\(\bot\)</span> if <span class="math notranslate nohighlight">\(\play\)</span> does not satisfy mean payoff.
@@ -974,7 +1036,7 @@ We then define an operator <span class="math notranslate nohighlight">\(\Op : F^
 \end{split}\]</div>
 <p>Since <span class="math notranslate nohighlight">\(\delta\)</span> is monotonic so is <span class="math notranslate nohighlight">\(\Op\)</span>.</p>
 <div class="proof observation admonition" id="observation-7">
-<p class="admonition-title"><span class="caption-number">Observation 17 </span> (needs title and label)</p>
+<p class="admonition-title"><span class="caption-number">Observation 11 </span> (needs title and label)</p>
 <div class="observation-content section" id="proof-content">
 <p>The function <span class="math notranslate nohighlight">\(\val^\sigma\)</span> is a fixed point of <span class="math notranslate nohighlight">\(\Op\)</span> in <span class="math notranslate nohighlight">\(F^\sigma_V\)</span>.</p>
 <p>:label:
@@ -1027,7 +1089,7 @@ After this preprocessing <span class="math notranslate nohighlight">\(\sigma_0\)
 </div></blockquote>
 <p>We start by stating a very simple property of <span class="math notranslate nohighlight">\(\delta\)</span>, which is key in the arguments below.</p>
 <div class="proof observation admonition" id="observation-9">
-<p class="admonition-title"><span class="caption-number">Observation 18 </span> (needs title and label)</p>
+<p class="admonition-title"><span class="caption-number">Observation 12 </span> (needs title and label)</p>
 <div class="observation-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(t \in Y\)</span> and <span class="math notranslate nohighlight">\(w_1,\dots,w_k \in [-W,W]\)</span> such that <span class="math notranslate nohighlight">\(t\)</span> and <span class="math notranslate nohighlight">\(\delta(t,w_1 \dots w_k)\)</span> are neither <span class="math notranslate nohighlight">\(\top\)</span> nor <span class="math notranslate nohighlight">\(\bot\)</span>.
 Then <span class="math notranslate nohighlight">\(t \le \delta(t,w_1 \dots w_k)\)</span> if and only if <span class="math notranslate nohighlight">\(\sum_{i \in [1,k]} w_i \ge 0\)</span>.</p>
@@ -1157,7 +1219,7 @@ Many possible rules for choosing this set have been studied, as for instance the
 <span class="math notranslate nohighlight">\(\sigma_0,\sigma_1,\dots\)</span>. It is at most exponential since it is bounded by the number of strategies (which is bounded aggressively by <span class="math notranslate nohighlight">\(m^n\)</span>).
 There are lower bounds showing that the sequence can be of exponential length, which apply to different rules for choosing switchable edges.
 Hence the overall complexity is exponential; we do not elaborate further here.
-We refer to  Section <a class="reference internal" href="references.html#sec-references"><span class="std std-ref">Bibliographic references</span></a> for bibliographic references and a discussion on the family of strategy improvement algorithms.</p>
+We refer to Section <a class="reference internal" href="references.html#sec-references"><span class="std std-ref">Bibliographic references</span></a> for bibliographic references and a discussion on the family of strategy improvement algorithms.</p>
 <p>Notice that we can easily compute the largest progress measure
 (i.e.~the value) of <span class="math notranslate nohighlight">\(G\)</span> by an adaptation of Bellman-Ford algorithm
 computing shortest paths from all sources to the sink vertex
@@ -1183,8 +1245,10 @@ improvement algorithm therefore costs <span class="math notranslate nohighlight"
 operations. In \cite[Section 6]{Bjorklund&amp;Vorobyov:2007}, this bound
 is improved in <span class="math notranslate nohighlight">\(\bigO(n^2 mW)\)</span> by replacing the use of
 Bellman-Ford algorithm by a more clever computation.</p>
-<p>\paragraph{A binary search to compute the values.}
-Now that we know how to decide if Eve has a strategy to ensure a
+<blockquote>
+<div><p><strong>A binary search to compute the values.</strong></p>
+</div></blockquote>
+<p>Now that we know how to decide if Eve has a strategy to ensure a
 positive value, we can even use this procedure to compute the values
 of the game in case of an arena with only integral costs. By
 Corollary~\ref{4-cor:rational-MP}, we know that the value <span class="math notranslate nohighlight">\(\val(v)\)</span> of
@@ -1212,7 +1276,7 @@ values of a mean payoff game in time
 <span class="math notranslate nohighlight">\(\bigO(n^3 mW(\log n+\log W))\)</span>.</p>
 </div>
 </div><p>This algorithm can be randomised, as also shown in
-\cite{Bjorklund&amp;Vorobyov:2007}: the expected complexity then becomes
+<span id="id1">[<a class="reference internal" href="references.html#id93"><span>BjorklundV07</span></a>]</span>: the expected complexity then becomes
 <span class="math notranslate nohighlight">\(\min[\bigO(n^3 mW(\log n+\log W)),(\log W) 2^{\mathcal
   O(\sqrt{n\log n})}]\)</span>.</p>
 </div>
@@ -1222,14 +1286,14 @@ values of a mean payoff game in time
 which Eve can guarantee a mean payoff <span class="math notranslate nohighlight">\(&gt;0\)</span>, we now give an algorithm
 that finds vertices from which Eve can guarantee a mean payoff
 <span class="math notranslate nohighlight">\(\geq 0\)</span>, called value iteration
-\cite{Brim&amp;Chaloupka&amp;Doyen&amp;Gentilini&amp;Raskin:2011}. Instead of relying
+<span id="id2">[<a class="reference internal" href="references.html#id91"><span>BCD+11</span></a>]</span>. Instead of relying
 on switches amongst admissible strategies of Eve, it relies on an
 iterative computation of the greatest fixed-point of a monotonous
 operator relying on a similar notion of progress measures as before.</p>
 <p>We first need to extend the notion of progress measures from graphs to
 games: we choose a definition consistent with the one presented above,
 thus slightly adapted with respect to
-\cite{Brim&amp;Chaloupka&amp;Doyen&amp;Gentilini&amp;Raskin:2011}. A progress measure
+<span id="id3">[<a class="reference internal" href="references.html#id91"><span>BCD+11</span></a>]</span>. A progress measure
 for a mean payoff game <span class="math notranslate nohighlight">\(\game\)</span> is a function <span class="math notranslate nohighlight">\(\mu\colon V\to \Rbar\)</span> with
 <span class="math notranslate nohighlight">\(\Rbar = \R\cup\{-\infty,+\infty\}\)</span> such that
 \begin{align*}
@@ -1337,7 +1401,7 @@ successors of <span class="math notranslate nohighlight">\(v\)</span>, i.e.~line
 predecessors <span class="math notranslate nohighlight">\(\mathrm{pre}(v) = \{(v',c,v)\in E\}\)</span> of a vertex <span class="math notranslate nohighlight">\(v\)</span> we
 have just updated, it is also possible to maintain the list of
 vertices for which an update is required throughout the algorithm (see
-\cite{Brim&amp;Chaloupka&amp;Doyen&amp;Gentilini&amp;Raskin:2011} for a detailed
+<span id="id4">[<a class="reference internal" href="references.html#id91"><span>BCD+11</span></a>]</span> for a detailed
 explanation), so that the overall complexity of the value iteration
 algorithm is of the form</p>
 <div class="math notranslate nohighlight">

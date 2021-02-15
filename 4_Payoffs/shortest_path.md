@@ -66,10 +66,11 @@
 \newcommand{\Inf}{\mathtt{Inf}}
 \newcommand{\LimSup}{\mathtt{LimSup}}
 \newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NL}{\textrm{NL}}
+\newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\PTIME}{\textrm{PTIME}}
 ```
 The quantitative objective $\Sup$ generalises the qualitative
 objective $\Reach$ by stating numerical preferences on the target. 
@@ -109,7 +110,7 @@ Hence for a vertex $v$ there are three possibilities:
 
 As we will see, detecting whether $\val(v) = -\infty$ is easy: this is equivalent to asking whether 
 $v \notin \AttrE(\Win)$ as stated in  {prf:ref}`4-lem:detecting_minus_infinity`.
-The second case where $\val(v) \in \Z$ will be an occasion to revisit the attractor computation from  Section {ref}`2-sec:reachability`
+The second case where $\val(v) \in \Z$ will be an occasion to revisit the attractor computation from Section {ref}`2-sec:attractors`
 in a quantitative setting.
 Most of the difficulty lies in the third case, where 
 
@@ -152,7 +153,7 @@ There exists a value iteration algorithm for computing the value function of the
 
 ```
 
-We rely on the high-level presentation of value iteration algorithms given in  Section {ref}`1-sec:value_iteration`.
+We rely on the high-level presentation of value iteration algorithms given in Section {ref}`1-sec:value_iteration`.
 
 ```{prf:lemma} needs title 4-lem:optimal_strategies_shortest_path_games
 :label: 4-lem:optimal_strategies_shortest_path_games
@@ -372,7 +373,7 @@ optimally, one other technical difficulty arises from the presence of
 vertices with optimal value $-\infty$: this is the case when Adam may
 reach a target of $\Win$ while controlling a negative cycle along the
 way. As previously announced, this is closely related with mean payoff
-games: \cite{Brihaye&Geeraerts&HaddadA&Monmege:2017}
+games: {cite}`Brihaye&Geeraerts&HaddadA&Monmege:2017`
 
 ```{prf:theorem} needs title 4-thm:-infty-MP
 :label: 4-thm:-infty-MP
@@ -533,7 +534,7 @@ stabilisation of the sequence at index $N$ allows one to show by
 induction that $N$ steps suffice for Adam to guarantee that he has
 reached a target vertex while getting the optimal value.
 
-\cite{Brihaye&Geeraerts&HaddadA&Monmege:2017}
+{cite}`Brihaye&Geeraerts&HaddadA&Monmege:2017`
 
 ```{prf:theorem} needs title 4-thm:SP-pseudopoly-algo
 :label: 4-thm:SP-pseudopoly-algo

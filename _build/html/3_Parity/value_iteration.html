@@ -173,7 +173,7 @@
 <ul class="current nav sidenav_l1">
  <li class="toctree-l1 collapsible-parent">
   <a class="reference internal" href="../2_Regular/index.html">
-   Regular
+   Regular Games
   </a>
   <ul class="collapse-ul">
    <li class="toctree-l2">
@@ -212,7 +212,7 @@
  </li>
  <li class="toctree-l1 current active collapsible-parent">
   <a class="reference internal" href="index.html">
-   Parity
+   Parity Games
   </a>
   <ul class="current collapse-ul">
    <li class="toctree-l2">
@@ -251,7 +251,7 @@
  </li>
  <li class="toctree-l1 collapsible-parent">
   <a class="reference internal" href="../4_Payoffs/index.html">
-   Payoffs
+   Games with Payoffs
   </a>
   <ul class="collapse-ul">
    <li class="toctree-l2">
@@ -286,6 +286,67 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../4_Payoffs/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Stochastic
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../5_MDP/index.html">
+   Markov Decision Processes
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/notations.html">
+     Notations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/reachability.html">
+     Positive and almost-sure reachability and safety in MDPs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/discounted.html">
+     Discounted payoff in MDPs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/mean_payoff_properties.html">
+     Mean-payoff in MDPs: General properties and linear programming
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/mean_payoff_strongly_connected.html">
+     Mean-payoff optimality in strongly connected MDPs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/end_components.html">
+     End components
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/reductions.html">
+     Reductions to optimal reachability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/optimal_reachability.html">
+     Optimal reachability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/references.html">
      Bibliographic references
     </a>
    </li>
@@ -453,10 +514,11 @@
 \newcommand{\Inf}{\mathtt{Inf}}
 \newcommand{\LimSup}{\mathtt{LimSup}}
 \newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NL}{\textrm{NL}}
+\newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
 \newcommand{\coNP}{\textrm{coNP}}
-\newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\PTIME}{\textrm{PTIME}}\]</div>
+\newcommand{\PSPACE}{\textrm{PSPACE}}\]</div>
 <div class="proof theorem admonition" id="3-thm:value_iteration_quasipoly">
 <p class="admonition-title"><span>Theorem </span> (needs title 3-thm:value_iteration_quasipoly)</p>
 <div class="theorem-content section" id="proof-content">
@@ -468,7 +530,7 @@ O\left(nm \log(n) \log(d) \cdot  \binom{\lceil \log(n) \rceil + d/2 - 1}{\lceil 
 <p>which is quasipolynomial in general and polynomial if <span class="math notranslate nohighlight">\(d = O(\log(n))\)</span>.
 The space complexity of the algorithm is <span class="math notranslate nohighlight">\(O(m + n \log(d))\)</span>.</p>
 </div>
-</div><p>We rely on the high-level presentation of value iteration algorithms given in  Section <a class="reference internal" href="../1_Introduction/value_iteration.html#sec-value-iteration"><span class="std std-ref">Value iteration algorithms</span></a>.
+</div><p>We rely on the high-level presentation of value iteration algorithms given in Section <a class="reference internal" href="../1_Introduction/value_iteration.html#sec-value-iteration"><span class="std std-ref">Value iteration algorithms</span></a>.
 Let <span class="math notranslate nohighlight">\(\game = (\arena,\Parity[\col])\)</span> a parity game with <span class="math notranslate nohighlight">\(n\)</span> vertices and priorities in <span class="math notranslate nohighlight">\([1,d]\)</span>,
 and without loss of generality <span class="math notranslate nohighlight">\(d\)</span> is even.</p>
 <p>The first step is to define a notion of value function <span class="math notranslate nohighlight">\(\val^\game : V \to Y\)</span> with <span class="math notranslate nohighlight">\((Y,\le)\)</span> a lattice satisfying the characterisation principle:
@@ -516,7 +578,7 @@ On the right, a tree of size <span class="math notranslate nohighlight">\(5\)</s
 there exist <span class="math notranslate nohighlight">\(i_1 &lt; \dots &lt; i_k\)</span> such that for all <span class="math notranslate nohighlight">\(j \in [1,k]\)</span> we have that <span class="math notranslate nohighlight">\(t_j\)</span> embeds into <span class="math notranslate nohighlight">\(T_{i_j}\)</span>.</p></li>
 </ul>
 <div class="proof definition admonition" id="definition-1">
-<p class="admonition-title"><span class="caption-number">Definition 13 </span> (needs title and label)</p>
+<p class="admonition-title"><span class="caption-number">Definition 7 </span> (needs title and label)</p>
 <div class="definition-content section" id="proof-content">
 <p>A tree is <span class="math notranslate nohighlight">\((n,h)\)</span>-<strong>universal</strong> if it embeds all trees of size <span class="math notranslate nohighlight">\(n\)</span> and height <span class="math notranslate nohighlight">\(h\)</span>.</p>
 <p>:label:
@@ -824,7 +886,7 @@ It induces both a lattice <span class="math notranslate nohighlight">\((Y_T,\le)
 which in turn induces a monotonic operator <span class="math notranslate nohighlight">\(\Op_T : F_V \to F_V\)</span>.
 Since <span class="math notranslate nohighlight">\(T\)</span> is fixed we do not specify the subscript <span class="math notranslate nohighlight">\(T\)</span> for all these objects.</p>
 <p>The last step is to construct an algorithm returning the maximal progress measure relying on Kleene’s fixed point theorem (stated as  <a class="reference internal" href="../1_Introduction/fixed_points.html#1-thm:kleene">Theorem </a>).
-The generic algorithm is explained in  Section <a class="reference internal" href="../1_Introduction/value_iteration.html#sec-value-iteration"><span class="std std-ref">Value iteration algorithms</span></a>, let us instantiate it here.</p>
+The generic algorithm is explained in Section <a class="reference internal" href="../1_Introduction/value_iteration.html#sec-value-iteration"><span class="std std-ref">Value iteration algorithms</span></a>, let us instantiate it here.</p>
 <p>For the complexity analysis it is useful to decompose <span class="math notranslate nohighlight">\(\Op\)</span> into a set of operators:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -849,7 +911,7 @@ where we let <span class="math notranslate nohighlight">\(\ell_{\max}\)</span> d
 <p class="caption"><span class="caption-number">Fig. 31 </span><span class="caption-text">The value iteration algorithm.</span><a class="headerlink" href="#algo-value-iteration" title="Permalink to this image">¶</a></p>
 </div>
 <div class="proof theorem admonition" id="theorem-8">
-<p class="admonition-title"><span class="caption-number">Theorem 14 </span> (needs title and label)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 8 </span> (needs title and label)</p>
 <div class="theorem-content section" id="proof-content">
 <p>For all <span class="math notranslate nohighlight">\((n, d/2)\)</span>-universal tree <span class="math notranslate nohighlight">\(T\)</span>, for all parity games <span class="math notranslate nohighlight">\(\game\)</span> with <span class="math notranslate nohighlight">\(n\)</span> vertices and priorities in <span class="math notranslate nohighlight">\([1,d]\)</span>,
 the value iteration algorithm over the tree <span class="math notranslate nohighlight">\(T\)</span> returns the maximal progress measure <span class="math notranslate nohighlight">\(\mu\)</span> for <span class="math notranslate nohighlight">\(\game\)</span> over <span class="math notranslate nohighlight">\(T\)</span>.</p>
@@ -895,7 +957,7 @@ We then discuss the cost <span class="math notranslate nohighlight">\(\Delta\)</
 </div>
 <div class="section" id="data-structure">
 <h2>Data structure<a class="headerlink" href="#data-structure" title="Permalink to this headline">¶</a></h2>
-<p>We use a data structure similar to the attractor computation presented in  Section <a class="reference internal" href="../2_Regular/attractors.html#sec-attractors"><span class="std std-ref">A linear time algorithm for reachability games</span></a>.
+<p>We use a data structure similar to the attractor computation presented in Section <a class="reference internal" href="../2_Regular/attractors.html#sec-attractors"><span class="std std-ref">A linear time algorithm for reachability games</span></a>.
 The pseudocode is given in  <a class="reference internal" href="#algo-value-iteration-data-structure"><span class="std std-numref">Fig. 32</span></a>.
 We did not provide the pseudocode for the functions <span class="math notranslate nohighlight">\(\texttt{Init}\)</span> and <span class="math notranslate nohighlight">\(\texttt{Update}\)</span>.</p>
 <p>The data structure consists of the following objects:</p>
@@ -904,7 +966,7 @@ We did not provide the pseudocode for the functions <span class="math notranslat
 <li><p>a set <span class="math notranslate nohighlight">\(S\)</span> of vertices (each vertex appears at most once in <span class="math notranslate nohighlight">\(S\)</span>, the order in which vertices are stored and retrieved from the set does not matter);</p></li>
 <li><p>for each vertex of Eve a number of edges.</p></li>
 </ul>
-<p>For our complexity analysis we use the unit cost RAM model, see  Section <a class="reference internal" href="../1_Introduction/computation.html#sec-computation"><span class="std std-ref">Computational models</span></a> for details.
+<p>For our complexity analysis we use the unit cost RAM model, see Section <a class="reference internal" href="../1_Introduction/computation.html#sec-computation"><span class="std std-ref">Computational models</span></a> for details.
 In the case at hand let us choose for the machine word size <span class="math notranslate nohighlight">\(w = \log(m) + \log(d)\)</span>,
 so that an edge together with its priority can be stored in one machine word.
 The space complexity of this data structure depends on the encoding of <span class="math notranslate nohighlight">\(T\)</span>, which we will discuss later.</p>

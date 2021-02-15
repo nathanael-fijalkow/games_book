@@ -55,10 +55,11 @@
 \newcommand{\Inf}{\mathtt{Inf}}
 \newcommand{\LimSup}{\mathtt{LimSup}}
 \newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NL}{\textrm{NL}}
+\newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\PTIME}{\textrm{PTIME}}
 ```
 Value iteration algorithms manipulate value functions and never construct any strategy, at least explicitly.
 This is a key difference with strategy improvement algorithms (also called policy iteration algorithms) whose fundamental idea is to maintain and improve a strategy.
@@ -116,7 +117,7 @@ Note that any such sequence must be finite, since at each step we strictly incre
 
 If both progress and optimality principles hold as stated this yields a strategy improvement algorithm computing the optimal strategy.
 Unfortunately such ideal properties rarely hold and it is often necessary to state and prove weaker properties,
-we refer to  Chapter {ref}`3-chap:parity,4-chap:payoffs` for examples.
+we refer to Chapter {ref}`3-chap:parity,4-chap:payoffs` for examples.
 
 ```{admonition} Remark
 In the description above we did not specify which switchable edge to choose.

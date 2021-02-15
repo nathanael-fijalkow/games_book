@@ -60,14 +60,15 @@
 \newcommand{\Inf}{\mathtt{Inf}}
 \newcommand{\LimSup}{\mathtt{LimSup}}
 \newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NL}{\textrm{NL}}
+\newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\PTIME}{\textrm{PTIME}}
 ```
 
 The interest in reachability objectives goes beyond automata theory and logic.
-The attractor computation presented in Section {ref}`2-sec:attractors` is inspired by the backward induction principle due to Zermelo {cite}`Zermelo:1913`, 
+The attractor computation presented in~Section {ref}`2-sec:attractors` is inspired by the backward induction principle due to Zermelo {cite}`Zermelo:1913`, 
 which was used to show that well founded games (**i.e.** where all plays are finite) are determined.
 The word attractor (together with traps and subgames) first appeared in Zielonka's work 
 on Muller games {cite}`Zielonka:1998`, but without the algorithmic point of view.
@@ -100,7 +101,7 @@ by Rabin {cite}`Rabin:1969`, yielding the celebrated decidability of monadic sec
 Rabin introduced and worked with Rabin objectives; his proof is arguably very complicated and a lot of subsequent works focussed on finding the right notions and tools for better understanding his approach.
 Streett {cite}`Streett:1981` suggested to use the complement of Rabin objectives, now called Streett objectives, for translating temporal logics
 to Streett automata.
-As discussed in Section {ref}`1-sec:references`, a key step was made by applying determinacy results for games
+As discussed in~Section {ref}`1-sec:references`, a key step was made by applying determinacy results for games
 to complementation results for automata.
 The parity objectives appeared in this context as a (and in fact, the) subclass of Muller objectives which is positionally determined for both players.
 They have been defined (with some variants) independently by several authors: Wagner {cite}`Wagner:1979`,
@@ -114,11 +115,11 @@ Later Walukiewicz {cite}`Walukiewicz:2002` gave another very elegant proof.
 
 
 McNaughton {cite}`McNaughton:1993` introduced the idea of solving Muller games by induction on the colours,
-leading to McNaughton algorithm as presented in Section {ref}`2-sec:muller`.
+leading to McNaughton algorithm as presented in~Section {ref}`2-sec:muller`.
 To some extent, the algorithms for solving B&uuml;chi, CoB&uuml;chi, and parity games are all special cases of McNaughton algorithm.
 
-Taking a step back in time, McNaughton already proposed the **Latest Appearance Record** (LAR) discussed in Section {ref}`2-sec:zielonka` 
-for solving Muller games in his flawed attempt to solve the synthesis problem {cite}`McNaughton:1965` (see Section {ref}`1-sec:references`).
+Taking a step back in time, McNaughton already proposed the **Latest Appearance Record** (LAR) discussed in~Section {ref}`2-sec:zielonka` 
+for solving Muller games in his flawed attempt to solve the synthesis problem {cite}`McNaughton:1965` (see~Section {ref}`1-sec:references`).
 The LAR was later used by Gurevich and Harrington {cite}`Gurevich&Harrington:1982` as memory for winning strategies in Muller games.
 Thomas {cite}`Thomas:1995` showed that the LAR can be used to reduce Muller games to parity games.
 
@@ -126,7 +127,7 @@ Zielonka {cite}`Zielonka:1998` greatly contributed to the study of Muller object
 through his illuminating analysis of Zielonka trees.
 One of the many contributions of Zielonka's landmark paper {cite}`Zielonka:1998` was to follow McNaughton's approach for 
 constructing a recursive algorithm for solving parity games, and show that it implies their positionality.
-We follow in Section {ref}`2-sec:parity` Zielonka's presentation of the algorithm, which is sometimes called Zielonka algorithm but more accurately 
+We follow in~Section {ref}`2-sec:parity` Zielonka's presentation of the algorithm, which is sometimes called Zielonka algorithm but more accurately 
 McNaughton Zielonka algorithm.
 
 The characterisation result showing how Zielonka tree captures the exact memory requirements of Muller objectives is due to 

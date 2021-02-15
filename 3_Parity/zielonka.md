@@ -60,18 +60,15 @@
 \newcommand{\Inf}{\mathtt{Inf}}
 \newcommand{\LimSup}{\mathtt{LimSup}}
 \newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NL}{\textrm{NL}}
+\newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\PTIME}{\textrm{PTIME}}
 ```
 
-```{prf:theorem} needs title and label 
-There exists a quasipolynomial time algorithm for solving parity games, and more specifically of complexity $n^{O(\log n)}$.
- 
-:label: 
-There exists a quasipolynomial time algorithm for solving parity games, and more specifically of complexity $n^{O(\log n)}$.
-
+```{prf:theorem} Quasipolynomial McNaughton Zielonka algorithm
+:label: 3-thm:quasipolynomial_mcnaughton_zielonka_algorithm
 :nonumber:
 
 There exists a quasipolynomial time algorithm for solving parity games, and more specifically of complexity $n^{O(\log n)}$.
@@ -85,11 +82,11 @@ There exists a quasipolynomial time algorithm for solving parity games, and more
 The recursive algorithm for computing the winning region of parity games.
 ```
 
-We revisit the exponential recursive algorithm presented in  Section {ref}`2-sec:parity`.
+We revisit the exponential recursive algorithm presented in Section {ref}`2-sec:parity`.
 We refer to  {numref}`3-algo:zielonka_even` for an equivalent presentation of this algorithm, 
 where we make explicit all recursive calls involving the maximal priority $d$.
 The benefit of doing this is to make the following observation:
-during the $i$\textsuperscript{th} recursive call for $d$, the algorithm removes from the game $\Game$ the subset 
+during the $i$th recursive call for $d$, the algorithm removes from the game $\Game$ the subset 
 $X_i = \AttrA^{\Game}( \WA(\Game_i) )$. 
 Note that $X_i$ is a trap for Eve in $\Game$ and a subset of the winning region of Adam in $\Game$:
 we say that $X_i$ is a dominion for Eve.
@@ -116,7 +113,7 @@ A recursive quasipolynomial algorithm for computing the winning regions of parit
 
 We need three simple facts about traps.
 
-```{prf:observation} needs title 3-fact:traps
+```{prf:observation} Facts about traps
 :label: 3-fact:traps
 :nonumber:
 
@@ -131,7 +128,7 @@ then $Z$ is a trap for Eve in $\Game$.
 
 The following lemma implies the correctness of the algorithm.
 
-```{prf:lemma} needs title 3-lem:correctness_quasipoly_zielonka
+```{prf:lemma} Correctness of the quasipolynomial McNaughton Zielonka algorithm
 :label: 3-lem:correctness_quasipoly_zielonka
 :nonumber:
 

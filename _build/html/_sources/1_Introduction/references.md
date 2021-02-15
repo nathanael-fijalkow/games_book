@@ -55,10 +55,11 @@
 \newcommand{\Inf}{\mathtt{Inf}}
 \newcommand{\LimSup}{\mathtt{LimSup}}
 \newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NL}{\textrm{NL}}
+\newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\PTIME}{\textrm{PTIME}}
 ```
 The study of games, usually called game theory, has a very long history rooted in mathematics, logic, and economics, among other fields.
 Foundational ideas and notions emerged from set theory with for instance backward induction by Zermelo {cite}`Zermelo:1913`, 
@@ -68,7 +69,7 @@ and Banach-Mazur and Gale-Stewart games {cite}`Gale&Stewart:1953`.
 The topic of this book is a small part of game theory: we focus on infinite duration games played on graphs.
 In this chapter we defined deterministic games, meaning games with no source of randomness, which will be the focus of  Part {ref}`part:classic`.
  Part {ref}`part:stochastic` introduces stochastic games, which were initially studied in mathematics.
-We refer to Section {ref}`6-sec:references` for more bibliographic references on stochastic games,
+We refer to~Section {ref}`6-sec:references` for more bibliographic references on stochastic games,
 and focus in this chapter on references for deterministic games.
 
 The model presented in this chapter emerged from the study of automata theory and logic, where it is used as a tool for various purposes.
@@ -95,7 +96,7 @@ The celebrated paper of Gurevich and Harrington {cite}`Gurevich&Harrington:1982`
 
 
 Both lines of work have been highly influential in automata theory and logic;
-we refer to the reference section in Chapter {ref}`2-chap:regular` for more bibliographic references on this connection.
+we refer to the reference section in~Chapter {ref}`2-chap:regular` for more bibliographic references on this connection.
 They bind automata theory and logic to the study of games on graphs and provide motivations and questions many of which are still open today.
 
 

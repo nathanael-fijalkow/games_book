@@ -66,10 +66,11 @@
 \newcommand{\Inf}{\mathtt{Inf}}
 \newcommand{\LimSup}{\mathtt{LimSup}}
 \newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NL}{\textrm{NL}}
+\newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\PTIME}{\textrm{PTIME}}
 ```
 A natural approach for aggregating an infinite sequence of weights is to consider the arithmetic mean.
 Since the sequence $(\frac{1}{k} \sum_{i = 0}^{k-1} \rho_i)_{k \in \N}$ may not converge,
@@ -605,7 +606,7 @@ The converse implication is proved similarly swapping the two players.
 
 ```
 
-We note that we did not construct a reduction between objectives as defined in Section {ref}`1-sec:reductions`:
+We note that we did not construct a reduction between objectives as defined in~Section {ref}`1-sec:reductions`:
 indeed it is not true that $\Parity$ reduces to $\MeanPayoff_{\ge 0}$, the reduction depends on the number $n$ of vertices.
 
 As a corollary of {prf:ref}`4-thm:MP-NPcoNP`, this polynomial reduction gives an alternative proof of the fact
@@ -621,8 +622,8 @@ There exists a strategy improvement algorithm for solving mean payoff games in \
 
 ```
 
-We rely on the high-level presentation of strategy improvement algorithms given in  Section {ref}`1-sec:strategy_improvement`.
-The algorithm is very similar and actually extends the strategy improvement algorithm for parity games presented in Section {ref}`3-sec:strategy_improvement`.
+We rely on the high-level presentation of strategy improvement algorithms given in Section {ref}`1-sec:strategy_improvement`.
+The algorithm is very similar and actually extends the strategy improvement algorithm for parity games presented in~Section {ref}`3-sec:strategy_improvement`.
 
 > **Adding the option of stopping the game.**
 
@@ -663,7 +664,7 @@ The algorithm will only manipulate strategies respecting mean payoff.
 > **Evaluating a strategy.**
 
 The first question is: given a strategy $\sigma$, how to evaluate it (in order to later improve it)?
-As explained in  Section {ref}`1-sec:strategy_improvement` towards this goal we define a value function $\val^{\sigma} : V \to Y$.
+As explained in Section {ref}`1-sec:strategy_improvement` towards this goal we define a value function $\val^{\sigma} : V \to Y$.
 
 We let $\val^{\sigma}(v) = \min_\tau \val(\play_{\sigma,\tau}^v)$ where $\tau$ ranges over (general) strategies for Adam, so we first need to define the value of the play $\play = \play_{\sigma,\tau}^v$.
 If $\play$ is stopped, then $\val(\play)$ is the sum of the weights in $\play$.
@@ -935,7 +936,7 @@ The next question is the number of iterations, meaning the length of the sequenc
 $\sigma_0,\sigma_1,\dots$. It is at most exponential since it is bounded by the number of strategies (which is bounded aggressively by $m^n$).
 There are lower bounds showing that the sequence can be of exponential length, which apply to different rules for choosing switchable edges.
 Hence the overall complexity is exponential; we do not elaborate further here. 
-We refer to  Section {ref}`4-sec:references` for bibliographic references and a discussion on the family of strategy improvement algorithms.
+We refer to Section {ref}`4-sec:references` for bibliographic references and a discussion on the family of strategy improvement algorithms.
 
 Notice that we can easily compute the largest progress measure
 (i.e.~the value) of $G$ by an adaptation of Bellman-Ford algorithm
@@ -964,7 +965,8 @@ operations. In \cite[Section 6]{Bjorklund&Vorobyov:2007}, this bound
 is improved in $\bigO(n^2 mW)$ by replacing the use of
 Bellman-Ford algorithm by a more clever computation.
 
-\paragraph{A binary search to compute the values.}
+> **A binary search to compute the values.**
+
 Now that we know how to decide if Eve has a strategy to ensure a
 positive value, we can even use this procedure to compute the values
 of the game in case of an arena with only integral costs. By
@@ -997,7 +999,7 @@ form, which implies that
 ```
 
 This algorithm can be randomised, as also shown in
-\cite{Bjorklund&Vorobyov:2007}: the expected complexity then becomes
+{cite}`Bjorklund&Vorobyov:2007`: the expected complexity then becomes
 $\min[\bigO(n^3 mW(\log n+\log W)),(\log W) 2^{\mathcal
   O(\sqrt{n\log n})}]$.
   
@@ -1009,7 +1011,7 @@ Instead of a strategy improvement algorithm to find vertices from
 which Eve can guarantee a mean payoff $>0$, we now give an algorithm
 that finds vertices from which Eve can guarantee a mean payoff
 $\geq 0$, called value iteration
-\cite{Brim&Chaloupka&Doyen&Gentilini&Raskin:2011}. Instead of relying
+{cite}`Brim&Chaloupka&Doyen&Gentilini&Raskin:2011`. Instead of relying
 on switches amongst admissible strategies of Eve, it relies on an
 iterative computation of the greatest fixed-point of a monotonous
 operator relying on a similar notion of progress measures as before.
@@ -1017,7 +1019,7 @@ operator relying on a similar notion of progress measures as before.
 We first need to extend the notion of progress measures from graphs to
 games: we choose a definition consistent with the one presented above,
 thus slightly adapted with respect to
-\cite{Brim&Chaloupka&Doyen&Gentilini&Raskin:2011}. A progress measure
+{cite}`Brim&Chaloupka&Doyen&Gentilini&Raskin:2011`. A progress measure
 for a mean payoff game $\game$ is a function $\mu\colon V\to \Rbar$ with
 $\Rbar = \R\cup\{-\infty,+\infty\}$ such that
 \begin{align*}
@@ -1141,7 +1143,7 @@ $\mathrm{post}(v) = \{(v,c,v')\in E\}$. By looking at all the
 predecessors $\mathrm{pre}(v) = \{(v',c,v)\in E\}$ of a vertex $v$ we
 have just updated, it is also possible to maintain the list of
 vertices for which an update is required throughout the algorithm (see
-\cite{Brim&Chaloupka&Doyen&Gentilini&Raskin:2011} for a detailed
+{cite}`Brim&Chaloupka&Doyen&Gentilini&Raskin:2011` for a detailed
 explanation), so that the overall complexity of the value iteration
 algorithm is of the form
 

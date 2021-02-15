@@ -60,10 +60,11 @@
 \newcommand{\Inf}{\mathtt{Inf}}
 \newcommand{\LimSup}{\mathtt{LimSup}}
 \newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NL}{\textrm{NL}}
+\newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\PTIME}{\textrm{PTIME}}
 ```
 The prefix independent objectives we studied so far are B&uuml;chi, CoB&uuml;chi, and their joint extension the parity objectives.
 The definition of the latter may seem a bit arbitrary; the study of Muller objectives will show how parity objectives naturally emerge as a well-behaved class of objectives.
@@ -104,7 +105,7 @@ if $X \cap R_i \neq \emptyset$ then $X \cap G_i \neq \emptyset$.
 
 ```
 
-We will see in  Section {ref}`2-sec:zielonka` a natural and optimised way to construct these pairs using the Zielonka tree.
+We will see in Section {ref}`2-sec:zielonka` a natural and optimised way to construct these pairs using the Zielonka tree.
 In the meantime let us give a direct proof of this result.
 
 ```{admonition} Proof
@@ -129,7 +130,7 @@ $$
 \Streett = \set{ \rho \in C^\omega : \forall i \in [1,d],\ R_i \in \Inf(\rho) \implies G_i \in \Inf(\rho) }.
 $$
 
-It is customary to call $R_i$ the $i$\textsuperscript{th} request and $G_i$ the corresponding response;
+It is customary to call $R_i$ the $i$th request and $G_i$ the corresponding response;
 with this terminology the Streett objective requires that every request made infinitely many times must be responded to infinitely many times.
 
 The Rabin objectives are the complement of the Streett objectives: 
@@ -252,7 +253,7 @@ In each recursive call we perform $d+1$ attractor computations so the number of 
 Thus the overall time complexity is $O(m d (dn)^d)$.
 
 The proofs of  {prf:ref}`2-lem:Muller_even` and  {prf:ref}`2-lem:Muller_odd` also imply that Muller games are determined with finite memory of size $d!$.
-We do not make it more precise here because an improved analysis of the memory requirements will be conducted in  Section {ref}`2-sec:zielonka`
+We do not make it more precise here because an improved analysis of the memory requirements will be conducted in Section {ref}`2-sec:zielonka`
 using a variant of this algorithm.
 
 ```{figure} ./../2-algo:mcnaughton.png
@@ -556,7 +557,7 @@ it is positive by construction.
 
 Let $\play$ be a play consistent with $\sigma$ and $x_p$ be the lowest quantified variable chosen infinitely many times by Adam. 
 First, all colours in $S_{> p}$ are visited infinitely many times (when visiting $x$ or $\bar{x}$).
-Let us look at the sequence $(\mathbf{v}_i(x_p))_{i \in \N}$ where $\mathbf{v}_i$ is the valuation in the $i$\textsuperscript{th} round.
+Let us look at the sequence $(\mathbf{v}_i(x_p))_{i \in \N}$ where $\mathbf{v}_i$ is the valuation in the $i$th round.
 If $x_p$ is existential, the sequence is ultimately constant as it can only change when a lower quantified variable is visited.
 If $x_p$ is universal, the value changes each time the variable $x_p$ is chosen.
 Since any literal that Adam chooses is necessarily true under the current valuation, 
@@ -573,7 +574,7 @@ If $x_p$ is universal the valuation is unchanged.
 If $x_p$ is existential, we proceed as above to construct another negative valuation where the value of $x_p$ is swapped.
 
 Let $\play$ be a play consistent with $\tau$ and $x$ be the lowest quantified variable chosen infinitely many times by Adam. 
-As before, we look at the sequence $(\mathbf{v}_i(x))_{i \in \N}$ where $\mathbf{v}_i$ is the valuation in the $i$\textsuperscript{th} round.
+As before, we look at the sequence $(\mathbf{v}_i(x))_{i \in \N}$ where $\mathbf{v}_i$ is the valuation in the $i$th round.
 If $x$ is existential, the value changes each time the variable $x$ is chosen.
 If $x$ is universal, the sequence is ultimately constant.
 Since any literal that Adam chooses is necessarily false under the current valuation, 

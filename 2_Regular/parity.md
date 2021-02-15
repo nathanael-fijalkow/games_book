@@ -60,10 +60,11 @@
 \newcommand{\Inf}{\mathtt{Inf}}
 \newcommand{\LimSup}{\mathtt{LimSup}}
 \newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NL}{\textrm{NL}}
+\newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\PTIME}{\textrm{PTIME}}
 ```
 Recall that the parity objective extends B&uuml;chi and coB&uuml;chi objectives:
 
@@ -88,7 +89,7 @@ Furthermore, solving parity games is in $\NP \cap \coNP$.
 
 To prove  {prf:ref}`2-thm:parity` we first construct a recursive algorithm for computing the winning regions of parity games.
 The algorithm is often called Zielonka's algorithm, or more accurately McNaughton Zielonka's algorithm.
-We refer to the reference section Section {ref}`2-sec:references` for a discussion on this nomenclature.
+We refer to the reference section~Section {ref}`2-sec:references` for a discussion on this nomenclature.
 We will see that the positionaly determinacy result for both players will be a consequence of the analysis of the algorithm.
 The $\NP \cap \coNP$ complexity bounds will be discussed at the end of this section.
 
@@ -198,7 +199,7 @@ and check whether it is winning by computing the winning regions of the one play
 Guessing a strategy for Eve is a witness that the answer is yes so it yields an $\NP$ algorithm,
 and guessing a strategy for Adam yields a $\coNP$ algorithm.
 
- Chapter {ref}`3-chap:parity` is devoted to the study of advanced algorithms for parity games.
+Chapter {ref}`3-chap:parity` is devoted to the study of advanced algorithms for parity games.
 
 ```{figure} ./../2-algo:zielonka.png
 :name: 2-algo:zielonka

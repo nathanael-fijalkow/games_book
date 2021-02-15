@@ -1,11 +1,11 @@
 import re
 
-def section_transformer(nb_chap, file_name, path, title):
+def section_transformer(nb_chap, file_name, path, title, label):
 	f = open(path + file_name + ".tex", "r")
 	content = f.read()
 	f.close()
 
-	print("reading %s" % file_name)
+	print("> Reading %s" % file_name)
 
 	#### Add macros
 
@@ -33,7 +33,10 @@ def section_transformer(nb_chap, file_name, path, title):
 		content = "```{image} ./../" + nb_chap + ".jpg\n:alt: illustration\n:class: bg-primary mb-1\n:width: 400px\n:align: center\n```\n" + content
 
 	#### Add title and reference to it
-	content = "(" + nb_chap + "-sec:" + file_name + ")=\n# " + title + "\n\n" + content
+	if file_name == "index":
+		content = "(" + nb_chap + "-chap:" + label + ")=\n# " + title + "\n\n" + content
+	else:
+		content = "(" + nb_chap + "-sec:" + label + ")=\n# " + title + "\n\n" + content
 
 	#### Remove comments
 	content = re.sub(r'%(.*?)\n', r'', content)
@@ -43,6 +46,52 @@ def section_transformer(nb_chap, file_name, path, title):
 
 	#### Remove vfill
 	content = re.sub(r'\\hfill', r'', content)
+
+	#### Rewrite textsuperscript
+	content = re.sub(r'\\textsuperscript\{([\s\S]*?)\}', r'\1', content)
+
+	#### Deal with references to (sub)*sections
+
+	p1 = r"\\[cC]ref\{{(\d*?)-{}:(.*?)\}}"
+	s1 = r"{} {{ref}}`\1-{}:\2`"
+
+	p2 = r"~\\[cC]ref\{{(\d*?)-{}:(.*?)\}}"
+	s2 = r" {} {{ref}}`\1-{}:\2`"
+
+	l = [\
+	("chap","Chapter"), \
+	("sec","Section"), \
+	("subsec","Subsection") \
+	]
+
+	for (short_name, long_name) in l:
+		content = re.sub(p1.format(short_name), s1.format(long_name, short_name), content)
+		content = re.sub(p2.format(short_name), s2.format(long_name, short_name), content)
+
+	#### Deal with references to parts
+
+	content = re.sub(r'~?\\[cC]ref\{part:(.*?)\}', r' Part {ref}`part:\1`', content)
+
+	#### Deal with references to figures and algorithms
+
+	p = r"~?\\[cC]ref\{{(\d*?)-{}:(.*?)\}}"
+	s = r" {{numref}}`\1-{}:\2`"
+
+	l = ["fig", "algo"]
+
+	for short_name in l:
+		content = re.sub(p.format(short_name), s.format(short_name), content)
+
+
+	#### Deal with references to theorems and others
+
+	p = r"~?\\[cC]ref\{{(\d*?)-{}:(.*?)\}}"
+	s = r" {{prf:ref}}`\1-{}:\2`"
+
+	l = ["thm","def","prop","lem"]
+
+	for short_name in l:
+		content = re.sub(p.format(short_name), s.format(short_name), content)
 
 	#### Deal with figures
 
@@ -92,7 +141,8 @@ def section_transformer(nb_chap, file_name, path, title):
 	content = re.sub(r'\{\\\'E}', r'&Eacute;', content)
 	content = re.sub(r'\{\\\`e}', r'&egrave;', content)
 	content = re.sub(r'\{\\\'n}', r'&#324;', content)
-
+	content = re.sub(r'\{\\\'y}', r'&yacute;', content)
+	
 	#### Deal with decisionproblems and tasks
 
 	content = re.sub(r'\\decisionproblem\{([\s\S]*?)\}\{([\s\S]*?)\}\n', r'**INPUT**: \1\n\n**QUESTION**: \2\n', content)
@@ -116,6 +166,7 @@ def section_transformer(nb_chap, file_name, path, title):
  
 	#### Remove vskip1em
 	content = re.sub(r'\\paragraph\*?\{\\bf (.*?)\}', r'> **\1**\n', content)
+	content = re.sub(r'\\paragraph\*?\{(.*?)\}', r'> **\1**\n', content)
 
 	#### Rewrite quotation
 
@@ -140,6 +191,7 @@ def section_transformer(nb_chap, file_name, path, title):
 	#### Remove knowledge
 	content = re.sub(r'""(.*?)""', r'\1', content)
 	content = re.sub(r'"(.*?)"', r'\1', content)
+	content = re.sub(r'\\knowledge.*?\n', r'', content)
 
 	#### Reshape quotes
 	content = re.sub(r'\`\`(.*?)\'\'', r'''\1''', content)
@@ -208,47 +260,10 @@ def section_transformer(nb_chap, file_name, path, title):
 	content = re.sub(r'\\begin\{proof\}([\s\S]*?)\\end\{proof\}', \
 		r'\n```{admonition} Proof\n:class: dropdown tip\n\1\n```\n', content)
 
-	#### Deal with references to (sub)*sections
-
-	p = r"~?\\[cC]ref\{{(\d*?)-{}:(.*?)\}}"
-	s = r" {} {{ref}}`\1-{}:\2`"
-
-	l = [\
-	("chap","Chapter"), \
-	("sec","Section"), \
-	("subsec","Subsection") \
-	]
-
-	for (short_name, long_name) in l:
-		content = re.sub(p.format(short_name), s.format(long_name, short_name), content)
-
-	#### Deal with references to parts
-
-	content = re.sub(r'~?\\[cC]ref\{part:(.*?)\}', r' Part {ref}`part:\1`', content)
-
-	#### Deal with references to figures and algorithms
-
-	p = r"~?\\[cC]ref\{{(\d*?)-{}:(.*?)\}}"
-	s = r" {{numref}}`\1-{}:\2`"
-
-	l = ["fig", "algo"]
-
-	for short_name in l:
-		content = re.sub(p.format(short_name), s.format(short_name), content)
-
-
-	#### Deal with references to theorems and others
-
-	p = r"~?\\[cC]ref\{{(\d*?)-{}:(.*?)\}}"
-	s = r" {{prf:ref}}`\1-{}:\2`"
-
-	l = ["thm","def","prop","lem"]
-
-	for short_name in l:
-		content = re.sub(p.format(short_name), s.format(short_name), content)
-
 	#### Deal with citations
 	content = re.sub(r'~\\cite\{(.*?)\}', r' {cite}`\1`', content)
+	content = re.sub(r'\\cite\{(.*?)\}', r'{cite}`\1`', content)
+
 	#### Remove indents
 	content = re.sub(r'\t', r'', content)
 	#### Remove double newlines

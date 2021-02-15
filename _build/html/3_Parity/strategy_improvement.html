@@ -59,7 +59,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="A quasipolynomial time attractor decomposition algorithm" href="zielonka.html" />
-    <link rel="prev" title="Parity" href="index.html" />
+    <link rel="prev" title="Parity Games" href="index.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -173,7 +173,7 @@
 <ul class="current nav sidenav_l1">
  <li class="toctree-l1 collapsible-parent">
   <a class="reference internal" href="../2_Regular/index.html">
-   Regular
+   Regular Games
   </a>
   <ul class="collapse-ul">
    <li class="toctree-l2">
@@ -212,7 +212,7 @@
  </li>
  <li class="toctree-l1 current active collapsible-parent">
   <a class="reference internal" href="index.html">
-   Parity
+   Parity Games
   </a>
   <ul class="current collapse-ul">
    <li class="toctree-l2 current active">
@@ -251,7 +251,7 @@
  </li>
  <li class="toctree-l1 collapsible-parent">
   <a class="reference internal" href="../4_Payoffs/index.html">
-   Payoffs
+   Games with Payoffs
   </a>
   <ul class="collapse-ul">
    <li class="toctree-l2">
@@ -286,6 +286,67 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../4_Payoffs/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Stochastic
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../5_MDP/index.html">
+   Markov Decision Processes
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/notations.html">
+     Notations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/reachability.html">
+     Positive and almost-sure reachability and safety in MDPs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/discounted.html">
+     Discounted payoff in MDPs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/mean_payoff_properties.html">
+     Mean-payoff in MDPs: General properties and linear programming
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/mean_payoff_strongly_connected.html">
+     Mean-payoff optimality in strongly connected MDPs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/end_components.html">
+     End components
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/reductions.html">
+     Reductions to optimal reachability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/optimal_reachability.html">
+     Optimal reachability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/references.html">
      Bibliographic references
     </a>
    </li>
@@ -409,16 +470,17 @@
 \newcommand{\Inf}{\mathtt{Inf}}
 \newcommand{\LimSup}{\mathtt{LimSup}}
 \newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NL}{\textrm{NL}}
+\newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
 \newcommand{\coNP}{\textrm{coNP}}
-\newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\PTIME}{\textrm{PTIME}}\]</div>
+\newcommand{\PSPACE}{\textrm{PSPACE}}\]</div>
 <div class="proof theorem admonition" id="3-thm:strategy_improvement">
 <p class="admonition-title"><span>Theorem </span> (needs title 3-thm:strategy_improvement)</p>
 <div class="theorem-content section" id="proof-content">
 <p>There exists a strategy improvement algorithm for solving parity games in exponential time.</p>
 </div>
-</div><p>We rely on the high-level presentation of strategy improvement algorithms given in  Section <a class="reference internal" href="../1_Introduction/strategy_improvement.html#sec-strategy-improvement"><span class="std std-ref">Strategy improvement algorithms</span></a>.
+</div><p>We rely on the high-level presentation of strategy improvement algorithms given in Section <a class="reference internal" href="../1_Introduction/strategy_improvement.html#sec-strategy-improvement"><span class="std std-ref">Strategy improvement algorithms</span></a>.
 In a nutshell: the algorithm constructs a sequence of strategies, the next one being an improvement over the current one,
 until reaching an optimal strategy.</p>
 <blockquote>
@@ -453,7 +515,7 @@ A strategy <span class="math notranslate nohighlight">\(\sigma\)</span> respects
 <div><p><strong>Evaluating a strategy.</strong></p>
 </div></blockquote>
 <p>The first question is: given a strategy <span class="math notranslate nohighlight">\(\sigma\)</span>, how to evaluate it (in order to later improve it)?
-As explained in  Section <a class="reference internal" href="../1_Introduction/strategy_improvement.html#sec-strategy-improvement"><span class="std std-ref">Strategy improvement algorithms</span></a> towards this goal we define a value function <span class="math notranslate nohighlight">\(\val^{\sigma} : V \to Y\)</span>.</p>
+As explained in Section <a class="reference internal" href="../1_Introduction/strategy_improvement.html#sec-strategy-improvement"><span class="std std-ref">Strategy improvement algorithms</span></a> towards this goal we define a value function <span class="math notranslate nohighlight">\(\val^{\sigma} : V \to Y\)</span>.</p>
 <p>We let <span class="math notranslate nohighlight">\(\val^{\sigma}(v) = \min_\tau \val(\play_{\sigma,\tau}^v)\)</span> where <span class="math notranslate nohighlight">\(\tau\)</span> ranges over (general) strategies for Adam, so we first need to define the value of the play <span class="math notranslate nohighlight">\(\play = \play_{\sigma,\tau}^v\)</span>.
 If <span class="math notranslate nohighlight">\(\play\)</span> is stopped, then <span class="math notranslate nohighlight">\(\val(\play)\)</span> is the tuple <span class="math notranslate nohighlight">\((p_1, p_2, \dots, p_d)\)</span> where <span class="math notranslate nohighlight">\(p_i\)</span> is the number of times that priority <span class="math notranslate nohighlight">\(p\)</span> appears on the play.
 Otherwise <span class="math notranslate nohighlight">\(\val(\play)\)</span> is <span class="math notranslate nohighlight">\(\top\)</span> if <span class="math notranslate nohighlight">\(\play\)</span> satisfies parity, and <span class="math notranslate nohighlight">\(\bot\)</span> if <span class="math notranslate nohighlight">\(\play\)</span> does not satisfy parity.
@@ -716,7 +778,7 @@ Hence the overall complexity is exponential; we do not elaborate further here.</
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="index.html" title="previous page">Parity</a>
+    <a class='left-prev' id="prev-link" href="index.html" title="previous page">Parity Games</a>
     <a class='right-next' id="next-link" href="zielonka.html" title="next page">A quasipolynomial time attractor decomposition algorithm</a>
 
     </div>

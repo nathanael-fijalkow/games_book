@@ -66,10 +66,11 @@
 \newcommand{\Inf}{\mathtt{Inf}}
 \newcommand{\LimSup}{\mathtt{LimSup}}
 \newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NL}{\textrm{NL}}
+\newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\PTIME}{\textrm{PTIME}}
 ```
 From a practical point of view, the modelling of a real-world
 situation via mean payoff games requires that only the long-term
@@ -591,7 +592,7 @@ based on the following technical lemma stating that $\Value(v)$ is a
 rational number with a denominator that we can bound, in a similar
 manner as for~\cref{4-cor:rational-MP} in the mean payoff setting:
 
-```{prf:lemma} needs title 4-lem:rational-discounted
+```{prf:lemma} Upper bound on rational values in mean payoff games
 :label: 4-lem:rational-discounted
 :nonumber:
 
@@ -709,7 +710,7 @@ The value iteration algorithm for discounted payoff games.
 
 Once the optimal values are known, finding some positional optimal
 strategies for both players still requires to work, as we have already
-seen in Section {ref}`1-sec:memory`:
+seen in~Section {ref}`1-sec:memory`:
 
 ```{prf:theorem} needs title 4-thm:DP-strategies
 :label: 4-thm:DP-strategies

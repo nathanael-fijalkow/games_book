@@ -60,10 +60,11 @@
 \newcommand{\Inf}{\mathtt{Inf}}
 \newcommand{\LimSup}{\mathtt{LimSup}}
 \newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NL}{\textrm{NL}}
+\newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\PTIME}{\textrm{PTIME}}
 ```
 
 ```{prf:theorem} needs title 3-thm:value_iteration_quasipoly
@@ -81,7 +82,7 @@ The space complexity of the algorithm is $O(m + n \log(d))$.
 
 ```
 
-We rely on the high-level presentation of value iteration algorithms given in  Section {ref}`1-sec:value_iteration`.
+We rely on the high-level presentation of value iteration algorithms given in Section {ref}`1-sec:value_iteration`.
 Let $\game = (\arena,\Parity[\col])$ a parity game with $n$ vertices and priorities in $[1,d]$,
 and without loss of generality $d$ is even.
 
@@ -522,7 +523,7 @@ which in turn induces a monotonic operator $\Op_T : F_V \to F_V$.
 Since $T$ is fixed we do not specify the subscript $T$ for all these objects.
 
 The last step is to construct an algorithm returning the maximal progress measure relying on Kleene's fixed point theorem (stated as  {prf:ref}`1-thm:kleene`).
-The generic algorithm is explained in  Section {ref}`1-sec:value_iteration`, let us instantiate it here.
+The generic algorithm is explained in Section {ref}`1-sec:value_iteration`, let us instantiate it here.
 
 For the complexity analysis it is useful to decompose $\Op$ into a set of operators:
 
@@ -608,7 +609,7 @@ We then discuss the cost $\Delta$ by choosing an appropriate encoding of the qua
 
 ## Data structure
 
-We use a data structure similar to the attractor computation presented in  Section {ref}`2-sec:attractors`.
+We use a data structure similar to the attractor computation presented in Section {ref}`2-sec:attractors`.
 The pseudocode is given in  {numref}`3-algo:value_iteration_data_structure`.
 We did not provide the pseudocode for the functions $\texttt{Init}$ and $\texttt{Update}$.
 
@@ -618,7 +619,7 @@ The data structure consists of the following objects:
 *  a set $S$ of vertices (each vertex appears at most once in $S$, the order in which vertices are stored and retrieved from the set does not matter);
 *  for each vertex of Eve a number of edges.
 
-For our complexity analysis we use the unit cost RAM model, see  Section {ref}`1-sec:computation` for details.
+For our complexity analysis we use the unit cost RAM model, see Section {ref}`1-sec:computation` for details.
 In the case at hand let us choose for the machine word size $w = \log(m) + \log(d)$, 
 so that an edge together with its priority can be stored in one machine word.
 The space complexity of this data structure depends on the encoding of $T$, which we will discuss later.

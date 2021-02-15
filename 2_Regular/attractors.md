@@ -60,10 +60,11 @@
 \newcommand{\Inf}{\mathtt{Inf}}
 \newcommand{\LimSup}{\mathtt{LimSup}}
 \newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NL}{\textrm{NL}}
+\newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\PTIME}{\textrm{PTIME}}
 ```
 Recall that the objective $\Reach$ requires that the colour $\Win$ appears at least once and 
 $\Safe$ requires the the colour $\Lose$ never appears.
@@ -84,7 +85,7 @@ The first sentence implies that safety games are also uniformly positionally det
 and both positional determinacy results hold for infinite games.
 
 The complexity results are stated in the unit cost RAM model with machine word size $w = \log(m)$ with $m$ the number of edges.
-We refer to  Section {ref}`1-sec:computation` for more details about the model, which is in subtle ways different than the Turing model.
+We refer to Section {ref}`1-sec:computation` for more details about the model, which is in subtle ways different than the Turing model.
 The complexity would be slightly different in the Turing model: an additional $\log(m)$ factor would be incurred for manipulating numbers of order $m$, which the unit cost RAM model allows us to conveniently hide.
 
 In the litterature the complexity $O(n + m)$ is often reported for solving reachability games.
@@ -192,7 +193,7 @@ in other words $\tau$ ensures $\Safe[\Win]$ from $V \setminus \AttrE(\Win)$.
 
  {numref}`2-algo:reachability` is an efficient implementation of the attractor computation.
 Let us emphasise that it does not compute the sequence $(\AttrE^k(\Win))_{k \in \N}$ as suggested in  {prf:ref}`2-lem:reachability`.
-In  Section {ref}`4-sec:shortest_path` we will generalise this algorithm to a quantitative setting 
+In Section {ref}`4-sec:shortest_path` we will generalise this algorithm to a quantitative setting 
 and construct an algorithm which does compute (as a special case) the sequence $(\AttrE^k(\Win))_{k \in \N}$,
 however with a higher complexity.
 
@@ -206,7 +207,7 @@ The data structure contains the following objects:
 *  a set $S$ of vertices (the order in which vertices are stored and retrieved from $S$ does not matter),
 *  for each vertex of Adam a number of edges.
 
-Recall that we are using the unit cost RAM model, see  Section {ref}`1-sec:computation`; 
+Recall that we are using the unit cost RAM model, see Section {ref}`1-sec:computation`; 
 since the machine word size is $w = \log(m)$, a number of edges can be stored in one machine word.
 Hence the space complexity of the data structure of $O(n)$,
 which together with the size of the input yields a space complexity $O(m)$.

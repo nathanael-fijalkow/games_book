@@ -39,3 +39,12 @@ Nathalie Bertrand, Romain Brenguier, Patricia Bouyer-Decitre, Arnaud Carayol, Jo
 3_Parity/index
 4_Payoffs/index
 ```
+
+
+```{toctree}
+:hidden:
+:titlesonly:
+:caption: Stochastic
+
+5_MDP/index
+```
