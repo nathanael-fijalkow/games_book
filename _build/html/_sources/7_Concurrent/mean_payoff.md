@@ -65,34 +65,35 @@
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
+\newcommand{\EXP}{\textrm{EXP}}
+\newcommand{\kEXP}{\textrm{kEXP}}
 ```
 In this section we consider concurrent mean-payoff games. 
 We will show that in general, any  $\epsilon$-optimal strategy in some concurrent mean-payoff games are quite complex. 
 We will first, however, show that finding the value of a concurrent mean-payoff game can be done in polynomial space.
 
-```{prf:lemma} NEEDS TITLE lemm:class_meanpayoff
+````{prf:lemma} NEEDS TITLE lemm:class_meanpayoff
 :label: lemm:class_meanpayoff
 
 Concurrent mean-payoff games are determined and the value is the limit of the value of the corresponding time-limited game as well as the limit of the corresponding discounted game, for the discount factor going to 0 from above.
 There is an polynomial time algorithm, ala Lemma~\ref{lem:val1}, for finding the set of vertices where a finite memory strategy suffice to ensure $1-\epsilon$ (recall that all rewards are in $\{0,1\}$).
 For any fixed number $n$, there is a polynomial time algorithm for approximating the value in a concurrent mean-payoff game with $n$ vertices (i.e. the running time is polynomial in the number of actions)
 
-```
+````
 
 We will not show this lemma, but simply note that the $\epsilon$-optimal strategies known for general concurrent mean-payoff games  can be viewed as playing the corresponding discounted game with a variable discount factor that depends on how nice the rewards has been up to now. Basically, in each round you play the optimal strategy in the corresponding discounted game with a discount factor $\gamma$. Whenever 
  your rewards are close to or better than the value, you decrease $\gamma$ towards 0 and in each round your rewards are much worse than the value you let $\gamma$ increase, except not bigger than the initial $\gamma$ in the first round. Much of this section will argue that many natural candidates for simpler types of strategies does not work.
 
 We will show that approximating the value, however, can, as mentioned, be done in polynomial space. The proof relies on Proposition~22 from {cite}`HKLMT:2011`, stating the following:
 
-```{prf:proposition} NEEDS TITLE AND LABEL 
+````{prf:proposition} NEEDS TITLE AND LABEL 
 Let $\epsilon=2^{-j}$, where $j$ is some positive integer, and the probabilities be rational numbers where the nominator and denominator have bitsize at most $\tau$. Also, let $\lambda=\epsilon^{\tau m^{O(n^2)}}$. Consider some state $s$ and let the value of that state in the $\lambda$ discounted game be $v_{\lambda}$ and the value in mean-payoff game be $v$, then $|v-v_{\lambda}|<\epsilon$.
  
-:label: 
-Let $\epsilon=2^{-j}$, where $j$ is some positive integer, and the probabilities be rational numbers where the nominator and denominator have bitsize at most $\tau$. Also, let $\lambda=\epsilon^{\tau m^{O(n^2)}}$. Consider some state $s$ and let the value of that state in the $\lambda$ discounted game be $v_{\lambda}$ and the value in mean-payoff game be $v$, then $|v-v_{\lambda}|<\epsilon$.
 
 Let $\epsilon=2^{-j}$, where $j$ is some positive integer, and the probabilities be rational numbers where the nominator and denominator have bitsize at most $\tau$. Also, let $\lambda=\epsilon^{\tau m^{O(n^2)}}$. Consider some state $s$ and let the value of that state in the $\lambda$ discounted game be $v_{\lambda}$ and the value in mean-payoff game be $v$, then $|v-v_{\lambda}|<\epsilon$.
 
-```
+````
 
 We will use that to again reduce to the existential theory over the reals. 
 For a fixed discount factor $\gamma$, we can easily express the value of the corresponding discounted game, like we expressed the value of a concurrent reachability game.
@@ -130,15 +131,13 @@ Thus, for a given number $v$, we can test if the value of a concurrent  $\lambda
 
 We get the following lemma.
 
-```{prf:lemma} NEEDS TITLE AND LABEL 
+````{prf:lemma} NEEDS TITLE AND LABEL 
 Approximating the value of a concurrent mean-payoff game can be in done in polynomial space
  
-:label: 
-Approximating the value of a concurrent mean-payoff game can be in done in polynomial space
 
 Approximating the value of a concurrent mean-payoff game can be in done in polynomial space
 
-```
+````
 
 
 
@@ -147,11 +146,11 @@ The game is called the big match and is defined as follows:
 There are 3 vertices, $\{0,s,1\}$, where the vertices in $\{0,1\}$ are absorbing, and with value equal to their name.
 The last vertex $s$ has a 2x2-matrix and for all $i,j$ for $i\neq j$, we have that 
 $c(s,1,1)=1$, and for $i\neq 1\neq j$ we have that $c(s,1,1)=0$.
-Also,  $\dest(s,1,i)=s$ for each $i$, $\dest(s,2,1)=0$ and $\dest(s,2,2)=1$. There is an illustration in Figure \ref{fig:bm}.
+Also,  $\dest(s,1,i)=s$ for each $i$, $\dest(s,2,1)=0$ and $\dest(s,2,2)=1$. There is an illustration in Figure \ref{7-fig:bm}.
 The value of the Big Match is $1/2$.
 
-```{figure} ./../fig:bm.png
-:name: fig:bm
+```{figure} ./../FigAndAlgos/7-fig:bm.png
+:name: 7-fig:bm
 :align: center
 The Big Match
 ```
@@ -168,12 +167,12 @@ When $\sigma$ is played against $\tau'$, either we reach $\{0,1\}$ and Adam play
 
 We get the following lemma.
 
-```{prf:lemma} NEEDS TITLE lemm:no_finite_meanpayoff
+````{prf:lemma} NEEDS TITLE lemm:no_finite_meanpayoff
 :label: lemm:no_finite_meanpayoff
 
 No finite memory strategy can guarantee more than $0$ in the Big Match.
 
-```
+````
 
 The principle of sunken cost states that, when acting rationally, one should disregard cost already paid. We will next argue that this does not apply (naively) to the Big Match.
 A strategy following the principle of sunken cost would not depend on past cost paid and thus, in each step $T$, there is a pr. $p_T$ of stopping for Eve.
@@ -186,10 +185,10 @@ Adam's strategy is then to play $1$ for $T$ steps and $2$ thereafter. Observe th
 
 We see the following:
 
-```{prf:lemma} NEEDS TITLE lemm:no_markov_meanpayoff
+````{prf:lemma} NEEDS TITLE lemm:no_markov_meanpayoff
 :label: lemm:no_markov_meanpayoff
 
 No Markov strategy can guarantee more than $0$ in the Big Match
 
-```
+````
 

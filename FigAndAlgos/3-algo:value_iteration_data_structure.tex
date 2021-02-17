@@ -1,0 +1,59 @@
+\documentclass[preview,border=0mm,convert={density=600,outext=.png}]{standalone}
+\input{norenew_macros.tex}
+\input{./../3_Parity/norenew_macros_local.tex}
+\usepackage{amsfonts}
+\usepackage[norelsize,ruled,vlined,noend]{algorithm2e}
+\begin{document}
+\begin{algorithm}[H]
+
+ \KwData{A parity game with $n$ vertices priorities in $[1,d]$ and a $(n,d/2)$-universal tree $T$.}
+ \SetKwFunction{FTreat}{Treat}
+ \SetKwFunction{FVI}{ValueIteration}
+ \SetKwFunction{FInit}{Initialise}
+ \SetKwFunction{FUpdate}{Update}
+ \SetKwProg{Fn}{Function}{:}{}
+ \DontPrintSemicolon
+ 
+\Fn{\FVI{}}{%		$\mu(v) \leftarrow \ell_{\max}$	
+	\FInit{$\mu$, $\textrm{number}$-$\textrm{neglected}$-$\textrm{edges}$, $S$}
+%	\For{$e \in E$}{	%			\FTreat($e$)%	}
+
+	
+
+	\Repeat{$S$ empty}{
+		Choose some $v$ in $S$ and remove it from $S$
+
+		$\mu \leftarrow \min(\mu, \Op_v(\mu))$
+
+		\FUpdate{$\textrm{number}$-$\textrm{neglected}$-$\textrm{edges}(v)$}
+
+		\For{$e \in E$ \textrm{ such that } $\Out(e) = v$}{
+			\If{$e$ is neglected}{
+				\FTreat($e$)
+			}
+		}
+	}
+
+	\Return{$\mu$}
+}
+
+
+
+\Fn{\FTreat{$e$}}{
+	$v \leftarrow \Ing(e)$
+	
+	\If{$v \in \VA$ and $v \notin S$}{
+		Add $v$ to $S$		
+	}
+	
+	\If{$v \in \VE$ and $v \notin S$}{	
+		$\textrm{number}$-$\textrm{neglected}$-$\textrm{edges}(v) \leftarrow \textrm{number}$-$\textrm{neglected}$-$\textrm{edges}(v) + 1$
+
+		\If{$\textrm{number}$-$\textrm{neglected}$-$\textrm{edges}(v) = $ number of outgoing edges of $v$}{
+			Add $v$ to $S$
+		}
+	}
+}
+
+\end{algorithm}
+\end{document}

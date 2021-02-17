@@ -1,0 +1,30 @@
+\documentclass[preview,border=0mm,convert={density=600,outext=.png}]{standalone}
+\usepackage{tikz}
+\usetikzlibrary{automata,shapes,patterns,calc,arrows}
+\input{tikz-style.tex}
+\input{norenew_macros.tex}
+\input{./../13_Multiplayer/norenew_macros_local.tex}
+\usepackage{amsfonts}
+\begin{document}
+\begin{tikzpicture}
+      \draw (0,0) node[draw, inner sep=7pt] (I) {$v_0$};
+      \draw (I.-90) node[below] {$1, 1, 1$};
+      \draw (4,1) node[draw, inner sep=7pt] (C1) {$v_1$};
+      \draw (C1.-100) node[below] {$1, 1, 0$};
+      \draw (4,-1) node[draw, inner sep=7pt] (C2) {$v_2$};
+      \draw (C2.-90) node[below] {$1, 1, 0$};
+      \draw (1.5, 2) node[draw, inner sep=7pt] (S1) {$v_3$};
+      \draw (S1.-90) node[below] {$0, 1, 1$};
+      \draw (1.5,-2) node[draw, inner sep=7pt] (S2) {$v_4$};
+      \draw (S2.-90) node[below] {$1, 0, 1$};
+      \draw[-latex'] (-1, 0) -- (I);
+      \draw[-latex'] (I) -- node[sloped, text width=1cm]{$a, b, \ast$ \\ $b, a, \ast$} (C1);
+      \draw[-latex'] (I) -- node[sloped, text width=1cm]{$a, a, \ast$ \\ $b, b, \ast$} (C2);
+      \draw[-latex'] (C1) -- node[left]{$\ast, \ast, a$} (C2);
+           \draw[-latex'] (C1) -- node[above]{$\ast, \ast, b$} (S1);
+      \draw[-latex'] (C2) -- node[below]{$\ast, b, \ast$} (S2);
+      \draw[-latex', rounded corners] (C2) -- +(1,1) -- node[right]{$\ast, a, \ast$} (C1);
+      \draw[-latex'] (S1) -- node[above, sloped, pos=0.3]{$\ast, \ast, \ast$} (I);
+      \draw[-latex'] (S2) -- node[above, sloped, pos=0.3]{$\ast, \ast, \ast$} (I);
+    \end{tikzpicture}
+\end{document}

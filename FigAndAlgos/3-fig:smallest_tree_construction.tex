@@ -1,0 +1,19 @@
+\documentclass[preview,border=0mm,convert={density=600,outext=.png}]{standalone}
+\usepackage{tikz}
+\usetikzlibrary{automata,shapes,patterns,calc,arrows}
+\input{tikz-style.tex}
+\input{norenew_macros.tex}
+\input{./../3_Parity/norenew_macros_local.tex}
+\usepackage{amsfonts}
+\begin{document}
+\begin{tikzpicture}
+  \begin{scope}[line width=.8pt]
+  \foreach \sign/\dir in {-/left,/right}
+    {\draw[fill=black!20!white] (0,0) -- (\sign 4,-5) -- (\sign 2,-5) -- (0,0);
+     \path (\sign 2.75,-4.5) node {$T_{\textup{\dir}}$};}
+  \draw[fill=blue!60!green!20!white] (0,-1) -- (-1.2,-5) -- (1.2,-5) -- (0,-1);
+  \path (0,-4.5) node {$T_{\textup{middle}}$};
+  \draw (0,0) -- (0,-1);
+  \end{scope}
+\end{tikzpicture}
+\end{document}

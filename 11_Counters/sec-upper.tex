@@ -1,5 +1,5 @@
 \subsubsection{Existential Initial Credit}
-\label{12-sub-up-exist}
+\label{11-subsec:up-exist}
 
 \paragraph{Counterless Strategies}
 Consider a "strategy"~$\tau$ of \Adam in a "vector game".  In all the
@@ -10,7 +10,7 @@ locations $\loc\in\Loc_\mAdam$ and all vectors
 $\vec v,\vec v'\in\+N^\dd$, $\tau(\loc(\vec v))=\tau(\loc(\vec v'))$.
 A "counterless" strategy thus only considers the current location of
 the play.
-\begin{lemma}\label{12-counterless}
+\begin{lemma}\label{11-counterless}
   Let $\?V=(\Loc,\Act,\Loc_\mEve,\Loc_\mAdam,\dd)$ be an "asymmetric
   vector system", $\loc_0\in\Loc$ be a location, and
   $\lcol{:}\,\Loc\to\{1,\dots,d\}$ be a location colouring.  If \Adam
@@ -86,7 +86,7 @@ the play.
     from~$\loc_0(\vec v_0)$.  Since $\vec v_0\geq\vec v_l$ and
     $\vec v_0\geq \vec v_r+\weight(\hat\pi)$, $\pi(l)$ and $\pi(r)$
     starting from~$\loc_0(\vec v_0)$ are consistent with
-    "simulating"---in the sense of \cref{12-fact-mono}---$\sigma_l$
+    "simulating"---in the sense of \cref{11-fact-mono}---$\sigma_l$
     from $\loc_0(\vec v_l)$ and $\sigma_r$ from $\loc_0(\vec v_r)$.
     Let $\pi'$ be a finite prefix of~$\pi$.  Then
     $\weight(\pi')=\weight(\pi'(l))+\weight(\pi'(r))$ where $\pi'(l)$
@@ -103,7 +103,7 @@ the play.
   \end{scope}
 \end{proof}
 
-We are going to exploit \cref{12-counterless} in \cref{12-exist-easy}
+We are going to exploit \cref{11-counterless} in \cref{11-exist-easy}
 in order to prove a~\coNP\ upper bound for "asymmetric games" with
 "existential initial credit": it suffices in order to decide those
 games to guess a "counterless" winning strategy~$\tau$ for \Adam and
@@ -138,7 +138,7 @@ this strategy has an even maximal priority.
 Conversely, if \Eve wins, then there is a winning play
 $\pi\in\Act^\omega$ from $\loc_0(\vec v_0)$ for some $\vec v_0$.
 Recall that $(V,{\leq})$ is a "wqo", and we argue as in
-\cref{12-fact-finmem} that there is indeed such a location~$\loc$.
+\cref{11-fact-finmem} that there is indeed such a location~$\loc$.
 
 \medskip
 Therefore, solving one-player "parity vector games" boils down to
@@ -163,7 +163,7 @@ $\Pi$ is ""non-negative"" if $\weight(\Pi)\geq\vec 0$, and that it is
 $t\in\Act'$ such that $t\in\Pi$, and if for all $t\in F$,
 $t\not\in\Pi$.  We use the same terminology for a single cycle~$\pi$.
 
-\begin{lemma}\label{12-lem-zmulticycle}
+\begin{lemma}\label{11-lem-zmulticycle}
   Let $\?V$ be a "vector addition system with states",
   $M\in 2^{\Act}$, and $F\subseteq\Act$.  We can check in polynomial
   time whether~$\?V$ contains a "non-negative" "multi-cycle"~$\Pi$
@@ -200,7 +200,7 @@ Let us define for this the relation $\loc\sim\loc'$ over~$\Loc$ if
 $\loc=\loc'$ or if there exists a "non-negative" "multi-cycle"~$\Pi$
 "suitable" for~$(M,F)$ such that~$\loc$ and~$\loc'$ belong to some
 cycle~$\pi\in\Pi$.
-\begin{claim}\label{12-cl-sim} The relation~$\sim$ is an equivalence
+\begin{claim}\label{11-cl-sim} The relation~$\sim$ is an equivalence
   relation.\end{claim}
 \begin{proof}
   Symmetry and reflexivity are trivial, and if $\loc\sim\loc'$ and
@@ -220,12 +220,12 @@ according to~$\sim$.  If we obtain a partition with a single
 equivalence class, we are done: there exists such a cycle.  Otherwise,
 such a cycle if it exists must be included in one of the subsystems
 $(P,\Act\cap(P\times\+Z^\dd\times P),\dd)$ induced by the equivalence
-classes $P\in\Loc/{\sim}$.  This yields \cref{12-algo-zcycle}, which
+classes $P\in\Loc/{\sim}$.  This yields \cref{11-algo:zcycle}, which
 assumes that we know how to compute the partition~$\Loc/{\sim}$.  Note
-that the depth of the recursion in \cref{12-algo-zcycle} is bounded
+that the depth of the recursion in \cref{11-algo:zcycle} is bounded
 by~$|\Loc|$ and that recursive calls operate over disjoint subsets
 of~$\Loc$, thus assuming that we can compute the partition in
-polynomial time, then \cref{12-algo-zcycle} also works in polynomial
+polynomial time, then \cref{11-algo:zcycle} also works in polynomial
 time.
 
 \begin{algorithm}
@@ -245,7 +245,7 @@ $\Loc/{\sim} \leftarrow \mathrm{partition}(\?V,M,F)$ ;
 
 \Return{false}
 \caption{$\text{cycle}(\?V,M,F)$}
-\label{12-algo-zcycle}
+\label{11-algo:zcycle}
 \end{algorithm}
 
 It remains to see how to compute the partition $\Loc/{\sim}$. Consider
@@ -253,7 +253,7 @@ for this the set of actions
 $\Act'\eqdef\{a\mid\exists\Pi\text{ a "non-negative" "multi-cycle"
   "suitable" for $(M,F)$ with $a\in\Pi$}\}$ and
 $\?V'=(\Loc',\Act',\dd)$ the subsystem induced by $\Act'$.
-\begin{claim}\label{12-cl-part}
+\begin{claim}\label{11-cl-part}
   There exists a path from~$\loc$ to~$\loc'$ in $\?V'$
   if and only if $\loc\sim\loc'$.
 \end{claim}
@@ -271,10 +271,10 @@ $\?V'=(\Loc',\Act',\dd)$ the subsystem induced by $\Act'$.
   $a=(\loc''\step{\vec u}\loc')\in\Act'$ for some~$\vec u$.  By
   induction hypothesis, $\loc\sim\loc''$ and since $a\in\Act'$,
   $\loc''\sim\loc'$, thus $\loc\sim\loc'$ by transitivity shown
-  in~\cref{12-cl-sim}. 
+  in~\cref{11-cl-sim}. 
 \end{proof}
 
-By \cref{12-cl-part}, the equivalence classes of~$\sim$ are the
+By \cref{11-cl-part}, the equivalence classes of~$\sim$ are the
 strongly connected components of~$\?V'$.  This yields the following
 polynomial time algorithm for computing~$\Loc/{\sim}$.
 
@@ -292,13 +292,13 @@ $\?V'\leftarrow \text{subsystem induced by~$\Act'$}$ ;
 
 \Return{$\mathrm{SCC}(\?V')$}
 \caption{$\text{partition}(\?V,M,F)$}
-\label{12-algo-part}
+\label{11-algo:part}
 \end{algorithm}
 
-Together, \cref{12-lem-zmulticycle}
-and \cref{12-algo-part,12-algo-zcycle} yield the following.
+Together, \cref{11-lem-zmulticycle}
+and \cref{11-algo:part,12-algo-zcycle} yield the following.
 
-\begin{lemma}\label{12-lem-zcycle}
+\begin{lemma}\label{11-lem-zcycle}
   Let $\?V$ be a "vector addition system with states",
   $M\in 2^{\Act}$, and $F\subseteq\Act$.  We can check in polynomial
   time whether~$\?V$ contains a "non-negative" cycle~$\pi$
@@ -307,7 +307,7 @@ and \cref{12-algo-part,12-algo-zcycle} yield the following.
 
 Finally, we obtain the desired polynomial time upper bound for
 "parity@parity vector games" in "vector addition systems with states".
-\begin{theorem}\label{12-thm-zcycle}
+\begin{theorem}\label{11-thm-zcycle}
   Whether \Eve wins a one-player "parity vector game" with
   "existential initial credit" is in~\P.
 \end{theorem}
@@ -317,7 +317,7 @@ Finally, we obtain the desired polynomial time upper bound for
   $\loc_0\in\Loc$ an initial location.  We start by trimming~$\?V$ to
   only keep the locations reachable from~$\loc_0$ in the underlying
   directed graph.  Then, for every even priority $p\in\{1,\dots,d\}$,
-  we use \cref{12-lem-zcycle} to check for the existence of a
+  we use \cref{11-lem-zcycle} to check for the existence of a
   "non-negative" cycle with maximal priority~$p$: it suffices for this
   to set $M\eqdef\{\lcol^{-1}(p)\}$ and
   $F\eqdef\lcol^{-1}(\{p+1,\dots,d\})$.
@@ -334,31 +334,31 @@ finite game played over~$\Loc$ and edges~$(\loc,\loc')$ whenever
 $\loc\step{\vec u}\loc'\in\Act$ for some~$\vec u$.  This entails that
 "coverability" "asymmetric vector games" are quite easy to solve.
 
-\begin{theorem}\label{12-cov-exist-P}
+\begin{theorem}\label{11-cov-exist-P}
   "Coverability" "asymmetric" "vector games" with "existential initial
   credit" are \P-complete.
 \end{theorem}
 
 Regarding "non-termination" and "parity@parity vector game", we
-exploit \cref{12-counterless,12-thm-zcycle}.
+exploit \cref{11-counterless,12-thm-zcycle}.
 
-\begin{theorem}\label{12-exist-easy}
+\begin{theorem}\label{11-exist-easy}
   "Non-termination" and "parity@parity vector game" "asymmetric"
   "vector games" with "existential initial credit" are in~\coNP.
 \end{theorem}
 \begin{proof}
-  By \cref{12-nonterm2parity}, it suffices to prove the statement for
-  "parity@parity vector games" games.  By \cref{12-counterless},
+  By \cref{11-nonterm2parity}, it suffices to prove the statement for
+  "parity@parity vector games" games.  By \cref{11-counterless},
   if \Adam wins the game, we can guess a "counterless" winning
   strategy~$\tau$ telling which action to choose for every location.
-  This strategy yields a one-player game, and by \cref{12-thm-zcycle}
+  This strategy yields a one-player game, and by \cref{11-thm-zcycle}
   we can check in polynomial time that~$\tau$ was indeed winning
   for~\Adam.
 \end{proof}
 
 Finally, in fixed dimension and with a fixed number of priorities, we
-can simply apply the results of \cref{12-bounding}.
-\begin{corollary}\label{12-exist-pseudop}
+can simply apply the results of \cref{11-bounding}.
+\begin{corollary}\label{11-exist-pseudop}
   "Parity@parity vector game" "asymmetric" "vector games" with
   "existential initial credit" are in pseudo-polynomial time if the
   dimension and the number of priorities are fixed.
@@ -367,12 +367,12 @@ can simply apply the results of \cref{12-bounding}.
   Consider an "asymmetric vector system"
   $\?V=(\Loc,\Act,\Loc_\mEve,\Loc_\mAdam,\dd)$ and a location
   colouring $\lcol{:}\,\Loc\to\{1,\dots,2d\}$.
-  By \cref{12-parity2bounding}, the "parity vector game" with
+  By \cref{11-parity2bounding}, the "parity vector game" with
   "existential initial credit" over~$\?V$ problem reduces to a
   "bounding game" with "existential initial credit" over a "vector
   system"~$\?V'=(\Loc',\Act',\Loc'_\mEve,\Loc'_\mAdam,\dd+d)$ where
   $\Loc'\in O(|\Loc|)$ and $\|\Act'\|=\|\Act\|$.
-  By \cref{12-th-bounding}, it suffices to consider the case of a
+  By \cref{11-th-bounding}, it suffices to consider the case of a
   "non-termination" game with "existential initial credit" played over
   the "bounded semantics" $\bounded(\?V')$ where $B$ is in
   $(|\Loc'|\cdot\|\Act'\|)^{O(\dd+d)^3}$.  Such a game can be solved in
@@ -382,10 +382,10 @@ can simply apply the results of \cref{12-bounding}.
 \end{proof}
 
 \subsubsection{Given Initial Credit}
-\label{12-sub-up-given}
-\TODO{\Cref{12-sub-up-given}}
+\label{11-subsec:up-given}
+\TODO{\Cref{11-subsec:up-given}}
 
-\begin{theorem}\label{12-avag-easy}
+\begin{theorem}\label{11-avag-easy}
   "Coverability", "non-termination", and "parity@parity vector game"
   "asymmetric" "vector games" with "given initial credit" are in
   \kEXP[2].  If the dimension is fixed, they are in \EXP, and if the

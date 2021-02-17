@@ -9,7 +9,7 @@ def rename():
 			g = open(f, "r")
 			content = g.read()
 			g.close()
-			content = re.sub(r'B\\"uchi', r'B{\"u}chi', content)
+			content = re.sub(r'11-algo-', r'11-algo:', content)
 			g = open(f, "w")
 			content = g.write(content)
 			g.close()

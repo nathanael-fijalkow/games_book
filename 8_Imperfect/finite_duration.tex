@@ -39,10 +39,12 @@ while Adam wants to minimize it.
 
 
 \subsection{Existence and computability of the value}
+\label{8-subsec:value}
 
 Next theorem gathers several folklore results.
 
-\begin{theorem}\label{thm:finiteimperfecthaveval}
+\begin{theorem}[Finite duration games]
+\label{8-thm:finiteimperfecthaveval}
 A game with finite duration and imperfect information has a value:
 for every initial distribution $\ini$,
 \[
@@ -81,7 +83,7 @@ and Eve receives payoff
 $\mathbb{E}_{\ini}^{\sigma,\tau}$.
 There are finitely many such deterministic strategies,
 thus the normal form game is a \emph{matrix game}.
-See Section~\ref{sec:matrixgames} for more details
+See~\cref{7-sec:matrix_games} for more details
 about matrix games.
 
 
@@ -89,8 +91,7 @@ about matrix games.
 In the simplified poker example,
 the reduction is as follows.
 
-We rely on the formal description of the game 
-at the end of Section~\ref{subsec:formalimp}
+We rely on the formal description of the game at the end of~\cref{subsec:formalimp}
 and perform two simplifications.
 First, we only consider strategies playing moves according to the rules,
 other strategies are strategically useless.
@@ -155,20 +156,19 @@ Adam has a unique optimal strategy which consists in calling or folding
 with equal probability $\frac{1}{2}$\enspace.
  
  
-\paragraph{Proof of Theorem~\ref{thm:finiteimperfecthaveval}.}
+\paragraph{Proof of~\cref{8-thm:finiteimperfecthaveval}.}
 The example illustrates
 the correspondance between behavioural strategies in the finite-duration game on one side
 and mixed strategies in the normal form game on the other.
 In the general case, the correspondance can be stated as follows.
 
-\newcommand{\Strat}{\text{Strat}}
-\begin{lemma}\label{lem:impinffinite}
+\begin{lemma}
+\label{8-lem:impinffinite}
 Denote $\Strat$ the set of behavioural strategies,
 $\Strat_d$ the subset of deterministic strategies
 and $\dist(\Strat_d)$ the set of strategies in the normal form game.
 \begin{enumerate}
-\item[i)]
-There is a mapping 
+\item There is a mapping 
 $
 \Phi : \Strat \to \dist(\Strat_d)
 $ 
@@ -182,8 +182,7 @@ which preserves payoffs:
 \sum_{\sigma',\tau' \in \Strat_d}\Phi(\sigma)(\sigma')\cdot\Phi(\tau)(\tau') 
 \cdot\mathbb{E}_{\ini}^{\sigma',\tau'}\enspace.
 \]
-\item[ii)]
-Since actions are observable,
+\item Since actions are observable,
 there is a mapping 
 $
 \Phi' : \dist(\Strat_d) \to \Strat 
@@ -199,8 +198,7 @@ which preserves payoffs:
 \mathbb{E}_{\ini}^{\Phi'(\sigma),\Phi'(\tau)}
 \enspace.
 \]
-\item[iii)]
-$\Phi'\circ \Phi$ is the identity.
+\item $\Phi'\circ \Phi$ is the identity.
 \end{enumerate}
 \end{lemma}
 
@@ -250,9 +248,9 @@ where the vertical pipe denotes a conditional probability.
 %The proof of  i), ii) and iii) is straightforward.
 \end{proof}
 
-We proceed with the proof of  Theorem~\ref{thm:finiteimperfecthaveval}.
+We proceed with the proof of~\cref{8-thm:finiteimperfecthaveval}.
 %\begin{proof}[of]
-According to Theorem~\ref{lem:mat},
+According to~\cref{8-lem:mat},
 the normal form has a value and optimal strategies
 for each player. 
 Denote $\val_N$ the value
@@ -270,8 +268,7 @@ because for every strategy $\tau$,
 \mathbb{E}_{\ini}^{\sigma',\tau'}
 \geq \val_N\enspace,
 \]
-where the first equalities are applications of 
-Lemma~\ref{lem:impinffinite}
+where the first equalities are applications of~\cref{8-lem:impinffinite}
 and the inequality is by optimality of $\Sigma^\sharp$.
 Symmetrically, 
 $\tau^\sharp=\Phi'(T^\sharp)$ guarantees 
@@ -281,10 +278,8 @@ is $\val_N$ and $\sigma^\sharp$
 and $\tau^\sharp$ are optimal.\qed
 %\end{proof}
 
-\subsection{ The Koller-Meggido-von Stengel reduction to linear programming}
-
-
-
+\subsection{The Koller-Meggido-von Stengel reduction to linear programming}
+\label{8-subsec:reduction_linear_programming}
 
 The reduction of a finite-duration game with imperfect information
 to its normal form proves that the value exists and
@@ -299,11 +294,11 @@ might contain all sequences of $S$ of length $\leq n$.
 Koller, Meggido and von Stengel did provide a
 more efficient direct reduction to linear programming.
 Strategies of Eve in the normal form game live
-in $\RR^{A^{R_E}}$
+in $\R^{A^{R_E}}$
 while her strategies in the game with imperfect information
 live in a space
 with exponentially fewer dimensions, namely
-$\RR^{R_E\times A}$.
+$\R^{R_E\times A}$.
 The direct reduction avoids this dimensional blowup.
 
 
@@ -446,47 +441,50 @@ Finally, $(p_r)_{r \in R_E}$, $(v_r)_{r\in R_A}$ is a feasible solution.
 
 The following linear program computes the value
 of the simplified poker example.
-$\text{Maximise $v_{\epsilon}$ subject to}$
-\begin{align*}
-\forall r \in R_E,~& 0\leq p_r \leq 1\\
-&p_{\spadesuit,{\tt check} } +  p_{\spadesuit,{\tt raise} } = 1\\
-&p_{\blacksquare,{\tt check} } +  p_{\blacksquare,{\tt raise} } = 1\\
-%&p_{\dagger,{\tt raise} } =p_{\dagger,{\tt raise},{\tt fold} }=p_{\dagger,{\tt raise},{\tt call} }\\
-&v_\epsilon \leq v_\circ \leq v_{\circ, {\tt check}} + v_{\circ, {\tt raise}}\\
-&v_{\circ, {\tt check}}\leq  \frac{1}{4} \cdot p_{\spadesuit,{\tt check} } \cdot (+1) 
-+ \frac{3}{4} \cdot p_{\blacksquare,{\tt check} } \cdot (-1)\\
-&v_{\circ, {\tt raise}} \leq \frac{1}{4} \cdot p_{\spadesuit,{\tt raise} } \cdot (+1) + \frac{3}{4} \cdot p_{\blacksquare,{\tt raise} } \cdot (+1)\\
-&v_{\circ, {\tt raise}} \leq \frac{1}{4} \cdot p_{\spadesuit,{\tt raise} } \cdot (+3) + \frac{3}{4} \cdot p_{\blacksquare,{\tt raise} } \cdot (-3)
-\end{align*}
-Setting $x=p_{\spadesuit,{\tt check} }$
-and $y=  p_{\blacksquare,{\tt check} }$,
-the solution is
-\begin{align*}
-&
-\frac{1}{4}\max_{(x,y)\in[0,1]^2}
-\left(
-{x - 3y}
-+
-\min\left(
-{(1-x) +  3 (1-y)},
-{3(1-x) - 9(1-y)}
- \right)\right)\\
- =&
- \frac{1}{4}\max_{(x,y)\in[0,1]^2}
-\min\left(
-4 - 6y,
--6 -2x + 6y   
-\right)
-=
- \frac{1}{4}\max_{y\in[0,1]}
-\min\left(
-4 - 6y,
--6 + 6y   
-\right)
- \enspace,
-\end{align*}
-which is maximal when $y=\frac{5}{6}$
-and the solution is $-\frac{1}{4}$.
+DEAL WITH LINEAR PROGRAMS!
+%\begin{center}
+%Maximise $v_{\epsilon}$ subject to
+%\end{center}
+%\begin{align*}
+%\forall r \in R_E,~& 0\leq p_r \leq 1\\
+%&p_{\spadesuit,{\tt check} } +  p_{\spadesuit,{\tt raise} } = 1\\
+%&p_{\blacksquare,{\tt check} } +  p_{\blacksquare,{\tt raise} } = 1\\
+%%&p_{\dagger,{\tt raise} } =p_{\dagger,{\tt raise},{\tt fold} }=p_{\dagger,{\tt raise},{\tt call} }\\
+%&v_\epsilon \leq v_\circ \leq v_{\circ, {\tt check}} + v_{\circ, {\tt raise}}\\
+%&v_{\circ, {\tt check}}\leq  \frac{1}{4} \cdot p_{\spadesuit,{\tt check} } \cdot (+1) 
+%+ \frac{3}{4} \cdot p_{\blacksquare,{\tt check} } \cdot (-1)\\
+%&v_{\circ, {\tt raise}} \leq \frac{1}{4} \cdot p_{\spadesuit,{\tt raise} } \cdot (+1) + \frac{3}{4} \cdot p_{\blacksquare,{\tt raise} } \cdot (+1)\\
+%&v_{\circ, {\tt raise}} \leq \frac{1}{4} \cdot p_{\spadesuit,{\tt raise} } \cdot (+3) + \frac{3}{4} \cdot p_{\blacksquare,{\tt raise} } \cdot (-3)
+%\end{align*}
+%Setting $x=p_{\spadesuit,{\tt check} }$
+%and $y=  p_{\blacksquare,{\tt check} }$,
+%the solution is
+%\begin{align*}
+%&
+%\frac{1}{4}\max_{(x,y)\in[0,1]^2}
+%\left(
+%{x - 3y}
+%+
+%\min\left(
+%{(1-x) +  3 (1-y)},
+%{3(1-x) - 9(1-y)}
+% \right)\right)\\
+% =&
+% \frac{1}{4}\max_{(x,y)\in[0,1]^2}
+%\min\left(
+%4 - 6y,
+%-6 -2x + 6y   
+%\right)
+%=
+% \frac{1}{4}\max_{y\in[0,1]}
+%\min\left(
+%4 - 6y,
+%-6 + 6y   
+%\right)
+% \enspace,
+%\end{align*}
+%which is maximal when $y=\frac{5}{6}$
+%and the solution is $-\frac{1}{4}$.
 
 \paragraph{Nose scratch variant.}
 Assume now that Eve does not have the perfect poker face:
@@ -505,35 +503,37 @@ The optimal bluff frequency of Eve decreases
  from $\frac{1}{6}$ to $\frac{1}{10}$.
 Computation details follow.
 
-\begin{align*}
-&\text{Maximise $v_{\epsilon}$ subject to}
-\\
-\forall u \in R_E,~& 0\leq p_u \leq 1\\
-&p_{\spadesuit,{\tt c} } +  p_{\spadesuit,{\tt r} } = 1~~~~~p_{\blacksquare,{\tt c} } +  p_{\blacksquare,{\tt r} } = 1\\
-%&p_{\dagger,{\tt raise} } =p_{\dagger,{\tt raise},{\tt fold} }=p_{\dagger,{\tt raise},{\tt call} }\\
-&v_\epsilon \leq v_{\tt s} + v_{\tt n}~~~~~v_{\tt s} \leq v_{{\tt sc}} + v_{{\tt sr}}~~~~~
- v_{\tt n} \leq v_{{\tt nc}} + v_{{\tt nr}}\\
-&v_{{\tt sc} } \leq 
- \frac{1}{4}\cdot\frac{1}{2} \cdot p_{\spadesuit,{\tt c} } \cdot (+1) 
-+ \frac{3}{4}\cdot \frac{1}{6} \cdot p_{\blacksquare,{\tt c} } \cdot (-1)\\
-&v_{{\tt nc} } \leq 
- \frac{1}{4}\cdot\frac{1}{2} \cdot p_{\spadesuit,{\tt c} } \cdot (+1) 
-+ \frac{3}{4} \cdot\frac{5}{6} \cdot p_{\blacksquare,{\tt c} } \cdot (-1)\\
-&v_{{\tt sr}} \leq \frac{1}{4}\cdot \frac{1}{2}\cdot p_{\spadesuit,{\tt r} } \cdot (+1) 
-+ \frac{3}{4} \cdot\frac{1}{6}\cdot p_{\blacksquare,{\tt r} } \cdot (+1)\\
-&v_{{\tt sr}} \leq \frac{1}{4}\cdot \frac{1}{2}\cdot p_{\spadesuit,{\tt r} } \cdot (+3) 
-+ \frac{3}{4} \cdot\frac{1}{6}\cdot p_{\blacksquare,{\tt r} } \cdot (-3)\\
-&v_{{\tt nr}} \leq \frac{1}{4}\cdot \frac{1}{2}\cdot p_{\spadesuit,{\tt r} } \cdot (+1) 
-+ \frac{3}{4} \cdot\frac{5}{6}\cdot p_{\blacksquare,{\tt r} } \cdot (+1)\\
-&v_{{\tt nr}} \leq \frac{1}{4}\cdot \frac{1}{2}\cdot p_{\spadesuit,{\tt r} } \cdot (+3) 
-+ \frac{3}{4} \cdot\frac{5}{6}\cdot p_{\blacksquare,{\tt r} } \cdot (-3)
-\end{align*}
-Set $y=p_{\blacksquare,{\tt c} }$.
-Some elementary simplifications lead to the equivalent program:
-\begin{align*}
-\max_{0\leq y \leq 1} \frac{1}{8} \left(\min\left( 8 -12y,-10 +8y
-,  6  - 8y,-12  +12y \right) \right) 
-\end{align*}
+DEAL WITH LINEAR PROGRAMS!
+%\begin{center}
+%Maximise $v_{\epsilon}$ subject to
+%\end{center}
+%\begin{align*}
+%\forall u \in R_E,~& 0\leq p_u \leq 1\\
+%&p_{\spadesuit,{\tt c} } +  p_{\spadesuit,{\tt r} } = 1~~~~~p_{\blacksquare,{\tt c} } +  p_{\blacksquare,{\tt r} } = 1\\
+%%&p_{\dagger,{\tt raise} } =p_{\dagger,{\tt raise},{\tt fold} }=p_{\dagger,{\tt raise},{\tt call} }\\
+%&v_\epsilon \leq v_{\tt s} + v_{\tt n}~~~~~v_{\tt s} \leq v_{{\tt sc}} + v_{{\tt sr}}~~~~~
+% v_{\tt n} \leq v_{{\tt nc}} + v_{{\tt nr}}\\
+%&v_{{\tt sc} } \leq 
+% \frac{1}{4}\cdot\frac{1}{2} \cdot p_{\spadesuit,{\tt c} } \cdot (+1) 
+%+ \frac{3}{4}\cdot \frac{1}{6} \cdot p_{\blacksquare,{\tt c} } \cdot (-1)\\
+%&v_{{\tt nc} } \leq 
+% \frac{1}{4}\cdot\frac{1}{2} \cdot p_{\spadesuit,{\tt c} } \cdot (+1) 
+%+ \frac{3}{4} \cdot\frac{5}{6} \cdot p_{\blacksquare,{\tt c} } \cdot (-1)\\
+%&v_{{\tt sr}} \leq \frac{1}{4}\cdot \frac{1}{2}\cdot p_{\spadesuit,{\tt r} } \cdot (+1) 
+%+ \frac{3}{4} \cdot\frac{1}{6}\cdot p_{\blacksquare,{\tt r} } \cdot (+1)\\
+%&v_{{\tt sr}} \leq \frac{1}{4}\cdot \frac{1}{2}\cdot p_{\spadesuit,{\tt r} } \cdot (+3) 
+%+ \frac{3}{4} \cdot\frac{1}{6}\cdot p_{\blacksquare,{\tt r} } \cdot (-3)\\
+%&v_{{\tt nr}} \leq \frac{1}{4}\cdot \frac{1}{2}\cdot p_{\spadesuit,{\tt r} } \cdot (+1) 
+%+ \frac{3}{4} \cdot\frac{5}{6}\cdot p_{\blacksquare,{\tt r} } \cdot (+1)\\
+%&v_{{\tt nr}} \leq \frac{1}{4}\cdot \frac{1}{2}\cdot p_{\spadesuit,{\tt r} } \cdot (+3) 
+%+ \frac{3}{4} \cdot\frac{5}{6}\cdot p_{\blacksquare,{\tt r} } \cdot (-3)
+%\end{align*}
+%Set $y=p_{\blacksquare,{\tt c} }$.
+%Some elementary simplifications lead to the equivalent program:
+%\begin{align*}
+%\max_{0\leq y \leq 1} \frac{1}{8} \left(\min\left( 8 -12y,-10 +8y
+%,  6  - 8y,-12  +12y \right) \right) 
+%\end{align*}
 The optimum is reached when $8y-10=8-12y$
 i.e. when $p_{\blacksquare,{\tt c} }=\frac{9}{10}$
 and is equal to $-\frac{7}{20}=-\frac{1}{4}-\frac{1}{10}$ .

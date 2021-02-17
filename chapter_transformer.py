@@ -23,13 +23,17 @@ def chapter_transformer(nb_chap, path, title, label, authors):
 
 
 	## Special case: references
-	f = open(path + "references.md", "a")
-	f.write('\n\n```{bibliography}\n:style: unsrtalpha\n:filter: cited and chap == \"' + nb_chap + '\"\n```')
+	f = open(path + "references.md", "r")
+	content = f.read()
 	f.close()
+
+	g = open(path + "references.md", "w")
+	g.write(content + '\n\n```{bibliography}\n:style: unsrtalpha\n:filter: cited and chap == \"' + nb_chap + '\"\n```')
+	g.close()
 
 	# Transforms the bibliography
 	new_bib = bib_transformer(nb_chap)
-	g = open(nb_chap + "_bib.bib", "w")
+	g = open("Bib/" + nb_chap + "_bib.bib", "w")
 	f = open("acronyms.bib", "r")
 	h = open("people.bib", "r")
 
@@ -46,7 +50,7 @@ def chapter_transformer(nb_chap, path, title, label, authors):
 	f.close()
 
 	# Remove macros_local and add authors
-	content = re.sub(r'\\input\{macros_local\}', r"Written by " + authors + "\n\n", content)
+	content = re.sub(r'\\input\{macros_local\}', r"\nWritten by " + authors + "\n\n", content)
 
 	# Remove the inputs
 	content = re.sub(s_in, '', content)

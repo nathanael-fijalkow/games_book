@@ -1,0 +1,24 @@
+\documentclass[preview,border=0mm,convert={density=600,outext=.png}]{standalone}
+\input{norenew_macros.tex}
+\input{./../11_Counters/norenew_macros_local.tex}
+\usepackage{amsfonts}
+\usepackage[norelsize,ruled,vlined,noend]{algorithm2e}
+\begin{document}
+\begin{algorithm}[H]
+
+ \KwData{A "vector system" and a target configuration $\loc_f(\vec v_f)$}
+
+$B_0 \leftarrow \{\loc_f(\vec v_f)\}$ ;
+
+$i \leftarrow 0$ ;
+     
+\Repeat{${\uparrow}B_i \supseteq B_{i+1}$}{
+
+$B_{i+1} \leftarrow B_i \cup \min\mathrm{Pre}({\uparrow}B_i)$ ;
+
+$i \leftarrow i + 1$ ;}
+
+\Return{$\min B_i = \mathsf{Pareto}(\game)$}
+
+\end{algorithm}
+\end{document}

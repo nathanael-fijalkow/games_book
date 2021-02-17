@@ -1,0 +1,69 @@
+\documentclass[preview,border=0mm,convert={density=600,outext=.png}]{standalone}
+\usepackage{tikz}
+\usetikzlibrary{automata,shapes,patterns,calc,arrows}
+\input{tikz-style.tex}
+\input{norenew_macros.tex}
+\input{./../6_Stochastic/norenew_macros_local.tex}
+\usepackage{amsfonts}
+\begin{document}
+\begin{tikzpicture}
+      [evev/.style = {circle, draw, align=center, anchor=north, inner sep=0, minimum size=.5cm},
+      adamv/.style = {rectangle, draw, align=center, anchor = north, inner sep=0, minimum size=.5cm},
+      randomv/.style = {diamond, draw, align=center, anchor = north, inner sep=0, minimum size=.5cm},
+      node distance=.5cm]
+   
+    \node[randomv] (rv) at (-3,-.5) {$v$};
+    \node[evev] (ev) at (-4,-1.5) {$v_1$};
+    \node[adamv] (av) at (-2,-1.5) {$v_2$};
+    
+    \path[-latex'] 
+    (rv) edge node[left] {$\frac {11} {14}$} (ev)
+    (rv) edge node[right] {$\frac 3 {14}$} (av)
+    ;
+
+
+    \node[randomv] (root) at (0,0) {$v$};    \node[randomv] (l02) at (2,0) {};
+    \node[randomv] (l03) at (4,0) {};
+    \node[randomv] (l04) at (6,0) {};
+    \node[randomv] (l11) at (0,-1) {};
+    \node[randomv] (l12) at (2,-1) {};
+    \node[randomv] (l13) at (4,-1) {};
+    \node[randomv] (l14) at (6,-1) {};
+
+    \node[evev] (l21) at (-.7,-2) {$v_1$};
+    \node[below of=l21] (l21t) {$\frac 1 4$};
+    \node[randomv] (l22) at (.7,-2) {$v$};
+    \node[below of=l22] (l22t) {$\frac 1 4$};
+    \node[randomv] (l23) at (1.3,-2) {$v$};
+    \node[below of=l23] (l23t) {$\frac 1 8$};
+    \node[randomv] (l24) at (2.7,-2) {$v$};
+    \node[below of=l24] (l24t) {$\frac 1 8$};
+    \node[evev] (l25) at (3.3,-2) {$v_1$};
+    \node[below of=l25] (l25t) {$\frac 1 {16}$};
+    \node[adamv] (l26) at (4.7,-2) {$v_2$};
+    \node[below of=l26] (l26t) {$\frac 1 {16}$};
+    \node[evev] (l27) at (5.3,-2) {$v_1$};
+    \node[below of=l27] (l27t) {$\frac 1 {32}$};
+    \node[adamv] (l28) at (6.7,-2) {$v_2$};
+    \node[below of=l28] (l28t) {$\frac 1 {32}$};
+
+    \path[-latex']
+    (root) edge (l11)
+    (root) edge (l02)
+    (l02) edge (l03)
+    (l02) edge (l12)
+    (l03) edge (l04)
+    (l03) edge (l13)
+    (l11) edge (l21)
+    (l11) edge (l22)
+    (l12) edge (l23)
+    (l12) edge (l24)
+    (l13) edge (l25)
+    (l13) edge (l26)
+    (l14) edge (l27)
+    (l14) edge (l28)
+    (l04) edge (l14)
+    (l04) edge[bend right] (root)
+    ;
+        \end{tikzpicture}
+\end{document}

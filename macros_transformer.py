@@ -8,12 +8,12 @@ def macros_transformer(path, file):
 	#### Remove comments
 	content = re.sub(r'%(.*?)\n', r'\n', content)
 
-	content = re.sub(r'\\renewcommand(.*?)',r'\\newcommand\1', content)
+	#### Remove "re"
+	content = re.sub(r'\\renewcommand\{(.*?)\}\{(.*?)\}\s',\
+		r'\\ifdefined\1\n    \\renewcommand{\1}{\2}\n\\else\n    \\newcommand{\1}{\2}\n\\fi', content)
 
-	print(content)
+	# print(content)
 
 	g = open(path + "norenew_" + file, "w")
 	g.write(content)
 	g.close()
-
-macros_transformer("", "macros.tex")

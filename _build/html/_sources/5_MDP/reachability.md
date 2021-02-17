@@ -106,9 +106,11 @@
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
-```
- 
-
+\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
+\newcommand{\EXP}{\textrm{EXP}}
+\newcommand{\kEXP}{\textrm{kEXP}}
+```%objective: reachability. % computing optimal reachability values and strategies can be reduced to optimizing % opposed to the game case, where reachability games can be solved in polynomial % Hence, in this section % reachability problems. 
+% see, actually \P-complete), they can be efficiently solved by specific 
 > **Positive reachability**
 
   
@@ -119,9 +121,9 @@ as follows: for $U\subseteq \vertices$ we put
 
 \begin{align*}
 \PrePos(U) &= \{v \in \vertices \mid \exists a \in \actions, \exists u \in U: 
-\probTranFunc(u\mid v,a)>0 \}.\\
+\probTranFunc(u\mid v,a)>0 \}.\\%\vertices: \probTranFunc(t\mid v,a)>0 \Rightarrow t \in U \}.
 \end{align*}
-
+%\PrePos(Y)$ if $X\subseteq Y$, while $\PreAS$ is **antitone,** i.e.  
 
 We also define an operator $\PreOPPos$ s.t. for each $X\subseteq\vertices$ we have
 
@@ -138,7 +140,7 @@ fixed point in at most $n-1$ steps, where $n=|\vertices|$.
 
 We have the following simple characterization of the positively winning set:
 
-```{prf:theorem} Characterisation of the positively winning set
+````{prf:theorem} Characterisation of the positively winning set
 :label: 5-thm:positive-char
 
 For each vertex $v$, the following conditions are equivalent:
@@ -155,9 +157,9 @@ belongs to the fixed point of the iteration $\vertices_\genColour,
 Moreover, there exists a memoryless deterministic strategy that is positively 
 winning from each vertex in $\winPos(\mdp,\Reach(\genColour))$.
 
-```
+````
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 $(1)\Rightarrow(2)$: We have that $\Reach(\genColour) = \cup_{\play \in X} 
@@ -166,15 +168,16 @@ colour $\genColour$ and $\cylinder(\pi)$ is the basic cylinder determined by
 $\pi$. Since $X$ is a countable set, from the property (3.) of a probability 
 measure it follows that $\probm^\sigma_{\mdp,v}(\Reach(\genColour))>0$ if and 
 only if there exists $\play\in X$ with 
-$\probm^\sigma_{\mdp,v}(\cylinder(\play))>0$.
-
-```{margin}
-Arguments of this style are said to invoke a union bound. ```
-
- For the latter to hold, it must 
+$\probm^\sigma_{\mdp,v}(\cylinder(\play))>0$. For the latter to hold, it must 
 be that either $\play=\emptyPlay$, in which case $\colours(v)=\genColour$, or 
 $\play$ is a non-empty play initiated in $v$ and reaching a colour 
 $\genColour$, as required.
+
+```{margin}
+Arguments of this style are said to invoke a union bound. 
+```
+
+
 
 $(2)\Rightarrow(3)$:
 This is straightforward.
@@ -191,22 +194,22 @@ action $a_v$ defined above with probability 1. A straightforward induction on th
 $\winPos(\mdp,\Reach(\genColour))$. This also proves the last part 
 of the lemma.
 
-```
+````
 
-
+%\KwData{An MDP $ \mdp $}%\SetKwProg{Fn}{Function}{:}{}%$W \leftarrow \vertices_\genColour$ \;%$W' \leftarrow W$\;%}%%\Return{$W$}%\label{5-algo:reach-pos}
 
 As for complexity, we can focus on the problem of determining whether a given 
 vertex belongs to $\winPos(\mdp,\Reach(\genColour))$. 
 
-```{prf:corollary} Complexity of deciding positive reachability
+````{prf:corollary} Complexity of deciding positive reachability
 :label: 5-cor:pos-complexity
 
 The problem of deciding whether a given vertex of a given MDP belongs to 
 $\winPos(\mdp,\Reach(\genColour))$ is \NL-complete. Moreover, the set $\winPos(\mdp,\Reach(\genColour))$ can be computed in linear time.
 
-```
+````
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
  {prf:ref}`5-thm:positive-char` 
@@ -214,21 +217,18 @@ gives a blueprint for a logspace reduction from this problem to the
 **s-t-connectivity** problem for directed graphs, and vice versa. The latter 
 problem is well known to be \NL-complete {cite}`Savitch:1970`. Moreover, the set of states from which a target colour is reachable can be computed by a simple graph search (e.g. by BFS), hence in linear time.
 
-```
+````
+%be straightforward, via the certificate definition of FNL. Read the paper 
 
-
-
-
+%Memoryless deterministic strategies are sufficient for positive reachability %MD %$\winPos(\mdp,\Reach(\genColour))$, can be both computed in polynomial time.
 > **Almost-sure reachability and safety**
 
- While the reachability and safety objectives are seemingly dual, in MDPs there is an intimate connection between them.
-Let's start with almost-sure reachability. Consider the  **almost-sure predecessor operator $\PreAS$**, s.t. for each $U \subseteq \vertices$ we have 
+ While the reachability and safety objectives are seemingly dual, in MDPs there is an intimate connection between them.%Let's start with almost-sure reachability. Consider the  **almost-sure predecessor operator $\PreAS$**, s.t. for each $U \subseteq \vertices$ we have 
 $$
 \PreAS(U) = \{v \in \vertices \mid \exists a \in \actions, \forall t \in 
 \vertices: \probTranFunc(t\mid v,a)>0 \Rightarrow t \in U \}.
 $$
-
-One might be tempted to mimic the positive reachability case and perform the iteration $ X \leftarrow X \cup \PreAS(X) $ on the set $ \vertices_{\genColour} $ until a fixed point is reached.
+%winning %\cup \PreAS(X)$, starting with the initial argument $\vertices_\genColour$. One might be tempted to mimic the positive reachability case and perform the iteration $ X \leftarrow X \cup \PreAS(X) $ on the set $ \vertices_{\genColour} $ until a fixed point is reached.
 But this 
 is not correct: consider an MDP with two vertices, $u,v$, the latter one being coloured by $\Win$. We have only one action $a$: in $v$, the action self loops on $v$, while in $u$ playing the action either switches moves us to $v$ or leaves us in $u$, both options having probability $\frac{1}{2}$. The probability that we **never** reach $v$ from $u$ is 
 equal to $\lim_{n\rightarrow \infty} \left(\frac{1}{2}\right)^n = 0$, and hence 
@@ -237,14 +237,11 @@ $v$ is not included into the outcome of the iteration. Note that there indeed ex
 which 
 never visits $v$, but the probability of generating such a play is $0$. 
 
-Instead, we make a detour via safety. Consider the one-step **almost-sure safety** operator $\safeOP$ acting on sets of vertices:
-\begin{align*}
+Instead, we make a detour via safety. Consider the one-step **almost-sure safety** operator $\safeOP$ acting on sets of vertices:\begin{align*}
 \safeOP(X)= X \cap \PreAS(X).
-\end{align*}
-This operator gives rise to a notion of a closed set, which is important for the study of safety objectives in MDPs.
+\end{align*}This operator gives rise to a notion of a closed set, which is important for the study of safety objectives in MDPs.
 
-
-```{prf:definition} Closed set in an MDP
+````{prf:definition} Closed set in an MDP
 :label: 5-def:closed_set_MDP
 
 A set $X$ of vertices is closed if $ \safeOP(X)=X$. A sub-MDP of an MDP $ \mdp $ defined by a closed subset $X$ of $ \mdp $'s states is the MDP $\mdp_X = (X,\edges_X,\probTranFunc_X,\colouring_X)$ defined as follows:
@@ -255,83 +252,82 @@ A set $X$ of vertices is closed if $ \safeOP(X)=X$. A sub-MDP of an MDP $ \mdp $
 
 We denote by $\closed(\mdp)$ the set of all closed sets in $\mdp.$
 
-```
+````
 
 Intuitively, a set is closed if Eve has a strategy ensuring that she stays in the set forever.
 
 
 Now consider the iteration of $ X, \safeOP(X),\safeOP^2(X),\ldots $ of the safety operator. Clearly $\safeOP(X)\subseteq X$. Hence, the iteration reaches a fixed point in at most $|\vertices|$ steps. We get the following:
 
-```{prf:lemma} Inclusion of the least fixed of the safety operator
+````{prf:lemma} Inclusion of the least fixed of the safety operator
 :label: 5-lem:safety-iteration
 
 The fixed point of iterating $ \safeOP $ on some initial set $ X $ of $ \mdp $'s vertices is the largest (w.r.t. inclusion) closed set contained in $ X $. In particular, a vertex of $ X $ which does not belong to the fixpoint cannot belong to  $\winAS(\mdp,\Safe(\vertices \setminus X))$.
 
-```
+````
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 A straightforward induction on the number of iteration shows that if a vertex $ v $ is removed in an $ i $-th iteration, then no matter what strategy Eve uses, she has to reach $ \vertices\setminus X $ in at most $ i $ steps with a positive probability. The lemma follows.
 
-```
+````
+
+%%Now getting the almost-sure winning set for reachability entails repeated computation of positive winning sets on smaller and smaller sub-MDPs of $\mdp$.
+
+
+%To get the almost-surely winning set, we define the operator $\OPAS(c,\cdot)\colon \closed(\mdp) \rightarrow \closed(\mdp)$, parametrized by a colour $\genColour$, whose computation is shown in {numref}`5-algo:reach-opas`. Note that the algorithm terminates 
+
+%\item We set $Y=\winPos(\mdp_X,\Reach(\genColour))$.%\end{itemize}
 
 
 
-
-
-
-
-
-
-```{figure} ./../5-algo:safety.png
+```{figure} ./../FigAndAlgos/5-algo:safety.png
 :name: 5-algo:safety
 :align: center
 An algorithm computing $\winAS(\mdp,\Safe(\genColour))$
 ```
 
-```{prf:theorem} Complexity of the almost-sure safety winning set
+````{prf:theorem} Complexity of the almost-sure safety winning set
 :label: 5-thm:safety-main
 
 {numref}`5-algo:safety` computes the set $\winAS(\mdp,\Safe(\genColour))$ in strongly polynomial time. Moreover, there exists a memoryless deterministic strategy, computable in polynomial time, that is almost-surely winning from every vertex of $\winAS(\mdp,\Safe(\genColour))$.
 
-```
+````
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 The correctness follows immediately from  {prf:ref}`5-lem:safety-iteration`. The algorithm makes at most linearly many iterations, each of which has at most linear complexity. Hence, the complexity is at most quadratic. The strong polynomiality is testified by the fact that the algorithm only tests whether a 
 probability of a given transition is positive or not, for which the exact 
 values of positive probabilities are irrelevant. Clearly the output of the algorithm is a closed set, and hence for each $ v\in  \winAS(\mdp,\Safe(\genColour))$ there is an action $ a_v $ such that all edges in the support of $ \probTranFunc(v,a_v)  $ lead back to $ \winAS(\mdp,\Safe(\genColour)) $. Any MD strategy which in each $ v\in  \winAS(\mdp,\Safe(\genColour)) $ chooses $ a_v $ with probability 1 is a.s. winning inside $ \winAS(\mdp,\Safe(\genColour)) $, which proves the last part of the lemma.
 
-```
+````
 
 
 
-
-```{figure} ./../5-algo:reach-as.png
+```{figure} ./../FigAndAlgos/5-algo:reach-as.png
 :name: 5-algo:reach-as
 :align: center
 An algorithm computing $\winAS(\mdp,\Reach(\genColour))$
 ```
 
-With a.s. safety solved, we go back to a.s. reachability, which is solved via {numref}`5-algo:reach-as`. Note that in the first iteration, the algorithm computes the set $\winAS(\mdp,\Safe(Z))$ where $ Z =  \winPos(\mdp,\Reach(\genColour))$. We might be tempted to think that this set already equals $ \winAS(\mdp,\Reach(\genColour)) $, but this is not the case. To see this, consider an MDP with three states $ u,v,t $ and two actions $ a,b $ such that $ t $ is coloured by $ \Win $, both actions self loop in $ v $ and $ t $, and $ \probTranFunc(t \mid u,a) = \probTranFunc(v \mid u,a) = \frac{1}{2} $ while $ \probTranFunc(u \mid u,b) = 1 $. Then $ \winAS(\mdp,\Reach(\Win)) = \{t\} $ while at the same time $ \winAS(\mdp,\Safe( \winPos(\mdp,\Reach(\Win)))) = \{u,t\}$. However, iterating the computation works, as shown in the following theorem.
+With a.s. safety solved, we go back to a.s. reachability, which is solved via {numref}`5-algo:reach-as`. Note that in the first iteration, the algorithm computes the set$\winAS(\mdp,\Safe(Z))$ where $ Z =  \winPos(\mdp,\Reach(\genColour))$. We might be tempted to think that this set already equals $ \winAS(\mdp,\Reach(\genColour)) $, but this is not the case. To see this, consider an MDP with three states $ u,v,t $ and two actions $ a,b $ such that $ t $ is coloured by $ \Win $, both actions self loop in $ v $ and $ t $, and $ \probTranFunc(t \mid u,a) = \probTranFunc(v \mid u,a) = \frac{1}{2} $ while $ \probTranFunc(u \mid u,b) = 1 $. Then $ \winAS(\mdp,\Reach(\Win)) = \{t\} $ while at the same time $ \winAS(\mdp,\Safe( \winPos(\mdp,\Reach(\Win)))) = \{u,t\}$. However, iterating the computation works, as shown in the following theorem.
 
-```{prf:theorem} Algorithm for the almost-sure reachability winning set
+````{prf:theorem} Algorithm for the almost-sure reachability winning set
 :label: 5-thm:as-char
 
 {numref}`5-algo:reach-as` computes $\winAS(\mdp,\Reach(\genColour))$ in strongly polynomial time. Moreover, there is an MD strategy, computable in strongly polynomial time, that is almost-surely winning from every vertex of $\winAS(\mdp,\Reach(\genColour))$.
 
-```
+````
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 Since the set $ W $ can only decrease in each iteration, the algorithm terminates.
 We prove that upon termination, $W$ equals $\winAS(\mdp,\Reach(\genColour))$.
 
-We start with the $ \subseteq $ direction. We have $W \subseteq \winPos(\mdp_W,\Reach(\genColour))$. By  {prf:ref}`5-thm:positive-char` there exists an MD strategy $\sigma$ in $\mdp_W$ which is positively winning from each vertex of $W$. We show that the same strategy is also almost-surely winning from each vertex of $W$ in $\mdp_W$ and thus also from each vertex of $W$ in $\mdp$, which also proves the second part of the theorem. 
-Let $v$ be any vertex of $W$ and denote $|W|$ by $\ell$. Since $\sigma$ is memoryless, it guarantees that a vertex of $\vertices_{\genColour}$ is reached with a positive probability in at most $\ell$ steps (see also the construction of $ \sigma $ in the proof of  {prf:ref}`5-thm:positive-char`), and since it is also deterministic, it guarantees that the probability $p$ of reaching $\vertices_{\genColour}$ in at most $\ell$ steps is at least $p_{\min}^{\ell}$, where  $p_{\min}$ is the smallest non-zero edge probability in $\mdp_W$. Now imagine that $\ell$ steps have elapsed and we have not yet reached $\vertices_{\genColour}$. This happens with a probability at most $(1-p_{\min}^\ell)$. However, even after these $\ell$ steps we are still in $W$, since $ \sigma  $ is a strategy in $ \mdp_w $. Hence, the probability that we do not reach $\vertices_\genColour$ within the first $2\ell$ steps is bounded by $(1-p_{\min}^\ell)^{2}$. To realize why this is the case, note that any finite play $\play$ of length $2\ell$ can be split into two halves, $\play',\play''$ of length $\ell$, and then $\probm^{\sigma}_{v}(\cylinder(\play))=\probm^{\sigma}_{v}(\cylinder(\play'))\cdot\probm^{\sigma}_{\last(\play')}(\cylinder(\play''))$ (here we use the fact that $\sigma$ is memoryless). Using this and some arithmetic, one can show that, denoting $\mathit{Avoid}_i$ the set of all plays that avoid the vertices of $\vertices_{\genColour}$ in steps $\ell\cdot(i-1)$ to $\ell\cdot(i)-1$, it holds 
+We start with the $ \subseteq $ direction. We have $W \subseteq \winPos(\mdp_W,\Reach(\genColour))$. By  {prf:ref}`5-thm:positive-char` there exists an MD strategy $\sigma$ in $\mdp_W$ which is positively winning from each vertex of $W$. We show that the same strategy is also almost-surely winning from each vertex of $W$ in $\mdp_W$ and thus also from each vertex of $W$ in $\mdp$, which also proves the second part of the theorem. Let $v$ be any vertex of $W$ and denote $|W|$ by $\ell$. Since $\sigma$ is memoryless, it guarantees that a vertex of $\vertices_{\genColour}$ is reached with a positive probability in at most $\ell$ steps (see also the construction of $ \sigma $ in the proof of  {prf:ref}`5-thm:positive-char`), and since it is also deterministic, it guarantees that the probability $p$ of reaching $\vertices_{\genColour}$ in at most $\ell$ steps is at least $p_{\min}^{\ell}$, where  $p_{\min}$ is the smallest non-zero edge probability in $\mdp_W$. Now imagine that $\ell$ steps have elapsed and we have not yet reached $\vertices_{\genColour}$. This happens with a probability at most $(1-p_{\min}^\ell)$. However, even after these $\ell$ steps we are still in $W$, since $ \sigma  $ is a strategy in $ \mdp_w $. Hence, the probability that we do not reach $\vertices_\genColour$ within the first $2\ell$ steps is bounded by $(1-p_{\min}^\ell)^{2}$. To realize why this is the case, note that any finite play $\play$ of length $2\ell$ can be split into two halves, $\play',\play''$ of length $\ell$, and then $\probm^{\sigma}_{v}(\cylinder(\play))=\probm^{\sigma}_{v}(\cylinder(\play'))\cdot\probm^{\sigma}_{\last(\play')}(\cylinder(\play''))$ (here we use the fact that $\sigma$ is memoryless). Using this and some arithmetic, one can show that, denoting $\mathit{Avoid}_i$ the set of all plays that avoid the vertices of $\vertices_{\genColour}$ in steps $\ell\cdot(i-1)$ to $\ell\cdot(i)-1$, it holds 
 $$
 \probm^{\sigma}_{v}(\mathit{Avoid}_1\cap \mathit{Avoid}_2) \leq \probm^{\sigma}_{v}(\mathit{Avoid}_1)\cdot \max_{u\in W\setminus \vertices_{\genColour}}\probm^{\sigma}_{u}(\mathit{Avoid}_1)\leq (1-p_{\min}^\ell)^{2}.
 $$
@@ -348,21 +344,19 @@ Now we prove the $ \supseteq $ direction. Denote $X=\winAS(\mdp,\Reach(\genColou
 
 The complexity follows form \Cref{5-cor:pos-complexity} and  {prf:ref}`5-thm:safety-main`; and also from the fact that the main loop must terminate in $ \leq |\vertices| $ steps. The strong polynomiality again follows from the algorithm being oblivious to precise probabilities.
 
-```
+````
 
+%\begin{claim}%If there is an MD strategy positively winning for $ \Reach(\genColour) $ in every vertex of the MDP, then the same strategy a.s. winning for $ \Reach(\genColour) $ from every vertex.We also have a complementary hardness result. %following:
 
-
-We also have a complementary hardness result. 
-
-```{prf:theorem} Complexity of the almost-sure reachability winning set
+````{prf:theorem} Complexity of the almost-sure reachability winning set
 :label: 5-thm:as-complexity
 
 The problem of determining whether a given vertex of a given MDP belongs to 
 $\winAS(\mdp,\Reach(\genColour))$ is \P-complete.
 
-```
+````
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 We procced by a reduction 
@@ -393,22 +387,21 @@ easy to check that a gate of $\mathcal{C}$ evaluates to $\mathit{true}$ if and
 only if the corresponding vertex belongs to 
 $\winAS(\mdp_{\mathcal{C}},\Reach(\mathit{true}))$.
 
-```
+````
 
 > **Positive safety**
 
  We conclude this section by a discussion of positive safety. 
 
-
-```{prf:theorem} Algorithm for the positive safety winning set
+````{prf:theorem} Algorithm for the positive safety winning set
 :label: 5-thm:pos-safety-main
 
 Let $ \mdp_{\bar\genColour} $ be an MDP obtained from $ \mdp $ by changing all $ \genColour $-coloured vertices to sinks (i.e. all actions in these vertices just self loop on the vertex). Then
 $ \winPos(\mdp,\Safe(\genColour)) = \winPos(\mdp_{\bar\genColour},\Reach(\winAS(\mdp_{\bar\genColour},\Safe(\genColour))) ) $. In particular, the set $ \winPos(\mdp,\Safe(\genColour)) $ can be computed in a strongly polynomial time and there exists a memoryless deterministic strategy, computable in strongly polynomial time, that is positively winning from every vertex of $\winPos(\mdp,\Safe(\genColour))$.
 
-```
+````
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 Clearly $ \winPos(\mdp,\Safe(\genColour)) = \winPos(\mdp_{\bar{\genColour}},\Safe(\genColour)) $ and $ \winAS(\mdp,\Safe(\genColour)) = \winAS(\mdp_{\bar{\genColour}},\Safe(\genColour)) $; and moreover the corresponding winning strategies easily transfer between the two MDPs (for a safety objective, the behaviour after visiting a $ \genColour $-coloured state is inconsequential).
@@ -421,5 +414,6 @@ Now fix any strategy $ \sigma $ starting in a vertex $v \in X $. By definition o
 
 The complexity follows from the results on positive reachability and a.s. safety.
 
-```
+````
 
+%studied in this chapter, and in particular, the almost-sure reachability %values in mean-payoff MDPs, for which we give a polynomial-time algorithm %establishing {prf:ref}`5-thm:as-complexity`. However, the algorithm we presented in %polynomial time}. %probability of a given transition is positive or not, for which the exact %%\label{5-thm:qual-reach-sp}%$\winAS(\mdp,\Reach(\genColour))$, as well as the corresponding winning %\end{theorem}

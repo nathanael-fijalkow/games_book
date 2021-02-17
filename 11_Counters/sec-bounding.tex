@@ -1,5 +1,5 @@
 \subsection{Bounded Semantics}
-\label{12-bounding}
+\label{11-bounding}
 
 While \Adam wins immediately in an "energy game" if a resource gets
 depleted, he also wins in a "bounding game" if a resource reaches a
@@ -30,10 +30,10 @@ thus $|V^B|=|\Loc| B^\dd+1$, and the qualitative games of
 Our focus here is on "non-termination" games played on the "bounded
 semantics" where~$B$ is not given as part of the input, but quantified
 existentially.  As usual, the "existential initial credit" variant
-of \cref{12-pb-bounding} is obtained by quantifying~$\vec v_0$
+of \cref{11-pb-bounding} is obtained by quantifying~$\vec v_0$
 existentially in the question.
 \decpb["bounding game" with "given initial credit"]%
-{\label{12-pb-bounding} A "vector system"
+{\label{11-pb-bounding} A "vector system"
   $\?V=(\Loc,\Act,\Loc_\mEve,\Loc_\mAdam,\dd)$, an initial location
   $\loc_0\in\Loc$, and an initial credit $\vec v_0\in\+N^\dd$.}%
   {Does there exist $B\in\+N$ such that \Eve has a strategy to avoid the
@@ -42,7 +42,7 @@ existentially in the question.
   the ""bounding"" game $(\bounded(\?V),\col,\Safe)$ from
   $\loc_0(\vec v_0)$, where $\col(e)\eqdef\Lose$ if and only if $\ing(e)=\sink$?}
 
-\begin{lemma}\label{12-parity2bounding}
+\begin{lemma}\label{11-parity2bounding}
   There is a \logspace\ reduction from "parity@parity vector games"
   "asymmetric" "vector games" to "bounding games", both with "given"
   and with "existential initial credit".
@@ -52,7 +52,7 @@ existentially in the question.
   $\?V=(\Loc,\Act,\Loc_\mEve,\Loc_\mAdam,\dd)$, a location colouring
   $\lcol{:}\,\Loc\to\{1,\dots,2d\}$, and an initial location
   $\loc_0\in\Loc$, we construct a "vector system" $\?V'$ of dimension
-  $\dd'\eqdef\dd+d$ as described in \cref{12-fig-bounding}, where the
+  $\dd'\eqdef\dd+d$ as described in \cref{11-fig-bounding}, where the
   priorities in~$\?V$ for $p\in\{1,\dots,d\}$ are indicated above the
   corresponding locations.
   
@@ -111,8 +111,8 @@ existentially in the question.
       (a0) edge node{$\vec 0$} (a1)
       (a2) edge node{$-\vec e_{\dd+p}$} (a3);
     \end{tikzpicture}
-    \caption{\label{12-fig-bounding}Schema of the reduction to
-      "bounding games" in the proof of \cref{12-parity2bounding}.}
+    \caption{\label{11-fig-bounding}Schema of the reduction to
+      "bounding games" in the proof of \cref{11-parity2bounding}.}
   \end{figure}
   
   If \Eve wins the "bounding game" played over $\?V'$ from some
@@ -120,7 +120,7 @@ existentially in the question.
   vector game" played over~$\?V$ from the configuration $\loc_0(\vec
   v'_0)$ where $\vec v'_0$ is the projection of $\vec v_0$
   to~$\+N^\dd$.  Indeed, she can play essentially the same strategy:
-  by \cref{12-fact-mono} she can simply ignore the new decrement
+  by \cref{11-fact-mono} she can simply ignore the new decrement
   self loops, while the actions on the components in
   $\{\dd+1,\dots,\dd+d\}$ ensure that the maximal priority visited
   infinitely often is even---otherwise some decrement $-\vec
@@ -133,7 +133,7 @@ existentially in the question.
   $\natural(\?V)$ with the colouring defined by~$\lcol$.  Then the
   "Pareto limit" of the game is finite, thus there exists a natural
   number
-  \begin{equation}\label{12-b0}
+  \begin{equation}\label{11-b0}
     B_0\eqdef 1+\max_{\loc_0(\vec v_0)\in\mathsf{Pareto}(\?G)}\|\vec
   v_0\|
   \end{equation} bounding the "norms" of the minimal winning configurations.
@@ -142,7 +142,7 @@ existentially in the question.
   $\capp[B_0]v(i)\eqdef\vec v(i)$ if $\vec v(i)<B_0$ and
   $\capp[B_0]v\eqdef B_0$ if $\vec v(i)\geq B_0$.
 
-  %% \begin{claim}\label{12-cl-capped}
+  %% \begin{claim}\label{11-cl-capped}
   %%   If $\loc(\vec v)\in\WE(\game)$, then $\loc(\capp[B_0]v)\in\WE(\game)$.
   %% \end{claim}
   %% Indeed, by definition of the "Pareto limit"~$\mathsf{Pareto}(\game)$,
@@ -152,7 +152,7 @@ existentially in the question.
   %% Thus $\loc(\capp[B_0]v)\in\WE(\game)$.
 
   Consider now some configuration $\loc_0(\vec
-  v_0)\in\mathsf{Pareto}(\game)$.  As seen in \cref{12-fact-finmem},
+  v_0)\in\mathsf{Pareto}(\game)$.  As seen in \cref{11-fact-finmem},
   since $\loc_0(\vec v_0)\in\WE(\game)$, there is a finite
   "self-covering tree" witnessing the fact, and an associated winning
   strategy.  Let $H(\loc_0(\vec v_0))$ denote the height of this
@@ -160,7 +160,7 @@ existentially in the question.
   tree have norm bounded by $\|\vec v_0\|+\|\Act\|\cdot H(\loc_0(\vec
   v_0))$.
   Let us define
-  \begin{equation}\label{12-b}
+  \begin{equation}\label{11-b}
    B\eqdef B_0+(\|\Act\|+1)\cdot \max_{\loc_0(\vec
   v_0)\in\mathsf{Pareto}(\?G)}H(\loc_0(\vec v_0))\;.
   \end{equation}
@@ -175,7 +175,7 @@ existentially in the question.
   only if $\ing(e)=\sink$.  Let $\vec b\eqdef\sum_{1\leq p\leq
   d}(B-1)\cdot\vec e_{\dd+p}$.
   {\renewcommand{\qedsymbol}{}
-  \begin{claim}\label{12-cl-parity2bounding} If $\loc_0(\vec
+  \begin{claim}\label{11-cl-parity2bounding} If $\loc_0(\vec
     v)\in\WE(\game)$, then
     $\loc_0(\capp[B_0]{v}+\vec b)\in\WE(\game_B)$.
   \end{claim}}
@@ -187,9 +187,9 @@ existentially in the question.
   "self-covering tree" of height~$H(\loc_0(\vec v_0))$ associated
   to~$\loc_0(\vec v_0)$, and the strategy~$\sigma'$ defined by the
   memory structure from the
-  proof of \cref{12-fact-finmem}.  This is a winning strategy for \Eve
+  proof of \cref{11-fact-finmem}.  This is a winning strategy for \Eve
   in $\game$ starting from $\loc_0(\vec v_0)$, and
-  by \cref{12-fact-mono}, it is also winning
+  by \cref{11-fact-mono}, it is also winning
   from~$\loc_0(\capp[B_0]v)$.
     
   Here is how \Eve wins $\game_B$ from~$\loc_0(\capp[B_0]v+\vec b)$.
@@ -218,13 +218,13 @@ existentially in the question.
   play to go negative.\todoquestion{Is that clear enough?}
 \end{proof}
 
-The bound~$B$ defined in~\cref{12-b} in the previous proof is not
+The bound~$B$ defined in~\cref{11-b} in the previous proof is not
 constructive, and possibly much larger than really required.
 Nevertheless, one can sometimes show that an explicit~$B$ suffices in
 a "bounding game".
 A simple example is provided by the "coverability" "asymmetric"
 "vector games" with "existential initial credit" arising from
-\cref{12-cov2parity}, i.e., where the objective is to reach some
+\cref{11-cov2parity}, i.e., where the objective is to reach some
 location~$\loc_f$.  Indeed, it is rather straightforward that there
 exists a suitable initial credit such that \Eve wins the game if and
 only if she wins the finite reachability game played over the
@@ -241,7 +241,7 @@ along very different lines and is too involved to fit in this chapter,
 but we refer the reader
 to \cite{Jurdzinski&Lazic&Schmitz:2015,Colcombet&Jurdzinski&Lazic&Schmitz:2017}
 for details.
-\begin{theorem}\label{12-th-bounding}
+\begin{theorem}\label{11-th-bounding}
   If \Eve wins a "bounding game" with "existential initial credit"
   defined by a "vector
   system"~$\?V=(\Loc,\Act,\Loc_\mEve,\Loc_\mAdam,\dd)$, then an
@@ -250,7 +250,7 @@ for details.
   $B=2(4|\Loc|\cdot\|\Act\|)^{2(\dd+2)^3}+1$ suffice for this.
 \end{theorem}
 
-\Cref{12-th-bounding} also yields a way of handling "bounding games"
+\Cref{11-th-bounding} also yields a way of handling "bounding games"
 with "given initial credit".  
 \TODO{Last missing bit regarding complexity upper bounds.}
   

@@ -1,0 +1,19 @@
+\documentclass[preview,border=0mm,convert={density=600,outext=.png}]{standalone}
+\usepackage{tikz}
+\usetikzlibrary{automata,shapes,patterns,calc,arrows}
+\input{tikz-style.tex}
+\input{norenew_macros.tex}
+\input{./../9_Timed/norenew_macros_local.tex}
+\usepackage{amsfonts}
+\begin{document}
+\begin{tikzpicture}[node distance=2cm,auto]
+    \tikzstyle{every state}=[minimum size=17pt,inner sep=0pt]
+       \node[state] at (1,0) (A) {$\ell_0$};
+    \node[state,right of=A] (B) { $\ell_1$};
+    \node[state,left of=A] (C) {$\ell_2$};
+    \path[initial] (A.-135) edge +(-135:3mm);
+    \path[arrow] 
+    (A) edge node[above] {$0<x<1$} (B)
+    (A) edge[dashed] node[above] {$0<x < 1$} (C);
+  \end{tikzpicture}
+\end{document}

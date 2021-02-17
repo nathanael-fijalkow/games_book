@@ -14,8 +14,22 @@
 \newcommand{\bh}{\setminus}
 \newcommand{\signauxdeux}{T}
 \newcommand{\actionsun}{A}
+\newcommand{\Strat}{\text{Strat}}
 \newcommand{\Act}{\text{Act}}
 \newcommand{\ini}{\delta_0}
+\newcommand{\win}{{\tt Win}}
+\newcommand{\winreach}{{\tt Reach}}
+\newcommand{\winsafe}{{\tt Safety}}
+\newcommand{\winbuchi}{{\tt Buchi}}
+\newcommand{\wincobuchi}{{\tt CoBuchi}}
+\newcommand{\states}{V}
+\newcommand{\ar}{\arena}
+\newcommand{\action}{a}
+\newcommand{\belun}{\mathcal{B}_{\text{Eve}}}
+\newcommand{\beldeux}{\mathcal{B}_{\text{Adam}}}
+\newcommand{\deuxbelun}{\mathcal{B}^{(2)}_{Eve}}
+\newcommand{\tp}{\Delta}
+\newcommand{\parties}[1]{\ensuremath{\mathcal{P}(#1)}}
 \newcommand{\Eve}{\textrm{Eve}}
 \newcommand{\Adam}{\textrm{Adam}}
 \newcommand{\set}[1]{\left\{ #1 \right\}}
@@ -76,6 +90,9 @@
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
+\newcommand{\EXP}{\textrm{EXP}}
+\newcommand{\kEXP}{\textrm{kEXP}}
 ```
 We start with some results on the very interesting class of game
 with finite duration.
@@ -120,12 +137,14 @@ $$
 
 while Adam wants to minimize it.
 
-\subsection{Existence and computability of the value}
+
+(8-subsec:value)=
+## Existence and computability of the value
 
 Next theorem gathers several folklore results.
 
-```{prf:theorem} NEEDS TITLE thm:finiteimperfecthaveval
-:label: thm:finiteimperfecthaveval
+````{prf:theorem} Finite duration games
+:label: 8-thm:finiteimperfecthaveval
 
 A game with finite duration and imperfect information has a value:
 for every initial distribution $\ini$,
@@ -137,12 +156,17 @@ $$
 $$
 
 This value is denoted $\val(\ini)$
-and is computable~\footnote{provided payoffs are presented in a way
+and is computable.
+
+```{margin}
+provided payoffs are presented in a way
 compatible with linear solvers, typically 
-rational values.}.
+rational values.
+```
+
 Both players have optimal strategies.
 
-```
+````
 
 > **Reduction to normal form.**
 
@@ -169,7 +193,7 @@ and Eve receives payoff
 $\mathbb{E}_{\ini}^{\sigma,\tau}$.
 There are finitely many such deterministic strategies,
 thus the normal form game is a **matrix game**.
-See Section~\ref{sec:matrixgames} for more details
+See Section {ref}`7-sec:matrix_games` for more details
 about matrix games.
 
 > **An example.**
@@ -177,8 +201,7 @@ about matrix games.
 In the simplified poker example,
 the reduction is as follows.
 
-We rely on the formal description of the game 
-at the end of Section~\ref{subsec:formalimp}
+We rely on the formal description of the game at the end of~\cref{subsec:formalimp}
 and perform two simplifications.
 First, we only consider strategies playing moves according to the rules,
 other strategies are strategically useless.
@@ -212,9 +235,13 @@ $$
 $$
 
 The first line corresponds to Eve never raising,
-thus her odds are +1 euro at $25\and -1 at $75\$-0.5$.
+thus her odds are +1 euro at $25\%$ 
+and -1 at $75\%$ thus an expected payoff of
+$-0.5$.
 The third line corresponds to Eve always raising.
-If Adam calls then her odds are +3 at $25\and -3 at $75\If Adam folds, she gets payoff +1.
+If Adam calls then her odds are +3 at $25\%$
+and -3 at $75\%$, on average $-1.5$.
+If Adam folds, she gets payoff +1.
 
 Remark that the rows where Eve checks with $\spadesuit$
 are dominated by the corresponding row where Eve does not.
@@ -242,28 +269,24 @@ Adam has a unique optimal strategy which consists in calling or folding
 with equal probability $\frac{1}{2}$\enspace.
  
  
-> **Proof of Theorem~\ref{thm:finiteimperfecthaveval**
+> **Proof of {prf:ref}`8-thm:finiteimperfecthaveval`.**
 
-.}
 The example illustrates
 the correspondance between behavioural strategies in the finite-duration game on one side
 and mixed strategies in the normal form game on the other.
 In the general case, the correspondance can be stated as follows.
 
-\newcommand{\Strat}{\text{Strat}}
-
-```{prf:lemma} NEEDS TITLE lem:impinffinite
-:label: lem:impinffinite
+````{prf:lemma} NEEDS TITLE 8-lem:impinffinite
+:label: 8-lem:impinffinite
 
 Denote $\Strat$ the set of behavioural strategies,
 $\Strat_d$ the subset of deterministic strategies
 and $\dist(\Strat_d)$ the set of strategies in the normal form game.
 
-1. [i)]
-There is a mapping 
+1.  There is a mapping 
 $
 \Phi : \Strat \to \dist(\Strat_d)
-$ 
+$ %in the normal form game 
 which preserves payoffs:
 
 $$
@@ -275,12 +298,11 @@ $$
 $$
 
 
-2. [ii)]
-Since actions are observable,
+2.  Since actions are observable,
 there is a mapping 
 $
 \Phi' : \dist(\Strat_d) \to \Strat 
-$ 
+$ %in the  imperfect information game  
 which preserves payoffs:
 
 $$
@@ -293,16 +315,15 @@ $$
 $$
 
 
-3. [iii)]
-$\Phi'\circ \Phi$ is the identity.
+3.  $\Phi'\circ \Phi$ is the identity.
 
-```
+````
 
 We assumed earlier that each player can observe
 its own actions. This hypothesis is necessary for ii) and iii)
 to hold in general.
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 We start with i).
@@ -325,8 +346,7 @@ $\sigma=\Phi'(\Sigma)$ is as follows.
 Let $s_0\ldots s_k$ be a finite sequence of signals.
 Since actions are observable, this defines unambigously
 the sequence of corresponding actions $a_0\ldots a_k$
-where $a_i = \Act(s_i)$.
-We set $\sigma(s_0\ldots s_k)(a)$ to be the probability that a 
+where $a_i = \Act(s_i)$.%consistent with $s_0\ldots s_k$ and $a_0\ldots a_k$ :%Z =\{ \sigma' \in \Strat_d \mid \forall 0\leq i \leq k,% \} \enspace.We set $\sigma(s_0\ldots s_k)(a)$ to be the probability that a 
 deterministic strategy
 chosen with $\Sigma$ chooses action $a$ after signals
 $s_0\ldots s_k$, conditioned on the fact that it has already
@@ -340,11 +360,9 @@ $$
 $$
 
 where the vertical pipe denotes a conditional probability.
+````
 
-```
-
-We proceed with the proof of  Theorem~\ref{thm:finiteimperfecthaveval}.
-According to Theorem~\ref{lem:mat},
+We proceed with the proof of {prf:ref}`8-thm:finiteimperfecthaveval`.According to {prf:ref}`8-lem:mat`,
 the normal form has a value and optimal strategies
 for each player. 
 Denote $\val_N$ the value
@@ -364,8 +382,7 @@ $$
 \geq \val_N\enspace,
 $$
 
-where the first equalities are applications of 
-Lemma~\ref{lem:impinffinite}
+where the first equalities are applications of {prf:ref}`8-lem:impinffinite`
 and the inequality is by optimality of $\Sigma^\sharp$.
 Symmetrically, 
 $\tau^\sharp=\Phi'(T^\sharp)$ guarantees 
@@ -374,9 +391,8 @@ Thus the value of the game with finite duration
 is $\val_N$ and $\sigma^\sharp$
 and $\tau^\sharp$ are optimal.\qed
 
-\subsection{ The Koller-Meggido-von Stengel reduction to linear programming}
-
-
+(8-subsec:reduction_linear_programming)=
+## The Koller-Meggido-von Stengel reduction to linear programming
 
 The reduction of a finite-duration game with imperfect information
 to its normal form proves that the value exists and
@@ -391,36 +407,32 @@ might contain all sequences of $S$ of length $\leq n$.
 Koller, Meggido and von Stengel did provide a
 more efficient direct reduction to linear programming.
 Strategies of Eve in the normal form game live
-in $\RR^{A^{R_E}}$
+in $\R^{A^{R_E}}$
 while her strategies in the game with imperfect information
 live in a space
 with exponentially fewer dimensions, namely
-$\RR^{R_E\times A}$.
+$\R^{R_E\times A}$.
 The direct reduction avoids this dimensional blowup.
 
 
-```{prf:theorem} NEEDS TITLE AND LABEL 
+````{prf:theorem} NEEDS TITLE AND LABEL 
 The value of a game with imperfect information
 can be computed by a linear program with
 $|R_E| + |R_A|$ variables.
  
-:label: 
-The value of a game with imperfect information
-can be computed by a linear program with
-$|R_E| + |R_A|$ variables.
 
 The value of a game with imperfect information
 can be computed by a linear program with
 $|R_E| + |R_A|$ variables.
 
-```
+````
 
 As a consequence, in the particular case where the game graph is a tree
 then $|R_E|\leq n$ and $|R_A|\leq n$
 and the value can be computed in polynomial time,
 like stated in {cite}`stengel`.
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 The construction of the linear program relies on three key ideas.
@@ -454,8 +466,7 @@ $p_{s_0\ldots s_{n-1}}=\sum_{a\in A} p_{s_0\ldots s_{n-1}a}$ \enspace.
  The second key idea is to introduce variables evaluating the contribution of a 
  (realisable) sequence
  of signals of Adam to the total expected payoff Eve.
- These contributions are represented by variables $(v_r)_{r \in R_A}$.
- 
+ These contributions are represented by variables $(v_r)_{r \in R_A}$. 
  The third key idea is to aggregate the product of transition
  probabilities along a play.
 For every play $(v_0,a_0,b_0,s_0,t_0,c_0),\ldots,(v_k,a_k,b_k,s_k,t_k,c_k)$
@@ -474,7 +485,6 @@ We show that the following linear program with variables
  For every sequences of signals $r \in R_A$
  we denote $T_A(r)$ the (possibly empty)
  set of terminal plays whose sequence of signals for Adam is $r$.
-
 \begin{align}
 &\text{Maximise $v_{\epsilon}$ subject to}
 \notag\\
@@ -484,14 +494,11 @@ We show that the following linear program with variables
 \notag\\
 \notag\forall r \in R_A,
 \forall a \in A,&
-\\
-&
+\\&
 \label{eq:implp2}
 v_{r} \leq \sum\limits_{\substack{rs \in R_A\\s \in S, \Act(s)=a}}
 v_{rs}~+~\sum\limits_{\pi \in T(r)} \mathbb{E}(\pi) \cdot \pay(\pi) \cdot 
-p_{r_E(\pi)}
-\end{align}
-
+p_{r_E(\pi)}\end{align}
 For our purpose,
 it is enough to establish 
 that the optimal solution of the LP
@@ -541,53 +548,14 @@ different from $\tau(r)$ after $r$ cannot be profitable to Adam,
 hence~\eqref{eq:implp2} holds.
 Finally, $(p_r)_{r \in R_E}$, $(v_r)_{r\in R_A}$ is a feasible solution.
 
-```
+````
 
 > **An example.**
 
 
 The following linear program computes the value
 of the simplified poker example.
-$\text{Maximise $v_{\epsilon}$ subject to}$
-\begin{align*}
-\forall r \in R_E,~& 0\leq p_r \leq 1\\
-&p_{\spadesuit,{\tt check} } +  p_{\spadesuit,{\tt raise} } = 1\\
-&p_{\blacksquare,{\tt check} } +  p_{\blacksquare,{\tt raise} } = 1\\
-&v_\epsilon \leq v_\circ \leq v_{\circ, {\tt check}} + v_{\circ, {\tt raise}}\\
-&v_{\circ, {\tt check}}\leq  \frac{1}{4} \cdot p_{\spadesuit,{\tt check} } \cdot (+1) 
-+ \frac{3}{4} \cdot p_{\blacksquare,{\tt check} } \cdot (-1)\\
-&v_{\circ, {\tt raise}} \leq \frac{1}{4} \cdot p_{\spadesuit,{\tt raise} } \cdot (+1) + \frac{3}{4} \cdot p_{\blacksquare,{\tt raise} } \cdot (+1)\\
-&v_{\circ, {\tt raise}} \leq \frac{1}{4} \cdot p_{\spadesuit,{\tt raise} } \cdot (+3) + \frac{3}{4} \cdot p_{\blacksquare,{\tt raise} } \cdot (-3)
-\end{align*}
-Setting $x=p_{\spadesuit,{\tt check} }$
-and $y=  p_{\blacksquare,{\tt check} }$,
-the solution is
-\begin{align*}
-&
-\frac{1}{4}\max_{(x,y)\in[0,1]^2}
-\left(
-{x - 3y}
-+
-\min\left(
-{(1-x) +  3 (1-y)},
-{3(1-x) - 9(1-y)}
- \right)\right)\\
- =&
- \frac{1}{4}\max_{(x,y)\in[0,1]^2}
-\min\left(
-4 - 6y,
--6 -2x + 6y   
-\right)
-=
- \frac{1}{4}\max_{y\in[0,1]}
-\min\left(
-4 - 6y,
--6 + 6y   
-\right)
- \enspace,
-\end{align*}
-which is maximal when $y=\frac{5}{6}$
-and the solution is $-\frac{1}{4}$.
+DEAL WITH LINEAR PROGRAMS!%Maximise $v_{\epsilon}$ subject to%\begin{align*}%&p_{\spadesuit,{\tt check} } +  p_{\spadesuit,{\tt raise} } = 1\\%&v_\epsilon \leq v_\circ \leq v_{\circ, {\tt check}} + v_{\circ, {\tt raise}}\\%+ \frac{3}{4} \cdot p_{\blacksquare,{\tt check} } \cdot (-1)\\%&v_{\circ, {\tt raise}} \leq \frac{1}{4} \cdot p_{\spadesuit,{\tt raise} } \cdot (+3) + \frac{3}{4} \cdot p_{\blacksquare,{\tt raise} } \cdot (-3)%Setting $x=p_{\spadesuit,{\tt check} }$%the solution is%&%\left(%+%{(1-x) +  3 (1-y)},% \right)\right)\\% \frac{1}{4}\max_{(x,y)\in[0,1]^2}%4 - 6y,%\right)% \frac{1}{4}\max_{y\in[0,1]}%4 - 6y,%\right)%\end{align*}%and the solution is $-\frac{1}{4}$.
 
 > **Nose scratch variant.**
 
@@ -607,34 +575,7 @@ The optimal bluff frequency of Eve decreases
  from $\frac{1}{6}$ to $\frac{1}{10}$.
 Computation details follow.
 
-\begin{align*}
-&\text{Maximise $v_{\epsilon}$ subject to}
-\\
-\forall u \in R_E,~& 0\leq p_u \leq 1\\
-&p_{\spadesuit,{\tt c} } +  p_{\spadesuit,{\tt r} } = 1~~~~~p_{\blacksquare,{\tt c} } +  p_{\blacksquare,{\tt r} } = 1\\
-&v_\epsilon \leq v_{\tt s} + v_{\tt n}~~~~~v_{\tt s} \leq v_{{\tt sc}} + v_{{\tt sr}}~~~~~
- v_{\tt n} \leq v_{{\tt nc}} + v_{{\tt nr}}\\
-&v_{{\tt sc} } \leq 
- \frac{1}{4}\cdot\frac{1}{2} \cdot p_{\spadesuit,{\tt c} } \cdot (+1) 
-+ \frac{3}{4}\cdot \frac{1}{6} \cdot p_{\blacksquare,{\tt c} } \cdot (-1)\\
-&v_{{\tt nc} } \leq 
- \frac{1}{4}\cdot\frac{1}{2} \cdot p_{\spadesuit,{\tt c} } \cdot (+1) 
-+ \frac{3}{4} \cdot\frac{5}{6} \cdot p_{\blacksquare,{\tt c} } \cdot (-1)\\
-&v_{{\tt sr}} \leq \frac{1}{4}\cdot \frac{1}{2}\cdot p_{\spadesuit,{\tt r} } \cdot (+1) 
-+ \frac{3}{4} \cdot\frac{1}{6}\cdot p_{\blacksquare,{\tt r} } \cdot (+1)\\
-&v_{{\tt sr}} \leq \frac{1}{4}\cdot \frac{1}{2}\cdot p_{\spadesuit,{\tt r} } \cdot (+3) 
-+ \frac{3}{4} \cdot\frac{1}{6}\cdot p_{\blacksquare,{\tt r} } \cdot (-3)\\
-&v_{{\tt nr}} \leq \frac{1}{4}\cdot \frac{1}{2}\cdot p_{\spadesuit,{\tt r} } \cdot (+1) 
-+ \frac{3}{4} \cdot\frac{5}{6}\cdot p_{\blacksquare,{\tt r} } \cdot (+1)\\
-&v_{{\tt nr}} \leq \frac{1}{4}\cdot \frac{1}{2}\cdot p_{\spadesuit,{\tt r} } \cdot (+3) 
-+ \frac{3}{4} \cdot\frac{5}{6}\cdot p_{\blacksquare,{\tt r} } \cdot (-3)
-\end{align*}
-Set $y=p_{\blacksquare,{\tt c} }$.
-Some elementary simplifications lead to the equivalent program:
-\begin{align*}
-\max_{0\leq y \leq 1} \frac{1}{8} \left(\min\left( 8 -12y,-10 +8y
-,  6  - 8y,-12  +12y \right) \right) 
-\end{align*}
+DEAL WITH LINEAR PROGRAMS!%Maximise $v_{\epsilon}$ subject to%\begin{align*}%&p_{\spadesuit,{\tt c} } +  p_{\spadesuit,{\tt r} } = 1~~~~~p_{\blacksquare,{\tt c} } +  p_{\blacksquare,{\tt r} } = 1\\%&v_\epsilon \leq v_{\tt s} + v_{\tt n}~~~~~v_{\tt s} \leq v_{{\tt sc}} + v_{{\tt sr}}~~~~~%&v_{{\tt sc} } \leq %+ \frac{3}{4}\cdot \frac{1}{6} \cdot p_{\blacksquare,{\tt c} } \cdot (-1)\\% \frac{1}{4}\cdot\frac{1}{2} \cdot p_{\spadesuit,{\tt c} } \cdot (+1) %&v_{{\tt sr}} \leq \frac{1}{4}\cdot \frac{1}{2}\cdot p_{\spadesuit,{\tt r} } \cdot (+1) %&v_{{\tt sr}} \leq \frac{1}{4}\cdot \frac{1}{2}\cdot p_{\spadesuit,{\tt r} } \cdot (+3) %&v_{{\tt nr}} \leq \frac{1}{4}\cdot \frac{1}{2}\cdot p_{\spadesuit,{\tt r} } \cdot (+1) %&v_{{\tt nr}} \leq \frac{1}{4}\cdot \frac{1}{2}\cdot p_{\spadesuit,{\tt r} } \cdot (+3) %\end{align*}%Some elementary simplifications lead to the equivalent program:%\max_{0\leq y \leq 1} \frac{1}{8} \left(\min\left( 8 -12y,-10 +8y%\end{align*}
 The optimum is reached when $8y-10=8-12y$
 i.e. when $p_{\blacksquare,{\tt c} }=\frac{9}{10}$
 and is equal to $-\frac{7}{20}=-\frac{1}{4}-\frac{1}{10}$ .

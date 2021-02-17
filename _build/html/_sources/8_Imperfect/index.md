@@ -1,7 +1,7 @@
 (8-chap:signal)=
 # Games with Signals
 
-```{image} ./../8.jpg
+```{image} ./../Illustrations/8.jpg
 :alt: illustration
 :class: bg-primary mb-1
 :width: 400px
@@ -20,8 +20,22 @@
 \newcommand{\bh}{\setminus}
 \newcommand{\signauxdeux}{T}
 \newcommand{\actionsun}{A}
+\newcommand{\Strat}{\text{Strat}}
 \newcommand{\Act}{\text{Act}}
 \newcommand{\ini}{\delta_0}
+\newcommand{\win}{{\tt Win}}
+\newcommand{\winreach}{{\tt Reach}}
+\newcommand{\winsafe}{{\tt Safety}}
+\newcommand{\winbuchi}{{\tt Buchi}}
+\newcommand{\wincobuchi}{{\tt CoBuchi}}
+\newcommand{\states}{V}
+\newcommand{\ar}{\arena}
+\newcommand{\action}{a}
+\newcommand{\belun}{\mathcal{B}_{\text{Eve}}}
+\newcommand{\beldeux}{\mathcal{B}_{\text{Adam}}}
+\newcommand{\deuxbelun}{\mathcal{B}^{(2)}_{Eve}}
+\newcommand{\tp}{\Delta}
+\newcommand{\parties}[1]{\ensuremath{\mathcal{P}(#1)}}
 \newcommand{\Eve}{\textrm{Eve}}
 \newcommand{\Adam}{\textrm{Adam}}
 \newcommand{\set}[1]{\left\{ #1 \right\}}
@@ -82,7 +96,11 @@
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
+\newcommand{\EXP}{\textrm{EXP}}
+\newcommand{\kEXP}{\textrm{kEXP}}
 ```
+
 Written by Hugo Gimbert
 
 
@@ -98,6 +116,7 @@ we give three examples.
 
 > **Simple poker.**
 
+%Chris Ferguson, Bright Trading, Westwood, California Thomas S. Ferguson, University of California, Los Angeles
 Our first example is a finite duration game which is a simplified version of poker,
 inspired by Borel and von Neumann simplified poker {cite}`ferguson`.
 This game is played with  $4$ cards $\{\spadesuit,\heartsuit,\clubsuit,\diamondsuit\}$.

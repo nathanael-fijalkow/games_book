@@ -73,6 +73,9 @@
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
+\newcommand{\EXP}{\textrm{EXP}}
+\newcommand{\kEXP}{\textrm{kEXP}}
 ```
 The quantitative objective $\Sup$ generalises the qualitative
 objective $\Reach$ by stating numerical preferences on the target. 
@@ -101,8 +104,7 @@ We fix a shortest path game $\Game$.
 Recall that by definition:
 
 $$
-\val(v) = \sup_{\sigma} \inf_{\tau} \ShortestPath(\pi^v_{\sigma,\tau}).
-$$
+\val(v) = \sup_{\sigma} \inf_{\tau} \ShortestPath(\pi^v_{\sigma,\tau}).$$
 
 Hence for a vertex $v$ there are three possibilities: 
 
@@ -115,25 +117,25 @@ $v \notin \AttrE(\Win)$ as stated in  {prf:ref}`4-lem:detecting_minus_infinity`.
 The second case where $\val(v) \in \Z$ will be an occasion to revisit the attractor computation from Section {ref}`2-sec:attractors`
 in a quantitative setting.
 Most of the difficulty lies in the third case, where 
+%finding shortest paths in a weighted graph (with arbitrary weights) do%with these algorithms is the treatment of negative cycles: in a%shortest path, while in a weighted game, a negative cycle is only%force Eve to stay in it as long as he wants, before reaching a%of negative cycles naturally leads us to the study of mean payoff%objective with negative weights in Section {ref}`4-sec:shortestpath`.
 
-
-```{prf:lemma} NEEDS TITLE 4-lem:detecting_minus_infinity
+````{prf:lemma} NEEDS TITLE 4-lem:detecting_minus_infinity
 :label: 4-lem:detecting_minus_infinity
 
 Let $\Game$ a shortest path game and $v$ a vertex.
 Then $\val(v) = -\infty$ if and only if $v \notin \AttrE(\Win)$.
 
-```
+````
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 \mynote{TO DO}
 
-```
+````
 
 
-```{figure} ./../1-fig:optimal_strategies_shortest_path_game.png
+```{figure} ./../FigAndAlgos/1-fig:optimal_strategies_shortest_path_game.png
 :name: 1-fig:optimal_strategies_shortest_path_game
 :align: center
 An example of a shortest path game with negative weights Eve does not have an optimal strategy.
@@ -144,38 +146,36 @@ However, if she never reaches $\Win$ the outcome is $-\infty$.
 
 ## Shortest path games with non-negative weights
 
-```{prf:theorem} NEEDS TITLE 4-thm:shortest path-positive
+````{prf:theorem} NEEDS TITLE 4-thm:shortest path-positive
 :label: 4-thm:shortest path-positive
 
-Shortest path games with non-negative weights are uniformly positionally determined for both players
+Shortest path games with non-negative weights are uniformly positionally determined for both players.
 
 ```{margin}
-This positionality result does not extend to infinite games.```
-
-.
-There exists a value iteration algorithm for computing the value function of these games in polynomial time and space.
-\mynote{More precisely}, 
-
+This positionality result does not extend to infinite games.
 ```
 
-We rely on the high-level presentation of value iteration algorithms given in Section {ref}`1-sec:value_iteration`.
+There exists a value iteration algorithm for computing the value function of these games in polynomial time and space.
+\mynote{More precisely}, %the time complexity is $O(m)$ for objective $\Sup$ and $O(knm)$ for objective $\LimSup$,
+````
 
-```{prf:lemma} NEEDS TITLE 4-lem:optimal_strategies_shortest_path_games
+We rely on the high-level presentation of value iteration algorithms given in Section {ref}`1-sec:value_iteration`.
+````{prf:lemma} NEEDS TITLE 4-lem:optimal_strategies_shortest_path_games
 :label: 4-lem:optimal_strategies_shortest_path_games
 
 Let $\Game$ be a shortest path game with non-negative weights, then there exists an optimal strategy $\sigma$ for Eve.
 
-```
+````
 
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 Thanks to the assumption that the weights are positive,
 $\ShortestPath$ takes value in the non-positive integers, in particular is a set of integers bounded from above.
 This implies that the supremum is indeed a maximum.
 
-```
+````
 
 {numref}`1-fig:optimal_strategies_shortest_path_game` shows that the assumption that all weights are non-negative 
 in  {prf:ref}`4-lem:optimal_strategies_shortest_path_games` is necessary.
@@ -204,18 +204,16 @@ $$
 Thanks to  {prf:ref}`1-thm:kleene`, the operator $\Op$ has a greatest fixed point which is also the greatest post-fixed point of $\Op$.
 The latter are functions $f \in F_V$ such that $f \le \Op(f)$ and called progress measures.
 
-```{prf:lemma} NEEDS TITLE AND LABEL 
+````{prf:lemma} NEEDS TITLE AND LABEL 
 Let $\Game$ be a shortest path game with non-negative weights, then $\val$ is the greatest fixed point of $\Op$.
  
-:label: 
-Let $\Game$ be a shortest path game with non-negative weights, then $\val$ is the greatest fixed point of $\Op$.
 
 Let $\Game$ be a shortest path game with non-negative weights, then $\val$ is the greatest fixed point of $\Op$.
 
-```
+````
 
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 We show the following two properties:
@@ -226,8 +224,7 @@ We show the following two properties:
 Since the greatest fixed point of $\Op$ is also the greatest progress measure, this implies the result.
 
 We show the first item.
-Thanks to  {prf:ref}`4-lem:optimal_strategies_shortest_path_games` there exists $\sigma$ an optimal strategy for Eve.
-Consider a vertex $v$.
+Thanks to  {prf:ref}`4-lem:optimal_strategies_shortest_path_games` there exists $\sigma$ an optimal strategy for Eve.Consider a vertex $v$.
 If $v \in \VE$ we need to show that 
 
 $$
@@ -268,20 +265,20 @@ This is easily shown for finite plays by induction on the length and then for in
 This implies that $f(v) \le \val^\sigma(v) = \inf_\tau \ShortestPath(\play^v_{\sigma,\tau})$,
 and then $f(v) \le \sup_{\sigma} \val^\sigma(v) = \val(v)$.
 
-```
+````
 
 Thanks to  {prf:ref}`1-thm:kleene` $\val$ can be computed by a greatest fixed point algorithm.
 To obtain the announced complexity we carefully define the data structure.
 
 The pseudocode is given in {numref}`4-algo:value_iteration_shortest_path_non_negative`.
 
-```{figure} ./../4-algo:value_iteration_shortest_path_non_negative.png
+```{figure} ./../FigAndAlgos/4-algo:value_iteration_shortest_path_non_negative.png
 :name: 4-algo:value_iteration_shortest_path_non_negative
 :align: center
 The value iteration algorithm for shortest path games with non-negative weights.
 ```
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
   We follow a similar approach as in Dijkstra's algorithm, keeping an
@@ -339,10 +336,11 @@ The value iteration algorithm for shortest path games with non-negative weights.
   algorithm, allows one to obtain an overall complexity
   $\bigO(m+n\log(n))$. 
 
-```
+````
 
 
 ## Detection of $-\infty$ vertices with mean payoff games
+
 However, contrary to the previous payoffs, the **positional**
 determinacy result no longer holds as shows the example
 in {numref}`4-fig:memory`. In this game, there are two positional
@@ -364,7 +362,7 @@ discuss later. Notice that the possible absence of optimal positional
 strategies for Adam makes non-trivial an upper bound of the form
 $\NP\cap\coNP$ in the complexity of solving shortest path games.
 
-```{figure} ./../4-fig:memory.png
+```{figure} ./../FigAndAlgos/4-fig:memory.png
 :name: 4-fig:memory
 :align: center
 A shortest path game, with $v_2$ being the target vertex,
@@ -378,7 +376,7 @@ reach a target of $\Win$ while controlling a negative cycle along the
 way. As previously announced, this is closely related with mean payoff
 games: {cite}`Brihaye&Geeraerts&HaddadA&Monmege:2017`
 
-```{prf:theorem} NEEDS TITLE 4-thm:-infty-MP
+````{prf:theorem} NEEDS TITLE 4-thm:-infty-MP
 :label: 4-thm:-infty-MP
 
   Let $\arena$ be an arena.
@@ -395,9 +393,9 @@ games: {cite}`Brihaye&Geeraerts&HaddadA&Monmege:2017`
     $\Value^{\game'}(v) =-\infty$.
   
 
-```
+````
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
   For the first item, if $\Value^{\game'}(v)<0$, there exists a
@@ -451,10 +449,11 @@ games: {cite}`Brihaye&Geeraerts&HaddadA&Monmege:2017`
   play from $\game''$ on $\game$ therefore shows that
   $\Value^{\game}(v)\leq \Value^{\game''}(v) <0$. 
 
-```
+````
 
 
 ## A pseudopolynomial time value iteration algorithm
+
 As shown above, we can detect vertices of value $+\infty$ and
 $-\infty$ if needed. We now explain how to compute the exact optimal
 value of other vertices, by a value iteration algorithm. Similarly to
@@ -487,15 +486,15 @@ following lemma (where we again let $W=\max_{(v,c,v')\in E} |c|$), we
 know that finite values are bounded below, so that an intermediate
 step of speed-up can detect the vertices of value $-\infty$.
 
-```{prf:lemma} NEEDS TITLE 4-lem:-infty
+````{prf:lemma} NEEDS TITLE 4-lem:-infty
 :label: 4-lem:-infty
 
   In a shortest path game $\game$, all vertices $v$ with a value
   $\Value(v)<-(n-1) W$ have value $\Value(v)=-\infty$.
 
-```
+````
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
   Consider a strategy $\tau$ of Adam securing a value $<-(n-1) W$
@@ -510,7 +509,7 @@ step of speed-up can detect the vertices of value $-\infty$.
   strategy is indeed independent of $\sigma$, so that the according
   strategy indeed secures a negative mean payoff.
 
-```
+````
 
 Thus, we let $G\colon\overline\R^V\to\overline\R^V$ mapping each
 vertex $\vec x = (x_v)_{v\in V}$ to the mapping $(y_v)_{v\in V}$
@@ -536,12 +535,12 @@ reached a target vertex while getting the optimal value.
 
 {cite}`Brihaye&Geeraerts&HaddadA&Monmege:2017`
 
-```{prf:theorem} NEEDS TITLE 4-thm:SP-pseudopoly-algo
+````{prf:theorem} NEEDS TITLE 4-thm:SP-pseudopoly-algo
 :label: 4-thm:SP-pseudopoly-algo
 
   We can compute in pseudopolynomial time the values of a
   shortest path game. 
 
-```
+````
 
-
+% players: while Eve always has optimal positional strategies, Adam

@@ -67,31 +67,35 @@
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
+\newcommand{\EXP}{\textrm{EXP}}
+\newcommand{\kEXP}{\textrm{kEXP}}
 ```
 Recall that the objective $\Buchi$ requires that the colour $\Win$ appears infinitely many times
 and $\CoBuchi$ requires that the colour $\Lose$ appears finitely many times.
 
-```{prf:theorem} Positional determinacy and complexity of Buchi games
+````{prf:theorem} Positional determinacy and complexity of Buchi games
 :label: 2-thm:Buchi
 
-B&uuml;chi objectives are uniformly positionally determined for both players
+B&uuml;chi objectives are uniformly positionally determined for both players.
 
 ```{margin}
-See \cref{2-rmk:finite_infinite```
+See \cref{2-rmk:finite_infinite} for the case of infinite games.
+```
 
- for the case of infinite games.}.
 There exists an algorithm for computing the winning regions of B&uuml;chi games in quadratic time, more precisely $O(mn)$,
 and linear space, more precisely $O(m)$.
 
-```
+````
 
 The first sentence implies that CoB&uuml;chi games are also uniformly positionally determined.
 We present two different yet very similar algorithms. 
 
 ## A first algorithm
+
 The following lemma implies  {prf:ref}`2-thm:Buchi`.
 
-```{prf:lemma} Fixed point characterisation of the winning region for Buchi games
+````{prf:lemma} Fixed point characterisation of the winning region for Buchi games
 :label: 2-lem:Buchi_second
 
 Let $\Game$ be a B&uuml;chi game.
@@ -101,10 +105,10 @@ Let $\Game$ be a B&uuml;chi game.
 let $\Game'$ be the subgame of $\Game$ induced by $V \setminus \AttrA( V \setminus \AttrE(\Win) )$,
 then $\WE(\Game) = \WE(\Game')$.
 
-```
+````
 
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 We prove the first item. 
@@ -155,22 +159,23 @@ Consider a winning strategy from $\WE(\Game')$ in $\Game'$, it induces a strateg
 Since $\Game'$ is a trap for Adam, any play consistent with $\sigma$ stays forever in $\WE(\Game')$, 
 implying that $\sigma$ is winning from $\WE(\Game')$ in $\Game$.
 
-```
+````
 
 The algorithm is presented in pseudocode in {numref}`2-algo:Buchi_first`.
 For the complexity analysis, the algorithm performs at most $n$ recursive calls
 and each of them involves two attractor computations, implying the time complexity $O(mn)$.
 
-```{figure} ./../2-algo:Buchi_first.png
+```{figure} ./../FigAndAlgos/2-algo:Buchi_first.png
 :name: 2-algo:Buchi_first
 :align: center
 The first quadratic time algorithm for solving B{\"uchi} games.
 ```
 
 ## A second algorithm
+
 The following lemma induces a different algorithm, it also implies  {prf:ref}`2-thm:Buchi`.
 
-```{prf:lemma} Second fixed point characterisation of the winning region for Buchi games
+````{prf:lemma} Second fixed point characterisation of the winning region for Buchi games
 :label: 2-lem:Buchi
 
 Let $\game$ a B&uuml;chi game.
@@ -181,10 +186,10 @@ Y \mapsto \AttrE \left( \Win \cap \PreE(Y) \right).
 $$
 
 
-```
+````
 
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 Thanks to  {prf:ref}`1-thm:kleene` the fixed point computation is realised by setting $Y_0 = V$
@@ -252,19 +257,19 @@ so the next vertex has rank at most $k$.
 Thus along any play consistent with $\tau$, the rank never increases and each time a vertex in $\Win$ is reached the rank decreases,
 implying that it satisfies $\CoBuchi[\Win]$.
 
-```
+````
 
  {prf:ref}`2-lem:Buchi` directly transfers to {numref}`2-algo:Buchi_second`.
 
-```{figure} ./../2-algo:Buchi_second.png
+```{figure} ./../FigAndAlgos/2-algo:Buchi_second.png
 :name: 2-algo:Buchi_second
 :align: center
 The second quadratic time algorithm for solving B{\"uchi} games.
 ```
 
-```{admonition} Remark 
+````{admonition} Remark 
 Both algorithms have the same complexity but they are not equivalent: the number of recursive calls of the first algorithm
 may be strictly smaller than the number of iterations of the repeat loop in the second algorithm.
 Both can be extended into (different) algorithms for parity games and beyond; in this chapter we will work with the first algorithm.
 
-```
+````

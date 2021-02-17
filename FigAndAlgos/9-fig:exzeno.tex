@@ -1,0 +1,17 @@
+\documentclass[preview,border=0mm,convert={density=600,outext=.png}]{standalone}
+\usepackage{tikz}
+\usetikzlibrary{automata,shapes,patterns,calc,arrows}
+\input{tikz-style.tex}
+\input{norenew_macros.tex}
+\input{./../9_Timed/norenew_macros_local.tex}
+\usepackage{amsfonts}
+\begin{document}
+\begin{tikzpicture}
+    \draw (0,0) node[state] (a) {$q_0$};
+    \draw[initial] (a.-135) -- +(-135:3mm);
+    \draw (2,0) node[state,accepting] (b) {$q_1$};
+    \draw[arrow] (a) -- (b) node[midway,above] {$x>0$};
+    \draw (a) edge[arrow,selfloop=90,dashed]
+      node[above] {$x>0;x:=0$} (a);
+  \end{tikzpicture}
+\end{document}

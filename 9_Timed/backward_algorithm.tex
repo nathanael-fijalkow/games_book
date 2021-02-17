@@ -1,0 +1,57 @@
+Given the DBM data structure we presented,
+a backward fixpoint algorithm follows for computing the winning configurations in a timed game:
+
+\begin{theorem}
+   \label{9-thm:timed-control}
+   For any timed game~$\TA$ and target set~$G \subseteq \VE$, 
+   the~limit $\lim_{k \rightarrow \infty} \pi^k(G)$ exists, and is reached 
+   in a finite number of steps. This limit is precisely the set of states from
+   which the controller has a winning strategy for reaching~$G$.
+\end{theorem}
+
+\begin{proof}[Sketch]
+%Not immediate: Why does the fixpoint terminate here?
+  We~briefly explain why the fixpoint computation terminates and refer
+  to~\cite{AMPS98,CDFLL05} for more details.  The~proof relies on the notion of
+  \emph{regions}. Intuitively, regions are minimal zones, not
+  containing any other zone. More precisely, writing~$K$ for the maximal
+  (absolute) integer constant appearing in the timed game, the~set of regions is
+  the set of zones associated with
+  DBMs~$(\mathord\prec_{i,j},M_{i,j})$ such that
+  %\NM{verifier que c'est    ok...}
+  \begin{itemize}
+  \item $M_{i,j}\in [-K; K]\cup\{-\infty;+\infty\}$ for all~$i$ and~$j$;
+  \item for all~$i\not=j$,
+     \begin{itemize}
+    \item either $M_{i,j}=-M_{j,i}$ and
+      $\mathord\prec_{i,j}=\mathord\prec_{j,i}=\mathord\leq$,
+     \item or $|M_{i,j}+M_{j,i}|=1$ and 
+      $\mathord\prec_{i,j}=\mathord\prec_{j,i}=\mathord<$,
+    \item or $(\prec_{i,j},M_{i,j})=(<,+\infty)$ and $(\prec_{j,i},M_{j,i})=(<,-K)$.
+     \end{itemize}
+  %\todo{Il y a un QED en plein milieu de la preuve...}
+  % probleme global avec les QED, on regardera plus tard
+  \end{itemize}
+  The set of regions form a finite partition of~$\Realnn^{\Clocks}$.
+  The~main argument for the proof is that the
+  image by~$\pi$ of any finite union of regions is a finite union of
+  regions. Since~$\pi$ is non-decreasing, the~sequence~$\pi^k(G)$
+  converges after finitely many steps.
+
+  The~fact that $\pi^k(G)$ may
+  only contain winning configurations follows from our construction,
+  and can be proved easily by induction on~$k$.
+  One can also show that for all configurations outside of~$\pi^k(G)$,
+  there is no strategy that is winning within~$k$ steps. This follows since
+  the definition of~$\pi(\cdot)$ gives the actions to be played by \Adam to
+  prevent \Eve from winning.
+  Note that this does not necessarily yield a winning strategy for \Adam,
+  since the game is not determined.
+\end{proof}
+
+%Add more comments.
+%Hence, this operator allows us to express the states that can be controlled
+%within one step. The following theorem shows that the greatest fixpoint of this
+%operator exists and can be computed. 
+%This should follow from~\cite{AMPS98,AMP-concur98}.
+%See also Tripakis et al. before 2005.

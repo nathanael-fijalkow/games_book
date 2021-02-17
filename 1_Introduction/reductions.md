@@ -62,14 +62,19 @@
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
+\newcommand{\EXP}{\textrm{EXP}}
+\newcommand{\kEXP}{\textrm{kEXP}}
 ```
 Automata and memory structures can be used to construct reductions between games.
 Automata operate at the level of objectives, independently of the colouring function and the arena,
 while memory structures work at the level of conditions, hence depend on the graph.
 
 ## Reductions between objectives using automata
+
 Let $\Omega$ a qualitative objective over the set of colours $C$, and $\Omega'$ a second qualitative objective.
 We say that $\Omega$ reduces to $\Omega'$ if there exists a **deterministic** automaton $\Automaton$ over the alphabet $C$ with acceptance objective $\Omega'$ defining $\Omega$, **i.e.** such that $L(\Automaton) = \Omega$.
+%The equality $L(\Automaton) = \Omega$ implies that $\WE(\Game) = \WE(\arena,L(\Automaton))$.
 
 This implies that we can transform a game $\Game$ with objective $\Omega$ into an equivalent one $\Game \times \Automaton$ with objective $\Omega'$ by composing $\Game$ with $\Automaton$: 
 the automaton reads the sequence of colours from $C$ induced by the play and 
@@ -92,7 +97,7 @@ The game is $\game \times \Automaton = (\arena \times \Automaton, \Omega'[\col']
 
 The following lemma states two consequences to the fact that $\Omega$ reduces to $\Omega'$.
 
-```{prf:lemma} Automata reductions
+````{prf:lemma} Automata reductions
 :label: 1-lem:automata_reduction
 
 If $\Omega$ reduces to $\Omega'$ through the automaton $\Automaton$ with $S$ states, then 
@@ -105,7 +110,7 @@ Then there exists an algorithm for solving games with objectives $\Omega$ of com
 
 *  If $\Omega'$ is determined with finite memory strategies of size $m$, then $\Omega$ is determined with finite memory stragies of size $m \cdot S$.
 
-```
+````
 
 Since the next type of reduction extends this one and the two proofs are very similar we will prove this lemma as a corollary of the next one.
 
@@ -113,6 +118,7 @@ Reductions between objectives using automata are very general:
 they operate at the level of objectives and therefore completely ignore the arena.
 
 ## Reductions between conditions using memory structures
+
 Reductions between conditions using memory structures extend the previous ones, the main difference being that 
 the memory structure reads the sequences of edges and produces a sequence of memory states.
 The edges contain more information than the sequence of colours (which is what the automaton reads), 
@@ -124,7 +130,7 @@ We first define the graph $G \times M$ whose set of vertices is $V \times M$ and
 for every edge $e = (v,v') \in E$ and state $m \in M$ there is an edge $e_m$ from $(v,m)$ to $(v',\delta(m,e))$.
 The arena is $\arena \times \mem = (G \times M, \VE \times M, \VA \times M)$.
 
-```{prf:observation} Strategies with memory
+````{prf:observation} Strategies with memory
 :label: 1-fact:strategies_memory
 
 There is a one-to-one correspondence between plays $\pi = v_0 v_1 \dots$ in $\arena$ 
@@ -132,7 +138,7 @@ and plays $\pi'$ in $\arena \times \mem$ from $(v_0,m_0)$:
 the play $\pi' = (v_0, m_0) (v_1, m_1) (v_2, m_2) \ldots$
 is defined by $m_{i+1} = \delta(m_i, (v_{i},v_{i+1}))$.
 
-```
+````
 
 Let $W$ be a condition on $\arena$ and $W'$ a condition on $\arena \times \Mem$.
 We say that $W$ reduces to $W'$ if for all plays $\play$ in $\arena$,
@@ -142,11 +148,11 @@ $$
 \play \in W \Longleftrightarrow \play' \in W'.
 $$
 
-
+%meaning on sequences of pairs composed of a vertex and a memory state. 
 Let $\Mem$ and $\Mem'$ two memory structure over the same graph, 
 we let $\Mem \times \Mem'$ denote the memory structure obtained by direct product.
 
-```{prf:lemma} Memory structure reductions
+````{prf:lemma} Memory structure reductions
 :label: 1-lem:memory_structure_reduction
 
 If $W$ reduces to $W'$ through the memory structure $\mem$, then
@@ -157,16 +163,15 @@ More specifically, if Eve has a winning strategy in $\Game \times \Mem$ from $(v
 then she has a winning strategy in $\Game$ from $v$ using $\Mem \times \Mem'$ as memory structure.
 In particular if the strategy in $\Game \times \Mem$ is memoryless, then the strategy in $\Game$ uses $\Mem$ as memory structure.
 
-```
+````
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 A winning strategy in $\Game$ directly induces a winning strategy in $\Game \times \Mem$ simply by ignoring the additional information
 and thanks to the equivalence above because $W$ reduces to $W'$.
 For the converse implication, let $\sigma$ be a winning strategy in $\Game \times \Mem$ using $\Mem'$ as memory structure.
-Recall that $\sigma$ is defined through the function $\sigma : (\VE \times M) \times M' \to E_M$.
-Let $p : E_M \to E$ mapping the edge $e_m$ to $e$.
+Recall that $\sigma$ is defined through the function $\sigma : (\VE \times M) \times M' \to E_M$.Let $p : E_M \to E$ mapping the edge $e_m$ to $e$.
 We construct a strategy $\sigma'$ in $\Game$ using $\Mem \times \Mem'$ as memory structure by
 
 $$
@@ -176,7 +181,7 @@ $$
 The correspondence between plays in $\arena$ and $\arena \times \mem$ maps plays consistent with $\sigma$ to plays consistent with $\sigma'$,
 which together with the fact that $W$ reduces to $W'$ implies that $\sigma'$ is a winning strategy in $\Game$ from $v$.
 
-```
+````
 
 To obtain  {prf:ref}`1-lem:automata_reduction` as a corollary of  {prf:ref}`1-lem:memory_structure_reduction`
 we observe that a reduction between objectives using an automaton induces a reduction between the induced conditions using a memory structure.

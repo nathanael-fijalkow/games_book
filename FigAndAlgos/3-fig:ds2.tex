@@ -1,0 +1,33 @@
+\documentclass[preview,border=0mm,convert={density=600,outext=.png}]{standalone}
+\usepackage{tikz}
+\usetikzlibrary{automata,shapes,patterns,calc,arrows}
+\input{tikz-style.tex}
+\input{norenew_macros.tex}
+\input{./../3_Parity/norenew_macros_local.tex}
+\usepackage{amsfonts}
+\begin{document}
+\begin{tikzpicture}
+    \tikzstyle{seqc}=[draw, circle]
+    \node [seqc] (1) {\Large $2$};
+    \node [right of=1, node distance=0.9cm] (2) {\Large $1$};
+    \node [seqc, right of=2, node distance=0.9cm] (3) {\Large $4$};
+    \node [seqc, right of=3, node distance=0.9cm] (4) {\Large $2$};
+    \node [right of=4, node distance=0.9cm] (5) {\Large $8$};
+    \node [right of=5, node distance=0.9cm] (6) {\Large $7$};
+    \node [right of=6, node distance=0.9cm] (7) {\Large $2$};
+    \node [right of=7, node distance=0.9cm] (8) {\Large $1$};
+    \node [right of=8, node distance=0.9cm] (9) {\Large $4$};
+    \node [right of=9, node distance=0.9cm] (10) {\Large $1$};
+    \node [right of=10, node distance=0.9cm] (11) {\Large $2$};
+    \node [seqc, right of=11, node distance=0.9cm] (12) {\Large $9$};
+      
+    \path[->,thick,bend left=45]
+        (1) edge (3)
+        (3) edge (4);
+
+    \path[->,thick,bend left=20]
+        (4) edge (12)
+                                    ;
+
+    \end{tikzpicture}
+\end{document}

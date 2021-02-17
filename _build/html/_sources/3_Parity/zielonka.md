@@ -67,17 +67,20 @@
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
+\newcommand{\EXP}{\textrm{EXP}}
+\newcommand{\kEXP}{\textrm{kEXP}}
 ```
 
-```{prf:theorem} Quasipolynomial McNaughton Zielonka algorithm
+````{prf:theorem} Quasipolynomial McNaughton Zielonka algorithm
 :label: 3-thm:quasipolynomial_mcnaughton_zielonka_algorithm
 
 There exists a quasipolynomial time algorithm for solving parity games, and more specifically of complexity $n^{O(\log n)}$.
 
-```
+````
 
 
-```{figure} ./../3-algo:zielonka_even.png
+```{figure} ./../FigAndAlgos/3-algo:zielonka_even.png
 :name: 3-algo:zielonka_even
 :align: center
 The recursive algorithm for computing the winning region of parity games.
@@ -106,7 +109,7 @@ is to return a (non-empty whenever possible) dominion for Eve of size at most $s
 We spell out the pseudocode of $\textsl{SolveE}$ in {numref}`3-algo:quasipoly_zielonka_even`, leaving out the perfectly symmetric $\textsl{SolveA}$.
 The base cases are when there is only one priority, in which case Eve wins everywhere if the priority is even, and Adam wins everywhere if the priority is odd.
 
-```{figure} ./../3-algo:quasipoly_zielonka_even.png
+```{figure} ./../FigAndAlgos/3-algo:quasipoly_zielonka_even.png
 :name: 3-algo:quasipoly_zielonka_even
 :align: center
 A recursive quasipolynomial algorithm for computing the winning regions of parity games -- the procedure $\textsl{SolveE}$.
@@ -114,7 +117,7 @@ A recursive quasipolynomial algorithm for computing the winning regions of parit
 
 We need three simple facts about traps.
 
-```{prf:observation} Facts about traps
+````{prf:observation} Facts about traps
 :label: 3-fact:traps
 
 *  Let $S$ be a trap for Eve in the game $\Game$ and $X$ a set of vertices, 
@@ -124,22 +127,22 @@ then $S \subseteq V \setminus \AttrA(X)$ and $S$ is a trap for Eve in the subgam
 *  Let $S$ be a trap for Eve in the game $\Game$ and $Z$ a trap for Eve in the subgame of $\Game$ induced by $S$,
 then $Z$ is a trap for Eve in $\Game$.
 
-```
+````
 
 The following lemma implies the correctness of the algorithm.
 
-```{prf:lemma} Correctness of the quasipolynomial McNaughton Zielonka algorithm
+````{prf:lemma} Correctness of the quasipolynomial McNaughton Zielonka algorithm
 :label: 3-lem:correctness_quasipoly_zielonka
 
 *  For all dominions $S$ for Eve, if $|S| \le s_{\mEve}$, then $S \subseteq \textsl{SolveE}(\Game,s_{\mEve},s_{\mAdam})$.
 *  For all dominions $S$ for Adam, if $|S| \le s_{\mAdam}$, then $S \cap \textsl{SolveE}(\Game,s_{\mEve},s_{\mAdam}) = \emptyset$.
 
-```
+````
 
 Indeed, $\WE(\Game)$ and $\WA(\Game)$ are dominions for Eve and Adam in $\Game$, 
 so  {prf:ref}`3-lem:correctness_quasipoly_zielonka` implies that $\textsl{SolveE}(\Game,n,n) = \WE(\Game)$.
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 The proof is by induction on the number of priorities: indeed all recursive calls to $\textsl{SolveA}$ are for games with one less priority.
@@ -268,7 +271,7 @@ $i_\ell < i_\infty$, and $Z_{i_{\infty}} \subseteq S_{i_\infty}$.
 Hence $Z_{i_\infty}$ is empty. Thanks to the first property above for $Z_i$, this implies that $S_{i_\infty}$ is empty.
 This finishes the proof of the second item of  {prf:ref}`3-lem:correctness_quasipoly_zielonka`.
 
-```
+````
 
 We obtain an algorithm for computing the winning regions of parity games using $\textsl{SolveE}(\Game,n,n)$,
 where $\Game$ is a parity game with $n$ vertices.

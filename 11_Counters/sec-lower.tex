@@ -1,15 +1,15 @@
 \subsubsection{Existential Initial Credit}
 In the "existential initial credit" variant of our games, we have the
-following lower bound matching \cref{12-exist-easy}, already with a
+following lower bound matching \cref{11-exist-easy}, already with a
 unary encoding.
 
-\begin{theorem}\label{12-exist-hard}
+\begin{theorem}\label{11-exist-hard}
   "Non-termination", and "parity@parity vector game"
   "asymmetric" "vector games" with "existential initial credit" are
   \coNP-hard.% in any dimension~$\dd\geq 2$.
 \end{theorem}
 \begin{proof}
-  By \cref{12-nonterm2parity}, it suffices to show hardness for
+  By \cref{11-nonterm2parity}, it suffices to show hardness for
   "non-termination games".  We reduce from the \lang{3SAT} problem:
   given a formula $\varphi=\bigwedge_{1\leq i\leq m}C_i$ where each
   clause $C_i$ is a disjonction of the form
@@ -62,7 +62,7 @@ unary encoding.
 
     Conversely, assume that~$\varphi$ is not satisfiable.  By
     contradiction, assume that \Adam wins the game for all initial
-    credits.  By \cref{12-counterless}, he has a "counterless" winning
+    credits.  By \cref{11-counterless}, he has a "counterless" winning
     strategy~$\tau$ that selects a literal in every clause.  Consider
     a "literal assignment" that maps each one of the selected literals
     to~$1$ and the remaining ones in a non-conflicting manner.  By
@@ -81,7 +81,7 @@ unary encoding.
   % $\sum_{w\in S_1}w=\sum_{w\in S_2}w$?  From such an instance, we
   % construct an "asymmetric vector system" where \Eve wins the
   % "non-termination game" with "existential initial credit" if and only
-  % if there is no such partition.  By \cref{12-nonterm2parity}, this
+  % if there is no such partition.  By \cref{11-nonterm2parity}, this
   % also entails the \coNP-hardness of "parity@parity vector games"
   % "asymmetric vector games".
   % \begin{figure}[htbp]
@@ -118,7 +118,7 @@ unary encoding.
   %   \node[font=\footnotesize] at (5.5,1.8) {$((W/2)-1)\cdot\vec e_1$};
   %   \node[font=\footnotesize] at (5.5,-1.85) {$((W/2)-1)\cdot\vec e_2$};
   % \end{tikzpicture}
-  % \caption{\label{12-fig-part} The "vector system" built from a
+  % \caption{\label{11-fig-part} The "vector system" built from a
   %   \lang{Partition} instance.}
   % \end{figure}
   % We may assume that~$\sum_{w\in S}w$ is even, as otherwise trivially
@@ -135,7 +135,7 @@ unary encoding.
   %   &\:\cup\:\{\loc_n\step{(W-1)\cdot\vec e_j+W\cdot\vec e_{3-j}}\loc_0\mid 1\leq 2\leq
   %               j\}\;;
   % \end{align*}
-  % see \cref{12-fig-part} for a depiction of~$\?V$.  We use~$\loc_0$ as
+  % see \cref{11-fig-part} for a depiction of~$\?V$.  We use~$\loc_0$ as
   % our initial location.
   % Let us show that \Adam wins if and only if the \lang{Partition}
   % instance was positive.  If there exist $S_1,S_2\subseteq S$ with
@@ -147,19 +147,19 @@ unary encoding.
   % visiting each $\loc_i$~once, and 
 \end{proof}
 
-Note that \cref{12-exist-hard} does not apply to fixed dimensions
-$\dd\geq 2$.  We know by \cref{12-exist-pseudop} that those games can
+Note that \cref{11-exist-hard} does not apply to fixed dimensions
+$\dd\geq 2$.  We know by \cref{11-exist-pseudop} that those games can
 be solved in pseudo-polynomial time if the number of priorities is
-fixed, and by \cref{12-exist-easy} that they are in \coNP.
+fixed, and by \cref{11-exist-easy} that they are in \coNP.
 
 \subsubsection{Given Initial Credit}
 With "given initial credit", we have a lower bound matching the
-\kEXP[2] upper bound of \cref{12-avag-easy}, already with a unary
+\kEXP[2] upper bound of \cref{11-avag-easy}, already with a unary
 encoding.  The proof itself is an adaptation of the proof by
 \citem[Lipton]{Lipton:1976} of \EXPSPACE-hardness of "coverability" in
 the one-player case.
 
-\begin{theorem}\label{12-avag-hard}
+\begin{theorem}\label{11-avag-hard}
   "Coverability", "non-termination", and "parity@parity vector game"
   "asymmetric" "vector games" with "given initial credit" are
   \kEXP[2]-hard.
@@ -200,7 +200,7 @@ the one-player case.
     us first see a naive implementation for "meta-increments".  For
     the base case~$j=0$, this is just a standard action
     $\loc\step{2\vec c}\loc'$.  For the induction step $j+1$, we use
-    the gadget of \cref{12-fig-meta-incr} below, where
+    the gadget of \cref{11-fig-meta-incr} below, where
     $\vec x_{j},\bar{\vec x}_{j},\vec z_{j},\bar{\vec z}_{j}$ are
     distinct fresh "unit vectors": the gadget performs two nested
     loops, each of $2^{2^j}$ iterations, thus iterates the unit
@@ -233,7 +233,7 @@ the one-player case.
       (8.95,1.25) -- (1.9,1.25) -- (1);
       \node[font=\footnotesize,inner sep=2pt] at (5.43,1.35) {$\vec 0$};
     \end{tikzpicture}
-    \caption{\label{12-fig-meta-incr} A naive implementation of the
+    \caption{\label{11-fig-meta-incr} A naive implementation of the
       "meta-increment" $\loc\mstep{2^{2^{j+1}}\cdot\vec c}\loc'$.}
   \end{figure}
   
@@ -255,7 +255,7 @@ the one-player case.
   enumeration: before entering the shared gadget implementation, we
   initialise~$\vec r_j$ and~$\bar{\vec r}_j$ by performing the action
   $\loc\step{i\cdot\vec r_j+(m-i)\cdot\bar{\vec r}_j}\cdots$.  Then,
-  where we would simply go to~$\loc'$ in \cref{12-fig-meta-incr} at
+  where we would simply go to~$\loc'$ in \cref{11-fig-meta-incr} at
   the end of the gadget, the shared gadget has a final action
   $\cdots\step{\vec 0}\loc_{\mathrm{return}_j}$ leading to a dispatch
   location for returns: for all $0\leq i<m$, we have an action
@@ -267,7 +267,7 @@ the one-player case.
 
   \bigskip Let us return to the proof.  Consider an instance of the
   "halting problem".  We first exhibit a reduction to "coverability";
-  by \cref{12-cov2parity}, this will also entail the \kEXP[2]-hardness
+  by \cref{11-cov2parity}, this will also entail the \kEXP[2]-hardness
   of "parity@parity vector game" "asymmetric" "vector games".  We
   build an "asymmetric vector system"
   $\?V=(\Loc',\Act',\Loc'_\mEve,\Loc_\mAdam,\dd')$ with
@@ -281,7 +281,7 @@ the one-player case.
   $\loc'_{i-1}\mstep{2^{2^n}\cdot\bar{\vec c}_i}\loc'_i$ for
   $1\leq i\leq\dd$, before starting the simulation by an action
   $\loc'_\dd\step{\vec 0}\loc_0$.  The simulation of~$\?M$ uses the
-  actions depicted in \cref{12-fig-lipton}.  Those maintain the
+  actions depicted in \cref{11-fig-lipton}.  Those maintain the
   invariant on the complement counters.  Regarding "zero tests", \Eve
   yields the control to \Adam, who has a choice between performing a
   "meta-decrement" that will fail if $\bar{\mathtt c}_i< 2^{2^n}$,
@@ -337,8 +337,8 @@ the one-player case.
       (a0) edge node{$\vec 0$} (a1)
       (a2) edge node{$\vec 0$} (a3);
     \end{tikzpicture}
-    \caption{\label{12-fig-lipton}Schema of the reduction to
-      "coverability" in the proof of \cref{12-avag-hard}.}
+    \caption{\label{11-fig-lipton}Schema of the reduction to
+      "coverability" in the proof of \cref{11-avag-hard}.}
   \end{figure}
   
   It is hopefully clear that \Eve wins the "coverability game" played
@@ -353,7 +353,7 @@ the one-player case.
   `time budget': this is an additional component in $\?V$ with
   associated "unit vector"~$\vec t$.  This component is initialised to
   $|\Loc|B^\dd=|\Loc|2^{\dd 2^n}$ before the simulation, and decreases
-  by~one at every step; see \cref{12-fig-lipton-nonterm}.  We also add
+  by~one at every step; see \cref{11-fig-lipton-nonterm}.  We also add
   a self loop $\loc_\mathtt{halt}\step{\vec 0}\loc_\mathtt{halt}$.
   Then the only way to avoid the "sink" and thus to win the
   "non-termination" game is to reach $\loc_\mathtt{halt}$.
@@ -408,8 +408,8 @@ the one-player case.
       (a2) edge node{$\vec 0$} (a3)
       (a3) edge node{$-\vec t$} (a4);
     \end{tikzpicture}
-    \caption{\label{12-fig-lipton-nonterm}Schema of the reduction to
-      "non-termination" in the proof of \cref{12-avag-hard}.}
+    \caption{\label{11-fig-lipton-nonterm}Schema of the reduction to
+      "non-termination" in the proof of \cref{11-avag-hard}.}
   \end{figure}
 
   We still need to extend our initialisation phase.  It suffices for
@@ -423,34 +423,34 @@ the one-player case.
   %%\end{scope}
 \end{proof}
 
-The proof of \cref{12-avag-hard} relies crucially on the fact that the
+The proof of \cref{11-avag-hard} relies crucially on the fact that the
 dimension is not fixed: although $\dd\geq 3$ suffices in the
 "alternating Minsky machine", we need $O(|\?M|)$ additional counters
 to carry out the reduction.  A separate argument is thus needed in
-order to match the \EXP\ upper bound of \cref{12-avag-easy} in fixed
+order to match the \EXP\ upper bound of \cref{11-avag-easy} in fixed
 dimension.
 
-\begin{theorem}\label{12-avag-two}
+\begin{theorem}\label{11-avag-two}
   "Coverability", "non-termination", and "parity@parity vector game"
   "asymmetric" "vector games" with "given initial credit" are
   \EXP-hard in dimension $\dd\geq 2$.
 \end{theorem}
 \begin{proof}
   We exhibit a reduction from "countdown games" with "given initial
-  credit", which are \EXP-complete by \cref{12-countdown-given}.
+  credit", which are \EXP-complete by \cref{11-countdown-given}.
   Consider an instance of a "configuration reachability" countdown
   game: a "countdown system"
   $\?V=(\Loc,\Act,\Loc_\mEve,\Loc_\mAdam,1)$ with initial
   configuration $\loc_0(n_0)$ and target
   configuration~$\smiley(0)$---as seen in the proof
-  of \cref{12-countdown-given}, we can indeed assume that the target
+  of \cref{11-countdown-given}, we can indeed assume that the target
   credit is zero; we will also assume that \Eve controls~$\smiley$ and
   that the only action available in~$\smiley$ is
   $\smiley\step{-1}\smiley$.  We construct an "asymmetric" "vector
   system" $\?V'$ of dimension~2 such that \Eve can ensure
   reaching~$\smiley(0,n_0)$ from $\loc_0(n_0,0)$ in~$\?V'$ if and only
   if she could ensure reaching $\smiley(0)$ from $\loc_0(n_0)$
-  in~$\?V$.  The translation is depicted in \cref{12-fig-dim2}.
+  in~$\?V$.  The translation is depicted in \cref{11-fig-dim2}.
   
   \begin{figure}[htbp]
     \centering
@@ -496,8 +496,8 @@ dimension.
       (z5) edge[loop above] node{$-1,1$} ()
       (z5) edge[loop right] node{$\,0,0$} ();
     \end{tikzpicture}
-    \caption{\label{12-fig-dim2}Schema of the reduction in the proof
-    of \cref{12-avag-two}.}
+    \caption{\label{11-fig-dim2}Schema of the reduction in the proof
+    of \cref{11-avag-two}.}
   \end{figure}
     
   The idea behind this translation is that a configuration $\loc(c)$
@@ -511,7 +511,7 @@ dimension.
   above is if $n$ is minimal among the decrements in~$\loc$, because
   according to the "natural semantics" of~$\?V$, if $c<n$ there should
   be an edge to the "sink", and this is handled in the second line
-  of \cref{12-fig-dim2}.
+  of \cref{11-fig-dim2}.
 
   Then \Eve can reach $\smiley(0,n_0)$ if and only if she can cover
   $\smiley(0,n_0)$, if and only if she can avoid the "sink" thanks to
@@ -519,7 +519,7 @@ dimension.
   shows the \EXP-hardness of "coverability" and "non-termination"
   "asymmetric" "vector games" in dimension~two; the hardness of
   "parity@parity vector game" follows
-  from \cref{12-cov2parity,12-nonterm2parity}.
+  from \cref{11-cov2parity,12-nonterm2parity}.
 \end{proof}
 
 

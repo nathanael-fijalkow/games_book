@@ -51,7 +51,7 @@ More precisely,
   root is $v$, and probabilities are set at each level of the tree in
   order to recover $p_1, \cdots p_k$ on the respective branches. This
   introduces $O(\log(k))$ fresh vertices, and is illustrated on an
-  example on Figure~\ref{6-fig:gen2binary}.
+  example on~\cref{6-fig:gen2binary}.
 
   \begin{figure}[htbp]
     \centering
@@ -81,6 +81,7 @@ More precisely,
 (left) edge node[right] {$\frac 3 4$} (rleft)
 (right) edge node[right] {$\frac 2 3$} (rright)
 (right) edge[out=70,in=0] node[right] {$\frac 1 3$} (root)
+;
     \end{tikzpicture}
 \caption{From general random vertices to binary ones.}
     \label{6-fig:gen2binary}
@@ -97,7 +98,7 @@ More precisely,
   edges with accumulated probabilities $2^{-i}$. Now, if $a_i=1$
   (resp.  $b_1 =1$), one vertex with probability $2^{-(i+1)}$ is $v_1$
   (resp. $v_2$). The pending edges are redirected to $v$ itself. The
-  transformation is depicted in Figure~\ref{6-fig:simul}, assuming
+  transformation is depicted in~\cref{6-fig:simul}, assuming
   $p=11\equiv_{b} 1011$ and $q=14$ (so that
   $p-q = 3 \equiv_{b} 0011$).  For simplicity some vertices are
   represented several times to avoid intricate transitions. One can
@@ -247,9 +248,9 @@ correctness and completeness of the algorithm. Based on this approach,
 we will design a strategy improvement algorithm.
 
 We start with the strategy enumeration algorithm
-(Sections~\ref{6-subsubsec:first} to~\ref{6-subsubsec:last}), and will
+(\cref{6-subsec:first} to~\cref{6-subsec:last}), and will
 conclude with the strategy improvement algorithm
-(Section~\ref{6subsubsec:algo-strat-improv}).
+(\cref{6-subsec:algo-strat-improv}).
 
 
 % That is: \fbox{adapter ce
@@ -424,7 +425,7 @@ result, which uses only basic arguments:
   $\tau_\perm$ are optimal.
 \end{theorem}
 
-We will explain in Section~\ref{6subsubsec:algo-strat-improv} how this
+We will explain in~\cref{6-subsec:algo-strat-improv} how this
 theorem can be turned into a strategy improvement algorithm for
 computing values and optimal strategies in stochastic reachability
 games.
@@ -594,7 +595,7 @@ self-consistent.
 \end{proof}
 %\pat{end-of-proof marker missing}
 
-As a consequence of Lemma~\ref{stoch:lemma2}, we get that $\val_\perm$
+As a consequence of~\cref{6-lem:lemma2}, we get that $\val_\perm$
 is a fixpoint of Bellman's equations, hence it is larger than (or
 equal to) the least fixpoint of Bellman's equations, that is $\val^*$:
 %\pat{peut-etre faire attention aux notations : je crois qu'on n'a pas
@@ -693,7 +694,7 @@ will not be able to prevent the game converging to $\vlose$ and $\vwin$.
   $(\probm_{\sigma_\perm,\tau}^v(\Reach(\Win)))_{v \in \vertices}$ is
   a
   % the smallest (and even unique, due to the stopping property stated
-  % in Lemma~\ref{stoch:lemma:stopping})
+  % in~\cref{6-lem:stopping})
   solution to the following equations:
   \[
   \left\{\begin{array}{ll} x_v =
@@ -732,13 +733,12 @@ will not be able to prevent the game converging to $\vlose$ and $\vwin$.
       x_{\vlose} = 0
     \end{array}\right.
   \]
-  Since the MDP (when $\sigma_\perm$ has been fixed) is stopping (see
-  Lemma~\ref{stoch:lemma:stopping}), there is no proper end-component
+  Since the MDP (when $\sigma_\perm$ has been fixed) is stopping (see~\cref{6-lem:stopping}), there is no proper end-component
   (except $\{\vwin\}$ and $\{\vlose\}$), and the above system of
   inequations has a unique minimal solution, which is the unique
   solution of the same system with $=$ instead of $\ge$.
 
-  On the other hand, Lemma~\ref{stoch:lemma2} tells us that
+  On the other hand~\cref{6-lem:lemma2} tells us that
   $(\val_\perm(v))_{v \in\vertices}$ can only be that unique
   solution. Hence, for every $v \in \vertices$:
   \[
@@ -774,7 +774,7 @@ will not be able to prevent the game converging to $\vlose$ and $\vwin$.
 %   The above system of inequations has a unique maximal
 %   solution. \pat{c'est bien ok ?}
 
-%   On the other hand, Lemma~\ref{stoch:lemma2} tells us that
+%   On the other hand, ~\cref{6-lem:lemma2} tells us that
 %   $(\val_\perm(v))_{v \in\vertices}$ can only be that maximal
 %   solution. \fbox{??} Hence, for every $v \in \vertices$:
 %   \[
@@ -817,10 +817,10 @@ will not be able to prevent the game converging to $\vlose$ and $\vwin$.
   We will show that for every vertex $v \in \vertices$, $\val^*(v) =
   \val_\perm(v)$. This will ne enough for proving the expected result.
 
-  We first show a counterpart to Lemma~\ref{stoch:lemma2} for
+  We first show a counterpart to~\cref{6-lem:lemma2} for
   $\val^*$:
   \begin{lemma}
-    Same hypotheses as Lemma~\ref{stoch:lemma:croissant}. Then:
+    Same hypotheses as~\cref{6-lem:croissant}. Then:
     \begin{enumerate}
     \item $\val^*(\vlose) = 0$ and $\val^*(\vwin) = 1$;
     \item for every $1 \le i \le k$, for every $v \in W_\perm^i$,
@@ -858,7 +858,7 @@ will not be able to prevent the game converging to $\vlose$ and $\vwin$.
 
     % \medskip The proof of the second equalities in items 3 and 4 is
     % absolutely similar to the same proof in
-    % Lemma~\ref{stoch:lemma2}. Hence it is omitted.
+    % ~\cref{6-lem:lemma2}. Hence it is omitted.
     This allows to conclude item 2, hence the lemma.
   \end{proof}
 
@@ -891,7 +891,7 @@ will not be able to prevent the game converging to $\vlose$ and $\vwin$.
 \end{proof}
 
 It remains to show that there always exist  a live permutation
-satisfying the hypothesis of Lemma~\ref{stoch:lemma:croissant}.
+satisfying the hypothesis of~\cref{6-lem:croissant}.
 
 To do so, we show the following structural property of the game, which
 will help building an appropriate live permutation.
@@ -963,28 +963,25 @@ will help building an appropriate live permutation.
 
 \begin{proof}
   We will define a permutation $\perm$ inductively, by repeatedly
-  using Lemma~\ref{stoch:lemma:structure}.  For every $i =k, \ldots
+  using~\cref{6-lem:structure}.  For every $i =k, \ldots
   ,1$ we define $\perm_i$ by applying
-  Lemma~\ref{stoch:lemma:structure} to $X =
+  Lemma~\cref{6-lem:structure} to $X =
   \{\perm_{i+1},\ldots,\perm_k,\vwin\}$.
 
   By construction,
   \begin{itemize}
   \item $\val^*(\perm_i) = \max \{\val^*(v) \mid v \in V \setminus
     \DetAtt(\{\perm_{i+1},\ldots,\perm_k,\vwin\})\}$;
-  \item
-    $\delta(\perm_i)\Big(\DetAtt(\{\perm_{i+1},\ldots,\perm_k,\vwin\})\Big)
+  \item     $\delta(\perm_i)\Big(\DetAtt(\{\perm_{i+1},\ldots,\perm_k,\vwin\})\Big)
     >0$
   \end{itemize}
-  Hence, $\perm$ is live, and the hypothesis of
-  Lemma~\ref{stoch:lemma:croissant} is satisfied. Hence $\perm$ is
-  self-consistent. This concludes the proof. \qed
+  Hence, $\perm$ is live, and the hypothesis of~\cref{6-lem:croissant} is satisfied. Hence $\perm$ is
+  self-consistent. This concludes the proof.
 \end{proof}
 
 \subsubsection{Complexity analysis}
 
-To obtain the polynomial-time complexity claimed in
-Theorem~\ref{6-thm:corr-strat-improv}, we realize that once a
+To obtain the polynomial-time complexity claimed in~\cref{6-thm:corr-strat-improv}, we realize that once a
 permutation $\perm$ is fixed, computing the sets $W_\pi^i$ can be done
 in polynomial time (those are simple attractors), and corresponding
 strategies $\sigma_\perm$ and $\tau_\perm$ can be simultaneously
@@ -998,7 +995,7 @@ this would only marginally impact the overall complexity.
 \subsubsection{Strategy enumeration algorithm}
 \label{6-subsubsec:last}
 
-Thanks to Theorem~\ref{6-thm:corr-strat-improv}, we get an algorithm
+Thanks to~\cref{6-thm:corr-strat-improv}, we get an algorithm
 to compute values and optimal strategies for both players in a
 stochastic reachability game: enumerate permutations of random
 vertices, and for each of them, check whether it is live and
@@ -1012,7 +1009,7 @@ exponential.
 
 
 \subsubsection{Strategy improvement algorithm}
-\label{6subsubsec:algo-strat-improv}
+\label{6-subsubsec:algo-strat-improv}
 
 %\pat{\fbox{Pat} Cette preuve a \'et\'e plus difficile \`a
 %  dig\'erer... j'esp\`ere qu'il n'y a pas d'erreur}
@@ -1057,20 +1054,17 @@ properties are satisfied by the algorithm:
   \end{itemize}
 \end{enumerate}
 
-The first property is based on the construction of
-Lemma~\ref{stoch:lemma-existence}.
+The first property is based on the construction of~\cref{6-lem:existence}.
 
-For the second property, we know as a consequence of
-Theorem~\ref{6-thm:corr-strat-improv} that there exists a live and
+For the second property, we know as a consequence of~\cref{6-thm:corr-strat-improv} that there exists a live and
 self-consistent permutation $\perm'$ in $\game[\sigma_{\perm}]$,
 provided we prove that $\game[\sigma_{\perm}]$ is normalized (this was
-a general assumption of the approach, mentioned in
-Section~\ref{6-subsubsec:first}). This is actually the case since
+a general assumption of the approach, mentioned in~\cref{6-subsec:first}). This is actually the case since
 every proper vertex $v$ can be proven to have a value strictly within
 $0$ and $1$ in $\game[\sigma_{\perm}]$ (it is indeed smaller in
 $\game[\sigma_{\perm}]$ than in $\game$ since $\game[\sigma_{\perm}]$
 offers less options to \Eve, and it cannot be $0$, using a proof
-similar to that of Lemma~\ref{stoch:lemma:stopping}).
+similar to that of~\cref{6-lem:stopping}).
 % , which in the current form,
 % nevertheless assumes the underlying game be normalized. So it is just
 % a matter of proving that $\game[\sigma_\perm]$ is normalized. We then
@@ -1079,12 +1073,12 @@ similar to that of Lemma~\ref{stoch:lemma:stopping}).
 % value in game $\game[\sigma_\perm]$ is bounded from above by the value
 % in $\game$, hence trivially no vertex distinct from $\vwin$ has value
 % $1$ in $\game[\sigma_\perm]$; using a proof similar to the proof of
-% Lemma~\ref{stoch:lemma:stopping}, we get that no vertex distinct from
+% ~\cref{6-lem:stopping}, we get that no vertex distinct from
 % $\vlose$ can have value $0$. 
 Now, since $\game[\sigma_\perm]$ turns out to be a Markov decision
 process, values of all random vertices can be computed in polynomial
 time using linear programming; then we can apply a construction
-similar to that of Lemma~\ref{stoch:lemma-existence} to get a live and
+similar to that of~\cref{6-lem:existence} to get a live and
 self-consistent permutation $\perm'$ in $\game[\sigma_\perm]$. This
 yields a polynomial time algorithm to compute $\perm'$.
 
@@ -1159,7 +1153,7 @@ The sequence $(\val_{\game,\sigma^{(n)}})_n$ is non-decreasing.
 
     Now, when playing $\sigma_\perm = \sigma^{(0)}$ from $v$, 
 
-    Thanks to Lemma~\ref{stoch:lemma2}, since $v \in
+    Thanks to ~\cref{6-lem:lemma2}, since $v \in
     W_{\game[\sigma_\perm],\perm'}^j$,
     $\val_{\game[\sigma_\perm],\perm'}(v) =
     \val_{\game[\sigma_\perm],\perm'}(\perm'_j)$ and hence (as argued
@@ -1185,7 +1179,7 @@ The sequence $(\val_{\game,\sigma^{(n)}})_n$ is non-decreasing.
   \end{proof}
 
   Let $\tau$ be an \Adam's strategy. Since $\perm'$ has been shown to
-  be live in $\game$, applying Lemma~\ref{stoch:lemma:stopping}, we
+  be live in $\game$, applying ~\cref{6-lem:stopping}, we
   get that: $\probm^v_{\sigma_{\perm'},\tau} (\Reach(\{\vwin\})) =
   \probm^v_{\sigma_{\perm'},\tau} (\neg\Reach(\{\vlose\}))$. This last
   probability value coincides with $\lim_{n \to +\infty}
@@ -1232,7 +1226,7 @@ The sequence $(\val_{\game,\sigma^{(n)}})_n$ is non-decreasing.
   \]
   which is precisely the definition of a self-consistent permutation
   in $\game$, so we are done.
-  % By Lemma~\ref{stoch:lemma:croissant}, we deduce that $\perm'$ is
+  % By ~\cref{6-lem:croissant}, we deduce that $\perm'$ is
   % self-consistent in $\game$, which concludes the proof.
 \end{proof}
 

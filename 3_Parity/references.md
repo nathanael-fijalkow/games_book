@@ -67,6 +67,9 @@
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
+\newcommand{\EXP}{\textrm{EXP}}
+\newcommand{\kEXP}{\textrm{kEXP}}
 ```
 We refer to Section {ref}`2-sec:references` for the role of parity objectives and how they emerged in automata theory as a subclass of Muller objectives.
 Another related motivation comes from the works of Emerson, Jutla, and Sistla {cite}`Emerson&Jutla&Sistla:1993`,
@@ -90,12 +93,12 @@ with running time $O(m n^{d/2})$.
 The algorithm is called small progress measures and is an instance of the class of value iteration algorithms we construct 
 in Section {ref}`3-sec:value_iteration` by considering the universal tree of size $n^h$.
 Bernet, Janin, and Walukiewicz {cite}`Bernet&Janin&Walukiewicz:2002` investigated reductions from parity games to safety games
-through the notion of permissive strategies, and constructed a separating automaton
+through the notion of permissive strategies, and constructed a separating automaton corresponding to the universal tree of size $n^h$.
 
 ```{margin}
-We note that the general framework of separating automata came later, introduced by Boja{\'n```
+We note that the general framework of separating automata came later, introduced by Boja&#324;czyk and Czerwi&#324;ski {cite}`Bojanczyk&Czerwinski:2018`.
+```
 
-czyk and Czerwi&#324;ski {cite}`Bojanczyk&Czerwinski:2018`.} corresponding to the universal tree of size $n^h$.
 
 The new era for parity games started in 2017 when Calude, Jain, Khoussainov, Li, and Stephan {cite}`Calude&Jain&al:2017` constructed a quasipolynomial time algorithm. 
 Our presentation follows the technical developments of the subsequent paper by Fearnley, Jain, Schewe, Stephan, and Wojtczak {cite}`Fearnley&Jain&al:2017` which recasts the algorithm as a value iteration algorithm.

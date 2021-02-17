@@ -67,9 +67,12 @@
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
+\newcommand{\EXP}{\textrm{EXP}}
+\newcommand{\kEXP}{\textrm{kEXP}}
 ```
 
-```{prf:theorem} NEEDS TITLE 3-thm:value_iteration_quasipoly
+````{prf:theorem} NEEDS TITLE 3-thm:value_iteration_quasipoly
 :label: 3-thm:value_iteration_quasipoly
 
 There exists a value iteration algorithm for solving parity games in time 
@@ -81,7 +84,7 @@ $$
 which is quasipolynomial in general and polynomial if $d = O(\log(n))$.
 The space complexity of the algorithm is $O(m + n \log(d))$.
 
-```
+````
 
 We rely on the high-level presentation of value iteration algorithms given in Section {ref}`1-sec:value_iteration`.
 Let $\game = (\arena,\Parity[\col])$ a parity game with $n$ vertices and priorities in $[1,d]$,
@@ -118,6 +121,7 @@ for all vertices $v$ we have that Eve wins from $v$ if and only if there exists 
 Our next step is to show how the notion of universal trees provides a class of solutions to this problem.
 
 ## Universal trees
+
 The trees we consider have three properties: 
 they are rooted, every leaf has the same depth, and the children of a node are totally ordered.
 Formally, a tree of height $0$ is a leaf,
@@ -126,7 +130,7 @@ and a tree $t$ of height $h + 1$ is an ordered list $[t_1,\dots,t_k]$ of subtree
 We consider two parameters for trees: the height, and the size which is defined to be the number of branches (equivalently, the number of leaves).
 All trees we consider have height $h = d/2$.
 
-```{figure} ./../3-fig:example_universal.png
+```{figure} ./../FigAndAlgos/3-fig:example_universal.png
 :name: 3-fig:example_universal
 :align: center
 On the left, a tree for $d = 4$, which is the smallest $(5,2)$-universal tree:
@@ -141,15 +145,13 @@ We say that a tree $t$ embeds into another tree $T$ if:
 there exist $i_1 < \dots < i_k$ such that for all $j \in [1,k]$ we have that $t_j$ embeds into $T_{i_j}$.
 
 
-```{prf:definition} NEEDS TITLE AND LABEL 
+````{prf:definition} NEEDS TITLE AND LABEL 
 A tree is $(n,h)$-**universal** if it embeds all trees of size $n$ and height $h$.
  
-:label: 
-A tree is $(n,h)$-**universal** if it embeds all trees of size $n$ and height $h$.
 
 A tree is $(n,h)$-**universal** if it embeds all trees of size $n$ and height $h$.
 
-```
+````
 
 We refer to {numref}`3-fig:example_universal` for an example of a $(5,2)$-universal tree.
 A first example of an $(n,h)$-universal tree is the tree where each node has degree $n$:
@@ -157,9 +159,10 @@ formally we define it recursively by $T_{n,0}$ is a leaf, and $T_{n,h+1} = [\und
 It has size $n^h$.
 
 ## A quasipolynomial universal tree
+
 We present an inductive construction of a quasipolynomial universal tree.
 
-```{prf:theorem} NEEDS TITLE 3-thm:universal_tree
+````{prf:theorem} NEEDS TITLE 3-thm:universal_tree
 :label: 3-thm:universal_tree
 
 There exists an $(n,h)$-universal tree with size $f(n,h)$, where $\mu$ satisfies the following:
@@ -171,8 +174,9 @@ f(n,1) & = & n, \\
 f(1,h) & = & 1.
 \end{array}
 $$
+%where $\frac{f(n,h)}{g(n,h)} = O(nh)$.
 
-```
+````
 
 An upper bound is given by
 
@@ -183,8 +187,7 @@ $$
 A generous upper bound on the expression above is $n^{O(\log(h))}$.
 A refined analysis reveals that the expression is polynomial in $n$ and $h$ if $h = O(\log(n))$.
 
-
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 To construct the $(n,h)$-universal tree $T$, let:
@@ -206,7 +209,7 @@ $$
 
 The construction is illustrated in {numref}`3-fig:smallest_tree_construction`.
 
-```{figure} ./../3-fig:smallest_tree_construction.png
+```{figure} ./../FigAndAlgos/3-fig:smallest_tree_construction.png
 :name: 3-fig:smallest_tree_construction
 :align: center
 The inductive construction.
@@ -231,11 +234,12 @@ so it embeds into $T_\text{left}$ by induction hypothesis;
 *  the tree $[t_{p+1},\dots,t_k]$ has at most $\lceil n/2 \rceil - 1$ branches,
 so it embeds into $T_\text{right}$ by induction hypothesis.
 
-```
+````
 
  The construction given in the proof yields the smallest $(5,2)$-universal tree illustrated in {numref}`3-fig:example_universal`.
 
 ## Ordering the branches
+
 Let us consider a tree $t$.
 A branch is given by a list of directions that we define now.
 For technical convenience that will manifest itself later, the list of directions is indexed by odd numbers $p \in [1,d]$ downwards:
@@ -259,7 +263,7 @@ To interpret $\vartriangleleft_p$ on the tree, we label the levels by priorities
 Then $b \vartriangleleft_p b'$ if and only if the $p$-truncated branch of $b$ is to the left of the $p$-truncated branch of $b'$,
 strictly if $p$ is odd, and non-strictly if $p$ is even.
 
-```{figure} ./../3-fig:example_relations.png
+```{figure} ./../FigAndAlgos/3-fig:example_relations.png
 :name: 3-fig:example_relations
 :align: center
 Illustration of the relations $\vartriangleleft_p$.
@@ -277,7 +281,7 @@ $$
 
 
 
-```{prf:lemma} NEEDS TITLE 3-lem:properties_tree
+````{prf:lemma} NEEDS TITLE 3-lem:properties_tree
 :label: 3-lem:properties_tree
 
 The relations $\vartriangleleft_p$ for $p \in [1,d]$ induced by a tree $t$ satisfy the following properties:
@@ -287,12 +291,13 @@ The relations $\vartriangleleft_p$ for $p \in [1,d]$ induced by a tree $t$ satis
 *  the relation $\vartriangleleft_p$ is non-reflexive if $p$ is odd;
 *  the relation $\vartriangleleft_1$ is total;
 *  for $p < d$ even we have $b \vartriangleleft_p b'$ if and only if $\neg (b' \vartriangleleft_{p+1} b)$.
+%there exists a tree $t$ using $V$ as set of leaves inducing these relations.
 
-```
-
+````
+%It is clear that the relations $\vartriangleleft_p$ induced by a tree satisfy the properties.%Conversely, we give an inductive construction.%At any given point we are considering a subset $S$ of $V$ and an odd priority $p$, %Given $S$ and $p$, we partition $S$ as follows:%then $S_2$ the set of minimal elements from $S \setminus S_1$ with respect to $\vartriangleleft_p$,%We inductively construct the trees associated to each $S_i$ and $p-2$, yielding the tree for $S$ and $p$.%hence can be identified with $V$.
 The following observation rephrases the notion of embeddings between trees using the ordering on branches.
 
-```{prf:observation} NEEDS TITLE 3-fact:embedding
+````{prf:observation} NEEDS TITLE 3-fact:embedding
 :label: 3-fact:embedding
 
 Let $t,T$ be two trees.
@@ -304,10 +309,11 @@ b \vartriangleleft_p^t b' \implies \mu(b) \vartriangleleft_p^T \mu(b').
 $$
 
 
-```
+````
 
 
 ## Progress measures
+
 We explain how a tree $t$ induces both a lattice $(Y_t,\le)$ and a monotonic function $\delta_t : Y_t \times [1,d] \to Y_t$.
 The set $Y_t$ is the set of branches of $t$ augmented with a new element $\bot$, 
 and $\le$ is the lexicographic order on branches with $\bot$ as least element.
@@ -351,13 +357,13 @@ $$
 
 The following theorem is our first and main step towards proving the characterisation principle.
 
-```{prf:theorem} NEEDS TITLE 3-thm:progress_measure
+````{prf:theorem} NEEDS TITLE 3-thm:progress_measure
 :label: 3-thm:progress_measure
 
 Let $\Game$ be a parity game and $v$ a vertex.
 Then Eve wins from $v$ if and only if there exists a tree $t$ and a progress measure $\mu : V \to Y_t$ such that $\mu(v) \neq \bot$.
 
-```
+````
 
 In order to prove  {prf:ref}`3-thm:progress_measure`, we first consider the case of parity graphs.
 A progress measure in a parity graph is a function $\mu : V \to Y_t$ such that 
@@ -366,17 +372,17 @@ for all edges $(v,v') \in E$ we have $\mu(v) \vartriangleleft_{\col(v)} \mu(v')$
 Recall that a graph satisfies parity from $v$ if all infinite paths from $v$ satisfy parity.
 This is equivalent to asking whether all cycles reachable from $v$ are even, meaning the maximal priority appearing in the cycle is even.
 
-```{prf:lemma} NEEDS TITLE 3-lem:progress_measure
+````{prf:lemma} NEEDS TITLE 3-lem:progress_measure
 :label: 3-lem:progress_measure
 
 Let $G$ be a parity graph and $v$ a vertex.
 Then $G$ satisfies parity from $v$ if and only if 
 there exists a tree $t$ and a progress measure $\mu : V \to Y_t$ such that $\mu(v) \neq \bot$.
 
-```
+````
 
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 Let us assume that there exists a tree $t$ and a progress measure $\mu : V \to Y_t$ such that $\mu(v) \neq \bot$
@@ -455,11 +461,11 @@ so the edges in $G$ are either in $G'$ or from $v \in V \setminus W$ to $v' \in 
 In the first case $\mu(v) \vartriangleleft_{\col(v)} \mu(v')$ holds because $\mu_W$ is a progress measure,
 and in the second case because $\mu(v) = \bot$.
 
-```
+````
 
 We can now prove  {prf:ref}`3-thm:progress_measure`.
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 Assume that Eve wins from $v$ and let $\sigma$ be a positional strategy.
@@ -475,23 +481,23 @@ It induces a positional strategy defined by $\sigma(v) = (v,v')$ such that $\mu(
 We argue that $\sigma$ is a winning strategy from any vertex $v$ such that $\mu(v) \neq \bot$.
 This is a consequence of  {prf:ref}`3-lem:progress_measure` for the parity graph $\Game[\sigma]$.
 
-```
+````
 
  {prf:ref}`3-thm:progress_measure` is very close to the characterisation principle we are after,
 the only difference being that the lattice $(Y_t,\le)$ depends on an existentially quantified tree $t$.
 This is where we use universal trees:
 
-```{prf:corollary} NEEDS TITLE 3-cor:progress_measure
+````{prf:corollary} NEEDS TITLE 3-cor:progress_measure
 :label: 3-cor:progress_measure
 
 Let $\Game$ be a parity game with $n$ vertices and priorities in $[1,d]$, and $v$ a vertex.
 Let $T$ be a $(n,d/2)$-universal tree.
 Then Eve wins from $v$ if and only if there exists a progress measure $\mu : V \to Y_T$ such that $\mu(v) \neq \bot$.
 
-```
+````
 
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 Assume that Eve wins from $v$, thanks to  {prf:ref}`3-thm:progress_measure` there exists a tree $t$ and a progress measure $\mu : V \to Y_t$ 
@@ -503,15 +509,17 @@ Then the composition $\mu' \circ \mu : V \to Y_T$ is a progress measure such tha
 
 The converse implication is a direct consequence of  {prf:ref}`3-thm:progress_measure`.
 
-```
+````
 
 We have proved that the characterisation principle holds for any $(n,d/2)$-universal tree.
 
 ## The algorithm
+
 Let us fix $T$ an $(n,d/2)$-universal tree.
 It induces both a lattice $(Y_T,\le)$ and a monotonic function $\delta_T : Y_T \times [1,d] \to Y_T$,
 which in turn induces a monotonic operator $\Op_T : F_V \to F_V$.
 Since $T$ is fixed we do not specify the subscript $T$ for all these objects.
+%Eve wins from $v$ if and only if there exists a progress measure $\mu : V \to Y$ such that $\mu(v) \neq \bot$.
 
 The last step is to construct an algorithm returning the maximal progress measure relying on Kleene's fixed point theorem (stated as  {prf:ref}`1-thm:kleene`).
 The generic algorithm is explained in Section {ref}`1-sec:value_iteration`, let us instantiate it here.
@@ -531,7 +539,7 @@ $$
 We introduce some terminology: we say that an edge $e = (v,v')$ is **neglected** if $\neg (\mu(v) \vartriangleleft_{\col(v)} \mu(v'))$,
 and a vertex $v$ is **neglected** if $\neg (\mu(v) \le \Op_v(\mu)(v))$.
 
-```{figure} ./../3-fig:lifting.png
+```{figure} ./../FigAndAlgos/3-fig:lifting.png
 :name: 3-fig:lifting
 :align: center
 The operator $\Op_v$ in action: $\Op_v(\mu)(v)$ is the maximal leaf (meaning the rightmost leaf) 
@@ -541,31 +549,29 @@ which satisfies $\Op_v(\mu)(v) \vartriangleleft_3 \mu(v')$ and $\Op_v(\mu)(v) \v
 The pseudocode for the algorithm is given in {numref}`3-algo:value_iteration`, 
 where we let $\ell_{\max}$ denote the maximal leaf in $T$.
 
-```{figure} ./../3-algo:value_iteration.png
+```{figure} ./../FigAndAlgos/3-algo:value_iteration.png
 :name: 3-algo:value_iteration
 :align: center
 The value iteration algorithm.
 ```
 
-```{prf:theorem} NEEDS TITLE AND LABEL 
+````{prf:theorem} NEEDS TITLE AND LABEL 
 For all $(n, d/2)$-universal tree $T$, for all parity games $\game$ with $n$ vertices and priorities in $[1,d]$,
 the value iteration algorithm over the tree $T$ returns the maximal progress measure $\mu$ for $\game$ over $T$.
  
-:label: 
-For all $(n, d/2)$-universal tree $T$, for all parity games $\game$ with $n$ vertices and priorities in $[1,d]$,
-the value iteration algorithm over the tree $T$ returns the maximal progress measure $\mu$ for $\game$ over $T$.
 
 For all $(n, d/2)$-universal tree $T$, for all parity games $\game$ with $n$ vertices and priorities in $[1,d]$,
 the value iteration algorithm over the tree $T$ returns the maximal progress measure $\mu$ for $\game$ over $T$.
 
-```
+````
 
 Thanks to \cref{3-cor:progress_measure}, the maximal progress measure yields a solution for parity games:
 Eve wins from $v$ if and only if $\mu(v) \neq \bot$.
 
 ## Complexity analysis
+
 The number of times the operator $\Op_v$ is used is bounded by the number of leaves of $T$,
-which we write $|T|$, implying that the total number of iterations is bounded by $n \cdot |T|$.
+which we write $|T|$, implying that the total number of iterations is bounded by $n \cdot |T|$.%will use $|T|$ times $\Op_v$ to get this information.
 To determine the overall complexity we need to discuss two aspects of the algorithm:
 
 *  the data structure and in particular the choice of the vertex $v$ in the loop;
@@ -596,6 +602,7 @@ saving a linear factor in the complexity.
 We then discuss the cost $\Delta$ by choosing an appropriate encoding of the quasipolynomial universal tree constructed in {prf:ref}`3-thm:universal_tree`.
 
 ## Data structure
+
 We use a data structure similar to the attractor computation presented in Section {ref}`2-sec:attractors`.
 The pseudocode is given in {numref}`3-algo:value_iteration_data_structure`.
 We did not provide the pseudocode for the functions $\texttt{Init}$ and $\texttt{Update}$.
@@ -647,13 +654,14 @@ $$
 
 
 
-```{figure} ./../3-algo:value_iteration_data_structure.png
+```{figure} ./../FigAndAlgos/3-algo:value_iteration_data_structure.png
 :name: 3-algo:value_iteration_data_structure
 :align: center
 The value iteration algorithm with explicit data structure.
 ```
 
 ## Encoding branches
+
 Let us fix $T$ to be the quasipolynomial universal tree constructed in  {prf:ref}`3-thm:universal_tree`.
 
 In our definition of trees we say that a tree is an ordered list of subtrees $[t_1,\dots,t_k]$,
@@ -671,7 +679,7 @@ $$
 
 For words of length at most $2$ the order is $00 < 0 < 01 < \varepsilon < 10 < 1 < 11$.
 
-```{figure} ./../3-fig:tree_encoded.png
+```{figure} ./../FigAndAlgos/3-fig:tree_encoded.png
 :name: 3-fig:tree_encoded
 :align: center
 The succinct encoding on the $(5,2)$-universal tree.

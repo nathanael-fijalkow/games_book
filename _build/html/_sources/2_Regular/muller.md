@@ -67,6 +67,9 @@
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
+\newcommand{\EXP}{\textrm{EXP}}
+\newcommand{\kEXP}{\textrm{kEXP}}
 ```
 The prefix independent objectives we studied so far are B&uuml;chi, CoB&uuml;chi, and their joint extension the parity objectives.
 The definition of the latter may seem a bit arbitrary; the study of Muller objectives will show how parity objectives naturally emerge as a well-behaved class of objectives.
@@ -97,19 +100,19 @@ We say that $\F$ is closed under union if whenever $X,Y \in \F$ then $X \cup Y \
 Let us define Streett objectives as the subclass of Muller objectives given by $\F$ closed under union.
 The following purely combinatorial lemma gives a nice characterisation of these objectives.
 
-```{prf:lemma} Characterisation of Streett among Muller objectives
+````{prf:lemma} Characterisation of Streett among Muller objectives
 :label: 2-lem:characterisation_Streett
 
 A collection $\F \subseteq 2^C$ is closed under union if and only if there exists a set of pairs $(R_i,G_i)_{i \in [1,d]}$
 with $R_i,G_i \subseteq C$ such that $X \in \F$ is equivalent to for all $i \in [1,d]$, 
 if $X \cap R_i \neq \emptyset$ then $X \cap G_i \neq \emptyset$.
 
-```
+````
 
 We will see in Section {ref}`2-sec:zielonka` a natural and optimised way to construct these pairs using the Zielonka tree.
 In the meantime let us give a direct proof of this result.
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 Let $\F$ closed under union.
@@ -121,7 +124,7 @@ This is rewritten equivalently as: if $X \cap (C \setminus S') \neq \emptyset$ t
 Hence a suitable set of pairs satisfying the required property is 
 $\set{(C \setminus S', C \setminus S) : S \notin \F}$.
 
-```
+````
 
 Thanks to this lemma we can give a direct alternative definition of Streett objectives.
 There is a parameter $d$ controlling the number of pairs.
@@ -144,27 +147,27 @@ $$
 
 ## McNaughton algorithm: an exponential time algorithm for Muller games
 
-```{prf:theorem} Finite memory determinacy and complexity for Muller games
+````{prf:theorem} Finite memory determinacy and complexity for Muller games
 :label: 2-thm:muller
 
-Muller objectives are determined with finite memory strategies of size $d!$
+Muller objectives are determined with finite memory strategies of size $d!$.
 
 ```{margin}
-See \cref{2-rmk:finite_infinite```
+See \cref{2-rmk:finite_infinite} for the case of infinite games.
+```
 
- for the case of infinite games.}.
 There exists an algorithm for computing the winning regions of Muller games in exponential time,
 and more specifically of complexity $O(m d (dn)^d)$, and in polynomial space, and more specifically $O(dm)$.
 
-```
+````
 
 The presentation of the recursive algorithm for computing the winning regions of Muller games follows the exact same lines as for parity games:
 indeed, the Muller objective extends the parity objective, and specialising the algorithm for Muller games to parity games
-yields the algorithm we presented above.
+yields the algorithm we presented above.%The finite memory determinacy actually holds for infinite games and the proof we present can be adapted to obtain this result.
 
 The following lemma induces the recursive algorithm for computing the winning regions of Muller games.
 
-```{prf:lemma} Fixed point characterisation of the winning regions for Muller games
+````{prf:lemma} Fixed point characterisation of the winning regions for Muller games
 :label: 2-lem:Muller_even
 
 Let $\Game$ be a Muller game such that $C \in \F$.
@@ -175,10 +178,10 @@ For each $c \in C$, let $\Game_c$ be the subgame of $\Game$ induced by $V \setmi
 let $\Game'$ be the subgame of $\Game$ induced by $V \setminus \AttrA( \WA(\Game_c) )$,
 then $\WE(\Game) = \WE(\Game')$.
 
-```
+````
 
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 We prove the first item.
@@ -216,12 +219,12 @@ Consider a winning strategy from $\WE(\Game')$ in $\Game'$, it induces a strateg
 Since $\Game'$ is a trap for Adam, any play consistent with $\sigma$ stays forever in $\WE(\Game')$, 
 implying that $\sigma$ is winning from $\WE(\Game')$ in $\Game$.
 
-```
+````
 
 To get the full algorithm we need the analogous lemma for the case where $C \notin \F$.
 We do not prove it as it is the exact dual of the previous lemma, and the proof is the same swapping the two players.
 
-```{prf:lemma} Dual fixed point characterisation of the winning regions for Muller games
+````{prf:lemma} Dual fixed point characterisation of the winning regions for Muller games
 :label: 2-lem:Muller_odd
 
 Let $\Game$ be a Muller game such that $C \notin \F$.
@@ -232,7 +235,7 @@ For each $c \in C$, let $\Game_c$ be the subgame of $\Game$ induced by $V \setmi
 let $\Game'$ be the subgame of $\Game$ induced by $V \setminus \AttrE( \WE(\Game_c) )$,
 then $\WA(\Game) = \WA(\Game')$.
 
-```
+````
 
 The algorithm is presented in pseudocode in {numref}`2-algo:mcnaughton`.
 We only give the case where $C \in \F$, the other case being symmetric.
@@ -259,7 +262,7 @@ The proofs of  {prf:ref}`2-lem:Muller_even` and  {prf:ref}`2-lem:Muller_odd` als
 We do not make it more precise here because an improved analysis of the memory requirements will be conducted in Section {ref}`2-sec:zielonka`
 using a variant of this algorithm.
 
-```{figure} ./../2-algo:mcnaughton.png
+```{figure} ./../FigAndAlgos/2-algo:mcnaughton.png
 :name: 2-algo:mcnaughton
 :align: center
 A recursive algorithm for computing the winning regions of Muller games.
@@ -267,18 +270,19 @@ A recursive algorithm for computing the winning regions of Muller games.
 
 ## Positional determinacy for Rabin games
 
-```{prf:theorem} Positional determinacy for Rabin games
+
+````{prf:theorem} Positional determinacy for Rabin games
 :label: 2-thm:Rabin_positional_determinacy
 
 Rabin games are uniformly positionally determined.
 
-```
+````
 
  {prf:ref}`2-thm:Rabin_positional_determinacy` holds for infinite games.
 However the proof we give here only applies to finite games and does not easily extend to infinite ones.
 A different approach is required to obtain the positionality result for infinite games, see  {prf:ref}`2-thm:characterisation_Zielonka_tree`.
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 We proceed by induction over the following quantity: total outdegree of vertices controlled by Eve minus number of vertices controller by Eve.
@@ -331,7 +335,7 @@ Since $\Inf(\rho_1~\Join~\rho_2) = \Inf(\rho_1) \cup \Inf(\rho_2)$, this implies
 
 This directly yields a contradiction: neither $\play_1$ nor $\play_2$ satisfy $\Rabin$, yet their shuffle $\play$ does.
 
-```
+````
 
 The proof of  {prf:ref}`2-thm:Rabin_positional_determinacy` yields a stronger result: every prefix independent submixing objective is positionally determined over finite arenas, where the submixing property is defined as follows for the objective $\Omega$:
 
@@ -345,22 +349,23 @@ $$
 
 
 
-```{prf:theorem} Submixing property implies uniform positional determinacy
+````{prf:theorem} Submixing property implies uniform positional determinacy
 :label: 2-thm:submixing_positional
 
 Every prefix independent submixing objective is uniformly positionally determined over finite arenas.
 
-```
+````
 
 
 ## The complexity of solving Rabin games
 
-```{prf:theorem} Complexity of solving Rabin games
+
+````{prf:theorem} Complexity of solving Rabin games
 :label: 2-thm:Rabin_complexity
 
 Solving Rabin games is $\NP$-complete.
 
-```
+````
 
 In order to simplify the reduction for proving {prf:ref}`2-thm:Rabin_complexity` let us make some remarks about colouring functions.
 We defined colouring functions as $\col : V \to C$, meaning that we label vertices.
@@ -378,7 +383,7 @@ since the colour $R$ does not appear at all in the game.
 We reduce from an edge colouring function to a partial vertex colouring function as illustrated in {numref}`2-fig:reduction_edge_colouring`:
 we add a dummy vertex for each edge and colour it with the colour of its edge, leaving already existing vertices without colours. 
 
-```{figure} ./../2-fig:reduction_edge_colouring.png
+```{figure} ./../FigAndAlgos/2-fig:reduction_edge_colouring.png
 :name: 2-fig:reduction_edge_colouring
 :align: center
 Reduction from edge colouring to partial vertex colouring.
@@ -389,7 +394,7 @@ Reduction from edge colouring to partial vertex colouring.
 We reduce from a multiset colouring function to a vertex colouring function as illustrated in {numref}`2-fig:reduction_multiset_colouring`: 
 for each vertex $v$ coloured by a set $S$ we add a dummy vertex for each colour $c \in S$ and replace $v$ by the line of dummy vertices.
 
-```{figure} ./../2-fig:reduction_multiset_colouring.png
+```{figure} ./../FigAndAlgos/2-fig:reduction_multiset_colouring.png
 :name: 2-fig:reduction_multiset_colouring
 :align: center
 Reduction from multiset edge colouring to vertex colouring, here for two colours.
@@ -399,7 +404,7 @@ The three reductions described above yield equivalent Rabin games which are at m
 We note that they are not general reductions in the sense that they use properties of the Rabin objecttives.
 In the reduction below we use these more general definitions to simplify the presentation.
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 The proof that solving Rabin games is in $\NP$ follows the same lines as for solving parity games: the algorithm guesses a positional strategy and checks whether it is indeed winning. This requires proving that solving Rabin games where Adam control all vertices can be done in polynomial time, which is indeed true and easy to see so we will not elaborate further on this.
@@ -446,29 +451,30 @@ implying that this play does not satisfy $\Rabin$, contradicting that $\sigma$ i
 
 There exists a valuation $\mathbf{v}$ which satisfies each literal chosen by Eve, implying that it satisfies $\Phi$ which is then satisfiable.
 
-```
+````
 
 
-```{figure} ./../2-fig:hardness_Rabin.png
+```{figure} ./../FigAndAlgos/2-fig:hardness_Rabin.png
 :name: 2-fig:hardness_Rabin
 :align: center
 The Rabin game for $\Phi = (x \vee y \vee z) \bigwedge (x \vee \bar{y} \vee \bar{z}) \bigwedge (\bar{x} \vee y \vee \bar{z})$.
 ```
 
-## The complexity of solving Muller games}    
+## The complexity of solving Muller games
+    
 
-```{prf:theorem} NEEDS LABEL Complexity of solving Muller games
-:label: Complexity of solving Muller games
-\label{2-thm:complexity_Muller
+````{prf:theorem} Complexity of solving Muller games
+:label: 2-thm:complexity_Muller
+
 Solving Muller games is $\PSPACE$-complete.
 
-```
+````
 
 As for the previous reduction, in the Muller game constructed in the reduction below we label edges rather than vertices,
 and some edges have more than one colour.
 As for Rabin games this can be reduced to the original definition of colouring functions (labelling vertices with exactly one colour each) with a polynomial increase in size.
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 The $\PSPACE$ algorithm was constructed in  {prf:ref}`2-thm:muller`.
@@ -578,10 +584,10 @@ If $x$ is universal, the sequence is ultimately constant.
 Since any literal that Adam chooses is necessarily false under the current valuation, 
 this implies that in both cases $\play$ does not satisfy $\Muller(\F)$.
 
-```
+````
 
 
-```{figure} ./../2-fig:hardness_Muller.png
+```{figure} ./../FigAndAlgos/2-fig:hardness_Muller.png
 :name: 2-fig:hardness_Muller
 :align: center
 The Muller game for $\Psi = \exists x, \forall y, \exists z, (x \wedge y \wedge z) \bigvee (x \wedge \bar{y} \wedge \bar{z}) \bigvee (\bar{x} \wedge y \wedge \bar{z})$. For a variable $v$ we write $S_{> v}$ for the set of literals corresponding to variables quantified after $v$, so for instance $S_{> x} = \set{y,\bar{y},z,\bar{z}}$.

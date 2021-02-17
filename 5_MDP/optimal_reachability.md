@@ -106,6 +106,9 @@
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
+\newcommand{\EXP}{\textrm{EXP}}
+\newcommand{\kEXP}{\textrm{kEXP}}
 ```
 In this final section, we prove  {prf:ref}`5-thm:quant-reachability-main`. The proof bears many similarities to the methods for discounted MDPs, hence we only sketch the process and point out the key differences. Throughout the section we assume that **targets are sinks**, i.e. that a vertex coloured by $\Win$ has only a self loop as the single outgoing edge. Modifying an MDP to accommodate this does not influence reachability probabilities in any way.
 
@@ -122,94 +125,93 @@ $$
 
 
 
-```{prf:lemma} NEEDS TITLE 5-lem:quant-reach-operator-fixed-point
+````{prf:lemma} NEEDS TITLE 5-lem:quant-reach-operator-fixed-point
 :label: 5-lem:quant-reach-operator-fixed-point
 
 For each initial vector $\vec{x}$, the limit $\lim_{k \rightarrow \infty}\ReachOp^k(\vec{x})$ exists. Moreover, if $\vec{x} \leq \ReachOp(\vec{x})$, then the limit is equal to the least fixed point of $\ReachOp$ that is greater than or equal to $\vec{x}$; if $\ReachOp(\vec{x})\leq \vec{x}$, then the limit is equal to the greatest fixed point of $\ReachOp$ that is less than or equal to $\vec{x}$.
 
-```
+````
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 The existence of the limit follows from the monotonicity of $\ReachOp$.
 In addition, it can be easily checked that the set $[0,1]^{\vertices}$ is a directed complete partial order and that $\ReachOp$ is a Scott-continuous operator on this set. Hence, the result follows from the Kleene's theorem (see also Tarski-Kantorovich principle).
 
-```
+````
 
 We denote by $\Reach^k(\Win)$ the set of all plays that reach $\Win$ within the first $k$ steps. Clearly, for each $\sigma$ and $\vinit$ we have $\lim_{k \rightarrow \infty} \probm^\sigma_{\vinit}(\Reach^k(\Win)) = \probm^\sigma_{\vinit}(\Reach(\Win))$.
 
-```{prf:lemma} NEEDS TITLE 5-lem:quant-reach-step-operator
+````{prf:lemma} NEEDS TITLE 5-lem:quant-reach-step-operator
 :label: 5-lem:quant-reach-step-operator
 
 For each $k\in \N$ and $v\in \vertices$, $\ReachOp^k(\vec{0})_v = \sup_{\sigma}\probm^\sigma_v(\Reach^k(\Win))$. In particular, the vector $\vec{x}^* = \lim_{k \rightarrow\infty} \ReachOp^k(\vec{0})$ is the least fixed point of $ \ReachOp $ and it is equal to the vector of reachability values. 
 
-```
+````
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 The first part can be proved by a straightforward induction, the second part follows by  {prf:ref}`5-lem:quant-reach-operator-fixed-point` and a simple limiting argument.
 
-```
+````
 
 
 
 Similarly to  {prf:ref}`5-def:disc-safe-act` we say that an action $a$ is $\vec{x}$-safe in $v$ if it holds that $a= \underset{a' \in \actions}{\arg\max} \sum_{u\in \vertices} 
 \probTranFunc(u\mid v,a') \cdot\vec{x}_u.$ Recall that a strategy $\sigma$ is $\vec{x}$-safe if all actions selected in a vertex with non-zero probability are $\vec{x}$-safe in that vertex. 
 
-```{prf:lemma} NEEDS TITLE 5-lem:quant-reach-value-distribution
+````{prf:lemma} NEEDS TITLE 5-lem:quant-reach-value-distribution
 :label: 5-lem:quant-reach-value-distribution
 
 Let $ \vec{x}^* $ be as in  {prf:ref}`5-lem:quant-reach-step-operator`. 
 Next, let $Z^{(n)}$ be a random variable which for a given time step $n$ looks at the current vertex $v$ after $n$ steps and returns the value $\vec{x}^*_v$. Then for every $\vec{x}^*$-safe strategy $\sigma$ it holds $\expv^\sigma_{\vinit}[Z^{(n)}] = \vec{x}^*_{\vinit}$. Moreover, it holds $\expv^\sigma_{\vinit}[Z^{(n)}\cdot \indicator{\colouring{(\Out{(\play_{n})})}=\Win}] = \probm^\sigma_{\vinit}(\Reach^n(\Win)).$
 
-```
+````
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 By an easy induction on $n$, using the fact that target states are  sinks.
 
-```
+````
 
 
 
 Now an analogue of  {prf:ref}`5-lem:disc-val-lower` does not hold for reachability: a strategy playing only $\vec{x}^*$-safe actions might not be optimal (indeed, it might not reach $\Win$ at all). Instead, we proceed as follows: Let $\mdp^*$ be an MDP in which we disable, in each state $v$, all actions that are not $\vec{x}^*$-safe in $v$. This can be formally done by adding a new non-target sink vertex $ \mathit{sink} $, an edge from each original vertex to $ \mathit{sink} $, and stipulating that each action $a$ that is disabled in a vertex $ v $ chooses, when played in $ v $ in $ \mdp^*$, the edge leading to $ \mathit{sink} $ with probability 1. 
 
-```{prf:lemma} NEEDS TITLE 5-lem:quant-reach-pruning-unsafe
+````{prf:lemma} NEEDS TITLE 5-lem:quant-reach-pruning-unsafe
 :label: 5-lem:quant-reach-pruning-unsafe
 
 The vectors of reachability values $ \Value(\mdp)$ and $\Value(\mdp^*) $ are equal.
 In particular, $ \winPos(\mdp,\Reach(\Win)) = \winPos(\mdp^*,\Reach(\Win)).$
 
-```
+````
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
-
 Let $\vec{x}^*$ again denote the vector of optimal values in $\mdp$. If all actions in $ \mdp $ are $\vec{x}^*$-safes, then the lemma clearly holds. Otherwise there is some $\delta\in(0,1)$ such that for each action $a$ that is not $\vec{x}^*$-safe in some vertex $ v $ it holds $\sum_{u\in \vertices} \probTranFunc(u\mid v,a) \cdot\vec{x}_u \leq \vec{x}^*_v - \delta$.
 
 Let $\epsilon \in(0,\delta)$ be arbitrary and fix an $\epsilon$-optimal strategy $\sigma$ in $\mdp$. We will show that there is a $(2\eps/\delta)$-optimal  strategy $\sigma'$ which only uses $\vec{x}^*$-safe actions. Since $\eps$ can be chosen arbitrarily close to $0$, this shows that $\vec{x}^*$-safe strategies can get arbitrarily close to the value, hence $\Value(\mdp^*)=\Value(\mdp)$.
 
 The strategy $\sigma'$ initially mimics $\sigma$ up to the first point in time when an action that is not $\vec{x}^*$-safe in the current vertex is to be selected. At this point $\sigma'$ switches to behave as any $\vec{x}^*$-safe strategy. To analyse the value achieved by $\sigma'$, we need to bound the probability of the event $\mathit{NonSafe}$ that the switch occurs. By the same reasoning as in  {prf:ref}`5-lem:quant-reach-value-distribution`, we can show that for all $n$ it holds $\probm^\sigma_{\vinit}(\Reach^n(\Win)) \leq \expv^\sigma_{\vinit}[Z^{(n)}] \leq  \vec{x}^*_{\vinit}- \delta\cdot\probm_{\vinit}^\sigma(\mathit{NonSafe^{(n)}})$, where $\mathit{NonSafe^{(n)}}$ is the probability that a switch occurs in the first $n$ steps. By taking $n$ to the limit we get $\probm^\sigma_{\vinit}(\Reach(\Win)) \leq \vec{x}^*_{\vinit}- \delta\cdot\probm_{\vinit}^\sigma(\mathit{NonSafe})$. At the same time $\vec{x}^*_{\vinit}-\eps\leq  \probm^\sigma_{\vinit}(\Reach(\Win))$. Combining these two inequalities yields $\probm_{\vinit}^\sigma(\mathit{NonSafe}) \leq  \frac{\eps}{\delta}.$ Now clearly $\probm_{\vinit}^{\sigma'}(\Reach(\Win)) \geq \vec{x}^*_{\vinit} - \eps - \probm_{\vinit}^{\sigma}(\mathit{NonSafe}) \geq \vec{x}^*_{\vinit} - \eps - \eps/\delta \geq \vec{x}^*_{\vinit} -2\eps/\delta$.
 
-```
+````
 
 
-```{prf:lemma} NEEDS TITLE 5-lem:quant-reach-strat-contsruction
+````{prf:lemma} NEEDS TITLE 5-lem:quant-reach-strat-contsruction
 :label: 5-lem:quant-reach-strat-contsruction
 
 Given the vector $\vec{x}^*$ of optimal reachability values, we can compute, in polynomial time, the optimal MD reachability strategy in $\mdp$.
 
-```
+````
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 Given $\vec{x}^*$, we construct the MDP $\mdp^*$ and compute the winning strategy $\sigma$ for positive reachability in $\mdp^*$. We already know that $\sigma$ can be taken memoryless and computed in polynomial time ( {prf:ref}`5-thm:positive-char`). We claim that $\sigma$ is an optimal reachability strategy in $\mdp$. By  {prf:ref}`5-lem:quant-reach-pruning-unsafe` it suffices to show that $\sigma$ is optimal in $\mdp^*$. Let $W$ be the winning region for positive reachability in $\mdp^*$. Since $\sigma$ is memoryless, with probability $1$ we reach either $\Win$ or a vertex of value $0$ (from which we cannot return to $W$ anymore); in other words, for almost all plays $\play$ we have that $\indicator{\Out(\play_n)\in W}$ eventually equals $\indicator{\colouring(\Out(\play_n)) = \Win}$. Hence, using  {prf:ref}`5-lem:quant-reach-value-distribution` we get $\vec{x}^*_{\vinit} = \lim_{n\rightarrow\infty}\expv^\sigma_{\vinit}[Z^{(n)}] = \expv^\sigma_{\vinit}[\lim_{n\rightarrow\infty} Z^{(n)}] = \expv^\sigma_{\vinit}[\lim_{n\rightarrow\infty} Z^{(n)}\cdot\indicator{\Out(\play_n)\in W}] = \expv^\sigma_{\vinit}[\lim_{n\rightarrow\infty} Z^{(n)}\cdot \indicator{\colouring(\Out(\play_{n})) = \Win } ] = \probm_{\vinit}^\sigma(\Reach(\Win))$. Here, the third equality holds since $ \vec{x}^*_v $ is zero for $ v\not\in W $, while the  swapping of expectations and limits can be performed due to the dominated convergence theorem.
 
-```
+````
 
 To finish the proof of  {prf:ref}`5-thm:quant-reachability-main`, it remains to prove that the vector of optimal values $\vec{x}^*$ can be computed in polynomial time. We again employ linear programming. 
 
@@ -218,33 +220,29 @@ To finish the proof of  {prf:ref}`5-thm:quant-reachability-main`, it remains to 
 &\text{minimize} \sum_{v\in \vertices} x_v, \text{ subject to }&\\
 x_v &=1 &\text{if $\colouring({v}) = \Win$}\\
 x_v &=0 &\text{if $v \not \in \winPos(\mdp,\Reach(\Win))$  } \\
-x_v &\geq \sum_{u\in \vertices} \probTranFunc(u\mid v,a)\cdot x_u&\text{for all other $v\in \vertices$ and $a\in \actions$.}\end{align*}
+x_v &\geq \sum_{u\in \vertices} \probTranFunc(u\mid v,a)\cdot x_u&\text{for all other $v\in \vertices$ and $a\in \actions$.\end{align*}
 \caption{The linear program $\lpreach$ with variables $x_v$, $v\in \vertices$.}
 \label{5-fig:reach-lp}
 \end{figure}
 
-```{prf:lemma} NEEDS TITLE AND LABEL 
+````{prf:lemma} NEEDS TITLE AND LABEL 
 \label{5-lem:quant-reach-lp}
 The linear program $\lpreach$ in {numref}`5-fig:reach-lp` has a unique optimal solution 
 $\bar{\vec{x}}$ such that $\bar{\vec{x}} = \vec{x}^*$.
  
-:label: 
-\label{5-lem:quant-reach-lp}
-The linear program $\lpreach$ in {numref}`5-fig:reach-lp` has a unique optimal solution 
-$\bar{\vec{x}}$ such that $\bar{\vec{x}} = \vec{x}^*$.
 
 \label{5-lem:quant-reach-lp}
 The linear program $\lpreach$ in {numref}`5-fig:reach-lp` has a unique optimal solution 
 $\bar{\vec{x}}$ such that $\bar{\vec{x}} = \vec{x}^*$.
 
-```
+````
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 Clearly $\vec{x}^*$ is a feasible solution of $\lpreach$. Similarly to  {prf:ref}`5-lem:disc-lp` we prove that each feasible solution $\vec{x}$ of $\lpreach$ satisfies $\vec{x}\geq \vec{x}^*$. We can proceed analogously  to  {prf:ref}`5-lem:disc-lp`, just replacing the operator $\discOP$ with $\ReachOp$. The proof can be mimicked up to the point where we get that $\lim_{k\rightarrow \infty} \ReachOp^k (\vec{x}) \leq \vec{x}$ (the limit exists by  {prf:ref}`5-lem:quant-reach-operator-fixed-point`). Since $\ReachOp(\vec{x})\leq \vec{x}$ for each feasible solution $\vec{x}$, from  {prf:ref}`5-lem:quant-reach-operator-fixed-point` we get that the limit is a fixed point of $\ReachOp$, and in hence it is greater or equal to the least fixed point of $\ReachOp$, i.e. $\vec{x}^*$ ( {prf:ref}`5-lem:quant-reach-step-operator`). Hence, also $\vec{x} \geq \lim_{k\rightarrow \infty} \ReachOp^k (\vec{x}_0)\geq \vec{x}^*$. 
 
-```
+````
 
 
 

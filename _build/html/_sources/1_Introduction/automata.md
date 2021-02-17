@@ -62,13 +62,16 @@
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
+\newcommand{\EXP}{\textrm{EXP}}
+\newcommand{\kEXP}{\textrm{kEXP}}
 ```
 The study of games is deeply intertwined with automata over infinite words and trees.
 We will not elaborate much on that aspect in this book, but in a few places we will use automata.
 We define here (non-deterministic) automata over infinite words, and refer to {cite}`Thomas:1997`
 for a survey on automata theory over infinite objects (words and trees) and logic.
 
-```{prf:definition} Automata
+````{prf:definition} Automata
 :label: 1-def:automata
 
 Let $\Sigma$ be an alphabet.
@@ -82,7 +85,7 @@ An automaton over the alphabet $\Sigma$ is a tuple $\Automaton = (Q,q_0,\Delta,A
 
 *  $A \subseteq \Delta^\omega$ is the acceptance condition.
 
-```
+````
 
 We assume that automata are complete: from any state $q$ and letter $a$,
 there exists a transition $(q,a,q') \in \Delta$. 
@@ -114,10 +117,10 @@ induce an acceptance condition $\Omega[\col] \subseteq \Delta^\omega$.
 For deterministic automata the colouring function becomes $\col : Q \times \Sigma \to C$.
 As for games the objective qualifies the automaton, so we speak of a parity automaton if it uses a parity objective.
 
-```{prf:theorem} Omega-regular languages
+````{prf:theorem} Omega-regular languages
 :label: 1-thm:omega_regular_languages
 
 Non-deterministic B&uuml;chi, CoB&uuml;chi, parity, and deterministic parity automata define the same class of languages called $\omega$-regular languages.
 
-```
+````
 

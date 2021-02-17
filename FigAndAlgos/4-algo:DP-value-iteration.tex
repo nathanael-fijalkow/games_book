@@ -1,0 +1,25 @@
+\documentclass[preview,border=0mm,convert={density=600,outext=.png}]{standalone}
+\input{norenew_macros.tex}
+\input{./../4_Payoffs/norenew_macros_local.tex}
+\usepackage{amsfonts}
+\usepackage[norelsize,ruled,vlined,noend]{algorithm2e}
+\begin{document}
+\begin{algorithm}[H]
+
+ \KwData{A discounted payoff game $\game$ with discount factor
+ $\lambda= a/b\in(0,1)$, and $F$ the contracting operator}
+
+ $\vec x \leftarrow \vec 0$ ;
+
+ $K \leftarrow \left\lceil \frac{1}{-\log_2\lambda} \left(\frac{n(n+3)}{2}\log_2b +
+     \log_2 W+2\right) \right\rceil$ ;
+
+ \For{$i = 1$ to $K$}
+ {
+   $\vec x \leftarrow F(\vec x)$
+ }
+
+ \Return{$\vec x$}
+
+\end{algorithm}
+\end{document}

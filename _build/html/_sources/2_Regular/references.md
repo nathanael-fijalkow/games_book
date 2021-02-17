@@ -67,8 +67,10 @@
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
-```
-
+\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
+\newcommand{\EXP}{\textrm{EXP}}
+\newcommand{\kEXP}{\textrm{kEXP}}
+```%reachability and safety, then B&uuml;chi and CoB&uuml;chi, parity, and Rabin, Streett and Muller.
 The interest in reachability objectives goes beyond automata theory and logic.
 The attractor computation presented in Section {ref}`2-sec:attractors` is inspired by the backward induction principle due to Zermelo {cite}`Zermelo:1913`, 
 which was used to show that well founded games (**i.e.** where all plays are finite) are determined.

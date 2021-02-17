@@ -73,24 +73,27 @@
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
+\newcommand{\EXP}{\textrm{EXP}}
+\newcommand{\kEXP}{\textrm{kEXP}}
 ```
-
+%   [Mar98] ?}
 Pure memoryless determinacy for non-stochastic games with parity
 objectives was established in Chapter {ref}`2-chap:regular` (see {prf:ref}`2-thm:parity`). 
 In this section we extend this result to stochastic games. 
 We focus on reachability objectives, since we will see in Section {ref}`6-sec:relations` 
 that other natural objectives reduce to reachability.
+%  these reductions}
 
-
-```{prf:theorem} Pure positional determinacy for stochastic reachability games
+````{prf:theorem} Pure positional determinacy for stochastic reachability games
 :label: 6-thm:determinacy
 
 Stochastic reachability games are pure positionally determined.
 
-```
+````
 
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
   Let $G = (\vertices,E,\delta,\Win)$ be a stochastic reachability
@@ -112,7 +115,7 @@ $$
   monotonic. Hence it admits a least fixpoint, which we denote
   $\lfp(\mathfrak{F})$.  We show that:
   
-```{prf:lemma} NEEDS TITLE AND LABEL 
+````{prf:lemma} NEEDS TITLE AND LABEL 
     \label{6-lem:lfpgeval}
     For every $v$:
     
@@ -124,18 +127,6 @@ $$
     $$
 
    
-:label: 
-    \label{6-lem:lfpgeval}
-    For every $v$:
-    
-
-$$
-    \lfp(\mathfrak{F}) (v) \le \sup_\sigma \inf_\tau
-    \probm_{\sigma,\tau}^v(\Reach(\Win)) \le \inf_\tau \sup_\sigma
-    \probm_{\sigma,\tau}^v(\Reach(\Win)) \enspace.
-    $$
-
-  
 
     \label{6-lem:lfpgeval}
     For every $v$:
@@ -148,7 +139,7 @@ $$
     $$
 
   
-```
+````
 
   \begin{proof}
     We first argue for the right inequality:
@@ -171,7 +162,7 @@ $$
     $v \mapsto \sup_\sigma \inf_\tau
     \probm_{\sigma,\tau}^v(\Reach(\Win))$ is a fixpoint of
     $\mathfrak{F}$.  Pick $v \in \VE$. 
-                                             \begin{eqnarray*}
+                                  \begin{eqnarray*}
       \sup_\sigma \inf_\tau \probm_{\sigma,\tau}^v(\Reach(\Win)) & = &
       \sup_\sigma \inf_\tau \sum_{v'} \sigma(v)(v')  \cdot
       \probm_{\sigma',\tau'}^{v'}(\Reach(\Win)) \\
@@ -192,9 +183,9 @@ $$
     where $\probm_{\sigma,\tau}^{\bullet}(\Reach(\Win)))$ is the
     function with associates with vertex $v$ the value
     $\probm_{\sigma,\tau}^{v}(\Reach(\Win)))$.
-                                                                            
+                                                         
     Assume now that $v \in \VA$. 
-                                                                        \begin{eqnarray*}
+                                                       \begin{eqnarray*}
       \sup_\sigma \inf_\tau \probm_{\sigma,\tau}^v(\Reach(\Win)) & = &
       \sup_\sigma \inf_\tau \sum_{v'} \tau(v)(v')
       \cdot \probm_{\sigma',\tau'}^{v'}(\Reach(\Win)) \\
@@ -218,13 +209,12 @@ $$
                 strategies after}\ (v,v') \\
       & = & \mathfrak{F}(\probm_{\sigma,\tau}^{\bullet}(\Reach(\Win)))(v)
     \end{eqnarray*}
-    This concludes the proof.
-    
+    This concludes the proof.    
   
-```
+````
 
   
-```{prf:lemma} NEEDS TITLE AND LABEL 
+````{prf:lemma} NEEDS TITLE AND LABEL 
     \label{6-lem:lfpleval}
     For every $v \in \vertices$:
     
@@ -235,17 +225,6 @@ $$
     $$
 
    
-:label: 
-    \label{6-lem:lfpleval}
-    For every $v \in \vertices$:
-    
-
-$$
-    \lfp(\mathfrak{F})(v) \ge \inf_\tau \sup_\sigma
-    \probm_{\sigma,\tau}^v(\Reach(\Win)) \enspace.
-    $$
-
-  
 
     \label{6-lem:lfpleval}
     For every $v \in \vertices$:
@@ -257,10 +236,10 @@ $$
     $$
 
   
-```
+````
 
   
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
     Let $v \in \VA$. Since $\lfp(\mathfrak{F})$ is a fixpoint of
@@ -315,7 +294,7 @@ $$
 
     This concludes the proof of the lemma. 
   
-```
+````
 
 By Lemma~\ref{6-lem:lfpgeval} and~\ref{6-lem:lfpleval}  we derive that:
  
@@ -330,7 +309,7 @@ $$
 
   This proves that $\game$ is pure memoryless determined, and that
   $(\sigma^*,\tau^*)$ is an optimal pure positional strategy profile.
-               
+         
 \end{proof}
 
 The proof of Theorem~\ref{6-thm:determinacy} yields an algorithm to
@@ -349,8 +328,8 @@ $\tau$, for every vertex $v$,
 $\probm_{\sigma,\tau}^{\arena,v}(\Reach(\{\vwin,\vlose\})) =
 1$. Whenever the game is stopping, $\mathfrak{F}$ has a unique
 fixpoint, hence the value iteration algorithm can be applied from any
-initial tuple of values.
-
+initial tuple of values.%   (see CHJ-soda04). Check whether it is a byproduct of reductions.}
+%   Let $\arena$ be an arena with two distinguished sink vertices%   $\Reach(\Win)$ where $\Win = \{\vwin\}$. The stochastic game $\game%   $\sigma$ and $\tau$,%   every vertex $v$. Whenever the arena/game is stopping,% \end{remark}
 
 Notice that the proof of Theorem~\ref{6-thm:determinacy} and the value
 iteration algorithm which derives from it do not assume that the game

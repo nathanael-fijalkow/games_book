@@ -1,0 +1,868 @@
+The backward algorithm we just presented is conceptually simple, but
+it~is often not very efficient in practice,
+as federations tend to grow too much in size in each iteration of the
+computation.
+The forward algorithm we will now present is more efficient in practice.
+It performs a forward exploration and only applies the controllable predecessor along branches
+that actually reach the target state from the initial state. If the witness
+trace is not excessively long, which is often the case in practice,
+this limits the size of the federations.
+%In finite-state systems, this algorithm is known to find small fixpoints
+
+%When dealing with timed systems, backwards algorithms are easy to
+%develop and implement, but they are usually not very efficient in
+%practice.
+%\NM{Give intuition why? Especially, why for timed games?? La
+%  justification donnee dans [Cassez, FORMATS 2007] n'est pas hyper
+%  convaincante...}
+%As~for solving reachability in timed automata, forward algorithms have
+%been designed to gain in efficiency.
+
+We present below the algorithm proposed in~\cite{CDFLL05},
+and as a first step, we explain the untimed version of that algorithm,
+based on an algorithm of Liu and Smolka for computing
+fixpoints~\cite{LS98}.
+
+
+\subsection*{A Forward Algorithm for Finite-State Games}
+%Give the full proof.
+
+The original algorithm of Liu and Smolka is expressed in terms of
+\emph{(pre-)fixpoints} in \emph{dependency graphs}: a~dependency graph
+is a pair~$G=(V,E)$ in which $E \subseteq V \times 2^V$ relates
+states with sets of states.
+%
+For any order-preserving 
+function~$f\colon 2^V\to2^V$
+(\emph{order-preserving} meaning non-decreasing for the $\subseteq$-relation),
+%\todo{Define order-preserving}
+a~\emph{pre-fixpoint} is a set~$X\subseteq V$ for which $f(X)\subseteq
+X$; it~is a \emph{fixpoint} if $f(X)=X$. By~Knaster-Tarski theorem, such
+functions always admit a least pre-fixpoint which is also the least fixpoint.
+% Observe that the least
+%pre-fixpoint and the least fixpoint coincide.
+%
+
+Fix a dependency graph~$G=(V,E)$. 
+For~$W\subseteq V$,
+we~define a mapping $f_W\colon 2^V\to 2^V$: for
+each~$X\subseteq V$, we~let $f_W(X)=W\cup \{v\in V\mid \exists (v,Y)\in
+E.\ Y\subseteq X\}$.
+%
+%By~Knaster-Tarski theorem, $f_W$~admits a least
+%pre-fixpoint, which is also its least
+%fixpoint.
+Clearly, $X\subseteq X'$ implies $f_W(X)\subseteq f_W(X')$, so that $f_W$ admits
+a least (pre-)fixpoint.
+The~Liu-Smolka
+algorithm aims at deciding whether a given vertex~$v_0\in V$ belongs
+to the least fixpoint of~$f_W$.  Classical algorithms for computing
+least fixpoints consist in iteratively
+computing~$(f_W^i(\emptyset))_i$ until convergence (assuming~$V$~is
+finite). Observe that this corresponds to the algorithm of \cref{9-thm:timed-control}
+for timed games.
+The~Liu-Smolka algorithm proceeds from~$v_0$, and explores
+the dependency graph until it can claim that~$v_0$~is, or that it
+is~not, in the least fixpoint of~$f_W$.
+
+
+Before tackling the algorithm, let us link least fixpoints in
+dependency graphs and winning sets in concurrent games (with
+reachability objectives): with a concurrent arena
+$\calC=(V,\Act,\delta,c')$ and a target set~$\Win$, we~associate
+the dependency graph $G=(V,E)$, where $(v,T)\in E$ whenever $v\in V$
+and $T\subseteq V$ is such that there exists an action~$a$ for which
+$T=\{v' \mid \exists a'\in\Act.\ v'=\delta(v,a,a')\}$.  Then for any
+set~$X\subseteq V$, the~set~$f_{\Win}(X)$ contains $\Win$ and all the
+states from which Eve can force a visit to~$X$ in one step.
+We~then~have:
+\begin{proposition}\label{9-prop:fixp-game}
+The least fixpoint of~$f_{\Win}$ in~$G$ corresponds to the set~$W$ of
+winning states for~\Eve in~$\calC$.
+\end{proposition}
+
+\begin{proof}
+  The winning states of~\Eve form a pre-fixpoint of~$f_{\Win}$
+  containing~\Win: indeed, for any~$v\in f_{\Win}(W)$, either $v\in
+  \Win$, or \Eve has an action to move from~$v$ to some state
+  in~$W$. Hence $v$ is winning, i.e., $v\in W$.
+  
+%  indeed, in each winning state, Eve~has an action whose successors
+%  are all winning. Hence all the states in the least fixpoint of~$f_{\Win}$ 
+%  are winning for~Eve.
+
+  Conversely, from any state~$v$ that is not in the least
+  pre-fixpoint~$X$, for any~edge~$(v,T)$, there is a state~$v'\in T$
+  that again is not in~$X$. This defines a strategy for \Adam to avoid
+  reaching~$\Win$, so that \Eve does not have a winning strategy from~$v$.
+\end{proof}
+
+
+
+\begin{algorithm}
+  \SetKwFunction{Pop}{pop}\SetAlgoNoEnd
+  \KwData{A dependency graph~$G=(V,E)$, a~set~$W\subseteq V$, a~node $v_0\in V$}
+  \KwResult{Is $v_0$ in the least fixpoint of~$f_W$?}
+
+  %\For{$v\in V$}{$F(v):=\bot$}
+  %$F(v_0):=0$;
+  \For{$v\in V$}{\lIf{$v\in W$}{$F(v):=1$}
+    \lElseIf{$v==v_0$}{$F(v):=0$}
+            \lElse{$F(v):=\bot$}}
+  
+  $\Dep(v_0):=\emptyset$;
+
+  $\Wait:=\{(v,T)\in E \mid v=v_0\}$;
+
+  \While{($\Wait\not=\emptyset$ and $F(v_0)==0$)}
+        {$(v,T):=\Pop{\Wait}$;\\
+          \If(\hfill{// case 1}){$F(v)==0$ and $\forall v'\in T.\ F(v')==1$}
+             {$F(v):=1$;\\
+              $\Wait:=\Wait\cup\Dep(v)$;}
+          \ElseIf(\hfill{// case 2}){$\exists v'\in T.\ F(v')==0$}
+                {$\Dep(v'):=\Dep(v') \cup \{(v,T)\}$;}
+                \ElseIf(\hfill{// case 3}){$\exists v'\in T.\ F(v')==\bot$}
+                  {$F(v'):=0$; \\
+                  $\Dep(v'):=\{(v,T)\}$;\\
+                  $\Wait:=\Wait\cup\{(w,U)\in E \mid w=v'\}$;
+                  }
+                  }
+                  \Return{$F(v_0)$}
+  \caption{Liu-Smolka algorithm\protect\footnotemark for least fixpoint of~$f_W$}
+  \label{9-algo:LS98}
+\end{algorithm}
+\footnotetext{Our version of the algorithm slightly differs from the
+  original one~\cite{LS98}: we~let $\Dep(v'):=\{(v,T)\}$ at the penultimate line
+  of the \textbf{while} loop (which otherwise results in a wrong
+  result, as~already noticed in~\cite{JLSO13}), reinforce the
+  condition for case~$1$ (which otherwise would not guarantee
+  termination), and reinforce the condition of the \textbf{while} loop
+  to get earlier termination.}
+%% counter example for termination: V={1}, E={e0=(1,{1}),e1=(1,empty)}.
+%% after init:       Wait={e0,e1}, F(1)=0, Dep(1)=empty
+%% first run:  e=e0: Wait={e1}, F(1)=0, Dep(1)={e0}
+%% second run: e=e1: F(1)=1, Wait={e0}
+%% third run:  e=e0: F(1)=1, Wait={e0}...
+
+\Cref{9-algo:LS98} can be seen as an alternation of forward
+exploration and backward propagation. Intuitively, the algorithm first
+explores the graph in a forward manner, remembering for each node~$v$
+the set~$\Dep(v)$ of nodes that \emph{depend} on~$v$, and have to be
+reexplored if the status of~$v$ is updated.
+%\todo{Clear enough?}
+%the parent of
+%each explored vertex thanks to~$\Dep(\cdot)$.
+For~each~$v$, the algorithm maintains a
+value~$F(v)$, which is~$\bot$ if~$v$ has not been explored~yet,
+$0$~if~$v$~has been explored but not yet been shown to be winning, %belong to~$S$,
+and~$1$ if~$v$ is known to be winning. % During exploration of an
+% edge~$e=(v,T)$, if some vertex~$v'\in T$ has~$F(v)=0$, then~$e$ is
+% added to the set~$\Dep(v')$ of edges that will have to be re-explored
+%The function~$F$ is used to mark whether a given vertex has not been explored yet ($\bot$),
+%has been explored but not known to be winning~($0$), or known to be winning~($1$).
+Whenever a vertex~$v$ whose all successors are winning is found, the value of~$v$ is set to~$1$, and its parents (in~$\Dep(v)$)
+are scheduled to be visited again to check whether their statuses have to be changed.
+This is how the backward propagation is triggered; in~fact, the~search will climb in the tree as long as the values of
+vertices can be updated to~$1$.
+%\todo{Benjamin: est-ce que vous pourriez expliquer l’utilisation du symbole Dep pour les parents des sommets explorés ?}
+%Thus, the backward propagation is only triggered when the value of some node becomes~$1$ so as to update its parents in the exploration.
+
+
+% \Cref{9-algo:LS98} decides if vertex~$v_0$ belongs to the least
+% fixpoint of~$f_W$. For~each~$v$, the algorithm computes a
+% value~$F(v)$, which is~$\bot$ if~$V$ has not yet been explored,
+% $0$~if~$v$~has been explored but not yet been shown to belong to~$S$,
+% and~$1$ if~$v$ belongs to~$S$. During exploration of an
+% edge~$e=(v,T)$, if some vertex~$v'\in T$ has~$F(v)=0$, then~$e$ is
+% added to the set~$\Dep(v')$ of edges that will have to be re-explored
+% in case~$F(v')$ is eventually set to~$1$. Notice that for any~$v\in
+% V$, the value of~$F(v)$ may not decrease (assuming $\bot < 0 < 1$).
+%\NM{Should we say more? We are just rephrasing the algo...}
+
+ %% \NMlong{Add intuition: when node is evaluated, value set to~$0$, and
+ %%   outgoing hyper-edges added in $\Wait$. When an hyper-edge is
+ %%   evaluated (taken from~$\Wait$), if some successor has value~$0$,
+ %%   the hyper-edge is added to list of edges to be re-evaluated if the
+ %%   value of that node changes. Reevaluation is enforced by adding
+ %%   $\Dep(v)$ to $W$ when setting value of~$v$ to~$1$.}
+
+
+The correctness of this algorithm relies on the following lemma:
+\begin{lemma}[\cite{LS98}]\label{9-lemma:ls98}
+  The following properties hold at the end of each run in the
+  \textbf{while} loop of \Cref{9-algo:LS98}:
+  \begin{itemize}
+  \item for any $v\in V$, if $F(v)=1$, then $v$ belongs to the least
+    fixpoint containing~$W$;
+  \item for any $v\in V$ with $F(v)=0$, and any $(v,T)\in E$, either
+    $(v,T)\in \Wait$ or $(v,T)\in\Dep(v')$ for some $v'\in T$ with
+    $F(v')=0$.
+  \end{itemize}
+\end{lemma}
+
+\begin{proof}
+  We~fix an execution of \Cref{9-algo:LS98}, and prove that both
+  claims are true at the beginning and end of each iteration through
+  the \textbf{while} loop. To~clarify the presentation, we~use
+  superscript~$i$ to indicate the value of variables at the end of the
+  $i$-th run through the loop, so that $\Wait^3$ is the value of
+  variable~$\Wait$ after three iterations (and $\Wait^0$ is its value
+  after initialization). In~particular, $(v^i,T^i)$ is the
+  symbolic transition popped from the $\Wait$ list during the $i$-th
+  iteration (and is not defined for~$i=0$).
+
+  Let us first prove the first property: the initialization phase
+  clearly enforces that if $F^0(x)=1$, then $x\in W$, which is
+  included in any fixpoint of~$f_W$. Now, assume that the property
+  holds true at the beginning of the $i$-th run through the loop
+  (i.e.,~if~$F^{i-1}(x)=1$, then $x$ is in the least fixpoint), and
+  pick some~$x\in V$ such that $F^i(x)=1$. If~$F^{i-1}(x)=1$, our
+  result follows; if~not, then the $i$-th iteration of the loop must
+  have run via case~$1$, hence $F^{i-1}(x')=1$ for all~$x'\in
+  T^i$. By~our induction hypothesis, this indicates that $T^i$ is part
+  of the least fixpoint, and by definition of~$f_W$, $x$~must also
+  belong to the least fixpoint.
+
+  %% After initialization, the first statement clearly holds. Now,
+  %% consider a run of the loop after popping hyper-edge~$(v,T)$
+  %% from~$\Wait$. Pick any~$v\in V$ such that~$F(v)=1$: if it was
+  %% already the case before running the loop, then by induction $v$
+  %% belongs to the least post-fixpoint containing~$R$.  Otherwise,
+  %% $F(v)$~has just been set to~$1$; this may only happen if $F(v')=1$
+  %% for all~$v'\in T$ before running the loop. By~induction, this
+  %% indicates that $T$ is included in the least post-fixpoint
+  %% containing~$R$; by~definition of least fixpoints, $v$~also belongs
+  %% to that least post-fixpoint.
+
+  \smallskip
+  The second statement also clearly holds after initialization:
+  initially, $F^0(x)=0$ only for~$x=v_0$, and all transitions
+  from~$v_0$ have been stored in~$\Wait^0$. We~now assume that the
+  property holds when entering the \textbf{while} loop for the $i$-th
+  time, and consider $x$ such that $F^i(x)=0$ at the end of that
+  loop. We~pick $(x,Y)\in E$.
+  \begin{itemize}
+  \item if the $i$-th run through the loop visits case~$1$, then
+    already $F^{i-1}(x)=0$ (hence $x\not=v^i$). Then either
+    $(x,Y)\in\Wait^{i-1}$, or $(x,Y)\in\Dep^{i-1}(x')$ for some~$x'\in Y$
+    with $F(x')=0$. In~the former case: since $x\not=v^i$,
+    if~$(x,Y)\in\Wait^{i-1}$ then also $(x,Y)\in \Wait^i$;
+%    %, since
+%    %$\Wait^i=(\Wait^{i-1} \setminus\{(v^i,T^i)\})\cup
+%    %\Dep^{i-1}(v^i)$.
+    in the latter case: if $(x,Y)\in\Dep^{i-1}(x')$ for some~$x'\in Y$
+    with~$F(x')=0$, then \emph{(i)}~either $x'=v^i$, and
+    $(x,Y)\in\Wait^i$ because $\Dep^{i-1}(v^i)\subseteq \Wait^i$
+    (last~line of case~$1$), \emph{(ii)}~or~${x'\not=v^i}$, and
+    $(x,Y)\in \Dep^{i-1}(x')=\Dep^{i}(x')$ and $F^i(x')=F^{i-1}(x')=0$.
+
+  \item if the $i$-th run goes to case~$2$, then again $F^{i-1}(x)=0$,
+    and the induction hypothesis applies: either $(x,Y)$ is
+    in~$\Wait^{i-1}$, or~it is in~$\Dep^{i-1}(x')$ for some~$x'\in Y$
+    with $F^{i-1}(x')=0$. For the latter case, observe that
+    $\Dep^{i-1}(x')\subseteq \Dep^i(x')$, and $F^{i}(x')=F^{i-1}(x')$
+    when running case~$2$; for the former case, we~have
+    $\Wait^i=\Wait^{i-1}\setminus\{(v^i,T^i)\}$, so that $(x,Y)$
+    remain in~$\Wait^i$ if~$(x,Y)\not=(v^i,T^i)$; finally,
+    if~$(x,Y)=(v^i,T^i)$, then case~$2$ precisely adds~$(v^i,T^i)$
+    to~$\Dep^i(v')$ for some~$v'\in T^i$ with~$F^i(v')=0$, which concludes
+    the proof for this case.
+
+  \item for case~$3$, we~first consider the case where $x$ is the
+    state~$v'$ selected at the beginning of case~$3$: in~that case,
+    all transitions from~$x$ are added to~$\Wait$, so that
+    $(x,Y)\in\Wait^i$. Now, if~$x$ is not the selected state~$v'$,
+    then $F^{i-1}(x)=0$, and again either $x\in\Wait^{i-1}$ or
+    $x\in\Dep^{i-1}(x')$ for some~$x'\in Y$ with
+    $F^{i-1}(x')=0$. The~latter case is preserved when running
+    case~$3$; if~$x\in\Wait^{i-1}$: if~$(x,Y)\not=(v^i,T^i)$, then
+    $x\in\Wait^i$, while if~$(x,Y)=(v^i,T^i)$, then
+    $(x,Y)\in\Dep^i(v')$ for the state~$v'\in T^i$ selected at the
+    beginning of case~$3$ (and~for which $F^i(v')=0$).
+  \end{itemize}
+%  
+  %% We~now prove the second statement. Again, it~is enforced by the
+  %% initialization step, hence it holds when entering the \textbf{while}
+  %% loop. Consider a run of the loop after popping~$(v,T)$ from~$\Wait$,
+  %% and pick any~$w\in V$ with~$F(w)=0$, and an
+  %% hyper-edge~$(w,U)$.
+  %% \begin{itemize}
+  %% \item if~the loop went through case~$1$, then already $F(w)=0$
+  %%   before running the loop.  By~induction, before running the loop,
+  %%   either $(w,U)\in \Wait$, or $(w,U)\in\Dep(w')$ for some~$w'$ with
+  %%   $F(w')=0$. Since~$(v,T)\not=(w,U)$ (because $F(v)\not=F(w)$ after
+  %%   running the loop), the former case is preserved. In~case
+  %%   $w'\not=v$, the second case is preserved as~well; if~$w'=v$,
+  %%   $\Dep(w')$ is added to~$\Wait$, so that $(w,U)\in\Wait$ at the end
+  %%   of the loop.
+%
+  %% \item if the loop visited case~$2$, then again $F(w')=0$ must have
+  %%   held before running through the loop. Thus at that time, either
+  %%   $(w,U)\in\Wait$, or $(w,U)\in\Dep(w')$ for some~$w'$ with
+  %%   $F(w')=0$. The~latter property is preserved when running through
+  %%   case~$2$; the~former property may be lost in case $(w,U)=(v,T)$,
+  %%   but then $(v,T)$ is added to some~$\Dep(v')$ for some~$v'$
+  %%   with~$F(v')=0$, which restores the global property.
+%
+  %% \item if the loop goes to case~$3$, then $F(v')$ is set to~$0$ for
+  %%   some~$v'$. If~$v'=w$, then all hyper-edges from~$w$ are added
+  %%   to~$\Wait$, and the result follows.  If~$w\not=v'$, then $F(w)=0$
+  %%   before running the loop, and at that time either $(w,U)\in\Wait$
+  %%   or $(w,U)\in\Dep(w')$ for some~$w'$ with~$F(w')=0$. The~latter
+  %%   case is preserved when running the loop; the~former case is
+  %%   preserved except if $(w,U)=(v,T)$, but this is solved with the
+  %%   newly created $\Dep(v')$.
+  %% \end{itemize}
+\end{proof}
+
+As a corollary, if the algorithm terminates after~$n$ rounds of the
+\textbf{while} loop, then either~$F^n(v_0)=1$, or
+$F^n(v_0)=0$ and $\Wait^n=\emptyset$.
+\begin{itemize}
+\item From the first claim of the lemma above, the former case entails
+  that $v_0$ belongs to the least fixpoint.
+\item Now consider the second case, and let $B=\left\{v\in V\mid
+  F^n(v)\in \{\bot,1\}\right\}$. We prove that $f_W(B)\subseteq
+  B$. For this, we~pick $v\in f_W(B)$:
+  \begin{itemize}
+  \item if~$v\in W$, then $F(v)$~is set to~$1$ initially, and may
+    never be changed, so that $v\in B$;
+  \item otherwise, there is a transition $(v,T)$ such that $T\subseteq
+    B$. If~$v\notin B$, then $(v,T)\in\Dep^n(v')$ for some~$v'\in T$
+    with~$F^n(v')=0$, which contradicts the fact that $T\subseteq B$.
+  \end{itemize}
+  This proves that $f_W(B)\subseteq B$, so that $B$ is a pre-fixpoint
+  of~$f_W$. It~thus contains the least (pre-)fixpoint of~$f_W$, so
+  that any state~$v$ not in~$B$ (i.e., with $F^n(v)=0$) for sure does
+  not belong to that least fixpoint. In~particular, $v_0$ is not in
+  the fixpoint.
+\end{itemize}
+
+%% the set of
+%% vertices~$v$ having~$F(v)\in\{\bot,1\}$ is a post-fixpoint
+%% of~$G$. Indeed, assume that for some hyper-edge~$(v,S)$, it~holds
+%% $0\notin F(S)$ and $F(v)=0$. Since $\Wait$ is empty, $(v,S)$ must
+%% \OS{$\Wait$ is not necessarily empty when the alg. terminates.
+%% I don't think the result is always a postfixpoint. It is if we continue until $\Wait$ is empty.}
+%% belong to some~$\Dep(v')$ for some~$v'\in S$ with $F(v')=0$,
+%% contradicting the fact that $0\notin F(S)$. 
+
+%% It~follows that for any~$v$ with~$F(v)=0$, then $v$~cannot belong to
+%% the least post-fixpoint of~$G$. Conversely, if~$F(v)=1$, then
+%% $v$~belongs to the least post-fixpoint. Hence, if the algorithm
+%% terminates, it~decides whether~$v_0$ belongs to the least
+%% post-fixpoint.
+
+\medskip
+It~remains to prove termination. For this, we~first notice that, for
+any hyper-edge~$(v,S)$, if $(v,S)\in\Dep^i(v')$ then $(v,S)\in\Wait^j$
+for some~$j<i$, and if $(v,S)\in\Wait^j$ or $(v,S)\in\Dep^j(v')$ for
+some~$v'$, then $F^j(v)\not=\bot$.
+
+We~then set
+\[
+M= 
+2\size{\Wait} + 
+2\hskip-4pt\sum_{v\text{ s.t. }F(v)=\bot}\hskip-4pt \size{\{(v,S)\in E\}} 
++ \hskip-4pt\sum_{v\text{ s.t. }F(v)=0}\hskip-4pt \size{\Dep(v)}
+- \hskip-4pt\sum_{v\text{ s.t. }F(v)=1}\hskip-4pt \size{\Dep(v)}
+%\sum_{(v,S)\in\Wait}(|S|+1) + \sum_{v\text{ s.t. } F(v)=\bot} \sum_{(v,S)\in E} (|S|+1)
+%+ \sum_{v\mid F(v)=0} \sum_{(v',S)\in \Dep(v)} (|S|+1).
+\]
+again writing~$M^i$ for the value of~$M$ after the $i$-th run through
+the \textbf{while} loop.  This value is at most~$2\size{E}$ when
+entering the \textbf{while} loop for the first time; clearly, it~can
+never go below~$-\size{E}$. We~now prove that $M^{i}<M^{i-1}$,
+%it decreases at each run through the \textbf{while} loop,
+which implies termination of the algorithm.
+
+Consider the $i$-th run through the loop, popping~$(v^i,T^i)$
+from~$\Wait^{i-1}$ (which decreases~$M$ by~$2$). We~consider all three cases:
+\begin{itemize}
+\item if~case~$1$ applies, $F^i(v)$ is set to~$1$.
+  The~set~$\Dep^{i-1}(v)$ is added to~$\Wait^i$. This globally
+  leaves~$M$ unchanged, so that globally $M^i=M^{i-1}-2$;
+\item if~case~$2$ applies, $\Dep^{i-1}(v')$~is augmented by (at~most) one edge,
+  and since $F^i(v')=0$, this increases~$M$ by at most~$1$. Hence globally
+  $M^i\leq M^{i-1}-1$;
+\item finally, case~$3$ increases~$M$ by~$1$: the edges added
+  to~$\Wait$ are compensated by the fact that~$F(v')$ no longer
+  is~$\bot$, and only one extra edge has to be considered in the
+  second sum. Hence again $M^i\leq M^{i-1}-1$.
+\end{itemize}
+This concludes the correctness proof of~\Cref{9-algo:LS98}.
+
+\begin{theorem}
+\Cref{9-algo:LS98} terminates, and returns~$1$ if, and only~if,
+$v_0$~belongs to the least fixpoint of~$f_W$.
+\end{theorem}
+
+Using~\cref{9-prop:fixp-game}, we~get a \emph{forward} algorithm for
+deciding if a given state of a concurrent game is winning
+for~Eve. This corresponds to the OTFUR algorithm
+of~\cite{CDFLL05}.
+
+
+%% \NM{stopped here}
+%% \medskip
+%% This algorithm can be turned into an algorithm for deciding the winner
+%% from a some state~$q_0$ in a two-player finite-state
+%% \fbox{concurrent}\NM{Il faudra adapter les notations, ou se
+%%   restreindre \`a des jeux \`a tours (mais les jeux temporis\'es sont
+%%   concurrents...)}
+%% \OS{En fait cet algo n'est pas appliqu\'e directement \`a la s\'emantique qu'on donne aux jeux temp.
+%% mais \`a un jeu symbolique sur les zones...}
+%% reachability game~$\game$: indeed, such a game can
+%% be turned into a dependency graph~$G$ by creating, for each vertex~$v$ and
+%% each possible move~$m$ of~Eve, an~hyper-edge~$(v,T)$ where~$T$ is the
+%% set of possible successors of~$v$ when Eve plays~$m$. Notice that
+%% there are no hyper-edges~$(v,\emptyset)$ in the resulting depencency
+%% graph.
+
+%% Using~\Cref{9-algo:LS98}, we~can compute the least post-fixpoint
+%% of~$G$ containing all vertices coloured~\Win.  Clearly, the set of
+%% vertices where Eve wins the game is a post-fixpoint containing~\Win,
+%% so that all vertices in the least such post-fixpoint are
+%% winning. Conversely, if a vertex does not belong to the least
+%% post-fixpoint, we~can inductively build a run from that vertex that
+%% never reaches a vertex coloured by~\Win, hence such a vertex is not
+%% winning. Hence the least post-fixpoint containing~\Win exactly
+%% corresponds to the set of winning vertices for~Eve.  Notice that this
+%% approach is very similar to the OTFUR algorithm
+%% of~\cite{CDFLL05}. 
+
+%% We~end up with~\Cref{10:algo-otfur}, which corresponds\NM{again
+%%   with a few minor corrections...} to the OTFUR algorithm
+%% of~\cite{CDFLL05}.  \NM{adapter les notations pour jeux ?
+%%   Rephraser un peu plus pr\'ecis\'ement ?}  \NM{explain why
+%%   post-fixpoints corresponds to winning states?}
+
+%% \begin{algorithm}
+%%   \SetKwFunction{Pop}{pop}\SetAlgoNoEnd
+%%   \KwData{A reachability game~$\game=(\arena, \Reach(\Win))$, a~node $v_0\in V$}
+%%   \KwResult{Is $v_0$ winning for Eve?}
+
+%%   %\For{$v\in V$}{$F(v):=\bot$}
+%%   $\Passed=\{v_0\}$;  \hfill // $\Passed$ is intended to contain vertices~$v$ for which $F(v)\not=\bot$
+
+%%   \For{$v\in V$}{\leIf{$c(v)==\Win$}{$F(v):=1$}{$F(v):=0$}}
+
+%%   $\Dep(v_0):=\emptyset$;
+
+%%   $\Wait:=\{(v_0,m,T)\in E \mid m\in A \fbox{NM: A=Actions}, T=\textsf{Next}(v,m)\}$;
+
+%%   \While{($\Wait\not=\emptyset$ and $F(v_0)==0$)}
+%%         {$(v,m,T):=\Pop{\Wait}$;\\
+%%           \If(\hfill{// case 1}){$F(v)==0$ and $\forall v'\in T.\ (F(v')==1$}
+%%              {$F(v):=1$;\\
+%%               $\Wait:=\Wait\cup\Dep(v)$;}
+%%           \ElseIf(\hfill{// case 2}){$\exists v'\in T.\ F(v')==0$}
+%%                 {$\Dep(v'):=\Dep(v') \cup \{(v,T)\}$;}
+%%                 \ElseIf(\hfill{// case 3}){$\exists v'\in T.\ v'\notin\Passed$}
+%%                   {$\Passed:=\Passed \cup\{v'\}$; \\
+%%                   $\Dep(v'):=\{(v,m,T)\}$;\\
+%%                   $\Wait:=\Wait\cup\{(v',n,U)\in E \mid n\in A\fbox{Actions}, U=\textsf{Next}(v',n)\}$;
+%%         }
+%%         }  
+%%   \caption{On-the-fly algorithm for untimed reachability games}
+%%   \label{9-algo:otfur}
+%% \end{algorithm}
+
+
+\subsection*{Extension to Timed Games}
+%% Presentation without proofs.
+%% To simplify, we can avoid using extrapolation if we bound the clocks.
+%% There are a few lemmas from CONCUR'05 which help to compute the cpre operator using
+%% standard operations and complementation.
+
+We now explain how to adapt the algorithm above to (infinite-state)
+timed games. 
+%
+For~efficiency, the~algorithm relies on zones (and~DBMs); instead of
+computing whether a given zone~$(\ell,Z)$ is winning, the~algorithm
+maintains, for each~zone~$S=(\ell,Z)$ it~explores, a~subzone~$(\ell,Z')$ of
+configurations that it knows are winning; this subzone is stored as
+$F(S)$, and is updated during the execution.
+As~in~\cref{9-algo:LS98}, a~waiting list keeps track of the
+zones to be explored, and a dependency list stores the list of nodes
+to be revisited upon update of the winning subzone of a zone.
+The algorithm is given in~\cref{9-algo:sotftr}.
+%by
+%computing for each explored zone~$Z$ of the timed game,
+%a~subzone~$W\subseteq Z$ of winning
+%configurations. \Cref{9-algo:sotftr} follows the same ideas as
+%\Cref{9-algo:LS98}, using forward exploration of zones and
+%re-evaluating transitions upon update of the winning subzone.
+
+%% The~procedure we present at~\cref{9-algo:sotftr} may in general not terminate,
+%% since the number of zones is not finite. However, 
+%% %Because there are infinitely many zones, the algorithm may not
+%% %terminate, but
+%% classical workarounds apply here, such as bounding all
+%% clocks using invariants~\cite{ref-boundedclocks} or applying classical
+%% extrapolation techniques~\cite{ref-extrapol}.
+
+
+\begin{algorithm}
+  \SetKwFunction{Pop}{pop}\SetAlgoNoEnd
+  \KwData{A reachability timed game~$\game=(\arena, \Reach(\Win))$,
+    a~location $\ell_0\in \Locs$}
+  \KwResult{Is $(\ell_0,\mathbf{0})$ winning for Eve?}
+
+  $S_0:=\posttime(\ell_0,\mathbf 0)$;
+  
+  
+  %\For{$v\in V$}{\leIf{$c(v)==\Win$}{$F(v):=\Realnn$}{$F(v):=\emptyset$}}
+  %// $F$ defined on $V$ and on $V x zones$.
+
+  \leIf{$c(S_0)==\Win$}{$F(S_0):=S_0$}{$F(S_0):=\emptyset$}
+
+  $\Passed:=\{S_0\}$;  \hfill
+  // $\Passed$ stores all configurations for which $F$ is defined
+    %not marked with~$\bot$
+
+  
+  $\Dep(S_0):=\emptyset$;
+
+  $\Wait:=\{(S_0,\alpha,T) \mid 
+    T=\posttime(\postta_{\alpha}(S_0))\not=\emptyset, \alpha\text{ transition of }\game\}$;
+
+  \While{($\Wait\not=\emptyset$ and $(v_0,\mathbf 0)\notin F(S_0)$)}
+        {$(S,\alpha,T)):=\Pop{\Wait}$;\\
+          \If(\hfill{// case $A$}){$T\in\Passed$}
+          {$\Dep(T):=\Dep(T) \cup \{(S,\alpha,T)\}$;\\
+          $W:=\predt\left(F(S)\cup \bigcup_{\substack{S\xrightarrow{c} V\\ \!\!V\in\Passed\!\!}} \predc(F(V)),\ \bigcup_{\substack{S\xrightarrow{u} V\\ \!\!V\in\Passed\!\!}}\predu(V\setminus F(V))\right) \cap S$;\\
+          \If{$F(S) \subsetneq W$}{$F(S):=W$;\\
+              $\Wait:=\Wait\cup\Dep(S)$;}}
+          \Else(\hfill{// case $B$})
+                  {$\Passed:=\Passed \cup\{T\}$; \\
+                    \If{$c(T)==\Win$}{$F(T):=T$\\ $\Wait:=\Wait\cup\{(S,\alpha,T)\}$}
+                       \Else{$F(T):=\emptyset$}
+                  $\Dep(T):=\{(S,\alpha,T)\}$;\\
+                  $\Wait:=\Wait\cup\{(T,\alpha,U) \mid U=\posttime(\postta_{\alpha}(T))\not=\emptyset, \alpha\text{ transition of }\game\}$;
+        }
+        }
+  \leIf{$(v_0,\mathbf 0)\in F(S_0)$}{\Return 1}{\Return 0}
+
+        \caption{Symbolic on-the-fly algorithm for timed reachability}
+  \label{9-algo:sotftr}
+\end{algorithm}
+
+
+
+
+The correctness of the algorithm can be proven using the following
+lemma. We~omit the proof of this lemma, as it is tedious and and does
+not contain any difficult argument.
+
+\begin{lemma}\label{9-lem:sotftr}
+  The following properties hold at the end of each run through
+  the \textbf{while} loop of~\Cref{9-algo:sotftr}:
+  \begin{itemize}
+  \item for any $S\in\Passed$ and any transition~$\alpha$, if
+    $T=\posttime(\postta_\alpha(S))\not=\emptyset$,
+    then either $(S,\alpha,T)\in\Wait$, or
+    $T\in\Passed$ and $(S,\alpha,T)\in\Dep(T)$;
+  \item for any~$S\in\Passed$ and $q\in F(S)$,  $q$ is winning for~Eve;
+  \item for any $S\in\Passed$ and $q\in S\setminus F(S)$,
+    either
+    %the $\Wait$ list is not empty, 
+    $\Wait$ contains a symbolic transition~$(S,\alpha,S')$ from~$S$
+    with~$S'\in\Passed$,
+    %\todo{is it normal that this condition does not depend on~$q$?},
+    %% normal : ca veut dire ``le calcul n'est pas fini''
+    %\fbox{Condition removed; false initially: with $S'\in\Passed$},
+    or
+    \[
+      q\notin \predt\Bigl(F(S)\cup \bigcup_{\substack{S\xrightarrow{c} V\\ V\in\Passed}} \predc(F(V)),\ \bigcup_{\substack{S\xrightarrow{u} V\\ V\in\Passed}} \predu(V\setminus F(V))\Bigr) \cap S.
+    \]
+  \end{itemize}
+\end{lemma}
+The proof is omitted but can be found in~\cite{CDFLL05}.
+%\todo{Il faudrait citer la version HAL,
+%je ne sais pas comment le citer correctement \href{}{https://hal.archives-ouvertes.fr/hal-00350475} sans dupliquer la version concur}
+%% \NM{Preuve longue et ennuyeuse. Je propose de ne pas la mettre (mais je voulais l'\'ecrire plus en d\'etail que dans le papier original...).}
+%% \begin{proof}
+%%   We pick an execution of \Cref{9-algo:sotftr}, and prove all three
+%%   properties on this execution. We~use the same notations as or the
+%%   proof of \Cref{9-lemma:ls98}, superscripting variable names
+%%   with~$i$ to represent the values of those variables after $i$ runs
+%%   through the \textbf{while} loop.  We~also write
+%%   $(S_i,\alpha_i,T_i)$ for the item popped from~$\Wait_{i-1}$ during
+%%   the $i$-th run through the loop.
+
+%%   We~first observe that our algorithm enforces that
+%%   $\Passed^{i}=\Passed^{i-1}\cup\{T^i\}$, so that the sequence
+%%   $(\Passed^i)_i$ is non-decreasing (for~inclusion), and so are the
+%%   sequences $(\Dep^i(S))_i$ and $(F^i(S))_i$, as~soon
+%%   as~$S\in\Passed^i$.
+%% %$\Passed^{i}\subseteq \Passed^{i+1}$, for any~$S\in\Passed^i$,
+%% %$\Dep_i(S)\subseteq \Dep_{i+1}(S)$, and $F_i(S)\subseteq F_{i+1}(S)$.
+%% Notice also that $(S,\alpha,T)\in\Wait_i$ implies $S\in\Passed_i$.
+
+%% \smallskip
+%% We~begin with proving the first property: notice that it holds true
+%% before entering the loop for the first time, since
+%% $\Passed^0=\{S_0\}$, and by definition of~$\Wait^0$.  We~then proceed
+%% by induction: assuming that the result holds for index~$i$,
+%% we~prove~it for index~$i+1$: take~$S\in\Passed_{i+1}$,
+%% and a~transition~$\alpha$ such that $T=\posttime(\postta_\alpha(S))$ is
+%% non-empty.
+%% \begin{itemize}
+%%   \item If~$S\in\Passed_i$, by induction hypothesis we~have either
+%%     $(S,\alpha,T)\in\Wait_i$, or $T\in\Passed_i$ and $(S,\alpha,T)\in
+%%     \Dep_i(T)$. In~the latter case, we~also have $T\in\Passed_{i+1}$
+%%     and $(S,\alpha,T)\in \Dep_{i+1}(T)$, as both sets may only
+%%     grow. In~the former case, we~also have
+%%     $(S,\alpha,T)\in\Wait_{i+1}$ if
+%%     $(S,\alpha,T)\not=(S_i,\alpha_i,T_i)$; finally, if
+%%     $(S,\alpha,T)=(S_i,\alpha_i,T_i)$, we~then have
+%%     $T_i\in\Passed_{i+1}$, and $(S_i,\alpha_i,T_i)\in\Dep_{i+1}(T_i)$,
+%%     whichever case ($A$~or~$B$) of the algorithm applies.
+%%   \item If $S\notin\Passed_i$, then $S=T_{i+1}$, and case~$B$ of the loop
+%%     applies. Then by the last line of the algorithm, we~have
+%%     $(S,\alpha,T)\in\Wait_{i+1}$.
+%% \end{itemize}
+
+%% %% Consider $T\in\Passed$, a~transition~$\beta$, and
+%% %% $T'=\posttime(\postta_\beta(T))$.  By~hypothesis, either
+%% %% $(T,\beta,T')\in\Wait$, or $T'\in\Passed$ and $(T,\beta,T')\in
+%% %% \Dep(T')$. Notice that $\Passed$ and $\Dep(T')$ may only grow during
+%% %% the execution of the loop; hence the latter case is preserved. We~now
+%% %% consider the former case, where
+%% %% $(T,\beta,T')\in\Wait$. If~$(T,\beta,T')\not=(S,\alpha,S')$, then the
+%% %% property is preserved. Otherwise, one easily checks that after both
+%% %% cases~$A$ and~$B$, $T'\in\Passed$ and $(T,\beta,T')\in\Dep(T')$.
+
+%% \smallskip
+%% The second property also clearly holds for~$i=0$. Assume it~holds at
+%% some step~$i$, and pick~$S\in\Passed_{i+1}$ and~$q\in F_{i+1}(S)$.
+%% \begin{itemize}
+%%   \item First assume $S\in\Passed_i$. Then either~$q\in F_i(S)$, and
+%%     our result follows from the induction hypothesis, or $q\in
+%%     W_{i+1}$. In~that case, again by induction hypothesis,
+%%     the~set~$F_i(S_i)$, as~well as all the sets~$F_i(T)$ for which
+%%     $S\to T$ and $T\in\Passed_i$, only contain
+%%     configurations that are winning for~Eve, and so does~$W_{i+1}$.
+%%   \item In case $S\notin\Passed_i$, then we~have $S=T_{i+1}$, and
+%%     case~$B$ applies. The result is then immediate from the definition
+%%     of~$F_{i+1}(T_{i+1})$ in that case.
+%% \end{itemize}
+
+%% %% We turn to the second property, and pick $q\in F(S)$ for
+%% %% some~$S\in\Passed$ after having popped~$(S,\alpha,S')$ from~$\Wait$
+%% %% and run through the loop. Assume that case~$A$ applies: by~hypothesis,
+%% %% for any~$T\in\Passed$, $F(T)$~is defined, and any~$q\in F(T)$ is
+%% %% winning for~Eve. Hence the set~$W$ computed in case~$A$ also only
+%% %% contains configurations that are winning for~Eve\NM{should/do we prove
+%% %%   this in previous sections?}. The~result follows for this case. Now,
+%% %% assume case~$B$ applies, and pick~$T\in\Passed$; if $T\not=S'$, then
+%% %% already $T$ was in $\Passed$ before running the loop, and $F(T)$ has
+%% %% not been modified, so that the property is preserved. Finally, if
+%% %% $T=S'$, then by definition of~$F(S')$ in case~$B$, the result is
+%% %% immediate.
+
+%% \smallskip
+%% We~now turn to the third property.
+%% For any index~$i$ and any $S\in\Passed^i$, we~let
+%% \[
+%% W_i(S) = \predt\Biggl(F^i(S)\cup \bigcup_{\substack{S\xrightarrow{c}
+%%     V\\ V\in\Passed^i}} \predc(F^i(V)),\ \bigcup_{\substack{S\xrightarrow{u}
+%%     V\\ V\in\Passed^i}} \predu(V\setminus F^i(V))\Biggr) \cap S.
+%% \]
+%% Then during the $i$-th run through the \textbf{while} loop, if
+%% $T^i\in\Passed^{i-1}$, we~then have $W^i=W_{i-1}(S^i)$.
+%% Notice also that $W_i(S) \subseteq W_{i+1}(S)$.
+
+%% We~then prove the third property inductively, showing that for
+%% any~$i$, any~$S\in\Passed^i$ and any~$q\in S\setminus F^i(S)$, then
+%% either $\Wait^i$ contains a transition $(S,\alpha,S')$ with
+%% $S'\in\Passed^i$, or $q\notin W_{i}(S)$.
+
+%% When~$i=0$, $\Passed^0$ only contains~$S_0$; then either $F^0(S_0)=S_0$,
+%% for which the property holds vacuously, or $F^0(S_0)=\emptyset$,
+%% and then $W_0(S_0)=\emptyset$, which entails the property.
+
+%% Assume that the property holds at some step~$i$, and
+%% that $T^{i+1}\notin\Passed^i$, so that case~$B$ applies.
+%% Take $S\in\Passed^{i+1}$ and $q\in S\setminus F^{i+1}(S)$.
+%% We~again consider two cases:
+%% \begin{itemize}
+%% \item If $S\in\Passed^i$, then we~have $q\in S\setminus F^i(S)$
+%%   (because $F^i(S)\subseteq F^{i+1}(S)$). The~induction hypothesis
+%%   applies, and two cases may occur:
+%%   \begin{itemize}
+%%   \item if $\Wait^i$ contains a transition~$(S,\alpha,S')$ with
+%%     $S'\in\Passed^i$: then
+%%     $(S^{i+1},\alpha^{i+1},T^{i+1})\not=(S,\alpha,S')$, since we
+%%     assumed $T^{i+1}\notin\Passed^i$; hence $\Wait^{i+1}$ still contains
+%%     the transition~$(S,\alpha,S')$, with $S'\in\Passed^{i+1}$;
+    
+%%     %% then
+%%     %% $\Wait^{i+1}$ still contains a transition from~$S$, and the result
+%%     %% is preserved at step~$i+1$. On~the other hand, if
+%%     %% $(S^{i+1},\alpha^{i+1},T^{i+1})=(S,\alpha,S')$,
+%%   \item or $q\notin W_i(S)$: then $S\not=T^{i+1}$, since
+%%     $S\in\Passed^i$ and $T^{i+1}\notin\Passed^{i}$. Hence $F^{i+1}(S)=F^i(S)$.
+%% %
+%%     If also $T^{n+1}\not=\posttime(\postta_{\beta}(S))$ for any
+%%     transition~$\beta$, then $W_{i+1}(S)=W_i(S)$.
+%% %
+%%     Otherwise, if $T^{n+1}=\posttime(\postta_{\beta}(S))$, then by the
+%%     first property applied at the $i$th iteration,
+%%     $(S,\beta,T^{i+1})\in\Wait^i$ (since
+%%     $T^{i+1}\notin\Passed^i$).
+%% %
+%%       If~$S\not=S^{i+1}$, then also $(S,\beta,T^{i+1})\in\Wait^{i+1}$,
+%%       and the result follows; if $S=S^{i+1}$, then we~again have two
+%%       cases: either $c(T^{i+1})\not=\Win$, so that
+%%       $F^{i+1}(T^{i+1})=\emptyset$, and $W_{i+1}(S)=W_i(S)$; or
+%%       $c(T^{i+1})=\Win$, but then
+%%       $(S^{i+1},\alpha^{i+1},T^{i+1})\in\Wait^{i+1}$, with $S=S^{i+1}$
+%%       and $T^{i+1}\in\Passed^{i+1}$, which concludes this case.
+%%   \end{itemize}
+%% \item If $S\notin\Passed^i$, then $S=T^{i+1}$ (because
+%%   $S\in\Passed^{i+1}$). Moreover, $c(T^{i+1})\not=\Win$, as otherwise
+%%   $S\setminus F^{i+1}(S)=\emptyset$. Hence
+%%   $F^{i+1}(S)=\emptyset$. Then two cases may arise: either $S$~has
+%%   non-empty symbolic successors in~$\Passed^{i+1}$, in which case
+%%   those successors belong to~$\Wait^{i+1}$, or it has no such
+%%   successors, and $W_{i+1}(S)=\emptyset$, so that $q\notin W_{i+1}(S)$.
+%% \end{itemize}
+
+
+%% We now assume that case~$A$ applies, i.e., that
+%% $T^{i+1}\in\Passed^i$. We~again take $S\in\Passed^{i+1}$ and $q\in
+%% S\setminus F^{i+1}(S)$. Since case~$A$ does not modify~$\Passed$,
+%% we~must have $S\in\Passed^i$, and
+%% $q\in S\setminus F^i(S)$
+%%   (because $F^i(S)\subseteq F^{i+1}(S)$).
+%%   %The~induction hypothesis
+%%   %applies, and two cases may occur:
+%%   We~again consider several cases:
+%%   \begin{itemize}
+%%   \item if $S=S^{i+1}$, then after running case~$A$, we~have
+%%     $F^{i+1}(S)=W_i(S)$. If~$S\xrightarrow{u} S$ for some
+%%     uncontrollable transition, then $q\in S\setminus F^{i+1}(S)$
+%%     entails $q\notin W_{i+1}(S)$. Otherwise, $W_{i+1}(S)=W_i(S)$, and
+%%     again $q\notin W_{i+1}(S)$.
+%%   \item otherwise, $S\not=S^{i+1}$: from the induction hypothesis,
+%%     we~have either $(S,\alpha,S')\in \Wait^i$, or $q\notin W_i(S)$.
+%%     In~the former case, we~still have $(S,\alpha,S')\in \Wait^{i+1}$.
+%%     In the latter case, we~again split our analysis into two cases: if
+%%     $S^{i+1}$ is not a symbolic successor of~$S$, then
+%%     $W_{i+1}(S)=W_i(S)$ and our the property follows. Finally, if
+%%     $S\xrightarrow{\beta} S^{i+1}$, then the first property applied at
+%%     step~$i$ indicates that either $(S,\beta,S^{i+1})\in\Wait^{i}$, or
+%%     $(S,\beta,S^{i+1})\in\Dep^{i}(S^{i+1})$ and $S^{i+1}\in\Passed^i$.
+%%     \begin{itemize}
+%%     \item We~begin with the former case: it~implies
+%%       $(S,\beta,S^{i+1})\in\Wait^{i+1}$ (because $S\not=S^{i+1}$), and
+%%       moreover $(S^{i+1},\alpha^{i+1},T^{i+1})\in\Wait^i$
+%%       implies\NM{Lemme ?}  $S^{i+1}\in\Passed^i$, thus also
+%%       $S^{i+1}\in\Passed^{i+1}$.
+%%     \item otherwise, $(S,\beta,S^{i+1})\in\Dep^{i}(S^{i+1})$ and
+%%       $S^{i+1}\in\Passed^i$. In~case $F^i(S^i)\subsetneq
+%%       F^{i+1}(S^{i+1})$, we~get that $\Wait^{i+1}$ contains
+%%       $(S,\beta,S^{i+1})$; otherwise, from the induction hypothesis,
+%%       we~have either $(S,\alpha,S')\in \Wait^i$, or $q\notin W_i(S)$;
+%%       in~both cases, the property is preserved by this iteration of
+%%       the loop, which concludes our proof.
+%%     \end{itemize}
+%%   \end{itemize}
+%% %% We finally prove the third invariant. We~assume that the property
+%% %% holds before running the loop, and that $(S,\alpha,S')$ is popped
+%% %% from~$\Wait$.  First assume case~$A$ applies, i.e., $S'\in\Passed$,
+%% %% and pick~$q\in T\setminus F(T)$ for some~$T\in\Passed$ after running
+%% %% through the loop. 
+%% \end{proof}
+
+
+
+Using these invariants, we get the following result:
+\begin{lemma}
+  If \cref{9-algo:sotftr} terminates, all configurations in~$F(S)$ for
+  any~$S\in\Passed$ are winning for~Eve;  if~additionally
+  $\Wait=\emptyset$, then all configurations in~$S\setminus F(S)$, for
+  any~$S\in\Passed$, are losing for~Eve.
+\end{lemma}
+
+\begin{proof}
+The~first statement corresponds to the second statement of
+\cref{9-lem:sotftr}. Now, assume $\Wait^n=\emptyset$ after
+termination at the $n$-th step,
+and
+%pick $S\in\Passed^n$ and $q\in S\setminus F^{n}(S)$ (if~any). Let
+let $L=\{q\in \Locs\times\mathbb{R}_{\geq 0}^{\Clocks} \mid \exists
+S\in\Passed^n.\ q\in S\setminus F^n(S)\}$, and $M$ be the complement
+of~$L$. For~any~$S\in\Passed^n$, we~then have $M\cap S\subseteq
+F^n(S)$.
+%\todo{Why? Is not possible to have $S_1\neq S_2$ with~$q \in F(S_1)$
+%  and~$q \not \in F(S_2)$?}
+%\NM{Since $q\in M$, then $q\notin S'\setminus F^n(S')$ for all $S'$.
+%  Since $q\in S$, then $q \in F^n(S)$.}
+
+Pick $q\in \pi(M)\cup \Win$, where we abusively write $\Win$ to denote
+all configurations with location colored~$\Win$. We~prove that $q\in M$:
+\begin{itemize}
+\item if $q\in\Win$: assume $q\in L$, and pick $S\in\Passed^n$ such
+  that $q\in S\setminus F^n(S)$. Since $q\in S$, it~holds $c(S)=\Win$;
+  but then $F^n(S)$ is defined (since $S\in\Passed^n$), and it
+  equals~$S$ by initialization of~$F$. This contradicts the fact that
+  $q\in S\setminus F^n(S)$, hence $q\in M$.
+\item if $q\in\pi(M)$: we again assume $q\in L$. Then for some
+  $S\in\Passed^n$, $q\in S\setminus F^n(S)$. By~the third property of
+  \cref{9-lem:sotftr}, $q\notin W^n$
+%  \todo{Benjamin: preuve du lemme 9.4 : $W^n(S)$ devrait être $W^n$ j’imagine, et ce serait bien de préciser ici que c’est la nième valeur de la valeur W. Par contre, je n’ai pas compris comment vous concluez que $q\notin pi(M)$ et en quoi ça nous permet de conclure finalement. Désolé, j’étais peut-être pas très réveillé.}
+  %\todo{What is $W_n$?} % it is $W^n$, value of W at n-th round
+  (because $\Wait^n$ is
+  empty).  Since $M\cap U \subseteq F^n(U)$ for all~$U\in\Passed^n$
+  and $F^n(U)=\emptyset$ for all~$U\notin\Passed^n$,
+  and by monotonicity, we~get
+  \[
+  q\notin\predt\Biggl((M\cap S)\cup \bigcup_{\substack{S\xrightarrow{c}
+    V}} \predc(M\cap V),\ \bigcup_{\substack{S\xrightarrow{u}
+    V}} \predu(V\setminus (M\cap V))\Biggr) \cap S.
+  \]
+  %hence $q\notin \pi(M)$.
+  %\NM{ajouter un qed (a la main ?). Bug de svmono.cls...}
+%
+  Now, notice that any $S\in\Passed^n$ is closed under~$\posttime$. Then
+  \begin{xalignat*}1
+    \pi(M)\cap S &= \predt(M\cup\predc(M), \predu(\overline M)) \\
+     &= \predt((M\cap S)\cup (\predc(M)\cap S), \predu(\overline M)).
+  \end{xalignat*}
+  Now, it~can be checked that $\predc(M)\cap S \subseteq
+  \bigcup_{\substack{S\xrightarrow{c} V}} \predc(M\cap V)$ and
+  $\predu(\overline M) \supseteq \bigcup_{\substack{S\xrightarrow{u}
+      V}} \predu(V\setminus (M\cap V))$.  So the fact that $q\in
+  \pi(M)$ and $q\in S$ leads to a contradiction. This entails that
+  $q\notin L$, hence $q\in M$.
+\end{itemize}
+In the end, we~have proven that $\pi(M)\cup\Win \subseteq M$, so that
+$M$ is a pre-fixpoint of $X\mapsto \pi(X)\cup\Win$, hence it~contains
+all winning configurations of~\Eve and $L$ only contains losing
+configurations.
+\end{proof}
+
+%It~remains to prove termination of~\Cref{9-algo:sotftr}. [...]
+%\NM{termination relies on extrapolation... Explain?}
+
+The procedure given in \Cref{9-algo:sotftr} will in general not
+terminate: as in the case of timed automata, the number of zones
+generated by the algorithm may be infinite. This is classically
+avoided using \emph{extrapolation}: this consists in abstracting the
+zones being considered by larger zones, defined by only using integer
+constants less than the maximal constant appearing in the timed arena
+(as we did for regions in the proof
+of~\cref{9-thm:timed-control}). This can be proven to preserve
+correctness, and makes the~number of zones finite. Termination follows
+by noticing that any triple~$(S,\alpha,T)$ may be added to~$\Wait$ only
+a finite number of times (bounded by the number of regions
+in~$T$). 
+%
+We~can then conclude:
+\begin{theorem}
+\Cref{9-algo:sotftr} terminates when extrapolation is used, and returns~$1$ if, and only~if,
+$(\ell_0,\mathbf{0})$~is winning for~\Eve.
+\end{theorem}

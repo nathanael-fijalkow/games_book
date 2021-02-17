@@ -59,3 +59,24 @@ Nathalie Bertrand, Romain Brenguier, Patricia Bouyer-Decitre, Arnaud Carayol, Jo
 7_Concurrent/index
 8_Imperfect/index
 ```
+
+
+```{toctree}
+:hidden:
+:titlesonly:
+:caption: Infinite
+
+9_Timed/index
+10_Pushdown/index
+11_Counters/index
+```
+
+
+```{toctree}
+:hidden:
+:titlesonly:
+:caption: Multi
+
+12_Multiobjectives/index
+13_Multiplayer/index
+```

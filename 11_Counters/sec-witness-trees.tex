@@ -1,8 +1,8 @@
 
 \paragraph{Witness Trees}
-We introduce now a concept that will also be used in \cref{12-sub-up}
+We introduce now a concept that will also be used in \cref{11-subsec:up}
 for solving games with "given initial credit".  As seen in the proof
-of \cref{12-fact-finmem}, if \Eve wins a "parity@parity vector game"
+of \cref{11-fact-finmem}, if \Eve wins a "parity@parity vector game"
 "asymmetric vector game" from some vertex~$v_0$, then there is a
 finite tree that witnesses the fact.
 
@@ -11,7 +11,7 @@ v\sqsubseteq \vec v'$ if, for all $1\leq i\leq\dd$, either $\vec
 v(i)\geq 0$ and then $\vec v(i)\leq\vec v'(i)$, or $\vec v(i)<0$ and
 $\vec v(i)=\vec v'(i)$.
 
-\begin{definition}\label{12-def-wt}
+\begin{definition}\label{11-def-wt}
   Given a "vector system"
   $\?V=(\Loc,\Act,\Loc_\mEve,\Loc_\mAdam,\dd)$, and a location
   colouring $\col{:}\,\Loc\to\{1,\dots,d\}$, a ""witness tree"" for a
@@ -27,15 +27,15 @@ $\vec v(i)=\vec v'(i)$.
   $\loc\in\Loc_\mAdam$, then it has one child labelled~$\loc'(\vec
   v')$ for some $\vec v'\sqsupseteq\vec v+\vec u$ for each action
   $\loc\step{\vec u}\loc'\in\Act$,
-\item\label{12-wt-self-even} if a leaf is labelled by $\loc(\vec v)$,
+\item\label{11-wt-self-even} if a leaf is labelled by $\loc(\vec v)$,
   consider the branch
   $\loc_0(\vec v_0),\loc_1(\vec v_1),\dots,\loc_n(\vec v_n)=\loc(\vec
   v)$ that reaches the leaf: then
   \begin{enumerate}
-  \item\label{12-wt-self}there exists~$i<n$ such that
+  \item\label{11-wt-self}there exists~$i<n$ such that
   $\loc_i=\loc$ and $\vec v_i\leq\vec v$---we call the node labelled by
   $\loc_i(\vec v_i)$ the ""return point"" of the leaf---, and
-  \item\label{12-wt-even} the maximal priority observed between the two
+  \item\label{11-wt-even} the maximal priority observed between the two
   nodes, i.e., $\max_{i\leq j<n}\col(v_j)$, is even.
   \end{enumerate}
 \end{enumerate}
@@ -46,13 +46,13 @@ $\{1,\dots,\dd\}$-correct.  An $\emptyset$-"correct" "witness tree" is
 just a "witness tree".
 \end{definition}
 
-\begin{remark}\label{12-rk-wt}
-  By \cref{12-nonterm2parity,12-cov2parity}, some simplifications of
-  \cref{12-def-wt} are possible when dealing with "non-termination" or
+\begin{remark}\label{11-rk-wt}
+  By \cref{11-nonterm2parity,12-cov2parity}, some simplifications of
+  \cref{11-def-wt} are possible when dealing with "non-termination" or
   "coverability". In the case of "non-termination",
-  condition~\ref{12-wt-self-even} is simplified to only require
-  condition~\ref{12-wt-self}.  In the case of "coverability" with a
-  target configuration $\loc_f(\vec v_f)$, condition~\ref{12-wt-self}
+  condition~\ref{11-wt-self-even} is simplified to only require
+  condition~\ref{11-wt-self}.  In the case of "coverability" with a
+  target configuration $\loc_f(\vec v_f)$, condition~\ref{11-wt-self}
   is changed to require $\loc=\loc_f$ and $\vec v\geq\vec v_f$
   instead.
 \end{remark}
@@ -63,7 +63,7 @@ every label $\loc(\vec v)$ is replaced by $\loc(\vec v+\vec u)$.
 Observe that $t+\vec u$ is still a "witness tree", and that if $\vec
 u(i)\geq 0$ for all $i\in I$, then it is still $I$-"correct".
 
-\begin{lemma}[Witness Tree]\label{12-lem-wt}
+\begin{lemma}[Witness Tree]\label{11-lem-wt}
   \Eve wins a "parity" "asymmetric vector game" with "existential
   initial credit" from an initial location $\loc_0$ if and only if
   there exists a "witness tree" for $\loc_0(\vec 0)$.
@@ -71,7 +71,7 @@ u(i)\geq 0$ for all $i\in I$, then it is still $I$-"correct".
 \begin{proof}
   If \Eve wins the game, then there exists an initial credit
   $\vec v_0\in\+N^\dd$ such that she wins the game from
-  $\loc_0(\vec v_0)$.  The proof of~\cref{12-fact-finmem} shows that
+  $\loc_0(\vec v_0)$.  The proof of~\cref{11-fact-finmem} shows that
   there exists a "correct" "witness tree"~$t$ for $\loc_0(\vec v_0)$.
   Then the tree $t-\vec v_0$ is an $\emptyset$-"correct" "witness
   tree" for $\loc_0(\vec 0)$.
@@ -83,7 +83,7 @@ u(i)\geq 0$ for all $i\in I$, then it is still $I$-"correct".
   be the maximal negative value appearing in~$t$.  Let $\vec z$ be
   defined by $\vec z(i)\eqdef z$ for all $1\leq i\leq\dd$.  Then
   $t+\vec z$ is rooted by $\loc_0(\vec z)$ and is "correct".  As
-  in~\cref{12-fact-finmem}, $t+\vec z$ describes a winning strategy
+  in~\cref{11-fact-finmem}, $t+\vec z$ describes a winning strategy
   for \Eve starting from~$\loc_0(\vec z)$.
 \end{proof}
 
@@ -116,19 +116,19 @@ system" and location colouring.
 Let us begin with "coverability" of a target configuration
 $\loc_f(\vec v_f)$.  Observe that, if two labels $\loc(\vec v)$ and
 $\loc(\vec v')$ appear twice along a branch of a "witness tree"~$t$
-for "coverability" as defined in \cref{12-rk-wt}, i.e., if
+for "coverability" as defined in \cref{11-rk-wt}, i.e., if
 $t=C[C'[t']]$ for some context~$C$, some non-empty context~$C'$ with
 root label~$\loc(\vec v)$, and some tree $t'$ with root label
 $\loc(\vec v')$, then the ""shrunk"" tree $(C+(\vec v'-\vec v))[t']$,
 where we have relabelled $C$ accordingly, is still a "coverability"
 "witness tree".
 
-\begin{claim}\label{12-wt-cov-empty}
+\begin{claim}\label{11-wt-cov-empty}
   Minimal "coverability" "witness trees" have height at
   most~$H_\emptyset\leq |\Loc|$, thus $\Effect_\emptyset\leq|\Loc|\|\Act\|$.
 \end{claim}
 
-What \cref{12-wt-cov-empty} captures is the fact that, in a
+What \cref{11-wt-cov-empty} captures is the fact that, in a
 "coverability" "asymmetric vector game" with "existential initial
 credit", the counters play no role at all: \Eve has a winning strategy
 for some initial credit in the "vector game" if and only if she has
@@ -137,12 +137,12 @@ over~$\Loc$ and edges~$(\loc,\loc')$ whenever $\loc\step{\vec
 u}\loc'\in\Act$ for some~$\vec u$.  This entails that "coverability"
 "asymmetric vector games" are quite easy to solve.
 
-\begin{theorem}\label{12-cov-exist-P}
+\begin{theorem}\label{11-cov-exist-P}
   "Coverability" "asymmetric vector games" with "existential initial
   credit" are \P-complete.
 \end{theorem}
 \begin{proof}
-  For the upper bound, by \cref{12-lem-wt}, \Eve wins the game if and
+  For the upper bound, by \cref{11-lem-wt}, \Eve wins the game if and
   only if there exists a "coverability" "witness tree".  As we have
   just discussed, an alternating Turing machine can guess and check
   the existence of such a tree using logarithmic space: it only has to
@@ -152,7 +152,7 @@ u}\loc'\in\Act$ for some~$\vec u$.  This entails that "coverability"
 
 \paragraph{Non-termination}
 Let us turn to "witness trees" for "non-termination".  An analogue
-of \cref{12-wt-cov-empty} exists for that case, but its proof is much
+of \cref{11-wt-cov-empty} exists for that case, but its proof is much
 too difficult to be included in this chapter.
 \begin{claim}
   "Non-termination" "witness trees" of minimal effect have effect at most

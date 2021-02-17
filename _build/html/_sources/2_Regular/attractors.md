@@ -67,20 +67,23 @@
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
+\newcommand{\EXP}{\textrm{EXP}}
+\newcommand{\kEXP}{\textrm{kEXP}}
 ```
 Recall that the objective $\Reach$ requires that the colour $\Win$ appears at least once and 
 $\Safe$ requires the the colour $\Lose$ never appears.
 We identify the colour $\Win$ with $\col^{-1}(\Win)$ the set of vertices labelled $\Win$,
 so we write $v \in \Win$ when $\col(v) = \Win$, and similarly for $\Lose$.
 
-```{prf:theorem} Positional determinacy and complexity of reachability games
+````{prf:theorem} Positional determinacy and complexity of reachability games
 :label: 2-thm:reachability
 
 Reachability objectives are uniformly positionally determined for both players.
 There exists an algorithm for computing the winning regions of reachability games in linear time and space.
 More precisely the time and space complexity are both $O(m)$.
 
-```
+````
 
 The first sentence implies that safety games are also uniformly positionally determined,
 and both positional determinacy results hold for infinite games.
@@ -115,15 +118,15 @@ We note that this operator is monotonic when equipping the powerset of vertices 
 if $F \subseteq F'$ then $\PreE(F) \subseteq \PreE(F')$.
 Hence  {prf:ref}`1-thm:kleene` applies: this operator has a least fixed point 
 which we call the attractor of $\Win$ for Eve and write $\AttrE(\Win)$,
-and it is computed by the following sequence: we let $\AttrE^0(\Win) = \Win$ and
-
-```{margin}
-For technical convenience we shift the sequence by one, ignoring the first term which is the empty set```
-
- 
+and it is computed by the following sequence: we let $\AttrE^0(\Win) = \Win$ and 
 
 $$
 \AttrE^{k+1}(\Win) = \AttrE^{k}(\Win)\ \cup\ \PreE(\AttrE^{k}(\Win)).
+
+```{margin}
+For technical convenience we shift the sequence by one, ignoring the first term which is the empty set
+```
+
 $$
 
 This constructs a sequence $(\AttrE^{k}(\Win))_{k \in \N}$ of non-decreasing subsets of $V$.
@@ -141,7 +144,7 @@ We do not elaborate further this most general case but note that the overhead is
 
 The following lemma shows how the attractor yields a solution to reachability games and directly implies  {prf:ref}`2-thm:reachability`.
 
-```{prf:lemma} Characterisation of the winning region of reachability games using attractors
+````{prf:lemma} Characterisation of the winning region of reachability games using attractors
 :label: 2-lem:reachability
 
 Let $\game$ a reachability game.
@@ -155,11 +158,10 @@ and remain in $\AttrE(\Win)$ until doing so;
 which ensures $\Safe[\Win]$ from any vertex in $V \setminus \AttrE(\Win)$,
 with the property that all plays consistent with $\tau$ remain in $V \setminus \AttrE(\Win)$.
 
-```
+````
 
 
-
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 We first show that $\AttrE(\Win) \subseteq \WE(\game)$. 
@@ -193,7 +195,7 @@ It follows that any play consistent with $\tau$ remain in $V \setminus \AttrE(\W
 never reaches $\Win$,
 in other words $\tau$ ensures $\Safe[\Win]$ from $V \setminus \AttrE(\Win)$.
 
-```
+````
 
 {numref}`2-algo:reachability` is an efficient implementation of the attractor computation.
 Let us emphasise that it does not compute the sequence $(\AttrE^k(\Win))_{k \in \N}$ as suggested in  {prf:ref}`2-lem:reachability`.
@@ -240,14 +242,14 @@ Both inclusions are easily obtained using a case analysis.
 
 The invariant implies the correctness of the algorithm: when $S$ is empty we obtain that $A = \AttrE(\Win)$.
 
-```{admonition} Remark 
+````{admonition} Remark 
 We note that in the complexity analysis the cost of manipulating (and in particular decrementing) the counters for the number of edges is constant, which holds in the unit cost RAM model of computation.
 The same algorithm analysed in the Turing model of computation would have an additional $O(\log(n))$ multiplicative factor in the time complexity to take this into account.
 
-```
+````
 
 
-```{figure} ./../2-algo:reachability.png
+```{figure} ./../FigAndAlgos/2-algo:reachability.png
 :name: 2-algo:reachability
 :align: center
 The linear time algorithm for reachability games.
@@ -256,11 +258,12 @@ The linear time algorithm for reachability games.
 
 The notion of attractors induces a common way of constructing traps as stated in the following very useful lemma.
 
-```{prf:lemma} Attractors induce traps
+````{prf:lemma} Attractors induce traps
 :label: 2-lem:attractors_trap
 
 Let $\Game$ a game and $F \subseteq V$ a subset of edges.
 Then $V \setminus \AttrE(F)$ is a trap for Eve and symmetrically $V \setminus \AttrA(F)$ is a trap for Adam.
 
-```
+````
 
+%%\label{2-thm:finite_duration}%There exists an algorithm for computing the winning region of finite duration games in linear time and space.%\end{theorem}

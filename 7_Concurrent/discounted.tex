@@ -143,7 +143,7 @@ We will use the sum-of-square-roots problem to give an informal hardness argumen
 
 Consider the following game $G$:
 There are three vertices, $\{0,1,s\}$ where $0$ and $1$ are absorbing, with color 0 and 1 respectively.
-The vertex $s$ is such that (1)~$c(s,i,j)=0$, (2)~$\dest(s,i,i)=1$ (for $i\in \{1,2\}$), (3)~$\dest(s,2,1)=0$ and (4)~$\dest(s,1,i)$ is the uniform distribution over $s$ and $0$. The game is illustrated in Figure \ref{fig:sqroot}.
+The vertex $s$ is such that (1)~$c(s,i,j)=0$, (2)~$\dest(s,i,i)=1$ (for $i\in \{1,2\}$), (3)~$\dest(s,2,1)=0$ and (4)~$\dest(s,1,i)$ is the uniform distribution over $s$ and $0$. The game is illustrated in Figure \ref{7-fig:sqroot}.
 
 Consider an optimal stationary strategy in $G$ for Eve. Let $p$ be the probability with which she plays the first action. If Adam knows that Eve will follow this strategy, the game devolves into a MDP. We know from that for such there exists optimal positional strategies and thus Adam is either going to play the left or right column always. Clearly, $0<p<1$ because $p=0$ or 1 means that either playing the left or right column with probability 1 would ensure that no positive reward ever happens.
 
@@ -168,7 +168,7 @@ Consider an optimal stationary strategy in $G$ for Eve. Let $p$ be the probabili
 
 
 \end{tikzpicture}
-\caption{Concurrent discounted game with value $v_s=-2+\sqrt{4+2(1-\gamma)}$}\label{fig:sqroot}
+\caption{Concurrent discounted game with value $v_s=-2+\sqrt{4+2(1-\gamma)}$}\label{7-fig:sqroot}
 \end{figure}
 
 
@@ -227,14 +227,14 @@ We will use this game  $G$ as an example to illustrate how to make the $\dest$-f
 \node at (s-1-3.center) {$0^*$};
 
 \end{tikzpicture}
-\caption{Alternate concurrent discounted game with value $v_s=-2+\sqrt{4+2(1-\gamma)}$}\label{fig:sqroot2}
+\caption{Alternate concurrent discounted game with value $v_s=-2+\sqrt{4+2(1-\gamma)}$}\label{7-fig:sqroot2}
 \end{figure}
 
 Consider the following game $G'$:
 There are three vertices, $\{0,1,s\}$ where $0$ and $1$ are absorbing, with color 0 and 1 respectively.
 The vertex $s$ is such that (1)
 $c(s,i,j)=0$ for all $i,j$, (2)~$\dest(s,i,j)=s$ for $i+1=j$ (i.e. for $(i,j)\in \{(1,2),(2,3)\}$), (3)~$\dest(s,i,j)=0$ for $i+j=4$ (i.e. the ``other'' diagonal, $(i,j)\in \{(3,1),(2,2),(1,3)\}$) and (4)~$\dest(s,i,j)=1$ otherwise (i.e. for $(i,j)\in \{(1,1),(2,1),(3,2),(3,3)\}$).
- The game is illustrated in Figure \ref{fig:sqroot2}.
+ The game is illustrated in Figure \ref{7-fig:sqroot2}.
  
 We will argue that the value of $G'$ is equal to that of $G$.
  We clearly have that the value of $s$ is in $(0,1)$.
@@ -301,13 +301,13 @@ Assume that we had an exponential bound for optimal stationary strategies.
 
 \end{tikzpicture}
 \caption{Concurrent discounted game that implies that if there is an exponential lower bound on patience, then the sum-of-square-roots problem is in P}
-\label{fig:exact-hard}
+\label{7-fig:exact-hard}
 \end{figure}
 
 Consider an arbitrary yes-instance of the sum-of-square-roots problem, giving a vertex $s^*$. Reduce each reward by $a$ and in the new game let $s^*_a$ be the vertex corresponding to $s^*$. 
 We will now create a game that uses the previous game as a sub-game.
 The game has 1 additional vertex $s'$, which is a 2x2-matrix, such that $c(s',i,j)=0$ and $\dest(s,1,1)=1$ and $\dest(s,2,2)=s^*$ and $\dest(s,i,j)=0$ for $i\neq j$.
-There is an illustration in Figure~\ref{fig:exact-hard}, using the vertex $s^*$ as above. 
+There is an illustration in Figure~\ref{7-fig:exact-hard}, using the vertex $s^*$ as above. 
 Using an argument like above, we see that the probability $p$ to play the top action in the vertex $s'$ is such that $p(1-\gamma)=(1-p)(1-\gamma)x$, where $x$ is the value of $s^*$. Thus, $x=\frac{p}{1-p}$. If $p$ only needs to be exponential small, then $x$ is exponentially small as well. This is true for any yes-instance of the sum-of-square-roots problem and thus, we only need polynomially many digits to decide the problem. We can find polynomially many digits of $\sqrt{b_i}$ for each $i$ in polynomial time. We get the following lemma.
 
 \begin{lemma}

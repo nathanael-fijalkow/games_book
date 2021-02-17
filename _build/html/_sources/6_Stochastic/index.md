@@ -1,7 +1,7 @@
 (6-chap:stochastic)=
 # Stochastic Games
 
-```{image} ./../6.jpg
+```{image} ./../Illustrations/6.jpg
 :alt: illustration
 :class: bg-primary mb-1
 :width: 400px
@@ -79,7 +79,11 @@
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
+\newcommand{\EXP}{\textrm{EXP}}
+\newcommand{\kEXP}{\textrm{kEXP}}
 ```
+
 Written by Nathalie Bertrand, Patricia Bouyer-Decitre
 
 

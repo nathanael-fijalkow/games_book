@@ -62,6 +62,9 @@
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
+\newcommand{\EXP}{\textrm{EXP}}
+\newcommand{\kEXP}{\textrm{kEXP}}
 ```
 A strategy can be a very complicated object, in particular it is infinite.
 Indeed, it is a function $\sigma : \Paths \to E$,
@@ -74,6 +77,7 @@ For understanding a certain class of games a great insight is often to prove the
 as for instance positional or using finite memory.
 
 ## Positional strategies
+
 **Positional** strategies carry no memory about the play constructed so far and in choosing an edge only look at the current vertex.
 The word memoryless is sometimes used in lieu of positional.
 Formally, a positional strategy for Eve is a function 
@@ -94,13 +98,13 @@ $$
 
 It is equipped with the condition $W$ inherited from $\Game$.
 
-```{prf:observation} Game induced by a positional strategy
+````{prf:observation} Game induced by a positional strategy
 :label: 1-fact:game_induced_positional_strategy
 
 Let $\Game$ be a game with condition $W$, $\sigma$ a positional strategy, and $v$ a vertex.
 Then the strategy $\sigma$ is winning from $v$ if and only if all infinite paths in $\Game[\sigma]$ from $v$ satisfy $W$.
 
-```
+````
 
 We say that a qualitative objective $\Omega$ is positionally determined (sometimes simply positional) if 
 for every game $\game$ with objective $\Omega$ and every vertex $v$,
@@ -110,7 +114,7 @@ if Eve has a winning strategy from $v$, then she has a positional winning strate
 As we discussed earlier, the task of solving a game does not include constructing winning strategies.
 We present a general binary search technique for doing so assuming positional determinacy.
 
-```{prf:lemma} Binary search for constructing positional strategies
+````{prf:lemma} Binary search for constructing positional strategies
 :label: 1-lem:constructing_winning_strategy
 
 Let $\Omega$ be a positionally determined qualitative objective.
@@ -118,10 +122,10 @@ If there exists an algorithm $A$ for solving games with objective $\Omega$,
 then there exists an algorithm for constructing winning strategies for games in this class 
 using $n \cdot \log(\frac{m}{n})$ calls to the algorithm $A$.
 
-```
+````
 
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 Let $\Omega$ be a positionally determined objective and $\Game$ a qualitative game with objective $\Omega$.
@@ -141,15 +145,14 @@ $$
 
 calls to a solving algorithm.
 
-```
+````
 
 We say that $\Omega$ is positionally determined for both players if both $\Omega$ and its complement $C^\omega \setminus \Omega$ are positionally determined.
 If the positional determinacy only holds for Eve we say that such objectives are half-positional. 
-
 Parity objectives are positionally determined for both players; this will be proved in Chapter {ref}`2-chap:regular`.
 We illustrate it on {numref}`1-fig:parity_game_example_positional` by annotating {numref}`1-fig:parity_game_example` with the positional winning strategies for both players.
 
-```{figure} ./../1-fig:parity_game_example_positional.png
+```{figure} ./../FigAndAlgos/1-fig:parity_game_example_positional.png
 :name: 1-fig:parity_game_example_positional
 :align: center
 The example of a parity game given in {numref}`1-fig:parity_game_example` with additional positional winning strategies for both players (corresponding to dashed edges).
@@ -162,7 +165,7 @@ there exists a positional optimal strategy from $v$.
 Let us state the quantitative counterpart of {prf:ref}`1-lem:constructing_winning_strategy`.
 The proof is the same.
 
-```{prf:lemma} Binary search for constructive winning strategies, quantitative case
+````{prf:lemma} Binary search for constructive winning strategies, quantitative case
 :label: 1-lem:constructing_winning_strategy_quantitative
 
 Let $\Omega$ be a positionally determined quantitative objective.
@@ -170,10 +173,11 @@ If there exists an algorithm $A$ for computing the value of games with objective
 then there exists an algorithm for constructing optimal positional strategies for games in this class 
 using $n \cdot \log(\frac{m}{n})$ calls to $A$.
 
-```
+````
 
 
 ## Uniformity
+
 A qualitative objective $\Omega$ is uniformly positionally determined if for every game $\game$ with objective $\Omega$, 
 Eve has a positional strategy which is winning from $\WE(\game)$, meaning from every vertex in $\WE(\game)$.
 Similarly, a quantitative objective $\Phi$ is uniformly positionally determined if for every game with objective $\Phi$, 
@@ -181,15 +185,15 @@ Eve has a positional strategy which is optimal from every vertex.
 
 Being uniformly positionally determined is a stronger property than being positionally determined, but in most cases an objective satisfies either both or none, as for example if the objective is prefix independent.
 
-```{prf:lemma} From positional to uniformly positional prefix independent objectives
+````{prf:lemma} From positional to uniformly positional prefix independent objectives
 :label: 1-lem:from_positional_to_uniformly_positional
 
 If an objective is positionally determined and prefix independent then it is uniformly positionally determined.
 
-```
+````
 
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 Let us consider a game $\game$ with qualitative objective $\Omega$ (the argument is exactly the same for quantitative objectives so we will not repeat it).
@@ -198,12 +202,12 @@ Thanks to~\cref{1-fact:winning_prefix_independent_qualitative}
 the strategy $\sigma_v$ is winning from all vertices reachable by a play consistent with $\sigma_v$ starting from $v$.
 Without loss of generality let us assume that $\sigma_v$ is only defined on these vertices.
 
-We fix $\le$ a total order on the set of vertices
+We fix $\le$ a total order on the set of vertices.
 
 ```{margin}
-The argument we give in this proof extends to infinite games whose set of vertices can be well ordered. A well-order is a total order such that every non-empty subset has a least element, which is exactly the property we need in this proof.```
+The argument we give in this proof extends to infinite games whose set of vertices can be well ordered. A well-order is a total order such that every non-empty subset has a least element, which is exactly the property we need in this proof.
+```
 
-.
 We let $\sigma$ be the positional strategy defined by $\sigma(u)$ is $\sigma_v(u)$ where $v$ is the least vertex (with respect to $\le$) such that $\sigma_v$ is defined on $u$. We say that $\sigma$ uses $\sigma_v$ at $u$.
 
 We argue that $\sigma$ is winning from $\WE(\game)$. 
@@ -212,10 +216,11 @@ By definition this sequence is non-increasing (with respect to $\le$), hence it 
 In other words the play is eventually consistent with some strategy $\sigma_v$, implying that this suffix satisfies $\Omega$.
 Since $\Omega$ is prefix independent this means that the play itself satisfies $\Omega$, so $\sigma$ is indeed winning.
 
-```
+````
 
 
-## Finite memory strategies}\label{1-finite memory
+(1-finite memory)=
+## Finite memory strategies
 Memoryless strategies are sometimes not enough. 
 A more powerful class of strategies is **finite memory** strategies.
 Intuitively, a finite memory strategy uses a finite state machine called a memory structure 
@@ -267,7 +272,7 @@ $$
 Then we define $\sigma(v_0,m_1) = (v_0,v_1)$ and $\sigma(v_0,m_2) = (v_0,v_2)$
 inducing the winning strategy $\widehat{\sigma}$ using $\Mem$.
 
-```{figure} ./../1-fig:memory_required.png
+```{figure} ./../FigAndAlgos/1-fig:memory_required.png
 :name: 1-fig:memory_required
 :align: center
 A game where Eve has a winning strategy for $\Buchi(v_1) \wedge \Buchi(v_2)$ using two memory states

@@ -1,0 +1,1274 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admissible strategies &#8212; Games on graphs</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/style.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Bibliographic references" href="references.html" />
+    <link rel="prev" title="Nash Equilibria for games in normal form" href="nash_equilibria_normal_form.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/cover.jpg" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Games on graphs</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <p class="caption collapsible-parent">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../1_Introduction/index.html">
+   Introduction
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/intro.html">
+     What is this book about?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/simple.html">
+     A first model of games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/objectives.html">
+     Objectives
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/computation.html">
+     Computational models
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/automata.html">
+     Automata
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/memory.html">
+     Memory
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/reductions.html">
+     Reductions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/subgames.html">
+     Traps and subgames
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/fixed_points.html">
+     Generic fixed point algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/value_iteration.html">
+     Value iteration algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/strategy_improvement.html">
+     Strategy improvement algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Classic
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../2_Regular/index.html">
+   Regular Games
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/attractors.html">
+     Reachability games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/buchi.html">
+     Büchi games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/parity.html">
+     Parity games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/muller.html">
+     Rabin, Streett, and Muller games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/zielonka.html">
+     Zielonka tree
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../3_Parity/index.html">
+   Parity Games
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/strategy_improvement.html">
+     An exponential time strategy improvement algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/zielonka.html">
+     A quasipolynomial time attractor decomposition algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/separation.html">
+     A quasipolynomial time separating automata algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/value_iteration.html">
+     A quasipolynomial time value iteration algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/relationships.html">
+     Comparing the three families of algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../4_Payoffs/index.html">
+   Games with Payoffs
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/notations.html">
+     Notations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/qualitative.html">
+     Refining qualitative objectives with quantities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/mean_payoff.html">
+     Mean payoff games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/discounted_payoff.html">
+     Discounted payoff games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/shortest_path.html">
+     Shortest path games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/total_payoff.html">
+     Total payoff games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Stochastic
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../5_MDP/index.html">
+   Markov Decision Processes
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/notations.html">
+     Notations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/reachability.html">
+     Positive and almost-sure reachability and safety in MDPs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/discounted.html">
+     Discounted payoff in MDPs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/mean_payoff_properties.html">
+     Mean-payoff in MDPs: General properties and linear programming
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/mean_payoff_strongly_connected.html">
+     Mean-payoff optimality in strongly connected MDPs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/end_components.html">
+     End components
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/reductions.html">
+     Reductions to optimal reachability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/optimal_reachability.html">
+     Optimal reachability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../6_Stochastic/index.html">
+   Stochastic Games
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../6_Stochastic/notations.html">
+     Notations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../6_Stochastic/determinacy.html">
+     Positional determinacy of stochastic reachability games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../6_Stochastic/relations.html">
+     Relations between all games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../6_Stochastic/algos.html">
+     Algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../6_Stochastic/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Information
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../7_Concurrent/index.html">
+   Concurrent Games
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../7_Concurrent/notations.html">
+     Notations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../7_Concurrent/matrix_games.html">
+     Matrix games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../7_Concurrent/discounted.html">
+     Concurrent discounted games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../7_Concurrent/reachability.html">
+     Concurrent reachability games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../7_Concurrent/mean_payoff.html">
+     Concurrent mean-payoff games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../7_Concurrent/discounted.html">
+     Concurrent discounted games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../7_Concurrent/references.html">
+     Bibilographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../8_Imperfect/index.html">
+   Games with Signals
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../8_Imperfect/notations.html">
+     Notations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../8_Imperfect/finite_duration.html">
+     Finite duration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../8_Imperfect/infinite_duration.html">
+     Infinite duration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../8_Imperfect/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Infinite
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../9_Timed/index.html">
+   Timed Games
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../9_Timed/notations.html">
+     Notations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../9_Timed/state_space_representation.html">
+     State-Space Representation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../9_Timed/controllable_predecessor_operator.html">
+     Controllable-Predecessor Operator
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../9_Timed/backward_algorithm.html">
+     Backward Algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../9_Timed/forward_algorithm.html">
+     Forward Algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../9_Timed/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../10_Pushdown/index.html">
+   Pushdown Games
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10_Pushdown/notations.html">
+     Notations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10_Pushdown/profiles.html">
+     Profiles and regularity of the winning regions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10_Pushdown/parity.html">
+     Parity pushdown games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10_Pushdown/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../11_Counters/index.html">
+   Games with Counters
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11_Counters/counters.html">
+     Vector games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11_Counters/dim1.html">
+     Games in dimension one
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11_Counters/avag.html">
+     Asymmetric games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11_Counters/resource.html">
+     Resource-conscious games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11_Counters/complexity.html">
+     The complexity of asymmetric monotone games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11_Counters/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Multi
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../12_Multiobjectives/index.html">
+   Games with multiple objectives
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12_Multiobjectives/mean_payoff_energy.html">
+     Mean-payoff and energy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12_Multiobjectives/total_payoff_shortest_path.html">
+     Total-payoff and shortest path
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12_Multiobjectives/beyond_worst_case.html">
+     Beyond worst-case synthesis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12_Multiobjectives/percentile.html">
+     Percentile queries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12_Multiobjectives/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 current active collapsible-parent">
+  <a class="reference internal" href="index.html">
+   Multiplayer Games
+  </a>
+  <ul class="current collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="nash_equilibria_normal_form.html">
+     Nash Equilibria for games in normal form
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Admissible strategies
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#definition">
+   Definition
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#simple-safety-games">
+   Simple Safety games
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#parity-games">
+   Parity games
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#iterated-elimination">
+   Iterated elimination
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="admissible-strategies">
+<span id="sec-admissible-strategies"></span><h1>Admissible strategies<a class="headerlink" href="#admissible-strategies" title="Permalink to this headline">¶</a></h1>
+<div class="math notranslate nohighlight">
+\[\def\payoff{\ensuremath{f}}
+\def\Act{A}
+\def\Agt{\mathcal{P}}
+\def\move{\textsf{move}}
+\def\Out{\textsf{Out}}
+\def\Dev{\textsf{Dev}}
+\def\maxinf{\text{\rm maxinf}}
+\def\pes{\textsf{pes}}
+\def\opt{\textsf{opt}}
+\def\proj{\textsf{proj}}
+\def\devg{\textsf{DevGame}}
+\def\Coalition{\ensuremath{\mathcal{C}}}
+\newcommand{\Eve}{\textrm{Eve}}
+\newcommand{\Adam}{\textrm{Adam}}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
+\newcommand{\argmax}{\textrm{argmax}}
+\newcommand{\argmin}{\textrm{argmin}}
+\newcommand{\Op}{\mathbb{O}}
+\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\textrm{supp}} 
+\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
+\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
+\newcommand{\mEve}{\mathrm{Eve}}
+\newcommand{\mAdam}{\mathrm{Adam}}
+\newcommand{\mRandom}{\mathrm{Random}}
+\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
+\newcommand{\ing}{\textrm{In}}
+\newcommand{\Ing}{\ing}
+\newcommand{\out}{\textrm{Out}}
+\newcommand{\Out}{\out}
+\newcommand{\dest}{\Delta} 
+\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
+\newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
+\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
+\newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
+\newcommand{\Win}{\textrm{Win}} 
+\newcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Value}{\textrm{val}} 
+\newcommand{\ValueE}{\textrm{val}_\mEve} 
+\newcommand{\ValueA}{\textrm{val}_\mAdam}
+\newcommand{\val}{\Value} 
+\newcommand{\Automaton}{\mathbf{A}} 
+\newcommand{\Safe}{\mathtt{Safe}}
+\newcommand{\Reach}{\mathtt{Reach}} 
+\newcommand{\Buchi}{\mathtt{Buchi}} 
+\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
+\newcommand{\Parity}{\mathtt{Parity}} 
+\newcommand{\Muller}{\mathtt{Muller}} 
+\newcommand{\Rabin}{\mathtt{Rabin}} 
+\newcommand{\Streett}{\mathtt{Streett}} 
+\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
+\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
+\newcommand{\Energy}{\mathtt{Energy}}
+\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
+\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
+\newcommand{\Sup}{\mathtt{Sup}}
+\newcommand{\Inf}{\mathtt{Inf}}
+\newcommand{\LimSup}{\mathtt{LimSup}}
+\newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NL}{\textrm{NL}}
+\newcommand{\PTIME}{\textrm{PTIME}}
+\newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
+\newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
+\newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
+\newcommand{\EXP}{\textrm{EXP}}
+\newcommand{\kEXP}{\textrm{kEXP}}\]</div>
+<p>Nash equilibria and their variants seen so far describe stable situations
+from which players have no incentive to deviate. This however is of limited use
+in some situations. First, the stability relies on the fact that all players are informed
+of the strategy profile to be played; that is, some central authority needs to publicly
+announce the strategies for all players. Second, each equilibrium describes a single possible
+situation. If there are several equilibria, it is not clear which one is to be chosen.</p>
+<p>Rather than concentrating on particular equilibria, game theorists have studied
+reasonings players may follow in order to exclude some strategies that are necessarily worse than others.
+These worse strategies are called <strong>dominated</strong>.
+By formalizing dominated and non-dominated strategies for a given player, one can then predict the behavior of rational players
+since such a player would never use a dominated strategy but rather always pick the best one available.</p>
+<p>In this section, we will formalize dominated strategies and show how these can be computed in games.
+We then briefly show that this reasoning can be repeated, and present the iterated elimination of dominated strategies.</p>
+<div class="section" id="definition">
+<span id="definition-1"></span><h2>Definition<a class="headerlink" href="#definition" title="Permalink to this headline">¶</a></h2>
+<p>The notion of <strong>dominance</strong> is used to compare strategies
+with respect to payoffs they yield against the rest of the players’ strategies.
+Consider the example of \ref{13-tab:normal-adm}.
+Given a strategy of the second player, playing <span class="math notranslate nohighlight">\(B\)</span> is always at least as good
+as playing <span class="math notranslate nohighlight">\(A\)</span> for the first player.
+In fact, again <span class="math notranslate nohighlight">\(C\)</span>, <span class="math notranslate nohighlight">\(B\)</span> yields a payoff of <span class="math notranslate nohighlight">\(4\)</span> which is better than <span class="math notranslate nohighlight">\(3\)</span>, the payoff of <span class="math notranslate nohighlight">\(A\)</span>;
+and against <span class="math notranslate nohighlight">\(D\)</span>, both yield <span class="math notranslate nohighlight">\(0\)</span>.
+The strategy <span class="math notranslate nohighlight">\(B\)</span> is said to dominate <span class="math notranslate nohighlight">\(A\)</span>. Intuitively,
+<span class="math notranslate nohighlight">\(B\)</span> is either better or as good as <span class="math notranslate nohighlight">\(A\)</span> <strong>in all situations</strong>, so
+playing <span class="math notranslate nohighlight">\(B\)</span> is the rational choice for Player <span class="math notranslate nohighlight">\(1\)</span>.</p>
+<p>Furthermore, by this analysis, Player <span class="math notranslate nohighlight">\(2\)</span> knows that Player <span class="math notranslate nohighlight">\(1\)</span> will player <span class="math notranslate nohighlight">\(B\)</span>.
+Given this information, the best response of Player <span class="math notranslate nohighlight">\(1\)</span> is to play <span class="math notranslate nohighlight">\(C\)</span>.
+By <strong>iterated elimination</strong>, we established that<span class="math notranslate nohighlight">\((B, C)\)</span> should be the only strategy profile to be played by players following this reasoning.</p>
+<p>\begin{table}
+\caption{A normal form game solvable by iterated elimination.}
+\label{13-tab:normal-adm}
+\begin{center}
+\begin{tabular}[c]{|&#64;{\hspace{1em}}l&#64;{\hspace{1em}}|&#64;{\hspace{1em}}c&#64;{\hspace{1em}}c&#64;{\hspace{1em}}|}
+\hline
+&amp; A &amp; B \
+\hline
+C &amp; 3, 3 &amp; 4, 1\
+D &amp; 0 , 4 &amp; 0, 0\
+\hline
+\end{tabular}
+\end{center}
+\end{table}</p>
+<p>Let us formalize this notion.</p>
+<div class="proof definition admonition" id="definition-0">
+<p class="admonition-title"><span class="caption-number">Definition 372 </span> (NEEDS LABEL Dominance)</p>
+<div class="definition-content section" id="proof-content">
+<p>Let (S \subseteq \mathcal{S}^{\Agt}) be a set of the form
+(S = S_1 \times S_2 \times \cdots \times S_n) which we will call a
+rectangular set. Let (\sigma,\sigma’ \in S_i). Strategy (\sigma)
+<strong>very weakly dominates</strong> strategy (\sigma’) with respect to (S),
+written (\sigma_i \ge_S \sigma’_i), if from all vertices (v_0):</p>
+<div class="math notranslate nohighlight">
+\[
+  \forall \sigma_{-i} \in S_{-i}, \payoff_i(\Out(v_0,\sigma'_i,\sigma_{-i}))
+  \ge
+  \payoff_i(\Out(v_0, \sigma_i, \sigma_{-i})).
+\]</div>
+<p>Strategy (\sigma_i) <strong>weakly dominates</strong> strategy (\sigma’_i)
+in (S), written (\sigma &gt;_S \sigma’), if
+(\sigma \ge_S \sigma’) and (\neg(\sigma’ \le_S \sigma)).%(\sigma \in S_i) is weakly dominated in (S) if there existsA strategy that is
+not weakly dominated in (S) is <strong>admissible</strong> in (S). The
+subscripts on (\ge_S) and (&gt;_S) are omitted when the sets of
+strategies are clear from the context.</p>
+</div>
+</div><p>Algorithms rely on the notion of <strong>optimistic</strong> and
+<strong>pessimistic value</strong> of a history. The pessimistic value is the
+maximum payoff that a player can ensure in the worst case within the strategy set <span class="math notranslate nohighlight">\(S\)</span>.
+The optimistic value is
+the best the player can achieve with the help of other players, given the strategy set <span class="math notranslate nohighlight">\(S\)</span>.</p>
+<div class="proof definition admonition" id="definition-1">
+<p class="admonition-title"><span class="caption-number">Definition 373 </span> (NEEDS LABEL Values)</p>
+<div class="definition-content section" id="proof-content">
+<p>The <strong>pessimistic value</strong> of a strategy
+(\sigma_i) for a history (h) with respect to a rectangular set of
+strategies (S), is</p>
+<ul class="simple">
+<li><p>(\pes_i(S,h,\sigma_i) = \inf_{\sigma_{-i} \in S_{-i}} \payoff_{i}(h \cdot \Out(\last(h), \sigma_i,\sigma_{-i})).)</p></li>
+</ul>
+<p>The <strong>pessimistic value of a history</strong> (h) for (A_i) with respect
+to a rectangular set of strategies (S) is given by:</p>
+<ul class="simple">
+<li><p>(\pes_i(S,h) = \sup_{\sigma_i \in S_i} \pes_i(S,s,\sigma_i).)</p></li>
+</ul>
+<p>The <strong>optimistic value</strong> of a strategy (\sigma_i) for a history
+(h) with respect to a rectangular set of strategies (S) is given by:</p>
+<ul class="simple">
+<li><p>(\opt_i(S,h,\sigma_i) = \sup_{\sigma_{-i} \in S_{-i}} \payoff_i (h_{\le |h|-2} \cdot \Out(\last(h), \sigma_i,\sigma_{-i})).)</p></li>
+</ul>
+<p>The <strong>optimistic value</strong> of a history (h) for (A_{i}) with
+respect to a rectangular set of strategies (S) is given by:</p>
+<ul class="simple">
+<li><p>(\opt_i(S,h) = \sup_{\sigma_i \in S_i} \payoff_{i}(\opt_i(S,h,\sigma_i)))</p></li>
+</ul>
+</div>
+</div><p>We will first consider the case where <span class="math notranslate nohighlight">\(S\)</span> is the set of all strategies,
+and omit <span class="math notranslate nohighlight">\(S\)</span> in the above notations.</p>
+</div>
+<div class="section" id="simple-safety-games">
+<span id="id1"></span><h2>Simple Safety games<a class="headerlink" href="#simple-safety-games" title="Permalink to this headline">¶</a></h2>
+<p>\begin{figure}
+\begin{center}<br />
+\begin{tikzpicture}
+\draw (0,0) node[draw, inner sep=2pt, circle] (I) {<span class="math notranslate nohighlight">\(v_0\)</span>};
+\draw (I.-90) node[below] {};
+\draw (4,1) node[draw, circle, inner sep=2pt] (C1) {<span class="math notranslate nohighlight">\(v_1\)</span>};
+\draw (C1.-100) node[below] {};
+\draw (4,-1) node[draw, circle, inner sep=2pt, circle] (C2) {<span class="math notranslate nohighlight">\(v_2\)</span>};%\draw (C2.-90) node[below] {};
+\draw (8, 1) node[draw, circle, inner sep=2pt] (S1) {<span class="math notranslate nohighlight">\(v_3\)</span>};
+\draw (S1.-90) node[below] {<span class="math notranslate nohighlight">\(-1, -1, 0\)</span>};
+\draw (8,-1) node[draw, circle, inner sep=2pt] (S2) {<span class="math notranslate nohighlight">\(v_4\)</span>};
+\draw (S2.-90) node[below] {<span class="math notranslate nohighlight">\(-1, 0, -1\)</span>};
+\draw[-latex’] (-1, 0) – (I);
+\draw[-latex’] (I) – node[above]{<span class="math notranslate nohighlight">\((*,a,*)\)</span>} (C1);
+\draw[-latex’] (I) – node[below]{<span class="math notranslate nohighlight">\((*,b,*)\)</span>} (C2);
+\draw[-latex’] (C1) –node[left]{<span class="math notranslate nohighlight">\((a,*,*)\)</span>} (C2);
+\draw[-latex’] (C1) – node[above]{<span class="math notranslate nohighlight">\((b,*,*)\)</span>} (S1);
+\draw[-latex’] (C2) – node[above]{<span class="math notranslate nohighlight">\((*,*,a)\)</span>} (S2);
+\draw[-latex’, rounded corners] (C2) – +(1,1) – node[right]{<span class="math notranslate nohighlight">\((*,*,b)\)</span>}(C1);
+\end{tikzpicture}
+\caption{Example of a three-player turn-based simple safety game.Numbers below states describe the safety objective, for instance <span class="math notranslate nohighlight">\(-1, -1, 0\)</span> is losing for player 1 and 2.
+}
+\label{13-fig:simple-safety}
+\end{center}
+\end{figure}</p>
+<p>Simple safety games, are safety games in which there are no transitions
+from losing vertices to non-losing ones. Restricting to this particular
+class of game makes the problem simpler because the objective becomes
+prefix independent.
+Any safety game can be converted to an equivalent simple safety game
+by encoding in the states which players have visited so far a losing
+state. Note that this translation can be exponential in the number of
+players.</p>
+<p>For simple safety games, the pessimistic and optimistic values do not depend
+on the full history but only on the last state: for all histories
+(\pes_i(h) = \pes_i(\last(h))) and (\opt_i(h) = \opt_i(\last(h))).</p>
+<p>Note that in safety games (and any qualitative games) values can be only
+1 (for winning) and 0 (for losing) and since the pessimistic value is
+always less than the optimistic one, the pair ((\pes_i, \opt_i)) can
+only take three values: ((0, 0)), ((0, 1)) and ((1, 1)).</p>
+<p>Intuitively, players should avoid decreasing this pair of values if they can.
+In fact, the characterization of admissible strategies we give below will be based on this
+simple observation.</p>
+<div class="proof example admonition" id="example-2">
+<p class="admonition-title"><span class="caption-number">Example 374 </span> (NEEDS TITLE AND LABEL)</p>
+<div class="example-content section" id="proof-content">
+<p>An example of a simple safety game is given in <code class="xref std std-numref docutils literal notranslate"><span class="pre">13-fig:simple-safety</span></code>.
+In this game, player 1 controls <span class="math notranslate nohighlight">\(v_1\)</span> where its optimistic
+value is <span class="math notranslate nohighlight">\(0\)</span>, as it is possible that the outcome will never reach
+<span class="math notranslate nohighlight">\(v_3\)</span> or <span class="math notranslate nohighlight">\(v_4\)</span>.
+However <span class="math notranslate nohighlight">\(v_3\)</span> has optimistic value <span class="math notranslate nohighlight">\(-1\)</span> for player 1, as it is a losing
+state for player 1.
+Going from <span class="math notranslate nohighlight">\(v_1\)</span> to <span class="math notranslate nohighlight">\(v_3\)</span> is a bad choice for player 1, and
+it is indeed dominated by the strategy that would always choose to go
+to <span class="math notranslate nohighlight">\(v_2\)</span>.
+In state <span class="math notranslate nohighlight">\(v_3\)</span>, player 3 has pessimistic value <span class="math notranslate nohighlight">\(0\)</span> since it can ensure not
+visiting <span class="math notranslate nohighlight">\(v_4\)</span>.
+The winning strategy for player 3 which is to always go to <span class="math notranslate nohighlight">\(v_1\)</span> is also
+the only non-dominated strategy.
+For player 2, from state <span class="math notranslate nohighlight">\(v_0\)</span>, both choices lead to a state with values
+<span class="math notranslate nohighlight">\((-1, 0)\)</span> so no choice is particularly better and both strategies are
+non-dominated.</p>
+<p>An example of a simple safety game is given in <code class="xref std std-numref docutils literal notranslate"><span class="pre">13-fig:simple-safety</span></code>.
+In this game, player 1 controls <span class="math notranslate nohighlight">\(v_1\)</span> where its optimistic
+value is <span class="math notranslate nohighlight">\(0\)</span>, as it is possible that the outcome will never reach
+<span class="math notranslate nohighlight">\(v_3\)</span> or <span class="math notranslate nohighlight">\(v_4\)</span>.
+However <span class="math notranslate nohighlight">\(v_3\)</span> has optimistic value <span class="math notranslate nohighlight">\(-1\)</span> for player 1, as it is a losing
+state for player 1.
+Going from <span class="math notranslate nohighlight">\(v_1\)</span> to <span class="math notranslate nohighlight">\(v_3\)</span> is a bad choice for player 1, and
+it is indeed dominated by the strategy that would always choose to go
+to <span class="math notranslate nohighlight">\(v_2\)</span>.
+In state <span class="math notranslate nohighlight">\(v_3\)</span>, player 3 has pessimistic value <span class="math notranslate nohighlight">\(0\)</span> since it can ensure not
+visiting <span class="math notranslate nohighlight">\(v_4\)</span>.
+The winning strategy for player 3 which is to always go to <span class="math notranslate nohighlight">\(v_1\)</span> is also
+the only non-dominated strategy.
+For player 2, from state <span class="math notranslate nohighlight">\(v_0\)</span>, both choices lead to a state with values
+<span class="math notranslate nohighlight">\((-1, 0)\)</span> so no choice is particularly better and both strategies are
+non-dominated.</p>
+</div>
+</div><div class="proof definition admonition" id="definition-3">
+<p class="admonition-title"><span class="caption-number">Definition 375 </span> (NEEDS TITLE AND LABEL  Let (D_i) be the set of edges)</p>
+<div class="definition-content section" id="proof-content">
+<p>((v,v’) \in E) such that (v \in V_i)%(i) and
+(\pes_i(v) &gt; \pes_i(v’)) or (\opt_i(v) &gt; \opt_i(v’)). These
+are called <strong>dominated edges</strong>.</p>
+<p>Let (D_i) be the set of edges
+((v,v’) \in E) such that (v \in V_i)%(i) and
+(\pes_i(v) &gt; \pes_i(v’)) or (\opt_i(v) &gt; \opt_i(v’)). These
+are called <strong>dominated edges</strong>.</p>
+</div>
+</div><div class="proof theorem admonition" id="theorem-4">
+<p class="admonition-title"><span class="caption-number">Theorem 376 </span> (NEEDS LABEL Characterisation of Admissible Strategies)</p>
+<div class="theorem-content section" id="proof-content">
+<p>\label{13-thm:adm}
+Admissible
+strategies for player (A_i) are the strategies that never take actions
+in (D_i).</p>
+</div>
+</div><div class="dropdown tip admonition">
+<p class="admonition-title">Proof</p>
+<p>We show that if (A_i) plays an admissible strategy
+(\sigma_i) then the value cannot decrease on a transition controled by
+(A_i). Let (\rho \in \Out(\sigma_i,\sigma_{-i})), and (k) an index
+such that (\rho_k \in V_i). Let ((v, v’) = \sigma_i(\rho_{\le k})):</p>
+<ul class="simple">
+<li><p>If (\pes_i(\rho_k)=1), then (\sigma_i) has to be winning against
+all strategies (\sigma_{-i}) of (A_{-i}), otherwise it would be
+weakly dominated by such a strategy. Since there is no such strategy
+from a state with value (\pes_i \leq 0), we must have (\pes_i(v’)=1).</p></li>
+<li><p>If (\opt_i(\rho_k) = 1), then, by definition, there is a profile (\sigma’) such that
+(\rho = \payoff(\Out(v, \sigma’)) = 1).
+Assume that <span class="math notranslate nohighlight">\(\opt_i(v')=0\)</span>. Then <span class="math notranslate nohighlight">\(\sigma_i\)</span> is dominated by the strategy
+<span class="math notranslate nohighlight">\(\sigma_i''\)</span> obtained from <span class="math notranslate nohighlight">\(\sigma_i\)</span> by making it switch to <span class="math notranslate nohighlight">\(\sigma'\)</span> at <span class="math notranslate nohighlight">\(v\)</span>.
+In fact, <span class="math notranslate nohighlight">\(\sigma_i\)</span> is losing against all strategies of <span class="math notranslate nohighlight">\(-i\)</span>, while <span class="math notranslate nohighlight">\(\sigma_i''\)</span>
+is winning at least against <span class="math notranslate nohighlight">\(\sigma_{-i}'\)</span>.</p></li>
+</ul>
+<p>In the other direction, let (\sigma_i,\sigma_i’) be two strategies of
+player (A_i) and assume (\sigma_i’ &gt;_S \sigma_i). We will prove
+(\sigma_i) takes a transition in (D_i) at some point.</p>
+<p>Let us fix some objects before developing the proof. There is a vertex
+(v) and strategy profile (\sigma_{-i} \in S_{-i}) such that
+(\payoff(\Out(v,\sigma_i’,\sigma_{-i}))=1 \wedge \payoff(\Out(v,\sigma_i,\sigma_{-i})=0).
+Let (\rho = \Out(v,\sigma_i,\sigma_{-i})) and
+(\rho’ = \Out(v,\sigma_i’,\sigma_{-i})). Consider the first position
+where these runs differ: write (\rho = w \cdot s’ \cdot s_2 \cdot w’)
+and (\rho’ = w \cdot s’ \cdot s_1 \cdot w’’).</p>
+<p>The following are simple facts that can be seen easily:</p>
+<ul class="simple">
+<li><p>(s’ \in V_i), because the strategy of the other players
+are identical in the two runs.</p></li>
+<li><p>(\opt_i(s_1) = 1) because
+(\payoff(\Out(v,\sigma_i’,\sigma_{-i}))=1)</p></li>
+<li><p>(\pes_i(s_2) = 0) because
+(\payoff(\Out(v,\sigma_i,\sigma_{-i}))=0)</p></li>
+</ul>
+<p>If (\opt_i(s_2) = 0) or (\pes_i(s_1) = 1) then
+(s’ \rightarrow s_2 \in D_i) so (\sigma_i) takes a transition of
+(D_i). The remaining case to complete the proof is (\opt_i(s_2) = 1)
+and (\pes_i(s_1) = 0).
+Let us assume that <span class="math notranslate nohighlight">\(\sigma_i\)</span> does not take any edges from <span class="math notranslate nohighlight">\(D_i\)</span>.
+We will show that there is
+a strategy for <span class="math notranslate nohighlight">\(-i\)</span> against which <span class="math notranslate nohighlight">\(\sigma_i\)</span> wins and <span class="math notranslate nohighlight">\(\sigma_i'\)</span> loses,
+which contradicts the hypothesis that <span class="math notranslate nohighlight">\(\sigma_i'\)</span> weakly dominates <span class="math notranslate nohighlight">\(\sigma_i\)</span>.</p>
+<p>We first construct a profile (\sigma_{-i}^2 \in S_{-i}) such that
+(\payoff(\Out(s_2,\sigma_i,\sigma_{-i}^2))=1).%we must have %(\opt_i(\sigma^2_{-i}(h)) = 0) thenStrategy (\sigma_{-i}^2\in S_{-i}) never decreases
+the optimistic value from (1) to (0) since the optimistic value is nonincreasing.
+By assumption, (\sigma_i)
+itself does not decrease the value of (A_i) because it does not take
+transitions of~(D_i). So the outcome of ((\sigma_i,\sigma_{-i}^2))
+never reaches a state of optimistic value (0). Hence it never reaches
+a state in (Bad_i) and therefore it is winning for (A_i).</p>
+<p>Let us now consider a profile (\sigma_{-i}^1 \in S_{-i}) such that
+(\payoff(\sigma_i’,\sigma_{-i}^1)=0) from (s_1). Such a strategy exists
+because
+(\pes_i(s_1) = 0), so <span class="math notranslate nohighlight">\(\sigma_i'\)</span> is not a winning strategy.
+Then there exists a
+strategy profile (\sigma_{-i}^1) such that (\sigma_i’) loses from
+(s_1).</p>
+<p>Now consider strategy profile (\sigma_{-i}’) that plays like
+(\sigma_{-i}) if the play does not start with (w);
+and otherwise switches to
+(\sigma_{-i}^1) at history (ws_1) and to (\sigma_{-i}^2) at history (ws_2).
+Formally, given a history (h), (\sigma_{-i}’(h) =)</p>
+<ul class="simple">
+<li><p>(\sigma_{-i}^1( h’)) if (w \cdot s_1) is a prefix of (h) and
+(w \cdot s_1 \cdot h’ = h)</p></li>
+<li><p>(\sigma_{-i}^2( h’)) if (w \cdot s_2) is a prefix of (h) and
+(w \cdot s_2 \cdot h’ = h)</p></li>
+<li><p>(\sigma_{-i}(h)) otherwise</p></li>
+</ul>
+<p>Clearly we have
+(\payoff_i(\Out_s(\sigma_i,\sigma_{-i}’))= 1 \wedge \payoff_i(\Out_s(\sigma_i’,\sigma_{-i}’)) = 0),
+which contradicts (\sigma_i’ \ge_S \sigma_i).</p>
+</div>
+</div>
+<div class="section" id="parity-games">
+<span id="id2"></span><h2>Parity games<a class="headerlink" href="#parity-games" title="Permalink to this headline">¶</a></h2>
+<p>The caracterization given for simple safety game is not enough for
+parity objectives, as we will see in the following example.</p>
+<p>\begin{figure}
+\begin{center}
+\begin{tikzpicture}
+\draw (0,0) node[draw, circle, inner sep=4pt] (I) {<span class="math notranslate nohighlight">\(v_0\)</span>};
+\draw (I.-90) node[below] {};
+\draw (4,0) node[draw, inner sep=4pt, circle] (C1) {<span class="math notranslate nohighlight">\(v_1\)</span>};
+\draw (C1.-100) node[below] {};
+\draw (8,0) node[draw, circle, inner sep=4pt] (C2) {<span class="math notranslate nohighlight">\(\Omega_1\)</span>};
+\draw (I.-90) node[below] {<span class="math notranslate nohighlight">\(1\)</span>};
+\draw (C1.-90) node[below] {<span class="math notranslate nohighlight">\(1\)</span>};
+\draw (C2.-90) node[below] {<span class="math notranslate nohighlight">\(2\)</span>};
+\draw[-latex’] (-1, 0) – (I);
+\draw[-latex’] (I) – node[above]{<span class="math notranslate nohighlight">\((a,*)\)</span>} (C1);
+\draw[-latex’] (I) ..controls +(1,2) and +(-1,2)  .. node[above]{<span class="math notranslate nohighlight">\((b,*)\)</span>}  (I);
+\draw[-latex’] (C1) – node[above]{<span class="math notranslate nohighlight">\((*,a)\)</span>}(C2);
+\draw[-latex’] (C1) .. controls +(-2, -2) ..  node[above]{<span class="math notranslate nohighlight">\((*,b)\)</span>} (I);
+\draw[-latex’, rounded corners] (C2)..controls +(1,2) and +(-1,2) .. node[above]{<span class="math notranslate nohighlight">\((a,*)\)</span>}(C2);
+\end{tikzpicture}
+\caption{Parity game where the objective for player 1 is to visit
+<span class="math notranslate nohighlight">\(\Omega_1\)</span> infinitely often. Player 1 controls square vertices and player 2
+round vertices.}
+\label{fig:adm-parity}
+\end{center}
+\end{figure}</p>
+<div class="proof example admonition" id="example-5">
+<p class="admonition-title"><span class="caption-number">Example 377 </span> (NEEDS TITLE AND LABEL)</p>
+<div class="example-content section" id="proof-content">
+<p>Consider the example in figure~\ref{fig:adm-parity}.
+In this example, although the strategy that always stays in <span class="math notranslate nohighlight">\(v_0\)</span>
+does not decrease the value of player 1, it is dominated because
+it has no chance of winning.
+By contrast the strategy that always go to <span class="math notranslate nohighlight">\(v_1\)</span> has a chance of
+being helped by player 2 and actualy reaching <span class="math notranslate nohighlight">\(\Omega_1\)</span> it therefore
+dominates the first strategy.</p>
+<p>Consider the example in figure~\ref{fig:adm-parity}.
+In this example, although the strategy that always stays in <span class="math notranslate nohighlight">\(v_0\)</span>
+does not decrease the value of player 1, it is dominated because
+it has no chance of winning.
+By contrast the strategy that always go to <span class="math notranslate nohighlight">\(v_1\)</span> has a chance of
+being helped by player 2 and actualy reaching <span class="math notranslate nohighlight">\(\Omega_1\)</span> it therefore
+dominates the first strategy.</p>
+</div>
+</div><p>However the fact that an admissible strategy should not decrease its own
+value still holds. Assuming strategy (\sigma_i) of player (P_i) does
+not decrease its own value, we can classify its outcome in three
+categories according to their ultimate values.</p>
+<ul class="simple">
+<li><p>either ultimately (\opt_i = 0), in which case all strategies are
+losing, and thus any strategy is admissible</p></li>
+<li><p>or ultimately (\pes_i = 1), in which case admissible strategies are
+exactly the winning ones</p></li>
+<li><p>or ultimately (\pes_i = 0) and (\opt_i = 1). We will focus on this
+case which is more involved.</p></li>
+</ul>
+<p>From a state of value (0), an admissible strategy of (P_i) should
+allow a winning play for (P_i) with the help of other players.</p>
+<p>We write (H_i) for set of vertices (v) controlled by a player
+(P_j\ne P_i) that have at least two successors of optimistic value
+(1). Formally, the <strong>help-states</strong> <span class="math notranslate nohighlight">\(H_i\)</span> of player (P_i) are defined
+as:</p>
+<div class="math notranslate nohighlight">
+\[
+ \bigcup_{P_j\in \Agt \setminus\{i\}} \left\{ s \in V_j \mid \exists s',s'',\ s' \neq s'' \wedge\ s\rightarrow s' \land s \rightarrow s'' \wedge\ \opt_i(s') = 1 \wedge\ \opt_i(s'') = 1 \right\}.
+\]</div>
+<p>Intuitively, admissible strategies in the case satisfying (\pes_i = 0) and (\opt_i = 1)
+are those that visit infinitely often help states. In fact, letting other players make choices
+means that the player is allowing the possibility of them helping to achieve the objective.
+More precisely, we have the following property whose proof is omitted.</p>
+<div class="proof lemma admonition" id="lemma-6">
+<p class="admonition-title"><span class="caption-number">Lemma 378 </span> (NEEDS TITLE AND LABEL)</p>
+<div class="lemma-content section" id="proof-content">
+<p>Let (v\in V), (P_i\in \Agt) and (\rho) a play be
+such that (\exists^\infty k. \opt_{i}(\rho_k) = 1). There exists
+(\sigma_i) admissible such that (\rho \in \Out(v, \sigma_i)) if, and
+only if, (\payoff_i(\rho) = 1) or
+(\exists^\infty k. \rho_k \in H_i).</p>
+<p>Let (v\in V), (P_i\in \Agt) and (\rho) a play be
+such that (\exists^\infty k. \opt_{i}(\rho_k) = 1). There exists
+(\sigma_i) admissible such that (\rho \in \Out(v, \sigma_i)) if, and
+only if, (\payoff_i(\rho) = 1) or
+(\exists^\infty k. \rho_k \in H_i).</p>
+</div>
+</div></div>
+<div class="section" id="iterated-elimination">
+<span id="id3"></span><h2>Iterated elimination<a class="headerlink" href="#iterated-elimination" title="Permalink to this headline">¶</a></h2>
+<p>Once each player is restricted to use admissible strategies, they can
+further refine their choices knowing that other players will not be using dominated strategies.
+We already saw this in the example of \Cref{13-tab:normal-adm}.
+In fact, once player <span class="math notranslate nohighlight">\(1\)</span> has eliminated strategy <span class="math notranslate nohighlight">\(A\)</span> (which is dominated by <span class="math notranslate nohighlight">\(B\)</span>),
+player <span class="math notranslate nohighlight">\(2\)</span> can use this information since its best response against the remaining strategies is <span class="math notranslate nohighlight">\(C\)</span>.
+In more complex games, this reasoning can be repeated and take several steps before converging.
+This repeated process is called <strong>iterated elimination of dominated strategies</strong>.</p>
+<p>We now define this process formally.</p>
+<div class="proof definition admonition" id="definition-7">
+<p class="admonition-title"><span class="caption-number">Definition 379 </span> (NEEDS LABEL Iterated elimination)</p>
+<div class="definition-content section" id="proof-content">
+<p>The <strong>sequence of iterative elimination</strong> is a sequence of rectangular strategy sets defined as follows.
+<span class="math notranslate nohighlight">\(S^0 = (S_i^0)_{P_i \in \Agt}\)</span> is the set of all strategies.
+For <span class="math notranslate nohighlight">\(k~\geq 0\)</span>, if we write <span class="math notranslate nohighlight">\(S^k = (S_i)_{P_i \in \Agt}\)</span>,
+then <span class="math notranslate nohighlight">\(S^{k+1}_i\)</span> is the set of strategies in <span class="math notranslate nohighlight">\(S^{k}_i\)</span> that are not dominated in <span class="math notranslate nohighlight">\(S^k\)</span>.</p>
+</div>
+</div><p>Thus, the step <span class="math notranslate nohighlight">\(1\)</span> of the sequence of iterative elimination corresponds
+to admissible strategies defined above. Let us call them <span class="math notranslate nohighlight">\(1\)</span>-admissible.
+In step 2, we again compute strategies that are dominated by only
+considering <span class="math notranslate nohighlight">\(1\)</span>-admissible strategies for all players, and repeat.
+Strategies that survive all step of elimination are said <strong>iteratively admissible</strong>.</p>
+<div class="proof theorem admonition" id="theorem-8">
+<p class="admonition-title"><span class="caption-number">Theorem 380 </span> (NEEDS TITLE AND LABEL)</p>
+<div class="theorem-content section" id="proof-content">
+<p>In parity games, the sequence of iterative elimination converges, and it reaches a non-empty fixpoint.</p>
+<p>In parity games, the sequence of iterative elimination converges, and it reaches a non-empty fixpoint.</p>
+</div>
+</div><p>We prove this result only for simple safety games since the case of parity conditions is too complex for the scope of this book.</p>
+<p>Intuitively, given a game <span class="math notranslate nohighlight">\(G\)</span>,  <code class="xref prf prf-ref docutils literal notranslate"><span class="pre">13-thm:adm</span></code> tells us that any strategy for player <span class="math notranslate nohighlight">\(P_i\)</span> that avoids using edges <span class="math notranslate nohighlight">\(D_i\)</span> is admissible. So if we remove all edges <span class="math notranslate nohighlight">\(\cup_{P_i \in \Agt} D_i\)</span> from the
+game to obtain a new game called <span class="math notranslate nohighlight">\(G_1\)</span>, then all strategies of <span class="math notranslate nohighlight">\(G_1\)</span> (for all players) are admissible in <span class="math notranslate nohighlight">\(G\)</span>, and conversely.
+We can then repeat this process to <span class="math notranslate nohighlight">\(G_1\)</span>: we construct <span class="math notranslate nohighlight">\(G_2\)</span> by eliminating all dominated edges
+in <span class="math notranslate nohighlight">\(G_1\)</span>, and get that admissible strategies in <span class="math notranslate nohighlight">\(G_1\)</span> are exactly all strategies of <span class="math notranslate nohighlight">\(G_2\)</span>,
+which correspond to <span class="math notranslate nohighlight">\(2\)</span>-admissible strategies, and so on.</p>
+<p>Since the size of the games decrease at each step, this process necessarily stops.
+It remains to show that the limit game <span class="math notranslate nohighlight">\(G_\infty\)</span> contains strategies. We will show that
+all vertices have at least one outgoing edge in <span class="math notranslate nohighlight">\(G_\infty\)</span>.
+It suffices to show that the sets <span class="math notranslate nohighlight">\(D_i\)</span> never contains all edges leaving a vertex.
+Let us consider any game <span class="math notranslate nohighlight">\(G_j\)</span>.
+For a vertex <span class="math notranslate nohighlight">\(v \in V_i\)</span> with <span class="math notranslate nohighlight">\(\pes_i(v)=0\)</span> and <span class="math notranslate nohighlight">\(\opt_i(v)=0\)</span>, none of the edges are dominated.
+For a vertex <span class="math notranslate nohighlight">\(v \in V_i\)</span> with <span class="math notranslate nohighlight">\(\pes_i(v)=1\)</span> (and necessarily <span class="math notranslate nohighlight">\(\opt_i(v)=1\)</span>), there exists a winning strategy in <span class="math notranslate nohighlight">\(G_j\)</span> so
+there must be a successor <span class="math notranslate nohighlight">\(v'\)</span> with <span class="math notranslate nohighlight">\(\pes_i(v')=1\)</span> which is not dominated.
+Last, for a vertex <span class="math notranslate nohighlight">\(v \in V_i\)</span> with <span class="math notranslate nohighlight">\(\pes_i(v)=0\)</span> and <span class="math notranslate nohighlight">\(\opt_i(v)=1\)</span>, there exists a winning play from <span class="math notranslate nohighlight">\(v\)</span> so for some successor <span class="math notranslate nohighlight">\(v'\)</span> we must have <span class="math notranslate nohighlight">\(\opt_i(v')=1\)</span> which is an edge that is not dominated.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./13_Multiplayer"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="nash_equilibria_normal_form.html" title="previous page">Nash Equilibria for games in normal form</a>
+    <a class='right-next' id="next-link" href="references.html" title="next page">Bibliographic references</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By a set of authors coordinated by Nathana&euml;l Fijalkow<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

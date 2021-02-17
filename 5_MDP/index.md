@@ -1,7 +1,7 @@
 (5-chap:mdp)=
 # Markov Decision Processes
 
-```{image} ./../5.jpg
+```{image} ./../Illustrations/5.jpg
 :alt: illustration
 :class: bg-primary mb-1
 :width: 400px
@@ -112,7 +112,11 @@
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
+\newcommand{\EXP}{\textrm{EXP}}
+\newcommand{\kEXP}{\textrm{kEXP}}
 ```
+
 Written by Petr Novotn&yacute;
 
 

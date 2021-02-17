@@ -14,8 +14,22 @@
 \newcommand{\bh}{\setminus}
 \newcommand{\signauxdeux}{T}
 \newcommand{\actionsun}{A}
+\newcommand{\Strat}{\text{Strat}}
 \newcommand{\Act}{\text{Act}}
 \newcommand{\ini}{\delta_0}
+\newcommand{\win}{{\tt Win}}
+\newcommand{\winreach}{{\tt Reach}}
+\newcommand{\winsafe}{{\tt Safety}}
+\newcommand{\winbuchi}{{\tt Buchi}}
+\newcommand{\wincobuchi}{{\tt CoBuchi}}
+\newcommand{\states}{V}
+\newcommand{\ar}{\arena}
+\newcommand{\action}{a}
+\newcommand{\belun}{\mathcal{B}_{\text{Eve}}}
+\newcommand{\beldeux}{\mathcal{B}_{\text{Adam}}}
+\newcommand{\deuxbelun}{\mathcal{B}^{(2)}_{Eve}}
+\newcommand{\tp}{\Delta}
+\newcommand{\parties}[1]{\ensuremath{\mathcal{P}(#1)}}
 \newcommand{\Eve}{\textrm{Eve}}
 \newcommand{\Adam}{\textrm{Adam}}
 \newcommand{\set}[1]{\left\{ #1 \right\}}
@@ -76,6 +90,9 @@
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
+\newcommand{\EXP}{\textrm{EXP}}
+\newcommand{\kEXP}{\textrm{kEXP}}
 ```
 
 

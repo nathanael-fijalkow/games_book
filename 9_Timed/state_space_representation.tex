@@ -1,0 +1,388 @@
+We introduce a data structure to represent sets of clock
+valuations and manipulate them efficiently in order to compute
+successors and predecessors in a given timed game. This will allow us
+to use a fixpoint characterization of the winning states analogous to
+that in finite games as in \cref{chap:regular}. %Chapter ...
+
+A~\emph{""zone""} is any subset of~$\Realnn^\Clocks$ that can be defined
+using a clock constraint (hence a~zone is convex).  We will see that
+sets of states that appear when exploring the state space of a timed
+game can be represented using zones.  We~use the
+\emph{difference-bound matrices} to represent zones:
+this is one of the main data structures used in timed-automata
+verification~\cite{Dil90,BM83}. The~idea is to store, in a matrix,
+upper bounds on clocks and on differences of pairs of clocks.
+%, and an upper bound on the difference of each pair of clocks.
+Formally, given a clock
+set~$\Clocks=\{x_1,\ldots,x_m\}$, we define $\Clocksz = \Clocks \cup \{x_0\}$
+where~$x_0$ is seen as a
+special clock which is always~$0$.
+%, which is just to simplify the subsequent notations.
+A~""difference-bound matrix""~(""DBM"") is a $|\Clocksz|\times |\Clocksz|$
+matrix with coefficients in $\{\mathord\leq,\mathord<\} \times
+\mathbb{Z}$.  For any DBM~$M$, the $(i,j)$-component of the matrix~$M$
+will be written $(\prec^M_{i,j}, M_{i,j})$ where $\prec^M_{i,j}$ is
+the inequality in~$\{\mathord\leq,\mathord<\}$, and $M_{i,j}$ the
+integer coefficient. A~DBM~$M$ defines the zone
+%~$[M]$ described by
+%the following clock constraints
+\[
+  [M] = \Bigl\{v\in \Realnn^{\Clocks}\Bigm|
+  \bigwedge_{0\leq i,j \leq |\Clocksz|} v(x_i)-v(x_j) \prec^M_{i,j} M_{i,j}\Bigr\},
+\]
+where $v(x_0) = 0$.
+
+\begin{example}
+  Consider the clock set $\Clocks=\{x_1,x_2\}$
+  and the zone $Z$ defined by 
+  $x_1\leq 1 \land x_1-x_2 \leq 0 \land x_2\leq 3\land x_2-x_1 \leq 2$, which can be
+  written as the following DBM:
+  \[
+    M=\begin{pmatrix}
+      (\leq,0) &(\leq,0) &(\leq,0)\\
+      (\leq,1) &(\leq,0) &(\leq,0)\\
+      (\leq,3) &(\leq,2) &(\leq,0)
+    \end{pmatrix}
+    \qquad
+  \tikz[scale=.45]{ 
+    \path[use as bounding box] (-1,1.2) -- (2,4);
+    \begin{scope}
+      \draw[latex'-latex'] (3.5,0) node[right] {$x_1$}
+        -| (0,3.8) node[left] {$x_2$};
+      \begin{scope}
+        \path[clip] (0,0) -- (3.5,0) [rounded corners=12mm]
+          -- (3.5,3.9) [rounded corners=0mm] -| (0,0);
+        \draw[dgrey,fillarea] (0,0) -- (1,1) |- (0,3) -- cycle;
+        \begin{scope}[opacity=.3]
+          \foreach \x in {-4,...,4}
+                 {\draw (\x,0) -- +(9,9);
+                   \draw (0,\x) -- +(9,0);
+                   \draw (\x,0) -- +(0,9);}
+        \end{scope}
+        %\draw[line width=.6pt,opacity=.8] (0,0) -- (1,1) |- (0,3) -- cycle;
+      \end{scope}
+    \end{scope}
+    %% \path[use as bounding box] (-1,0.5) -- (2,1.5);
+    %% \begin{scope}[scale=.4]
+    %%   \fill[gray] (0,0) -- (1,1) -- (1,3) -- (0,2) -- cycle;
+    %%   \draw[-latex',line width=.6pt] (0,0) -- (3.5,0) node[right] {$x_1$};
+    %%   \draw[-latex',line width=.6pt] (0,0) -- (0,3.5) node[left] {$x_2$};
+    %%   \begin{scope}[line width=0.1pt]
+    %%   \draw[-] (1,0) -- (1,3.5);
+    %%   \draw[-] (2,0) -- (2,3.5);
+    %%   \draw[-] (0,1) -- (3.5,1);
+    %%   \draw[-] (0,2) -- (3.5,2);
+    %%   \draw[-] (0,0) -- (3.5,3.5);
+    %%   \draw[-] (1,0) -- (3.5,2.5);
+    %%   \draw[-] (2,0) -- (3.5,1.5);
+    %%   \draw[-] (0,1) -- (2.5,3.5);
+    %%   \draw[-] (0,2) -- (1.5,3.5);
+    %% \end{scope}
+    %% \end{scope}
+    }
+  \]
+%Note for instance that the coefficient~$3$ on the third row and
+%  first column
+  For instance, $M[2,0]=(\leq, 3)$ represents the
+  constraint~$x_2-x_0\leq 3$, i.e., $x_2\leq 3$.
+%  corresponds to $x_2 - x_0 \leq 3$, which is equivalent to $x_2 \leq 3$.
+%  The~subset of~$\Realnn^2$ represented by this DBM is represented on
+%  the diagram.
+  The~diagram to the right of the figure represents the set~$[M]$.
+\end{example}
+
+We now define elementary operations on DBMs which are used to explore
+the state space of timed games. We start by giving set-theoretic
+definitions and then comment on their computation with~DBMs.
+
+Let $\posttime(Z)$ denote the zone describing the
+\emph{time-successors} of~$Z$, and~$\pretime(Z)$ the
+\emph{time-predecessors} of~$Z$. Formally,
+\begin{xalignat*}1
+    \posttime(Z)&= \{v \in \Realnn^{\Clocks}
+    \mid \exists t\geq 0.\  v-t \in Z\}
+    \\
+    \pretime(Z) &=
+    \{v \in \Realnn^{\Clocks} \mid \exists t \geq 0.\ v + t \in Z\}.
+\end{xalignat*}
+
+Given~$R\subseteq\Clocks$, we also define
+\begin{xalignat*}1
+  \reset_R(Z) &= \{v \in \Realnn^{\Clocks} \mid \exists v' \in Z.\
+  v=v'[R\leftarrow 0]\} \\
+  \unreset_R(Z) &= \{ v \in \Realnn^{\Clocks} \mid \exists v' \in Z.\
+  v' = v[R \leftarrow 0]\}.
+\end{xalignat*}
+%Notice that~$\freeta_R$ is the inverse of~$\reset_R$.
+%Intersection is denoted $Z \cap Z'$.
+
+These operations, together with intersection, suffice to describe
+one-step successors and predecessors by an edge of a timed automaton.
+For instance, given edge~$e=(\ell,g,R,\ell')$ and
+set~$S \subseteq \Realnn^\Clocks$, the~set of states that are reached
+after letting time elapse and taking edge~$e$ can be obtained as
+% \[
+%   \begin{array}{rl}
+%     \postta_e(S) = \{ (\ell',\nu') &\mid \exists (\ell,\nu) \in S, \nu \models g, \exists d\geq
+%                                    0,~\nu' = \nu[R\leftarrow 0] + d\}.
+%   \end{array}
+% \]
+% If~$G$ denotes the zone corresponding to the guard~$g$, then we 
+%have~$\postta_e(S) = \posttime((S \cap G)[R\leftarrow 0])$.
+\[
+  \postta_e(S) = \reset_R(\posttime(S)\cap G),
+\]
+where~$G$ denotes the zone corresponding to the guard~$g$.
+Similarly, we can compute the predecessors of~$S$ by edge~$e$ as
+\[
+\preta_e(S) = \pretime(G \cap \unreset_R(S)).
+% \cap (\bigwedge_{x \in R}x=0)),
+\]
+%which is the set of states which, after a delay, satisfy~$g$ and end
+%in~$S$ by resetting~$R$.
+We~illustrate these constructions on \cref{9-fig:opzones}.
+\begin{figure}[ht]
+  \centering
+  \begin{tikzpicture}[scale=.45]
+    \begin{scope}
+      \draw[latex'-latex'] (4.5,0) node[right] {$x_1$}
+        -| (0,4.5) node[left] {$x_2$};
+      \begin{scope}
+        \path[clip] (0,0) -- (4.5,0) [rounded corners=12mm]
+          -- (4.5,4.5) [rounded corners=0mm] -| (0,0);
+        \fill[dgrey,fillarea] (1,1) -- (2,2) |- (1,3) -- cycle;
+        %\draw[line width=.6pt,opacity=.8] (1,1) -- (2,2) |- (1,3) -- cycle;
+        \fill[opacity=.6,dgrey,hatcharea] (1,1) -- (5,5) -| cycle;
+        %\draw[line width=.6pt,opacity=.8] (1,1) -- (5,5) -| cycle;
+        \begin{scope}[opacity=.3]
+          \foreach \x in {-4,...,4}
+                 {\draw (\x,0) -- +(9,9);
+                   \draw (0,\x) -- +(9,0);
+                   \draw (\x,0) -- +(0,9);}
+        \end{scope}
+      \end{scope}
+      \path (3,0.5) node (Z) {$Z$} edge[-latex',bend left=20] (1.6,1.4);
+      \path (4,1.5) node (Y) {$\posttime(Z)$} edge[-latex',bend right=20] (2.9,2.7);
+    \end{scope}
+    %%
+    \begin{scope}[xshift=6.5cm]
+      \draw[latex'-latex'] (4.5,0) node[right] {$x_1$}
+        -| (0,4.5) node[left] {$x_2$};
+      \begin{scope}
+        \path[clip] (0,0) -- (4.5,0) [rounded corners=12mm]
+          -- (4.5,4.5) [rounded corners=0mm] -| (0,0);
+        \fill[dgrey,fillarea] (1,1) -- (2,2) |- (1,3) -- cycle;
+        \fill[opacity=.6,dgrey,hatcharea] (0,0) -- (2,2) |- (1,3) -- (0,2) -- cycle;
+        %\draw[line width=.6pt,opacity=.8]  (0,0) -- (2,2) |- (1,3) -- (0,2) -- cycle;
+        %\draw[line width=.6pt,opacity=.8] (1,1) -- (2,2) |- (1,3) -- cycle;
+          \begin{scope}[opacity=.3]
+            \foreach \x in {-4,...,4}
+                 {\draw (\x,0) -- +(9,9);
+                   \draw (0,\x) -- +(9,0);
+                   \draw (\x,0) -- +(0,9);}
+          \end{scope}
+      \end{scope}
+      \path (3,1.5) node (Z) {$Z$} edge[-latex',bend right] (2.1,2.6);
+      \path (3.5,0.5) node (Y) {$\pretime(Z)$} edge[-latex',bend left=10] (.6,0.5);
+    \end{scope}
+    %%
+    \begin{scope}[xshift=13cm]
+      \draw[latex'-latex'] (4.5,0) node[right] {$x_1$}
+        -| (0,4.5) node[left] {$x_2$};
+      \begin{scope}
+        \path[clip] (0,0) -- (4.5,0) [rounded corners=12mm]
+          -- (4.5,4.5) [rounded corners=0mm] -| (0,0);
+        \fill[dgrey,fillarea] (1,1) -- (2,2) |- (1,3) -- cycle;
+        %\draw[line width=.6pt,opacity=.8] (1,1) -- (2,2) |- (1,3) -- cycle;
+        \draw[line width=3.2pt,dgrey] (1,0) -- (2,0);
+        \begin{scope}[opacity=.3]
+          \foreach \x in {-4,...,4}
+                 {\draw (\x,0) -- +(9,9);
+                   \draw (0,\x) -- +(9,0);
+                   \draw (\x,0) -- +(0,9);}
+          \end{scope}
+      \end{scope}
+      \path (3.2,1.8) node (Z) {$Z$} edge[-latex',bend right] (2.1,2.6);
+      \path (3.5,0.8) node (Y) {$\reset_{x_2}(Z)$} edge[-latex',bend right=20] (1.4,0.1);
+    \end{scope}
+    %%
+    \begin{scope}[xshift=19.5cm]
+      \draw[latex'-latex'] (4.5,0) node[right] {$x_1$}
+        -| (0,4.5) node[left] {$x_2$};
+      \begin{scope}
+        \path[clip] (0,0) -- (4.5,0) [rounded corners=12mm]
+          -- (4.5,4.5) [rounded corners=0mm] -| (0,0);
+        \fill[dgrey,fillarea] (1,0) -- (2,0) -- (3,1) |- (2,3) -- (1,2) -- cycle;
+        %\draw[line width=.6pt,opacity=.8] (1,0) -- (2,0) -- (3,1) |- (2,3) -- (1,2) -- cycle;
+        \fill[opacity=.6,dgrey,hatcharea] (1,5) -| (2,0) -| cycle;
+        %\draw[line width=.6pt,opacity=.8]  (1,5) -| (2,0) -| cycle;
+        \begin{scope}[opacity=.3]
+          \foreach \x in {-4,...,4}
+                 {\draw (\x,0) -- +(9,9);
+                   \draw (0,\x) -- +(9,0);
+                   \draw (\x,0) -- +(0,9);}
+        \end{scope}
+      \end{scope}
+      \path (5,1.5) node (Z) {$Z$} edge[-latex',bend right] (3.1,2.6);
+      \path (3.9,4) node (Y) {$\unreset_{x_2}(Z)$} edge[-latex',bend left=12] (2.1,3.4);
+    \end{scope}
+        
+  \end{tikzpicture}
+  \caption{Operations on zones}\label{9-fig:opzones}
+\end{figure}
+
+It is not hard to prove that the above operations preserve zones: if~$S$ is a
+zone, then so is the result of any of these operations. Moreover, each
+single operation can be computed in time~$O(|\Clocks|^3)$ using the
+DBM representation. The~underlying algorithms often modify some
+elements of the matrix and run an all-pairs shortest path algorithm,
+namely the Floyd-Roy-Warshall algorithm, on a graph whose adjacency
+matrix is the given~DBM.  Computing the shortest paths renders the DBM
+\emph{canonical}; in~fact, this allows one to compute the tightest
+constraints on all differences of clock pairs, and this can be shown
+to yield a unique representation of a given zone.
+
+Let us call the above operations \emph{basic operations} on DBMs~\cite{BY04}.
+%\NM{add refs}
+\begin{theorem}[Complexity of basic operations on DBMs]
+\label{9-thm:complexity_basic_operations_DBMs}
+  Given a DBM of size~$n\times n$, any basic operation yields a DBM
+  and can be computed in time~$O(n^3)$.
+\end{theorem}
+
+% \[
+%   \begin{array}{rl}
+%     \preta_e(S) = \{ (\ell,\nu) &\mid \nu \models g, \exists d\geq 0, \nu[R\leftarrow 0]+d \in S \},
+%   \end{array}
+% \]
+% which can be defined by~$\post_e(S) = 
+
+% We already defined the controllable predecessor operator in the previous
+% section. Another basic operation often used in verification and synthesis is the
+% successor computation. Given a set of states~$S$, and edge~$e$, let us define the set of
+% states that can be reached by taking the edge~$e=(\ell,g,a,R,\ell')$ and then delaying as follows.
+% \[
+%   \begin{array}{rl}
+%   \post_e(S) = \{ (\ell',\nu') &\mid (\ell,\nu) \in S, \nu \models g, \exists d\geq
+%   0, \\&~\nu' = \nu[R\leftarrow 0] + d\}.
+% \end{array}
+% \]
+
+Observe that a DBM always describes a convex subset
+of~$\Realnn^\Clocks$ since it is a conjunction of convex clock
+constraints. However, the set of winning states is in general
+non-convex in timed games. The~simple arena
+of~\cref{9-fig:non-convex} provides an example: if~\Eve's objective
+is to reach~$\ell_1$, then it should just avoid the configurations
+satisfying~$1\leq x_1,x_2\leq 2$. But this set of predecessors is then
+non-convex as shown in~\cref{9-fig:non-convex}.
+%example. Assume there are only controllable edges from location~$\ell$
+%to~$\ell_1$ and~$\ell_2$ with disjoint guards, with no resets, and that the
+%objective is to reach~$\ell_1$ or~$\ell_2$.
+%%Then the figure
+%on the right shows the set of states from which Eve can delay and
+%reach either~$\ell_1$ or~$\ell_2$ to satisfy her objective.
+We~thus have to work with unions of zones, also called
+\emph{""federations""} of zones, or \emph{federations} for~short.
+
+\begin{figure}[ht]
+  \centering
+  \begin{tikzpicture}[node distance=2.5cm,auto]
+%    \tikzstyle{every state}=[minimum size=17pt,inner sep=0pt]
+%    \path[use as bounding box] (-2,-1) -- (2,0);
+    %\everymath{\scriptstyle}
+    \node[state] at (0,0) (A) {$\ell$};
+    \draw[initial] (A.-135) -- +(-135:3mm);
+    \node[state,double] at (2.5,0) (B) {$\ell_1$};
+    \node[state] at (-2.5,0) (C) {$\ell_2$};
+    \path[arrow] 
+    (A) edge node[above] {$\genfrac{}{}{0pt}{0}{-2 \leq x_1-x_2 \leq 1}{{}\wedge x_2 \leq 3}$} (B)
+    (A) edge[dashed] node[above] {$1\leq x_1,x_2 \leq 2$} (C);
+    %
+    \begin{scope}[xshift=4cm,yshift=-1cm,scale=.45]
+      \draw[latex'-latex'] (4.5,0) node[right] {$x_1$}
+        -| (0,4.5) node[left] {$x_2$};
+      \begin{scope}
+        \path[clip] (0,0) -- (4.5,0) [rounded corners=12mm]
+          -- (4.5,4.5) [rounded corners=0mm] -| (0,0);
+        \fill[dgrey,fillarea] (1,0) -- (2,1) -| (1,2) -| (2,1) -- (4,3) -- (1,3) -- (0,2) |- cycle;
+          \begin{scope}[opacity=.3]
+            \foreach \x in {-4,...,4}
+                 {\draw (\x,0) -- +(9,9);
+                   \draw (0,\x) -- +(9,0);
+                   \draw (\x,0) -- +(0,9);}
+          \end{scope}
+      \end{scope}
+%      \path (3,0.5) node (Z) {$Z$} edge[-latex',bend left=20] (1.6,1.4);
+%      \path (4,1.5) node (Y) {$\posttime(Z)$} edge[-latex',bend right=20] (2.9,2.7);
+    \end{scope}
+%%     \begin{scope}[scale=.4]
+%%       \fill[gray] (0,0) -- (0,1) -- (1,2) -- (1,1) -- 
+%%       (2,1) -- (1,0) -- cycle;
+%%       \fill[gray] (2,1) -- (2,2) -- (1,2) -- (2,3) -- 
+%%       (4,3);
+%%       %(3.2,3.2) -- (3.2,2.2) -- (2.2,1.2);
+
+%% %      \fill[gray] (0,2) -- (1,2) -- (1,3.2) -- (0,3.2) -- cycle;
+%% %      \fill[gray] (0,1) -- (1,2) -- (0,2) -- cycle;
+%% %      \fill[gray] (2,0) -- (2,1) -- (3.2,1) -- (3.2,0) -- cycle;
+%% %      \fill[gray] (1,0) -- (2,1) -- (2,0) -- cycle;
+%%       \draw[-latex',line width=.6pt] (0,0) -- (4.5,0) node[right] {$x$};
+%%       \draw[-latex',line width=.6pt] (0,0) -- (0,4.5) node[left] {$y$};
+%%       \begin{scope}[line width=0.1pt]
+%%         \draw[-] (1,0) -- (1,4);
+%%         \draw[-] (2,0) -- (2,4);
+%%         \draw[-] (3,0) -- (3,4);
+%%         \draw[-] (4,0) -- (4,4);
+%%         \draw[-] (0,1) -- (4,1);
+%%         \draw[-] (0,2) -- (4,2);
+%%         \draw[-] (0,3) -- (4,3);
+%%         \draw[-] (0,4) -- (4,4);
+%%         \draw[-] (0,0) -- (4,4);
+%%         \draw[-] (1,0) -- (4,3);
+%%         \draw[-] (2,0) -- (4,2);
+%%         \draw[-] (0,1) -- (3,4);
+%%         \draw[-] (0,2) -- (2,4);
+%%       \end{scope}
+%%     \end{scope}
+  \end{tikzpicture}
+  \caption{Winning configurations (in~$\ell$)
+    for~\Eve to ensure reaching~$\ell_1$.
+% in one step is non-convex and shown on the right.
+  }
+  \label{9-fig:non-convex}
+\end{figure}
+
+One particular operation that we need is complementation.
+The~complement of a convex set is of course not convex in general, but
+we can still compute, in polynomial time, the complement of a DBM~$M$,
+written~$M^c$, as a federation of~DBMs.
+\begin{theorem}[Complement of DBMs]
+\label{9-thm:complement_DBM}
+  The complement of a DBM of size~$n\times n$ can be computed as a
+  federation of at most~$n(n-1)$ DBMs.
+%\footnote{I think it suffices to invert each component, without reducing afterwards. Check this.}
+\end{theorem}
+The above theorem is seen easily as follows. Since a DBM represents a
+conjunction of constraints, the complement is computed easily as the
+disjunction of the complement of each elementary constraint appearing
+in~it.  For~instance, the~complement of $x_1\leq 1 \land x_2 \geq 2$ is
+$x_1>1 \lor x_2<2$, which can be represented as the federation of two
+zones.
+
+
+
+%\section{Algorithms}
+
+In the rest of this chapter, we describe two algorithms to solve timed
+games using the DBM data structure and the operations introduced
+above. Our~algorithms are extensions of those used for finite games,
+but we explore the set of zones instead of the set of vertices, and
+predecessor and successor operations are replaced by their zone-based
+counterparts.
+
+As for finite games, we are interested in computing a fixpoint to
+determine whether a given configuration is winning for~\Eve. We~start
+by introducing the zone-based counterparts of the controllable predecessors operator
+which
+is the main tool in the algorithms.

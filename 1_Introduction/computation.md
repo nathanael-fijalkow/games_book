@@ -62,9 +62,13 @@
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
+\newcommand{\EXP}{\textrm{EXP}}
+\newcommand{\kEXP}{\textrm{kEXP}}
 ```
 
 ## The Random Access Machine model of computation
+
 For complexity statements we consider the classical Turing model of computation.
 However for algorithmic results the Turing model is a bit painful and unnatural hence it is customary to use the Random Access Machine (RAM) model instead.
 Intuitively this corresponds to using a standard imperative programming language on a usual computer which can create, access, and update variables.
@@ -111,6 +115,7 @@ An arena additionally specifies for each vertex which player controls the vertex
 The representation of conditions and colouring functions is different for each and is discussed when introducing them.
 
 ## Polynomial versus strongly polynomial time algorithms
+
 Let us consider a computational problem in which the input consists of a sequence of $N$ integers plus a number $n$ of other input bits.
 We write $L$ for the total number of bits needed to encode the input integer numbers. 
 We say that an algorithm runs in strongly polynomial time if: 
@@ -122,6 +127,7 @@ An equivalent definition using the unit cost word RAM model is that the algorith
 and runs in polynomial time.
 
 ## Linear programming
+
 We give here only the very essential definitions and results related to linear programming,
 and refer to {cite}`Bertsimas&Tsitsiklis:1997` for a reference book on the topic.
 
@@ -147,12 +153,12 @@ $$
 
 Solving a linear program is finding an optimal assignment $x^*$ of the variables.
 
-```{prf:theorem} Linear programming
+````{prf:theorem} Linear programming
 :label: 1-thm:linear_programming
 
 There exists a polynomial time algorithm for solving linear programs.
 
-```
+````
 
 We define here linear programs with a maximising objective. 
 The same problem with minimising $c^T x$ can be easily shown to be equivalent.
