@@ -106,15 +106,19 @@
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
+\newcommand{\EXP}{\textrm{EXP}}
+\newcommand{\kEXP}{\textrm{kEXP}}
 ```
 We write vectors in boldface: $ \vec{x}, \vec{y}, $ etc. For a vector $ \vec{x} $ indexed by a set $ I $ (i.e. $ \vec{x}\in \mathbb{R}^I $) we denote by $ \vec{x}_i $ the value of the component whose index is  $i\in I  $. 
 
 A (discrete) probability distribution over a finite or countably infinite set $A$ is a function $\discProbDist A \colon \rightarrow [0,1]$ such that $\sum_{a\in A}\discProbDist(a)=1$. The support of such a distribution $\discProbDist$ is the set of all $a\in A$ with $\discProbDist(a)>0$. A distribution $f$ is called Dirac if its support has size 1.
+
 We denote by $\dist(A)$ the set of all probability distributions over $A$.
 
 We also deal with probabilities over uncountable sets of events. This is accomplished via the standard notion of a **probability space.**
 
-```{prf:definition} Probability space
+````{prf:definition} Probability space
 :label: 5-def:probspace
 
 A probability space is a triple
@@ -140,7 +144,7 @@ A)=1-\probm(A)$; and
 we have $\sum_{i=1}^{\infty}\probm(A_i)=\probm(\bigcup_{i=1}^{\infty} A_i)$.
 
 
-```
+````
 
 
 A random variable in the probability space $(\sampleSpace,\sigmaAlg,\probm)$ is an $\sigmaAlg$-measurable function $\rvar\colon \Omega \rightarrow \R \cup
@@ -150,13 +154,14 @@ $\{\omega\in \Omega\mid \rvar(\omega)\leq a\}$ belongs to $\mathcal{F}$. We deno
 
 We first give a syntactic notion of an MDP which is an analogue of the notion of an arena for games.
 
-```{prf:definition} MDP
+````{prf:definition} MDP
 :label: 5-def:MDP
 
 A Markov decision process is a tuple $(\vertices,\edges,\probTranFunc,\colouring)$. The meaning of $\vertices$, $\edges$, and $\colouring$ is the same as for games, i.e. $\vertices$ is a finite set of vertices, $\edges\subseteq \vertices\times\vertices$ is a set of edges and $\colouring\colon \edges \rightarrow \colours$ a mapping of edges to a set of colours. However, the meaning of $\probTranFunc$ is now different: $\probTranFunc$ is a partial probabilistic transition function of type $\probTranFunc\colon \vertices \times \actions \rightarrow \dist(\edges)$, such that the support of $\probTranFunc(v,a)$ only contains edges outgoing from $v$.
+
  We usually write $\probTranFunc(v'\mid v,a)$ as a shorthand for $\probTranFunc(v,a)((v,v'))$, i.e. the probability of transitioning from $v$ to $v'$ under action $a$.
 
-```
+````
 
 
 We also stipulate that for each edge $(v_1,v_2)$ there exists an action $a\in \actions$ such that $\probTranFunc(v_2\mid v_1,a)>0$. Edges not satisfying this can be always removed without changing the semantics of the MDP, which is defined below. We denote by $ p_{\min} $ the smallest non-zero edge probability in a given MDP, i.e. $ p_{\min} = \min\{x>0 \mid \exists u,v \in \vertices, a \in \actions \text{ s.t. } x = \probTranFunc(v\mid u,a)\}. $
@@ -166,14 +171,23 @@ We denote by $\edges_\genColour$ the set of edges coloured by $\genColour$. Also
 In the setting of MDPs it is technically convenient to encode regular objectives (Reachability, B&uuml;chi,\dots) by colours on **vertices** as opposed to edges. Hence, when discussing these objectives, we assume that the colouring function $\colouring$ has the type $\vertices \rightarrow \colours$.
 
 
+
+%TODO: REMARK ABOUT POSSIBLE REPRESENTATION WITH STOCHASTIC VERTICES
+
 > **Plays and strategies in MDPs**
 
 
 
+%however, one new important notion, the one of cylinder sets. A basic 
+
+%having $\play$ as a prefix.
+
  The way in which a play is generated in an MDP is similar to games, but now encompasses a certain degree of randomness. There is a single player, say Eve, who controls all the vertices. Eve's interaction with the world described by an MDP is probabilistic. One reason is the stochasticity of the transition function, the other is the fact that in MDP settings, it is usually permitted for Eve to use randomised strategies. Formally, a randomised strategy is a function $\sigma : E^* \to \dist(A)$, which to each finite play assigns a probability distribution over actions. 
+
  We typically shorten $\sigma(\play)(a)$ to $\sigma(a\mid \play)$.
  
- In this section, we will refer to randomised strategies simply as strategies. The strategies known from the game setting will be called  deterministic strategies. Formally, a deterministic strategy can be viewed as a special type of a randomised strategy which always selects a Dirac distribution over the edges. We shorten memoryless randomised/deterministic to MR and MD, respectively.
+ 
+In this section, we will refer to randomised strategies simply as strategies. The strategies known from the game setting will be called  deterministic strategies. Formally, a deterministic strategy can be viewed as a special type of a randomised strategy which always selects a Dirac distribution over the edges. We shorten memoryless randomised/deterministic to MR and MD, respectively.
 
 Now a play in an MDP is produced as follows: in each step, when the finite play produced so far (i.e. the history of the game token's movement) is $\play$, Eve chooses an action $a$ randomly according to the distribution $\sigma(\play)$. Then, an edge outgoing from $\last(\play)$ is chosen randomly according to $\probTranFunc(\last(\play),a)$ and the token is pushed along the selected edge. As shown below, this intuitive process can be formalized by constructing a special probability space whose sample space consists of infinite plays in the MDP. 
 
@@ -243,6 +257,14 @@ sigma-algebra $\sigmaAlg_{\mdp}$, and their probabilities can be inferred using
 basic probabilistic reasoning. Nevertheless, one should keep in mind that all the 
 probabilistic argumentation rests on solid formal grounds. 
 
+%practice the formal understanding of probability theory might find the 
+
+%chapters with stochastic models) introduces some set of plays or a random 
+
+%$\sigmaAlg_{\mdp}$, why is the random variable $\sigmaAlg_{\mdp}$-measurable, 
+
+%objects.
+
 In the standard MDP literature {cite}`Puterman:2005`, the plays are often defined as alternating sequence of vertices and actions. Here we stick to the edge-based definition inherited from deterministic games. Still, we would sometimes like to speak about quantities such as probability that action $a$ is taken in step $i$. To this end, we introduce, for each strategy $\sigma$, each action $a$,  and each $i\geq 0$,  a random variable $\actevent{\sigma}{a}{i}$ such that $\actevent{\sigma}{a}{i}(\play)=\sigma(\play_{< i})(a)$. It is easy to check that  $\expv^\sigma_v[\actevent{\sigma}{a}{i}]$ is the probability that action $a$ is played in step $i$ when using strategy $\sigma$.
 
 > **Objectives in MDPs**
@@ -271,6 +293,9 @@ stipulate that Eve aims to maximize this probability.
 
 The situation is more complex for quantitative objectives. As shown in the previous chapter, 
 when working with quantitative objectives, the set of colours $\colours$ is typically the set of real numbers (or a subset thereof), and the quantitative objective is given by an aggregating function $\quantObj\colon \colours^\omega \rightarrow \R$, which can be extended into a function $\quantObjExt\colon \edges^\omega \rightarrow \R $ by putting $ \quantObjExt(\play) = \quantObj( \colouring(\play_0)\colouring(\play_1)\cdots) $.
+
+%objective in the game setting was given by a function 
+
 In the MDP setting, we 
 require that $\quantObjExt$ is $\sigmaAlg_{\mdp}$-measurable, which 
 means that for each $x\in \R$ the set $\{\pi\in \edges^\omega\mid 
@@ -293,6 +318,18 @@ The second approach to quantitative objectives in MDPs, common e.g. in the opera
 
 Depending on the concrete quantitative objective and on the shape of $\sigma$, the path- and step-based payoffs from a given vertex might or might not be equal. Nevertheless, in this chapter we study only objectives for which these two semantics yield the **same optimization criteria:** no matter which of the two semantics we use, the optimal values will be the same and strategy that is optimal w.r.t. one of the semantics is also optimal for the other one. Hence, we will fix the play-based approach as the default one, writing just $ \Pay_f(v,\sigma)$ instead of $ \playPay_f(v,\sigma) $. We will prove the equivalence with step-based payoff where necessary. Also, we will drop the subscript $ f $ when the payoff function is known from the context.
 
+%qualitative objectives arising from quantitative ones. In such a case we could 
+
+%variable $\quantObj$ surpasses a given threshold $t\in \R$, i.e. maximizing the 
+
+
+%conveniently described in terms of optimizing the expected value. For a 
+
+%variable $\indicator{\objective}$, such that $\indicator{\objective}(\play)=1$ 
+
+%$\play\in\Omega$ and $\indicator{\objective}(\play)=0$ otherwise. Then 
+
+%\expv^{\sigma}_{\mdp,\vinit}[\indicator{\objective}]$. Hence, we can think of 
 
 > **Optimal strategies and decision problems**
 
@@ -309,4 +346,14 @@ For qualitative objectives, there are additional modes of objective satisfaction
 
 The problems pertaining to the existence of almost-surely or positively winning strategy are often called **qualitative problems** in the MDP literature, while the notion **quantitative problems** covers the general notion of optimizing the expectation of some random variable. We do not use such a nomenclature here so as to avoid confusion with qualitative vs. quantitative objectives as defined in Chapter {ref}`1-chap:introduction`. Instead, we will refer directly to, e.g. almost-sure reachability while using the term optimal reachability to refer to the expectation-maximization problem.
 
+%
+
+%An algorithm which takes MDPs as inputs is said to run in **strongly polynomial time** if the number of arithmetic 
+
+%of vertices, edges, and actions (but independent of the bit size of the 
+
+%\end{definition}
+
+
+%
 

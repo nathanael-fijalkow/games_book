@@ -73,6 +73,9 @@
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
+\newcommand{\EXP}{\textrm{EXP}}
+\newcommand{\kEXP}{\textrm{kEXP}}
 ```
 Yet another interesting quantitative objective---that is closely
 related with shortest path objective---is the total payoff defined by
@@ -118,7 +121,7 @@ defined by Gimbert and Zielonka {cite}`Gimbert&Zielonka:2004`. They define
 sufficient conditions for a quantitative objective to fulfil the
 positional determinacy.
 
-```{prf:definition} NEEDS TITLE 4-def:fairly-mixing
+````{prf:definition} NEEDS TITLE 4-def:fairly-mixing
 :label: 4-def:fairly-mixing
 
   A payoff $\mathsf{P}\colon C^\omega\to \overline R$ is **fairly
@@ -150,11 +153,11 @@ $$\inf(\mathcal{P}_I\cup \mathcal{P}_J) \leq
     j_k\in J\}$.
   
 
-```
+````
 
 It is not difficult to convince oneself that
 
-```{prf:proposition} NEEDS TITLE 4-prop:objectives-fairly
+````{prf:proposition} NEEDS TITLE 4-prop:objectives-fairly
 :label: 4-prop:objectives-fairly
 
   Quantitative objectives $\Inf$, $\Sup$, $\LimInf$, $\LimSup$,
@@ -163,27 +166,27 @@ It is not difficult to convince oneself that
   $\DiscountedPayoff_\lambda$, $\TotalPayoff$ are fairly mixing
   payoffs.
 
-```
+````
 
 Then, a rather technical proof by induction on the number of vertices
 in the arena allows one to get the following strong result:
 {cite}`Gimbert&Zielonka:2004`
 
-```{prf:theorem} NEEDS TITLE 4-thm:fairly-mixing
+````{prf:theorem} NEEDS TITLE 4-thm:fairly-mixing
 :label: 4-thm:fairly-mixing
 
   If $\mathsf P$ is a fairly mixing payoff function, then all finite
   games $(\arena,\mathsf P)$ are positionally determined.
 
-```
+````
 
 
-```{prf:corollary} NEEDS TITLE 4-cor:TP-determinacy
+````{prf:corollary} NEEDS TITLE 4-cor:TP-determinacy
 :label: 4-cor:TP-determinacy
 
   Total payoff games are positionally determined.
 
-```
+````
 
 In particular, it gives $\NP\cap\coNP$ complexity to solve
 total payoff games, since one-player total payoff games can be solved
@@ -219,16 +222,16 @@ pseudopolynomial size shortest path game---still with the same
 costs---resulting in a pseudopolynomial time algorithm.
 {cite}`Brihaye&Geeraerts&HaddadA&Monmege:2017`
 
-```{prf:theorem} NEEDS TITLE 4-thm:TP-optimal-strategies
+````{prf:theorem} NEEDS TITLE 4-thm:TP-optimal-strategies
 :label: 4-thm:TP-optimal-strategies
 
   We can compute the optimal values of total payoff games, as well as
   positional optimal strategies for both players, with a
   pseudopolynomial time complexity.
 
-```
+````
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 [Sketch of proof]
   Let $\arena$ be the arena of the total payoff game. Consider an
@@ -264,11 +267,11 @@ costs---resulting in a pseudopolynomial time algorithm.
   before. This way, we improve the spacial complexity, without
   deteriorating the time complexity.
 
-```
+````
 
 
 
-```{figure} ./../4-fig:totalpayoff.png
+```{figure} ./../FigAndAlgos/4-fig:totalpayoff.png
 :name: 4-fig:totalpayoff
 :align: center
 A total payoff game

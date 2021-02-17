@@ -1,7 +1,7 @@
 (1-chap:introduction)=
 # Introduction
 
-```{image} ./../1.jpg
+```{image} ./../Illustrations/1.jpg
 :alt: illustration
 :class: bg-primary mb-1
 :width: 400px
@@ -68,7 +68,11 @@
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
+\newcommand{\EXP}{\textrm{EXP}}
+\newcommand{\kEXP}{\textrm{kEXP}}
 ```
+
 Written by Nathana&euml;l Fijalkow
 
 
@@ -90,25 +94,47 @@ value iteration algorithms in Section {ref}`1-sec:value_iteration` and strategy 
 
 
 
+%
 
 
 
+%
 
 
 
+%
 
 
 
+%
 
 
 
+%
 
 
 
+%
 
 
 
+%
 
+
+
+%
+
+
+
+%
+
+
+
+%
+
+
+
+%
 
 
 

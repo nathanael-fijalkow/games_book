@@ -73,6 +73,9 @@
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
+\newcommand{\EXP}{\textrm{EXP}}
+\newcommand{\kEXP}{\textrm{kEXP}}
 ```
 From a practical point of view, the modelling of a real-world
 situation via mean payoff games requires that only the long-term
@@ -161,14 +164,14 @@ $\vec x$ afterwards: for all $v\in V$, we thus let
   \end{cases}\label{4-eq:F-contraction}
 \end{equation}
 
-```{prf:theorem} NEEDS TITLE 4-thm:discounted
+````{prf:theorem} NEEDS TITLE 4-thm:discounted
 :label: 4-thm:discounted
 
   Discounted payoff games are positionally determined.
 
-```
+````
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
   We prove that $F$ is indeed a contracting operator.
@@ -211,7 +214,7 @@ $$\ValueA(v)\leq x^*_v \leq \ValueE(v)\,.$$
   vector. Moreover, the two above positional strategies for Eve and
   Adam are optimal.
 
-```
+````
 
 As for mean payoff (or parity) games, the existence of positional
 optimal (or winning) strategies for both players, and the ability to
@@ -226,15 +229,15 @@ solved by an unambiguous Turing machine running in polynomial time,
 and $\coUP$ the class of problems whose complement are in $\UP$, we
 then obtain the theorem:
 
-```{prf:theorem} NEEDS TITLE 4-thm:disc-up
+````{prf:theorem} NEEDS TITLE 4-thm:disc-up
 :label: 4-thm:disc-up
 
   Discounted payoff games with integer costs and rational discount
   factor $\lambda$ can be solved in $\UP\cap\coUP$.
 
-```
+````
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
   Using the previous result, we know that the value of a
@@ -278,7 +281,7 @@ $$\vec x = (1-\lambda) \vec c + \lambda Q \vec x\,.$$
   dual reasoning for Adam, using the above determinacy result for
   discounted payoff games. 
 
-```
+````
 
 For the discounted payoff game of {numref}`4-fig:MP`, the contracting
 operator is:
@@ -368,16 +371,16 @@ $$F_\sigma(\vec x)_v = \min_{(v,v')\in E}[(1-\lambda)c(v,v')+\lambda x_{v'}].$$
 
 
 
-```{prf:proposition} NEEDS TITLE 4-lem:one-player-DP
+````{prf:proposition} NEEDS TITLE 4-lem:one-player-DP
 :label: 4-lem:one-player-DP
 
   We can compute in polynomial time the optimal value of a one-player
   discounted payoff game, by finding the unique fixed point
   $\vec{x^*}$ of the previous contraction mapping $F_\sigma$.
 
-```
+````
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
   We first show that if a vector $\vec x$ satisfies
@@ -407,7 +410,7 @@ $$
 
   Such a linear program can be solved in polynomial time. 
 
-```
+````
 
 On top of computing the value $\Value^\sigma$ of a strategy $\sigma$
 of Eve, we also compute the best response of Adam, that is the best
@@ -483,21 +486,21 @@ gather all these decisions in a new strategy $\sigma'$ for Eve (only
 modifying $\sigma$ over vertices for which it allows for a strictly
 better value, to ensure the termination of the algorithm).
 
-```{figure} ./../4-algo:DP-strategy-improvement.png
+```{figure} ./../FigAndAlgos/4-algo:DP-strategy-improvement.png
 :name: 4-algo:DP-strategy-improvement
 :align: center
 The strategy improvement algorithm for discounted payoff games.
 ```
 
-```{prf:theorem} NEEDS TITLE 4-thm:DP-strategy-improvement-correctness
+````{prf:theorem} NEEDS TITLE 4-thm:DP-strategy-improvement-correctness
 :label: 4-thm:DP-strategy-improvement-correctness
 
   Strategy improvement algorithm computes the value of the game, as
   well as a positional optimal strategy for Eve, in exponential time. 
 
-```
+````
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
   When the algorithm returns a strategy $\sigma$, it fulfils
@@ -566,7 +569,7 @@ $$\Value^{\sigma'}-\Value^\sigma=\lambda Q'
     $\tau'$, which means that $\delta_v\geq 0$ too.
   
 
-```
+````
 
 We now study another algorithm to compute the values with a possibly
 better worst-case complexity, trading an exponential (with respect to
@@ -590,16 +593,16 @@ based on the following technical lemma stating that $\Value(v)$ is a
 rational number with a denominator that we can bound, in a similar
 manner as for~\cref{4-cor:rational-MP} in the mean payoff setting:
 
-```{prf:lemma} Upper bound on rational values in mean payoff games
+````{prf:lemma} Upper bound on rational values in mean payoff games
 :label: 4-lem:rational-discounted
 
   If the arena has integer costs and $\lambda=\frac a b\in (0,1)$,
   then for all vertices $v\in V$, $D\times \Value(v)\in \Z$, with
   $D= b^{n-1}\prod_{j=1}^{n}(b^j-a^j)$.
 
-```
+````
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
   By picking any two optimal positional strategies for Eve and Adam
@@ -629,7 +632,7 @@ manner as for~\cref{4-cor:rational-MP} in the mean payoff setting:
   \end{align*}
   which proves that $\Value(v)\times D = N\in \Z$.
 
-```
+````
 
 Therefore, $\Value(v)$ is a rational number with a denominator bounded
 by $D$. In particular, if we have an approximation $\eta$ of
@@ -640,7 +643,7 @@ rounding leads to the correct optimal value vector. In the following,
 we let again $W = \max_{(v,c,v')\in E} |c|$ the maximal weight on edges of the arena, in
 absolute values.
 
-```{prf:lemma} NEEDS TITLE 4-lem:number-steps-VI-discounted
+````{prf:lemma} NEEDS TITLE 4-lem:number-steps-VI-discounted
 :label: 4-lem:number-steps-VI-discounted
 
   Let $K\in \N$ at most
@@ -648,9 +651,9 @@ absolute values.
     \log_2 W+2\right)$. Then,
   $\|F^K(\vec 0)-\Value\|_\infty < \frac 1 {2D}$.
 
-```
+````
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
   First, we bound $D$ by $b^{n+\frac{n(n+1)}2}$, so that
@@ -664,7 +667,7 @@ absolute values.
   of weights all bounded in absolute value by $W$, we also know that
   $\|\Value\|_\infty\leq W$ which allows us to conclude.
 
-```
+````
 
 Therefore, the value iteration algoritm consists at iterating the
 contracting mapping $F$ for a certain number $K$ of steps which is
@@ -673,22 +676,22 @@ performed in time $O(m)$, and then finish the computation by a
 rounding procedure (see {numref}`4-algo:DP-value-iteration`). In the
 overall, it thus has complexity $O(K m)$.
 
-```{figure} ./../4-algo:DP-value-iteration.png
+```{figure} ./../FigAndAlgos/4-algo:DP-value-iteration.png
 :name: 4-algo:DP-value-iteration
 :align: center
 The value iteration algorithm for discounted payoff games.
 ```
 
-```{prf:theorem} NEEDS TITLE 4-thm:DP-value-iteration
+````{prf:theorem} NEEDS TITLE 4-thm:DP-value-iteration
 :label: 4-thm:DP-value-iteration
 
   Value iteration algorithm computes in pseudopolynomial time the
   value vector of a given discounted payoff game with only rational
   weights and a rational discount factor $\lambda\in (0,1)$. 
 
-```
+````
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
   The correctness of the algorithm follows
@@ -700,14 +703,26 @@ The value iteration algorithm for discounted payoff games.
   $\frac 1{-\log_2\lambda} \sim_{b\to \infty} b\ln 2$ is exponential
   in $\log_2b$.
 
-```
+````
 
 
 Once the optimal values are known, finding some positional optimal
 strategies for both players still requires to work, as we have already
 seen in Section {ref}`1-sec:memory`:
 
-```{prf:theorem} NEEDS TITLE 4-thm:DP-strategies
+% It can be done by a recursive search (as explained in {cite}`Zwick&Paterson:1996` for
+
+% can recompute the value of the discounted payoff game over the arena
+
+% removed. If the new value is identical, there is a positional optimal
+
+% otherwise we need to choose one of the removed edges. By a binary
+
+% strategy in a given vertex $v$. Doing that for all vertices requires
+
+% algorithm. Since, $\sum_v\log d(v) \leq n \log (m/n)$, we get
+
+````{prf:theorem} NEEDS TITLE 4-thm:DP-strategies
 :label: 4-thm:DP-strategies
 
   In a discounted payoff game with integer costs and rational discount
@@ -716,11 +731,12 @@ seen in Section {ref}`1-sec:memory`:
   $\bigO\big((n^3b\log_2b + \log_2W)\allowbreak
   \log(m/n) m\big)$ time.
 
-```
+````
 
 
+(4-sec:mean_payoff-values)=
 ## Polynomial reduction from mean payoff games to
-  discounted payoff games}\label{4-sec:mean_payoff-values
+  discounted payoff games
 
 Building upon the pseudopolynomial time algorithm for
 discounted payoff, we now describe a classical encoding of mean payoff
@@ -745,7 +761,7 @@ interpreting the mean payoff game as a discounted payoff game with a
 nicely chosen $\lambda$, we are able to find such a good
 approximation:
 
-```{prf:theorem} NEEDS TITLE 4-thm:MP-Zwick-Paterson
+````{prf:theorem} NEEDS TITLE 4-thm:MP-Zwick-Paterson
 :label: 4-thm:MP-Zwick-Paterson
 
   Let $\arena$ be an arena with integer costs. Let
@@ -755,9 +771,9 @@ approximation:
   $\lambda$ as discount factor. Then
   $\|\Value-\Value_\lambda\|_\infty\leq 2n(1-\lambda)W$.
 
-```
+````
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
   Let $v\in V$. We prove the inequality
@@ -855,7 +871,7 @@ $$\Value_\lambda(v)-\Value(v)\geq -2n(1-\lambda)W$$
 
   as wanted, which allows us to conclude. 
 
-```
+````
 
 Therefore, by picking $\lambda = 1-\frac 1{4n^2(n-1)W}$, we may
 obtain a good enough approximation of the mean payoff optimal value,
@@ -866,13 +882,13 @@ representation of $\lambda$: here, it is therefore polynomial in
 $4n^2(n-1)W$ which leads to a pseudopolynomial complexity to solve
 mean payoff games. More precisely,
 
-```{prf:theorem} NEEDS TITLE 4-thm:MP-direct-value-iteration
+````{prf:theorem} NEEDS TITLE 4-thm:MP-direct-value-iteration
 :label: 4-thm:MP-direct-value-iteration
 
   The direct value iteration algorithm computes the values of a
   mean payoff game in complexity $O(mn^3W)$.
 
-```
+````
 
 As for discounted payoff game, a binary search also
 permits to obtain optimal positional strategies for both players in
@@ -882,16 +898,16 @@ Notice that the previous encoding implies a better theoretical
 complexity for mean payoff and parity games, that what we obtained
 before:
 
-```{prf:corollary} NEEDS TITLE 4-col:UP
+````{prf:corollary} NEEDS TITLE 4-col:UP
 :label: 4-col:UP
 
   Deciding the winner (with respect to a threshold) for mean payoff
   games, and deciding the winner for parity games, can be done in
   $\UP\cap\coUP$.
 
-```
+````
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
   The previous polynomial-time reduction from mean payoff to
@@ -900,5 +916,5 @@ before:
   of {prf:ref}`4-thm:parity2MP` allows one to obtain the same complexity for
   parity games. 
 
-```
+````
 

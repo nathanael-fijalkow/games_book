@@ -67,9 +67,13 @@
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
+\newcommand{\EXP}{\textrm{EXP}}
+\newcommand{\kEXP}{\textrm{kEXP}}
 ```
 
 ## The separation framework
+
 We describe a general approach for reducing parity games to safety games.
 Section {ref}`1-sec:reductions` constructs reductions between objectives using automata: 
 in the case at hand parity reduces to safety if there exists a deterministic automaton $\Automaton$ over the alphabet $[1,d]$
@@ -116,7 +120,7 @@ and that a strategy $\sigma$ is winning from $v$ if and only if the parity graph
 We say that an automaton reads, accepts, or rejects a path $\pi$ in a parity graph, 
 which is an abuse because what the automaton reads is the induced sequence of colours $\col(\pi)$.
 
-```{prf:definition} Separating automata
+````{prf:definition} Separating automata
 :label: 3-def:separating_automata
 
 An automaton $\Automaton$ is $(n,d)$-**separating** if the two following properties hold.
@@ -126,7 +130,7 @@ all paths from $v$ are accepted by $\Automaton$.
 
 *  All words accepted by $\Automaton$ satisfy parity.
 
-```
+````
 
 We define the objective $\Parity_{\mid n}$ over the set of colours $[1,d]$ as:
 
@@ -139,10 +143,19 @@ $$
 \end{array}}.
 $$
 
+
+%We define the objective $\Parity_{\mid n}$ over the set of colours $[1,d]$ as:
+
+%\Parity_{\mid n} = \bigcup \set{ \Paths(G,v) : 
+
+%G \text{ parity graph with } n \text{ vertices and priorities in } [1,d] \\
+
+%\end{array}}.
+
 The definition of $(n,d)$-separating automata is illustrated in {numref}`3-fig:separation` and can be summarised
 as $\Parity_{\mid n} \subseteq L(\Automaton) \subseteq \Parity$.
 
-```{figure} ./../3-fig:separation.png
+```{figure} ./../FigAndAlgos/3-fig:separation.png
 :name: 3-fig:separation
 :align: center
 The separation problem.
@@ -150,7 +163,7 @@ The separation problem.
 
 The following lemma shows the definition of separating automata in action.
 
-```{prf:lemma} Game equivalence using separating automata
+````{prf:lemma} Game equivalence using separating automata
 :label: 3-lem:separating_automata
 
 Let $\Automaton$ an $(n,d)$-separating automaton.
@@ -162,10 +175,10 @@ $$
 $$
 
 
-```
+````
 
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 The inclusion $\WE(\game) \subseteq \WE(\arena,L(\Automaton)[\col])$ follows from positional determinacy and the inclusion 
@@ -178,7 +191,7 @@ Conversely, the inclusion $L(\Automaton) \subseteq \Parity$ implies the inclusio
 $L(\Automaton)[\col] \subseteq \Parity[\col]$, which in turn implies 
 $\WE(\arena,L(\Automaton)[\col]) \subseteq \WE(\game)$.
 
-```
+````
 
 The last step is to explain how to solve a game with objective $L(\Automaton)$, as already discussed in Section {ref}`1-sec:reductions`.
 Let $\Game = (\arena, L(\Automaton)[\col])$.
@@ -196,24 +209,24 @@ The arena is $\arena \times \Automaton = (G \times Q, \VE \times Q, \VA \times Q
 Using the convention for safety automata that the rejecting transitions are precisely those leading to the rejecting state $\bot$,
 the colouring function is defined by $\col'(v,q) = \Win$ if $q \neq \bot$, and $\Lose$ otherwise.
 
-```{prf:observation} Reduction to safety games using separating automata
+````{prf:observation} Reduction to safety games using separating automata
 :label: 3-fact:reduction
 
 Eve has a winning strategy in $\game$ from $v_0$ if and only if
 she has a winning strategy in $\Game \times \Automaton$ from $(v_0,q_0)$.
 
-```
+````
 
 
-```{prf:theorem} Algorithm using separating automata
+````{prf:theorem} Algorithm using separating automata
 :label: 3-thm:algorithm_separating_automata
 
 Let $\Automaton$ an $(n,d)$-separating automaton.
 There exists an algorithm for solving parity games of complexity $O(m \cdot |\Automaton|)$.
 
-```
+````
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 Let $\Game$ a parity game with $n$ vertices and priorities in $[1,d]$.
@@ -222,19 +235,19 @@ is equivalent to solving the safety game $\Game \times \Automaton$.
 Thanks to {prf:ref}`2-thm:reachability` solving safety games can be done in time linear in the number of edges.
 This yields an algorithm for solving parity games whose running time is $O(m \cdot |\Automaton|)$.
 
-```
+````
 
 In the remainder of this section we give a construction for a quasipolynomial $(n,d)$-separating automaton.
 
 ## The original separating automaton
 
-```{prf:theorem} The original separating automaton
+````{prf:theorem} The original separating automaton
 :label: 3-thm:original_separating_automaton
 
 There exists an $(n,d)$-separating automaton of size $n^{O(\log d)}$,
 inducing an algorithm for solving parity games of complexity $n^{O(\log d)}$.
 
-```
+````
 
 > **$i$-sequences.**
 
@@ -258,32 +271,12 @@ p_{j_k}$ or we have that $p_l \le p_{j_{k+1}}$.
 $p_t$ is dominated by $p_{j_{2^i}}$, meaning that for all $l > j_{2^i}$ we have
 $p_l \le p_{j_{2^i}}$.
 
-\begin{figure}[!ht]
-    \begin{center}
-    \begin{tikzpicture}
 
-    \tikzstyle{seqc}=[draw, circle]
-
-    \node [seqc] (1) {\Large $2$};
-    \node [right of=1, node distance=1cm] (2) {\Large $1$};
-    \node [seqc, right of=2, node distance=1cm] (3) {\Large $4$};
-    \node [right of=3, node distance=1cm] (4) {\Large $3$};
-    \node [right of=4, node distance=1cm] (5) {\Large $1$};
-    \node [seqc, right of=5, node distance=1cm] (6) {\Large $2$};
-    \node [seqc, right of=6, node distance=1cm] (7) {\Large $8$};
-    \node [right of=7, node distance=1cm] (8) {\Large $7$};
-    \node [right of=8, node distance=1cm] (9) {\Large $1$};
-
-    \path[->,thick,bend left=45]
-        (1) edge (3)
-        (3) edge (6)
-        (6) edge (7)
-        ;
-    \end{tikzpicture}
-    \end{center}
-    \caption{A $2$-sequence.}
-\label{3-fig:isequence}
-\end{figure}
+```{figure} ./../FigAndAlgos/3-fig:isequence.png
+:name: 3-fig:isequence
+:align: center
+A $2$-sequence.
+```
 
 {numref}`3-fig:isequence` gives an example of a $2$-sequence. The circled
 priorities are the indices used in the sequence. Note that there are exactly
@@ -298,7 +291,7 @@ priorities that come after it.
 The relationship between $i$-sequences and parity games is explained by the
 following lemma.
 
-```{prf:lemma} Completeness for the separating automaton
+````{prf:lemma} Completeness for the separating automaton
 :label: 3-lem:isequencewin
 
 Suppose that Adam and Eve play positional strategies in the parity game,
@@ -309,9 +302,9 @@ contain arbitrarily long $i$-sequences.
 *  If Adam wins the parity game, then no prefix of $\pi$ will contain a
 $\lceil \log n \rceil$-sequence.
 
-```
+````
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 If Eve wins the parity game then the largest
@@ -331,7 +324,7 @@ largest priority on the cycle that passes through $v$ is even. However, no even
 cycle can be formed when Adam wins the game by playing a positional winning
 strategy, and so we have arrived at our contradiction.
 
-```
+````
 
 To summarise, if Eve wins the game, then she has a strategy that ensures that
 arbitrarily long $i$-sequences occur, while if Adam wins the game then he has a
@@ -364,36 +357,11 @@ $i$-sequence, the record data structure **does not** store the $2^i$ indices
 of this $i$-sequence, it only stores the priority of the final index of that
 sequence.
 
-\begin{figure}[!ht]
-    \begin{center}
-    \begin{tikzpicture}
-    \tikzstyle{seqc}=[draw, circle]
-    \node [seqc,red] (1) {\Large $2$};
-    \node [right of=1, node distance=0.9cm] (2) {\Large $1$};
-    \node [seqc, red, right of=2, node distance=0.9cm] (3) {\Large $4$};
-    \node [seqc, red, right of=3, node distance=0.9cm] (4) {\Large $2$};
-    \node [seqc, red, right of=4, node distance=0.9cm] (5) {\Large $8$};
-    \node [right of=5, node distance=0.9cm] (6) {\Large $7$};
-    \node [seqc, blue, right of=6, node distance=0.9cm] (7) {\Large $2$};
-    \node [right of=7, node distance=0.9cm] (8) {\Large $1$};
-    \node [seqc, blue, right of=8, node distance=0.9cm] (9) {\Large $4$};
-    \node [right of=9, node distance=0.9cm] (10) {\Large $1$};
-    \node [seqc, grey, right of=10, node distance=0.9cm] (11) {\Large $2$};
-
-    \path[->,thick,bend left=45,red]
-        (1) edge (3)
-        (3) edge (4)
-        (4) edge (5)
-        ;
-
-    \path[->,thick,bend left=45,blue]
-        (7) edge (9)
-        ;
-    \end{tikzpicture}
-    \end{center}
-\caption{An example sequence that corresponds to the record $\siblank 8 4 2$.}
-\label{3-fig:ds}
-\end{figure}
+```{figure} ./../FigAndAlgos/3-fig:ds.png
+:name: 3-fig:ds
+:align: center
+An example sequence that corresponds to the record $\siblank 8 4 2$.
+```
 
 {numref}`3-fig:ds` shows an example sequence that is consistent with the
 record that sets $b_3 = \siblank$, $b_2 = 8$, $b_1 = 4$, and $b_0 = 2$.
@@ -438,38 +406,12 @@ p & \text{if $j = i$,} \\
 \end{equation*}
 Again, if there is no such index $i$, then the record is not modified.
 
-\begin{figure}[!ht]
-    \begin{center}
-    \begin{tikzpicture}
-    \tikzstyle{seqc}=[draw, circle]
-    \node [seqc] (1) {\Large $2$};
-    \node [right of=1, node distance=0.9cm] (2) {\Large $1$};
-    \node [seqc, right of=2, node distance=0.9cm] (3) {\Large $4$};
-    \node [seqc, right of=3, node distance=0.9cm] (4) {\Large $2$};
-    \node [seqc, right of=4, node distance=0.9cm] (5) {\Large $8$};
-    \node [right of=5, node distance=0.9cm] (6) {\Large $7$};
-    \node [seqc, right of=6, node distance=0.9cm] (7) {\Large $2$};
-    \node [right of=7, node distance=0.9cm] (8) {\Large $1$};
-    \node [seqc, right of=8, node distance=0.9cm] (9) {\Large $4$};
-    \node [right of=9, node distance=0.9cm] (10) {\Large $1$};
-    \node [seqc, right of=10, node distance=0.9cm] (11) {\Large $2$};
-    \node [seqc, right of=11, node distance=0.9cm] (12) {\Large $4$};
-        
-    \path[->,thick,bend left=45]
-        (1) edge (3)
-        (3) edge (4)
-        (4) edge (5)
-        (5) edge (7)
-        (7) edge (9)
-        (9) edge (11)
-        (11) edge (12)
-        ;
 
-    \end{tikzpicture}
-    \end{center}
-    \caption{An example of a Step 1 update applied to the sequence and record from {numref}`3-fig:ds`}
-\label{3-fig:ds1}
-\end{figure}
+```{figure} ./../FigAndAlgos/3-fig:ds1.png
+:name: 3-fig:ds1
+:align: center
+An example of a Step 1 update applied to the sequence and record from {numref}`3-fig:ds`
+```
 Intuitively, Step 1 attempts to combine the $i$-sequences in the existing record
 into a longer $i$-sequence. Suppose that we have read the sequence shown in {numref}`3-fig:ds`, 
 that we have compute the record $\siblank 8 4 2$, and that the next priority in the sequence is $4$.
@@ -488,36 +430,11 @@ at priority $2$, and we know that $8$ must dominate all priorities between the
 $8$ and the $2$ because $8$ is required to dominate **all** priorities that
 follow it.
 
-\begin{figure}[!ht]
-    \begin{center}
-    \begin{tikzpicture}
-    \tikzstyle{seqc}=[draw, circle]
-    \node [seqc] (1) {\Large $2$};
-    \node [right of=1, node distance=0.9cm] (2) {\Large $1$};
-    \node [seqc, right of=2, node distance=0.9cm] (3) {\Large $4$};
-    \node [seqc, right of=3, node distance=0.9cm] (4) {\Large $2$};
-    \node [right of=4, node distance=0.9cm] (5) {\Large $8$};
-    \node [right of=5, node distance=0.9cm] (6) {\Large $7$};
-    \node [right of=6, node distance=0.9cm] (7) {\Large $2$};
-    \node [right of=7, node distance=0.9cm] (8) {\Large $1$};
-    \node [right of=8, node distance=0.9cm] (9) {\Large $4$};
-    \node [right of=9, node distance=0.9cm] (10) {\Large $1$};
-    \node [right of=10, node distance=0.9cm] (11) {\Large $2$};
-    \node [seqc, right of=11, node distance=0.9cm] (12) {\Large $9$};
-        
-    \path[->,thick,bend left=45]
-        (1) edge (3)
-        (3) edge (4);
-
-    \path[->,thick,bend left=20]
-        (4) edge (12)
-                                        ;
-
-    \end{tikzpicture}
-    \end{center}
-    \caption{An example of a Step 2 update applied to the sequence and record from {numref}`3-fig:ds`}
-\label{3-fig:ds2}
-\end{figure}
+```{figure} ./../FigAndAlgos/3-fig:ds2.png
+:name: 3-fig:ds2
+:align: center
+An example of a Step 2 update applied to the sequence and record from {numref}`3-fig:ds`
+```
 
 Step 2 ensures that the outer domination property holds. 
 In {numref}`3-fig:ds2`, we show the result of applying Step 2 to the record
@@ -540,15 +457,15 @@ We must now argue that the record data structure and update rule is sufficient
 to decide the winner of a parity game. The following lemma states that a record
 will never falsely claim that an $i$-sequence has occurred.
 
-```{prf:lemma} Correctness for the separating automaton
+````{prf:lemma} Correctness for the separating automaton
 :label: 3-lem:correctness_separating_automata
 
 Let $b_k, b_{k-1}, \dots, b_0$ the record for a sequence of priorities $\pi$.
 If $b_i \ne \siblank$, then $\pi$ contains an $i$-sequence.
 
-```
+````
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 This can be proved by induction over the components of the record. In fact we
@@ -586,7 +503,7 @@ priority of an $i$-sequence is permitted to be odd, and so this new sequence
 satisfies all of the requirements of an $i$-sequence. Furthermore, the starting
 point of this sequence has not changed, and so the order property is preserved.
 
-```
+````
 
 As a consequence of the lemma above, if Adam has a strategy to ensure that no
 $k$-sequence occurs in the game, then Adam has a strategy to ensure that the
@@ -598,15 +515,15 @@ However, the proof is somewhat tedious, and this statement is actually stronger
 than what we need. To argue that the record can determine the winner of a parity
 game, the following weaker lemma suffices. 
 
-```{prf:lemma} Weaker correctness for the separating automaton
+````{prf:lemma} Weaker correctness for the separating automaton
 :label: 3-lem:weaker_correctness_separating_automaton
 
 Let $\pi$ an infinite play that is winning for Eve. For all $k$, there exists
 a prefix of $\pi$ such that $b_k \ne \siblank$.
 
-```
+````
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 Let $p$ the largest even priority that is seen infinitely often, and let $j$
@@ -627,19 +544,19 @@ build a longer and longer $i$-sequences whose outer domination
 priority is $p$. Thus, after we have made $2^k$ visits to $p$, we will have set
 $b_k = p \ne \siblank$, if we have not done so already.
 
-```
+````
 
 Hence, if Eve wins the parity game, then she has a strategy to eventually ensure
 that $b_k \ne \siblank$. Combining the two lemmas above, with {prf:ref}`3-lem:isequencewin` gives the following corollary.
 
-```{prf:corollary} Correctness of the reduction for the separating automaton
+````{prf:corollary} Correctness of the reduction for the separating automaton
 :label: 3-cor:correctness_reduction_separating_automaton
 
 Suppose that we monitor the play of a parity game with a record $b_{\lceil \log
 n \rceil}, \dots, b_0$. Eve has a strategy that ensures $b_{\lceil \log n
 \rceil} \ne \siblank$ if and only if Eve wins the parity game.
 
-```
+````
 
 > **The size of the automaton.**
 

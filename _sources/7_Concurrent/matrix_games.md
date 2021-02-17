@@ -65,22 +65,25 @@
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
+\newcommand{\EXP}{\textrm{EXP}}
+\newcommand{\kEXP}{\textrm{kEXP}}
 ```
 A matrix game is a game defined from a $(R\times C)$-matrix $M$  of numbers for some $R,C$.
 The game is played as follows: Eve picks a row $r$ and Adam picks a column $c$ simulations like in rock-paper-scissors. Adam then pays Eve $M[r,c]$, i.e. the content of the entry defined by being in row $r$ and column $c$.
 A strategy in such a game for Eve (resp. Adam) consists of a distribution over the rows (resp. columns). 
-There is an illustration of rock-paper-scissors as a matrix game in Figure~\ref{fig:rps}.
+There is an illustration of rock-paper-scissors as a matrix game in Figure~\ref{7-fig:rps}.
 
 
-```{figure} ./../fig:rps.png
-:name: fig:rps
+```{figure} ./../FigAndAlgos/7-fig:rps.png
+:name: 7-fig:rps
 :align: center
 Rock-paper-scissors. The color is 1 if Eve wins, 0 if they draw and -1 if Adam wins. Also, the actions are ordered as in the name of the game
 ```
 
 The following theorem lists some known results for matrix games:
 
-```{prf:theorem} NEEDS TITLE lem:mat
+````{prf:theorem} NEEDS TITLE lem:mat
 :label: lem:mat
 
 Each $(m\times n)$-matrix game $M$ is determined and there exists optimal strategies for each player. 
@@ -91,13 +94,14 @@ Each $(m\times n)$-matrix game $M$ is determined and there exists optimal strate
 *  Let $c$ be some constant. Consider the matrix $M+c$ where each entry of $M$ is $c$ larger (additively). Then, the value of $M+c$ is $v+c$.
 *  The value of matrix games are monotone in the entries.
 
-```
+````
 
 We will omit the proof of the existence of values, optimal strategies and the first bullet.
 The second bullet can be viewed as changing currency and clearly, this does not affect the optimal strategy.
 The third bullet can be viewed as getting a reward before playing the game, and again, clearly this does not affect how to play it.
 The last bullet can be seen from that each pair of strategies must give a higher reward if the entries of the matrix is higher.
 This is especially true if you consider the optimal strategy for Eve in $M$ together with an arbitrary strategy for Adam, which then shows that the value is higher.
+
 
 Given a matrix $M$, we will by $\Value[M]$ denote the value of the matrix game $M$. 
 

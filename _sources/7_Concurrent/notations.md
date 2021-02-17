@@ -65,6 +65,9 @@
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
+\newcommand{\EXP}{\textrm{EXP}}
+\newcommand{\kEXP}{\textrm{kEXP}}
 ```
 The definition of arena $\arena$ in this chapter is $\arena=(G,\dest)$, where $G=(V,E)$ is a graph and $\dest:V\times A\times A\rightarrow \Dist(E)$. In particular, we are not using the sets $\VA$ and $\VE$.
 The games are played similarly to before and formally as follows: 

@@ -65,6 +65,9 @@
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
+\newcommand{\EXP}{\textrm{EXP}}
+\newcommand{\kEXP}{\textrm{kEXP}}
 ```
 In this section we consider concurrent reachability games. 
 Intuitively, unlike concurrent discounted games, these games cares only about the final part of the play.
@@ -73,12 +76,12 @@ Note that like for concurrent discounted games, if we force Eve to follow some s
 
 We will not prove the following known lemma. We will however, show the weaker statement that the decision problem for the value can be done in PSPACE.
 
-```{prf:lemma} NEEDS TITLE lemm:reach_determined
+````{prf:lemma} NEEDS TITLE lemm:reach_determined
 :label: lemm:reach_determined
 
 Concurrent reachability games are determined. Also, finding the value of a concurrent reachability game can be done in TFNP[NP]
 
-```
+````
 
 
 We will argue that there might not be optimal strategies for Eve in concurrent reachability games. 
@@ -88,10 +91,10 @@ The snowball game (or purgatory 1) is defined as follows:
 There are 3 vertices, the goal vertex $\Win$, $\bot$ (an absorbing vertex) and a vertex 1, which has a 2x2 matrix, such that $\dest(x,r,c)$ is a dirac distribution over (1)
 $\Win$ for $r=c$, (2) $1$ for $r<c$ and (3) $\bot$ for $r>c$.
 When we illustrate the game, we write view the goal vertex $\Win$ as being an absorbing vertex with color 1.
-There is an illustration of the snowball game in \ref{fig:snowball}. 
+There is an illustration of the snowball game in \ref{7-fig:snowball}. 
 
-```{figure} ./../fig:snowball.png
-:name: fig:snowball
+```{figure} ./../FigAndAlgos/7-fig:snowball.png
+:name: 7-fig:snowball
 :align: center
 The snowball game or purgatory 1, in which no optimal strategy exists for Eve
 ```
@@ -103,16 +106,16 @@ On the other hand, if Adam plays the right column whenever Eve plays the first a
 then in the last round in the vertex there must be a positive pr. that play goes to vertex 0. Hence, Eve has no optimal strategy.
 
 
-```{prf:lemma} NEEDS TITLE lemm:no_opt_reach
+````{prf:lemma} NEEDS TITLE lemm:no_opt_reach
 :label: lemm:no_opt_reach
 
 Eve need not have an optimal strategy in a concurrent reachability game
 
-```
+````
 
 The following lemma states some classical results for concurrent reachability games that we will not prove.
 
-```{prf:lemma} NEEDS TITLE lemm:reach_class
+````{prf:lemma} NEEDS TITLE lemm:reach_class
 :label: lemm:reach_class
 
 *  For any $\epsilon>0$, there are always $\epsilon$-optimal stationary strategies for Eve and optimal stationary strategies for Adam. 
@@ -120,7 +123,7 @@ The following lemma states some classical results for concurrent reachability ga
 *  The values $v$ are the least fix-point (i.e., every other fix-point $v'$ is such that for all $i$ $v_i\leq v'$) of the value iteration operator $\ValueOp$
 
 
-```
+````
 
 (Note that the games are not symmetric, in that Eve tries to reach a node and Adam tries to stay away from it, and in particular, even though Eve need not have an optimal strategy in a concurrent reachability game, Adam always has one)
 
@@ -132,15 +135,13 @@ Given a function $F:\R^n\rightarrow \{\text{true},\text{false}\}$, is there an v
 The function $F$ must be an well-formed (i.e. connected with logical and, or and not) quantifier-free formula over polynomial inequalities.
 E.g. $x^2y+z\geq 5\wedge \neg (xz\leq 3)$ would be such a function.
 
-```{prf:lemma} NEEDS TITLE AND LABEL 
+````{prf:lemma} NEEDS TITLE AND LABEL 
 The decision problem for the existential theory over the reals is in PSPACE
  
-:label: 
-The decision problem for the existential theory over the reals is in PSPACE
 
 The decision problem for the existential theory over the reals is in PSPACE
 
-```
+````
  
 
 We will now, given a number $c$, encode the problem whether the value in a concurrent reachability game is  $<c$, starting from some vertex $x$.
@@ -158,24 +159,22 @@ Similarly, one can also describe that $x=\max(a_1,a_2,\dots,a_n)$ for any number
 
 We can similarly make a statement that $v_x\leq c$. Using that PSPACE is equal to co-PSPACE, we also get that we can find if $v_x\geq c$ and $v_x>c$ and therefore also $v_x=c$ and $v_x\neq c$, all in PSPACE.
 
-```{prf:lemma} NEEDS TITLE AND LABEL 
+````{prf:lemma} NEEDS TITLE AND LABEL 
 Decision problems for the values in a concurrent reachability game is in PSPACE
  
-:label: 
-Decision problems for the values in a concurrent reachability game is in PSPACE
 
 Decision problems for the values in a concurrent reachability game is in PSPACE
 
-```
+````
 
 The set of vertices that have value 0 can be found in polynomial time. This is because, the set of vertices that have value 0 in the time limited game of length $n$ has also value 0 in all other time limited games. That this is so is easy to see by considering that Eve plays an $\epsilon$-optimal strategy for $v>\epsilon$, where $v$ is the value of the vertex with the lowest value. The game then devolves to a MDP for Adam, and the statement is true for such.
 
-```{prf:lemma} NEEDS TITLE lemm:find_0_reach
+````{prf:lemma} NEEDS TITLE lemm:find_0_reach
 :label: lemm:find_0_reach
 
 The set of vertices of value 0 in a concurrent reachability game can be found in polynomial time
 
-```
+````
 
 Next, we will also argue that we can find the set of vertices $S_1$ that have value 1 in polynomial time as well.
 For notational convenience, for stationary strategies $\sigma,\tau$ we will, for a set $x$ and a set of vertices $S$ use 
@@ -199,17 +198,15 @@ We will be using the following lemma.
 
 
 
-```{prf:lemma} NEEDS TITLE AND LABEL 
+````{prf:lemma} NEEDS TITLE AND LABEL 
 The set of vertices $S_1$ of value 1 satisfies the value-1-property
  
-:label: 
-The set of vertices $S_1$ of value 1 satisfies the value-1-property
 
 The set of vertices $S_1$ of value 1 satisfies the value-1-property
 
-```
+````
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 The proof is by contradiction. Thus, there is an $S$ (not containing $\Win$) such that $S_1$ and $S$ does not satisfy the subset property for any $x\in S$. I.e. for some constant $\epsilon>0$,
@@ -217,24 +214,21 @@ $F^{\sigma,\tau}(x,S_1\setminus S)\epsilon \leq F^{\sigma,\tau}(x,V\setminus S_1
 But then, all vertices in $S$ have value $\leq (1-\epsilon)+\epsilon V_{\max}$ where $v_{\max}<1$ is the largest value of a vertex in $V\setminus S_1$.
 This is because to get to $\Win$ from $S$, it must leave $S$ and in that step, the probability to go to a vertex in  $V\setminus S_1$ (from which one cannot obtain more than $v_{\max}$) is at least the constant $\epsilon$.  
 
-```
+````
 
 We will argue that this is a precise characterization of $S_1$ next.
 
-```{prf:lemma} NEEDS TITLE AND LABEL 
+````{prf:lemma} NEEDS TITLE AND LABEL 
 Consider a set $S'$ satisfying the value-1-property.
 Then each vertex of $S'$ has value 1.\label{lem:sufficent_for_value1}
  
-:label: 
-Consider a set $S'$ satisfying the value-1-property.
-Then each vertex of $S'$ has value 1.\label{lem:sufficent_for_value1}
 
 Consider a set $S'$ satisfying the value-1-property.
 Then each vertex of $S'$ has value 1.\label{lem:sufficent_for_value1}
 
-```
+````
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 We will for all $i$ and any $\epsilon>0$ construct a strategy $\sigma_{i,\epsilon}$ for Eve that starting from a vertex in $\bigcup_{j=i}^n S^j$ will eventually get to $S^{i-1}$ with probability at least $1-\epsilon$ (especially, the strategy $\sigma_{1,\epsilon}$ is $\epsilon$-optimal). We will do it using backwards induction in $i$ and thus start from $i=\ell$.
@@ -247,7 +241,7 @@ Hence, in expectation, we need to be in such a vertex $1/(1-p)$ times before ent
 We therefore follow the strategy $\sigma_{i+1,\epsilon'}$ in $\bigcup_{j=i+1}^n S^j$, where $\epsilon'=\frac{\epsilon}{2(1-p)}$.
 The inductive construction then follows by applying union bound over the $1/(1-p)$ times we are in $S^i$.
 
-```
+````
 
 Note that the lemmas together shows that $S_1$ is the largest set satisfying value-1-property.
 
@@ -260,17 +254,15 @@ Note that no vertex can satisfy the subset property for rank 0, since $S'$ is al
 Whenever a stable configuration is reached, output $\overline{S}_1$.
 
 
-```{prf:lemma} NEEDS TITLE AND LABEL 
+````{prf:lemma} NEEDS TITLE AND LABEL 
 The output of the \crgLim\ algorithm is correct
  
-:label: 
-The output of the \crgLim\ algorithm is correct
 
 The output of the \crgLim\ algorithm is correct
 
-```
+````
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 The idea is that we want $S^i=\overline{S}^i$ at termination.
@@ -279,7 +271,7 @@ Thus, if at some time we have that $x$ does not satisfy the subset property for 
 However, initially $S_1\supseteq\overline{S}_1$ (being all vertices) and $\bigcup_{j=i}^n S^j\supseteq \bigcup_{j=0}^{i-1} \overline{S}^j$ for all $i$. But we must have that $S_1\supseteq\overline{S}_1$ and $\bigcup_{j=i}^n S^j\supseteq \bigcup_{j=0}^{i-1} \overline{S}^j$ for all $i$, at all latter points as well, since in the last iteration it was satisfied, for all $i$ and all $x\in S^i$, we have that the subset property is satisfied for $S=\overline{S}_1$ and $S'=\bigcup_{j=i}^n \overline{S}^j$, because we have that $S\supseteq S_1$ and $(S\setminus S')=\bigcup_{j=1}^{i-1} \overline{S}^j\supseteq \bigcup_{j=1}^{i-1} S^j$.
 On the other hand, eventually no vertex gets it rank incremented (since there are a finite number of ranks and vertices) and the algorithm terminates with a set $\overline{S}_1\supseteq S_1$ satisfying the value-1-property. Since $S_1$ is the largest such set, we have that $\overline{S}_1=S_1$.
 
-```
+````
 
 
 We will now consider the running time of the algorithm.
@@ -291,15 +283,13 @@ Thus, we only do at most $2|S_x|+1$ checks whether $x$ satisfies the subset prop
 There are $n+1$ ranks, so in total for $x$, we use at most $(n+1)(2|S_x|+1)$ checks.
 Hence, in total over all $x$, we do $O(n\sum_{x} |S_x|)$ checks.
 
-```{prf:lemma} NEEDS TITLE AND LABEL 
+````{prf:lemma} NEEDS TITLE AND LABEL 
 The run time of the \crgLim\ algorithm is $O(nk\sum_{x} |S_x|)$ times 
  
-:label: 
-The run time of the \crgLim\ algorithm is $O(nk\sum_{x} |S_x|)$ times 
 
 The run time of the \crgLim\ algorithm is $O(nk\sum_{x} |S_x|)$ times 
 
-```
+````
 
 We will then finally consider how to check whether $x$ satisfies the subset property for a pair of sets $S$ and $S'$.
 We will do so by constructing a strategy $\sigma=\sigma(\epsilon)$ for Eve satisfying the property for any fixed $\epsilon>0$.
@@ -310,17 +300,15 @@ We will define $C_i\not\in C_{i=1}^*$ from $R_i$ as each column $c$ such that th
 $F^{r,c}(x,S\setminus S')>0$.
 The set $R^{*}_{\ell}$ is the first set such that $R^*_{\ell+1}$ is empty (clearly, by construction all sets $R_i,C_i$ for $i>\ell$ would also be empty).
 
-```{prf:lemma} NEEDS TITLE AND LABEL 
+````{prf:lemma} NEEDS TITLE AND LABEL 
 There is a strategy $\sigma(\epsilon)$ for all $\epsilon>0$ iff $C_{\ell}^*$ is the set of all columns
  
-:label: 
-There is a strategy $\sigma(\epsilon)$ for all $\epsilon>0$ iff $C_{\ell}^*$ is the set of all columns
 
 There is a strategy $\sigma(\epsilon)$ for all $\epsilon>0$ iff $C_{\ell}^*$ is the set of all columns
 
-```
+````
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 We will first argue that if $C_{\ell}^{*}$ is not all columns $C$, then the strategy $\tau$ that plays uniformly over $C'=(C\setminus C_{\ell}^*)$ shows that no strategy $\sigma(\epsilon)$ exists for small enough $\epsilon>0$. This is because any row $r$ such that $F^{r,c}(x,S\setminus S')>0$ for some $c\in C'$ is also such that $F^{r,c'}(x,V\setminus S)>0$ for some column $c'\in C'$. This is because otherwise $r$ would be in $R^i$ for some $i$ and then $c$ would be in $C_{\ell}^*$. Hence, the probability $F^{r,c'}(x,V\setminus S)$ cannot be more than a constant factor smaller than $F^{r,c}(x,S\setminus S')$.
@@ -339,7 +327,7 @@ F^{\sigma,c}(x,S\setminus S')\epsilon\geq p\delta_{\min}\epsilon>\delta_{\min}\e
 \Pr^{\dist}\nolimits[i>j]\geq F^{\sigma,c}(x,V\setminus S) \enspace .$$
 
 This completes the proof of the lemma.
-```
+````
 
 
 Our algorithm for checking if a vertex $x$ satisfies the subset property for sets $S,S'$ is as follows:
@@ -360,56 +348,50 @@ Go to line 3.
 
 The total time is $O(\sum_{r,c}|\supp(\dest(x,r,c))|)$ for the algorithm.
 
-```{prf:lemma} NEEDS TITLE AND LABEL 
+````{prf:lemma} NEEDS TITLE AND LABEL 
 We can check whether a vertex $x$ satisfies the subset property for sets $S$ and $S'$ in time 
 
 $$O(\sum_{r,c}|\supp(\dest(x,r,c))|)$$
 
  
-:label: 
-We can check whether a vertex $x$ satisfies the subset property for sets $S$ and $S'$ in time 
-
-$$O(\sum_{r,c}|\supp(\dest(x,r,c))|)$$
-
-
 
 We can check whether a vertex $x$ satisfies the subset property for sets $S$ and $S'$ in time 
 
 $$O(\sum_{r,c}|\supp(\dest(x,r,c))|)$$
 
 
-```
+````
 
 We therefore get that 
-```{prf:lemma} NEEDS TITLE lem:val1
+````{prf:lemma} NEEDS TITLE lem:val1
 :label: lem:val1
 \label{lemm:find_1_reach}
 We can find the set of vertices of value 1 in time $O(n\sum_{x} |S_x|\sum_{r,c}|\supp(\dest(x,r,c))|)$
 
-```
+````
 
 Next, we will give a lower bound for patience, i.e. that in some games, the patience for every $\epsilon$-optimal stationary strategy must be high. 
 For a number $k$, let purgatory $k$ be the following game:
 There are $2+k$ vertices, $\Win$ (which is vertex 0), one vertex $\bot$ which is absorbing and each other vertex $i\in \{1,\dots, k\}$ has a 2x2 matrix, such that $\dest(x,r,c)$ is a dirac distribution over (1)
 $i-1$ for $r=c$, (2) $k$ for $r<c$ and (3) $\bot$ for $r>c$.
-There is an illustration of Purgatory $4$ in Figure \ref{fig:purgatory}. 
+There is an illustration of Purgatory $4$ in Figure \ref{7-fig:purgatory}. 
 
-```{figure} ./../fig:purgatory.png
-:name: fig:purgatory
+```{figure} ./../FigAndAlgos/7-fig:purgatory.png
+:name: 7-fig:purgatory
 :align: center
 Purgatory $4$. For clarity, the colors are omitted, except that $0^*$ corresponds to an edge to an absorbing vertex different from $\Win$ and $1^*$ corresponds to an edge to $\Win$
 ```
 
 It is easy to see that all vertices but $\bot$ is in $S_1$, using the value 1 property.
 
-```{prf:lemma} NEEDS TITLE lem:purgatory
+````{prf:lemma} NEEDS TITLE lem:purgatory
 :label: lem:purgatory
 
 For any $0<\epsilon<1/2$ and any $k\geq 1$, there is a unique strategy for Eve with least patience which is $\epsilon$-optimal in purgatory $k$. That strategy has patience $\epsilon^{-2^{k-1}}$
 
-```
+````
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 We will find the best strategy with patience $1/p$ for any number $0<p<1/2$.
@@ -419,7 +401,7 @@ Let $x_k=1-p$ and let $x_i=1-\sqrt{1-x_{i+1}}$. We will argue that $x_i$ is the 
 The unique best strategy in vertex $k$ is to play the top action with pr. $1-p$ and the bottom action with pr. $p$. This ensures that the pr. $x_k$ of reaching $k-1$ from $k$ is $1-p$ if Adam plays the left column.
 
 Consider now vertex $i\in \{1,\dots,k-1\}$.
-For the purpose of finding good strategies in $i$, we can view vertex $i$, when Eve plays her best strategy in $j>i$ and Adam plays a best response, as a smaller reachability game with 3 vertices, i.e. $i-1$ (as $\Win$), $\bot$ and $i$, where $\dest(i,r,c)$ is (1) a dirac distribution over $i-1$ for $r=c$, (2) a dirac distribution over $\bot$ for $r>c$ and (3) a distribution that goes to $\bot$ with pr. $1-x_{i-1}$ and to $i$ with the remaining pr. for $r<c$. See Figure \ref{fig:1purgatory}
+For the purpose of finding good strategies in $i$, we can view vertex $i$, when Eve plays her best strategy in $j>i$ and Adam plays a best response, as a smaller reachability game with 3 vertices, i.e. $i-1$ (as $\Win$), $\bot$ and $i$, where $\dest(i,r,c)$ is (1) a dirac distribution over $i-1$ for $r=c$, (2) a dirac distribution over $\bot$ for $r>c$ and (3) a distribution that goes to $\bot$ with pr. $1-x_{i-1}$ and to $i$ with the remaining pr. for $r<c$. See Figure \ref{7-fig:1purgatory}
 
 Let $p_i$ be the probability with which a strategy $\sigma$ plays the top row in vertex $i$.
 We can then consider the game as a MDP, since we have fixed a stationary strategy for one of the players.
@@ -446,18 +428,18 @@ $$
 
 This completes the proof of the lemma.
 
-```
+````
 
 Concurrent reachability games are not symmetric in the players. E.g. Adam always have an optimal strategy but Eve might not. We will next argue that Adam still requires double exponential patience to play well.
 
 Consider the following game called purgatory duel $k$ which can be viewed as a symmetric version of purgatory $k$.
 There are $3+2k$ vertices, $\Win$ (which is vertex 0), one vertex $\bot$ which is absorbing (and is also vertex $0'$), and the start vertex $s$ and each other vertex $\{1,\dots, k,1',\dots,k'\}$ has a 2x2 matrix. Each vertex $x\in \{1,\dots, k\}$ is such that $\dest(x,r,c)$ is a dirac distribution over (1) $x-1$ for $r=c$, (2) $s$ for $r<c$ and (3) $\bot$ for $r>c$.
  Each vertex $x'\in \{1',\dots, k'\}$ is such that $\dest(x',r,c)$ is a dirac distribution over (1) $x-1'$ for $r=c$, (2) $s$ for $r<c$ and (3) $\Win$ for $r>c$. The start vertex is 1x1 matrix and is such that $\dest(s,r,c)$ is a uniform distribution over $k$ and $k'$.
-There is a illustration of Purgatory Duel $2$ in Figure \ref{fig:purgatoryduel}.
+There is a illustration of Purgatory Duel $2$ in Figure \ref{7-fig:purgatoryduel}.
 
 
-```{figure} ./../fig:purgatoryduel.png
-:name: fig:purgatoryduel
+```{figure} ./../FigAndAlgos/7-fig:purgatoryduel.png
+:name: 7-fig:purgatoryduel
 :align: center
 Purgatory duel $2$. For clarity, the colors are omitted, except that $0^*$ corresponds to an edge to an absorbing vertex different from $\Win$ and $1^*$ corresponds to an edge to $\Win$
 ```
@@ -465,17 +447,15 @@ Purgatory duel $2$. For clarity, the colors are omitted, except that $0^*$ corre
 We will say that a strategy $\sigma$ for Eve mirrors a strategy $\tau$ for Adam, if $\sigma(i)=\tau(i')$ and $\sigma(i')=\tau(i)$ for all $i$.
 Similarly, $\tau$ mirrors $\sigma$.
 
-```{prf:lemma} NEEDS TITLE AND LABEL 
+````{prf:lemma} NEEDS TITLE AND LABEL 
 The value of vertex $s$ is $1/2$. Also, for any $\epsilon>0$, any $(1/2-\epsilon)$-optimal strategy $\tau$ for Adam does not follow a dirac distribution in $i'$ for any $i'\in\{1',\dots,k'\}$. Finally, every $\epsilon$-optimal strategy is a mirror of an $\epsilon$-optimal strategy
  
-:label: 
-The value of vertex $s$ is $1/2$. Also, for any $\epsilon>0$, any $(1/2-\epsilon)$-optimal strategy $\tau$ for Adam does not follow a dirac distribution in $i'$ for any $i'\in\{1',\dots,k'\}$. Finally, every $\epsilon$-optimal strategy is a mirror of an $\epsilon$-optimal strategy
 
 The value of vertex $s$ is $1/2$. Also, for any $\epsilon>0$, any $(1/2-\epsilon)$-optimal strategy $\tau$ for Adam does not follow a dirac distribution in $i'$ for any $i'\in\{1',\dots,k'\}$. Finally, every $\epsilon$-optimal strategy is a mirror of an $\epsilon$-optimal strategy
 
-```
+````
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 First, the value of vertex $s$ is at most $1/2$. This is because Adam can mirror any strategy $\sigma$ for Eve. This ensures that any play reaching $\Win$ is mirrored by an equally likely play reaching $\bot$. Thus, then the players follows these strategies, the pr. to reach $\Win$ is equal to the pr. to reach $\bot$ (there might also be some positive pr. to not reach neither, but Adam also wins those plays). 
@@ -489,7 +469,7 @@ Then, let Eve's mirror strategy to $\tau$ be $\sigma_{\tau}$. Now, either $\Win$
 
 It also follows that the strategies that are $\epsilon$-optimal mirrors each other.
 
-```
+````
 
 
 
@@ -498,15 +478,15 @@ We will now argue that Eve's (and thus Adam's) $\frac{1}{4}$-optimal strategies 
 To do so we will use the following lemma, showing that you can sometimes modify a concurrent game (or any of its special cases) and get a game with less value. While the proof is explicitly for concurrent reachability games, the proof is basically identical for concurrent discounted and mean-payoff games.
 In a game $G$, for a vertex $v$ and a duration $T$, let $v^T_G$ be the value of the time-limited game with duration $T$.
 
-```{prf:lemma} NEEDS TITLE lem:change_succ
+````{prf:lemma} NEEDS TITLE lem:change_succ
 :label: lem:change_succ
 
 Consider a concurrent reachability game $G$ and a pair of vertices $u,v$, such that for all $T$, we have that $u^T_G\geq v^T_G$. Consider a vertex $w$ such that for a pair of actions, $(r,c)$ we have that $v\in \supp(\dest(w,r,c))$. Consider an alternate game $G'$ equal to $G$, except that some of the probability mass is moved from $v$ to $u$ when playing $(r,c)$ in $w$, i.e. $0<\dest(G,w,r,c)(v)-\dest(G',w,r,c)(v)=\dest(G',w,r,c)(u)-\dest(G,w,r,c)(u)$.
 Then for all vertices $z$ we have that $z^T_G\leq z^T_{G'}$
 
-```
+````
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 The proof is by induction in $T$.
@@ -516,21 +496,19 @@ But, matrix games are monotone in their entries, so it follows directly that for
 Consider the matrix for $w^T_G$ compared to $w^T_{G'}$. All entries but the one for $(r,c)$ are smaller directly by induction. We also have that $v^T_{G}\leq u^T_{G}\leq u^T_{G'}$, the first inequality by definition and the second by induction. We thus see that all entries in $w^T_{G}$ are smaller than in $w^T_{G'}$.
 The lemma follows.
 
-```
+````
 
 We are now ready to find the patience in concurrent reachability games.
 
-```{prf:lemma} NEEDS TITLE AND LABEL 
+````{prf:lemma} NEEDS TITLE AND LABEL 
 Any $(1/4)$-optimal strategy, for either player, in purgatory duel $k$ has patience at least $(3/4)^{-2^{k-1}}$ for each $k$
  
-:label: 
-Any $(1/4)$-optimal strategy, for either player, in purgatory duel $k$ has patience at least $(3/4)^{-2^{k-1}}$ for each $k$
 
 Any $(1/4)$-optimal strategy, for either player, in purgatory duel $k$ has patience at least $(3/4)^{-2^{k-1}}$ for each $k$
 
-```
+````
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 We will show that the lemma is true for Eve's strategies and that it is true for Adam's follows from Lemma \ref{lem:change_succ}.
@@ -542,5 +520,5 @@ Thus, whenever $s$ is entered and Adam plays optimally, $k$ is enter eventually 
 For the purpose of the value, we can thus disregard $s$ and vertices in $\{1',\dots,k'\}$ and just view each edge going to $s$ as going to $k$ instead.
 But the resulting game is purgatory $k$ (in which Eve has fixed his strategy) and Eve is playing a strategy that gives value at least $1/4$, which requires  at least $(3/4)^{-2^{k-1}}$ patience, by Lemma \ref{lem:purgatory}.
 
-```
+````
 

@@ -1,0 +1,1194 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Beyond worst-case synthesis &#8212; Games on graphs</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/style.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Percentile queries" href="percentile.html" />
+    <link rel="prev" title="Total-payoff and shortest path" href="total_payoff_shortest_path.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/cover.jpg" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Games on graphs</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <p class="caption collapsible-parent">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../1_Introduction/index.html">
+   Introduction
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/intro.html">
+     What is this book about?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/simple.html">
+     A first model of games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/objectives.html">
+     Objectives
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/computation.html">
+     Computational models
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/automata.html">
+     Automata
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/memory.html">
+     Memory
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/reductions.html">
+     Reductions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/subgames.html">
+     Traps and subgames
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/fixed_points.html">
+     Generic fixed point algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/value_iteration.html">
+     Value iteration algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/strategy_improvement.html">
+     Strategy improvement algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Classic
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../2_Regular/index.html">
+   Regular Games
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/attractors.html">
+     Reachability games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/buchi.html">
+     Büchi games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/parity.html">
+     Parity games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/muller.html">
+     Rabin, Streett, and Muller games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/zielonka.html">
+     Zielonka tree
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../3_Parity/index.html">
+   Parity Games
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/strategy_improvement.html">
+     An exponential time strategy improvement algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/zielonka.html">
+     A quasipolynomial time attractor decomposition algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/separation.html">
+     A quasipolynomial time separating automata algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/value_iteration.html">
+     A quasipolynomial time value iteration algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/relationships.html">
+     Comparing the three families of algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../4_Payoffs/index.html">
+   Games with Payoffs
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/notations.html">
+     Notations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/qualitative.html">
+     Refining qualitative objectives with quantities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/mean_payoff.html">
+     Mean payoff games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/discounted_payoff.html">
+     Discounted payoff games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/shortest_path.html">
+     Shortest path games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/total_payoff.html">
+     Total payoff games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Stochastic
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../5_MDP/index.html">
+   Markov Decision Processes
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/notations.html">
+     Notations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/reachability.html">
+     Positive and almost-sure reachability and safety in MDPs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/discounted.html">
+     Discounted payoff in MDPs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/mean_payoff_properties.html">
+     Mean-payoff in MDPs: General properties and linear programming
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/mean_payoff_strongly_connected.html">
+     Mean-payoff optimality in strongly connected MDPs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/end_components.html">
+     End components
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/reductions.html">
+     Reductions to optimal reachability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/optimal_reachability.html">
+     Optimal reachability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../6_Stochastic/index.html">
+   Stochastic Games
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../6_Stochastic/notations.html">
+     Notations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../6_Stochastic/determinacy.html">
+     Positional determinacy of stochastic reachability games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../6_Stochastic/relations.html">
+     Relations between all games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../6_Stochastic/algos.html">
+     Algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../6_Stochastic/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Information
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../7_Concurrent/index.html">
+   Concurrent Games
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../7_Concurrent/notations.html">
+     Notations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../7_Concurrent/matrix_games.html">
+     Matrix games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../7_Concurrent/discounted.html">
+     Concurrent discounted games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../7_Concurrent/reachability.html">
+     Concurrent reachability games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../7_Concurrent/mean_payoff.html">
+     Concurrent mean-payoff games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../7_Concurrent/discounted.html">
+     Concurrent discounted games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../7_Concurrent/references.html">
+     Bibilographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../8_Imperfect/index.html">
+   Games with Signals
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../8_Imperfect/notations.html">
+     Notations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../8_Imperfect/finite_duration.html">
+     Finite duration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../8_Imperfect/infinite_duration.html">
+     Infinite duration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../8_Imperfect/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Infinite
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../9_Timed/index.html">
+   Timed Games
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../9_Timed/notations.html">
+     Notations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../9_Timed/state_space_representation.html">
+     State-Space Representation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../9_Timed/controllable_predecessor_operator.html">
+     Controllable-Predecessor Operator
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../9_Timed/backward_algorithm.html">
+     Backward Algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../9_Timed/forward_algorithm.html">
+     Forward Algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../9_Timed/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../10_Pushdown/index.html">
+   Pushdown Games
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10_Pushdown/notations.html">
+     Notations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10_Pushdown/profiles.html">
+     Profiles and regularity of the winning regions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10_Pushdown/parity.html">
+     Parity pushdown games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10_Pushdown/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../11_Counters/index.html">
+   Games with Counters
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11_Counters/counters.html">
+     Vector games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11_Counters/dim1.html">
+     Games in dimension one
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11_Counters/avag.html">
+     Asymmetric games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11_Counters/resource.html">
+     Resource-conscious games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11_Counters/complexity.html">
+     The complexity of asymmetric monotone games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11_Counters/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Multi
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active collapsible-parent">
+  <a class="reference internal" href="index.html">
+   Games with multiple objectives
+  </a>
+  <ul class="current collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="mean_payoff_energy.html">
+     Mean-payoff and energy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="total_payoff_shortest_path.html">
+     Total-payoff and shortest path
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Beyond worst-case synthesis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="percentile.html">
+     Percentile queries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../13_Multiplayer/index.html">
+   Multiplayer Games
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13_Multiplayer/nash_equilibria_normal_form.html">
+     Nash Equilibria for games in normal form
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13_Multiplayer/admissible_strategies.html">
+     Admissible strategies
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13_Multiplayer/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-decision-problem">
+   The decision problem
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-approach-in-a-nutshell">
+   The approach in a nutshell
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#inputs-and-outputs">
+   Inputs and outputs
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#preprocessing">
+   Preprocessing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#analysis-of-end-components">
+   Analysis of end-components
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#classification-of-end-components">
+   Classification of end-components
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#maximal-winning-end-components">
+   Maximal winning end-components
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ensure-reaching-winning-end-components">
+   Ensure reaching winning end-components
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reach-the-highest-valued-winning-end-components">
+   Reach the highest valued winning end-components
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#inside-winning-end-components">
+   Inside winning end-components
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#global-strategy-synthesis">
+   Global strategy synthesis
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#complexity-bounds">
+   Complexity bounds
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#wrap-up">
+   Wrap-up
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="beyond-worst-case-synthesis">
+<span id="sec-beyond-worst-case"></span><h1>Beyond worst-case synthesis<a class="headerlink" href="#beyond-worst-case-synthesis" title="Permalink to this headline">¶</a></h1>
+<div class="math notranslate nohighlight">
+\[\newcommand{\expv}{\mathbf{E}} \newcommand{\markovProcess}{\ensuremath{{\mathcal{P}} }}
+\newcommand{\stratStoch}{\ensuremath{\tau^{\text{stoch}} }}
+\newcommand{\BWC}{\text{BWC}}
+\newcommand{\ecsSet}{\ensuremath{\mathcal{E}} }
+\newcommand{\edgesNonZero}{\ensuremath{E_{\delta}} }
+\newcommand{\ec}{\ensuremath{U} }
+\newcommand{\playerOne}{\text{Eve} }
+\newcommand{\playerTwo}{\text{Adam} }
+\newcommand{\winningECs}{\ensuremath{\mathcal{W}} }
+\newcommand{\losingECs}{\ensuremath{\mathcal{L}} }
+\newcommand{\edges}{\ensuremath{E} }
+\newcommand{\maxWinningECs}{\ensuremath{\mathcal{U}_{\textsc{w}}} }
+\newcommand{\infVisited}[1]{\ensuremath{{\sf Inf}(#1)} }
+\newcommand{\negligibleStates}{\ensuremath{V_{{\sf neg}}} }
+\newcommand{\stratWC}{\ensuremath{\sigma^{\text{wc}}} }
+\newcommand{\stratExp}{\ensuremath{\sigma^{\text{e}}} }
+\newcommand{\stratComb}{\ensuremath{\sigma^{\text{cmb}}} }
+\newcommand{\stratSecure}{\ensuremath{\sigma^{\text{sec}}} }
+\newcommand{\stratWNS}{\ensuremath{\sigma^{\text{wns}}} }
+\newcommand{\stratGlobal}{\ensuremath{\sigma^{\text{glb}}} }
+\newcommand{\stepsWC}{\ensuremath{L} }
+\newcommand{\stepsExp}{\ensuremath{K} }
+\newcommand{\stepsGlobal}{\ensuremath{N} }
+\newcommand{\cmbSum}{\ensuremath{\mathsf{Sum}} }
+\newcommand{\typeA}{\ensuremath{**(a)**} }
+\newcommand{\typeB}{\ensuremath{**(b)**} }
+\newcommand{\thresholdWC}{\ensuremath{\alpha} }
+\newcommand{\thresholdExp}{\ensuremath{\beta} }
+\newcommand{\state}{\ensuremath{v} }
+\newcommand{\gameNonZero}{\ensuremath{\arena_{\delta}} }
+\newcommand{\reduc}{\ensuremath{\downharpoonright} }
+\newcommand{\probm}{\mathbb{P}} 
+\newcommand{\Adam}{\textrm{Adam}}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
+\newcommand{\argmax}{\textrm{argmax}}
+\newcommand{\argmin}{\textrm{argmin}}
+\newcommand{\Op}{\mathbb{O}}
+\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\textrm{supp}} 
+\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
+\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
+\newcommand{\mEve}{\mathrm{Eve}}
+\newcommand{\mAdam}{\mathrm{Adam}}
+\newcommand{\mRandom}{\mathrm{Random}}
+\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
+\newcommand{\ing}{\textrm{In}}
+\newcommand{\Ing}{\ing}
+\newcommand{\out}{\textrm{Out}}
+\newcommand{\Out}{\out}
+\newcommand{\dest}{\Delta} 
+\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
+\newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
+\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
+\newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
+\newcommand{\Win}{\textrm{Win}} 
+\newcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Value}{\textrm{val}} 
+\newcommand{\ValueE}{\textrm{val}_\mEve} 
+\newcommand{\ValueA}{\textrm{val}_\mAdam}
+\newcommand{\val}{\Value} 
+\newcommand{\Automaton}{\mathbf{A}} 
+\newcommand{\Safe}{\mathtt{Safe}}
+\newcommand{\Reach}{\mathtt{Reach}} 
+\newcommand{\Buchi}{\mathtt{Buchi}} 
+\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
+\newcommand{\Parity}{\mathtt{Parity}} 
+\newcommand{\Muller}{\mathtt{Muller}} 
+\newcommand{\Rabin}{\mathtt{Rabin}} 
+\newcommand{\Streett}{\mathtt{Streett}} 
+\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
+\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
+\newcommand{\Energy}{\mathtt{Energy}}
+\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
+\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
+\newcommand{\Sup}{\mathtt{Sup}}
+\newcommand{\Inf}{\mathtt{Inf}}
+\newcommand{\LimSup}{\mathtt{LimSup}}
+\newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NL}{\textrm{NL}}
+\newcommand{\PTIME}{\textrm{PTIME}}
+\newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
+\newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
+\newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
+\newcommand{\EXP}{\textrm{EXP}}
+\newcommand{\kEXP}{\textrm{kEXP}}\]</div>
+<p>We now turn to a completely different meaning of <strong>multiobjective</strong>. Let us take a few steps back. Throughout this book, we have studied two types of interaction between players: rational, antagonistic interaction between Eve and Adam; and stochastic interaction with a random player. Consider the quantitative settings of~\cref{chap:payoffs} and~\cref{chap:mdp}. In the zero-sum two-player games of the former, Adam is seen as a <strong>purely antagonistic adversary</strong>, so the goal of Eve is to ensure strict worst-case guarantees, i.e., a minimal performance level against all possible strategies of Adam. In the MDPs of the latter, Eve interacts with randomness (through actions or random vertices) and she wants to ensure a good <strong>expected value</strong> for the considered payoff.</p>
+<p>For most objectives, these two paradigms yield elegant and simple solutions: e.g., memoryless strategies suffice for both games and MDPs with a mean-payoff objective. Nevertheless, the corresponding strategies have clear weaknesses: strategies that are good for the worst-case may exhibit suboptimal behaviours in probable situations while strategies that are good for the expected value may be terrible in some unlikely but possible situations. A natural question, of theoretical and practical interest, is to build – <strong>synthesize</strong> – strategies that combine both paradigms: strategies that both ensure (a) some worst-case threshold no matter how the adversary behaves (i.e., against any arbitrary strategy) and (b) a good expectation against the expected behaviour of the adversary (given as a stochastic model). We call this task beyond worst-case synthesis.</p>
+<p>The goal of this section is to illustrate the complexity of beyond worst-case synthesis and how it requires fine-tuned interaction between the worst-case and average-case aspects. To that end, we focus on a specific case: the synthesis of <strong>finite-memory strategies</strong> for beyond worst-case <strong>mean-payoff</strong> objectives. Due to the highly technical nature of this approach, we will not present all its details, but rather paint in broad strokes its cornerstones. We hope to give the reader sufficient intuition and understanding to develop a clear view of the challenges arising from rich behavioural models, and some of the techniques that come to the rescue.</p>
+<div class="section" id="the-decision-problem">
+<h2>The decision problem<a class="headerlink" href="#the-decision-problem" title="Permalink to this headline">¶</a></h2>
+<p>Our goal is to mix the games of~\cref{chap:payoffs} and the MDPs of~\cref{chap:mdp}, so we need to go back and forth between these models.</p>
+<blockquote>
+<div><p><strong>Two-player game</strong></p>
+</div></blockquote>
+<p>As before, we start with an arena <span class="math notranslate nohighlight">\(\arena = (G = (V, E), V_{\text{Eve}}, V_{\text{Adam}})\)</span>, where the vertices are split between Eve’s and Adam’s. This arena represents the antagonistic interaction between Eve and Adam, so we consider a worst-case constraint on the corresponding game. We study a single mean-payoff function, so our colouring is <span class="math notranslate nohighlight">\(c\colon E \to \Z\)</span>. Let <span class="math notranslate nohighlight">\(\alpha \in \Q\)</span> be the worst-case threshold: we are looking for a strategy of Eve that is winning for objective <span class="math notranslate nohighlight">\(\MeanPayoff^{-}_{&gt; \alpha}\)</span>. Two things to note: first, we consider the lim-inf variant w.l.o.g.~as we focus on <strong>finite-memory</strong> strategies (recall <a class="reference internal" href="mean_payoff_energy.html#12-prop:MPSI">Proposition 330</a>); second, we use a strict inequality as it will ease the formulation of the upcoming results.</p>
+<blockquote>
+<div><p><strong>MDP</strong></p>
+</div></blockquote>
+<p>To make the connection with MDPs, we fix a finite-memory randomized strategy for Adam in the arena <span class="math notranslate nohighlight">\(\arena\)</span>, <span class="math notranslate nohighlight">\(\tau^\text{stoch}\)</span>. Recall that a randomized strategy \todo{It seems this is never addressed properly before but used in MDPs, stochastic games, etc: to sort out before its first use.} is a function <span class="math notranslate nohighlight">\(E^* \to \mathcal{D}(E)\)</span>. As usual, we may build <span class="math notranslate nohighlight">\(\arena_{\tau^\text{stoch}}\)</span>, the product of the arena <span class="math notranslate nohighlight">\(\arena\)</span> with the memory structure of <span class="math notranslate nohighlight">\(\tau^\text{stoch}\)</span>, restricted to the choices made by <span class="math notranslate nohighlight">\(\tau^\text{stoch}\)</span>. Since <span class="math notranslate nohighlight">\(\tau^\text{stoch}\)</span> is assumed to be stochastic, what we obtain is not a one-player game for Eve, but an MDP.</p>
+<p>To understand this relationship, it is easier to consider the alternative – and equivalent – formalism of MDPs, based on random vertices (as used for stochastic games in~\cref{chap:stochastic}). Assume for instance that <span class="math notranslate nohighlight">\(\tau^\text{stoch}\)</span> is a randomized memoryless strategy, i.e., a function <span class="math notranslate nohighlight">\(V_{\Adam} \to \mathcal{D}(E)\)</span>. Then, the MDP <span class="math notranslate nohighlight">\(\arena_{\tau^\text{stoch}}\)</span> is immediately obtained by replacing each Adam’s vertex <span class="math notranslate nohighlight">\(v\)</span> by a random vertex such that <span class="math notranslate nohighlight">\(\delta(v) = \tau^\text{stoch}(v)\)</span>, i.e., the probabilistic transition function uses the same probability distributions as Adam’s strategy. Formally, we build the MDP <span class="math notranslate nohighlight">\(\mathcal{P} = \arena_{\tau^{\text{stoch}}} = (G, V_{\text{Eve}}, V_{\text{Rand}} = V_{\text{Adam}}, \delta = \tau^{\text{stoch}})\)</span>.</p>
+<p>In contrast to~\cref{chap:stochastic}, we explicitly allow the transition function to assign probability zero to some edges of the underlying graph <span class="math notranslate nohighlight">\(G\)</span>, i.e., the support of <span class="math notranslate nohighlight">\(\delta(v)\)</span> in some vertex <span class="math notranslate nohighlight">\(v \in V_{\text{Rand}}\)</span> might not include all edges <span class="math notranslate nohighlight">\(e \in E\)</span> such that <span class="math notranslate nohighlight">\(\ing(e) = v\)</span>.
+This is important as far as modelling is concerned, as in our context, transition functions will be defined according to a stochastic model for Adam, and we cannot reasonably assume that such a model always involves all the possible actions of Adam. Consequently, given the MDP <span class="math notranslate nohighlight">\(\markovProcess\)</span>, we define the subset of edges <span class="math notranslate nohighlight">\(\edgesNonZero = \{ e \in E \mid \ing(e) \in V_{\text{Rand}} \implies \delta(\ing(e))(e) &gt; 0\}\)</span>, representing all edges that either start in a vertex of Eve, or are chosen with non-zero probability by the transition function <span class="math notranslate nohighlight">\(\delta\)</span>. Edges in <span class="math notranslate nohighlight">\(E\setminus \edgesNonZero\)</span> will only matter in the two-player game interpretation, whereas all MDP-related concepts, such as end-components, are defined with regard to edges in <span class="math notranslate nohighlight">\(\edgesNonZero\)</span> exclusively.</p>
+<blockquote>
+<div><p><strong>Beyond worst-case problem</strong></p>
+</div></blockquote>
+<p>Let us sum up the situation: we have a two-player arena <span class="math notranslate nohighlight">\(\arena\)</span> with a mean-payoff objective <span class="math notranslate nohighlight">\(\MeanPayoff^{-}_{&gt; \alpha}\)</span> and a finite-memory stochastic model for Adam yielding the MDP <span class="math notranslate nohighlight">\(\arena_{\tau^\text{stoch}}\)</span>. Now, let <span class="math notranslate nohighlight">\(\beta \in \Q\)</span> be the expected value threshold we want to ensure in the MDP (i.e., on average against the stochastic model of Adam).</p>
+<div class="admonition-problem admonition">
+<p class="admonition-title">Problem</p>
+<p>Our beyond worst-case (BWC) problem is as follows.</p>
+<p><strong>INPUT</strong>: An arena <span class="math notranslate nohighlight">\(\arena\)</span>, a finite-memory stochastic model <span class="math notranslate nohighlight">\(\tau^\text{stoch}\)</span>, an\ &amp; initial vertex <span class="math notranslate nohighlight">\(v_0\)</span>, two thresholds <span class="math notranslate nohighlight">\(\alpha, \beta \in \Q\)</span>\</p>
+<p><strong>QUESTION</strong>: Does Eve have a <strong>finite-memory</strong> strategy <span class="math notranslate nohighlight">\(\sigma\)</span> such that <span class="math notranslate nohighlight">\(\sigma\)</span> is \ &amp; winning for objective <span class="math notranslate nohighlight">\(\MeanPayoff^{-}_{&gt; \alpha} \text{ from } v_0 \text{ in } \arena\)</span>\ &amp;
+and <span class="math notranslate nohighlight">\(\expv^{\sigma}_{\arena_{\tau^\text{stoch}},v_0}[\MeanPayoff^{-}] &gt; \beta\)</span>?</p>
+</div>
+<p>We assume <span class="math notranslate nohighlight">\(\beta &gt; \alpha\)</span>, otherwise the problem trivially reduces to the classical worst-case analysis: if all plays consistent with <span class="math notranslate nohighlight">\(\sigma\)</span> have mean-payoff greater than <span class="math notranslate nohighlight">\(\alpha \geq \beta\)</span> then the expected value is also greater than <span class="math notranslate nohighlight">\(\alpha\)</span> regardless of the stochastic model.</p>
+</div>
+<div class="section" id="the-approach-in-a-nutshell">
+<h2>The approach in a nutshell<a class="headerlink" href="#the-approach-in-a-nutshell" title="Permalink to this headline">¶</a></h2>
+<p>We present our solution to the BWC problem in <code class="xref std std-numref docutils literal notranslate"><span class="pre">12-algo:BWC</span></code>. We give an intuitive sketch of its functioning in the following, and illustrate it on a toy example.</p>
+<p>DO SOMETHING WITH THIS ALGORITHM IT DOES NOT COMPILE!!!</p>
+</div>
+<div class="section" id="inputs-and-outputs">
+<h2>Inputs and outputs<a class="headerlink" href="#inputs-and-outputs" title="Permalink to this headline">¶</a></h2>
+<p>The algorithm takes as input: an arena <span class="math notranslate nohighlight">\(\arena^{i}\)</span>, a finite-memory stochastic model of Adam <span class="math notranslate nohighlight">\(\tau^{i}\)</span>, a worst-case threshold <span class="math notranslate nohighlight">\(\alpha^{i}\)</span>, an expected value threshold <span class="math notranslate nohighlight">\(\beta^{i}\)</span>, and an initial vertex <span class="math notranslate nohighlight">\(v_0^{i}\)</span>. Its output is <span class="math notranslate nohighlight">\(\textsc{Yes}\)</span> if and only if there exists a finite-memory strategy of Eve satisfying the BWC problem.</p>
+<p>The output as described in <code class="xref std std-numref docutils literal notranslate"><span class="pre">12-algo:BWC</span></code> is Boolean: the algorithm answers whether a satisfying strategy exists or not, but does not explicitly construct it (to avoid tedious formalization within the pseudocode). Nevertheless, we sketch the synthesis process in the following and we highlight the role of each step of the algorithm in the construction of a winning strategy, as producing a witness winning strategy is a straightforward by-product of the process we apply to decide satisfaction of the BWC problem.</p>
+</div>
+<div class="section" id="preprocessing">
+<h2>Preprocessing<a class="headerlink" href="#preprocessing" title="Permalink to this headline">¶</a></h2>
+<p>The first part of the algorithm is dedicated to the preprocessing of the arena <span class="math notranslate nohighlight">\(\arena^{i}\)</span> and the stochatic model <span class="math notranslate nohighlight">\(\tau^{i}\)</span> given as inputs in order to apply the second part of the algorithm on a modified arena <span class="math notranslate nohighlight">\(\arena\)</span> and stochastic model <span class="math notranslate nohighlight">\(\tau^{\text{stoch}}\)</span>, simpler to manipulate. We show in the following that the answer to the BWC problem on the modified arena is <span class="math notranslate nohighlight">\(\textsc{Yes}\)</span> if and only if it is also <span class="math notranslate nohighlight">\(\textsc{Yes}\)</span> on the input arena, and we present how a winning strategy of Eve in <span class="math notranslate nohighlight">\(\arena\)</span> can be transferred to a winning strategy in <span class="math notranslate nohighlight">\(\arena^{i}\)</span>.</p>
+<p>The preprocessing is composed of four main steps. First, we modify the colouring function <span class="math notranslate nohighlight">\(c^i\)</span> in order to consider the equivalent BWC problem with thresholds <span class="math notranslate nohighlight">\((0,\, \beta)\)</span> instead of <span class="math notranslate nohighlight">\((\alpha^{i},\, \beta^{i})\)</span>. This classical trick is used to get rid of explicitly considering the worst-case threshold in the following, as it is equal to zero.</p>
+<p>Second, observe that any strategy that is winning for the BWC problem must also be winning for the classical <strong>worst-case problem</strong>, as solved in the two-player games of~\cref{chap:payoffs}. Such a strategy cannot allow visits of any vertex from which Eve cannot ensure winning against an antagonistic adversary because mean-payoff is a prefix independent objective (hence it is not possible to win it over the finite prefix up to such a vertex). Thus, we reduce our study to <span class="math notranslate nohighlight">\(\arena^{w}\)</span>, the subarena induced by Eve’s worst-case winning vertices – which we compute in pseudo-poly-nomial time thanks to <span class="math notranslate nohighlight">\(\textsf{SolveWorstCaseMeanPayoff}(\arena, c)\)</span> (implementing the algorithm of~\cref{chap:payoffs}). \todo{I need a label on Subsect. 4.3.4 to cite it precisely.}  Note that we use the modified colouring and that <span class="math notranslate nohighlight">\(\arena^{w}\)</span> is a proper arena (same argument as~\cref{12-rmk:properArena}). Obviously, if from the initial vertex <span class="math notranslate nohighlight">\(v_0^{i}\)</span>, Eve cannot win the worst-case problem, then the answer to the BWC problem is \textsc{No}.</p>
+<p>Third, we build arena <span class="math notranslate nohighlight">\(\arena\)</span>, the product of <span class="math notranslate nohighlight">\(\arena^{w}\)</span> and the memory structure of Adam’s stochastic model <span class="math notranslate nohighlight">\(\tau^i\)</span>. Intuitively, we expand the initial arena by integrating the memory elements in the graph. Note that this does not modify the power of Adam in the two-player interpretation of the arena.</p>
+<p>Fourth, the finite-memory stochastic model <span class="math notranslate nohighlight">\(\tau^{i}\)</span> on <span class="math notranslate nohighlight">\(\arena^{i}\)</span> clearly translates to a memoryless stochastic model <span class="math notranslate nohighlight">\(\tau^{\text{stoch}}\)</span> on <span class="math notranslate nohighlight">\(\arena\)</span>. This will help us obtain elegant proofs for the second part of the algorithm.</p>
+<div class="proof example admonition" id="example-0">
+<p class="admonition-title"><span class="caption-number">Example 341 </span> (NEEDS TITLE AND LABEL)</p>
+<div class="example-content section" id="proof-content">
+<div class="figure align-center" id="fig-bwcrunningexample">
+<img alt="../_images/12-fig:bwcRunningExample.png" src="../_images/12-fig:bwcRunningExample.png" />
+<p class="caption"><span class="caption-number">Fig. 72 </span><span class="caption-text">Beyond worst-case mean-payoff problem: <span class="math notranslate nohighlight">\(\ec_{2}\)</span> and <span class="math notranslate nohighlight">\(\ec_{3}\)</span> are maximal winning ECs, <span class="math notranslate nohighlight">\(\ec_{1}\)</span> is losing.</span><a class="headerlink" href="#fig-bwcrunningexample" title="Permalink to this image">¶</a></p>
+</div>
+<p>In order to illustrate several notions and strategies, we will consider the arena depicted in <code class="xref std std-numref docutils literal notranslate"><span class="pre">12-fig:bwcRunningExample</span></code> throughout our presentation. The stochastic model of <span class="math notranslate nohighlight">\(\playerTwo\)</span> is memoryless and is described by the probabilities written close to the start of outgoing edges. The colouring (weights) is written besides them.</p>
+<p>We consider the <span class="math notranslate nohighlight">\(\BWC\)</span> problem with the worst-case threshold <span class="math notranslate nohighlight">\(\thresholdWC = 0\)</span>. Observe that this arena satisfies the assumptions guaranteed at the end of the preprocessing part of the algorithm. That is, the worst-case threshold is zero, a worst-case winning strategy of <span class="math notranslate nohighlight">\(\playerOne\)</span> exists in all vertices (e.g., the memoryless strategy choosing edges <span class="math notranslate nohighlight">\((\state_{1}, \state_{9})\)</span>, <span class="math notranslate nohighlight">\((\state_{3}, \state_{5})\)</span>, <span class="math notranslate nohighlight">\((\state_{6}, \state_{9})\)</span>, <span class="math notranslate nohighlight">\((\state_{9}, \state_{10})\)</span> and <span class="math notranslate nohighlight">\((\state_{10}, \state_{9})\)</span> in their respective starting vertices), and the stochastic model is memoryless, as explained above.</p>
+<div class="figure align-center" id="id1">
+<img alt="../_images/12-fig:bwcRunningExample.png" src="../_images/12-fig:bwcRunningExample.png" />
+<p class="caption"><span class="caption-number">Fig. 73 </span><span class="caption-text">Beyond worst-case mean-payoff problem: <span class="math notranslate nohighlight">\(\ec_{2}\)</span> and <span class="math notranslate nohighlight">\(\ec_{3}\)</span> are maximal winning ECs, <span class="math notranslate nohighlight">\(\ec_{1}\)</span> is losing.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<p>In order to illustrate several notions and strategies, we will consider the arena depicted in <code class="xref std std-numref docutils literal notranslate"><span class="pre">12-fig:bwcRunningExample</span></code> throughout our presentation. The stochastic model of <span class="math notranslate nohighlight">\(\playerTwo\)</span> is memoryless and is described by the probabilities written close to the start of outgoing edges. The colouring (weights) is written besides them.</p>
+<p>We consider the <span class="math notranslate nohighlight">\(\BWC\)</span> problem with the worst-case threshold <span class="math notranslate nohighlight">\(\thresholdWC = 0\)</span>. Observe that this arena satisfies the assumptions guaranteed at the end of the preprocessing part of the algorithm. That is, the worst-case threshold is zero, a worst-case winning strategy of <span class="math notranslate nohighlight">\(\playerOne\)</span> exists in all vertices (e.g., the memoryless strategy choosing edges <span class="math notranslate nohighlight">\((\state_{1}, \state_{9})\)</span>, <span class="math notranslate nohighlight">\((\state_{3}, \state_{5})\)</span>, <span class="math notranslate nohighlight">\((\state_{6}, \state_{9})\)</span>, <span class="math notranslate nohighlight">\((\state_{9}, \state_{10})\)</span> and <span class="math notranslate nohighlight">\((\state_{10}, \state_{9})\)</span> in their respective starting vertices), and the stochastic model is memoryless, as explained above.</p>
+</div>
+</div></div>
+<div class="section" id="analysis-of-end-components">
+<h2>Analysis of end-components<a class="headerlink" href="#analysis-of-end-components" title="Permalink to this headline">¶</a></h2>
+<p>The second part hence operates on an arena <span class="math notranslate nohighlight">\(\arena\)</span> such that from all vertices, Eve has a strategy to achieve a strictly positive mean-payoff value (recall that <span class="math notranslate nohighlight">\(\alpha = 0\)</span>). We consider the MDP <span class="math notranslate nohighlight">\(\markovProcess = \arena_{\stratStoch}\)</span> and notice that the underlying graphs of <span class="math notranslate nohighlight">\(\arena\)</span> and <span class="math notranslate nohighlight">\(\markovProcess\)</span> are the same thanks to <span class="math notranslate nohighlight">\(\stratStoch\)</span> being memoryless. The following steps rely on the analysis of <strong>end-components</strong> (ECs) in the MDP, i.e., strongly connected subgraphs in which Eve can ensure to stay when playing against Adam’s stochastic model ( <code class="xref prf prf-ref docutils literal notranslate"><span class="pre">5-def:ec</span></code>).</p>
+<p>The motivation to the analysis of ECs is the following. It is well-known that under any arbitrary strategy <span class="math notranslate nohighlight">\(\sigma\)</span> of Eve in <span class="math notranslate nohighlight">\(\markovProcess\)</span>, the probability that vertices visited infinitely often along a play constitute an EC is one ( <a class="reference internal" href="../5_MDP/end_components.html#5-lem:EC-inf">Lemma 178</a>). Recall that the mean-payoff is prefix independent, therefore the value of any play only depends on those colors that are seen infinitely often. Hence, the expected mean-payoff <span class="math notranslate nohighlight">\(\expv^{\sigma}_{\markovProcess,v_0}[\MeanPayoff^{-}]\)</span> depends <strong>uniquely</strong> on the value obtained in the ECs. Inside an EC, we can compute the maximal expected value that can be achieved by Eve, and this value is the same in all vertices of the EC, as established in <a class="reference internal" href="../5_MDP/mean_payoff_strongly_connected.html#5-thm:mp-valcomp">Theorem 166</a>.</p>
+<p>Consequently, in order to satisfy the expected value requirement, an acceptable strategy for the <span class="math notranslate nohighlight">\(\BWC\)</span> problem has to favor reaching ECs with a sufficient expectation, but under the constraint that it should also ensure satisfaction of the worst-case requirement. As we show in the following, this constraint implies that some ECs with high expected values may still need to be avoided because they do not permit to guarantee the worst-case requirement. This is the cornerstone of the classification of ECs that follows.</p>
+</div>
+<div class="section" id="classification-of-end-components">
+<h2>Classification of end-components<a class="headerlink" href="#classification-of-end-components" title="Permalink to this headline">¶</a></h2>
+<p>Let <span class="math notranslate nohighlight">\(\ecsSet \subseteq 2^{V}\)</span> denote the set of all ECs in <span class="math notranslate nohighlight">\(\markovProcess\)</span>. Notice that by definition, only edges in <span class="math notranslate nohighlight">\(\edgesNonZero\)</span>, as defined earlier, are involved to determine which sets of vertices form an EC in <span class="math notranslate nohighlight">\(\markovProcess\)</span>. As such, for any EC <span class="math notranslate nohighlight">\(\ec \in \ecsSet\)</span>, there may exist edges from <span class="math notranslate nohighlight">\(\edges \setminus \edgesNonZero\)</span> starting in <span class="math notranslate nohighlight">\(\ec\)</span>, such that Adam can force leaving <span class="math notranslate nohighlight">\(\ec\)</span> when using an arbitrary strategy in <span class="math notranslate nohighlight">\(\arena\)</span>. Still these edges will never be used by the stochastic model <span class="math notranslate nohighlight">\(\stratStoch\)</span>. This remark will be important to the definition of strategies of Eve that guarantee the worst-case requirement, as Eve needs to be able to react to the hypothetical use of such an edge. We will see that it is also the case <strong>inside</strong> an EC.</p>
+<p>Now, we want to consider the ECs in which <span class="math notranslate nohighlight">\(\playerOne\)</span> can ensure that the worst-case requirement will be fulfilled (i.e., without having to leave the EC): we call them <strong>winning</strong> ECs (WECs). The others will need to be eventually avoided, hence will have zero impact on the expectation of a finite-memory strategy satisfying the <span class="math notranslate nohighlight">\(\BWC\)</span> problem. So we call the latter <strong>losing</strong> ECs (LECs). The subtlety of this classification is that it involves considering the ECs both in the MDP <span class="math notranslate nohighlight">\(\markovProcess\)</span>, and in the arena <span class="math notranslate nohighlight">\(\arena\)</span>.</p>
+<p>Formally, let <span class="math notranslate nohighlight">\(\ec \in \ecsSet\)</span> be an EC. It is <strong>winning</strong> if, in the subarena induced by <span class="math notranslate nohighlight">\(\ec\)</span>, from all vertices, <span class="math notranslate nohighlight">\(\playerOne\)</span> has a strategy to ensure a <strong>strictly</strong> positive mean-payoff against any strategy of <span class="math notranslate nohighlight">\(\playerTwo\)</span> <strong>that only chooses edges which are assigned non-zero probability by <span class="math notranslate nohighlight">\(\stratStoch\)</span></strong>, or equivalently, edges in <span class="math notranslate nohighlight">\(\edgesNonZero\)</span>. This can be interpreted as looking at arena <span class="math notranslate nohighlight">\(\gameNonZero\)</span>, which is the restriction of <span class="math notranslate nohighlight">\(\arena\)</span> to edges in <span class="math notranslate nohighlight">\(\edgesNonZero\)</span>.</p>
+<p>We denote <span class="math notranslate nohighlight">\(\winningECs \subseteq \ecsSet\)</span> the set of such ECs. Non-winning ECs are <strong>losing</strong>: in those, whatever the strategy of <span class="math notranslate nohighlight">\(\playerOne\)</span> played against the stochastic model <span class="math notranslate nohighlight">\(\stratStoch\)</span> (or any strategy with the same support), there exists at least one play for which the mean-payoff is not strictly positive (even if its probability is zero, its mere existence is not acceptable for the worst-case requirement).</p>
+<div class="figure align-center" id="fig-bwcwinningecscomputationexample">
+<img alt="../_images/12-fig:bwcWinningECsComputationExample.png" src="../_images/12-fig:bwcWinningECsComputationExample.png" />
+<p class="caption"><span class="caption-number">Fig. 74 </span><span class="caption-text">EC <span class="math notranslate nohighlight">\(\ec_{2}\)</span> is losing. The set of MWECs is <span class="math notranslate nohighlight">\(\maxWinningECs = \winningECs = \{\ec_{1}, \ec_{3}\}\)</span>.</span><a class="headerlink" href="#fig-bwcwinningecscomputationexample" title="Permalink to this image">¶</a></p>
+</div>
+<div class="proof example admonition" id="example-1">
+<p class="admonition-title"><span class="caption-number">Example 342 </span> (NEEDS TITLE AND LABEL)</p>
+<div class="example-content section" id="proof-content">
+<p>Note that an EC is winning if <span class="math notranslate nohighlight">\(\playerOne\)</span> has a worst-case winning strategy from <strong>all</strong> vertices. This point is important as it may well be the case that winning strategies exist in a strict subset of vertices of the EC. This does not contradict the definition of ECs as strongly connected subgraphs, as the latter only guarantees that every vertex can be reached <strong>with probability one</strong>, and not necessarily <strong>surely</strong>. Hence one cannot call upon the prefix independence of the mean-payoff to extend the existence of a winning strategy to all vertices.</p>
+<p>Such a situation can be observed on the arena of <a class="reference internal" href="#fig-bwcwinningecscomputationexample"><span class="std std-numref">Fig. 74</span></a>, where the EC <span class="math notranslate nohighlight">\(\ec_{2}\)</span> is losing (because from <span class="math notranslate nohighlight">\(\state_{1}\)</span>, the play <span class="math notranslate nohighlight">\((\state_{1}\state_{3}\state_{4})^{\omega}\)</span> can be forced by <span class="math notranslate nohighlight">\(\playerTwo\)</span>, yielding mean-payoff <span class="math notranslate nohighlight">\(-1/3 \leq 0\)</span>), while its sub-EC <span class="math notranslate nohighlight">\(\ec_{3}\)</span> is winning. From <span class="math notranslate nohighlight">\(\state_{1}\)</span>, <span class="math notranslate nohighlight">\(\playerOne\)</span> can ensure to reach <span class="math notranslate nohighlight">\(\ec_{3}\)</span> almost-surely, but not surely, which is critical in this case.</p>
+<p>Note that an EC is winning if <span class="math notranslate nohighlight">\(\playerOne\)</span> has a worst-case winning strategy from <strong>all</strong> vertices. This point is important as it may well be the case that winning strategies exist in a strict subset of vertices of the EC. This does not contradict the definition of ECs as strongly connected subgraphs, as the latter only guarantees that every vertex can be reached <strong>with probability one</strong>, and not necessarily <strong>surely</strong>. Hence one cannot call upon the prefix independence of the mean-payoff to extend the existence of a winning strategy to all vertices.</p>
+<p>Such a situation can be observed on the arena of <a class="reference internal" href="#fig-bwcwinningecscomputationexample"><span class="std std-numref">Fig. 74</span></a>, where the EC <span class="math notranslate nohighlight">\(\ec_{2}\)</span> is losing (because from <span class="math notranslate nohighlight">\(\state_{1}\)</span>, the play <span class="math notranslate nohighlight">\((\state_{1}\state_{3}\state_{4})^{\omega}\)</span> can be forced by <span class="math notranslate nohighlight">\(\playerTwo\)</span>, yielding mean-payoff <span class="math notranslate nohighlight">\(-1/3 \leq 0\)</span>), while its sub-EC <span class="math notranslate nohighlight">\(\ec_{3}\)</span> is winning. From <span class="math notranslate nohighlight">\(\state_{1}\)</span>, <span class="math notranslate nohighlight">\(\playerOne\)</span> can ensure to reach <span class="math notranslate nohighlight">\(\ec_{3}\)</span> almost-surely, but not surely, which is critical in this case.</p>
+</div>
+</div></div>
+<div class="section" id="maximal-winning-end-components">
+<h2>Maximal winning end-components<a class="headerlink" href="#maximal-winning-end-components" title="Permalink to this headline">¶</a></h2>
+<p>Based on these definitions, observe that <code class="xref std std-numref docutils literal notranslate"><span class="pre">12-algo:BWC</span></code> does not actually compute the set <span class="math notranslate nohighlight">\(\winningECs\)</span> containing all WECs, but rather the set <span class="math notranslate nohighlight">\(\maxWinningECs \subseteq \winningECs\)</span>, defined as <span class="math notranslate nohighlight">\(\maxWinningECs = \{\ec \in \winningECs \mid \forall\, \ec' \in \winningECs,\, \ec \subseteq \ec' \Rightarrow \ec = \ec'\}\)</span>, i.e., the set of <strong>maximal</strong> WECs (MWECs).</p>
+<p>The intuition on <strong>why we can</strong> restrict our study to this subset is as follows. If an EC <span class="math notranslate nohighlight">\(\ec_{1} \in \winningECs\)</span> is included in another EC <span class="math notranslate nohighlight">\(\ec_{2} \in \winningECs\)</span>, i.e., <span class="math notranslate nohighlight">\(\ec_{1} \subseteq \ec_{2}\)</span>, we have that the maximal expected value achievable in <span class="math notranslate nohighlight">\(\ec_{2}\)</span> is at least equal to the one achievable in <span class="math notranslate nohighlight">\(\ec_{1}\)</span>. Indeed, <span class="math notranslate nohighlight">\(\playerOne\)</span> can reach <span class="math notranslate nohighlight">\(\ec_{1}\)</span> with probability one (by virtue of <span class="math notranslate nohighlight">\(\ec_{2}\)</span> being an EC and <span class="math notranslate nohighlight">\(\ec_{1} \subseteq \ec_{2}\)</span>) and stay in it forever with probability one (by virtue of <span class="math notranslate nohighlight">\(\ec_{1}\)</span> being an EC): hence the expectation of such a strategy would be equal to what can be obtained in <span class="math notranslate nohighlight">\(\ec_{1}\)</span> thanks to the prefix independence of the mean-payoff. This property implies that it is sufficient to consider MWECs in our computations.</p>
+<p>As for <strong>why we do it</strong>, observe that the complexity gain is critical. The number of WECs can be as large as <span class="math notranslate nohighlight">\(\vert\winningECs\vert \leq \vert\ecsSet\vert \leq 2^{\vert V\vert}\)</span>, that is, exponential in the size of the input. Yet, the number of MWECs is bounded by <span class="math notranslate nohighlight">\(\vert\maxWinningECs\vert \leq \vert V\vert\)</span> as they are disjoint by definition: for any two WECs with a non-empty intersection, their union also constitutes an EC, and is still winning because <span class="math notranslate nohighlight">\(\playerOne\)</span> can essentially stick to the EC of her choice.</p>
+<p>The computation of the set <span class="math notranslate nohighlight">\(\maxWinningECs\)</span> is executed by a recursive subalgorithm calling polynomially-many times an oracle solving the worst-case problem (e.g., following the pseudo-polynomial-time algorithm of~\cref{chap:payoffs}). \todo{I need a label on Subsect. 4.3.4 to cite it precisely.} Roughly sketched, this algorithm computes the maximal EC decomposition of an MDP (in polynomial time by <a class="reference internal" href="../5_MDP/end_components.html#5-thm:MEC-decomposition-complexity">Theorem 180</a>), then checks for each EC <span class="math notranslate nohighlight">\(\ec\)</span> in the decomposition (their number is polynomial) if <span class="math notranslate nohighlight">\(\ec\)</span> is winning or not, which requires a call to an oracle solving the worst-case threshold problem on the corresponding subgame. If <span class="math notranslate nohighlight">\(\ec\)</span> is losing, it may still be the case that a sub-EC <span class="math notranslate nohighlight">\(\ec' \subsetneq \ec\)</span> is winning. Therefore we recurse on the MDP reduced to <span class="math notranslate nohighlight">\(\ec\)</span>, where vertices from which <span class="math notranslate nohighlight">\(\playerTwo\)</span> can win in <span class="math notranslate nohighlight">\(\ec\)</span> have been removed (they are a no-go for <span class="math notranslate nohighlight">\(\playerOne\)</span>). Hence the stack of calls is also at most polynomial.</p>
+<div class="proof lemma admonition" id="12-lem:MWEC">
+<p class="admonition-title"><span class="caption-number">Lemma 343 </span> (NEEDS TITLE 12-lem:MWEC)</p>
+<div class="lemma-content section" id="proof-content">
+<p>The set <span class="math notranslate nohighlight">\(\maxWinningECs\)</span> of MWECs can be computed in pseudo-polynomial time, and deciding if a set of vertices <span class="math notranslate nohighlight">\(U \subseteq V\)</span> belongs to <span class="math notranslate nohighlight">\(\maxWinningECs\)</span> is in <span class="math notranslate nohighlight">\(\NP \cap \coNP\)</span>.</p>
+</div>
+</div><p>The complexity follows from <a class="reference internal" href="../4_Payoffs/mean_payoff.html#4-thm:MP-NPcoNP">Theorem 95</a> and <span class="math notranslate nohighlight">\(\P^{\NP \cap \coNP} = \NP \cap \coNP\)</span> <span id="id2">[<span>Brassard:1979</span>]</span>.</p>
+<div class="proof example admonition" id="example-3">
+<p class="admonition-title"><span class="caption-number">Example 344 </span> (NEEDS TITLE AND LABEL)</p>
+<div class="example-content section" id="proof-content">
+<p>Consider the running example in <code class="xref std std-numref docutils literal notranslate"><span class="pre">12-fig:bwcRunningExample</span></code>. Note that vertices <span class="math notranslate nohighlight">\(\state_{1}\)</span>, <span class="math notranslate nohighlight">\(\state_{2}\)</span> and <span class="math notranslate nohighlight">\(\state_{5}\)</span> do not belong to any EC: given any strategy of <span class="math notranslate nohighlight">\(\playerOne\)</span> in <span class="math notranslate nohighlight">\(\markovProcess\)</span>, with probability one, any consistent play will only visit these vertices a finite number of times ( <a class="reference internal" href="../5_MDP/end_components.html#5-lem:EC-inf">Lemma 178</a>). The set of <strong>MWECs</strong> is <span class="math notranslate nohighlight">\(\maxWinningECs = \{\ec_{2}, \ec_{3}\}\)</span>. Obviously, these ECs are disjoint. The set of WECs is larger, <span class="math notranslate nohighlight">\(\winningECs = \maxWinningECs \cup \{\{\state_{9}, \state_{10}\}, \{\state_{6}, \state_{7}\}\}\)</span>.</p>
+<p>End-component <span class="math notranslate nohighlight">\(\ec_{1}\)</span> is <strong>losing</strong>: in the subarena <span class="math notranslate nohighlight">\(\gameNonZero \reduc \ec_{1}\)</span>, Adam’s strategy consisting in always picking the <span class="math notranslate nohighlight">\(-1\)</span> edge guarantees a negative mean-payoff. Note that this edge is present in <span class="math notranslate nohighlight">\(\edgesNonZero\)</span> as it is assigned probability <span class="math notranslate nohighlight">\(1/2\)</span> by the stochastic model <span class="math notranslate nohighlight">\(\stratStoch\)</span>. Here, we witness why it is important to base our definition of WECs on <span class="math notranslate nohighlight">\(\gameNonZero\)</span> rather than <span class="math notranslate nohighlight">\(\arena\)</span>. Indeed, in <span class="math notranslate nohighlight">\(\arena \reduc \ec_{2}\)</span>, it is also possible for <span class="math notranslate nohighlight">\(\playerTwo\)</span> to guarantee a negative mean-payoff by always choosing edges with weight <span class="math notranslate nohighlight">\(-1\)</span>. However, to achieve this, <span class="math notranslate nohighlight">\(\playerTwo\)</span> has to pick edges that are <strong>not</strong> in <span class="math notranslate nohighlight">\(\edgesNonZero\)</span>: this will never happen against the stochastic model and as such, this can be watched by <span class="math notranslate nohighlight">\(\playerOne\)</span> to see if <span class="math notranslate nohighlight">\(\playerTwo\)</span> uses an arbitrary antagonistic strategy, and dealt with. If <span class="math notranslate nohighlight">\(\playerTwo\)</span> conforms to <span class="math notranslate nohighlight">\(\edgesNonZero\)</span>, i.e., if he plays in <span class="math notranslate nohighlight">\(\gameNonZero\)</span>, he has to pick the edge of weight <span class="math notranslate nohighlight">\(1\)</span> in <span class="math notranslate nohighlight">\(\state_{7}\)</span> and <span class="math notranslate nohighlight">\(\playerOne\)</span> has a worst-case winning strategy consisting in always choosing to go in <span class="math notranslate nohighlight">\(\state_{7}\)</span>. This EC is thus classified as <strong>winning</strong>. Note that for <span class="math notranslate nohighlight">\(\ec_{3}\)</span>, in both subarenas <span class="math notranslate nohighlight">\(\arena \reduc \ec_{3}\)</span> and <span class="math notranslate nohighlight">\(\gameNonZero \reduc \ec_{3}\)</span>, <span class="math notranslate nohighlight">\(\playerOne\)</span> can guarantee a strictly positive mean-payoff by playing <span class="math notranslate nohighlight">\((\state_{9}\,\state_{10})^\omega\)</span>: even <strong>arbitrary</strong> strategies of <span class="math notranslate nohighlight">\(\playerTwo\)</span> cannot endanger <span class="math notranslate nohighlight">\(\playerOne\)</span> in this case.</p>
+<p>Lastly, consider the arena depicted in <a class="reference internal" href="#fig-bwcwinningecscomputationexample"><span class="std std-numref">Fig. 74</span></a>. While <span class="math notranslate nohighlight">\(\ec_{2}\)</span> is a strict superset of <span class="math notranslate nohighlight">\(\ec_{3}\)</span>, the former is losing whereas the latter is winning, as explained above. Hence, the set <span class="math notranslate nohighlight">\(\maxWinningECs\)</span> is equal to <span class="math notranslate nohighlight">\(\{\ec_{1}, \ec_{3}\}\)</span>.</p>
+<p>Consider the running example in <code class="xref std std-numref docutils literal notranslate"><span class="pre">12-fig:bwcRunningExample</span></code>. Note that vertices <span class="math notranslate nohighlight">\(\state_{1}\)</span>, <span class="math notranslate nohighlight">\(\state_{2}\)</span> and <span class="math notranslate nohighlight">\(\state_{5}\)</span> do not belong to any EC: given any strategy of <span class="math notranslate nohighlight">\(\playerOne\)</span> in <span class="math notranslate nohighlight">\(\markovProcess\)</span>, with probability one, any consistent play will only visit these vertices a finite number of times ( <a class="reference internal" href="../5_MDP/end_components.html#5-lem:EC-inf">Lemma 178</a>). The set of <strong>MWECs</strong> is <span class="math notranslate nohighlight">\(\maxWinningECs = \{\ec_{2}, \ec_{3}\}\)</span>. Obviously, these ECs are disjoint. The set of WECs is larger, <span class="math notranslate nohighlight">\(\winningECs = \maxWinningECs \cup \{\{\state_{9}, \state_{10}\}, \{\state_{6}, \state_{7}\}\}\)</span>.</p>
+<p>End-component <span class="math notranslate nohighlight">\(\ec_{1}\)</span> is <strong>losing</strong>: in the subarena <span class="math notranslate nohighlight">\(\gameNonZero \reduc \ec_{1}\)</span>, Adam’s strategy consisting in always picking the <span class="math notranslate nohighlight">\(-1\)</span> edge guarantees a negative mean-payoff. Note that this edge is present in <span class="math notranslate nohighlight">\(\edgesNonZero\)</span> as it is assigned probability <span class="math notranslate nohighlight">\(1/2\)</span> by the stochastic model <span class="math notranslate nohighlight">\(\stratStoch\)</span>. Here, we witness why it is important to base our definition of WECs on <span class="math notranslate nohighlight">\(\gameNonZero\)</span> rather than <span class="math notranslate nohighlight">\(\arena\)</span>. Indeed, in <span class="math notranslate nohighlight">\(\arena \reduc \ec_{2}\)</span>, it is also possible for <span class="math notranslate nohighlight">\(\playerTwo\)</span> to guarantee a negative mean-payoff by always choosing edges with weight <span class="math notranslate nohighlight">\(-1\)</span>. However, to achieve this, <span class="math notranslate nohighlight">\(\playerTwo\)</span> has to pick edges that are <strong>not</strong> in <span class="math notranslate nohighlight">\(\edgesNonZero\)</span>: this will never happen against the stochastic model and as such, this can be watched by <span class="math notranslate nohighlight">\(\playerOne\)</span> to see if <span class="math notranslate nohighlight">\(\playerTwo\)</span> uses an arbitrary antagonistic strategy, and dealt with. If <span class="math notranslate nohighlight">\(\playerTwo\)</span> conforms to <span class="math notranslate nohighlight">\(\edgesNonZero\)</span>, i.e., if he plays in <span class="math notranslate nohighlight">\(\gameNonZero\)</span>, he has to pick the edge of weight <span class="math notranslate nohighlight">\(1\)</span> in <span class="math notranslate nohighlight">\(\state_{7}\)</span> and <span class="math notranslate nohighlight">\(\playerOne\)</span> has a worst-case winning strategy consisting in always choosing to go in <span class="math notranslate nohighlight">\(\state_{7}\)</span>. This EC is thus classified as <strong>winning</strong>. Note that for <span class="math notranslate nohighlight">\(\ec_{3}\)</span>, in both subarenas <span class="math notranslate nohighlight">\(\arena \reduc \ec_{3}\)</span> and <span class="math notranslate nohighlight">\(\gameNonZero \reduc \ec_{3}\)</span>, <span class="math notranslate nohighlight">\(\playerOne\)</span> can guarantee a strictly positive mean-payoff by playing <span class="math notranslate nohighlight">\((\state_{9}\,\state_{10})^\omega\)</span>: even <strong>arbitrary</strong> strategies of <span class="math notranslate nohighlight">\(\playerTwo\)</span> cannot endanger <span class="math notranslate nohighlight">\(\playerOne\)</span> in this case.</p>
+<p>Lastly, consider the arena depicted in <a class="reference internal" href="#fig-bwcwinningecscomputationexample"><span class="std std-numref">Fig. 74</span></a>. While <span class="math notranslate nohighlight">\(\ec_{2}\)</span> is a strict superset of <span class="math notranslate nohighlight">\(\ec_{3}\)</span>, the former is losing whereas the latter is winning, as explained above. Hence, the set <span class="math notranslate nohighlight">\(\maxWinningECs\)</span> is equal to <span class="math notranslate nohighlight">\(\{\ec_{1}, \ec_{3}\}\)</span>.</p>
+</div>
+</div></div>
+<div class="section" id="ensure-reaching-winning-end-components">
+<h2>Ensure reaching winning end-components<a class="headerlink" href="#ensure-reaching-winning-end-components" title="Permalink to this headline">¶</a></h2>
+<p>As discussed, under any arbitrary strategy of <span class="math notranslate nohighlight">\(\playerOne\)</span>, vertices visited infinitely often form an EC with probability one ( <a class="reference internal" href="../5_MDP/end_components.html#5-lem:EC-inf">Lemma 178</a>). Now, if we take a <strong>finite-memory</strong> strategy that <strong>satisfies</strong> the <span class="math notranslate nohighlight">\(\BWC\)</span> problem, we can refine this result and state that they form a <strong>winning</strong> EC with probability one. Equivalently, let <span class="math notranslate nohighlight">\(\infVisited{\play}\)</span> denote the set of vertices visited infinitely often along a play <span class="math notranslate nohighlight">\(\play\)</span>: we have that the probability that a play <span class="math notranslate nohighlight">\(\play\)</span> is such that <span class="math notranslate nohighlight">\(\infVisited{\play} = \ec\)</span> for some <span class="math notranslate nohighlight">\(\ec \in \ecsSet \setminus \winningECs\)</span> is zero. The equality is crucial. It may be the case, with non-zero probability, that <span class="math notranslate nohighlight">\(\infVisited{\play} = \ec' \subsetneq \ec\)</span>, for some <span class="math notranslate nohighlight">\(\ec' \in \winningECs\)</span>, and <span class="math notranslate nohighlight">\(\ec \in \ecsSet \setminus \winningECs\)</span> (hence the recursive algorithm to compute <span class="math notranslate nohighlight">\(\maxWinningECs\)</span>). It is clear that <span class="math notranslate nohighlight">\(\playerOne\)</span> should not visit all the vertices of a LEC forever, as then she would not be able to guarantee the worst-case threshold inside the corresponding subarena.</p>
+<div class="proof lemma admonition" id="lemma-4">
+<p class="admonition-title"><span class="caption-number">Lemma 345 </span> (NEEDS TITLE AND LABEL)</p>
+<div class="lemma-content section" id="proof-content">
+<p>\label{12-lem:</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>This is no longer true if Eve may use infinite memory: there may still be some incentive to stay in a LEC. But this goes beyond the scope of our overview.</p>
+</div>
+<p>EC-inf}
+For any initial vertex <span class="math notranslate nohighlight">\( v_0 \)</span> and finite-memory strategy <span class="math notranslate nohighlight">\( \sigma \)</span> that satisfies the BWC problem, it holds that <span class="math notranslate nohighlight">\( \probm^\sigma_{\markovProcess, v_0} ( \{\play \mid \infVisited{\play} \in \winningECs \}) = 1 \)</span>.</p>
+<p>\label{12-lem:</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>This is no longer true if Eve may use infinite memory: there may still be some incentive to stay in a LEC. But this goes beyond the scope of our overview.</p>
+</div>
+<p>EC-inf}
+For any initial vertex <span class="math notranslate nohighlight">\( v_0 \)</span> and finite-memory strategy <span class="math notranslate nohighlight">\( \sigma \)</span> that satisfies the BWC problem, it holds that <span class="math notranslate nohighlight">\( \probm^\sigma_{\markovProcess, v_0} ( \{\play \mid \infVisited{\play} \in \winningECs \}) = 1 \)</span>.</p>
+</div>
+</div><p>We denote <span class="math notranslate nohighlight">\(\negligibleStates = V \setminus \bigcup_{\ec \in \maxWinningECs} \ec\)</span> the set of vertices that, with probability one, are only seen a finite number of times when a <span class="math notranslate nohighlight">\(\BWC\)</span> satisfying strategy is played, and call them <strong>negligible</strong> vertices.</p>
+<p>Our ultimate goal here is to modify the colouring of <span class="math notranslate nohighlight">\(\markovProcess\)</span> from <span class="math notranslate nohighlight">\(c\)</span> to <span class="math notranslate nohighlight">\(c'\)</span>, such that a classical optimal strategy for the expected value problem ( <a class="reference internal" href="../5_MDP/reductions.html#5-thm:general-mp-main">Theorem 187</a>) using this new colouring <span class="math notranslate nohighlight">\(c'\)</span> will naturally avoid LECs and prescribe which WECs are the most interesting to reach for a <span class="math notranslate nohighlight">\(\BWC\)</span> strategy on the initial arena <span class="math notranslate nohighlight">\(\arena\)</span> and MDP <span class="math notranslate nohighlight">\(\markovProcess\)</span> with colouring <span class="math notranslate nohighlight">\(c\)</span>. For the sake of readability, let us simply use <span class="math notranslate nohighlight">\(\markovProcess\)</span> and <span class="math notranslate nohighlight">\(\markovProcess'\)</span> to refer to MDP <span class="math notranslate nohighlight">\(\markovProcess\)</span> with respective colourings <span class="math notranslate nohighlight">\(c\)</span> and <span class="math notranslate nohighlight">\(c'\)</span>.</p>
+<p>Observe that the expected value obtained in <span class="math notranslate nohighlight">\(\markovProcess\)</span> by any <span class="math notranslate nohighlight">\(\BWC\)</span> satisfying strategy of <span class="math notranslate nohighlight">\(\playerOne\)</span> only depends on the weights of edges involved in WECs, or equivalently, in MWECs (as the set of plays that are not trapped in them has measure zero). Consequently, we define colouring <span class="math notranslate nohighlight">\(c'\)</span> as follows: we keep the weights unchanged in edges that belong to some <span class="math notranslate nohighlight">\(\ec \in \maxWinningECs\)</span>, and we put them to zero everywhere else, i.e., on any edge involving a negligible vertex. Weight zero is taken because it is lower than the expectation granted by WECs, which is <strong>strictly</strong> greater than zero by definition (as <span class="math notranslate nohighlight">\(\alpha = 0\)</span>).</p>
+<div class="proof example admonition" id="example-5">
+<p class="admonition-title"><span class="caption-number">Example 346 </span> (NEEDS TITLE AND LABEL)</p>
+<div class="example-content section" id="proof-content">
+<p>Consider <span class="math notranslate nohighlight">\(\ec_{1}\)</span> in <code class="xref std std-numref docutils literal notranslate"><span class="pre">12-fig:bwcRunningExample</span></code>. This EC is losing as argued before. The optimal expectation achievable in <span class="math notranslate nohighlight">\(\markovProcess \reduc \ec_{1}\)</span> by <span class="math notranslate nohighlight">\(\playerOne\)</span> is <span class="math notranslate nohighlight">\(4\)</span>: this is higher than what is achievable in both <span class="math notranslate nohighlight">\(\ec_{2}\)</span> and <span class="math notranslate nohighlight">\(\ec_{3}\)</span>. Note that there exists no WEC included in <span class="math notranslate nohighlight">\(\ec_{1}\)</span>. By~\cref{chap:mdp}, we know that any strategy of <span class="math notranslate nohighlight">\(\playerOne\)</span> will see its expectation bounded by the maximum between the optimal expectations of the ECs <span class="math notranslate nohighlight">\(\ec_{1}\)</span>, <span class="math notranslate nohighlight">\(\ec_{2}\)</span> and <span class="math notranslate nohighlight">\(\ec_{3}\)</span>. Our previous arguments further refine this bound by restricting it to the maximum between the expectations of <span class="math notranslate nohighlight">\(\ec_{2}\)</span> and <span class="math notranslate nohighlight">\(\ec_{3}\)</span>. Indeed, <span class="math notranslate nohighlight">\(\playerOne\)</span> cannot benefit from the expected value of <span class="math notranslate nohighlight">\(\ec_{1}\)</span> while using finite memory, as being trapped in <span class="math notranslate nohighlight">\(\ec_{1}\)</span> induces the existence of plays losing for the worst-case. Hence there is no point in playing inside <span class="math notranslate nohighlight">\(\ec_{1}\)</span> and <span class="math notranslate nohighlight">\(\playerOne\)</span> may as well cross it directly and try to maximize its expectation using the WECs, <span class="math notranslate nohighlight">\(\ec_{2}\)</span> and <span class="math notranslate nohighlight">\(\ec_{3}\)</span>. The set of negligible vertices in <span class="math notranslate nohighlight">\(\markovProcess\)</span> is <span class="math notranslate nohighlight">\(\negligibleStates = V \setminus (\ec_{2} \cup \ec_{3}) = \{\state_{1}, \state_{2}, \state_{3}, \state_{4}, \state_{5}\}\)</span>. We depict <span class="math notranslate nohighlight">\(\markovProcess'\)</span> in <a class="reference internal" href="#fig-bwc-mp-modifiedmdp"><span class="std std-numref">Fig. 75</span></a>.</p>
+<p>In the arena depicted in <a class="reference internal" href="#fig-bwcwinningecscomputationexample"><span class="std std-numref">Fig. 74</span></a>, we already observed that <span class="math notranslate nohighlight">\(\ecsSet = \{\ec_{1}, \ec_{2}, \ec_{3}\}\)</span> and <span class="math notranslate nohighlight">\(\winningECs = \maxWinningECs = \{\ec_{1}, \ec_{3}\}\)</span>. Consider the negligible vertex <span class="math notranslate nohighlight">\(\state_{1} \in \negligibleStates = \ec_{2} \setminus \ec_{3}\)</span>. A finite-memory strategy of <span class="math notranslate nohighlight">\(\playerOne\)</span> may only take the edge <span class="math notranslate nohighlight">\((\state_{1}, \state_{3})\)</span> finitely often in order to ensure the worst-case requirement. If <span class="math notranslate nohighlight">\(\playerOne\)</span> were to play this edge repeatedly, the losing play <span class="math notranslate nohighlight">\((\state_{1}\state_{3}\state_{4})^{\omega}\)</span> would exist (while of probability zero). Therefore, <span class="math notranslate nohighlight">\(\playerOne\)</span> can only ensure that <span class="math notranslate nohighlight">\(\ec_{3}\)</span> is reached with a probability arbitrarily close to one, and not equal to one, because at some point, she has to switch to edge <span class="math notranslate nohighlight">\((\state_{1}, \state_{2})\)</span> (after a bounded time since <span class="math notranslate nohighlight">\(\playerOne\)</span> uses a finite-memory strategy).</p>
+<p>Consider <span class="math notranslate nohighlight">\(\ec_{1}\)</span> in <code class="xref std std-numref docutils literal notranslate"><span class="pre">12-fig:bwcRunningExample</span></code>. This EC is losing as argued before. The optimal expectation achievable in <span class="math notranslate nohighlight">\(\markovProcess \reduc \ec_{1}\)</span> by <span class="math notranslate nohighlight">\(\playerOne\)</span> is <span class="math notranslate nohighlight">\(4\)</span>: this is higher than what is achievable in both <span class="math notranslate nohighlight">\(\ec_{2}\)</span> and <span class="math notranslate nohighlight">\(\ec_{3}\)</span>. Note that there exists no WEC included in <span class="math notranslate nohighlight">\(\ec_{1}\)</span>. By~\cref{chap:mdp}, we know that any strategy of <span class="math notranslate nohighlight">\(\playerOne\)</span> will see its expectation bounded by the maximum between the optimal expectations of the ECs <span class="math notranslate nohighlight">\(\ec_{1}\)</span>, <span class="math notranslate nohighlight">\(\ec_{2}\)</span> and <span class="math notranslate nohighlight">\(\ec_{3}\)</span>. Our previous arguments further refine this bound by restricting it to the maximum between the expectations of <span class="math notranslate nohighlight">\(\ec_{2}\)</span> and <span class="math notranslate nohighlight">\(\ec_{3}\)</span>. Indeed, <span class="math notranslate nohighlight">\(\playerOne\)</span> cannot benefit from the expected value of <span class="math notranslate nohighlight">\(\ec_{1}\)</span> while using finite memory, as being trapped in <span class="math notranslate nohighlight">\(\ec_{1}\)</span> induces the existence of plays losing for the worst-case. Hence there is no point in playing inside <span class="math notranslate nohighlight">\(\ec_{1}\)</span> and <span class="math notranslate nohighlight">\(\playerOne\)</span> may as well cross it directly and try to maximize its expectation using the WECs, <span class="math notranslate nohighlight">\(\ec_{2}\)</span> and <span class="math notranslate nohighlight">\(\ec_{3}\)</span>. The set of negligible vertices in <span class="math notranslate nohighlight">\(\markovProcess\)</span> is <span class="math notranslate nohighlight">\(\negligibleStates = V \setminus (\ec_{2} \cup \ec_{3}) = \{\state_{1}, \state_{2}, \state_{3}, \state_{4}, \state_{5}\}\)</span>. We depict <span class="math notranslate nohighlight">\(\markovProcess'\)</span> in <a class="reference internal" href="#fig-bwc-mp-modifiedmdp"><span class="std std-numref">Fig. 75</span></a>.</p>
+<p>In the arena depicted in <a class="reference internal" href="#fig-bwcwinningecscomputationexample"><span class="std std-numref">Fig. 74</span></a>, we already observed that <span class="math notranslate nohighlight">\(\ecsSet = \{\ec_{1}, \ec_{2}, \ec_{3}\}\)</span> and <span class="math notranslate nohighlight">\(\winningECs = \maxWinningECs = \{\ec_{1}, \ec_{3}\}\)</span>. Consider the negligible vertex <span class="math notranslate nohighlight">\(\state_{1} \in \negligibleStates = \ec_{2} \setminus \ec_{3}\)</span>. A finite-memory strategy of <span class="math notranslate nohighlight">\(\playerOne\)</span> may only take the edge <span class="math notranslate nohighlight">\((\state_{1}, \state_{3})\)</span> finitely often in order to ensure the worst-case requirement. If <span class="math notranslate nohighlight">\(\playerOne\)</span> were to play this edge repeatedly, the losing play <span class="math notranslate nohighlight">\((\state_{1}\state_{3}\state_{4})^{\omega}\)</span> would exist (while of probability zero). Therefore, <span class="math notranslate nohighlight">\(\playerOne\)</span> can only ensure that <span class="math notranslate nohighlight">\(\ec_{3}\)</span> is reached with a probability arbitrarily close to one, and not equal to one, because at some point, she has to switch to edge <span class="math notranslate nohighlight">\((\state_{1}, \state_{2})\)</span> (after a bounded time since <span class="math notranslate nohighlight">\(\playerOne\)</span> uses a finite-memory strategy).</p>
+</div>
+</div><div class="figure align-center" id="fig-bwc-mp-modifiedmdp">
+<img alt="../_images/12-fig:bwc_mp_modifiedMDP.png" src="../_images/12-fig:bwc_mp_modifiedMDP.png" />
+<p class="caption"><span class="caption-number">Fig. 75 </span><span class="caption-text">Putting all weights outside MWECs to zero naturally drives the optimal expectation strategy in <span class="math notranslate nohighlight">\(\markovProcess'\)</span>, depicted by the thick edges, toward the highest valued MWECs. ECs are annotated with their corresponding optimal expectations in the original MDP <span class="math notranslate nohighlight">\(\markovProcess\)</span> and the modified MDP <span class="math notranslate nohighlight">\(\markovProcess'\)</span>.</span><a class="headerlink" href="#fig-bwc-mp-modifiedmdp" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="reach-the-highest-valued-winning-end-components">
+<h2>Reach the highest valued winning end-components<a class="headerlink" href="#reach-the-highest-valued-winning-end-components" title="Permalink to this headline">¶</a></h2>
+<p>We compute the maximal expected mean-payoff <span class="math notranslate nohighlight">\(\beta^{\ast}\)</span> that can be achieved by <span class="math notranslate nohighlight">\(\playerOne\)</span> in <span class="math notranslate nohighlight">\(\markovProcess'\)</span>, from <span class="math notranslate nohighlight">\(v_0\)</span>. This computation takes polynomial time and memoryless strategies suffice to achieve the maximal value, as established in <a class="reference internal" href="../5_MDP/reductions.html#5-thm:general-mp-main">Theorem 187</a>.</p>
+<p>As discussed before, such a strategy reaches an EC of <span class="math notranslate nohighlight">\(\markovProcess'\)</span> with probability one. Basically, we build a strategy that favours reaching ECs with high associated expectations in <span class="math notranslate nohighlight">\(\markovProcess'\)</span>.</p>
+<p>We argue that the ECs reached with probability one by this strategy are necessarily WECs in <span class="math notranslate nohighlight">\(\markovProcess\)</span>. Clearly, if a WEC is reachable instead of a losing one, it will be favoured because of the weights definition in <span class="math notranslate nohighlight">\(\markovProcess'\)</span> (expectation is strictly higher in WECs). Thus it remains to check if the set of WECs is reachable with probability one from any vertex in <span class="math notranslate nohighlight">\(V\)</span>. That is the case because of the preprocessing: we know that all vertices are winning for the worst-case requirement. Clearly, from any vertex in <span class="math notranslate nohighlight">\(A = V \setminus \bigcup_{\ec \in \ecsSet} \ec\)</span>, <span class="math notranslate nohighlight">\(\playerOne\)</span> cannot ensure to stay in <span class="math notranslate nohighlight">\(A\)</span> (otherwise it would form an EC) and thus must be able to win the worst-case requirement from reached ECs. Now for any vertex in <span class="math notranslate nohighlight">\(B = \bigcup_{\ec \in \ecsSet} \ec \setminus \bigcup_{\ec \in \maxWinningECs} \ec\)</span>, i.e., vertices in LECs and not in any sub-EC winning, <span class="math notranslate nohighlight">\(\playerOne\)</span> cannot win the worst-case by staying in <span class="math notranslate nohighlight">\(B\)</span>, by definition of LEC. Since we know <span class="math notranslate nohighlight">\(\playerOne\)</span> can ensure the worst-case by hypothesis, it is clear that she must be able to reach <span class="math notranslate nohighlight">\(C = \bigcup_{\ec \in \maxWinningECs} \ec\)</span> from any vertex in <span class="math notranslate nohighlight">\(B\)</span>, as claimed.</p>
+</div>
+<div class="section" id="inside-winning-end-components">
+<h2>Inside winning end-components<a class="headerlink" href="#inside-winning-end-components" title="Permalink to this headline">¶</a></h2>
+<p>Based on that, we know that WECs of <span class="math notranslate nohighlight">\(\markovProcess\)</span> will be reached with probability one when maximizing the expected value in <span class="math notranslate nohighlight">\(\markovProcess'\)</span>. Let us first consider what we can say about such ECs if we assume that <span class="math notranslate nohighlight">\(\edgesNonZero = \edges\)</span>, i.e., if the stochastic model <span class="math notranslate nohighlight">\(\stratStoch\)</span> maps all possible edges to non-zero probabilities.
+We establish a finite-memory <strong>combined strategy</strong> <span class="math notranslate nohighlight">\(\stratComb\)</span> of <span class="math notranslate nohighlight">\(\playerOne\)</span> that ensures~(i) worst-case satisfaction while yielding (ii) an expected value <span class="math notranslate nohighlight">\(\varepsilon\)</span>-close to the maximal expectation inside the EC.</p>
+<p>For two well-chosen parameters <span class="math notranslate nohighlight">\(\stepsExp, \stepsWC \in \N\)</span>, it is informally defined as follows: in phase <span class="math notranslate nohighlight">\(\typeA\)</span>, play a memoryless expected value optimal strategy <span class="math notranslate nohighlight">\(\stratExp\)</span> for <span class="math notranslate nohighlight">\(\stepsExp\)</span> steps and memorize <span class="math notranslate nohighlight">\(\cmbSum \in \Z\)</span>, the sum of weights along these steps; in phase <span class="math notranslate nohighlight">\(\typeB\)</span>, if <span class="math notranslate nohighlight">\(\cmbSum &gt; 0\)</span>, go to <span class="math notranslate nohighlight">\(\typeA\)</span>, otherwise play a memoryless worst-case optimal strategy <span class="math notranslate nohighlight">\(\stratWC\)</span> for <span class="math notranslate nohighlight">\(\stepsWC\)</span> steps, then go to <span class="math notranslate nohighlight">\(\typeA\)</span>. In <span class="math notranslate nohighlight">\(\typeA\)</span>, <span class="math notranslate nohighlight">\(\playerOne\)</span> tries to increase her expectation and approach the optimal one, while in <span class="math notranslate nohighlight">\(\typeB\)</span>, she compensates, if needed, losses that occurred in <span class="math notranslate nohighlight">\(\typeA\)</span>.</p>
+<p>The two memoryless strategies exist on the subarena induced by the EC: by definition of ECs, based on <span class="math notranslate nohighlight">\(\edgesNonZero\)</span>, the stochastic model of <span class="math notranslate nohighlight">\(\playerTwo\)</span> will never be able to force leaving the EC against the combined strategy.</p>
+<p>A key result to our approach is the existence of values for <span class="math notranslate nohighlight">\(\stepsExp\)</span> and <span class="math notranslate nohighlight">\(\stepsWC\)</span> such that~(i) and (ii) are verified. We see plays as sequences of periods, each starting with phase <span class="math notranslate nohighlight">\(\typeA\)</span>.</p>
+<p>First, for any <span class="math notranslate nohighlight">\(\stepsExp\)</span>, it is possible to define <span class="math notranslate nohighlight">\(\stepsWC(\stepsExp)\)</span> such that any period composed of phases <span class="math notranslate nohighlight">\(\typeA+\typeB\)</span> ensures a mean-payoff at least <span class="math notranslate nohighlight">\(1/(\stepsExp+\stepsWC) &gt; 0\)</span>. Periods containing only phase <span class="math notranslate nohighlight">\(\typeA\)</span> trivially induce a mean-payoff at least <span class="math notranslate nohighlight">\(1/\stepsExp\)</span> as they are not followed by phase <span class="math notranslate nohighlight">\(\typeB\)</span>. Both rely on the weights being integers. As the length of any period is bounded by <span class="math notranslate nohighlight">\((\stepsExp+\stepsWC)\)</span>, the inequality remains strict for the mean-payoff of any play, granting~(i).</p>
+<p>Now, consider parameter <span class="math notranslate nohighlight">\(\stepsExp\)</span>. Clearly, when <span class="math notranslate nohighlight">\(\stepsExp \rightarrow \infty\)</span>, the expectation over phase <span class="math notranslate nohighlight">\(\typeA\)</span> tends to the optimal one. Nevertheless, phases <span class="math notranslate nohighlight">\(\typeB\)</span> also contribute to the overall expectation of the combined strategy, and (in general) lower it so that it is strictly less than the optimal for any <span class="math notranslate nohighlight">\(\stepsExp, \stepsWC \in \N\)</span>. Hence to prove (ii), we not only need that the probability of playing phase <span class="math notranslate nohighlight">\(\typeB\)</span> decreases when <span class="math notranslate nohighlight">\(\stepsExp\)</span> increases, but also that it decreases faster than the increase of <span class="math notranslate nohighlight">\(\stepsWC\)</span>, needed to ensure~(i), so that overall, the contribution of phases <span class="math notranslate nohighlight">\(\typeB\)</span> tends to zero when <span class="math notranslate nohighlight">\(\stepsExp \rightarrow \infty\)</span>. This is indeed the case and is proved using results bounding the probability of observing a mean-payoff significantly (more than some <span class="math notranslate nohighlight">\(\varepsilon\)</span>) different than the optimal expectation along a phase <span class="math notranslate nohighlight">\(\typeA\)</span> of length <span class="math notranslate nohighlight">\(\stepsExp \in \N\)</span>: this probability decreases exponentially when <span class="math notranslate nohighlight">\(\stepsExp\)</span> increases, while <span class="math notranslate nohighlight">\(\stepsWC\)</span> only needs to be polynomial in <span class="math notranslate nohighlight">\(\stepsExp\)</span>.</p>
+<div class="proof theorem admonition" id="12-thm:insideWinning">
+<p class="admonition-title"><span class="caption-number">Theorem 347 </span> (NEEDS TITLE 12-thm:insideWinning)</p>
+<div class="theorem-content section" id="proof-content">
+<p>Let <span class="math notranslate nohighlight">\(U \in \winningECs\)</span> be a WEC, <span class="math notranslate nohighlight">\(\stratStoch\)</span> be such that <span class="math notranslate nohighlight">\(\edgesNonZero = \edges\)</span>, <span class="math notranslate nohighlight">\(v_0 \in U\)</span> be the initial vertex, and let <span class="math notranslate nohighlight">\(\beta^\ast \in \Q\)</span> be the maximal expected value achievable by <span class="math notranslate nohighlight">\(\playerOne\)</span> in EC <span class="math notranslate nohighlight">\(U\)</span>. Then, for all <span class="math notranslate nohighlight">\(\varepsilon &gt; 0\)</span>, there exists a finite-memory strategy of <span class="math notranslate nohighlight">\(\playerOne\)</span> that satisfies the <span class="math notranslate nohighlight">\(\BWC\)</span> problem for the thresholds pair <span class="math notranslate nohighlight">\((0,\, \beta^\ast - \varepsilon)\)</span>.</p>
+</div>
+</div><div class="proof example admonition" id="example-7">
+<p class="admonition-title"><span class="caption-number">Example 348 </span> (NEEDS TITLE AND LABEL)</p>
+<div class="example-content section" id="proof-content">
+<p>Consider the subarena <span class="math notranslate nohighlight">\(\gameNonZero \reduc \ec_{3} = \arena \reduc \ec_{3}\)</span> from <code class="xref std std-numref docutils literal notranslate"><span class="pre">12-fig:bwcRunningExample</span></code> and the initial vertex <span class="math notranslate nohighlight">\(\state_{10}\)</span>. Clearly, the worst-case requirement can be satisfied, that is why the EC is classified as winning. Always choosing to go to <span class="math notranslate nohighlight">\(\state_{9}\)</span> when in <span class="math notranslate nohighlight">\(\state_{10}\)</span> is an optimal memoryless worst-case strategy <span class="math notranslate nohighlight">\(\stratWC\)</span> that guarantees a mean-payoff <span class="math notranslate nohighlight">\(\alpha^\ast = 1\)</span>. Its expectation is <span class="math notranslate nohighlight">\(\expv^{\stratWC}_{(\arena \reduc \ec_{3})_{\tau^\text{stoch}},v_{10}}[\MeanPayoff^{-}] = 1\)</span>. On the other hand, the strategy <span class="math notranslate nohighlight">\(\stratExp\)</span> that always selects the edge going to <span class="math notranslate nohighlight">\(\state_{11}\)</span> is optimal regarding the expected value criterion: it induces expectation <span class="math notranslate nohighlight">\(\beta^\ast = \big(0 + \big(1/2 \cdot 9 + 1/2 \cdot (-1)\big)\big)/2 = 2\)</span> against the stochastic model <span class="math notranslate nohighlight">\(\stratStoch\)</span>. However, it can only guarantee a mean-payoff of value <span class="math notranslate nohighlight">\(-1/2\)</span> in the worst-case.</p>
+<p>By the reasoning above, we know that it is possible to find finite-memory strategies satisfying the <span class="math notranslate nohighlight">\(\BWC\)</span> problem for any thresholds pair <span class="math notranslate nohighlight">\((0,\, 2 - \varepsilon)\)</span>, <span class="math notranslate nohighlight">\(\varepsilon &gt; 0\)</span>. In particular, consider the thresholds pair <span class="math notranslate nohighlight">\((0,\, 3/2)\)</span>. We build a combined strategy <span class="math notranslate nohighlight">\(\stratComb\)</span> as sketched before. Let <span class="math notranslate nohighlight">\(\stepsExp = \stepsWC = 2\)</span>: the strategy plays the edge <span class="math notranslate nohighlight">\((\state_{10}, \state_{11})\)</span> once, then if the edge of value <span class="math notranslate nohighlight">\(9\)</span> has been chosen by <span class="math notranslate nohighlight">\(\playerTwo\)</span>, it chooses <span class="math notranslate nohighlight">\((\state_{10}, \state_{11})\)</span> again; otherwise it chooses the edge <span class="math notranslate nohighlight">\((\state_{10}, \state_{9})\)</span> once and then resumes choosing <span class="math notranslate nohighlight">\((\state_{10}, \state_{11})\)</span>. This strategy satisfies the <span class="math notranslate nohighlight">\(\BWC\)</span> problem. In the worst-case, <span class="math notranslate nohighlight">\(\playerTwo\)</span> always chooses the <span class="math notranslate nohighlight">\(-1\)</span> edge, but each time he does so, the <span class="math notranslate nohighlight">\(-1\)</span> is followed by two <span class="math notranslate nohighlight">\(+1\)</span> thanks to the cycle <span class="math notranslate nohighlight">\(\state_{10} \state_{9} \state_{10}\)</span>. Strategy <span class="math notranslate nohighlight">\(\stratComb\)</span> hence guarantees a mean-payoff equal to <span class="math notranslate nohighlight">\((0 - 1 + 1 + 1)/4 = 1/4 &gt; 0\)</span> in the worst-case. For the expected value requirement, we can build the induced Markov chain <span class="math notranslate nohighlight">\((\arena \reduc \ec_{3})_{\stratComb, \tau^\text{stoch}}\)</span> (<code class="xref std std-numref docutils literal notranslate"><span class="pre">12-fig:mp_insideSWEC_MC</span></code>) and check that its expectation is <span class="math notranslate nohighlight">\(\expv^{\stratComb}_{(\arena \reduc \ec_{3})_{\tau^\text{stoch}},v_{10}}[\MeanPayoff^{-}] = 5/3 &gt; 3/2\)</span> (\cref{chap:payoffs}).</p>
+<div class="figure align-center" id="fig-mp-insideswec-mc">
+<img alt="../_images/12-fig:mp_insideSWEC_MC.png" src="../_images/12-fig:mp_insideSWEC_MC.png" />
+<p class="caption"><span class="caption-number">Fig. 76 </span><span class="caption-text">Markov chain induced by the combined strategy <span class="math notranslate nohighlight">\(\stratComb\)</span> and the stochastic model <span class="math notranslate nohighlight">\(\stratStoch\)</span> over the WEC <span class="math notranslate nohighlight">\(\ec_{3}\)</span> of <span class="math notranslate nohighlight">\(\arena\)</span>.</span><a class="headerlink" href="#fig-mp-insideswec-mc" title="Permalink to this image">¶</a></p>
+</div>
+<p>Consider the subarena <span class="math notranslate nohighlight">\(\gameNonZero \reduc \ec_{3} = \arena \reduc \ec_{3}\)</span> from <code class="xref std std-numref docutils literal notranslate"><span class="pre">12-fig:bwcRunningExample</span></code> and the initial vertex <span class="math notranslate nohighlight">\(\state_{10}\)</span>. Clearly, the worst-case requirement can be satisfied, that is why the EC is classified as winning. Always choosing to go to <span class="math notranslate nohighlight">\(\state_{9}\)</span> when in <span class="math notranslate nohighlight">\(\state_{10}\)</span> is an optimal memoryless worst-case strategy <span class="math notranslate nohighlight">\(\stratWC\)</span> that guarantees a mean-payoff <span class="math notranslate nohighlight">\(\alpha^\ast = 1\)</span>. Its expectation is <span class="math notranslate nohighlight">\(\expv^{\stratWC}_{(\arena \reduc \ec_{3})_{\tau^\text{stoch}},v_{10}}[\MeanPayoff^{-}] = 1\)</span>. On the other hand, the strategy <span class="math notranslate nohighlight">\(\stratExp\)</span> that always selects the edge going to <span class="math notranslate nohighlight">\(\state_{11}\)</span> is optimal regarding the expected value criterion: it induces expectation <span class="math notranslate nohighlight">\(\beta^\ast = \big(0 + \big(1/2 \cdot 9 + 1/2 \cdot (-1)\big)\big)/2 = 2\)</span> against the stochastic model <span class="math notranslate nohighlight">\(\stratStoch\)</span>. However, it can only guarantee a mean-payoff of value <span class="math notranslate nohighlight">\(-1/2\)</span> in the worst-case.</p>
+<p>By the reasoning above, we know that it is possible to find finite-memory strategies satisfying the <span class="math notranslate nohighlight">\(\BWC\)</span> problem for any thresholds pair <span class="math notranslate nohighlight">\((0,\, 2 - \varepsilon)\)</span>, <span class="math notranslate nohighlight">\(\varepsilon &gt; 0\)</span>. In particular, consider the thresholds pair <span class="math notranslate nohighlight">\((0,\, 3/2)\)</span>. We build a combined strategy <span class="math notranslate nohighlight">\(\stratComb\)</span> as sketched before. Let <span class="math notranslate nohighlight">\(\stepsExp = \stepsWC = 2\)</span>: the strategy plays the edge <span class="math notranslate nohighlight">\((\state_{10}, \state_{11})\)</span> once, then if the edge of value <span class="math notranslate nohighlight">\(9\)</span> has been chosen by <span class="math notranslate nohighlight">\(\playerTwo\)</span>, it chooses <span class="math notranslate nohighlight">\((\state_{10}, \state_{11})\)</span> again; otherwise it chooses the edge <span class="math notranslate nohighlight">\((\state_{10}, \state_{9})\)</span> once and then resumes choosing <span class="math notranslate nohighlight">\((\state_{10}, \state_{11})\)</span>. This strategy satisfies the <span class="math notranslate nohighlight">\(\BWC\)</span> problem. In the worst-case, <span class="math notranslate nohighlight">\(\playerTwo\)</span> always chooses the <span class="math notranslate nohighlight">\(-1\)</span> edge, but each time he does so, the <span class="math notranslate nohighlight">\(-1\)</span> is followed by two <span class="math notranslate nohighlight">\(+1\)</span> thanks to the cycle <span class="math notranslate nohighlight">\(\state_{10} \state_{9} \state_{10}\)</span>. Strategy <span class="math notranslate nohighlight">\(\stratComb\)</span> hence guarantees a mean-payoff equal to <span class="math notranslate nohighlight">\((0 - 1 + 1 + 1)/4 = 1/4 &gt; 0\)</span> in the worst-case. For the expected value requirement, we can build the induced Markov chain <span class="math notranslate nohighlight">\((\arena \reduc \ec_{3})_{\stratComb, \tau^\text{stoch}}\)</span> (<code class="xref std std-numref docutils literal notranslate"><span class="pre">12-fig:mp_insideSWEC_MC</span></code>) and check that its expectation is <span class="math notranslate nohighlight">\(\expv^{\stratComb}_{(\arena \reduc \ec_{3})_{\tau^\text{stoch}},v_{10}}[\MeanPayoff^{-}] = 5/3 &gt; 3/2\)</span> (\cref{chap:payoffs}).</p>
+<div class="figure align-center" id="id3">
+<img alt="../_images/12-fig:mp_insideSWEC_MC.png" src="../_images/12-fig:mp_insideSWEC_MC.png" />
+<p class="caption"><span class="caption-number">Fig. 77 </span><span class="caption-text">Markov chain induced by the combined strategy <span class="math notranslate nohighlight">\(\stratComb\)</span> and the stochastic model <span class="math notranslate nohighlight">\(\stratStoch\)</span> over the WEC <span class="math notranslate nohighlight">\(\ec_{3}\)</span> of <span class="math notranslate nohighlight">\(\arena\)</span>.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+</div><div class="admonition-remark admonition">
+<p class="admonition-title">Remark</p>
+<p>\label{12-rmk:bwcMemorylessNotEnough}
+Memoryless strategies do not suffice for the <span class="math notranslate nohighlight">\(\BWC\)</span> problem, even with randomization. Indeed, the edge <span class="math notranslate nohighlight">\((\state_{10}, \state_{11})\)</span> cannot be assigned a non-zero probability as it would endanger the worst-case requirement (since the play <span class="math notranslate nohighlight">\((\state_{10}\state_{11})^{\omega}\)</span> cycling on the edge of weight <span class="math notranslate nohighlight">\(-1\)</span> would exist and have a negative mean-payoff). Hence, the only acceptable memoryless strategy is <span class="math notranslate nohighlight">\(\stratWC\)</span>, which has only an expectation of <span class="math notranslate nohighlight">\(1\)</span>.</p>
+</div>
+<p>Now, consider what happens if <span class="math notranslate nohighlight">\(\edgesNonZero \subsetneq E\)</span>. Then, if <span class="math notranslate nohighlight">\(\playerTwo\)</span> uses an arbitrary strategy, he can take edges of probability zero, i.e., in <span class="math notranslate nohighlight">\(E \setminus \edgesNonZero\)</span>, either staying in the EC, or leaving it. In both cases, this must be taken into account in order to satisfy the worst-case constraint as it may involve dangerous weights (recall that zero-probability edges are not considered when an EC is classified as winning or not). Fortunately, if this were to occur, <span class="math notranslate nohighlight">\(\playerOne\)</span> could switch to a worst-case winning memoryless strategy <span class="math notranslate nohighlight">\(\stratSecure\)</span>, which exists in all vertices thanks to the preprocessing, to preserve the worst-case requirement. Regarding the expected value, this has no impact as it occurs with probability zero against <span class="math notranslate nohighlight">\(\stratStoch\)</span>. The strategy to follow in WECs hence adds this reaction procedure to the combined strategy: we call it the <strong>witness-and-secure strategy</strong> <span class="math notranslate nohighlight">\(\stratWNS\)</span>.</p>
+<div class="proof theorem admonition" id="12-thm:wns">
+<p class="admonition-title"><span class="caption-number">Theorem 349 </span> (NEEDS TITLE 12-thm:wns)</p>
+<div class="theorem-content section" id="proof-content">
+<p>Let <span class="math notranslate nohighlight">\(U \in \winningECs\)</span> be a WEC, <span class="math notranslate nohighlight">\(v_0 \in U\)</span> be the initial vertex, and <span class="math notranslate nohighlight">\(\beta^\ast \in \Q\)</span> be the maximal expected value achievable by <span class="math notranslate nohighlight">\(\playerOne\)</span> in EC <span class="math notranslate nohighlight">\(U\)</span>. Then, for all <span class="math notranslate nohighlight">\(\varepsilon &gt; 0\)</span>, there exists a finite-memory strategy of <span class="math notranslate nohighlight">\(\playerOne\)</span> that satisfies the <span class="math notranslate nohighlight">\(\BWC\)</span> problem for the thresholds pair <span class="math notranslate nohighlight">\((0,\, \beta^\ast - \varepsilon)\)</span>.</p>
+</div>
+</div><div class="proof example admonition" id="example-9">
+<p class="admonition-title"><span class="caption-number">Example 350 </span> (NEEDS TITLE AND LABEL)</p>
+<div class="example-content section" id="proof-content">
+<p>Consider the WEC <span class="math notranslate nohighlight">\(\ec_{2}\)</span> in <code class="xref std std-numref docutils literal notranslate"><span class="pre">12-fig:bwcRunningExample</span></code> and the initial vertex <span class="math notranslate nohighlight">\(\state_{6} \in \ec_{2}\)</span>. <span class="math notranslate nohighlight">\(\playerOne\)</span> can ensure a strictly positive mean-payoff in the subarena <span class="math notranslate nohighlight">\(\gameNonZero \reduc \ec_{2}\)</span>, but not in <span class="math notranslate nohighlight">\(\arena \reduc \ec_{2}\)</span>. Indeed, it is easy to see that by always choosing the <span class="math notranslate nohighlight">\(-1\)</span> edges (which requires an edge <span class="math notranslate nohighlight">\((\state_{7}, \state_{6}) \in \edgesNonZero \setminus \edges\)</span>), <span class="math notranslate nohighlight">\(\playerTwo\)</span> can ensure a negative mean-payoff whatever the strategy of <span class="math notranslate nohighlight">\(\playerOne\)</span>. However, there exists a strategy that ensures the worst-case constraint, i.e., that yields a strictly positive mean-payoff against any strategy of Adam, by leaving the EC. Let <span class="math notranslate nohighlight">\(\stratSecure\)</span> be the memoryless strategy that takes the edge <span class="math notranslate nohighlight">\((\state_{6}, \state_{9})\)</span> and then cycle on <span class="math notranslate nohighlight">\((\state_{10}\state_{9})^{\omega}\)</span> forever: it guarantees a mean-payoff of <span class="math notranslate nohighlight">\(1 &gt; 0\)</span>.</p>
+<p>For a moment, consider the EC <span class="math notranslate nohighlight">\(\ec_{2}\)</span> in <span class="math notranslate nohighlight">\(\gameNonZero\)</span>. Graphically, it means that the <span class="math notranslate nohighlight">\(-1\)</span> edge from <span class="math notranslate nohighlight">\(\state_{7}\)</span> to <span class="math notranslate nohighlight">\(\state_{6}\)</span> disappears. In the subarena <span class="math notranslate nohighlight">\(\gameNonZero \reduc \ec_{2}\)</span>, there are two particular memoryless strategies. The optimal worst-case strategy <span class="math notranslate nohighlight">\(\stratWC\)</span> guarantees a mean-payoff of <span class="math notranslate nohighlight">\(1/2 &gt; 0\)</span> by choosing to go to <span class="math notranslate nohighlight">\(\state_{7}\)</span>. The optimal expectation strategy <span class="math notranslate nohighlight">\(\stratExp\)</span> yields an expected mean-payoff of <span class="math notranslate nohighlight">\(3\)</span> by choosing to go to <span class="math notranslate nohighlight">\(\state_{8}\)</span> (naturally this strategy yields the same expectation whether we consider edges in <span class="math notranslate nohighlight">\(\edgesNonZero\)</span> or in <span class="math notranslate nohighlight">\(E\)</span>). Based on them, we build the combined strategy <span class="math notranslate nohighlight">\(\stratComb\)</span> of Eve as defined earlier and by <a class="reference internal" href="#12-thm:insideWinning">Theorem 347</a>, for any <span class="math notranslate nohighlight">\(\varepsilon &gt; 0\)</span>, there are values of <span class="math notranslate nohighlight">\(\stepsExp\)</span> and <span class="math notranslate nohighlight">\(\stepsWC\)</span> such that it satisfies the <span class="math notranslate nohighlight">\(\BWC\)</span> problem for thresholds <span class="math notranslate nohighlight">\((0,\, 3-\varepsilon)\)</span> in <span class="math notranslate nohighlight">\(\gameNonZero \reduc \ec_{2}\)</span>. For instance, for <span class="math notranslate nohighlight">\(\stepsExp = \stepsWC = 2\)</span>, we have <span class="math notranslate nohighlight">\(\expv^{\stratComb}_{(\arena \reduc \ec_{2})_{\tau^\text{stoch}},v_{6}}[\MeanPayoff^{-}] = 13/6\)</span>.</p>
+<p>We construct the witness-and-secure strategy <span class="math notranslate nohighlight">\(\stratWNS\)</span> based on <span class="math notranslate nohighlight">\(\stratComb\)</span> and <span class="math notranslate nohighlight">\(\stratSecure\)</span> as described above. In this case, that means playing as <span class="math notranslate nohighlight">\(\stratComb\)</span> until the <span class="math notranslate nohighlight">\(-1\)</span> edge from <span class="math notranslate nohighlight">\(\state_{7}\)</span> to <span class="math notranslate nohighlight">\(\state_{6}\)</span> is taken by <span class="math notranslate nohighlight">\(\playerTwo\)</span>. This strategy ensures a worst-case mean-payoff equal to <span class="math notranslate nohighlight">\(1 &gt; 0\)</span> thanks to <span class="math notranslate nohighlight">\(\stratSecure\)</span> and yields expectation <span class="math notranslate nohighlight">\(\expv^{\stratWNS}_{(\arena \reduc \ec_{2})_{\tau^\text{stoch}},v_{6}}[\MeanPayoff^{-}] = 13/6\)</span> for <span class="math notranslate nohighlight">\(\stepsExp = \stepsWC = 2\)</span>.</p>
+<p>Finally, notice that securing the mean-payoff by switching to  <span class="math notranslate nohighlight">\(\stratSecure\)</span> <strong>is needed</strong> to satisfy the worst-case requirement if <span class="math notranslate nohighlight">\(\playerTwo\)</span> plays in <span class="math notranslate nohighlight">\(\edges \setminus \edgesNonZero\)</span>. Also, observe that it is still necessary to alternate according to <span class="math notranslate nohighlight">\(\stratComb\)</span> in <span class="math notranslate nohighlight">\(\gameNonZero \reduc \ec_{2}\)</span> and that playing <span class="math notranslate nohighlight">\(\stratExp\)</span> is not sufficient to ensure the worst-case (because <span class="math notranslate nohighlight">\(\playerOne\)</span> has to deal with the <span class="math notranslate nohighlight">\(-1\)</span> edge from <span class="math notranslate nohighlight">\(\state_{8}\)</span> to <span class="math notranslate nohighlight">\(\state_{6}\)</span> that remains in <span class="math notranslate nohighlight">\(\edgesNonZero\)</span>).</p>
+<p>Consider the WEC <span class="math notranslate nohighlight">\(\ec_{2}\)</span> in <code class="xref std std-numref docutils literal notranslate"><span class="pre">12-fig:bwcRunningExample</span></code> and the initial vertex <span class="math notranslate nohighlight">\(\state_{6} \in \ec_{2}\)</span>. <span class="math notranslate nohighlight">\(\playerOne\)</span> can ensure a strictly positive mean-payoff in the subarena <span class="math notranslate nohighlight">\(\gameNonZero \reduc \ec_{2}\)</span>, but not in <span class="math notranslate nohighlight">\(\arena \reduc \ec_{2}\)</span>. Indeed, it is easy to see that by always choosing the <span class="math notranslate nohighlight">\(-1\)</span> edges (which requires an edge <span class="math notranslate nohighlight">\((\state_{7}, \state_{6}) \in \edgesNonZero \setminus \edges\)</span>), <span class="math notranslate nohighlight">\(\playerTwo\)</span> can ensure a negative mean-payoff whatever the strategy of <span class="math notranslate nohighlight">\(\playerOne\)</span>. However, there exists a strategy that ensures the worst-case constraint, i.e., that yields a strictly positive mean-payoff against any strategy of Adam, by leaving the EC. Let <span class="math notranslate nohighlight">\(\stratSecure\)</span> be the memoryless strategy that takes the edge <span class="math notranslate nohighlight">\((\state_{6}, \state_{9})\)</span> and then cycle on <span class="math notranslate nohighlight">\((\state_{10}\state_{9})^{\omega}\)</span> forever: it guarantees a mean-payoff of <span class="math notranslate nohighlight">\(1 &gt; 0\)</span>.</p>
+<p>For a moment, consider the EC <span class="math notranslate nohighlight">\(\ec_{2}\)</span> in <span class="math notranslate nohighlight">\(\gameNonZero\)</span>. Graphically, it means that the <span class="math notranslate nohighlight">\(-1\)</span> edge from <span class="math notranslate nohighlight">\(\state_{7}\)</span> to <span class="math notranslate nohighlight">\(\state_{6}\)</span> disappears. In the subarena <span class="math notranslate nohighlight">\(\gameNonZero \reduc \ec_{2}\)</span>, there are two particular memoryless strategies. The optimal worst-case strategy <span class="math notranslate nohighlight">\(\stratWC\)</span> guarantees a mean-payoff of <span class="math notranslate nohighlight">\(1/2 &gt; 0\)</span> by choosing to go to <span class="math notranslate nohighlight">\(\state_{7}\)</span>. The optimal expectation strategy <span class="math notranslate nohighlight">\(\stratExp\)</span> yields an expected mean-payoff of <span class="math notranslate nohighlight">\(3\)</span> by choosing to go to <span class="math notranslate nohighlight">\(\state_{8}\)</span> (naturally this strategy yields the same expectation whether we consider edges in <span class="math notranslate nohighlight">\(\edgesNonZero\)</span> or in <span class="math notranslate nohighlight">\(E\)</span>). Based on them, we build the combined strategy <span class="math notranslate nohighlight">\(\stratComb\)</span> of Eve as defined earlier and by <a class="reference internal" href="#12-thm:insideWinning">Theorem 347</a>, for any <span class="math notranslate nohighlight">\(\varepsilon &gt; 0\)</span>, there are values of <span class="math notranslate nohighlight">\(\stepsExp\)</span> and <span class="math notranslate nohighlight">\(\stepsWC\)</span> such that it satisfies the <span class="math notranslate nohighlight">\(\BWC\)</span> problem for thresholds <span class="math notranslate nohighlight">\((0,\, 3-\varepsilon)\)</span> in <span class="math notranslate nohighlight">\(\gameNonZero \reduc \ec_{2}\)</span>. For instance, for <span class="math notranslate nohighlight">\(\stepsExp = \stepsWC = 2\)</span>, we have <span class="math notranslate nohighlight">\(\expv^{\stratComb}_{(\arena \reduc \ec_{2})_{\tau^\text{stoch}},v_{6}}[\MeanPayoff^{-}] = 13/6\)</span>.</p>
+<p>We construct the witness-and-secure strategy <span class="math notranslate nohighlight">\(\stratWNS\)</span> based on <span class="math notranslate nohighlight">\(\stratComb\)</span> and <span class="math notranslate nohighlight">\(\stratSecure\)</span> as described above. In this case, that means playing as <span class="math notranslate nohighlight">\(\stratComb\)</span> until the <span class="math notranslate nohighlight">\(-1\)</span> edge from <span class="math notranslate nohighlight">\(\state_{7}\)</span> to <span class="math notranslate nohighlight">\(\state_{6}\)</span> is taken by <span class="math notranslate nohighlight">\(\playerTwo\)</span>. This strategy ensures a worst-case mean-payoff equal to <span class="math notranslate nohighlight">\(1 &gt; 0\)</span> thanks to <span class="math notranslate nohighlight">\(\stratSecure\)</span> and yields expectation <span class="math notranslate nohighlight">\(\expv^{\stratWNS}_{(\arena \reduc \ec_{2})_{\tau^\text{stoch}},v_{6}}[\MeanPayoff^{-}] = 13/6\)</span> for <span class="math notranslate nohighlight">\(\stepsExp = \stepsWC = 2\)</span>.</p>
+<p>Finally, notice that securing the mean-payoff by switching to  <span class="math notranslate nohighlight">\(\stratSecure\)</span> <strong>is needed</strong> to satisfy the worst-case requirement if <span class="math notranslate nohighlight">\(\playerTwo\)</span> plays in <span class="math notranslate nohighlight">\(\edges \setminus \edgesNonZero\)</span>. Also, observe that it is still necessary to alternate according to <span class="math notranslate nohighlight">\(\stratComb\)</span> in <span class="math notranslate nohighlight">\(\gameNonZero \reduc \ec_{2}\)</span> and that playing <span class="math notranslate nohighlight">\(\stratExp\)</span> is not sufficient to ensure the worst-case (because <span class="math notranslate nohighlight">\(\playerOne\)</span> has to deal with the <span class="math notranslate nohighlight">\(-1\)</span> edge from <span class="math notranslate nohighlight">\(\state_{8}\)</span> to <span class="math notranslate nohighlight">\(\state_{6}\)</span> that remains in <span class="math notranslate nohighlight">\(\edgesNonZero\)</span>).</p>
+</div>
+</div></div>
+<div class="section" id="global-strategy-synthesis">
+<h2>Global strategy synthesis<a class="headerlink" href="#global-strategy-synthesis" title="Permalink to this headline">¶</a></h2>
+<p>In summary, (a) LECs should be avoided and will be by a strategy that optimizes the expectation on the MDP <span class="math notranslate nohighlight">\(\markovProcess'\)</span>; (b) in WECs, <span class="math notranslate nohighlight">\(\playerOne\)</span> can obtain (<span class="math notranslate nohighlight">\(\varepsilon\)</span>-closely) the expectation of the EC <strong>and</strong> ensure the worst-case threshold.</p>
+<p>Hence, we finally compare the value <span class="math notranslate nohighlight">\(\thresholdExp^{\ast}\)</span> computed by <code class="xref std std-numref docutils literal notranslate"><span class="pre">12-algo:BWC</span></code> with the expected value threshold <span class="math notranslate nohighlight">\(\thresholdExp\)</span>: (i) if it is strictly higher, we conclude that there exists a finite-memory strategy satisfying the <span class="math notranslate nohighlight">\(\BWC\)</span> problem, and (ii) if it is not, we conclude that there does not exist such a strategy.</p>
+<p>To prove (i), we establish a finite-memory strategy in <span class="math notranslate nohighlight">\(\arena\)</span>, called <strong>global strategy</strong> <span class="math notranslate nohighlight">\(\stratGlobal\)</span>, of <span class="math notranslate nohighlight">\(\playerOne\)</span> that ensures a strictly positive mean-payoff against an antagonistic adversary, and ensures an expected mean-payoff <span class="math notranslate nohighlight">\(\varepsilon\)</span>-close to <span class="math notranslate nohighlight">\(\thresholdExp^{\ast}\)</span> (hence, strictly greater than <span class="math notranslate nohighlight">\(\thresholdExp\)</span>) against the stochastic adversary modeled by <span class="math notranslate nohighlight">\(\stratStoch\)</span> (i.e., in <span class="math notranslate nohighlight">\(\markovProcess\)</span>). The intuition is as follows. We play the memoryless optimal strategy of <span class="math notranslate nohighlight">\(\markovProcess'\)</span> for a sufficiently long time, defined by a parameter <span class="math notranslate nohighlight">\(\stepsGlobal \in \N\)</span>, in order to be with probability close to one in a WEC (the convergence is exponential by results on absorption times in Markov chains). Then, if we are inside a WEC, we switch to the corresponding witness-and-secure strategy (there is a different one for each MWEC) which, as sketched in the previous paragraph, ensures the worst-case and the expectation thresholds. If we are not yet in a WEC, then we switch to a worst-case winning strategy, which always exists thanks to the preprocessing. Thus the mean-payoff of plays that do not reach WECs is strictly positive. Since in WECs we are <span class="math notranslate nohighlight">\(\varepsilon\)</span>-close to the maximal expected value of the EC, we can conclude that it is possible to play the optimal expectation strategy of <span class="math notranslate nohighlight">\(\markovProcess'\)</span> for sufficiently long to obtain an overall expected value which is arbitrarily close to <span class="math notranslate nohighlight">\(\thresholdExp^{\ast}\)</span>, and still guarantee the worst-case threshold in all consistent plays.</p>
+<p>To prove (ii), it suffices to understand that only ECs have an impact on the expectation, and that LECs cannot be used forever without endangering the worst-case requirement.</p>
+<p>Note that given a winning strategy on <span class="math notranslate nohighlight">\(\arena\)</span>, it is possible to build a corresponding winning strategy on <span class="math notranslate nohighlight">\(\arena^{i}\)</span> by reintegrating the memory states of <span class="math notranslate nohighlight">\(\tau^i\)</span> in the memory structure of the winning strategy of <span class="math notranslate nohighlight">\(\playerOne\)</span>. Hence <code class="xref std std-numref docutils literal notranslate"><span class="pre">12-algo:BWC</span></code> is correct and complete.</p>
+<div class="proof theorem admonition" id="12-thm:bwcCorrectAndComplete">
+<p class="admonition-title"><span class="caption-number">Theorem 351 </span> (NEEDS TITLE 12-thm:bwcCorrectAndComplete)</p>
+<div class="theorem-content section" id="proof-content">
+<p>If <code class="xref std std-numref docutils literal notranslate"><span class="pre">12-algo:BWC</span></code> answers \textsc{Yes}, then there exist values of the parameters such that the pure finite-memory global strategy <span class="math notranslate nohighlight">\(\stratGlobal\)</span> satisfies the <span class="math notranslate nohighlight">\(\BWC\)</span> mean-payoff problem. In the opposite case, there exists no finite-memory strategy that satisfies the <span class="math notranslate nohighlight">\(\BWC\)</span> mean-payoff problem.</p>
+</div>
+</div><div class="proof example admonition" id="example-11">
+<p class="admonition-title"><span class="caption-number">Example 352 </span> (NEEDS TITLE AND LABEL)</p>
+<div class="example-content section" id="proof-content">
+<p>Consider the arena in <code class="xref std std-numref docutils literal notranslate"><span class="pre">12-fig:bwcRunningExample</span></code> and the associated MDP <span class="math notranslate nohighlight">\(\markovProcess\)</span>. Following~\cref{chap:mdp}, analysis of the maximal ECs <span class="math notranslate nohighlight">\(\ec_{1}\)</span>, <span class="math notranslate nohighlight">\(\ec_{2}\)</span> and <span class="math notranslate nohighlight">\(\ec_{3}\)</span> reveals that the maximal expected mean-payoff achievable in <span class="math notranslate nohighlight">\(\markovProcess\)</span> is <span class="math notranslate nohighlight">\(4\)</span>. It is for instance obtained by the memoryless strategy that chooses to go to <span class="math notranslate nohighlight">\(\state_{2}\)</span> from <span class="math notranslate nohighlight">\(\state_{1}\)</span> and to <span class="math notranslate nohighlight">\(\state_{4}\)</span> from <span class="math notranslate nohighlight">\(\state_{3}\)</span>. Observe that playing in <span class="math notranslate nohighlight">\(\ec_{1}\)</span> forever is needed to achieve this expectation. By <code class="xref prf prf-ref docutils literal notranslate"><span class="pre">12-lem:EC-inf</span></code>, this should not be allowed as the worst-case cannot be ensured if it is. Indeed, <span class="math notranslate nohighlight">\(\playerTwo\)</span> can produce worst-case losing plays by playing the <span class="math notranslate nohighlight">\(-1\)</span> edge. Clearly, the maximal expected value that <span class="math notranslate nohighlight">\(\playerOne\)</span> can ensure while guaranteeing the worst-case requirement is thus bounded by the maximal expectation in <span class="math notranslate nohighlight">\(\markovProcess'\)</span>, i.e., by <span class="math notranslate nohighlight">\(3\)</span>, as depicted in <a class="reference internal" href="#fig-bwc-mp-modifiedmdp"><span class="std std-numref">Fig. 75</span></a>. Let <span class="math notranslate nohighlight">\(\stratExp\)</span> denote an optimal memoryless expectation strategy in <span class="math notranslate nohighlight">\(\markovProcess'\)</span> that tries to enter <span class="math notranslate nohighlight">\(\ec_{2}\)</span> by playing <span class="math notranslate nohighlight">\((\state_{1}, \state_{2})\)</span> and <span class="math notranslate nohighlight">\((\state_{3}, \state_{5})\)</span>, and then plays edge <span class="math notranslate nohighlight">\((\state_{6}, \state_{8})\)</span> forever (thick edges in <a class="reference internal" href="#fig-bwc-mp-modifiedmdp"><span class="std std-numref">Fig. 75</span></a>).</p>
+<p>Observe that <code class="xref std std-numref docutils literal notranslate"><span class="pre">12-algo:BWC</span></code> answers \textsc{Yes} for any thresholds pair <span class="math notranslate nohighlight">\((0,\, \thresholdExp)\)</span> such that <span class="math notranslate nohighlight">\(\thresholdExp &lt; 3\)</span>. For the sake of illustration, we construct the global strategy <span class="math notranslate nohighlight">\(\stratGlobal\)</span> as presented earlier, with <span class="math notranslate nohighlight">\(\stepsGlobal = 6\)</span> and <span class="math notranslate nohighlight">\(\stepsExp = \stepsWC = 2\)</span>. For the first six steps, it behaves exactly as <span class="math notranslate nohighlight">\(\stratExp\)</span>. Note that after the six steps, the probability of being in <span class="math notranslate nohighlight">\(\ec_{2}\)</span> is <span class="math notranslate nohighlight">\(1/4 + 1/8 = 3/8\)</span>. Then, <span class="math notranslate nohighlight">\(\stratGlobal\)</span> switches to another strategy depending on the current vertex (<span class="math notranslate nohighlight">\(\stratWNS\)</span> or <span class="math notranslate nohighlight">\(\stratWC\)</span>) and sticks to this strategy forever. In particular, if the current vertex belongs to <span class="math notranslate nohighlight">\(\ec_{2}\)</span>, it switches to <span class="math notranslate nohighlight">\(\stratWNS\)</span> for <span class="math notranslate nohighlight">\(\stepsExp = \stepsWC = 2\)</span>, which guarantees the worst-case threshold and induces an expectation of <span class="math notranslate nohighlight">\(13/6\)</span>. By definition of <span class="math notranslate nohighlight">\(\stratGlobal\)</span>, if the current vertex after six steps is not in <span class="math notranslate nohighlight">\(\ec_{2}\)</span>, then <span class="math notranslate nohighlight">\(\stratGlobal\)</span> switches to <span class="math notranslate nohighlight">\(\stratWC\)</span> which guarantees a mean-payoff of <span class="math notranslate nohighlight">\(1\)</span> by reaching vertex <span class="math notranslate nohighlight">\(\state_{9}\)</span> and then playing <span class="math notranslate nohighlight">\((\state_{9}\state_{10})^{\omega}\)</span>. Overall, the expected mean-payoff of <span class="math notranslate nohighlight">\(\stratGlobal\)</span> against <span class="math notranslate nohighlight">\(\stratStoch\)</span> is
+\begin{equation*}
+\expv^{\stratGlobal}<em>{\arena</em>{\tau^\text{stoch}},v_{1}}[\MeanPayoff^{-}] \geq \dfrac{3}{8}\cdot\dfrac{13}{6} + \dfrac{5}{8}\cdot 1 = \dfrac{23}{16}.
+\end{equation*}
+Notice that by taking <span class="math notranslate nohighlight">\(\stepsGlobal\)</span>, <span class="math notranslate nohighlight">\(\stepsExp\)</span> and <span class="math notranslate nohighlight">\(\stepsWC\)</span> large enough, it is possible to satisfy the <span class="math notranslate nohighlight">\(\BWC\)</span> problem for any <span class="math notranslate nohighlight">\(\thresholdExp &lt; 3\)</span> with the strategy <span class="math notranslate nohighlight">\(\stratGlobal\)</span>. Also, observe that the WEC <span class="math notranslate nohighlight">\(\ec_{2}\)</span> is crucial to achieve expectations strictly greater than <span class="math notranslate nohighlight">\(2\)</span>, which is the upper bound when limited to EC <span class="math notranslate nohighlight">\(\ec_{3}\)</span>. For instance, <span class="math notranslate nohighlight">\(\stepsGlobal = 25\)</span> and <span class="math notranslate nohighlight">\(\stepsExp = \stepsWC = 2\)</span> implies an expectation strictly greater than <span class="math notranslate nohighlight">\(2\)</span> for the global strategy.</p>
+<p>Lastly, note that in general, the maximal expectation achievable in <span class="math notranslate nohighlight">\(\markovProcess'\)</span> (and thus in <span class="math notranslate nohighlight">\(\markovProcess\)</span> when limited to strategies that respect the worst-case requirement) may depend on a combination of ECs instead of a unique one. This is transparent through the solving of the expected value problem in the MDP <span class="math notranslate nohighlight">\(\markovProcess'\)</span>. Hence, the approach followed by <code class="xref std std-numref docutils literal notranslate"><span class="pre">12-algo:BWC</span></code> is a way of solving a complex problem by breaking it into smaller pieces.</p>
+<p>Consider the arena in <code class="xref std std-numref docutils literal notranslate"><span class="pre">12-fig:bwcRunningExample</span></code> and the associated MDP <span class="math notranslate nohighlight">\(\markovProcess\)</span>. Following~\cref{chap:mdp}, analysis of the maximal ECs <span class="math notranslate nohighlight">\(\ec_{1}\)</span>, <span class="math notranslate nohighlight">\(\ec_{2}\)</span> and <span class="math notranslate nohighlight">\(\ec_{3}\)</span> reveals that the maximal expected mean-payoff achievable in <span class="math notranslate nohighlight">\(\markovProcess\)</span> is <span class="math notranslate nohighlight">\(4\)</span>. It is for instance obtained by the memoryless strategy that chooses to go to <span class="math notranslate nohighlight">\(\state_{2}\)</span> from <span class="math notranslate nohighlight">\(\state_{1}\)</span> and to <span class="math notranslate nohighlight">\(\state_{4}\)</span> from <span class="math notranslate nohighlight">\(\state_{3}\)</span>. Observe that playing in <span class="math notranslate nohighlight">\(\ec_{1}\)</span> forever is needed to achieve this expectation. By <code class="xref prf prf-ref docutils literal notranslate"><span class="pre">12-lem:EC-inf</span></code>, this should not be allowed as the worst-case cannot be ensured if it is. Indeed, <span class="math notranslate nohighlight">\(\playerTwo\)</span> can produce worst-case losing plays by playing the <span class="math notranslate nohighlight">\(-1\)</span> edge. Clearly, the maximal expected value that <span class="math notranslate nohighlight">\(\playerOne\)</span> can ensure while guaranteeing the worst-case requirement is thus bounded by the maximal expectation in <span class="math notranslate nohighlight">\(\markovProcess'\)</span>, i.e., by <span class="math notranslate nohighlight">\(3\)</span>, as depicted in <a class="reference internal" href="#fig-bwc-mp-modifiedmdp"><span class="std std-numref">Fig. 75</span></a>. Let <span class="math notranslate nohighlight">\(\stratExp\)</span> denote an optimal memoryless expectation strategy in <span class="math notranslate nohighlight">\(\markovProcess'\)</span> that tries to enter <span class="math notranslate nohighlight">\(\ec_{2}\)</span> by playing <span class="math notranslate nohighlight">\((\state_{1}, \state_{2})\)</span> and <span class="math notranslate nohighlight">\((\state_{3}, \state_{5})\)</span>, and then plays edge <span class="math notranslate nohighlight">\((\state_{6}, \state_{8})\)</span> forever (thick edges in <a class="reference internal" href="#fig-bwc-mp-modifiedmdp"><span class="std std-numref">Fig. 75</span></a>).</p>
+<p>Observe that <code class="xref std std-numref docutils literal notranslate"><span class="pre">12-algo:BWC</span></code> answers \textsc{Yes} for any thresholds pair <span class="math notranslate nohighlight">\((0,\, \thresholdExp)\)</span> such that <span class="math notranslate nohighlight">\(\thresholdExp &lt; 3\)</span>. For the sake of illustration, we construct the global strategy <span class="math notranslate nohighlight">\(\stratGlobal\)</span> as presented earlier, with <span class="math notranslate nohighlight">\(\stepsGlobal = 6\)</span> and <span class="math notranslate nohighlight">\(\stepsExp = \stepsWC = 2\)</span>. For the first six steps, it behaves exactly as <span class="math notranslate nohighlight">\(\stratExp\)</span>. Note that after the six steps, the probability of being in <span class="math notranslate nohighlight">\(\ec_{2}\)</span> is <span class="math notranslate nohighlight">\(1/4 + 1/8 = 3/8\)</span>. Then, <span class="math notranslate nohighlight">\(\stratGlobal\)</span> switches to another strategy depending on the current vertex (<span class="math notranslate nohighlight">\(\stratWNS\)</span> or <span class="math notranslate nohighlight">\(\stratWC\)</span>) and sticks to this strategy forever. In particular, if the current vertex belongs to <span class="math notranslate nohighlight">\(\ec_{2}\)</span>, it switches to <span class="math notranslate nohighlight">\(\stratWNS\)</span> for <span class="math notranslate nohighlight">\(\stepsExp = \stepsWC = 2\)</span>, which guarantees the worst-case threshold and induces an expectation of <span class="math notranslate nohighlight">\(13/6\)</span>. By definition of <span class="math notranslate nohighlight">\(\stratGlobal\)</span>, if the current vertex after six steps is not in <span class="math notranslate nohighlight">\(\ec_{2}\)</span>, then <span class="math notranslate nohighlight">\(\stratGlobal\)</span> switches to <span class="math notranslate nohighlight">\(\stratWC\)</span> which guarantees a mean-payoff of <span class="math notranslate nohighlight">\(1\)</span> by reaching vertex <span class="math notranslate nohighlight">\(\state_{9}\)</span> and then playing <span class="math notranslate nohighlight">\((\state_{9}\state_{10})^{\omega}\)</span>. Overall, the expected mean-payoff of <span class="math notranslate nohighlight">\(\stratGlobal\)</span> against <span class="math notranslate nohighlight">\(\stratStoch\)</span> is
+\begin{equation*}
+\expv^{\stratGlobal}<em>{\arena</em>{\tau^\text{stoch}},v_{1}}[\MeanPayoff^{-}] \geq \dfrac{3}{8}\cdot\dfrac{13}{6} + \dfrac{5}{8}\cdot 1 = \dfrac{23}{16}.
+\end{equation*}
+Notice that by taking <span class="math notranslate nohighlight">\(\stepsGlobal\)</span>, <span class="math notranslate nohighlight">\(\stepsExp\)</span> and <span class="math notranslate nohighlight">\(\stepsWC\)</span> large enough, it is possible to satisfy the <span class="math notranslate nohighlight">\(\BWC\)</span> problem for any <span class="math notranslate nohighlight">\(\thresholdExp &lt; 3\)</span> with the strategy <span class="math notranslate nohighlight">\(\stratGlobal\)</span>. Also, observe that the WEC <span class="math notranslate nohighlight">\(\ec_{2}\)</span> is crucial to achieve expectations strictly greater than <span class="math notranslate nohighlight">\(2\)</span>, which is the upper bound when limited to EC <span class="math notranslate nohighlight">\(\ec_{3}\)</span>. For instance, <span class="math notranslate nohighlight">\(\stepsGlobal = 25\)</span> and <span class="math notranslate nohighlight">\(\stepsExp = \stepsWC = 2\)</span> implies an expectation strictly greater than <span class="math notranslate nohighlight">\(2\)</span> for the global strategy.</p>
+<p>Lastly, note that in general, the maximal expectation achievable in <span class="math notranslate nohighlight">\(\markovProcess'\)</span> (and thus in <span class="math notranslate nohighlight">\(\markovProcess\)</span> when limited to strategies that respect the worst-case requirement) may depend on a combination of ECs instead of a unique one. This is transparent through the solving of the expected value problem in the MDP <span class="math notranslate nohighlight">\(\markovProcess'\)</span>. Hence, the approach followed by <code class="xref std std-numref docutils literal notranslate"><span class="pre">12-algo:BWC</span></code> is a way of solving a complex problem by breaking it into smaller pieces.</p>
+</div>
+</div></div>
+<div class="section" id="complexity-bounds">
+<h2>Complexity bounds<a class="headerlink" href="#complexity-bounds" title="Permalink to this headline">¶</a></h2>
+<p>The input size of the algorithm depends on the size of the arena, the size of the memory structure for the stochastic model, and the encodings of probabilities, weights and thresholds. We can prove that all computing steps require (deterministic) polynomial time except for calls to an algorithm solving the worst-case threshold problem, which is in <span class="math notranslate nohighlight">\(\NP \cap \coNP\)</span> and not known to be in <span class="math notranslate nohighlight">\(\P\)</span> ( <a class="reference internal" href="../4_Payoffs/mean_payoff.html#4-thm:MP-NPcoNP">Theorem 95</a>). Hence, the overall complexity of the <span class="math notranslate nohighlight">\(\BWC\)</span> problem is in <span class="math notranslate nohighlight">\(\NP \cap \coNP\)</span> (using <span class="math notranslate nohighlight">\(\P^{\NP \cap \coNP} = \NP \cap \coNP\)</span> <span id="id4">[<span>Brassard:1979</span>]</span>) and may collapse to <span class="math notranslate nohighlight">\(\P\)</span> if the worst-case problem were to be proved in <span class="math notranslate nohighlight">\(\P\)</span>.</p>
+<p>The <span class="math notranslate nohighlight">\(\BWC\)</span> problem is at least as difficult as the worst-case problem thanks to a trivial polynomial-time reduction from the latter to the former. Thus, membership to <span class="math notranslate nohighlight">\(\NP \cap \coNP\)</span> can be seen as optimal regarding our current knowledge of mean-payoff games.</p>
+<div class="proof theorem admonition" id="12-thm:bwcDecisionProblem">
+<p class="admonition-title"><span class="caption-number">Theorem 353 </span> (NEEDS TITLE 12-thm:bwcDecisionProblem)</p>
+<div class="theorem-content section" id="proof-content">
+<p>The BWC mean-payoff problem is in <span class="math notranslate nohighlight">\(\NP \cap \coNP\)</span> and at least as hard as solving mean-payoff games. Moreover, pseudo-polynomial-memory strategies may be necessary for Eve and are always sufficient.</p>
+</div>
+</div><p>The memory bounds follow from the (involved) probability results used to determine the values of parameters <span class="math notranslate nohighlight">\(K\)</span>, <span class="math notranslate nohighlight">\(L\)</span> and <span class="math notranslate nohighlight">\(N\)</span> in the aforementioned strategies: such parameters need to be polynomial in the size of the arena but also in the probabilities, weights and thresholds.</p>
+<p>Using the pseudo-polynomial-time algorithm of~\cref{chap:payoffs} for mean-payoff games, \todo{I need label for Subsect. 4.3.4} we obtain the following corollary.</p>
+<div class="proof corollary admonition" id="corollary-13">
+<p class="admonition-title"><span class="caption-number">Corollary 354 </span> (NEEDS TITLE AND LABEL)</p>
+<div class="corollary-content section" id="proof-content">
+<p><code class="xref std std-numref docutils literal notranslate"><span class="pre">12-algo:BWC</span></code> solves the BWC mean-payoff problem in pseudo-poly-no-mial time.</p>
+<p><code class="xref std std-numref docutils literal notranslate"><span class="pre">12-algo:BWC</span></code> solves the BWC mean-payoff problem in pseudo-poly-no-mial time.</p>
+</div>
+</div></div>
+<div class="section" id="wrap-up">
+<h2>Wrap-up<a class="headerlink" href="#wrap-up" title="Permalink to this headline">¶</a></h2>
+<p>As witnessed by our long overview, solving the beyond worst-case problem requires much more involved techniques than solving the two individual problems, worst-case and expected value, separately. Complexity-wise, it is fortunate that the problem stays in <span class="math notranslate nohighlight">\(\NP \cap \coNP\)</span>, and is no more complex that simple mean-payoff games. The multiobjective nature of the problem still incurs a cost with regard to strategies: whereas memoryless strategies suffice both in mean-payoff games and mean-payoff MDPs, we here need pseudo-polynomial memory. Finally, note that Eve does not need to use randomness: pure strategies still suffice.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./12_Multiobjectives"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="total_payoff_shortest_path.html" title="previous page">Total-payoff and shortest path</a>
+    <a class='right-next' id="next-link" href="percentile.html" title="next page">Percentile queries</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By a set of authors coordinated by Nathana&euml;l Fijalkow<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

@@ -106,6 +106,9 @@
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
+\newcommand{\EXP}{\textrm{EXP}}
+\newcommand{\kEXP}{\textrm{kEXP}}
 ```
 \newcommand{\MeanPayoffOld}{\MeanPayoff}
 
@@ -121,20 +124,19 @@ In particular, the play-based expected mean-payoff achieved by $ \sigma $ from $
 
 The use of $ \liminf $ is natural in the formal verification setting: taking the $\liminf$ rather than $ \limsup $ emphasizes the worst-case behaviour along a play. However, all the results in this section hold also for $\limsup$-based mean-payoff, though some proofs are more complex. See the bibliographic remarks for more details.
 
+%In the probabilistic setting, there are two ways of defining the expected mean-payoff under a given strategy $ \sigma $. The first way follows the recipe laid out in the preliminaries to this chapter, i.e. viewing $ \MeanPayoffInf $ as a random variable in the probability space induced by $ \sigma $. In such a case, the mean-payoff achieved by $ \sigma $ from vertex $ v $ is $ \expv_v^\sigma[\MeanPayoff]$, i.e. we compute the expectation of mean-payoff over all runs. The second way does just the reverse, i.e. for each time step $i$ we compute the expected reward accumulated in that step and then compute the limit average of these one-step expectations. Formally, the mean-payoff of $ \sigma $ from $ v $ is, according to this semantics, defined as $ \liminf_{ n\rightarrow \infty }  \frac{1}{ n } \sum_{i=0}^{n-1} \expv_v^\sigma [c(\play_i)] $.
+
 In general, $\stepPay(v,\sigma)$ can be different from $ \playPay(v, \sigma) $. However, we have the following simple consequence of the dominated convergence theorem:
 
-```{prf:lemma} NEEDS TITLE AND LABEL 
+````{prf:lemma} NEEDS TITLE AND LABEL 
 \label{5-lem:limit-defined}
 Let $U$ be the set of all plays $\play$  for which $\lim_{n\rightarrow \infty} \frac{1}{n} \sum_{i=0}^{n-1}[\colouring(\play_i)]$ is undefined. If $\vinit,\sigma$ are such that $\probm^\sigma_{\vinit}(U) = 0$, then $\stepPay(\vinit,\sigma) = \playPay(\vinit, \sigma) $.
  
-:label: 
-\label{5-lem:limit-defined}
-Let $U$ be the set of all plays $\play$  for which $\lim_{n\rightarrow \infty} \frac{1}{n} \sum_{i=0}^{n-1}[\colouring(\play_i)]$ is undefined. If $\vinit,\sigma$ are such that $\probm^\sigma_{\vinit}(U) = 0$, then $\stepPay(\vinit,\sigma) = \playPay(\vinit, \sigma) $.
 
 \label{5-lem:limit-defined}
 Let $U$ be the set of all plays $\play$  for which $\lim_{n\rightarrow \infty} \frac{1}{n} \sum_{i=0}^{n-1}[\colouring(\play_i)]$ is undefined. If $\vinit,\sigma$ are such that $\probm^\sigma_{\vinit}(U) = 0$, then $\stepPay(\vinit,\sigma) = \playPay(\vinit, \sigma) $.
 
-```
+````
 
 
 In particular, for any finite-memory strategy $ \sigma $, the two values coincide, since applying such a strategy turns an MDP into a finite Markov chain where the existence of the limit can be inferred using decomposition into strongly connected components and applying the Ergodic theorem.
@@ -143,9 +145,15 @@ We will show that in our case of finite-state MDPs, the two approaches coincide 
 
 
 
+
+%An MDP is **strongly connected** if for each pair of vertices $u,v$ there exists a finite play from $u$ to $v$. 
+
+
+
 To simplify the subsequent notation, we define the **expected one-step** reward of a vertex-action pair $(v,a)$ to be the number $\sum_{w\in \vertices} \probTranFunc(w\mid v,a)\cdot \colouring(v,w)$. Overloading the notation, we denote this quantity by $\colouring(v,a)$.
 
 In mean-payoff  MDPs, a crucial role is played by the linear program $\lpmp$ pictured in {numref}`5-fig:mp-lin`.
+
 
 \begin{figure}[h]
 \begin{alignat}{2}
@@ -155,6 +163,7 @@ subject to }\nonumber \\
 &\quad&\text{for all $v\in \vertices$}\label{5-eq:mdp-flow} \\
  \sum_{v\in\vertices,a\in \actions} x_{v,a}&=1 &&\label{5-eq:mdp-freq-1} \\
  x_{v,a} &\geq 0  &&\text{for all $v\in \vertices,a\in \actions$} \label{5-eq:mdp-freq-nonnegp}
+
 \end{alignat}
 \caption{The linear program $\lpmp$ with variables $x_{(v,a)}$ for  $v\in \vertices,a\in \actions$.}
 \label{5-fig:mp-lin}
@@ -168,26 +177,29 @@ There is a correspondence between feasible solutions of $\lpmp$ and the strategi
 subject to }\nonumber \\
 &g -\colouring(v,a) + \sum_{u\in\vertices}\probTranFunc(u\mid v,a)\cdot y_u \geq y_v 
 \quad\text{for all $(v,a)\in \vertices\times \actions$}\label{5-eq:mp-lpdual}
+
+%x_{v,a} &\geq 0  &&\text{for all $v\in \vertices,a\in \actions$}
+
 \end{alignat}
 \caption{The linear program $\lpmpdual$ with variables $g$ and $y_v$ for each  $v\in \vertices$.}
 \label{5-fig:mp-dual}
 \end{figure}
 
-```{admonition} Remark [Nomenclature]
+````{admonition} Remark [Nomenclature]
 A feasible solution of $ \lpmp $ is a vector $\vec{x} \in \R^{\vertices\times \actions} $ s.t. setting $ x_{(v,a)}=\vec{x}_{(v,a)} $ for all $ (v,a) $ satisfies the constraints in $ \lpmp $. A feasible solution of $ \lpmpdual  $ is a tuple $ (g,\vec{y}) $, where $ g\in\R $ (using the same notation for the number and the variable should not cause  confusion here) and $ \vec{y}\in \R^{\vertices}$ s.t. setting the corresponding variables to numbers prescribed by $ g $ and $ \vec{y} $ satisfies the constraints.
 
-```
+````
 
 The variable $g$ in $\lpmpdual$ is often called **gain** while the vector of $y$-variables is called **bias.** This is because it provides information on how much does the payoff (under some strategy) accumulated up to a certain step deviate from the estimate provided by the mean-payoff value of that strategy. This is illustrated in the following lemma, which forms the first step of our analysis. 
 
-```{prf:lemma} NEEDS TITLE 5-lem:dual-bound-step
+````{prf:lemma} NEEDS TITLE 5-lem:dual-bound-step
 :label: 5-lem:dual-bound-step
 
 Let $({g}, \vec{y})$ be a feasible solution of $\lpmpdual$ and let $Y^{(i)}$, where $i\geq 0$, be a random variable such that $Y^{(i)}(\play)= \vec{y}_{\ing(\pi_i)}.$ Then for each strategy $\sigma$, each vertex $\vinit$, and each $n\geq 0$ it holds $\expv^\sigma_{\vinit}[\sum_{i=0}^{n-1}\colouring(\play_i)]\leq n\cdot {g}- \vec{y}_{\vinit} +\expv^\sigma_{\vinit} [Y^{(n)}]$.
 
-```
+````
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 By induction on $n$. For $n=0$, both sides are equal to 0. Now assume that the inequality holds for some $n\geq 0$. By the induction hypothesis
@@ -213,38 +225,39 @@ We now obtain a bound for the third term on the RHS of~\eqref{5-eq:mpdual-1}. In
 
 Plugging this into~\eqref{5-eq:mpdual-1} yields the desired $\expv^\sigma_{\vinit}[\sum_{i=0}^{n}\colouring(\play_i)] \leq (n+1) {g}- \vec{y}_{\vinit} + \expv^\sigma_{\vinit}[Y^{(n+1)}]$. 
 
-```
+````
 
 
-```{prf:corollary} NEEDS TITLE 5-cor:mp-value-bound
+````{prf:corollary} NEEDS TITLE 5-cor:mp-value-bound
 :label: 5-cor:mp-value-bound
 
 Let $g$ be the objective value of some feasible solution of $\lpmpdual$. Then for every strategy $\sigma$ and every vertex $\vinit$ it holds $\playPay(\vinit,\sigma) \leq \stepPay(\vinit,\sigma) \leq g$.
 
-```
+````
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 Let $ ({g}, \vec{y})$ be any feasible solution of $\lpmpdual$.
 By  {prf:ref}`5-lem:dual-bound-step` we have, for every $n\geq 0$, that $\expv^\sigma_{\vinit}[\frac{1}{n}\sum_{i=0}^{n-1}\colouring(\play_i)]\leq g - \frac{ \vec{y}_{\vinit}}{n}+ \frac{1}{n}\expv^\sigma_{\vinit} [Y^{(n)}]$. Since $ \vec{y}_{\vinit}$ is a constant and $|\expv^\sigma_{\vinit} [Y^{(n)}]|$ is bounded by the constant $ \max_{v\in \vertices}|\vec{y}_v|$ that is independent of $n$, the last two terms on the RHS vanish as $n$ goes to $\infty$. Hence, also $\stepPay(\vinit,\sigma) = \liminf_{n\rightarrow \infty} \expv^\sigma_{\vinit}[\frac{1}{n}\sum_{i=0}^{n-1}\colouring(\play_i)] \leq g$. It remains to show that we have $\playPay(\vinit,\sigma) \leq \stepPay(\vinit,\sigma)$, but this immediately follows from the Fatou's lemma~\cite[Theorem 1.6.8]{Ash&Doleans-Dade:2000}.
 
-```
+````
 
 
-```{prf:corollary} NEEDS TITLE 5-cor:lpmp-optimal-exists
+````{prf:corollary} NEEDS TITLE 5-cor:lpmp-optimal-exists
 :label: 5-cor:lpmp-optimal-exists
 
 Both the linear programs $\lpmp$ and $\lpmpdual$ have a feasible solution. Hence, both have an optimal solution and the optimal values of the objective functions in these programs are equal.
 
-```
+````
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 One can easily construct a feasible solution for $\lpmpdual$ by setting all the $y$-variables to $0$ and $g$ to $\maxc$. By the duality theorem for linear programming, to show that also $\lpmp$ has feasible solution it suffices to show that the objective function of $\lpmpdual$ is bounded from below. But this follows from \Cref{5-cor:mp-value-bound}, since there is at least one strategy $\sigma$ giving us the lower bound (in particular, the objective function is bounded from below by $-\maxc$). The second part follows immediately by linear programming duality.
 
-```
+````
+
 
 
 

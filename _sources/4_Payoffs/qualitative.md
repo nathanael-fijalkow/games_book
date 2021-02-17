@@ -73,8 +73,19 @@
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
+\newcommand{\EXP}{\textrm{EXP}}
+\newcommand{\kEXP}{\textrm{kEXP}}
 ```
 In this section we define quantitative objectives extending the qualitative objectives $\Safe$, $\Reach$, $\Buchi$, and $\CoBuchi$.
+
+%visit infinitely often) $v_f^{(1)}$ if possible, or $v_f^{(2)}$
+
+%of preferences with a parity condition by mapping $v_f^{(1)}$ to the
+
+%etc. A more natural and versatile way to model this preference though
+
+%this section.
 
 The four quantitative objectives we will define in this section return as outcome some weight in the sequence (for instance, the maximum weight).
 This is in contrast with the $\MeanPayoff$ and $\DiscountedPayoff$ objectives that we will study later,
@@ -109,9 +120,13 @@ $$
 $$
 
 
+%using weights $0$ and $1$, we have that the payoff of a play $\play$
+
+%$\Win$ (respectively, visits finitely often a losing colour $\Lose$).
+
 The analyses and algorithms for solving games with $\Reach$, $\Safe$, $\Buchi$, and $\CoBuchi$ objectives extend to these four quantitative objectives.
 
-```{prf:theorem} NEEDS TITLE 4-thm:sup-inf-limsup-liminf
+````{prf:theorem} NEEDS TITLE 4-thm:sup-inf-limsup-liminf
 :label: 4-thm:sup-inf-limsup-liminf
 
 Games with objectives $\Sup$ and $\LimSup$ are uniformly positionally determined for both players.
@@ -120,10 +135,10 @@ More precisely, let $k$ be the number of different weights in the game,
 the time complexity is $O(m)$ for objective $\Sup$ and $O(knm)$ for objective $\LimSup$,
 and for both algorithms the space complexity is $O(m)$.
 
-```
+````
 
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 We sketch the algorithm for the objective $\Sup$, the cae $\LimSup$ is similar.
@@ -137,5 +152,5 @@ by revisiting the attractor computation and showing that each edge in the whole 
 throughout the recursive attractor computations.
 This complexity analysis does not extend to $\LimSup$ objectives, where the complexity is multiplied by $k$.
 
-```
+````
 

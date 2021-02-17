@@ -62,6 +62,9 @@
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
+\newcommand{\EXP}{\textrm{EXP}}
+\newcommand{\kEXP}{\textrm{kEXP}}
 ```
 The first model we define is the common denominator of most models studied in this book:
 
@@ -73,6 +76,7 @@ The first model we define is the common denominator of most models studied in th
 game.
 
 ## Players
+
 The term $2$-player means that there are two players, Eve and Adam.
 Many, many different names have been used: Player $0$ and Player $1$, 
 Player I and Player II as in descriptive complexity,
@@ -91,6 +95,7 @@ and a $1\frac{1}{2}$-player game is a stochastic game with one player.
 The situation where there are more than two players is called multiplayer games.
 
 ## Graphs
+
 A (directed) graph is given by a set $V$ of vertices and a set $E \subseteq V \times V$ of edges.
 For an edge $e = (v,v')$ we write $\ing(e)$ for the incoming vertex $v$ and 
 $\out(e)$ for the outgoing vertex $v'$:
@@ -121,6 +126,7 @@ a self loop is an edge from a vertex to itself,
 and a sink is a vertex with only a self loop as outgoing edge.
 
 ## Arenas
+
 The arena is the place where the game is played, they have also been called game structures or game graphs.
 
 In the turn based setting we define here, the set of vertices is divided into vertices controlled by each player.
@@ -138,16 +144,18 @@ there is no stochastic aspect in the game.
 An important assumption, called **perfect information**, says that the players see everything about how the game
 is played out, in particular they see the other player's moves.
 
-```{figure} ./../1-fig:arena_example.png
+```{figure} ./../FigAndAlgos/1-fig:arena_example.png
 :name: 1-fig:arena_example
 :align: center
 An example of an arena. Circles are controlled by Eve and squares by Adam.
 ```
 Our definition of an arena does not include the initial vertex. 
+
 We assume that all vertices have an outgoing edge.
 This is for technical convenience, as it implies that we do not need to explain what happens when a play cannot be prolonged.
 
 ## Playing
+
 The interaction between the two players consists in moving a token on the vertices of the arena.
 The token is initially on some vertex.
 When the token is in some vertex $v$, the player who controls the vertex chooses an outgoing edge $e$ of $v$
@@ -157,6 +165,7 @@ In the context of games a path is also called a play and as for paths usually wr
 We note that plays can be finite (but non empty) or infinite.
 
 ## Strategies
+
 The most important notion in this book is that of **strategies** (sometimes called policies).
 A strategy for a player is a full description of his or her moves in all situations.
 Formally, a strategy is a function mapping finite plays to edges: 
@@ -177,6 +186,7 @@ there exists a unique infinite play starting from $v$ and consistent with both s
 Note that the fact that it is infinite follows from our assumption that all vertices have an outgoing edge.
 
 ## Conditions
+
 The last ingredient to wrap up the definitions is (winning) conditions, which is what Eve wants to achieve.
 There are two types of conditions: the **qualitative**, or Boolean ones, and the **quantitative** ones.
 
@@ -190,6 +200,7 @@ Often we define $W$ as a subset of $V^\omega$ and $f$ as $f : V^\omega \to \Rinf
 since $\Paths_\omega$ is included in $V^\omega$.
 
 ## Objectives
+
 To reason about classes of games with the same conditions, we introduce the notions of objectives and colouring functions.
 An objective and a colouring function together induce a condition.
 The main point is that **objectives are independent of the arenas**, so we can speak of the class of conditions induced by a given objective,
@@ -224,7 +235,7 @@ $$
 
 
 
-```{admonition} Remark 
+````{admonition} Remark 
 In our definition the colouring function labels vertices.
 Another more general definition would label edges, and yet another relaxation would be to allow partial functions,
 meaning that some vertices (or edges) are not labelled by a colour.
@@ -232,14 +243,14 @@ In most cases the variants are all (in some sense) equivalent;
 whenever we use a different definition we will make it explicit by referring for instance to edge colouring functions
 or partial colouring functions.
 
-```
+````
 
 
 ## Games
+
 We can now give the following definitions.
 
-```{prf:definition} NEEDS LABEL Games
-:label: Games
+````{prf:definition} NEEDS LABEL Games
 
 *  A graph is a tuple $G = (V,E)$ where $V$ is a set of vertices
 and $E$ is a set of edges.
@@ -264,7 +275,7 @@ a quantitative condition $\Phi[\col]$.
 
 *  A quantitative game $\game$ is a tuple $(\arena,f)$ where $\arena$ is an arena and $f$ a quantitative condition.
 
-```
+````
 
 To be specific, the definition above is for $2$-player zero sum turn based perfect information games.
 As a convention we use the condition to qualify games, so for instance parity games are games equipped with a parity condition.
@@ -279,15 +290,16 @@ $(\arena,\Paths_\omega \setminus W)$ and the qualitative game $(\arena,-f)$.
 Indeed for the latter Adam wants to minimise $f$, which is equivalent to maximising $-f$.
 The term zero sum comes from this: the total outcome for the two players is $f + (-f)$, meaning zero.
 
-```{admonition} Remark 
+````{admonition} Remark 
 Unless otherwise stated we assume that graphs are finite, meaning that there are finitely many vertices (hence finitely many edges).
 We equivalently say that the arena or the game is finite.
- Part {ref}`part:infinite` will study games over infinite graphs.
+Part {ref}`part:infinite` will study games over infinite graphs.
 
-```
+````
 
 
 ## Winning in qualitative games
+
 Now that we have the definitions of a game we can ask the main question: 
 given a game $\game$ and a vertex $v$, who wins $\game$ from $v$?
 
@@ -307,20 +319,20 @@ The analogous notation for Adam is $\WA(\game)$.
 
 We say that a strategy is optimal if it is winning from all vertices in $\WE(\game)$.
 
-```{prf:observation} Winning regions are disjoint
+````{prf:observation} Winning regions are disjoint
 :label: 1-fact:winning_regions_disjoint
 
 For all qualitative games $\game$ we have $\WE(\game) \cap \WA(\game) = \emptyset$.
 
-```
+````
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 Assume for the sake of contradiction that both players have a winning strategy from $v$, then $\pi^{v}_{\sigma,\tau}$
 would both satisfy $W$ and not satisfy $W$, a contradiction.
 
-```
+````
 
 It is however not clear that for every vertex $v$, **some** player has a winning strategy from $v$,
 which symbolically reads $\WE(\game) \cup \WA(\game) = V$.
@@ -332,12 +344,12 @@ hence it does not fit in the definitions given so far), where neither player has
 Whenever $\WE(\game) \cup \WA(\game) = V$, we say that the game is determined.
 Being determined can be understood as follows: the outcome can be determined before playing assuming both players play optimally since one of them can ensure to win whatever is the strategy of the opponent.
 
-```{prf:theorem} Borel determinacy
+````{prf:theorem} Borel determinacy
 :label: 1-thm:borel_determinacy
 
 Qualitative games with Borel conditions are determined.
 
-```
+````
 
 The definition of Borel sets goes beyond the scope of this book. 
 Suffice to say that all conditions studied in this book are (very simple) examples of Borel sets,
@@ -345,6 +357,7 @@ implying that our qualitative games are all determined
 (as long as we consider perfect infomation and turn based games, the situation will change with more general models of games).
 
 ## Computational problems for qualitative games
+
 We identify three computational problems.
 The first is that of solving a game, which is the simplest one and since it induces a decision problem, allows us 
 to make complexity theoretic statements.
@@ -387,6 +400,7 @@ For qualitative games, constructing a winning strategy means solving the followi
 We did not specify how the winning regions or the winning strategies are represented, this will depend on the types of games we consider.
 
 ## Values in quantitative games
+
 Let $\game$ be a quantitative game and $v$ a vertex.
 Given $x \in \R$ called a threshold, we say that a strategy $\sigma$ for Eve ensures $x$ from $v$ 
 if every play $\pi$ starting from $v$ consistent with $\sigma$ has value at least $x$ under $f$,
@@ -436,14 +450,14 @@ $$
 $$
 
 
-```{prf:observation} Comparison of values for Eve and Adam
+````{prf:observation} Comparison of values for Eve and Adam
 :label: 1-fact:comparaison_values_eve_adam
 
 For all quantitative games $\game$ and vertex $v$ we have $\ValueE^{\game}(v) \le \ValueA^{\game}(v)$.
 
-```
+````
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 For any function $F : X \times Y \to \Rinfty$, we have 
@@ -453,7 +467,7 @@ $$
 $$
 
 
-```
+````
 
 If this inequality is an equality, we say that the game $\game$ is **determined** in $v$,
 and let $\Value^{\game}(v)$ denote the value in the game $\game$ from $v$
@@ -463,15 +477,15 @@ Similarly as for the qualitative case, being determined can be understood as fol
 We say that a quantitative objective $f : C^\omega \to \Rinfty$ is Borel if for all $x \in \R$,
 the qualitative objective $f_{\ge x} \subseteq C^\omega$ is a Borel set.
 
-```{prf:corollary} Borel determinacy for quantitative games
+````{prf:corollary} Borel determinacy for quantitative games
 :label: 1-cor:borel_determinacy
 
 Quantitative games with Borel conditions are determined, meaning that
 for all quantitative games $\game$ we have $\ValueE^{\game} = \ValueA^{\game}$.
 
-```
+````
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 If $\ValueE^{\game}(v) = \infty$ then thanks to the inequality above $\ValueA^{\game}(v) = \infty$ and the equality holds.
@@ -495,11 +509,12 @@ In other words, $\ValueA^{\tau}(v) = \sup_{\sigma} f(\play_{\sigma,\tau}^{v}) \l
 Since this is true for any $\varepsilon > 0$, this implies $\ValueA^{\game}(v) \le \ValueE^{\game}(v)$.
 As we have seen the converse inequality holds, implying the equality.
 
-```
+````
 
 Note that this determinacy result does not imply the existence of optimal strategies.
 
 ## Computational problems for quantitative games
+
 As for qualitative games, we identify different computational problems.
 The first is solving the game.
 ```{admonition} Problem
@@ -542,14 +557,14 @@ Especially in this case, it may be enough to approximate the value, which is ind
 by repeatingly applying an algorithm solving the value problem one can approximate the value to any given precision,
 using a binary search.
 
-```{prf:lemma} Binary search for computing the value
+````{prf:lemma} Binary search for computing the value
 :label: 1-lem:binary_search_computing_value
 
 If there exists an algorithm $A$ for solving the value problem of a class of games, 
 then there exists an algorithm for approximating the value of games in this class within precision $\varepsilon$ 
 using $\log(\frac{1}{\varepsilon})$ calls to the algorithm $A$.
 
-```
+````
 
 The following problem is global, in the same way as computing the winning regions.
 ```{admonition} Problem
@@ -575,6 +590,7 @@ For quantitative games, constructing an optimal strategy means solving the follo
 A close variant is to construct $\varepsilon$-optimal strategies, usually with $\varepsilon$ given as input.
 
 ## Prefix independent objectives
+
 A qualitative objective $\Omega$ is:
 
 *  closed under adding prefixes if for every finite sequence $\rho$ and for every infinite sequence $\rho'$,
@@ -592,7 +608,7 @@ $$
 
 
 
-```{prf:observation} Winning for prefix independent objectives
+````{prf:observation} Winning for prefix independent objectives
 :label: 1-fact:winning_prefix_independent_qualitative
 
 Let $\Game$ be a qualitative game with objective $\Omega$ closed under removing prefixes,
@@ -600,9 +616,9 @@ $\sigma$ a winning strategy from $v$,
 and $\play$ a finite play consistent with $\sigma$ starting from $v$.
 Then $\sigma_{\mid \play}$ is winning from $v' = \last(\play)$.
 
-```
+````
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 Let $\play'$ be an infinite play consistent with $\sigma_{\mid \play}$ from $v'$,
@@ -610,16 +626,16 @@ then $\play \play'$ is an infinite play consistent with $\sigma$ starting from $
 implying that it is winning, and since $\Omega$ is closed under removing prefixes
 the play $\play'$ is winning. Thus $\sigma_{\mid \play}$ is winning from $v'$.
 
-```
+````
 
 
-```{prf:corollary} Reachable vertices of a winning strategy for prefix independent objectives
+````{prf:corollary} Reachable vertices of a winning strategy for prefix independent objectives
 :label: 1-cor:reachable_vertices_prefix_independent
 
 Let $\Game$ be a qualitative game with objective $\Omega$ closed under removing prefixes and $\sigma$ a winning strategy from $v$.
 Then all vertices reachable from $v$ by a play consistent with $\sigma$ are winning.
 
-```
+````
 
 In other words, when playing a winning strategy the play does not leave the winning region.
 
@@ -633,16 +649,16 @@ we have $\Phi(\rho') \ge \Phi(\rho \rho')$;
 
 The fact above extends to quantitative objectives with the same proof.
 
-```{prf:observation} Winning for prefix independent objectives, quantitative case
+````{prf:observation} Winning for prefix independent objectives, quantitative case
 :label: 1-fact:winning_prefix_independent_quantitative
 
 Let $\Game$ be a quantitative game with objective $\Phi$ monotonic under removing prefixes,
 $\sigma$ a strategy ensuring $x$ from $v$, and $\play$ a finite play consistent with $\sigma$ starting from $v$.
 Then $\sigma_{\mid \play}$ ensures $x$ from $v' = \last(\play)$.
 
-```
+````
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 Let $\play'$ be an infinite play consistent with $\sigma_{\mid \play}$ from $v'$,
@@ -650,15 +666,15 @@ then $\play \play'$ is an infinite play consistent with $\sigma$ starting from $
 implying that $\Phi(\play \play') \ge x$, and since $\Phi$ is monotonic under removing prefixes
 this implies that $\Phi(\play') \ge x$. Thus $\sigma_{\mid \play}$ ensures $x$ from $v'$.
 
-```
+````
 
 
-```{prf:corollary} Comparison of values along a play
+````{prf:corollary} Comparison of values along a play
 :label: 1-cor:comparison_values_along_play
 
 Let $\Game$ be a quantitative game with objective $\Phi$ monotonic under removing prefixes and $\sigma$ an optimal strategy from $v$.
 Then for all vertices $v'$ reachable from $v$ by a play consistent with $\sigma$ we have $\val^{\game}(v) \le \val^{\game}(v')$.
 
-```
+````
 
 In other words, when playing an optimal strategy the value is non-decreasing along the play.

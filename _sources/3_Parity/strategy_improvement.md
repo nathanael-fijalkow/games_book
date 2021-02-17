@@ -67,14 +67,17 @@
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
+\newcommand{\EXP}{\textrm{EXP}}
+\newcommand{\kEXP}{\textrm{kEXP}}
 ```
 
-```{prf:theorem} NEEDS TITLE 3-thm:strategy_improvement
+````{prf:theorem} NEEDS TITLE 3-thm:strategy_improvement
 :label: 3-thm:strategy_improvement
 
 There exists a strategy improvement algorithm for solving parity games in exponential time.
 
-```
+````
 
 We rely on the high-level presentation of strategy improvement algorithms given in Section {ref}`1-sec:strategy_improvement`.
 In a nutshell: the algorithm constructs a sequence of strategies, the next one being an improvement over the current one,
@@ -101,15 +104,13 @@ equivalently all infinite paths in $\Game[\sigma]$ satisfy parity, not requiring
 We say that a cycle is even if the maximal priority along the cycle is even, and it is odd otherwise. 
 Respecting parity is characterised using cycles:
 
-```{prf:observation} NEEDS TITLE AND LABEL 
+````{prf:observation} NEEDS TITLE AND LABEL 
 A strategy $\sigma$ respects parity if and only if all cycles in $\Game[\sigma]$ are even.
  
-:label: 
-A strategy $\sigma$ respects parity if and only if all cycles in $\Game[\sigma]$ are even.
 
 A strategy $\sigma$ respects parity if and only if all cycles in $\Game[\sigma]$ are even.
 
-```
+````
 
 The algorithm will only manipulate strategies respecting parity.
 
@@ -173,15 +174,13 @@ $$
 
 Since $\delta$ is monotonic so is $\Op$.
 
-```{prf:observation} NEEDS TITLE AND LABEL 
+````{prf:observation} NEEDS TITLE AND LABEL 
 The function $\val^\sigma$ is a fixed point of $\Op$ in $F^\sigma_V$.
  
-:label: 
-The function $\val^\sigma$ is a fixed point of $\Op$ in $F^\sigma_V$.
 
 The function $\val^\sigma$ is a fixed point of $\Op$ in $F^\sigma_V$.
 
-```
+````
 
 Unfortunately, $\val^{\sigma}$ is not in general the greatest fixed point of $\Op$ in $F^\sigma_V$;
 let us analyse this in more details.
@@ -192,12 +191,12 @@ The problem is for a vertex $v$ such that no plays starting from $v$ are stopped
 we can have either $\mu(v) = \top$ or $\mu(v) = \bot$, irrespective of whether the play satisfies parity or not.
 From this discussion we obtain the following result.
 
-```{prf:lemma} NEEDS TITLE 3-lem:greatest_fixed_point
+````{prf:lemma} NEEDS TITLE 3-lem:greatest_fixed_point
 :label: 3-lem:greatest_fixed_point
 
 If $\sigma$ respects parity, then $\val^{\sigma}$ is the greatest fixed point of $\Op$ in $F^\sigma_V$.
 
-```
+````
 
 > **Improving a strategy.**
 
@@ -225,32 +224,36 @@ After this preprocessing $\sigma_0$ indeed respects parity.
 
 The pseudocode of the algorithm is given in {numref}`3-algo:strategy_improvement`.
 
-```{figure} ./../3-algo:strategy_improvement.png
+%If there exists a switchable edge $e_i = (v_i,p_i,v'_i)$, let $\sigma_{i+1} = \sigma_i[v_i \to e_i]$ and iterate to the next round.
+
+
+```{figure} ./../FigAndAlgos/3-algo:strategy_improvement.png
 :name: 3-algo:strategy_improvement
 :align: center
 The strategy improvement algorithm for parity games.
 ```
 
+%strategy $\sigma$ that allows Adam to win everywhere, then all vertices will
+
+%start with a strategy where all vertices have a value that is not $\bot$,
+
 > **Proof of correctness.**
 
 We start by stating a very simple property of $\delta$, which is key in the arguments below.
 
-```{prf:observation} NEEDS TITLE AND LABEL 
+````{prf:observation} NEEDS TITLE AND LABEL 
 Let $t \in Y$ and $p_1,\dots,p_k \in [1,d]$ such that $t$ and $\delta(t,p_1 \dots p_k)$ are neither $\top$ nor $\bot$.
 Then $t \le \delta(t,p_1 \dots p_k)$ if and only if $\max \set{p_1,\dots,p_k}$ is even.
  
-:label: 
-Let $t \in Y$ and $p_1,\dots,p_k \in [1,d]$ such that $t$ and $\delta(t,p_1 \dots p_k)$ are neither $\top$ nor $\bot$.
-Then $t \le \delta(t,p_1 \dots p_k)$ if and only if $\max \set{p_1,\dots,p_k}$ is even.
 
 Let $t \in Y$ and $p_1,\dots,p_k \in [1,d]$ such that $t$ and $\delta(t,p_1 \dots p_k)$ are neither $\top$ nor $\bot$.
 Then $t \le \delta(t,p_1 \dots p_k)$ if and only if $\max \set{p_1,\dots,p_k}$ is even.
 
-```
+````
 
 The following lemma states the two important properties of $(Y,\le)$ and $\delta$.
 
-```{prf:lemma} NEEDS TITLE 3-lem:key_property
+````{prf:lemma} NEEDS TITLE 3-lem:key_property
 :label: 3-lem:key_property
 
 Let $G$ a parity graph (with no stopping option).
@@ -262,9 +265,9 @@ then $G$ satisfies parity.
 and for all edges $(v,u) \in E$ we have $\mu(v) \ge \delta(\mu(u),\col(v))$,
 then $G$ satisfies the complement of parity.
 
-```
+````
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 We prove the first property, the second is proved in exactly the same way.
@@ -279,7 +282,7 @@ For all $i \in [0,k-1]$ we have $\mu(v_i) \le \delta(\mu(v_{i+1 \mod k}),\col(v_
 By monotonicity of $\delta$ this implies $\mu(v_1) \le \delta(\mu(v_1),\col(v_{k-1}) \cdots \col(v_0))$.
 Thanks to  {prf:ref}`3-lem:key_property` this implies that the maximum priority in $\set{\col(v_0),\dots,\col(v_{k-1})}$ is even.
 
-```
+````
 
 Let $\sigma$ a strategy respecting parity. 
 A progress measure for $\Game[\sigma]$ is a post-fixed point of $\Op$ in $F^\sigma_V$:
@@ -288,16 +291,16 @@ which means that $\mu(v) \le \min \set{ \delta(\mu(v'),\col(v)) : (v,v') \in E}$
 
 We now rely on  {prf:ref}`3-lem:greatest_fixed_point` and  {prf:ref}`3-lem:key_property` to prove the two principles: progress and optimality.
 
-```{prf:lemma} NEEDS LABEL Progress
-:label: Progress
+````{prf:lemma} NEEDS LABEL Progress
+
 Let $\sigma$ a strategy respecting parity and $e = (v,v')$ a switchable edge.
 We let $\sigma'$ denote $\sigma[v \to e]$.
 Then $\sigma'$ respects parity and $\sigma < \sigma'$.
 
-```
+````
 
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 We first argue that $\sigma'$ respects parity.
@@ -339,18 +342,18 @@ By definition of $\val^{\sigma'}$ we have $\val^{\sigma'}(v) = \delta(\val^{\sig
 and together with $\val^\sigma(v) < \delta(\val^\sigma(v'),\col(v))$ this implies that
 $\val^\sigma(v) < \val^{\sigma'}(v)$.
 
-```
+````
 
 
-```{prf:lemma} NEEDS LABEL Optimality
-:label: Optimality
+````{prf:lemma} NEEDS LABEL Optimality
+
 Let $\sigma$ a strategy respecting parity that has no switchable edges, then 
 $\sigma$ is winning from all vertices of $\WE(\Game)$.
 
-```
+````
 
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 The fact that $\sigma$ respects parity means that it is a winning strategy
@@ -379,7 +382,7 @@ implying the desired inequality.
 
 The second case is when $v \in \VA$, it holds by definition of $\tau$.
 
-```
+````
 
 > **Complexity analysis.**
 
@@ -396,3 +399,4 @@ The next question is the number of iterations, meaning the length of the sequenc
 $\sigma_0,\sigma_1,\dots$. It is at most exponential since it is bounded by the number of strategies (which is bounded aggressively by $m^n$).
 There are lower bounds showing that the sequence can be of exponential length, which apply to different rules for choosing switchable edges.
 Hence the overall complexity is exponential; we do not elaborate further here. 
+

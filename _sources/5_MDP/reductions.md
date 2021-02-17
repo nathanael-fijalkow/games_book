@@ -106,30 +106,34 @@
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
+\newcommand{\EXP}{\textrm{EXP}}
+\newcommand{\kEXP}{\textrm{kEXP}}
 ```
 The MEC decomposition can be used to reduce several optimization problems (including general mean-payoff optimization) to optimizing reachability probability. Recall that in the optimal reachability problem, we are given an MDP $\mdp$ (with coloured vertices) and a colour $\Win \in\colours$. The task is to find a strategy $\sigma$ that maximizes $ \probm^\sigma_{\vinit}(\Reach(\Win))$, the probability of reaching a vertex coloured by $\Win$. The main result on reachability MDPs, which we prove in Section {ref}`5-sec:general-reachability`, is as follows:
 
-```{prf:theorem} NEEDS TITLE 5-thm:quant-reachability-main
+````{prf:theorem} NEEDS TITLE 5-thm:quant-reachability-main
 :label: 5-thm:quant-reachability-main
 
 In reachability MDPs, the value of each vertex is rational and computable in polynomial time. Moreover, we can compute, in polynomial time, a memoryless deterministic strategy that is optimal in every vertex.
 
-```
+````
 
 
 ## From optimal B&uuml;chi to reachability
 
+
 In B&uuml;chi MDPs, the vertices are assigned colours from the set $\{1,2\}$ and our aim is to find a strategy maximizing $ \probm^\sigma_{\vinit}(\Buchi)$, i.e. maximizing the probability that a vertex coloured by $2$ is visited infinitely often.
 We say that a MEC $\mec$ of a B&uuml;chi MDP is **good** if it contains a vertex coloured by 2.
 
-```{prf:theorem} NEEDS TITLE 5-thm:quant-buchi
+````{prf:theorem} NEEDS TITLE 5-thm:quant-buchi
 :label: 5-thm:quant-buchi
 
 In B&uuml;chi MDPs, the value of each vertex is rational and computable in polynomial time. Moreover, we can compute, in polynomial time, a memoryless deterministic strategy that is optimal in every vertex.
 
-```
+````
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 Let $\mdp_b$ be a B&uuml;chi MDP and let $\mdp_r$ be a reachability MDP obtained from $\mdp_b$ by repainting each vertex belonging to a good MEC with the colour $\Win$. Note that $\mdp_r$ can be computed in polynomial time by performing the MEC decomposition of $\mdp_b$ ({numref}`5-algo:MEC-decomposition`) and checking goodness of each MEC.
@@ -142,27 +146,24 @@ Conversely, let $\sigma^*$ be the MD reachability-optimal strategy in $\mdp_r$ (
 
 The construction of $\sigma$ in the aforementioned paragraph is effective: given the optimal strategy $\sigma^*$ for reachability, $\sigma$ can be constructed in polynomial time.
 
-```
+````
 
 
 ## From optimal parity to optimal reachability
 
 In parity MDPs, the vertices are labelled by colours form the set $\{1,\dots,d\}$ (w.l.o.g. we stipulate that $d\leq |\vertices|$) and the goal is to find a strategy maximizing $ \probm^\sigma_{\vinit}(\Parity),$ i.e. maximizing the probability that the largest priority appearing infinitely often along a play is even.
 
-```{prf:theorem} NEEDS TITLE AND LABEL 
+````{prf:theorem} NEEDS TITLE AND LABEL 
 \label{5-thm:parity-main}
 In Parity MDPs, the value of each vertex is rational and computable in polynomial time. Moreover, we can compute, in polynomial time, a memoryless deterministic strategy that is optimal in every vertex.
  
-:label: 
-\label{5-thm:parity-main}
-In Parity MDPs, the value of each vertex is rational and computable in polynomial time. Moreover, we can compute, in polynomial time, a memoryless deterministic strategy that is optimal in every vertex.
 
 \label{5-thm:parity-main}
 In Parity MDPs, the value of each vertex is rational and computable in polynomial time. Moreover, we can compute, in polynomial time, a memoryless deterministic strategy that is optimal in every vertex.
 
-```
+````
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 Let $\mdp_p$ be a parity MDP. We will proceed similarly to  {prf:ref}`5-thm:quant-buchi`, constructing a reachability MDP $\mdp_r$ with the same underlying graph as $\mdp_p$.
@@ -179,7 +180,7 @@ By  {prf:ref}`5-lem:EC-sweep`, we can compute, in polynomial time, an MD strateg
 
 By the construction of $\sigma$, once we reach a vertex which is $i$-good for some even $i$, all the following vertices will be $j$-good for some even $j\leq i$. From this and from  {prf:ref}`5-lem:EC-inf` it follows that $\probm^{\sigma^*}_{\mdp_r,\vinit}(\Reach(\Win))$ is equal to the probability that $\sigma$ produces a play $\play$ with the following property: $\exists i \text{ even}$ such that all but finitely many vertices on $\play$ are $i$-good but are not $j$-good for any even $j<i$. This can be in turn rephrased as the probability that $\Inf(\play)$ is an EC whose all vertices are $i$-good for some even $i$ but none of them is $j$-good for an even $j<i$; we call such an EC **$i$-definite**. But within such an EC, $\sigma$ forever behaves as $\sigma_M$ for some MEC $\mdp$ of $\mdp_i$ in which the maximal priority is $i$. Hence, once an $i$-definite EC is reached, the strategy almost-surely ensures that priority $i$ is visited infinitely often and ensures that no larger priority is ever visited. It follows that  $\probm^{\sigma^*}_{\mdp_r,\vinit}(\Reach(\Win)) = \probm^{\sigma}_{\mdp_p,\vinit}(\inf(\play) \text{ is $i$-definite for even }i ) = \probm^{\sigma}_{\mdp_p,\vinit}(\Parity).$
 
-```
+````
 
 
 ## From general mean-payoff to optimal reachability
@@ -188,56 +189,76 @@ We already know how to solve strongly connected mean-payoff MDPs. We now combine
 
 We start with a strengthening of  {prf:ref}`5-thm:mp-valcomp`.
 
-```{prf:lemma} NEEDS TITLE 5-lem:MEC-mp-strict-bound
+````{prf:lemma} NEEDS TITLE 5-lem:MEC-mp-strict-bound
 :label: 5-lem:MEC-mp-strict-bound
 
 Let $\mdp$ be a strongly connected mean-payoff MDP and $r^*$ the value of each of its vertices. Then, for each $\sigma$ and $\vinit$ we have $\probm^\sigma_{\vinit}(\MeanPayoffInf > r^*) = 0 $.
 
-```
+````
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 Assume that the statement is not true. Then there exist $\sigma,\vinit$ as well as numbers $\epsilon,\delta>0 $ and $n_0 \in \N$ s.t. the probability of the following set of plays $X_{\epsilon,n_0}$ is at least $\delta$: a play $\play$ belongs to $X_{\epsilon,n_0}$ if for every $n\geq n_0$ it holds $\frac{1}{n}\sum_{i=0}^{n-1}\colouring(\play_i) \geq x^* + \eps$. We construct a new strategy $\sigma'$, which proceeds in a series of episodes. Every episode starts in $\vinit$, and for the first $n_0$ steps of the, episode $\sigma'$ mimics $\sigma$. After that, it checks, in every step $n$, whether the payoff accumulated since the start of the episode is at least $n\cdot(r^* + \eps)$. If this holds, we mimic $\sigma$ for one more step. If the inequality is violated, we immediately restart, i.e. return to $\vinit$ (can be performed with probability $1$ due to the MDP being strongly connected) and once in $\vinit$, start a new episode which mimics $\sigma$ from the beginning. By our assumption, the probability of not performing a reset in a given episode is at least $\delta>0$. Hence, with probability $1$ we witness only finitely many resets, after which we produce a play whose suffix has mean-payoff at least $r^* + e$. By prefix independence of mean-payoff ( {prf:ref}`5-thm:mp-valcomp`), $\expv^{\sigma'}_{\vinit} [\MeanPayoffInf] \geq r^* + \eps,$ a contradiction.
 
-```
+````
 
 We will need to strengthen the previous lemma so that it applies not only to strongly connected MDPs, but also to MECs in some larger MDPs. The strengthening is performed in the following two lemmas. The first lemma says that once we exit a MEC, with some positive probability we will never return.
 
-```{prf:lemma} NEEDS TITLE 5-lem:MEC-noreturn
+````{prf:lemma} NEEDS TITLE 5-lem:MEC-noreturn
 :label: 5-lem:MEC-noreturn
 
 Let $ \mec $ be a MEC of an MDP $ \mdp $ and let $ v\in \mec $, $ a\in \actions $ be such that $ a $ **is not** $ \mec $-safe in $ v $. Then there exists $ t $ s.t. $ \probTranFunc(t\mid v,a)>0 $ and  $ t \not \in \winAS(\mdp,\Reach(\mec)) $.
 
-```
+````
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 Assume that $ a $ is not $ \mec $-safe in $ v $ and that all $ t $'s with $ \probTranFunc(t\mid v,a)>0 $ belong to $ \winAS(\mdp,\Reach(\mec)) $. Fix the MD strategy $  \sigma $ which is almost-surely winning for reaching $ \mec $ from each vertex of $ \winAS(\mdp,\Reach(\mec)) $ ( {prf:ref}`5-thm:as-char`). For each $ t $ s.t.  $ \probTranFunc(t\mid v,a)>0 $, let $ \mec_t $ denote the set of vertices which can be (with a positive probability) visited under $ \sigma $. Put $ \mec' = \mec \cup (\bigcup_{t\in \vertices,\probTranFunc(t\mid v,a)>0}\mec_t )$. Then $ \mec' $ is closed, since $ \mec $ is closed and since for every $ u $ in some $ \mec_t $ there exists an action (the one selected by $ \sigma $ for $ u $) under which we surely stay in $ \mec_t $. Moreover, the $ \mec'$-induced sub-MDP is strongly connected: each $ t $ with $ \probTranFunc(t\mid v,a)>0 $ is reachable from within $ \mec $ (through $ v $) and thus each vertex in some $\mec_t $ is reachable from $ \mec $. In turn, from each vertex in some $ \mec_t $ (where $ \probTranFunc(t\mid v,a)>0 $) we can reach $ \mec $ without leaving $ \mec_t $, due to the definition of $ \sigma $. Hence, $ \mec' $ is a MEC which strictly contains $ \mec $, a contradiction with the maximality of $ \mec. $
 
-```
+````
  
 
 Given a play $\play$ and strategy $\sigma$, we define a **slice** of $\sigma$ as a strategy $\slice{\sigma}{\play}$ such that for each $\play'$ starting in $\last(\play)$ it holds $\slice{\sigma}{\play}(\play') = \sigma(\play\play')$, while on other plays $\slice{\sigma}{\play}$ just mimics $\sigma$.
 
 
 
-```{prf:lemma} NEEDS TITLE AND LABEL 
+%\label{5-lem:MEC-stable}
+
+%\end{lemma}
+
+%Assume, for contradiction, that there is $\delta > 0$ such that the probability of $E$ is at least $\delta$. Note that we do not immediately have a contradiction with \Cref{xxx}, since $\sigma$ might leave $\mec$. However, there must be $i\geq 0$ such that the probability of leaving $\mec$ after more than $i$ steps is at most $\frac{\delta}{2}$ (otherwise we would leave $\mec$ a.s.). Consider a strategy $\sigma_i$ which mimics $\sigma$, but whenever it is in $v$ after more than $i$ steps, an instruction to play an $\mec$-unsafe action is overriden by some $\mec$-safe action. Since the probability of encountering the override is at most $\frac{\delta}{2}$, the probability of $E$ under $\sigma_i$ is still at least $\frac{\delta}{2}$. But then there is a play prefix $\play_{\leq k}$ such that the probability of $E$ under SLICE (which never leaves $\mec$) from $\last(\play_{\leq k})$ is still positive, a contradiction with \Cref{xxx}.
+
+
+
+````{prf:lemma} NEEDS TITLE AND LABEL 
 \label{5-lem:MEC-stable}
+
+%For every $\eps>0$ there is a stable $\eps$-optimal strategy $\sigma'$. Moreover, 
 Let $\mec$ be a MEC of $\mdp$ and $r^*$ the mean-payoff value of every vertex in the strongly connected sub-MDP induced by $\mec$. Then the set $E$ of all plays that have $\Inf(\play)\subseteq\mec$ and at the same time mean payoff greater than $r$ has probability zero under any strategy $\sigma$.
+
+%Let $\mdp$ be a mean-payoff MDP. 
+
  
-:label: 
-\label{5-lem:MEC-stable}
-Let $\mec$ be a MEC of $\mdp$ and $r^*$ the mean-payoff value of every vertex in the strongly connected sub-MDP induced by $\mec$. Then the set $E$ of all plays that have $\Inf(\play)\subseteq\mec$ and at the same time mean payoff greater than $r$ has probability zero under any strategy $\sigma$.
 
 \label{5-lem:MEC-stable}
+
+%For every $\eps>0$ there is a stable $\eps$-optimal strategy $\sigma'$. Moreover, 
 Let $\mec$ be a MEC of $\mdp$ and $r^*$ the mean-payoff value of every vertex in the strongly connected sub-MDP induced by $\mec$. Then the set $E$ of all plays that have $\Inf(\play)\subseteq\mec$ and at the same time mean payoff greater than $r$ has probability zero under any strategy $\sigma$.
 
-```
+%Let $\mdp$ be a mean-payoff MDP. 
 
-```{admonition} Proof
+````
+
+````{admonition} Proof
 :class: dropdown tip
+
+%We show how to incrementally (by induction on index $i$) construct a $\frac{\eps\cdot i}{\ell}$-optimal strategy such that for each $1 \leq i \leq \ell$, the MECs $\mec_j$ with $j\leq i$ are stable in the sense that $\probm^\sigma_{\vinit}(\Inf(\play) \subseteq \mec) > 0$ implies that $\mec$ is never left.
+
+%The base and induction cases are proved analogously, so fix $1\leq i \leq \ell$ and let $\mec = \mec_i$. Let $p$ be the infimum, over all $\frac{\eps}{\ell}$-optimal strategies, of probabilities that $\Inf =\mec$. Fix $\frac{\eps}{\ell}$-optimal strategy $\sigma$ such that $\probm_{\vinit}^\sigma(\Inf(\play)=\mec)\leq p + p_{\min}$, where $p_{\min}$ is the minimal nonzero probability in $\mdp$. Auppose that $\mec = \mec_i$ is unstable under $\sigma$. We will modify $\sigma$ to make $\mec$ stable.  To simplify notation, we will assume in the rest of the proof that $\vinit$ is in $\mec$. If this is not the case, we would need to perform a surgery on $\sigma$, modifying its behaviour after entering $\mec$. 
+
+%To simplify notation, we can assume that $\vinit$ is in $\mec$, otherwise we would take $\vinit$ to be any vertex of $\mec$ 
 
  Assume, for contradiction, that there is a strategy $\sigma$ and $\delta > 0$ such that the probability of $E$ under $ \sigma  $ is at least $\delta$. Note that we do not immediately have a contradiction with  {prf:ref}`5-lem:MEC-mp-strict-bound`, since $\sigma$ might leave $\mec$ (and then return back). 
  
@@ -253,17 +274,34 @@ Let $\mec$ be a MEC of $\mdp$ and $r^*$ the mean-payoff value of every vertex in
  We are ready to apply the final argument. There are only finitely many plays of length $ \ell $. Hence, by union bound, there is a play $ \play $ of length $ \ell $ such that $\probm_{\vinit}^{\sigma'}(E_\ell \cap \cylinder(\play))>0$. Consider the strategy  $\slice{\sigma'}{\play}$. 
  Starting in $ \last(\play) $, we have that $\slice{\sigma'}{\play}$ never leaves $ \mec $, due to the overrides in $ \sigma' $. Hence, $\slice{\sigma'}{\play}$ can be seen as a strategy in the strongly connected MDP $ \mdp_\mec $. Now consider the set $ E'=\{\play'\mid \play'\exists\play''\in E \text{ s.t. } \play''=\play\play'\} $. Then $ \probm_{\last(\play)}^{\slice{\sigma'}{\play}}(E') = \probm_{\vinit}^{\sigma'}(E_\ell \cap \cylinder(\play))>0 $; but due to the prefix independence of mean payoff, all plays in $ E' $ have payoff $ > r^* $, a contradiction with  {prf:ref}`5-lem:MEC-mp-strict-bound`.
 
-```
+% Instead, note that .
+
+%
+% Consider a strategy $\sigma_\ell$ which mimics $\sigma$, but whenever it is in $v$ after more than $\ell$ steps, any instruction to play an $\mec$-unsafe action is overridden by some $\mec$-safe action. This override does not affect any prefixed of plays
+
+%  Since the probability of encountering the override is at most $\frac{\delta}{2}$, the probability of $E$ under $\sigma_i$ is still at least $\frac{\delta}{2}$. But then there is a play prefix $\play_{\leq k}$ such that the probability of $E$ under $\sigma_{\play_{\leq _k}}$ (which never leaves $\mec$) from $\last(\play_{\leq k})$ is still positive, a contradiction with  {prf:ref}`5-lem:MEC-mp-strict-bound`.
+
+%
+%
+%
+
+%
+%
+%
+%
+%
+
+````
 
 
-```{prf:theorem} NEEDS TITLE 5-thm:general-mp-main
+````{prf:theorem} NEEDS TITLE 5-thm:general-mp-main
 :label: 5-thm:general-mp-main
 
 In mean-payoff MDPs, the value of each vertex is rational and computable in polynomial time. Moreover, we can compute, in polynomial time, a memoryless deterministic strategy that is optimal in every vertex.
 
-```
+````
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 First, note that we can w.l.o.g. restrict to MDPs in which each edge is coloured by a number between $0$ and $ 1 $. To see this, let $\mdp$ be an MDP and $a,b$ any two numbers, with $a$ non-negative. We can construct an MDP $\mdp'$ by re-colouring each edge $(u,v)$ of $\mdp$ with colour $a\cdot \colouring(u,v)+b$, where $\colouring$ is the original colouring in $\mdp$. It is then easy to see that for each strategy $\sigma$ it holds $\expv_{\mdp,\vinit}^\sigma[\MeanPayoffInf]=(\expv_{\mdp',\vinit}^\sigma[\MeanPayoffInf]/a)-b$, so a strategy optimizing the mean payoff in $\mdp'$ is also optimal in $\mdp$. Hence, we always can re-scale the colouring into the unit interval while preserving the optimization criterion.
@@ -273,11 +311,12 @@ So now let $\mdp_\smallmp$ be a mean-payoff MDP with edge-colouring $\colouring$
 We show that for any original vertex (i.e. all vertices but $\vgood,\vbad$) the optimal values in both MDPs are the same and the optimal strategies are easily transferable from one MDP to the other.
 
 First, let $\sigma$ be an $\eps$-optimal strategy in $\mdp_\smallmp$. 
+
 We have $\expv^\sigma_{\vinit}[\MeanPayoffInf] = \sum_{i=1}^k\expv^\sigma_{\vinit}[\MeanPayoffInf\cdot \indicator{\Inf\subseteq\mec_i}] \leq \sum_{i=1}^k \expv^\sigma_{\vinit}[r_i^*\cdot \indicator{\Inf=\mec_i}] = \sum_{i=1}^k r_i^* \cdot \probm_{\vinit}^\sigma(\Inf=\mec_i) $; here the first equation follows from  {prf:ref}`5-lem:EC-inf` and the subsequent inequality from  {prf:ref}`5-lem:MEC-stable`. Moreover, for each $i$ there is a number $n_0^i$ such that the probability of all plays that stay inside $\mec_i$ in all the steps from $n_0^i$ to infinity is at least $\probm_{\vinit}^\sigma(\Inf\subseteq\mec_i) - \frac{\eps}{k} $. Let $n_0 = \max_{1\leq i \leq k} n^i_0$.
 
 We construct a reachability strategy $\sigma_r$ which mimics $\sigma$ for the first $n_0$ steps. After $n_0$ steps it performs a switch: if the current vertex is in some $\mec_i$ we immediately play the action $\finact$, otherwise we start to behave arbitrarily. We have $\probm_{\vinit}^{\sigma_r}(\Reach(\Win)) \geq \sum_{i=1}^{k} r_i^* \cdot \probm_{\vinit}^{\sigma_r}(\last(\play_{\leq n_0}) \in \mec_i ) \geq \sum_{i=1}^k r_i^* \cdot \probm_{\vinit}^\sigma(\Inf\subseteq\mec_i) - \eps \geq \expv^\sigma_{\vinit}[\MeanPayoffInf] -\eps$, the last equality shown in the previous paragraph. Since $\sigma$ is $\eps$-optimal for mean-payoff, $\probm_{\vinit}^{\sigma_r}(\Reach(\Win))$ is at most $2\eps$ away from the mean-payoff value of $ v $. Since $\eps>0$ was chosen arbitrarily, we get that the reachability value in $\mdp_{r}$ is at least as large as the mean-payoff value in $\mdp_{\smallmp}$.
 
 Conversely, let $\sigma^*$ be the optimal MD strategy in $\mdp_r$. We say that $\sigma^*$ ends in a vertex $v$ if $\sigma^*(v)=\finact$. We can assume that if $\sigma^*$ ends in some $v \in \mec_i$ then it ends in all vertices of $\mec_i$. This is because whenever $\sigma^*$ ends in some vertex $v \in \mec_i$, the reachability value of $v$ must be equal to $r^*_i$, otherwise playing $\finact$ would not be optimal here. But the optimal reachability value in every vertex of a given MEC is the same (due to  {prf:ref}`5-lem:EC-sweep`), so if playing $\finact$ is optimal in some vertex of $\mec_i$, it is optimal in all such vertices. Now we can define an MD strategy $\sigma_{\smallmp}$ in $\mdp_\smallmp$ to initially mimic $\sigma^*$, and upon encountering any MEC $\mec_i$ in which $\sigma^*$ ends, immediately switch to the MD strategy that is optimal in the mean-payoff sub-MDP $\mdp_i$. We have $\expv^{\sigma_{\smallmp}}_{\vinit}[\MeanPayoffInf]  =  \sum_{i=1}^{k} \probm^{\sigma^*}_{\vinit}(\text{end in }\mec_i)\cdot r^*_i = \probm^{\sigma^*}_{\vinit} (\Reach(\Win)). $ Since $\sigma^*$ as well as the optimal strategies in all $\mec_i$ can be computed in polynomial time ( {prf:ref}`5-thm:quant-reachability-main,5-thm:lpmp-basic-dim`), we get the result.
 
-```
+````
 

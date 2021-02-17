@@ -62,6 +62,9 @@
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
+\newcommand{\EXP}{\textrm{EXP}}
+\newcommand{\kEXP}{\textrm{kEXP}}
 ```
 Value iteration algorithms manipulate value functions and never construct any strategy, at least explicitly.
 This is a key difference with strategy improvement algorithms (also called policy iteration algorithms) whose fundamental idea is to maintain and improve a strategy.
@@ -89,21 +92,21 @@ The difficulty is that $e = (v,u)$ being switchable does not mean that it is a b
 but only according to the value function $\val^{\sigma}$, so it is not clear that $\sigma[v \to e]$ is better than $\sigma$.
 Strategy improvement algorithms depend on the following two principles.
 
-```{prf:property} Progress
+````{prf:property} Progress
 :label: 1-property:progress
 
 Let $\sigma$ be a strategy and let $e = (v,u)$ be a switchable edge. 
 Then $\sigma < \sigma[v \to e]$.
 
-```
+````
 
 
-```{prf:property} Optimality
+````{prf:property} Optimality
 :label: 1-property:optimality
 
 Let $\sigma$ be a strategy that has no switchable edges, then $\sigma$ is optimal.
 
-```
+````
 
 The algorithm is the following: start at an initial strategy $\sigma_0$. 
 In each round $i$ compute $\val^{\sigma_i}$ and look for a switchable edge.
@@ -119,11 +122,44 @@ If both progress and optimality principles hold as stated this yields a strategy
 Unfortunately such ideal properties rarely hold and it is often necessary to state and prove weaker properties,
 we refer to Chapter {ref}`3-chap:parity,4-chap:payoffs` for examples.
 
-```{admonition} Remark 
+%Assume that the initial strategy is $\sigma_0$ defined by 
+
+%\sigma_0(v_1) = (v_1,v_1)$,
+
+%This strategy is losing from all vertices since it eventually ends up looping around $v_1$.
+
+%However $\sigma_0$ is clearly not optimal, contradicting the progress principle.
+
+%For this reason the initial strategy $\sigma_0$ must be carefully chosen.
+
+%and to define $\sigma_0$ to be the strategy choosing this option from every vertex.
+
+%
+
+%\centering
+
+%    \node[s-eve] (v0) at (0,0) {$\begin{array}{c} v_0 \\ 2 \end{array}$};
+
+%    \node[s-eve] (v2) at (4,0) {$\begin{array}{c} v_2 \\ 2 \end{array}$};
+
+%    \path[arrow]
+
+%      (v0) edge[bend left] (v1)
+
+%      (v1) edge[selfloop=90] (v1)
+
+%      (v2) edge[selfloop=0] (v2)
+
+%  \end{tikzpicture}
+
+%\label{1-fig:counter_example_strategy_improvement}
+
+
+````{admonition} Remark 
 In the description above we did not specify which switchable edge to choose.
 Actually strategy improvement algorithms often switch more than one edge at a time, making this question worse: 
 which subset of the switchable edges should be chosen? 
 Many possible rules for choosing this set have been studied, as for instance the **greedy all-switches** rule. 
 
-```
+````
 

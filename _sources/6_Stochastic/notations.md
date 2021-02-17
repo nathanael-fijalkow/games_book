@@ -73,10 +73,13 @@
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
+\newcommand{\EXP}{\textrm{EXP}}
+\newcommand{\kEXP}{\textrm{kEXP}}
 ```
 Let us first define the arenas stochastic games will be played on:
 
-```{prf:definition} NEEDS TITLE AND LABEL 
+````{prf:definition} NEEDS TITLE AND LABEL 
   A stochastic arena is a tuple $\arena = (\vertices,E,\delta)$ where
   
   *  $\vertices = \VA \sqcup \VE \sqcup \Randomvertices$ is a
@@ -90,19 +93,6 @@ Let us first define the arenas stochastic games will be played on:
     $(v,w) \in E$.
   
  
-:label: 
-  A stochastic arena is a tuple $\arena = (\vertices,E,\delta)$ where
-  
-  *  $\vertices = \VA \sqcup \VE \sqcup \Randomvertices$ is a
-    finite set of vertices, partitionned into vertices of Adam, Eve,
-    and random vertices;
-  *  $E \subseteq \vertices \times \vertices$ is the set of
-    edges;
-  *  $\delta : \Randomvertices \to \dist(\vertices)$ is the
-    probabilistic transition function, which satisfies:
-    $\forall v \in \Randomvertices$, $\delta(v)(w)>0$ iff
-    $(v,w) \in E$.
-  
 
   A stochastic arena is a tuple $\arena = (\vertices,E,\delta)$ where
   
@@ -117,10 +107,10 @@ Let us first define the arenas stochastic games will be played on:
     $(v,w) \in E$.
   
 
-```
+````
 
 
-```{figure} ./../6-fig:ex-stoch-arena.png
+```{figure} ./../FigAndAlgos/6-fig:ex-stoch-arena.png
 :name: 6-fig:ex-stoch-arena
 :align: center
 Example of a stochastic arena: circle nodes belong to Eve,
@@ -130,7 +120,7 @@ Example of a stochastic arena: circle nodes belong to Eve,
 Similarly to non-stochastic arenas, one can equip a stochastic arena
 with a winning objectives to define a stochastic game.
 
-```{prf:definition} NEEDS TITLE AND LABEL 
+````{prf:definition} NEEDS TITLE AND LABEL 
   A stochastic game is a tuple $\game = (\arena,\Omega)$ where
   
   *  $\arena$ is a stochastic arena;
@@ -138,13 +128,6 @@ with a winning objectives to define a stochastic game.
     winning objective.
   
  
-:label: 
-  A stochastic game is a tuple $\game = (\arena,\Omega)$ where
-  
-  *  $\arena$ is a stochastic arena;
-  *  $\Omega \subseteq \vertices^\omega$ is the (qualitative)
-    winning objective.
-  
 
   A stochastic game is a tuple $\game = (\arena,\Omega)$ where
   
@@ -153,7 +136,7 @@ with a winning objectives to define a stochastic game.
     winning objective.
   
 
-```
+````
 
 For $\Win \subseteq \vertices$, letting $\Omega = \Reach(\Win)$ gives
 rise to a stochastic reachability game.
@@ -176,6 +159,11 @@ when the initial vertex is $v$. In particular,
 $\probm_{\sigma,\tau}^v(\mathds{1}_\Omega)$ is the outcome of the profile
 $(\sigma,\tau)$.
 
+
+% is evident.
+
+
+% $\sigma$: strategies of Eve; $\tau$: strategies of Adam
 
 
 The **value for Eve** in $\game$ from $v$ is defined as

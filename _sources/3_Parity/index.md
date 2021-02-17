@@ -1,7 +1,7 @@
 (3-chap:parity)=
 # Parity Games
 
-```{image} ./../3.jpg
+```{image} ./../Illustrations/3.jpg
 :alt: illustration
 :class: bg-primary mb-1
 :width: 400px
@@ -73,7 +73,11 @@
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
+\newcommand{\EXP}{\textrm{EXP}}
+\newcommand{\kEXP}{\textrm{kEXP}}
 ```
+
 Written by John Fearnley, Nathana&euml;l Fijalkow
 
 
@@ -95,21 +99,39 @@ and present a third quasipolynomial time algorithm in the form of a value iterat
 
 As a conclusion Section {ref}`3-sec:relationships` discusses the relationships between the different algorithms: in what sense are separating automata and value iteration algorithms equivalent through the notion of universal trees, and how does this family compare to the other two families of algorithms described above.
 
-```{admonition} Remark 
+````{admonition} Remark 
 We already proved in  {prf:ref}`2-thm:parity` that parity games are positionally determined for both players, so in this chapter when considering a strategy we implicitly assume that it is positional.
 
-```
+````
+
+
+%
+%
 
 
 
+%
+%
 
 
 
+%
+%
 
 
 
+%
+%
 
 
+
+%
+%
+
+
+
+%
+%
 
 
 

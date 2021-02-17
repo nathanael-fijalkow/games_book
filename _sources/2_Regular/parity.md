@@ -67,6 +67,9 @@
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
+\newcommand{\EXP}{\textrm{EXP}}
+\newcommand{\kEXP}{\textrm{kEXP}}
 ```
 Recall that the parity objective extends B&uuml;chi and coB&uuml;chi objectives:
 
@@ -76,22 +79,22 @@ $$
 
 
 
-```{prf:theorem} Positional determinacy and complexity of parity games
+````{prf:theorem} Positional determinacy and complexity of parity games
 :label: 2-thm:parity
 
-Parity objectives are uniformly positionally determined for both players
+Parity objectives are uniformly positionally determined for both players.
 
 ```{margin}
-See \cref{2-rmk:finite_infinite```
+See \cref{2-rmk:finite_infinite} for the case of infinite games.
+```
 
- for the case of infinite games.}.
 There exists an algorithm for computing the winning regions of parity games in exponential time,
 and more precisely of complexity $O(m n^d)$.
 The space complexity of $O(nd)$.
 
 Furthermore, solving parity games is in $\NP \cap \coNP$.
 
-```
+````
 
 To prove  {prf:ref}`2-thm:parity` we first construct a recursive algorithm for computing the winning regions of parity games.
 The algorithm is often called Zielonka's algorithm, or more accurately McNaughton Zielonka's algorithm.
@@ -102,7 +105,7 @@ The $\NP \cap \coNP$ complexity bounds will be discussed at the end of this sect
 The following lemma induces (half of) the recursive algorithm.
 Identifying a colour and its set of vertices we write $d$ for the set of vertices of priority $d$.
 
-```{prf:lemma} Fixed point characterisation of the winning regions for parity games
+````{prf:lemma} Fixed point characterisation of the winning regions for parity games
 :label: 2-lem:zielonka_even
 
 Let $\Game$ be a parity game with priorities in $[1,d]$, and $d$ even.
@@ -113,14 +116,18 @@ Let $\Game'$ be the subgame of $\Game$ induced by $V \setminus \AttrE(d)$.
 let $\Game''$ be the subgame of $\Game$ induced by $V \setminus \AttrA( \WA(\Game') )$,
 then $\WE(\Game) = \WE(\Game'')$.
 
-```
+````
 
 To see that this leads to a recursive algorithm, we note that $\Game'$ has priorities in $[1,d-1]$
 and that if $\WA(\Game') \neq \emptyset$, then $\Game''$ has less vertices than $\Game$.
 
+%$\WE(\Game)$ as the least fixed point of a monotonic operator based on $\WE(\Game')$ (in line with  {prf:ref}`2-lem:Buchi`, which is the special case for $d = 2$).
+
+%and would make it easier to extend the positionality result for all games even infinite ones 
 
 
-```{admonition} Proof
+
+````{admonition} Proof
 :class: dropdown tip
 
 We prove the first item. 
@@ -136,7 +143,8 @@ Thus $\sigma$ is winning from $V$.
 
 We now look at the second item.
 
-Let $\tau_a$ denote an attractor strategy from $\AttrA(\WA(\Game')) \setminus \WA(\Game')$.
+Let $\tau_a$ denote an attractor strategy 
+from $\AttrA(\WA(\Game')) \setminus \WA(\Game')$.
 Consider a winning strategy for Adam from $\WA(\Game')$ in $\Game'$, it induces a strategy $\tau'$ in $\Game$.
 Since $V \setminus \AttrE(d)$ is a trap for Eve, this implies that $\tau'$ is a winning strategy in $\Game$.
 Consider now a winning strategy in the game $\Game''$ from $\WA(\Game'')$, it induces a strategy $\tau''$ in $\Game$.
@@ -155,12 +163,12 @@ Consider a winning strategy from $\WE(\Game'')$ in $\Game''$, it induces a strat
 Since $\Game''$ is a trap for Adam, any play consistent with $\sigma$ stays forever in $\WE(\Game'')$, 
 implying that $\sigma$ is winning from $\WE(\Game'')$ in $\Game$.
 
-```
+````
 
 To get the full algorithm we need the analogous lemma for the case where the maximal priority is odd.
 We do not prove the following lemma as it is the exact dual of the previous lemma, and the proof is the same swapping the two players.
 
-```{prf:lemma} Dual fixed point characterisation of the winning regions for parity games
+````{prf:lemma} Dual fixed point characterisation of the winning regions for parity games
 :label: 2-lem:zielonka_odd
 
 Let $\Game$ be a parity game with priorities in $[1,d]$, and $d$ odd.
@@ -170,7 +178,7 @@ Let $\Game'$ be the subgame of $\Game$ induced by $V \setminus \AttrA(d)$.
 *  If $\WE(\Game') \neq \emptyset$, let $\Game''$ be the subgame of $\Game$ induced by $V \setminus \AttrE( \WE(\Game') )$,
 then $\WA(\Game) = \WA(\Game'')$.
 
-```
+````
 
 The algorithm is presented in pseudocode in {numref}`2-algo:zielonka`.
 
@@ -205,7 +213,7 @@ and guessing a strategy for Adam yields a $\coNP$ algorithm.
 
 Chapter {ref}`3-chap:parity` is devoted to the study of advanced algorithms for parity games.
 
-```{figure} ./../2-algo:zielonka.png
+```{figure} ./../FigAndAlgos/2-algo:zielonka.png
 :name: 2-algo:zielonka
 :align: center
 A recursive algorithm for computing the winning regions of parity games.

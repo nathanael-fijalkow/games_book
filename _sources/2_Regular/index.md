@@ -1,7 +1,7 @@
 (2-chap:regular)=
 # Regular Games
 
-```{image} ./../2.jpg
+```{image} ./../Illustrations/2.jpg
 :alt: illustration
 :class: bg-primary mb-1
 :width: 400px
@@ -73,7 +73,11 @@
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
+\newcommand{\EXP}{\textrm{EXP}}
+\newcommand{\kEXP}{\textrm{kEXP}}
 ```
+
 Written by Nathana&euml;l Fijalkow, Florian Horn
 
 
@@ -88,26 +92,45 @@ We extend the algorithm to Muller games in Section {ref}`2-sec:muller`, and disc
 Finally, Section {ref}`2-sec:zielonka` is devoted to the combinatorial notion of the Zielonka tree, 
 which beautifully explains the memory requirements for Muller games and gives additional insights into the structures of Rabin and parity objectives.
 
-```{admonition} Remark 
+````{admonition} Remark 
 As in the rest of the book unless otherwise specified we consider finite games.
 However all positionality and finite memory determinacy results proved in this chapter hold for infinite games.
 In all cases the proofs we give use the finiteness of the games.
-However in all cases but one ( {prf:ref}`2-thm:Rabin_positional_determinacy`),
+However in all cases 
+but one ( {prf:ref}`2-thm:Rabin_positional_determinacy`),
 the proofs can be extended to infinite games with a technical overhead involving in particular a transfinite induction.
 The difficulty is illustrated before the proof of  {prf:ref}`2-thm:reachability`.
 
-```
+````
+
+
+%
+%
 
 
 
+%
+%
 
 
 
+%
+%
 
 
 
+%
+%
 
 
+
+%
+%
+
+
+
+%
+%
 
 
 

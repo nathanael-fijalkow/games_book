@@ -1,0 +1,2091 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vector games &#8212; Games on graphs</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/style.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Games in dimension one" href="dim1.html" />
+    <link rel="prev" title="Games with Counters" href="index.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/cover.jpg" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Games on graphs</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <p class="caption collapsible-parent">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../1_Introduction/index.html">
+   Introduction
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/intro.html">
+     What is this book about?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/simple.html">
+     A first model of games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/objectives.html">
+     Objectives
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/computation.html">
+     Computational models
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/automata.html">
+     Automata
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/memory.html">
+     Memory
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/reductions.html">
+     Reductions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/subgames.html">
+     Traps and subgames
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/fixed_points.html">
+     Generic fixed point algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/value_iteration.html">
+     Value iteration algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/strategy_improvement.html">
+     Strategy improvement algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Classic
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../2_Regular/index.html">
+   Regular Games
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/attractors.html">
+     Reachability games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/buchi.html">
+     Büchi games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/parity.html">
+     Parity games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/muller.html">
+     Rabin, Streett, and Muller games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/zielonka.html">
+     Zielonka tree
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../3_Parity/index.html">
+   Parity Games
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/strategy_improvement.html">
+     An exponential time strategy improvement algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/zielonka.html">
+     A quasipolynomial time attractor decomposition algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/separation.html">
+     A quasipolynomial time separating automata algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/value_iteration.html">
+     A quasipolynomial time value iteration algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/relationships.html">
+     Comparing the three families of algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../4_Payoffs/index.html">
+   Games with Payoffs
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/notations.html">
+     Notations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/qualitative.html">
+     Refining qualitative objectives with quantities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/mean_payoff.html">
+     Mean payoff games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/discounted_payoff.html">
+     Discounted payoff games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/shortest_path.html">
+     Shortest path games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/total_payoff.html">
+     Total payoff games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Stochastic
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../5_MDP/index.html">
+   Markov Decision Processes
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/notations.html">
+     Notations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/reachability.html">
+     Positive and almost-sure reachability and safety in MDPs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/discounted.html">
+     Discounted payoff in MDPs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/mean_payoff_properties.html">
+     Mean-payoff in MDPs: General properties and linear programming
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/mean_payoff_strongly_connected.html">
+     Mean-payoff optimality in strongly connected MDPs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/end_components.html">
+     End components
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/reductions.html">
+     Reductions to optimal reachability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/optimal_reachability.html">
+     Optimal reachability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../6_Stochastic/index.html">
+   Stochastic Games
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../6_Stochastic/notations.html">
+     Notations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../6_Stochastic/determinacy.html">
+     Positional determinacy of stochastic reachability games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../6_Stochastic/relations.html">
+     Relations between all games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../6_Stochastic/algos.html">
+     Algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../6_Stochastic/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Information
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../7_Concurrent/index.html">
+   Concurrent Games
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../7_Concurrent/notations.html">
+     Notations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../7_Concurrent/matrix_games.html">
+     Matrix games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../7_Concurrent/discounted.html">
+     Concurrent discounted games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../7_Concurrent/reachability.html">
+     Concurrent reachability games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../7_Concurrent/mean_payoff.html">
+     Concurrent mean-payoff games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../7_Concurrent/discounted.html">
+     Concurrent discounted games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../7_Concurrent/references.html">
+     Bibilographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../8_Imperfect/index.html">
+   Games with Signals
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../8_Imperfect/notations.html">
+     Notations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../8_Imperfect/finite_duration.html">
+     Finite duration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../8_Imperfect/infinite_duration.html">
+     Infinite duration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../8_Imperfect/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Infinite
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../9_Timed/index.html">
+   Timed Games
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../9_Timed/notations.html">
+     Notations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../9_Timed/state_space_representation.html">
+     State-Space Representation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../9_Timed/controllable_predecessor_operator.html">
+     Controllable-Predecessor Operator
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../9_Timed/backward_algorithm.html">
+     Backward Algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../9_Timed/forward_algorithm.html">
+     Forward Algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../9_Timed/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../10_Pushdown/index.html">
+   Pushdown Games
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10_Pushdown/notations.html">
+     Notations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10_Pushdown/profiles.html">
+     Profiles and regularity of the winning regions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10_Pushdown/parity.html">
+     Parity pushdown games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10_Pushdown/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 current active collapsible-parent">
+  <a class="reference internal" href="index.html">
+   Games with Counters
+  </a>
+  <ul class="current collapse-ul">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Vector games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="dim1.html">
+     Games in dimension one
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="avag.html">
+     Asymmetric games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="resource.html">
+     Resource-conscious games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="complexity.html">
+     The complexity of asymmetric monotone games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Multi
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../12_Multiobjectives/index.html">
+   Games with multiple objectives
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12_Multiobjectives/mean_payoff_energy.html">
+     Mean-payoff and energy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12_Multiobjectives/total_payoff_shortest_path.html">
+     Total-payoff and shortest path
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12_Multiobjectives/beyond_worst_case.html">
+     Beyond worst-case synthesis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12_Multiobjectives/percentile.html">
+     Percentile queries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12_Multiobjectives/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../13_Multiplayer/index.html">
+   Multiplayer Games
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13_Multiplayer/nash_equilibria_normal_form.html">
+     Nash Equilibria for games in normal form
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13_Multiplayer/admissible_strategies.html">
+     Admissible strategies
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13_Multiplayer/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#arenas-and-games">
+   Arenas and Games
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#undecidability">
+   Undecidability
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="vector-games">
+<span id="sec-counters"></span><h1>Vector games<a class="headerlink" href="#vector-games" title="Permalink to this headline">¶</a></h1>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\begin{split}\newcommand{\?}{\mathcal}
+\newcommand{\+}{\mathbb}
+\newcommand{\tup}[1]{\langle #1\rangle}
+\newcommand{\eqby}[1]{\stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{#1}}}}{=}}
+\newcommand{\eqdef}{\eqby{def}}
+\newcommand{\Loc}{\?L}
+\newcommand{\Act}{A}
+\providecommand{\dom}[1]{\mathrm{dom}\,#1}
+\newcommand\pto{\mathrel{\ooalign{\hfil$\mapstochar\mkern5mu$\hfil\cr$\to$\cr}}}
+\newcommand{\weight}{w}
+\newcommand{\loc}{\ell}
+\newcommand{\sink}{\bot}
+\newcommand{\dd}{k}
+\newcommand{\CounterReach}{\textsf{CounterReach}\xspace}
+\newcommand{\Cover}{\textsf{Cover}\xspace}
+\newcommand{\NonTerm}{\textsf{NonTerm}\xspace}
+\newcommand{\decpb}[3][]{\begin{problem}[#1]\\[-1.7em]\begin{description}     
+    \item[\textsc{input:}] {#2}
+    \item[\textsc{question:}] {#3}
+    \end{description}
+  \end{problem}}
+\newcommand{\step}[1]{\xrightarrow{\,\raisebox{-1pt}[0pt][0pt]{\scriptsize\ensuremath
+      {#1}}\,}}
+\newcommand{\mstep}[1]{\xrightarrow{\,\raisebox{-1pt}[6pt][0pt]{\scriptsize\ensuremath
+      {#1}}\,}}
+\newcommand{\inst}[1]{\mathrel{\mathtt{#1}}}
+\providecommand{\pop}{\mathrm{pop}}
+\providecommand{\push}[1]{\mathrm{push}(#1)}
+\providecommand{\mymoot}[1]{}
+\newcommand{\blank}{\Box}
+\newcommand{\emkl}{\triangleright}
+\newcommand{\emkr}{\triangleleft}
+\renewcommand{\natural}{\arena_\+N}
+\newcommand{\energy}{\arena_\+E}
+\newcommand{\bounded}{\arena_B}
+\newcommand{\capped}{\arena_C}
+\newcommand{\capp}[2][C]{\overline{\vec #2}^{#1}}
+\let\oldcite\cite
+\renewcommand{\cite}{\citep}
+\providecommand{\citep}{\oldcite}
+\providecommand{\citet}{\cite}
+\providecommand{\citem}[2][1]{#1 {cite}`#2`}
+\providecommand{\qedhere}{\ensuremath\Box}
+\providecommand{\col}{\mathfrak c}
+\newcommand{\lcol}{\mathrm{lcol}}
+\newcommand{\vcol}{\mathrm{vcol}}
+\newcommand{\litt}{\loc}
+\newcommand{\Effect}{\Delta}\end{split}\\\newcommand{\Eve}{\textrm{Eve}}
+\newcommand{\Adam}{\textrm{Adam}}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
+\newcommand{\argmax}{\textrm{argmax}}
+\newcommand{\argmin}{\textrm{argmin}}
+\newcommand{\Op}{\mathbb{O}}
+\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\textrm{supp}} 
+\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
+\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
+\newcommand{\mEve}{\mathrm{Eve}}
+\newcommand{\mAdam}{\mathrm{Adam}}
+\newcommand{\mRandom}{\mathrm{Random}}
+\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
+\newcommand{\ing}{\textrm{In}}
+\newcommand{\Ing}{\ing}
+\newcommand{\out}{\textrm{Out}}
+\newcommand{\Out}{\out}
+\newcommand{\dest}{\Delta} 
+\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
+\newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
+\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
+\newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
+\newcommand{\Win}{\textrm{Win}} 
+\newcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Value}{\textrm{val}} 
+\newcommand{\ValueE}{\textrm{val}_\mEve} 
+\newcommand{\ValueA}{\textrm{val}_\mAdam}
+\newcommand{\val}{\Value} 
+\newcommand{\Automaton}{\mathbf{A}} 
+\newcommand{\Safe}{\mathtt{Safe}}
+\newcommand{\Reach}{\mathtt{Reach}} 
+\newcommand{\Buchi}{\mathtt{Buchi}} 
+\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
+\newcommand{\Parity}{\mathtt{Parity}} 
+\newcommand{\Muller}{\mathtt{Muller}} 
+\newcommand{\Rabin}{\mathtt{Rabin}} 
+\newcommand{\Streett}{\mathtt{Streett}} 
+\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
+\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
+\newcommand{\Energy}{\mathtt{Energy}}
+\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
+\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
+\newcommand{\Sup}{\mathtt{Sup}}
+\newcommand{\Inf}{\mathtt{Inf}}
+\newcommand{\LimSup}{\mathtt{LimSup}}
+\newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NL}{\textrm{NL}}
+\newcommand{\PTIME}{\textrm{PTIME}}
+\newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
+\newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
+\newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
+\newcommand{\EXP}{\textrm{EXP}}
+\newcommand{\kEXP}{\textrm{kEXP}}\end{aligned}\end{align} \]</div>
+<p>\AP A vector system is a finite directed graph with a partition of
+the vertices and weighted edges.  Formally, it is a tuple
+<span class="math notranslate nohighlight">\(\?V=(\Loc,\Act,\Loc_\mEve,\Loc_\mAdam,\dd)\)</span> where <span class="math notranslate nohighlight">\(\dd\in\+N\)</span> is a
+dimension, <span class="math notranslate nohighlight">\(\Loc\)</span> is a finite set of locations partitioned into the
+locations controlled by \Eve and \Adam, i.e.,
+<span class="math notranslate nohighlight">\(\Loc=\Loc_\mEve\uplus \Loc_\mAdam\)</span>, and
+<span class="math notranslate nohighlight">\(\Act\subseteq \Loc\times\+Z^\dd\times\Loc\)</span> is a finite set of
+weighted actions.  We write <span class="math notranslate nohighlight">\(\loc\step{\vec u}\loc'\)</span>
+rather than <span class="math notranslate nohighlight">\((\loc,\vec u,\loc')\)</span> for actions in <span class="math notranslate nohighlight">\(\Act\)</span>.  A
+vector addition system with states is a vector system where
+<span class="math notranslate nohighlight">\(\Loc_\mAdam=\emptyset\)</span>, i.e., it corresponds to the one-player case.</p>
+<div class="proof example admonition" id="11-ex-mwg">
+<p class="admonition-title"><span class="caption-number">Example 295 </span> (NEEDS TITLE 11-ex-mwg)</p>
+<div class="example-content section" id="proof-content">
+<p>\Cref{11-fig-mwg} presents a vector system of
+dimension two with locations <span class="math notranslate nohighlight">\(\{\loc,\loc'\}\)</span> where <span class="math notranslate nohighlight">\(\loc\)</span> is
+controlled by \Eve and <span class="math notranslate nohighlight">\(\loc'\)</span> by \Adam</p>
+<p>.</p>
+</div>
+</div><p>\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[auto,on grid,node distance=2.5cm]
+\node<span class="xref myst">s-eve</span>{<span class="math notranslate nohighlight">\(\loc\)</span>};
+\node<span class="xref myst">s-adam,right=of 0</span>{<span class="math notranslate nohighlight">\(\loc'\)</span>};
+\path[arrow,every node/.style={font=\footnotesize,inner sep=1}]
+(0) edge[loop left] node {<span class="math notranslate nohighlight">\(-1,-1\)</span>} ()
+(0) edge[bend right=10] node {<span class="math notranslate nohighlight">\(-1,0\)</span>} (1)
+(1) edge[bend left=30] node {<span class="math notranslate nohighlight">\(-1,0\)</span>} (0)
+(1) edge[bend right=30,swap] node {<span class="math notranslate nohighlight">\(2,1\)</span>} (0);
+\end{tikzpicture}
+\caption{\label{11-fig-mwg} A vector system.}
+\end{figure}</p>
+<p>The intuition behind a vector system is that it
+maintains <span class="math notranslate nohighlight">\(\dd\)</span> counters <span class="math notranslate nohighlight">\(\mathtt{c}_1,\dots,\mathtt{c}_\dd\)</span> assigned
+to integer values.  An action <span class="math notranslate nohighlight">\(\loc\step{\vec u}\loc'\in\Act\)</span> then
+updates each counter by adding the corresponding entry of <span class="math notranslate nohighlight">\(\vec u\)</span>,
+that is for all <span class="math notranslate nohighlight">\(1\leq j\leq\dd\)</span>, the action performs the update
+<span class="math notranslate nohighlight">\(\mathtt{c}_j := \mathtt{c}_j+\vec u(j)\)</span>.</p>
+<p>\medskip \AP Before we proceed any further, let us fix some notations
+for vectors in <span class="math notranslate nohighlight">\(\+Z^\dd\)</span>.  We write <code class="docutils literal notranslate"><span class="pre">$\vec</span> <span class="pre">0$'</span> <span class="pre">for</span> <span class="pre">the</span> <span class="pre">zero</span> <span class="pre">vector</span> <span class="pre">with</span> <span class="pre">$\vec</span> <span class="pre">0(j)\eqdef</span> <span class="pre">0$</span> <span class="pre">for</span> <span class="pre">all</span> <span class="pre">$1\leq</span> <span class="pre">j\leq\dd$.</span>&#160; <span class="pre">For</span> <span class="pre">all</span> <span class="pre">$1\leq</span> <span class="pre">j\leq\dd$,</span> <span class="pre">we</span> <span class="pre">write</span> </code><span class="math notranslate nohighlight">\(\vec e_j\)</span>’ for the unit vector with
+<span class="math notranslate nohighlight">\(\vec e_j(j)\eqdef 1\)</span> and <span class="math notranslate nohighlight">\(\vec e_{j}(j')\eqdef 0\)</span> for all <span class="math notranslate nohighlight">\(j'\neq j\)</span>.
+Addition and comparison are defined componentwise, so that for
+instance <span class="math notranslate nohighlight">\(\vec u\leq\vec u'\)</span> if and only if for all <span class="math notranslate nohighlight">\(1\leq j\leq\dd\)</span>,
+<span class="math notranslate nohighlight">\(\vec u(j)\leq\vec u'(j)\)</span>.  We write
+<span class="math notranslate nohighlight">\(\weight(\loc\step{\vec u}\loc')\eqdef\vec u\)</span> for the weight of an
+action and <span class="math notranslate nohighlight">\(\weight(\pi)\eqdef\sum_{1\leq j\leq |\pi|}\weight(\pi_j)\)</span>
+for the cumulative weight of a finite sequence of actions
+<span class="math notranslate nohighlight">\(\pi\in\Act^\ast\)</span>.  For a vector <span class="math notranslate nohighlight">\(\vec u\in\+Z^\dd\)</span>, we use its
+infinity norm <span class="math notranslate nohighlight">\(\|\vec u\|\eqdef\max_{1\leq j\leq\dd}|\vec u(j)|\)</span>,
+hence <span class="math notranslate nohighlight">\(\|\vec 0\|=0\)</span> and <span class="math notranslate nohighlight">\(\|\vec e_j\|=\|-\vec e_j\|=1\)</span>, and we let
+<span class="math notranslate nohighlight">\(\|\loc\step{\vec u}\loc'\|\eqdef\|\weight(\loc\step{\vec
+  u}\loc')\|=\|\vec u\|\)</span>
+and <span class="math notranslate nohighlight">\(\|\Act\|\eqdef\max_{a\in\Act}\|\weight(a)\|\)</span>.  Unless stated
+otherwise, we assume that all our vectors are represented in binary,
+hence <span class="math notranslate nohighlight">\(\|\Act\|\)</span> may be exponential in the size of <span class="math notranslate nohighlight">\(\?V\)</span>.</p>
+<div class="section" id="arenas-and-games">
+<h2>Arenas and Games<a class="headerlink" href="#arenas-and-games" title="Permalink to this headline">¶</a></h2>
+<p>\AP A vector system gives rise to an infinite graph
+<span class="math notranslate nohighlight">\(G_\+N\eqdef(V,E)\)</span> over the set of vertices
+<span class="math notranslate nohighlight">\(V\eqdef(\Loc\times\+N^\dd)\uplus\{\sink\}\)</span>.  The vertices of the
+graph are either <strong>configurations</strong> <span class="math notranslate nohighlight">\(\loc(\vec v)\)</span> consisting of a
+location <span class="math notranslate nohighlight">\(\loc\in \Loc\)</span> and a vector of non-negative integers
+<span class="math notranslate nohighlight">\(\vec v\in\+N^\dd\)</span>—such a vector represents a valuation of the
+counters <span class="math notranslate nohighlight">\(\mathtt{c}_1,\dots,\mathtt c_\dd\)</span>—, or the
+sink <span class="math notranslate nohighlight">\(\sink\)</span>.</p>
+<p>\AP Consider an action in <span class="math notranslate nohighlight">\(a=(\loc\step{\vec u}\loc')\)</span> in <span class="math notranslate nohighlight">\(\Act\)</span>: we
+see it as a partial function
+<span class="math notranslate nohighlight">\(a{:}\,\Loc\times\+N^\dd\,\pto \Loc\times\+N^\dd\)</span> with domain
+<span class="math notranslate nohighlight">\(\dom a\eqdef\{\loc(\vec v)\mid \vec v+\vec u\geq\vec 0\}\)</span> and image
+<span class="math notranslate nohighlight">\(a(\loc(\vec v))\eqdef \loc'(\vec v+\vec u)\)</span>; let also
+<span class="math notranslate nohighlight">\(\dom\Act\eqdef\bigcup_{a\in\Act}\dom a\)</span>.  This allows us to define
+the set <span class="math notranslate nohighlight">\(E\)</span> of edges as a set of pairs
+\begin{align*}
+E&amp;\eqdef{(\loc(\vec v),a(\loc(\vec v)))\mid a\in\Act\text{ and
+}\loc(\vec v)\in\dom a}\%\loc’(\vec v+\vec u))\mid</p>
+<p>&amp;:\cup:{(\loc(\vec v),\sink)\mid\loc(\vec v)\not\in\dom\Act}\cup{(\sink,\sink)};,
+\end{align*}
+where <span class="math notranslate nohighlight">\(\ing((v,v'))\eqdef v\)</span> and <span class="math notranslate nohighlight">\(\out((v,v'))\eqdef v'\)</span> for all
+edges <span class="math notranslate nohighlight">\((v,v')\in E\)</span>.  There is therefore an edge <span class="math notranslate nohighlight">\((v,v')\)</span> between two
+configurations <span class="math notranslate nohighlight">\(v=\loc(\vec v)\)</span> and <span class="math notranslate nohighlight">\(v'=\loc'(\vec v')\)</span> if there
+exists an action <span class="math notranslate nohighlight">\(\loc\step{\vec u}\loc'\in\Act\)</span> such that
+<span class="math notranslate nohighlight">\(\vec v'=\vec v+\vec u\)</span>.  Note that, quite importantly,
+<span class="math notranslate nohighlight">\(\vec v+\vec u\)</span> must be non-negative on every coordinate for this edge
+to exist.  If no action can be applied, there is an edge to the
+sink <span class="math notranslate nohighlight">\(\sink\)</span>, which ensures that <span class="math notranslate nohighlight">\(E\)</span> is total: for all <span class="math notranslate nohighlight">\(v\in V\)</span>,
+there exists an edge <span class="math notranslate nohighlight">\((v,v')\in E\)</span> for some <span class="math notranslate nohighlight">\(v'\)</span>, and thus there are
+no `deadlocks’ in the graph.</p>
+<p>The configurations are naturally partitioned into those in
+<span class="math notranslate nohighlight">\(\VE\eqdef\Loc_\mEve\times\+N^\dd\)</span> controlled by~\Eve and those in
+<span class="math notranslate nohighlight">\(\VA\eqdef\Loc_\mAdam\times\+N^\dd\)</span> controlled by~\Adam.  Regarding
+the sink, the only edge starting from <span class="math notranslate nohighlight">\(\sink\)</span> loops back
+to it, and it does not matter who of \Eve or \Adam controls it.  This
+gives rise to an infinite arena <span class="math notranslate nohighlight">\(\arena_\+N\eqdef(G_\+N,\VE,\VA)\)</span> called
+the natural semantics of <span class="math notranslate nohighlight">\(\?V\)</span>.</p>
+<p>\medskip Although we work in a turn-based setting with perfect
+information, it is sometimes enlightening to consider the partial map
+<span class="math notranslate nohighlight">\(\dest{:}\,V\times A\pto E\)</span> defined by
+<span class="math notranslate nohighlight">\(\dest(\loc(\vec v),a)\eqdef(\loc(\vec v),a(\loc(\vec v)))\)</span> if
+<span class="math notranslate nohighlight">\(\loc(\vec v)\in\dom a\)</span> and
+<span class="math notranslate nohighlight">\(\dest(\loc(\vec v),a)\eqdef(\loc(\vec v),\sink)\)</span> if
+<span class="math notranslate nohighlight">\(\loc(\vec v)\not\in\dom\Act\)</span>.  Note that a sequence <span class="math notranslate nohighlight">\(\pi\)</span> over <span class="math notranslate nohighlight">\(E\)</span>
+that avoids the sink can also be described by an initial
+configuration <span class="math notranslate nohighlight">\(\loc_0(\vec v_0)\)</span> paired with a sequence
+over <span class="math notranslate nohighlight">\(\Act\)</span>.</p>
+<div class="proof example admonition" id="11-ex-sem">
+<p class="admonition-title"><span class="caption-number">Example 296 </span> (NEEDS TITLE 11-ex-sem)</p>
+<div class="example-content section" id="proof-content">
+<p>\Cref{11-fig-sem} illustrates the natural semantics of the system
+of~\cref{11-fig-mwg}; observe that all the configurations <span class="math notranslate nohighlight">\(\loc(0,n)\)</span>
+for <span class="math notranslate nohighlight">\(n\in\+N\)</span> lead to the sink.</p>
+</div>
+</div><p>\begin{figure}[htbp]
+\centering\scalebox{.77}{
+\begin{tikzpicture}[auto,on grid,node distance=2.5cm]
+\draw[step=1,lightgray!50,dotted] (-5.7,0) grid (5.7,3.8);
+\node at (0,3.9) (sink) {\boldmath<span class="math notranslate nohighlight">\(\sink\)</span>};
+\draw[step=1,lightgray!50] (1,0) grid (5.5,3.5);
+\draw[step=1,lightgray!50] (-1,0) grid (-5.5,3.5);
+\draw<span class="xref myst">color=white</span> – (0,3.8);
+\node at (0,0)[lightgray,font=\scriptsize,fill=white] {0};
+\node at (0,1)[lightgray,font=\scriptsize,fill=white] {1};
+\node at (0,2)[lightgray,font=\scriptsize,fill=white] {2};
+\node at (0,3)[lightgray,font=\scriptsize,fill=white] {3};
+\node at (1,3.9)[lightgray,font=\scriptsize,fill=white] {0};
+\node at (2,3.9)[lightgray,font=\scriptsize,fill=white] {1};
+\node at (3,3.9)[lightgray,font=\scriptsize,fill=white] {2};
+\node at (4,3.9)[lightgray,font=\scriptsize,fill=white] {3};
+\node at (5,3.9)[lightgray,font=\scriptsize,fill=white] {4};
+\node at (-1,3.9)[lightgray,font=\scriptsize,fill=white] {0};
+\node at (-2,3.9)[lightgray,font=\scriptsize,fill=white] {1};
+\node at (-3,3.9)[lightgray,font=\scriptsize,fill=white] {2};
+\node at (-4,3.9)[lightgray,font=\scriptsize,fill=white] {3};
+\node at (-5,3.9)[lightgray,font=\scriptsize,fill=white] {4};
+\node at (1,0)[s-eve-small] (e00) {};
+\node at (1,1)<span class="xref myst">s-adam-small</span>{};
+\node at (1,2)[s-eve-small] (e02){};
+\node at (1,3)<span class="xref myst">s-adam-small</span>{};
+\node at (2,0)<span class="xref myst">s-adam-small</span>{};
+\node at (2,1)[s-eve-small] (e11){};
+\node at (2,2)<span class="xref myst">s-adam-small</span>{};
+\node at (2,3)[s-eve-small] (e13){};
+\node at (3,0)[s-eve-small] (e20){};
+\node at (3,1)<span class="xref myst">s-adam-small</span>{};
+\node at (3,2)[s-eve-small] (e22){};
+\node at (3,3)<span class="xref myst">s-adam-small</span>{};
+\node at (4,0)<span class="xref myst">s-adam-small</span>{};
+\node at (4,1)[s-eve-small] (e31){};
+\node at (4,2)<span class="xref myst">s-adam-small</span>{};
+\node at (4,3)[s-eve-small] (e33){};
+\node at (5,0)[s-eve-small] (e40){};
+\node at (5,1)<span class="xref myst">s-adam-small</span>{};
+\node at (5,2)[s-eve-small] (e42){};
+\node at (5,3)<span class="xref myst">s-adam-small</span>{};
+\node at (-1,0)<span class="xref myst">s-adam-small</span>{};
+\node at (-1,1)[s-eve-small] (e01){};
+\node at (-1,2)<span class="xref myst">s-adam-small</span>{};
+\node at (-1,3)[s-eve-small] (e03){};
+\node at (-2,0)[s-eve-small] (e10){};
+\node at (-2,1)<span class="xref myst">s-adam-small</span>{};
+\node at (-2,2)[s-eve-small] (e12){};
+\node at (-2,3)<span class="xref myst">s-adam-small</span>{};
+\node at (-3,0)<span class="xref myst">s-adam-small</span>{};
+\node at (-3,1)[s-eve-small] (e21){};
+\node at (-3,2)<span class="xref myst">s-adam-small</span>{};
+\node at (-3,3)[s-eve-small] (e23){};
+\node at (-4,0)[s-eve-small] (e30){};
+\node at (-4,1)<span class="xref myst">s-adam-small</span>{};
+\node at (-4,2)[s-eve-small] (e32){};
+\node at (-4,3)<span class="xref myst">s-adam-small</span>{};
+\node at (-5,0)<span class="xref myst">s-adam-small</span>{};
+\node at (-5,1)[s-eve-small] (e41){};
+\node at (-5,2)<span class="xref myst">s-adam-small</span>{};
+\node at (-5,3)[s-eve-small] (e43){};
+\path[arrow]
+(e11) edge (e00)
+(e22) edge (e11)
+(e31) edge (e20)
+(e32) edge (e21)
+(e21) edge (e10)
+(e12) edge (e01)
+(e23) edge (e12)
+(e33) edge (e22)
+(e13) edge (e02)
+(e43) edge (e32)
+(e42) edge (e31)
+(e41) edge (e30);
+\path[arrow]
+(e11) edge (a01)
+(e20) edge (a10)
+(e22) edge (a12)
+(e31) edge (a21)
+(e32) edge (a22)
+(e21) edge (a11)
+(e12) edge (a02)
+(e30) edge (a20)
+(e10) edge (a00)
+(e13) edge (a03)
+(e23) edge (a13)
+(e33) edge (a23)
+(e43) edge (a33)
+(e42) edge (a32)
+(e41) edge (a31)
+(e40) edge (a30);
+\path[arrow]
+(a11) edge (e01)
+(a20) edge (e10)
+(a22) edge (e12)
+(a31) edge (e21)
+(a32) edge (e22)
+(a21) edge (e11)
+(a12) edge (e02)
+(a30) edge (e20)
+(a10) edge (e00)
+(a33) edge (e23)
+(a23) edge (e13)
+(a13) edge (e03)
+(a43) edge (e33)
+(a42) edge (e32)
+(a41) edge (e31)
+(a40) edge (e30);
+\path[arrow]
+(a01) edge (e22)
+(a10) edge (e31)
+(a11) edge (e32)
+(a00) edge (e21)
+(a02) edge (e23)
+(a12) edge (e33)
+(a22) edge (e43)
+(a21) edge (e42)
+(a20) edge (e41);
+\path[arrow]
+(-5.5,3.5) edge (e43)
+(5.5,2.5) edge (e42)
+(2.5,3.5) edge (e13)
+(5.5,0.5) edge (e40)
+(-5.5,1.5) edge (e41)
+(-3.5,3.5) edge (e23)
+(-1.5,3.5) edge (e03)
+(4.5,3.5) edge (e33)
+(5.5,0) edge (e40)
+(5.5,2) edge (e42)
+(-5.5,1) edge (e41)
+(-5.5,3) edge (e43);
+\path[dotted]
+(-5.7,3.7) edge (-5.5,3.5)
+(5.7,2.7) edge (5.5,2.5)
+(2.7,3.7) edge (2.5,3.5)
+(5.7,0.7) edge (5.5,0.5)
+(-3.7,3.7) edge (-3.5,3.5)
+(-1.7,3.7) edge (-1.5,3.5)
+(4.7,3.7) edge (4.5,3.5)
+(-5.7,1.7) edge (-5.5,1.5)
+(5.75,0) edge (5.5,0)
+(5.75,2) edge (5.5,2)
+(-5.75,1) edge (-5.5,1)
+(-5.75,3) edge (-5.5,3);
+\path[arrow]
+(5.5,1) edge (a41)
+(-5.5,2) edge (a42)
+(-5.5,0) edge (a40)
+(5.5,3) edge (a43);
+\path[dotted]
+(5.75,1) edge (5.5,1)
+(-5.75,2) edge (-5.5,2)
+(-5.75,0) edge (-5.5,0)
+(5.75,3) edge (5.5,3);
+\path[-]
+(a30) edge (5.5,.75)
+(a32) edge (5.5,2.75)
+(a31) edge (-5.5,1.75)
+(a23) edge (4,3.5)
+(a03) edge (2,3.5)
+(a13) edge (-3,3.5)
+(a33) edge (-5,3.5)
+(a43) edge (5.5,3.25)
+(a41) edge (5.5,1.25)
+(a40) edge (-5.5,0.25)
+(a42) edge (-5.5,2.25);
+\path[dotted]
+(5.5,.75) edge (5.8,.9)
+(5.5,2.75) edge (5.8,2.9)
+(-5.5,1.75) edge (-5.8,1.9)
+(4,3.5) edge (4.4,3.7)
+(2,3.5) edge (2.4,3.7)
+(-3,3.5) edge (-3.4,3.7)
+(-5,3.5) edge (-5.4,3.7)
+(5.5,3.25) edge (5.8,3.4)
+(5.5,1.25) edge (5.8,1.4)
+(-5.5,.25) edge (-5.8,0.4)
+(-5.5,2.25) edge (-5.8,2.4);
+\path[arrow]
+(sink) edge[loop left] ()
+(e00) edge[bend left=8] (sink)
+(e01) edge[bend right=8] (sink)
+(e02) edge[bend left=8] (sink)
+(e03) edge[bend right=8] (sink);
+\end{tikzpicture}}
+\caption{\label{11-fig-sem} The natural semantics of the
+vector system of \cref{11-fig-mwg}: a circle (resp.<br />
+a square) at position <span class="math notranslate nohighlight">\((i,j)\)</span> of the grid denotes a configuration
+<span class="math notranslate nohighlight">\(\loc(i,j)\)</span> (resp.\ <span class="math notranslate nohighlight">\(\loc'(i,j)\)</span>) controlled by~\Eve (resp.<br />
+\Adam).}
+\end{figure}</p>
+<p>\AP A vector system <span class="math notranslate nohighlight">\(\?V=(\Loc,\Act,\Loc_\mEve,\Loc_\mAdam,\dd)\)</span>, a
+colouring <span class="math notranslate nohighlight">\(\col{:}\,E\to C\)</span>, and an
+objective <span class="math notranslate nohighlight">\(\Omega\subseteq C^\omega\)</span> together define a vector game
+<span class="math notranslate nohighlight">\(\game=(\natural(\?V),\col,\Omega)\)</span>.  Because <span class="math notranslate nohighlight">\(\natural(\?V)\)</span> is an
+infinite arena, we need to impose restrictions on our colourings
+<span class="math notranslate nohighlight">\(\col{:}\,E\to C\)</span> and the “qualitative
+objectives” <span class="math notranslate nohighlight">\(\Omega\subseteq C^\omega\)</span>; at the very least, they should
+be recursive.</p>
+<p>There are then two variants of the associated decision problem:</p>
+<ul class="simple">
+<li><p>\AP the given initial credit variant, where we are given <span class="math notranslate nohighlight">\(\?V\)</span>,
+<span class="math notranslate nohighlight">\(\col\)</span>, <span class="math notranslate nohighlight">\(\Omega\)</span>, a location <span class="math notranslate nohighlight">\(\loc_0\in\Loc\)</span> and an initial credit
+<span class="math notranslate nohighlight">\(\vec v_0\in\+N^\dd\)</span>, and ask whether \Eve wins <span class="math notranslate nohighlight">\(\game\)</span> from the
+initial configuration <span class="math notranslate nohighlight">\(\loc_0(\vec v_0)\)</span>;</p></li>
+<li><p>\AP the existential initial credit variant, where we are given
+<span class="math notranslate nohighlight">\(\?V\)</span>, <span class="math notranslate nohighlight">\(\col\)</span>, <span class="math notranslate nohighlight">\(\Omega\)</span>, and a location <span class="math notranslate nohighlight">\(\loc_0\in\Loc\)</span>, and ask
+whether there exists an initial credit <span class="math notranslate nohighlight">\(\vec v_0\in\+N^\dd\)</span> such
+that \Eve wins <span class="math notranslate nohighlight">\(\game\)</span> from the initial
+configuration <span class="math notranslate nohighlight">\(\loc_0(\vec v_0)\)</span>.</p></li>
+</ul>
+<p>Let us instantiate the previous abstract definition of vector games.
+We first consider two `reachability-like’
+\index{reachability!<strong>see also</strong> vector game\protect\mymoot|mymoot}
+objectives, where <span class="math notranslate nohighlight">\(C\eqdef\{\varepsilon,\Win\}\)</span> and
+<span class="math notranslate nohighlight">\(\Omega\eqdef\Reach\)</span>, namely configuration reachability and
+coverability.  The difference between the two is that, in the
+configuration reachability problem, a specific configuration
+<span class="math notranslate nohighlight">\(\loc_f(\vec v_f)\)</span> should be visited, whereas in the coverability
+problem, \Eve attempts to visit <span class="math notranslate nohighlight">\(\loc_f(\vec v')\)</span> for some
+vector <span class="math notranslate nohighlight">\(\vec v'\)</span> componentwise larger or equal to
+<span class="math notranslate nohighlight">\(\vec v_f\)</span>.</p>
+<p>\decpb[configuration reachability vector game with given initial credit]
+{\label{11-pb-reach} A vector system
+<span class="math notranslate nohighlight">\(\?V=(\Loc,\Act,\Loc_\mEve,\Loc_\mAdam,\dd)\)</span>, an initial location
+<span class="math notranslate nohighlight">\(\loc_0\in\Loc\)</span>, an initial credit <span class="math notranslate nohighlight">\(\vec v_0\in\+N^\dd\)</span>, and a
+target configuration <span class="math notranslate nohighlight">\(\loc_f(\vec v_f)\in\Loc\times\+N^\dd\)</span>.</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>The name `coverability’ comes from the the
+literature on Petri nets and “vector addition systems with
+states”, because \Eve is attempting to <strong>cover</strong>
+<span class="math notranslate nohighlight">\(\loc_f(\vec v_f)\)</span>, i.e., to reach a configuration <span class="math notranslate nohighlight">\(\loc_f(\vec v')\)</span>
+with <span class="math notranslate nohighlight">\(\vec v'\geq\vec v_f\)</span>.</p>
+</div>
+<p>}
+{Does \Eve have a strategy to reach <span class="math notranslate nohighlight">\(\loc(\vec v)\)</span> from
+<span class="math notranslate nohighlight">\(\loc_0(\vec v_0)\)</span>?\That is, does she win the configuration
+reachability game <span class="math notranslate nohighlight">\((\natural(\?V),\col,\Reach)\)</span> from
+<span class="math notranslate nohighlight">\(\loc_0(\vec v_0)\)</span>, where <span class="math notranslate nohighlight">\(\col(e)= \Win\)</span> if and only if
+<span class="math notranslate nohighlight">\(\ing(e)=\loc_f(\vec v_f)\)</span>?}</p>
+<p>\decpb[coverability vector game with given initial credit]
+{\label{11-pb-cov} A vector system
+<span class="math notranslate nohighlight">\(\?V=(\Loc,\Act,\Loc_\mEve,\Loc_\mAdam,\dd)\)</span>, an initial location
+<span class="math notranslate nohighlight">\(\loc_0\in\Loc\)</span>, an initial credit <span class="math notranslate nohighlight">\(\vec v_0\in\+N^\dd\)</span>, and a
+target configuration <span class="math notranslate nohighlight">\(\loc_f(\vec v_f)\in\Loc\times\+N^\dd\)</span>.}
+{Does \Eve have a strategy to reach <span class="math notranslate nohighlight">\(\loc(\vec v')\)</span> for some
+<span class="math notranslate nohighlight">\(\vec v'\geq\vec v_f\)</span> from <span class="math notranslate nohighlight">\(\loc_0(\vec v_0)\)</span>?\That is, does she win
+the coverability game <span class="math notranslate nohighlight">\((\natural(\?V),\col,\Reach)\)</span> from
+<span class="math notranslate nohighlight">\(\loc_0(\vec v_0)\)</span>, where <span class="math notranslate nohighlight">\(\col(e)= \Win\)</span> if and only if
+<span class="math notranslate nohighlight">\(\ing(e)=\loc_f(\vec v')\)</span> for some <span class="math notranslate nohighlight">\(\vec v'\geq\vec v_f\)</span>?}</p>
+<div class="proof example admonition" id="11-ex-cov">
+<p class="admonition-title"><span class="caption-number">Example 297 </span> (NEEDS TITLE 11-ex-cov)</p>
+<div class="example-content section" id="proof-content">
+<p>Consider the target configuration <span class="math notranslate nohighlight">\(\loc(2,2)\)</span> in
+\cref{11-fig-mwg,12-fig-sem}.  \Eve’s winning region in the
+configuration reachability vector game is
+<span class="math notranslate nohighlight">\(\WE=\{\loc(n+1,n+1)\mid n\in\+N\}\cup\{\loc'(0,1)\}\)</span>, displayed on the left
+in \cref{11-fig-cov}.  \Eve has indeed an obvious winning strategy
+from any configuration <span class="math notranslate nohighlight">\(\loc(n,n)\)</span> with <span class="math notranslate nohighlight">\(n\geq 2\)</span>, which is to use
+the action <span class="math notranslate nohighlight">\(\loc\step{-1,-1}\loc\)</span> until she reaches <span class="math notranslate nohighlight">\(\loc(2,2)\)</span>.
+Furthermore, in <span class="math notranslate nohighlight">\(\loc'(0,1)\)</span>—due to the natural semantics—,
+\Adam has no choice but to use the action <span class="math notranslate nohighlight">\(\loc'\step{2,1}\loc\)</span>:
+therefore <span class="math notranslate nohighlight">\(\loc'(0,1)\)</span> and <span class="math notranslate nohighlight">\(\loc(1,1)\)</span> are also winning for \Eve.
+\begin{figure}[htbp]
+\centering\scalebox{.48}{
+\begin{tikzpicture}[auto,on grid,node distance=2.5cm]
+\draw[step=1,lightgray!50,dotted] (-5.7,0) grid (5.7,3.8);
+\draw<span class="xref myst">color=white</span> – (0,3.8);
+\node at (0,3.9) (sink) {\color{red!70!black}\boldmath<span class="math notranslate nohighlight">\(\sink\)</span>};
+\draw[step=1,lightgray!50] (1,0) grid (5.5,3.5);
+\draw[step=1,lightgray!50] (-1,0) grid (-5.5,3.5);
+\node at (0,0)[lightgray,font=\scriptsize,fill=white] {0};
+\node at (0,1)[lightgray,font=\scriptsize,fill=white] {1};
+\node at (0,2)[lightgray,font=\scriptsize,fill=white] {2};
+\node at (0,3)[lightgray,font=\scriptsize,fill=white] {3};
+\node at (1,3.9)[lightgray,font=\scriptsize,fill=white] {0};
+\node at (2,3.9)[lightgray,font=\scriptsize,fill=white] {1};
+\node at (3,3.9)[lightgray,font=\scriptsize,fill=white] {2};
+\node at (4,3.9)[lightgray,font=\scriptsize,fill=white] {3};
+\node at (5,3.9)[lightgray,font=\scriptsize,fill=white] {4};
+\node at (-1,3.9)[lightgray,font=\scriptsize,fill=white] {0};
+\node at (-2,3.9)[lightgray,font=\scriptsize,fill=white] {1};
+\node at (-3,3.9)[lightgray,font=\scriptsize,fill=white] {2};
+\node at (-4,3.9)[lightgray,font=\scriptsize,fill=white] {3};
+\node at (-5,3.9)[lightgray,font=\scriptsize,fill=white] {4};
+\node at (1,0)[s-eve-small,lose] (e00) {};
+\node at (1,1)<span class="xref myst">s-adam-small,win</span>{};
+\node at (1,2)[s-eve-small,lose] (e02){};
+\node at (1,3)<span class="xref myst">s-adam-small,lose</span>{};
+\node at (2,0)<span class="xref myst">s-adam-small,lose</span>{};
+\node at (2,1)[s-eve-small,win] (e11){};
+\node at (2,2)<span class="xref myst">s-adam-small,lose</span>{};
+\node at (2,3)[s-eve-small,lose] (e13){};
+\node at (3,0)[s-eve-small,lose] (e20){};
+\node at (3,1)<span class="xref myst">s-adam-small,lose</span>{};
+\node at (3,2)[s-eve-small,win] (e22){};
+\node at (3,3)<span class="xref myst">s-adam-small,lose</span>{};
+\node at (4,0)<span class="xref myst">s-adam-small,lose</span>{};
+\node at (4,1)[s-eve-small,lose] (e31){};
+\node at (4,2)<span class="xref myst">s-adam-small,lose</span>{};
+\node at (4,3)[s-eve-small,win] (e33){};
+\node at (5,0)[s-eve-small,lose] (e40){};
+\node at (5,1)<span class="xref myst">s-adam-small,lose</span>{};
+\node at (5,2)[s-eve-small,lose] (e42){};
+\node at (5,3)<span class="xref myst">s-adam-small,lose</span>{};
+\node at (-1,0)<span class="xref myst">s-adam-small,lose</span>{};
+\node at (-1,1)[s-eve-small,lose] (e01){};
+\node at (-1,2)<span class="xref myst">s-adam-small,lose</span>{};
+\node at (-1,3)[s-eve-small,lose] (e03){};
+\node at (-2,0)[s-eve-small,lose] (e10){};
+\node at (-2,1)<span class="xref myst">s-adam-small,lose</span>{};
+\node at (-2,2)[s-eve-small,lose] (e12){};
+\node at (-2,3)<span class="xref myst">s-adam-small,lose</span>{};
+\node at (-3,0)<span class="xref myst">s-adam-small,lose</span>{};
+\node at (-3,1)[s-eve-small,lose] (e21){};
+\node at (-3,2)<span class="xref myst">s-adam-small,lose</span>{};
+\node at (-3,3)[s-eve-small,lose] (e23){};
+\node at (-4,0)[s-eve-small,lose] (e30){};
+\node at (-4,1)<span class="xref myst">s-adam-small,lose</span>{};
+\node at (-4,2)[s-eve-small,lose] (e32){};
+\node at (-4,3)<span class="xref myst">s-adam-small,lose</span>{};
+\node at (-5,0)<span class="xref myst">s-adam-small,lose</span>{};
+\node at (-5,1)[s-eve-small,lose] (e41){};
+\node at (-5,2)<span class="xref myst">s-adam-small,lose</span>{};
+\node at (-5,3)[s-eve-small,lose] (e43){};
+\path[arrow]
+(e11) edge (e00)
+(e22) edge (e11)
+(e31) edge (e20)
+(e32) edge (e21)
+(e21) edge (e10)
+(e12) edge (e01)
+(e23) edge (e12)
+(e33) edge (e22)
+(e13) edge (e02)
+(e43) edge (e32)
+(e42) edge (e31)
+(e41) edge (e30);
+\path[arrow]
+(e11) edge (a01)
+(e20) edge (a10)
+(e22) edge (a12)
+(e31) edge (a21)
+(e32) edge (a22)
+(e21) edge (a11)
+(e12) edge (a02)
+(e30) edge (a20)
+(e10) edge (a00)
+(e13) edge (a03)
+(e23) edge (a13)
+(e33) edge (a23)
+(e43) edge (a33)
+(e42) edge (a32)
+(e41) edge (a31)
+(e40) edge (a30);
+\path[arrow]
+(a11) edge (e01)
+(a20) edge (e10)
+(a22) edge (e12)
+(a31) edge (e21)
+(a32) edge (e22)
+(a21) edge (e11)
+(a12) edge (e02)
+(a30) edge (e20)
+(a10) edge (e00)
+(a33) edge (e23)
+(a23) edge (e13)
+(a13) edge (e03)
+(a43) edge (e33)
+(a42) edge (e32)
+(a41) edge (e31)
+(a40) edge (e30);
+\path[arrow]
+(a01) edge (e22)
+(a10) edge (e31)
+(a11) edge (e32)
+(a00) edge (e21)
+(a02) edge (e23)
+(a12) edge (e33)
+(a22) edge (e43)
+(a21) edge (e42)
+(a20) edge (e41);
+\path[arrow]
+(-5.5,3.5) edge (e43)
+(5.5,2.5) edge (e42)
+(2.5,3.5) edge (e13)
+(5.5,0.5) edge (e40)
+(-5.5,1.5) edge (e41)
+(-3.5,3.5) edge (e23)
+(-1.5,3.5) edge (e03)
+(4.5,3.5) edge (e33)
+(5.5,0) edge (e40)
+(5.5,2) edge (e42)
+(-5.5,1) edge (e41)
+(-5.5,3) edge (e43);
+\path[dotted]
+(-5.7,3.7) edge (-5.5,3.5)
+(5.7,2.7) edge (5.5,2.5)
+(2.7,3.7) edge (2.5,3.5)
+(5.7,0.7) edge (5.5,0.5)
+(-3.7,3.7) edge (-3.5,3.5)
+(-1.7,3.7) edge (-1.5,3.5)
+(4.7,3.7) edge (4.5,3.5)
+(-5.7,1.7) edge (-5.5,1.5)
+(5.75,0) edge (5.5,0)
+(5.75,2) edge (5.5,2)
+(-5.75,1) edge (-5.5,1)
+(-5.75,3) edge (-5.5,3);
+\path[arrow]
+(5.5,1) edge (a41)
+(-5.5,2) edge (a42)
+(-5.5,0) edge (a40)
+(5.5,3) edge (a43);
+\path[dotted]
+(5.75,1) edge (5.5,1)
+(-5.75,2) edge (-5.5,2)
+(-5.75,0) edge (-5.5,0)
+(5.75,3) edge (5.5,3);
+\path[-]
+(a30) edge (5.5,.75)
+(a32) edge (5.5,2.75)
+(a31) edge (-5.5,1.75)
+(a23) edge (4,3.5)
+(a03) edge (2,3.5)
+(a13) edge (-3,3.5)
+(a33) edge (-5,3.5)
+(a43) edge (5.5,3.25)
+(a41) edge (5.5,1.25)
+(a40) edge (-5.5,0.25)
+(a42) edge (-5.5,2.25);
+\path[dotted]
+(5.5,.75) edge (5.8,.9)
+(5.5,2.75) edge (5.8,2.9)
+(-5.5,1.75) edge (-5.8,1.9)
+(4,3.5) edge (4.4,3.7)
+(2,3.5) edge (2.4,3.7)
+(-3,3.5) edge (-3.4,3.7)
+(-5,3.5) edge (-5.4,3.7)
+(5.5,3.25) edge (5.8,3.4)
+(5.5,1.25) edge (5.8,1.4)
+(-5.5,.25) edge (-5.8,0.4)
+(-5.5,2.25) edge (-5.8,2.4);
+\path[arrow]
+(sink) edge[loop left] ()
+(e00) edge[bend left=8] (sink)
+(e01) edge[bend right=8] (sink)
+(e02) edge[bend left=8] (sink)
+(e03) edge[bend right=8] (sink);
+\end{tikzpicture}}\quad~~\scalebox{.48}{
+\begin{tikzpicture}[auto,on grid,node distance=2.5cm]
+\draw[step=1,lightgray!50,dotted] (-5.7,0) grid (5.7,3.8);
+\draw<span class="xref myst">color=white</span> – (0,3.8);
+\node at (0,3.9) (sink) {\color{red!70!black}\boldmath<span class="math notranslate nohighlight">\(\sink\)</span>};
+\draw[step=1,lightgray!50] (1,0) grid (5.5,3.5);
+\draw[step=1,lightgray!50] (-1,0) grid (-5.5,3.5);
+\node at (0,0)[lightgray,font=\scriptsize,fill=white] {0};
+\node at (0,1)[lightgray,font=\scriptsize,fill=white] {1};
+\node at (0,2)[lightgray,font=\scriptsize,fill=white] {2};
+\node at (0,3)[lightgray,font=\scriptsize,fill=white] {3};
+\node at (1,3.9)[lightgray,font=\scriptsize,fill=white] {0};
+\node at (2,3.9)[lightgray,font=\scriptsize,fill=white] {1};
+\node at (3,3.9)[lightgray,font=\scriptsize,fill=white] {2};
+\node at (4,3.9)[lightgray,font=\scriptsize,fill=white] {3};
+\node at (5,3.9)[lightgray,font=\scriptsize,fill=white] {4};
+\node at (-1,3.9)[lightgray,font=\scriptsize,fill=white] {0};
+\node at (-2,3.9)[lightgray,font=\scriptsize,fill=white] {1};
+\node at (-3,3.9)[lightgray,font=\scriptsize,fill=white] {2};
+\node at (-4,3.9)[lightgray,font=\scriptsize,fill=white] {3};
+\node at (-5,3.9)[lightgray,font=\scriptsize,fill=white] {4};
+\node at (1,0)[s-eve-small,lose] (e00) {};
+\node at (1,1)<span class="xref myst">s-adam-small,win</span>{};
+\node at (1,2)[s-eve-small,lose] (e02){};
+\node at (1,3)<span class="xref myst">s-adam-small,win</span>{};
+\node at (2,0)<span class="xref myst">s-adam-small,lose</span>{};
+\node at (2,1)[s-eve-small,win] (e11){};
+\node at (2,2)<span class="xref myst">s-adam-small,lose</span>{};
+\node at (2,3)[s-eve-small,win] (e13){};
+\node at (3,0)[s-eve-small,lose] (e20){};
+\node at (3,1)<span class="xref myst">s-adam-small,win</span>{};
+\node at (3,2)[s-eve-small,win] (e22){};
+\node at (3,3)<span class="xref myst">s-adam-small,win</span>{};
+\node at (4,0)<span class="xref myst">s-adam-small,lose</span>{};
+\node at (4,1)[s-eve-small,win] (e31){};
+\node at (4,2)<span class="xref myst">s-adam-small,win</span>{};
+\node at (4,3)[s-eve-small,win] (e33){};
+\node at (5,0)[s-eve-small,lose] (e40){};
+\node at (5,1)<span class="xref myst">s-adam-small,win</span>{};
+\node at (5,2)[s-eve-small,win] (e42){};
+\node at (5,3)<span class="xref myst">s-adam-small,win</span>{};
+\node at (-1,0)<span class="xref myst">s-adam-small,lose</span>{};
+\node at (-1,1)[s-eve-small,lose] (e01){};
+\node at (-1,2)<span class="xref myst">s-adam-small,win</span>{};
+\node at (-1,3)[s-eve-small,lose] (e03){};
+\node at (-2,0)[s-eve-small,lose] (e10){};
+\node at (-2,1)<span class="xref myst">s-adam-small,lose</span>{};
+\node at (-2,2)[s-eve-small,win] (e12){};
+\node at (-2,3)<span class="xref myst">s-adam-small,lose</span>{};
+\node at (-3,0)<span class="xref myst">s-adam-small,lose</span>{};
+\node at (-3,1)[s-eve-small,lose] (e21){};
+\node at (-3,2)<span class="xref myst">s-adam-small,win</span>{};
+\node at (-3,3)[s-eve-small,win] (e23){};
+\node at (-4,0)[s-eve-small,lose] (e30){};
+\node at (-4,1)<span class="xref myst">s-adam-small,lose</span>{};
+\node at (-4,2)[s-eve-small,win] (e32){};
+\node at (-4,3)<span class="xref myst">s-adam-small,win</span>{};
+\node at (-5,0)<span class="xref myst">s-adam-small,lose</span>{};
+\node at (-5,1)[s-eve-small,lose] (e41){};
+\node at (-5,2)<span class="xref myst">s-adam-small,win</span>{};
+\node at (-5,3)[s-eve-small,win] (e43){};
+\path[arrow]
+(e11) edge (e00)
+(e22) edge (e11)
+(e31) edge (e20)
+(e32) edge (e21)
+(e21) edge (e10)
+(e12) edge (e01)
+(e23) edge (e12)
+(e33) edge (e22)
+(e13) edge (e02)
+(e43) edge (e32)
+(e42) edge (e31)
+(e41) edge (e30);
+\path[arrow]
+(e11) edge (a01)
+(e20) edge (a10)
+(e22) edge (a12)
+(e31) edge (a21)
+(e32) edge (a22)
+(e21) edge (a11)
+(e12) edge (a02)
+(e30) edge (a20)
+(e10) edge (a00)
+(e13) edge (a03)
+(e23) edge (a13)
+(e33) edge (a23)
+(e43) edge (a33)
+(e42) edge (a32)
+(e41) edge (a31)
+(e40) edge (a30);
+\path[arrow]
+(a11) edge (e01)
+(a20) edge (e10)
+(a22) edge (e12)
+(a31) edge (e21)
+(a32) edge (e22)
+(a21) edge (e11)
+(a12) edge (e02)
+(a30) edge (e20)
+(a10) edge (e00)
+(a33) edge (e23)
+(a23) edge (e13)
+(a13) edge (e03)
+(a43) edge (e33)
+(a42) edge (e32)
+(a41) edge (e31)
+(a40) edge (e30);
+\path[arrow]
+(a01) edge (e22)
+(a10) edge (e31)
+(a11) edge (e32)
+(a00) edge (e21)
+(a02) edge (e23)
+(a12) edge (e33)
+(a22) edge (e43)
+(a21) edge (e42)
+(a20) edge (e41);
+\path[arrow]
+(-5.5,3.5) edge (e43)
+(5.5,2.5) edge (e42)
+(2.5,3.5) edge (e13)
+(5.5,0.5) edge (e40)
+(-5.5,1.5) edge (e41)
+(-3.5,3.5) edge (e23)
+(-1.5,3.5) edge (e03)
+(4.5,3.5) edge (e33)
+(5.5,0) edge (e40)
+(5.5,2) edge (e42)
+(-5.5,1) edge (e41)
+(-5.5,3) edge (e43);
+\path[dotted]
+(-5.7,3.7) edge (-5.5,3.5)
+(5.7,2.7) edge (5.5,2.5)
+(2.7,3.7) edge (2.5,3.5)
+(5.7,0.7) edge (5.5,0.5)
+(-3.7,3.7) edge (-3.5,3.5)
+(-1.7,3.7) edge (-1.5,3.5)
+(4.7,3.7) edge (4.5,3.5)
+(-5.7,1.7) edge (-5.5,1.5)
+(5.75,0) edge (5.5,0)
+(5.75,2) edge (5.5,2)
+(-5.75,1) edge (-5.5,1)
+(-5.75,3) edge (-5.5,3);
+\path[arrow]
+(5.5,1) edge (a41)
+(-5.5,2) edge (a42)
+(-5.5,0) edge (a40)
+(5.5,3) edge (a43);
+\path[dotted]
+(5.75,1) edge (5.5,1)
+(-5.75,2) edge (-5.5,2)
+(-5.75,0) edge (-5.5,0)
+(5.75,3) edge (5.5,3);
+\path[-]
+(a30) edge (5.5,.75)
+(a32) edge (5.5,2.75)
+(a31) edge (-5.5,1.75)
+(a23) edge (4,3.5)
+(a03) edge (2,3.5)
+(a13) edge (-3,3.5)
+(a33) edge (-5,3.5)
+(a43) edge (5.5,3.25)
+(a41) edge (5.5,1.25)
+(a40) edge (-5.5,0.25)
+(a42) edge (-5.5,2.25);
+\path[dotted]
+(5.5,.75) edge (5.8,.9)
+(5.5,2.75) edge (5.8,2.9)
+(-5.5,1.75) edge (-5.8,1.9)
+(4,3.5) edge (4.4,3.7)
+(2,3.5) edge (2.4,3.7)
+(-3,3.5) edge (-3.4,3.7)
+(-5,3.5) edge (-5.4,3.7)
+(5.5,3.25) edge (5.8,3.4)
+(5.5,1.25) edge (5.8,1.4)
+(-5.5,.25) edge (-5.8,0.4)
+(-5.5,2.25) edge (-5.8,2.4);
+\path[arrow]
+(sink) edge[loop left] ()
+(e00) edge[bend left=8] (sink)
+(e01) edge[bend right=8] (sink)
+(e02) edge[bend left=8] (sink)
+(e03) edge[bend right=8] (sink);
+\end{tikzpicture}}
+\caption{\label{11-fig-cov} The winning regions of \Eve in the
+configuration reachability game (left) and the coverability game
+(right) on the graphs of \cref{11-fig-mwg,12-fig-sem} with target
+configuration <span class="math notranslate nohighlight">\(\ell(2,2)\)</span>.  The winning vertices are in filled in
+green, while the losing ones are filled with white with a red
+border; the sink is always losing.}
+\end{figure}</p>
+<p>In the coverability vector game, \Eve’s winning region is
+<span class="math notranslate nohighlight">\(\WE=\{\loc(m+2,n+2),\loc'(m+2,n+2),\loc'(0,n+1),\loc(1,n+2),\loc'(2m+2,1),\loc(2m+3,1)\mid
+m,n\in\+N\}\)</span>
+displayed on the right in \cref{11-fig-cov}.  Observe in particular
+that \Adam is forced to use the action <span class="math notranslate nohighlight">\(\ell'\step{2,1}\ell\)</span> from
+the configurations of the form <span class="math notranslate nohighlight">\(\loc'(0,n+1)\)</span>, which brings him to a
+configuration <span class="math notranslate nohighlight">\(\ell(2,n+2)\)</span> coloured <span class="math notranslate nohighlight">\(\Win\)</span> in the game, and thus the
+configurations of the form <span class="math notranslate nohighlight">\(\loc(1,n+1)\)</span> are also winning for \Eve
+since she can play <span class="math notranslate nohighlight">\(\loc\step{-1,0}\loc'\)</span>.  Thus the configurations of
+the form <span class="math notranslate nohighlight">\(\loc(2m+3,n+1)\)</span> are also winning for \Eve, as she can play
+the action <span class="math notranslate nohighlight">\(\loc\step{-1,0}\loc'\)</span> to a winning configuration
+<span class="math notranslate nohighlight">\(\loc'(2m+2,n+1)\)</span> where all the actions available to \Adam go into
+her winning region.</p>
+</div>
+</div><div class="admonition-remark-label-11-cov2cov admonition">
+<p class="admonition-title">Remark \label{11-cov2cov}</p>
+<p>In both configuration reachability and coverability, we can
+assume without loss of generality that <span class="math notranslate nohighlight">\(\loc_f\in\Loc_\mEve\)</span> is
+controlled by \Eve and that <span class="math notranslate nohighlight">\(\vec v_f=\vec 0\)</span> is the zero vector.
+Thus coverability is equivalent to <strong>location reachability</strong>.</p>
+<p>There is indeed a \logspace\ reduction to that case.  If
+<span class="math notranslate nohighlight">\(\loc_0(\vec v_0)=\loc_f(\vec v_f)\)</span> in the case of “configuration
+reachability”, or <span class="math notranslate nohighlight">\(\loc_0=\loc_f\)</span> and <span class="math notranslate nohighlight">\(\vec v_0\geq\vec v_f\)</span> in the
+case of coverability, the problem is trivial.</p>
+<p>Otherwise, any winning play must use at least one action.  For
+each incoming action <span class="math notranslate nohighlight">\(a=(\loc\step{\vec u}\loc_f)\)</span> of <span class="math notranslate nohighlight">\(\loc_f\)</span>,
+create a new location <span class="math notranslate nohighlight">\(\loc_a\)</span> controlled by \Eve and replace <span class="math notranslate nohighlight">\(a\)</span> by
+<span class="math notranslate nohighlight">\(\loc\step{\vec u}\loc_a\step{\vec 0}\loc_f\)</span>, so that \Eve gains the
+control right before any play reaches <span class="math notranslate nohighlight">\(\loc_f\)</span>.  Also add a new
+location <span class="math notranslate nohighlight">\(\smiley\)</span> controlled by \Eve with actions
+<span class="math notranslate nohighlight">\(\loc_a\step{-\vec v_f}\smiley\)</span>, and use <span class="math notranslate nohighlight">\(\smiley(\vec 0)\)</span> as target
+configuration.</p>
+</div>
+<div class="admonition-remark-label-11-cov2reach admonition">
+<p class="admonition-title">Remark \label{11-cov2reach}</p>
+<p>There is a \logspace\ reduction from coverability to
+configuration reachability.  By \cref{11-cov2cov}, we can assume
+without loss of generality that <span class="math notranslate nohighlight">\(\loc_f\in\Loc_\mEve\)</span> is controlled
+by \Eve and that <span class="math notranslate nohighlight">\(\vec v_f=\vec 0\)</span> is the zero vector. It suffices
+therefore to add an action <span class="math notranslate nohighlight">\(\loc_f\step{-\vec e_j}\loc_f\)</span> for
+all <span class="math notranslate nohighlight">\(1\leq j\leq\dd\)</span>.</p>
+</div>
+<p>Departing from reachability games, the
+following is a very simple kind of safety
+games where <span class="math notranslate nohighlight">\(C\eqdef\{\varepsilon,\Lose\}\)</span> and <span class="math notranslate nohighlight">\(\Omega\eqdef\Safe\)</span>;
+\cref{11-fig-nonterm} shows \Eve’s winning region in the case of the
+graphs of \cref{11-fig-mwg,12-fig-sem}.
+\decpb[non-termination vector game with given initial credit]
+{\label{11-pb-nonterm} A vector system
+<span class="math notranslate nohighlight">\(\?V=(\Loc,\Act,\Loc_\mEve,\Loc_\mAdam,\dd)\)</span>, an initial location
+<span class="math notranslate nohighlight">\(\loc_0\in\Loc\)</span>, and an initial credit <span class="math notranslate nohighlight">\(\vec v_0\in\+N^\dd\)</span>.}
+{Does \Eve have a strategy to avoid the sink <span class="math notranslate nohighlight">\(\sink\)</span> from
+<span class="math notranslate nohighlight">\(\loc_0(\vec v_0)\)</span>?\That is, does she win the non-termination
+game <span class="math notranslate nohighlight">\((\natural(\?V),\col,\Safe)\)</span> from <span class="math notranslate nohighlight">\(\loc_0(\vec v_0)\)</span>, where
+<span class="math notranslate nohighlight">\(\col(e)=\Lose\)</span> if and only if <span class="math notranslate nohighlight">\(\ing(e)=\sink\)</span>?}</p>
+<p>\begin{figure}[bhtp]
+\centering\scalebox{.48}{
+\begin{tikzpicture}[auto,on grid,node distance=2.5cm]
+\draw[step=1,lightgray!50,dotted] (-5.7,0) grid (5.7,3.8);
+\draw<span class="xref myst">color=white</span> – (0,3.8);
+\node at (0,3.9) (sink) {\color{red!70!black}\boldmath<span class="math notranslate nohighlight">\(\sink\)</span>};
+\draw[step=1,lightgray!50] (1,0) grid (5.5,3.5);
+\draw[step=1,lightgray!50] (-1,0) grid (-5.5,3.5);
+\node at (0,0)[lightgray,font=\scriptsize,fill=white] {0};
+\node at (0,1)[lightgray,font=\scriptsize,fill=white] {1};
+\node at (0,2)[lightgray,font=\scriptsize,fill=white] {2};
+\node at (0,3)[lightgray,font=\scriptsize,fill=white] {3};
+\node at (1,3.9)[lightgray,font=\scriptsize,fill=white] {0};
+\node at (2,3.9)[lightgray,font=\scriptsize,fill=white] {1};
+\node at (3,3.9)[lightgray,font=\scriptsize,fill=white] {2};
+\node at (4,3.9)[lightgray,font=\scriptsize,fill=white] {3};
+\node at (5,3.9)[lightgray,font=\scriptsize,fill=white] {4};
+\node at (-1,3.9)[lightgray,font=\scriptsize,fill=white] {0};
+\node at (-2,3.9)[lightgray,font=\scriptsize,fill=white] {1};
+\node at (-3,3.9)[lightgray,font=\scriptsize,fill=white] {2};
+\node at (-4,3.9)[lightgray,font=\scriptsize,fill=white] {3};
+\node at (-5,3.9)[lightgray,font=\scriptsize,fill=white] {4};
+\node at (1,0)[s-eve-small,lose] (e00) {};
+\node at (1,1)<span class="xref myst">s-adam-small,win</span>{};
+\node at (1,2)[s-eve-small,lose] (e02){};
+\node at (1,3)<span class="xref myst">s-adam-small,win</span>{};
+\node at (2,0)<span class="xref myst">s-adam-small,lose</span>{};
+\node at (2,1)[s-eve-small,win] (e11){};
+\node at (2,2)<span class="xref myst">s-adam-small,lose</span>{};
+\node at (2,3)[s-eve-small,win] (e13){};
+\node at (3,0)[s-eve-small,lose] (e20){};
+\node at (3,1)<span class="xref myst">s-adam-small,win</span>{};
+\node at (3,2)[s-eve-small,win] (e22){};
+\node at (3,3)<span class="xref myst">s-adam-small,win</span>{};
+\node at (4,0)<span class="xref myst">s-adam-small,lose</span>{};
+\node at (4,1)[s-eve-small,win] (e31){};
+\node at (4,2)<span class="xref myst">s-adam-small,win</span>{};
+\node at (4,3)[s-eve-small,win] (e33){};
+\node at (5,0)[s-eve-small,lose] (e40){};
+\node at (5,1)<span class="xref myst">s-adam-small,win</span>{};
+\node at (5,2)[s-eve-small,win] (e42){};
+\node at (5,3)<span class="xref myst">s-adam-small,win</span>{};
+\node at (-1,0)<span class="xref myst">s-adam-small,win</span>{};
+\node at (-1,1)[s-eve-small,lose] (e01){};
+\node at (-1,2)<span class="xref myst">s-adam-small,win</span>{};
+\node at (-1,3)[s-eve-small,lose] (e03){};
+\node at (-2,0)[s-eve-small,win] (e10){};
+\node at (-2,1)<span class="xref myst">s-adam-small,lose</span>{};
+\node at (-2,2)[s-eve-small,win] (e12){};
+\node at (-2,3)<span class="xref myst">s-adam-small,lose</span>{};
+\node at (-3,0)<span class="xref myst">s-adam-small,win</span>{};
+\node at (-3,1)[s-eve-small,win] (e21){};
+\node at (-3,2)<span class="xref myst">s-adam-small,win</span>{};
+\node at (-3,3)[s-eve-small,win] (e23){};
+\node at (-4,0)[s-eve-small,win] (e30){};
+\node at (-4,1)<span class="xref myst">s-adam-small,win</span>{};
+\node at (-4,2)[s-eve-small,win] (e32){};
+\node at (-4,3)<span class="xref myst">s-adam-small,win</span>{};
+\node at (-5,0)<span class="xref myst">s-adam-small,win</span>{};
+\node at (-5,1)[s-eve-small,win] (e41){};
+\node at (-5,2)<span class="xref myst">s-adam-small,win</span>{};
+\node at (-5,3)[s-eve-small,win] (e43){};
+\path[arrow]
+(e11) edge (e00)
+(e22) edge (e11)
+(e31) edge (e20)
+(e32) edge (e21)
+(e21) edge (e10)
+(e12) edge (e01)
+(e23) edge (e12)
+(e33) edge (e22)
+(e13) edge (e02)
+(e43) edge (e32)
+(e42) edge (e31)
+(e41) edge (e30);
+\path[arrow]
+(e11) edge (a01)
+(e20) edge (a10)
+(e22) edge (a12)
+(e31) edge (a21)
+(e32) edge (a22)
+(e21) edge (a11)
+(e12) edge (a02)
+(e30) edge (a20)
+(e10) edge (a00)
+(e13) edge (a03)
+(e23) edge (a13)
+(e33) edge (a23)
+(e43) edge (a33)
+(e42) edge (a32)
+(e41) edge (a31)
+(e40) edge (a30);
+\path[arrow]
+(a11) edge (e01)
+(a20) edge (e10)
+(a22) edge (e12)
+(a31) edge (e21)
+(a32) edge (e22)
+(a21) edge (e11)
+(a12) edge (e02)
+(a30) edge (e20)
+(a10) edge (e00)
+(a33) edge (e23)
+(a23) edge (e13)
+(a13) edge (e03)
+(a43) edge (e33)
+(a42) edge (e32)
+(a41) edge (e31)
+(a40) edge (e30);
+\path[arrow]
+(a01) edge (e22)
+(a10) edge (e31)
+(a11) edge (e32)
+(a00) edge (e21)
+(a02) edge (e23)
+(a12) edge (e33)
+(a22) edge (e43)
+(a21) edge (e42)
+(a20) edge (e41);
+\path[arrow]
+(-5.5,3.5) edge (e43)
+(5.5,2.5) edge (e42)
+(2.5,3.5) edge (e13)
+(5.5,0.5) edge (e40)
+(-5.5,1.5) edge (e41)
+(-3.5,3.5) edge (e23)
+(-1.5,3.5) edge (e03)
+(4.5,3.5) edge (e33)
+(5.5,0) edge (e40)
+(5.5,2) edge (e42)
+(-5.5,1) edge (e41)
+(-5.5,3) edge (e43);
+\path[dotted]
+(-5.7,3.7) edge (-5.5,3.5)
+(5.7,2.7) edge (5.5,2.5)
+(2.7,3.7) edge (2.5,3.5)
+(5.7,0.7) edge (5.5,0.5)
+(-3.7,3.7) edge (-3.5,3.5)
+(-1.7,3.7) edge (-1.5,3.5)
+(4.7,3.7) edge (4.5,3.5)
+(-5.7,1.7) edge (-5.5,1.5)
+(5.75,0) edge (5.5,0)
+(5.75,2) edge (5.5,2)
+(-5.75,1) edge (-5.5,1)
+(-5.75,3) edge (-5.5,3);
+\path[arrow]
+(5.5,1) edge (a41)
+(-5.5,2) edge (a42)
+(-5.5,0) edge (a40)
+(5.5,3) edge (a43);
+\path[dotted]
+(5.75,1) edge (5.5,1)
+(-5.75,2) edge (-5.5,2)
+(-5.75,0) edge (-5.5,0)
+(5.75,3) edge (5.5,3);
+\path[-]
+(a30) edge (5.5,.75)
+(a32) edge (5.5,2.75)
+(a31) edge (-5.5,1.75)
+(a23) edge (4,3.5)
+(a03) edge (2,3.5)
+(a13) edge (-3,3.5)
+(a33) edge (-5,3.5)
+(a43) edge (5.5,3.25)
+(a41) edge (5.5,1.25)
+(a40) edge (-5.5,0.25)
+(a42) edge (-5.5,2.25);
+\path[dotted]
+(5.5,.75) edge (5.8,.9)
+(5.5,2.75) edge (5.8,2.9)
+(-5.5,1.75) edge (-5.8,1.9)
+(4,3.5) edge (4.4,3.7)
+(2,3.5) edge (2.4,3.7)
+(-3,3.5) edge (-3.4,3.7)
+(-5,3.5) edge (-5.4,3.7)
+(5.5,3.25) edge (5.8,3.4)
+(5.5,1.25) edge (5.8,1.4)
+(-5.5,.25) edge (-5.8,0.4)
+(-5.5,2.25) edge (-5.8,2.4);
+\path[arrow]
+(sink) edge[loop left] ()
+(e00) edge[bend left=8] (sink)
+(e01) edge[bend right=8] (sink)
+(e02) edge[bend left=8] (sink)
+(e03) edge[bend right=8] (sink);
+\end{tikzpicture}}
+\caption{\label{11-fig-nonterm} The winning region of \Eve in the
+non-termination game on the graphs of \cref{11-fig-mwg,12-fig-sem}.}
+\end{figure}</p>
+<p>Finally, one of the most general vector games are “parity&#64;parity
+vector game” games, where <span class="math notranslate nohighlight">\(C\eqdef\{1,\dots,d\}\)</span> and
+<span class="math notranslate nohighlight">\(\Omega\eqdef\Parity\)</span>.  In order to define a colouring of the “natural
+semantics”, we assume that we are provided with a <strong>location
+colouring</strong> <span class="math notranslate nohighlight">\(\lcol{:}\,\Loc\to\{1,\dots,d\}\)</span>.
+\decpb[parity vector game with given initial credit]
+{\label{11-pb-parity}A vector system
+<span class="math notranslate nohighlight">\(\?V=(\Loc,\Act,\Loc_\mEve,\Loc_\mAdam,\dd)\)</span>, an initial location
+<span class="math notranslate nohighlight">\(\loc_0\in\Loc\)</span>, an initial credit <span class="math notranslate nohighlight">\(\vec v_0\in\+N^\dd\)</span>, and a
+location colouring <span class="math notranslate nohighlight">\(\lcol{:}\,\Loc\to\{1,\dots,d\}\)</span> for some <span class="math notranslate nohighlight">\(d&gt;0\)</span>.}
+{Does \Eve have a strategy to simultaneously avoid the
+sink <span class="math notranslate nohighlight">\(\sink\)</span> and fulfil the \index{parity!<strong>see also</strong> vector
+game\protect\mymoot|mymoot}parity objective from <span class="math notranslate nohighlight">\(\loc_0(\vec
+  v_0)\)</span>?\That is, does she win the parity&#64;parity vector game game
+<span class="math notranslate nohighlight">\((\natural(\?V),\col,\Parity)\)</span> from <span class="math notranslate nohighlight">\(\loc_0(\vec v_0)\)</span>, where
+<span class="math notranslate nohighlight">\(\col(e)\eqdef\lcol(\loc)\)</span> if <span class="math notranslate nohighlight">\(\ing(e)=\loc(\vec v)\)</span> for
+some <span class="math notranslate nohighlight">\(\vec v\in\+N^\dd\)</span>, and <span class="math notranslate nohighlight">\(\col(e)\eqdef 1\)</span> if <span class="math notranslate nohighlight">\(\ing(e)=\sink\)</span>?}</p>
+<div class="admonition-remark-label-11-nonterm2parity admonition">
+<p class="admonition-title">Remark \label{11-nonterm2parity}</p>
+<p>There is a \logspace\ reduction from non-termination to
+parity&#64;parity vector game.
+Indeed, the two games coincide if we pick the constant location
+colouring defined by <span class="math notranslate nohighlight">\(\lcol(\loc)\eqdef 2\)</span> for all <span class="math notranslate nohighlight">\(\loc\in\Loc\)</span> in
+the parity game.</p>
+</div>
+<div class="admonition-remark-label-11-cov2parity admonition">
+<p class="admonition-title">Remark \label{11-cov2parity}</p>
+<p>There is a \logspace\ reduction from coverability to
+parity&#64;parity vector game.  Indeed, by \cref{11-cov2cov}, we can assume
+that <span class="math notranslate nohighlight">\(\loc_f\in\Loc_\mEve\)</span> is controlled by \Eve and that the target
+credit is <span class="math notranslate nohighlight">\(\vec v_f=\vec 0\)</span> the zero vector.  It suffices
+therefore to add an action <span class="math notranslate nohighlight">\(\loc_f\step{\vec 0}\loc_f\)</span> and to colour
+every location <span class="math notranslate nohighlight">\(\loc\neq\loc_f\)</span> with <span class="math notranslate nohighlight">\(\lcol(\loc)\eqdef 1\)</span> and
+to set <span class="math notranslate nohighlight">\(\lcol(\loc_f)\eqdef 2\)</span>.</p>
+</div>
+<p>The existential initial credit variants of
+\crefrange{11-pb-reach}{11-pb-parity} are defined similarly, where
+<span class="math notranslate nohighlight">\(\vec v_0\)</span> is not given as part of the input, but existentially
+quantified in the question.</p>
+</div>
+<div class="section" id="undecidability">
+<span id="subsec-undec"></span><h2>Undecidability<a class="headerlink" href="#undecidability" title="Permalink to this headline">¶</a></h2>
+<p>The bad news is that, although \crefrange{11-pb-reach}{11-pb-parity}
+are all decidable in the one-player case—see
+the \hyperref[12-refs]{bibliographic notes} at the end of the
+chapter—, they become undecidable in the two-player setting.</p>
+<div class="proof theorem admonition" id="11-th-undec">
+<p class="admonition-title"><span class="caption-number">Theorem 298 </span> (NEEDS TITLE 11-th-undec)</p>
+<div class="theorem-content section" id="proof-content">
+<p>Configuration reachability, coverability, non-termination, and
+parity&#64;parity vector game vector games, both with given and
+with existential initial credit, are undecidable in any dimension
+<span class="math notranslate nohighlight">\(\dd\geq 2\)</span>.</p>
+</div>
+</div><div class="dropdown tip admonition">
+<p class="admonition-title">Proof</p>
+<p>By \cref{11-cov2reach,12-nonterm2parity}, it suffices to prove the
+undecidability of coverability and non-termination.  For this,
+we exhibit reductions from the halting problem of “deterministic
+Minsky machines” with at least two counters.</p>
+<p>\AP Formally, a deterministic Minsky machine with <span class="math notranslate nohighlight">\(\dd\)</span>~counters
+<span class="math notranslate nohighlight">\(\?M=(\Loc,\Act,\dd)\)</span> is defined similarly to a “vector addition
+system with states” with additional zero test actions
+<span class="math notranslate nohighlight">\(a=(\loc\step{i\eqby?0}\loc')\)</span>.  The set of locations contains a
+distinguished `halt’ location <span class="math notranslate nohighlight">\(\loc_\mathtt{halt}\)</span>, and for every
+<span class="math notranslate nohighlight">\(\loc\in\Loc\)</span>, exactly one of the following holds: either (i)
+<span class="math notranslate nohighlight">\((\loc\step{\vec e_i}\loc')\in\Act\)</span> for some <span class="math notranslate nohighlight">\(0&lt;i\leq\dd\)</span> and
+<span class="math notranslate nohighlight">\(\loc'\in\Loc\)</span>, or (ii) <span class="math notranslate nohighlight">\((\loc\step{i\eqby?0}\loc')\in\Act\)</span> and
+<span class="math notranslate nohighlight">\((\loc\step{-\vec e_i}\loc'')\in\Act\)</span> for some <span class="math notranslate nohighlight">\(0&lt;i\leq\dd\)</span> and
+<span class="math notranslate nohighlight">\(\loc',\loc''\in\Loc\)</span>, or (iii) <span class="math notranslate nohighlight">\(\loc=\loc_\mathtt{halt}\)</span>.  The
+semantics of <span class="math notranslate nohighlight">\(\?M\)</span> extends the natural semantics by
+handling zero tests actions <span class="math notranslate nohighlight">\(a=(\loc\step{i\eqby?0}\loc')\)</span>: we
+define the domain as <span class="math notranslate nohighlight">\(\dom a\eqdef\{\loc(\vec v)\mid \vec v(i)=0\}\)</span>
+and the image by <span class="math notranslate nohighlight">\(a(\loc(\vec v))\eqdef \loc(\vec v)\)</span>.  This
+semantics is deterministic, and from any starting vertex of <span class="math notranslate nohighlight">\(\natural(\?M)\)</span>,
+there is a unique play, which either eventually visits
+<span class="math notranslate nohighlight">\(\loc_\mathtt{halt}\)</span> and then the sink in the next step, or keeps
+avoiding both <span class="math notranslate nohighlight">\(\loc_\mathtt{halt}\)</span> and the sink
+indefinitely.</p>
+<p>\AP The halting problem asks, given a deterministic Minsky machine
+and an initial location <span class="math notranslate nohighlight">\(\loc_0\)</span>, whether it halts, that is, whether
+<span class="math notranslate nohighlight">\(\loc_\mathtt{halt}(\vec v)\)</span> is reachable for
+some <span class="math notranslate nohighlight">\(\vec v\in\+N^\dd\)</span> starting from <span class="math notranslate nohighlight">\(\loc_0(\vec 0)\)</span>.  The
+halting problem is undecidable in any dimension
+<span class="math notranslate nohighlight">\(\dd\geq 2\)</span> <span id="id1">[<span>Minsky:1967</span>]</span>.
+Thus the halting problem is akin to the coverability of
+<span class="math notranslate nohighlight">\(\loc_\mathtt{halt}(\vec 0)\)</span> with given initial credit <span class="math notranslate nohighlight">\(\vec 0\)</span>,
+but on the one hand there is only one player and on the other hand
+the machine can perform zero tests.</p>
+<p>\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[auto,on grid,node distance=1.5cm]
+\node(to){<span class="math notranslate nohighlight">\(\mapsto\)</span>};
+\node<span class="xref myst">anchor=east,left=2.5cm of to</span>{deterministic Minsky machine};
+\node<span class="xref myst">anchor=west,right=2.5cm of to</span>{vector system};
+\node<span class="xref myst">below=.7cm of to</span>{<span class="math notranslate nohighlight">\(\rightsquigarrow\)</span>};
+\node<span class="xref myst">left=2.75cm of map</span>{<span class="math notranslate nohighlight">\(\loc\)</span>};
+\node<span class="xref myst">right=of 0</span>{<span class="math notranslate nohighlight">\(\loc'\)</span>};
+\node<span class="xref myst">right=1.25cm of map,s-eve</span>{<span class="math notranslate nohighlight">\(\loc\)</span>};
+\node<span class="xref myst">right=of 2,s-eve</span>{<span class="math notranslate nohighlight">\(\loc'\)</span>};
+\node<span class="xref myst">below=1.5cm of map</span>{<span class="math notranslate nohighlight">\(\rightsquigarrow\)</span>};
+\node<span class="xref myst">left=2.75cm of map2</span>{<span class="math notranslate nohighlight">\(\loc\)</span>};
+\node<span class="xref myst">below right=.5cm and 1.5cm of 4</span>{<span class="math notranslate nohighlight">\(\loc''\)</span>};
+\node<span class="xref myst">above right=.5cm and 1.5cm of 4</span>{<span class="math notranslate nohighlight">\(\loc'\)</span>};
+\node<span class="xref myst">right=1.25cm of map2,s-eve</span>{<span class="math notranslate nohighlight">\(\loc\)</span>};
+\node<span class="xref myst">below right=.5cm and 1.5cm of 7,s-eve</span>{<span class="math notranslate nohighlight">\(\loc''\)</span>};
+\node<span class="xref myst">above right=.5cm and 1.5cm of 7,s-adam,inner sep=-1.5pt</span>{<span class="math notranslate nohighlight">\(\loc'_{i\eqby?0}\)</span>};
+\node<span class="xref myst">below right=.5cm and 1.5cm of 9,s-eve</span>{<span class="math notranslate nohighlight">\(\loc'\)</span>};
+\node<span class="xref myst">above right=.5cm and 1.5cm of 9,s-adam</span>{<span class="math notranslate nohighlight">\(\frownie\)</span>};
+\path[arrow,every node/.style={font=\scriptsize}]
+(0) edge node{<span class="math notranslate nohighlight">\(\vec e_i\)</span>} (1)
+(2) edge node{<span class="math notranslate nohighlight">\(\vec e_i\)</span>} (3)
+(4) edge[swap] node{<span class="math notranslate nohighlight">\(-\vec e_i\)</span>} (5)
+(4) edge node{<span class="math notranslate nohighlight">\(i\eqby?0\)</span>} (6)
+(7) edge[swap] node{<span class="math notranslate nohighlight">\(-\vec e_i\)</span>} (8)
+(7) edge node{<span class="math notranslate nohighlight">\(\vec 0\)</span>} (9)
+(9) edge[swap] node{<span class="math notranslate nohighlight">\(\vec 0\)</span>} (10)
+(9) edge node{<span class="math notranslate nohighlight">\(-\vec e_i\)</span>} (11);
+\end{tikzpicture}
+\caption{\label{11-fig-undec}Schema of the reduction in the proof of \cref{11-th-undec}.}
+\end{figure}
+Here is now a reduction to
+\cref{11-pb-cov}.  Given an instance of the halting problem, i.e.,
+given a deterministic Minsky machine <span class="math notranslate nohighlight">\(\?M=(\Loc,\Act,\dd)\)</span> and an
+initial location <span class="math notranslate nohighlight">\(\loc_0\)</span>, we construct a vector system
+<span class="math notranslate nohighlight">\(\?V\eqdef(\Loc\uplus\Loc_{\eqby?0}\uplus\{\frownie\},\Act',\Loc,\Loc_{\eqby?0}\uplus\{\frownie\},\dd)\)</span>
+where all the original locations are controlled by~\Eve and
+<span class="math notranslate nohighlight">\(\Loc_{\eqby?0}\uplus\{\frownie\}\)</span> is a set of new locations
+controlled by~\Adam.  We use <span class="math notranslate nohighlight">\(\Loc_{\eqby?0}\)</span> as a set of
+locations defined by
+\begin{align*}
+\Loc_{\eqby?0}&amp;\eqdef{\loc’<em>{i\eqby?0}\mid\exists\loc\in\Loc\mathbin.(\loc\step{i\eqby?0}\loc’)\in\Act}\intertext{and
+define the set of actions by (see \cref{11-fig-undec})}
+\Act’&amp;\eqdef{\loc\step{\vec
+e_i}\loc’\mid(\loc\step{\vec e_i}\loc’)\in\Act}\cup{\loc\step{-\vec e_i}\loc’’\mid(\loc\step{-\vec e_i}\loc’’)\in\Act}\
+&amp;:\cup:{\loc\step{\vec
+0}\loc’</em>{i\eqby?0},;;:\loc’<em>{i\eqby?0}!!\step{\vec 0}\loc’,;;:\loc’</em>{i\eqby?0}!!\step{-\vec e_i}\frownie\mid(\loc\step{i\eqby?0}\loc’)\in\Act};.
+\end{align*}
+We use <span class="math notranslate nohighlight">\(\loc_0(\vec 0)\)</span> as initial configuration and
+<span class="math notranslate nohighlight">\(\loc_\mathtt{halt}(\vec 0)\)</span> as target configuration for the
+constructed coverability instance.  Here is the crux of the
+argument why \Eve has a winning strategy to cover
+<span class="math notranslate nohighlight">\(\loc_\mathtt{halt}(\vec 0)\)</span> from <span class="math notranslate nohighlight">\(\loc_0(\vec 0)\)</span> if and only if
+the Minsky machine&#64;deterministic Minsky machine halts.</p>
+<p>Consider any configuration <span class="math notranslate nohighlight">\(\loc(\vec v)\)</span>.  If
+<span class="math notranslate nohighlight">\((\loc\step{\vec e_i}\loc')\in\Act\)</span>, \Eve has no choice but to apply
+<span class="math notranslate nohighlight">\(\loc\step{\vec e_i}\loc'\)</span> and go to the configuration
+<span class="math notranslate nohighlight">\(\loc'(\vec v+\vec e_i)\)</span> also reached in one step in <span class="math notranslate nohighlight">\(\?M\)</span>.  If
+<span class="math notranslate nohighlight">\(\{\loc\step{i\eqby?0}\loc',\loc\step{-\vec e_i}\loc''\}\in\Act\)</span> and
+<span class="math notranslate nohighlight">\(\vec v(i)=0\)</span>, due to the natural semantics, \Eve cannot use the
+action <span class="math notranslate nohighlight">\(\loc\step{-\vec e_i}\loc''\)</span>, thus she must use
+<span class="math notranslate nohighlight">\(\loc\step{\vec 0}\loc'_{i\eqby?0}\)</span>.  Still due to the “natural
+semantics”, \Adam cannot use
+<span class="math notranslate nohighlight">\(\loc'_{i\eqby?0}\!\!\step{-\vec e_i}\frownie\)</span>, thus he must use
+<span class="math notranslate nohighlight">\(\loc'_{i\eqby?0}\!\!\step{\vec 0}\loc'\)</span>.  Hence \Eve regains the
+control in <span class="math notranslate nohighlight">\(\loc'(\vec v)\)</span>, which was also the configuration reached
+in one step in <span class="math notranslate nohighlight">\(\?M\)</span>.  Finally, if
+<span class="math notranslate nohighlight">\(\{\loc\step{i\eqby?0}\loc',\loc\step{-\vec e_i}\loc''\}\in\Act\)</span> and
+<span class="math notranslate nohighlight">\(\vec v(i)&gt;0\)</span>, \Eve can choose: if she uses
+<span class="math notranslate nohighlight">\(\loc\step{-\vec e_i}\loc''\)</span>, she ends in the configuration
+<span class="math notranslate nohighlight">\(\loc''(\vec v-\vec e_i)\)</span> also reached in one step in <span class="math notranslate nohighlight">\(\?M\)</span>.  In
+fact, she should not use <span class="math notranslate nohighlight">\(\loc\step{\vec 0}\loc'_{i\eqby?0}\)</span>,
+because \Adam would then have the opportunity to apply
+<span class="math notranslate nohighlight">\(\loc'_{i\eqby?0}\!\!\step{-\vec e_i}\frownie\)</span> and to win, as
+<span class="math notranslate nohighlight">\(\frownie\)</span> is a deadlock location and all the subsequent moves end
+in the sink.  Thus, if <span class="math notranslate nohighlight">\(\?M\)</span> halts, then \Eve has a winning
+strategy that simply follows the unique play of <span class="math notranslate nohighlight">\(\?M\)</span>, and
+conversely, if \Eve wins, then necessarily she had to follow the
+play of <span class="math notranslate nohighlight">\(\?M\)</span> and thus the machine halts.</p>
+<p>\medskip Further note that, in a deterministic Minsky machine the
+halting problem is similarly akin to the <strong>complement</strong> of
+non-termination with given initial credit <span class="math notranslate nohighlight">\(\vec 0\)</span>.  This means
+that, in the vector system
+<span class="math notranslate nohighlight">\(\?V=(\Loc\uplus\Loc_{\eqby?0}\uplus\{\frownie\},\Act',\Loc,\Loc_{\eqby?0}\uplus\{\frownie\},\dd)\)</span>
+defined earlier, \Eve has a winning strategy to avoid the sink
+from <span class="math notranslate nohighlight">\(\loc_0(\vec 0)\)</span> if and only if the given “Minsky
+machine&#64;deterministic Minsky machine” does
+not halt from <span class="math notranslate nohighlight">\(\loc_0(\vec 0)\)</span>, which shows the undecidability of
+\cref{11-pb-nonterm}.</p>
+<p>\medskip Finally, let us observe that both the existential and the
+universal initial credit variants of the halting problem are also
+undecidable.  Indeed, given an instance of the halting problem,
+i.e., given a deterministic Minsky machine <span class="math notranslate nohighlight">\(\?M=(\Loc,\Act,\dd)\)</span>
+and an initial location <span class="math notranslate nohighlight">\(\loc_0\)</span>, we add <span class="math notranslate nohighlight">\(\dd\)</span>~new locations
+<span class="math notranslate nohighlight">\(\loc_\dd,\loc_{\dd-1},\dots,\loc_1\)</span> with respective actions
+<span class="math notranslate nohighlight">\(\loc_j\step{-\vec e_j}\loc_j\)</span> and <span class="math notranslate nohighlight">\(\loc_j\step{j\eqby?0}\loc_{j-1}\)</span>
+for all <span class="math notranslate nohighlight">\(\dd\geq j&gt;0\)</span>.  This modified machine first resets all its
+counters to zero before reaching <span class="math notranslate nohighlight">\(\loc_0(\vec 0)\)</span> and then performs
+the same execution as the original machine.  Thus there exists an
+initial credit <span class="math notranslate nohighlight">\(\vec v\)</span> such that the modified machine
+reaches <span class="math notranslate nohighlight">\(\loc_\mathtt{halt}\)</span> from <span class="math notranslate nohighlight">\(\loc_\dd(\vec v)\)</span> if and only if
+for all initial credits <span class="math notranslate nohighlight">\(\vec v\)</span> the modified machine
+reaches <span class="math notranslate nohighlight">\(\loc_\mathtt{halt}\)</span> from <span class="math notranslate nohighlight">\(\loc_\dd(\vec v)\)</span>, if and only if
+<span class="math notranslate nohighlight">\(\loc_\mathtt{halt}\)</span> was reachable from <span class="math notranslate nohighlight">\(\loc_0(\vec 0)\)</span> in the
+original machine.  The previous construction of a vector system
+applied to the modified machine then shows the undecidability of the
+existential initial credit variants of
+\cref{11-pb-cov,12-pb-nonterm}</p>
+<p>.</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./11_Counters"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="index.html" title="previous page">Games with Counters</a>
+    <a class='right-next' id="next-link" href="dim1.html" title="next page">Games in dimension one</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By a set of authors coordinated by Nathana&euml;l Fijalkow<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

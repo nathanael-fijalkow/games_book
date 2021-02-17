@@ -62,6 +62,9 @@
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
+\newcommand{\EXP}{\textrm{EXP}}
+\newcommand{\kEXP}{\textrm{kEXP}}
 ```
 In this section and the next we discuss two families of fixed point algorithms for solving games.
 The goal is to highlight the main ingredients for constructing algorithms in these two families.
@@ -69,6 +72,7 @@ If the descriptions below are too abstract it may be useful to see concrete inst
 we refer to Chapter {ref}`4-chap:payoffs` for archetypical examples, and also to Chapter {ref}`3-chap:parity`.
 
 ## The value function
+
 The key ingredient of a value iteration algorithm is a value function.
 For a quantitative game $\Game$ with condition $f = \Phi[\col]$ over the set of colours $C$, 
 assuming that $\Game$ is determined it admits a value function
@@ -101,25 +105,27 @@ As above we write $\Value^{\sigma}$ for $\inf_{\tau}\ \val(\pi_{\sigma,\tau}^v)$
 
 The following principle implies that computing the value function in particular yields the winning regions.
 
-```{prf:property} Characterisation of the winning regions
+````{prf:property} Characterisation of the winning regions
 :label: 1-property:characterisation_winning_regions
 
 For all vertices $v$ we have that Eve wins from $v$ if and only if $\Value^{\game}(v) \neq \bot$, where $\bot$ is the least element in $Y$.
 
-```
+````
 
 In the remainder of this section we assume the existence of a value function $\Value^{\game} : V \to Y$ (note that choosing $Y = \Rinfty$ covers the quantitative case) and fix as a goal to either compute or approximate it.
 
 ## Fixed point
+
 We let $F_V$ denote the set of functions $V \to Y$, it is a lattice when equipped with the componentwise (partial) order induced by $Y$:
 we say that $\mu \le \mu'$ if for all vertices $v$ we have $\mu(v) \le \mu'(v)$.
 
-The second ingredient is a function $\delta : Y \times C \to Y$ inducing an operator $\Op : F_V \to F_V$ defined by
+The second ingredient is a function $\delta : Y \times C \to Y$ inducing an operator $\Op : F_V \to F_V$ defined by and satisfying the following principle:
 
 ```{margin}
-This form is for two player games, the operator has to be adapted to more complex settings such as stochastic or concurrent games.```
+This form is for two player games, the operator has to be adapted to more complex settings such as stochastic or concurrent games.
+```
 
- and satisfying the following principle:
+
 
 $$
 \Op(\mu)(v) = 
@@ -131,12 +137,12 @@ $$
 
 
 
-```{prf:property} Fixed point
+````{prf:property} Fixed point
 :label: 1-property:fixed_point
 
 The function $\val^{\game}$ is a fixed point of the operator $\Op$.
 
-```
+````
 
 This fixed point principle is often tightly related to the fact the $\Game$ is positionally determined for both players.
 The fact that $\val^{\game} = \Op(\val^{\game})$ means that from a vertex $v$, 
@@ -145,16 +151,17 @@ of a function $\delta$ of $\val^{\game}(v')$ and of $\col(v)$.
 The choice of minimum or maximum corresponds to the goal of the players: Eve wants to maximise the outcome and Adam to minimise it.
 
 ## Fixed point through contraction
+
 Let us first consider the family of value iteration algorithms based on Banach's fixed point theorem as stated in  {prf:ref}`1-thm:banach`
 and let us fix as a goal to approximate $\Value^{\game}$.
 We equip $F_V$ with a norm $||\cdot||$.
 
-```{prf:property} Fixed point through contraction
+````{prf:property} Fixed point through contraction
 :label: 1-property:fixed_point_contraction
 
 The operator $\Op$ is contracting in the complete space $(F_V,||\cdot||)$ implying that $\Value^{\game}$ is the unique fixed point of $\Op$.
 
-```
+````
 
 The algorithm is the following:
 we choose some $\Value_0 : V \to Y$ and then compute the sequence $(\Value_k)_{k \in \N}$ defined by $\Value_{k+1} = \Op(\Value_k)$
@@ -170,18 +177,19 @@ Hence to get an $\varepsilon$-approximation of $\Value^{\game}$ it is enough to 
 $k = O \left( \frac{\log(\varepsilon)}{\log(\lambda)} \right)$ iterations.
 
 ## Fixed point through monotonicity
+
 The second family of algorithms is based on Kleene's fixed point theorem as stated in  {prf:ref}`1-thm:kleene`.
 
-```{prf:property} Fixed point through monotonicity
+````{prf:property} Fixed point through monotonicity
 :label: 1-property:fixed_point_monotonicity
 
 The function $\delta$ is monotonic (meaning that if $y \le y'$ then for all colours $c$ we have $\delta(y,c) \le \delta(y',c)$)
 and $\val^{\game}$ is the greatest fixed point of the monotonic operator $\Op$.
 
-```
+````
 
 
-```{admonition} Remark 
+````{admonition} Remark 
 It is possible to define the value function as the **least** fixed point of $\Op$, 
 and this is equivalent up to some inversions in the lattice $(Y,\le)$ and the operator $\Op$.
 There are two reasons why we chose to define the value function as the **greatest** fixed point of $\Op$.
@@ -189,7 +197,7 @@ The first is that this implies that the operator $\Op$ is defined in the same wa
 and the second is that with this convention losing from $v$ is equivalent to $\Value^{\game}(v) = \bot$,
 while in the other convention it is equivalent to $\Value^{\game}(v) = \top$, where $\top$ is the greatest element in $Y$.
 
-```
+````
 
  {prf:ref}`1-thm:kleene` states that $\Value^{\game}$ is also the greatest post-fixed point.
 Recall that a post-fixed point is $\mu$ such that $\mu \le \Op(\mu)$, which in this context we call a progress measure.
@@ -213,12 +221,12 @@ $$
 
 The characterisation principle can be equivalently stated as follows.
 
-```{prf:property} Characterisation of the winning regions, equivalent formulation with progress measures
+````{prf:property} Characterisation of the winning regions, equivalent formulation with progress measures
 :label: 1-property:progress_measure
 
 For all vertices $v$ we have Eve wins from $v$ if and only if there exists a progress measure $\mu$ such that $\mu(v) \neq \bot$.
 
-```
+````
 
 The third information given by  {prf:ref}`1-thm:kleene` is that $\Value^{\game}$ is the limit of the sequence $(\Op^k(\top))_{k \in \N}$.
 
@@ -231,7 +239,7 @@ A naive upper bound on $k$ is $|F_V| \le |Y|^n$, but usually a finer analysis of
 
 If $Y$ is not finite that the sequence $(\Value_k)_{k \in \N}$ converges towards $\Value^{\game}$ and further analysis is required to evaluate the convergence speed.
 
-```{admonition} Remark 
+````{admonition} Remark 
 It is sometimes useful to define instead of the operator $\Op$ a set of operators $(\Op_v)_{v \in V}$:
 
 $$
@@ -246,5 +254,5 @@ $$
 The fixed points of $\Op$ and of the set of operators $(\Op_v)_{v \in V}$ are the same
 and the ideas described above can be applied using  {prf:ref}`1-thm:kleene_set_operators` instead of  {prf:ref}`1-thm:kleene`.
 
-```
+````
 

@@ -62,6 +62,9 @@
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
+\newcommand{\EXP}{\textrm{EXP}}
+\newcommand{\kEXP}{\textrm{kEXP}}
 ```
 Let us consider a game $\Game$ and a set $X$ of vertices.
 Assume that for every $v \in X$ there exists $(v,v') \in E$ such that $v' \in X$,
@@ -83,25 +86,25 @@ The same notion can be defined for Eve.
 Traps satisfy the property above so if $X$ is a trap then the game $\Game[X]$ described above is well defined, meaning 
 that every vertex has an outgoing edge.
 
-```{prf:observation} Traps induce subgames
+````{prf:observation} Traps induce subgames
 :label: 1-fact:traps_induce_subgames
 
 Let $\Game$ be a game, $X$ a trap for Adam, and $\sigma$ a winning strategy for Eve in the subgame $\Game[X]$.
 Then $\sigma$ induces a winning strategy in $\Game$.
 
-```
+````
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 Any play consistent with $\sigma$ in $\Game$ stays forever in $X$ because $X$ is a trap for Adam, hence is winning.
 
-```
+````
 
 The notion of traps is very useful when decomposing games.
 We present some simple facts about traps, here stated for Adam but easily transposed for Eve.
 
-```{prf:observation} Traps
+````{prf:observation} Traps
 :label: 1-fact:traps
 
 Let $\Game$ a game.
@@ -113,5 +116,5 @@ then $P \cap Q$ is a trap for Eve in the subgame of $\Game$ induced by $Q$.
 *  Let $P$ a trap for Adam in the game $\Game$ and $Q$ a trap for Adam in the subgame of $\Game$ induced by $X$,
 then $Q$ is a trap for Adam in $\Game$.
 
-```
+````
 

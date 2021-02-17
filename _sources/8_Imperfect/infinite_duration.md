@@ -14,8 +14,22 @@
 \newcommand{\bh}{\setminus}
 \newcommand{\signauxdeux}{T}
 \newcommand{\actionsun}{A}
+\newcommand{\Strat}{\text{Strat}}
 \newcommand{\Act}{\text{Act}}
 \newcommand{\ini}{\delta_0}
+\newcommand{\win}{{\tt Win}}
+\newcommand{\winreach}{{\tt Reach}}
+\newcommand{\winsafe}{{\tt Safety}}
+\newcommand{\winbuchi}{{\tt Buchi}}
+\newcommand{\wincobuchi}{{\tt CoBuchi}}
+\newcommand{\states}{V}
+\newcommand{\ar}{\arena}
+\newcommand{\action}{a}
+\newcommand{\belun}{\mathcal{B}_{\text{Eve}}}
+\newcommand{\beldeux}{\mathcal{B}_{\text{Adam}}}
+\newcommand{\deuxbelun}{\mathcal{B}^{(2)}_{Eve}}
+\newcommand{\tp}{\Delta}
+\newcommand{\parties}[1]{\ensuremath{\mathcal{P}(#1)}}
 \newcommand{\Eve}{\textrm{Eve}}
 \newcommand{\Adam}{\textrm{Adam}}
 \newcommand{\set}[1]{\left\{ #1 \right\}}
@@ -76,6 +90,9 @@
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
+\newcommand{\EXP}{\textrm{EXP}}
+\newcommand{\kEXP}{\textrm{kEXP}}
 ```
 Games with infinite duration and imperfect information
 are a natural model for applications such as synthesis 
@@ -85,7 +102,8 @@ Whereas in the previous section games of finite-duration
 were equipped with real-valued payoffs, 
 here we focus on B&uuml;chi conditions.
 
-\subsection{Playing games with infinite duration and imperfect information }
+
+## Playing games with infinite duration and imperfect information
 
 Notations used for games of finite duration are kept.
 On top of that we need to define how probabilities are measured
@@ -109,22 +127,24 @@ signal received by Eve and Adam,
 and we denote $\pi_n$ the finite play 
 $\pi_n = V_0,A_0,B_0,S_0,T_0,V_1,\ldots,S_{n},T_{n},V_{n+1}$.
 
+%
+
+%*  
+%*  
+%*  
+%
 The probability measure $\mathbb{P}_{\ini}^{\sigma,\tau}$ is the only
 probability measure over $\Delta^\omega$ such that
 for every $v\in V$, 
 $\mathbb{P}^{\sigma,\tau}_{\ini}(V_0 = v) = \ini(v)$
-and for every $n\in\NN$,
+and for every $n\in\N$,
 \begin{multline*}
+
 \mathbb{P}^{\sigma,\tau}_{\ini}(V_{n+1}, S_{n}, T_{n} \mid \pi_n) \\
 = \sigma(S_0\cdots S_{n-1})(A_{n}) \cdot \tau(T_0\cdots T_{n-1})(B_n) \cdot \Delta(V_n,A_n,B_n)(V_{n+1},S_{n},T_{n})\enspace,
 \end{multline*}
 where we use standard notations for conditional probability measures.
 
-\newcommand{\win}{{\tt Win}}
-\newcommand{\winreach}{{\tt Reach}}
-\newcommand{\winsafe}{{\tt Safety}}
-\newcommand{\winbuchi}{{\tt Buchi}}
-\newcommand{\wincobuchi}{{\tt CoBuchi}}
 > **Winning conditions.**
 
 
@@ -132,10 +152,10 @@ The set of colours is $C=\{0,1\}$.
 The reachability, safety, B&uuml;chi and coB&uuml;chi condition
  condition are defined as follows:
  \begin{align*}
- &\winreach=\{\exists n\in\NN, C_n  = 1\}\\
-&\winsafe=\{\forall n\in\NN, C_n = 0\}\\
-&\winbuchi=\{\forall m \in \NN, \exists n \geq m, C_n=1\}\\
-&\wincobuchi = \{\exists m \in \NN, \forall n \geq m, C_n = 0\}\enspace.
+ &\winreach=\{\exists n\in\N, C_n  = 1\}\\
+&\winsafe=\{\forall n\in\N, C_n = 0\}\\
+&\winbuchi=\{\forall m \in \N, \exists n \geq m, C_n=1\}\\
+&\wincobuchi = \{\exists m \in \N, \forall n \geq m, C_n = 0\}\enspace.
 \end{align*}
 
 When the winning condition is $\win$,
@@ -150,8 +170,11 @@ $$
 Eve wants to maximise this probability, while Adam wants
 to minimise it.  
 
+%almost-surely winning strategy.
 
-\subsection{The value problem.}
+
+
+## The value problem.
 
 The value problem is computationally intractable
 for games with infinite duration and imperfect information.
@@ -162,23 +185,19 @@ signals is a singleton and actions of Adam have no influence
 on the transition probabilities. These games can be seen
 as probabilistic automata, hence the undecidability result of Paz applies.
 
-```{prf:theorem} NEEDS TITLE AND LABEL {cite}`Paz`
+````{prf:theorem} NEEDS TITLE AND LABEL {cite}`Paz`
 Whether Eve has a strategy to win with probability $\geq \frac{1}{2}$
 is undecidable, even in blind one-player games.
  
-:label: {cite}`Paz`
-Whether Eve has a strategy to win with probability $\geq \frac{1}{2}$
-is undecidable, even in blind one-player games.
-
 {cite}`Paz`
 Whether Eve has a strategy to win with probability $\geq \frac{1}{2}$
 is undecidable, even in blind one-player games.
 
-```
+````
 
 Actually, the value might not even exist.
 
-```{prf:proposition} NEEDS TITLE AND LABEL  {cite}`repgames`
+````{prf:proposition} NEEDS TITLE AND LABEL  {cite}`repgames`
 There is a game with infinite duration imperfect information and B&uuml;chi condition
 in which 
 
@@ -193,21 +212,6 @@ $$
 $$
 
  
-:label:  {cite}`repgames`
-There is a game with infinite duration imperfect information and B&uuml;chi condition
-in which 
-
-$$
-\sup_\sigma \inf_\tau \mathbb{P}^{\sigma,\tau}_{\ini}(\winbuchi)
-=
-\frac{1}{2}
-<
-1
-=
-\inf_\tau \sup_\sigma  \mathbb{P}^{\sigma,\tau}_{\ini}(\winbuchi)\enspace.
-$$
-
-
  {cite}`repgames`
 There is a game with infinite duration imperfect information and B&uuml;chi condition
 in which 
@@ -223,7 +227,7 @@ $$
 $$
 
 
-```
+````
 
 The value however exists for games with reachability condition {cite}`repgames`.
 
@@ -231,7 +235,8 @@ Although the value problem is not decidable,
 there are
 some other interesting  decision problems to consider.
 
-\subsection{Winning with probability $1$ or $>0$}
+## Winning with probability $1$ or $>0$
+
 
 > **Winning almost-surely or positively.**
 
@@ -248,7 +253,8 @@ A less enjoyable situation for Eve is when she only has a
 positively winning strategy.
   A strategy $\sigma$ for Eve is **positively winning** from
   an initial distribution $\ini$ if
-\begin{equation*}  \forall \tau,
+\begin{equation*}
+  \forall \tau,
   \mathbb{P}^{\sigma,\tau}_{\ini}(\win)>0\enspace.
 \end{equation*}
 When such a strategy $\sigma$ exists, the initial distribution $\delta$
@@ -265,8 +271,8 @@ whatever strategy $\sigma$ is chosen by Eve.
 
 
 
-```{prf:theorem} NEEDS TITLE theo:qdet
-:label: theo:qdet
+````{prf:theorem} Qualitative determinacy
+:label: 8-thm:qualitative_determinacy
 
 Stochastic games with signals and reachability, safety and B&uuml;chi
 winning conditions are qualitatively determined:
@@ -281,12 +287,11 @@ $$
 $$
 
 
-```
+````
 
 The proof of this result is given in the next section.
 
-Since reachability and safety games are dual, a consequence of
-Theorem~\ref{theo:qdet}, is that in a reachability game, every initial
+Since reachability and safety games are dual, a consequence of {prf:ref}`8-thm:qualitative_determinacy`, is that in a reachability game, every initial
 distribution is either almost-surely winning for Eve,
 almost-surely winning for Adam, or positively
 winning for both players.
@@ -298,28 +303,27 @@ thus for safety games winning **surely** is the same than winning almost-surely.
 
 By contrast, co-B&uuml;chi games are **not** qualitatively determined:
 
-```{prf:lemma} NEEDS TITLE AND LABEL 
+````{prf:lemma} NEEDS TITLE AND LABEL 
 There is a co-B&uuml;chi game in which neither Eve has an almost-surely winning strategy
 nor Adam has a positively winning strategy.
  
-:label: 
-There is a co-B&uuml;chi game in which neither Eve has an almost-surely winning strategy
-nor Adam has a positively winning strategy.
 
 There is a co-B&uuml;chi game in which neither Eve has an almost-surely winning strategy
 nor Adam has a positively winning strategy.
 
-```
+````
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 In this game, Eve observes
 everything, Adam is blind (he only observes his own actions),
 and Eve's objective is to visit only finitely many times the ${\large \frownie}$-state. The initial state is $\large{\frownie}$. The set of actions is $\{a,b,c,d\}$.
 All transitions are deterministic.
+
 \begin{figure}[h]
 \begin{center}
+
 \end{center}
 \caption{Co-B&uuml;chi games are not qualitatively determined.}
 \label{chap9fig4}
@@ -350,7 +354,7 @@ $x^{1}_{n_1}\leq  \frac{1}{4}$.
 Then $\tau$ plays $d$ at step $n_1$.
 By induction we keep defining $\tau$ this way so that
 $\tau=c^{n_0-1}d c^{n_1 - n_0 - 1}dc^{n_2 - n_1 - 1}d \cdots $.
-and for every $k\in \NN$,
+and for every $k\in \N$,
 $\probimp{\sigma,\tau}{\frownie}{
 V_{n_{k+1}}=\frownie
 \text{ and }
@@ -371,18 +375,45 @@ Intuitively, Adam cannot win positively because as time passes, either the play 
 Eve can play action $c$ and she bets no more $d$ will be played and the play will stay safe in state $2$. If Eve loses her bet
 then again she waits until the chances to see another $d$ are small and then plays action $c$. Eve may lose a couple of bets but almost-surely she eventually is right and the $\wincobuchi$ condition is almost-surely fulfilled.
 
+%since both players can observe their actions,
+
+%strategy
+
+%The strategy $\tau$ being fixed,
+
+%Eve such that 
+
+%The only state where Eve's action matters
+
+%After a play $p=V_0i_0j_0\cdots V_n$ ending up in state $\frownie$
+
+%
+
+$$
+
+%\geq \frac{1}{2}\enspace,
+
+%is satisfied in this case action $b$ is played.
+
+%According to L\'evy law, 
+
+%converges $\mathbb{P}^{\sigma,\tau}_{\frownie}$-almost-surely to the indicator function $1_{E_0}$ of the event $E_0$. 
+
+%If $E_0$ does not hold then $\probimp{\sigma,\tau}{\frownie}{ E_0\mid P_{ n}}$ converges to $0$ thus eventually the trigger condition is not satisfied anymore hence Eve eventually plays no more $b$'s, only  $a$'s. But $E_0$ 
+
+%thus the play reaches state $1$.
+
 Finally neither Eve wins almost-surely nor Adam wins positively.
 }
 
-```
+````
 
 
 > **Decidability**
 
-\newcommand{\EXPTIME}{{\sc EXPTIME}}
-\newcommand{\PTIME}{{\sc PTIME}}
 
-```{prf:theorem} NEEDS TITLE th:main
+
+````{prf:theorem} NEEDS TITLE th:main
 :label: th:main
 
 Deciding whether the initial distribution of a B&uuml;chi games,
@@ -390,17 +421,17 @@ is almost-surely winning for Eve is
 2\EXPTIME-complete.
 For safety games, the same problem is \EXPTIME-complete.
 
-```
+````
 
 Concerning winning positively a {\em safety or co-B&uuml;chi game}, one
-can use Theorem~\ref{theo:qdet} and the determinacy property: Adam
+can use {prf:ref}`8-thm:qualitative_determinacy` and the determinacy property: Adam
 has a positively winning strategy in the above game if and only if
 Eve has no almost-surely winning strategy. Therefore, deciding
 when Adam has a positively winning strategy can also be done, with
 the same complexity.
 
 
-```{prf:theorem} NEEDS TITLE th:main2
+````{prf:theorem} NEEDS TITLE th:main2
 :label: th:main2
 
 For reachability and B&uuml;chi games where either Eve is perfectly informed about the state
@@ -412,10 +443,115 @@ In safety games
 Eve is perfectly
 informed {about the state}, the decision problem is in \PTIME.
 
-```
+````
 
 
-\subsection{Qualitative determinacy: proof of Theorem~\ref{theo:qdet}}
+%stochastic B&uuml;chi games with signals do not have a
+
+%everything, Adam is blind (he only observes his own actions),
+
+%
+
+%\begin{center}
+
+%\begin{gpicture}(30,13)(0,5)
+
+%\gasset{Nframe=y,Nfill=n,Nw=3,Nh=3,ExtNL=n,Nmr=2}
+
+%\node(L)(0,10){$1$}
+
+%\node[Nframe=n,Nw=3,Nh=3](1)(15,10){$\Huge{\frownie}$}
+
+%\drawedge[curvedepth=2](2,1){$* d$}
+
+%\drawedge(1,L){$* d$}
+
+%\drawloop[loopdiam=3](2){$* c$}
+
+%\end{gpicture}
+
+%\caption{Co-B&uuml;chi games are not qualitatively determined.}
+
+%\end{figure} 
+
+%
+
+%is almost-surely winning for Eve
+
+%{
+
+%since both players can observe their actions,
+
+%strategy
+
+%Fix strategy $\sigma$ and assume towards contradiction that $\sigma$ is almost-surely winning. 
+
+%such that
+
+%Strategy $\tau$ starts by playing only $c$.
+
+%$x^{0}_n = \probimp{\sigma,c^\omega}{\frownie}{V_n=\frownie}$ and since $\sigma$ is almost-surely winning then $x^{0}_n \to_n 0$ thus there exists  $n_0$ such that 
+
+%Then $\tau$ plays $d$ at step $n_0$.
+
+%the probability to be in state $\frownie$ at step $n\geq n_0$ is
+
+%and since $\sigma$ is almost-surely winning there exists $n_1$ such that
+
+%Then $\tau$ plays $d$ at step $n_1$.
+
+%$\tau=c^{n_0-1}d c^{n_1 - n_0 - 1}dc^{n_2 - n_1 - 1}d \cdots $.
+
+%$\probimp{\sigma,\tau}{\frownie}{
+
+%\text{ and }
+
+%\mid 
+
+%} \geq 1 - \frac{1}{2^{k+1}}$.
+
+%$\probimp{\sigma,\tau}{\frownie}{\winbuchi} \geq
+
+%
+
+%
+
+%strategy either.
+
+%Intuitively, Adam cannot win positively because as time passes, either the play reaches state $1$ or the chances that Adam plays action $d$ drop to $0$. When these chances are small, 
+
+%then again she waits until the chances to see another $d$ are small and then plays action $c$. Eve may lose a couple of bets but almost-surely she eventually is right and the $\wincobuchi$ condition is fulfilled.
+
+%since both players can observe their actions,
+
+%strategy
+
+%The strategy $\tau$ being fixed,
+
+%Eve such that 
+
+%The only state where Eve's action matters
+
+%After a play $p=V_0i_0j_0\cdots V_n$ ending up in state $\frownie$
+
+%\[
+
+%\geq \frac{1}{2}\enspace,
+
+%is satisfied in this case action $b$ is played.
+
+%According to L\'evy law, 
+
+%converges $\mathbb{P}^{\sigma,\tau}_{\frownie}$-almost-surely to the indicator function $1_{E_0}$ of the event $E_0$. 
+
+%If $E_0$ does not hold then $\probimp{\sigma,\tau}{\frownie}{ E_0\mid P_{ n}}$ converges to $0$ thus eventually the trigger condition is not satisfied anymore hence Eve eventually plays no more $b$'s, only  $a$'s. But $E_0$ 
+
+%thus the play reaches state $1$.
+
+%
+
+
+## Qualitative determinacy: proof of {prf:ref}`8-thm:qualitative_determinacy`
 
 > **Beliefs.**
 
@@ -424,17 +560,8 @@ The
 is the set of possible states of the game, according
 to the signals received by the player. 
 
-\newcommand{\states}{V}
-\newcommand{\ar}{\arena}
-\newcommand{\action}{a}
-\newcommand{\belun}{\mathcal{B}_{\text{Eve}}}
-\newcommand{\beldeux}{\mathcal{B}_{\text{Adam}}}
-\newcommand{\deuxbelun}{\mathcal{B}^{(2)}_{Eve}}
-\newcommand{\tp}{\Delta}
-\newcommand{\parties}[1]{\ensuremath{\mathcal{P}(#1)}}
+````{prf:definition} NEEDS LABEL Belief
 
-```{prf:definition} NEEDS LABEL Belief
-:label: Belief
 {Let $\arena$ be an arena with observable actions.}
   From an initial set of states $L\subseteq\states$, the belief of
   Eve after having received signal $s$ is:
@@ -447,8 +574,7 @@ Remark that in this definition we use the fact that actions of Eve are observabl
 thus when he receives a signal $s\in C$ Eve can deduce he played action
 $\action_1(c)\in I$.
 The belief of Eve after having received a sequence of signals $s_1,\ldots,s_n$ is defined inductively by:
-
-$$
+\[
 \belun(L,s_1,s_2,\ldots,s_n)
  = \belun(\belun(L,s_1,\ldots,s_{n-1}),s_n).\enspace
 $$
@@ -465,7 +591,7 @@ $\belun^n$ the random variable defined by}
 \enspace.}
 \end{align*}
 
-```
+````
 
 
 
@@ -474,8 +600,8 @@ here **2-belief**, which, roughly speaking, represents for one
 player the set of possible beliefs for his (or her) adversary,
 as well as the possible current state.
 
-```{prf:definition} NEEDS LABEL 2-Belief
-:label: 2-Belief
+````{prf:definition} NEEDS LABEL 2-Belief
+
 {Let $\ar$ be an arena with observable actions.}
   From an initial set ${\mathcal{L}} \subseteq \states
   \times \parties{\states}$ of pairs composed of a state and a belief
@@ -483,12 +609,14 @@ as well as the possible current state.
 $\states
   \times \parties{\states}$ defined by:
 
+
 $$
   \deuxbelun({\mathcal{L}},s) = \{ (v,\beldeux(L,t)) \mid
 \exists  (\ell,L) \in {\mathcal{L}},  t\in S,
   \tp(v,s,t)(\ell,\Act(s),\Act(t))
   >0\} \enspace.
   $$
+
 
 
 From an initial set ${\mathcal{L}} \subseteq \states
@@ -502,7 +630,7 @@ $$
 $$
 
 
-```
+````
 
 There are natural definitions of $3$-beliefs (beliefs on beliefs on beliefs)
 and even $k$-beliefs however for our purpose, $2$-beliefs are enough,
@@ -529,26 +657,23 @@ and  $\LLA$ those positively winning for Adam.
 
 Then the qualitative determinacy theorem is a corollary of the following lemma.
 
-```{prf:lemma} NEEDS TITLE AND LABEL 
+````{prf:lemma} NEEDS TITLE AND LABEL 
 In every B&uuml;chi game, every non-empty support
 which does not belong to $\LLA$ belongs to $\LLE$.
  
-:label: 
-In every B&uuml;chi game, every non-empty support
-which does not belong to $\LLA$ belongs to $\LLE$.
 
 In every B&uuml;chi game, every non-empty support
 which does not belong to $\LLA$ belongs to $\LLE$.
 
-```
+````
 
 The proof of this lemma relies on the definition of a strategy
 called the maximal strategy.
 We prove that this strategy is almost-surely winning from any initial
 distribution which is not positively winning for Adam. 
 
-```{prf:definition} Maximal strategy
-:label: def:maximalstrategy
+````{prf:definition} Maximal strategy
+:label: 8-def:maximalstrategy
 
 For every non-empty support $L\subseteq V$ we define
  the set  of {$L$-safe} actions for Eve as
@@ -567,7 +692,7 @@ on $\Isafe(\belun)$
 when it is not empty and plays the uniform distribution on $A$ otherwise.
 It is denoted $\sigma_{\can}$.
 
-```
+````
 
 To play her maximal strategy at step $n$,
 Eve only needs to keep track of her belief $\belun^n$,
@@ -576,7 +701,7 @@ using a finite-memory device which keeps track of the current belief.
 Such a strategy is said to be **belief-based**.
 We will use several times  the following technical lemma about belief-based strategies.
 
-```{prf:lemma} NEEDS TITLE lem:borelcantelli
+````{prf:lemma} NEEDS TITLE lem:borelcantelli
 :label: lem:borelcantelli
 
 {Fix a B&uuml;chi game.}
@@ -592,14 +717,14 @@ and for every $L\in\LL\setminus \{\emptyset\}$ and every strategy $\tau$,
 \label{eq:pos}
 & \probimp{\sigma,\tau}{\delta_L}{\Reach} > 0\enspace,\\
  \label{eq:belstab}
-&\probimp{\sigma,\tau}{\delta_L}{\forall n\in\NN,\belun^n\in \LL} = 1\enspace.
+&\probimp{\sigma,\tau}{\delta_L}{\forall n\in\N,\belun^n\in \LL} = 1\enspace.
 \end{align}
 Then $\sigma$ is almost-surely winning for the B&uuml;chi game from any support 
 $L\in \LL\setminus \{\emptyset\}$. 
 
-```
+````
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 {
@@ -625,11 +750,13 @@ Moreover~\eqref{eq:belstab} implies that
 in this one-player game the second component of the state space is always in $\LL$, whatever strategy $\tau$ is played by player $2$.
 Remind the definition
  \begin{align*}
- \winreach=\{\exists n\in\NN, C_n  = 1\}\enspace.
+ \winreach=\{\exists n\in\N, C_n  = 1\}\enspace.
 \end{align*}
 As a consequence, in this one-player game
-for every $m\in\NN$,
-and every behavioral strategy $\tau$ and every $l\in V$,
+for every $m\in\N$,
+and every behavioral strategy $\tau$ and every 
+%and $d_1\cdots d_m\in D^*$ and 
+$l\in V$,
 \be
 \label{eq:sigmamproperty2}
 \probimp{\tau}{\delta_L}
@@ -643,7 +770,7 @@ whenever $\probimp{\tau}{\delta_L}{V_m=l} > 0$.
 We use the Borel-Cantelli Lemma to conclude the proof.
 According to~\eqref{eq:sigmamproperty2},
 for every $\tau$, $L\in\overline{\LL}$, 
-$m\in \NN$,
+$m\in \N$,
 \be
 \probimp{\tau}{\delta_L}
 { \exists n, mN \leq n < (m+ 1)N, C_n=1
@@ -651,7 +778,7 @@ $m\in \NN$,
 }
 \geq \varepsilon,
 \ee
-which implies for every behavioral strategy $\tau$ and $k,m\in\NN$,
+which implies for every behavioral strategy $\tau$ and $k,m\in\N$,
 
 $$
 \probimp{\tau}{\delta_L}
@@ -673,12 +800,12 @@ thus
 As a consequence $\sigma$ is almost-surely winning for the 
 B&uuml;chi game.
 
-```
+````
 
 
 An important feature of the maximal strategy is the following.
 
-```{prf:lemma} NEEDS TITLE AND LABEL 
+````{prf:lemma} NEEDS TITLE AND LABEL 
 In a B&uuml;chi game
 with observable actions,
 let $\delta\in\Delta(K)$ be an initial distribution which is not positively 
@@ -687,20 +814,9 @@ i.e. $\supp(\delta)\not\in\LLA$.
 Then for every strategy $\tau$ of Adam
 \begin{equation}
 \label{eq:LLstable}
-\mathbb{P}^{\sigma_\can,\tau}_{\delta}(\forall n \in \NN, \belun^n \not\in\LLA )=1\enspace.
+\mathbb{P}^{\sigma_\can,\tau}_{\delta}(\forall n \in \N, \belun^n \not\in\LLA )=1\enspace.
 \end{equation}
  
-:label: 
-In a B&uuml;chi game
-with observable actions,
-let $\delta\in\Delta(K)$ be an initial distribution which is not positively 
-winning for Adam,
-i.e. $\supp(\delta)\not\in\LLA$.
-Then for every strategy $\tau$ of Adam
-\begin{equation}
-\label{eq:LLstable}
-\mathbb{P}^{\sigma_\can,\tau}_{\delta}(\forall n \in \NN, \belun^n \not\in\LLA )=1\enspace.
-\end{equation}
 
 In a B&uuml;chi game
 with observable actions,
@@ -710,12 +826,12 @@ i.e. $\supp(\delta)\not\in\LLA$.
 Then for every strategy $\tau$ of Adam
 \begin{equation}
 \label{eq:LLstable}
-\mathbb{P}^{\sigma_\can,\tau}_{\delta}(\forall n \in \NN, \belun^n \not\in\LLA )=1\enspace.
+\mathbb{P}^{\sigma_\can,\tau}_{\delta}(\forall n \in \N, \belun^n \not\in\LLA )=1\enspace.
 \end{equation}
 
-```
+````
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 We only provide a sketch of proof.
@@ -753,12 +869,12 @@ play a strategy positively winning when the initial belief
 of Eve is $\belun(L,s_a)$. Thus whatever action Eve chooses,
 she might lose with positive probability.
 
-```
+````
 
 \medskip 
 
 The notion of maximal strategy being defined,
-we can complete the proof of Theorem~\ref{theo:qdet}.
+we can complete the proof of {prf:ref}`8-thm:qualitative_determinacy`.
 For that, we show that
 $\sigma_{\can}$
 is almost-surely
@@ -772,10 +888,12 @@ thus it is enough to consider  B&uuml;chi games.
 The first step is to prove that for every $L\in\LLE$,
 for every strategy $\tau$ of Adam,
 \be\label{eq:LLpasM}
+
 \probimp{\sigma_{\can},\tau}{\delta_L}{\winsafe} < 1 \enspace.
 \ee
 We prove~\eqref{eq:LLpasM} by contradiction.
 Assume~\eqref{eq:LLpasM} does not hold for some $L\in \LLE$
+
 and strategy $\tau$:
 \be\label{eq:winsafe}
 \probimp{\sigma_{\can},\tau}{\delta_L}{\winsafe } = 1\enspace.
@@ -795,7 +913,7 @@ which gives positive probability to play $\tau$
 all along the play,
 as well as any strategy in the family
 of strategies
-$(\tau_{n,B})_{n\in\NN,B\in \LLA}$ defined as follows.
+$(\tau_{n,B})_{n\in\N,B\in \LLA}$ defined as follows.
 For every $B\in\LLA$ we choose a strategy $\tau_B$ positively winning from $B$.
 Then
 $\tau_{n,B}$ is the strategy which plays 
@@ -813,13 +931,23 @@ but, since actions are observable,
 such a finite-memory strategy can be turned into a behavioural one,
 see~\cite[Lemma 4.6 and 4.7]{BGGjacm}.
 
+%the strategy
+
+%beginning of the play and:
+
+%  \item plays like $\tau$ forever if the result of this initial coin toss is head,
+
+%$\tau'$ plays the uniform distribution over $J$. If the result of one of the coin tosses is head,
+
+%and a strategy $\tau_B$ positively winning from $B$, 
+
 
 Now that $\tau'$ is defined, we prove it is positively winning from $L$.
 Let $E$ be the event 
 {player $1$ plays only actions that are safe with respect to her belief, i.e.}
 
 $$
-E = \{ \forall n\in \NN, A_n \in \Isafe_\LL(\belun^n)\}\enspace.
+E = \{ \forall n\in \N, A_n \in \Isafe_\LL(\belun^n)\}\enspace.
 $$
 
 Then for every behavioral strategy $\sigma$:
@@ -843,13 +971,15 @@ $$
 
 where the first implication holds because, by definition of $\sigma_{\can}$ and $E$,
 for every $s_1\cdots s_n\in CS^*, \supp(\sigma(s_1\cdots s_n))\subseteq \supp(\sigma_{\can}(s_1\cdots s_n))$
+
 while the second implication is from~\eqref{eq:winsafe}.
 Thus $\probimp{\sigma,\tau}{\delta_L}{\winsafe}= 1$ and we get
 $\probimp{\sigma,\tau'}{\delta_L}{\winsafe} > 0$ by definition of
 $\tau'$.
 * [\textbullet]
 Or $\probimp{\sigma,\tau'}{\delta_L}{E}<1$.
-Then by definition of $E$ there exists $n\in\NN$
+Then by definition of $E$ there exists $n\in\N$
+
 such that 
 
 $$
@@ -872,6 +1002,9 @@ Since $\tau_{n+1,B}$ coincides with $\tau_\rand$ for the first $n+1$ steps then
 by definition of beliefs,
 $\probimp{\sigma,\tau_{n+1,B}}{\delta_L}{\belun^{n+1} =B}>0$
 and $B\subseteq \{ k\in K\mid \probimp{\sigma,\tau_{n+1,B}}{\delta_L}{K_{n+1}=k\mid \belun^{n+1} =B}>0\}$.
+
+%$\probimp{\sigma,\tau_{n+1,B}}{\delta_L}{\belun^{n+1} =B\mid K_0 = k_0}>0$
+
 Using the definition of $\tau_B$ we get 
 $\probimp{\sigma,\tau_{n+1,B}}{\delta_L}{\wincobuchi}>0$.
 }
@@ -887,79 +1020,82 @@ hypothesis $L\in \LLE$. As a consequence we get~\eqref{eq:LLpasM} by contradicti
 
 \medskip
 
-Using~\eqref{eq:LLpasM}, 
-we apply Lemma~\ref{lem:borelcantelli} to the collection 
+Using~\eqref{eq:LLpasM}, we apply {prf:ref}`8-lem:borelcantelli` to the collection 
 $\overline{\LLA}$ and the strategy $\sigma_{\can}$.
 The collection $\overline{\LLA}$ is downward-closed because $\LLA$ is upward-closed: if a support is positively winning for Adam then any greater support is positively winning as well, using the same positively winning strategy.
 
 Thus $\sigma_{\can}$ is almost-surely winning for the B&uuml;chi game from every support in $\overline{\LLA}$ i.e. every support which is not positively winning for Adam, hence the game is qualitatively determined.
 
-\subsection{Decidability: proof of Theorem~\ref{th:main} and ~\ref{th:main2}}
+(8-subsec:proof)=
+## Decidability: proof of {prf:ref}`8-thm:main` and {prf:ref}`8-thm:main2`
 
-\subsubsection{A na\"ive algorithm}
+### A na\"ive algorithm
+
 As a corollary of the proof of qualitative determinacy
-(Theorem~\ref{theo:qdet}), we get a maximal strategy $\sigma_\can$
-for player $1$ (see Definition~\ref{def:maximalstrategy}) to win
+( {prf:ref}`8-thm:qualitative_determinacy`), we get a maximal strategy $\sigma_\can$
+for player $1$ (see {prf:ref}`8-def:maximalstrategy`) to win
 almost-surely B&uuml;chi games.
 
-```{prf:corollary} NEEDS TITLE cor:asmem
-:label: cor:asmem
+````{prf:corollary} NEEDS TITLE 8-cor:asmem
+:label: 8-cor:asmem
 
   If player $1$ has an almost-surely winning strategy in a B&uuml;chi
   game {with observable actions} then the maximal strategy $\sigma_{\can}$ is almost-surely
   winning.
 
-```
+````
 
-{
-   A simple algorithm to decide for which player a
-  game is winning can be derived from Corollary~\ref{cor:asmem}:
-this simple algorithm enumerates all possible belief strategies
-  and test each one of them to see if it is almost-surely
-  winning. The test reduces to checking positive winning in one-player co-B&uuml;chi games
-and can be done in exponential time.
-}
-As there is a doubly exponential number of {belief} strategies, 
-     this can be done in time doubly exponential. 
+A simple algorithm to decide for which player a game is winning can be derived from~\cref{8-cor:asmem}: this simple algorithm enumerates all possible belief strategies
+
+and test each one of them to see if it is almost-surely winning. The test reduces to checking positive winning in one-player co-B&uuml;chi games and can be done in exponential time.
+
+As there is a doubly exponential number of {belief} strategies, this can be done in time doubly exponential. 
 This algorithm also appears in {cite}`GS-icalp09`.
- This settles the upper bound for Theorem~\ref{th:main}. The lower bounds are established in
-  Theorem~\ref{theo-hard}, proving that this enumeration algorithm is
+This settles the upper bound for {prf:ref}`8-thm:main`. 
+
+The lower bounds are established in {prf:ref}`8-thm:hard`, proving that this enumeration algorithm is
   optimal for worst case complexity.  While optimal in the worst case,
   this algorithm is {likely to be unefficient in practice}.  For instance, if player
   $1$ has no almost-surely winning strategy, then this algorithm will
   enumerate every single of the doubly exponential many {possible belief}
   strategies.  Instead, we provide fix-point algorithms which do not
-  enumerate every possible strategy in Theorem~\ref{theo:qdec1} for
-  reachability games and Theorem~\ref{theo:qdec2} for B&uuml;chi games.
+  enumerate every possible strategy in {prf:ref}`8-thm:qdec1` for
+  reachability games and {prf:ref}`8-thm:qdec2` for B&uuml;chi games.
   Although they should perform better on games with particular
   structures, these fix-point algorithms still have a worst-case
   2-\EXPTIME\ complexity.
 
-\subsubsection{A fix-point algorithm for reachability games}
+
+### A fix-point algorithm for reachability games
 
 We turn now to the {\color{black} (fix-points)} algorithms which compute the set of supports that
 are almost-surely or positively winning for various objectives.
-\newcounter{theo:qdec1}
-\setcounter{theo:qdec1}{\value{theorem}}
 
-```{prf:theorem} NEEDS LABEL Deciding positive winning in reachability games
-:label: Deciding positive winning in reachability games
-  \label{theo:qdec1} In a reachability game each initial distribution
-  $\delta$ is either positively winning for player $1$ or surely
-  winning for player $2$, and this depends only on
-  $\supp(\delta)\subseteq \states$.
+% \setcounter{theo:qdec1}{\value{theorem}}
+
+````{prf:theorem} Deciding positive winning in reachability games
+:label: theo:qdec1
+ 
+In a reachability game each initial distribution $\delta$ is either positively winning for player $1$ or surely winning for player $2$, and this depends only on $\supp(\delta)\subseteq \states$.
+
+%of $\parties{\states}$.
+
+%has a strategy with finite memory $\parties{\states}$.
   The corresponding partition of $\parties{\states}$ is computable in
   time $\mathcal{O}\left(|G| \cdot 2^{|\states|}\right)$, where $|G| $ denotes
   the size of the description of the game,
   as the largest fix-point of a monotonic operator
 $\Phi:\parties{\parties{V}}\to \parties{\parties{V}}$
 computable in time linear in $|G| $.
-      
-```
+  
+  
+  
+
+````
 
 We denote $\targets$ the set of vertices whose colour is $1$.
 
-```{admonition} Proof
+````{admonition} Proof
 :class: dropdown tip
 
 
@@ -975,29 +1111,34 @@ in other words $\Phi(\LL)$ is the set of supports
 such that player $2$ has an action which
 ensure his next belief will be in $\LL$,
 whatever signal $d$ he might receive.
+
 Let $\sigma_{\rand}$ be the strategy for player $1$ that plays randomly any action.
 
 We are going to prove that:
 
-1. [(A)] every support in $\LL_\infty$ is surely winning for player $2$,
+1.  every support in $\LL_\infty$ is surely winning for player $2$,
 
-2. [(B)] and $\sigma_{\rand}$ is positively winning from any support $L\subseteq\states$ which is not in $\LL_\infty$.
+2.  and $\sigma_{\rand}$ is positively winning from any support $L\subseteq\states$ which is not in $\LL_\infty$.
 
-We start with proving (A).
+We start with proving the first item.
 To win surely from any support $L\in\LL_\infty$, player $2$ uses the following
 belief strategy $\tau_B$: when the current belief of player $2$ is $L\in\LL_\infty$ then player $2$
 plays an action $j_L$ defined as in~\eqref{eq:defphi}.
 By definition of $\Phi$ and since $\LL_\infty$ is a fix-point of $\Phi$,
 there always exists such an action.
+
+%and update operator $\beldeux$.
 When playing with the belief strategy $\tau_B$,
 starting from a support in $\LL_\infty$,
 the beliefs of player $2$ stay in $\LL_\infty$
 and never intersect $\targets$ because $\LL_\infty\subseteq \parties{\states\bh\targets}$.
-{According to property~\eqref{eq:beln_lemma} of beliefs (Lemma~\ref{lem:beliefs})},
+{According to property~\eqref{eq:beln_lemma} of beliefs ( {prf:ref}`8-lem:beliefs`)},
 this guarantees the play never visits $\targets$,
 whatever strategy is used by player $1$.
 
-We now prove (B).
+We now prove the second item.
+
+%that plays randomly any action.
 Let
 $\LL_0=\parties{\states\bh\targets}\supseteq
 \LL_1=\Phi(\LL_0)\supseteq \LL_2=\Phi(\LL_1)\ldots$ and $\LL_\infty$
@@ -1008,13 +1149,13 @@ $L\not\in\LL_\infty$ then: \be\label{eq:postoprove} \text{$\sigma_{\rand}$ is
   positively winning for player $1$ from $L$}\enspace.  \end{equation}If $L\cap\targets
 \not=\emptyset$,~\eqref{eq:postoprove} is obvious.  To deal with
 the case where {$L\cap \targets =\emptyset$}, we define for every
-$n\in\NN$, $\KK_n = \parties{\states\bh\targets} \bh \LL_n$, and we
-prove by induction on $n\in\NN$ that for every $L\in\KK_n$, for every
+$n\in\N$, $\KK_n = \parties{\states\bh\targets} \bh \LL_n$, and we
+prove by induction on $n\in\N$ that for every $L\in\KK_n$, for every
 initial distribution $\delta_L$ with support $L$, for every {behavioral} strategy
 $\tau$, \be\label{eq:topo} \probimp{\sigma_{\rand},\tau}{\delta_L}{\exists m, 2\leq
   m\leq n+1, V_m\in\targets }>0 \enspace.  \end{equation}For
 $n=0$,~\eqref{eq:topo} is obvious because $\KK_0=\emptyset$.  Suppose
-that for some $n\in\NN$, \eqref{eq:topo} holds for every $L'\in\KK_n$,
+that for some $n\in\N$, \eqref{eq:topo} holds for every $L'\in\KK_n$,
 and let $L\in\KK_{n+1}\bh \KK_n$.
 Then by definition of $\KK_{n+1}$, \be\label{eq:LLLn}
 L\in\LL_{n}\bh\Phi(\LL_n)\enspace.  \end{equation}Let $\delta_L$ be an initial
@@ -1023,7 +1164,7 @@ Let $J_0\subseteq J$ be the support of $\tau(\delta_L)$ and $j_L\in J_0$.  Accor
 to~\eqref{eq:LLLn}, by definition of $\Phi$, there exists a signal
 $d\in D$ such that $\action_2(d)=j_L$ and
  $\beldeux(L,d)\not \in \LL_n$ and $\beldeux(L,d)\neq \emptyset$.
-{According to  property~\eqref{eq:belief_compute} of beliefs (Lemma~\ref{lem:beliefs}),} 
+{According to  property~\eqref{eq:belief_compute} of beliefs ( {prf:ref}`8-lem:beliefs`),} 
  $\forall k \in \beldeux(L,d),\probimp{\sigma_{\rand},\tau}{\delta_L}{V_2 =k\land D_1=d}  > 0$.
    If
 $\beldeux(L,d)\cap\targets \not= \emptyset$ then according to
@@ -1034,28 +1175,31 @@ distribution $\delta_{d}:k\to \probimp{\sigma_{\rand},\tau}{\delta_L}{V_2 =k\mid
 has its support in $\KK_n$. By inductive hypothesis, for every
 behavioral strategy $\tau'$,
 
-$$\probimp{\sigma_{\rand},\tau'}{\delta_{d}}{\exists m\in\NN, 2\leq
+$$\probimp{\sigma_{\rand},\tau'}{\delta_{d}}{\exists m\in\N, 2\leq
   m\leq n+1, V_m\in\targets}>0$$
 
 hence using the shifting lemma and the
 definition of $\delta_{d}$,
 
 $$
-\probimp{\sigma_{\rand},\tau}{\delta}{\exists m\in\NN,
+\probimp{\sigma_{\rand},\tau}{\delta}{\exists m\in\N,
   3\leq m\leq n+2, V_m\in\targets}>0\enspace,$$
 
 which completes the proof of the inductive
 step.
 {
 Hence~\eqref{eq:topo} holds for every behavioral strategy 
-$\tau$. Thus, according to Lemma~\ref{actioneq3},~\eqref{eq:topo}
+$\tau$. Thus, according to {prf:ref}`8-lem:actioneq3`,~\eqref{eq:topo}
 holds as well for every general strategy $\tau$.
 }
 
 To compute
+
 the partition of supports between those positively winning for player $1$
 and those surely winning for player $2$,
+
 it is enough to compute
+
 the largest fix-point of $\Phi$.
 Since $\Phi$ is monotonic, and each application of the operator
 can be computed in time linear in the size of the game ($|G|$)
@@ -1065,7 +1209,7 @@ To compute the strategy $\tau_B$, it is enough to compute
 for each $L\in\LL_\infty$ one action $j_L$ such that
 $(\action_2(d)=j_L)\implies (\beldeux(L,d)\in\LL_\infty)$.
 
-```
+````
 
 As a byproduct of the proof one obtains the following bounds on time
 and probabilities before reaching a target state, when player $1$ uses
@@ -1078,19 +1222,24 @@ every strategy $\tau$, \be\label{eq:bounds}
 \end{equation}
 where $p_{\min}$ is the smallest non-zero transition probability.
 
-\subsubsection{A fix-point algorithm for B&uuml;chi games}
+
+### A fix-point algorithm for B&uuml;chi games
 
 To decide whether player $1$ wins almost-surely a B&uuml;chi game,
 we provide an algorithm which runs in doubly-exponential time.
 It uses the algorithm for reachability games as a sub-procedure.
 
 
-```{prf:theorem} NEEDS LABEL Deciding almost-sure winning in B&uuml;chi games
-:label: Deciding almost-sure winning in B&uuml;chi games
+````{prf:theorem} NEEDS LABEL Deciding almost-sure winning in B&uuml;chi games
+
   \label{theo:qdec2} In a B&uuml;chi game each initial distribution
   $\delta$ is either almost-surely winning for player $1$ or
   positively winning for player $2$, and this depends only on
   $\supp(\delta)\subseteq \states$.
+
+%of $\parties{\states}$.
+
+%has a strategy with finite memory $\parties{\states}$.
 The corresponding partition of $\parties{\states}$ is computable in
 time $\mathcal{O}\left(2^{2^{|G|}}\right)$, where $|G|$ denotes the size of the description of the game,
 as a projection of the greatest
@@ -1104,19 +1253,42 @@ $$\Psi:
 \enspace.
 $$
 
-The operator $\Psi$ is computable using as a nested fix-point the operator $\Phi$ of Theorem~\ref{theo:qdec1}.
+The operator $\Psi$ is computable using as a nested fix-point the operator $\Phi$ of {prf:ref}`8-thm:qdec1`.
  The almost-surely winning belief strategy of player $1$ and the positively winning $2$-belief strategy of player $2$  can be extracted 
 from $\LL_\infty$.
 
-```
+````
 
+
+%$\parties{\parties{\states}\times\states}$ to remember the possible
+
+% The finite memory $\parties{\parties{\states}\times\states}$ of the
+
+% remember what are the possible pairs of current state and pessimistic
 
 \smallskip
-We sketch the main ideas of the proof of Theorem~\ref{theo:qdec2}.
+
+%
+````{admonition} Proof
+:class: dropdown tip
+[Sketch of proof]
+We sketch the main ideas of the proof of {prf:ref}`8-thm:qdec2`.
+
+%
+````{prf:definition} NEEDS LABEL Uniform positive reachability
+
+%$\tau$ of player $2$,
+
+%\forall l\in L, \probimp{\sigma,\tau}{\delta_L}{\exists n,K_n\in\targets\mid K_0=l}>0\enspace.
+
+%
+````
+
+%player $1$ should win positively the reachability game whatever initial state has been selected by the initial distribution.
 
 First, suppose that from **every** initial support, player $1$ can
 win positively the  reachability game.
-{Then she can do so using a belief strategy and according to Lemma~\ref{lem:borelcantelli},}
+{Then she can do so using a belief strategy and according to {prf:ref}`8-lem:borelcantelli`,}
 this strategy guarantees
 almost-surely the B&uuml;chi condition.
 
@@ -1143,6 +1315,8 @@ from $L$.  Such a strategy is far from being optimal, because player
 $2$ plays randomly and in most cases he makes a wrong guess about the
 belief of player $1$.  However 
 there is a non zero probability for his guess to be right.
+
+%right moment the belief of player $1$.
 
 Hence, player $1$ should surely avoid her belief to be $L$
 or $L'$ if she wants to win almost-surely.
@@ -1175,16 +1349,14 @@ $\emptyset=\LL_0'\subsetneq \LL_0'\cup \LL_1''\subsetneq\LL_0'\cup
 \subsetneq \LL_0'\cup \cdots \cup \LL'_m
 =\parties{\states}\bh\LL_\infty$, where
 
-* [(a)]
-from supports in $\LL''_{i+1}$ player $2$ can surely guarantee the safety objective,
+*  from supports in $\LL''_{i+1}$ player $2$ can surely guarantee the safety objective,
 under the hypothesis that player $1$ 
 {guarantees for sure} her beliefs to stay outside $\LL'_i$,
-* [(b)]
-from supports in $\LL'_{i+1}$ player $2$ can ensure with positive probability the belief of player
-$1$ to be in $\LL''_{i+1}$ eventually,
+*  from supports in $\LL'_{i+1}$ player $2$ can ensure with positive probability the belief of player $1$ to be in $\LL''_{i+1}$ eventually,
 under the same hypothesis.
 
 The overall strategy of player $2$ positively winning for the co-B&uuml;chi objective
+
 consists in playing randomly for some time until he decides to pick
 up randomly a belief $L$ of player $1$ in some $\LL''_i$,
 bets that the current belief of player $1$ is $L$ and that player $1$
@@ -1193,12 +1365,13 @@ her future beliefs
 will stay outside $\LL'_i$.
 He forgets
 the signals he has received up to that moment and switches
-definitively to a strategy which guarantees (a).  With positive
-probability, player $2$ guesses correctly the belief of player $1$ at the right moment, and
+definitively to a strategy which guarantees the first item.  With positive
+probability, player $2$ 
+guesses correctly the belief of player $1$ at the right moment, and
 future beliefs of player $1$ will stay in $\LL'_i$, in which case the
 co-B&uuml;chi condition holds and player $2$ wins.
 
-{In order to ensure (a), player $2$ makes use of the hypothesis
+{In order to ensure the first item, player $2$ makes use of the hypothesis
 about player $1$ beliefs staying outside $\LL_i'$. For that player $2$ needs to keep track of all the possible beliefs of player $1$, hence the doubly-exponential memory.
 The reason is player $2$ can infer
 from this data structure some information about the possible actions played by player $1$: in case
@@ -1213,4 +1386,8 @@ All memory updates are deterministic except for one: from
 the initial memory state $\emptyset$,
 whatever signal is received there is non-zero chance that the memory state stays $\emptyset$ but it may as well 
 be updated to several other memory states.}
+
+%
+````
+
 \smallskip

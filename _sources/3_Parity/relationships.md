@@ -67,6 +67,9 @@
 \newcommand{\coNP}{\textrm{coNP}}
 \newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
+\newcommand{\EXP}{\textrm{EXP}}
+\newcommand{\kEXP}{\textrm{kEXP}}
 ```
 At the beginning of the chapter we described three families of algorithms: 
 strategy improvement, attractor decomposition, and value iterations.
@@ -83,23 +86,17 @@ proportional to $|T|$ where $|T|$ is the size of $T$, meaning the number of leav
 
 These two families are in a strong sense equivalent:
 
-```{prf:theorem} NEEDS TITLE AND LABEL 
+````{prf:theorem} NEEDS TITLE AND LABEL 
 
 *  An $(n,d)$-separating automaton induces an $(n,d/2)$-universal tree of the same size;
 *  An $(n,d/2)$-universal tree induces an $(n,d)$-separating automaton of the same size.
 
  
-:label: 
 
 *  An $(n,d)$-separating automaton induces an $(n,d/2)$-universal tree of the same size;
 *  An $(n,d/2)$-universal tree induces an $(n,d)$-separating automaton of the same size.
 
-
-
-*  An $(n,d)$-separating automaton induces an $(n,d/2)$-universal tree of the same size;
-*  An $(n,d/2)$-universal tree induces an $(n,d)$-separating automaton of the same size.
-
-```
+````
 
 We do not prove this theorem here but note that it can be stated more generally for any positionally determined objective,
 replacing universal trees by the notion of universal graphs.

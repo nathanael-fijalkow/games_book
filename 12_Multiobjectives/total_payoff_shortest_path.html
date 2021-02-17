@@ -1,0 +1,969 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Total-payoff and shortest path &#8212; Games on graphs</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/style.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Beyond worst-case synthesis" href="beyond_worst_case.html" />
+    <link rel="prev" title="Mean-payoff and energy" href="mean_payoff_energy.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/cover.jpg" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Games on graphs</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <p class="caption collapsible-parent">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../1_Introduction/index.html">
+   Introduction
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/intro.html">
+     What is this book about?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/simple.html">
+     A first model of games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/objectives.html">
+     Objectives
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/computation.html">
+     Computational models
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/automata.html">
+     Automata
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/memory.html">
+     Memory
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/reductions.html">
+     Reductions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/subgames.html">
+     Traps and subgames
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/fixed_points.html">
+     Generic fixed point algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/value_iteration.html">
+     Value iteration algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/strategy_improvement.html">
+     Strategy improvement algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../1_Introduction/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Classic
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../2_Regular/index.html">
+   Regular Games
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/attractors.html">
+     Reachability games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/buchi.html">
+     Büchi games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/parity.html">
+     Parity games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/muller.html">
+     Rabin, Streett, and Muller games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/zielonka.html">
+     Zielonka tree
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../2_Regular/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../3_Parity/index.html">
+   Parity Games
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/strategy_improvement.html">
+     An exponential time strategy improvement algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/zielonka.html">
+     A quasipolynomial time attractor decomposition algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/separation.html">
+     A quasipolynomial time separating automata algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/value_iteration.html">
+     A quasipolynomial time value iteration algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/relationships.html">
+     Comparing the three families of algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../3_Parity/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../4_Payoffs/index.html">
+   Games with Payoffs
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/notations.html">
+     Notations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/qualitative.html">
+     Refining qualitative objectives with quantities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/mean_payoff.html">
+     Mean payoff games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/discounted_payoff.html">
+     Discounted payoff games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/shortest_path.html">
+     Shortest path games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/total_payoff.html">
+     Total payoff games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../4_Payoffs/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Stochastic
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../5_MDP/index.html">
+   Markov Decision Processes
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/notations.html">
+     Notations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/reachability.html">
+     Positive and almost-sure reachability and safety in MDPs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/discounted.html">
+     Discounted payoff in MDPs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/mean_payoff_properties.html">
+     Mean-payoff in MDPs: General properties and linear programming
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/mean_payoff_strongly_connected.html">
+     Mean-payoff optimality in strongly connected MDPs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/end_components.html">
+     End components
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/reductions.html">
+     Reductions to optimal reachability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/optimal_reachability.html">
+     Optimal reachability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../5_MDP/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../6_Stochastic/index.html">
+   Stochastic Games
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../6_Stochastic/notations.html">
+     Notations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../6_Stochastic/determinacy.html">
+     Positional determinacy of stochastic reachability games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../6_Stochastic/relations.html">
+     Relations between all games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../6_Stochastic/algos.html">
+     Algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../6_Stochastic/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Information
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../7_Concurrent/index.html">
+   Concurrent Games
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../7_Concurrent/notations.html">
+     Notations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../7_Concurrent/matrix_games.html">
+     Matrix games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../7_Concurrent/discounted.html">
+     Concurrent discounted games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../7_Concurrent/reachability.html">
+     Concurrent reachability games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../7_Concurrent/mean_payoff.html">
+     Concurrent mean-payoff games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../7_Concurrent/discounted.html">
+     Concurrent discounted games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../7_Concurrent/references.html">
+     Bibilographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../8_Imperfect/index.html">
+   Games with Signals
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../8_Imperfect/notations.html">
+     Notations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../8_Imperfect/finite_duration.html">
+     Finite duration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../8_Imperfect/infinite_duration.html">
+     Infinite duration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../8_Imperfect/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Infinite
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../9_Timed/index.html">
+   Timed Games
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../9_Timed/notations.html">
+     Notations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../9_Timed/state_space_representation.html">
+     State-Space Representation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../9_Timed/controllable_predecessor_operator.html">
+     Controllable-Predecessor Operator
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../9_Timed/backward_algorithm.html">
+     Backward Algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../9_Timed/forward_algorithm.html">
+     Forward Algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../9_Timed/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../10_Pushdown/index.html">
+   Pushdown Games
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10_Pushdown/notations.html">
+     Notations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10_Pushdown/profiles.html">
+     Profiles and regularity of the winning regions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10_Pushdown/parity.html">
+     Parity pushdown games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10_Pushdown/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../11_Counters/index.html">
+   Games with Counters
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11_Counters/counters.html">
+     Vector games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11_Counters/dim1.html">
+     Games in dimension one
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11_Counters/avag.html">
+     Asymmetric games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11_Counters/resource.html">
+     Resource-conscious games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11_Counters/complexity.html">
+     The complexity of asymmetric monotone games
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11_Counters/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Multi
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active collapsible-parent">
+  <a class="reference internal" href="index.html">
+   Games with multiple objectives
+  </a>
+  <ul class="current collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="mean_payoff_energy.html">
+     Mean-payoff and energy
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Total-payoff and shortest path
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="beyond_worst_case.html">
+     Beyond worst-case synthesis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="percentile.html">
+     Percentile queries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../13_Multiplayer/index.html">
+   Multiplayer Games
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13_Multiplayer/nash_equilibria_normal_form.html">
+     Nash Equilibria for games in normal form
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13_Multiplayer/admissible_strategies.html">
+     Admissible strategies
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13_Multiplayer/references.html">
+     Bibliographic references
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#total-payoff-vs-mean-payoff">
+   Total-payoff vs.~mean-payoff
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#undecidability">
+   Undecidability
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#memory">
+     Memory
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#wrap-up">
+     Wrap-up
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="total-payoff-and-shortest-path">
+<span id="sec-total-payoff-shortest-path"></span><h1>Total-payoff and shortest path<a class="headerlink" href="#total-payoff-and-shortest-path" title="Permalink to this headline">¶</a></h1>
+<div class="math notranslate nohighlight">
+\[\newcommand{\expv}{\mathbf{E}} \newcommand{\markovProcess}{\ensuremath{{\mathcal{P}} }}
+\newcommand{\stratStoch}{\ensuremath{\tau^{\text{stoch}} }}
+\newcommand{\BWC}{\text{BWC}}
+\newcommand{\ecsSet}{\ensuremath{\mathcal{E}} }
+\newcommand{\edgesNonZero}{\ensuremath{E_{\delta}} }
+\newcommand{\ec}{\ensuremath{U} }
+\newcommand{\playerOne}{\text{Eve} }
+\newcommand{\playerTwo}{\text{Adam} }
+\newcommand{\winningECs}{\ensuremath{\mathcal{W}} }
+\newcommand{\losingECs}{\ensuremath{\mathcal{L}} }
+\newcommand{\edges}{\ensuremath{E} }
+\newcommand{\maxWinningECs}{\ensuremath{\mathcal{U}_{\textsc{w}}} }
+\newcommand{\infVisited}[1]{\ensuremath{{\sf Inf}(#1)} }
+\newcommand{\negligibleStates}{\ensuremath{V_{{\sf neg}}} }
+\newcommand{\stratWC}{\ensuremath{\sigma^{\text{wc}}} }
+\newcommand{\stratExp}{\ensuremath{\sigma^{\text{e}}} }
+\newcommand{\stratComb}{\ensuremath{\sigma^{\text{cmb}}} }
+\newcommand{\stratSecure}{\ensuremath{\sigma^{\text{sec}}} }
+\newcommand{\stratWNS}{\ensuremath{\sigma^{\text{wns}}} }
+\newcommand{\stratGlobal}{\ensuremath{\sigma^{\text{glb}}} }
+\newcommand{\stepsWC}{\ensuremath{L} }
+\newcommand{\stepsExp}{\ensuremath{K} }
+\newcommand{\stepsGlobal}{\ensuremath{N} }
+\newcommand{\cmbSum}{\ensuremath{\mathsf{Sum}} }
+\newcommand{\typeA}{\ensuremath{**(a)**} }
+\newcommand{\typeB}{\ensuremath{**(b)**} }
+\newcommand{\thresholdWC}{\ensuremath{\alpha} }
+\newcommand{\thresholdExp}{\ensuremath{\beta} }
+\newcommand{\state}{\ensuremath{v} }
+\newcommand{\gameNonZero}{\ensuremath{\arena_{\delta}} }
+\newcommand{\reduc}{\ensuremath{\downharpoonright} }
+\newcommand{\probm}{\mathbb{P}} 
+\newcommand{\Adam}{\textrm{Adam}}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
+\newcommand{\argmax}{\textrm{argmax}}
+\newcommand{\argmin}{\textrm{argmin}}
+\newcommand{\Op}{\mathbb{O}}
+\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\textrm{supp}} 
+\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
+\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
+\newcommand{\mEve}{\mathrm{Eve}}
+\newcommand{\mAdam}{\mathrm{Adam}}
+\newcommand{\mRandom}{\mathrm{Random}}
+\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
+\newcommand{\ing}{\textrm{In}}
+\newcommand{\Ing}{\ing}
+\newcommand{\out}{\textrm{Out}}
+\newcommand{\Out}{\out}
+\newcommand{\dest}{\Delta} 
+\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
+\newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
+\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
+\newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
+\newcommand{\Win}{\textrm{Win}} 
+\newcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Value}{\textrm{val}} 
+\newcommand{\ValueE}{\textrm{val}_\mEve} 
+\newcommand{\ValueA}{\textrm{val}_\mAdam}
+\newcommand{\val}{\Value} 
+\newcommand{\Automaton}{\mathbf{A}} 
+\newcommand{\Safe}{\mathtt{Safe}}
+\newcommand{\Reach}{\mathtt{Reach}} 
+\newcommand{\Buchi}{\mathtt{Buchi}} 
+\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
+\newcommand{\Parity}{\mathtt{Parity}} 
+\newcommand{\Muller}{\mathtt{Muller}} 
+\newcommand{\Rabin}{\mathtt{Rabin}} 
+\newcommand{\Streett}{\mathtt{Streett}} 
+\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
+\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
+\newcommand{\Energy}{\mathtt{Energy}}
+\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
+\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
+\newcommand{\Sup}{\mathtt{Sup}}
+\newcommand{\Inf}{\mathtt{Inf}}
+\newcommand{\LimSup}{\mathtt{LimSup}}
+\newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NL}{\textrm{NL}}
+\newcommand{\PTIME}{\textrm{PTIME}}
+\newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
+\newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
+\newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
+\newcommand{\EXP}{\textrm{EXP}}
+\newcommand{\kEXP}{\textrm{kEXP}}\]</div>
+<p>In this section, we turn to two other objectives deeply studied in~\cref{chap:payoffs}: we study total-payoff and shortest path games. We will see that the multidimension setting has dire consequences for both.</p>
+<div class="section" id="total-payoff-vs-mean-payoff">
+<h2>Total-payoff vs.~mean-payoff<a class="headerlink" href="#total-payoff-vs-mean-payoff" title="Permalink to this headline">¶</a></h2>
+<p>We start with total-payoff games. As for the mean-payoff, we explicitly consider the two variants, <span class="math notranslate nohighlight">\(\TotalPayoff^+\)</span> and <span class="math notranslate nohighlight">\(\TotalPayoff^-\)</span>, for the lim-sup and lim-inf definitions respectively. While~\cref{chap:payoffs} was written using the lim-sup variant, all results are identical for the lim-inf one in one-dimension games <span id="id1">[<span>Gawlitza&amp;Seidl:2009</span>]</span>.</p>
+<p>Recall that one-dimension total-payoff games are memoryless determined and solving them is in <span class="math notranslate nohighlight">\(\NP \cap \coNP\)</span> (even in <span class="math notranslate nohighlight">\(\UP \cap \coUP\)</span> <span id="id2">[<span>Gawlitza&amp;Seidl:2009</span>]</span>)\todo{Could be moved in~\cref{chap:payoffs}}. Furthermore, \cref{chap:payoffs} taught us that total-payoff can be seen as a <strong>refinement</strong> of mean-payoff, as it permits to reason about low (using the lim-inf variant) and high (using the lim-sup one) points of partial sums along a play when the mean-payoff is zero. We formalize this relationship in the next lemma, and study what happens in multiple dimensions.</p>
+<div class="proof lemma admonition" id="12-lem:MPTP">
+<p class="admonition-title"><span class="caption-number">Lemma 338 </span> (NEEDS TITLE 12-lem:MPTP)</p>
+<div class="lemma-content section" id="proof-content">
+<p>Fix an arena <span class="math notranslate nohighlight">\(\arena\)</span> and an initial vertex <span class="math notranslate nohighlight">\(v_0 \in \vertices\)</span>. Let A, B, C and D denote the following assertions.</p>
+<ol class="simple">
+<li><p>[A.] Eve has a winning strategy for <span class="math notranslate nohighlight">\(\MeanPayoff^{+}_{\geq \vec{0}}\)</span>.</p></li>
+<li><p>[B.] Eve has a winning strategy for <span class="math notranslate nohighlight">\(\MeanPayoff^{-}_{\geq \vec{0}}\)</span>.</p></li>
+<li><p>[C.] There exists <span class="math notranslate nohighlight">\(\vec{x} \in \Q^{k}\)</span> such that Eve has a winning strategy for <span class="math notranslate nohighlight">\(\TotalPayoff^{-}_{\geq \vec{x}}\)</span>.</p></li>
+<li><p>[D.] There exists <span class="math notranslate nohighlight">\(\vec{x} \in \Q^{k}\)</span> such that Eve has a winning strategy for <span class="math notranslate nohighlight">\(\TotalPayoff^{+}_{\geq \vec{x}}\)</span>.</p></li>
+</ol>
+<p>In one-dimension games (<span class="math notranslate nohighlight">\(k = 1\)</span>), all four assertions are equivalent. In multidimension ones (<span class="math notranslate nohighlight">\(k &gt; 1\)</span>), the only implications that hold are: <span class="math notranslate nohighlight">\(C \implies D \implies A\)</span> and <span class="math notranslate nohighlight">\(C \implies B \implies A\)</span>. All other implications are false in general.</p>
+</div>
+</div><p><a class="reference internal" href="#12-lem:MPTP">Lemma 338</a> is depicted in <a class="reference internal" href="#fig-mptp"><span class="std std-numref">Fig. 71</span></a>: the only implications that carry over to multiple dimensions are depicted by solid arrows.</p>
+<div class="figure align-center" id="fig-mptp">
+<img alt="../_images/12-fig:MPTP.png" src="../_images/12-fig:MPTP.png" />
+<p class="caption"><span class="caption-number">Fig. 71 </span><span class="caption-text">Equivalence between mean-payoff and total-payoff games. Dashed im-pli-ca-tions are only valid in one-dimension games. We use <span class="math notranslate nohighlight">\(\sigma \models \Omega\)</span> as a shortcut for <span class="math notranslate nohighlight">\(\sigma\)</span> is winning from <span class="math notranslate nohighlight">\(v_0\)</span> for <span class="math notranslate nohighlight">\(\Omega\)</span>.</span><a class="headerlink" href="#fig-mptp" title="Permalink to this image">¶</a></p>
+</div>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Proof</p>
+<p>The implications that remain true in multiple dimensions are the trivial ones. First, satisfaction of the lim-inf version of a given objective clearly implies satisfaction of its lim-sup version by definition. Hence, <span class="math notranslate nohighlight">\(B \implies A\)</span> and <span class="math notranslate nohighlight">\(C \implies D\)</span>. Second, consider a play <span class="math notranslate nohighlight">\(\pi \in \TotalPayoff^{-}_{\geq \vec{x}}\)</span> (resp. <span class="math notranslate nohighlight">\(\TotalPayoff^{+}_{\geq \vec{x}}\)</span>) for some <span class="math notranslate nohighlight">\(\vec{x} \in \Q^{k}\)</span>. For all dimension <span class="math notranslate nohighlight">\(i \in \{1, \ldots{}, k\}\)</span>, the corresponding sequence of mean-payoff infima (resp.~suprema) over prefixes can be <strong>lower-bounded</strong> by a sequence of elements of the form <span class="math notranslate nohighlight">\(\frac{\vec{x}_i}{\ell}\)</span> with <span class="math notranslate nohighlight">\(\ell\)</span> the length of the prefix. We can do this because the sequence of total-payoffs over prefixes is a sequence of integers: it always achieves the value of its limit <span class="math notranslate nohighlight">\(\vec{x}_i\)</span> instead of only tending to it asymptotically as could a sequence of rationals (such as the mean-payoffs). Since <span class="math notranslate nohighlight">\(\frac{\vec{x}_i}{\ell}\)</span> tends to zero over an infinite play, we do have that <span class="math notranslate nohighlight">\(\pi \in \MeanPayoff^{-}_{\geq \vec{x}}\)</span> (resp. <span class="math notranslate nohighlight">\(\MeanPayoff^{+}_{\geq \vec{x}}\)</span>). Thus, <span class="math notranslate nohighlight">\(C \implies B\)</span> and <span class="math notranslate nohighlight">\(D \implies A\)</span>. Along with the transitive closure <span class="math notranslate nohighlight">\(C \implies A\)</span>, these are all the implications preserved in multidimension games.</p>
+<p>In one-dimension games, all assertions are equivalent. As seen before, we have that lim-inf and lim-sup mean-payoff games coincide as memoryless strategies suffice for both players. Thus, we add <span class="math notranslate nohighlight">\(A \implies B\)</span>, and <span class="math notranslate nohighlight">\(D \implies B\)</span> by transitivity. Second, consider a memoryless (w.l.o.g.) strategy <span class="math notranslate nohighlight">\(\sigma_B\)</span> for Eve for <span class="math notranslate nohighlight">\(\MeanPayoff^{-}_{\geq \vec{0}}\)</span>. Let <span class="math notranslate nohighlight">\(\play\)</span> be any consistent play. Then all cycles in <span class="math notranslate nohighlight">\(\pi\)</span> are non-negative, otherwise Eve cannot ensure winning with <span class="math notranslate nohighlight">\(\sigma_B\)</span> (because Adam could pump the negative cycle). Thus, the sum of weights along <span class="math notranslate nohighlight">\(\play\)</span> is at all times bounded from below by <span class="math notranslate nohighlight">\(-(\vert V\vert-1)\cdot W\)</span> (for the longest acyclic prefix), with <span class="math notranslate nohighlight">\(W\)</span> the largest absolute weight, as usual. Therefore, we have <span class="math notranslate nohighlight">\(B \implies C\)</span>, and we obtain all other implications by transitive closure.</p>
+<p>For multidimension games, all dashed implications are false. We only need to consider two of them.</p>
+<ol class="simple">
+<li><p>\label{12-lem:MPTP_proof1} To show that implication <span class="math notranslate nohighlight">\(D \implies B\)</span> does not hold, consider the Eve-owned one-player game where <span class="math notranslate nohighlight">\(V = \{v\}\)</span> and the only edges are two self loops of weights <span class="math notranslate nohighlight">\((1, -2)\)</span> and <span class="math notranslate nohighlight">\((-2, 1)\)</span>. Clearly, any finite vector <span class="math notranslate nohighlight">\(\vec{x} \in \Q^{2}\)</span> for <span class="math notranslate nohighlight">\(\TotalPayoff^{+}_{\geq \vec{x}}\)</span> can be achieved by an infinite-memory strategy consisting in playing both loops successively for longer and longer periods, each time switching after getting back above threshold <span class="math notranslate nohighlight">\(\vec{x}\)</span> in the considered dimension. However, it is impossible to build any strategy, even with infinite memory, that satisfies <span class="math notranslate nohighlight">\(\MeanPayoff^{-}_{\geq \vec{0}}\)</span> as the lim-inf mean-payoff would be at best a linear combination of the two cycle values, i.e., strictly less than zero in at least one dimension in any case.</p></li>
+<li><p>Lastly, consider the game in <code class="xref std std-numref docutils literal notranslate"><span class="pre">12-fig:MultiMP</span></code> where we modify the weights to add a third dimension with value <span class="math notranslate nohighlight">\(0\)</span> on the self loops and <span class="math notranslate nohighlight">\(-1\)</span> on the other edges. As already proved, the strategy that plays for <span class="math notranslate nohighlight">\(\ell\)</span> steps in the left cycle, then goes for <span class="math notranslate nohighlight">\(\ell\)</span> steps in the right one, then repeats for <span class="math notranslate nohighlight">\(\ell' &gt; \ell\)</span> and so on, is a winning strategy for <span class="math notranslate nohighlight">\(\MeanPayoff^{-}_{\geq \vec{0}}\)</span>. Nevertheless, for any strategy of Eve, the play is such that either (i) it only switches between <span class="math notranslate nohighlight">\(v_0\)</span> and <span class="math notranslate nohighlight">\(v_1\)</span> a finite number of times, in which case the sum in dimension <span class="math notranslate nohighlight">\(1\)</span> or <span class="math notranslate nohighlight">\(2\)</span> decreases to infinity from some point on; or (ii) it switches infinitely often and the sum in dimension <span class="math notranslate nohighlight">\(3\)</span> decreases to infinity. In both cases, objective <span class="math notranslate nohighlight">\(\TotalPayoff^{+}_{\geq \vec{x}}\)</span> is not satisfied for any finite vector <span class="math notranslate nohighlight">\(\vec{x} \in  \Q^{3}\)</span>. Hence, <span class="math notranslate nohighlight">\(B \implies D\)</span> is falsified.</p></li>
+</ol>
+<p>All other implications are deduced false as they would otherwise contradict the last two cases by transitivity.</p>
+</div>
+<p>We see that the relationship between mean-payoff and total-payoff games breaks in multiple dimensions. Nonetheless, one may still hope for good properties for the latter, as one-dimension total-payoff games are in <span class="math notranslate nohighlight">\(\NP \cap \coNP\)</span> (\cref{chap:payoffs}). \todo{I need label for Subsect. 4.4.3.} This hope, however, will not last long.</p>
+</div>
+<div class="section" id="undecidability">
+<h2>Undecidability<a class="headerlink" href="#undecidability" title="Permalink to this headline">¶</a></h2>
+<p>In contrast to mean-payoff games, total-payoff ones become undecidable in multiple dimensions.</p>
+<div class="proof theorem admonition" id="12-thm:TPundec">
+<p class="admonition-title"><span class="caption-number">Theorem 339 </span> (NEEDS TITLE 12-thm:TPundec)</p>
+<div class="theorem-content section" id="proof-content">
+<p>Total-payoff games are undecidable in any dimension <span class="math notranslate nohighlight">\(k \geq 5\)</span>.</p>
+</div>
+</div><div class="dropdown tip admonition">
+<p class="admonition-title">Proof</p>
+<p>We use a reduction from two-dimensional robot games <span id="id3">[<span>Niskanen&amp;Potapov&amp;Reichert:2016</span>]</span>, which were mentioned in~\cref{chap:counters}. They are a restricted case of configuration reachability vector games, recently proved to be already undecidable. They are expressible as follows: <span class="math notranslate nohighlight">\(\mathcal{V} = (\mathcal{L} = \{\ell_0, \ell_1\}, T, \mathcal{L}_{\text{Eve}} = \{\ell_0\}, \mathcal{L}_{\text{Adam}} = \{\ell_1\})\)</span> and <span class="math notranslate nohighlight">\(T \subseteq \mathcal{L} \times [-M, M]^2\times \mathcal{L}\)</span> for some <span class="math notranslate nohighlight">\(M \in \N\)</span>. The game starts in configuration <span class="math notranslate nohighlight">\(\ell_0(x_0, y_0)\)</span> for some <span class="math notranslate nohighlight">\(x_0, y_0 \in \Z\)</span> and the goal of Eve is to reach configuration <span class="math notranslate nohighlight">\(\ell_0(0, 0)\)</span>.</p>
+<p>The reduction is as follows. Given a robot game <span class="math notranslate nohighlight">\(\mathcal{V}\)</span>, we build a five-dimension total-payoff game <span class="math notranslate nohighlight">\(\game\)</span> such that Eve wins in <span class="math notranslate nohighlight">\(\game\)</span> if and only if she wins in <span class="math notranslate nohighlight">\(\mathcal{V}\)</span>. Let <span class="math notranslate nohighlight">\(\game = (\arena, \TotalPayoff^{+}_{\geq \vec{0}})\)</span> (we will discuss the lim-inf case later), where arena <span class="math notranslate nohighlight">\(\arena\)</span> has vertices <span class="math notranslate nohighlight">\(V = V_{\text{Eve}} \uplus V_{\text{Adam}}\)</span> with <span class="math notranslate nohighlight">\(V_{\text{Eve}} = \{v_{\text{init}}, v_0, v_{\text{stop}}\}\)</span> and <span class="math notranslate nohighlight">\(V_{\text{Adam}} = \{v_1\}\)</span>, and <span class="math notranslate nohighlight">\(E\)</span> is built as follows:</p>
+<ul class="simple">
+<li><p>if <span class="math notranslate nohighlight">\((\ell_i, (a,b), \ell_j) \in T\)</span>, then <span class="math notranslate nohighlight">\((v_i, (a, -a, b, -b, 0), v_j) \in E\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\((v_0, (0, 0, 0, 0, 1), v_{\text{stop}}) \in E\)</span> and <span class="math notranslate nohighlight">\((v_{\text{stop}}, (0, 0, 0, 0, 0), v_{\text{stop}}) \in E\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\((v_{\text{init}}, (x_0, -x_0, y_0, -y_0, -1), v_0) \in E\)</span> (where <span class="math notranslate nohighlight">\((x_0, y_0)\)</span> is the initial credit in <span class="math notranslate nohighlight">\(\mathcal{V}\)</span>).</p></li>
+</ul>
+<p>The initial vertex is <span class="math notranslate nohighlight">\(v_{\text{init}}\)</span>. Intuitively, dimensions <span class="math notranslate nohighlight">\(1\)</span> and <span class="math notranslate nohighlight">\(2\)</span> (resp. <span class="math notranslate nohighlight">\(3\)</span> and <span class="math notranslate nohighlight">\(4\)</span>) encode the value of the first counter (resp.~second counter) and its opposite at all times. The initial credit is encoded thanks to the initial edge, afterwards the game is played as in the vector game, with the exception that Eve may branch from <span class="math notranslate nohighlight">\(v_0\)</span> to the absorbing vertex <span class="math notranslate nohighlight">\(v_{\text{stop}}\)</span>, which has a zero self loop. The role of the last dimension is to force Eve to branch eventually.</p>
+<p>We proceed to prove the correctness of the reduction. First, let <span class="math notranslate nohighlight">\(\sigma_{\game}\)</span> be a winning strategy of Eve in <span class="math notranslate nohighlight">\(\game\)</span>. We claim that Eve can also win in <span class="math notranslate nohighlight">\(\mathcal{V}\)</span>. Any play <span class="math notranslate nohighlight">\(\pi\)</span> consistent with <span class="math notranslate nohighlight">\(\sigma_{\game}\)</span> necessarily ends in <span class="math notranslate nohighlight">\(v_{\text{stop}}\)</span>: otherwise its lim-sup total-payoff on the last dimension would be <span class="math notranslate nohighlight">\(-1\)</span> (as the sum always stays at <span class="math notranslate nohighlight">\(-1\)</span>). Due to the branching edge and the self loop having weight zero in all first four dimensions, we also have that the current sum on these dimensions must be non-negative when branching, otherwise the objective would be falsified. By construction of <span class="math notranslate nohighlight">\(\arena\)</span>, the only way to achieve this is to have a sum exactly equal to zero in all first four dimensions (as dimensions <span class="math notranslate nohighlight">\(1\)</span> and <span class="math notranslate nohighlight">\(2\)</span> are opposite at all times and so are <span class="math notranslate nohighlight">\(3\)</span> and <span class="math notranslate nohighlight">\(4\)</span>). Finally, observe that obtaining a partial sum of <span class="math notranslate nohighlight">\((0, 0, 0, 0, -1)\)</span> in <span class="math notranslate nohighlight">\(v_0\)</span> is equivalent to reaching configuration <span class="math notranslate nohighlight">\(\ell_0(0, 0)\)</span> in <span class="math notranslate nohighlight">\(\mathcal{V}\)</span>. Hence, we can easily build a strategy <span class="math notranslate nohighlight">\(\sigma_{\mathcal{V}}\)</span> in <span class="math notranslate nohighlight">\(\mathcal{V}\)</span> that mimics <span class="math notranslate nohighlight">\(\sigma_{\game}\)</span> in order to win the robot game. This strategy <span class="math notranslate nohighlight">\(\sigma_{\mathcal{V}}\)</span> could in general use arbitrary memory (since we start with an arbitrary winning strategy <span class="math notranslate nohighlight">\(\sigma_{\game}\)</span>) while formally robot games as defined in <span id="id4">[<span>Niskanen&amp;Potapov&amp;Reichert:2016</span>]</span> only allow strategies to look at the current configuration. Still, from <span class="math notranslate nohighlight">\(\sigma_{\mathcal{V}}\)</span>, one can easily build a corresponding strategy that meets this restriction (<span class="math notranslate nohighlight">\(\mathcal{V}\)</span> being a configuration reachability game, there is no reason to choose different actions in two visits of the same configuration). Hence, if Eve wins in <span class="math notranslate nohighlight">\(\game\)</span>, she also wins in <span class="math notranslate nohighlight">\(\mathcal{V}\)</span>.</p>
+<p>For the other direction, from a winning strategy <span class="math notranslate nohighlight">\(\sigma_{\mathcal{V}}\)</span> in <span class="math notranslate nohighlight">\(\mathcal{V}\)</span>, we can similarly define a strategy <span class="math notranslate nohighlight">\(\sigma_{\game}\)</span> that mimics it in <span class="math notranslate nohighlight">\(\game\)</span> to reach <span class="math notranslate nohighlight">\(v_0\)</span> with partial sum <span class="math notranslate nohighlight">\((0, 0, 0, 0, -1)\)</span>, and at that point, branches to <span class="math notranslate nohighlight">\(v_{\text{stop}}\)</span>. Such a strategy ensures reaching the absorbing vertex with a total-payoff of zero in all dimensions, hence is winning in <span class="math notranslate nohighlight">\(\game\)</span>.</p>
+<p>Thus, the reduction holds for lim-sup total-payoff. Observe that the exact same reasoning holds for the lim-inf variant. Indeed, the last dimension is always <span class="math notranslate nohighlight">\(-1\)</span> outside of <span class="math notranslate nohighlight">\(v_{\text{stop}}\)</span>, hence any play not entering <span class="math notranslate nohighlight">\(v_{\text{stop}}\)</span> also has its lim-inf below zero in this dimension. Furthermore, once <span class="math notranslate nohighlight">\(v_{\text{stop}}\)</span> is entered, the sum in all dimensions stays constant, hence the limit exists and both variants coincide.</p>
+</div>
+<p>An almost identical reduction can be used for <strong>shortest path</strong> games.</p>
+<div class="proof theorem admonition" id="12-thm:SPundec">
+<p class="admonition-title"><span class="caption-number">Theorem 340 </span> (NEEDS TITLE 12-thm:SPundec)</p>
+<div class="theorem-content section" id="proof-content">
+<p>Shortest path games are undecidable in any dimension <span class="math notranslate nohighlight">\(k \geq 4\)</span>.</p>
+</div>
+</div><div class="dropdown tip admonition">
+<p class="admonition-title">Proof</p>
+<p>The proof is almost identical to the last one. We use objective <span class="math notranslate nohighlight">\(\ShortestPath_{\leq \vec{0}}\)</span> with target edge <span class="math notranslate nohighlight">\((v_{\text{stop}}, (0, 0, 0, 0), v_{\text{stop}})\)</span> and drop the last dimension in arena <span class="math notranslate nohighlight">\(\arena\)</span>: it is now unnecessary as the shortest path objective by definition will force Eve to branch to <span class="math notranslate nohighlight">\(v_{\text{stop}}\)</span>, as otherwise the value of the play would be infinite in all dimensions. The rest of the reasoning is the same as before.</p>
+</div>
+<div class="admonition-remark admonition">
+<p class="admonition-title">Remark</p>
+<p>The decidability of total-payoff games with <span class="math notranslate nohighlight">\(k \in \{2, 3, 4\}\)</span> dimensions and shortest path games with <span class="math notranslate nohighlight">\(k \in \{2, 3\}\)</span> dimensions remains an open question. Furthermore, our undecidability results crucially rely on weights being in <span class="math notranslate nohighlight">\(\Z\)</span>: they do not hold when we restrict weights to <span class="math notranslate nohighlight">\(\N\)</span>. A similar situation will be presented in Section <a class="reference internal" href="percentile.html#sec-percentile"><span class="std std-ref">Percentile queries</span></a>, in the context of percentile queries.\todo{Check if enough place to do it.}</p>
+</div>
+<div class="section" id="memory">
+<h3>Memory<a class="headerlink" href="#memory" title="Permalink to this headline">¶</a></h3>
+<p>Let us go back to the game used in  <code class="xref prf prf-ref docutils literal notranslate"><span class="pre">12-lem:MPTP_proof1</span></code> in the proof of <a class="reference internal" href="#12-lem:MPTP">Lemma 338</a>: we have seen that for any threshold <span class="math notranslate nohighlight">\(\vec{x} \in \Q^{2}\)</span>, Eve has an infinite-memory winning strategy for <span class="math notranslate nohighlight">\(\TotalPayoff^{+}_{\geq \vec{x}}\)</span>. In other words, she can ensure an <strong>arbitrarily high</strong> total-payoff with infinite memory. Yet, it is easy to check that there exists no finite-memory strategy of Eve that can achieve a finite threshold vector in the very same game: alternating would still be needed, but the negative amount to compensate grows boundlessly with each alternation, thus no amount of finite memory can ensure to go above the threshold infinitely often. Hence, this simple game highlights a huge gap between finite and infinite memory: with finite memory, the total-payoff on at least one dimension is <span class="math notranslate nohighlight">\(-\infty\)</span>; with infinite memory, the total-payoff in both dimensions may be as high as Eve wants. This further highlights the untameable behaviour of multidimension total-payoff games.</p>
+</div>
+<div class="section" id="wrap-up">
+<h3>Wrap-up<a class="headerlink" href="#wrap-up" title="Permalink to this headline">¶</a></h3>
+<p>Multiple dimensions are a curse for total-payoff and shortest path games as both become undecidable. This is in stark contrast to mean-payoff and energy games, which remain tractable, as seen in Section <a class="reference internal" href="mean_payoff_energy.html#sec-mean-payoff-energy"><span class="std std-ref">Mean-payoff and energy</span></a>. The bottom line is that most of the equivalences, relationships, and well-known behaviours of one-dimension games simply fall apart when lifting them to multiple dimensions.</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./12_Multiobjectives"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="mean_payoff_energy.html" title="previous page">Mean-payoff and energy</a>
+    <a class='right-next' id="next-link" href="beyond_worst_case.html" title="next page">Beyond worst-case synthesis</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By a set of authors coordinated by Nathana&euml;l Fijalkow<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>
