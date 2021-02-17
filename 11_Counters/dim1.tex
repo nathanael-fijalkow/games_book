@@ -7,7 +7,7 @@ to settle the case of "vector games" in dimension one, except that the
 "one-counter games" of \cref{10-chap:pushdown} only allow integer
 weights in $\{-1,1\}$, whereas we allow arbitrary updates in~$\+Z$
 with a binary encoding.  Hence the \PSPACE\ upper bound of
-\cref{chap:pushdown} becomes an~\EXPSPACE\ one for ""succinct
+\cref{10-chap:pushdown} becomes an~\EXPSPACE\ one for ""succinct
 one-counter games"".
 
 \begin{corollary}\label{11-cor-dim1}
@@ -16,7 +16,7 @@ one-counter games"".
   initial credit", are in \EXPSPACE\ in dimension one.
 \end{corollary}
 \begin{proof}\hfill\\
-  \TODO{proof of \cref{11-cor-dim1} depends on how \cref{11-sec:one-counter} is written}
+  \TODO{proof of \cref{11-cor-dim1} depends on how \cref{10-sec:one-counter} is written}
 \end{proof}
 
 The goal of this section is therefore to establish that this
@@ -49,7 +49,7 @@ games"".
   of the "natural semantics" of $\?V$ starting from $\loc_0(n_0)$ is
   finite and of size at most $1+|\Loc|\cdot (n_0+1)$, and because~$n_0$
   is encoded in binary, this is at most exponential in the size of the
-  instance.  As seen in \cref{chap:regular}, such a "reachability"
+  instance.  As seen in \cref{2-chap:regular}, such a "reachability"
   game can be solved in time polynomial in the size of the finite
   graph, thus in \EXP\ overall.
 
@@ -159,7 +159,7 @@ games"".
   to state~$q_\mathrm{final}$.}
   \end{figure}
 
-  We now set up a two-player game where \Eve wants to prove that the
+  We now set up a two-player game where \Eve\ wants to prove that the
   input~$w$ is accepted.  Let
   $\Gamma'\eqdef \{\emkl,\emkr\}\cup\Gamma\cup(Q\times\Gamma)$. Rather
   than exhibiting the full computation from \cref{11-fig-exp}, the
@@ -171,17 +171,17 @@ games"".
   substantiate this claim, observe that the content of any cell
   $\gamma_{i,j}$ in the grid is determined by the actions of~$\?M$
   and the contents of (up to) three cells in the previous
-  configuration.  Thus, if $i>1$ and $0<j<m+1$, \Eve provides a triple
+  configuration.  Thus, if $i>1$ and $0<j<m+1$, \Eve\ provides a triple
   $(\gamma_{i-1,j-1},\gamma_{i-1,j},\gamma_{i-1,j+1})$ of symbols
   in~$\Gamma'$ that yield $\gamma_{i,j}$ according to the actions
   of~$\?M$, which we denote by
   $\gamma_{i-1,j-1},\gamma_{i-1,j},\gamma_{i-1,j+1}\vdash\gamma_{i,j}$,
-  and \Adam chooses $j'\in\{j-1,j,j+1\}$ and returns the control
-  to \Eve in position~$(i-1,j',\gamma_{i-1,j'})$.  Regarding the
-  boundary cases where $i=0$ or $j=0$ or $j=m+1$, \Eve wins
+  and \Adam\ chooses $j'\in\{j-1,j,j+1\}$ and returns the control
+  to \Eve\ in position~$(i-1,j',\gamma_{i-1,j'})$.  Regarding the
+  boundary cases where $i=0$ or $j=0$ or $j=m+1$, \Eve\ wins
   immediately if $j=0$ and $\gamma={\emkl}$, or if $j=m+1$ and
   $\gamma={\emkr}$, or if $i=0$ and $0<j\leq n$ and $\gamma=a_j$, or if
-  $i=0$ and $n<j\leq m$ and $\gamma={\blank}$, and otherwise \Adam wins
+  $i=0$ and $n<j\leq m$ and $\gamma={\blank}$, and otherwise \Adam\ wins
   immediately.  The game starts in a position
   $(t,j,(q_\mathrm{final},a))$ for some $0<t\leq m$, $0< j\leq m$,
   and~$a\in\Gamma$ of \Eve's choosing.  It should be clear that \Eve
@@ -210,24 +210,24 @@ games"".
                \cup\{\loc_{1\leq?\leq m-n+1}\}\;.
   \end{align*}
   The intention behind the locations $\loc_{=j}\in\Loc_\mAdam$ is
-  that \Eve can reach~$\smiley$ from a configuration $\loc_{=j}(c)$ if
+  that \Eve\ can reach~$\smiley$ from a configuration $\loc_{=j}(c)$ if
   and only if $c=j$; we accordingly define~$\Act$ with the following
   actions, where~$\frownie$ is a deadlock location:
   \begin{align*}
     \loc_{=j}&\step{-j-1}\frownie\;,&\loc_{=j}&\step{-j}\smiley\;.
-  \intertext{Similarly, \Eve should be able to reach~$\smiley$ from
+  \intertext{Similarly, \Eve\ should be able to reach~$\smiley$ from
   $\loc_{1\leq?\leq m-n+1}(c)$ if and only if $1\leq c\leq m-n+1$,
   which is implemented by the actions}
     \loc_{1\leq?\leq m-n+1}&\step{-m+n-2}\frownie\;,&
     \loc_{1\leq?\leq m-n+1}&\step{-1}\smiley\;,&
     \smiley&\step{-1}\smiley\;.
   \end{align*}
-  Note this last action also ensures that \Eve can reach the
+  Note this last action also ensures that \Eve\ can reach the
   location~$\smiley$ if and only if she can reach the configuration
   $\smiley(0)$, thus the game can equivalently be seen as a
   "configuration reachability" game.
 
-  Regarding initialisation, \Eve can choose her initial position,
+  Regarding initialisation, \Eve\ can choose her initial position,
   which we implement by the actions
   \begin{align*}
     \loc_0 &\step{-1} \loc_0 & \loc_0 &\step{-1}\loc_{(q_\mathrm{final},a)}&&\text{for $a\in\Gamma$}\;.
@@ -237,7 +237,7 @@ games"".
   $\gamma_1,\gamma_2,\gamma_3\vdash\gamma$}\;,\\ \loc_{(\gamma_1,\gamma_2,\gamma_3)}&\step{-k}\loc_{\gamma_k}&&&&\text{for
   $k\in\{1,2,3\}$}\;.
   \intertext{We handle the endmarker positions via the following
-  actions, where \Eve proceeds along the left edge
+  actions, where \Eve\ proceeds along the left edge
   of \cref{11-fig-exp} until she reaches the initial left endmarker:}
    \loc_\emkl&\step{-m-2}\loc_\emkl\;,& \loc_\emkl&\step{-1}\loc_{=1}\;,& \loc_\emkr&\step{-m-1}\loc_\emkl\;.
   \intertext{For the positions inside the input word $w=a_1\cdots
@@ -262,9 +262,9 @@ games"".
    location~$\loc_0$, and a target configuration $\loc_f\in\Loc$.  We
    reduce this to an instance of "configuration reachability" with
    "given initial credit" in a one-dimensional "vector system" by
-   adding a new location $\loc'_0$ controlled by~\Eve with actions
+   adding a new location $\loc'_0$ controlled by~\Eve\ with actions
    $\loc'_0\step{1}\loc'_0$ and $\loc'_0\step 0\loc_0$, and asking
-   whether \Eve has a winning strategy starting from $\loc'_0(0)$ in
+   whether \Eve\ has a winning strategy starting from $\loc'_0(0)$ in
    the new system.  By \cref{11-cor-dim1}, this "configuration
    reachability" game can be solved in \EXPSPACE.
 
@@ -274,7 +274,7 @@ games"".
    of \cref{11-countdown-given}, except that now the length~$t$ of the
    computation is not bounded a priori, but this is compensated by the
    fact that we are playing the "existential initial credit" version
-   of the "countdown game".  \qedhere%%   Indeed, \Eve wins the "countdown game"
+   of the "countdown game".  \qedhere%%   Indeed, \Eve\ wins the "countdown game"
    %% starting from configuration $\loc_{q_\mathrm{final},a}(n)$ if and
    %% only if she wins from position
    %% $(\lfloor(n-1)/(m+2)\rfloor+1,(n-1)\mathrel\mathrm{mod}(m-2),(q_\mathrm{final},a))$
@@ -289,7 +289,7 @@ problem.
   {A "countdown system" $\?V=(\Loc,T,\Loc_\mEve,\Loc_\mAdam,1)$, an
   initial location $\loc_0\in\Loc$, and an initial credit
   $n_0\in\+N$.}
-  {Does \Eve have a strategy to reach a configuration $\loc(0)$ for
+  {Does \Eve\ have a strategy to reach a configuration $\loc(0)$ for
   some $\loc\in\Loc$?\\That is, does she win the ""zero
   reachability""\index{zero reachability|see{countdown game}}
   game $(\?A_\+N(\?V),\col,\Reach)$ from $\loc_0(n_0)$, where
@@ -307,7 +307,7 @@ problem.
   location~$\loc_\mathrm{zero}$ with an action
   $\smiley\step{-1}\loc_\mathrm{zero}$.  Because all the counter
   values in the new game are odd unless we reach $\loc_\mathrm{zero}$,
-  the only way for \Eve to bring the counter to zero in this new game
+  the only way for \Eve\ to bring the counter to zero in this new game
   is to first reach $\smiley(1)$, which occurs if and only if she
   could reach $\smiley(0)$ in the original game.
 \end{proof}
@@ -334,7 +334,7 @@ from \cref{11-cor-dim1} are tight in most cases.
   "parity@parity vector game" is also \EXPSPACE-hard.  Finally, we can
   argue as in the upper bound proof of \cref{11-countdown-exist} that
   all these games are also hard with "given initial credit": we add a
-  new initial location $\loc'_0$ controlled by \Eve with actions
+  new initial location $\loc'_0$ controlled by \Eve\ with actions
   $\loc'_0\step 1\loc'_0$ and $\loc'_0\step 0\loc_0$ and play the game
   starting from $\loc'_0(0)$.
 
@@ -346,7 +346,7 @@ from \cref{11-cor-dim1} are tight in most cases.
   with "given initial credit" and \EXPSPACE-hard with "existential
   initial credit".  Note that the trick of reducing "existential" to
   "given initial credit" with an initial incrementing loop $\loc'_0\step
-  1\loc'_0$ does not work, because \Eve would have a trivial winning
+  1\loc'_0$ does not work, because \Eve\ would have a trivial winning
   strategy that consists in just playing this loop forever.
 \end{proof}
 

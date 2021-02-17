@@ -1,0 +1,117 @@
+\PassOptionsToPackage{final}{hyperref}
+\documentclass[graybox,envcountchap,sectrefs,natbib,draft]{svmono}
+\def\knowledgepackagemode{paper}
+\newif\ifstandalone
+\standalonetrue
+\newcommand{\citem}[2][1]{\citet{#2}}
+\input{packages}
+\usepackage[obeyFinal,colorinlistoftodos]{todonotes}
+\makeatletter
+\renewcommand{\listoftodos}[1][\@todonotes@todolistname]
+   {\section*{#1}\@starttoc{tdo}}
+\makeatother
+\newcounter{todoquestion}
+\newcommand{\todoquestion}[2][]{%
+ \refstepcounter{todoquestion}%
+ {%
+   \todo[backgroundcolor={yellow!20!red!10},caption={\textcolor{orange}{\textbf{[Q\thetodoquestion]}}~#2},linecolor=orange,bordercolor=orange,size=\scriptsize,#1]{%
+     Sylvain:~\textcolor{orange}{\textbf{[Q\thetodoquestion]}}~#2}%
+ }%
+}
+\newcounter{bigtodo}
+\newcommand{\TODO}[2][]{%
+ \refstepcounter{bigtodo}%
+ {%
+   \todo[author={Sylvain},size=\scriptsize,backgroundcolor=red!20,linecolor=red,bordercolor=red,inline,#1]{\textcolor{red}{\textbf{[TODO~\thebigtodo]}}
+     #2}%
+ }%
+}
+\input{macros}
+\input{macros_tex}
+\usepackage[small]{complexity}
+\input{knowledge}
+\newcommand{\doi}[1]{\href{http://dx.doi.org/#1}{\nolinkurl{doi: #1}}}
+\hypersetup{hidelinks}
+\usepackage[printwatermark]{xwatermark}
+\newwatermark[firstpage,color=red!20,angle=45,scale=4,xpos=-10,ypos=0]{DRAFT}
+\makeindex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\makeatletter
+\def\tableofcontents{\@restonecolfalse\if@twocolumn\@restonecoltrue\onecolumn
+ \fi\section*{\contentsname\markright{\contentsname}}
+\@starttoc{toc}\if@restonecol\twocolumn\fi}
+\setcounter{tocdepth}{3}
+\renewenvironment{theindex}
+               {\if@twocolumn
+                  \@restonecolfalse
+                \else
+                  \@restonecoltrue
+                \fi
+                \columnseprule \z@
+                \columnsep 1cc
+                \@nobreaktrue
+                \if@threecolind
+                   \begin{multicols}{3}[\section*{\indexname}%
+                \else
+                   \begin{multicols}{2}[\section*{\indexname}%
+                \fi
+                {\csname indexst@rthook\endcsname}]%
+                \global\let\indexst@rthook=\undefined
+                \markright{\indexname}%
+                \addcontentsline{toc}{section}{\indexname}%
+                \parindent\z@
+                \rightskip\z@ \@plus 40\p@
+                \parskip\z@ \@plus .3\p@\relax
+                \flushbottom
+                \let\item\@idxitem
+                \def\,{\relax\ifmmode\mskip\thinmuskip
+                             \else\hskip0.2em\ignorespaces\fi}%
+                \normalfont\small}
+               {\end{multicols}
+                \global\let\if@threecolind\iffalse
+                \if@restonecol\onecolumn\else\clearpage\fi}
+\def\@makeschapterhead#1{{\parindent \z@ \raggedright\normalfont
+  \hyphenpenalty \@M
+  \interlinepenalty\@M
+  \chapsize\chapstyle
+  \ignorespaces#1\par\nobreak
+  \processchapsubtit
+  \processchapauthor
+  \processmotto
+  \ifdim\pagetotal>167\p@
+     \vskip 11\p@
+  \else
+     \@tempdima=168\p@\advance\@tempdima by-\pagetotal
+     \vskip\@tempdima
+  \fi}}
+\input{11_Counters/book.aux}
+\makeatother
+\begin{document}
+
+\mainmatter
+
+\addtocounter{chapter}{11}
+\markboth{Games with Counters}{Games with Counters}
+\chapauthor{Sylvain
+  Schmitz{\,\setcounter{footnote}{0}\renewcommand*{\thefootnote}{\emph\alph{footnote}}\footnote{Universit\'e de Paris, CNRS, IRIF, France}$^,$\footnote{IUF, France}}}
+\chapter*{Games with Counters{\renewcommand*{\thefootnote}{*}\footnote{This
+      is a draft of Chapter~\thechapter\ from the book \emph{Games on Graphs}.}}}
+\setcounter{footnote}{0}
+\begingroup%
+  \def\chapterdir{11_Counters}%
+  \let\oldinput\input%
+  \let\oldinclude\include%
+  \let\oldincludegraphics\includegraphics%
+  \renewcommand{\include}[1]{\oldinclude{\chapterdir/#1}}
+  \renewcommand{\input}[1]{\oldinput{\chapterdir/#1}}
+  \renewcommand{\includegraphics}[2][]{\oldincludegraphics[#1]{\chapterdir/#2}}
+  \oldinput{11_Counters/main}%
+\endgroup%
+
+\bibliographystyle{abbrvnat}
+\bibliography{people,acronyms,bib}
+%\clearpage
+\setlength\premulticols{10\baselineskip}
+\printindex
+
+\end{document}

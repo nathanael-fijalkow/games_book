@@ -13,15 +13,15 @@ which will be considered with "bounding games" in \cref{11-bounding}.
 These resource-conscious games can be seen as providing alternative
 semantics for "vector systems".  They will also be instrumental in
 establishing complexity upper bounds for "monotonic" "asymmetric vector
-games" later in \cref{11-complexity}, and are strongly related to
+games" later in \cref{11-sec:complexity}, and are strongly related to
 "multidimensional" "mean-payoff" games, as will be explained in
-\cref{13-sec:MPEG} of \cref{chap:multiobjective}.
+\cref{13-sec:MPEG} of \cref{12-chap:multiobjective}.
 
 \subsection{Energy Semantics}
 \label{11-energy}
 
 "Energy games" model systems where the depletion of a resource
-allows \Adam to win.  This is captured by an ""energy semantics""
+allows \Adam\ to win.  This is captured by an ""energy semantics""
 $\energy(\?V)\eqdef(V,E_\+E,\VE,\VA)$ associated with a "vector
 system" $\?V$: we let as before
 $V\eqdef(\Loc\times\+N^\dd)\uplus\{\sink\}$, but define instead
@@ -41,7 +41,7 @@ component lead to the "sink" instead of being inhibited.
   system depicted in~\cref{11-fig-mwg} on \cpageref{11-fig-mwg}.  Observe that,
   by contrast with the "natural semantics" of the same system depicted
   in \cref{11-fig-sem}, all the configurations $\loc'(0,n)$ controlled
-  by \Adam can now move to the "sink".
+  by \Adam\ can now move to the "sink".
 \end{example}
 \begin{figure}[thbp]
   \centering\scalebox{.77}{
@@ -236,7 +236,7 @@ component lead to the "sink" instead of being inhibited.
   \caption{\label{11-fig-nrg} The "energy semantics" of the
     "vector system" of \cref{11-fig-mwg}: a circle (resp.\
     a square) at position $(i,j)$ of the grid denotes a configuration
-    $\loc(i,j)$ (resp.\ $\loc'(i,j)$) controlled by~\Eve (resp.\
+    $\loc(i,j)$ (resp.\ $\loc'(i,j)$) controlled by~\Eve\ (resp.\
     \Adam).}
 \end{figure}
 
@@ -636,7 +636,7 @@ $\energy(\?V)$ in \crefrange{11-pb-reach}{11-pb-parity}; the
     (a02) edge[bend right=8] (sink)
     (a03) edge[bend left=8] (sink);
   \end{tikzpicture}}
-  \caption{\label{11-fig-cov-nrg} The "winning regions" of \Eve in the
+  \caption{\label{11-fig-cov-nrg} The "winning regions" of \Eve\ in the
     "configuration reachability" "energy game" (left) and the
     "coverability" "energy game"
     (right) on the graphs of \cref{11-fig-mwg,12-fig-nrg} with target
@@ -713,31 +713,31 @@ correspondence is quite general.
     all $v\in \Loc\times\+N^\dd\uplus\{\sink\}$ and
     $\vcol'(\loc_a(\vec v))\eqdef\vcol(\loc(\vec v))$ if
     $a=(\loc\step{\vec u}\loc')\in\Act$.  Then, for all vertices
-    $v\in V$, \Eve wins from~$v$ in the "energy game"
+    $v\in V$, \Eve\ wins from~$v$ in the "energy game"
     $(\energy(\?V),\col,\Omega)$ if and only if she wins from~$v$ in
     the "vector game" $(\natural(\?V'),\col',\Omega)$.  The crux of
     the argument is that, in a configuration $\loc(\vec v)$ where
     $\loc\in\Loc_\mAdam$, if $a=(\loc\step{\vec u}\loc')\in\Act$ is an
     action with $\vec v+\vec u\not\geq\vec 0$, in the "energy
-    semantics", \Adam can force the play into the "sink" by
+    semantics", \Adam\ can force the play into the "sink" by
     playing~$a$; the same occurs in $\?V'$ with the "natural
-    semantics", as \Adam can now choose to play
-    $\loc\step{\vec 0}\loc_a$ where \Eve has only
+    semantics", as \Adam\ can now choose to play
+    $\loc\step{\vec 0}\loc_a$ where \Eve\ has only
     $\loc_a\step{\vec u}\loc'$ at her disposal, which leads to the
     sink.\todoquestion{Is that clear?}
-    % First note that the available edges for \Eve that avoid the "sink"
+    % First note that the available edges for \Eve\ that avoid the "sink"
     % are the same in both games.  Furthermore, if $(v,v')$ is an edge
     % in the "energy game" from $v\in\VA$, then either $v'$ is a
     % configuration $v'=\loc'(\vec v+\vec u)$ for some
     % $t=(\loc\step{\vec u}\loc')\in\Act$ such that $v=\loc(\vec v)$,
     % and in that case the sequence of moves
-    % $(v,\loc_{t)(\vec v))(\loc_t(\vec v),v')$ is forced upon \Eve in
+    % $(v,\loc_{t)(\vec v))(\loc_t(\vec v),v')$ is forced upon \Eve\ in
     %   the "vector game".
 \end{proof}
 
 In turn, "energy games" with "existential initial credit" are related
 to the "multi-dimensional mean-payoff games" of
-\cref{chap:multiobjective}.% We shall see the
+\cref{12-chap:multiobjective}.% We shall see the
 % case of dimension~one in \cref{11-subsec:mono-dim1}.
 
 
@@ -746,7 +746,7 @@ to the "multi-dimensional mean-payoff games" of
 \subsection{Bounded Semantics}
 \label{11-bounding}
 
-While \Adam wins immediately in an "energy game" if a resource gets
+While \Adam\ wins immediately in an "energy game" if a resource gets
 depleted, he also wins in a "bounding game" if a resource reaches a
 certain bound~$B$.  %By contrast with "capped semantics", t
 This is
@@ -770,7 +770,7 @@ $\VA^B\eqdef V^B\cap\Loc_\mAdam\times\+N^\dd$.  Any edge from the
 with $\vec v(i)\geq B$ for some $1\leq i\leq\dd$ leads instead to the
 sink.  All the configurations in this arena have "norm" less than~$B$,
 thus $|V^B|=|\Loc| B^\dd+1$, and the qualitative games of
-\cref{chap:regular} are decidable over this "arena".
+\cref{2-chap:regular} are decidable over this "arena".
 
 Our focus here is on "non-termination" games played on the "bounded
 semantics" where~$B$ is not given as part of the input, but quantified
@@ -781,7 +781,7 @@ existentially in the question.
 {\label{11-pb-bounding} A "vector system"
   $\?V=(\Loc,\Act,\Loc_\mEve,\Loc_\mAdam,\dd)$, an initial location
   $\loc_0\in\Loc$, and an initial credit $\vec v_0\in\+N^\dd$.}%
-  {Does there exist $B\in\+N$ such that \Eve has a strategy to avoid the
+  {Does there exist $B\in\+N$ such that \Eve\ has a strategy to avoid the
   "sink"~$\sink$ from $\loc_0(\vec v_0)$ in the "bounded
   semantics"?  That is, does there exist $B\in\+N$ such that she wins
   the ""bounding"" game $(\bounded(\?V),\col,\Safe)$ from
@@ -860,7 +860,7 @@ existentially in the question.
       "bounding games" in the proof of \cref{11-parity2bounding}.}
   \end{figure}
   
-  If \Eve wins the "bounding game" played over $\?V'$ from some
+  If \Eve\ wins the "bounding game" played over $\?V'$ from some
   configuration $\loc_0(\vec v_0)$, then she also wins the "parity
   vector game" played over~$\?V$ from the configuration $\loc_0(\vec
   v'_0)$ where $\vec v'_0$ is the projection of $\vec v_0$
@@ -937,11 +937,11 @@ existentially in the question.
   by \cref{11-fact-mono}, it is also winning
   from~$\loc_0(\capp[B_0]v)$.
     
-  Here is how \Eve wins $\game_B$ from~$\loc_0(\capp[B_0]v+\vec b)$.
+  Here is how \Eve\ wins $\game_B$ from~$\loc_0(\capp[B_0]v+\vec b)$.
   She essentially follows the strategy~$\sigma'$, with two
   modifications.  First, whenever $\sigma'$ goes to a "return node"
   $\loc(\vec v)$ instead of a leaf $\loc(\vec v')$---thus $\vec
-  v\leq\vec v'$---, the next time \Eve has the control, she uses the
+  v\leq\vec v'$---, the next time \Eve\ has the control, she uses the
   self loops to decrement the current configuration by $\vec v'-\vec
   v$.  This ensures that any play consistent with the modified
   strategy remains between zero and $B-1$ on the components
@@ -950,7 +950,7 @@ existentially in the question.
   "asymmetric".)
 
   Second, whenever a play in~$\game$ visits a location with even
-  parity~$2p$ for some~$p$ in~$\{1,\dots,d\}$, \Eve has the opportunity
+  parity~$2p$ for some~$p$ in~$\{1,\dots,d\}$, \Eve\ has the opportunity
   to increase the coordinates in~$\{\dd+1,\dots,\dd+p\}$ in~$\game_B$.
   She does so and increments until all these components reach~$B-1$.
   This ensures that any play consistent with the modified strategy
@@ -971,13 +971,13 @@ A simple example is provided by the "coverability" "asymmetric"
 "vector games" with "existential initial credit" arising from
 \cref{11-cov2parity}, i.e., where the objective is to reach some
 location~$\loc_f$.  Indeed, it is rather straightforward that there
-exists a suitable initial credit such that \Eve wins the game if and
+exists a suitable initial credit such that \Eve\ wins the game if and
 only if she wins the finite reachability game played over the
 underlying directed graph over~$\Loc$ where we ignore the counters.
 Thus, for an initial location~$\loc_0$, $B_0=|\Loc|\cdot\|\Act\|+1$
 bounds the norm of the necessary initial credit, while a simple path
 may visit at most~$|\Loc|$ locations, thus
-$B=B_0+|\Loc|\cdot\|\Act\|$ suffices for \Eve to win the constructed
+$B=B_0+|\Loc|\cdot\|\Act\|$ suffices for \Eve\ to win the constructed
 "bounding game".
 
 In the general case of "bounding games" with "existential initial
@@ -987,7 +987,7 @@ but we refer the reader
 to \cite{Jurdzinski&Lazic&Schmitz:2015,Colcombet&Jurdzinski&Lazic&Schmitz:2017}
 for details.
 \begin{theorem}\label{11-th-bounding}
-  If \Eve wins a "bounding game" with "existential initial credit"
+  If \Eve\ wins a "bounding game" with "existential initial credit"
   defined by a "vector
   system"~$\?V=(\Loc,\Act,\Loc_\mEve,\Loc_\mAdam,\dd)$, then an
   initial credit $\vec v_0$ with $\|\vec
