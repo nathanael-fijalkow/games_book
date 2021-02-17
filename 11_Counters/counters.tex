@@ -10,7 +10,8 @@ rather than $(\loc,\vec u,\loc')$ for actions in~$\Act$.  A
 ""vector addition system with states"" is a "vector system" where
 $\Loc_\mAdam=\emptyset$, i.e., it corresponds to the one-player case.
 
-\begin{example}[vector system]\label{11-ex-mwg}
+\begin{example}[vector system]
+\label{11-ex:mwg}
   \Cref{11-fig:mwg} presents a "vector system" of
   dimension two with locations $\{\loc,\loc'\}$ where~$\loc$ is
   controlled by \Eve\ and $\loc'$ by \Adam% , and actions
@@ -114,7 +115,8 @@ over~$\Act$.%   Because we work with qualitative objectives, we
 % will rather use a vertex colouring $\col{:}\,V\to C$ and allow it to
 % vary depending on the kind of game we are playing.
 
-\begin{example}[natural semantics]\label{11-ex-sem}
+\begin{example}[natural semantics]
+{11-ex:sem}
   \Cref{11-fig:sem} illustrates the "natural semantics" of the system
   of~\cref{11-fig:mwg}; observe that all the configurations $\loc(0,n)$
   for $n\in\+N$ lead to the "sink".
@@ -363,7 +365,7 @@ $\vec v_f$.\footnote{The name `"coverability"' comes from the the
   with $\vec v'\geq\vec v_f$.}
 
 \decpb["configuration reachability vector game" with "given initial credit"]%
-{\label{11-pb-reach} A "vector system"
+{\label{11-pb:reach} A "vector system"
   $\?V=(\Loc,\Act,\Loc_\mEve,\Loc_\mAdam,\dd)$, an initial location
   $\loc_0\in\Loc$, an initial credit $\vec v_0\in\+N^\dd$, and a
   target configuration $\loc_f(\vec v_f)\in\Loc\times\+N^\dd$.}%
@@ -374,7 +376,7 @@ $\vec v_f$.\footnote{The name `"coverability"' comes from the the
   $\ing(e)=\loc_f(\vec v_f)$?}
 
 \decpb["coverability vector game" with "given initial credit"]%
-{\label{11-pb-cov} A "vector system"
+{\label{11-pb:cov} A "vector system"
   $\?V=(\Loc,\Act,\Loc_\mEve,\Loc_\mAdam,\dd)$, an initial location
   $\loc_0\in\Loc$, an initial credit $\vec v_0\in\+N^\dd$, and a
   target configuration $\loc_f(\vec v_f)\in\Loc\times\+N^\dd$.}%
@@ -384,9 +386,10 @@ $\vec v_f$.\footnote{The name `"coverability"' comes from the the
   $\loc_0(\vec v_0)$, where $\col(e)= \Win$ if and only if
   $\ing(e)=\loc_f(\vec v')$ for some $\vec v'\geq\vec v_f$?}
 
-\begin{example}[objectives]\label{11-ex-cov}
+\begin{example}[Objectives]
+\label{11-ex:cov}
   Consider the target configuration $\loc(2,2)$ in
-  \cref{11-fig:mwg,12-fig-sem}.  \Eve's "winning region" in the
+  \cref{11-fig:mwg,11-fig:sem}.  \Eve's "winning region" in the
   "configuration reachability" "vector game" is
   $\WE=\{\loc(n+1,n+1)\mid n\in\+N\}\cup\{\loc'(0,1)\}$, displayed on the left
   in \cref{11-fig:cov}.  \Eve\ has indeed an obvious winning strategy
@@ -767,7 +770,7 @@ $\vec v_f$.\footnote{The name `"coverability"' comes from the the
   \end{tikzpicture}}
   \caption{The "winning regions" of \Eve\ in the
     "configuration reachability" game (left) and the "coverability" game
-    (right) on the graphs of \cref{11-fig:mwg,12-fig-sem} with target
+    (right) on the graphs of \cref{11-fig:mwg,11-fig:sem} with target
     configuration~$\ell(2,2)$.  The winning vertices are in filled in
     green, while the losing ones are filled with white with a red
     border; the "sink" is always losing.}\label{11-fig:cov}
@@ -788,7 +791,8 @@ $\loc'(2m+2,n+1)$ where all the actions available to \Adam\ go into
 her winning region.
 \end{example}
 
-\begin{remark}\label{11-cov2cov}
+\begin{remark}[Location reachability]
+\label{11-rk:cov2cov}
   In both "configuration reachability" and "coverability", we can
   assume without loss of generality that $\loc_f\in\Loc_\mEve$ is
   controlled by \Eve\ and that $\vec v_f=\vec 0$ is the "zero vector".
@@ -809,9 +813,10 @@ her winning region.
   configuration.
 \end{remark}
 
-\begin{remark}\label{11-cov2reach}
+\begin{remark}[Coverability to reachability]
+\label{11-rk:cov2reach}
   There is a \logspace\ reduction from "coverability" to
-  "configuration reachability".  By \cref{11-cov2cov}, we can assume
+  "configuration reachability".  By \cref{11-rk:cov2cov}, we can assume
   without loss of generality that $\loc_f\in\Loc_\mEve$ is controlled
   by \Eve\ and that $\vec v_f=\vec 0$ is the "zero vector". It suffices
   therefore to add an action $\loc_f\step{-\vec e_j}\loc_f$ for
@@ -822,9 +827,9 @@ Departing from "reachability" games, the
 following is a very simple kind of "safety"
 games where $C\eqdef\{\varepsilon,\Lose\}$ and $\Omega\eqdef\Safe$;
 \cref{11-fig:nonterm} shows \Eve's "winning region" in the case of the
-graphs of \cref{11-fig:mwg,12-fig-sem}.
+graphs of \cref{11-fig:mwg,11-fig:sem}.
 \decpb["non-termination vector game" with "given initial credit"]%
-{\label{11-pb-nonterm} A "vector system"
+{\label{11-pb:nonterm} A "vector system"
   $\?V=(\Loc,\Act,\Loc_\mEve,\Loc_\mAdam,\dd)$, an initial location
   $\loc_0\in\Loc$, and an initial credit $\vec v_0\in\+N^\dd$.}%
 {Does \Eve\ have a strategy to avoid the "sink"~$\sink$ from
@@ -1019,12 +1024,12 @@ graphs of \cref{11-fig:mwg,12-fig-sem}.
     (e03) edge[bend right=8] (sink);
   \end{tikzpicture}}
   \caption{The "winning region" of \Eve\ in the
-    "non-termination" game on the graphs of \cref{11-fig:mwg,12-fig-sem}.}\label{11-fig-nonterm} 
+    "non-termination" game on the graphs of \cref{11-fig:mwg,11-fig:sem}.}\label{11-fig:nonterm} 
 \end{figure}
 
 % \begin{example}
 %   Consider the "non-termination" game on the graphs of
-%   \cref{11-fig:mwg,12-fig-sem}.  \Eve's "winning region" is shown in
+%   \cref{11-fig:mwg,11-fig:sem}.  \Eve's "winning region" is shown in
 %   \cref{11-fig:nonterm}
 % \end{example}
 
@@ -1034,7 +1039,7 @@ $\Omega\eqdef\Parity$.  In order to define a colouring of the "natural
 semantics", we assume that we are provided with a \emph{location
   colouring} $\lcol{:}\,\Loc\to\{1,\dots,d\}$.
 \decpb["parity vector game" with "given initial credit"]%
-{\label{11-pb-parity}A "vector system"
+{\label{11-pb:parity}A "vector system"
   $\?V=(\Loc,\Act,\Loc_\mEve,\Loc_\mAdam,\dd)$, an initial location
   $\loc_0\in\Loc$, an initial credit $\vec v_0\in\+N^\dd$, and a
   location colouring $\lcol{:}\,\Loc\to\{1,\dots,d\}$ for some $d>0$.}%
@@ -1046,16 +1051,18 @@ semantics", we assume that we are provided with a \emph{location
   $\col(e)\eqdef\lcol(\loc)$ if $\ing(e)=\loc(\vec v)$ for
   some~$\vec v\in\+N^\dd$, and $\col(e)\eqdef 1$ if $\ing(e)=\sink$?}
 
-\begin{remark}\label{11-nonterm2parity}
+\begin{remark}[Non termination to parity]
+\label{11-rk:nonterm2parity}
   There is a \logspace\ reduction from "non-termination" to
   "parity@parity vector game".
   Indeed, the two games coincide if we pick the constant location
   "colouring" defined by $\lcol(\loc)\eqdef 2$ for all $\loc\in\Loc$ in
   the parity game.
 \end{remark}
-\begin{remark}\label{11-cov2parity}
+\begin{remark}[Coverability to parity]
+\label{11-rk:cov2parity}
   There is a \logspace\ reduction from "coverability" to
-  "parity@parity vector game".  Indeed, by \cref{11-cov2cov}, we can assume
+  "parity@parity vector game".  Indeed, by \cref{11-rk:cov2cov}, we can assume
   that $\loc_f\in\Loc_\mEve$ is controlled by \Eve\ and that the target
   credit is $\vec v_f=\vec 0$ the "zero vector".  It suffices
   therefore to add an action $\loc_f\step{\vec 0}\loc_f$ and to colour
@@ -1064,25 +1071,26 @@ semantics", we assume that we are provided with a \emph{location
 \end{remark}
 
 The "existential initial credit" variants of
-\crefrange{11-pb-reach}{11-pb-parity} are defined similarly, where
+\crefrange{11-pb:reach}{11-pb:parity} are defined similarly, where
 $\vec v_0$ is not given as part of the input, but existentially
 quantified in the question.
 
 \subsection{Undecidability}
-\label{11-subsec:undec}
-The bad news is that, although \crefrange{11-pb-reach}{11-pb-parity}
+\label{11-sec:undec}
+The bad news is that, although \crefrange{11-pb:reach}{11-pb:parity}
 are all decidable in the one-player case---see
-the \hyperref[12-refs]{bibliographic notes} at the end of the
+the \hyperref[11-sec:references]{bibliographic notes} at the end of the
 chapter---, they become undecidable in the two-player setting.
 
-\begin{theorem}\label{11-th-undec}
+\begin{theorem}[Undecidability of vector games]
+\label{11-th:undec}
   "Configuration reachability", "coverability", "non-termination", and
   "parity@parity vector game" "vector games", both with "given" and
   with "existential initial credit", are undecidable in any dimension
   $\dd\geq 2$.
 \end{theorem}
 \begin{proof}
-  By \cref{11-cov2reach,12-nonterm2parity}, it suffices to prove the
+  By \cref{11-rk:cov2reach,11-rk:nonterm2parity}, it suffices to prove the
   undecidability of "coverability" and "non-termination".  For this,
   we exhibit reductions from the "halting problem" of "deterministic
   Minsky machines" with at least two counters.
@@ -1163,10 +1171,10 @@ chapter---, they become undecidable in the two-player setting.
       (9) edge[swap] node{$\vec 0$} (10)
       (9) edge node{$-\vec e_i$} (11);
     \end{tikzpicture}
-    \caption{Schema of the reduction in the proof of \cref{11-th-undec}.}\label{11-fig:undec}
+    \caption{Schema of the reduction in the proof of \cref{11-th:undec}.}\label{11-fig:undec}
   \end{figure}
   Here is now a reduction to
-  \cref{11-pb-cov}.  Given an instance of the "halting problem", i.e.,
+  \cref{11-pb:cov}.  Given an instance of the "halting problem", i.e.,
   given a "deterministic Minsky machine" $\?M=(\Loc,\Act,\dd)$ and an
   initial location $\loc_0$, we construct a "vector system"
   $\?V\eqdef(\Loc\uplus\Loc_{\eqby?0}\uplus\{\frownie\},\Act',\Loc,\Loc_{\eqby?0}\uplus\{\frownie\},\dd)$
@@ -1224,7 +1232,7 @@ chapter---, they become undecidable in the two-player setting.
   from~$\loc_0(\vec 0)$ if and only if the given "Minsky
   machine@deterministic Minsky machine" does
   not halt from~$\loc_0(\vec 0)$, which shows the undecidability of
-  \cref{11-pb-nonterm}.
+  \cref{11-pb:nonterm}.
 
   \medskip Finally, let us observe that both the "existential" and the
   universal initial credit variants of the "halting problem" are also
@@ -1244,7 +1252,7 @@ chapter---, they become undecidable in the two-player setting.
   original machine.  The previous construction of a "vector system"
   applied to the modified machine then shows the undecidability of the
   "existential initial credit" variants of
-  \cref{11-pb-cov,12-pb-nonterm}% ; note regarding the latter that \Eve
+  \cref{11-pb:cov,11-pb:nonterm}% ; note regarding the latter that \Eve
   % wins the "non-termination" game with "existential initial credit" if
   % and only if there exists an initial credit such that the modified machine
   % does not halt, if and only if it is not the case that for all

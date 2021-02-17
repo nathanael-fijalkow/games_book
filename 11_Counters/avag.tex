@@ -1,6 +1,6 @@
-\Cref{11-th-undec} shows that "vector games" are too powerful to be
+\Cref{11-th:undec} shows that "vector games" are too powerful to be
 algorithmically relevant, except in dimension one where
-\cref{11-th-dim1} applies.  This prompts the study of restricted kinds
+\cref{11-th:dim1} applies.  This prompts the study of restricted kinds
 of "vector games", which might be decidable in arbitrary dimension.
 This section introduces one such restriction, called
 \emph{"asymmetry"}, which turns out to be very fruitful: it yields
@@ -17,17 +17,18 @@ $\vec u=\vec 0$ the "zero vector".  In other words, \Adam\ may only
 change the current location, and cannot interact directly with the
 counters.
 
-\begin{example}[asymmetric vector system]\label{11-ex-avg}
+\begin{example}[Asymmetric vector system]
+\label{11-ex:avg}
   \Cref{11-fig:avg} presents an "asymmetric vector system" of
   dimension two with locations partitioned as $\Loc_\mEve=\{\loc,\loc_{2,1},\loc_{\text-1,0}\}$ and $\Loc_\mAdam=\{\loc'\}$% , and actions
   %  $\{\loc\step{-1,-1}\loc,\loc\step{-1,0}\loc',\loc'\step{-1,0}\loc,\loc'\step{2,1}\loc\}$
   .  We omit the labels on the actions originating from \Adam's
   locations, since those are necessarily the "zero vector".  It is
   worth observing that this "vector system" behaves quite differently
-  from the one of \cref{11-ex-mwg} on \cpageref{11-ex-mwg}: for
+  from the one of \cref{11-ex:mwg} on \cpageref{11-ex:mwg}: for
   instance, in $\loc'(0,1)$, \Adam\ can now ensure that the "sink" will
   be reached by playing the action $\loc'\step{0,0}\loc_{\text-1,0}$,
-  whereas in \cref{11-ex-mwg}, the action $\loc'\step{-1,0}\loc$
+  whereas in \cref{11-ex:mwg}, the action $\loc'\step{-1,0}\loc$
   was just inhibited by the "natural semantics".
 \end{example}
 \begin{figure}[htbp]
@@ -50,11 +51,12 @@ counters.
 \end{figure}
 
 \subsection{The Case of Configuration Reachability}
-\label{11-subsec:reach}
+\label{11-sec:reach}
 
 In spite of the restriction to "asymmetric" "vector systems",
 "configuration reachability" remains undecidable.
-\begin{theorem}\label{11-th-asym-undec}
+\begin{theorem}[Reachability in asymmetric vector games is undecidable]
+\label{11-th:asym-undec}
   "Configuration reachability" "asymmetric vector games", both with
   "given" and with "existential initial credit", are undecidable in
   any dimension $\dd\geq 2$.
@@ -104,7 +106,7 @@ In spite of the restriction to "asymmetric" "vector systems",
       (11) edge node{$\vec 0$} (12)
       (11) edge[loop above] node{$\forall j\neq i\mathbin.-\vec e_j$}();
     \end{tikzpicture}
-    \caption{Schema of the reduction in the proof of \cref{11-th-asym-undec}.}\label{11-fig:asym-undec}
+    \caption{Schema of the reduction in the proof of \cref{11-th:asym-undec}.}\label{11-fig:asym-undec}
   \end{figure}
 
   We
@@ -163,24 +165,25 @@ In spite of the restriction to "asymmetric" "vector systems",
   follow the "play" of~$\?M$ and thus the machine halts.
 
   \medskip Finally, regarding the "existential initial credit"
-  variant, the arguments used in the proof of \cref{11-th-undec} apply
+  variant, the arguments used in the proof of \cref{11-th:undec} apply
   similarly to show that it is also undecidable.
 \end{proof}
 
-In dimension~one, \cref{11-th-dim1} applies, thus "configuration
+In dimension~one, \cref{11-th:dim1} applies, thus "configuration
 reachability" is decidable in \EXPSPACE.  This bound is actually
 tight.
-\begin{theorem}\label{11-th-asym-dim1}
+\begin{theorem}[Asymmetric vector games are \EXPSPACE-complete in dimension~one]
+\label{11-th:asym-dim1}
   "Configuration reachability" "asymmetric vector games", both with
   "given" and with "existential initial credit",
   are \EXPSPACE-complete in dimension~one.
 \end{theorem}
 \begin{proof}
   Let us first consider the "existential initial credit" variant.  We
-  proceed as in \cref{11-countdown-given,12-countdown-exist} and
+  proceed as in \cref{11-th:countdown-given,11-th:countdown-exist} and
   reduce from the acceptance problem for a deterministic Turing
   machine working in exponential space $m=2^{p(n)}$.  The reduction is
-  mostly the same as in \cref{11-countdown-given}, with a few changes.
+  mostly the same as in \cref{11-th:countdown-given}, with a few changes.
   Consider the integer $m-n$ from that reduction.  While this is an
   exponential value, it can be written as $m-n=\sum_{0\leq e\leq
   p(n)}2^{e}\cdot b_e$ for a polynomial number of bits $b_0,\dots,b_{p(n)}$.
@@ -223,7 +226,7 @@ tight.
   \end{align*}
 
   The remainder of the reduction is now very similar to the reduction shown
-  in \cref{11-countdown-given}.
+  in \cref{11-th:countdown-given}.
   Regarding initialisation, \Eve\ can choose her initial position,
   which we implement by the actions
   \begin{align*}
@@ -255,12 +258,12 @@ tight.
 \end{proof}
 
 \subsection{Asymmetric Monotone Games}
-\label{11-subsec:mono}
+\label{11-sec:mono}
 
 
 The results on "configuration reachability" might give the impression
 that "asymmetry" does not help much for solving "vector games": we
-obtained in \cref{11-subsec:reach} exactly the same results as in the
+obtained in \cref{11-sec:reach} exactly the same results as in the
 general case.  Thankfully, the situation changes drastically if we
 consider the other types of "vector games": "coverability",
 "non-termination", and "parity@parity vector games" become decidable
@@ -311,7 +314,8 @@ vector games" "vector games" are "monotonic", whereas those of
 call a "vector game" \emph{"monotonic"} if its underlying "colouring"
 is "monotonic".
 
-\begin{lemma}[Simulation]\label{11-fact-mono}
+\begin{lemma}[Simulation]
+\label{11-lem:mono}
   In a "monotonic" "asymmetric vector game", if \Eve\ wins from a
   vertex~$v_0$, then she also wins from~$v'_0$ for all $v'_0\geq
   v_0$.
@@ -344,10 +348,10 @@ is "monotonic".
   will also win.\todoquestion{Is that clear?}
 \end{proof}
 
-Note that \cref{11-fact-mono} implies that $\WE$ is "upwards closed":
-$v_0\in\WE$ and $v_0\leq v'_0$ imply $v_0'\in\WE$.  \Cref{11-fact-mono}
+Note that \cref{11-lem:mono} implies that $\WE$ is "upwards closed":
+$v_0\in\WE$ and $v_0\leq v'_0$ imply $v_0'\in\WE$.  \Cref{11-lem:mono}
 does not necessarily hold in "vector games" without the "asymmetry"
-condition.  For instance, in both \cref{11-fig:cov,12-fig-nonterm} on
+condition.  For instance, in both \cref{11-fig:cov,11-fig:nonterm} on
 \cpageref{11-fig:cov}, $\loc'(0,1)\in\WE$ but $\loc'(1,2)\in\WA$ for
 the "coverability" and "non-termination" objectives.  This is due to
 the fact that the action $\loc'\step{-1,0}\loc$ is available
@@ -386,12 +390,12 @@ consequence of \emph{Dickson's Lemma}~\cite{Dickson:1913}.
 % elements $\min\col^{-1}(d)$, thus there exists a ""viable"" natural
 % number
 % $B\geq \max_{d\in C}\max_{\vec v\in\min\col^{-1}(d)}\|\vec v\|$.  In
-% \cref{11-pb-cov}, $\|\vec v\|$ is "viable" if $\loc(\vec v)$ is the
-% target configuration, while for \cref{11-pb-nonterm,12-pb-parity},
+% \cref{11-pb:cov}, $\|\vec v\|$ is "viable" if $\loc(\vec v)$ is the
+% target configuration, while for \cref{11-pb:nonterm,11-pb:parity},
 % $0$~is "viable".
 
 \paragraph{Pareto Limits}\AP By the "finite basis property" of
-$(V,{\leq})$ and \cref{11-fact-mono}, in a "monotonic" "asymmetric
+$(V,{\leq})$ and \cref{11-lem:mono}, in a "monotonic" "asymmetric
 vector game", $\WE=\bigcup_{1\leq j\leq n}{\uparrow}\loc_j(\vec v_j)$
 is a finite union of "principal filters".  The set
 $\mathsf{Pareto}\eqdef\{\loc_1(\vec v_1),\dots,\loc_n(\vec v_n)\}$ is
@@ -432,12 +436,13 @@ v_0$.
 % $B\geq\mathsf{ExistentialParetoBound}$ an ""existential Pareto
 % bound"".
 
-\begin{example}[doubly exponential Pareto limit]\label{11-ex-pareto}
+\begin{example}[Doubly exponential Pareto limit]
+\label{11-ex:pareto}
   Consider the one-player "vector system" of \cref{11-fig:pareto},
   where the "meta-decrement" from~$\loc_0$ to~$\loc_1$ can be
   implemented using $O(n)$ additional counters and a set~$\Loc'$ of
   $O(n)$ additional locations by the arguments of the
-  forthcoming \cref{11-avag-hard}.
+  forthcoming \cref{11-th:avag-hard}.
   
   \begin{figure}[htbp]
     \centering
@@ -460,7 +465,7 @@ v_0$.
   can start from $\loc_0(\vec e_2)$ instead.  We have indeed
   $\mathsf{Pareto}\cap(\{\loc_0,\loc_1,\loc_f\}\times\+N^\dd)=\{\loc_0(\vec
   e_2),\loc_0(2^{2^n}\cdot\vec e_1),\loc_1(\vec 0),\loc_f(\vec 0)\}$.
-  Looking more in-depth into the construction of \cref{11-avag-hard},
+  Looking more in-depth into the construction of \cref{11-th:avag-hard},
   there is also an at least double exponential number of distinct
   minimal configurations in~$\mathsf{Pareto}$.
 \end{example}
@@ -472,7 +477,8 @@ Besides having a finitely represented "winning region", \Eve\ also has
 finite memory strategies in "asymmetric vector games" with "parity"
 objectives; the following argument is straightforward to adapt to
 the other regular objectives from \cref{2-chap:regular}.
-\begin{lemma}\label{11-fact-finmem}
+\begin{lemma}[Finite memory suffices in parity asymmetric vector games]
+\label{11-lem:finmem}
   If \Eve\ has a "strategy" winning from some vertex~$v_0$ in a
   "parity@parity vector game" "asymmetric vector game", then she has a
   "finite-memory" one.
@@ -505,15 +511,15 @@ the other regular objectives from \cref{2-chap:regular}.
   % \item if an internal node is labelled by $\loc(\vec v)$ with
   %   $\loc\in\Loc_\mAdam$, then it has one child labelled~$\loc'(\vec
   %   v)$ for each action $\loc\step{\vec 0}\loc'\in\Act$,
-  % \item\label{11-wt-self-even} if a leaf is labelled by $\loc(\vec v)$,
+  % \item\label{11-wt:self-even} if a leaf is labelled by $\loc(\vec v)$,
   %   consider the branch
   %   $\loc_0(\vec v_0),\loc_1(\vec v_1),\dots,\loc_n(\vec v_n)=\loc(\vec
   %   v)$ that reaches the leaf: then
   %   \begin{enumerate}
-  %   \item\label{11-wt-self}there exists~$i<n$ such that
+  %   \item\label{11-wt:self}there exists~$i<n$ such that
   %     $\loc_i=\loc$ and $\vec v_i\leq\vec v$---we call the node labelled by
   %     $\loc_i(\vec v_i)$ the ""return point"" of the leaf---, and
-  %   \item\label{11-wt-even} the maximal priority observed between the two
+  %   \item\label{11-wt:even} the maximal priority observed between the two
   %     nodes, i.e., $\max_{i\leq j<n}\col(v_j)$, is even.
   %   \end{enumerate}
   % \end{enumerate}
@@ -548,8 +554,8 @@ the other regular objectives from \cref{2-chap:regular}.
   Consider the one-player "vector system" of \cref{11-fig:finitemem},
   where the "meta-decrement" from~$\loc_1$ to~$\loc_0$ can be
   implemented using $O(n)$ additional counters and $O(n)$ additional
-  locations by the arguments of the forthcoming \cref{11-avag-hard}
-  on \cpageref{11-avag-hard}.
+  locations by the arguments of the forthcoming \cref{11-th:avag-hard}
+  on \cpageref{11-th:avag-hard}.
   
   \begin{figure}[htbp]
     \centering
@@ -590,16 +596,17 @@ the other regular objectives from \cref{2-chap:regular}.
 \end{example}
 
 \subsubsection{Attractor Computation for Coverability}
-\label{11-subsec:attr}
+\label{11-sec:attr}
 So far, we have not seen how to compute the "Pareto limit" derived
-from \cref{11-fact-mono} nor the finite "memory structure" derived
-from \cref{11-fact-finmem}.  These objects are not merely finite but
+from \cref{11-lem:mono} nor the finite "memory structure" derived
+from \cref{11-lem:finmem}.  These objects are not merely finite but
 also computable.  The simplest case is the one of "coverability"
 "asymmetric" "monotonic vector games": the fixed-point computation of
 \cref{2-sec:attractors} for "reachability" objectives can be turned into
 an algorithm computing the "Pareto limit" of the game.
 
-\begin{fact}\label{11-pareto-cov}
+\begin{fact}[Computable Pareto limit]
+\label{11-fact:pareto-cov}
   The "Pareto limit" of a "coverability" "asymmetric vector game" is
   computable.
 \end{fact}
@@ -658,14 +665,14 @@ $B_{i+1} \leftarrow B_i \cup \min\mathrm{Pre}({\uparrow}B_i)$ ;
 $i \leftarrow i + 1$ ;}
 
 \Return{$\min B_i = \mathsf{Pareto}(\game)$}
-\caption{Fixed point algorithm for "coverability" "asymmetric" "vector
+\caption{Fixed point algorithm for "coverability" in "asymmetric" "vector
   games".}
 \label{11-algo:cov}
 \end{algorithm}
 
 While this algorithm terminates thanks to the "ascending chain
 condition", it may take quite long.  For instance, in
-\cref{11-ex-pareto}, it requires at least~$2^{2^n}$ steps before it
+\cref{11-ex:pareto}, it requires at least~$2^{2^n}$ steps before it
 reaches its fixed point.  This is a worst-case instance, as it turns
 out that this algorithm works in \kEXP[2]; see the bibliographic notes
 at the end of the chapter.  Note that such a

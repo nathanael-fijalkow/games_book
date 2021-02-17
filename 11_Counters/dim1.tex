@@ -1,4 +1,4 @@
-\AP \Cref{11-th-undec} leaves open whether "vector games" might be
+\AP \Cref{11-th:undec} leaves open whether "vector games" might be
 decidable in dimension one.  They are indeed decidable, and more
 generally we learned in \cref{10-chap:pushdown} that "one-counter
 games"---with the additional ability to test the counter for
@@ -10,23 +10,24 @@ with a binary encoding.  Hence the \PSPACE\ upper bound of
 \cref{10-chap:pushdown} becomes an~\EXPSPACE\ one for ""succinct
 one-counter games"".
 
-\begin{corollary}\label{11-cor-dim1}
+\begin{corollary}[One-dimensional vector games are in \EXPSPACE]
+\label{11-cor:dim1}
   "Configuration reachability", "coverability", "non-termination", and
   "parity@parity vector game" "vector games", both with "given" and with "existential
   initial credit", are in \EXPSPACE\ in dimension one.
 \end{corollary}
 \begin{proof}\hfill\\
-  \TODO{proof of \cref{11-cor-dim1} depends on how \cref{10-sec:one-counter} is written}
+  \TODO{proof of \cref{11-cor:dim1} depends on how \cref{10-sec:one-counter} is written}
 \end{proof}
 
 The goal of this section is therefore to establish that this
 \EXPSPACE\ upper bound is tight (in most cases), by proving a matching
-lower bound in \cref{11-one-counter}.  But first, we will study a
+lower bound in \cref{11-sec:one-counter}.  But first, we will study a
 class of one-dimensional "vector games" of independent interest in
-\cref{11-countdown}: "countdown games".
+\cref{11-sec:countdown}: "countdown games".
 
 \subsection{Countdown Games}
-\label{11-countdown}
+\label{11-sec:countdown}
 
 \AP A one-dimensional "vector system"
 $\?V=(\Loc,\Act,\Loc_\mEve,\Loc_\mAdam,1)$ is called a ""countdown
@@ -36,7 +37,8 @@ defined by "countdown systems", both with "given" and with
 "existential initial credit", and call the resulting games ""countdown
 games"".
 
-\begin{theorem}\label{11-countdown-given}
+\begin{theorem}[Countdown games are \EXP-complete]
+\label{11-th:countdown-given}
   "Configuration reachability" and "coverability" "countdown games"
   with "given initial credit" are \EXP-complete.
 \end{theorem}
@@ -68,7 +70,8 @@ games"".
   symbol~$\blank$) or a pair $(q,a)$ of a state from~$Q$ and a tape
   symbol~$a$.  We assume that the set of states~$Q$ contains a single
   accepting state~$q_\mathrm{final}$.  The entire computation can be
-  arranged over a $t\times m$ grid as shown in \cref{11-fig:exp}.
+  arranged over a $t\times m$ grid where each line corresponds to a
+  configuration~$C_i$, as shown in \cref{11-fig:exp}.
 
   \begin{figure}[htbp]
     \centering
@@ -252,7 +255,8 @@ games"".
 \end{proof}
 
 
-\begin{theorem}\label{11-countdown-exist}
+\begin{theorem}[Existential countdown games are \EXPSPACE-complete]
+\label{11-th:countdown-exist}
   "Configuration reachability" and "coverability" "countdown games"
   with "existential initial credit" are \EXPSPACE-complete.
 \end{theorem}
@@ -265,13 +269,13 @@ games"".
    adding a new location $\loc'_0$ controlled by~\Eve\ with actions
    $\loc'_0\step{1}\loc'_0$ and $\loc'_0\step 0\loc_0$, and asking
    whether \Eve\ has a winning strategy starting from $\loc'_0(0)$ in
-   the new system.  By \cref{11-cor-dim1}, this "configuration
+   the new system.  By \cref{11-cor:dim1}, this "configuration
    reachability" game can be solved in \EXPSPACE.
 
    \medskip For the lower bound, we reduce from the acceptance problem
    of a deterministic Turing machine working in exponential space.
    The reduction is the same as in the proof
-   of \cref{11-countdown-given}, except that now the length~$t$ of the
+   of \cref{11-th:countdown-given}, except that now the length~$t$ of the
    computation is not bounded a priori, but this is compensated by the
    fact that we are playing the "existential initial credit" version
    of the "countdown game".  \qedhere%%   Indeed, \Eve\ wins the "countdown game"
@@ -294,14 +298,15 @@ problem.
   reachability""\index{zero reachability|see{countdown game}}
   game $(\?A_\+N(\?V),\col,\Reach)$ from $\loc_0(n_0)$, where
   $\col(e)=\Win$ if and only if $\ing(e)=\loc(0)$ for some $\loc\in\Loc$?}
-\begin{theorem}\label{11-countdown-zero}
+\begin{theorem}[Countdown to zero games are \EXP-complete]
+\label{11-th:countdown-zero}
   "Zero reachability" "countdown games" with "given initial credit"
   are \EXP-complete.
 \end{theorem}
 \begin{proof}
-  The upper bound of \cref{11-countdown-given} applies in the same
+  The upper bound of \cref{11-th:countdown-given} applies in the same
   way.  Regarding the lower bound, we modify the lower bound
-  construction of \cref{11-countdown-given} in the following way: we
+  construction of \cref{11-th:countdown-given} in the following way: we
   use $\loc_0(2\cdot n_0+1)$ as initial configuration, multiply all
   the action weights in~$\Act$ by two, and add a new
   location~$\loc_\mathrm{zero}$ with an action
@@ -313,12 +318,13 @@ problem.
 \end{proof}
 
 \subsection{Vector Games in Dimension One}
-\label{11-one-counter}
+\label{11-sec:one-counter}
 
 "Countdown games" are frequently employed to prove complexity lower
 bounds.  Here, we use them to show that the \EXPSPACE\ upper bounds
-from \cref{11-cor-dim1} are tight in most cases.
-\begin{theorem}\label{11-th-dim1}
+from \cref{11-cor:dim1} are tight in most cases.
+\begin{theorem}[The complexity of vector games in dimension one]
+\label{11-th:dim1}
   "Configuration reachability", "coverability", and "parity@parity
   vector game" "vector games", both with "given" and with "existential
   initial credit", are \EXPSPACE-complete in dimension one;
@@ -327,12 +333,12 @@ from \cref{11-cor-dim1} are tight in most cases.
   initial credit".
 \end{theorem}
 \begin{proof}
-  By \cref{11-countdown-exist}, "configuration reachability" and
+  By \cref{11-th:countdown-exist}, "configuration reachability" and
   "coverability" "vector games" with existential initial credit
   are \EXPSPACE-hard in dimension one.
-  Furthermore, \cref{11-cov2parity} allows to deduce that
+  Furthermore, \cref{11-rk:cov2parity} allows to deduce that
   "parity@parity vector game" is also \EXPSPACE-hard.  Finally, we can
-  argue as in the upper bound proof of \cref{11-countdown-exist} that
+  argue as in the upper bound proof of \cref{11-th:countdown-exist} that
   all these games are also hard with "given initial credit": we add a
   new initial location $\loc'_0$ controlled by \Eve\ with actions
   $\loc'_0\step 1\loc'_0$ and $\loc'_0\step 0\loc_0$ and play the game
@@ -340,7 +346,7 @@ from \cref{11-cor-dim1} are tight in most cases.
 
   Regarding "non-termination", we can add a self loop $\smiley\step
   0\smiley$ to the construction
-  of \cref{11-countdown-given,12-countdown-exist}: then the only way
+  of \cref{11-th:countdown-given,11-th:countdown-exist}: then the only way
   to build an infinite play that avoids the "sink" is to reach the
   target location $\smiley$.  This shows that the games are \EXP-hard
   with "given initial credit" and \EXPSPACE-hard with "existential

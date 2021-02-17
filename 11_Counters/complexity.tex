@@ -5,7 +5,7 @@ We survey in this section the best known complexity bounds for every
 case; see \cref{11-tbl:cmplx} at the end of the chapter for a summary.
 
 \subsection{Upper Bounds}
-\label{11-subsec:up}
+\label{11-sec:up}
 We begin with complexity upper bounds.  The main results are that
 "parity@parity vector game" games with "existential initial credit"
 can be solved in \coNP, but are in \kEXP[2] with "given initial
@@ -18,7 +18,7 @@ condition) are tiny compared to the size of the system.
 
 %\input{sec-upper}
 \subsubsection{Existential Initial Credit}
-\label{11-subsec:up-exist}
+\label{11-sec:up-exist}
 
 \paragraph{Counterless Strategies}
 Consider a "strategy"~$\tau$ of \Adam\ in a "vector game".  In all the
@@ -29,7 +29,8 @@ locations $\loc\in\Loc_\mAdam$ and all vectors
 $\vec v,\vec v'\in\+N^\dd$, $\tau(\loc(\vec v))=\tau(\loc(\vec v'))$.
 A "counterless" strategy thus only considers the current location of
 the play.
-\begin{lemma}\label{11-counterless}
+\begin{lemma}[Counterless strategies]
+\label{11-lem:counterless}
   Let $\?V=(\Loc,\Act,\Loc_\mEve,\Loc_\mAdam,\dd)$ be an "asymmetric
   vector system", $\loc_0\in\Loc$ be a location, and
   $\lcol{:}\,\Loc\to\{1,\dots,d\}$ be a location colouring.  If \Adam
@@ -105,7 +106,7 @@ the play.
     from~$\loc_0(\vec v_0)$.  Since $\vec v_0\geq\vec v_l$ and
     $\vec v_0\geq \vec v_r+\weight(\hat\pi)$, $\pi(l)$ and $\pi(r)$
     starting from~$\loc_0(\vec v_0)$ are consistent with
-    "simulating"---in the sense of \cref{11-fact-mono}---$\sigma_l$
+    "simulating"---in the sense of \cref{11-lem:mono}---$\sigma_l$
     from $\loc_0(\vec v_l)$ and $\sigma_r$ from $\loc_0(\vec v_r)$.
     Let $\pi'$ be a finite prefix of~$\pi$.  Then
     $\weight(\pi')=\weight(\pi'(l))+\weight(\pi'(r))$ where $\pi'(l)$
@@ -122,13 +123,13 @@ the play.
   \end{scope}
 \end{proof}
 
-We are going to exploit \cref{11-counterless} in \cref{11-exist-easy}
-in order to prove a~\coNP\ upper bound for "asymmetric games" with
-"existential initial credit": it suffices in order to decide those
-games to guess a "counterless" winning strategy~$\tau$ for \Adam\ and
-check that it is indeed winning by checking that \Eve\ loses the
-one-player game arising from~$\tau$.  This last step requires an
-algorithmic result of independent interest.
+We are going to exploit \cref{11-lem:counterless}
+in \cref{11-th:exist-easy} in order to prove a~\coNP\ upper bound for
+"asymmetric games" with "existential initial credit": it suffices in
+order to decide those games to guess a "counterless" winning
+strategy~$\tau$ for \Adam\ and check that it is indeed winning by
+checking that \Eve\ loses the one-player game arising from~$\tau$.
+This last step requires an algorithmic result of independent interest.
 
 \paragraph{One-player Case}
 Let $\?V=(\Loc,\Act,\dd)$ be a "vector addition system with states",
@@ -157,7 +158,7 @@ this strategy has an even maximal priority.
 Conversely, if \Eve\ wins, then there is a winning play
 $\pi\in\Act^\omega$ from $\loc_0(\vec v_0)$ for some $\vec v_0$.
 Recall that $(V,{\leq})$ is a "wqo", and we argue as in
-\cref{11-fact-finmem} that there is indeed such a location~$\loc$.
+\cref{11-lem:finmem} that there is indeed such a location~$\loc$.
 
 \medskip
 Therefore, solving one-player "parity vector games" boils down to
@@ -182,7 +183,8 @@ $\Pi$ is ""non-negative"" if $\weight(\Pi)\geq\vec 0$, and that it is
 $t\in\Act'$ such that $t\in\Pi$, and if for all $t\in F$,
 $t\not\in\Pi$.  We use the same terminology for a single cycle~$\pi$.
 
-\begin{lemma}\label{11-lem-zmulticycle}
+\begin{lemma}[Linear programs for suitable non-negative multi-cycles]
+\label{11-lem:zmulticycle}
   Let $\?V$ be a "vector addition system with states",
   $M\in 2^{\Act}$, and $F\subseteq\Act$.  We can check in polynomial
   time whether~$\?V$ contains a "non-negative" "multi-cycle"~$\Pi$
@@ -219,7 +221,7 @@ Let us define for this the relation $\loc\sim\loc'$ over~$\Loc$ if
 $\loc=\loc'$ or if there exists a "non-negative" "multi-cycle"~$\Pi$
 "suitable" for~$(M,F)$ such that~$\loc$ and~$\loc'$ belong to some
 cycle~$\pi\in\Pi$.
-\begin{claim}\label{11-cl-sim} The relation~$\sim$ is an equivalence
+\begin{claim}\label{11-cl:sim} The relation~$\sim$ is an equivalence
   relation.\end{claim}
 \begin{proof}
   Symmetry and reflexivity are trivial, and if $\loc\sim\loc'$ and
@@ -272,7 +274,8 @@ for this the set of actions
 $\Act'\eqdef\{a\mid\exists\Pi\text{ a "non-negative" "multi-cycle"
   "suitable" for $(M,F)$ with $a\in\Pi$}\}$ and
 $\?V'=(\Loc',\Act',\dd)$ the subsystem induced by $\Act'$.
-\begin{claim}\label{11-cl-part}
+\begin{claim}
+\label{11-cl:part}
   There exists a path from~$\loc$ to~$\loc'$ in $\?V'$
   if and only if $\loc\sim\loc'$.
 \end{claim}
@@ -290,10 +293,10 @@ $\?V'=(\Loc',\Act',\dd)$ the subsystem induced by $\Act'$.
   $a=(\loc''\step{\vec u}\loc')\in\Act'$ for some~$\vec u$.  By
   induction hypothesis, $\loc\sim\loc''$ and since $a\in\Act'$,
   $\loc''\sim\loc'$, thus $\loc\sim\loc'$ by transitivity shown
-  in~\cref{11-cl-sim}. 
+  in~\cref{11-cl:sim}. 
 \end{proof}
 
-By \cref{11-cl-part}, the equivalence classes of~$\sim$ are the
+By \cref{11-cl:part}, the equivalence classes of~$\sim$ are the
 strongly connected components of~$\?V'$.  This yields the following
 polynomial time algorithm for computing~$\Loc/{\sim}$.
 
@@ -314,10 +317,11 @@ $\?V'\leftarrow \text{subsystem induced by~$\Act'$}$ ;
 \label{11-algo:part}
 \end{algorithm}
 
-Together, \cref{11-lem-zmulticycle}
-and \cref{11-algo:part,12-algo-zcycle} yield the following.
+Together, \cref{11-lem:zmulticycle}
+and \cref{11-algo:part,11-algo:zcycle} yield the following.
 
-\begin{lemma}\label{11-lem-zcycle}
+\begin{lemma}[Polynomial-time detection of suitable non-negative cycles]
+\label{11-lem:zcycle}
   Let $\?V$ be a "vector addition system with states",
   $M\in 2^{\Act}$, and $F\subseteq\Act$.  We can check in polynomial
   time whether~$\?V$ contains a "non-negative" cycle~$\pi$
@@ -326,7 +330,8 @@ and \cref{11-algo:part,12-algo-zcycle} yield the following.
 
 Finally, we obtain the desired polynomial time upper bound for
 "parity@parity vector games" in "vector addition systems with states".
-\begin{theorem}\label{11-thm-zcycle}
+\begin{theorem}[Existential one-player parity vector games are in~\P]
+\label{11-thm:zcycle}
   Whether \Eve\ wins a one-player "parity vector game" with
   "existential initial credit" is in~\P.
 \end{theorem}
@@ -336,7 +341,7 @@ Finally, we obtain the desired polynomial time upper bound for
   $\loc_0\in\Loc$ an initial location.  We start by trimming~$\?V$ to
   only keep the locations reachable from~$\loc_0$ in the underlying
   directed graph.  Then, for every even priority $p\in\{1,\dots,d\}$,
-  we use \cref{11-lem-zcycle} to check for the existence of a
+  we use \cref{11-lem:zcycle} to check for the existence of a
   "non-negative" cycle with maximal priority~$p$: it suffices for this
   to set $M\eqdef\{\lcol^{-1}(p)\}$ and
   $F\eqdef\lcol^{-1}(\{p+1,\dots,d\})$.
@@ -353,31 +358,34 @@ finite game played over~$\Loc$ and edges~$(\loc,\loc')$ whenever
 $\loc\step{\vec u}\loc'\in\Act$ for some~$\vec u$.  This entails that
 "coverability" "asymmetric vector games" are quite easy to solve.
 
-\begin{theorem}\label{11-cov-exist-P}
+\begin{theorem}[Existential coverability asymmetric vector games are in~\P]
+\label{11-th:cov-exist-P}
   "Coverability" "asymmetric" "vector games" with "existential initial
   credit" are \P-complete.
 \end{theorem}
 
 Regarding "non-termination" and "parity@parity vector game", we
-exploit \cref{11-counterless,12-thm-zcycle}.
+exploit \cref{11-lem:counterless,11-thm:zcycle}.
 
-\begin{theorem}\label{11-exist-easy}
+\begin{theorem}[Existential parity asymmetric vector games are in~\coNP]
+\label{11-th:exist-easy}
   "Non-termination" and "parity@parity vector game" "asymmetric"
   "vector games" with "existential initial credit" are in~\coNP.
 \end{theorem}
 \begin{proof}
-  By \cref{11-nonterm2parity}, it suffices to prove the statement for
-  "parity@parity vector games" games.  By \cref{11-counterless},
+  By \cref{11-rk:nonterm2parity}, it suffices to prove the statement for
+  "parity@parity vector games" games.  By \cref{11-lem:counterless},
   if \Adam\ wins the game, we can guess a "counterless" winning
   strategy~$\tau$ telling which action to choose for every location.
-  This strategy yields a one-player game, and by \cref{11-thm-zcycle}
+  This strategy yields a one-player game, and by \cref{11-thm:zcycle}
   we can check in polynomial time that~$\tau$ was indeed winning
   for~\Adam.
 \end{proof}
 
 Finally, in fixed dimension and with a fixed number of priorities, we
-can simply apply the results of \cref{11-bounding}.
-\begin{corollary}\label{11-exist-pseudop}
+can simply apply the results of \cref{11-sec:bounding}.
+\begin{corollary}[Existential fixed-dimensional parity asymmetric vector games are pseudo-polynomial]
+\label{11-cor:exist-pseudop}
   "Parity@parity vector game" "asymmetric" "vector games" with
   "existential initial credit" are in pseudo-polynomial time if the
   dimension and the number of priorities are fixed.
@@ -386,12 +394,12 @@ can simply apply the results of \cref{11-bounding}.
   Consider an "asymmetric vector system"
   $\?V=(\Loc,\Act,\Loc_\mEve,\Loc_\mAdam,\dd)$ and a location
   colouring $\lcol{:}\,\Loc\to\{1,\dots,2d\}$.
-  By \cref{11-parity2bounding}, the "parity vector game" with
+  By \cref{11-lem:parity2bounding}, the "parity vector game" with
   "existential initial credit" over~$\?V$ problem reduces to a
   "bounding game" with "existential initial credit" over a "vector
   system"~$\?V'=(\Loc',\Act',\Loc'_\mEve,\Loc'_\mAdam,\dd+d)$ where
   $\Loc'\in O(|\Loc|)$ and $\|\Act'\|=\|\Act\|$.
-  By \cref{11-th-bounding}, it suffices to consider the case of a
+  By \cref{11-th:bounding}, it suffices to consider the case of a
   "non-termination" game with "existential initial credit" played over
   the "bounded semantics" $\bounded(\?V')$ where $B$ is in
   $(|\Loc'|\cdot\|\Act'\|)^{O(\dd+d)^3}$.  Such a game can be solved in
@@ -401,10 +409,11 @@ can simply apply the results of \cref{11-bounding}.
 \end{proof}
 
 \subsubsection{Given Initial Credit}
-\label{11-subsec:up-given}
-\TODO{\Cref{11-subsec:up-given}}
+\label{11-sec:up-given}
+\TODO{\Cref{11-sec:up-given}}
 
-\begin{theorem}\label{11-avag-easy}
+\begin{theorem}[Upper bounds for asymmetric vector games]
+\label{11-th:avag-easy}
   "Coverability", "non-termination", and "parity@parity vector game"
   "asymmetric" "vector games" with "given initial credit" are in
   \kEXP[2].  If the dimension is fixed, they are in \EXP, and if the
@@ -415,23 +424,24 @@ can simply apply the results of \cref{11-bounding}.
 % Local IspellDict: british
 
 \subsection{Lower Bounds}
-\label{11-subsec:low}
+\label{11-sec:low}
 Let us turn our attention to complexity lower bounds for "monotonic"
 "asymmetric vector games".  It turns out that most of the upper bounds
-shown in \cref{11-subsec:up} are tight.
+shown in \cref{11-sec:up} are tight.
 %\input{sec-lower}
 \subsubsection{Existential Initial Credit}
 In the "existential initial credit" variant of our games, we have the
-following lower bound matching \cref{11-exist-easy}, already with a
+following lower bound matching \cref{11-th:exist-easy}, already with a
 unary encoding.
 
-\begin{theorem}\label{11-exist-hard}
+\begin{theorem}[Existential non-termination asymmetric vector games are \coNP-hard]
+\label{11-th:exist-hard}
   "Non-termination", and "parity@parity vector game"
   "asymmetric" "vector games" with "existential initial credit" are
   \coNP-hard.% in any dimension~$\dd\geq 2$.
 \end{theorem}
 \begin{proof}
-  By \cref{11-nonterm2parity}, it suffices to show hardness for
+  By \cref{11-rk:nonterm2parity}, it suffices to show hardness for
   "non-termination games".  We reduce from the \lang{3SAT} problem:
   given a formula $\varphi=\bigwedge_{1\leq i\leq m}C_i$ where each
   clause $C_i$ is a disjonction of the form
@@ -484,7 +494,7 @@ unary encoding.
 
     Conversely, assume that~$\varphi$ is not satisfiable.  By
     contradiction, assume that \Adam\ wins the game for all initial
-    credits.  By \cref{11-counterless}, he has a "counterless" winning
+    credits.  By \cref{11-lem:counterless}, he has a "counterless" winning
     strategy~$\tau$ that selects a literal in every clause.  Consider
     a "literal assignment" that maps each one of the selected literals
     to~$1$ and the remaining ones in a non-conflicting manner.  By
@@ -503,7 +513,7 @@ unary encoding.
   % $\sum_{w\in S_1}w=\sum_{w\in S_2}w$?  From such an instance, we
   % construct an "asymmetric vector system" where \Eve\ wins the
   % "non-termination game" with "existential initial credit" if and only
-  % if there is no such partition.  By \cref{11-nonterm2parity}, this
+  % if there is no such partition.  By \cref{11-rk:nonterm2parity}, this
   % also entails the \coNP-hardness of "parity@parity vector games"
   % "asymmetric vector games".
   % \begin{figure}[htbp]
@@ -569,19 +579,20 @@ unary encoding.
   % visiting each $\loc_i$~once, and 
 \end{proof}
 
-Note that \cref{11-exist-hard} does not apply to fixed dimensions
-$\dd\geq 2$.  We know by \cref{11-exist-pseudop} that those games can
+Note that \cref{11-th:exist-hard} does not apply to fixed dimensions
+$\dd\geq 2$.  We know by \cref{11-cor:exist-pseudop} that those games can
 be solved in pseudo-polynomial time if the number of priorities is
-fixed, and by \cref{11-exist-easy} that they are in \coNP.
+fixed, and by \cref{11-th:exist-easy} that they are in \coNP.
 
 \subsubsection{Given Initial Credit}
 With "given initial credit", we have a lower bound matching the
-\kEXP[2] upper bound of \cref{11-avag-easy}, already with a unary
+\kEXP[2] upper bound of \cref{11-th:avag-easy}, already with a unary
 encoding.  The proof itself is an adaptation of the proof by
 \citem[Lipton]{Lipton:1976} of \EXPSPACE-hardness of "coverability" in
 the one-player case.
 
-\begin{theorem}\label{11-avag-hard}
+\begin{theorem}[Coverability and non-termination asymmetric vector games are {\kEXP[2]-hard}]
+\label{11-th:avag-hard}
   "Coverability", "non-termination", and "parity@parity vector game"
   "asymmetric" "vector games" with "given initial credit" are
   \kEXP[2]-hard.
@@ -689,7 +700,7 @@ the one-player case.
 
   \bigskip Let us return to the proof.  Consider an instance of the
   "halting problem".  We first exhibit a reduction to "coverability";
-  by \cref{11-cov2parity}, this will also entail the \kEXP[2]-hardness
+  by \cref{11-rk:cov2parity}, this will also entail the \kEXP[2]-hardness
   of "parity@parity vector game" "asymmetric" "vector games".  We
   build an "asymmetric vector system"
   $\?V=(\Loc',\Act',\Loc'_\mEve,\Loc_\mAdam,\dd')$ with
@@ -760,7 +771,7 @@ the one-player case.
       (a2) edge node{$\vec 0$} (a3);
     \end{tikzpicture}
     \caption{Schema of the reduction to
-      "coverability" in the proof of \cref{11-avag-hard}.}\label{11-fig:lipton}
+      "coverability" in the proof of \cref{11-th:avag-hard}.}\label{11-fig:lipton}
   \end{figure}
   
   It is hopefully clear that \Eve\ wins the "coverability game" played
@@ -831,7 +842,7 @@ the one-player case.
       (a3) edge node{$-\vec t$} (a4);
     \end{tikzpicture}
     \caption{Schema of the reduction to
-      "non-termination" in the proof of \cref{11-avag-hard}.}\label{11-fig:lipton-nonterm}
+      "non-termination" in the proof of \cref{11-th:avag-hard}.}\label{11-fig:lipton-nonterm}
   \end{figure}
 
   We still need to extend our initialisation phase.  It suffices for
@@ -845,27 +856,28 @@ the one-player case.
   %%\end{scope}
 \end{proof}
 
-The proof of \cref{11-avag-hard} relies crucially on the fact that the
+The proof of \cref{11-th:avag-hard} relies crucially on the fact that the
 dimension is not fixed: although $\dd\geq 3$ suffices in the
 "alternating Minsky machine", we need $O(|\?M|)$ additional counters
 to carry out the reduction.  A separate argument is thus needed in
-order to match the \EXP\ upper bound of \cref{11-avag-easy} in fixed
+order to match the \EXP\ upper bound of \cref{11-th:avag-easy} in fixed
 dimension.
 
-\begin{theorem}\label{11-avag-two}
+\begin{theorem}[Fixed-dimensional coverability and non-termination asymmetric vector games are \EXP-hard]
+\label{11-th:avag-two}
   "Coverability", "non-termination", and "parity@parity vector game"
   "asymmetric" "vector games" with "given initial credit" are
   \EXP-hard in dimension $\dd\geq 2$.
 \end{theorem}
 \begin{proof}
   We exhibit a reduction from "countdown games" with "given initial
-  credit", which are \EXP-complete by \cref{11-countdown-given}.
+  credit", which are \EXP-complete by \cref{11-th:countdown-given}.
   Consider an instance of a "configuration reachability" countdown
   game: a "countdown system"
   $\?V=(\Loc,\Act,\Loc_\mEve,\Loc_\mAdam,1)$ with initial
   configuration $\loc_0(n_0)$ and target
   configuration~$\smiley(0)$---as seen in the proof
-  of \cref{11-countdown-given}, we can indeed assume that the target
+  of \cref{11-th:countdown-given}, we can indeed assume that the target
   credit is zero; we will also assume that \Eve\ controls~$\smiley$ and
   that the only action available in~$\smiley$ is
   $\smiley\step{-1}\smiley$.  We construct an "asymmetric" "vector
@@ -919,7 +931,7 @@ dimension.
       (z5) edge[loop right] node{$\,0,0$} ();
     \end{tikzpicture}
     \caption{Schema of the reduction in the proof
-    of \cref{11-avag-two}.}\label{11-fig:dim2}
+    of \cref{11-th:avag-two}.}\label{11-fig:dim2}
   \end{figure}
     
   The idea behind this translation is that a configuration $\loc(c)$
@@ -941,11 +953,11 @@ dimension.
   shows the \EXP-hardness of "coverability" and "non-termination"
   "asymmetric" "vector games" in dimension~two; the hardness of
   "parity@parity vector game" follows
-  from \cref{11-cov2parity,12-nonterm2parity}.
+  from \cref{11-rk:cov2parity,11-rk:nonterm2parity}.
 \end{proof}
 
   
 \subsection{Dimension One}
-\label{11-subsec:mono-dim1}
+\label{11-sec:mono-dim1}
 %\input{sec-avag-dim1}
-\TODO{contents of \cref{11-subsec:mono-dim1} depend on what goes into \cref{12-chap:multiobjective}}
+\TODO{contents of \cref{11-sec:mono-dim1} depend on what goes into \cref{12-chap:multiobjective}}
