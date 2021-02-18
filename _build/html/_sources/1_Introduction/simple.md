@@ -1,71 +1,33 @@
 (1-sec:simple)=
 # A first model of games
 
+
 ```{math}
-\newcommand{\Eve}{\textrm{Eve}}
-\newcommand{\Adam}{\textrm{Adam}}
-\newcommand{\set}[1]{\left\{ #1 \right\}}
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
-\newcommand{\Q}{\mathbb{Q}}
 \newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
-\newcommand{\argmax}{\textrm{argmax}}
-\newcommand{\argmin}{\textrm{argmin}}
-\newcommand{\Op}{\mathbb{O}}
-\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\textrm{supp}} 
-\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
-\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
+\newcommand{\game}{\mathcal{G}}
+\newcommand{\arena}{\mathcal{A}}
+\newcommand{\col}{\textsf{col}}
+\newcommand{\VE}{V_\mEve}
+\newcommand{\VA}{V_\mAdam}
+\newcommand{\ing}{\textrm{In}}
+\newcommand{\out}{\textrm{Out}}
+\newcommand{\WE}{W_\mEve}
+\newcommand{\WA}{W_\mAdam}
+\newcommand{\Paths}{\textrm{Paths}}
+\newcommand{\play}{\pi}
+\newcommand{\first}{\textrm{first}}
+\newcommand{\last}{\textrm{last}}
+\newcommand{\Value}{\textrm{val}}
+\newcommand{\ValueE}{\textrm{val}_\mEve}
+\newcommand{\ValueA}{\textrm{val}_\mAdam}
+\newcommand{\val}{\Value}
+\newcommand{\Q}{\mathbb{Q}}
 \newcommand{\mEve}{\mathrm{Eve}}
 \newcommand{\mAdam}{\mathrm{Adam}}
-\newcommand{\mRandom}{\mathrm{Random}}
-\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
-\newcommand{\ing}{\textrm{In}}
-\newcommand{\Ing}{\ing}
-\newcommand{\out}{\textrm{Out}}
-\newcommand{\Out}{\out}
-\newcommand{\dest}{\Delta} 
-\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
-\newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
-\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
-\newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\newcommand{\Win}{\textrm{Win}} 
-\newcommand{\Lose}{\textrm{Lose}} 
-\newcommand{\Value}{\textrm{val}} 
-\newcommand{\ValueE}{\textrm{val}_\mEve} 
-\newcommand{\ValueA}{\textrm{val}_\mAdam}
-\newcommand{\val}{\Value} 
-\newcommand{\Automaton}{\mathbf{A}} 
-\newcommand{\Safe}{\mathtt{Safe}}
-\newcommand{\Reach}{\mathtt{Reach}} 
-\newcommand{\Buchi}{\mathtt{Buchi}} 
-\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
-\newcommand{\Parity}{\mathtt{Parity}} 
-\newcommand{\Muller}{\mathtt{Muller}} 
-\newcommand{\Rabin}{\mathtt{Rabin}} 
-\newcommand{\Streett}{\mathtt{Streett}} 
-\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
-\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
-\newcommand{\Energy}{\mathtt{Energy}}
-\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
-\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
-\newcommand{\Sup}{\mathtt{Sup}}
-\newcommand{\Inf}{\mathtt{Inf}}
-\newcommand{\LimSup}{\mathtt{LimSup}}
-\newcommand{\LimInf}{\mathtt{LimInf}}
-\newcommand{\NL}{\textrm{NL}}
-\newcommand{\PTIME}{\textrm{PTIME}}
-\newcommand{\NP}{\textrm{NP}}
-\newcommand{\UP}{\textrm{UP}}
-\newcommand{\coNP}{\textrm{coNP}}
-\newcommand{\coUP}{\textrm{coUP}}
-\newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
-\newcommand{\EXP}{\textrm{EXP}}
-\newcommand{\kEXP}{\textrm{kEXP}}
 ```
+
 The first model we define is the common denominator of most models studied in this book:
 
 *  $2$-player,
@@ -97,18 +59,18 @@ The situation where there are more than two players is called multiplayer games.
 ## Graphs
 
 A (directed) graph is given by a set $V$ of vertices and a set $E \subseteq V \times V$ of edges.
-For an edge $e = (v,v')$ we write $\ing(e)$ for the incoming vertex $v$ and 
-$\out(e)$ for the outgoing vertex $v'$:
+For an edge $e = (v,v')$ we write $\textrm{In}e)$ for the incoming vertex $v$ and 
+$\textrm{Out}e)$ for the outgoing vertex $v'$:
 we say that $e$ is an outgoing edge of $v$ and an incoming edge to $v'$.
 
 A path $\pi = v_0 v_1 \cdots$ is a non empty finite or infinite sequence of consecutive vertices: 
 for all $i$ we have $(v_i,v_{i+1}) \in E$.
-We let $\first(\pi)$ denote the first vertex occurring in $\pi$ and $\last(\pi)$ the last one if $\pi$ is finite.
-We say that $\pi$ starts from $\first(\pi)$ and if $\pi$ is finite $\pi$ ends in $\last(\pi)$.
+We let $\textrm{first}\pi)$ denote the first vertex occurring in $\pi$ and $\textrm{last}\pi)$ the last one if $\pi$ is finite.
+We say that $\pi$ starts from $\textrm{first}\pi)$ and if $\pi$ is finite $\pi$ ends in $\textrm{last}\pi)$.
 We sometimes talk of a path and let the context determine whether it is finite or infinite.
 
-We let $\Paths(G) \subseteq V^+$ denote the set of finite paths in the graph $G$, sometimes omitting $G$ when clear from the context.
-To restrict to paths starting from $v$ we write $\Paths(G,v)$.
+We let $\textrm{Paths}G) \subseteq V^+$ denote the set of finite paths in the graph $G$, sometimes omitting $G$ when clear from the context.
+To restrict to paths starting from $v$ we write $\textrm{Paths}G,v)$.
 The set of infinite paths is $\Paths_\omega(G) \subseteq V^\omega$, and $\Paths_\omega(G,v)$ for those starting from $v$.
 
 We use the standard terminology of graphs: 
@@ -131,10 +93,9 @@ The arena is the place where the game is played, they have also been called game
 
 In the turn based setting we define here, the set of vertices is divided into vertices controlled by each player.
 Since we are for now interested in **$2$-player** games, 
-we have $V = \VE \uplus \VA$, where $\VE$ is the set of vertices controlled by Eve and $\VA$ the set of vertices controlled by Adam.
-We represent vertices in $\VE$ by circles, and vertices in $\VA$ by squares, and also say that $v \in \VE$
-belongs to Eve, or that Eve owns or controls $v$, and similarly for Adam.
-An arena is given by a graph and the sets $\VE$ and $\VA$.
+we have $V = V_\mathrm{Eve}uplus V_\mathrm{Adam} where $V_\mathrm{Eve}is the set of vertices controlled by Eve and $V_\mathrm{Adam}the set of vertices controlled by Adam.
+We represent vertices in $V_\mathrm{Eve}by circles, and vertices in $V_\mathrm{Adam}by squares, and also say that $v \in V_\mathrm{Eve}belongs to Eve, or that Eve owns or controls $v$, and similarly for Adam.
+An arena is given by a graph and the sets $V_\mathrm{Eve}and $V_\mathrm{Adam}
 In the context of games, vertices are often referred to as positions.
 
 
@@ -149,7 +110,8 @@ is played out, in particular they see the other player's moves.
 :align: center
 An example of an arena. Circles are controlled by Eve and squares by Adam.
 ```
-Our definition of an arena does not include the initial vertex.
+Our definition of an arena does not include the initial vertex. 
+
 We assume that all vertices have an outgoing edge.
 This is for technical convenience, as it implies that we do not need to explain what happens when a play cannot be prolonged.
 
@@ -158,9 +120,9 @@ This is for technical convenience, as it implies that we do not need to explain 
 The interaction between the two players consists in moving a token on the vertices of the arena.
 The token is initially on some vertex.
 When the token is in some vertex $v$, the player who controls the vertex chooses an outgoing edge $e$ of $v$
-and pushes the token along this edge to the next vertex $\out(e) = v'$.
+and pushes the token along this edge to the next vertex $\textrm{Out}e) = v'$.
 The outcome of this interaction is the sequence of vertices traversed by the token: it is a path. 
-In the context of games a path is also called a play and as for paths usually written $\play$.
+In the context of games a path is also called a play and as for paths usually written $\pi.
 We note that plays can be finite (but non empty) or infinite.
 
 ## Strategies
@@ -170,14 +132,14 @@ A strategy for a player is a full description of his or her moves in all situati
 Formally, a strategy is a function mapping finite plays to edges: 
 
 $$
-\sigma : \Paths \to E.
+\sigma : \textrm{Paths}\to E.
 $$
 
 We use $\sigma$ for strategies of Eve and $\tau$ for strategies of Adam so when considering a strategy $\sigma$ it is implicitly for Eve,
 and similarly $\tau$ is implicitly a strategy for Adam.
 
-We say that a play $\play = v_0 v_1 \dots$ is consistent with a strategy $\sigma$ of Eve if
-for all $i$ such that $v_i \in \VE$ we have $\sigma(\play_{\le i}) = (v_i,v_{i+1})$.
+We say that a play $\pi= v_0 v_1 \dots$ is consistent with a strategy $\sigma$ of Eve if
+for all $i$ such that $v_i \in V_\mathrm{Eve}we have $\sigma(\play_{\le i}) = (v_i,v_{i+1})$.
 The definition is easily adapted for strategies of Adam.
 
 Once an initial vertex $v$ and two strategies $\sigma$ and $\tau$ have been fixed, 
@@ -192,10 +154,10 @@ There are two types of conditions: the **qualitative**, or Boolean ones, and the
 A qualitative condition is $W \subseteq \Paths_\omega$: it separates winning from losing plays, in other words a play which belongs to $W$ is winning and otherwise it is losing. We also say that the play satisfies $W$.
 In the zero sum context a play which is losing for Eve is winning for Adam, so Adam's condition is $\Paths_\omega \setminus W$.
 
-A quantitative condition is $f : \Paths_\omega \to \Rinfty$: it assigns a real value (or plus or minus infinity) to a play, which can be thought of as a payoff or a score.
+A quantitative condition is $f : \Paths_\omega \to \mathbb{R}\cup \set{\pm \infty}: it assigns a real value (or plus or minus infinity) to a play, which can be thought of as a payoff or a score.
 In the zero sum context Eve wants to maximise while Adam wants to minimise the outcome.
 
-Often we define $W$ as a subset of $V^\omega$ and $f$ as $f : V^\omega \to \Rinfty$,
+Often we define $W$ as a subset of $V^\omega$ and $f$ as $f : V^\omega \to \mathbb{R}\cup \set{\pm \infty},
 since $\Paths_\omega$ is included in $V^\omega$.
 
 ## Objectives
@@ -206,30 +168,30 @@ The main point is that **objectives are independent of the arenas**, so we can s
 and by extension a class of games induced by a given objective, for instance parity games.
 
 We fix a set $C$ of colours. 
-A qualitative objective is $\Omega \subseteq C^\omega$, and a quantitative objective is a function $\Phi : C^\omega \to \Rinfty$. 
+A qualitative objective is $\Omega \subseteq C^\omega$, and a quantitative objective is a function $\Phi : C^\omega \to \mathbb{R}\cup \set{\pm \infty}. 
 
-The link between an arena and an objective is given by a colouring function $\col : V \to C$ labelling vertices of the graph by colours.
-We extend $\col$ componentwise to induce $\col : \Paths_\omega \to C^\omega$ mapping plays to sequences of colours:
-
-$$
-\col(v_0 v_1 \dots) = \col(v_0)\ \col(v_1) \dots
-$$
-
-A qualitative objective $\Omega$ and a colouring function $\col$ induce a qualitative condition $\Omega[\col]$ defined by:
+The link between an arena and an objective is given by a colouring function $\textsf{col}: V \to C$ labelling vertices of the graph by colours.
+We extend $\textsf{col} componentwise to induce $\textsf{col}: \Paths_\omega \to C^\omega$ mapping plays to sequences of colours:
 
 $$
-\Omega[\col] = \set{\play \in \Paths_\omega : \col(\play) \in \Omega}.
+\textsf{col}v_0 v_1 \dots) = \textsf{col}v_0)\ \textsf{col}v_1) \dots
+$$
+
+A qualitative objective $\Omega$ and a colouring function $\textsf{col} induce a qualitative condition $\Omega[\textsf{col}$ defined by:
+
+$$
+\Omega[\textsf{col} = \set{\pi\in \Paths_\omega : \textsf{col}\pi \in \Omega}.
 $$
 
  
-When $\col$ is clear from the context we sometimes say that a play $\play$ satisfies $\Omega$ but the intended meaning is that 
-$\play$ satisfies $\Omega[\col]$, equivalently that $\col(\play) \in \Omega$.
+When $\textsf{col} is clear from the context we sometimes say that a play $\pi satisfies $\Omega$ but the intended meaning is that 
+$\pi satisfies $\Omega[\textsf{col}$, equivalently that $\textsf{col}\pi \in \Omega$.
 
-Similarly, a quantitative objective $\Phi : C^\omega \to \Rinfty$ and a colouring function $\col$ induce 
-a quantitative condition $\Phi[\col] : \Paths_\omega \to \Rinfty$ defined by:
+Similarly, a quantitative objective $\Phi : C^\omega \to \mathbb{R}\cup \set{\pm \infty} and a colouring function $\textsf{col} induce 
+a quantitative condition $\Phi[\textsf{col} : \Paths_\omega \to \mathbb{R}\cup \set{\pm \infty} defined by:
 
 $$
-\Phi[\col](\play) = \Phi(\col(\play)).
+\Phi[\textsf{col}(\pi = \Phi(\textsf{col}\pi).
 $$
 
 
@@ -254,25 +216,25 @@ We can now give the following definitions.
 *  A graph is a tuple $G = (V,E)$ where $V$ is a set of vertices
 and $E$ is a set of edges.
 
-*  An arena is a tuple $\arena = (G,\VE,\VA)$ where $G$ is a graph over the set of vertices $V$ and $V = \VE \uplus \VA$.
+*  An arena is a tuple $\mathcal{A}= (G,V_\mEveV_\mathrm{Adam} where $G$ is a graph over the set of vertices $V$ and $V = V_\mathrm{Eve}uplus V_\mathrm{Adam}
 
-*  A colouring function is a function $\col : V \to C$ where $C$ is a set of colours.
+*  A colouring function is a function $\textsf{col}: V \to C$ where $C$ is a set of colours.
 
 *  A qualitative condition is $W \subseteq \Paths_\omega$.
 
 *  A qualitative objective is a subset $\Omega \subseteq C^\omega$.
-A colouring function $\col$ and a qualitative objective $\Omega$ induce 
-a qualitative condition $\Omega[\col]$.
+A colouring function $\textsf{col} and a qualitative objective $\Omega$ induce 
+a qualitative condition $\Omega[\textsf{col}$.
 
-*  A qualitative game $\game$ is a tuple $(\arena,W)$ where $\arena$ is an arena and $W$ a qualitative condition.
+*  A qualitative game $\mathcal{G} is a tuple $(\mathcal{A}W)$ where $\mathcal{A} is an arena and $W$ a qualitative condition.
 
-*  A quantitative condition is $f : \Paths_\omega \to \Rinfty$.
+*  A quantitative condition is $f : \Paths_\omega \to \mathbb{R}\cup \set{\pm \infty}.
 
-*  A quantitative objective $\Phi$ is a function $\Phi : C^\omega \to \Rinfty$.
-A colouring function $\col$ and a quantitative objective $\Phi$ induce 
-a quantitative condition $\Phi[\col]$.
+*  A quantitative objective $\Phi$ is a function $\Phi : C^\omega \to \mathbb{R}\cup \set{\pm \infty}.
+A colouring function $\textsf{col} and a quantitative objective $\Phi$ induce 
+a quantitative condition $\Phi[\textsf{col}$.
 
-*  A quantitative game $\game$ is a tuple $(\arena,f)$ where $\arena$ is an arena and $f$ a quantitative condition.
+*  A quantitative game $\mathcal{G} is a tuple $(\mathcal{A}f)$ where $\mathcal{A} is an arena and $f$ a quantitative condition.
 
 ````
 
@@ -281,11 +243,11 @@ As a convention we use the condition to qualify games, so for instance parity ga
 This extends to graphs: we speak of a graph with condition $W$ for a graph equipped with a condition $W$,
 and for instance a mean payoff graph if $W$ is a mean payoff condition.
 
-We often introduce notations implicitly: for instance when we introduce a qualitative game $\Game$ without specifying the arena and the condition, it is understood that the arena is $\arena$ and the condition $W$.
+We often introduce notations implicitly: for instance when we introduce a qualitative game $\Game$ without specifying the arena and the condition, it is understood that the arena is $\mathcal{A} and the condition $W$.
 
 We always implicitly take the point of view of Eve. 
 Since we consider zero sum games we can easily reverse the point of view by considering the qualitative game 
-$(\arena,\Paths_\omega \setminus W)$ and the qualitative game $(\arena,-f)$.
+$(\mathcal{A}\Paths_\omega \setminus W)$ and the qualitative game $(\mathcal{A}-f)$.
 Indeed for the latter Adam wants to minimise $f$, which is equivalent to maximising $-f$.
 The term zero sum comes from this: the total outcome for the two players is $f + (-f)$, meaning zero.
 
@@ -300,28 +262,28 @@ Part {ref}`part:infinite` will study games over infinite graphs.
 ## Winning in qualitative games
 
 Now that we have the definitions of a game we can ask the main question: 
-given a game $\game$ and a vertex $v$, who wins $\game$ from $v$?
+given a game $\mathcal{G} and a vertex $v$, who wins $\mathcal{G} from $v$?
 
-Let $\game$ be a qualitative game and $v$ a vertex.
+Let $\mathcal{G} be a qualitative game and $v$ a vertex.
 A strategy $\sigma$ for Eve is called winning from $v$ if every play starting from $v$ consistent with $\sigma$ is winning, 
 **i.e.** satisfies $W$.
 Another common terminology is that $\sigma$ ensures $W$.
-In that case we say that Eve has a winning strategy from $v$ in $\game$, or equivalently that Eve wins $\game$ from $v$.
+In that case we say that Eve has a winning strategy from $v$ in $\mathcal{G}, or equivalently that Eve wins $\mathcal{G} from $v$.
 This vocabulary also applies to Adam: for instance 
 a strategy $\tau$ for Adam is called winning from $v$ if every play starting from $v$ consistent with $\tau$ is losing, 
 **i.e.** does not satisfy $W$.
 
-We let $\WE(\game)$ denote the set of vertices $v$ such that Eve wins $\game$ from $v$,
+We let $W_\mathrm{Eve}mathcal{G}$ denote the set of vertices $v$ such that Eve wins $\mathcal{G} from $v$,
 it is called winning region, or sometimes winning set. 
-A vertex in $\WE(\game)$ is said winning for Eve.
-The analogous notation for Adam is $\WA(\game)$.
+A vertex in $W_\mathrm{Eve}mathcal{G}$ is said winning for Eve.
+The analogous notation for Adam is $W_\mathrm{Adam}mathcal{G}$.
 
-We say that a strategy is optimal if it is winning from all vertices in $\WE(\game)$.
+We say that a strategy is optimal if it is winning from all vertices in $W_\mathrm{Eve}mathcal{G}$.
 
 ````{prf:observation} Winning regions are disjoint
 :label: 1-fact:winning_regions_disjoint
 
-For all qualitative games $\game$ we have $\WE(\game) \cap \WA(\game) = \emptyset$.
+For all qualitative games $\mathcal{G} we have $W_\mathrm{Eve}mathcal{G} \cap W_\mathrm{Adam}mathcal{G} = \emptyset$.
 
 ````
 
@@ -334,13 +296,13 @@ would both satisfy $W$ and not satisfy $W$, a contradiction.
 ````
 
 It is however not clear that for every vertex $v$, **some** player has a winning strategy from $v$,
-which symbolically reads $\WE(\game) \cup \WA(\game) = V$.
+which symbolically reads $W_\mathrm{Eve}mathcal{G} \cup W_\mathrm{Adam}mathcal{G} = V$.
 One might imagine that if Eve picks a strategy, then Adam can produce a counter strategy beating Eve's strategy, 
 and vice versa, if Adam picks a strategy, then Eve can come up with a strategy winning against Adam's strategy.
 A typical example would be rock-paper-scissors (note that this is a concurrent game, meaning the two players play simultanously,
 hence it does not fit in the definitions given so far), where neither player has a winning strategy.
 
-Whenever $\WE(\game) \cup \WA(\game) = V$, we say that the game is determined.
+Whenever $W_\mathrm{Eve}mathcal{G} \cup W_\mathrm{Adam}mathcal{G} = V$, we say that the game is determined.
 Being determined can be understood as follows: the outcome can be determined before playing assuming both players play optimally since one of them can ensure to win whatever is the strategy of the opponent.
 
 ````{prf:theorem} Borel determinacy
@@ -365,9 +327,9 @@ to make complexity theoretic statements.
 
 For qualitative games, solving the game means solving the following decision problem:
 
-**INPUT**: A qualitative game $\game$ and a vertex $v$
+**INPUT**: A qualitative game $\mathcal{G} and a vertex $v$
 
-**QUESTION**: Does Eve win $\game$ from $v$?
+**QUESTION**: Does Eve win $\mathcal{G} from $v$?
 
 ```
 
@@ -378,9 +340,9 @@ This is called computing the winning regions.
 
 For qualitative games, computing the winning regions means solving the following computational task:
 
-**INPUT**: A qualitative game $\game$
+**INPUT**: A qualitative game $\mathcal{G}
 
-**COMPUTE**: $\WE(\game)$ and $\WA(\game)$
+**COMPUTE**: $W_\mathrm{Eve}mathcal{G}$ and $W_\mathrm{Adam}mathcal{G}$
 
 ```
 
@@ -390,7 +352,7 @@ The third problem is constructing a winning strategy.
 
 For qualitative games, constructing a winning strategy means solving the following computational task:
 
-**INPUT**: A qualitative game $\game$ and a vertex $v$
+**INPUT**: A qualitative game $\mathcal{G} and a vertex $v$
 
 **COMPUTE**: A winning strategy for Eve from $v$
 
@@ -400,49 +362,49 @@ We did not specify how the winning regions or the winning strategies are represe
 
 ## Values in quantitative games
 
-Let $\game$ be a quantitative game and $v$ a vertex.
-Given $x \in \R$ called a threshold, we say that a strategy $\sigma$ for Eve ensures $x$ from $v$ 
+Let $\mathcal{G} be a quantitative game and $v$ a vertex.
+Given $x \in \mathbb{R} called a threshold, we say that a strategy $\sigma$ for Eve ensures $x$ from $v$ 
 if every play $\pi$ starting from $v$ consistent with $\sigma$ has value at least $x$ under $f$,
-**i.e.** $f(\play) \ge x$.
-In that case we say that Eve has a strategy ensuring $x$ in $\game$ from $v$.
+**i.e.** $f(\pi \ge x$.
+In that case we say that Eve has a strategy ensuring $x$ in $\mathcal{G} from $v$.
 
 Note that by doing so we are actually considering a qualitative game in disguise, 
 where the qualitative condition is the set of plays having value at least $x$ under $f$.
 Formally, a quantitative condition $f$ and a threshold $x$ induce a qualitative condition 
 
 $$
-f_{\ge x} = \set{\play \in \Paths_\omega \mid f(\play) \ge x}.
+f_{\ge x} = \set{\pi\in \Paths_\omega \mid f(\pi \ge x}.
 $$
 
 
 Analogously, we say that a strategy $\tau$ for Adam ensures $x$ from $v$ 
-if every play $\play$ starting from $v$ consistent with $\tau$ has value at most $x$ under $f$,
-**i.e.** $f(\play) \le x$.
+if every play $\pi starting from $v$ consistent with $\tau$ has value at most $x$ under $f$,
+**i.e.** $f(\pi \le x$.
 
-We let $\ValueE^{\game}(v)$ denote the quantity
+We let $\textrm{val}_\mathrm{Eve}\mathcal{G}(v)$ denote the quantity
 
 $$
 \sup_{\sigma} \inf_{\tau} f(\play_{\sigma,\tau}^{v}),
 $$
 
 where $\sigma$ ranges over all strategies of Eve and $\tau$ over all strategies of Adam.
-We also write $\ValueE^{\sigma}(v) = \inf_{\tau} f(\play_{\sigma,\tau}^{v})$
-so that $\ValueE^{\game}(v) = \sup_{\sigma} \ValueE^\sigma(v)$.
-This is called the value of Eve in the game $\game$ from $v$,
+We also write $\textrm{val}_\mathrm{Eve}\sigma}(v) = \inf_{\tau} f(\play_{\sigma,\tau}^{v})$
+so that $\textrm{val}_\mathrm{Eve}\mathcal{G}(v) = \sup_{\sigma} \textrm{val}_\mathrm{Eve}sigma(v)$.
+This is called the value of Eve in the game $\mathcal{G} from $v$,
 and represents the best outcome that she can ensure against any strategy of Adam.
-Note that $\ValueE^{\game}(v)$ is either a real number, $\infty$, or $-\infty$.
+Note that $\textrm{val}_\mathrm{Eve}\mathcal{G}(v)$ is either a real number, $\infty$, or $-\infty$.
 
-A strategy $\sigma$ such that $\ValueE^\sigma(v) = \ValueE^{\game}(v)$ is called optimal from $v$,
+A strategy $\sigma$ such that $\textrm{val}_\mathrm{Eve}sigma(v) = \textrm{val}_\mathrm{Eve}\mathcal{G}(v)$ is called optimal from $v$,
 and it is simply optimal if the equality holds for all vertices.
-Equivalently, $\sigma$ is optimal from $v$ if for every play $\play$ consistent with $\sigma$ starting from $v$ 
-we have $f(\play) \ge \ValueE^{\game}(v)$.
+Equivalently, $\sigma$ is optimal from $v$ if for every play $\pi consistent with $\sigma$ starting from $v$ 
+we have $f(\pi \ge \textrm{val}_\mathrm{Eve}\mathcal{G}(v)$.
 
 There may not exist optimal strategies which is why we introduce the following notion.
-For $\varepsilon > 0$, a strategy $\sigma$ such that $\ValueE^\sigma(v) \ge \ValueE^{\game}(v) - \varepsilon$
+For $\varepsilon > 0$, a strategy $\sigma$ such that $\textrm{val}_\mathrm{Eve}sigma(v) \ge \textrm{val}_\mathrm{Eve}\mathcal{G}(v) - \varepsilon$
 is called $\varepsilon$-optimal.
-If $\ValueE^{\game}(v)$ is finite there exist $\varepsilon$-optimal strategies for any $\varepsilon > 0$.
+If $\textrm{val}_\mathrm{Eve}\mathcal{G}(v)$ is finite there exist $\varepsilon$-optimal strategies for any $\varepsilon > 0$.
 
-Symmetrically, we let $\ValueA^{\game}(v)$ denote 
+Symmetrically, we let $\textrm{val}_\mathrm{Adam}\mathcal{G}(v)$ denote 
 
 $$
 \inf_{\tau} \sup_{\sigma} f(\play_{\sigma,\tau}^{v}).
@@ -452,14 +414,14 @@ $$
 ````{prf:observation} Comparison of values for Eve and Adam
 :label: 1-fact:comparaison_values_eve_adam
 
-For all quantitative games $\game$ and vertex $v$ we have $\ValueE^{\game}(v) \le \ValueA^{\game}(v)$.
+For all quantitative games $\mathcal{G} and vertex $v$ we have $\textrm{val}_\mathrm{Eve}\mathcal{G}(v) \le \textrm{val}_\mathrm{Adam}\mathcal{G}(v)$.
 
 ````
 
 ````{admonition} Proof
 :class: dropdown tip
 
-For any function $F : X \times Y \to \Rinfty$, we have 
+For any function $F : X \times Y \to \mathbb{R}\cup \set{\pm \infty}, we have 
 
 $$
 \sup_{x \in X} \inf_{y \in Y} F(x,y) \le \inf_{y \in Y} \sup_{x \in X} F(x,y).
@@ -468,44 +430,44 @@ $$
 
 ````
 
-If this inequality is an equality, we say that the game $\game$ is **determined** in $v$,
-and let $\Value^{\game}(v)$ denote the value in the game $\game$ from $v$
-and $\Value^\sigma(v)$ for $\inf_{\tau} f(\play_{\sigma,\tau}^{v})$.
+If this inequality is an equality, we say that the game $\mathcal{G} is **determined** in $v$,
+and let $\textrm{val}{\mathcal{G}(v)$ denote the value in the game $\mathcal{G} from $v$
+and $\textrm{val}\sigma(v)$ for $\inf_{\tau} f(\play_{\sigma,\tau}^{v})$.
 Similarly as for the qualitative case, being determined can be understood as follows: the outcome can be determined before playing assuming both players play optimally, and in that case the outcome is the value.
 
-We say that a quantitative objective $f : C^\omega \to \Rinfty$ is Borel if for all $x \in \R$,
+We say that a quantitative objective $f : C^\omega \to \mathbb{R}\cup \set{\pm \infty} is Borel if for all $x \in \mathbb{R},
 the qualitative objective $f_{\ge x} \subseteq C^\omega$ is a Borel set.
 
 ````{prf:corollary} Borel determinacy for quantitative games
 :label: 1-cor:borel_determinacy
 
 Quantitative games with Borel conditions are determined, meaning that
-for all quantitative games $\game$ we have $\ValueE^{\game} = \ValueA^{\game}$.
+for all quantitative games $\mathcal{G} we have $\textrm{val}_\mathrm{Eve}\mathcal{G} = \textrm{val}_\mathrm{Adam}\mathcal{G}$.
 
 ````
 
 ````{admonition} Proof
 :class: dropdown tip
 
-If $\ValueE^{\game}(v) = \infty$ then thanks to the inequality above $\ValueA^{\game}(v) = \infty$ and the equality holds.
-Assume $\ValueE^{\game}(v) = -\infty$ and let $r$ be a real number.
+If $\textrm{val}_\mathrm{Eve}\mathcal{G}(v) = \infty$ then thanks to the inequality above $\textrm{val}_\mathrm{Adam}\mathcal{G}(v) = \infty$ and the equality holds.
+Assume $\textrm{val}_\mathrm{Eve}\mathcal{G}(v) = -\infty$ and let $r$ be a real number.
 (The argument is actually the same as for the finite case but for the sake of clarity we treat them independently.)
 We consider $f_{\ge r}$.
 By definition, this a qualitative Borel condition, so  {prf:ref}`1-thm:borel_determinacy` implies that it is determined.
-Since Eve cannot have a winning strategy for $f_{\ge r}$, as this would contradict the definition of $\ValueE^{\game}(v)$,
+Since Eve cannot have a winning strategy for $f_{\ge r}$, as this would contradict the definition of $\textrm{val}_\mathrm{Eve}\mathcal{G}(v)$,
 this implies that Adam has a winning strategy for $f_{\ge r}$, 
-meaning a strategy $\tau$ such that every play $\play$ starting from $v$ consistent with $\tau$ satisfy $f(\play) < r$.
-In other words, $\ValueA^{\tau}(v) = \sup_{\sigma} f(\play_{\sigma,\tau}^{v}) \le r$, which implies that $\ValueA^{\game}(v) \le r$.
-Since this is true for any real number $r$, this implies $\ValueA^{\game}(v) = -\infty$.
+meaning a strategy $\tau$ such that every play $\pi starting from $v$ consistent with $\tau$ satisfy $f(\pi < r$.
+In other words, $\textrm{val}_\mathrm{Adam}\tau}(v) = \sup_{\sigma} f(\play_{\sigma,\tau}^{v}) \le r$, which implies that $\textrm{val}_\mathrm{Adam}\mathcal{G}(v) \le r$.
+Since this is true for any real number $r$, this implies $\textrm{val}_\mathrm{Adam}\mathcal{G}(v) = -\infty$.
 
-Let us now assume that $x = \ValueE^{\game}(v)$ is finite and let $\varepsilon > 0$.
+Let us now assume that $x = \textrm{val}_\mathrm{Eve}\mathcal{G}(v)$ is finite and let $\varepsilon > 0$.
 We consider $f_{\ge x + \varepsilon}$.
 By definition, this a qualitative Borel condition, so  {prf:ref}`1-thm:borel_determinacy` implies that it is determined.
-Since Eve cannot have a winning strategy for $f_{\ge x + \varepsilon}$, as this would contradict the definition of $\ValueE^{\game}(v)$,
+Since Eve cannot have a winning strategy for $f_{\ge x + \varepsilon}$, as this would contradict the definition of $\textrm{val}_\mathrm{Eve}\mathcal{G}(v)$,
 this implies that Adam has a winning strategy for $f_{\ge x + \varepsilon}$, 
-meaning a strategy $\tau$ such that every play $\play$ starting from $v$ consistent with $\tau$ satisfy $f(\play) < x + \varepsilon$.
-In other words, $\ValueA^{\tau}(v) = \sup_{\sigma} f(\play_{\sigma,\tau}^{v}) \le x + \varepsilon$, which implies that $\ValueA^{\game}(v) \le x + \varepsilon$.
-Since this is true for any $\varepsilon > 0$, this implies $\ValueA^{\game}(v) \le \ValueE^{\game}(v)$.
+meaning a strategy $\tau$ such that every play $\pi starting from $v$ consistent with $\tau$ satisfy $f(\pi < x + \varepsilon$.
+In other words, $\textrm{val}_\mathrm{Adam}\tau}(v) = \sup_{\sigma} f(\play_{\sigma,\tau}^{v}) \le x + \varepsilon$, which implies that $\textrm{val}_\mathrm{Adam}\mathcal{G}(v) \le x + \varepsilon$.
+Since this is true for any $\varepsilon > 0$, this implies $\textrm{val}_\mathrm{Adam}\mathcal{G}(v) \le \textrm{val}_\mathrm{Eve}\mathcal{G}(v)$.
 As we have seen the converse inequality holds, implying the equality.
 
 ````
@@ -520,7 +482,7 @@ The first is solving the game.
 
 For quantitative games, solving the game means solving the following decision problem:
 
-**INPUT**: A quantitative game $\game$, a vertex $v$, and a threshold $x \in \Qinfty$
+**INPUT**: A quantitative game $\mathcal{G}, a vertex $v$, and a threshold $x \in \mathbb{Q}\cup \set{\pm \infty}
 
 **QUESTION**: Does Eve have a strategy ensuring $x$ from $v$?
 
@@ -531,9 +493,9 @@ A very close problem is the value problem.
 
 For quantitative games, solving the value problem means solving the following decision problem:
 
-**INPUT**: A quantitative game $\game$, a vertex $v$, and a threshold $x \in \Qinfty$
+**INPUT**: A quantitative game $\mathcal{G}, a vertex $v$, and a threshold $x \in \mathbb{Q}\cup \set{\pm \infty}
 
-**QUESTION**: Is it true that $\Value^{\game}(v) \ge x$?
+**QUESTION**: Is it true that $\textrm{val}{\mathcal{G}(v) \ge x$?
 
 ```
 
@@ -545,9 +507,9 @@ The value problem is directly related to computing the value.
 
 For quantitative games, computing the value means solving the following computational task:
 
-**INPUT**: A quantitative game $\game$ and a vertex $v$
+**INPUT**: A quantitative game $\mathcal{G} and a vertex $v$
 
-**COMPUTE**: $\Value^{\game}(v)$
+**COMPUTE**: $\textrm{val}{\mathcal{G}(v)$
 
 ```
 
@@ -570,9 +532,9 @@ The following problem is global, in the same way as computing the winning region
 
 For quantitative games, computing the value function means solving the following computational task:
 
-**INPUT**: A quantitative game $\game$
+**INPUT**: A quantitative game $\mathcal{G}
 
-**COMPUTE**: The value function $\Value^{\game} : V \to \Rinfty$
+**COMPUTE**: The value function $\textrm{val}{\mathcal{G} : V \to \mathbb{R}\cup \set{\pm \infty}
 
 ```
 
@@ -581,7 +543,7 @@ Finally, we are sometimes interested in constructing optimal strategies provided
 
 For quantitative games, constructing an optimal strategy means solving the following computational task:
 
-**INPUT**: A quantitative game $\game$ and a vertex $v$
+**INPUT**: A quantitative game $\mathcal{G} and a vertex $v$
 
 **COMPUTE**: An optimal strategy from $v$
 
@@ -599,10 +561,10 @@ if $\rho \rho' \in \Omega$ then $\rho' \in \Omega$;
 *  prefix independent if it is closed under both adding and removing prefixes;
 in other words whether a sequence satisfies $\Omega$ does not depend upon finite prefixes.
 
-Let $\play$ be a finite play consistent with $\sigma$, we write $\sigma_{\mid \play}$ for the strategy defined by
+Let $\pi be a finite play consistent with $\sigma$, we write $\sigma_{\mid \pi$ for the strategy defined by
 
 $$
-\sigma_{\mid \play}(\play') = \sigma(\play \play').
+\sigma_{\mid \pi(\pi) = \sigma(\pi\pi).
 $$
 
 
@@ -612,18 +574,18 @@ $$
 
 Let $\Game$ be a qualitative game with objective $\Omega$ closed under removing prefixes,
 $\sigma$ a winning strategy from $v$,
-and $\play$ a finite play consistent with $\sigma$ starting from $v$.
-Then $\sigma_{\mid \play}$ is winning from $v' = \last(\play)$.
+and $\pi a finite play consistent with $\sigma$ starting from $v$.
+Then $\sigma_{\mid \pi$ is winning from $v' = \textrm{last}\pi$.
 
 ````
 
 ````{admonition} Proof
 :class: dropdown tip
 
-Let $\play'$ be an infinite play consistent with $\sigma_{\mid \play}$ from $v'$,
-then $\play \play'$ is an infinite play consistent with $\sigma$ starting from $v$, 
+Let $\pi$ be an infinite play consistent with $\sigma_{\mid \pi$ from $v'$,
+then $\pi\pi$ is an infinite play consistent with $\sigma$ starting from $v$, 
 implying that it is winning, and since $\Omega$ is closed under removing prefixes
-the play $\play'$ is winning. Thus $\sigma_{\mid \play}$ is winning from $v'$.
+the play $\pi$ is winning. Thus $\sigma_{\mid \pi$ is winning from $v'$.
 
 ````
 
@@ -652,18 +614,18 @@ The fact above extends to quantitative objectives with the same proof.
 :label: 1-fact:winning_prefix_independent_quantitative
 
 Let $\Game$ be a quantitative game with objective $\Phi$ monotonic under removing prefixes,
-$\sigma$ a strategy ensuring $x$ from $v$, and $\play$ a finite play consistent with $\sigma$ starting from $v$.
-Then $\sigma_{\mid \play}$ ensures $x$ from $v' = \last(\play)$.
+$\sigma$ a strategy ensuring $x$ from $v$, and $\pi a finite play consistent with $\sigma$ starting from $v$.
+Then $\sigma_{\mid \pi$ ensures $x$ from $v' = \textrm{last}\pi$.
 
 ````
 
 ````{admonition} Proof
 :class: dropdown tip
 
-Let $\play'$ be an infinite play consistent with $\sigma_{\mid \play}$ from $v'$,
-then $\play \play'$ is an infinite play consistent with $\sigma$ starting from $v$, 
-implying that $\Phi(\play \play') \ge x$, and since $\Phi$ is monotonic under removing prefixes
-this implies that $\Phi(\play') \ge x$. Thus $\sigma_{\mid \play}$ ensures $x$ from $v'$.
+Let $\pi$ be an infinite play consistent with $\sigma_{\mid \pi$ from $v'$,
+then $\pi\pi$ is an infinite play consistent with $\sigma$ starting from $v$, 
+implying that $\Phi(\pi\pi) \ge x$, and since $\Phi$ is monotonic under removing prefixes
+this implies that $\Phi(\pi) \ge x$. Thus $\sigma_{\mid \pi$ ensures $x$ from $v'$.
 
 ````
 
@@ -672,7 +634,7 @@ this implies that $\Phi(\play') \ge x$. Thus $\sigma_{\mid \play}$ ensures $x$ f
 :label: 1-cor:comparison_values_along_play
 
 Let $\Game$ be a quantitative game with objective $\Phi$ monotonic under removing prefixes and $\sigma$ an optimal strategy from $v$.
-Then for all vertices $v'$ reachable from $v$ by a play consistent with $\sigma$ we have $\val^{\game}(v) \le \val^{\game}(v')$.
+Then for all vertices $v'$ reachable from $v$ by a play consistent with $\sigma$ we have $\textrm{val}\mathcal{G}(v) \le \textrm{val}\mathcal{G}(v')$.
 
 ````
 

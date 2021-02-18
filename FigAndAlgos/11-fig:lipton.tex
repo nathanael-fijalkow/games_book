@@ -1,0 +1,56 @@
+\documentclass[preview,border=0mm,convert={density=600,outext=.png}]{standalone}
+\usepackage{amsfonts,amssymb,amsmath}
+\usepackage{tikz}
+\usetikzlibrary{automata,shapes,patterns,calc,arrows}
+\input{../tikz-style.tex}
+\input{../norenew_macros.tex}
+\input{./../11_Counters/norenew_macros_local.tex}
+\begin{document}
+\begin{tikzpicture}[auto,on grid,node distance=1.5cm]
+      \node(to){$\mapsto$};
+      \node[anchor=east,left=2.5cm of to](mm){"alternating Minsky machine"};
+      \node[anchor=west,right=2.5cm of to](mwg){"asymmetric vector system"};
+      
+      \node[below=.7cm of to](imap){$\rightsquigarrow$};
+      \node[s-eve,left=2.75cm of imap](i0){$\loc$};
+      \node[right=of i0](i1){$\loc'$};
+      \node[right=1.25cm of imap,s-eve](i2){$\loc$};
+      \node[right=1.8 of i2](i3){$\loc'$};      
+      \path[arrow,every node/.style={font=\footnotesize}]
+      (i0) edge node{$\vec e_i$} (i1)
+      (i2) edge node{$\vec c_i-\bar{\vec c}_i$} (i3);
+      
+      \node[below=1cm of imap](dmap){$\rightsquigarrow$};
+      \node[s-eve,left=2.75cm of dmap](d0){$\loc$};
+      \node[right=of d0](d1){$\loc'$};
+      \node[right=1.25cm of dmap,s-eve](d2){$\loc$};
+      \node[right=1.8 of d2](d3){$\loc'$};
+      \path[arrow,every node/.style={font=\footnotesize}]
+      (d0) edge node{$-\vec e_i$} (d1)
+      (d2) edge node{$-\vec c_i+\bar{\vec c}_i$} (d3);
+      
+      \node[below=1.5cm of dmap](zmap){$\rightsquigarrow$};
+      \node[s-eve,left=2.75cm of zmap](z0){$\loc$};
+      \node[right=of z0](z1){$\loc'$};
+      \node[right=1.25cm of zmap,s-eve](z2){$\loc$};
+      \node[right=of z2,s-adam-small](z3){};
+      \node[above right=.8 and 1.1 of z3,s-eve-small](z4){};
+      \node[below right=.8 and 1.1 of z3,inner sep=0pt](z5){$\loc'$};
+      \node[right=1.8 of z4](z6){$\loc_\mathtt{halt}$};
+      \path[arrow,every node/.style={font=\footnotesize}]
+      (z0) edge node{$i\eqby?0$} (z1)
+      (z2) edge node{$\vec 0$} (z3)
+      (z3) edge node{$\vec 0$} (z4)
+      (z3) edge[swap] node{$\vec 0$} (z5)
+      (z4) edge node{$-2^{2^n}\cdot\bar{\vec c}_i$} (z6);
+      
+      \node[below=1.5cm of zmap](amap){$\rightsquigarrow$};
+      \node[s-adam,left=2.75cm of amap](a0){$\loc$};
+      \node[right=of a0](a1){$\loc'$};
+      \node[right=1.25cm of amap,s-adam](a2){$\loc$};
+      \node[right=of a2](a3){$\loc'$};
+      \path[arrow,every node/.style={font=\footnotesize}]
+      (a0) edge node{$\vec 0$} (a1)
+      (a2) edge node{$\vec 0$} (a3);
+    \end{tikzpicture}
+\end{document}

@@ -1,0 +1,68 @@
+\documentclass[preview,border=0mm,convert={density=600,outext=.png}]{standalone}
+\usepackage{amsfonts,amssymb,amsmath}
+\usepackage{tikz}
+\usetikzlibrary{automata,shapes,patterns,calc,arrows}
+\input{../tikz-style.tex}
+\input{../norenew_macros.tex}
+\input{./../9_Timed/norenew_macros_local.tex}
+\begin{document}
+\begin{tikzpicture}[node distance=2.5cm,auto]
+
+%    \path[use as bounding box] (-2,-1) -- (2,0);
+    
+    \node[state] at (0,0) (A) {$\ell$};
+    \draw[initial] (A.-135) -- +(-135:3mm);
+    \node[state,double] at (2.5,0) (B) {$\ell_1$};
+    \node[state] at (-2.5,0) (C) {$\ell_2$};
+    \path[arrow] 
+    (A) edge node[above] {$\genfrac{}{}{0pt}{0}{-2 \leq x_1-x_2 \leq 1}{{}\wedge x_2 \leq 3}$} (B)
+    (A) edge[dashed] node[above] {$1\leq x_1,x_2 \leq 2$} (C);
+    
+    \begin{scope}[xshift=4cm,yshift=-1cm,scale=.45]
+      \draw[latex'-latex'] (4.5,0) node[right] {$x_1$}
+        -| (0,4.5) node[left] {$x_2$};
+      \begin{scope}
+        \path[clip] (0,0) -- (4.5,0) [rounded corners=12mm]
+          -- (4.5,4.5) [rounded corners=0mm] -| (0,0);
+        \fill[dgrey,fillarea] (1,0) -- (2,1) -| (1,2) -| (2,1) -- (4,3) -- (1,3) -- (0,2) |- cycle;
+          \begin{scope}[opacity=.3]
+            \foreach \x in {-4,...,4}
+                 {\draw (\x,0) -- +(9,9);
+                   \draw (0,\x) -- +(9,0);
+                   \draw (\x,0) -- +(0,9);}
+          \end{scope}
+      \end{scope}
+
+%      \path (4,1.5) node (Y) {$\posttime(Z)$} edge[-latex',bend right=20] (2.9,2.7);
+    \end{scope}
+
+%
+%
+%
+%
+%
+
+
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+  \end{tikzpicture}
+\end{document}

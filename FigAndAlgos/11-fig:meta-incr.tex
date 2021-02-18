@@ -1,0 +1,33 @@
+\documentclass[preview,border=0mm,convert={density=600,outext=.png}]{standalone}
+\usepackage{amsfonts,amssymb,amsmath}
+\usepackage{tikz}
+\usetikzlibrary{automata,shapes,patterns,calc,arrows}
+\input{../tikz-style.tex}
+\input{../norenew_macros.tex}
+\input{./../11_Counters/norenew_macros_local.tex}
+\begin{document}
+\begin{tikzpicture}[auto,on grid,node distance=1.55cm]
+      \node[s-eve](0){$\loc$};
+      \node[s-eve-small,right=of 0](1){};
+      \node[s-eve-small,right=of 1](2){};
+      \node[s-eve-small,right=of 2](3){};
+      \node[s-eve-small,right=of 3](4){};
+      \node[s-eve-small,right=of 4](5){};
+      \node[s-eve-small,right=of 5](6){};
+      \node[s-eve,right=of 6](7){$\loc'$};
+      \path[arrow,every node/.style={font=\footnotesize,inner sep=2pt}]
+      (0) edge node{$2^{2^j}\cdot\vec x_{j}$} (1)
+      (1) edge node{$2^{2^j}\cdot\vec z_{j}$} (2)
+      (2) edge node{$\bar{\vec x}_{j}-\vec x_{j}$} (3)
+      (3) edge node{$\bar{\vec z}_{j}-\vec z_{j}$} (4)
+      (4) edge node{$\vec c$} (5)
+      (5) edge node{$-2^{2^j}\cdot\bar{\vec z}_{j}$} (6)
+      (6) edge node{$-2^{2^j}\cdot\bar{\vec x}_{j}$} (7);
+      \draw[->,rounded corners=10pt,>=stealth'] (5) --
+      (7.4,.65) -- (5,.65) -- (3);
+      \node[font=\footnotesize,inner sep=2pt] at (6.2,.75) {$\vec 0$};
+      \draw[->,rounded corners=10pt,>=stealth'] (6) --
+      (8.95,1.25) -- (1.9,1.25) -- (1);
+      \node[font=\footnotesize,inner sep=2pt] at (5.43,1.35) {$\vec 0$};
+    \end{tikzpicture}
+\end{document}

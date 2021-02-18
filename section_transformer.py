@@ -1,6 +1,7 @@
 import re
 
 from macros_transformer import macros_transformer
+from rewrite_macros import rewrite_macros
 
 def match_next(s, i=0, d=0):
 	if s[i] == '{':
@@ -54,7 +55,7 @@ def section_transformer(nb_chap, file_name, path, title, label):
 		content = "(" + nb_chap + "-sec:" + label + ")=\n# " + title + "\n\n" + content
 
 	#### Remove comments
-	content = re.sub(r'[^\\]%(.*?)\n', r'', content)
+	content = re.sub(r'([^\\])%(.*?)\n', r'\1\n', content)
 	#### Remove tilde
 	content = re.sub(r'~\$', r' $', content)
 	#### Remove hfill
@@ -141,11 +142,11 @@ def section_transformer(nb_chap, file_name, path, title, label):
 		h = open("FigAndAlgos/" + x[1] + ".tex", 'w')
 		macros_transformer(path,"macros_local.tex")
 		h.write("\\documentclass[preview,border=0mm,convert={density=600,outext=.png}]{standalone}\n\
+\\usepackage{amsfonts,amssymb,amsmath}\n\
 \\usepackage{tikz}\n\\usetikzlibrary{automata,shapes,patterns,calc,arrows}\n\
-\\input{tikz-style.tex}\n\
-\\input{norenew_macros.tex}\n\
+\\input{../tikz-style.tex}\n\
+\\input{../norenew_macros.tex}\n\
 \\input{./../" + path + "norenew_macros_local.tex}\n\
-\\usepackage{amsfonts}\n\
 \\begin{document}\n" + x[0] + "\n\\end{document}")
 
 	pattern = r'\\begin\{figure\*?\}[\s\S]*?\\begin\{tikzpicture\}[\s\S]*?\\end\{tikzpicture\}[\s\S]*?\\caption\{([\s\S]*?)\}\s*?\\label\{(.*?)\}\s*?\\end\{figure\*?\}'
@@ -163,10 +164,10 @@ def section_transformer(nb_chap, file_name, path, title, label):
 		h = open("FigAndAlgos/" + x[2] + ".tex", 'w')
 		macros_transformer(path,"macros_local.tex")
 		h.write("\\documentclass[preview,border=0mm,convert={density=600,outext=.png}]{standalone}\n\
-\\input{norenew_macros.tex}\n\
-\\input{./../" + path + "norenew_macros_local.tex}\n\
-\\usepackage{amsfonts}\n\
+\\usepackage{amsfonts,amssymb,amsmath}\n\
 \\usepackage[norelsize,ruled,vlined,noend]{algorithm2e}\n\
+\\input{../norenew_macros.tex}\n\
+\\input{./../" + path + "norenew_macros_local.tex}\n\
 \\begin{document}\n\\begin{algorithm}[H]\n" + re.sub(r'\\text\{', r'\\textrm{', x[0]) + "\n\\end{algorithm}\n\\end{document}")
 		h.close()
 
@@ -455,3 +456,6 @@ def section_transformer(nb_chap, file_name, path, title, label):
 	g = open(path + file_name + ".md", "w")
 	g.write(content)
 	g.close()
+
+	rewrite_macros(path,file_name)
+

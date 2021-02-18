@@ -1,109 +1,16 @@
 (9-sec:forward_algorithm)=
 # Forward Algorithm
 
+
 ```{math}
-\usepackage{amsmath}
-  
-\newcommand*\Realnn{\mathbb{R}_{\geq 0}}
-\newcommand*\Clocks{\mathcal{C}}
-\newcommand*\TA{\ensuremath{\mathcal{A}}}
-\newcommand*\Locs{\mathcal{L}}
-\newcommand*\Clocksz{\mathcal{C}_0}
-\newcommand*\calQ{\mathcal{Q}}
-\newcommand*\state{\mathsf{state}}
-\newcommand*\trans{\mathsf{trans}}
-\newcommand*\post{\mathsf{post}}
-\newcommand*\step{\mathsf{step}}
-\newcommand*\postta{\ensuremath{\textrm{\sf Post}}}
-\newcommand*\preta{\ensuremath{\textrm{\sf Pre}}}
-\newcommand*\unreset{\ensuremath{\textrm{\sf Unreset}}}
-\newcommand*\posttime{\ensuremath{\textrm{\sf Post}_{\geq 0}}}
-\newcommand*\pretime{\ensuremath{\textrm{\sf Pre}_{\geq 0}}} \newcommand*\reset{\mathsf{Reset}}
-\newcommand{\sem}[1]{\ensuremath{#1}}
-\newcommand{\size}[1]{\ensuremath{|#1|}}
-
-\def\predc{\textrm{\sf Pred}_c}
-\def\predt{\textrm{\sf Pred}_{\geq 0}} \def\predu{\textrm{\sf Pred}_u}
-\def\calP{\mathcal P}
-\def\calC{\mathcal C}
-\def\calT{\mathcal T}
-\def\Dep{\textsf{Dep}}
-\def\Wait{\textsf{Wait}}
-\def\Passed{\textsf{Passed}}
-\def\Act{\textsf{Act}}
-\def\EA{E_{\Adam}}
-\def\EE{E_{\Eve}}
-
-\newcommand\zone[1]{\ensuremath{\left\llbracket#1\right\rrbracket}}
-\def\NM#1{\textcolor{green!50!black}{\checkmark}\marginpar{\color{green!50!black}NM: #1}} 
-\long\def\NMlong#1{\medskip\par{\color{green!50!black}NM: #1}\medskip\par}
-\def\OS#1{\textcolor{blue!50!black}{\checkmark}\marginpar{\color{blue!50!black}OS: #1}} 
-\long\def\OSlong#1{\medskip\par{\color{blue!50!black}OS: #1}\medskip\par}
-
 \newcommand{\Eve}{\textrm{Eve}}
 \newcommand{\Adam}{\textrm{Adam}}
-\newcommand{\set}[1]{\left\{ #1 \right\}}
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
-\newcommand{\argmax}{\textrm{argmax}}
-\newcommand{\argmin}{\textrm{argmin}}
-\newcommand{\Op}{\mathbb{O}}
-\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\textrm{supp}} 
-\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
-\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
-\newcommand{\mEve}{\mathrm{Eve}}
-\newcommand{\mAdam}{\mathrm{Adam}}
-\newcommand{\mRandom}{\mathrm{Random}}
-\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
-\newcommand{\ing}{\textrm{In}}
-\newcommand{\Ing}{\ing}
-\newcommand{\out}{\textrm{Out}}
-\newcommand{\Out}{\out}
-\newcommand{\dest}{\Delta} 
-\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
-\newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
-\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
-\newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\newcommand{\Win}{\textrm{Win}} 
-\newcommand{\Lose}{\textrm{Lose}} 
-\newcommand{\Value}{\textrm{val}} 
-\newcommand{\ValueE}{\textrm{val}_\mEve} 
-\newcommand{\ValueA}{\textrm{val}_\mAdam}
-\newcommand{\val}{\Value} 
-\newcommand{\Automaton}{\mathbf{A}} 
-\newcommand{\Safe}{\mathtt{Safe}}
-\newcommand{\Reach}{\mathtt{Reach}} 
-\newcommand{\Buchi}{\mathtt{Buchi}} 
-\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
-\newcommand{\Parity}{\mathtt{Parity}} 
-\newcommand{\Muller}{\mathtt{Muller}} 
-\newcommand{\Rabin}{\mathtt{Rabin}} 
-\newcommand{\Streett}{\mathtt{Streett}} 
-\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
-\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
-\newcommand{\Energy}{\mathtt{Energy}}
-\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
-\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
-\newcommand{\Sup}{\mathtt{Sup}}
-\newcommand{\Inf}{\mathtt{Inf}}
-\newcommand{\LimSup}{\mathtt{LimSup}}
-\newcommand{\LimInf}{\mathtt{LimInf}}
-\newcommand{\NL}{\textrm{NL}}
-\newcommand{\PTIME}{\textrm{PTIME}}
-\newcommand{\NP}{\textrm{NP}}
-\newcommand{\UP}{\textrm{UP}}
-\newcommand{\coNP}{\textrm{coNP}}
-\newcommand{\coUP}{\textrm{coUP}}
-\newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
-\newcommand{\EXP}{\textrm{EXP}}
-\newcommand{\kEXP}{\textrm{kEXP}}
+\newcommand{\game}{\mathcal{G}}
+\newcommand{\arena}{\mathcal{A}}
+\newcommand{\Win}{\textrm{Win}}
+\newcommand{\Reach}{\mathtt{Reach}}
 ```
+
 The backward algorithm we just presented is conceptually simple, but
 it~is often not very efficient in practice,
 as federations tend to grow too much in size in each iteration of the
@@ -112,7 +19,16 @@ The forward algorithm we will now present is more efficient in practice.
 It performs a forward exploration and only applies the controllable predecessor along branches
 that actually reach the target state from the initial state. If the witness
 trace is not excessively long, which is often the case in practice,
-this limits the size of the federations.%develop and implement, but they are usually not very efficient in%\NM{Give intuition why? Especially, why for timed games?? La%  convaincante...}%been designed to gain in efficiency.
+this limits the size of the federations.
+
+
+%develop and implement, but they are usually not very efficient in
+
+%\NM{Give intuition why? Especially, why for timed games?? La
+
+%  convaincante...}
+
+%been designed to gain in efficiency.
 
 We present below the algorithm proposed in {cite}`CDFLL05`,
 and as a first step, we explain the untimed version of that algorithm,
@@ -122,19 +38,31 @@ fixpoints {cite}`LS98`.
 
 ## A Forward Algorithm for Finite-State Games
 
+
 The original algorithm of Liu and Smolka is expressed in terms of
 **(pre-)fixpoints** in **dependency graphs**: a~dependency graph
 is a pair $G=(V,E)$ in which $E \subseteq V \times 2^V$ relates
-states with sets of states.For any order-preserving 
+states with sets of states.
+
+For any order-preserving 
 function $f\colon 2^V\to2^V$
-(**order-preserving** meaning non-decreasing for the $\subseteq$-relation),a~**pre-fixpoint** is a set $X\subseteq V$ for which $f(X)\subseteq
+(**order-preserving** meaning non-decreasing for the $\subseteq$-relation),
+
+a~**pre-fixpoint** is a set $X\subseteq V$ for which $f(X)\subseteq
 X$; it~is a **fixpoint** if $f(X)=X$. By~Knaster-Tarski theorem, such
-functions always admit a least pre-fixpoint which is also the least fixpoint.%pre-fixpoint and the least fixpoint coincide.
+functions always admit a least pre-fixpoint which is also the least fixpoint.
+
+%pre-fixpoint and the least fixpoint coincide.
+
 Fix a dependency graph $G=(V,E)$. 
 For $W\subseteq V$,
 we~define a mapping $f_W\colon 2^V\to 2^V$: for
 each $X\subseteq V$, we~let $f_W(X)=W\cup \{v\in V\mid \exists (v,Y)\in
-E.\ Y\subseteq X\}$.%By~Knaster-Tarski theorem, $f_W$~admits a least%fixpoint.
+E.\ Y\subseteq X\}$.
+
+%By~Knaster-Tarski theorem, $f_W$~admits a least
+
+%fixpoint.
 Clearly, $X\subseteq X'$ implies $f_W(X)\subseteq f_W(X')$, so that $f_W$ admits
 a least (pre-)fixpoint.
 The~Liu-Smolka
@@ -151,19 +79,19 @@ is~not, in the least fixpoint of $f_W$.
 Before tackling the algorithm, let us link least fixpoints in
 dependency graphs and winning sets in concurrent games (with
 reachability objectives): with a concurrent arena
-$\calC=(V,\Act,\delta,c')$ and a target set $\Win$, we~associate
+$\calC=(V,\Act,\delta,c')$ and a target set $\textrm{Win}, we~associate
 the dependency graph $G=(V,E)$, where $(v,T)\in E$ whenever $v\in V$
 and $T\subseteq V$ is such that there exists an action $a$ for which
 $T=\{v' \mid \exists a'\in\Act.\ v'=\delta(v,a,a')\}$.  Then for any
-set $X\subseteq V$, the~set $f_{\Win}(X)$ contains $\Win$ and all the
+set $X\subseteq V$, the~set $f_{\textrm{Win}(X)$ contains $\textrm{Win} and all the
 states from which Eve can force a visit to $X$ in one step.
 We~then~have:
 
 ````{prf:proposition} NEEDS TITLE 9-prop:fixp-game
 :label: 9-prop:fixp-game
 
-The least fixpoint of $f_{\Win}$ in $G$ corresponds to the set $W$ of
-winning states for~\Eve in $\calC$.
+The least fixpoint of $f_{\textrm{Win}$ in $G$ corresponds to the set $W$ of
+winning states for~\textrm{Eve}in $\calC$.
 
 ````
 
@@ -171,15 +99,18 @@ winning states for~\Eve in $\calC$.
 ````{admonition} Proof
 :class: dropdown tip
 
-  The winning states of~\Eve form a pre-fixpoint of $f_{\Win}$
-  containing~\Win: indeed, for any $v\in f_{\Win}(W)$, either $v\in
-  \Win$, or \Eve has an action to move from $v$ to some state
+  The winning states of~\textrm{Eve}form a pre-fixpoint of $f_{\textrm{Win}$
+  containing~\textrm{Win} indeed, for any $v\in f_{\textrm{Win}(W)$, either $v\in
+  \textrm{Win}, or \textrm{Eve}has an action to move from $v$ to some state
   in $W$. Hence $v$ is winning, i.e., $v\in W$.
-  %  are all winning. Hence all the states in the least fixpoint of $f_{\Win}$ 
+  
+
+%  are all winning. Hence all the states in the least fixpoint of $f_{\textrm{Win}$ 
+
   Conversely, from any state $v$ that is not in the least
   pre-fixpoint $X$, for any~edge $(v,T)$, there is a state $v'\in T$
-  that again is not in $X$. This defines a strategy for \Adam to avoid
-  reaching $\Win$, so that \Eve does not have a winning strategy from $v$.
+  that again is not in $X$. This defines a strategy for \textrm{Adam}to avoid
+  reaching $\textrm{Win}, so that \textrm{Eve}does not have a winning strategy from $v$.
 
 ````
 
@@ -190,7 +121,9 @@ winning states for~\Eve in $\calC$.
   \KwData{A dependency graph $G=(V,E)$, a~set $W\subseteq V$, a~node $v_0\in V$}
   \KwResult{Is $v_0$ in the least fixpoint of $f_W$?}
 
-    \For{$v\in V$}{\lIf{$v\in W$}{$F(v):=1$}
+  
+  
+  \For{$v\in V$}{\lIf{$v\in W$}{$F(v):=1$}
     \lElseIf{$v==v_0$}{$F(v):=0$}
             \lElse{$F(v):=\bot$}}
   
@@ -222,19 +155,52 @@ winning states for~\Eve in $\calC$.
   condition for case $1$ (which otherwise would not guarantee
   termination), and reinforce the condition of the **while** loop
   to get earlier termination.}
+
+%
+%
+%
+%
+
 {numref}`9-algo:LS98` can be seen as an alternation of forward
 exploration and backward propagation. Intuitively, the algorithm first
 explores the graph in a forward manner, remembering for each node $v$
 the set $\Dep(v)$ of nodes that **depend** on $v$, and have to be
-reexplored if the status of $v$ is updated.%the parent ofFor~each $v$, the algorithm maintains a
+reexplored if the status of $v$ is updated.
+
+%the parent of
+
+For~each $v$, the algorithm maintains a
 value $F(v)$, which is $\bot$ if $v$ has not been explored~yet,
-$0$~if $v$~has been explored but not yet been shown to be winning,and $1$ if $v$ is known to be winning.% edge $e=(v,T)$, if some vertex $v'\in T$ has $F(v)=0$, then $e$ is%The function $F$ is used to mark whether a given vertex has not been explored yet ($\bot$),Whenever a vertex $v$ whose all successors are winning is found, the value of $v$ is set to $1$, and its parents (in $\Dep(v)$)
+$0$~if $v$~has been explored but not yet been shown to be winning, 
+and $1$ if $v$ is known to be winning. 
+% edge $e=(v,T)$, if some vertex $v'\in T$ has $F(v)=0$, then $e$ is
+
+%The function $F$ is used to mark whether a given vertex has not been explored yet ($\bot$),
+
+Whenever a vertex $v$ whose all successors are winning is found, the value of $v$ is set to $1$, and its parents (in $\Dep(v)$)
 are scheduled to be visited again to check whether their statuses have to be changed.
 This is how the backward propagation is triggered; in~fact, the~search will climb in the tree as long as the values of
-vertices can be updated to $1$.%Thus, the backward propagation is only triggered when the value of some node becomes $1$ so as to update its parents in the exploration.
+vertices can be updated to $1$.
 
-% fixpoint of $f_W$. For~each $v$, the algorithm computes a% $0$~if $v$~has been explored but not yet been shown to belong to $S$,% edge $e=(v,T)$, if some vertex $v'\in T$ has $F(v)=0$, then $e$ is% in case $F(v')$ is eventually set to $1$. Notice that for any $v\in%\NM{Should we say more? We are just rephrasing the algo...}
+%Thus, the backward propagation is only triggered when the value of some node becomes $1$ so as to update its parents in the exploration.
 
+
+% fixpoint of $f_W$. For~each $v$, the algorithm computes a
+
+% $0$~if $v$~has been explored but not yet been shown to belong to $S$,
+
+% edge $e=(v,T)$, if some vertex $v'\in T$ has $F(v)=0$, then $e$ is
+
+% in case $F(v')$ is eventually set to $1$. Notice that for any $v\in
+
+%\NM{Should we say more? We are just rephrasing the algo...}
+
+ 
+ 
+ 
+ 
+ 
+ 
 
 The correctness of this algorithm relies on the following lemma:
 
@@ -279,7 +245,17 @@ The correctness of this algorithm relies on the following lemma:
   of the least fixpoint, and by definition of $f_W$, $x$~must also
   belong to the least fixpoint.
 
-          
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
   \smallskip
   The second statement also clearly holds after initialization:
   initially, $F^0(x)=0$ only for $x=v_0$, and all transitions
@@ -292,7 +268,11 @@ The correctness of this algorithm relies on the following lemma:
     already $F^{i-1}(x)=0$ (hence $x\not=v^i$). Then either
     $(x,Y)\in\Wait^{i-1}$, or $(x,Y)\in\Dep^{i-1}(x')$ for some $x'\in Y$
     with $F(x')=0$. In~the former case: since $x\not=v^i$,
-    if $(x,Y)\in\Wait^{i-1}$ then also $(x,Y)\in \Wait^i$;%   %       in the latter case: if $(x,Y)\in\Dep^{i-1}(x')$ for some $x'\in Y$
+    if $(x,Y)\in\Wait^{i-1}$ then also $(x,Y)\in \Wait^i$;
+
+%    
+%    
+    in the latter case: if $(x,Y)\in\Dep^{i-1}(x')$ for some $x'\in Y$
     with $F(x')=0$, then **(i)**~either $x'=v^i$, and
     $(x,Y)\in\Wait^i$ because $\Dep^{i-1}(v^i)\subseteq \Wait^i$
     (last~line of case $1$), **(ii)**~or ${x'\not=v^i}$, and
@@ -321,9 +301,41 @@ The correctness of this algorithm relies on the following lemma:
     $x\in\Wait^i$, while if $(x,Y)=(v^i,T^i)$, then
     $(x,Y)\in\Dep^i(v')$ for the state $v'\in T^i$ selected at the
     beginning of case $3$ (and~for which $F^i(v')=0$).
-                %
-       %
-         
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+%
+  
+  
+  
+  
+  
+  
+  
+%
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
 ````
 
 As a corollary, if the algorithm terminates after $n$ rounds of the
@@ -349,6 +361,19 @@ $F^n(v_0)=0$ and $\Wait^n=\emptyset$.
   the fixpoint.
 \end{itemize}
 
+%
+%
+%
+%
+%
+%
+%
+
+%
+%
+%
+%
+
 \medskip
 It~remains to prove termination. For this, we~first notice that, for
 any hyper-edge $(v,S)$, if $(v,S)\in\Dep^i(v')$ then $(v,S)\in\Wait^j$
@@ -362,13 +387,17 @@ M=
 2\size{\Wait} + 
 2\hskip-4pt\sum_{v\text{ s.t. }F(v)=\bot}\hskip-4pt \size{\{(v,S)\in E\}} 
 + \hskip-4pt\sum_{v\text{ s.t. }F(v)=0}\hskip-4pt \size{\Dep(v)}
-- \hskip-4pt\sum_{v\text{ s.t. }F(v)=1}\hskip-4pt \size{\Dep(v)}%+ \sum_{v\mid F(v)=0} \sum_{(v',S)\in \Dep(v)} (|S|+1).
+- \hskip-4pt\sum_{v\text{ s.t. }F(v)=1}\hskip-4pt \size{\Dep(v)}
+
+%+ \sum_{v\mid F(v)=0} \sum_{(v',S)\in \Dep(v)} (|S|+1).
 $$
 
 again writing $M^i$ for the value of $M$ after the $i$-th run through
 the **while** loop.  This value is at most $2\size{E}$ when
 entering the **while** loop for the first time; clearly, it~can
-never go below $-\size{E}$. We~now prove that $M^{i}<M^{i-1}$,which implies termination of the algorithm.
+never go below $-\size{E}$. We~now prove that $M^{i}<M^{i-1}$,
+
+which implies termination of the algorithm.
 
 Consider the $i$-th run through the loop, popping $(v^i,T^i)$
 from $\Wait^{i-1}$ (which decreases $M$ by $2$). We~consider all three cases:
@@ -402,11 +431,74 @@ for~Eve. This corresponds to the OTFUR algorithm
 of {cite}`CDFLL05`.
 
 
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+
+%
+%
+%
+%
+
+%
+%
+%
+
+%
+
+
+
+
+
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+
 
 ## Extension to Timed Games
 
+%
+%
+%
+
 We now explain how to adapt the algorithm above to (infinite-state)
-timed games. For~efficiency, the~algorithm relies on zones (and~DBMs); instead of
+timed games. 
+
+For~efficiency, the~algorithm relies on zones (and~DBMs); instead of
 computing whether a given zone $(\ell,Z)$ is winning, the~algorithm
 maintains, for each~zone $S=(\ell,Z)$ it~explores, a~subzone $(\ell,Z')$ of
 configurations that it knows are winning; this subzone is stored as
@@ -414,11 +506,24 @@ $F(S)$, and is updated during the execution.
 As~in {numref}`9-algo:LS98`, a~waiting list keeps track of the
 zones to be explored, and a dependency list stores the list of nodes
 to be revisited upon update of the winning subzone of a zone.
-The algorithm is given in {numref}`9-algo:sotftr`.%computing for each explored zone $Z$ of the timed game,%configurations. {numref}`9-algo:sotftr` follows the same ideas as%re-evaluating transitions upon update of the winning subzone.
+The algorithm is given in {numref}`9-algo:sotftr`.
+
+%computing for each explored zone $Z$ of the timed game,
+
+%configurations. {numref}`9-algo:sotftr` follows the same ideas as
+
+%re-evaluating transitions upon update of the winning subzone.
+
+%
+%
+%
+%
+%
+%
 
 \begin{algorithm}
   \SetKwFunction{Pop}{pop}\SetAlgoNoEnd
-  \KwData{A reachability timed game $\game=(\arena, \Reach(\Win))$,
+  \KwData{A reachability timed game $\mathcal{G}(\mathcal{A} \mathtt{Reach}\textrm{Win})$,
     a~location $\ell_0\in \Locs$}
   \KwResult{Is $(\ell_0,\mathbf{0})$ winning for Eve?}
 
@@ -426,16 +531,19 @@ The algorithm is given in {numref}`9-algo:sotftr`.%computing for each explored z
   
   
   
-  \leIf{$c(S_0)==\Win$}{$F(S_0):=S_0$}{$F(S_0):=\emptyset$}
+  
+
+  \leIf{$c(S_0)==\textrm{Win}}{$F(S_0):=S_0$}{$F(S_0):=\emptyset$}
 
   $\Passed:=\{S_0\}$;  
   // $\Passed$ stores all configurations for which $F$ is defined
-   
+    
+
   
   $\Dep(S_0):=\emptyset$;
 
   $\Wait:=\{(S_0,\alpha,T) \mid 
-    T=\posttime(\postta_{\alpha}(S_0))\not=\emptyset, \alpha\text{ transition of }\game\}$;
+    T=\posttime(\postta_{\alpha}(S_0))\not=\emptyset, \alpha\text{ transition of }\mathcal{G}}$;
 
   \While{($\Wait\not=\emptyset$ and $(v_0,\mathbf 0)\notin F(S_0)$)}
         {$(S,\alpha,T)):=\Pop{\Wait}$;\\
@@ -446,10 +554,10 @@ The algorithm is given in {numref}`9-algo:sotftr`.%computing for each explored z
               $\Wait:=\Wait\cup\Dep(S)$;}}
           \Else({// case $B$})
                   {$\Passed:=\Passed \cup\{T\}$; \\
-                    \If{$c(T)==\Win$}{$F(T):=T$\\ $\Wait:=\Wait\cup\{(S,\alpha,T)\}$}
+                    \If{$c(T)==\textrm{Win}}{$F(T):=T$\\ $\Wait:=\Wait\cup\{(S,\alpha,T)\}$}
                        \Else{$F(T):=\emptyset$}
                   $\Dep(T):=\{(S,\alpha,T)\}$;\\
-                  $\Wait:=\Wait\cup\{(T,\alpha,U) \mid U=\posttime(\postta_{\alpha}(T))\not=\emptyset, \alpha\text{ transition of }\game\}$;
+                  $\Wait:=\Wait\cup\{(T,\alpha,U) \mid U=\posttime(\postta_{\alpha}(T))\not=\emptyset, \alpha\text{ transition of }\mathcal{G}}$;
         }
         }
   \leIf{$(v_0,\mathbf 0)\in F(S_0)$}{\Return 1}{\Return 0}
@@ -477,9 +585,13 @@ not contain any difficult argument.
   *  for any $S\in\Passed$ and $q\in F(S)$,  $q$ is winning for~Eve;
   *  for any $S\in\Passed$ and $q\in S\setminus F(S)$,
     either
-       $\Wait$ contains a symbolic transition $(S,\alpha,S')$ from $S$
+    
+    $\Wait$ contains a symbolic transition $(S,\alpha,S')$ from $S$
     with $S'\in\Passed$,
-             or
+    
+    
+    
+    or
     
 
 $$
@@ -490,7 +602,194 @@ $$
 
 ````
 
-The proof is omitted but can be found in {cite}`CDFLL05`.%je ne sais pas comment le citer correctement \href{}{https://hal.archives-ouvertes.fr/hal-00350475} sans dupliquer la version concur}    
+The proof is omitted but can be found in {cite}`CDFLL05`.
+
+%je ne sais pas comment le citer correctement \href{}{https://hal.archives-ouvertes.fr/hal-00350475} sans dupliquer la version concur}
+
+%
+%
+%
+%
+%
+%
+%
+%
+
+%
+%
+%
+%
+%
+%
+%
+
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+
+%
+%
+%
+%
+%
+%
+%
+%
+
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+
+%
+%
+%
+
+%
+%
+
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+    
+
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+
+
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
 
 
 Using these invariants, we get the following result:
@@ -516,22 +815,31 @@ Using these invariants, we get the following result:
 The~first statement corresponds to the second statement of
  {prf:ref}`9-lem:sotftr`. Now, assume $\Wait^n=\emptyset$ after
 termination at the $n$-th step,
-andlet $L=\{q\in \Locs\times\mathbb{R}_{\geq 0}^{\Clocks} \mid \exists
+and
+
+let $L=\{q\in \Locs\times\mathbb{R}_{\geq 0}^{\Clocks} \mid \exists
 S\in\Passed^n.\ q\in S\setminus F^n(S)\}$, and $M$ be the complement
 of $L$. For~any $S\in\Passed^n$, we~then have $M\cap S\subseteq
-F^n(S)$.%  and $q \not \in F(S_2)$?}%  Since $q\in S$, then $q \in F^n(S)$.}
+F^n(S)$.
 
-Pick $q\in \pi(M)\cup \Win$, where we abusively write $\Win$ to denote
-all configurations with location colored $\Win$. We~prove that $q\in M$:
+%  and $q \not \in F(S_2)$?}
 
-*  if $q\in\Win$: assume $q\in L$, and pick $S\in\Passed^n$ such
-  that $q\in S\setminus F^n(S)$. Since $q\in S$, it~holds $c(S)=\Win$;
+%  Since $q\in S$, then $q \in F^n(S)$.}
+
+Pick $q\in \pi(M)\cup \textrm{Win}, where we abusively write $\textrm{Win} to denote
+all configurations with location colored $\textrm{Win}. We~prove that $q\in M$:
+
+*  if $q\in\textrm{Win}: assume $q\in L$, and pick $S\in\Passed^n$ such
+  that $q\in S\setminus F^n(S)$. Since $q\in S$, it~holds $c(S)=\textrm{Win};
   but then $F^n(S)$ is defined (since $S\in\Passed^n$), and it
   equals $S$ by initialization of $F$. This contradicts the fact that
   $q\in S\setminus F^n(S)$, hence $q\in M$.
 *  if $q\in\pi(M)$: we again assume $q\in L$. Then for some
   $S\in\Passed^n$, $q\in S\setminus F^n(S)$. By~the third property of
-   {prf:ref}`9-lem:sotftr`, $q\notin W^n$   (because $\Wait^n$ is
+   {prf:ref}`9-lem:sotftr`, $q\notin W^n$
+
+  
+  (because $\Wait^n$ is
   empty).  Since $M\cap U \subseteq F^n(U)$ for all $U\in\Passed^n$
   and $F^n(U)=\emptyset$ for all $U\notin\Passed^n$,
   and by monotonicity, we~get
@@ -543,7 +851,9 @@ $$
     V}} \predu(V\setminus (M\cap V))\Biggr) \cap S.
   $$
 
-  %
+  
+  
+%
   Now, notice that any $S\in\Passed^n$ is closed under $\posttime$. Then
   \begin{xalignat*}1
     \pi(M)\cap S &= \predt(M\cup\predc(M), \predu(\overline M)) \\
@@ -556,12 +866,13 @@ $$
   \pi(M)$ and $q\in S$ leads to a contradiction. This entails that
   $q\notin L$, hence $q\in M$.
 
-In the end, we~have proven that $\pi(M)\cup\Win \subseteq M$, so that
-$M$ is a pre-fixpoint of $X\mapsto \pi(X)\cup\Win$, hence it~contains
-all winning configurations of~\Eve and $L$ only contains losing
+In the end, we~have proven that $\pi(M)\cup\textrm{Win}\subseteq M$, so that
+$M$ is a pre-fixpoint of $X\mapsto \pi(X)\cup\textrm{Win}, hence it~contains
+all winning configurations of~\textrm{Eve}and $L$ only contains losing
 configurations.
 
 ````
+
 
 %\NM{termination relies on extrapolation... Explain?}
 
@@ -576,15 +887,17 @@ of {prf:ref}`9-thm:timed-control`). This can be proven to preserve
 correctness, and makes the~number of zones finite. Termination follows
 by noticing that any triple $(S,\alpha,T)$ may be added to $\Wait$ only
 a finite number of times (bounded by the number of regions
-in $T$). We~can then conclude:
+in $T$). 
+
+We~can then conclude:
 
 ````{prf:theorem} NEEDS TITLE AND LABEL 
 {numref}`9-algo:sotftr` terminates when extrapolation is used, and returns $1$ if, and only~if,
-$(\ell_0,\mathbf{0})$~is winning for~\Eve.
+$(\ell_0,\mathbf{0})$~is winning for~\textrm{Eve}
  
 
 {numref}`9-algo:sotftr` terminates when extrapolation is used, and returns $1$ if, and only~if,
-$(\ell_0,\mathbf{0})$~is winning for~\Eve.
+$(\ell_0,\mathbf{0})$~is winning for~\textrm{Eve}
 
 ````
 

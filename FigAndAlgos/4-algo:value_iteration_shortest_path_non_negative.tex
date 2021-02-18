@@ -1,0 +1,52 @@
+\documentclass[preview,border=0mm,convert={density=600,outext=.png}]{standalone}
+\usepackage{amsfonts,amssymb,amsmath}
+\usepackage[norelsize,ruled,vlined,noend]{algorithm2e}
+\input{../norenew_macros.tex}
+\input{./../4_Payoffs/norenew_macros_local.tex}
+\begin{document}
+\begin{algorithm}[H]
+
+ \KwData{A shortest path game with non-negative weights.}
+ \SetKwFunction{FTreat}{Treat}
+ \SetKwFunction{FInit}{Initialisation}
+ \SetKwFunction{FVI}{ValueIteration}
+ \SetKwProg{Fn}{Function}{:}{}
+ \DontPrintSemicolon
+ 
+\Fn{\FVI{}}{
+	\FInit{$\ell_V, \ell_E$}
+	
+	$S \leftarrow V$
+	
+	
+
+	\Repeat{$S$ empty}{
+		Choose $v$ in $S$ minimal with respect to $\ell_V$ and remove it from $S$
+
+		\FTreat($v$) 
+	}
+
+	\Return{$\ell_V$}
+}
+
+
+
+\Fn{\FTreat{$v$}}{
+	\For{$e = (u,c,v) \in E$}{
+	
+		\If{$u \in \VE$}{
+			$\ell_E(e) \leftarrow \max(c + \ell_V(v),\ell_E(e))$ 
+
+			$\ell_V(u) \leftarrow \max(\ell_E(e),\ell_V(u))$ 
+		}
+		
+		\If{$v \in \VE$}{
+			$\ell_E(e) \leftarrow \min(c + \ell_V(v),\ell_E(e))$ 
+
+			$\ell_V(u) \leftarrow \min(\ell_E(e),\ell_V(u))$ 
+		}
+	}
+}
+
+\end{algorithm}
+\end{document}

@@ -706,11 +706,8 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#solving-mean-payoff-games-in-np-cap-conp">
-   Solving mean payoff games in
-   <span class="math notranslate nohighlight">
-    \(\NP\cap\coNP\)
-   </span>
+  <a class="reference internal nav-link" href="#solving-mean-payoff-games-in-textrm-np-cap-textrm-conp">
+   Solving mean payoff games in $\textrm{NP}cap\textrm{coNP}
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -737,92 +734,53 @@
   <div class="section" id="mean-payoff-games">
 <span id="sec-mean-payoff"></span><h1>Mean payoff games<a class="headerlink" href="#mean-payoff-games" title="Permalink to this headline">¶</a></h1>
 <div class="math notranslate nohighlight">
-\[\newcommand{\FC}{\mathrm{FC}\xspace} 
-\newcommand{\Cycles}{\mathrm{Cycles}\xspace} 
-\newcommand{\Mean}{\mathrm{Mean}\xspace} 
-\newcommand{\FirstCycle}{\mathrm{FirstCycle}\xspace} 
-\newcommand{\SuffixAllCycles}{\mathrm{SuffixAllCycles}\xspace} 
-\newcommand{\FirstCycleReset}{\mathrm{FirstCycleReset}\xspace} 
+\[\newcommand{\FC}{\mathrm{FC}\xspace}
+\newcommand{\Cycles}{\mathrm{Cycles}\xspace}
+\newcommand{\Mean}{\mathrm{Mean}\xspace}
+\newcommand{\FirstCycle}{\mathrm{FirstCycle}\xspace}
 \newcommand{\siblank}{\mathtt{-}}
 \newcommand{\Lift}{\textrm{Lift}}
 \newcommand{\Rbar}{\overline\R}
-\newcommand{\downward}[1]{\mathop{\downarrow_{#1}}}
-\newcommand{\gval}{\mathrm{gr}\text{-}\val}
 \newcommand{\bigO}{O}\newcommand{\Eve}{\textrm{Eve}}
-\newcommand{\Adam}{\textrm{Adam}}
-\newcommand{\set}[1]{\left\{ #1 \right\}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
-\newcommand{\Q}{\mathbb{Q}}
 \newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
-\newcommand{\argmax}{\textrm{argmax}}
 \newcommand{\argmin}{\textrm{argmin}}
 \newcommand{\Op}{\mathbb{O}}
-\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\textrm{supp}} 
-\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
-\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
+\newcommand{\game}{\mathcal{G}}
+\newcommand{\arena}{\mathcal{A}}
+\newcommand{\col}{\textsf{col}}
+\newcommand{\VE}{V_\mEve}
+\newcommand{\VA}{V_\mAdam}
+\newcommand{\Ing}{\ing}
+\newcommand{\WE}{W_\mEve}
+\newcommand{\WA}{W_\mAdam}
+\newcommand{\play}{\pi}
+\newcommand{\Value}{\textrm{val}}
+\newcommand{\val}{\Value}
+\newcommand{\Parity}{\mathtt{Parity}}
+\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}}
+\newcommand{\NP}{\textrm{NP}}
+\newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\Q}{\mathbb{Q}}
 \newcommand{\mEve}{\mathrm{Eve}}
 \newcommand{\mAdam}{\mathrm{Adam}}
-\newcommand{\mRandom}{\mathrm{Random}}
-\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
-\newcommand{\ing}{\textrm{In}}
-\newcommand{\Ing}{\ing}
-\newcommand{\out}{\textrm{Out}}
-\newcommand{\Out}{\out}
-\newcommand{\dest}{\Delta} 
-\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
-\newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
-\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
-\newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\newcommand{\Win}{\textrm{Win}} 
-\newcommand{\Lose}{\textrm{Lose}} 
-\newcommand{\Value}{\textrm{val}} 
-\newcommand{\ValueE}{\textrm{val}_\mEve} 
-\newcommand{\ValueA}{\textrm{val}_\mAdam}
-\newcommand{\val}{\Value} 
-\newcommand{\Automaton}{\mathbf{A}} 
-\newcommand{\Safe}{\mathtt{Safe}}
-\newcommand{\Reach}{\mathtt{Reach}} 
-\newcommand{\Buchi}{\mathtt{Buchi}} 
-\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
-\newcommand{\Parity}{\mathtt{Parity}} 
-\newcommand{\Muller}{\mathtt{Muller}} 
-\newcommand{\Rabin}{\mathtt{Rabin}} 
-\newcommand{\Streett}{\mathtt{Streett}} 
-\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
-\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
-\newcommand{\Energy}{\mathtt{Energy}}
-\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
-\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
-\newcommand{\Sup}{\mathtt{Sup}}
-\newcommand{\Inf}{\mathtt{Inf}}
-\newcommand{\LimSup}{\mathtt{LimSup}}
-\newcommand{\LimInf}{\mathtt{LimInf}}
-\newcommand{\NL}{\textrm{NL}}
-\newcommand{\PTIME}{\textrm{PTIME}}
-\newcommand{\NP}{\textrm{NP}}
-\newcommand{\UP}{\textrm{UP}}
-\newcommand{\coNP}{\textrm{coNP}}
-\newcommand{\coUP}{\textrm{coUP}}
-\newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
-\newcommand{\EXP}{\textrm{EXP}}
-\newcommand{\kEXP}{\textrm{kEXP}}\]</div>
+\newcommand{\ing}{\textrm{In}}\]</div>
 <p>A natural approach for aggregating an infinite sequence of weights is to consider the arithmetic mean.
-Since the sequence <span class="math notranslate nohighlight">\((\frac{1}{k} \sum_{i = 0}^{k-1} \rho_i)_{k \in \N}\)</span> may not converge,
+Since the sequence <span class="math notranslate nohighlight">\((\frac{1}{k} \sum_{i = 0}^{k-1} \rho_i)_{k \in \mathbb{N}\)</span> may not converge,
 we can either consider the limit superior or the limit inferior, leading to the two definitions:</p>
 <div class="math notranslate nohighlight">
 \[
-\MeanPayoff^+(\rho) = \limsup_k \frac{1}{k} \sum_{i = 0}^{k-1} \rho_i \quad ; \quad 
-\MeanPayoff^-(\rho) = \liminf_k \frac{1}{k} \sum_{i = 0}^{k-1} \rho_i.
+\mathtt{MeanPayoff}+(\rho) = \limsup_k \frac{1}{k} \sum_{i = 0}^{k-1} \rho_i \quad ; \quad 
+\mathtt{MeanPayoff}-(\rho) = \liminf_k \frac{1}{k} \sum_{i = 0}^{k-1} \rho_i.
 \]</div>
-<p>The goal of Eve is to maximise <span class="math notranslate nohighlight">\(\MeanPayoff^+\)</span>, which means that the goal of Adam is to minimise it,
-or equivalently to maximise <span class="math notranslate nohighlight">\(-\MeanPayoff^+\)</span>;
-by taking the opposite of each weight this is equivalent to maximising <span class="math notranslate nohighlight">\(\MeanPayoff^-\)</span>.
-In other words, <span class="math notranslate nohighlight">\(\MeanPayoff^+\)</span> and <span class="math notranslate nohighlight">\(\MeanPayoff^-\)</span> are dual objectives.</p>
+<p>The goal of Eve is to maximise <span class="math notranslate nohighlight">\(\mathtt{MeanPayoff}+\)</span>, which means that the goal of Adam is to minimise it,
+or equivalently to maximise <span class="math notranslate nohighlight">\(-\mathtt{MeanPayoff}+\)</span>;
+by taking the opposite of each weight this is equivalent to maximising <span class="math notranslate nohighlight">\(\mathtt{MeanPayoff}-\)</span>.
+In other words, <span class="math notranslate nohighlight">\(\mathtt{MeanPayoff}+\)</span> and <span class="math notranslate nohighlight">\(\mathtt{MeanPayoff}-\)</span> are dual objectives.</p>
 <p>In this section we study mean payoff games.
 We will first prove that they are prefix independent, then that they are positionally determined for both players,
 and then construct algorithms for solving them and compute the value function.
@@ -830,12 +788,12 @@ The best known time complexity for both problems is pseudopolynomial, meaning po
 <div class="proof lemma admonition" id="4-lem:prefix_independence_mean_payoff">
 <p class="admonition-title"><span class="caption-number">Lemma 91 </span> (NEEDS TITLE 4-lem:prefix_independence_mean_payoff)</p>
 <div class="lemma-content section" id="proof-content">
-<p><span class="math notranslate nohighlight">\(\MeanPayoff^+\)</span> is prefix independent.</p>
+<p><span class="math notranslate nohighlight">\(\mathtt{MeanPayoff}+\)</span> is prefix independent.</p>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
-<p>We show that <span class="math notranslate nohighlight">\(\MeanPayoff^+(\rho_0 \rho_1 \dots) = \MeanPayoff^+(\rho_p \rho_{p+1} \dots)\)</span>
-for a fixed <span class="math notranslate nohighlight">\(p \in \N\)</span>:
+<p>We show that <span class="math notranslate nohighlight">\(\mathtt{MeanPayoff}+(\rho_0 \rho_1 \dots) = \mathtt{MeanPayoff}+(\rho_p \rho_{p+1} \dots)\)</span>
+for a fixed $p \in \mathbb{N}:
 \begin{align*}
 \limsup_k \frac{1}{k} \sum_{i = 0}^{k-1} \rho_i &amp;=
 \limsup_k \left(
@@ -846,7 +804,7 @@ for a fixed <span class="math notranslate nohighlight">\(p \in \N\)</span>:
 \liminf_k \frac{1}{k-p} \sum_{i = 0}^{p-1} \rho_{p + i}.
 \end{align*}</p>
 </div>
-<p>Note that by duality this implies that <span class="math notranslate nohighlight">\(\MeanPayoff^-\)</span> is also prefix independent.</p>
+<p>Note that by duality this implies that <span class="math notranslate nohighlight">\(\mathtt{MeanPayoff}-\)</span> is also prefix independent.</p>
 <p>In the setting we consider in this chapter, meaning two player zero sum games of perfect information,
 the two objectives are equivalent, which will be a corollary of <a class="reference internal" href="#4-thm:mean_payoff_positional">Theorem 92</a>.
 We refer to <code class="xref prf prf-ref docutils literal notranslate"><span class="pre">13-thm:MMP-Eve</span></code> for a setting where limit superior and limit inferior are not equivalent.</p>
@@ -864,7 +822,7 @@ As we will show later, the positional strategies defined below are optimal strat
 \[
 \pi = \big((v_1,v_2)(v_2,v_3)(v_3,v_1)\big)^\omega.
 \]</div>
-<p>We obtain that <span class="math notranslate nohighlight">\(\MeanPayoff^+(\pi) = \frac{1 + 3 - 2}{3} = \frac{2}{3}\)</span>.</p>
+<p>We obtain that <span class="math notranslate nohighlight">\(\mathtt{MeanPayoff}+(\pi) = \frac{1 + 3 - 2}{3} = \frac{2}{3}\)</span>.</p>
 <p>If we restrict ourselves to positional strategies for both players,
 we may easily convince ourselves that this is the best that both players can aim for.
 Indeed,</p>
@@ -894,150 +852,151 @@ Let us now prove that positional strategies are indeed sufficient for mean payof
 </div><p>By duality this is equivalent to saying that both limit superior and limit inferior mean payoff objectives are uniformly positionally determined.</p>
 <div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
-<p>Let <span class="math notranslate nohighlight">\(\arena\)</span> an arena.
-We represent a cycle as a sequence <span class="math notranslate nohighlight">\(c = v_0 v_1 \dots v_{k-1}\)</span> such that <span class="math notranslate nohighlight">\((v_i, v_{i+1 \mod k}) \in E\)</span>;
+<p>Let <span class="math notranslate nohighlight">\(\mathcal{A} an arena.
+We represent a cycle as a sequence \)</span>c = v_0 v_1 \dots v_{k-1}<span class="math notranslate nohighlight">\( such that \)</span>(v_i, v_{i+1 \mod k}) \in E$;
 we note that for technical convenience the sequence does not cycle back to the first vertex.</p>
 <p>Let us consider a finite play <span class="math notranslate nohighlight">\(\pi = v_0 v_1 v_2\dots\)</span>,
 we define two objects by induction:
-the cycle decomposition <span class="math notranslate nohighlight">\(\Cycles(\pi)\)</span> and the folded play <span class="math notranslate nohighlight">\(\widehat{\play}\)</span>.
-To guide the intuititon: <span class="math notranslate nohighlight">\(\Cycles(\pi)\)</span> is a list of <strong>some</strong> cycles in <span class="math notranslate nohighlight">\(\pi\)</span>,
-and <span class="math notranslate nohighlight">\(\widehat{\play}\)</span> is obtained from <span class="math notranslate nohighlight">\(\pi\)</span> by removing the cycles from <span class="math notranslate nohighlight">\(\Cycles(\pi)\)</span>
-and does not contain any cycle.
-If <span class="math notranslate nohighlight">\(\pi\)</span> is a single vertex then the cycle decomposition is empty and the folded play is equal to <span class="math notranslate nohighlight">\(\pi\)</span>.
-Otherwise let <span class="math notranslate nohighlight">\(\pi = \pi' \cdot v\)</span>, by induction we have already defined <span class="math notranslate nohighlight">\(\Cycles(\pi')\)</span> and <span class="math notranslate nohighlight">\(\widehat{\pi'}\)</span>.
+the cycle decomposition <span class="math notranslate nohighlight">\(\mathrm{Cycles}\xspace\pi)\)</span> and the folded play <span class="math notranslate nohighlight">\(\widehat{\pi\)</span>.
+To guide the intuititon: <span class="math notranslate nohighlight">\(\mathrm{Cycles}\xspace\pi)\)</span> is a list of <strong>some</strong> cycles in <span class="math notranslate nohighlight">\(\pi\)</span>,
+and <span class="math notranslate nohighlight">\(\widehat{\pi\)</span> is obtained from <span class="math notranslate nohighlight">\(\pi\)</span> by removing the cycles from <span class="math notranslate nohighlight">\(\mathrm{Cycles}\xspace\pi)\)</span>
+and does not contain any cycle.</p>
+<p>If <span class="math notranslate nohighlight">\(\pi\)</span> is a single vertex then the cycle decomposition is empty and the folded play is equal to <span class="math notranslate nohighlight">\(\pi\)</span>.
+Otherwise let <span class="math notranslate nohighlight">\(\pi = \pi' \cdot v\)</span>, by induction we have already defined <span class="math notranslate nohighlight">\(\mathrm{Cycles}\xspace\pi')\)</span> and <span class="math notranslate nohighlight">\(\widehat{\pi'}\)</span>.
 There are two cases:</p>
 <ul class="simple">
 <li><p>Either <span class="math notranslate nohighlight">\(v\)</span> appears in <span class="math notranslate nohighlight">\(\widehat{\pi'}\)</span> and then <span class="math notranslate nohighlight">\(\widehat{\pi}\)</span> is obtained from <span class="math notranslate nohighlight">\(\widehat{\pi'} \cdot v\)</span>
-by replacing that cycle by <span class="math notranslate nohighlight">\(v\)</span> and <span class="math notranslate nohighlight">\(\Cycles(\pi)\)</span> by adding the cycle to <span class="math notranslate nohighlight">\(\Cycles(\pi')\)</span>.*  Or <span class="math notranslate nohighlight">\(v\)</span> does not appear in <span class="math notranslate nohighlight">\(\widehat{\pi'}\)</span> and then <span class="math notranslate nohighlight">\(\widehat{\pi} = \widehat{\pi'} \cdot v\)</span>
-and <span class="math notranslate nohighlight">\(\Cycles(\pi) = \Cycles(\pi')\)</span>.</p></li>
+by replacing that cycle by <span class="math notranslate nohighlight">\(v\)</span> and <span class="math notranslate nohighlight">\(\mathrm{Cycles}\xspace\pi)\)</span> by adding the cycle to <span class="math notranslate nohighlight">\(\mathrm{Cycles}\xspace\pi')\)</span>.</p></li>
+<li><p>Or <span class="math notranslate nohighlight">\(v\)</span> does not appear in <span class="math notranslate nohighlight">\(\widehat{\pi'}\)</span> and then <span class="math notranslate nohighlight">\(\widehat{\pi} = \widehat{\pi'} \cdot v\)</span>
+and <span class="math notranslate nohighlight">\(\mathrm{Cycles}\xspace\pi) = \mathrm{Cycles}\xspace\pi')\)</span>.</p></li>
 </ul>
 <p>The cycle decomposition breaks down <span class="math notranslate nohighlight">\(\pi\)</span> into (possibly interleaved) cycles and the folded play:
-every vertex in <span class="math notranslate nohighlight">\(\pi\)</span> either belongs to exactly one cycle in <span class="math notranslate nohighlight">\(\Cycles(\pi)\)</span> or to <span class="math notranslate nohighlight">\(\widehat{\pi}\)</span>.
+every vertex in <span class="math notranslate nohighlight">\(\pi\)</span> either belongs to exactly one cycle in <span class="math notranslate nohighlight">\(\mathrm{Cycles}\xspace\pi)\)</span> or to <span class="math notranslate nohighlight">\(\widehat{\pi}\)</span>.
 For instance for <span class="math notranslate nohighlight">\(\pi = v_0 v_1 v_2 v_3 v_2 v_4 v_1 v_5\)</span>
-we have <span class="math notranslate nohighlight">\(\Cycles(\pi) = (c_1 = v_2 v_3 ; c_2 = v_1 v_2 v_4)\)</span> and <span class="math notranslate nohighlight">\(\widehat{\pi} = v_0 v_1 v_5\)</span>,
+we have <span class="math notranslate nohighlight">\(\mathrm{Cycles}\xspace\pi) = (c_1 = v_2 v_3 ; c_2 = v_1 v_2 v_4)\)</span> and <span class="math notranslate nohighlight">\(\widehat{\pi} = v_0 v_1 v_5\)</span>,
 as illustrated in <a class="reference internal" href="#fig-example-cycle-decomposition"><span class="std std-numref">Fig. 36</span></a>.</p>
 <div class="figure align-center" id="fig-example-cycle-decomposition">
 <img alt="../_images/4-fig:example_cycle_decomposition.png" src="../_images/4-fig:example_cycle_decomposition.png" />
 <p class="caption"><span class="caption-number">Fig. 36 </span><span class="caption-text">An example for the cycle decomposition. The first cycle is <span class="math notranslate nohighlight">\(c_1\)</span> and is in red,
 the cycle <span class="math notranslate nohighlight">\(c_2\)</span> is in blue, and <span class="math notranslate nohighlight">\(\widehat{\pi} = v_0 v_1 v_5\)</span>.</span><a class="headerlink" href="#fig-example-cycle-decomposition" title="Permalink to this image">¶</a></p>
 </div>
-<p>The definition of <span class="math notranslate nohighlight">\(\Cycles(\pi)\)</span> is extended for infinite plays.
-We write <span class="math notranslate nohighlight">\(\FC(\pi)\)</span> for the first cycle in <span class="math notranslate nohighlight">\(\pi\)</span>.
+<p>The definition of <span class="math notranslate nohighlight">\(\mathrm{Cycles}\xspace\pi)\)</span> is extended for infinite plays.
+We write <span class="math notranslate nohighlight">\(\mathrm{FC}\xspace\pi)\)</span> for the first cycle in <span class="math notranslate nohighlight">\(\pi\)</span>.
 Let us note that the definitions above do not depend on the mean payoff objectives.</p>
-<p>Let <span class="math notranslate nohighlight">\(\game = (\arena,\MeanPayoff^+[\col])\)</span> a limit superior mean payoff game.
+<p>Let <span class="math notranslate nohighlight">\(\mathcal{G}= (\mathcal{A}\mathtt{MeanPayoff}+[\textsf{col})\)</span> a limit superior mean payoff game.
 The outline of the proof is as follows.</p>
 <ol class="simple">
-<li><p>We define the condition <span class="math notranslate nohighlight">\(\FirstCycle\)</span> and <span class="math notranslate nohighlight">\(\game_{\text{FC}} = (\arena,\FirstCycle)\)</span>,
-and show that <span class="math notranslate nohighlight">\(\val^{\game} = \val^{\game_{\text{FC}}}\)</span>
-and that if <span class="math notranslate nohighlight">\(\game_{\text{FC}}\)</span> is positionally determined for both players then <span class="math notranslate nohighlight">\(\game\)</span> is positionally determined for both players.</p></li>
+<li><p>We define the condition <span class="math notranslate nohighlight">\(\mathrm{FirstCycle}\xspace and \)</span>\game_{\text{FC}} = (\mathcal{A}\mathrm{FirstCycle}\xspace<span class="math notranslate nohighlight">\(,
+and show that \)</span>\textrm{val}\mathcal{G} = \textrm{val}\game_{\text{FC}}}<span class="math notranslate nohighlight">\( 
+and that if \)</span>\game_{\text{FC}}<span class="math notranslate nohighlight">\( is positionally determined for both players then \)</span>\mathcal{G} is positionally determined for both players.</p></li>
 <li><p>We define the condition <span class="math notranslate nohighlight">\(\FirstCycleReset_v\)</span> (parameterised by a vertex <span class="math notranslate nohighlight">\(v\)</span>)
-and <span class="math notranslate nohighlight">\(\game_{\text{FCR}(v)} = (\arena,\FirstCycleReset_v)\)</span>,
-and show that <span class="math notranslate nohighlight">\(\val^{\game} = \val^{\game_{\text{FCR}(v)}}\)</span>.</p></li>
+and <span class="math notranslate nohighlight">\(\game_{\text{FCR}(v)} = (\mathcal{A}\FirstCycleReset_v)\)</span>,
+and show that <span class="math notranslate nohighlight">\(\textrm{val}\mathcal{G} = \textrm{val}\game_{\text{FCR}(v)}}\)</span>.</p></li>
 <li><p>We show that <span class="math notranslate nohighlight">\(\game_{\text{FC}}\)</span> is positionally determined for both players.</p></li>
 </ol>
 <p><strong>Step 1.</strong>
-For a path <span class="math notranslate nohighlight">\(\pi = v_0 v_1 \dots v_{k-1}\)</span> we write <span class="math notranslate nohighlight">\(\Mean(\pi)\)</span> for <span class="math notranslate nohighlight">\(\frac{1}{k} \sum_{i = 0}^{k-1} \col(v_i)\)</span>.
-The condition <span class="math notranslate nohighlight">\(\FirstCycle\)</span> computes the arithmetic mean of the first cycle.
+For a path <span class="math notranslate nohighlight">\(\pi = v_0 v_1 \dots v_{k-1}\)</span> we write <span class="math notranslate nohighlight">\(\mathrm{Mean}\xspace\pi)\)</span> for <span class="math notranslate nohighlight">\(\frac{1}{k} \sum_{i = 0}^{k-1} \textsf{col}v_i)\)</span>.
+The condition $\mathrm{FirstCycle}\xspace computes the arithmetic mean of the first cycle.
 Formally:</p>
 <div class="math notranslate nohighlight">
 \[
-\FirstCycle(\pi) = \Mean(\FC(\pi)).
+\mathrm{FirstCycle}\xspace\pi) = \mathrm{Mean}\xspace\mathrm{FC}\xspace\pi)).
 \]</div>
-<p>Let us define <span class="math notranslate nohighlight">\(\game_{\text{FC}} = (\arena,\FirstCycle)\)</span>.
+<p>Let us define <span class="math notranslate nohighlight">\(\game_{\text{FC}} = (\mathcal{A}\mathrm{FirstCycle}\xspace\)</span>.
 We make two claims:</p>
 <ul class="simple">
-<li><p>let <span class="math notranslate nohighlight">\(\sigma_{\text{FC}}\)</span> a strategy in <span class="math notranslate nohighlight">\(\game_{\text{FC}}\)</span>, it induces a strategy <span class="math notranslate nohighlight">\(\sigma\)</span> in <span class="math notranslate nohighlight">\(\game\)</span>
-such that <span class="math notranslate nohighlight">\(\val^{\sigma_{\text{FC}}} \le \val^{\sigma}\)</span>, and <span class="math notranslate nohighlight">\(\sigma\)</span> is positional if <span class="math notranslate nohighlight">\(\sigma_{\text{FC}}\)</span> is, and</p></li>
-<li><p>let <span class="math notranslate nohighlight">\(\tau_{\text{FC}}\)</span> a strategy in <span class="math notranslate nohighlight">\(\game_{\text{FC}}\)</span>, it induces a strategy <span class="math notranslate nohighlight">\(\tau\)</span> in <span class="math notranslate nohighlight">\(\game\)</span>
-such that <span class="math notranslate nohighlight">\(\val^{\tau_{\text{FC}}} \ge \val^{\tau}\)</span>, and <span class="math notranslate nohighlight">\(\tau\)</span> is positional if <span class="math notranslate nohighlight">\(\tau_{\text{FC}}\)</span> is.</p></li>
+<li><p>let <span class="math notranslate nohighlight">\(\sigma_{\text{FC}}\)</span> a strategy in <span class="math notranslate nohighlight">\(\game_{\text{FC}}\)</span>, it induces a strategy <span class="math notranslate nohighlight">\(\sigma\)</span> in <span class="math notranslate nohighlight">\(\mathcal{G} 
+such that \)</span>\textrm{val}\sigma_{\text{FC}}} \le \textrm{val}\sigma}<span class="math notranslate nohighlight">\(, and \)</span>\sigma<span class="math notranslate nohighlight">\( is positional if \)</span>\sigma_{\text{FC}}$ is, and</p></li>
+<li><p>let <span class="math notranslate nohighlight">\(\tau_{\text{FC}}\)</span> a strategy in <span class="math notranslate nohighlight">\(\game_{\text{FC}}\)</span>, it induces a strategy <span class="math notranslate nohighlight">\(\tau\)</span> in <span class="math notranslate nohighlight">\(\mathcal{G}
+such that \)</span>\textrm{val}\tau_{\text{FC}}} \ge \textrm{val}\tau}<span class="math notranslate nohighlight">\(, and \)</span>\tau<span class="math notranslate nohighlight">\( is positional if \)</span>\tau_{\text{FC}}$ is.</p></li>
 </ul>
 <p>Let us prove the first claim.
 We let <span class="math notranslate nohighlight">\(\sigma(\pi) = \sigma_{\text{FC}}(\widehat{\pi})\)</span>:
 by definition if <span class="math notranslate nohighlight">\(\pi\)</span> is a play consistent with <span class="math notranslate nohighlight">\(\sigma\)</span> then <span class="math notranslate nohighlight">\(\widehat{\pi}\)</span> is a play consistent with <span class="math notranslate nohighlight">\(\sigma_{\text{FC}}\)</span>.
 Note that indeed if <span class="math notranslate nohighlight">\(\sigma_{\text{FC}}\)</span> is positional then so is <span class="math notranslate nohighlight">\(\sigma\)</span>.
-We show that <span class="math notranslate nohighlight">\(\val^{\sigma_{\text{FC}}} \le \val^{\sigma}\)</span>.</p>
-<p>Let <span class="math notranslate nohighlight">\(\pi\)</span> be a play consistent with <span class="math notranslate nohighlight">\(\sigma\)</span> from <span class="math notranslate nohighlight">\(v_0\)</span> and <span class="math notranslate nohighlight">\(x = \val^{\sigma_{\text{FC}}}(v_0)\)</span>.
-We first argue that all cycles in <span class="math notranslate nohighlight">\(\Cycles(\pi)\)</span> have an arithmetic mean greater than or equal to <span class="math notranslate nohighlight">\(x\)</span>.
-Indeed consider a cycle <span class="math notranslate nohighlight">\(c\)</span> in <span class="math notranslate nohighlight">\(\Cycles(\pi)\)</span> and let <span class="math notranslate nohighlight">\(\pi'\)</span> the prefix of <span class="math notranslate nohighlight">\(\pi\)</span>
+We show that <span class="math notranslate nohighlight">\(\textrm{val}\sigma_{\text{FC}}} \le \textrm{val}\sigma}\)</span>.</p>
+<p>Let <span class="math notranslate nohighlight">\(\pi\)</span> be a play consistent with <span class="math notranslate nohighlight">\(\sigma\)</span> from <span class="math notranslate nohighlight">\(v_0\)</span> and <span class="math notranslate nohighlight">\(x = \textrm{val}\sigma_{\text{FC}}}(v_0)\)</span>.
+We first argue that all cycles in <span class="math notranslate nohighlight">\(\mathrm{Cycles}\xspace\pi)\)</span> have an arithmetic mean greater than or equal to <span class="math notranslate nohighlight">\(x\)</span>.
+Indeed consider a cycle <span class="math notranslate nohighlight">\(c\)</span> in <span class="math notranslate nohighlight">\(\mathrm{Cycles}\xspace\pi)\)</span> and let <span class="math notranslate nohighlight">\(\pi'\)</span> the prefix of <span class="math notranslate nohighlight">\(\pi\)</span>
 ending with the cycle <span class="math notranslate nohighlight">\(c\)</span>.
-The play <span class="math notranslate nohighlight">\(\widehat{\pi'}\)</span> is consistent with <span class="math notranslate nohighlight">\(\sigma_{\text{FC}}\)</span>, implying that <span class="math notranslate nohighlight">\(\Mean(c) \ge x\)</span>.</p>
-<p>To conclude that <span class="math notranslate nohighlight">\(\MeanPayoff^+(\pi) \ge x\)</span> we show the following property:
+The play <span class="math notranslate nohighlight">\(\widehat{\pi'}\)</span> is consistent with <span class="math notranslate nohighlight">\(\sigma_{\text{FC}}\)</span>, implying that <span class="math notranslate nohighlight">\(\mathrm{Mean}\xspacec) \ge x\)</span>.</p>
+<p>To conclude that <span class="math notranslate nohighlight">\(\mathtt{MeanPayoff}+(\pi) \ge x\)</span> we show the following property:
 \begin{equation}\label{4-eq:cycle_positive}
-(\forall c \in \Cycles(\pi),\ \Mean(c) \ge x) \implies \MeanPayoff^+(\pi) \ge x.
+(\forall c \in \mathrm{Cycles}\xspace\pi),\ \mathrm{Mean}\xspacec) \ge x) \implies \mathtt{MeanPayoff}+(\pi) \ge x.
 \end{equation}</p>
-<p>To estimate <span class="math notranslate nohighlight">\(\MeanPayoff^+(\pi)\)</span> let us look at the prefix <span class="math notranslate nohighlight">\(\pi_{&lt; k}\)</span> of <span class="math notranslate nohighlight">\(\pi\)</span> of length <span class="math notranslate nohighlight">\(k\)</span>.
-Indeed we note that <span class="math notranslate nohighlight">\(\MeanPayoff^+(\pi) = \limsup_k \Mean(\pi_{&lt; k})\)</span>.</p>
-<p>To calculate <span class="math notranslate nohighlight">\(\Mean(\pi_{&lt; k})\)</span> we use the fact that
-every vertex in <span class="math notranslate nohighlight">\(\pi_{&lt; k}\)</span> either belongs to exactly one cycle in <span class="math notranslate nohighlight">\(\Cycles(\pi_{&lt; k})\)</span> or to <span class="math notranslate nohighlight">\(\widehat{\pi_{&lt; k}}\)</span>,
+<p>To estimate <span class="math notranslate nohighlight">\(\mathtt{MeanPayoff}+(\pi)\)</span> let us look at the prefix <span class="math notranslate nohighlight">\(\pi_{&lt; k}\)</span> of <span class="math notranslate nohighlight">\(\pi\)</span> of length <span class="math notranslate nohighlight">\(k\)</span>.
+Indeed we note that <span class="math notranslate nohighlight">\(\mathtt{MeanPayoff}+(\pi) = \limsup_k \mathrm{Mean}\xspace\pi_{&lt; k})\)</span>.</p>
+<p>To calculate <span class="math notranslate nohighlight">\(\mathrm{Mean}\xspace\pi_{&lt; k})\)</span> we use the fact that
+every vertex in <span class="math notranslate nohighlight">\(\pi_{&lt; k}\)</span> either belongs to exactly one cycle in <span class="math notranslate nohighlight">\(\mathrm{Cycles}\xspace\pi_{&lt; k})\)</span> or to <span class="math notranslate nohighlight">\(\widehat{\pi_{&lt; k}}\)</span>,
 and the linearity of the arithmetic mean:</p>
 <div class="math notranslate nohighlight">
 \[
-\Mean(\pi_{&lt; k}) = \Mean \set{\Mean(\widehat{\play_{&lt; k}}), \set{\Mean(c) : c \in \Cycles(\pi_{&lt; k})}}.
+\mathrm{Mean}\xspace\pi_{&lt; k}) = \mathrm{Mean}\xspace\set{\mathrm{Mean}\xspace\widehat{\play_{&lt; k}}), \set{\mathrm{Mean}\xspacec) : c \in \mathrm{Cycles}\xspace\pi_{&lt; k})}}.
 \]</div>
-<p>By assumption each <span class="math notranslate nohighlight">\(\Mean(c)\)</span> is greater than or equal to <span class="math notranslate nohighlight">\(x\)</span>.
+<p>By assumption each <span class="math notranslate nohighlight">\(\mathrm{Mean}\xspacec)\)</span> is greater than or equal to <span class="math notranslate nohighlight">\(x\)</span>.
 Note that since <span class="math notranslate nohighlight">\(\widehat{\play_{&lt; k}}\)</span> does not contain any cycle, it has length at most <span class="math notranslate nohighlight">\(n\)</span>, independently of <span class="math notranslate nohighlight">\(k\)</span>.
-On the other hand <span class="math notranslate nohighlight">\(\Cycles(\pi_{&lt; k})\)</span> has size at least <span class="math notranslate nohighlight">\(k / n\)</span>.
-Hence when <span class="math notranslate nohighlight">\(k\)</span> tends to infinity the term <span class="math notranslate nohighlight">\(\Mean(\widehat{\play_{&lt; k}})\)</span> vanishes and we have
-<span class="math notranslate nohighlight">\(\MeanPayoff^+(\pi) = \limsup_k \Mean(\pi_{&lt; k}) \ge x\)</span>.</p>
+On the other hand <span class="math notranslate nohighlight">\(\mathrm{Cycles}\xspace\pi_{&lt; k})\)</span> has size at least <span class="math notranslate nohighlight">\(k / n\)</span>.
+Hence when <span class="math notranslate nohighlight">\(k\)</span> tends to infinity the term <span class="math notranslate nohighlight">\(\mathrm{Mean}\xspace\widehat{\play_{&lt; k}})\)</span> vanishes and we have
+<span class="math notranslate nohighlight">\(\mathtt{MeanPayoff}+(\pi) = \limsup_k \mathrm{Mean}\xspace\pi_{&lt; k}) \ge x\)</span>.</p>
 <p>We turn to the second claim.
 The construction is identical for Adam:
 we let <span class="math notranslate nohighlight">\(\tau(\pi) = \tau_{\text{FC}}(\widehat{\pi})\)</span>.
-We show that <span class="math notranslate nohighlight">\(\val^{\tau_{\text{FC}}} \ge \val^{\tau}\)</span> following the same arguments.
-Let <span class="math notranslate nohighlight">\(\pi\)</span> be a play consistent with <span class="math notranslate nohighlight">\(\tau\)</span> from <span class="math notranslate nohighlight">\(v_0\)</span> and <span class="math notranslate nohighlight">\(x = \val^{\tau_{\text{FC}}}(v_0)\)</span>.</p>
-<p>To conclude that <span class="math notranslate nohighlight">\(\MeanPayoff^+(\pi) \le x\)</span> we show the following property:
+We show that <span class="math notranslate nohighlight">\(\textrm{val}\tau_{\text{FC}}} \ge \textrm{val}\tau}\)</span> following the same arguments.
+Let <span class="math notranslate nohighlight">\(\pi\)</span> be a play consistent with <span class="math notranslate nohighlight">\(\tau\)</span> from <span class="math notranslate nohighlight">\(v_0\)</span> and <span class="math notranslate nohighlight">\(x = \textrm{val}\tau_{\text{FC}}}(v_0)\)</span>.</p>
+<p>To conclude that <span class="math notranslate nohighlight">\(\mathtt{MeanPayoff}+(\pi) \le x\)</span> we show the following property:
 \begin{equation}\label{4-eq:cycle_negative}
-(\forall c \in \Cycles(\pi),\ \Mean(c) \le x) \implies \MeanPayoff^+(\pi) \le x.
+(\forall c \in \mathrm{Cycles}\xspace\pi),\ \mathrm{Mean}\xspacec) \le x) \implies \mathtt{MeanPayoff}+(\pi) \le x.
 \end{equation}
-This follows as above from the linearity of the arithmetic mean and the cycle decomposition.%independently of <span class="math notranslate nohighlight">\(k\)</span>, since they are simple cycles hence of length at most <span class="math notranslate nohighlight">\(n\)</span>.%such that all cycles <span class="math notranslate nohighlight">\(c\)</span> in <span class="math notranslate nohighlight">\(\Cycles(\pi)\)</span> satisfy <span class="math notranslate nohighlight">\(\Mean(c) \le x - \varepsilon\)</span>.</p>
-<p>Let us now prove that <span class="math notranslate nohighlight">\(\val^{\game} = \val^{\game_{\text{FC}}}\)</span> using the two claims.
+This follows as above from the linearity of the arithmetic mean and the cycle decomposition.</p>
+<p>Let us now prove that <span class="math notranslate nohighlight">\(\textrm{val}\mathcal{G} = \textrm{val}\game_{\text{FC}}}\)</span> using the two claims.
 We first need to establish that <span class="math notranslate nohighlight">\(\game_{\text{FC}}\)</span> is determined:
-one argument is that <span class="math notranslate nohighlight">\(\FirstCycle\)</span> is a Borel condition,
-hence determinacy follows from the general Borel determinacy result ( <a class="reference internal" href="../1_Introduction/simple.html#1-thm:borel_determinacy">Theorem 3</a>),
-another simpler argument is that <span class="math notranslate nohighlight">\(\FirstCycle\)</span> is a finite duration condition,
+one argument is that <span class="math notranslate nohighlight">\(\mathrm{FirstCycle}\xspace is a Borel condition, 
+hence determinacy follows from the general Borel determinacy result ( {prf:ref}`1-thm:borel_determinacy`),
+another simpler argument is that \)</span>\mathrm{FirstCycle}\xspace is a finite duration condition,
 meaning that the outcome of the play is determined with a finite number of steps (at most <span class="math notranslate nohighlight">\(n\)</span>),
 hence determinacy follows from an easier direct argument for finite duration games.</p>
 <p>It follows from the two claims that</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{array}{llll}
-\val^{\game_{\text{FC}}} 
-&amp; = \sup_{\sigma_{\text{FC}}} \val^{\sigma_{\text{FC}}} 
-&amp; \le \sup_{\sigma} \val^{\sigma}
-&amp; = \val^{\game} \\
-\val^{\game_{\text{FC}}}
-&amp; = \inf_{\tau_{\text{FC}}} \val^{\tau_{\text{FC}} }
-&amp; \ge \inf_{\tau} \val^{\tau}
-&amp; = \val^{\game},
+\textrm{val}\game_{\text{FC}}} 
+&amp; = \sup_{\sigma_{\text{FC}}} \textrm{val}\sigma_{\text{FC}}} 
+&amp; \le \sup_{\sigma} \textrm{val}\sigma}
+&amp; = \textrm{val}\mathcal{G} \\
+\textrm{val}\game_{\text{FC}}}
+&amp; = \inf_{\tau_{\text{FC}}} \textrm{val}\tau_{\text{FC}} }
+&amp; \ge \inf_{\tau} \textrm{val}\tau}
+&amp; = \textrm{val}\mathcal{G},
 \end{array}
 \end{split}\]</div>
 <p>where in both lines:
 the first equalities is by determinacy of <span class="math notranslate nohighlight">\(\game_{\text{FC}}\)</span>,
 the inequalities thanks to the two claims,
-and the last equalities by determinacy of <span class="math notranslate nohighlight">\(\game\)</span>.
-The two obtained inequalities imply that <span class="math notranslate nohighlight">\(\val^{\game} = \val^{\game_{\text{FC}}}\)</span>,
-and positional optimal strategies for either player in <span class="math notranslate nohighlight">\(\game_{\text{FC}}\)</span>
-induce positional optimal strategies in <span class="math notranslate nohighlight">\(\game\)</span>.</p>
+and the last equalities by determinacy of <span class="math notranslate nohighlight">\(\mathcal{G}.
+The two obtained inequalities imply that \)</span>\textrm{val}\mathcal{G} = \textrm{val}\game_{\text{FC}}}<span class="math notranslate nohighlight">\(,
+and positional optimal strategies for either player in \)</span>\game_{\text{FC}}<span class="math notranslate nohighlight">\( 
+induce positional optimal strategies in \)</span>\mathcal{G}.</p>
 <p><strong>Step 2.</strong>
-We define a third condition on <span class="math notranslate nohighlight">\(\arena\)</span>:</p>
+We define a third condition on $\mathcal{A}:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \FirstCycleReset_v(\pi) = 
 \begin{cases}
-\FirstCycle(\pi) &amp; \text{ if } \pi \text{ does not visit } v \text{ before } \FC(\pi), \\
-\FirstCycle(\pi_{\ge k}) &amp; \text{ for } k \text{ the first index such that } \Ing(\pi_k) = v.
+\mathrm{FirstCycle}\xspace\pi) &amp; \text{ if } \pi \text{ does not visit } v \text{ before } \mathrm{FC}\xspace\pi), \\
+\mathrm{FirstCycle}\xspace\pi_{\ge k}) &amp; \text{ for } k \text{ the first index such that } \textrm{In}pi_k) = v.
 \end{cases}
 \end{split}\]</div>
-<p>In words: if a cycle is closed before visiting <span class="math notranslate nohighlight">\(v\)</span>, then the condition is <span class="math notranslate nohighlight">\(\FirstCycle\)</span>
-and otherwise when reaching <span class="math notranslate nohighlight">\(v\)</span> the game is reset and the condition is <span class="math notranslate nohighlight">\(\FirstCycle\)</span> from this point onwards.</p>
+<p>In words: if a cycle is closed before visiting <span class="math notranslate nohighlight">\(v\)</span>, then the condition is <span class="math notranslate nohighlight">\(\mathrm{FirstCycle}\xspace
+and otherwise when reaching \)</span>v<span class="math notranslate nohighlight">\( the game is reset and the condition is \)</span>\mathrm{FirstCycle}\xspace from this point onwards.</p>
 <p>This second step is similar to the first step; the reason why we separated them is because this step
-relies on the fact that <span class="math notranslate nohighlight">\(\MeanPayoff^+\)</span> is prefix independent.</p>
-<p>Let us define <span class="math notranslate nohighlight">\(\game_{\text{FCR}(v)} = (\arena,\FirstCycleReset_v)\)</span>.
+relies on the fact that <span class="math notranslate nohighlight">\(\mathtt{MeanPayoff}+\)</span> is prefix independent.</p>
+<p>Let us define <span class="math notranslate nohighlight">\(\game_{\text{FCR}(v)} = (\mathcal{A}\FirstCycleReset_v)\)</span>.
 We make two claims:</p>
 <ul class="simple">
-<li><p>let <span class="math notranslate nohighlight">\(\sigma_{\text{FCR}(v)}\)</span> an optimal strategy in <span class="math notranslate nohighlight">\(\game_{\text{FCR}(v)}\)</span>, it induces a strategy <span class="math notranslate nohighlight">\(\sigma\)</span> in <span class="math notranslate nohighlight">\(\game\)</span>
-such that <span class="math notranslate nohighlight">\(\val^{\sigma_{\text{FCR}(v)}} \le \val^{\sigma}\)</span>, and</p></li>
-<li><p>let <span class="math notranslate nohighlight">\(\tau_{\text{FCR}(v)}\)</span> an optimal strategy in <span class="math notranslate nohighlight">\(\game_{\text{FCR}(v)}\)</span>, it induces a strategy <span class="math notranslate nohighlight">\(\tau\)</span> in <span class="math notranslate nohighlight">\(\game\)</span>
-such that <span class="math notranslate nohighlight">\(\val^{\tau_{\text{FCR}(v)}} \ge \val^{\tau}\)</span>.</p></li>
+<li><p>let <span class="math notranslate nohighlight">\(\sigma_{\text{FCR}(v)}\)</span> an optimal strategy in <span class="math notranslate nohighlight">\(\game_{\text{FCR}(v)}\)</span>, it induces a strategy <span class="math notranslate nohighlight">\(\sigma\)</span> in <span class="math notranslate nohighlight">\(\mathcal{G} 
+such that \)</span>\textrm{val}\sigma_{\text{FCR}(v)}} \le \textrm{val}\sigma}$, and</p></li>
+<li><p>let <span class="math notranslate nohighlight">\(\tau_{\text{FCR}(v)}\)</span> an optimal strategy in <span class="math notranslate nohighlight">\(\game_{\text{FCR}(v)}\)</span>, it induces a strategy <span class="math notranslate nohighlight">\(\tau\)</span> in <span class="math notranslate nohighlight">\(\mathcal{G}
+such that \)</span>\textrm{val}\tau_{\text{FCR}(v)}} \ge \textrm{val}\tau}$.</p></li>
 </ul>
 <p>Let us prove the first claim.
 We let</p>
@@ -1046,30 +1005,30 @@ We let</p>
 \sigma(\pi) = 
 \begin{cases}
 \sigma_{\text{FCR}(v)}(\widehat{\pi}) &amp; \text{if } \pi \text{ does not contain } v, \\
-\sigma_{\text{FCR}(v)}(\widehat{\pi_{\ge k}}) &amp; \text{for } k \text{ the first index such that } \Ing(\pi_k) = v.
+\sigma_{\text{FCR}(v)}(\widehat{\pi_{\ge k}}) &amp; \text{for } k \text{ the first index such that } \textrm{In}pi_k) = v.
 \end{cases}
 \end{split}\]</div>
-<p>We show that <span class="math notranslate nohighlight">\(\val^{\sigma_{\text{FCR}(v)}} \le \val^{\sigma}\)</span>.
-Let <span class="math notranslate nohighlight">\(\pi\)</span> a play consistent with <span class="math notranslate nohighlight">\(\sigma\)</span> from <span class="math notranslate nohighlight">\(v_0\)</span> and <span class="math notranslate nohighlight">\(x = \val^{\sigma_{\text{FCR}(v)}}(v_0)\)</span>.
+<p>We show that <span class="math notranslate nohighlight">\(\textrm{val}\sigma_{\text{FCR}(v)}} \le \textrm{val}\sigma}\)</span>.
+Let <span class="math notranslate nohighlight">\(\pi\)</span> a play consistent with <span class="math notranslate nohighlight">\(\sigma\)</span> from <span class="math notranslate nohighlight">\(v_0\)</span> and <span class="math notranslate nohighlight">\(x = \textrm{val}\sigma_{\text{FCR}(v)}}(v_0)\)</span>.
 There are two cases.</p>
 <p>Either <span class="math notranslate nohighlight">\(\pi\)</span> does not contain <span class="math notranslate nohighlight">\(v\)</span>, and then as in the first step
 this implies that all cycles in <span class="math notranslate nohighlight">\(\pi\)</span> have an arithmetic mean greater than or equal to <span class="math notranslate nohighlight">\(x\)</span>,
 and we conclude as in the first step that <span class="math notranslate nohighlight">\(\FirstCycleReset_v(\pi) \ge x\)</span>.</p>
-<p>Or <span class="math notranslate nohighlight">\(\pi\)</span> contains <span class="math notranslate nohighlight">\(v\)</span>. We first argue that <span class="math notranslate nohighlight">\(x = \val^{\sigma_{\text{FCR}(v)}}(v_0) \le \val^{\sigma_{\text{FCR}(v)}}(v)\)</span>.
+<p>Or <span class="math notranslate nohighlight">\(\pi\)</span> contains <span class="math notranslate nohighlight">\(v\)</span>. We first argue that <span class="math notranslate nohighlight">\(x = \textrm{val}\sigma_{\text{FCR}(v)}}(v_0) \le \textrm{val}\sigma_{\text{FCR}(v)}}(v)\)</span>.
 Indeed, let <span class="math notranslate nohighlight">\(\pi_0\)</span> be a play without cycles from <span class="math notranslate nohighlight">\(v_0\)</span> to <span class="math notranslate nohighlight">\(v\)</span> consistent with <span class="math notranslate nohighlight">\(\sigma_{\text{FCR}(v)}\)</span>,
 we let <span class="math notranslate nohighlight">\(\sigma'(\pi) = \sigma_{\text{FCR}(v)}(\pi_0 \pi)\)</span>.
-Then <span class="math notranslate nohighlight">\(\val^{\sigma_{\text{FCR}(v)}}(v_0) \le \val^{\sigma'}(v) \le \val^{\sigma_{\text{FCR}(v)}}(v)\)</span>,
+Then <span class="math notranslate nohighlight">\(\textrm{val}\sigma_{\text{FCR}(v)}}(v_0) \le \textrm{val}\sigma'}(v) \le \textrm{val}\sigma_{\text{FCR}(v)}}(v)\)</span>,
 the first inequality is because a play <span class="math notranslate nohighlight">\(\pi\)</span> consistent with <span class="math notranslate nohighlight">\(\sigma'\)</span> from <span class="math notranslate nohighlight">\(v\)</span>
 correspond to the play <span class="math notranslate nohighlight">\(\pi_0 \pi\)</span> consistent with <span class="math notranslate nohighlight">\(\sigma_{\text{FCR}(v)}\)</span> from <span class="math notranslate nohighlight">\(v_0\)</span>,
 and the second inequality by optimality of <span class="math notranslate nohighlight">\(\sigma_{\text{FCR}(v)}\)</span>.</p>
-<p>Let <span class="math notranslate nohighlight">\(y = \val^{\sigma_{\text{FCR}(v)}}(v)\)</span>, the inequality above reads <span class="math notranslate nohighlight">\(x \le y\)</span>.
+<p>Let <span class="math notranslate nohighlight">\(y = \textrm{val}\sigma_{\text{FCR}(v)}}(v)\)</span>, the inequality above reads <span class="math notranslate nohighlight">\(x \le y\)</span>.
 Let <span class="math notranslate nohighlight">\(\pi'\)</span> the suffix of <span class="math notranslate nohighlight">\(\pi\)</span> starting from the first occurrence of <span class="math notranslate nohighlight">\(v\)</span>,
 then <span class="math notranslate nohighlight">\(\pi'\)</span> is consistent with <span class="math notranslate nohighlight">\(\sigma_{\text{FCR}(v)}\)</span> from <span class="math notranslate nohighlight">\(v\)</span>,
 so as in the first step this implies that all cycles in <span class="math notranslate nohighlight">\(\pi'\)</span> have an arithmetic mean greater than or equal to <span class="math notranslate nohighlight">\(y\)</span>.
-We conclude as in the first step that <span class="math notranslate nohighlight">\(\MeanPayoff^+(\pi') \ge y \ge x\)</span>,
-The last but important argument is that <span class="math notranslate nohighlight">\(\MeanPayoff^+\)</span> is prefix independent,
-implying that <span class="math notranslate nohighlight">\(\MeanPayoff^+(\pi) \ge x\)</span>.</p>
-<p>We prove that <span class="math notranslate nohighlight">\(\val^{\game} = \val^{\game_{\text{FCR}(v)}}\)</span> using the two claims
+We conclude as in the first step that <span class="math notranslate nohighlight">\(\mathtt{MeanPayoff}+(\pi') \ge y \ge x\)</span>,
+The last but important argument is that <span class="math notranslate nohighlight">\(\mathtt{MeanPayoff}+\)</span> is prefix independent,
+implying that <span class="math notranslate nohighlight">\(\mathtt{MeanPayoff}+(\pi) \ge x\)</span>.</p>
+<p>We prove that <span class="math notranslate nohighlight">\(\textrm{val}\mathcal{G} = \textrm{val}\game_{\text{FCR}(v)}}\)</span> using the two claims
 following the same arguments as in the first step.
 In particular we need to establish that <span class="math notranslate nohighlight">\(\game_{\text{FCR}(v)}\)</span> is determined,
 and again it either follows from the general Borel determinacy result ( <a class="reference internal" href="../1_Introduction/simple.html#1-thm:borel_determinacy">Theorem 3</a>)
@@ -1080,7 +1039,7 @@ Let us prove positional determinacy for Eve, the case of Adam being symmetric.
 We show that for all games there exists an optimal positional strategy,
 by induction on the number of vertices of Eve with more than one outgoing edge.
 The base case is clear since in that case there is a unique strategy and it is positional.
-Let <span class="math notranslate nohighlight">\(v \in \VE\)</span> with more than one outgoing edge.</p>
+Let $v \in V_\mathrm{Eve}with more than one outgoing edge.</p>
 <p>Let <span class="math notranslate nohighlight">\(\sigma_{\text{FCR}(v)}\)</span> an optimal strategy in <span class="math notranslate nohighlight">\(\game_{\text{FCR}(v)}\)</span>.
 Intuitively, since the game is reset at the first visit of <span class="math notranslate nohighlight">\(v\)</span> and that the second visit to <span class="math notranslate nohighlight">\(v\)</span> would close a loop hence determine the outcome,
 we can use any optimal strategy from <span class="math notranslate nohighlight">\(v\)</span>.
@@ -1090,55 +1049,55 @@ We define <span class="math notranslate nohighlight">\(\sigma'\)</span> as follo
 \sigma'(\pi) = 
 \begin{cases}
 \sigma(\pi) &amp; \text{if } \pi \text{ does not contain } v, \\
-\sigma(\pi_{\ge k}) &amp; \text{for } k \text{ the last index such that } \Ing(\pi_k) = v.
+\sigma(\pi_{\ge k}) &amp; \text{for } k \text{ the last index such that } \textrm{In}pi_k) = v.
 \end{cases}
 \end{split}\]</div>
 <p>Note that indeed <span class="math notranslate nohighlight">\(\sigma'\)</span> uses only one outgoing edge of <span class="math notranslate nohighlight">\(v\)</span>.
-We show that <span class="math notranslate nohighlight">\(\val^{\game_{\text{FCR}(v)},\sigma}(v_0) \le \val^{\game_{\text{FCR}(v)},\sigma'}(v_0)\)</span>,
+We show that <span class="math notranslate nohighlight">\(\textrm{val}\game_{\text{FCR}(v)},\sigma}(v_0) \le \textrm{val}\game_{\text{FCR}(v)},\sigma'}(v_0)\)</span>,
 implying that <span class="math notranslate nohighlight">\(\sigma'\)</span> is optimal in <span class="math notranslate nohighlight">\(\game_{\text{FCR}(v)}\)</span> and the inequality is an equality.</p>
 <p>Let <span class="math notranslate nohighlight">\(\pi\)</span> be a play consistent with <span class="math notranslate nohighlight">\(\sigma'\)</span> from <span class="math notranslate nohighlight">\(v_0\)</span>.
-If it does not contain <span class="math notranslate nohighlight">\(v\)</span> it is consistent with <span class="math notranslate nohighlight">\(\sigma\)</span>, so <span class="math notranslate nohighlight">\(\FirstCycleReset_v(\pi) \ge \val^{\game_{\text{FCR}(v)},\sigma}(v_0)\)</span>.
+If it does not contain <span class="math notranslate nohighlight">\(v\)</span> it is consistent with <span class="math notranslate nohighlight">\(\sigma\)</span>, so <span class="math notranslate nohighlight">\(\FirstCycleReset_v(\pi) \ge \textrm{val}\game_{\text{FCR}(v)},\sigma}(v_0)\)</span>.
 If it contains <span class="math notranslate nohighlight">\(v\)</span>, let <span class="math notranslate nohighlight">\(\pi'\)</span> the suffix of <span class="math notranslate nohighlight">\(\pi\)</span> starting from the first occurrence of <span class="math notranslate nohighlight">\(v\)</span>,
-then <span class="math notranslate nohighlight">\(\FirstCycleReset_v(\pi) = \FirstCycle(\pi')\)</span>.
-Since <span class="math notranslate nohighlight">\(\pi'\)</span> is consistent with <span class="math notranslate nohighlight">\(\sigma\)</span> (until a cycle is formed) we have <span class="math notranslate nohighlight">\(\FirstCycle(\pi') \ge \val^{\game_{\text{FCR}(v)},\sigma}(v_0)\)</span>,
-implying that <span class="math notranslate nohighlight">\(\FirstCycleReset_v(\pi) \ge \val^{\game_{\text{FCR}(v)},\sigma}(v_0)\)</span>.
-We conclude: <span class="math notranslate nohighlight">\(\val^{\game_{\text{FCR}(v)},\sigma'}(v_0) \le \val^{\game_{\text{FCR}(v)},\sigma}(v_0)\)</span>.</p>
-<p>Let <span class="math notranslate nohighlight">\(\mathcal{B}\)</span> the arena obtained from <span class="math notranslate nohighlight">\(\arena\)</span> by removing all outgoing edges of <span class="math notranslate nohighlight">\(v\)</span> not used by <span class="math notranslate nohighlight">\(\sigma'\)</span>.
-Let <span class="math notranslate nohighlight">\(\game'_{\text{FCR}(v)} = (\mathcal{B}, \FirstCycleReset_v)\)</span> and <span class="math notranslate nohighlight">\(\game'_{\text{FC}} = (\mathcal{B}, \FirstCycle)\)</span>.
-By definition we have <span class="math notranslate nohighlight">\(\val^{\game_{\text{FCR}(v)},\sigma'} = \val^{\game'_{\text{FCR}(v)},\sigma'} = \val^{\game'_{\text{FCR}(v)}}\)</span>.
-In the previous step we proved that <span class="math notranslate nohighlight">\(\val^{\game'_{\text{FC}}} = \val^{\game'_{\text{FCR}(v)}}\)</span>,
-so <span class="math notranslate nohighlight">\(\val^{\game'_{\text{FC}}} = \val^{\game_{\text{FC}}}\)</span>.
-The arena <span class="math notranslate nohighlight">\(\mathcal{B}\)</span> contains one less vertex of Eve with more than one outgoing edge,
-so the induction hypothesis applies and implies that there exists an optimal strategy in <span class="math notranslate nohighlight">\(\game'_{\text{FC}}\)</span>,
-which is also optimal in <span class="math notranslate nohighlight">\(\game_{\text{FC}}\)</span> thanks to the equality <span class="math notranslate nohighlight">\(\val^{\game'_{\text{FC}}} = \val^{\game_{\text{FC}}}\)</span>.</p>
+then <span class="math notranslate nohighlight">\(\FirstCycleReset_v(\pi) = \mathrm{FirstCycle}\xspace\pi')\)</span>.
+Since <span class="math notranslate nohighlight">\(\pi'\)</span> is consistent with <span class="math notranslate nohighlight">\(\sigma\)</span> (until a cycle is formed) we have <span class="math notranslate nohighlight">\(\mathrm{FirstCycle}\xspace\pi') \ge \textrm{val}\game_{\text{FCR}(v)},\sigma}(v_0)\)</span>,
+implying that <span class="math notranslate nohighlight">\(\FirstCycleReset_v(\pi) \ge \textrm{val}\game_{\text{FCR}(v)},\sigma}(v_0)\)</span>.
+We conclude: <span class="math notranslate nohighlight">\(\textrm{val}\game_{\text{FCR}(v)},\sigma'}(v_0) \le \textrm{val}\game_{\text{FCR}(v)},\sigma}(v_0)\)</span>.</p>
+<p>Let <span class="math notranslate nohighlight">\(\mathcal{B}\)</span> the arena obtained from <span class="math notranslate nohighlight">\(\mathcal{A} by removing all outgoing edges of \)</span>v<span class="math notranslate nohighlight">\( not used by \)</span>\sigma’<span class="math notranslate nohighlight">\(.
+Let \)</span>\mathcal{G}<em>{\text{FCR}(v)} = (\mathcal{B}, \FirstCycleReset_v)<span class="math notranslate nohighlight">\( and \)</span>\mathcal{G}</em>{\text{FC}} = (\mathcal{B}, \mathrm{FirstCycle}\xspace<span class="math notranslate nohighlight">\(.
+By definition we have \)</span>\textrm{val}\game_{\text{FCR}(v)},\sigma’} = \textrm{val}\mathcal{G}<em>{\text{FCR}(v)},\sigma’} = \textrm{val}\mathcal{G}</em>{\text{FCR}(v)}}<span class="math notranslate nohighlight">\(.
+In the previous step we proved that \)</span>\textrm{val}\mathcal{G}<em>{\text{FC}}} = \textrm{val}\mathcal{G}</em>{\text{FCR}(v)}}<span class="math notranslate nohighlight">\(,
+so \)</span>\textrm{val}\mathcal{G}<em>{\text{FC}}} = \textrm{val}\game</em>{\text{FC}}}<span class="math notranslate nohighlight">\(.
+The arena \)</span>\mathcal{B}<span class="math notranslate nohighlight">\( contains one less vertex of Eve with more than one outgoing edge,
+so the induction hypothesis applies and implies that there exists an optimal strategy in \)</span>\mathcal{G}<em>{\text{FC}}<span class="math notranslate nohighlight">\(,
+which is also optimal in \)</span>\game</em>{\text{FC}}<span class="math notranslate nohighlight">\( thanks to the equality \)</span>\textrm{val}\mathcal{G}<em>{\text{FC}}} = \textrm{val}\game</em>{\text{FC}}}$.</p>
 </div>
 <p>Let us extract from the proof of <a class="reference internal" href="#4-thm:mean_payoff_positional">Theorem 92</a> a more general positionality result via first cycle games.</p>
 <div class="proof theorem admonition" id="4-thm:first_cycle_games">
 <p class="admonition-title"><span class="caption-number">Theorem 93 </span> (NEEDS TITLE 4-thm:first_cycle_games)</p>
 <div class="theorem-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\Phi\)</span> a quantitative objective over the set of colours <span class="math notranslate nohighlight">\(C\)</span>.
-Let <span class="math notranslate nohighlight">\(f : C^* \to \R\)</span> satisfying the following properties,
-for all games <span class="math notranslate nohighlight">\(\Game\)</span> with objective <span class="math notranslate nohighlight">\(\Phi\)</span>:</p>
+Let <span class="math notranslate nohighlight">\(f : C^* \to \mathbb{R} satisfying the following properties,
+for all games \)</span>\Game<span class="math notranslate nohighlight">\( with objective \)</span>\Phi$:</p>
 <ul class="simple">
-<li><p>for all <span class="math notranslate nohighlight">\(x \in \Rinfty\)</span>, for all plays <span class="math notranslate nohighlight">\(\pi\)</span>,</p></li>
+<li><p>for all <span class="math notranslate nohighlight">\(x \in \mathbb{R}\cup \set{\pm \infty}, for all plays \)</span>\pi$,</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
-(\forall c \in \Cycles(\pi),\ f(c) \ge x) \implies \Phi(\pi) \ge x,
+(\forall c \in \mathrm{Cycles}\xspace\pi),\ f(c) \ge x) \implies \Phi(\pi) \ge x,
 \]</div>
 <ul class="simple">
-<li><p>for all <span class="math notranslate nohighlight">\(x \in \Rinfty\)</span>, for all plays <span class="math notranslate nohighlight">\(\pi\)</span>,</p></li>
+<li><p>for all <span class="math notranslate nohighlight">\(x \in \mathbb{R}\cup \set{\pm \infty}, for all plays \)</span>\pi$,</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
-(\forall c \in \Cycles(\pi),\ f(c) \le x) \implies \Phi(\pi) \le x,
+(\forall c \in \mathrm{Cycles}\xspace\pi),\ f(c) \le x) \implies \Phi(\pi) \le x,
 \]</div>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\Phi\)</span> is prefix independent.
-Then <span class="math notranslate nohighlight">\(\Phi\)</span> is positionally determined for both players.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Phi\)</span> is prefix independent.</p></li>
 </ul>
+<p>Then <span class="math notranslate nohighlight">\(\Phi\)</span> is positionally determined for both players.</p>
 </div>
-</div><p>In the proof above, the role of <span class="math notranslate nohighlight">\(f\)</span> is played by the function <span class="math notranslate nohighlight">\(\Mean\)</span>.</p>
+</div><p>In the proof above, the role of <span class="math notranslate nohighlight">\(f\)</span> is played by the function $\mathrm{Mean}\xspace.</p>
 <p>The first two items are used to prove that the first cycle games induced by <span class="math notranslate nohighlight">\(f\)</span> are equivalent to the games with objective <span class="math notranslate nohighlight">\(\Phi\)</span>,
 and the third item to prove the equivalence with first cycle games with reset;
 the equivalence between the two types of first cycle games yield the positionality of these games,
@@ -1148,52 +1107,52 @@ implying the positionality of games with objective <span class="math notranslate
 <div class="corollary-content section" id="proof-content">
 <ul class="simple">
 <li><p>Limit superior and limit inferior mean payoff games are equivalent:
-for every arena <span class="math notranslate nohighlight">\(\arena\)</span> and colouring function <span class="math notranslate nohighlight">\(\col : E \to \Z\)</span>,
-let <span class="math notranslate nohighlight">\(\game_{+} = (\arena,\MeanPayoff^+[\col])\)</span> and <span class="math notranslate nohighlight">\(\game_{-} = (\arena,\MeanPayoff^-[\col])\)</span>,
-then <span class="math notranslate nohighlight">\(\val^{\game_+} = \val^{\game_-}\)</span>.
+for every arena <span class="math notranslate nohighlight">\(\mathcal{A} and colouring function \)</span>\textsf{col}: E \to \mathbb{Z},
+let <span class="math notranslate nohighlight">\(\game_{+} = (\mathcal{A}\mathtt{MeanPayoff}+[\textsf{col})\)</span> and <span class="math notranslate nohighlight">\(\game_{-} = (\mathcal{A}\mathtt{MeanPayoff}-[\textsf{col})\)</span>,
+then <span class="math notranslate nohighlight">\(\textrm{val}\game_+} = \textrm{val}\game_-}\)</span>.
 This implies that a positional strategy is optimal in <span class="math notranslate nohighlight">\(\game_+\)</span> if and only if it is optimal in <span class="math notranslate nohighlight">\(\game_-\)</span>.</p></li>
 </ul>
-<p>Since they are equivalent we speak of mean payoff games without specifying whether the objective is <span class="math notranslate nohighlight">\(\MeanPayoff^+\)</span> or <span class="math notranslate nohighlight">\(\MeanPayoff^-\)</span>,
-and write <span class="math notranslate nohighlight">\(\MeanPayoff\)</span> instead.</p>
+<p>Since they are equivalent we speak of mean payoff games without specifying whether the objective is <span class="math notranslate nohighlight">\(\mathtt{MeanPayoff}+\)</span> or <span class="math notranslate nohighlight">\(\mathtt{MeanPayoff}-\)</span>,
+and write $\mathtt{MeanPayoff} instead.</p>
 <ul class="simple">
-<li><p>For all mean payoff games <span class="math notranslate nohighlight">\(\game\)</span> and vertices <span class="math notranslate nohighlight">\(v\)</span>,
-the value <span class="math notranslate nohighlight">\(\Value^\game(v)\)</span> is a rational number of the form <span class="math notranslate nohighlight">\(\frac{a}{n}\)</span> with <span class="math notranslate nohighlight">\(a \in [-nW,nW]\)</span>,
-where <span class="math notranslate nohighlight">\(W\)</span> is the largest weight appearing in <span class="math notranslate nohighlight">\(\Game\)</span> in absolute value.</p></li>
+<li><p>For all mean payoff games <span class="math notranslate nohighlight">\(\mathcal{G} and vertices \)</span>v<span class="math notranslate nohighlight">\(, 
+the value \)</span>\textrm{val}\mathcal{G}v)<span class="math notranslate nohighlight">\( is a rational number of the form \)</span>\frac{a}{n}<span class="math notranslate nohighlight">\( with \)</span>a \in [-nW,nW]<span class="math notranslate nohighlight">\(,
+where \)</span>W<span class="math notranslate nohighlight">\( is the largest weight appearing in \)</span>\Game$ in absolute value.</p></li>
 </ul>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
 <p>Thanks to  <a class="reference internal" href="#4-thm:mean_payoff_positional">Theorem 92</a>, there exist <span class="math notranslate nohighlight">\(\sigma_+\)</span> and <span class="math notranslate nohighlight">\(\tau_+\)</span> optimal positional strategies in <span class="math notranslate nohighlight">\(\game_+\)</span>
 and <span class="math notranslate nohighlight">\(\sigma_-\)</span> and <span class="math notranslate nohighlight">\(\tau_-\)</span> optimal positional strategies in <span class="math notranslate nohighlight">\(\game_-\)</span> (for the latter by duality).
-By definition <span class="math notranslate nohighlight">\(\val^{\game_+}(v) = \MeanPayoff^+(\pi^v_{\sigma_+,\tau_+})\)</span> and <span class="math notranslate nohighlight">\(\val^{\game_-}(v) = \MeanPayoff^-(\pi^v_{\sigma_-,\tau_-})\)</span>.
-Since <span class="math notranslate nohighlight">\(\MeanPayoff^- \le \MeanPayoff^+\)</span> we already have <span class="math notranslate nohighlight">\(\val^{\game_-} \le \val^{\game_+}\)</span>.</p>
+By definition <span class="math notranslate nohighlight">\(\textrm{val}\game_+}(v) = \mathtt{MeanPayoff}+(\pi^v_{\sigma_+,\tau_+})\)</span> and <span class="math notranslate nohighlight">\(\textrm{val}\game_-}(v) = \mathtt{MeanPayoff}-(\pi^v_{\sigma_-,\tau_-})\)</span>.
+Since <span class="math notranslate nohighlight">\(\mathtt{MeanPayoff}- \le \mathtt{MeanPayoff}+\)</span> we already have <span class="math notranslate nohighlight">\(\textrm{val}\game_-} \le \textrm{val}\game_+}\)</span>.</p>
 <p>For two positional strategies <span class="math notranslate nohighlight">\(\sigma\)</span> and <span class="math notranslate nohighlight">\(\tau\)</span>, the play <span class="math notranslate nohighlight">\(\pi^v_{\sigma,\tau}\)</span> is a lasso, meaning of the form <span class="math notranslate nohighlight">\(\pi c^\omega\)</span>
 with <span class="math notranslate nohighlight">\(\pi\)</span> a simple path and <span class="math notranslate nohighlight">\(c\)</span> a simple cycle,
-implying that <span class="math notranslate nohighlight">\(\MeanPayoff^+(\pi^v_{\sigma,\tau}) = \MeanPayoff^-(\pi^v_{\sigma,\tau})\)</span>,
-let us write <span class="math notranslate nohighlight">\(\MeanPayoff(\pi^v_{\sigma,\tau})\)</span> for this value.</p>
+implying that <span class="math notranslate nohighlight">\(\mathtt{MeanPayoff}+(\pi^v_{\sigma,\tau}) = \mathtt{MeanPayoff}-(\pi^v_{\sigma,\tau})\)</span>,
+let us write <span class="math notranslate nohighlight">\(\mathtt{MeanPayoff}\pi^v_{\sigma,\tau})\)</span> for this value.</p>
 <p>We have:</p>
 <div class="math notranslate nohighlight">
 \[
-\MeanPayoff(\pi^v_{\sigma_+,\tau_+}) 
-\le \MeanPayoff(\pi^v_{\sigma_+,\tau_-})
-\le \MeanPayoff(\pi^v_{\sigma_-,\tau_-}),
+\mathtt{MeanPayoff}\pi^v_{\sigma_+,\tau_+}) 
+\le \mathtt{MeanPayoff}\pi^v_{\sigma_+,\tau_-})
+\le \mathtt{MeanPayoff}\pi^v_{\sigma_-,\tau_-}),
 \]</div>
 <p>where the first inequality is by optimality of <span class="math notranslate nohighlight">\(\tau_-\)</span> and the second inequality by optimality of <span class="math notranslate nohighlight">\(\sigma_-\)</span>.
-Hence <span class="math notranslate nohighlight">\(\val^{\game_+} \le \val^{\game_-}\)</span>, and finally <span class="math notranslate nohighlight">\(\val^{\game_+} = \val^{\game_-}\)</span>.</p>
-<p>For the second item, recall that <span class="math notranslate nohighlight">\(\val^\game(v) = \MeanPayoff(\pi^v_{\sigma,\tau})\)</span>
+Hence <span class="math notranslate nohighlight">\(\textrm{val}\game_+} \le \textrm{val}\game_-}\)</span>, and finally <span class="math notranslate nohighlight">\(\textrm{val}\game_+} = \textrm{val}\game_-}\)</span>.</p>
+<p>For the second item, recall that <span class="math notranslate nohighlight">\(\textrm{val}mathcal{G}v) = \mathtt{MeanPayoff}\pi^v_{\sigma,\tau})\)</span>
 with <span class="math notranslate nohighlight">\(\sigma\)</span> and <span class="math notranslate nohighlight">\(\tau\)</span> optimal positional strategies.
 Let us write <span class="math notranslate nohighlight">\(\pi^v_{\sigma,\tau} = \pi c^\omega\)</span> with <span class="math notranslate nohighlight">\(\pi\)</span> a simple path and <span class="math notranslate nohighlight">\(c\)</span> a simple cycle,
-then by prefix independence <span class="math notranslate nohighlight">\(\MeanPayoff(\pi^v_{\sigma,\tau}) = \Mean(c)\)</span>,
-thus <span class="math notranslate nohighlight">\(\val^\game(v)\)</span> is the mean of at most <span class="math notranslate nohighlight">\(n\)</span> weights from <span class="math notranslate nohighlight">\(\game\)</span>.</p>
+then by prefix independence <span class="math notranslate nohighlight">\(\mathtt{MeanPayoff}\pi^v_{\sigma,\tau}) = \mathrm{Mean}\xspacec)\)</span>,
+thus <span class="math notranslate nohighlight">\(\textrm{val}mathcal{G}v)\)</span> is the mean of at most <span class="math notranslate nohighlight">\(n\)</span> weights from $\mathcal{G}.</p>
 </div>
 </div>
-<div class="section" id="solving-mean-payoff-games-in-np-cap-conp">
-<h2>Solving mean payoff games in <span class="math notranslate nohighlight">\(\NP\cap\coNP\)</span><a class="headerlink" href="#solving-mean-payoff-games-in-np-cap-conp" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="solving-mean-payoff-games-in-textrm-np-cap-textrm-conp">
+<h2>Solving mean payoff games in $\textrm{NP}cap\textrm{coNP}<a class="headerlink" href="#solving-mean-payoff-games-in-textrm-np-cap-textrm-conp" title="Permalink to this headline">¶</a></h2>
 <p>The positional determinacy of mean payoff games easily gives an upper bound on the complexity of <strong>solving</strong> these games.</p>
 <div class="proof theorem admonition" id="4-thm:MP-NPcoNP">
 <p class="admonition-title"><span class="caption-number">Theorem 95 </span> (NEEDS TITLE 4-thm:MP-NPcoNP)</p>
 <div class="theorem-content section" id="proof-content">
-<p>Solving mean payoff games is in <span class="math notranslate nohighlight">\(\NP\cap\coNP\)</span>.</p>
+<p>Solving mean payoff games is in $\textrm{NP}cap\textrm{coNP}.</p>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
@@ -1201,15 +1160,15 @@ thus <span class="math notranslate nohighlight">\(\val^\game(v)\)</span> is the 
 Indeed, they correspond to the minimum cycle mean problem in a weighted graph,
 which can be solved in polynomial time by a dynamic programming algorithm.
 The second ingredient is the positional determinacy result proved in <a class="reference internal" href="#4-thm:mean_payoff_positional">Theorem 92</a>.</p>
-<p>Let us show the <span class="math notranslate nohighlight">\(\NP\)</span> membership.
-Consider a mean payoff game <span class="math notranslate nohighlight">\(\Game\)</span>, a vertex <span class="math notranslate nohighlight">\(v\)</span> and a threshold <span class="math notranslate nohighlight">\(x \in \Qinfty\)</span>.
+<p>Let us show the <span class="math notranslate nohighlight">\(\textrm{NP} membership. 
+Consider a mean payoff game \)</span>\Game<span class="math notranslate nohighlight">\(, a vertex \)</span>v<span class="math notranslate nohighlight">\( and a threshold \)</span>x \in \mathbb{Q}\cup \set{\pm \infty}.
 Thanks to <a class="reference internal" href="#4-thm:mean_payoff_positional">Theorem 92</a>, we know that there exist an optimal positional strategy for Eve.
 With a non-deterministic Turing machine, we may guess a positional strategy for Eve, and check that it ensures <span class="math notranslate nohighlight">\(x\)</span> in <span class="math notranslate nohighlight">\(\Game\)</span> from <span class="math notranslate nohighlight">\(v\)</span>.</p>
-<p>Let us now show the <span class="math notranslate nohighlight">\(\coNP\)</span> membership.
-By determinacy of mean payoff games, whether Eve <strong>cannot</strong> ensure <span class="math notranslate nohighlight">\(x\)</span> in <span class="math notranslate nohighlight">\(\Game\)</span> from <span class="math notranslate nohighlight">\(v\)</span>
-is equivalent to whether Adam can ensure <span class="math notranslate nohighlight">\(x\)</span> in <span class="math notranslate nohighlight">\(\Game\)</span> from <span class="math notranslate nohighlight">\(v\)</span>.
-Again thanks to <a class="reference internal" href="#4-thm:mean_payoff_positional">Theorem 92</a>, we know that there exist an optimal positional strategy for Adam.
-With a non-deterministic Turing machine, we may guess a positional strategy for Adam, and check that it ensures <span class="math notranslate nohighlight">\(x\)</span> in <span class="math notranslate nohighlight">\(\Game\)</span> from <span class="math notranslate nohighlight">\(v\)</span>.</p>
+<p>Let us now show the <span class="math notranslate nohighlight">\(\textrm{coNP} membership. 
+By determinacy of mean payoff games, whether Eve **cannot** ensure \)</span>x<span class="math notranslate nohighlight">\( in \)</span>\Game<span class="math notranslate nohighlight">\( from \)</span>v<span class="math notranslate nohighlight">\( 
+is equivalent to whether Adam can ensure \)</span>x<span class="math notranslate nohighlight">\( in \)</span>\Game<span class="math notranslate nohighlight">\( from \)</span>v<span class="math notranslate nohighlight">\(.
+Again thanks to {prf:ref}`4-thm:mean_payoff_positional`, we know that there exist an optimal positional strategy for Adam.
+With a non-deterministic Turing machine, we may guess a positional strategy for Adam, and check that it ensures \)</span>x<span class="math notranslate nohighlight">\( in \)</span>\Game<span class="math notranslate nohighlight">\( from \)</span>v$.</p>
 </div>
 <p>We can turn the non-deterministic algorithm given in <a class="reference internal" href="#4-thm:MP-NPcoNP">Theorem 95</a> into a deterministic algorithm
 with exponential complexity since there are exponential many positional strategies.</p>
@@ -1221,34 +1180,35 @@ with exponential complexity since there are exponential many positional strategi
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
-<p>Let <span class="math notranslate nohighlight">\(\game = (\arena, \Parity[\col])\)</span> a parity game with <span class="math notranslate nohighlight">\(n\)</span> vertices and priorities in <span class="math notranslate nohighlight">\([1,d]\)</span>.
-We construct a mean payoff game <span class="math notranslate nohighlight">\(\game' = (\arena, \MeanPayoff[\col'])\)</span> using the same arena:</p>
+<p>Let <span class="math notranslate nohighlight">\(\mathcal{G}= (\mathcal{A} \mathtt{Parity}\textsf{col})\)</span> a parity game with <span class="math notranslate nohighlight">\(n\)</span> vertices and priorities in <span class="math notranslate nohighlight">\([1,d]\)</span>.
+We construct a mean payoff game <span class="math notranslate nohighlight">\(\mathcal{G} = (\mathcal{A} \mathtt{MeanPayoff}\textsf{col}])\)</span> using the same arena:</p>
 <div class="math notranslate nohighlight">
 \[
-\col'(v) = (-n)^{\col(v)}.
+\textsf{col}(v) = (-n)^{\textsf{col}v)}.
 \]</div>
-<p>Note that <span class="math notranslate nohighlight">\(\col'(v)\)</span> is of polynomial size since <span class="math notranslate nohighlight">\(\log(|\col'(v)|) = \col(v) \log(n) \leq d \log(n)\)</span>.</p>
-<p>The key property relating <span class="math notranslate nohighlight">\(\col'\)</span> and <span class="math notranslate nohighlight">\(\col\)</span> is the following:
-for <span class="math notranslate nohighlight">\(c = v_0 \dots v_{k-1}\)</span> a simple cycle (implying <span class="math notranslate nohighlight">\(k \le n\)</span>),
-the largest priority in <span class="math notranslate nohighlight">\(c\)</span> is evenif and only if <span class="math notranslate nohighlight">\(\Mean(c) \ge 0\)</span>.
-Indeed, if the largest priority in <span class="math notranslate nohighlight">\(c\)</span> is <span class="math notranslate nohighlight">\(p\)</span> even reached in <span class="math notranslate nohighlight">\(v_i\)</span> then <span class="math notranslate nohighlight">\(\col'(v_i) = n^p\)</span>
-and for <span class="math notranslate nohighlight">\(j \neq i\)</span> we have <span class="math notranslate nohighlight">\(\col'(v_j) \ge -n^{p-1}\)</span>,
-and since there are at most <span class="math notranslate nohighlight">\(n\)</span> vertices in total the largest priority dominates the others.</p>
-<p>We claim that <span class="math notranslate nohighlight">\(\WE(\game) = \WE(\game')\)</span>.</p>
-<p>Let <span class="math notranslate nohighlight">\(\sigma\)</span> be a positional strategy winning from <span class="math notranslate nohighlight">\(\WE(\game)\)</span>, we show that <span class="math notranslate nohighlight">\(\sigma\)</span> is also winning from <span class="math notranslate nohighlight">\(\WE(\game)\)</span> in <span class="math notranslate nohighlight">\(\Game'\)</span>.
+<p>Note that <span class="math notranslate nohighlight">\(\textsf{col}(v)\)</span> is of polynomial size since <span class="math notranslate nohighlight">\(\log(|\textsf{col}(v)|) = \textsf{col}v) \log(n) \leq d \log(n)\)</span>.</p>
+<p>The key property relating <span class="math notranslate nohighlight">\(\textsf{col}\)</span> and <span class="math notranslate nohighlight">\(\textsf{col} is the following:
+for \)</span>c = v_0 \dots v_{k-1}<span class="math notranslate nohighlight">\( a simple cycle (implying \)</span>k \le n<span class="math notranslate nohighlight">\(),
+the largest priority in \)</span>c<span class="math notranslate nohighlight">\( is even 
+if and only if \)</span>\mathrm{Mean}\xspacec) \ge 0<span class="math notranslate nohighlight">\(.
+Indeed, if the largest priority in \)</span>c<span class="math notranslate nohighlight">\( is \)</span>p<span class="math notranslate nohighlight">\( even reached in \)</span>v_i<span class="math notranslate nohighlight">\( then \)</span>\textsf{col}(v_i) = n^p<span class="math notranslate nohighlight">\(
+and for \)</span>j \neq i<span class="math notranslate nohighlight">\( we have \)</span>\textsf{col}(v_j) \ge -n^{p-1}<span class="math notranslate nohighlight">\(,
+and since there are at most \)</span>n$ vertices in total the largest priority dominates the others.</p>
+<p>We claim that <span class="math notranslate nohighlight">\(W_\mathrm{Eve}mathcal{G} = W_\mathrm{Eve}mathcal{G})\)</span>.</p>
+<p>Let <span class="math notranslate nohighlight">\(\sigma\)</span> be a positional strategy winning from <span class="math notranslate nohighlight">\(W_\mathrm{Eve}mathcal{G}\)</span>, we show that <span class="math notranslate nohighlight">\(\sigma\)</span> is also winning from <span class="math notranslate nohighlight">\(W_\mathrm{Eve}mathcal{G}\)</span> in <span class="math notranslate nohighlight">\(\Game'\)</span>.
 Since mean payoff are uniformly positionally determined for both players (see <a class="reference internal" href="#4-thm:mean_payoff_positional">Theorem 92</a>),
-there exists <span class="math notranslate nohighlight">\(\tau\)</span> a positional strategy winning from <span class="math notranslate nohighlight">\(\WA(\game')\)</span>.
-Let <span class="math notranslate nohighlight">\(v \in \WE(\game)\)</span>, we consider <span class="math notranslate nohighlight">\(\pi = \pi^v_{\sigma,\tau}\)</span> the play consistent with <span class="math notranslate nohighlight">\(\sigma\)</span> and <span class="math notranslate nohighlight">\(\tau\)</span> starting from <span class="math notranslate nohighlight">\(v\)</span>.
+there exists <span class="math notranslate nohighlight">\(\tau\)</span> a positional strategy winning from <span class="math notranslate nohighlight">\(W_\mathrm{Adam}mathcal{G})\)</span>.
+Let <span class="math notranslate nohighlight">\(v \in W_\mathrm{Eve}mathcal{G}\)</span>, we consider <span class="math notranslate nohighlight">\(\pi = \pi^v_{\sigma,\tau}\)</span> the play consistent with <span class="math notranslate nohighlight">\(\sigma\)</span> and <span class="math notranslate nohighlight">\(\tau\)</span> starting from <span class="math notranslate nohighlight">\(v\)</span>.
 Since <span class="math notranslate nohighlight">\(\sigma\)</span> and <span class="math notranslate nohighlight">\(\tau\)</span> are positional, <span class="math notranslate nohighlight">\(\pi\)</span> is a simple path followed by a simple cycle <span class="math notranslate nohighlight">\(c\)</span>.
 Because <span class="math notranslate nohighlight">\(\sigma\)</span> is winning the largest priority in <span class="math notranslate nohighlight">\(c\)</span> is even,
-so thanks to the property above <span class="math notranslate nohighlight">\(\Mean(c) \ge 0\)</span>, meaning that <span class="math notranslate nohighlight">\(\MeanPayoff(\pi) \ge 0\)</span>.
-Thus <span class="math notranslate nohighlight">\(\WE(\game) \subseteq \WE(\game')\)</span>.
-The converse implication is proved similarly swapping the two players.%  particular starting vertex <span class="math notranslate nohighlight">\(v_0\in V\)</span>, we build a mean payoff game%  strategy from <span class="math notranslate nohighlight">\(v_0\)</span> in <span class="math notranslate nohighlight">\(\game\)</span> if and only if Eve can guarantee a%  vertices and edges as <span class="math notranslate nohighlight">\(\arena\)</span>, but the cost of edges are adapted:%  for <span class="math notranslate nohighlight">\(\arena'\)</span> is <span class="math notranslate nohighlight">\(c'\)</span> defined by <span class="math notranslate nohighlight">\(c'(e)= (-n)^{c(e)}\)</span> for every%  since <span class="math notranslate nohighlight">\(\log |c'(e)| = c(e)\log n \leq n\log n\)</span> (the latter%  number of vertices in a parity game, without loss of generality).%  Strategies of both players are the same in <span class="math notranslate nohighlight">\(\game\)</span> and%  every simple cycle <span class="math notranslate nohighlight">\(\play\)</span> following strategy <span class="math notranslate nohighlight">\(\sigma\)</span>, the highest%  sum of the weights of the edges on <span class="math notranslate nohighlight">\(c\)</span> in <span class="math notranslate nohighlight">\(\game_{\text{FC}}\)</span> is%  <span class="math notranslate nohighlight">\(2\)</span>, <span class="math notranslate nohighlight">\(3\)</span> and <span class="math notranslate nohighlight">\(1\)</span>, in a game with <span class="math notranslate nohighlight">\(n\)</span> vertices: then the%  <span class="math notranslate nohighlight">\(n^2-n^3-n&lt;0\)</span>. If the simple cycle has priorities <span class="math notranslate nohighlight">\(2\)</span>, <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(1\)</span>%%  for every simple cycle <span class="math notranslate nohighlight">\(c\)</span> following strategy <span class="math notranslate nohighlight">\(\sigma\)</span> in <span class="math notranslate nohighlight">\(\game\)</span>,%  Adam can force the play from <span class="math notranslate nohighlight">\(v_0\)</span> to <span class="math notranslate nohighlight">\(c\)</span> and stay in <span class="math notranslate nohighlight">\(c\)</span> forever,%  in <span class="math notranslate nohighlight">\(\game_{\text{FC}}\)</span>, for every simple cycle <span class="math notranslate nohighlight">\(c\)</span> following strategy <span class="math notranslate nohighlight">\(\sigma\)</span>%  nonnegative. By a similar decomposition of an infinite play into%  of <a class="reference internal" href="#4-thm:mean_payoff_positional">Theorem 92</a>, we may then show easily that a%  only if it guarantees to Eve a mean payoff at least <span class="math notranslate nohighlight">\(0\)</span> in <span class="math notranslate nohighlight">\(\game_{\text{FC}}\)</span>.</p>
+so thanks to the property above <span class="math notranslate nohighlight">\(\mathrm{Mean}\xspacec) \ge 0\)</span>, meaning that <span class="math notranslate nohighlight">\(\mathtt{MeanPayoff}\pi) \ge 0\)</span>.
+Thus <span class="math notranslate nohighlight">\(W_\mathrm{Eve}mathcal{G} \subseteq W_\mathrm{Eve}mathcal{G})\)</span>.
+The converse implication is proved similarly swapping the two players.</p>
 </div>
 <p>We note that we did not construct a reduction between objectives as defined in Section <a class="reference internal" href="../1_Introduction/reductions.html#sec-reductions"><span class="std std-ref">Reductions</span></a>:
-indeed it is not true that <span class="math notranslate nohighlight">\(\Parity\)</span> reduces to <span class="math notranslate nohighlight">\(\MeanPayoff_{\ge 0}\)</span>, the reduction depends on the number <span class="math notranslate nohighlight">\(n\)</span> of vertices.</p>
+indeed it is not true that <span class="math notranslate nohighlight">\(\mathtt{Parity} reduces to \)</span>\MeanPayoff_{\ge 0}<span class="math notranslate nohighlight">\(, the reduction depends on the number \)</span>n$ of vertices.</p>
 <p>As a corollary of <a class="reference internal" href="#4-thm:MP-NPcoNP">Theorem 95</a>, this polynomial reduction gives an alternative proof of the fact
-that solving parity games is in <span class="math notranslate nohighlight">\(\NP \cap \coNP\)</span>.</p>
+that solving parity games is in $\textrm{NP}\cap \textrm{coNP}.</p>
 </div>
 <div class="section" id="a-strategy-improvement-algorithm">
 <h2>A strategy improvement algorithm<a class="headerlink" href="#a-strategy-improvement-algorithm" title="Permalink to this headline">¶</a></h2>
@@ -1262,17 +1222,16 @@ The algorithm is very similar and actually extends the strategy improvement algo
 <blockquote>
 <div><p><strong>Adding the option of stopping the game.</strong></p>
 </div></blockquote>
-<p>Let <span class="math notranslate nohighlight">\(\game\)</span> be a mean payoff game with weights in <span class="math notranslate nohighlight">\([-W,W]\)</span>.
-Let us give Eve an extra move <span class="math notranslate nohighlight">\(\siblank\)</span> that indicates that the game should stop and that she can play from any vertex of hers.
-So a strategy for Eve is now a function <span class="math notranslate nohighlight">\(\sigma : \VE \rightarrow E \cup \set{\siblank}\)</span>
-where <span class="math notranslate nohighlight">\(\sigma(v) = \siblank\)</span> indicates that Eve has chosen to stop the game, and <span class="math notranslate nohighlight">\(\sigma(v) \ne \siblank\)</span> should be interpreted as normal.
+<p>Let <span class="math notranslate nohighlight">\(\mathcal{G} be a mean payoff game with weights in \)</span>[-W,W]<span class="math notranslate nohighlight">\(.
+Let us give Eve an extra move \)</span>\mathtt{-} that indicates that the game should stop and that she can play from any vertex of hers.
+So a strategy for Eve is now a function <span class="math notranslate nohighlight">\(\sigma : V_\mathrm{Eve}rightarrow E \cup \set{\mathtt{-}\)</span>
+where <span class="math notranslate nohighlight">\(\sigma(v) = \mathtt{-} indicates that Eve has chosen to stop the game, and \)</span>\sigma(v) \ne \mathtt{-} should be interpreted as normal.
 Adam is not allowed to stop the game, so strategies for Adam remain unchanged.
-We say that a play ending with <span class="math notranslate nohighlight">\(\siblank\)</span> is stopped.</p>
-<p>For reasoning it will be useful to consider the mean payoff graph <span class="math notranslate nohighlight">\(\Game[\sigma]\)</span> obtained from <span class="math notranslate nohighlight">\(\Game\)</span> by restricting the outgoing edges from <span class="math notranslate nohighlight">\(\VE\)</span>
-to those prescribed by <span class="math notranslate nohighlight">\(\sigma\)</span>.
-We say that a mean payoff graph (without stopping option) satisfies mean payoff from <span class="math notranslate nohighlight">\(v\)</span> if all infinite paths <span class="math notranslate nohighlight">\(\pi\)</span> from <span class="math notranslate nohighlight">\(v\)</span> satisfy
-<span class="math notranslate nohighlight">\(\MeanPayoff(\pi) \ge 0\)</span>.
-Then a strategy <span class="math notranslate nohighlight">\(\sigma\)</span> is winning from <span class="math notranslate nohighlight">\(v\)</span> if and only if the mean payoff graph <span class="math notranslate nohighlight">\(\Game[\sigma]\)</span> satisfies mean payoff from <span class="math notranslate nohighlight">\(v\)</span>.</p>
+We say that a play ending with $\mathtt{-} is stopped.</p>
+<p>For reasoning it will be useful to consider the mean payoff graph <span class="math notranslate nohighlight">\(\Game[\sigma]\)</span> obtained from <span class="math notranslate nohighlight">\(\Game\)</span> by restricting the outgoing edges from <span class="math notranslate nohighlight">\(V_\mathrm{Eve}to those prescribed by \)</span>\sigma<span class="math notranslate nohighlight">\(. 
+We say that a mean payoff graph (without stopping option) satisfies mean payoff from \)</span>v<span class="math notranslate nohighlight">\( if all infinite paths \)</span>\pi<span class="math notranslate nohighlight">\( from \)</span>v<span class="math notranslate nohighlight">\( satisfy 
+\)</span>\mathtt{MeanPayoff}\pi) \ge 0<span class="math notranslate nohighlight">\(.
+Then a strategy \)</span>\sigma<span class="math notranslate nohighlight">\( is winning from \)</span>v<span class="math notranslate nohighlight">\( if and only if the mean payoff graph \)</span>\Game[\sigma]<span class="math notranslate nohighlight">\( satisfies mean payoff from \)</span>v$.</p>
 <p>Since we added the option for Eve to stop the game we introduce a new terminology:
 we say that a strategy <span class="math notranslate nohighlight">\(\sigma\)</span> respects mean payoff if all infinite plays consistent with <span class="math notranslate nohighlight">\(\sigma\)</span> satisfy mean payoff,
 equivalently all infinite paths in <span class="math notranslate nohighlight">\(\Game[\sigma]\)</span> satisfy mean payoff, not requiring anything of stopped plays.</p>
@@ -1289,12 +1248,12 @@ Respecting mean payoff is characterised using cycles:</p>
 <div><p><strong>Evaluating a strategy.</strong></p>
 </div></blockquote>
 <p>The first question is: given a strategy <span class="math notranslate nohighlight">\(\sigma\)</span>, how to evaluate it (in order to later improve it)?
-As explained in Section <a class="reference internal" href="../1_Introduction/strategy_improvement.html#sec-strategy-improvement"><span class="std std-ref">Strategy improvement algorithms</span></a> towards this goal we define a value function <span class="math notranslate nohighlight">\(\val^{\sigma} : V \to Y\)</span>.</p>
-<p>We let <span class="math notranslate nohighlight">\(\val^{\sigma}(v) = \min_\tau \val(\play_{\sigma,\tau}^v)\)</span> where <span class="math notranslate nohighlight">\(\tau\)</span> ranges over (general) strategies for Adam, so we first need to define the value of the play <span class="math notranslate nohighlight">\(\play = \play_{\sigma,\tau}^v\)</span>.
-If <span class="math notranslate nohighlight">\(\play\)</span> is stopped, then <span class="math notranslate nohighlight">\(\val(\play)\)</span> is the sum of the weights in <span class="math notranslate nohighlight">\(\play\)</span>.
-Otherwise <span class="math notranslate nohighlight">\(\val(\play)\)</span> is <span class="math notranslate nohighlight">\(\top\)</span> if <span class="math notranslate nohighlight">\(\play\)</span> satisfies mean payoff, and <span class="math notranslate nohighlight">\(\bot\)</span> if <span class="math notranslate nohighlight">\(\play\)</span> does not satisfy mean payoff.
+As explained in Section <a class="reference internal" href="../1_Introduction/strategy_improvement.html#sec-strategy-improvement"><span class="std std-ref">Strategy improvement algorithms</span></a> towards this goal we define a value function <span class="math notranslate nohighlight">\(\textrm{val}\sigma} : V \to Y\)</span>.</p>
+<p>We let <span class="math notranslate nohighlight">\(\textrm{val}\sigma}(v) = \min_\tau \textrm{val}play_{\sigma,\tau}^v)\)</span> where <span class="math notranslate nohighlight">\(\tau\)</span> ranges over (general) strategies for Adam, so we first need to define the value of the play <span class="math notranslate nohighlight">\(\pi= \play_{\sigma,\tau}^v\)</span>.
+If <span class="math notranslate nohighlight">\(\pi is stopped, then \)</span>\textrm{val}pi<span class="math notranslate nohighlight">\( is the sum of the weights in \)</span>\pi.
+Otherwise <span class="math notranslate nohighlight">\(\textrm{val}pi\)</span> is <span class="math notranslate nohighlight">\(\top\)</span> if <span class="math notranslate nohighlight">\(\pi satisfies mean payoff, and \)</span>\bot<span class="math notranslate nohighlight">\( if \)</span>\pi does not satisfy mean payoff.
 So the value of a play is either <span class="math notranslate nohighlight">\(\top\)</span>, <span class="math notranslate nohighlight">\(\bot\)</span>, or an integer;
-we let <span class="math notranslate nohighlight">\(Y = \Zinfty\)</span> and equip it with the natural order <span class="math notranslate nohighlight">\(\le\)</span>.</p>
+we let <span class="math notranslate nohighlight">\(Y = \mathbb{Z}\cup \set{\pm \infty} and equip it with the natural order \)</span>\le$.</p>
 <blockquote>
 <div><p><strong>The value function as a fixed point.</strong></p>
 </div></blockquote>
@@ -1303,7 +1262,7 @@ we let <span class="math notranslate nohighlight">\(Y = \Zinfty\)</span> and equ
 \[\begin{split}
 \delta(t,w) = 
 \begin{cases}
-t + w &amp; \text{ if } t \in \Z, \\
+t + w &amp; \text{ if } t \in \mathbb{Z} \\
 \top &amp; \text{ if } t = \top, \\
 \bot &amp; \text{ if } t = \bot.
 \end{cases}
@@ -1311,37 +1270,37 @@ t + w &amp; \text{ if } t \in \Z, \\
 <p>We note that <span class="math notranslate nohighlight">\(\delta\)</span> is monotonic: for all <span class="math notranslate nohighlight">\(w \in Y\)</span>,
 if <span class="math notranslate nohighlight">\(t \le t'\)</span> then <span class="math notranslate nohighlight">\(\delta(t,w) \le \delta(t',w)\)</span>.
 We extend <span class="math notranslate nohighlight">\(\delta\)</span> to <span class="math notranslate nohighlight">\(\delta : Y \times [-W,W]^* \to Y\)</span>.</p>
-<p>We let <span class="math notranslate nohighlight">\(F^\sigma_V\)</span> denote the set of functions <span class="math notranslate nohighlight">\(\mu : V \to Y\)</span> such that <span class="math notranslate nohighlight">\(\mu(v) = \emptyset\)</span> if <span class="math notranslate nohighlight">\(\sigma(v) = \siblank\)</span>,
-it is a lattice when equipped with the componentwise (partial) order induced by <span class="math notranslate nohighlight">\(Y\)</span>:
-we say that <span class="math notranslate nohighlight">\(\mu \le \mu'\)</span> if for all vertices <span class="math notranslate nohighlight">\(v\)</span> we have <span class="math notranslate nohighlight">\(\mu(v) \le \mu'(v)\)</span>.
-We then define an operator <span class="math notranslate nohighlight">\(\Op : F^\sigma_V \to F^\sigma_V\)</span> by</p>
+<p>We let <span class="math notranslate nohighlight">\(F^\sigma_V\)</span> denote the set of functions <span class="math notranslate nohighlight">\(\mu : V \to Y\)</span> such that <span class="math notranslate nohighlight">\(\mu(v) = \emptyset\)</span> if <span class="math notranslate nohighlight">\(\sigma(v) = \mathtt{-},
+it is a lattice when equipped with the componentwise (partial) order induced by \)</span>Y<span class="math notranslate nohighlight">\(:
+we say that \)</span>\mu \le \mu’<span class="math notranslate nohighlight">\( if for all vertices \)</span>v<span class="math notranslate nohighlight">\( we have \)</span>\mu(v) \le \mu’(v)<span class="math notranslate nohighlight">\(.
+We then define an operator \)</span>\mathbb{O}: F^\sigma_V \to F^\sigma_V$ by</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-\Op(\mu)(v) = 
+\mathbb{O}\mu)(v) = 
 \begin{cases}
-\min \set{\delta( \mu(v'), \col(v)) : (v,v') \in E} &amp; \text{if } \sigma(v) \neq \siblank \\
-\emptyset &amp; \text{if } \sigma(v) = \siblank.
+\min \set{\delta( \mu(v'), \textsf{col}v)) : (v,v') \in E} &amp; \text{if } \sigma(v) \neq \mathtt{-}\\
+\emptyset &amp; \text{if } \sigma(v) = \mathtt{-}
 \end{cases}
 \end{split}\]</div>
-<p>Since <span class="math notranslate nohighlight">\(\delta\)</span> is monotonic so is <span class="math notranslate nohighlight">\(\Op\)</span>.</p>
+<p>Since <span class="math notranslate nohighlight">\(\delta\)</span> is monotonic so is $\mathbb{O}.</p>
 <div class="proof observation admonition" id="observation-8">
 <p class="admonition-title"><span class="caption-number">Observation 99 </span> (NEEDS TITLE AND LABEL)</p>
 <div class="observation-content section" id="proof-content">
-<p>The function <span class="math notranslate nohighlight">\(\val^\sigma\)</span> is a fixed point of <span class="math notranslate nohighlight">\(\Op\)</span> in <span class="math notranslate nohighlight">\(F^\sigma_V\)</span>.</p>
-<p>The function <span class="math notranslate nohighlight">\(\val^\sigma\)</span> is a fixed point of <span class="math notranslate nohighlight">\(\Op\)</span> in <span class="math notranslate nohighlight">\(F^\sigma_V\)</span>.</p>
+<p>The function <span class="math notranslate nohighlight">\(\textrm{val}sigma\)</span> is a fixed point of <span class="math notranslate nohighlight">\(\mathbb{O} in \)</span>F^\sigma_V$.</p>
+<p>The function <span class="math notranslate nohighlight">\(\textrm{val}sigma\)</span> is a fixed point of <span class="math notranslate nohighlight">\(\mathbb{O} in \)</span>F^\sigma_V$.</p>
 </div>
-</div><p>Unfortunately, <span class="math notranslate nohighlight">\(\val^{\sigma}\)</span> is not in general the greatest fixed point of <span class="math notranslate nohighlight">\(\Op\)</span> in <span class="math notranslate nohighlight">\(F^\sigma_V\)</span>;
+</div><p>Unfortunately, <span class="math notranslate nohighlight">\(\textrm{val}\sigma}\)</span> is not in general the greatest fixed point of <span class="math notranslate nohighlight">\(\mathbb{O} in \)</span>F^\sigma_V<span class="math notranslate nohighlight">\(;
 let us analyse this in more details.
-Let <span class="math notranslate nohighlight">\(\mu\)</span> a fixed point of <span class="math notranslate nohighlight">\(\Op\)</span> in <span class="math notranslate nohighlight">\(F^\sigma_V\)</span>, there are two cases.
-For a vertex <span class="math notranslate nohighlight">\(v\)</span> such that there exists a stopped play <span class="math notranslate nohighlight">\(\pi\)</span> starting from <span class="math notranslate nohighlight">\(v\)</span>, we have <span class="math notranslate nohighlight">\(\mu(v) \le \val(\pi)\)</span>, and more generally
-<span class="math notranslate nohighlight">\(\mu(v) \le \inf_{\pi} \val(\pi)\)</span> where <span class="math notranslate nohighlight">\(\pi\)</span> ranges over all stopped plays starting from <span class="math notranslate nohighlight">\(v\)</span>.
+Let \)</span>\mu<span class="math notranslate nohighlight">\( a fixed point of \)</span>\mathbb{O} in <span class="math notranslate nohighlight">\(F^\sigma_V\)</span>, there are two cases.
+For a vertex <span class="math notranslate nohighlight">\(v\)</span> such that there exists a stopped play <span class="math notranslate nohighlight">\(\pi\)</span> starting from <span class="math notranslate nohighlight">\(v\)</span>, we have <span class="math notranslate nohighlight">\(\mu(v) \le \textrm{val}pi)\)</span>, and more generally
+<span class="math notranslate nohighlight">\(\mu(v) \le \inf_{\pi} \textrm{val}pi)\)</span> where <span class="math notranslate nohighlight">\(\pi\)</span> ranges over all stopped plays starting from <span class="math notranslate nohighlight">\(v\)</span>.
 The problem is for a vertex <span class="math notranslate nohighlight">\(v\)</span> such that no plays starting from <span class="math notranslate nohighlight">\(v\)</span> are stopped:
 we can have either <span class="math notranslate nohighlight">\(\mu(v) = \top\)</span> or <span class="math notranslate nohighlight">\(\mu(v) = \bot\)</span>, irrespective of whether the play satisfies mean payoff or not.
 From this discussion we obtain the following result.</p>
 <div class="proof lemma admonition" id="4-lem:greatest_fixed_point">
 <p class="admonition-title"><span class="caption-number">Lemma 100 </span> (NEEDS TITLE 4-lem:greatest_fixed_point)</p>
 <div class="lemma-content section" id="proof-content">
-<p>If <span class="math notranslate nohighlight">\(\sigma\)</span> respects mean payoff, then <span class="math notranslate nohighlight">\(\val^{\sigma}\)</span> is the greatest fixed point of <span class="math notranslate nohighlight">\(\Op\)</span> in <span class="math notranslate nohighlight">\(F^\sigma_V\)</span>.</p>
+<p>If <span class="math notranslate nohighlight">\(\sigma\)</span> respects mean payoff, then <span class="math notranslate nohighlight">\(\textrm{val}\sigma}\)</span> is the greatest fixed point of <span class="math notranslate nohighlight">\(\mathbb{O} in \)</span>F^\sigma_V$.</p>
 </div>
 </div><blockquote>
 <div><p><strong>Improving a strategy.</strong></p>
@@ -1350,21 +1309,21 @@ From this discussion we obtain the following result.</p>
 Let <span class="math notranslate nohighlight">\(\sigma\)</span> a strategy. We say that an edge <span class="math notranslate nohighlight">\(e = (v,v')\)</span> is switchable if</p>
 <div class="math notranslate nohighlight">
 \[
-\delta(\val^{\sigma}(v'),\col(v)) &gt; \delta(\val^{\sigma}(u),\col(v)) \text{ where } \sigma(v) = (v,u).
+\delta(\textrm{val}\sigma}(v'),\textsf{col}v)) &gt; \delta(\textrm{val}\sigma}(u),\textsf{col}v)) \text{ where } \sigma(v) = (v,u).
 \]</div>
-<p>Intuitively: according to <span class="math notranslate nohighlight">\(\val^{\sigma}\)</span>, playing <span class="math notranslate nohighlight">\(e\)</span> is better than playing <span class="math notranslate nohighlight">\(\sigma(v)\)</span>.</p>
+<p>Intuitively: according to <span class="math notranslate nohighlight">\(\textrm{val}\sigma}\)</span>, playing <span class="math notranslate nohighlight">\(e\)</span> is better than playing <span class="math notranslate nohighlight">\(\sigma(v)\)</span>.</p>
 <p>Given a strategy <span class="math notranslate nohighlight">\(\sigma\)</span> and an edge <span class="math notranslate nohighlight">\(e = (v,v')\)</span> we use <span class="math notranslate nohighlight">\(\sigma[v \to e]\)</span> to denote the strategy playing <span class="math notranslate nohighlight">\(e\)</span> from <span class="math notranslate nohighlight">\(v\)</span>
 and follow <span class="math notranslate nohighlight">\(\sigma\)</span> from all other vertices.
-Let us write <span class="math notranslate nohighlight">\(\sigma \le \sigma'\)</span> if for all vertices <span class="math notranslate nohighlight">\(v\)</span> we have <span class="math notranslate nohighlight">\(\val^{\sigma}(v) \le \val^{\sigma'}(v)\)</span>,
+Let us write <span class="math notranslate nohighlight">\(\sigma \le \sigma'\)</span> if for all vertices <span class="math notranslate nohighlight">\(v\)</span> we have <span class="math notranslate nohighlight">\(\textrm{val}\sigma}(v) \le \textrm{val}\sigma'}(v)\)</span>,
 and <span class="math notranslate nohighlight">\(\sigma &lt; \sigma'\)</span> if additionally <span class="math notranslate nohighlight">\(\neg (\sigma' \le \sigma)\)</span>.</p>
 <blockquote>
 <div><p><strong>The algorithm.</strong></p>
 </div></blockquote>
 <p>The algorithm starts with a specified initial strategy, which is the strategy
-<span class="math notranslate nohighlight">\(\sigma_0\)</span> where <span class="math notranslate nohighlight">\(\sigma_0(v) = \siblank\)</span> for all vertices <span class="math notranslate nohighlight">\(v \in \VE\)</span>.
-It may not hold that <span class="math notranslate nohighlight">\(\sigma_0\)</span> respects mean payoff since <span class="math notranslate nohighlight">\(\game\)</span> may contain negative cycles fully controlled by Adam.
+<span class="math notranslate nohighlight">\(\sigma_0\)</span> where <span class="math notranslate nohighlight">\(\sigma_0(v) = \mathtt{-} for all vertices \)</span>v \in V_\mathrm{Eve}
+It may not hold that <span class="math notranslate nohighlight">\(\sigma_0\)</span> respects mean payoff since <span class="math notranslate nohighlight">\(\mathcal{G} may contain negative cycles fully controlled by Adam.
 This can be checked in linear time and the attractor to the corresponding vertices removed from the game.
-After this preprocessing <span class="math notranslate nohighlight">\(\sigma_0\)</span> indeed respects mean payoff.</p>
+After this preprocessing \)</span>\sigma_0$ indeed respects mean payoff.</p>
 <p>The pseudocode of the algorithm is given in <a class="reference internal" href="#algo-strategy-improvement"><span class="std std-numref">Fig. 37</span></a>.</p>
 <div class="figure align-center" id="algo-strategy-improvement">
 <img alt="../_images/4-algo:strategy_improvement.png" src="../_images/4-algo:strategy_improvement.png" />
@@ -1389,10 +1348,10 @@ Then <span class="math notranslate nohighlight">\(t \le \delta(t,w_1 \dots w_k)\
 <p>Let <span class="math notranslate nohighlight">\(G\)</span> a mean payoff graph (with no stopping option).</p>
 <ul class="simple">
 <li><p>If there exists <span class="math notranslate nohighlight">\(\mu : V \to Y\)</span> such that for all vertices <span class="math notranslate nohighlight">\(v\)</span> we have <span class="math notranslate nohighlight">\(\mu(v) \neq \top,\bot\)</span>
-and for all edges <span class="math notranslate nohighlight">\((v,u) \in E\)</span> we have <span class="math notranslate nohighlight">\(\mu(v) \le \delta(\mu(u),\col(v))\)</span>,
+and for all edges <span class="math notranslate nohighlight">\((v,u) \in E\)</span> we have <span class="math notranslate nohighlight">\(\mu(v) \le \delta(\mu(u),\textsf{col}v))\)</span>,
 then <span class="math notranslate nohighlight">\(G\)</span> satisfies mean payoff.</p></li>
 <li><p>If there exists <span class="math notranslate nohighlight">\(\mu : V \to Y\)</span> such that for all vertices <span class="math notranslate nohighlight">\(v\)</span> we have <span class="math notranslate nohighlight">\(\mu(v) \neq \top,\bot\)</span>
-and for all edges <span class="math notranslate nohighlight">\((v,u) \in E\)</span> we have <span class="math notranslate nohighlight">\(\mu(v) \ge \delta(\mu(u),\col(v))\)</span>,
+and for all edges <span class="math notranslate nohighlight">\((v,u) \in E\)</span> we have <span class="math notranslate nohighlight">\(\mu(v) \ge \delta(\mu(u),\textsf{col}v))\)</span>,
 then <span class="math notranslate nohighlight">\(G\)</span> satisfies the complement of mean payoff.</p></li>
 </ul>
 </div>
@@ -1405,14 +1364,14 @@ Let us consider a cycle in <span class="math notranslate nohighlight">\(G\)</spa
 \[
 \pi = v_0 v_1 \dots v_{k-1}.
 \]</div>
-<p>For all <span class="math notranslate nohighlight">\(i \in [0,k-1]\)</span> we have <span class="math notranslate nohighlight">\(\mu(v_i) \le \delta(\mu(v_{i+1 \mod k}),\col(v_i))\)</span>.
-By monotonicity of <span class="math notranslate nohighlight">\(\delta\)</span> this implies <span class="math notranslate nohighlight">\(\mu(v_1) \le \delta(\mu(v_1),\col(v_{k-1}) \cdots \col(v_0))\)</span>.
-Thanks to  <a class="reference internal" href="#4-lem:key_property">Lemma 102</a> this implies that <span class="math notranslate nohighlight">\(\sum_{i \in [0,k-1]} \col(v_i) \ge 0\)</span>.</p>
+<p>For all <span class="math notranslate nohighlight">\(i \in [0,k-1]\)</span> we have <span class="math notranslate nohighlight">\(\mu(v_i) \le \delta(\mu(v_{i+1 \mod k}),\textsf{col}v_i))\)</span>.
+By monotonicity of <span class="math notranslate nohighlight">\(\delta\)</span> this implies <span class="math notranslate nohighlight">\(\mu(v_1) \le \delta(\mu(v_1),\textsf{col}v_{k-1}) \cdots \textsf{col}v_0))\)</span>.
+Thanks to  <a class="reference internal" href="#4-lem:key_property">Lemma 102</a> this implies that <span class="math notranslate nohighlight">\(\sum_{i \in [0,k-1]} \textsf{col}v_i) \ge 0\)</span>.</p>
 </div>
 <p>Let <span class="math notranslate nohighlight">\(\sigma\)</span> a strategy respecting mean payoff.
-A progress measure for <span class="math notranslate nohighlight">\(\Game[\sigma]\)</span> is a post-fixed point of <span class="math notranslate nohighlight">\(\Op\)</span> in <span class="math notranslate nohighlight">\(F^\sigma_V\)</span>:
-it is a function <span class="math notranslate nohighlight">\(\mu : V \to Y\)</span> such that <span class="math notranslate nohighlight">\(\mu(v) = \emptyset\)</span> if <span class="math notranslate nohighlight">\(\sigma(v) = \siblank\)</span> and <span class="math notranslate nohighlight">\(\mu \le \Op(\mu)\)</span>,
-which means that <span class="math notranslate nohighlight">\(\mu(v) \le \min \set{ \delta(\mu(v'),\col(v)) : (v,v') \in E}\)</span>.</p>
+A progress measure for <span class="math notranslate nohighlight">\(\Game[\sigma]\)</span> is a post-fixed point of <span class="math notranslate nohighlight">\(\mathbb{O} in \)</span>F^\sigma_V<span class="math notranslate nohighlight">\(:
+it is a function \)</span>\mu : V \to Y<span class="math notranslate nohighlight">\( such that \)</span>\mu(v) = \emptyset<span class="math notranslate nohighlight">\( if \)</span>\sigma(v) = \mathtt{-} and <span class="math notranslate nohighlight">\(\mu \le \mathbb{O}\mu)\)</span>,
+which means that <span class="math notranslate nohighlight">\(\mu(v) \le \min \set{ \delta(\mu(v'),\textsf{col}v)) : (v,v') \in E}\)</span>.</p>
 <p>We now rely on  <a class="reference internal" href="#4-lem:greatest_fixed_point">Lemma 100</a> and  <a class="reference internal" href="#4-lem:key_property">Lemma 102</a> to prove the two principles: progress and optimality.</p>
 <div class="proof lemma admonition" id="lemma-12">
 <p class="admonition-title"><span class="caption-number">Lemma 103 </span> (NEEDS LABEL Progress)</p>
@@ -1427,72 +1386,71 @@ Then <span class="math notranslate nohighlight">\(\sigma'\)</span> respects mean
 The fact that <span class="math notranslate nohighlight">\(e = (v,v')\)</span> is switchable reads</p>
 <div class="math notranslate nohighlight">
 \[
-\delta(\val^\sigma(v'),\col(v)) &gt; \delta(\val^\sigma(u),\col(v)),
+\delta(\textrm{val}sigma(v'),\textsf{col}v)) &gt; \delta(\textrm{val}sigma(u),\textsf{col}v)),
 \]</div>
-<p>and by definition of <span class="math notranslate nohighlight">\(\val^\sigma\)</span> we have <span class="math notranslate nohighlight">\(\val^\sigma(v) = \delta(\val^\sigma(u),\col(v))\)</span>,
-which implies <span class="math notranslate nohighlight">\(\val^\sigma(v) &lt; \delta(\val^\sigma(v'),\col(v))\)</span>, and in particular <span class="math notranslate nohighlight">\(\val^\sigma(v) \neq \top\)</span>.</p>
+<p>and by definition of <span class="math notranslate nohighlight">\(\textrm{val}sigma\)</span> we have <span class="math notranslate nohighlight">\(\textrm{val}sigma(v) = \delta(\textrm{val}sigma(u),\textsf{col}v))\)</span>,
+which implies <span class="math notranslate nohighlight">\(\textrm{val}sigma(v) &lt; \delta(\textrm{val}sigma(v'),\textsf{col}v))\)</span>, and in particular <span class="math notranslate nohighlight">\(\textrm{val}sigma(v) \neq \top\)</span>.</p>
 <p>Let us consider the mean payoff graph <span class="math notranslate nohighlight">\(\Game[\sigma']\)</span> and note that for all edges <span class="math notranslate nohighlight">\(e' = (s,t)\)</span>
-we have <span class="math notranslate nohighlight">\(\val^\sigma(s) \le \delta(\val^\sigma(t),\col(s))\)</span>:
-indeed either <span class="math notranslate nohighlight">\(e'\)</span> is an edge in <span class="math notranslate nohighlight">\(\Game[\sigma]\)</span> and this is by definition of <span class="math notranslate nohighlight">\(\val^\sigma\)</span>,
+we have <span class="math notranslate nohighlight">\(\textrm{val}sigma(s) \le \delta(\textrm{val}sigma(t),\textsf{col}s))\)</span>:
+indeed either <span class="math notranslate nohighlight">\(e'\)</span> is an edge in <span class="math notranslate nohighlight">\(\Game[\sigma]\)</span> and this is by definition of <span class="math notranslate nohighlight">\(\textrm{val}sigma\)</span>,
 or <span class="math notranslate nohighlight">\(e' = e\)</span> and the inequality was proved just above.</p>
-<p>Since <span class="math notranslate nohighlight">\(\sigma\)</span> respects mean payoff <span class="math notranslate nohighlight">\(\val^\sigma\)</span> does not take the value <span class="math notranslate nohighlight">\(\bot\)</span>.
-But we cannot apply (the first item of)  <a class="reference internal" href="#4-lem:key_property">Lemma 102</a> yet because <span class="math notranslate nohighlight">\(\val^\sigma\)</span> may have value <span class="math notranslate nohighlight">\(\top\)</span>.
-However by definition of <span class="math notranslate nohighlight">\(\val^\sigma\)</span> for all vertices <span class="math notranslate nohighlight">\(s\)</span> such that <span class="math notranslate nohighlight">\(\val^\sigma(s) = \top\)</span> all paths from <span class="math notranslate nohighlight">\(s\)</span> satisfy mean payoff,
+<p>Since <span class="math notranslate nohighlight">\(\sigma\)</span> respects mean payoff <span class="math notranslate nohighlight">\(\textrm{val}sigma\)</span> does not take the value <span class="math notranslate nohighlight">\(\bot\)</span>.
+But we cannot apply (the first item of)  <a class="reference internal" href="#4-lem:key_property">Lemma 102</a> yet because <span class="math notranslate nohighlight">\(\textrm{val}sigma\)</span> may have value <span class="math notranslate nohighlight">\(\top\)</span>.
+However by definition of <span class="math notranslate nohighlight">\(\textrm{val}sigma\)</span> for all vertices <span class="math notranslate nohighlight">\(s\)</span> such that <span class="math notranslate nohighlight">\(\textrm{val}sigma(s) = \top\)</span> all paths from <span class="math notranslate nohighlight">\(s\)</span> satisfy mean payoff,
 so it is enough to consider the mean payoff graph obtained from <span class="math notranslate nohighlight">\(\Game[\sigma']\)</span> by removing all such vertices.
 The first item of  <a class="reference internal" href="#4-lem:key_property">Lemma 102</a> implies that it satisfies mean payoff, hence <span class="math notranslate nohighlight">\(\Game[\sigma']\)</span> as well.</p>
 <p>At this point we know that <span class="math notranslate nohighlight">\(\sigma'\)</span> respects mean payoff, which thanks to  <a class="reference internal" href="#4-lem:greatest_fixed_point">Lemma 100</a>
-implies that <span class="math notranslate nohighlight">\(\val^{\sigma'}\)</span> is the greatest fixed point of <span class="math notranslate nohighlight">\(\Op\)</span> in <span class="math notranslate nohighlight">\(F^{\sigma'}_V\)</span>.</p>
-<p>We now argue that <span class="math notranslate nohighlight">\(\val^\sigma\)</span> is a progress measure for <span class="math notranslate nohighlight">\(\game[\sigma']\)</span>.
-For all vertices but <span class="math notranslate nohighlight">\(v\)</span> this is clear because the outgoing edges are the same in <span class="math notranslate nohighlight">\(\game[\sigma]\)</span> and in <span class="math notranslate nohighlight">\(\game[\sigma']\)</span>.
-For <span class="math notranslate nohighlight">\(v\)</span> as argued above we have <span class="math notranslate nohighlight">\(\val^\sigma(v) &lt; \delta(\val^\sigma(v'),\col(v))\)</span>.
-It follows that <span class="math notranslate nohighlight">\(\val^\sigma\)</span> is indeed a progress measure for <span class="math notranslate nohighlight">\(\game[\sigma']\)</span>.
-Since <span class="math notranslate nohighlight">\(\val^{\sigma'}\)</span> is the greatest fixed point of <span class="math notranslate nohighlight">\(\Op\)</span> in <span class="math notranslate nohighlight">\(F^{\sigma'}_V\)</span>, this implies that
-<span class="math notranslate nohighlight">\(\val^{\sigma} \le \val^{\sigma'}\)</span>.</p>
-<p>We now show that <span class="math notranslate nohighlight">\(\val^{\sigma} &lt; \val^{\sigma'}\)</span>.
-Using <span class="math notranslate nohighlight">\(\val^{\sigma}(v') \le \val^{\sigma'}(v')\)</span> and the monotonicity of <span class="math notranslate nohighlight">\(\delta\)</span> we obtain that
-<span class="math notranslate nohighlight">\(\delta(\val^\sigma(v'),\col(v)) \le \delta(\val^{\sigma'}(v'),\col(v))\)</span>.
-By definition of <span class="math notranslate nohighlight">\(\val^{\sigma'}\)</span> we have <span class="math notranslate nohighlight">\(\val^{\sigma'}(v) = \delta(\val^{\sigma'}(v'),\col(v))\)</span>
-and together with <span class="math notranslate nohighlight">\(\val^\sigma(v) &lt; \delta(\val^\sigma(v'),\col(v))\)</span> this implies that
-<span class="math notranslate nohighlight">\(\val^\sigma(v) &lt; \val^{\sigma'}(v)\)</span>.</p>
+implies that <span class="math notranslate nohighlight">\(\textrm{val}\sigma'}\)</span> is the greatest fixed point of <span class="math notranslate nohighlight">\(\mathbb{O} in \)</span>F^{\sigma’}_V$.</p>
+<p>We now argue that <span class="math notranslate nohighlight">\(\textrm{val}sigma\)</span> is a progress measure for <span class="math notranslate nohighlight">\(\mathcal{G}\sigma']\)</span>.
+For all vertices but <span class="math notranslate nohighlight">\(v\)</span> this is clear because the outgoing edges are the same in <span class="math notranslate nohighlight">\(\mathcal{G}\sigma]\)</span> and in <span class="math notranslate nohighlight">\(\mathcal{G}\sigma']\)</span>.
+For <span class="math notranslate nohighlight">\(v\)</span> as argued above we have <span class="math notranslate nohighlight">\(\textrm{val}sigma(v) &lt; \delta(\textrm{val}sigma(v'),\textsf{col}v))\)</span>.
+It follows that <span class="math notranslate nohighlight">\(\textrm{val}sigma\)</span> is indeed a progress measure for <span class="math notranslate nohighlight">\(\mathcal{G}\sigma']\)</span>.
+Since <span class="math notranslate nohighlight">\(\textrm{val}\sigma'}\)</span> is the greatest fixed point of <span class="math notranslate nohighlight">\(\mathbb{O} in \)</span>F^{\sigma’}_V<span class="math notranslate nohighlight">\(, this implies that 
+\)</span>\textrm{val}\sigma} \le \textrm{val}\sigma’}$.</p>
+<p>We now show that <span class="math notranslate nohighlight">\(\textrm{val}\sigma} &lt; \textrm{val}\sigma'}\)</span>.
+Using <span class="math notranslate nohighlight">\(\textrm{val}\sigma}(v') \le \textrm{val}\sigma'}(v')\)</span> and the monotonicity of <span class="math notranslate nohighlight">\(\delta\)</span> we obtain that
+<span class="math notranslate nohighlight">\(\delta(\textrm{val}sigma(v'),\textsf{col}v)) \le \delta(\textrm{val}\sigma'}(v'),\textsf{col}v))\)</span>.
+By definition of <span class="math notranslate nohighlight">\(\textrm{val}\sigma'}\)</span> we have <span class="math notranslate nohighlight">\(\textrm{val}\sigma'}(v) = \delta(\textrm{val}\sigma'}(v'),\textsf{col}v))\)</span>
+and together with <span class="math notranslate nohighlight">\(\textrm{val}sigma(v) &lt; \delta(\textrm{val}sigma(v'),\textsf{col}v))\)</span> this implies that
+<span class="math notranslate nohighlight">\(\textrm{val}sigma(v) &lt; \textrm{val}\sigma'}(v)\)</span>.</p>
 </div>
 <div class="proof lemma admonition" id="lemma-13">
 <p class="admonition-title"><span class="caption-number">Lemma 104 </span> (NEEDS LABEL Optimality)</p>
 <div class="lemma-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\sigma\)</span> a strategy respecting mean payoff that has no switchable edges, then
-<span class="math notranslate nohighlight">\(\sigma\)</span> is winning from all vertices of <span class="math notranslate nohighlight">\(\WE(\Game)\)</span>.</p>
+<span class="math notranslate nohighlight">\(\sigma\)</span> is winning from all vertices of <span class="math notranslate nohighlight">\(W_\mathrm{Eve}Game)\)</span>.</p>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
 <p>The fact that <span class="math notranslate nohighlight">\(\sigma\)</span> respects mean payoff means that it is a winning strategy
-from all vertices <span class="math notranslate nohighlight">\(v\)</span> such that <span class="math notranslate nohighlight">\(\val^\sigma(v) = \top\)</span>.
-It also implies that for all vertices <span class="math notranslate nohighlight">\(v\)</span> we have <span class="math notranslate nohighlight">\(\val^{\sigma}(v) \neq \bot\)</span>.
-We now prove that Adam has a winning strategy from all vertices <span class="math notranslate nohighlight">\(v\)</span> such that <span class="math notranslate nohighlight">\(\val^{\sigma}(v) \neq \top\)</span>.
+from all vertices <span class="math notranslate nohighlight">\(v\)</span> such that <span class="math notranslate nohighlight">\(\textrm{val}sigma(v) = \top\)</span>.
+It also implies that for all vertices <span class="math notranslate nohighlight">\(v\)</span> we have <span class="math notranslate nohighlight">\(\textrm{val}\sigma}(v) \neq \bot\)</span>.
+We now prove that Adam has a winning strategy from all vertices <span class="math notranslate nohighlight">\(v\)</span> such that <span class="math notranslate nohighlight">\(\textrm{val}\sigma}(v) \neq \top\)</span>.
 We construct a strategy of Adam by</p>
 <div class="math notranslate nohighlight">
 \[
-\forall v \in \VA,\ \tau(v) = \argmin \set{ \delta(\val^{\sigma}(u),\col(v)) : (v,u) \in E }.
+\forall v \in V_\mathrm{Adam} \tau(v) = \textrm{argmin}\set{ \delta(\textrm{val}\sigma}(u),\textsf{col}v)) : (v,u) \in E }.
 \]</div>
-<p>We argue that <span class="math notranslate nohighlight">\(\tau\)</span> ensures the complement of mean payoff from all vertices <span class="math notranslate nohighlight">\(v\)</span> such that <span class="math notranslate nohighlight">\(\val^{\sigma}(v) \neq \top\)</span>.
-Let us consider <span class="math notranslate nohighlight">\(\Game[\tau]\)</span> the mean payoff graph obtained from <span class="math notranslate nohighlight">\(\Game\)</span> by restricting the outgoing edges from <span class="math notranslate nohighlight">\(\VA\)</span>
-to those prescribed by <span class="math notranslate nohighlight">\(\tau\)</span>.
-We argue that for all edges <span class="math notranslate nohighlight">\((v,,v')\)</span> in <span class="math notranslate nohighlight">\(\game[\tau]\)</span>, we have
-<span class="math notranslate nohighlight">\(\val^{\sigma}(v) \ge \delta(\val^{\sigma}(v'),\col(v))\)</span>.
-Once this is proved we conclude using the second item of  <a class="reference internal" href="#4-lem:key_property">Lemma 102</a> implying that <span class="math notranslate nohighlight">\(\Game[\tau]\)</span> satisfies the complement of mean payoff.</p>
-<p>The first case is when <span class="math notranslate nohighlight">\(v \in \VE\)</span>.
-Let <span class="math notranslate nohighlight">\(\sigma(v) = (v,u)\)</span>.
-Since the edge <span class="math notranslate nohighlight">\(e = (v,v')\)</span> is not switchable we have
-<span class="math notranslate nohighlight">\(\delta(\val^{\sigma}(v'),\col(v)) \le \delta(\val^{\sigma}(u),\col(v))\)</span>.
-By definition of <span class="math notranslate nohighlight">\(\val^\sigma\)</span> we have <span class="math notranslate nohighlight">\(\val^\sigma(v) = \delta(\val^{\sigma}(u),\col(v))\)</span>,
+<p>We argue that <span class="math notranslate nohighlight">\(\tau\)</span> ensures the complement of mean payoff from all vertices <span class="math notranslate nohighlight">\(v\)</span> such that <span class="math notranslate nohighlight">\(\textrm{val}\sigma}(v) \neq \top\)</span>.
+Let us consider <span class="math notranslate nohighlight">\(\Game[\tau]\)</span> the mean payoff graph obtained from <span class="math notranslate nohighlight">\(\Game\)</span> by restricting the outgoing edges from <span class="math notranslate nohighlight">\(V_\mathrm{Adam}to those prescribed by \)</span>\tau<span class="math notranslate nohighlight">\(.
+We argue that for all edges \)</span>(v,,v’)<span class="math notranslate nohighlight">\( in \)</span>\mathcal{G}\tau]<span class="math notranslate nohighlight">\(, we have 
+\)</span>\textrm{val}\sigma}(v) \ge \delta(\textrm{val}\sigma}(v’),\textsf{col}v))<span class="math notranslate nohighlight">\(.
+Once this is proved we conclude using the second item of  {prf:ref}`4-lem:key_property` implying that \)</span>\Game[\tau]$ satisfies the complement of mean payoff.</p>
+<p>The first case is when <span class="math notranslate nohighlight">\(v \in V_\mathrm{Eve} 
+Let \)</span>\sigma(v) = (v,u)<span class="math notranslate nohighlight">\(.
+Since the edge \)</span>e = (v,v’)<span class="math notranslate nohighlight">\( is not switchable we have 
+\)</span>\delta(\textrm{val}\sigma}(v’),\textsf{col}v)) \le \delta(\textrm{val}\sigma}(u),\textsf{col}v))<span class="math notranslate nohighlight">\(.
+By definition of \)</span>\textrm{val}sigma<span class="math notranslate nohighlight">\( we have \)</span>\textrm{val}sigma(v) = \delta(\textrm{val}\sigma}(u),\textsf{col}v))$,
 implying the desired inequality.</p>
-<p>The second case is when <span class="math notranslate nohighlight">\(v \in \VA\)</span>, it holds by definition of <span class="math notranslate nohighlight">\(\tau\)</span>.</p>
+<p>The second case is when <span class="math notranslate nohighlight">\(v \in V_\mathrm{Adam} it holds by definition of \)</span>\tau$.</p>
 </div>
 <blockquote>
 <div><p><strong>Complexity analysis.</strong></p>
 </div></blockquote>
 <p>\mynote{WORK HERE}
-The computation of <span class="math notranslate nohighlight">\(\val^\sigma\)</span> for a strategy <span class="math notranslate nohighlight">\(\sigma\)</span> can be seen to be a shortest path problem where distances are measured using the operator <span class="math notranslate nohighlight">\(\le\)</span>.
+The computation of <span class="math notranslate nohighlight">\(\textrm{val}sigma\)</span> for a strategy <span class="math notranslate nohighlight">\(\sigma\)</span> can be seen to be a shortest path problem where distances are measured using the operator <span class="math notranslate nohighlight">\(\le\)</span>.
 Thus, any algorithm for the shortest path problem can be applied, such as the Bellman-Ford algorithm.
-In particular computing <span class="math notranslate nohighlight">\(\val^\sigma\)</span> can be done in polynomial time, and even more efficiently through a refined analysis.</p>
+In particular computing <span class="math notranslate nohighlight">\(\textrm{val}sigma\)</span> can be done in polynomial time, and even more efficiently through a refined analysis.</p>
 <p>An aspect of the algorithm we did not develop is choosing the switchable edge.
 It is possible to switch not only one edge but a set of switchable edges at each iteration, making this question worse:
 which subset of the switchable edges should be chosen?
@@ -1506,26 +1464,26 @@ We refer to Section <a class="reference internal" href="references.html#sec-refe
 (i.e.~the value) of <span class="math notranslate nohighlight">\(G\)</span> by an adaptation of Bellman-Ford algorithm
 computing shortest paths from all sources to the sink vertex
 <span class="math notranslate nohighlight">\(\octagon\)</span>. For a positional strategy <span class="math notranslate nohighlight">\(\sigma\)</span> of Eve, we let
-<span class="math notranslate nohighlight">\(\game[\sigma]\)</span> the graph obtained by removing all edges
+<span class="math notranslate nohighlight">\(\mathcal{G}\sigma]\)</span> the graph obtained by removing all edges
 <span class="math notranslate nohighlight">\((v,c,w)\in E\)</span> different from the choice <span class="math notranslate nohighlight">\(\sigma(v)\)</span>.</p>
 <p>The complexity of this algorithm depends on the size of the graph of
 the game, but also on the maximal weight
 <span class="math notranslate nohighlight">\(W = \max_{(v,c,v')\in E} |c|\)</span> on edges of the arena, in absolute
 values. Indeed, notice that the largest progress measure of a graph
-<span class="math notranslate nohighlight">\(\game[\sigma]\)</span>, with <span class="math notranslate nohighlight">\(\sigma\)</span> an admissible strategy, has all its
+<span class="math notranslate nohighlight">\(\mathcal{G}\sigma]\)</span>, with <span class="math notranslate nohighlight">\(\sigma\)</span> an admissible strategy, has all its
 values in <span class="math notranslate nohighlight">\(\{-(n-1)W,(n-1)W\}\cup\{+\infty\}\)</span>: this is because
 finite values are weights of finite paths with no cycles, that
 therefore must have at most <span class="math notranslate nohighlight">\(n-1\)</span> edges, each of weight bounded in
 absolute value by <span class="math notranslate nohighlight">\(W\)</span>. A switch must increase the value of at
 least one vertex by <span class="math notranslate nohighlight">\(1\)</span>; since there are <span class="math notranslate nohighlight">\(n\)</span> vertices, the total
-number of switches is therefore bounded by <span class="math notranslate nohighlight">\(\bigO(n^2W)\)</span>. At
+number of switches is therefore bounded by <span class="math notranslate nohighlight">\(O}\newcommand{\Eve}{\textrm{Eve}n^2W)\)</span>. At
 each iteration, the most expensive computation lies in the computation
-of the largest progress measure in <span class="math notranslate nohighlight">\(\game[\sigma]\)</span>. As we have seen,
+of the largest progress measure in <span class="math notranslate nohighlight">\(\mathcal{G}\sigma]\)</span>. As we have seen,
 this can be done by using Bellman-Ford algorithm, which requires
-<span class="math notranslate nohighlight">\(\bigO(nm)\)</span> operations. In the overall, this strategy
-improvement algorithm therefore costs <span class="math notranslate nohighlight">\(\bigO(n^3mW)\)</span>
+<span class="math notranslate nohighlight">\(O}\newcommand{\Eve}{\textrm{Eve}nm)\)</span> operations. In the overall, this strategy
+improvement algorithm therefore costs <span class="math notranslate nohighlight">\(O}\newcommand{\Eve}{\textrm{Eve}n^3mW)\)</span>
 operations. In \cite[Section 6]{Bjorklund&amp;Vorobyov:2007}, this bound
-is improved in <span class="math notranslate nohighlight">\(\bigO(n^2 mW)\)</span> by replacing the use of
+is improved in <span class="math notranslate nohighlight">\(O}\newcommand{\Eve}{\textrm{Eve}n^2 mW)\)</span> by replacing the use of
 Bellman-Ford algorithm by a more clever computation.</p>
 <blockquote>
 <div><p><strong>A binary search to compute the values.</strong></p>
@@ -1533,7 +1491,7 @@ Bellman-Ford algorithm by a more clever computation.</p>
 <p>Now that we know how to decide if Eve has a strategy to ensure a
 positive value, we can even use this procedure to compute the values
 of the game in case of an arena with only integral costs. By
-Corollary~\ref{4-cor:rational-MP}, we know that the value <span class="math notranslate nohighlight">\(\val(v)\)</span> of
+Corollary~\ref{4-cor:rational-MP}, we know that the value <span class="math notranslate nohighlight">\(\Valuev)\)</span> of
 all vertices <span class="math notranslate nohighlight">\(v\)</span> is a rational number with denominator in
 <span class="math notranslate nohighlight">\(\{1,\ldots,n\}\)</span>. Moreover, since it is the average value of the
 weight of a cycle, it lies in the interval <span class="math notranslate nohighlight">\([-W,W]\)</span>. A binary search
@@ -1548,18 +1506,18 @@ of edges are rational, instead of integers, since the number of
 switches can now be bigger. Indeed, the largest progress measure is
 now the weight of a path of length <span class="math notranslate nohighlight">\(k\leq n\)</span> which is thus of the form
 <span class="math notranslate nohighlight">\((\sum_{i=1}^k c_i)-k\alpha\)</span>, with <span class="math notranslate nohighlight">\(c_i\)</span> the original weights of
-edges. There are still <span class="math notranslate nohighlight">\(\bigO(n^2W)\)</span> possible weights of this
+edges. There are still <span class="math notranslate nohighlight">\(O}\newcommand{\Eve}{\textrm{Eve}n^2W)\)</span> possible weights of this
 form, which implies that</p>
 <div class="proof theorem admonition" id="4-thm:MP-strategy-improvement-binary-search">
 <p class="admonition-title"><span class="caption-number">Theorem 105 </span> (NEEDS TITLE 4-thm:MP-strategy-improvement-binary-search)</p>
 <div class="theorem-content section" id="proof-content">
 <p>Strategy improvement algorithm with a binary search computes the
 values of a mean payoff game in time
-<span class="math notranslate nohighlight">\(\bigO(n^3 mW(\log n+\log W))\)</span>.</p>
+<span class="math notranslate nohighlight">\(O}\newcommand{\Eve}{\textrm{Eve}n^3 mW(\log n+\log W))\)</span>.</p>
 </div>
 </div><p>This algorithm can be randomised, as also shown in
-<span id="id1">[<a class="reference internal" href="references.html#id93"><span>BjorklundV07</span></a>]</span>: the expected complexity then becomes
-<span class="math notranslate nohighlight">\(\min[\bigO(n^3 mW(\log n+\log W)),(\log W) 2^{\mathcal
+<span id="id1">[<a class="reference internal" href="references.html#id92"><span>BjorklundV07</span></a>]</span>: the expected complexity then becomes
+<span class="math notranslate nohighlight">\(\min[O}\newcommand{\Eve}{\textrm{Eve}n^3 mW(\log n+\log W)),(\log W) 2^{\mathcal
   O(\sqrt{n\log n})}]\)</span>.</p>
 </div>
 <div class="section" id="a-value-iteration-algorithm">
@@ -1568,20 +1526,20 @@ values of a mean payoff game in time
 which Eve can guarantee a mean payoff <span class="math notranslate nohighlight">\(&gt;0\)</span>, we now give an algorithm
 that finds vertices from which Eve can guarantee a mean payoff
 <span class="math notranslate nohighlight">\(\geq 0\)</span>, called value iteration
-<span id="id2">[<a class="reference internal" href="references.html#id91"><span>BCD+11</span></a>]</span>. Instead of relying
+<span id="id2">[<a class="reference internal" href="references.html#id90"><span>BCD+11</span></a>]</span>. Instead of relying
 on switches amongst admissible strategies of Eve, it relies on an
 iterative computation of the greatest fixed-point of a monotonous
 operator relying on a similar notion of progress measures as before.</p>
 <p>We first need to extend the notion of progress measures from graphs to
 games: we choose a definition consistent with the one presented above,
 thus slightly adapted with respect to
-<span id="id3">[<a class="reference internal" href="references.html#id91"><span>BCD+11</span></a>]</span>. A progress measure
-for a mean payoff game <span class="math notranslate nohighlight">\(\game\)</span> is a function <span class="math notranslate nohighlight">\(\mu\colon V\to \Rbar\)</span> with
-<span class="math notranslate nohighlight">\(\Rbar = \R\cup\{-\infty,+\infty\}\)</span> such that
+<span id="id3">[<a class="reference internal" href="references.html#id90"><span>BCD+11</span></a>]</span>. A progress measure
+for a mean payoff game <span class="math notranslate nohighlight">\(\mathcal{G} is a function \)</span>\mu\colon V\to \overline\mathbb{R}with
+<span class="math notranslate nohighlight">\(\overline\mathbb{R} \mathbb{R}cup\{-\infty,+\infty\}\)</span> such that
 \begin{align*}
-\forall v\in\VE\quad \mu(v)&amp;\leq
+\forall v\inV_\mEvequad \mu(v)&amp;\leq
 \min\big(0,\max_{(v,c,v’)\in E}(\mu(v’)+c)\big)\
-\forall v\in\VA\quad \mu(v)&amp;\leq \min\big(0, \min_{(v,c,v’)\in E}(\mu(v’)+c)\big)
+\forall v\inV_\mAdamquad \mu(v)&amp;\leq \min\big(0, \min_{(v,c,v’)\in E}(\mu(v’)+c)\big)
 \end{align*}
 The minimisation with <span class="math notranslate nohighlight">\(0\)</span> reflects the stratagem we used in strategy
 iteration to allow Eve to stop the game prematurely. Once again,
@@ -1594,8 +1552,8 @@ measure. Therefore, there exists a greatest progress measure.</p>
 <div class="proof theorem admonition" id="4-thm:greatest-progress-measure">
 <p class="admonition-title"><span class="caption-number">Theorem 106 </span> (NEEDS TITLE 4-thm:greatest-progress-measure)</p>
 <div class="theorem-content section" id="proof-content">
-<p>Let <span class="math notranslate nohighlight">\(\game\)</span> be a mean payoff game. The greatest progress measure <span class="math notranslate nohighlight">\(\mu\)</span>
-of <span class="math notranslate nohighlight">\(\game\)</span> is such that Eve can guarantee a non-negative mean payoff
+<p>Let <span class="math notranslate nohighlight">\(\mathcal{G} be a mean payoff game. The greatest progress measure \)</span>\mu<span class="math notranslate nohighlight">\(
+  of \)</span>\mathcal{G} is such that Eve can guarantee a non-negative mean payoff
 from <span class="math notranslate nohighlight">\(v\)</span> if and only if <span class="math notranslate nohighlight">\(\mu(v)\neq -\infty\)</span>.</p>
 </div>
 </div><div class="dropdown tip admonition">
@@ -1609,66 +1567,64 @@ defined by <span class="math notranslate nohighlight">\(\sigma(v)=(v,c,v')\)</sp
 certain to exist, by definition) such that <span class="math notranslate nohighlight">\(\mu(v)\leq
   \mu(v')+c\)</span>. We argue that <span class="math notranslate nohighlight">\(\sigma\)</span> is a winning strategy from
 <span class="math notranslate nohighlight">\(U=\{v\mid \mu(v)\neq -\infty\}\)</span>. Let us consider the graph <span class="math notranslate nohighlight">\(G\)</span>
-obtained by restricting <span class="math notranslate nohighlight">\(\game\)</span> to vertices in <span class="math notranslate nohighlight">\(U\)</span> and to edges
-prescribed by <span class="math notranslate nohighlight">\(\sigma\)</span>. The progress measure <span class="math notranslate nohighlight">\(\mu\)</span> induces a
-progress measure for the graph <span class="math notranslate nohighlight">\(G\)</span>, so thanks to
-Theorem~\ref{4-thm:MP-progress-measure}, the graph <span class="math notranslate nohighlight">\(G\)</span> satisfies
-mean payoff, which means that <span class="math notranslate nohighlight">\(\sigma\)</span> is indeed winning from <span class="math notranslate nohighlight">\(U\)</span>.</p>
+obtained by restricting <span class="math notranslate nohighlight">\(\mathcal{G} to vertices in \)</span>U<span class="math notranslate nohighlight">\( and to edges
+  prescribed by \)</span>\sigma<span class="math notranslate nohighlight">\(. The progress measure \)</span>\mu<span class="math notranslate nohighlight">\( induces a
+  progress measure for the graph \)</span>G<span class="math notranslate nohighlight">\(, so thanks to
+  Theorem~\ref{4-thm:MP-progress-measure}, the graph \)</span>G<span class="math notranslate nohighlight">\( satisfies
+  mean payoff, which means that \)</span>\sigma<span class="math notranslate nohighlight">\( is indeed winning from \)</span>U$.</p>
 <p>Reciprocally, let <span class="math notranslate nohighlight">\(\sigma\)</span> be a positional strategy winning from the
-winning set <span class="math notranslate nohighlight">\(\WE\)</span> of Eve for mean payoff. We build a progress
-measure <span class="math notranslate nohighlight">\(\mu\)</span> as follows. As above, we consider the graph <span class="math notranslate nohighlight">\(G\)</span>
-obtained by restricting <span class="math notranslate nohighlight">\(\game\)</span> to vertices in <span class="math notranslate nohighlight">\(\WE\)</span> and to the
-edges prescribed by <span class="math notranslate nohighlight">\(\sigma\)</span>. Since <span class="math notranslate nohighlight">\(\sigma\)</span> is a winning strategy,
-the graph <span class="math notranslate nohighlight">\(G\)</span> satisfies mean payoff, so thanks to
-Theorem~\ref{4-thm:MP-progress-measure}, there exists a largest
-progress measure <span class="math notranslate nohighlight">\(\mu\colon \WE\to \R\cup\{+\infty\}\)</span>. It extends
-into a mapping <span class="math notranslate nohighlight">\(\mu'\colon V\to \R\cup\{+\infty,-\infty\}\)</span> by
-letting <span class="math notranslate nohighlight">\(\mu'(v)=-\infty\)</span> if <span class="math notranslate nohighlight">\(v\in\WA\)</span>, and <span class="math notranslate nohighlight">\(\mu'(v)=\min(0,\mu(v))\)</span>
-if <span class="math notranslate nohighlight">\(v\in \WE\)</span>. This is a progress measure since, if
-<span class="math notranslate nohighlight">\(v\in \VA\cap\WE\)</span>,
+winning set <span class="math notranslate nohighlight">\(W_\mathrm{Eve}of Eve for mean payoff. We build a progress
+  measure \)</span>\mu<span class="math notranslate nohighlight">\( as follows. As above, we consider the graph \)</span>G<span class="math notranslate nohighlight">\(
+  obtained by restricting \)</span>\mathcal{G} to vertices in <span class="math notranslate nohighlight">\(W_\mathrm{Eve}and to the
+  edges prescribed by \)</span>\sigma<span class="math notranslate nohighlight">\(. Since \)</span>\sigma<span class="math notranslate nohighlight">\( is a winning strategy,
+  the graph \)</span>G<span class="math notranslate nohighlight">\( satisfies mean payoff, so thanks to
+  Theorem~\ref{4-thm:MP-progress-measure}, there exists a largest
+  progress measure \)</span>\mu\colon W_\mEveto \mathbb{R}cup{+\infty}<span class="math notranslate nohighlight">\(. It extends
+  into a mapping \)</span>\mu’\colon V\to \mathbb{R}cup{+\infty,-\infty}<span class="math notranslate nohighlight">\( by
+  letting \)</span>\mu’(v)=-\infty<span class="math notranslate nohighlight">\( if \)</span>v\inW_\mathrm{Adam} and <span class="math notranslate nohighlight">\(\mu'(v)=\min(0,\mu(v))\)</span>
+if <span class="math notranslate nohighlight">\(v\in W_\mathrm{Eve} This is a progress measure since, if
+  \)</span>v\in V_\mAdamcapW_\mathrm{Eve}
 <span class="math notranslate nohighlight">\(\mu'(v)=\min(0,\mu(v))\leq \min(0,\min_{(v,c,w)\in
     E}(\mu(w)+c)\)</span>\todo{Euh, non, ça va pas du tout !}  This progress
 measure satisfies the property that if <span class="math notranslate nohighlight">\(\mu'(v)\neq -\infty\)</span> then
-<span class="math notranslate nohighlight">\(v\in \WE\)</span>. It follows that the greatest progress measure of <span class="math notranslate nohighlight">\(\game\)</span>
+<span class="math notranslate nohighlight">\(v\in W_\mathrm{Eve} It follows that the greatest progress measure of \)</span>\mathcal{G}
 satisfies the same property.</p>
 </div>
 <p>The value iteration algorithm consists in starting with the function
 <span class="math notranslate nohighlight">\(\mu_0\)</span> mapping each vertex <span class="math notranslate nohighlight">\(v\)</span> to <span class="math notranslate nohighlight">\(0\)</span>: clearly, <span class="math notranslate nohighlight">\(\mu_0\)</span> is greater
-than or equal to the greatest progress measure of <span class="math notranslate nohighlight">\(\game\)</span> (because of
-the requirement that <span class="math notranslate nohighlight">\(\mu(v)\)</span> must be at most <span class="math notranslate nohighlight">\(0\)</span> in the definition of
+than or equal to the greatest progress measure of <span class="math notranslate nohighlight">\(\mathcal{G} (because of
+the requirement that \)</span>\mu(v)<span class="math notranslate nohighlight">\( must be at most \)</span>0$ in the definition of
 progress measures). We then update it locally to try to patch local
 discrepancies, until it is no longer possible, thus reaching a
 progress measure, and even the greatest one, which, by the previous
 theorem, gives the winning vertices for Eve.</p>
-<p>The update is performed with an operator <span class="math notranslate nohighlight">\(\Lift\)</span> mapping each function
-<span class="math notranslate nohighlight">\(\mu\colon V\to \Rbar\)</span> to a new function <span class="math notranslate nohighlight">\(\Lift(\mu)\colon V\to \Rbar\)</span>
-defined for all vertices <span class="math notranslate nohighlight">\(v\in V\)</span> by</p>
+<p>The update is performed with an operator <span class="math notranslate nohighlight">\(\textrm{Lift} mapping each function
+\)</span>\mu\colon V\to \overline\mathbb{R}to a new function <span class="math notranslate nohighlight">\(\textrm{Lift}\mu)\colon V\to \overline\mathbb{R}defined for all vertices \)</span>v\in V$ by</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\Lift(\mu)(v) =
+\[\textrm{Lift}\mu)(v) =
   \begin{cases}
     \downward{-(n-1)W}\min\big(0,\max_{(v,c,v')\in E} (\mu(v')+c)\big) &amp; \text{if } v\in
-    \VE\\
-    \downward{-(n-1)W}\min\big(0,\min_{(v,c,v')\in E} (\mu(v')+c)\big) &amp; \text{if } v\in \VA
-  \end{cases}\end{split}\]</div>
-<p>where <span class="math notranslate nohighlight">\(\downward{k}\colon \Rbar\to \Rbar\)</span> is the
-mapping defined by <span class="math notranslate nohighlight">\(\downward k(x) = x\)</span> if <span class="math notranslate nohighlight">\(x\geq k\)</span>, and
-<span class="math notranslate nohighlight">\(\downward k(x) = -\infty\)</span> otherwise. The overall method, very
+    V_\mathrm{Eve}
+    \downward{-(n-1)W}\min\big(0,\min_{(v,c,v')\in E} (\mu(v')+c)\big) &amp; \text{if } v\in V_\mathrm{Adam} \end{cases}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\downward{k}\colon \overline\Rto \overline\mathbb{R}is the
+mapping defined by \)</span>\downward k(x) = x<span class="math notranslate nohighlight">\( if \)</span>x\geq k<span class="math notranslate nohighlight">\(, and
+\)</span>\downward k(x) = -\infty$ otherwise. The overall method, very
 simple, is given in <a class="reference internal" href="#algo-value-iteration-mp"><span class="std std-numref">Fig. 38</span></a>.</p>
 <div class="figure align-center" id="algo-value-iteration-mp">
 <img alt="../_images/4-algo:value_iteration_MP.png" src="../_images/4-algo:value_iteration_MP.png" />
 <p class="caption"><span class="caption-number">Fig. 38 </span><span class="caption-text">The value iteration algorithm.</span><a class="headerlink" href="#algo-value-iteration-mp" title="Permalink to this image">¶</a></p>
 </div>
-<p>The co-domain of <span class="math notranslate nohighlight">\(\Lift\)</span> are functions
-<span class="math notranslate nohighlight">\(V\to \{-\infty,-nW+1,-nW+2,\ldots,0\}\)</span>, i.e.~a finite set of
-functions. Therefore, <span class="math notranslate nohighlight">\(\Lift\)</span> is a Scott-continuous mapping over which
+<p>The co-domain of <span class="math notranslate nohighlight">\(\textrm{Lift} are functions
+\)</span>V\to {-\infty,-nW+1,-nW+2,\ldots,0}<span class="math notranslate nohighlight">\(, i.e.~a finite set of
+functions. Therefore, \)</span>\textrm{Lift} is a Scott-continuous mapping over which
 we can apply Kleene’s fixed-point theorem, ensuring that the sequence
-<span class="math notranslate nohighlight">\((\Lift^i(\mu_0))_{i\geq 0}\)</span> converges towards the greatest fixed
-point <span class="math notranslate nohighlight">\(\mu^*\)</span> of <span class="math notranslate nohighlight">\(\Lift\)</span>. By the fact that <span class="math notranslate nohighlight">\(\mu^*=\Lift(\mu^*)\)</span>, we
-can deduce that <span class="math notranslate nohighlight">\(\mu^*\)</span> is a progress measure. We can indeed show that
+<span class="math notranslate nohighlight">\((\textrm{Lift}i(\mu_0))_{i\geq 0}\)</span> converges towards the greatest fixed
+point <span class="math notranslate nohighlight">\(\mu^*\)</span> of <span class="math notranslate nohighlight">\(\textrm{Lift}. By the fact that \)</span>\mu^<em>=\textrm{Lift}\mu^</em>)<span class="math notranslate nohighlight">\(, we
+can deduce that \)</span>\mu^*<span class="math notranslate nohighlight">\( is a progress measure. We can indeed show that
 this is the greatest progress measure of the game. The main ingredient
-is that the use of the widening operator <span class="math notranslate nohighlight">\(\downward{-nW}\)</span> is
+is that the use of the widening operator \)</span>\downward{-nW}<span class="math notranslate nohighlight">\( is
 correct, i.e.~that it does not jump over the greatest progress measure
-which must map every vertex <span class="math notranslate nohighlight">\(v\in\WE\)</span> to the minimum between <span class="math notranslate nohighlight">\(0\)</span> and
+which must map every vertex \)</span>v\inW_\mathrm{Eve}to the minimum between <span class="math notranslate nohighlight">\(0\)</span> and
 the weight of a finite path (as we have seen in the previous proof):
 this weight is thus at least <span class="math notranslate nohighlight">\(-(n-1)W\)</span>, so that it is correct to
 jump directly to <span class="math notranslate nohighlight">\(-\infty\)</span> when we reach a value less than
@@ -1676,25 +1632,25 @@ that. Therefore, by  <a class="reference internal" href="#4-thm:greatest-progres
 iteration algorithm returns the set of winning vertices for Eve.</p>
 <p>We finally study the complexity of this algorithm. The
 value associated to every vertex can decrease at most
-<span class="math notranslate nohighlight">\(\bigO(nW)\)</span> times in total. Updating the value of a single
+<span class="math notranslate nohighlight">\(O}\newcommand{\Eve}{\textrm{Eve}nW)\)</span> times in total. Updating the value of a single
 vertex <span class="math notranslate nohighlight">\(v\)</span> can be done with a complexity linear in the number of
 successors of <span class="math notranslate nohighlight">\(v\)</span>, i.e.~linear in the size of
 <span class="math notranslate nohighlight">\(\mathrm{post}(v) = \{(v,c,v')\in E\}\)</span>. By looking at all the
 predecessors <span class="math notranslate nohighlight">\(\mathrm{pre}(v) = \{(v',c,v)\in E\}\)</span> of a vertex <span class="math notranslate nohighlight">\(v\)</span> we
 have just updated, it is also possible to maintain the list of
 vertices for which an update is required throughout the algorithm (see
-<span id="id4">[<a class="reference internal" href="references.html#id91"><span>BCD+11</span></a>]</span> for a detailed
+<span id="id4">[<a class="reference internal" href="references.html#id90"><span>BCD+11</span></a>]</span> for a detailed
 explanation), so that the overall complexity of the value iteration
 algorithm is of the form</p>
 <div class="math notranslate nohighlight">
-\[\sum_{v\in V}\bigO\big((|\mathrm{post}(v)| +
-  |\mathrm{pre}(v)|)nW\big) = \bigO(mn W)\]</div>
+\[\sum_{v\in V}O}\newcommand{\Eve}{\textrm{Eve}big((|\mathrm{post}(v)| +
+  |\mathrm{pre}(v)|)nW\big) = O}\newcommand{\Eve}{\textrm{Eve}mn W)\]</div>
 <div class="proof theorem admonition" id="4-thm:MP-value-iteration-Brim">
 <p class="admonition-title"><span class="caption-number">Theorem 107 </span> (NEEDS TITLE 4-thm:MP-value-iteration-Brim)</p>
 <div class="theorem-content section" id="proof-content">
-<p>Value iteration algorithm finds the set <span class="math notranslate nohighlight">\(\WE\)</span> of vertices from which
-Eve can guarantee a non-negative mean payoff in a game <span class="math notranslate nohighlight">\(\game\)</span> with a
-complexity <span class="math notranslate nohighlight">\(\bigO(mnW)\)</span>.</p>
+<p>Value iteration algorithm finds the set <span class="math notranslate nohighlight">\(W_\mathrm{Eve}of vertices from which
+  Eve can guarantee a non-negative mean payoff in a game \)</span>\mathcal{G} with a
+complexity <span class="math notranslate nohighlight">\(O}\newcommand{\Eve}{\textrm{Eve}mnW)\)</span>.</p>
 </div>
 </div><p>As a corollary, we can compute the values of all vertices in a
 mean payoff game, using a similar binary search as explained before for
@@ -1704,7 +1660,7 @@ strategy improvement:</p>
 <div class="theorem-content section" id="proof-content">
 <p>Value iteration algorithm with a binary search allows one to compute
 the values of a mean payoff game in time
-<span class="math notranslate nohighlight">\(\bigO(n^2 mW(\log n+\log W))\)</span>.</p>
+<span class="math notranslate nohighlight">\(O}\newcommand{\Eve}{\textrm{Eve}n^2 mW(\log n+\log W))\)</span>.</p>
 </div>
 </div></div>
 </div>

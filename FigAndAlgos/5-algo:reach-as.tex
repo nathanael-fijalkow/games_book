@@ -1,0 +1,22 @@
+\documentclass[preview,border=0mm,convert={density=600,outext=.png}]{standalone}
+\usepackage{amsfonts,amssymb,amsmath}
+\usepackage[norelsize,ruled,vlined,noend]{algorithm2e}
+\input{../norenew_macros.tex}
+\input{./../5_MDP/norenew_macros_local.tex}
+\begin{document}
+\begin{algorithm}[H]
+
+	\KwData{An MDP $ \mdp $, a colour $ \genColour $}
+\SetKwFunction{FTreat}{Treat}
+$W \leftarrow \vertices$ \;	
+\Repeat{$W' \neq W$}{
+	$W' \leftarrow W$\;
+	$Z \leftarrow \winPos(\mdp_W,\Reach(\genColour))   $} 
+%	colour each vertex in $ W \setminus Z $ by $ \Lose $\;
+	$W \leftarrow \winAS(\mdp_W,\Safe(W \setminus Z))$} 
+}
+
+\Return{$W$} \tcp*{A positive winning strategy in $\mdp_W$ is now almost-surely winning from $W$ in $\mdp$.}
+
+\end{algorithm}
+\end{document}

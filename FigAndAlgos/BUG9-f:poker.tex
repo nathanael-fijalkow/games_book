@@ -1,0 +1,77 @@
+\documentclass[preview,border=0mm,convert={density=600,outext=.png}]{standalone}
+\usepackage{tikz}
+\usetikzlibrary{automata,shapes,patterns,calc,arrows}
+\input{tikz-style.tex}
+\input{norenew_macros.tex}
+\input{./../8_Imperfect/norenew_macros_local.tex}
+\usepackage{amsfonts}
+\begin{document}
+\begin{tikzpicture}[scale=0.8]
+
+\node (root) at (0,0) {{\tt Start}};
+\node[below left =of root] (spade) {$\spadesuit${\tt Play}};
+\node[below right =of root] (nospade) {$\blacksquare${\tt Play}};
+\node[below left =of spade] (spaderaise) {$\spadesuit${\tt Raised}};
+\node[below right =of nospade] (nospaderaise) {$\blacksquare${\tt Raised}};
+\node(end) at (0,-5) {{\tt End}};
+
+\path[->](root) edge node[near start,left,align=center]  
+{$(\cdot,\cdot)\frac{1}{4}$
+\\Eve receives $\spadesuit$
+\\Adam receives $\circ$
+} (spade);
+\path[->](root) edge node[near start,right,align=center]  {$(\cdot,\cdot)\frac{3}{4}$\\Eve receives $ \blacksquare$\\Adam receives $\circ$} (nospade);
+\path[->](spade) edge node[near start,left,align=center]  {$({\tt raise},\cdot)
+
+$
+
+} (spaderaise);
+\path[->](nospade) edge node[near start,right,align=center]  {$({\tt raise},\cdot)
+
+$
+
+} (nospaderaise);
+\path[->](spade) edge 
+node[very near start,right] {$({\tt check},\cdot)$}
+node[near end, right] {{\bf +1}} (end);
+\path[->](nospade) edge 
+node[very near start, left]  {$({\tt check},\cdot)
+
+$} 
+node[near end, left] {{\bf -1}} 
+(end);
+\path[->,bend left=0](spaderaise) edge 
+node[very near start, right]  {$(\cdot,{\tt call})
+
+$} 
+node[near end, right] {{\bf +3}} 
+(end);
+\path[->,bend left=-80](spaderaise) edge 
+node[near start, right]  {$(\cdot,{\tt fold},)
+
+$} 
+node[right,near end] {{\bf +1}} 
+(end);
+
+\path[->,bend left=0](nospaderaise) edge 
+node[very near start, left]  {$(\cdot,{\tt call})
+
+$} 
+node[near end, left] {{\bf -3}} 
+(end);
+\path[->,bend left=80](nospaderaise) edge 
+node[near start, left]  {$(\cdot,{\tt fold},)
+
+$} 
+node[left,near end] {{\bf +1}} 
+(end);
+
+
+% (notb) edge  node [above] {} (notab)
+
+% (ab) edge[out=195,in=-15] (notab)
+
+;
+
+    \end{tikzpicture}
+\end{document}

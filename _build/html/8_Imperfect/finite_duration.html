@@ -724,97 +724,14 @@
   <div class="section" id="finite-duration">
 <span id="sec-finite-duration"></span><h1>Finite duration<a class="headerlink" href="#finite-duration" title="Permalink to this headline">¶</a></h1>
 <div class="math notranslate nohighlight">
-\[\newcommand{\probimp}[3]{\mathbb{P}^{#1}_{#2}\left({#3}\right)}
-\newcommand{\rand}{{\tt rand}}
-\newcommand{\Isafe}{{\tt ISafe}}
-\newcommand{\LL}{\mathcal{L}}
-\newcommand{\KK}{\mathcal{K}}
-\newcommand{\LLE}{\LL_{\text{Eve},=1}}
-\newcommand{\LLA}{\LL_{\text{Adam},&gt;0}}
-\newcommand{\can}{\textsf{max}}
-\newcommand{\targets}{TT}
-\newcommand{\bh}{\setminus}
-\newcommand{\signauxdeux}{T}
-\newcommand{\actionsun}{A}
+\[\newcommand{\pay}{ {\tt pay}}
 \newcommand{\Strat}{\text{Strat}}
 \newcommand{\Act}{\text{Act}}
 \newcommand{\ini}{\delta_0}
-\newcommand{\win}{{\tt Win}}
-\newcommand{\winreach}{{\tt Reach}}
-\newcommand{\winsafe}{{\tt Safety}}
-\newcommand{\winbuchi}{{\tt Buchi}}
-\newcommand{\wincobuchi}{{\tt CoBuchi}}
-\newcommand{\states}{V}
-\newcommand{\ar}{\arena}
-\newcommand{\action}{a}
-\newcommand{\belun}{\mathcal{B}_{\text{Eve}}}
-\newcommand{\beldeux}{\mathcal{B}_{\text{Adam}}}
-\newcommand{\deuxbelun}{\mathcal{B}^{(2)}_{Eve}}
-\newcommand{\tp}{\Delta}
-\newcommand{\parties}[1]{\ensuremath{\mathcal{P}(#1)}}
-\newcommand{\Eve}{\textrm{Eve}}
-\newcommand{\Adam}{\textrm{Adam}}
-\newcommand{\set}[1]{\left\{ #1 \right\}}
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
 \newcommand{\R}{\mathbb{R}}
-\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
-\newcommand{\argmax}{\textrm{argmax}}
-\newcommand{\argmin}{\textrm{argmin}}
-\newcommand{\Op}{\mathbb{O}}
-\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\textrm{supp}} 
-\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
-\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
-\newcommand{\mEve}{\mathrm{Eve}}
-\newcommand{\mAdam}{\mathrm{Adam}}
-\newcommand{\mRandom}{\mathrm{Random}}
-\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
-\newcommand{\ing}{\textrm{In}}
-\newcommand{\Ing}{\ing}
-\newcommand{\out}{\textrm{Out}}
-\newcommand{\Out}{\out}
-\newcommand{\dest}{\Delta} 
-\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
-\newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
-\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
-\newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\newcommand{\Win}{\textrm{Win}} 
-\newcommand{\Lose}{\textrm{Lose}} 
-\newcommand{\Value}{\textrm{val}} 
-\newcommand{\ValueE}{\textrm{val}_\mEve} 
-\newcommand{\ValueA}{\textrm{val}_\mAdam}
-\newcommand{\val}{\Value} 
-\newcommand{\Automaton}{\mathbf{A}} 
-\newcommand{\Safe}{\mathtt{Safe}}
-\newcommand{\Reach}{\mathtt{Reach}} 
-\newcommand{\Buchi}{\mathtt{Buchi}} 
-\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
-\newcommand{\Parity}{\mathtt{Parity}} 
-\newcommand{\Muller}{\mathtt{Muller}} 
-\newcommand{\Rabin}{\mathtt{Rabin}} 
-\newcommand{\Streett}{\mathtt{Streett}} 
-\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
-\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
-\newcommand{\Energy}{\mathtt{Energy}}
-\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
-\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
-\newcommand{\Sup}{\mathtt{Sup}}
-\newcommand{\Inf}{\mathtt{Inf}}
-\newcommand{\LimSup}{\mathtt{LimSup}}
-\newcommand{\LimInf}{\mathtt{LimInf}}
-\newcommand{\NL}{\textrm{NL}}
-\newcommand{\PTIME}{\textrm{PTIME}}
-\newcommand{\NP}{\textrm{NP}}
-\newcommand{\UP}{\textrm{UP}}
-\newcommand{\coNP}{\textrm{coNP}}
-\newcommand{\coUP}{\textrm{coUP}}
-\newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
-\newcommand{\EXP}{\textrm{EXP}}
-\newcommand{\kEXP}{\textrm{kEXP}}\]</div>
+\newcommand{\dist}{\mathcal{D}}
+\newcommand{\val}{\Value}
+\newcommand{\Value}{\textrm{val}}\]</div>
 <p>We start with some results on the very interesting class of game
 with finite duration.</p>
 <p>A game has <strong>finite duration</strong>
@@ -840,31 +757,31 @@ This guarantees finiteness of <span class="math notranslate nohighlight">\(R_E\)
 \[
 R_E \cup R_A \subseteq S^{\leq n}\enspace.
 \]</div>
-<p>An initial distribution <span class="math notranslate nohighlight">\(\ini\)</span> and two strategies <span class="math notranslate nohighlight">\(\sigma\)</span> and <span class="math notranslate nohighlight">\(\tau\)</span> of Eve and Adam naturally induce a probability distribution <span class="math notranslate nohighlight">\(\mathbb{P}_{\ini}^{\sigma,\tau}\)</span>
-on the set of terminal plays starting in one of the vertices <span class="math notranslate nohighlight">\(v_0, \ini(v_0)&gt;0\)</span>.
+<p>An initial distribution <span class="math notranslate nohighlight">\(\delta_0 and two strategies \)</span>\sigma<span class="math notranslate nohighlight">\( and \)</span>\tau<span class="math notranslate nohighlight">\( of Eve and Adam naturally induce a probability distribution \)</span>\mathbb{P}_{\delta_0^{\sigma,\tau}<span class="math notranslate nohighlight">\(
+on the set of terminal plays starting in one of the vertices \)</span>v_0, \delta_0v_0)&gt;0$.
 Players have opposite interests:
 Eve seeks to maximize her expected payoff</p>
 <div class="math notranslate nohighlight">
 \[
-\mathbb{E}_{\ini}^{\sigma,\tau}= \sum_{\text{ terminal plays }\pi} 
-\mathbb{P}_{\ini}^{\sigma,\tau}(\pi) \cdot {\pay}(\pi)\enspace,
+\mathbb{E}_{\delta_0^{\sigma,\tau}= \sum_{\text{ terminal plays }\pi} 
+\mathbb{P}_{\delta_0^{\sigma,\tau}(\pi) \cdot { {\tt pay}(\pi)\enspace,
 \]</div>
 <p>while Adam wants to minimize it.</p>
 <div class="section" id="existence-and-computability-of-the-value">
 <span id="subsec-value"></span><h2>Existence and computability of the value<a class="headerlink" href="#existence-and-computability-of-the-value" title="Permalink to this headline">¶</a></h2>
 <p>Next theorem gathers several folklore results.</p>
 <div class="proof theorem admonition" id="8-thm:finiteimperfecthaveval">
-<p class="admonition-title"><span class="caption-number">Theorem 244 </span> (Finite duration games)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 246 </span> (Finite duration games)</p>
 <div class="theorem-content section" id="proof-content">
 <p>A game with finite duration and imperfect information has a value:
-for every initial distribution <span class="math notranslate nohighlight">\(\ini\)</span>,</p>
+for every initial distribution $\delta_0,</p>
 <div class="math notranslate nohighlight">
 \[
-\sup_\sigma \inf_\tau \mathbb{E}_{\ini}^{\sigma,\tau}
+\sup_\sigma \inf_\tau \mathbb{E}_{\delta_0^{\sigma,\tau}
 ~=~
- \inf_\tau \sup_\sigma \mathbb{E}_{\ini}^{\sigma,\tau}\enspace.
+ \inf_\tau \sup_\sigma \mathbb{E}_{\delta_0^{\sigma,\tau}\enspace.
 \]</div>
-<p>This value is denoted <span class="math notranslate nohighlight">\(\val(\ini)\)</span>
+<p>This value is denoted <span class="math notranslate nohighlight">\(\textrm{val}delta_0\)</span>
 and is computable.</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
@@ -885,17 +802,17 @@ as she receives new signals,
 may choose once for all at the beginning of the game
 how to react to every possible sequence of signals
 she might receive in the future.</p>
-<p>Fix an initial distribution <span class="math notranslate nohighlight">\(\ini\)</span>.
+<p>Fix an initial distribution <span class="math notranslate nohighlight">\(\delta_0.
 In the normal form version the game,
-Eve  picks
-a <strong>deterministic</strong> strategy
-<span class="math notranslate nohighlight">\(\sigma : R_E \to A\)</span>
+Eve  picks 
+a **deterministic** strategy
+\)</span>\sigma : R_E \to A<span class="math notranslate nohighlight">\(
 while simultaneously
 Adam picks
-<span class="math notranslate nohighlight">\(\tau : R_A \to A\)</span>.
+\)</span>\tau : R_A \to A<span class="math notranslate nohighlight">\(.
 Then the game is over
 and Eve receives payoff
-<span class="math notranslate nohighlight">\(\mathbb{E}_{\ini}^{\sigma,\tau}\)</span>.
+\)</span>\mathbb{E}_{\delta_0^{\sigma,\tau}$.
 There are finitely many such deterministic strategies,
 thus the normal form game is a <strong>matrix game</strong>.
 See Section <a class="reference internal" href="../7_Concurrent/matrix_games.html#sec-matrix-games"><span class="std std-ref">Matrix games</span></a> for more details
@@ -967,48 +884,48 @@ In other words, she should bluff with probability <span class="math notranslate 
 Adam has a unique optimal strategy which consists in calling or folding
 with equal probability <span class="math notranslate nohighlight">\(\frac{1}{2}\)</span>\enspace.</p>
 <blockquote>
-<div><p><strong>Proof of <a class="reference internal" href="#8-thm:finiteimperfecthaveval">Theorem 244</a>.</strong></p>
+<div><p><strong>Proof of <a class="reference internal" href="#8-thm:finiteimperfecthaveval">Theorem 246</a>.</strong></p>
 </div></blockquote>
 <p>The example illustrates
 the correspondance between behavioural strategies in the finite-duration game on one side
 and mixed strategies in the normal form game on the other.
 In the general case, the correspondance can be stated as follows.</p>
 <div class="proof lemma admonition" id="8-lem:impinffinite">
-<p class="admonition-title"><span class="caption-number">Lemma 245 </span> (NEEDS TITLE 8-lem:impinffinite)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 247 </span> (NEEDS TITLE 8-lem:impinffinite)</p>
 <div class="lemma-content section" id="proof-content">
-<p>Denote <span class="math notranslate nohighlight">\(\Strat\)</span> the set of behavioural strategies,
-<span class="math notranslate nohighlight">\(\Strat_d\)</span> the subset of deterministic strategies
-and <span class="math notranslate nohighlight">\(\dist(\Strat_d)\)</span> the set of strategies in the normal form game.</p>
+<p>Denote <span class="math notranslate nohighlight">\(\text{Strat} the set of behavioural strategies,
+\)</span>\Strat_d<span class="math notranslate nohighlight">\( the subset of deterministic strategies
+and \)</span>\mathcal{D}\Strat_d)$ the set of strategies in the normal form game.</p>
 <ol class="simple">
 <li><p>There is a mapping
 <span class="math notranslate nohighlight">\(
-\Phi : \Strat \to \dist(\Strat_d)
-\)</span> %in the normal form game
-which preserves payoffs:</p></li>
+\Phi : \text{Strat}\to \mathcal{D}\Strat_d)
+\)</span></p></li>
 </ol>
+<p>which preserves payoffs:</p>
 <div class="math notranslate nohighlight">
 \[
-\forall \sigma,\tau \in \Strat,
-\mathbb{E}_{\ini}^{\sigma,\tau}
+\forall \sigma,\tau \in \text{Strat}
+\mathbb{E}_{\delta_0^{\sigma,\tau}
 =
 \sum_{\sigma',\tau' \in \Strat_d}\Phi(\sigma)(\sigma')\cdot\Phi(\tau)(\tau') 
-\cdot\mathbb{E}_{\ini}^{\sigma',\tau'}\enspace.
+\cdot\mathbb{E}_{\delta_0^{\sigma',\tau'}\enspace.
 \]</div>
 <ol class="simple">
 <li><p>Since actions are observable,
 there is a mapping
 <span class="math notranslate nohighlight">\(
-\Phi' : \dist(\Strat_d) \to \Strat 
-\)</span> %in the  imperfect information game<br />
-which preserves payoffs:</p></li>
+\Phi' : \mathcal{D}\Strat_d) \to \text{Strat}
+\)</span></p></li>
 </ol>
+<p>which preserves payoffs:</p>
 <div class="math notranslate nohighlight">
 \[
-\forall \Sigma,T \in \dist(\Strat),
+\forall \Sigma,T \in \mathcal{D}\text{Strat},
 \sum_{\sigma',\tau' \in \Strat_d}\Sigma(\sigma') T(\tau')
-\mathbb{E}_{\ini}^{\sigma',\tau'}
+\mathbb{E}_{\delta_0^{\sigma',\tau'}
 =
-\mathbb{E}_{\ini}^{\Phi'(\sigma),\Phi'(\tau)}
+\mathbb{E}_{\delta_0^{\Phi'(\sigma),\Phi'(\tau)}
 \enspace.
 \]</div>
 <ol class="simple">
@@ -1033,12 +950,13 @@ with probability</p>
 \Pi_{u \in R_E} \sigma(u)(\sigma'(u))\enspace.
 \]</div>
 <p>We prove ii).
-Let <span class="math notranslate nohighlight">\(\Sigma\in\dist(\Strat)\)</span>. The definition of the behavioural strategy
+Let <span class="math notranslate nohighlight">\(\Sigma\in\mathcal{D}\text{Strat}\)</span>. The definition of the behavioural strategy
 <span class="math notranslate nohighlight">\(\sigma=\Phi'(\Sigma)\)</span> is as follows.
 Let <span class="math notranslate nohighlight">\(s_0\ldots s_k\)</span> be a finite sequence of signals.
 Since actions are observable, this defines unambigously
 the sequence of corresponding actions <span class="math notranslate nohighlight">\(a_0\ldots a_k\)</span>
-where <span class="math notranslate nohighlight">\(a_i = \Act(s_i)\)</span>.%consistent with <span class="math notranslate nohighlight">\(s_0\ldots s_k\)</span> and <span class="math notranslate nohighlight">\(a_0\ldots a_k\)</span> :%Z ={ \sigma’ \in \Strat_d \mid \forall 0\leq i \leq k,% } \enspace.We set <span class="math notranslate nohighlight">\(\sigma(s_0\ldots s_k)(a)\)</span> to be the probability that a
+where <span class="math notranslate nohighlight">\(a_i = \text{Act}s_i)\)</span>.</p>
+<p>We set <span class="math notranslate nohighlight">\(\sigma(s_0\ldots s_k)(a)\)</span> to be the probability that a
 deterministic strategy
 chosen with <span class="math notranslate nohighlight">\(\Sigma\)</span> chooses action <span class="math notranslate nohighlight">\(a\)</span> after signals
 <span class="math notranslate nohighlight">\(s_0\ldots s_k\)</span>, conditioned on the fact that it has already
@@ -1048,11 +966,12 @@ chosen action <span class="math notranslate nohighlight">\(a_0\ldots a_k\)</span
 \sigma(s_0\ldots s_k)(a) 
 =
 \Sigma\left(\sigma'(s_0\ldots s_k)=a \mid \forall 0\leq i \leq k,
- \sigma'(s_0\ldots s_{i-1})=\Act(s_i)\right)\enspace,
+ \sigma'(s_0\ldots s_{i-1})=\text{Act}s_i)\right)\enspace,
 \]</div>
 <p>where the vertical pipe denotes a conditional probability.</p>
 </div>
-<p>We proceed with the proof of <a class="reference internal" href="#8-thm:finiteimperfecthaveval">Theorem 244</a>.According to <code class="xref prf prf-ref docutils literal notranslate"><span class="pre">8-lem:mat</span></code>,
+<p>We proceed with the proof of <a class="reference internal" href="#8-thm:finiteimperfecthaveval">Theorem 246</a>.</p>
+<p>According to <code class="xref prf prf-ref docutils literal notranslate"><span class="pre">8-lem:mat</span></code>,
 the normal form has a value and optimal strategies
 for each player.
 Denote <span class="math notranslate nohighlight">\(\val_N\)</span> the value
@@ -1063,19 +982,19 @@ of at least <span class="math notranslate nohighlight">\(\val_N\)</span> in the 
 because for every strategy <span class="math notranslate nohighlight">\(\tau\)</span>,</p>
 <div class="math notranslate nohighlight">
 \[
-\mathbb{E}_{\ini}^{\sigma^\sharp,\tau}
+\mathbb{E}_{\delta_0^{\sigma^\sharp,\tau}
 =
-\mathbb{E}_{\ini}^{\Phi'(\Sigma^\sharp),\Phi'(\Phi(\tau))}
+\mathbb{E}_{\delta_0^{\Phi'(\Sigma^\sharp),\Phi'(\Phi(\tau))}
 =
 \sum_{\sigma',\tau' \in \Strat_d}\Sigma^\sharp(\sigma') \Phi(\tau)(\tau')
-\mathbb{E}_{\ini}^{\sigma',\tau'}
+\mathbb{E}_{\delta_0^{\sigma',\tau'}
 \geq \val_N\enspace,
 \]</div>
-<p>where the first equalities are applications of <a class="reference internal" href="#8-lem:impinffinite">Lemma 245</a>
+<p>where the first equalities are applications of <a class="reference internal" href="#8-lem:impinffinite">Lemma 247</a>
 and the inequality is by optimality of <span class="math notranslate nohighlight">\(\Sigma^\sharp\)</span>.
 Symmetrically,
 <span class="math notranslate nohighlight">\(\tau^\sharp=\Phi'(T^\sharp)\)</span> guarantees
-<span class="math notranslate nohighlight">\(\forall \sigma,\mathbb{E}_{\ini}^{\sigma,\tau^\sharp}\leq\val_N\)</span>.
+<span class="math notranslate nohighlight">\(\forall \sigma,\mathbb{E}_{\delta_0^{\sigma,\tau^\sharp}\leq\val_N\)</span>.
 Thus the value of the game with finite duration
 is <span class="math notranslate nohighlight">\(\val_N\)</span> and <span class="math notranslate nohighlight">\(\sigma^\sharp\)</span>
 and <span class="math notranslate nohighlight">\(\tau^\sharp\)</span> are optimal.\qed</p>
@@ -1094,14 +1013,14 @@ might contain all sequences of <span class="math notranslate nohighlight">\(S\)<
 <p>Koller, Meggido and von Stengel did provide a
 more efficient direct reduction to linear programming.
 Strategies of Eve in the normal form game live
-in <span class="math notranslate nohighlight">\(\R^{A^{R_E}}\)</span>
+in <span class="math notranslate nohighlight">\(\mathbb{R}{A^{R_E}}\)</span>
 while her strategies in the game with imperfect information
 live in a space
 with exponentially fewer dimensions, namely
-<span class="math notranslate nohighlight">\(\R^{R_E\times A}\)</span>.
+<span class="math notranslate nohighlight">\(\mathbb{R}{R_E\times A}\)</span>.
 The direct reduction avoids this dimensional blowup.</p>
 <div class="proof theorem admonition" id="theorem-2">
-<p class="admonition-title"><span class="caption-number">Theorem 246 </span> (NEEDS TITLE AND LABEL)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 248 </span> (NEEDS TITLE AND LABEL)</p>
 <div class="theorem-content section" id="proof-content">
 <p>The value of a game with imperfect information
 can be computed by a linear program with
@@ -1117,15 +1036,15 @@ like stated in <span id="id1">[<span>stengel</span>]</span>.</p>
 <div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
 <p>The construction of the linear program relies on three key ideas.</p>
-<p>First, representing a behavioral strategy <span class="math notranslate nohighlight">\(\sigma:R_E \to \dist(A)\)</span>
+<p>First, representing a behavioral strategy <span class="math notranslate nohighlight">\(\sigma:R_E \to \mathcal{D}A)\)</span>
 of Eve as a <strong>plan</strong> <span class="math notranslate nohighlight">\(\pi:R_E  \to [0,1]\)</span>
 recursively defined by <span class="math notranslate nohighlight">\(\pi(\epsilon) = 1\)</span>
 and for every <span class="math notranslate nohighlight">\(s_0\cdots s_n \in R_E, s\in S\)</span>,
 \begin{align*}
 &amp; \pi(s_0\cdots s_n\cdot s) = \pi(s_0\cdots s_n) \cdot
-\sigma(s_0\cdots s_n)(\Act(s))\enspace.
+\sigma(s_0\cdots s_n)(\text{Act}s))\enspace.
 \end{align*}
-Remind that actions are observable and <span class="math notranslate nohighlight">\(\Act(s)\)</span>
+Remind that actions are observable and <span class="math notranslate nohighlight">\(\text{Act}s)\)</span>
 denotes the action that Eve has just played
 before receiving signal <span class="math notranslate nohighlight">\(s\)</span>.
 In the linear program, plans are represented by variables
@@ -1136,33 +1055,33 @@ First, <span class="math notranslate nohighlight">\(p_\epsilon = 1\)</span>.
 Second, for every
 <span class="math notranslate nohighlight">\(s_0\ldots s_{n-1}s,s_0\ldots s_{n-1}s' \in R_E\)</span>,
 \begin{align*}
-(\Act(s)=\Act(s’)) \implies \left(p_{s_0\ldots s_{n-1}s}= p_{s_0\ldots s_{n-1}s’}\right)\enspace.
+(\text{Act}s)=\text{Act}s’)) \implies \left(p_{s_0\ldots s_{n-1}s}= p_{s_0\ldots s_{n-1}s’}\right)\enspace.
 \end{align*}
 We denote <span class="math notranslate nohighlight">\(p_{s_0\ldots s_{n-1}a}\)</span> the common value of
-all <span class="math notranslate nohighlight">\(p_{s_0\ldots s_{n-1}s}\)</span> with <span class="math notranslate nohighlight">\(a=\Act(s)\)</span>.
+all <span class="math notranslate nohighlight">\(p_{s_0\ldots s_{n-1}s}\)</span> with <span class="math notranslate nohighlight">\(a=\text{Act}s)\)</span>.
 The third equality is
 <span class="math notranslate nohighlight">\(p_{s_0\ldots s_{n-1}}=\sum_{a\in A} p_{s_0\ldots s_{n-1}a}\)</span> \enspace.</p>
 <p>The second key idea is to introduce variables evaluating the contribution of a
 (realisable) sequence
 of signals of Adam to the total expected payoff Eve.
-These contributions are represented by variables <span class="math notranslate nohighlight">\((v_r)_{r \in R_A}\)</span>.
-The third key idea is to aggregate the product of transition
+These contributions are represented by variables <span class="math notranslate nohighlight">\((v_r)_{r \in R_A}\)</span>.</p>
+<p>The third key idea is to aggregate the product of transition
 probabilities along a play.
 For every play <span class="math notranslate nohighlight">\((v_0,a_0,b_0,s_0,t_0,c_0),\ldots,(v_k,a_k,b_k,s_k,t_k,c_k)\)</span>
 we denote <span class="math notranslate nohighlight">\(\mathbb{E}(\pi)\)</span> the product of all transition
 probabilities of <span class="math notranslate nohighlight">\(\pi\)</span> and <span class="math notranslate nohighlight">\(r_{E}(\pi)\)</span> the sequence of signals of Eve in this play:
 \begin{align*}
-&amp;\mathbb{E}(\pi) = \ini(v_0)\cdot \Delta(v_0,a_0,b_0,s_0,t_0,c_0)
+&amp;\mathbb{E}(\pi) = \delta_0v_0)\cdot \Delta(v_0,a_0,b_0,s_0,t_0,c_0)
 \cdots \Delta(v_k,a_k,b_k,s_k,t_k,c_k)\
 &amp; r_{E}(\pi) = s_0,s_1,\ldots,s_k\enspace.
 \end{align*}</p>
 <p>We show that the following linear program with variables
 <span class="math notranslate nohighlight">\((p_r)_{r \in R_E}\)</span>, <span class="math notranslate nohighlight">\((v_r)_{r\in R_A}\)</span>
-has an optimal solution which equals to <span class="math notranslate nohighlight">\(\val(\ini)\)</span>.
+has an optimal solution which equals to <span class="math notranslate nohighlight">\(\textrm{val}delta_0\)</span>.
 For every sequences of signals <span class="math notranslate nohighlight">\(r \in R_A\)</span>
 we denote <span class="math notranslate nohighlight">\(T_A(r)\)</span> the (possibly empty)
-set of terminal plays whose sequence of signals for Adam is <span class="math notranslate nohighlight">\(r\)</span>.
-\begin{align}
+set of terminal plays whose sequence of signals for Adam is <span class="math notranslate nohighlight">\(r\)</span>.</p>
+<p>\begin{align}
 &amp;\text{Maximise <span class="math notranslate nohighlight">\(v_{\epsilon}\)</span> subject to}
 \notag\
 \notag\
@@ -1171,18 +1090,20 @@ set of terminal plays whose sequence of signals for Adam is <span class="math no
 \notag\
 \notag\forall r \in R_A,
 \forall a \in A,&amp;
-\&amp;
+\</p>
+<p>&amp;
 \label{eq:implp2}
-v_{r} \leq \sum\limits_{\substack{rs \in R_A\s \in S, \Act(s)=a}}
-v_{rs}~+~\sum\limits_{\pi \in T(r)} \mathbb{E}(\pi) \cdot \pay(\pi) \cdot
-p_{r_E(\pi)}\end{align}
-For our purpose,
+v_{r} \leq \sum\limits_{\substack{rs \in R_A\s \in S, \text{Act}s)=a}}
+v_{rs}~+~\sum\limits_{\pi \in T(r)} \mathbb{E}(\pi) \cdot  {\tt pay}\pi) \cdot
+p_{r_E(\pi)}</p>
+<p>\end{align}</p>
+<p>For our purpose,
 it is enough to establish
 that the optimal solution of the LP
 is</p>
 <div class="math notranslate nohighlight">
 \[
-\val(\ini) = \sup_\sigma \min\limits_{\tau\text{ deterministic}} \mathbb{E}_{\ini}^{\sigma,\tau}\enspace.
+\textrm{val}delta_0 = \sup_\sigma \min\limits_{\tau\text{ deterministic}} \mathbb{E}_{\delta_0^{\sigma,\tau}\enspace.
 \]</div>
 <p>The reason is that in a matrix game,
 for every fixed strategy of Eve,
@@ -1191,21 +1112,21 @@ with probability <span class="math notranslate nohighlight">\(1\)</span>.
 Thus, according to the reduction to normal form seen in the previous chapter,
 for every strategy <span class="math notranslate nohighlight">\(\sigma\)</span> of Eve,
 there is a <strong>deterministic</strong> strategy <span class="math notranslate nohighlight">\(\tau\)</span> of Adam
-which minimizes <span class="math notranslate nohighlight">\(\mathbb{E}_{\ini}^{\sigma,\tau}\)</span>.</p>
+which minimizes <span class="math notranslate nohighlight">\(\mathbb{E}_{\delta_0^{\sigma,\tau}\)</span>.</p>
 <p>We show first that for every feasible solution
 <span class="math notranslate nohighlight">\((p_r)_{r \in R_E}\)</span>, <span class="math notranslate nohighlight">\((v_r)_{r\in R_A}\)</span> of the linear program,
 the strategy <span class="math notranslate nohighlight">\(\sigma\)</span> corresponding to the plan <span class="math notranslate nohighlight">\((p_r)_{r \in R_E}\)</span>
 guarantees that for every <strong>deterministic</strong> strategy <span class="math notranslate nohighlight">\(\tau\)</span>,
-<span class="math notranslate nohighlight">\(\mathbb{E}_{\ini}^{\sigma,\tau} \geq v_\epsilon\)</span>.
+<span class="math notranslate nohighlight">\(\mathbb{E}_{\delta_0^{\sigma,\tau} \geq v_\epsilon\)</span>.
 Since <span class="math notranslate nohighlight">\(\tau\)</span> is deterministic
-then <span class="math notranslate nohighlight">\(\mathbb{E}_{\ini}^{\sigma,\tau}\)</span>
-is the sum of all <span class="math notranslate nohighlight">\(\mathbb{E}(\pi) \cdot \pay(\pi) \cdot 
+then <span class="math notranslate nohighlight">\(\mathbb{E}_{\delta_0^{\sigma,\tau}\)</span>
+is the sum of all <span class="math notranslate nohighlight">\(\mathbb{E}(\pi) \cdot  {\tt pay}\pi) \cdot 
 p_{r_E(\pi)}\)</span> over plays <span class="math notranslate nohighlight">\(\pi\)</span> played according to <span class="math notranslate nohighlight">\(\tau\)</span>
-thus a trivial induction shows <span class="math notranslate nohighlight">\(\mathbb{E}_{\ini}^{\sigma,\tau}\geq v_\epsilon\)</span>.</p>
+thus a trivial induction shows <span class="math notranslate nohighlight">\(\mathbb{E}_{\delta_0^{\sigma,\tau}\geq v_\epsilon\)</span>.</p>
 <p>We show now that to every strategy <span class="math notranslate nohighlight">\(\sigma\)</span> of Eve,
 and to every deterministic optimal answer <span class="math notranslate nohighlight">\(\tau\)</span> of Adam,
 corresponds a feasible solution of the program
-such that <span class="math notranslate nohighlight">\(v_\epsilon = \mathbb{E}_{\ini}^{\sigma,\tau}\)</span>.
+such that <span class="math notranslate nohighlight">\(v_\epsilon = \mathbb{E}_{\delta_0^{\sigma,\tau}\)</span>.
 Let  <span class="math notranslate nohighlight">\((p_r)_{r \in R_E}\)</span> the plan corresponding to <span class="math notranslate nohighlight">\(\sigma\)</span>.
 For every <span class="math notranslate nohighlight">\(r\in R_A\)</span> define <span class="math notranslate nohighlight">\(v_r\)</span> be the expected payoff of Eve
 in an auxiliary game where she plays <span class="math notranslate nohighlight">\(\sigma\)</span>
@@ -1226,7 +1147,7 @@ Finally, <span class="math notranslate nohighlight">\((p_r)_{r \in R_E}\)</span>
 </div></blockquote>
 <p>The following linear program computes the value
 of the simplified poker example.
-DEAL WITH LINEAR PROGRAMS!%Maximise <span class="math notranslate nohighlight">\(v_{\epsilon}\)</span> subject to%\begin{align*}%&amp;p_{\spadesuit,{\tt check} } +  p_{\spadesuit,{\tt raise} } = 1\%&amp;v_\epsilon \leq v_\circ \leq v_{\circ, {\tt check}} + v_{\circ, {\tt raise}}\%+ \frac{3}{4} \cdot p_{\blacksquare,{\tt check} } \cdot (-1)\%&amp;v_{\circ, {\tt raise}} \leq \frac{1}{4} \cdot p_{\spadesuit,{\tt raise} } \cdot (+3) + \frac{3}{4} \cdot p_{\blacksquare,{\tt raise} } \cdot (-3)%Setting <span class="math notranslate nohighlight">\(x=p_{\spadesuit,{\tt check} }\)</span>%the solution is%&amp;%\left(%+%{(1-x) +  3 (1-y)},% \right)\right)\% \frac{1}{4}\max_{(x,y)\in[0,1]^2}%4 - 6y,%\right)% \frac{1}{4}\max_{y\in[0,1]}%4 - 6y,%\right)%\end{align*}%and the solution is <span class="math notranslate nohighlight">\(-\frac{1}{4}\)</span>.</p>
+DEAL WITH LINEAR PROGRAMS!</p>
 <blockquote>
 <div><p><strong>Nose scratch variant.</strong></p>
 </div></blockquote>
@@ -1244,8 +1165,8 @@ to <span class="math notranslate nohighlight">\((-\frac{1}{4} -\frac{1}{10})\)</
 The optimal bluff frequency of Eve decreases
 from <span class="math notranslate nohighlight">\(\frac{1}{6}\)</span> to <span class="math notranslate nohighlight">\(\frac{1}{10}\)</span>.
 Computation details follow.</p>
-<p>DEAL WITH LINEAR PROGRAMS!%Maximise <span class="math notranslate nohighlight">\(v_{\epsilon}\)</span> subject to%\begin{align*}%&amp;p_{\spadesuit,{\tt c} } +  p_{\spadesuit,{\tt r} } = 1~~~~~p_{\blacksquare,{\tt c} } +  p_{\blacksquare,{\tt r} } = 1\%&amp;v_\epsilon \leq v_{\tt s} + v_{\tt n}~~~~~v_{\tt s} \leq v_ + v_~~~~~%&amp;v_ \leq \frac{1}{4}\cdot \frac{1}{2}\cdot p_{\spadesuit,{\tt r} } \cdot (+1) %&amp;v_ \leq \frac{1}{4}\cdot \frac{1}{2}\cdot p_{\spadesuit,{\tt r} } \cdot (+3) %&amp;v_ \leq \frac{1}{4}\cdot \frac{1}{2}\cdot p_{\spadesuit,{\tt r} } \cdot (+1) %&amp;v_ \leq \frac{1}{4}\cdot \frac{1}{2}\cdot p_{\spadesuit,{\tt r} } \cdot (+3) %\end{align*}%Some elementary simplifications lead to the equivalent program:%\max_{0\leq y \leq 1} \frac{1}{8} \left(\min\left( 8 -12y,-10 +8y%\end{align*}
-The optimum is reached when <span class="math notranslate nohighlight">\(8y-10=8-12y\)</span>
+<p>DEAL WITH LINEAR PROGRAMS!</p>
+<p>The optimum is reached when <span class="math notranslate nohighlight">\(8y-10=8-12y\)</span>
 i.e. when <span class="math notranslate nohighlight">\(p_{\blacksquare,{\tt c} }=\frac{9}{10}\)</span>
 and is equal to <span class="math notranslate nohighlight">\(-\frac{7}{20}=-\frac{1}{4}-\frac{1}{10}\)</span> .</p>
 </div>

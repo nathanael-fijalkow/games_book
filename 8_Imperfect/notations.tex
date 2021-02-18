@@ -24,10 +24,6 @@ An imperfect information arena $\arena$ is a tuple $(S,\Delta)$ where
 \end{itemize}
 \end{definition}
 
-\newcommand{\NN}{\mathbb{N}}
-\newcommand{\RR}{\mathbb{R}}
-
-
 Initially, the game is in a state $v_0 \in V$ chosen according to a probability distribution
 $\ini\in\dist(V)$ known by both players; the initial state is
 $v_0$ with probability $\ini(v_0)$.  At each step $n\in\NN$, both players
@@ -61,87 +57,86 @@ Upon choosing whether to call or fold,
 Adam cannot distinguish between states
 $\spadesuit${\tt Raised} and $\blacksquare${\tt Raised},
 in both cases he received the sequence of signals $\circ,{\tt raise}$.
-A graphical representation is provided on
-Figure~\ref{9-fig:poker}.
+A graphical representation is provided on~\cref{9-fig:poker}.
 
 % In case a transition sends the dummy signal
 %$\circ$ to both players, the signals are not represented.
-\newcommand{\pay}{ {\tt pay}}
 
 
-\begin{figure}[htbp]
-    \centering
-    \begin{tikzpicture}[scale=0.8]
-
-\node (root) at (0,0) {{\tt Start}};
-\node[below left =of root] (spade) {$\spadesuit${\tt Play}};
-\node[below right =of root] (nospade) {$\blacksquare${\tt Play}};
-\node[below left =of spade] (spaderaise) {$\spadesuit${\tt Raised}};
-\node[below right =of nospade] (nospaderaise) {$\blacksquare${\tt Raised}};
-\node(end) at (0,-5) {{\tt End}};
-
-\path[->](root) edge node[near start,left,align=center]  
-{$(\cdot,\cdot)\frac{1}{4}$
-\\Eve receives $\spadesuit$
-\\Adam receives $\circ$
-} (spade);
-\path[->](root) edge node[near start,right,align=center]  {$(\cdot,\cdot)\frac{3}{4}$\\Eve receives $ \blacksquare$\\Adam receives $\circ$} (nospade);
-\path[->](spade) edge node[near start,left,align=center]  {$({\tt raise},\cdot)
-%\stackrel{1}{\to}(\circ,{\tt EveRaised})
-$
-%\\Adam receives {\tt EveRaised}
-} (spaderaise);
-\path[->](nospade) edge node[near start,right,align=center]  {$({\tt raise},\cdot)
-%\stackrel{1}{\to}(\circ,{\tt EveRaised})
-$
-%\\Adam receives {\tt EveRaised}
-} (nospaderaise);
-\path[->](spade) edge 
-node[very near start,right] {$({\tt check},\cdot)$}
-node[near end, right] {{\bf +1}} (end);
-\path[->](nospade) edge 
-node[very near start, left]  {$({\tt check},\cdot)
-%\stackrel{1}{\to}(\circ,\circ)
-$} 
-node[near end, left] {{\bf -1}} 
-(end);
-\path[->,bend left=0](spaderaise) edge 
-node[very near start, right]  {$(\cdot,{\tt call})
-%\stackrel{1}{\to}(\circ,\circ)
-$} 
-node[near end, right] {{\bf +3}} 
-(end);
-\path[->,bend left=-80](spaderaise) edge 
-node[near start, right]  {$(\cdot,{\tt fold},)
-%\stackrel{1}{\to}(\circ,\circ)
-$} 
-node[right,near end] {{\bf +1}} 
-(end);
-
-\path[->,bend left=0](nospaderaise) edge 
-node[very near start, left]  {$(\cdot,{\tt call})
-%\stackrel{1}{\to}(\circ,\circ)
-$} 
-node[near end, left] {{\bf -3}} 
-(end);
-\path[->,bend left=80](nospaderaise) edge 
-node[near start, left]  {$(\cdot,{\tt fold},)
-%\stackrel{1}{\to}(\circ,\circ)
-$} 
-node[left,near end] {{\bf +1}} 
-(end);
-
-% (ab) edge [loop] (ab)
-% (notb) edge  node [above] {} (notab)
-% (notab) edge   (ab)
-% (ab) edge[out=195,in=-15] (notab)
-% (ab) edge[out=205,in=-25] (notb)
-;
-
-    \end{tikzpicture}
-    \caption{The simplified poker game.}
-    \label{9-fig:poker}
-  \end{figure}
+DEAL WITH THIS FIGURE!
+%\begin{figure}
+%    \centering
+%    \begin{tikzpicture}[scale=0.8]
+%
+%\node (root) at (0,0) {{\tt Start}};
+%\node[below left =of root] (spade) {$\spadesuit${\tt Play}};
+%\node[below right =of root] (nospade) {$\blacksquare${\tt Play}};
+%\node[below left =of spade] (spaderaise) {$\spadesuit${\tt Raised}};
+%\node[below right =of nospade] (nospaderaise) {$\blacksquare${\tt Raised}};
+%\node(end) at (0,-5) {{\tt End}};
+%
+%\path[->](root) edge node[near start,left,align=center]  
+%{$(\cdot,\cdot)\frac{1}{4}$
+%\\Eve receives $\spadesuit$
+%\\Adam receives $\circ$
+%} (spade);
+%\path[->](root) edge node[near start,right,align=center]  {$(\cdot,\cdot)\frac{3}{4}$\\Eve receives $ \blacksquare$\\Adam receives $\circ$} (nospade);
+%\path[->](spade) edge node[near start,left,align=center]  {$({\tt raise},\cdot)
+%%\stackrel{1}{\to}(\circ,{\tt EveRaised})
+%$
+%%\\Adam receives {\tt EveRaised}
+%} (spaderaise);
+%\path[->](nospade) edge node[near start,right,align=center]  {$({\tt raise},\cdot)
+%%\stackrel{1}{\to}(\circ,{\tt EveRaised})
+%$
+%%\\Adam receives {\tt EveRaised}
+%} (nospaderaise);
+%\path[->](spade) edge 
+%node[very near start,right] {$({\tt check},\cdot)$}
+%node[near end, right] {{\bf +1}} (end);
+%\path[->](nospade) edge 
+%node[very near start, left]  {$({\tt check},\cdot)
+%%\stackrel{1}{\to}(\circ,\circ)
+%$} 
+%node[near end, left] {{\bf -1}} 
+%(end);
+%\path[->,bend left=0](spaderaise) edge 
+%node[very near start, right]  {$(\cdot,{\tt call})
+%%\stackrel{1}{\to}(\circ,\circ)
+%$} 
+%node[near end, right] {{\bf +3}} 
+%(end);
+%\path[->,bend left=-80](spaderaise) edge 
+%node[near start, right]  {$(\cdot,{\tt fold},)
+%%\stackrel{1}{\to}(\circ,\circ)
+%$} 
+%node[right,near end] {{\bf +1}} 
+%(end);
+%
+%\path[->,bend left=0](nospaderaise) edge 
+%node[very near start, left]  {$(\cdot,{\tt call})
+%%\stackrel{1}{\to}(\circ,\circ)
+%$} 
+%node[near end, left] {{\bf -3}} 
+%(end);
+%\path[->,bend left=80](nospaderaise) edge 
+%node[near start, left]  {$(\cdot,{\tt fold},)
+%%\stackrel{1}{\to}(\circ,\circ)
+%$} 
+%node[left,near end] {{\bf +1}} 
+%(end);
+%
+%% (ab) edge [loop] (ab)
+%% (notb) edge  node [above] {} (notab)
+%% (notab) edge   (ab)
+%% (ab) edge[out=195,in=-15] (notab)
+%% (ab) edge[out=205,in=-25] (notb)
+%;
+%
+%    \end{tikzpicture}
+%    \caption{The simplified poker game.}
+%    \label{9-fig:poker}
+%  \end{figure}
 
 
 The game is played with  $4$ cards $\{\spadesuit,\heartsuit,\clubsuit,\diamondsuit\}$.

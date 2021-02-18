@@ -734,129 +734,79 @@
   <div class="section" id="rabin-streett-and-muller-games">
 <span id="sec-muller"></span><h1>Rabin, Streett, and Muller games<a class="headerlink" href="#rabin-streett-and-muller-games" title="Permalink to this headline">¶</a></h1>
 <div class="math notranslate nohighlight">
-\[\newcommand{\F}{\mathcal{F}} 
-\newcommand{\LAR}{\mathrm{LAR}}
-\newcommand{\Zielonka}{\mathrm{Zielonka}}
-\newcommand{\depth}{\mathrm{depth}}
-\newcommand{\support}{\mathrm{supp}}
-\newcommand{\Eve}{\textrm{Eve}}
-\newcommand{\Adam}{\textrm{Adam}}
-\newcommand{\set}[1]{\left\{ #1 \right\}}
+\[\newcommand{\F}{\mathcal{F}}
 \newcommand{\N}{\mathbb{N}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
-\newcommand{\argmax}{\textrm{argmax}}
-\newcommand{\argmin}{\textrm{argmin}}
-\newcommand{\Op}{\mathbb{O}}
-\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\textrm{supp}} 
-\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
-\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
-\newcommand{\mEve}{\mathrm{Eve}}
-\newcommand{\mAdam}{\mathrm{Adam}}
-\newcommand{\mRandom}{\mathrm{Random}}
-\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
-\newcommand{\ing}{\textrm{In}}
-\newcommand{\Ing}{\ing}
-\newcommand{\out}{\textrm{Out}}
-\newcommand{\Out}{\out}
-\newcommand{\dest}{\Delta} 
-\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
-\newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
-\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
-\newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\newcommand{\Win}{\textrm{Win}} 
-\newcommand{\Lose}{\textrm{Lose}} 
-\newcommand{\Value}{\textrm{val}} 
-\newcommand{\ValueE}{\textrm{val}_\mEve} 
-\newcommand{\ValueA}{\textrm{val}_\mAdam}
-\newcommand{\val}{\Value} 
-\newcommand{\Automaton}{\mathbf{A}} 
-\newcommand{\Safe}{\mathtt{Safe}}
-\newcommand{\Reach}{\mathtt{Reach}} 
-\newcommand{\Buchi}{\mathtt{Buchi}} 
-\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
-\newcommand{\Parity}{\mathtt{Parity}} 
-\newcommand{\Muller}{\mathtt{Muller}} 
-\newcommand{\Rabin}{\mathtt{Rabin}} 
-\newcommand{\Streett}{\mathtt{Streett}} 
-\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
-\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
-\newcommand{\Energy}{\mathtt{Energy}}
-\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
-\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
-\newcommand{\Sup}{\mathtt{Sup}}
+\newcommand{\game}{\mathcal{G}}
+\newcommand{\col}{\textsf{col}}
+\newcommand{\VE}{V_\mEve}
+\newcommand{\WE}{W_\mEve}
+\newcommand{\WA}{W_\mAdam}
+\newcommand{\play}{\pi}
+\newcommand{\AttrE}{\textrm{Attr}_\mEve}
+\newcommand{\AttrA}{\textrm{Attr}_\mAdam}
+\newcommand{\Muller}{\mathtt{Muller}}
+\newcommand{\Rabin}{\mathtt{Rabin}}
+\newcommand{\Streett}{\mathtt{Streett}}
 \newcommand{\Inf}{\mathtt{Inf}}
-\newcommand{\LimSup}{\mathtt{LimSup}}
-\newcommand{\LimInf}{\mathtt{LimInf}}
-\newcommand{\NL}{\textrm{NL}}
-\newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
-\newcommand{\UP}{\textrm{UP}}
-\newcommand{\coNP}{\textrm{coNP}}
-\newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
-\newcommand{\EXP}{\textrm{EXP}}
-\newcommand{\kEXP}{\textrm{kEXP}}\]</div>
+\newcommand{\mEve}{\mathrm{Eve}}
+\newcommand{\mAdam}{\mathrm{Adam}}\]</div>
 <p>The prefix independent objectives we studied so far are Büchi, CoBüchi, and their joint extension the parity objectives.
 The definition of the latter may seem a bit arbitrary; the study of Muller objectives will show how parity objectives naturally emerge as a well-behaved class of objectives.</p>
 <p>Let us start with a very general class of infinitary objectives, where infinitary means that the objective only considers the set of colours appearing infinitely many times.
-For a sequence <span class="math notranslate nohighlight">\(\rho\)</span>, we let <span class="math notranslate nohighlight">\(\Inf(\rho)\)</span> denote the set of colours appearing infinitely many times in <span class="math notranslate nohighlight">\(\rho\)</span>.
-The Muller objective is over the set of colours <span class="math notranslate nohighlight">\(C = [1,d]\)</span> and is parametrised by some <span class="math notranslate nohighlight">\(\F \subseteq 2^C\)</span>, <strong>i.e.</strong> a family of subsets of <span class="math notranslate nohighlight">\(C\)</span>.
+For a sequence <span class="math notranslate nohighlight">\(\rho\)</span>, we let <span class="math notranslate nohighlight">\(\mathtt{Inf}\rho)\)</span> denote the set of colours appearing infinitely many times in <span class="math notranslate nohighlight">\(\rho\)</span>.
+The Muller objective is over the set of colours <span class="math notranslate nohighlight">\(C = [1,d]\)</span> and is parametrised by some <span class="math notranslate nohighlight">\(\mathcal{F}\subseteq 2^C\)</span>, <strong>i.e.</strong> a family of subsets of <span class="math notranslate nohighlight">\(C\)</span>.
 The objective is defined as follows:</p>
 <div class="math notranslate nohighlight">
 \[
-\Muller(\F) = \set{ \rho \in C^\omega : \Inf(\rho) \in \F }.
+\mathtt{Muller}\mathcal{F} = \set{ \rho \in C^\omega : \mathtt{Inf}\rho) \in \mathcal{F}}.
 \]</div>
 <p>Muller objectives include any objective specifying the set of colours appearing infinitely often.
 There are different possible representations for a Muller objective, for instance using logical formulas or circuits.
-We will here consider the most natural one which simply consists in listing the elements of <span class="math notranslate nohighlight">\(\F\)</span>.
-Note that <span class="math notranslate nohighlight">\(\F\)</span> can have size up to <span class="math notranslate nohighlight">\(2^{2^d}\)</span>, and each element of <span class="math notranslate nohighlight">\(\F\)</span> (which is a subset of <span class="math notranslate nohighlight">\(C\)</span>)
-requires up to <span class="math notranslate nohighlight">\(d\)</span> bits to be identified, so the representation of <span class="math notranslate nohighlight">\(\F\)</span> can be very large.</p>
+We will here consider the most natural one which simply consists in listing the elements of <span class="math notranslate nohighlight">\(\mathcal{F}.
+Note that \)</span>\mathcal{F} can have size up to <span class="math notranslate nohighlight">\(2^{2^d}\)</span>, and each element of <span class="math notranslate nohighlight">\(\mathcal{F} (which is a subset of \)</span>C<span class="math notranslate nohighlight">\()
+requires up to \)</span>d<span class="math notranslate nohighlight">\( bits to be identified, so the representation of \)</span>\mathcal{F} can be very large.</p>
 <p>We note that the complement of a Muller objective is another Muller objective:
-<span class="math notranslate nohighlight">\(C^\omega \setminus \Muller(\F) = \Muller(2^C \setminus \F)\)</span>.
+<span class="math notranslate nohighlight">\(C^\omega \setminus \mathtt{Muller}\mathcal{F} = \mathtt{Muller}2^C \setminus \mathcal{F}\)</span>.
 In particular if Eve has a Muller objective then Adam also has a Muller objective.</p>
-<p>To define subclasses of Muller objectives we make assumptions on <span class="math notranslate nohighlight">\(\F \subseteq 2^C\)</span>.
-We say that <span class="math notranslate nohighlight">\(\F\)</span> is closed under union if whenever <span class="math notranslate nohighlight">\(X,Y \in \F\)</span> then <span class="math notranslate nohighlight">\(X \cup Y \in \F\)</span>.
-Let us define Streett objectives as the subclass of Muller objectives given by <span class="math notranslate nohighlight">\(\F\)</span> closed under union.
+<p>To define subclasses of Muller objectives we make assumptions on <span class="math notranslate nohighlight">\(\mathcal{F}\subseteq 2^C\)</span>.
+We say that <span class="math notranslate nohighlight">\(\mathcal{F} is closed under union if whenever \)</span>X,Y \in \mathcal{F} then <span class="math notranslate nohighlight">\(X \cup Y \in \mathcal{F}.
+Let us define Streett objectives as the subclass of Muller objectives given by \)</span>\mathcal{F} closed under union.
 The following purely combinatorial lemma gives a nice characterisation of these objectives.</p>
 <div class="proof lemma admonition" id="2-lem:characterisation_Streett">
 <p class="admonition-title"><span class="caption-number">Lemma 42 </span> (Characterisation of Streett among Muller objectives)</p>
 <div class="lemma-content section" id="proof-content">
-<p>A collection <span class="math notranslate nohighlight">\(\F \subseteq 2^C\)</span> is closed under union if and only if there exists a set of pairs <span class="math notranslate nohighlight">\((R_i,G_i)_{i \in [1,d]}\)</span>
-with <span class="math notranslate nohighlight">\(R_i,G_i \subseteq C\)</span> such that <span class="math notranslate nohighlight">\(X \in \F\)</span> is equivalent to for all <span class="math notranslate nohighlight">\(i \in [1,d]\)</span>,
-if <span class="math notranslate nohighlight">\(X \cap R_i \neq \emptyset\)</span> then <span class="math notranslate nohighlight">\(X \cap G_i \neq \emptyset\)</span>.</p>
+<p>A collection <span class="math notranslate nohighlight">\(\mathcal{F}\subseteq 2^C\)</span> is closed under union if and only if there exists a set of pairs <span class="math notranslate nohighlight">\((R_i,G_i)_{i \in [1,d]}\)</span>
+with <span class="math notranslate nohighlight">\(R_i,G_i \subseteq C\)</span> such that <span class="math notranslate nohighlight">\(X \in \mathcal{F} is equivalent to for all \)</span>i \in [1,d]<span class="math notranslate nohighlight">\(, 
+if \)</span>X \cap R_i \neq \emptyset<span class="math notranslate nohighlight">\( then \)</span>X \cap G_i \neq \emptyset$.</p>
 </div>
 </div><p>We will see in Section <a class="reference internal" href="zielonka.html#sec-zielonka"><span class="std std-ref">Zielonka tree</span></a> a natural and optimised way to construct these pairs using the Zielonka tree.
 In the meantime let us give a direct proof of this result.</p>
 <div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
-<p>Let <span class="math notranslate nohighlight">\(\F\)</span> closed under union.
-We note that for any <span class="math notranslate nohighlight">\(S \notin \F\)</span>, either no subsets of <span class="math notranslate nohighlight">\(S\)</span> are in <span class="math notranslate nohighlight">\(\F\)</span> or there exists a maximal subset <span class="math notranslate nohighlight">\(S'\)</span> of <span class="math notranslate nohighlight">\(S\)</span> in <span class="math notranslate nohighlight">\(\F\)</span>:
-indeed it is the union of all subsets of <span class="math notranslate nohighlight">\(S\)</span> in <span class="math notranslate nohighlight">\(\F\)</span>.
-It directly follows that for a subset <span class="math notranslate nohighlight">\(X\)</span> we have the following equivalence:
-<span class="math notranslate nohighlight">\(X \in \F\)</span> if and only if for any <span class="math notranslate nohighlight">\(S \notin \F\)</span>, if <span class="math notranslate nohighlight">\(X \subseteq S\)</span> then <span class="math notranslate nohighlight">\(X \subseteq S'\)</span>.
-This is rewritten equivalently as: if <span class="math notranslate nohighlight">\(X \cap (C \setminus S') \neq \emptyset\)</span> then <span class="math notranslate nohighlight">\(X \cap (C \setminus S) \neq \emptyset\)</span>.
-Hence a suitable set of pairs satisfying the required property is
-<span class="math notranslate nohighlight">\(\set{(C \setminus S', C \setminus S) : S \notin \F}\)</span>.</p>
+<p>Let <span class="math notranslate nohighlight">\(\mathcal{F} closed under union.
+We note that for any \)</span>S \notin \mathcal{F}, either no subsets of <span class="math notranslate nohighlight">\(S\)</span> are in <span class="math notranslate nohighlight">\(\mathcal{F} or there exists a maximal subset \)</span>S’<span class="math notranslate nohighlight">\( of \)</span>S<span class="math notranslate nohighlight">\( in \)</span>\mathcal{F}:
+indeed it is the union of all subsets of <span class="math notranslate nohighlight">\(S\)</span> in <span class="math notranslate nohighlight">\(\mathcal{F}.
+It directly follows that for a subset \)</span>X<span class="math notranslate nohighlight">\( we have the following equivalence:
+\)</span>X \in \mathcal{F} if and only if for any <span class="math notranslate nohighlight">\(S \notin \mathcal{F}, if \)</span>X \subseteq S<span class="math notranslate nohighlight">\( then \)</span>X \subseteq S’<span class="math notranslate nohighlight">\(.
+This is rewritten equivalently as: if \)</span>X \cap (C \setminus S’) \neq \emptyset<span class="math notranslate nohighlight">\( then \)</span>X \cap (C \setminus S) \neq \emptyset<span class="math notranslate nohighlight">\(.
+Hence a suitable set of pairs satisfying the required property is 
+\)</span>\set{(C \setminus S’, C \setminus S) : S \notin \mathcal{F}$.</p>
 </div>
 <p>Thanks to this lemma we can give a direct alternative definition of Streett objectives.
 There is a parameter <span class="math notranslate nohighlight">\(d\)</span> controlling the number of pairs.
 The set of colours is <span class="math notranslate nohighlight">\(C = \set{G_1,R_1,\dots,G_d,R_d}\)</span> and</p>
 <div class="math notranslate nohighlight">
 \[
-\Streett = \set{ \rho \in C^\omega : \forall i \in [1,d],\ R_i \in \Inf(\rho) \implies G_i \in \Inf(\rho) }.
+\mathtt{Streett}= \set{ \rho \in C^\omega : \forall i \in [1,d],\ R_i \in \mathtt{Inf}\rho) \implies G_i \in \mathtt{Inf}\rho) }.
 \]</div>
 <p>It is customary to call <span class="math notranslate nohighlight">\(R_i\)</span> the <span class="math notranslate nohighlight">\(i\)</span>th request and <span class="math notranslate nohighlight">\(G_i\)</span> the corresponding response;
 with this terminology the Streett objective requires that every request made infinitely many times must be responded to infinitely many times.</p>
 <p>The Rabin objectives are the complement of the Streett objectives:</p>
 <div class="math notranslate nohighlight">
 \[
-\Rabin = \set{ \rho \in C^\omega : \exists i \in [1,d],\ R_i \in \Inf(\rho) \wedge G_i \notin \Inf(\rho) }.
+\mathtt{Rabin}= \set{ \rho \in C^\omega : \exists i \in [1,d],\ R_i \in \mathtt{Inf}\rho) \wedge G_i \notin \mathtt{Inf}\rho) }.
 \]</div>
 <div class="section" id="mcnaughton-algorithm-an-exponential-time-algorithm-for-muller-games">
 <h2>McNaughton algorithm: an exponential time algorithm for Muller games<a class="headerlink" href="#mcnaughton-algorithm-an-exponential-time-algorithm-for-muller-games" title="Permalink to this headline">¶</a></h2>
@@ -873,71 +823,71 @@ and more specifically of complexity <span class="math notranslate nohighlight">\
 </div>
 </div><p>The presentation of the recursive algorithm for computing the winning regions of Muller games follows the exact same lines as for parity games:
 indeed, the Muller objective extends the parity objective, and specialising the algorithm for Muller games to parity games
-yields the algorithm we presented above.%The finite memory determinacy actually holds for infinite games and the proof we present can be adapted to obtain this result.</p>
+yields the algorithm we presented above.</p>
 <p>The following lemma induces the recursive algorithm for computing the winning regions of Muller games.</p>
 <div class="proof lemma admonition" id="2-lem:Muller_even">
 <p class="admonition-title"><span class="caption-number">Lemma 44 </span> (Fixed point characterisation of the winning regions for Muller games)</p>
 <div class="lemma-content section" id="proof-content">
-<p>Let <span class="math notranslate nohighlight">\(\Game\)</span> be a Muller game such that <span class="math notranslate nohighlight">\(C \in \F\)</span>.
-For each <span class="math notranslate nohighlight">\(c \in C\)</span>, let <span class="math notranslate nohighlight">\(\Game_c\)</span> be the subgame of <span class="math notranslate nohighlight">\(\Game\)</span> induced by <span class="math notranslate nohighlight">\(V \setminus \AttrE(c)\)</span>.</p>
+<p>Let <span class="math notranslate nohighlight">\(\Game\)</span> be a Muller game such that <span class="math notranslate nohighlight">\(C \in \mathcal{F}.
+For each \)</span>c \in C<span class="math notranslate nohighlight">\(, let \)</span>\Game_c<span class="math notranslate nohighlight">\( be the subgame of \)</span>\Game<span class="math notranslate nohighlight">\( induced by \)</span>V \setminus \textrm{Attr}_\mEvec)$.</p>
 <ul class="simple">
-<li><p>If for all <span class="math notranslate nohighlight">\(c \in C\)</span>, we have <span class="math notranslate nohighlight">\(\WA(\Game_c) = \emptyset\)</span>, then <span class="math notranslate nohighlight">\(\WE(\Game) = V\)</span>.</p></li>
-<li><p>If there exists <span class="math notranslate nohighlight">\(c \in C\)</span> such that <span class="math notranslate nohighlight">\(\WA(\Game_c) \neq \emptyset\)</span>,
-let <span class="math notranslate nohighlight">\(\Game'\)</span> be the subgame of <span class="math notranslate nohighlight">\(\Game\)</span> induced by <span class="math notranslate nohighlight">\(V \setminus \AttrA( \WA(\Game_c) )\)</span>,
-then <span class="math notranslate nohighlight">\(\WE(\Game) = \WE(\Game')\)</span>.</p></li>
+<li><p>If for all <span class="math notranslate nohighlight">\(c \in C\)</span>, we have <span class="math notranslate nohighlight">\(W_\mathrm{Adam}Game_c) = \emptyset\)</span>, then <span class="math notranslate nohighlight">\(W_\mathrm{Eve}Game) = V\)</span>.</p></li>
+<li><p>If there exists <span class="math notranslate nohighlight">\(c \in C\)</span> such that <span class="math notranslate nohighlight">\(W_\mathrm{Adam}Game_c) \neq \emptyset\)</span>,
+let <span class="math notranslate nohighlight">\(\Game'\)</span> be the subgame of <span class="math notranslate nohighlight">\(\Game\)</span> induced by <span class="math notranslate nohighlight">\(V \setminus \textrm{Attr}_\mathrm{Adam}W_\mathrm{Adam}Game_c) )\)</span>,
+then <span class="math notranslate nohighlight">\(W_\mathrm{Eve}Game) = W_\mathrm{Eve}Game')\)</span>.</p></li>
 </ul>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
 <p>We prove the first item.</p>
-<p>For each <span class="math notranslate nohighlight">\(c \in C\)</span>, let <span class="math notranslate nohighlight">\(\sigma_c\)</span> be an attractor strategy ensuring to reach <span class="math notranslate nohighlight">\(c\)</span> from <span class="math notranslate nohighlight">\(\AttrE(c)\)</span>,
-and consider a winning strategy for Eve from <span class="math notranslate nohighlight">\(V \setminus \AttrE(c)\)</span> in <span class="math notranslate nohighlight">\(\Game_c\)</span>, it induces a strategy <span class="math notranslate nohighlight">\(\sigma'_c\)</span> in <span class="math notranslate nohighlight">\(\Game\)</span>.
+<p>For each <span class="math notranslate nohighlight">\(c \in C\)</span>, let <span class="math notranslate nohighlight">\(\sigma_c\)</span> be an attractor strategy ensuring to reach <span class="math notranslate nohighlight">\(c\)</span> from <span class="math notranslate nohighlight">\(\textrm{Attr}_\mEvec)\)</span>,
+and consider a winning strategy for Eve from <span class="math notranslate nohighlight">\(V \setminus \textrm{Attr}_\mEvec)\)</span> in <span class="math notranslate nohighlight">\(\Game_c\)</span>, it induces a strategy <span class="math notranslate nohighlight">\(\sigma'_c\)</span> in <span class="math notranslate nohighlight">\(\Game\)</span>.
 We construct a strategy <span class="math notranslate nohighlight">\(\sigma\)</span> in <span class="math notranslate nohighlight">\(\Game\)</span> which will simulate the strategies above in turn; to do so it uses <span class="math notranslate nohighlight">\(C\)</span> as top-level memory states.
 (We note that the strategies <span class="math notranslate nohighlight">\(\sigma'_c\)</span> may use memory as well, so <span class="math notranslate nohighlight">\(\sigma\)</span> may actually use more memory than just <span class="math notranslate nohighlight">\(C\)</span>.)
-The strategy <span class="math notranslate nohighlight">\(\sigma\)</span> with memory <span class="math notranslate nohighlight">\(c\)</span> simulates <span class="math notranslate nohighlight">\(\sigma_c\)</span> from <span class="math notranslate nohighlight">\(\AttrE(c)\)</span> and <span class="math notranslate nohighlight">\(\sigma'_c\)</span> from <span class="math notranslate nohighlight">\(V \setminus \AttrE(c)\)</span>,
+The strategy <span class="math notranslate nohighlight">\(\sigma\)</span> with memory <span class="math notranslate nohighlight">\(c\)</span> simulates <span class="math notranslate nohighlight">\(\sigma_c\)</span> from <span class="math notranslate nohighlight">\(\textrm{Attr}_\mEvec)\)</span> and <span class="math notranslate nohighlight">\(\sigma'_c\)</span> from <span class="math notranslate nohighlight">\(V \setminus \textrm{Attr}_\mEvec)\)</span>,
 and if it ever reaches <span class="math notranslate nohighlight">\(c\)</span> it updates its memory state to <span class="math notranslate nohighlight">\(c + 1\)</span> and <span class="math notranslate nohighlight">\(1\)</span> if <span class="math notranslate nohighlight">\(c = d\)</span>.
 Any play consistent with <span class="math notranslate nohighlight">\(\sigma\)</span> either updates its memory state infinitely many times,
-or eventually remains in <span class="math notranslate nohighlight">\(V \setminus \AttrE(c)\)</span> and is eventually consistent with <span class="math notranslate nohighlight">\(\sigma'_c\)</span>.
-In the first case it sees each colour infinitely many times, and since <span class="math notranslate nohighlight">\(C \in \F\)</span> the play satisfies <span class="math notranslate nohighlight">\(\Muller(\F)\)</span>,
-and in the other case since <span class="math notranslate nohighlight">\(\sigma'_c\)</span> is winning the play satisfies <span class="math notranslate nohighlight">\(\Muller(\F)\)</span>.
-Thus <span class="math notranslate nohighlight">\(\sigma\)</span> is winning from <span class="math notranslate nohighlight">\(V\)</span>.</p>
+or eventually remains in <span class="math notranslate nohighlight">\(V \setminus \textrm{Attr}_\mEvec)\)</span> and is eventually consistent with <span class="math notranslate nohighlight">\(\sigma'_c\)</span>.
+In the first case it sees each colour infinitely many times, and since <span class="math notranslate nohighlight">\(C \in \mathcal{F} the play satisfies \)</span>\mathtt{Muller}\mathcal{F}<span class="math notranslate nohighlight">\(, 
+and in the other case since \)</span>\sigma’_c<span class="math notranslate nohighlight">\( is winning the play satisfies \)</span>\mathtt{Muller}\mathcal{F}<span class="math notranslate nohighlight">\(.
+Thus \)</span>\sigma<span class="math notranslate nohighlight">\( is winning from \)</span>V$.</p>
 <p>We now look at the second item.</p>
-<p>Let <span class="math notranslate nohighlight">\(\tau_a\)</span> denote an attractor strategy from <span class="math notranslate nohighlight">\(\AttrA(\WA(\Game_c)) \setminus \WA(\Game_c)\)</span>.
-Consider a winning strategy for Adam from <span class="math notranslate nohighlight">\(\WA(\Game_c)\)</span> in <span class="math notranslate nohighlight">\(\Game_c\)</span>, it induces a strategy <span class="math notranslate nohighlight">\(\tau_c\)</span> in <span class="math notranslate nohighlight">\(\Game\)</span>.
-Since <span class="math notranslate nohighlight">\(V \setminus \AttrE(c)\)</span> is a trap for Eve, this implies that <span class="math notranslate nohighlight">\(\tau_c\)</span> is a winning strategy in <span class="math notranslate nohighlight">\(\Game\)</span>.
-Consider now a winning strategy in the game <span class="math notranslate nohighlight">\(\Game'\)</span> from <span class="math notranslate nohighlight">\(\WA(\Game')\)</span>, it induces a strategy <span class="math notranslate nohighlight">\(\tau'\)</span> in <span class="math notranslate nohighlight">\(\Game\)</span>.
-The set <span class="math notranslate nohighlight">\(V \setminus \AttrA( \WA(\Game_c) )\)</span> may not be a trap for Eve, so we cannot conclude that <span class="math notranslate nohighlight">\(\tau'\)</span> is a winning strategy in <span class="math notranslate nohighlight">\(\Game\)</span>,
+<p>Let <span class="math notranslate nohighlight">\(\tau_a\)</span> denote an attractor strategy from <span class="math notranslate nohighlight">\(\textrm{Attr}_\mAdamW_\mathrm{Adam}Game_c)) \setminus W_\mathrm{Adam}Game_c)\)</span>.
+Consider a winning strategy for Adam from <span class="math notranslate nohighlight">\(W_\mathrm{Adam}Game_c)\)</span> in <span class="math notranslate nohighlight">\(\Game_c\)</span>, it induces a strategy <span class="math notranslate nohighlight">\(\tau_c\)</span> in <span class="math notranslate nohighlight">\(\Game\)</span>.
+Since <span class="math notranslate nohighlight">\(V \setminus \textrm{Attr}_\mEvec)\)</span> is a trap for Eve, this implies that <span class="math notranslate nohighlight">\(\tau_c\)</span> is a winning strategy in <span class="math notranslate nohighlight">\(\Game\)</span>.
+Consider now a winning strategy in the game <span class="math notranslate nohighlight">\(\Game'\)</span> from <span class="math notranslate nohighlight">\(W_\mathrm{Adam}Game')\)</span>, it induces a strategy <span class="math notranslate nohighlight">\(\tau'\)</span> in <span class="math notranslate nohighlight">\(\Game\)</span>.
+The set <span class="math notranslate nohighlight">\(V \setminus \textrm{Attr}_\mathrm{Adam}W_\mathrm{Adam}Game_c) )\)</span> may not be a trap for Eve, so we cannot conclude that <span class="math notranslate nohighlight">\(\tau'\)</span> is a winning strategy in <span class="math notranslate nohighlight">\(\Game\)</span>,
 and it indeed may not be.
-We construct a strategy <span class="math notranslate nohighlight">\(\tau\)</span> in <span class="math notranslate nohighlight">\(\Game\)</span> as the (disjoint) union of the strategy <span class="math notranslate nohighlight">\(\tau_a\)</span> on <span class="math notranslate nohighlight">\(\AttrA(\WA(\Game_c)) \setminus \WA(\Game_c)\)</span>,
-the strategy <span class="math notranslate nohighlight">\(\tau_c\)</span> on <span class="math notranslate nohighlight">\(\WA(\Game_c)\)</span> and the strategy <span class="math notranslate nohighlight">\(\tau'\)</span> on <span class="math notranslate nohighlight">\(\WA(\Game')\)</span>.
-We argue that <span class="math notranslate nohighlight">\(\tau\)</span> is winning from <span class="math notranslate nohighlight">\(\AttrA( \WA(\Game_c) ) \cup \WA(\Game')\)</span> in <span class="math notranslate nohighlight">\(\Game\)</span>.
-Indeed, any play consistent with this strategy in <span class="math notranslate nohighlight">\(\Game\)</span> either stays forever in <span class="math notranslate nohighlight">\(\WA(\Game')\)</span> hence is consistent with <span class="math notranslate nohighlight">\(\tau'\)</span>
-or enters <span class="math notranslate nohighlight">\(\AttrA( \WA(\Game_c) )\)</span>, so it is eventually consistent with <span class="math notranslate nohighlight">\(\tau_c\)</span>.
+We construct a strategy <span class="math notranslate nohighlight">\(\tau\)</span> in <span class="math notranslate nohighlight">\(\Game\)</span> as the (disjoint) union of the strategy <span class="math notranslate nohighlight">\(\tau_a\)</span> on <span class="math notranslate nohighlight">\(\textrm{Attr}_\mAdamW_\mathrm{Adam}Game_c)) \setminus W_\mathrm{Adam}Game_c)\)</span>,
+the strategy <span class="math notranslate nohighlight">\(\tau_c\)</span> on <span class="math notranslate nohighlight">\(W_\mathrm{Adam}Game_c)\)</span> and the strategy <span class="math notranslate nohighlight">\(\tau'\)</span> on <span class="math notranslate nohighlight">\(W_\mathrm{Adam}Game')\)</span>.
+We argue that <span class="math notranslate nohighlight">\(\tau\)</span> is winning from <span class="math notranslate nohighlight">\(\textrm{Attr}_\mathrm{Adam}W_\mathrm{Adam}Game_c) ) \cup W_\mathrm{Adam}Game')\)</span> in <span class="math notranslate nohighlight">\(\Game\)</span>.
+Indeed, any play consistent with this strategy in <span class="math notranslate nohighlight">\(\Game\)</span> either stays forever in <span class="math notranslate nohighlight">\(W_\mathrm{Adam}Game')\)</span> hence is consistent with <span class="math notranslate nohighlight">\(\tau'\)</span>
+or enters <span class="math notranslate nohighlight">\(\textrm{Attr}_\mathrm{Adam}W_\mathrm{Adam}Game_c) )\)</span>, so it is eventually consistent with <span class="math notranslate nohighlight">\(\tau_c\)</span>.
 In both cases this implies that the play is winning.
-Thus we have proved that <span class="math notranslate nohighlight">\(\AttrA( \WA(\Game_c) ) \cup \WA(\Game') \subseteq \WA(\Game)\)</span>.</p>
-<p>We now show that <span class="math notranslate nohighlight">\(\WE(\Game') \subseteq \WE(\Game)\)</span>, which implies the converse inclusion.
-Consider a winning strategy from <span class="math notranslate nohighlight">\(\WE(\Game')\)</span> in <span class="math notranslate nohighlight">\(\Game'\)</span>, it induces a strategy <span class="math notranslate nohighlight">\(\sigma\)</span> in <span class="math notranslate nohighlight">\(\Game\)</span>.
-Since <span class="math notranslate nohighlight">\(\Game'\)</span> is a trap for Adam, any play consistent with <span class="math notranslate nohighlight">\(\sigma\)</span> stays forever in <span class="math notranslate nohighlight">\(\WE(\Game')\)</span>,
-implying that <span class="math notranslate nohighlight">\(\sigma\)</span> is winning from <span class="math notranslate nohighlight">\(\WE(\Game')\)</span> in <span class="math notranslate nohighlight">\(\Game\)</span>.</p>
+Thus we have proved that <span class="math notranslate nohighlight">\(\textrm{Attr}_\mathrm{Adam}W_\mathrm{Adam}Game_c) ) \cup W_\mathrm{Adam}Game') \subseteq W_\mathrm{Adam}Game)\)</span>.</p>
+<p>We now show that <span class="math notranslate nohighlight">\(W_\mathrm{Eve}Game') \subseteq W_\mathrm{Eve}Game)\)</span>, which implies the converse inclusion.
+Consider a winning strategy from <span class="math notranslate nohighlight">\(W_\mathrm{Eve}Game')\)</span> in <span class="math notranslate nohighlight">\(\Game'\)</span>, it induces a strategy <span class="math notranslate nohighlight">\(\sigma\)</span> in <span class="math notranslate nohighlight">\(\Game\)</span>.
+Since <span class="math notranslate nohighlight">\(\Game'\)</span> is a trap for Adam, any play consistent with <span class="math notranslate nohighlight">\(\sigma\)</span> stays forever in <span class="math notranslate nohighlight">\(W_\mathrm{Eve}Game')\)</span>,
+implying that <span class="math notranslate nohighlight">\(\sigma\)</span> is winning from <span class="math notranslate nohighlight">\(W_\mathrm{Eve}Game')\)</span> in <span class="math notranslate nohighlight">\(\Game\)</span>.</p>
 </div>
-<p>To get the full algorithm we need the analogous lemma for the case where <span class="math notranslate nohighlight">\(C \notin \F\)</span>.
+<p>To get the full algorithm we need the analogous lemma for the case where $C \notin \mathcal{F}.
 We do not prove it as it is the exact dual of the previous lemma, and the proof is the same swapping the two players.</p>
 <div class="proof lemma admonition" id="2-lem:Muller_odd">
 <p class="admonition-title"><span class="caption-number">Lemma 45 </span> (Dual fixed point characterisation of the winning regions for Muller games)</p>
 <div class="lemma-content section" id="proof-content">
-<p>Let <span class="math notranslate nohighlight">\(\Game\)</span> be a Muller game such that <span class="math notranslate nohighlight">\(C \notin \F\)</span>.
-For each <span class="math notranslate nohighlight">\(c \in C\)</span>, let <span class="math notranslate nohighlight">\(\Game_c\)</span> be the subgame of <span class="math notranslate nohighlight">\(\Game\)</span> induced by <span class="math notranslate nohighlight">\(V \setminus \AttrA(c)\)</span>.</p>
+<p>Let <span class="math notranslate nohighlight">\(\Game\)</span> be a Muller game such that <span class="math notranslate nohighlight">\(C \notin \mathcal{F}.
+For each \)</span>c \in C<span class="math notranslate nohighlight">\(, let \)</span>\Game_c<span class="math notranslate nohighlight">\( be the subgame of \)</span>\Game<span class="math notranslate nohighlight">\( induced by \)</span>V \setminus \textrm{Attr}_\mAdamc)$.</p>
 <ul class="simple">
-<li><p>If for all <span class="math notranslate nohighlight">\(c \in C\)</span>, we have <span class="math notranslate nohighlight">\(\WE(\Game_c) = \emptyset\)</span>, then <span class="math notranslate nohighlight">\(\WA(\Game) = V\)</span>.</p></li>
-<li><p>If there exists <span class="math notranslate nohighlight">\(c \in C\)</span> such that <span class="math notranslate nohighlight">\(\WE(\Game_c) \neq \emptyset\)</span>,
-let <span class="math notranslate nohighlight">\(\Game'\)</span> be the subgame of <span class="math notranslate nohighlight">\(\Game\)</span> induced by <span class="math notranslate nohighlight">\(V \setminus \AttrE( \WE(\Game_c) )\)</span>,
-then <span class="math notranslate nohighlight">\(\WA(\Game) = \WA(\Game')\)</span>.</p></li>
+<li><p>If for all <span class="math notranslate nohighlight">\(c \in C\)</span>, we have <span class="math notranslate nohighlight">\(W_\mathrm{Eve}Game_c) = \emptyset\)</span>, then <span class="math notranslate nohighlight">\(W_\mathrm{Adam}Game) = V\)</span>.</p></li>
+<li><p>If there exists <span class="math notranslate nohighlight">\(c \in C\)</span> such that <span class="math notranslate nohighlight">\(W_\mathrm{Eve}Game_c) \neq \emptyset\)</span>,
+let <span class="math notranslate nohighlight">\(\Game'\)</span> be the subgame of <span class="math notranslate nohighlight">\(\Game\)</span> induced by <span class="math notranslate nohighlight">\(V \setminus \textrm{Attr}_\mathrm{Eve}W_\mathrm{Eve}Game_c) )\)</span>,
+then <span class="math notranslate nohighlight">\(W_\mathrm{Adam}Game) = W_\mathrm{Adam}Game')\)</span>.</p></li>
 </ul>
 </div>
 </div><p>The algorithm is presented in pseudocode in <a class="reference internal" href="#algo-mcnaughton"><span class="std std-numref">Fig. 12</span></a>.
-We only give the case where <span class="math notranslate nohighlight">\(C \in \F\)</span>, the other case being symmetric.
-The base case is when there is only one colour <span class="math notranslate nohighlight">\(c\)</span>, in wich case Eve wins everywhere if <span class="math notranslate nohighlight">\(\F = \set{c}\)</span>
-and Adam wins everywhere if <span class="math notranslate nohighlight">\(\F = \emptyset\)</span>.</p>
+We only give the case where <span class="math notranslate nohighlight">\(C \in \mathcal{F}, the other case being symmetric.
+The base case is when there is only one colour \)</span>c<span class="math notranslate nohighlight">\(, in wich case Eve wins everywhere if \)</span>\mathcal{F}= \set{c}<span class="math notranslate nohighlight">\(
+and Adam wins everywhere if \)</span>\mathcal{F}= \emptyset$.</p>
 <p>We now perform a complexity analysis of the algorithm.</p>
 <p>Let us start with time complexity and write <span class="math notranslate nohighlight">\(f(n,d)\)</span> for the number of recursive calls performed by the algorithm on Muller games with <span class="math notranslate nohighlight">\(n\)</span> vertices and <span class="math notranslate nohighlight">\(d\)</span> colours.
 We have <span class="math notranslate nohighlight">\(f(n,1) = f(0,d) = 0\)</span>, with the general induction:</p>
@@ -974,17 +924,17 @@ A different approach is required to obtain the positionality result for infinite
 <p>We proceed by induction over the following quantity: total outdegree of vertices controlled by Eve minus number of vertices controller by Eve.
 Since we assume that every vertex has an outgoing edge, the base case is when each vertex of Eve has only one successor.
 In that case Eve has only one strategy and it is positional, so the property holds.</p>
-<p>In the inductive step, we consider a Rabin game <span class="math notranslate nohighlight">\(\game\)</span> where Eve has a winning strategy <span class="math notranslate nohighlight">\(\sigma\)</span>.
-Let <span class="math notranslate nohighlight">\(v \in \VE\)</span> with at least two successors.
+<p>In the inductive step, we consider a Rabin game <span class="math notranslate nohighlight">\(\mathcal{G} where Eve has a winning strategy \)</span>\sigma<span class="math notranslate nohighlight">\(.
+Let \)</span>v \in V_\mathrm{Eve}with at least two successors.
 We partition the outgoing edges of <span class="math notranslate nohighlight">\(v\)</span> in two non-empty subsets which we call <span class="math notranslate nohighlight">\(E^v_1\)</span> and <span class="math notranslate nohighlight">\(E^v_2\)</span>.
-Let us define two games <span class="math notranslate nohighlight">\(\game_1\)</span> and <span class="math notranslate nohighlight">\(\game_2\)</span>: the game <span class="math notranslate nohighlight">\(\game_1\)</span> is obtained from <span class="math notranslate nohighlight">\(\game\)</span> by removing the edges from <span class="math notranslate nohighlight">\(E^v_2\)</span>, and symmetrically for <span class="math notranslate nohighlight">\(\game_2\)</span>.</p>
+Let us define two games <span class="math notranslate nohighlight">\(\game_1\)</span> and <span class="math notranslate nohighlight">\(\game_2\)</span>: the game <span class="math notranslate nohighlight">\(\game_1\)</span> is obtained from <span class="math notranslate nohighlight">\(\mathcal{G} by removing the edges from \)</span>E^v_2<span class="math notranslate nohighlight">\(, and symmetrically for \)</span>\game_2$.</p>
 <p>We claim that Eve has a winning strategy in either <span class="math notranslate nohighlight">\(\game_1\)</span> or <span class="math notranslate nohighlight">\(\game_2\)</span>.
 Let us assume towards contradiction that this is not the case: then there exist <span class="math notranslate nohighlight">\(\tau_1\)</span> and <span class="math notranslate nohighlight">\(\tau_2\)</span> two strategies for Adam
 which are winning in <span class="math notranslate nohighlight">\(\game_1\)</span> and <span class="math notranslate nohighlight">\(\game_2\)</span> respectively.
-We construct a strategy <span class="math notranslate nohighlight">\(\tau\)</span> for Adam in <span class="math notranslate nohighlight">\(\game\)</span> as follows: it has two modes, <span class="math notranslate nohighlight">\(1\)</span> and <span class="math notranslate nohighlight">\(2\)</span>. The initial mode is <span class="math notranslate nohighlight">\(1\)</span>, and the strategy simulates <span class="math notranslate nohighlight">\(\tau_1\)</span> from the mode <span class="math notranslate nohighlight">\(1\)</span> and <span class="math notranslate nohighlight">\(\tau_2\)</span> from the mode <span class="math notranslate nohighlight">\(2\)</span>. Whenever <span class="math notranslate nohighlight">\(v\)</span> is visited, the mode is adjusted: if the outgoing edge is in <span class="math notranslate nohighlight">\(E^v_1\)</span> then the new mode is <span class="math notranslate nohighlight">\(1\)</span>, otherwise it is <span class="math notranslate nohighlight">\(2\)</span>.
-To be more specific: when simulating <span class="math notranslate nohighlight">\(\tau_1\)</span> we play ignoring the parts of the play using mode <span class="math notranslate nohighlight">\(2\)</span>, so removing them yields a play consistent with <span class="math notranslate nohighlight">\(\tau_1\)</span>. The same goes for <span class="math notranslate nohighlight">\(\tau_2\)</span>.</p>
-<p>Consider a play <span class="math notranslate nohighlight">\(\play\)</span> consistent with <span class="math notranslate nohighlight">\(\sigma\)</span> and <span class="math notranslate nohighlight">\(\tau\)</span>.
-Since <span class="math notranslate nohighlight">\(\sigma\)</span> is winning, the play <span class="math notranslate nohighlight">\(\play\)</span> is winning. It can be decomposed following which mode the play is in:</p>
+We construct a strategy <span class="math notranslate nohighlight">\(\tau\)</span> for Adam in <span class="math notranslate nohighlight">\(\mathcal{G} as follows: it has two modes, \)</span>1<span class="math notranslate nohighlight">\( and \)</span>2<span class="math notranslate nohighlight">\(. The initial mode is \)</span>1<span class="math notranslate nohighlight">\(, and the strategy simulates \)</span>\tau_1<span class="math notranslate nohighlight">\( from the mode \)</span>1<span class="math notranslate nohighlight">\( and \)</span>\tau_2<span class="math notranslate nohighlight">\( from the mode \)</span>2<span class="math notranslate nohighlight">\(. Whenever \)</span>v<span class="math notranslate nohighlight">\( is visited, the mode is adjusted: if the outgoing edge is in \)</span>E^v_1<span class="math notranslate nohighlight">\( then the new mode is \)</span>1<span class="math notranslate nohighlight">\(, otherwise it is \)</span>2<span class="math notranslate nohighlight">\(.
+To be more specific: when simulating \)</span>\tau_1<span class="math notranslate nohighlight">\( we play ignoring the parts of the play using mode \)</span>2<span class="math notranslate nohighlight">\(, so removing them yields a play consistent with \)</span>\tau_1<span class="math notranslate nohighlight">\(. The same goes for \)</span>\tau_2$.</p>
+<p>Consider a play <span class="math notranslate nohighlight">\(\pi consistent with \)</span>\sigma<span class="math notranslate nohighlight">\( and \)</span>\tau<span class="math notranslate nohighlight">\(. 
+Since \)</span>\sigma<span class="math notranslate nohighlight">\( is winning, the play \)</span>\pi is winning. It can be decomposed following which mode the play is in:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{array}{ccccccccc}
@@ -995,22 +945,22 @@ Since <span class="math notranslate nohighlight">\(\sigma\)</span> is winning, t
 \end{array}
 \end{split}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\play_1 = \play_1^0 \play_1^1 \cdots\)</span> is consistent with <span class="math notranslate nohighlight">\(\tau_1\)</span> and <span class="math notranslate nohighlight">\(\play_2 = \play_2^0 \play_2^1 \cdots\)</span> is consistent with <span class="math notranslate nohighlight">\(\tau_2\)</span>.
-Since <span class="math notranslate nohighlight">\(\tau_1\)</span> and <span class="math notranslate nohighlight">\(\tau_2\)</span> are winning strategies for Adam, <span class="math notranslate nohighlight">\(\play_1\)</span> and <span class="math notranslate nohighlight">\(\play_2\)</span> do not satisfy <span class="math notranslate nohighlight">\(\Rabin\)</span>.</p>
+Since <span class="math notranslate nohighlight">\(\tau_1\)</span> and <span class="math notranslate nohighlight">\(\tau_2\)</span> are winning strategies for Adam, <span class="math notranslate nohighlight">\(\play_1\)</span> and <span class="math notranslate nohighlight">\(\play_2\)</span> do not satisfy $\mathtt{Rabin}.</p>
 <p>There are two cases: the decomposition is either finite or infinite.
-If it is finite we get a contradiction: since <span class="math notranslate nohighlight">\(\play\)</span> is winning and <span class="math notranslate nohighlight">\(\Rabin\)</span> is prefix independent any suffix of <span class="math notranslate nohighlight">\(\play\)</span> is winning as well, contradicting that it is consistent with either <span class="math notranslate nohighlight">\(\tau_1\)</span> or <span class="math notranslate nohighlight">\(\tau_2\)</span> hence cannot be winning.</p>
+If it is finite we get a contradiction: since <span class="math notranslate nohighlight">\(\pi is winning and \)</span>\mathtt{Rabin} is prefix independent any suffix of <span class="math notranslate nohighlight">\(\pi is winning as well, contradicting that it is consistent with either \)</span>\tau_1<span class="math notranslate nohighlight">\( or \)</span>\tau_2$ hence cannot be winning.</p>
 <p>In the second case to get a contradiction we observe the following property of the Rabin objective:
-let <span class="math notranslate nohighlight">\((\rho_1^\ell)_{\ell \in \N}\)</span> and <span class="math notranslate nohighlight">\((\rho_2^\ell)_{\ell \in \N}\)</span> such that:</p>
+let <span class="math notranslate nohighlight">\((\rho_1^\ell)_{\ell \in \mathbb{N}\)</span> and <span class="math notranslate nohighlight">\((\rho_2^\ell)_{\ell \in \mathbb{N}\)</span> such that:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{array}{lccccccccccc}
-&amp; \rho_1 &amp; = &amp; \rho_1^0 &amp; &amp; \rho_1^1 &amp; &amp; \cdots &amp; \rho_1^\ell &amp; &amp; \cdots &amp; \notin \Rabin \\
-\text{and} &amp; \rho_2 &amp; = &amp; &amp; \rho_2^0 &amp; &amp; \rho_2^1 &amp; \cdots &amp; &amp; \rho_2^\ell &amp; \cdots &amp; \notin \Rabin, \\ 
-\text{then: } &amp; \rho_1 \Join \rho_2 &amp; = &amp; \rho_1^0 &amp; \rho_2^0 &amp; \rho_1^1 &amp; \rho_2^1 &amp; \cdots &amp; \rho_1^\ell &amp; \rho_2^\ell &amp; \cdots &amp; \notin \Rabin.
+&amp; \rho_1 &amp; = &amp; \rho_1^0 &amp; &amp; \rho_1^1 &amp; &amp; \cdots &amp; \rho_1^\ell &amp; &amp; \cdots &amp; \notin \mathtt{Rabin}\\
+\text{and} &amp; \rho_2 &amp; = &amp; &amp; \rho_2^0 &amp; &amp; \rho_2^1 &amp; \cdots &amp; &amp; \rho_2^\ell &amp; \cdots &amp; \notin \mathtt{Rabin} \\ 
+\text{then: } &amp; \rho_1 \Join \rho_2 &amp; = &amp; \rho_1^0 &amp; \rho_2^0 &amp; \rho_1^1 &amp; \rho_2^1 &amp; \cdots &amp; \rho_1^\ell &amp; \rho_2^\ell &amp; \cdots &amp; \notin \mathtt{Rabin}
 \end{array}
 \end{split}\]</div>
-<p>Indeed, since neither <span class="math notranslate nohighlight">\(\rho_1\)</span> nor <span class="math notranslate nohighlight">\(\rho_2\)</span> satisfy <span class="math notranslate nohighlight">\(\Rabin\)</span>, in both for all <span class="math notranslate nohighlight">\(i \in [1,d]\)</span> if <span class="math notranslate nohighlight">\(R_i \in \Inf(\rho)\)</span>, then <span class="math notranslate nohighlight">\(G_i \in \Inf(\rho)\)</span>.
-Since <span class="math notranslate nohighlight">\(\Inf(\rho_1~\Join~\rho_2) = \Inf(\rho_1) \cup \Inf(\rho_2)\)</span>, this implies that <span class="math notranslate nohighlight">\(\rho_1 \Join \rho_2\)</span> does not satisfy <span class="math notranslate nohighlight">\(\Rabin\)</span>.</p>
-<p>This directly yields a contradiction: neither <span class="math notranslate nohighlight">\(\play_1\)</span> nor <span class="math notranslate nohighlight">\(\play_2\)</span> satisfy <span class="math notranslate nohighlight">\(\Rabin\)</span>, yet their shuffle <span class="math notranslate nohighlight">\(\play\)</span> does.</p>
+<p>Indeed, since neither <span class="math notranslate nohighlight">\(\rho_1\)</span> nor <span class="math notranslate nohighlight">\(\rho_2\)</span> satisfy <span class="math notranslate nohighlight">\(\mathtt{Rabin}, in both for all \)</span>i \in [1,d]<span class="math notranslate nohighlight">\( if \)</span>R_i \in \mathtt{Inf}\rho)<span class="math notranslate nohighlight">\(, then \)</span>G_i \in \mathtt{Inf}\rho)<span class="math notranslate nohighlight">\(.
+Since \)</span>\mathtt{Inf}\rho_1~\Join~\rho_2) = \mathtt{Inf}\rho_1) \cup \mathtt{Inf}\rho_2)<span class="math notranslate nohighlight">\(, this implies that \)</span>\rho_1 \Join \rho_2<span class="math notranslate nohighlight">\( does not satisfy \)</span>\mathtt{Rabin}.</p>
+<p>This directly yields a contradiction: neither <span class="math notranslate nohighlight">\(\play_1\)</span> nor <span class="math notranslate nohighlight">\(\play_2\)</span> satisfy <span class="math notranslate nohighlight">\(\mathtt{Rabin}, yet their shuffle \)</span>\pi does.</p>
 </div>
 <p>The proof of  <a class="reference internal" href="#2-thm:Rabin_positional_determinacy">Theorem 46</a> yields a stronger result: every prefix independent submixing objective is positionally determined over finite arenas, where the submixing property is defined as follows for the objective <span class="math notranslate nohighlight">\(\Omega\)</span>:</p>
 <div class="math notranslate nohighlight">
@@ -1032,20 +982,20 @@ Since <span class="math notranslate nohighlight">\(\Inf(\rho_1~\Join~\rho_2) = \
 <div class="proof theorem admonition" id="2-thm:Rabin_complexity">
 <p class="admonition-title"><span class="caption-number">Theorem 48 </span> (Complexity of solving Rabin games)</p>
 <div class="theorem-content section" id="proof-content">
-<p>Solving Rabin games is <span class="math notranslate nohighlight">\(\NP\)</span>-complete.</p>
+<p>Solving Rabin games is $\textrm{NP}-complete.</p>
 </div>
 </div><p>In order to simplify the reduction for proving <a class="reference internal" href="#2-thm:Rabin_complexity">Theorem 48</a> let us make some remarks about colouring functions.
-We defined colouring functions as <span class="math notranslate nohighlight">\(\col : V \to C\)</span>, meaning that we label vertices.
+We defined colouring functions as <span class="math notranslate nohighlight">\(\textsf{col}: V \to C\)</span>, meaning that we label vertices.
 Let us discuss here three more general definitions and how to reduce them to the vertex colouring functions
 in the case of Rabin games.</p>
 <ul class="simple">
-<li><p>Partial colouring functions: <span class="math notranslate nohighlight">\(\col : V \to C \cup \set{\emptyset}\)</span>.</p></li>
+<li><p>Partial colouring functions: <span class="math notranslate nohighlight">\(\textsf{col}: V \to C \cup \set{\emptyset}\)</span>.</p></li>
 </ul>
 <p>We introduce a new Rabin pair <span class="math notranslate nohighlight">\((R,G)\)</span> and colour all uncoloured vertices by <span class="math notranslate nohighlight">\(G\)</span>.
 The Rabin condition will never be satisfied because of this new addition
 since the colour <span class="math notranslate nohighlight">\(R\)</span> does not appear at all in the game.</p>
 <ul class="simple">
-<li><p>Edge colouring functions: <span class="math notranslate nohighlight">\(\col : E \to C\)</span>.</p></li>
+<li><p>Edge colouring functions: <span class="math notranslate nohighlight">\(\textsf{col}: E \to C\)</span>.</p></li>
 </ul>
 <p>We reduce from an edge colouring function to a partial vertex colouring function as illustrated in <a class="reference internal" href="#fig-reduction-edge-colouring"><span class="std std-numref">Fig. 13</span></a>:
 we add a dummy vertex for each edge and colour it with the colour of its edge, leaving already existing vertices without colours.</p>
@@ -1054,7 +1004,7 @@ we add a dummy vertex for each edge and colour it with the colour of its edge, l
 <p class="caption"><span class="caption-number">Fig. 13 </span><span class="caption-text">Reduction from edge colouring to partial vertex colouring.</span><a class="headerlink" href="#fig-reduction-edge-colouring" title="Permalink to this image">¶</a></p>
 </div>
 <ul class="simple">
-<li><p>Multiset colouring functions: <span class="math notranslate nohighlight">\(\col : V \to 2^C\)</span>.</p></li>
+<li><p>Multiset colouring functions: <span class="math notranslate nohighlight">\(\textsf{col}: V \to 2^C\)</span>.</p></li>
 </ul>
 <p>We reduce from a multiset colouring function to a vertex colouring function as illustrated in <a class="reference internal" href="#fig-reduction-multiset-colouring"><span class="std std-numref">Fig. 14</span></a>:
 for each vertex <span class="math notranslate nohighlight">\(v\)</span> coloured by a set <span class="math notranslate nohighlight">\(S\)</span> we add a dummy vertex for each colour <span class="math notranslate nohighlight">\(c \in S\)</span> and replace <span class="math notranslate nohighlight">\(v\)</span> by the line of dummy vertices.</p>
@@ -1067,8 +1017,8 @@ We note that they are not general reductions in the sense that they use properti
 In the reduction below we use these more general definitions to simplify the presentation.</p>
 <div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
-<p>The proof that solving Rabin games is in <span class="math notranslate nohighlight">\(\NP\)</span> follows the same lines as for solving parity games: the algorithm guesses a positional strategy and checks whether it is indeed winning. This requires proving that solving Rabin games where Adam control all vertices can be done in polynomial time, which is indeed true and easy to see so we will not elaborate further on this.</p>
-<p>To prove the <span class="math notranslate nohighlight">\(\NP\)</span>-hardness we reduce the satisfiability problem for boolean formulas in conjunctive normal form (<span class="math notranslate nohighlight">\(\SAT\)</span>) to solving Rabin games.</p>
+<p>The proof that solving Rabin games is in $\textrm{NP} follows the same lines as for solving parity games: the algorithm guesses a positional strategy and checks whether it is indeed winning. This requires proving that solving Rabin games where Adam control all vertices can be done in polynomial time, which is indeed true and easy to see so we will not elaborate further on this.</p>
+<p>To prove the <span class="math notranslate nohighlight">\(\textrm{NP}-hardness we reduce the satisfiability problem for boolean formulas in conjunctive normal form (\)</span>\SAT$) to solving Rabin games.</p>
 <p>Let <span class="math notranslate nohighlight">\(\Phi\)</span> be a formula in conjunctive normal form with <span class="math notranslate nohighlight">\(n\)</span> variables <span class="math notranslate nohighlight">\(x_1 \ldots x_n\)</span> and <span class="math notranslate nohighlight">\(m\)</span> clauses <span class="math notranslate nohighlight">\(C_1 \dots C_m\)</span>, where each <span class="math notranslate nohighlight">\(C_j\)</span> is of the form <span class="math notranslate nohighlight">\(\ell_{j_1} \vee \ell_{j_2} \vee \ell_{j_3}\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1077,16 +1027,16 @@ In the reduction below we use these more general definitions to simplify the pre
 <p>A literal <span class="math notranslate nohighlight">\(\ell\)</span> is either a variable <span class="math notranslate nohighlight">\(x\)</span> or its negation <span class="math notranslate nohighlight">\(\bar{x}\)</span>, and we write <span class="math notranslate nohighlight">\(\bar{\ell}\)</span> for the negation of a literal.
 The question whether <span class="math notranslate nohighlight">\(\Phi\)</span> is satisfiable reads: does there exist a valuation <span class="math notranslate nohighlight">\(\mathbf{v} : \set{x_1,\dots,x_n} \to \set{0,1}\)</span>
 satisfying <span class="math notranslate nohighlight">\(\Phi\)</span>.</p>
-<p>We construct a Rabin game <span class="math notranslate nohighlight">\(\game\)</span> with <span class="math notranslate nohighlight">\(m+1\)</span> vertices (one per clause, all controlled by Eve, plus a unique vertex controlled by Adam),
-<span class="math notranslate nohighlight">\(4m\)</span> edges (<span class="math notranslate nohighlight">\(4\)</span> per clause), and <span class="math notranslate nohighlight">\(2n\)</span> Rabin pairs (one per literal).
-We will show that the formula <span class="math notranslate nohighlight">\(\Phi\)</span> is satisfiable if and only if Eve has a winning strategy in the Rabin game <span class="math notranslate nohighlight">\(\game\)</span>.</p>
+<p>We construct a Rabin game <span class="math notranslate nohighlight">\(\mathcal{G} with \)</span>m+1<span class="math notranslate nohighlight">\( vertices (one per clause, all controlled by Eve, plus a unique vertex controlled by Adam), 
+\)</span>4m<span class="math notranslate nohighlight">\( edges (\)</span>4<span class="math notranslate nohighlight">\( per clause), and \)</span>2n<span class="math notranslate nohighlight">\( Rabin pairs (one per literal).
+We will show that the formula \)</span>\Phi<span class="math notranslate nohighlight">\( is satisfiable if and only if Eve has a winning strategy in the Rabin game \)</span>\mathcal{G}.</p>
 <p>We first describe the Rabin condition.
 There is a Rabin pair <span class="math notranslate nohighlight">\((R_\ell,G_\ell)\)</span> for each literal <span class="math notranslate nohighlight">\(\ell\)</span>, so the Rabin condition requires that there exists a literal <span class="math notranslate nohighlight">\(\ell\)</span> such that <span class="math notranslate nohighlight">\(R_\ell\)</span> is visited infinitely many times and <span class="math notranslate nohighlight">\(G_\ell\)</span> is not.
 Let us now describe the arena.
 A play consists in an infinite sequence of rounds, where in each round first Adam chooses a clause and second Eve chooses a literal in this clause.
 When Eve chooses a literal <span class="math notranslate nohighlight">\(\ell\)</span> she visits <span class="math notranslate nohighlight">\(R_\ell\)</span> and <span class="math notranslate nohighlight">\(G_{\bar{\ell}}\)</span>.
-This completes the description of the Rabin game <span class="math notranslate nohighlight">\(\game\)</span>, it is illustrated in <a class="reference internal" href="#fig-hardness-rabin"><span class="std std-numref">Fig. 15</span></a>.
-Let us now prove that this yields a reduction from <span class="math notranslate nohighlight">\(\SAT\)</span> to solving Rabin games.</p>
+This completes the description of the Rabin game <span class="math notranslate nohighlight">\(\mathcal{G}, it is illustrated in {numref}`2-fig:hardness_Rabin`.
+Let us now prove that this yields a reduction from \)</span>\SAT$ to solving Rabin games.</p>
 <p>Let us first assume that <span class="math notranslate nohighlight">\(\Phi\)</span> is satisfiable, and let <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> be a satisfying assignment: there is a literal <span class="math notranslate nohighlight">\(\ell\)</span> in each clause satisfied by <span class="math notranslate nohighlight">\(\mathbf{v}\)</span>.
 Let <span class="math notranslate nohighlight">\(\sigma\)</span> be the memoryless strategy choosing such a literal in each clause.
 We argue that in any play consistent with <span class="math notranslate nohighlight">\(\sigma\)</span> there is at least one litteral <span class="math notranslate nohighlight">\(\ell\)</span> that Eve chooses infinitely many times without ever choosing <span class="math notranslate nohighlight">\(\bar{\ell}\)</span>: this implies that <span class="math notranslate nohighlight">\(R_\ell\)</span> is visited infinitely often and <span class="math notranslate nohighlight">\(G_\ell\)</span> is not.
@@ -1099,7 +1049,7 @@ We argue that <span class="math notranslate nohighlight">\(\sigma\)</span> canno
 If this would be the case, consider the strategy of Adam alternating between the two clauses <span class="math notranslate nohighlight">\(C\)</span> and <span class="math notranslate nohighlight">\(C'\)</span> and play it against <span class="math notranslate nohighlight">\(\sigma\)</span>:
 both <span class="math notranslate nohighlight">\(\ell\)</span> and <span class="math notranslate nohighlight">\(\bar{\ell}\)</span> are chosen infinitely many times, and no other literals.
 Hence <span class="math notranslate nohighlight">\(R_\ell, G_\ell, R_{\bar{\ell}}\)</span>, and <span class="math notranslate nohighlight">\(G_{\bar{\ell}}\)</span> are all visited infinitely many times,
-implying that this play does not satisfy <span class="math notranslate nohighlight">\(\Rabin\)</span>, contradicting that <span class="math notranslate nohighlight">\(\sigma\)</span> is winning.</p>
+implying that this play does not satisfy <span class="math notranslate nohighlight">\(\mathtt{Rabin}, contradicting that \)</span>\sigma$ is winning.</p>
 <p>There exists a valuation <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> which satisfies each literal chosen by Eve, implying that it satisfies <span class="math notranslate nohighlight">\(\Phi\)</span> which is then satisfiable.</p>
 </div>
 <div class="figure align-center" id="fig-hardness-rabin">
@@ -1112,15 +1062,15 @@ implying that this play does not satisfy <span class="math notranslate nohighlig
 <div class="proof theorem admonition" id="2-thm:complexity_Muller">
 <p class="admonition-title"><span class="caption-number">Theorem 49 </span> (Complexity of solving Muller games)</p>
 <div class="theorem-content section" id="proof-content">
-<p>Solving Muller games is <span class="math notranslate nohighlight">\(\PSPACE\)</span>-complete.</p>
+<p>Solving Muller games is $\textrm{PSPACE}-complete.</p>
 </div>
 </div><p>As for the previous reduction, in the Muller game constructed in the reduction below we label edges rather than vertices,
 and some edges have more than one colour.
 As for Rabin games this can be reduced to the original definition of colouring functions (labelling vertices with exactly one colour each) with a polynomial increase in size.</p>
 <div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
-<p>The <span class="math notranslate nohighlight">\(\PSPACE\)</span> algorithm was constructed in  <a class="reference internal" href="#2-thm:muller">Theorem 43</a>.</p>
-<p>To prove the <span class="math notranslate nohighlight">\(\PSPACE\)</span>-hardness we reduce the evaluation of quantified boolean formulas in disjunctive normal form (<span class="math notranslate nohighlight">\(\QBF\)</span>) to solving Muller games.</p>
+<p>The $\textrm{PSPACE} algorithm was constructed in  <a class="reference internal" href="#2-thm:muller">Theorem 43</a>.</p>
+<p>To prove the <span class="math notranslate nohighlight">\(\textrm{PSPACE}-hardness we reduce the evaluation of quantified boolean formulas in disjunctive normal form (\)</span>\QBF$) to solving Muller games.</p>
 <p>Let <span class="math notranslate nohighlight">\(\Psi\)</span> be a quantified boolean formula in disjunctive normal form with <span class="math notranslate nohighlight">\(n\)</span> variables <span class="math notranslate nohighlight">\(x_1 \ldots x_n\)</span> and <span class="math notranslate nohighlight">\(m\)</span> clauses <span class="math notranslate nohighlight">\(C_1 \dots C_m\)</span>, where each <span class="math notranslate nohighlight">\(C_j\)</span> is of the form <span class="math notranslate nohighlight">\(\ell_{j_1} \wedge \ell_{j_2} \wedge \ell_{j_3}\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1141,9 +1091,9 @@ The Muller condition requires that:</p>
 Formally, let <span class="math notranslate nohighlight">\(S_{&gt; i} = \set{x_q, \bar{x_q} : q &gt; p}\)</span> and:</p>
 <div class="math notranslate nohighlight">
 \[
-\F = \set{ S_{&gt; p},\ \set{x_p} \cup S_{&gt; p},\ \set{\bar{x_p}} \cup S_{&gt; p} : x_p \text{ existential}} \cup \set{ S_{\ge p} : x_p \text{ universal}}.
+\mathcal{F}= \set{ S_{&gt; p},\ \set{x_p} \cup S_{&gt; p},\ \set{\bar{x_p}} \cup S_{&gt; p} : x_p \text{ existential}} \cup \set{ S_{\ge p} : x_p \text{ universal}}.
 \]</div>
-<p>Note that <span class="math notranslate nohighlight">\(\F\)</span> contains <span class="math notranslate nohighlight">\(O(n)\)</span> elements.</p>
+<p>Note that <span class="math notranslate nohighlight">\(\mathcal{F} contains \)</span>O(n)$ elements.</p>
 <p>Let us now describe the arena. A play consists in an infinite sequence of rounds, where in each round first Eve chooses
 a clause and second Adam chooses a literal <span class="math notranslate nohighlight">\(\ell\)</span> in this clause corresponding to some variable <span class="math notranslate nohighlight">\(x_p\)</span>,
 and visits the colour <span class="math notranslate nohighlight">\(\ell\)</span> as well as each colour in <span class="math notranslate nohighlight">\(S_{&gt; p}\)</span>.</p>
@@ -1151,8 +1101,8 @@ and visits the colour <span class="math notranslate nohighlight">\(\ell\)</span>
 Note that the edges from the vertex controlled by Eve to the other ones do not have a colour,
 which does not fit our definitions.
 For this reason we introduce a new colour <span class="math notranslate nohighlight">\(c\)</span> and colour all these edges by <span class="math notranslate nohighlight">\(c\)</span>.
-We define a new Muller objective by adding <span class="math notranslate nohighlight">\(c\)</span> to each set in <span class="math notranslate nohighlight">\(\F\)</span>:
-since every play in the game visit <span class="math notranslate nohighlight">\(c\)</span> infinitely many times, the two games are equivalent.
+We define a new Muller objective by adding <span class="math notranslate nohighlight">\(c\)</span> to each set in <span class="math notranslate nohighlight">\(\mathcal{F}: 
+since every play in the game visit \)</span>c$ infinitely many times, the two games are equivalent.
 We note that this construction works for this particular game but not in general.</p>
 <p>For a valuation <span class="math notranslate nohighlight">\(\mathbf{v} : \set{x_1,\dots,x_n} \to \set{0,1}\)</span> and <span class="math notranslate nohighlight">\(p \in [1,n]\)</span>,
 we write <span class="math notranslate nohighlight">\(\Psi_{\mathbf{v},p}\)</span> for the formula obtained from <span class="math notranslate nohighlight">\(\Psi\)</span> by fixing the variables <span class="math notranslate nohighlight">\(x_1,\dots,x_{p-1}\)</span>
@@ -1185,13 +1135,13 @@ The new valuation is defined as follows:</p>
 \end{cases}
 \end{split}\]</div>
 <p>it is positive by construction.</p>
-<p>Let <span class="math notranslate nohighlight">\(\play\)</span> be a play consistent with <span class="math notranslate nohighlight">\(\sigma\)</span> and <span class="math notranslate nohighlight">\(x_p\)</span> be the lowest quantified variable chosen infinitely many times by Adam.
-First, all colours in <span class="math notranslate nohighlight">\(S_{&gt; p}\)</span> are visited infinitely many times (when visiting <span class="math notranslate nohighlight">\(x\)</span> or <span class="math notranslate nohighlight">\(\bar{x}\)</span>).
-Let us look at the sequence <span class="math notranslate nohighlight">\((\mathbf{v}_i(x_p))_{i \in \N}\)</span> where <span class="math notranslate nohighlight">\(\mathbf{v}_i\)</span> is the valuation in the <span class="math notranslate nohighlight">\(i\)</span>th round.
-If <span class="math notranslate nohighlight">\(x_p\)</span> is existential, the sequence is ultimately constant as it can only change when a lower quantified variable is visited.
-If <span class="math notranslate nohighlight">\(x_p\)</span> is universal, the value changes each time the variable <span class="math notranslate nohighlight">\(x_p\)</span> is chosen.
-Since any literal that Adam chooses is necessarily true under the current valuation,
-this implies that in both cases <span class="math notranslate nohighlight">\(\play\)</span> satisfies <span class="math notranslate nohighlight">\(\Muller(\F)\)</span>.</p>
+<p>Let <span class="math notranslate nohighlight">\(\pi be a play consistent with \)</span>\sigma<span class="math notranslate nohighlight">\( and \)</span>x_p<span class="math notranslate nohighlight">\( be the lowest quantified variable chosen infinitely many times by Adam. 
+First, all colours in \)</span>S_{&gt; p}<span class="math notranslate nohighlight">\( are visited infinitely many times (when visiting \)</span>x<span class="math notranslate nohighlight">\( or \)</span>\bar{x}<span class="math notranslate nohighlight">\().
+Let us look at the sequence \)</span>(\mathbf{v}<em>i(x_p))</em>{i \in \mathbb{N}<span class="math notranslate nohighlight">\( where \)</span>\mathbf{v}_i<span class="math notranslate nohighlight">\( is the valuation in the \)</span>i<span class="math notranslate nohighlight">\(th round.
+If \)</span>x_p<span class="math notranslate nohighlight">\( is existential, the sequence is ultimately constant as it can only change when a lower quantified variable is visited.
+If \)</span>x_p<span class="math notranslate nohighlight">\( is universal, the value changes each time the variable \)</span>x_p<span class="math notranslate nohighlight">\( is chosen.
+Since any literal that Adam chooses is necessarily true under the current valuation, 
+this implies that in both cases \)</span>\pi satisfies <span class="math notranslate nohighlight">\(\mathtt{Muller}\mathcal{F}\)</span>.</p>
 <p>For the converse implication we show that if <span class="math notranslate nohighlight">\(\Psi\)</span> evaluates to false, then there exists a winning strategy <span class="math notranslate nohighlight">\(\tau\)</span> for Adam.
 The construction is similar but using <strong>negative</strong> valuations.
 The memory states are negative valuations. The initial valuation is any negative valuation.
@@ -1200,12 +1150,12 @@ the strategy <span class="math notranslate nohighlight">\(\tau\)</span> chooses 
 The memory is updated as follows: assume that the current valuation is <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> and that the strategy <span class="math notranslate nohighlight">\(\tau\)</span> chose a literal corresponding to the variable <span class="math notranslate nohighlight">\(x_p\)</span>.
 If <span class="math notranslate nohighlight">\(x_p\)</span> is universal the valuation is unchanged.
 If <span class="math notranslate nohighlight">\(x_p\)</span> is existential, we proceed as above to construct another negative valuation where the value of <span class="math notranslate nohighlight">\(x_p\)</span> is swapped.</p>
-<p>Let <span class="math notranslate nohighlight">\(\play\)</span> be a play consistent with <span class="math notranslate nohighlight">\(\tau\)</span> and <span class="math notranslate nohighlight">\(x\)</span> be the lowest quantified variable chosen infinitely many times by Adam.
-As before, we look at the sequence <span class="math notranslate nohighlight">\((\mathbf{v}_i(x))_{i \in \N}\)</span> where <span class="math notranslate nohighlight">\(\mathbf{v}_i\)</span> is the valuation in the <span class="math notranslate nohighlight">\(i\)</span>th round.
-If <span class="math notranslate nohighlight">\(x\)</span> is existential, the value changes each time the variable <span class="math notranslate nohighlight">\(x\)</span> is chosen.
-If <span class="math notranslate nohighlight">\(x\)</span> is universal, the sequence is ultimately constant.
-Since any literal that Adam chooses is necessarily false under the current valuation,
-this implies that in both cases <span class="math notranslate nohighlight">\(\play\)</span> does not satisfy <span class="math notranslate nohighlight">\(\Muller(\F)\)</span>.</p>
+<p>Let <span class="math notranslate nohighlight">\(\pi be a play consistent with \)</span>\tau<span class="math notranslate nohighlight">\( and \)</span>x<span class="math notranslate nohighlight">\( be the lowest quantified variable chosen infinitely many times by Adam. 
+As before, we look at the sequence \)</span>(\mathbf{v}<em>i(x))</em>{i \in \mathbb{N}<span class="math notranslate nohighlight">\( where \)</span>\mathbf{v}_i<span class="math notranslate nohighlight">\( is the valuation in the \)</span>i<span class="math notranslate nohighlight">\(th round.
+If \)</span>x<span class="math notranslate nohighlight">\( is existential, the value changes each time the variable \)</span>x<span class="math notranslate nohighlight">\( is chosen.
+If \)</span>x<span class="math notranslate nohighlight">\( is universal, the sequence is ultimately constant.
+Since any literal that Adam chooses is necessarily false under the current valuation, 
+this implies that in both cases \)</span>\pi does not satisfy <span class="math notranslate nohighlight">\(\mathtt{Muller}\mathcal{F}\)</span>.</p>
 </div>
 <div class="figure align-center" id="fig-hardness-muller">
 <img alt="../_images/2-fig:hardness_Muller.png" src="../_images/2-fig:hardness_Muller.png" />

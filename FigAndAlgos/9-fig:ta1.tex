@@ -1,0 +1,29 @@
+\documentclass[preview,border=0mm,convert={density=600,outext=.png}]{standalone}
+\usepackage{amsfonts,amssymb,amsmath}
+\usepackage{tikz}
+\usetikzlibrary{automata,shapes,patterns,calc,arrows}
+\input{../tikz-style.tex}
+\input{../norenew_macros.tex}
+\input{./../9_Timed/norenew_macros_local.tex}
+\begin{document}
+\begin{tikzpicture}[node distance=2.5cm,auto]
+    
+    \node[state] at (1,0) (l1) {$\ell_1$};
+    \node[state, below of=l1, node distance=1.5cm] (l5) {$\ell_5$};
+
+    \node[state,right of=l1] (l2) { $\ell_2$};
+    \node[state, accepting, below of=l2, node distance=1.5cm] (g) {G};
+    \node[state,right of=l2] (l3) {$\ell_3$};
+    \node[state,right of=l3] (l4) {$\ell_4$};
+    \path[initial]
+    (l1.-135) edge +(-135:3mm);
+    \path[arrow]
+    (l1) edge node[above,pos=.65] {$x\leq 1$} (l2)
+    (l2) edge[dashed] node[above,pos=.35] {$x< 1$} (l3)
+    (l3) edge node[above] {} (l4)
+    (l4) edge[bend left] node[below] {$x\leq 1$} (l2)
+    (l1) edge[dashed, bend left] node[above] {$x< 1,x:=0$} (l3)
+    (l1) edge[dashed] node[left] {$x>1$} (l5)
+    (l2) edge node[right] {$x\geq 2$} (g);
+  \end{tikzpicture}
+\end{document}

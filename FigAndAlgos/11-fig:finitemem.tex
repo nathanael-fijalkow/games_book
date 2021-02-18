@@ -1,0 +1,19 @@
+\documentclass[preview,border=0mm,convert={density=600,outext=.png}]{standalone}
+\usepackage{amsfonts,amssymb,amsmath}
+\usepackage{tikz}
+\usetikzlibrary{automata,shapes,patterns,calc,arrows}
+\input{../tikz-style.tex}
+\input{../norenew_macros.tex}
+\input{./../11_Counters/norenew_macros_local.tex}
+\begin{document}
+\begin{tikzpicture}[auto,on grid,node distance=2.5cm]
+    \node[s-eve](0){$\loc_0$};
+    \node[s-eve,right=of 0](1){$\loc_1$};
+    \node[black!50,above=.5 of 0,font=\scriptsize]{$2$};
+    \node[black!50,above=.5 of 1,font=\scriptsize]{$1$};
+    \path[arrow,every node/.style={font=\footnotesize,inner sep=2}]
+    (1) edge[bend left=15] node {$-2^{2^n}\cdot\vec e_1$} (0)
+    (0) edge[bend left=15] node {$\vec 0$} (1)
+    (1) edge[loop right] node{$\vec e_1$} ();
+  \end{tikzpicture}
+\end{document}

@@ -1,0 +1,23 @@
+\documentclass[preview,border=0mm,convert={density=600,outext=.png}]{standalone}
+\usepackage{amsfonts,amssymb,amsmath}
+\usepackage{tikz}
+\usetikzlibrary{automata,shapes,patterns,calc,arrows}
+\input{../tikz-style.tex}
+\input{../norenew_macros.tex}
+\input{./../11_Counters/norenew_macros_local.tex}
+\begin{document}
+\begin{tikzpicture}[auto,on grid,node distance=2.5cm]
+    \node[s-eve,inner sep=3pt](0){$\loc$};
+    \node[s-adam,right=of 0,inner sep=2pt](1){$\loc'$};
+    \node[s-eve,above left=1cm and 1.2cm of 1](2){$\loc_{2,1}$};
+    \node[s-eve,below left=1cm and 1.2cm of 1](3){$\loc_{\text-1,0}$};
+    
+    \path[arrow,every node/.style={font=\footnotesize,inner sep=1}]
+    (0) edge[loop left] node {$-1,-1$} ()
+    (0) edge[bend right=10] node {$-1,0$} (1)
+    (1) edge[bend right=10]  (2)
+    (1) edge[bend left=10] (3)
+    (2) edge[swap,bend right=10] node{$2,1$} (0)
+    (3) edge[bend left=10] node{$-1,0$} (0);
+  \end{tikzpicture}
+\end{document}

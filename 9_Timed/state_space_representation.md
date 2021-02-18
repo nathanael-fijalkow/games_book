@@ -1,114 +1,17 @@
 (9-sec:state_space_representation)=
 # State-Space Representation
 
+
 ```{math}
-\usepackage{amsmath}
-  
-\newcommand*\Realnn{\mathbb{R}_{\geq 0}}
-\newcommand*\Clocks{\mathcal{C}}
-\newcommand*\TA{\ensuremath{\mathcal{A}}}
-\newcommand*\Locs{\mathcal{L}}
-\newcommand*\Clocksz{\mathcal{C}_0}
-\newcommand*\calQ{\mathcal{Q}}
-\newcommand*\state{\mathsf{state}}
-\newcommand*\trans{\mathsf{trans}}
-\newcommand*\post{\mathsf{post}}
-\newcommand*\step{\mathsf{step}}
-\newcommand*\postta{\ensuremath{\textrm{\sf Post}}}
-\newcommand*\preta{\ensuremath{\textrm{\sf Pre}}}
-\newcommand*\unreset{\ensuremath{\textrm{\sf Unreset}}}
-\newcommand*\posttime{\ensuremath{\textrm{\sf Post}_{\geq 0}}}
-\newcommand*\pretime{\ensuremath{\textrm{\sf Pre}_{\geq 0}}} \newcommand*\reset{\mathsf{Reset}}
-\newcommand{\sem}[1]{\ensuremath{#1}}
-\newcommand{\size}[1]{\ensuremath{|#1|}}
-
-\def\predc{\textrm{\sf Pred}_c}
-\def\predt{\textrm{\sf Pred}_{\geq 0}} \def\predu{\textrm{\sf Pred}_u}
-\def\calP{\mathcal P}
-\def\calC{\mathcal C}
-\def\calT{\mathcal T}
-\def\Dep{\textsf{Dep}}
-\def\Wait{\textsf{Wait}}
-\def\Passed{\textsf{Passed}}
-\def\Act{\textsf{Act}}
-\def\EA{E_{\Adam}}
-\def\EE{E_{\Eve}}
-
-\newcommand\zone[1]{\ensuremath{\left\llbracket#1\right\rrbracket}}
-\def\NM#1{\textcolor{green!50!black}{\checkmark}\marginpar{\color{green!50!black}NM: #1}} 
-\long\def\NMlong#1{\medskip\par{\color{green!50!black}NM: #1}\medskip\par}
-\def\OS#1{\textcolor{blue!50!black}{\checkmark}\marginpar{\color{blue!50!black}OS: #1}} 
-\long\def\OSlong#1{\medskip\par{\color{blue!50!black}OS: #1}\medskip\par}
-
 \newcommand{\Eve}{\textrm{Eve}}
-\newcommand{\Adam}{\textrm{Adam}}
-\newcommand{\set}[1]{\left\{ #1 \right\}}
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
-\newcommand{\argmax}{\textrm{argmax}}
-\newcommand{\argmin}{\textrm{argmin}}
-\newcommand{\Op}{\mathbb{O}}
-\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\textrm{supp}} 
-\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
-\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
-\newcommand{\mEve}{\mathrm{Eve}}
-\newcommand{\mAdam}{\mathrm{Adam}}
-\newcommand{\mRandom}{\mathrm{Random}}
-\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
-\newcommand{\ing}{\textrm{In}}
-\newcommand{\Ing}{\ing}
-\newcommand{\out}{\textrm{Out}}
-\newcommand{\Out}{\out}
-\newcommand{\dest}{\Delta} 
-\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
-\newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
-\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
-\newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\newcommand{\Win}{\textrm{Win}} 
-\newcommand{\Lose}{\textrm{Lose}} 
-\newcommand{\Value}{\textrm{val}} 
-\newcommand{\ValueE}{\textrm{val}_\mEve} 
-\newcommand{\ValueA}{\textrm{val}_\mAdam}
-\newcommand{\val}{\Value} 
-\newcommand{\Automaton}{\mathbf{A}} 
-\newcommand{\Safe}{\mathtt{Safe}}
-\newcommand{\Reach}{\mathtt{Reach}} 
-\newcommand{\Buchi}{\mathtt{Buchi}} 
-\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
-\newcommand{\Parity}{\mathtt{Parity}} 
-\newcommand{\Muller}{\mathtt{Muller}} 
-\newcommand{\Rabin}{\mathtt{Rabin}} 
-\newcommand{\Streett}{\mathtt{Streett}} 
-\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
-\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
-\newcommand{\Energy}{\mathtt{Energy}}
-\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
-\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
-\newcommand{\Sup}{\mathtt{Sup}}
-\newcommand{\Inf}{\mathtt{Inf}}
-\newcommand{\LimSup}{\mathtt{LimSup}}
-\newcommand{\LimInf}{\mathtt{LimInf}}
-\newcommand{\NL}{\textrm{NL}}
-\newcommand{\PTIME}{\textrm{PTIME}}
-\newcommand{\NP}{\textrm{NP}}
-\newcommand{\UP}{\textrm{UP}}
-\newcommand{\coNP}{\textrm{coNP}}
-\newcommand{\coUP}{\textrm{coUP}}
-\newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
-\newcommand{\EXP}{\textrm{EXP}}
-\newcommand{\kEXP}{\textrm{kEXP}}
 ```
+
 We introduce a data structure to represent sets of clock
 valuations and manipulate them efficiently in order to compute
 successors and predecessors in a given timed game. This will allow us
 to use a fixpoint characterization of the winning states analogous to
-that in finite games as in \cref{chap:regular}.
+that in finite games as in \cref{chap:regular}. 
+
 A~**zone** is any subset of $\Realnn^\Clocks$ that can be defined
 using a clock constraint (hence a~zone is convex).  We will see that
 sets of states that appear when exploring the state space of a timed
@@ -116,15 +19,21 @@ game can be represented using zones.  We~use the
 **difference-bound matrices** to represent zones:
 this is one of the main data structures used in timed-automata
 verification {cite}`Dil90,BM83`. The~idea is to store, in a matrix,
-upper bounds on clocks and on differences of pairs of clocks.Formally, given a clock
+upper bounds on clocks and on differences of pairs of clocks.
+
+Formally, given a clock
 set $\Clocks=\{x_1,\ldots,x_m\}$, we define $\Clocksz = \Clocks \cup \{x_0\}$
 where $x_0$ is seen as a
-special clock which is always $0$.A~difference-bound matrix~(DBM) is a $|\Clocksz|\times |\Clocksz|$
+special clock which is always $0$.
+
+A~difference-bound matrix~(DBM) is a $|\Clocksz|\times |\Clocksz|$
 matrix with coefficients in $\{\mathord\leq,\mathord<\} \times
 \mathbb{Z}$.  For any DBM $M$, the $(i,j)$-component of the matrix $M$
 will be written $(\prec^M_{i,j}, M_{i,j})$ where $\prec^M_{i,j}$ is
 the inequality in $\{\mathord\leq,\mathord<\}$, and $M_{i,j}$ the
-integer coefficient. A~DBM $M$ defines the zone%the following clock constraints
+integer coefficient. A~DBM $M$ defines the zone
+
+%the following clock constraints
 
 $$
   [M] = \Bigl\{v\in \Realnn^{\Clocks}\Bigm|
@@ -162,14 +71,37 @@ $$
                    \draw (0,\x) -- +(9,0);
                    \draw (\x,0) -- +(0,9);}
         \end{scope}
-             \end{scope}
+        
+      \end{scope}
     \end{scope}
-                                                       }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    }
   $$
+
 
 %  first column
   For instance, $M[2,0]=(\leq, 3)$ represents the
-  constraint $x_2-x_0\leq 3$, i.e., $x_2\leq 3$.%  The~subset of $\Realnn^2$ represented by this DBM is represented on  The~diagram to the right of the figure represents the set $[M]$.
+  constraint $x_2-x_0\leq 3$, i.e., $x_2\leq 3$.
+
+%  The~subset of $\Realnn^2$ represented by this DBM is represented on
+
+  The~diagram to the right of the figure represents the set $[M]$.
  
 
   Consider the clock set $\Clocks=\{x_1,x_2\}$
@@ -200,14 +132,37 @@ $$
                    \draw (0,\x) -- +(9,0);
                    \draw (\x,0) -- +(0,9);}
         \end{scope}
-             \end{scope}
+        
+      \end{scope}
     \end{scope}
-                                                       }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    }
   $$
+
 
 %  first column
   For instance, $M[2,0]=(\leq, 3)$ represents the
-  constraint $x_2-x_0\leq 3$, i.e., $x_2\leq 3$.%  The~subset of $\Realnn^2$ represented by this DBM is represented on  The~diagram to the right of the figure represents the set $[M]$.
+  constraint $x_2-x_0\leq 3$, i.e., $x_2\leq 3$.
+
+%  The~subset of $\Realnn^2$ represented by this DBM is represented on
+
+  The~diagram to the right of the figure represents the set $[M]$.
 
 ````
 
@@ -232,13 +187,23 @@ Given $R\subseteq\Clocks$, we also define
   v=v'[R\leftarrow 0]\} \\
   \unreset_R(Z) &= \{ v \in \Realnn^{\Clocks} \mid \exists v' \in Z.\
   v' = v[R \leftarrow 0]\}.
-\end{xalignat*}%Intersection is denoted $Z \cap Z'$.
+\end{xalignat*}
+
+%Intersection is denoted $Z \cap Z'$.
 
 These operations, together with intersection, suffice to describe
 one-step successors and predecessors by an edge of a timed automaton.
 For instance, given edge $e=(\ell,g,R,\ell')$ and
 set $S \subseteq \Realnn^\Clocks$, the~set of states that are reached
-after letting time elapse and taking edge $e$ can be obtained as%   \begin{array}{rl}%                                    0,~\nu' = \nu[R\leftarrow 0] + d\}.% \]%have $\postta_e(S) = \posttime((S \cap G)[R\leftarrow 0])$.
+after letting time elapse and taking edge $e$ can be obtained as
+
+%   \begin{array}{rl}
+
+%                                    0,~\nu' = \nu[R\leftarrow 0] + d\}.
+
+% \]
+
+%have $\postta_e(S) = \posttime((S \cap G)[R\leftarrow 0])$.
 
 $$
   \postta_e(S) = \reset_R(\posttime(S)\cap G),
@@ -248,7 +213,10 @@ where $G$ denotes the zone corresponding to the guard $g$.
 Similarly, we can compute the predecessors of $S$ by edge $e$ as
 
 $$
-\preta_e(S) = \pretime(G \cap \unreset_R(S)).$$
+\preta_e(S) = \pretime(G \cap \unreset_R(S)).
+
+$$
+
 
 %in $S$ by resetting $R$.
 We~illustrate these constructions on {numref}`9-fig:opzones`.
@@ -271,6 +239,7 @@ constraints on all differences of clock pairs, and this can be shown
 to yield a unique representation of a given zone.
 
 Let us call the above operations **basic operations** on DBMs {cite}`BY04`.
+
 ````{prf:theorem} Complexity of basic operations on DBMs
 :label: 9-thm:complexity_basic_operations_DBMs
 
@@ -279,24 +248,47 @@ Let us call the above operations **basic operations** on DBMs {cite}`BY04`.
 
 ````
 
-%   \begin{array}{rl}%   \end{array}% which can be defined by $\post_e(S) = 
-% section. Another basic operation often used in verification and synthesis is the% states that can be reached by taking the edge $e=(\ell,g,a,R,\ell')$ and then delaying as follows.%   \begin{array}{rl}%   0, \\&~\nu' = \nu[R\leftarrow 0] + d\}.% \]
+
+%   \begin{array}{rl}
+
+%   \end{array}
+
+% which can be defined by $\post_e(S) = 
+
+% section. Another basic operation often used in verification and synthesis is the
+
+% states that can be reached by taking the edge $e=(\ell,g,a,R,\ell')$ and then delaying as follows.
+
+%   \begin{array}{rl}
+
+%   0, \\&~\nu' = \nu[R\leftarrow 0] + d\}.
+
+% \]
 
 Observe that a DBM always describes a convex subset
 of $\Realnn^\Clocks$ since it is a conjunction of convex clock
 constraints. However, the set of winning states is in general
 non-convex in timed games. The~simple arena
-of {numref}`9-fig:non-convex` provides an example: if~\Eve's objective
+of {numref}`9-fig:non-convex` provides an example: if~\textrm{Eve}s objective
 is to reach $\ell_1$, then it should just avoid the configurations
 satisfying $1\leq x_1,x_2\leq 2$. But this set of predecessors is then
-non-convex as shown in {numref}`9-fig:non-convex`.%to $\ell_1$ and $\ell_2$ with disjoint guards, with no resets, and that the%on the right shows the set of states from which Eve can delay andWe~thus have to work with unions of zones, also called
+non-convex as shown in {numref}`9-fig:non-convex`.
+
+%to $\ell_1$ and $\ell_2$ with disjoint guards, with no resets, and that the
+
+%
+%on the right shows the set of states from which Eve can delay and
+
+We~thus have to work with unions of zones, also called
 **federations** of zones, or **federations** for~short.
 
 ```{figure} ./../FigAndAlgos/9-fig:non-convex.png
 :name: 9-fig:non-convex
 :align: center
 Winning configurations (in $\ell$)
-    for~\Eve to ensure reaching $\ell_1$.  
+    for~\textrm{Eve}to ensure reaching $\ell_1$.
+
+  
 ```
 
 One particular operation that we need is complementation.
@@ -309,6 +301,7 @@ written $M^c$, as a federation of~DBMs.
 
   The complement of a DBM of size $n\times n$ can be computed as a
   federation of at most $n(n-1)$ DBMs.
+
 ````
 
 The above theorem is seen easily as follows. Since a DBM represents a
@@ -319,6 +312,7 @@ $x_1>1 \lor x_2<2$, which can be represented as the federation of two
 zones.
 
 
+
 In the rest of this chapter, we describe two algorithms to solve timed
 games using the DBM data structure and the operations introduced
 above. Our~algorithms are extensions of those used for finite games,
@@ -327,7 +321,7 @@ predecessor and successor operations are replaced by their zone-based
 counterparts.
 
 As for finite games, we are interested in computing a fixpoint to
-determine whether a given configuration is winning for~\Eve. We~start
+determine whether a given configuration is winning for~\textrm{Eve} We~start
 by introducing the zone-based counterparts of the controllable predecessors operator
 which
 is the main tool in the algorithms.

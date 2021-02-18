@@ -1,0 +1,40 @@
+\documentclass[preview,border=0mm,convert={density=600,outext=.png}]{standalone}
+\usepackage{amsfonts,amssymb,amsmath}
+\usepackage{tikz}
+\usetikzlibrary{automata,shapes,patterns,calc,arrows}
+\input{../tikz-style.tex}
+\input{../norenew_macros.tex}
+\input{./../11_Counters/norenew_macros_local.tex}
+\begin{document}
+\begin{tikzpicture}[auto,on grid,node distance=1.5cm]
+      \node(to){$\mapsto$};
+      \node[anchor=east,left=2.5cm of to](mm){"deterministic Minsky machine"};
+      \node[anchor=west,right=2.5cm of to](mwg){"asymmetric vector system"};
+      \node[below=.7cm of to](map){$\rightsquigarrow$};
+      \node[left=2.75cm of map](0){$\loc$};
+      \node[right=of 0](1){$\loc'$};
+      \node[right=1.25cm of map,s-eve](2){$\loc$};
+      \node[right=of 2,s-eve](3){$\loc'$};
+      \node[below=2.5cm of map](map2){$\rightsquigarrow$};
+      \node[left=2.75cm of map2](4){$\loc$};
+      \node[below right=.5cm and 1.5cm of 4](5){$\loc''$};
+      \node[above right=.5cm and 1.5cm of 4](6){$\loc'$};
+      \node[right=1.25cm of map2,s-eve](7){$\loc$};
+      \node[below right=.5cm and 1.5cm of 7,s-eve](8){$\loc''$};
+      \node[above right=.5cm and 1.5cm of 7,s-adam,inner sep=-1.5pt](9){$\loc'_{i\eqby?0}$};
+      \node[below right=.5cm and 1.5cm of 9,s-eve](10){$\loc'$};
+      \node[above right=.5cm and 1.5cm of 9,s-eve](11){$\loc_{i}$};
+      \node[right=of 11,s-eve,inner sep=0pt](12){$\loc_{\mathtt{halt}}$};
+      \path[arrow,every node/.style={font=\scriptsize}]
+      (0) edge node{$\vec e_i$} (1)
+      (2) edge node{$\vec e_i$} (3)
+      (4) edge[swap] node{$-\vec e_i$} (5)
+      (4) edge node{$i\eqby?0$} (6)
+      (7) edge[swap] node{$-\vec e_i$} (8)
+      (7) edge node{$\vec 0$} (9)
+      (9) edge[swap] node{$\vec 0$} (10)
+      (9) edge node{$\vec 0$} (11)
+      (11) edge node{$\vec 0$} (12)
+      (11) edge[loop above] node{$\forall j\neq i\mathbin.-\vec e_j$}();
+    \end{tikzpicture}
+\end{document}

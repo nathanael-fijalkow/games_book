@@ -705,108 +705,49 @@
   <div class="section" id="positional-determinacy-of-stochastic-reachability-games">
 <span id="sec-determinacy"></span><h1>Positional determinacy of stochastic reachability games<a class="headerlink" href="#positional-determinacy-of-stochastic-reachability-games" title="Permalink to this headline">¶</a></h1>
 <div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}\newcommand{\adist}{\ensuremath{f}}
-\newcommand{\probm}{\mathbb{P}}
-\newcommand{\lfp}{**lfp**}
+\[\newcommand{\lfp}{**lfp**}
 \newcommand{\vwin}{\ensuremath{v_{\textsc{win}}}}
 \newcommand{\vlose}{\ensuremath{v_{\textsc{lose}}}}
-\newcommand{\Adamvertices}{\VA}
-\newcommand{\Evevertices}{\VE}
 \newcommand{\Randomvertices}{\vertices_{\text{Rand}}}
-\newcommand{\perm}{\pi}
-\newcommand{\DetAtt}{\ensuremath{**DetAtt**}}\\\newcommand{\weight}{\mathbf{w}} \newcommand{\nats}{\mathbb{N}}\newcommand{\Eve}{\textrm{Eve}}
 \newcommand{\Adam}{\textrm{Adam}}
-\newcommand{\set}[1]{\left\{ #1 \right\}}
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
-\newcommand{\argmax}{\textrm{argmax}}
-\newcommand{\argmin}{\textrm{argmin}}
-\newcommand{\Op}{\mathbb{O}}
-\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\textrm{supp}} 
-\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
-\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
+\newcommand{\game}{\mathcal{G}}
+\newcommand{\arena}{\mathcal{A}}
+\newcommand{\vertices}{V}
+\newcommand{\VE}{V_\mEve}
+\newcommand{\VA}{V_\mAdam}
+\newcommand{\Win}{\textrm{Win}}
+\newcommand{\Reach}{\mathtt{Reach}}
 \newcommand{\mEve}{\mathrm{Eve}}
-\newcommand{\mAdam}{\mathrm{Adam}}
-\newcommand{\mRandom}{\mathrm{Random}}
-\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
-\newcommand{\ing}{\textrm{In}}
-\newcommand{\Ing}{\ing}
-\newcommand{\out}{\textrm{Out}}
-\newcommand{\Out}{\out}
-\newcommand{\dest}{\Delta} 
-\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
-\newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
-\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
-\newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\newcommand{\Win}{\textrm{Win}} 
-\newcommand{\Lose}{\textrm{Lose}} 
-\newcommand{\Value}{\textrm{val}} 
-\newcommand{\ValueE}{\textrm{val}_\mEve} 
-\newcommand{\ValueA}{\textrm{val}_\mAdam}
-\newcommand{\val}{\Value} 
-\newcommand{\Automaton}{\mathbf{A}} 
-\newcommand{\Safe}{\mathtt{Safe}}
-\newcommand{\Reach}{\mathtt{Reach}} 
-\newcommand{\Buchi}{\mathtt{Buchi}} 
-\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
-\newcommand{\Parity}{\mathtt{Parity}} 
-\newcommand{\Muller}{\mathtt{Muller}} 
-\newcommand{\Rabin}{\mathtt{Rabin}} 
-\newcommand{\Streett}{\mathtt{Streett}} 
-\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
-\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
-\newcommand{\Energy}{\mathtt{Energy}}
-\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
-\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
-\newcommand{\Sup}{\mathtt{Sup}}
-\newcommand{\Inf}{\mathtt{Inf}}
-\newcommand{\LimSup}{\mathtt{LimSup}}
-\newcommand{\LimInf}{\mathtt{LimInf}}
-\newcommand{\NL}{\textrm{NL}}
-\newcommand{\PTIME}{\textrm{PTIME}}
-\newcommand{\NP}{\textrm{NP}}
-\newcommand{\UP}{\textrm{UP}}
-\newcommand{\coNP}{\textrm{coNP}}
-\newcommand{\coUP}{\textrm{coUP}}
-\newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
-\newcommand{\EXP}{\textrm{EXP}}
-\newcommand{\kEXP}{\textrm{kEXP}}\end{aligned}\end{align} \]</div>
+\newcommand{\mAdam}{\mathrm{Adam}}\]</div>
 <p>Pure memoryless determinacy for non-stochastic games with parity
 objectives was established in Chapter <a class="reference internal" href="../2_Regular/index.html#chap-regular"><span class="std std-ref">Regular Games</span></a> (see <a class="reference internal" href="../2_Regular/parity.html#2-thm:parity">Theorem 39</a>).
 In this section we extend this result to stochastic games.
 We focus on reachability objectives, since we will see in Section <a class="reference internal" href="relations.html#sec-relations"><span class="std std-ref">Relations between all games</span></a>
 that other natural objectives reduce to reachability.</p>
 <div class="proof theorem admonition" id="6-thm:determinacy">
-<p class="admonition-title"><span class="caption-number">Theorem 195 </span> (Pure positional determinacy for stochastic reachability games)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 196 </span> (Pure positional determinacy for stochastic reachability games)</p>
 <div class="theorem-content section" id="proof-content">
 <p>Stochastic reachability games are pure positionally determined.</p>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
-<p>Let <span class="math notranslate nohighlight">\(G = (\vertices,E,\delta,\Win)\)</span> be a stochastic reachability
+<p>Let <span class="math notranslate nohighlight">\(G = (VE,\delta,\textrm{Win}\)</span> be a stochastic reachability
 game.  We define an operator <span class="math notranslate nohighlight">\(\mathfrak{F}\)</span> expressing Bellman-like
 equations for the game <span class="math notranslate nohighlight">\(G\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
   \mathfrak{F}(\nu)(v) = \left\{\begin{array}{l&#64;{~~}l}
-      1 &amp; \text{if}\ v = \Win \\
-      \max_{(v,v') \in E} \nu(v') &amp; \text{if}\ v \in \VE \\
-      \min_{(v,v') \in E} \nu(v') &amp; \text{if}\ v \in \VA \\
-      \sum_{v' \in \vertices} \delta(v)(v') \cdot \nu(v') &amp; \text{if} \in \Randomvertices
-    \end{array}\right.
+      1 &amp; \text{if}\ v = \textrm{Win}\\
+      \max_{(v,v') \in E} \nu(v') &amp; \text{if}\ v \in V_\mathrm{Eve}\
+      \min_{(v,v') \in E} \nu(v') &amp; \text{if}\ v \in V_\mathrm{Adam}\
+      \sum_{v' \in V \delta(v)(v') \cdot \nu(v') &amp; \text{if} \in \vertices_{\text{Rand}}    \end{array}\right.
   \end{split}\]</div>
-<p>This operator, defined on the complete lattice <span class="math notranslate nohighlight">\([0,1]^{\vertices}\)</span>
+<p>This operator, defined on the complete lattice <span class="math notranslate nohighlight">\([0,1]^{V\)</span>
 (equipped with the pointwise standard inequality) is
 monotonic. Hence it admits a least fixpoint, which we denote
-<span class="math notranslate nohighlight">\(\lfp(\mathfrak{F})\)</span>.  We show that:</p>
+<span class="math notranslate nohighlight">\(**lfp**\mathfrak{F})\)</span>.  We show that:</p>
 <div class="proof lemma admonition" id="lemma-1">
-<p class="admonition-title"><span class="caption-number">Lemma 196 </span> (NEEDS TITLE AND LABEL)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 197 </span> (NEEDS TITLE AND LABEL)</p>
 <div class="lemma-content section" id="proof-content">
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>\label{6-lem:lfpgeval}
 For every $v$:
@@ -814,9 +755,9 @@ For every $v$:
 </div>
 <div class="math notranslate nohighlight">
 \[
-    \lfp(\mathfrak{F}) (v) \le \sup_\sigma \inf_\tau
-    \probm_{\sigma,\tau}^v(\Reach(\Win)) \le \inf_\tau \sup_\sigma
-    \probm_{\sigma,\tau}^v(\Reach(\Win)) \enspace.
+    **lfp**\mathfrak{F}) (v) \le \sup_\sigma \inf_\tau
+    \probm_{\sigma,\tau}^v(\mathtt{Reach}\textrm{Win}) \le \inf_\tau \sup_\sigma
+    \probm_{\sigma,\tau}^v(\mathtt{Reach}\textrm{Win}) \enspace.
     \]</div>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>\label{6-lem:lfpgeval}
 For every $v$:
@@ -824,9 +765,9 @@ For every $v$:
 </div>
 <div class="math notranslate nohighlight">
 \[
-    \lfp(\mathfrak{F}) (v) \le \sup_\sigma \inf_\tau
-    \probm_{\sigma,\tau}^v(\Reach(\Win)) \le \inf_\tau \sup_\sigma
-    \probm_{\sigma,\tau}^v(\Reach(\Win)) \enspace.
+    **lfp**\mathfrak{F}) (v) \le \sup_\sigma \inf_\tau
+    \probm_{\sigma,\tau}^v(\mathtt{Reach}\textrm{Win}) \le \inf_\tau \sup_\sigma
+    \probm_{\sigma,\tau}^v(\mathtt{Reach}\textrm{Win}) \enspace.
     \]</div>
 </div>
 </div></div>
@@ -834,93 +775,111 @@ For every $v$:
 We first argue for the right inequality:
 \begin{eqnarray*}
 \forall \sigma’ \forall \tau:<br />
-\probm_{\sigma’,\tau}^v(\Reach(\Win)) &amp; \le &amp; \sup_\sigma
-\probm_{\sigma,\tau}^v(\Reach(\Win)) \
+\probm_{\sigma’,\tau}^v(\mathtt{Reach}\textrm{Win}) &amp; \le &amp; \sup_\sigma
+\probm_{\sigma,\tau}^v(\mathtt{Reach}\textrm{Win}) \
 \forall \sigma’\forall \tau :\  \inf_{\tau’}
-\probm_{\sigma’,\tau’}^v(\Reach(\Win)) &amp; \le &amp; \sup_\sigma
-\probm_{\sigma,\tau}^v(\Reach(\Win)) \
+\probm_{\sigma’,\tau’}^v(\mathtt{Reach}\textrm{Win}) &amp; \le &amp; \sup_\sigma
+\probm_{\sigma,\tau}^v(\mathtt{Reach}\textrm{Win}) \
 \forall \tau:\ \sup_{\sigma’} \inf_{\tau’}
-\probm_{\sigma’,\tau’}^v(\Reach(\Win)) &amp; \le &amp; \sup_\sigma
-\probm_{\sigma,\tau}^v(\Reach(\Win)) \
+\probm_{\sigma’,\tau’}^v(\mathtt{Reach}\textrm{Win}) &amp; \le &amp; \sup_\sigma
+\probm_{\sigma,\tau}^v(\mathtt{Reach}\textrm{Win}) \
 \sup_{\sigma’} \inf_{\tau’}
-\probm_{\sigma’,\tau}’^v(\Reach(\Win)) &amp; \le &amp; \inf_{\tau} \sup_\sigma
-\probm_{\sigma,\tau}^v(\Reach(\Win))
+\probm_{\sigma’,\tau}’^v(\mathtt{Reach}\textrm{Win}) &amp; \le &amp; \inf_{\tau} \sup_\sigma
+\probm_{\sigma,\tau}^v(\mathtt{Reach}\textrm{Win})
 \end{eqnarray*}</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>For proving the left inequality, it is sufficient to show that
 $v \mapsto \sup_\sigma \inf_\tau
-\probm_{\sigma,\tau}^v(\Reach(\Win))$ is a fixpoint of
-$\mathfrak{F}$.  Pick $v \in \VE$. 
-                              \begin{eqnarray*}
-  \sup_\sigma \inf_\tau \probm_{\sigma,\tau}^v(\Reach(\Win)) &amp; = &amp;
-  \sup_\sigma \inf_\tau \sum_{v&#39;} \sigma(v)(v&#39;)  \cdot
-  \probm_{\sigma&#39;,\tau&#39;}^{v&#39;}(\Reach(\Win)) \\
-  &amp; &amp; \text{where}\ \sigma&#39;\ \text{and}\ \tau&#39;\ \text{are residual
-    strategies after}\ (v,v&#39;) \\
-  &amp; = &amp; \sup_\sigma \sum_{v&#39;} \sigma(v)(v&#39;)  \cdot \inf_\tau \probm_{\sigma&#39;,\tau&#39;}^{v&#39;}(\Reach(\Win)) \\
-  &amp; &amp; \text{since}\ \tau\ \text{is not concerned by this choice}
-  \\
-  &amp; = &amp; \max_{(v,v&#39;) \in E} \sup_{\sigma\ \text{s.t.}\
-    \sigma(v) = v&#39;} \inf_\tau
-  \probm_{\sigma&#39;,\tau&#39;}^{v&#39;}(\Reach(\Win)) \\
-  &amp; &amp; \text{since deterministic choices are the best} \\
-  &amp; = &amp; \max_{(v,v&#39;) \in E} \sup_{\sigma&#39;} \inf_{\tau&#39;}
-  \probm_{\sigma&#39;,\tau&#39;}^{v&#39;}(\Reach(\Win)) \\
-  &amp; &amp; \text{since the first choice is now fixed} \\
-  &amp; = &amp; \mathfrak{F}(\probm_{\sigma,\tau}^{\bullet}(\Reach(\Win)))(v)
+\probm_{\sigma,\tau}^v(\mathtt{Reach}\textrm{Win})$ is a fixpoint of
+$\mathfrak{F}$.  Pick $v \in V_\mathrm{Eve} 
+</pre></div>
+</div>
+<p>\begin{eqnarray*}
+\sup_\sigma \inf_\tau \probm_{\sigma,\tau}^v(\mathtt{Reach}\textrm{Win}) &amp; = &amp;
+\sup_\sigma \inf_\tau \sum_{v’} \sigma(v)(v’)  \cdot
+\probm_{\sigma’,\tau’}^{v’}(\mathtt{Reach}\textrm{Win}) \
+&amp; &amp; \text{where}\ \sigma’\ \text{and}\ \tau’\ \text{are residual
+strategies after}\ (v,v’) \
+&amp; = &amp; \sup_\sigma \sum_{v’} \sigma(v)(v’)  \cdot \inf_\tau \probm_{\sigma’,\tau’}^{v’}(\mathtt{Reach}\textrm{Win}) \
+&amp; &amp; \text{since}\ \tau\ \text{is not concerned by this choice}
+\
+&amp; = &amp; \max_{(v,v’) \in E} \sup_{\sigma\ \text{s.t.}<br />
+\sigma(v) = v’} \inf_\tau
+\probm_{\sigma’,\tau’}^{v’}(\mathtt{Reach}\textrm{Win}) \
+&amp; &amp; \text{since deterministic choices are the best} \
+&amp; = &amp; \max_{(v,v’) \in E} \sup_{\sigma’} \inf_{\tau’}
+\probm_{\sigma’,\tau’}^{v’}(\mathtt{Reach}\textrm{Win}) \
+&amp; &amp; \text{since the first choice is now fixed} \
+&amp; = &amp; \mathfrak{F}(\probm_{\sigma,\tau}^{\bullet}(\mathtt{Reach}\textrm{Win}))(v)
 \end{eqnarray*}
-where $\probm_{\sigma,\tau}^{\bullet}(\Reach(\Win)))$ is the
-function with associates with vertex $v$ the value
-$\probm_{\sigma,\tau}^{v}(\Reach(\Win)))$.
-                                                     
-Assume now that $v \in \VA$. 
-                                                   \begin{eqnarray*}
-  \sup_\sigma \inf_\tau \probm_{\sigma,\tau}^v(\Reach(\Win)) &amp; = &amp;
+where <span class="math notranslate nohighlight">\(\probm_{\sigma,\tau}^{\bullet}(\mathtt{Reach}\textrm{Win}))\)</span> is the
+function with associates with vertex <span class="math notranslate nohighlight">\(v\)</span> the value
+<span class="math notranslate nohighlight">\(\probm_{\sigma,\tau}^{v}(\mathtt{Reach}\textrm{Win}))\)</span>.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Assume now that $v \in V_\mathrm{Adam} 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{eqnarray*}
+  \sup_\sigma \inf_\tau \probm_{\sigma,\tau}^v(\mathtt{Reach}\textrm{Win}) &amp; = &amp;
   \sup_\sigma \inf_\tau \sum_{v&#39;} \tau(v)(v&#39;)
-  \cdot \probm_{\sigma&#39;,\tau&#39;}^{v&#39;}(\Reach(\Win)) \\
+  \cdot \probm_{\sigma&#39;,\tau&#39;}^{v&#39;}(\mathtt{Reach}\textrm{Win}) \\
   &amp; &amp; \text{where}\ \sigma&#39;\ \text{and}\ \tau&#39;\ \text{are residual
     strategies after}\ (v,v&#39;) \\
   &amp; = &amp; \sup_\sigma \min_{(v,v&#39;) \in E} \inf_{\tau\
     \text{s.t.}\ \tau(v) = v&#39;} 
-   \probm_{\sigma&#39;,\tau&#39;}^{v&#39;}(\Reach(\Win)) \\
+   \probm_{\sigma&#39;,\tau&#39;}^{v&#39;}(\mathtt{Reach}\textrm{Win}) \\
   &amp; &amp; \text{since deterministic choices are the best} \\
   &amp; = &amp; \min_{(v,v&#39;) \in E}  \sup_{\sigma&#39;} \inf_{\tau\
-    \text{s.t.}\ \tau(v) = v&#39;} \probm_{\sigma&#39;,\tau&#39;}^{v&#39;}(\Reach(\Win)) \\
+    \text{s.t.}\ \tau(v) = v&#39;} \probm_{\sigma&#39;,\tau&#39;}^{v&#39;}(\mathtt{Reach}\textrm{Win}) \\
   &amp; &amp; \text{since}\ \sigma\ \text{is not concerned with the first
     choice} \\
-  &amp; = &amp; \mathfrak{F}(\probm_{\sigma,\tau}^{\bullet}(\Reach(\Win)))(v)
+  &amp; = &amp; \mathfrak{F}(\probm_{\sigma,\tau}^{\bullet}(\mathtt{Reach}\textrm{Win}))(v)
 \end{eqnarray*}
 
-Finally, let  $v \in \Randomvertices$. 
+Finally, let  $v \in \vertices_{\text{Rand}}. 
 \begin{eqnarray*}
-  \sup_\sigma \inf_\tau \probm_{\sigma,\tau}^v(\Reach(\Win)) &amp; = &amp; \sum_{v&#39;} \delta(v)(v&#39;) \cdot \sup_{\sigma&#39;} \inf_{\tau&#39;} \probm_{\sigma&#39;,\tau&#39;}^{v&#39;}(\Reach(\Win))\\
+  \sup_\sigma \inf_\tau \probm_{\sigma,\tau}^v(\mathtt{Reach}\textrm{Win}) &amp; = &amp; \sum_{v&#39;} \delta(v)(v&#39;) \cdot \sup_{\sigma&#39;} \inf_{\tau&#39;} \probm_{\sigma&#39;,\tau&#39;}^{v&#39;}(\mathtt{Reach}\textrm{Win})\\
         &amp; &amp; \text{where}\ \sigma&#39;\ \text{and}\ \tau&#39;\ \text{are residual
             strategies after}\ (v,v&#39;) \\
-  &amp; = &amp; \mathfrak{F}(\probm_{\sigma,\tau}^{\bullet}(\Reach(\Win)))(v)
+  &amp; = &amp; \mathfrak{F}(\probm_{\sigma,\tau}^{\bullet}(\mathtt{Reach}\textrm{Win}))(v)
 \end{eqnarray*}
-This concludes the proof.    
+This concludes the proof.
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
   
 ````{prf:lemma} NEEDS TITLE AND LABEL 
     \label{6-lem:lfpleval}
-    For every $v \in \vertices$:
+    For every $v \in V:
     
 
 $$
-    \lfp(\mathfrak{F})(v) \ge \inf_\tau \sup_\sigma
-    \probm_{\sigma,\tau}^v(\Reach(\Win)) \enspace.
+    **lfp**\mathfrak{F})(v) \ge \inf_\tau \sup_\sigma
+    \probm_{\sigma,\tau}^v(\mathtt{Reach}\textrm{Win}) \enspace.
     $$
 
    
 
     \label{6-lem:lfpleval}
-    For every $v \in \vertices$:
+    For every $v \in V:
     
 
 $$
-    \lfp(\mathfrak{F})(v) \ge \inf_\tau \sup_\sigma
-    \probm_{\sigma,\tau}^v(\Reach(\Win)) \enspace.
+    **lfp**\mathfrak{F})(v) \ge \inf_\tau \sup_\sigma
+    \probm_{\sigma,\tau}^v(\mathtt{Reach}\textrm{Win}) \enspace.
     $$
 
   
@@ -928,24 +887,24 @@ $$
 </div>
 <div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Let $v \in \VA$. Since $\lfp(\mathfrak{F})$ is a fixpoint of
-$\mathfrak{F}$, and because the arena is finitely branching, there exists $v&#39;\in \vertices$ such
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Let $v \in V_\mathrm{Adam} Since $**lfp**\mathfrak{F})$ is a fixpoint of
+$\mathfrak{F}$, and because the arena is finitely branching, there exists $v&#39;\in V such
 that $(v,v&#39;) \in E$ and:
 </pre></div>
 </div>
 <div class="math notranslate nohighlight">
 \[
-      \lfp(\mathfrak{F})(v) = \lfp(\mathfrak{F})(v') \enspace.
+      **lfp**\mathfrak{F})(v) = **lfp**\mathfrak{F})(v') \enspace.
     \]</div>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>We define $\tau^*$ the MD strategy, that selects for every
-$v\in \VA$ such a vertex $v&#39;$, and we show now that for every
-$v \in \vertices$:
+$v\in V_\mathrm{Adam}such a vertex $v&#39;$, and we show now that for every
+$v \in V:
 </pre></div>
 </div>
 <div class="math notranslate nohighlight">
 \[
-    \lfp(\mathfrak{F})(v) = \sup_\sigma
-    \probm_{\sigma,\tau^*}^v(\Reach(\Win)) \enspace.
+    **lfp**\mathfrak{F})(v) = \sup_\sigma
+    \probm_{\sigma,\tau^*}^v(\mathtt{Reach}\textrm{Win}) \enspace.
     \]</div>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>When $\tau^*$ is fixed, the game becomes a finite Markov decision
 process $\game_{\tau^*}$ (in that MDP, the random vertices are
@@ -957,26 +916,26 @@ for every $v \in V$:
 </div>
 <div class="math notranslate nohighlight">
 \[
-    \probm_{\sigma^*,\tau^*}^v(\Reach(\Win)) = \sup_\sigma
-    \probm_{\sigma,\tau^*}^v(\Reach(\Win)) \enspace.
+    \probm_{\sigma^*,\tau^*}^v(\mathtt{Reach}\textrm{Win}) = \sup_\sigma
+    \probm_{\sigma,\tau^*}^v(\mathtt{Reach}\textrm{Win}) \enspace.
     \]</div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Furthermore, $\probm_{\sigma^*,\tau^*}^\bullet(\Reach(\Win))$ is
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Furthermore, $\probm_{\sigma^*,\tau^*}^\bullet(\mathtt{Reach}\textrm{Win})$ is
 the least fixpoint of the Bellman equations for the MDP
 $\game_{\tau^*}$ (see~\ref{5-eq:Bellman}).
 
-It remains to observe that $\lfp(\mathfrak{F})$ satisfies the
+It remains to observe that $**lfp**\mathfrak{F})$ satisfies the
 Bellman equations of the MDP under $\tau^*$: this is true from
 \Eve vertices since equations at those vertices are the same in
-the game and in the MDP; this is true from \Adam vertices by local
+the game and in the MDP; this is true from \textrm{Adam}vertices by local
 optimality of $\tau^*$. Hence we deduce that
 </pre></div>
 </div>
 <div class="math notranslate nohighlight">
 \[
-      \lfp(\mathfrak{F}) \ge
-      \probm_{\sigma^*,\tau^*}^\bullet(\Reach(\Win)) = \sup_\sigma
-      \probm_{\sigma,\tau^*}^\bullet(\Reach(\Win)) \ge \inf_\tau
-      \sup_\sigma \probm_{\sigma,\tau}^\bullet(\Reach(\Win)) \enspace.
+      **lfp**\mathfrak{F}) \ge
+      \probm_{\sigma^*,\tau^*}^\bullet(\mathtt{Reach}\textrm{Win}) = \sup_\sigma
+      \probm_{\sigma,\tau^*}^\bullet(\mathtt{Reach}\textrm{Win}) \ge \inf_\tau
+      \sup_\sigma \probm_{\sigma,\tau}^\bullet(\mathtt{Reach}\textrm{Win}) \enspace.
     \]</div>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>This concludes the proof of the lemma. 
 </pre></div>
@@ -985,31 +944,31 @@ optimality of $\tau^*$. Hence we deduce that
 <p>By Lemma~\ref{6-lem:lfpgeval} and~\ref{6-lem:lfpleval}  we derive that:</p>
 <div class="math notranslate nohighlight">
 \[
-   \lfp(\mathfrak{F}) =
+   **lfp**\mathfrak{F}) =
    \sup_\sigma \inf_\tau 
-    \probm_{\sigma,\tau}^\bullet(\Reach(\Win)) =  \inf_\tau \sup_\sigma
-   \probm_{\sigma,\tau}^\bullet(\Reach(\Win)) = 
-   \probm_{\sigma^*,\tau^*}^\bullet(\Reach(\Win)) \enspace.
+    \probm_{\sigma,\tau}^\bullet(\mathtt{Reach}\textrm{Win}) =  \inf_\tau \sup_\sigma
+   \probm_{\sigma,\tau}^\bullet(\mathtt{Reach}\textrm{Win}) = 
+   \probm_{\sigma^*,\tau^*}^\bullet(\mathtt{Reach}\textrm{Win}) \enspace.
   \]</div>
-<p>This proves that <span class="math notranslate nohighlight">\(\game\)</span> is pure memoryless determined, and that
-<span class="math notranslate nohighlight">\((\sigma^*,\tau^*)\)</span> is an optimal pure positional strategy profile.</p>
+<p>This proves that <span class="math notranslate nohighlight">\(\mathcal{G} is pure memoryless determined, and that
+  \)</span>(\sigma^<em>,\tau^</em>)$ is an optimal pure positional strategy profile.</p>
 <p>\end{proof}</p>
 <p>The proof of Theorem~\ref{6-thm:determinacy} yields an algorithm to
 compute the value of a stochastic game with reachability
-objective. Indeed, because the value in every vertex <span class="math notranslate nohighlight">\(v \in \vertices\)</span>
-agrees with <span class="math notranslate nohighlight">\(\lfp(\mathfrak{F})(v)\)</span>, it suffices to compute
-iteratively approximations of the fixpoint <span class="math notranslate nohighlight">\(\lfp(\mathfrak{F})\)</span>.  This
+objective. Indeed, because the value in every vertex <span class="math notranslate nohighlight">\(v \in V
+agrees with \)</span><strong>lfp</strong>\mathfrak{F})(v)<span class="math notranslate nohighlight">\(, it suffices to compute
+iteratively approximations of the fixpoint \)</span><strong>lfp</strong>\mathfrak{F})$.  This
 provides the first value iteration algorithm for general stochastic
 reachability games.</p>
 <p>Historically this result was proven in the restricted framework of
-stopping games. The stochastic game <span class="math notranslate nohighlight">\(\game = (\arena,\Omega)\)</span> is said
-stopping whenever the arena <span class="math notranslate nohighlight">\(\arena\)</span> has two distinguished sink
-vertices <span class="math notranslate nohighlight">\(\vwin\)</span> and <span class="math notranslate nohighlight">\(\vlose\)</span>, and for all strategies <span class="math notranslate nohighlight">\(\sigma\)</span> and
-<span class="math notranslate nohighlight">\(\tau\)</span>, for every vertex <span class="math notranslate nohighlight">\(v\)</span>,
-<span class="math notranslate nohighlight">\(\probm_{\sigma,\tau}^{\arena,v}(\Reach(\{\vwin,\vlose\})) =
-1\)</span>. Whenever the game is stopping, <span class="math notranslate nohighlight">\(\mathfrak{F}\)</span> has a unique
+stopping games. The stochastic game <span class="math notranslate nohighlight">\(\mathcal{G}= (\mathcal{A}\Omega)\)</span> is said
+stopping whenever the arena <span class="math notranslate nohighlight">\(\mathcal{A} has two distinguished sink
+vertices \)</span>\ensuremath{v_{\textsc{win}}} and <span class="math notranslate nohighlight">\(\ensuremath{v_{\textsc{lose}}}, and for all strategies \)</span>\sigma<span class="math notranslate nohighlight">\( and
+\)</span>\tau<span class="math notranslate nohighlight">\(, for every vertex \)</span>v<span class="math notranslate nohighlight">\(,
+\)</span>\probm_{\sigma,\tau}^{\mathcal{A}v}(\mathtt{Reach}{\ensuremath{v_{\textsc{win}}}\ensuremath{v_{\textsc{lose}}}})) =
+1<span class="math notranslate nohighlight">\(. Whenever the game is stopping, \)</span>\mathfrak{F}$ has a unique
 fixpoint, hence the value iteration algorithm can be applied from any
-initial tuple of values.%   (see CHJ-soda04). Check whether it is a byproduct of reductions.}</p>
+initial tuple of values.</p>
 <p>Notice that the proof of Theorem~\ref{6-thm:determinacy} and the value
 iteration algorithm which derives from it do not assume that the game
 is stopping, nor that distributions are uniform.</p>

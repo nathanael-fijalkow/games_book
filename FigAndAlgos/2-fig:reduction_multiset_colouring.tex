@@ -1,0 +1,43 @@
+\documentclass[preview,border=0mm,convert={density=600,outext=.png}]{standalone}
+\usepackage{amsfonts,amssymb,amsmath}
+\usepackage{tikz}
+\usetikzlibrary{automata,shapes,patterns,calc,arrows}
+\input{../tikz-style.tex}
+\input{../norenew_macros.tex}
+\input{./../2_Regular/norenew_macros_local.tex}
+\begin{document}
+\begin{tikzpicture}[scale=1.3]
+    \node (u1) at (0,.7) {};
+    \node (u2) at (0,.05) {};
+    \node (u3) at (0,-.7) {};
+    \node[s-eve] (v) at (1.3,0)   {$\begin{array}{c} v \\ \set{c_1,c_2} \end{array}$};
+    \node (w1) at (2.6,.7) {};
+    \node (w2) at (2.6,.05) {};
+    \node (w3) at (2.6,-.7) {};
+	\node        (t)  at (3.6,0)   {\Large becomes}; 
+	
+    \node (u1b) at (4.7,.7) {};
+    \node (u2b) at (4.7,.05) {};
+    \node (u3b) at (4.7,-.7) {};
+    \node[s-eve] (v1) at (6,0) {$\begin{array}{c} v_1 \\ c_1 \end{array}$};
+    \node[s-eve] (v2) at (7.5,0) {$\begin{array}{c} v_2 \\ c_2 \end{array}$};
+    \node (w1b) at (8.8,.7) {};
+    \node (w2b) at (8.8,.05) {};
+    \node (w3b) at (8.8,-.7) {};
+    
+    \path[arrow]
+      (u1) edge (v)
+      (u2) edge (v)
+      (u3) edge (v)
+      (v) edge (w1)
+      (v) edge (w2)
+      (v) edge (w3)
+      (v1) edge (v2)
+      (u1b) edge (v1)
+      (u2b) edge (v1)
+      (u3b) edge (v1)
+      (v2) edge (w1b)
+      (v2) edge (w2b)
+      (v2) edge (w3b);
+  \end{tikzpicture}
+\end{document}

@@ -1,0 +1,30 @@
+\documentclass[preview,border=0mm,convert={density=600,outext=.png}]{standalone}
+\usepackage{amsfonts,amssymb,amsmath}
+\usepackage{tikz}
+\usetikzlibrary{automata,shapes,patterns,calc,arrows}
+\input{../tikz-style.tex}
+\input{../norenew_macros.tex}
+\input{./../3_Parity/norenew_macros_local.tex}
+\begin{document}
+\begin{tikzpicture}
+    \begin{scope}
+      
+      \draw[clip,use as bounding box] (0,0) ellipse (2cm and 1.2cm);
+      
+      \draw[dgrey] (0,0) ellipse (2cm and 1.2cm);
+      
+      \draw[white] (-2,0) ellipse (2.9cm and 2.5cm);
+      
+      \draw[lgrey] (-2,0) ellipse (1.5cm and 1.3cm);
+      
+      \draw[hatcharea,hatchspread=6pt] (-2,0) ellipse (2.1cm and 1.7cm);
+      
+      \draw (0,0) ellipse (2cm and 1.2cm);
+    \end{scope}
+    \path[arrow]
+      (2.2,1.6) node[] {$[1,d]^\omega \setminus$ \textsf{Parity}} edge (1.5,.3)
+      (0,1.6) node[] {\textsf{Parity}} edge (.4,.5)
+      (-2,1.6) node[] {\textsf{Parity}$_{|n}$} edge (-1.4,.2)
+      (-1.5,-1.5) node[below,anchor=base] {$L(\Automaton)$} edge (-.4,-.6);
+  \end{tikzpicture}
+\end{document}

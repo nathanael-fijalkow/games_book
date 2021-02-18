@@ -705,7 +705,15 @@
   <div class="section" id="positive-and-almost-sure-reachability-and-safety-in-mdps">
 <span id="sec-reachability"></span><h1>Positive and almost-sure reachability and safety in MDPs<a class="headerlink" href="#positive-and-almost-sure-reachability-and-safety-in-mdps" title="Permalink to this headline">¶</a></h1>
 <div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}\newcommand{\expv}{\mathbb{E}} \newcommand{\discProbDist}{f} \newcommand{\sampleSpace}{S} \newcommand{\sigmaAlg}{\mathcal{F}} \newcommand{\probm}{\mathbb{P}} \newcommand{\rvar}{X} \\\newcommand{\actions}{A} \newcommand{\colouring}{c} \newcommand{\probTranFunc}{\Delta} \newcommand{\edges}{E} \newcommand{\colours}{C} \newcommand{\mdp}{\mathcal{M}} \newcommand{\vinit}{v_0} \newcommand{\cylProb}{p} \newcommand{\emptyPlay}{\epsilon} \newcommand{\objective}{\Omega} \newcommand{\genColour}{\textsc{c}} \newcommand{\quantObj}{f} \newcommand{\quantObjExt}{\bar{\quantObj}} \newcommand{\indicator}[1]{\mathbf{1}_{#1}} \newcommand{\eps}{\varepsilon} \newcommand{\maxc}{\max_{\colouring}} 
+\[\newcommand{\probm}{\mathbb{P}}
+\newcommand{\actions}{A}
+\newcommand{\colouring}{c}
+\newcommand{\probTranFunc}{\Delta}
+\newcommand{\edges}{E}
+\newcommand{\colours}{C}
+\newcommand{\mdp}{\mathcal{M}}
+\newcommand{\emptyPlay}{\epsilon}
+\newcommand{\genColour}{\textsc{c}}
 \newcommand{\winPos}{W_{&gt;0}}
 \newcommand{\winAS}{W_{=1}}
 \newcommand{\cylinder}{\mathit{Cyl}}
@@ -714,135 +722,66 @@
 \newcommand{\PreOPPos}{\mathcal{P}_{&gt;0}}
 \newcommand{\OPAS}{\mathcal{P}_{=1}}
 \newcommand{\safeOP}{\mathit{Safe_{=1}}}
-\newcommand{\closed}{\mathit{Cl}}\\\newcommand{\reachOP}{\mathcal{V}}
-\newcommand{\discOP}{\mathcal{D}}
-\newcommand{\valsigma}{\vec{x}^{\sigma}}
-\newcommand{\lp}{\mathcal{L}}
-\newcommand{\lpdisc}{\lp_{\mathit{disc}}}
-\newcommand{\lpreach}{\lp_{\mathit{reach}}}
-\newcommand{\lpmp}{\lp_{\mathit{mp}}}
-\newcommand{\lpsol}[1]{\bar{\vec{#1}}}
-\newcommand{\lpsolg}[1]{\bar{#1}}
-\newcommand{\lpmpdual}{\lpmp^{\mathit{dual}}}
-\newcommand{\actevent}[3]{\actions^{#1}_{#2,#3}} 
-\newcommand{\MeanPayoffSup}{\MeanPayoff^{\;+}}
-\newcommand{\MeanPayoffInf}{\MeanPayoff^{\;-}}
-\newcommand{\mcprob}{P}
-\newcommand{\invdist}{\vec{z}}
-\newcommand{\hittime}{T}
-\newcommand{\playPay}{\textsf{p-Payoff}}
-\newcommand{\stepPay}{\textsf{s-Payoff}}
-\newcommand{\Pay}{\textsf{Payoff}}
-\newcommand{\mec}{M}
-\newcommand{\OPS}{\mathcal{S}_{=1}}
-\newcommand{\smallmp}{\mathit{mp}}
-\newcommand{\vgood}{v_{\mathit{good}}}
-\newcommand{\vbad}{v_{\mathit{bad}}}
-\newcommand{\finact}{fin}
-\newcommand{\mecs}{\mathit{MEC}}
-\newcommand{\slice}[2]{#1_{#2-}}
-\newcommand{\ReachOp}{\mathcal{R}}
-\newcommand{\dPayoffStep}[1]{\DiscountedPayoff^{\;(#1)}}
-\newcommand{\solvset}{S}
-\newcommand{\Eve}{\textrm{Eve}}
-\newcommand{\Adam}{\textrm{Adam}}
-\newcommand{\set}[1]{\left\{ #1 \right\}}
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
-\newcommand{\argmax}{\textrm{argmax}}
-\newcommand{\argmin}{\textrm{argmin}}
-\newcommand{\Op}{\mathbb{O}}
-\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\textrm{supp}} 
-\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
-\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
-\newcommand{\mEve}{\mathrm{Eve}}
-\newcommand{\mAdam}{\mathrm{Adam}}
-\newcommand{\mRandom}{\mathrm{Random}}
-\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
-\newcommand{\ing}{\textrm{In}}
-\newcommand{\Ing}{\ing}
-\newcommand{\out}{\textrm{Out}}
-\newcommand{\Out}{\out}
-\newcommand{\dest}{\Delta} 
-\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
-\newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
-\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
-\newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\newcommand{\Win}{\textrm{Win}} 
-\newcommand{\Lose}{\textrm{Lose}} 
-\newcommand{\Value}{\textrm{val}} 
-\newcommand{\ValueE}{\textrm{val}_\mEve} 
-\newcommand{\ValueA}{\textrm{val}_\mAdam}
-\newcommand{\val}{\Value} 
-\newcommand{\Automaton}{\mathbf{A}} 
+\newcommand{\closed}{\mathit{Cl}}
+\newcommand{\dist}{\mathcal{D}}
+\newcommand{\vertices}{V}
+\newcommand{\play}{\pi}
+\newcommand{\last}{\textrm{last}}
+\newcommand{\rank}{\textrm{rank}}
+\newcommand{\Win}{\textrm{Win}}
 \newcommand{\Safe}{\mathtt{Safe}}
-\newcommand{\Reach}{\mathtt{Reach}} 
-\newcommand{\Buchi}{\mathtt{Buchi}} 
-\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
-\newcommand{\Parity}{\mathtt{Parity}} 
-\newcommand{\Muller}{\mathtt{Muller}} 
-\newcommand{\Rabin}{\mathtt{Rabin}} 
-\newcommand{\Streett}{\mathtt{Streett}} 
-\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
-\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
-\newcommand{\Energy}{\mathtt{Energy}}
-\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
-\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
-\newcommand{\Sup}{\mathtt{Sup}}
-\newcommand{\Inf}{\mathtt{Inf}}
-\newcommand{\LimSup}{\mathtt{LimSup}}
-\newcommand{\LimInf}{\mathtt{LimInf}}
-\newcommand{\NL}{\textrm{NL}}
-\newcommand{\PTIME}{\textrm{PTIME}}
-\newcommand{\NP}{\textrm{NP}}
-\newcommand{\UP}{\textrm{UP}}
-\newcommand{\coNP}{\textrm{coNP}}
-\newcommand{\coUP}{\textrm{coUP}}
-\newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
-\newcommand{\EXP}{\textrm{EXP}}
-\newcommand{\kEXP}{\textrm{kEXP}}
-```%objective: reachability. % computing optimal reachability values and strategies can be reduced to optimizing % opposed to the game case, where reachability games can be solved in polynomial % Hence, in this section % reachability problems. 
-% see, actually \P-complete), they can be efficiently solved by specific 
-&gt; **Positive reachability**\\  
-Analogously to classical games (cf. Chapter {ref}`2-chap:regular`), we define a one-step **positive 
-probability** predecessor 
-operator, $\PrePos$,
-as follows: for $U\subseteq \vertices$ we put\\\begin{split}\begin{align*}
-\PrePos(U) &amp;= \{v \in \vertices \mid \exists a \in \actions, \exists u \in U: 
-\probTranFunc(u\mid v,a)&gt;0 \}.\\%\vertices: \probTranFunc(t\mid v,a)&gt;0 \Rightarrow t \in U \}.
-\end{align*}
-%\PrePos(Y)$ if $X\subseteq Y$, while $\PreAS$ is **antitone,** i.e.  \end{split}\\We also define an operator $\PreOPPos$ s.t. for each $X\subseteq\vertices$ we have\\$$
-\PreOPPos(X) = X\cup \PrePos(X).
-$$\\It is easy to see that $\PreOPPos$ is a classical 
-reachability operator in the underlying graph of the MDP, i.e. denoting $X_0 = 
-X$ and $X_i = \PreOPPos(X_{i-1})$, we get that $X_i$ is exactly the set of 
-vertices from which a vertex of $X$ is reachable via a finite play of length at 
-most $i$. It follows that iterating $\PreOPPos$ on any initial set reaches a 
-fixed point in at most $n-1$ steps, where $n=|\vertices|$.\\We have the following simple characterization of the positively winning set:\\````{prf:theorem} Characterisation of the positively winning set
-:label: 5-thm:positive-char\\For each vertex $v$, the following conditions are equivalent:\\1.  The vertex $v$ belongs to $\winPos(\mdp,\Reach(\genColour))$.\\2.  There 
-exists a (possibly empty) finite play from $v$ to a vertex of colour $\genColour$.\\3.  The vertex $v$ 
-belongs to the fixed point of the iteration $\vertices_\genColour, 
-\PreOPPos(\vertices_\genColour),\PreOPPos^2(\vertices_\genColour),\cdots$.\\Moreover, there exists a memoryless deterministic strategy that is positively 
-winning from each vertex in $\winPos(\mdp,\Reach(\genColour))$.
-\end{aligned}\end{align} \]</div>
-<div class="dropdown tip admonition">
+\newcommand{\Reach}{\mathtt{Reach}}
+\newcommand{\NL}{\textrm{NL}}\]</div>
+<blockquote>
+<div><p><strong>Positive reachability</strong></p>
+</div></blockquote>
+<p>Analogously to classical games (cf. Chapter <a class="reference internal" href="../2_Regular/index.html#chap-regular"><span class="std std-ref">Regular Games</span></a>), we define a one-step <strong>positive
+probability</strong> predecessor
+operator, <span class="math notranslate nohighlight">\(\text{Pre}_{&gt;0},
+as follows: for \)</span>U\subseteq V we put</p>
+<p>\begin{align*}
+\text{Pre}_{&gt;0}U) &amp;= {v \in V\mid \exists a \in A \exists u \in U:
+\Deltau\mid v,a)&gt;0 }.\</p>
+<p>\end{align*}</p>
+<p>We also define an operator <span class="math notranslate nohighlight">\(\mathcal{P}_{&gt;0} s.t. for each \)</span>X\subseteqV we have</p>
+<div class="math notranslate nohighlight">
+\[
+\mathcal{P}_{&gt;0}X) = X\cup \text{Pre}_{&gt;0}X).
+\]</div>
+<p>It is easy to see that <span class="math notranslate nohighlight">\(\mathcal{P}_{&gt;0} is a classical 
+reachability operator in the underlying graph of the MDP, i.e. denoting \)</span>X_0 =
+X<span class="math notranslate nohighlight">\( and \)</span>X_i = \mathcal{P}<em>{&gt;0}X</em>{i-1})<span class="math notranslate nohighlight">\(, we get that \)</span>X_i<span class="math notranslate nohighlight">\( is exactly the set of 
+vertices from which a vertex of \)</span>X<span class="math notranslate nohighlight">\( is reachable via a finite play of length at 
+most \)</span>i<span class="math notranslate nohighlight">\(. It follows that iterating \)</span>\mathcal{P}_{&gt;0} on any initial set reaches a
+fixed point in at most <span class="math notranslate nohighlight">\(n-1\)</span> steps, where <span class="math notranslate nohighlight">\(n=|V\)</span>.</p>
+<p>We have the following simple characterization of the positively winning set:</p>
+<div class="proof theorem admonition" id="5-thm:positive-char">
+<p class="admonition-title"><span class="caption-number">Theorem 134 </span> (Characterisation of the positively winning set)</p>
+<div class="theorem-content section" id="proof-content">
+<p>For each vertex <span class="math notranslate nohighlight">\(v\)</span>, the following conditions are equivalent:</p>
+<ol class="simple">
+<li><p>The vertex <span class="math notranslate nohighlight">\(v\)</span> belongs to <span class="math notranslate nohighlight">\(W_{&gt;0}\mathcal{M}\mathtt{Reach}\textsc{c})\)</span>.</p></li>
+<li><p>There
+exists a (possibly empty) finite play from <span class="math notranslate nohighlight">\(v\)</span> to a vertex of colour $\textsc{c}.</p></li>
+<li><p>The vertex <span class="math notranslate nohighlight">\(v\)</span>
+belongs to the fixed point of the iteration <span class="math notranslate nohighlight">\(\vertices_\textsc{c} 
+\mathcal{P}_{&gt;0}\vertices_\textsc{c},\mathcal{P}_{&gt;0}2(\vertices_\textsc{c},\cdots\)</span>.</p></li>
+</ol>
+<p>Moreover, there exists a memoryless deterministic strategy that is positively
+winning from each vertex in <span class="math notranslate nohighlight">\(W_{&gt;0}\mathcal{M}\mathtt{Reach}\textsc{c})\)</span>.</p>
+</div>
+</div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
-<p><span class="math notranslate nohighlight">\((1)\Rightarrow(2)\)</span>: We have that <span class="math notranslate nohighlight">\(\Reach(\genColour) = \cup_{\play \in X} 
-\cylinder(\pi)\)</span>, where <span class="math notranslate nohighlight">\(X\)</span> is the set of all finite plays ending in a vertex of
-colour <span class="math notranslate nohighlight">\(\genColour\)</span> and <span class="math notranslate nohighlight">\(\cylinder(\pi)\)</span> is the basic cylinder determined by
-<span class="math notranslate nohighlight">\(\pi\)</span>. Since <span class="math notranslate nohighlight">\(X\)</span> is a countable set, from the property (3.) of a probability
-measure it follows that <span class="math notranslate nohighlight">\(\probm^\sigma_{\mdp,v}(\Reach(\genColour))&gt;0\)</span> if and
-only if there exists <span class="math notranslate nohighlight">\(\play\in X\)</span> with
-<span class="math notranslate nohighlight">\(\probm^\sigma_{\mdp,v}(\cylinder(\play))&gt;0\)</span>. For the latter to hold, it must
-be that either <span class="math notranslate nohighlight">\(\play=\emptyPlay\)</span>, in which case <span class="math notranslate nohighlight">\(\colours(v)=\genColour\)</span>, or
-<span class="math notranslate nohighlight">\(\play\)</span> is a non-empty play initiated in <span class="math notranslate nohighlight">\(v\)</span> and reaching a colour
-<span class="math notranslate nohighlight">\(\genColour\)</span>, as required.</p>
+<p><span class="math notranslate nohighlight">\((1)\Rightarrow(2)\)</span>: We have that <span class="math notranslate nohighlight">\(\mathtt{Reach}\textsc{c} = \cup_{\pi\in X} 
+\mathit{Cyl}\pi)\)</span>, where <span class="math notranslate nohighlight">\(X\)</span> is the set of all finite plays ending in a vertex of
+colour <span class="math notranslate nohighlight">\(\textsc{c} and \)</span>\mathit{Cyl}\pi)<span class="math notranslate nohighlight">\( is the basic cylinder determined by 
+\)</span>\pi<span class="math notranslate nohighlight">\(. Since \)</span>X<span class="math notranslate nohighlight">\( is a countable set, from the property (3.) of a probability 
+measure it follows that \)</span>\mathbb{P}\sigma_{\mathcal{M}v}(\mathtt{Reach}\textsc{c})&gt;0<span class="math notranslate nohighlight">\( if and 
+only if there exists \)</span>\piin X<span class="math notranslate nohighlight">\( with 
+\)</span>\mathbb{P}\sigma_{\mathcal{M}v}(\mathit{Cyl}\pi)&gt;0<span class="math notranslate nohighlight">\(. For the latter to hold, it must 
+be that either \)</span>\pi\epsilon, in which case <span class="math notranslate nohighlight">\(Cv)=\textsc{c}, or 
+\)</span>\pi is a non-empty play initiated in <span class="math notranslate nohighlight">\(v\)</span> and reaching a colour
+$\textsc{c}, as required.</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Arguments of this style are said to invoke a union bound.</p>
@@ -850,118 +789,125 @@ be that either <span class="math notranslate nohighlight">\(\play=\emptyPlay\)</
 <p><span class="math notranslate nohighlight">\((2)\Rightarrow(3)\)</span>:
 This is straightforward.</p>
 <p><span class="math notranslate nohighlight">\((3)\Rightarrow (1)\)</span>:
-For a vertex <span class="math notranslate nohighlight">\(v\)</span>, let <span class="math notranslate nohighlight">\(\rank(v)\)</span> be the smallest <span class="math notranslate nohighlight">\(i\)</span> such that <span class="math notranslate nohighlight">\(v \in 
-\PreOPPos^i(\vertices_\genColour)\)</span> (if no such <span class="math notranslate nohighlight">\(i\)</span> exists, then
-<span class="math notranslate nohighlight">\(\rank(v)=\infty\)</span>). For each <span class="math notranslate nohighlight">\(v\)</span> with a positive rank there exists an action
-<span class="math notranslate nohighlight">\(a_v\)</span> and vertex <span class="math notranslate nohighlight">\(u_v\)</span> such that <span class="math notranslate nohighlight">\(\probTranFunc(u_v\mid v,a_v)&gt;0\)</span> and
-<span class="math notranslate nohighlight">\(\rank(u_v)&lt; \rank(v)\)</span>. Consider any MD strategy <span class="math notranslate nohighlight">\(  \sigma \)</span> with the following property:
+For a vertex <span class="math notranslate nohighlight">\(v\)</span>, let <span class="math notranslate nohighlight">\(\textrm{rank}v)\)</span> be the smallest <span class="math notranslate nohighlight">\(i\)</span> such that <span class="math notranslate nohighlight">\(v \in 
+\mathcal{P}_{&gt;0}i(\vertices_\textsc{c}\)</span> (if no such <span class="math notranslate nohighlight">\(i\)</span> exists, then
+<span class="math notranslate nohighlight">\(\textrm{rank}v)=\infty\)</span>). For each <span class="math notranslate nohighlight">\(v\)</span> with a positive rank there exists an action
+<span class="math notranslate nohighlight">\(a_v\)</span> and vertex <span class="math notranslate nohighlight">\(u_v\)</span> such that <span class="math notranslate nohighlight">\(\Deltau_v\mid v,a_v)&gt;0\)</span> and
+<span class="math notranslate nohighlight">\(\textrm{rank}u_v)&lt; \textrm{rank}v)\)</span>. Consider any MD strategy <span class="math notranslate nohighlight">\(  \sigma \)</span> with the following property:
 in each vertex of
-<span class="math notranslate nohighlight">\(\winPos(\mdp,\Reach(\genColour))\setminus \vertices_{\genColour}\)</span>, <span class="math notranslate nohighlight">\( \sigma \)</span> selects the
+<span class="math notranslate nohighlight">\(W_{&gt;0}\mathcal{M}\mathtt{Reach}\textsc{c})\setminus \vertices_{\textsc{c}\)</span>, <span class="math notranslate nohighlight">\( \sigma \)</span> selects the
 action <span class="math notranslate nohighlight">\(a_v\)</span> defined above with probability 1. A straightforward induction on the rank shows that such a <span class="math notranslate nohighlight">\( \sigma \)</span> is positively winning from each vertex of
-<span class="math notranslate nohighlight">\(\winPos(\mdp,\Reach(\genColour))\)</span>. This also proves the last part
+<span class="math notranslate nohighlight">\(W_{&gt;0}\mathcal{M}\mathtt{Reach}\textsc{c})\)</span>. This also proves the last part
 of the lemma.</p>
 </div>
 <p>As for complexity, we can focus on the problem of determining whether a given
-vertex belongs to <span class="math notranslate nohighlight">\(\winPos(\mdp,\Reach(\genColour))\)</span>.</p>
+vertex belongs to <span class="math notranslate nohighlight">\(W_{&gt;0}\mathcal{M}\mathtt{Reach}\textsc{c})\)</span>.</p>
 <div class="proof corollary admonition" id="5-cor:pos-complexity">
-<p class="admonition-title"><span class="caption-number">Corollary 134 </span> (Complexity of deciding positive reachability)</p>
+<p class="admonition-title"><span class="caption-number">Corollary 135 </span> (Complexity of deciding positive reachability)</p>
 <div class="corollary-content section" id="proof-content">
 <p>The problem of deciding whether a given vertex of a given MDP belongs to
-<span class="math notranslate nohighlight">\(\winPos(\mdp,\Reach(\genColour))\)</span> is \NL-complete. Moreover, the set <span class="math notranslate nohighlight">\(\winPos(\mdp,\Reach(\genColour))\)</span> can be computed in linear time.</p>
+<span class="math notranslate nohighlight">\(W_{&gt;0}\mathcal{M}\mathtt{Reach}\textsc{c})\)</span> is \textrm{NL}complete. Moreover, the set <span class="math notranslate nohighlight">\(W_{&gt;0}\mathcal{M}\mathtt{Reach}\textsc{c})\)</span> can be computed in linear time.</p>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
-<p><code class="xref prf prf-ref docutils literal notranslate"><span class="pre">5-thm:positive-char</span></code>
+<p><a class="reference internal" href="#5-thm:positive-char">Theorem 134</a>
 gives a blueprint for a logspace reduction from this problem to the
 <strong>s-t-connectivity</strong> problem for directed graphs, and vice versa. The latter
-problem is well known to be \NL-complete <span id="id1">[<a class="reference internal" href="references.html#id123"><span>Sav70</span></a>]</span>. Moreover, the set of states from which a target colour is reachable can be computed by a simple graph search (e.g. by BFS), hence in linear time.</p>
+problem is well known to be \textrm{NL}complete <span id="id1">[<a class="reference internal" href="references.html#id121"><span>Sav70</span></a>]</span>. Moreover, the set of states from which a target colour is reachable can be computed by a simple graph search (e.g. by BFS), hence in linear time.</p>
 </div>
 <blockquote>
 <div><p><strong>Almost-sure reachability and safety</strong></p>
 </div></blockquote>
-<p>While the reachability and safety objectives are seemingly dual, in MDPs there is an intimate connection between them.%Let’s start with almost-sure reachability. Consider the  <strong>almost-sure predecessor operator <span class="math notranslate nohighlight">\(\PreAS\)</span></strong>, s.t. for each <span class="math notranslate nohighlight">\(U \subseteq \vertices\)</span> we have
+<p>While the reachability and safety objectives are seemingly dual, in MDPs there is an intimate connection between them.</p>
+<p>Let’s start with almost-sure reachability. Consider the  **almost-sure predecessor operator <span class="math notranslate nohighlight">\(\text{Pre}_{=1}**, s.t. for each \)</span>U \subseteq V we have
 $<span class="math notranslate nohighlight">\(
-\PreAS(U) = \{v \in \vertices \mid \exists a \in \actions, \forall t \in 
-\vertices: \probTranFunc(t\mid v,a)&gt;0 \Rightarrow t \in U \}.
+\text{Pre}_{=1}U) = \{v \in V\mid \exists a \in A \forall t \in 
+V \Deltat\mid v,a)&gt;0 \Rightarrow t \in U \}.
 \)</span>$</p>
-<p>But this
-is not correct: consider an MDP with two vertices, <span class="math notranslate nohighlight">\(u,v\)</span>, the latter one being coloured by <span class="math notranslate nohighlight">\(\Win\)</span>. We have only one action <span class="math notranslate nohighlight">\(a\)</span>: in <span class="math notranslate nohighlight">\(v\)</span>, the action self loops on <span class="math notranslate nohighlight">\(v\)</span>, while in <span class="math notranslate nohighlight">\(u\)</span> playing the action either switches moves us to <span class="math notranslate nohighlight">\(v\)</span> or leaves us in <span class="math notranslate nohighlight">\(u\)</span>, both options having probability <span class="math notranslate nohighlight">\(\frac{1}{2}\)</span>. The probability that we <strong>never</strong> reach <span class="math notranslate nohighlight">\(v\)</span> from <span class="math notranslate nohighlight">\(u\)</span> is
-equal to <span class="math notranslate nohighlight">\(\lim_{n\rightarrow \infty} \left(\frac{1}{2}\right)^n = 0\)</span>, and hence
-<span class="math notranslate nohighlight">\(\winAS(\mdp,\Reach(\Win))=\{u,v\}\)</span>. However, <span class="math notranslate nohighlight">\(\{v\}\cup\PreAS(\{v\})=\{v\}\)</span>, so
-<span class="math notranslate nohighlight">\(v\)</span> is not included into the outcome of the iteration. Note that there indeed exists an infinite play which <strong>can</strong> be generated by the strategy and
-which
-never visits <span class="math notranslate nohighlight">\(v\)</span>, but the probability of generating such a play is <span class="math notranslate nohighlight">\(0\)</span>.</p>
-<p>Instead, we make a detour via safety. Consider the one-step <strong>almost-sure safety</strong> operator <span class="math notranslate nohighlight">\(\safeOP\)</span> acting on sets of vertices:\begin{align*}
-\safeOP(X)= X \cap \PreAS(X).
-\end{align*}This operator gives rise to a notion of a closed set, which is important for the study of safety objectives in MDPs.</p>
+<p>One might be tempted to mimic the positive reachability case and perform the iteration <span class="math notranslate nohighlight">\( X \leftarrow X \cup \text{Pre}_{=1}X) \)</span> on the set <span class="math notranslate nohighlight">\( \vertices_{\textsc{c} \)</span> until a fixed point is reached.
+But this
+is not correct: consider an MDP with two vertices, <span class="math notranslate nohighlight">\(u,v\)</span>, the latter one being coloured by <span class="math notranslate nohighlight">\(\textrm{Win}. We have only one action \)</span>a<span class="math notranslate nohighlight">\(: in \)</span>v<span class="math notranslate nohighlight">\(, the action self loops on \)</span>v<span class="math notranslate nohighlight">\(, while in \)</span>u<span class="math notranslate nohighlight">\( playing the action either switches moves us to \)</span>v<span class="math notranslate nohighlight">\( or leaves us in \)</span>u<span class="math notranslate nohighlight">\(, both options having probability \)</span>\frac{1}{2}<span class="math notranslate nohighlight">\(. The probability that we **never** reach \)</span>v<span class="math notranslate nohighlight">\( from \)</span>u<span class="math notranslate nohighlight">\( is 
+equal to \)</span>\lim_{n\rightarrow \infty} \left(\frac{1}{2}\right)^n = 0<span class="math notranslate nohighlight">\(, and hence 
+\)</span>W_{=1}\mathcal{M}\mathtt{Reach}\textrm{Win})={u,v}<span class="math notranslate nohighlight">\(. However, \)</span>{v}\cup\text{Pre}_{=1}{v})={v}<span class="math notranslate nohighlight">\(, so 
+\)</span>v<span class="math notranslate nohighlight">\( is not included into the outcome of the iteration. Note that there indeed exists an infinite play which **can** be generated by the strategy and 
+which 
+never visits \)</span>v<span class="math notranslate nohighlight">\(, but the probability of generating such a play is \)</span>0$.</p>
+<p>Instead, we make a detour via safety. Consider the one-step <strong>almost-sure safety</strong> operator $\mathit{Safe_{=1}} acting on sets of vertices:</p>
+<p>\begin{align*}
+\mathit{Safe_{=1}}X)= X \cap \text{Pre}_{=1}X).
+\end{align*}</p>
+<p>This operator gives rise to a notion of a closed set, which is important for the study of safety objectives in MDPs.</p>
 <div class="proof definition admonition" id="5-def:closed_set_MDP">
-<p class="admonition-title"><span class="caption-number">Definition 135 </span> (Closed set in an MDP)</p>
+<p class="admonition-title"><span class="caption-number">Definition 136 </span> (Closed set in an MDP)</p>
 <div class="definition-content section" id="proof-content">
-<p>A set <span class="math notranslate nohighlight">\(X\)</span> of vertices is closed if <span class="math notranslate nohighlight">\( \safeOP(X)=X\)</span>. A sub-MDP of an MDP <span class="math notranslate nohighlight">\( \mdp \)</span> defined by a closed subset <span class="math notranslate nohighlight">\(X\)</span> of <span class="math notranslate nohighlight">\( \mdp \)</span>‘s states is the MDP <span class="math notranslate nohighlight">\(\mdp_X = (X,\edges_X,\probTranFunc_X,\colouring_X)\)</span> defined as follows:</p>
+<p>A set <span class="math notranslate nohighlight">\(X\)</span> of vertices is closed if <span class="math notranslate nohighlight">\( \mathit{Safe_{=1}}X)=X\)</span>. A sub-MDP of an MDP <span class="math notranslate nohighlight">\( \mathcal{M}\)</span> defined by a closed subset <span class="math notranslate nohighlight">\(X\)</span> of <span class="math notranslate nohighlight">\( \mathcal{M}\)</span>’s states is the MDP <span class="math notranslate nohighlight">\(\mdp_X = (X,\edges_X,\probTranFunc_X,\colouring_X)\)</span> defined as follows:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\edges_X\)</span> is obtained from <span class="math notranslate nohighlight">\(\edges\)</span> by removing edges incident to a vertex from <span class="math notranslate nohighlight">\(\vertices\setminus X\)</span>;</p></li>
-<li><p><span class="math notranslate nohighlight">\(\probTranFunc_X\)</span> is obtained from <span class="math notranslate nohighlight">\(\probTranFunc\subseteq \vertices\times\actions\times\dist(\edges)\)</span> by removing all triples <span class="math notranslate nohighlight">\((v,a,f)\)</span> where either <span class="math notranslate nohighlight">\(v\not \in X\)</span> or where the support of <span class="math notranslate nohighlight">\(f\)</span> is not contained in <span class="math notranslate nohighlight">\(X\)</span>;</p></li>
-<li><p><span class="math notranslate nohighlight">\(\colouring_X\)</span> is a restriction of <span class="math notranslate nohighlight">\(\colouring\)</span> to <span class="math notranslate nohighlight">\(X\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\edges_X\)</span> is obtained from <span class="math notranslate nohighlight">\(E by removing edges incident to a vertex from \)</span>Vsetminus X$;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\probTranFunc_X\)</span> is obtained from <span class="math notranslate nohighlight">\(\Deltasubseteq VtimesAtimes\mathcal{D}E\)</span> by removing all triples <span class="math notranslate nohighlight">\((v,a,f)\)</span> where either <span class="math notranslate nohighlight">\(v\not \in X\)</span> or where the support of <span class="math notranslate nohighlight">\(f\)</span> is not contained in <span class="math notranslate nohighlight">\(X\)</span>;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\colouring_X\)</span> is a restriction of <span class="math notranslate nohighlight">\(c to \)</span>X$.</p></li>
 </ul>
-<p>We denote by <span class="math notranslate nohighlight">\(\closed(\mdp)\)</span> the set of all closed sets in <span class="math notranslate nohighlight">\(\mdp.\)</span></p>
+<p>We denote by <span class="math notranslate nohighlight">\(\mathit{Cl}\mathcal{M}\)</span> the set of all closed sets in <span class="math notranslate nohighlight">\(\mathcal{M}\)</span></p>
 </div>
 </div><p>Intuitively, a set is closed if Eve has a strategy ensuring that she stays in the set forever.</p>
-<p>Now consider the iteration of <span class="math notranslate nohighlight">\( X, \safeOP(X),\safeOP^2(X),\ldots \)</span> of the safety operator. Clearly <span class="math notranslate nohighlight">\(\safeOP(X)\subseteq X\)</span>. Hence, the iteration reaches a fixed point in at most <span class="math notranslate nohighlight">\(|\vertices|\)</span> steps. We get the following:</p>
+<p>Now consider the iteration of <span class="math notranslate nohighlight">\( X, \mathit{Safe_{=1}}X),\mathit{Safe_{=1}}2(X),\ldots \)</span> of the safety operator. Clearly <span class="math notranslate nohighlight">\(\mathit{Safe_{=1}}X)\subseteq X\)</span>. Hence, the iteration reaches a fixed point in at most <span class="math notranslate nohighlight">\(|V\)</span> steps. We get the following:</p>
 <div class="proof lemma admonition" id="5-lem:safety-iteration">
-<p class="admonition-title"><span class="caption-number">Lemma 136 </span> (Inclusion of the least fixed of the safety operator)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 137 </span> (Inclusion of the least fixed of the safety operator)</p>
 <div class="lemma-content section" id="proof-content">
-<p>The fixed point of iterating <span class="math notranslate nohighlight">\( \safeOP \)</span> on some initial set <span class="math notranslate nohighlight">\( X \)</span> of <span class="math notranslate nohighlight">\( \mdp \)</span>‘s vertices is the largest (w.r.t. inclusion) closed set contained in <span class="math notranslate nohighlight">\( X \)</span>. In particular, a vertex of <span class="math notranslate nohighlight">\( X \)</span> which does not belong to the fixpoint cannot belong to  <span class="math notranslate nohighlight">\(\winAS(\mdp,\Safe(\vertices \setminus X))\)</span>.</p>
+<p>The fixed point of iterating <span class="math notranslate nohighlight">\( \mathit{Safe_{=1}}\)</span> on some initial set <span class="math notranslate nohighlight">\( X \)</span> of <span class="math notranslate nohighlight">\( \mathcal{M}\)</span>’s vertices is the largest (w.r.t. inclusion) closed set contained in <span class="math notranslate nohighlight">\( X \)</span>. In particular, a vertex of <span class="math notranslate nohighlight">\( X \)</span> which does not belong to the fixpoint cannot belong to  <span class="math notranslate nohighlight">\(W_{=1}\mathcal{M}\mathtt{Safe}V\setminus X))\)</span>.</p>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
-<p>A straightforward induction on the number of iteration shows that if a vertex <span class="math notranslate nohighlight">\( v \)</span> is removed in an <span class="math notranslate nohighlight">\( i \)</span>-th iteration, then no matter what strategy Eve uses, she has to reach <span class="math notranslate nohighlight">\( \vertices\setminus X \)</span> in at most <span class="math notranslate nohighlight">\( i \)</span> steps with a positive probability. The lemma follows.</p>
+<p>A straightforward induction on the number of iteration shows that if a vertex <span class="math notranslate nohighlight">\( v \)</span> is removed in an <span class="math notranslate nohighlight">\( i \)</span>-th iteration, then no matter what strategy Eve uses, she has to reach <span class="math notranslate nohighlight">\( Vsetminus X \)</span> in at most <span class="math notranslate nohighlight">\( i \)</span> steps with a positive probability. The lemma follows.</p>
 </div>
 <div class="figure align-center" id="algo-safety">
 <img alt="../_images/5-algo:safety.png" src="../_images/5-algo:safety.png" />
-<p class="caption"><span class="caption-number">Fig. 45 </span><span class="caption-text">An algorithm computing <span class="math notranslate nohighlight">\(\winAS(\mdp,\Safe(\genColour))\)</span></span><a class="headerlink" href="#algo-safety" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 45 </span><span class="caption-text">An algorithm computing <span class="math notranslate nohighlight">\(W_{=1}\mathcal{M}\mathtt{Safe}\textsc{c})\)</span></span><a class="headerlink" href="#algo-safety" title="Permalink to this image">¶</a></p>
 </div>
 <div class="proof theorem admonition" id="5-thm:safety-main">
-<p class="admonition-title"><span class="caption-number">Theorem 137 </span> (Complexity of the almost-sure safety winning set)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 138 </span> (Complexity of the almost-sure safety winning set)</p>
 <div class="theorem-content section" id="proof-content">
-<p><a class="reference internal" href="#algo-safety"><span class="std std-numref">Fig. 45</span></a> computes the set <span class="math notranslate nohighlight">\(\winAS(\mdp,\Safe(\genColour))\)</span> in strongly polynomial time. Moreover, there exists a memoryless deterministic strategy, computable in polynomial time, that is almost-surely winning from every vertex of <span class="math notranslate nohighlight">\(\winAS(\mdp,\Safe(\genColour))\)</span>.</p>
+<p><a class="reference internal" href="#algo-safety"><span class="std std-numref">Fig. 45</span></a> computes the set <span class="math notranslate nohighlight">\(W_{=1}\mathcal{M}\mathtt{Safe}\textsc{c})\)</span> in strongly polynomial time. Moreover, there exists a memoryless deterministic strategy, computable in polynomial time, that is almost-surely winning from every vertex of <span class="math notranslate nohighlight">\(W_{=1}\mathcal{M}\mathtt{Safe}\textsc{c})\)</span>.</p>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
-<p>The correctness follows immediately from  <a class="reference internal" href="#5-lem:safety-iteration">Lemma 136</a>. The algorithm makes at most linearly many iterations, each of which has at most linear complexity. Hence, the complexity is at most quadratic. The strong polynomiality is testified by the fact that the algorithm only tests whether a
+<p>The correctness follows immediately from  <a class="reference internal" href="#5-lem:safety-iteration">Lemma 137</a>. The algorithm makes at most linearly many iterations, each of which has at most linear complexity. Hence, the complexity is at most quadratic. The strong polynomiality is testified by the fact that the algorithm only tests whether a
 probability of a given transition is positive or not, for which the exact
-values of positive probabilities are irrelevant. Clearly the output of the algorithm is a closed set, and hence for each <span class="math notranslate nohighlight">\( v\in  \winAS(\mdp,\Safe(\genColour))\)</span> there is an action <span class="math notranslate nohighlight">\( a_v \)</span> such that all edges in the support of <span class="math notranslate nohighlight">\( \probTranFunc(v,a_v)  \)</span> lead back to <span class="math notranslate nohighlight">\( \winAS(\mdp,\Safe(\genColour)) \)</span>. Any MD strategy which in each <span class="math notranslate nohighlight">\( v\in  \winAS(\mdp,\Safe(\genColour)) \)</span> chooses <span class="math notranslate nohighlight">\( a_v \)</span> with probability 1 is a.s. winning inside <span class="math notranslate nohighlight">\( \winAS(\mdp,\Safe(\genColour)) \)</span>, which proves the last part of the lemma.</p>
+values of positive probabilities are irrelevant. Clearly the output of the algorithm is a closed set, and hence for each <span class="math notranslate nohighlight">\( v\in  W_{=1}\mathcal{M}\mathtt{Safe}\textsc{c})\)</span> there is an action <span class="math notranslate nohighlight">\( a_v \)</span> such that all edges in the support of <span class="math notranslate nohighlight">\( \Deltav,a_v)  \)</span> lead back to <span class="math notranslate nohighlight">\( W_{=1}\mathcal{M}\mathtt{Safe}\textsc{c}) \)</span>. Any MD strategy which in each <span class="math notranslate nohighlight">\( v\in  W_{=1}\mathcal{M}\mathtt{Safe}\textsc{c}) \)</span> chooses <span class="math notranslate nohighlight">\( a_v \)</span> with probability 1 is a.s. winning inside <span class="math notranslate nohighlight">\( W_{=1}\mathcal{M}\mathtt{Safe}\textsc{c}) \)</span>, which proves the last part of the lemma.</p>
 </div>
 <div class="figure align-center" id="algo-reach-as">
 <img alt="../_images/5-algo:reach-as.png" src="../_images/5-algo:reach-as.png" />
-<p class="caption"><span class="caption-number">Fig. 46 </span><span class="caption-text">An algorithm computing <span class="math notranslate nohighlight">\(\winAS(\mdp,\Reach(\genColour))\)</span></span><a class="headerlink" href="#algo-reach-as" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 46 </span><span class="caption-text">An algorithm computing <span class="math notranslate nohighlight">\(W_{=1}\mathcal{M}\mathtt{Reach}\textsc{c})\)</span></span><a class="headerlink" href="#algo-reach-as" title="Permalink to this image">¶</a></p>
 </div>
-<p>With a.s. safety solved, we go back to a.s. reachability, which is solved via <a class="reference internal" href="#algo-reach-as"><span class="std std-numref">Fig. 46</span></a>. Note that in the first iteration, the algorithm computes the set<span class="math notranslate nohighlight">\(\winAS(\mdp,\Safe(Z))\)</span> where <span class="math notranslate nohighlight">\( Z =  \winPos(\mdp,\Reach(\genColour))\)</span>. We might be tempted to think that this set already equals <span class="math notranslate nohighlight">\( \winAS(\mdp,\Reach(\genColour)) \)</span>, but this is not the case. To see this, consider an MDP with three states <span class="math notranslate nohighlight">\( u,v,t \)</span> and two actions <span class="math notranslate nohighlight">\( a,b \)</span> such that <span class="math notranslate nohighlight">\( t \)</span> is coloured by <span class="math notranslate nohighlight">\( \Win \)</span>, both actions self loop in <span class="math notranslate nohighlight">\( v \)</span> and <span class="math notranslate nohighlight">\( t \)</span>, and <span class="math notranslate nohighlight">\( \probTranFunc(t \mid u,a) = \probTranFunc(v \mid u,a) = \frac{1}{2} \)</span> while <span class="math notranslate nohighlight">\( \probTranFunc(u \mid u,b) = 1 \)</span>. Then <span class="math notranslate nohighlight">\( \winAS(\mdp,\Reach(\Win)) = \{t\} \)</span> while at the same time <span class="math notranslate nohighlight">\( \winAS(\mdp,\Safe( \winPos(\mdp,\Reach(\Win)))) = \{u,t\}\)</span>. However, iterating the computation works, as shown in the following theorem.</p>
+<p>With a.s. safety solved, we go back to a.s. reachability, which is solved via <a class="reference internal" href="#algo-reach-as"><span class="std std-numref">Fig. 46</span></a>. Note that in the first iteration, the algorithm computes the set
+<span class="math notranslate nohighlight">\(W_{=1}\mathcal{M}\mathtt{Safe}Z))\)</span> where <span class="math notranslate nohighlight">\( Z =  W_{&gt;0}\mathcal{M}\mathtt{Reach}\textsc{c})\)</span>. We might be tempted to think that this set already equals <span class="math notranslate nohighlight">\( W_{=1}\mathcal{M}\mathtt{Reach}\textsc{c}) \)</span>, but this is not the case. To see this, consider an MDP with three states <span class="math notranslate nohighlight">\( u,v,t \)</span> and two actions <span class="math notranslate nohighlight">\( a,b \)</span> such that <span class="math notranslate nohighlight">\( t \)</span> is coloured by <span class="math notranslate nohighlight">\( \textrm{Win}\)</span>, both actions self loop in <span class="math notranslate nohighlight">\( v \)</span> and <span class="math notranslate nohighlight">\( t \)</span>, and <span class="math notranslate nohighlight">\( \Deltat \mid u,a) = \Deltav \mid u,a) = \frac{1}{2} \)</span> while <span class="math notranslate nohighlight">\( \Deltau \mid u,b) = 1 \)</span>. Then <span class="math notranslate nohighlight">\( W_{=1}\mathcal{M}\mathtt{Reach}\textrm{Win}) = \{t\} \)</span> while at the same time <span class="math notranslate nohighlight">\( W_{=1}\mathcal{M}\mathtt{Safe} W_{&gt;0}\mathcal{M}\mathtt{Reach}\textrm{Win}))) = \{u,t\}\)</span>. However, iterating the computation works, as shown in the following theorem.</p>
 <div class="proof theorem admonition" id="5-thm:as-char">
-<p class="admonition-title"><span class="caption-number">Theorem 138 </span> (Algorithm for the almost-sure reachability winning set)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 139 </span> (Algorithm for the almost-sure reachability winning set)</p>
 <div class="theorem-content section" id="proof-content">
-<p><a class="reference internal" href="#algo-reach-as"><span class="std std-numref">Fig. 46</span></a> computes <span class="math notranslate nohighlight">\(\winAS(\mdp,\Reach(\genColour))\)</span> in strongly polynomial time. Moreover, there is an MD strategy, computable in strongly polynomial time, that is almost-surely winning from every vertex of <span class="math notranslate nohighlight">\(\winAS(\mdp,\Reach(\genColour))\)</span>.</p>
+<p><a class="reference internal" href="#algo-reach-as"><span class="std std-numref">Fig. 46</span></a> computes <span class="math notranslate nohighlight">\(W_{=1}\mathcal{M}\mathtt{Reach}\textsc{c})\)</span> in strongly polynomial time. Moreover, there is an MD strategy, computable in strongly polynomial time, that is almost-surely winning from every vertex of <span class="math notranslate nohighlight">\(W_{=1}\mathcal{M}\mathtt{Reach}\textsc{c})\)</span>.</p>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
 <p>Since the set <span class="math notranslate nohighlight">\( W \)</span> can only decrease in each iteration, the algorithm terminates.
-We prove that upon termination, <span class="math notranslate nohighlight">\(W\)</span> equals <span class="math notranslate nohighlight">\(\winAS(\mdp,\Reach(\genColour))\)</span>.</p>
-<p>We start with the <span class="math notranslate nohighlight">\( \subseteq \)</span> direction. We have <span class="math notranslate nohighlight">\(W \subseteq \winPos(\mdp_W,\Reach(\genColour))\)</span>. By  <code class="xref prf prf-ref docutils literal notranslate"><span class="pre">5-thm:positive-char</span></code> there exists an MD strategy <span class="math notranslate nohighlight">\(\sigma\)</span> in <span class="math notranslate nohighlight">\(\mdp_W\)</span> which is positively winning from each vertex of <span class="math notranslate nohighlight">\(W\)</span>. We show that the same strategy is also almost-surely winning from each vertex of <span class="math notranslate nohighlight">\(W\)</span> in <span class="math notranslate nohighlight">\(\mdp_W\)</span> and thus also from each vertex of <span class="math notranslate nohighlight">\(W\)</span> in <span class="math notranslate nohighlight">\(\mdp\)</span>, which also proves the second part of the theorem. Let <span class="math notranslate nohighlight">\(v\)</span> be any vertex of <span class="math notranslate nohighlight">\(W\)</span> and denote <span class="math notranslate nohighlight">\(|W|\)</span> by <span class="math notranslate nohighlight">\(\ell\)</span>. Since <span class="math notranslate nohighlight">\(\sigma\)</span> is memoryless, it guarantees that a vertex of <span class="math notranslate nohighlight">\(\vertices_{\genColour}\)</span> is reached with a positive probability in at most <span class="math notranslate nohighlight">\(\ell\)</span> steps (see also the construction of <span class="math notranslate nohighlight">\( \sigma \)</span> in the proof of  <code class="xref prf prf-ref docutils literal notranslate"><span class="pre">5-thm:positive-char</span></code>), and since it is also deterministic, it guarantees that the probability <span class="math notranslate nohighlight">\(p\)</span> of reaching <span class="math notranslate nohighlight">\(\vertices_{\genColour}\)</span> in at most <span class="math notranslate nohighlight">\(\ell\)</span> steps is at least <span class="math notranslate nohighlight">\(p_{\min}^{\ell}\)</span>, where  <span class="math notranslate nohighlight">\(p_{\min}\)</span> is the smallest non-zero edge probability in <span class="math notranslate nohighlight">\(\mdp_W\)</span>. Now imagine that <span class="math notranslate nohighlight">\(\ell\)</span> steps have elapsed and we have not yet reached <span class="math notranslate nohighlight">\(\vertices_{\genColour}\)</span>. This happens with a probability at most <span class="math notranslate nohighlight">\((1-p_{\min}^\ell)\)</span>. However, even after these <span class="math notranslate nohighlight">\(\ell\)</span> steps we are still in <span class="math notranslate nohighlight">\(W\)</span>, since <span class="math notranslate nohighlight">\( \sigma  \)</span> is a strategy in <span class="math notranslate nohighlight">\( \mdp_w \)</span>. Hence, the probability that we do not reach <span class="math notranslate nohighlight">\(\vertices_\genColour\)</span> within the first <span class="math notranslate nohighlight">\(2\ell\)</span> steps is bounded by <span class="math notranslate nohighlight">\((1-p_{\min}^\ell)^{2}\)</span>. To realize why this is the case, note that any finite play <span class="math notranslate nohighlight">\(\play\)</span> of length <span class="math notranslate nohighlight">\(2\ell\)</span> can be split into two halves, <span class="math notranslate nohighlight">\(\play',\play''\)</span> of length <span class="math notranslate nohighlight">\(\ell\)</span>, and then <span class="math notranslate nohighlight">\(\probm^{\sigma}_{v}(\cylinder(\play))=\probm^{\sigma}_{v}(\cylinder(\play'))\cdot\probm^{\sigma}_{\last(\play')}(\cylinder(\play''))\)</span> (here we use the fact that <span class="math notranslate nohighlight">\(\sigma\)</span> is memoryless). Using this and some arithmetic, one can show that, denoting <span class="math notranslate nohighlight">\(\mathit{Avoid}_i\)</span> the set of all plays that avoid the vertices of <span class="math notranslate nohighlight">\(\vertices_{\genColour}\)</span> in steps <span class="math notranslate nohighlight">\(\ell\cdot(i-1)\)</span> to <span class="math notranslate nohighlight">\(\ell\cdot(i)-1\)</span>, it holds
+We prove that upon termination, <span class="math notranslate nohighlight">\(W\)</span> equals <span class="math notranslate nohighlight">\(W_{=1}\mathcal{M}\mathtt{Reach}\textsc{c})\)</span>.</p>
+<p>We start with the <span class="math notranslate nohighlight">\( \subseteq \)</span> direction. We have <span class="math notranslate nohighlight">\(W \subseteq W_{&gt;0}\mdp_W,\mathtt{Reach}\textsc{c})\)</span>. By  <a class="reference internal" href="#5-thm:positive-char">Theorem 134</a> there exists an MD strategy <span class="math notranslate nohighlight">\(\sigma\)</span> in <span class="math notranslate nohighlight">\(\mdp_W\)</span> which is positively winning from each vertex of <span class="math notranslate nohighlight">\(W\)</span>. We show that the same strategy is also almost-surely winning from each vertex of <span class="math notranslate nohighlight">\(W\)</span> in <span class="math notranslate nohighlight">\(\mdp_W\)</span> and thus also from each vertex of <span class="math notranslate nohighlight">\(W\)</span> in $\mathcal{M}, which also proves the second part of the theorem.</p>
+<p>Let <span class="math notranslate nohighlight">\(v\)</span> be any vertex of <span class="math notranslate nohighlight">\(W\)</span> and denote <span class="math notranslate nohighlight">\(|W|\)</span> by <span class="math notranslate nohighlight">\(\ell\)</span>. Since <span class="math notranslate nohighlight">\(\sigma\)</span> is memoryless, it guarantees that a vertex of <span class="math notranslate nohighlight">\(\vertices_{\textsc{c}\)</span> is reached with a positive probability in at most <span class="math notranslate nohighlight">\(\ell\)</span> steps (see also the construction of <span class="math notranslate nohighlight">\( \sigma \)</span> in the proof of  <a class="reference internal" href="#5-thm:positive-char">Theorem 134</a>), and since it is also deterministic, it guarantees that the probability <span class="math notranslate nohighlight">\(p\)</span> of reaching <span class="math notranslate nohighlight">\(\vertices_{\textsc{c}\)</span> in at most <span class="math notranslate nohighlight">\(\ell\)</span> steps is at least <span class="math notranslate nohighlight">\(p_{\min}^{\ell}\)</span>, where  <span class="math notranslate nohighlight">\(p_{\min}\)</span> is the smallest non-zero edge probability in <span class="math notranslate nohighlight">\(\mdp_W\)</span>. Now imagine that <span class="math notranslate nohighlight">\(\ell\)</span> steps have elapsed and we have not yet reached <span class="math notranslate nohighlight">\(\vertices_{\textsc{c}\)</span>. This happens with a probability at most <span class="math notranslate nohighlight">\((1-p_{\min}^\ell)\)</span>. However, even after these <span class="math notranslate nohighlight">\(\ell\)</span> steps we are still in <span class="math notranslate nohighlight">\(W\)</span>, since <span class="math notranslate nohighlight">\( \sigma  \)</span> is a strategy in <span class="math notranslate nohighlight">\( \mdp_w \)</span>. Hence, the probability that we do not reach <span class="math notranslate nohighlight">\(\vertices_\textsc{c} within the first \)</span>2\ell<span class="math notranslate nohighlight">\( steps is bounded by \)</span>(1-p_{\min}^\ell)^{2}<span class="math notranslate nohighlight">\(. To realize why this is the case, note that any finite play \)</span>\pi of length <span class="math notranslate nohighlight">\(2\ell\)</span> can be split into two halves, <span class="math notranslate nohighlight">\(\pi,\pi'\)</span> of length <span class="math notranslate nohighlight">\(\ell\)</span>, and then <span class="math notranslate nohighlight">\(\mathbb{P}{\sigma}_{v}(\mathit{Cyl}\pi)=\mathbb{P}{\sigma}_{v}(\mathit{Cyl}\pi))\cdot\mathbb{P}{\sigma}_{\textrm{last}\pi)}(\mathit{Cyl}\pi'))\)</span> (here we use the fact that <span class="math notranslate nohighlight">\(\sigma\)</span> is memoryless). Using this and some arithmetic, one can show that, denoting <span class="math notranslate nohighlight">\(\mathit{Avoid}_i\)</span> the set of all plays that avoid the vertices of <span class="math notranslate nohighlight">\(\vertices_{\textsc{c}\)</span> in steps <span class="math notranslate nohighlight">\(\ell\cdot(i-1)\)</span> to <span class="math notranslate nohighlight">\(\ell\cdot(i)-1\)</span>, it holds
 $<span class="math notranslate nohighlight">\(
-\probm^{\sigma}_{v}(\mathit{Avoid}_1\cap \mathit{Avoid}_2) \leq \probm^{\sigma}_{v}(\mathit{Avoid}_1)\cdot \max_{u\in W\setminus \vertices_{\genColour}}\probm^{\sigma}_{u}(\mathit{Avoid}_1)\leq (1-p_{\min}^\ell)^{2}.
+\mathbb{P}{\sigma}_{v}(\mathit{Avoid}_1\cap \mathit{Avoid}_2) \leq \mathbb{P}{\sigma}_{v}(\mathit{Avoid}_1)\cdot \max_{u\in W\setminus \vertices_{\textsc{c}}\mathbb{P}{\sigma}_{u}(\mathit{Avoid}_1)\leq (1-p_{\min}^\ell)^{2}.
 \)</span>$</p>
-<p>One can then continue by induction to show that <span class="math notranslate nohighlight">\(\probm^{\sigma}_{v}(\bigcap_{i=1}^j \mathit{Avoid}_i)\leq (1-p_{\min}^\ell)^{j},\)</span> and hence</p>
+<p>One can then continue by induction to show that <span class="math notranslate nohighlight">\(\mathbb{P}{\sigma}_{v}(\bigcap_{i=1}^j \mathit{Avoid}_i)\leq (1-p_{\min}^\ell)^{j},\)</span> and hence</p>
 <div class="math notranslate nohighlight">
 \[
-\probm^\sigma_{v}(\Reach(\genColour))= 1-\probm^{\sigma}_{v}(\bigcap_{i=1}^\infty \mathit{Avoid}_i) \leq 1-\lim_{j\rightarrow \infty}(1-p_{\min}^\ell)^{j}= 1-0=1.
+\mathbb{P}\sigma_{v}(\mathtt{Reach}\textsc{c})= 1-\mathbb{P}{\sigma}_{v}(\bigcap_{i=1}^\infty \mathit{Avoid}_i) \leq 1-\lim_{j\rightarrow \infty}(1-p_{\min}^\ell)^{j}= 1-0=1.
 \]</div>
-<p>Now we prove the <span class="math notranslate nohighlight">\( \supseteq \)</span> direction. Denote <span class="math notranslate nohighlight">\(X=\winAS(\mdp,\Reach(\genColour))\)</span>. We prove that <span class="math notranslate nohighlight">\( W \supseteq X \)</span> is an invariant of the iteration. Initially this is clear. Now assume that this holds before an iteration takes place. It is easy to check that <span class="math notranslate nohighlight">\(X\)</span> is closed, so <span class="math notranslate nohighlight">\(\mdp_{X}\)</span> is well-defined. We prove that <span class="math notranslate nohighlight">\( X \subseteq \winAS(\mdp_W,\Safe(W\setminus Z)) \)</span>, where <span class="math notranslate nohighlight">\( Z \)</span> is defined during the iteration. A strategy in <span class="math notranslate nohighlight">\(\mdp\)</span> that reaches <span class="math notranslate nohighlight">\(\vertices_{\genColour}\)</span> with probability 1 must never visit a vertex from <span class="math notranslate nohighlight">\(\vertices\setminus X\)</span> with a positive probability. Hence, each such strategy can be viewed also as a strategy in <span class="math notranslate nohighlight">\(\mdp_{X}\)</span>. It follows that  <span class="math notranslate nohighlight">\(X=\winAS(\mdp_X,\Reach(\genColour)) = \winPos(\mdp_{X},\Reach(\genColour)) \subseteq \winPos(\mdp_{W},\Reach(\genColour)) = Z\)</span>, the middle inclusion following from induction hypothesis. Now by  <a class="reference internal" href="#5-lem:safety-iteration">Lemma 136</a> and  <a class="reference internal" href="#5-thm:safety-main">Theorem 137</a>, the set <span class="math notranslate nohighlight">\( \winAS(\mdp_W,\Safe(W\setminus Z)) \)</span> is the largest closed set contained in <span class="math notranslate nohighlight">\( Z \)</span>. But <span class="math notranslate nohighlight">\( X \)</span> is also closed, and ashown above, it is contained in <span class="math notranslate nohighlight">\( Z \)</span>. Hence,  <span class="math notranslate nohighlight">\( X \subseteq \winAS(\mdp_W,\Safe(W \setminus Z)) \)</span>.</p>
-<p>The complexity follows form \Cref{5-cor:pos-complexity} and  <a class="reference internal" href="#5-thm:safety-main">Theorem 137</a>; and also from the fact that the main loop must terminate in <span class="math notranslate nohighlight">\( \leq |\vertices| \)</span> steps. The strong polynomiality again follows from the algorithm being oblivious to precise probabilities.</p>
+<p>Now we prove the <span class="math notranslate nohighlight">\( \supseteq \)</span> direction. Denote <span class="math notranslate nohighlight">\(X=W_{=1}\mathcal{M}\mathtt{Reach}\textsc{c})\)</span>. We prove that <span class="math notranslate nohighlight">\( W \supseteq X \)</span> is an invariant of the iteration. Initially this is clear. Now assume that this holds before an iteration takes place. It is easy to check that <span class="math notranslate nohighlight">\(X\)</span> is closed, so <span class="math notranslate nohighlight">\(\mdp_{X}\)</span> is well-defined. We prove that <span class="math notranslate nohighlight">\( X \subseteq W_{=1}\mdp_W,\mathtt{Safe}W\setminus Z)) \)</span>, where <span class="math notranslate nohighlight">\( Z \)</span> is defined during the iteration. A strategy in <span class="math notranslate nohighlight">\(\mathcal{M} that reaches \)</span>\vertices_{\textsc{c}<span class="math notranslate nohighlight">\( with probability 1 must never visit a vertex from \)</span>Vsetminus X<span class="math notranslate nohighlight">\( with a positive probability. Hence, each such strategy can be viewed also as a strategy in \)</span>\mdp_{X}<span class="math notranslate nohighlight">\(. It follows that  \)</span>X=W_{=1}\mdp_X,\mathtt{Reach}\textsc{c}) = W_{&gt;0}\mdp_{X},\mathtt{Reach}\textsc{c}) \subseteq W_{&gt;0}\mdp_{W},\mathtt{Reach}\textsc{c}) = Z<span class="math notranslate nohighlight">\(, the middle inclusion following from induction hypothesis. Now by  {prf:ref}`5-lem:safety-iteration` and  {prf:ref}`5-thm:safety-main`, the set \)</span> W_{=1}\mdp_W,\mathtt{Safe}W\setminus Z)) <span class="math notranslate nohighlight">\( is the largest closed set contained in \)</span> Z <span class="math notranslate nohighlight">\(. But \)</span> X <span class="math notranslate nohighlight">\( is also closed, and ashown above, it is contained in \)</span> Z <span class="math notranslate nohighlight">\(. Hence,  \)</span> X \subseteq W_{=1}\mdp_W,\mathtt{Safe}W \setminus Z)) $.</p>
+<p>The complexity follows form \Cref{5-cor:pos-complexity} and  <a class="reference internal" href="#5-thm:safety-main">Theorem 138</a>; and also from the fact that the main loop must terminate in <span class="math notranslate nohighlight">\( \leq |V \)</span> steps. The strong polynomiality again follows from the algorithm being oblivious to precise probabilities.</p>
 </div>
+<p>We also have a complementary hardness result.</p>
 <div class="proof theorem admonition" id="5-thm:as-complexity">
-<p class="admonition-title"><span class="caption-number">Theorem 139 </span> (Complexity of the almost-sure reachability winning set)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 140 </span> (Complexity of the almost-sure reachability winning set)</p>
 <div class="theorem-content section" id="proof-content">
 <p>The problem of determining whether a given vertex of a given MDP belongs to
-<span class="math notranslate nohighlight">\(\winAS(\mdp,\Reach(\genColour))\)</span> is \P-complete.</p>
+<span class="math notranslate nohighlight">\(W_{=1}\mathcal{M}\mathtt{Reach}\textsc{c})\)</span> is \P-complete.</p>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
@@ -976,8 +922,8 @@ leaf is given by its label and the value of an internal node <span class="math n
 applying the logical operator corresponding to the node to the truth values of
 the two children of <span class="math notranslate nohighlight">\(v\)</span>, the evaluation proceeding in a backward topological order. The task is to decide whether a given node <span class="math notranslate nohighlight">\(w\)</span> of
 <span class="math notranslate nohighlight">\(\mathcal{C}\)</span> evaluates to <strong>true</strong>. <strong>CVP</strong> was shown to be
-\P-hard (under logspace reductions) in <span id="id2">[<a class="reference internal" href="references.html#id118"><span>Lad75</span></a>]</span>.
-In <span id="id3">[<a class="reference internal" href="references.html#id106"><span>CDH10</span></a>]</span>, the following logspace reduction
+\P-hard (under logspace reductions) in <span id="id2">[<a class="reference internal" href="references.html#id116"><span>Lad75</span></a>]</span>.
+In <span id="id3">[<a class="reference internal" href="references.html#id104"><span>CDH10</span></a>]</span>, the following logspace reduction
 from CVP to
 almost-sure reachability in MDPs is presented: given a boolean circuit
 <span class="math notranslate nohighlight">\(\mathcal{C}\)</span>, construct an MDP <span class="math notranslate nohighlight">\(\mdp_{\mathcal{C}}\)</span> whose vertices correspond
@@ -991,25 +937,25 @@ of <span class="math notranslate nohighlight">\(g\)</span> with probability <spa
 moreover, they are coloured with the respective labels in <span class="math notranslate nohighlight">\(\mathcal{C}\)</span>. It is
 easy to check that a gate of <span class="math notranslate nohighlight">\(\mathcal{C}\)</span> evaluates to <span class="math notranslate nohighlight">\(\mathit{true}\)</span> if and
 only if the corresponding vertex belongs to
-<span class="math notranslate nohighlight">\(\winAS(\mdp_{\mathcal{C}},\Reach(\mathit{true}))\)</span>.</p>
+<span class="math notranslate nohighlight">\(W_{=1}\mdp_{\mathcal{C}},\mathtt{Reach}\mathit{true}))\)</span>.</p>
 </div>
 <blockquote>
 <div><p><strong>Positive safety</strong></p>
 </div></blockquote>
 <p>We conclude this section by a discussion of positive safety.</p>
 <div class="proof theorem admonition" id="5-thm:pos-safety-main">
-<p class="admonition-title"><span class="caption-number">Theorem 140 </span> (Algorithm for the positive safety winning set)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 141 </span> (Algorithm for the positive safety winning set)</p>
 <div class="theorem-content section" id="proof-content">
-<p>Let <span class="math notranslate nohighlight">\( \mdp_{\bar\genColour} \)</span> be an MDP obtained from <span class="math notranslate nohighlight">\( \mdp \)</span> by changing all <span class="math notranslate nohighlight">\( \genColour \)</span>-coloured vertices to sinks (i.e. all actions in these vertices just self loop on the vertex). Then
-<span class="math notranslate nohighlight">\( \winPos(\mdp,\Safe(\genColour)) = \winPos(\mdp_{\bar\genColour},\Reach(\winAS(\mdp_{\bar\genColour},\Safe(\genColour))) ) \)</span>. In particular, the set <span class="math notranslate nohighlight">\( \winPos(\mdp,\Safe(\genColour)) \)</span> can be computed in a strongly polynomial time and there exists a memoryless deterministic strategy, computable in strongly polynomial time, that is positively winning from every vertex of <span class="math notranslate nohighlight">\(\winPos(\mdp,\Safe(\genColour))\)</span>.</p>
+<p>Let <span class="math notranslate nohighlight">\( \mdp_{\bar\textsc{c} \)</span> be an MDP obtained from <span class="math notranslate nohighlight">\( \mathcal{M}\)</span> by changing all <span class="math notranslate nohighlight">\( \textsc{c}\)</span>-coloured vertices to sinks (i.e. all actions in these vertices just self loop on the vertex). Then
+<span class="math notranslate nohighlight">\( W_{&gt;0}\mathcal{M}\mathtt{Safe}\textsc{c}) = W_{&gt;0}\mdp_{\bar\textsc{c},\mathtt{Reach}W_{=1}\mdp_{\bar\textsc{c},\mathtt{Safe}\textsc{c})) ) \)</span>. In particular, the set <span class="math notranslate nohighlight">\( W_{&gt;0}\mathcal{M}\mathtt{Safe}\textsc{c}) \)</span> can be computed in a strongly polynomial time and there exists a memoryless deterministic strategy, computable in strongly polynomial time, that is positively winning from every vertex of <span class="math notranslate nohighlight">\(W_{&gt;0}\mathcal{M}\mathtt{Safe}\textsc{c})\)</span>.</p>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
-<p>Clearly <span class="math notranslate nohighlight">\( \winPos(\mdp,\Safe(\genColour)) = \winPos(\mdp_{\bar{\genColour}},\Safe(\genColour)) \)</span> and <span class="math notranslate nohighlight">\( \winAS(\mdp,\Safe(\genColour)) = \winAS(\mdp_{\bar{\genColour}},\Safe(\genColour)) \)</span>; and moreover the corresponding winning strategies easily transfer between the two MDPs (for a safety objective, the behaviour after visiting a <span class="math notranslate nohighlight">\( \genColour \)</span>-coloured state is inconsequential).
-Hence, putting <span class="math notranslate nohighlight">\( Z = \winAS(\mdp_{\bar{\genColour}},\Safe(\genColour)) \)</span>, it is sufficient to show that  <span class="math notranslate nohighlight">\( \winPos(\mdp_{\bar{\genColour}},\Safe(\genColour)) =\winPos(\mdp_{\bar\genColour},\Reach(Z))  \)</span></p>
-<p>The <span class="math notranslate nohighlight">\( \supseteq \)</span>  inclusion is clear as well as the construction of the witnessing MD strategy (in the vertices of that are outside of <span class="math notranslate nohighlight">\( Z \)</span>, we behave as the positively winning MD strategy for reaching <span class="math notranslate nohighlight">\( Z \)</span>, while inside <span class="math notranslate nohighlight">\( Z \)</span> we behave as the a.s. winning strategy for <span class="math notranslate nohighlight">\( \Safe(\genColour) \)</span>).</p>
-<p>For the other inclusion, let <span class="math notranslate nohighlight">\( X = \vertices \setminus \winPos(\mdp_{\bar{\genColour}},\Reach(Z)) \)</span>. We prove that <span class="math notranslate nohighlight">\( X\subseteq \vertices \setminus \winPos(\mdp_{\bar{\genColour}},\Safe(\genColour)) \)</span>. Assign ranks to vertices inductively as follows: each vertex coloured by <span class="math notranslate nohighlight">\( \genColour \)</span> gets rank <span class="math notranslate nohighlight">\( 0 \)</span>. Now if ranks <span class="math notranslate nohighlight">\( \leq i \)</span> have been already assigned, then a vertex  <span class="math notranslate nohighlight">\( v \)</span> is assigned rank <span class="math notranslate nohighlight">\(i+1  \)</span> if it  does  not already have a lower rank but for all actions <span class="math notranslate nohighlight">\( a\in\actions \)</span> there exists a vertex <span class="math notranslate nohighlight">\( u \)</span> of rank <span class="math notranslate nohighlight">\( \leq i \)</span> s.t. <span class="math notranslate nohighlight">\( \probTranFunc(u \mid v,a) &gt;0\)</span>. Then each vertex in <span class="math notranslate nohighlight">\( X \)</span> is assigned a finite rank: indeed, the set of vertices without a rank is closed and does not contain <span class="math notranslate nohighlight">\( \genColour \)</span>-coloured vertices, hence it is contained in <span class="math notranslate nohighlight">\( Z \)</span>.
-Now fix any strategy <span class="math notranslate nohighlight">\( \sigma \)</span> starting in a vertex <span class="math notranslate nohighlight">\(v \in X \)</span>. By definition of <span class="math notranslate nohighlight">\( X \)</span>, <span class="math notranslate nohighlight">\( \sigma \)</span> never reaches <span class="math notranslate nohighlight">\( Z \)</span> and hence never visits an unranked state. At the same time, whenever <span class="math notranslate nohighlight">\( \sigma \)</span> is in a ranked state, there is, by definition of ranks, a probability at least <span class="math notranslate nohighlight">\(p_{\min}  \)</span> (the minimal edge probability in <span class="math notranslate nohighlight">\( \mdp \)</span>) of transitioning to a lower-ranked state in the next step. Hence, in every moment, the probability of <span class="math notranslate nohighlight">\( \sigma \)</span> reaching a <span class="math notranslate nohighlight">\( \genColour \)</span>-coloured state within the next <span class="math notranslate nohighlight">\( |\vertices| \)</span> steps is at least <span class="math notranslate nohighlight">\( p_{\min}^{|\vertices|} \)</span>. By a straightforward adaptation of the second part of the proof of  <a class="reference internal" href="#5-thm:as-char">Theorem 138</a>, <span class="math notranslate nohighlight">\( \sigma \)</span> eventually visits <span class="math notranslate nohighlight">\( \vertices_{\genColour} \)</span> with probability 1. Since <span class="math notranslate nohighlight">\( \sigma \)</span> was arbitrary, this shows that <span class="math notranslate nohighlight">\( v\not \in\winPos(\mdp_{\bar{\genColour}},\Safe(\genColour)).  \)</span></p>
+<p>Clearly <span class="math notranslate nohighlight">\( W_{&gt;0}\mathcal{M}\mathtt{Safe}\textsc{c}) = W_{&gt;0}\mdp_{\bar{\textsc{c}},\mathtt{Safe}\textsc{c}) \)</span> and <span class="math notranslate nohighlight">\( W_{=1}\mathcal{M}\mathtt{Safe}\textsc{c}) = W_{=1}\mdp_{\bar{\textsc{c}},\mathtt{Safe}\textsc{c}) \)</span>; and moreover the corresponding winning strategies easily transfer between the two MDPs (for a safety objective, the behaviour after visiting a <span class="math notranslate nohighlight">\( \textsc{c}\)</span>-coloured state is inconsequential).
+Hence, putting <span class="math notranslate nohighlight">\( Z = W_{=1}\mdp_{\bar{\textsc{c}},\mathtt{Safe}\textsc{c}) \)</span>, it is sufficient to show that  <span class="math notranslate nohighlight">\( W_{&gt;0}\mdp_{\bar{\textsc{c}},\mathtt{Safe}\textsc{c}) =W_{&gt;0}\mdp_{\bar\textsc{c},\mathtt{Reach}Z))  \)</span></p>
+<p>The <span class="math notranslate nohighlight">\( \supseteq \)</span>  inclusion is clear as well as the construction of the witnessing MD strategy (in the vertices of that are outside of <span class="math notranslate nohighlight">\( Z \)</span>, we behave as the positively winning MD strategy for reaching <span class="math notranslate nohighlight">\( Z \)</span>, while inside <span class="math notranslate nohighlight">\( Z \)</span> we behave as the a.s. winning strategy for <span class="math notranslate nohighlight">\( \mathtt{Safe}\textsc{c} \)</span>).</p>
+<p>For the other inclusion, let <span class="math notranslate nohighlight">\( X = V\setminus W_{&gt;0}\mdp_{\bar{\textsc{c}},\mathtt{Reach}Z)) \)</span>. We prove that <span class="math notranslate nohighlight">\( X\subseteq V\setminus W_{&gt;0}\mdp_{\bar{\textsc{c}},\mathtt{Safe}\textsc{c}) \)</span>. Assign ranks to vertices inductively as follows: each vertex coloured by <span class="math notranslate nohighlight">\( \textsc{c}\)</span> gets rank <span class="math notranslate nohighlight">\( 0 \)</span>. Now if ranks <span class="math notranslate nohighlight">\( \leq i \)</span> have been already assigned, then a vertex  <span class="math notranslate nohighlight">\( v \)</span> is assigned rank <span class="math notranslate nohighlight">\(i+1  \)</span> if it  does  not already have a lower rank but for all actions <span class="math notranslate nohighlight">\( a\inA\)</span> there exists a vertex <span class="math notranslate nohighlight">\( u \)</span> of rank <span class="math notranslate nohighlight">\( \leq i \)</span> s.t. <span class="math notranslate nohighlight">\( \Deltau \mid v,a) &gt;0\)</span>. Then each vertex in <span class="math notranslate nohighlight">\( X \)</span> is assigned a finite rank: indeed, the set of vertices without a rank is closed and does not contain <span class="math notranslate nohighlight">\( \textsc{c}\)</span>-coloured vertices, hence it is contained in <span class="math notranslate nohighlight">\( Z \)</span>.
+Now fix any strategy <span class="math notranslate nohighlight">\( \sigma \)</span> starting in a vertex <span class="math notranslate nohighlight">\(v \in X \)</span>. By definition of <span class="math notranslate nohighlight">\( X \)</span>, <span class="math notranslate nohighlight">\( \sigma \)</span> never reaches <span class="math notranslate nohighlight">\( Z \)</span> and hence never visits an unranked state. At the same time, whenever <span class="math notranslate nohighlight">\( \sigma \)</span> is in a ranked state, there is, by definition of ranks, a probability at least <span class="math notranslate nohighlight">\(p_{\min}  \)</span> (the minimal edge probability in <span class="math notranslate nohighlight">\( \mathcal{M}\)</span>) of transitioning to a lower-ranked state in the next step. Hence, in every moment, the probability of <span class="math notranslate nohighlight">\( \sigma \)</span> reaching a <span class="math notranslate nohighlight">\( \textsc{c}\)</span>-coloured state within the next <span class="math notranslate nohighlight">\( |V \)</span> steps is at least <span class="math notranslate nohighlight">\( p_{\min}^{|V} \)</span>. By a straightforward adaptation of the second part of the proof of  <a class="reference internal" href="#5-thm:as-char">Theorem 139</a>, <span class="math notranslate nohighlight">\( \sigma \)</span> eventually visits <span class="math notranslate nohighlight">\( \vertices_{\textsc{c} \)</span> with probability 1. Since <span class="math notranslate nohighlight">\( \sigma \)</span> was arbitrary, this shows that <span class="math notranslate nohighlight">\( v\not \inW_{&gt;0}\mdp_{\bar{\textsc{c}},\mathtt{Safe}\textsc{c}).  \)</span></p>
 <p>The complexity follows from the results on positive reachability and a.s. safety.</p>
 </div>
 </div>

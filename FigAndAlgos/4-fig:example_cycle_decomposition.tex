@@ -1,0 +1,31 @@
+\documentclass[preview,border=0mm,convert={density=600,outext=.png}]{standalone}
+\usepackage{amsfonts,amssymb,amsmath}
+\usepackage{tikz}
+\usetikzlibrary{automata,shapes,patterns,calc,arrows}
+\input{../tikz-style.tex}
+\input{../norenew_macros.tex}
+\input{./../4_Payoffs/norenew_macros_local.tex}
+\begin{document}
+\begin{tikzpicture}
+    \tikzstyle{seqc}=[draw, circle]
+    \node [] (v0) {$v_0$};
+    \node [seqc, blue, right of=v0, node distance=1.4cm] (v1) {$v_1$};
+    \node [seqc, red, right of=v1, node distance=1.4cm] (v2) {$v_2$};
+    \node [seqc, red, right of=v2, node distance=1.4cm] (v3) {$v_3$};
+    \node [seqc, blue, right of=v3, node distance=1.4cm] (v4) {$v_2$};
+    \node [seqc, blue, right of=v4, node distance=1.4cm] (v5) {$v_4$};
+    \node [right of=v5, node distance=1.4cm] (v6) {$v_1$};
+    \node [right of=v6, node distance=1.4cm] (v7) {$v_5$};
+
+    \path[->,thick,bend left=45,red]
+        (v2) edge (v3)
+        (v3) edge (v4)
+        ;
+
+    \path[->,thick,bend right=25,blue]
+        (v1) edge (v4)
+        (v4) edge (v5)
+        (v5) edge (v6)
+        ;
+    \end{tikzpicture}
+\end{document}

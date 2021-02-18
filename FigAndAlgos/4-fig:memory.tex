@@ -1,0 +1,21 @@
+\documentclass[preview,border=0mm,convert={density=600,outext=.png}]{standalone}
+\usepackage{amsfonts,amssymb,amsmath}
+\usepackage{tikz}
+\usetikzlibrary{automata,shapes,patterns,calc,arrows}
+\input{../tikz-style.tex}
+\input{../norenew_macros.tex}
+\input{./../4_Payoffs/norenew_macros_local.tex}
+\begin{document}
+\begin{tikzpicture}
+    \node[s-eve,accepting](2){$v_2$};
+    \node[s-eve,above left of=2,xshift=5mm](0){$v_0$};
+    \node[s-adam,above right of=2,xshift=-5mm](1){$v_1$};
+
+    \path[->] (0) edge[bend left] node[above]{$-1$} (1)
+    (1) edge[bend left] node[below]{0} (0)
+    (0) edge node[below left]{$-50$} (2)
+    (1) edge node[below right]{$0$} (2)
+    (2) edge[selfloop=0] node[right]{0}(2);
+    
+  \end{tikzpicture}
+\end{document}

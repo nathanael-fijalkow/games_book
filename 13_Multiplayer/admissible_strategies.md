@@ -1,83 +1,13 @@
 (13-sec:admissible_strategies)=
 # Admissible strategies
 
+
 ```{math}
-\def\payoff{\ensuremath{f}}
-\def\Act{A}
-\def\Agt{\mathcal{P}}
-\def\move{\textsf{move}}
-\def\Out{\textsf{Out}}
-\def\Dev{\textsf{Dev}}
-\def\maxinf{\text{\rm maxinf}}
-\def\pes{\textsf{pes}}
-\def\opt{\textsf{opt}}
-\def\proj{\textsf{proj}}
-\def\devg{\textsf{DevGame}}
-\def\Coalition{\ensuremath{\mathcal{C}}}
-\newcommand{\Eve}{\textrm{Eve}}
-\newcommand{\Adam}{\textrm{Adam}}
-\newcommand{\set}[1]{\left\{ #1 \right\}}
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
-\newcommand{\argmax}{\textrm{argmax}}
-\newcommand{\argmin}{\textrm{argmin}}
-\newcommand{\Op}{\mathbb{O}}
-\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\textrm{supp}} 
-\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
-\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
-\newcommand{\mEve}{\mathrm{Eve}}
-\newcommand{\mAdam}{\mathrm{Adam}}
-\newcommand{\mRandom}{\mathrm{Random}}
-\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
-\newcommand{\ing}{\textrm{In}}
-\newcommand{\Ing}{\ing}
-\newcommand{\out}{\textrm{Out}}
 \newcommand{\Out}{\out}
-\newcommand{\dest}{\Delta} 
-\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
-\newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
-\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
-\newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\newcommand{\Win}{\textrm{Win}} 
-\newcommand{\Lose}{\textrm{Lose}} 
-\newcommand{\Value}{\textrm{val}} 
-\newcommand{\ValueE}{\textrm{val}_\mEve} 
-\newcommand{\ValueA}{\textrm{val}_\mAdam}
-\newcommand{\val}{\Value} 
-\newcommand{\Automaton}{\mathbf{A}} 
-\newcommand{\Safe}{\mathtt{Safe}}
-\newcommand{\Reach}{\mathtt{Reach}} 
-\newcommand{\Buchi}{\mathtt{Buchi}} 
-\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
-\newcommand{\Parity}{\mathtt{Parity}} 
-\newcommand{\Muller}{\mathtt{Muller}} 
-\newcommand{\Rabin}{\mathtt{Rabin}} 
-\newcommand{\Streett}{\mathtt{Streett}} 
-\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
-\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
-\newcommand{\Energy}{\mathtt{Energy}}
-\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
-\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
-\newcommand{\Sup}{\mathtt{Sup}}
-\newcommand{\Inf}{\mathtt{Inf}}
-\newcommand{\LimSup}{\mathtt{LimSup}}
-\newcommand{\LimInf}{\mathtt{LimInf}}
-\newcommand{\NL}{\textrm{NL}}
-\newcommand{\PTIME}{\textrm{PTIME}}
-\newcommand{\NP}{\textrm{NP}}
-\newcommand{\UP}{\textrm{UP}}
-\newcommand{\coNP}{\textrm{coNP}}
-\newcommand{\coUP}{\textrm{coUP}}
-\newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
-\newcommand{\EXP}{\textrm{EXP}}
-\newcommand{\kEXP}{\textrm{kEXP}}
+\newcommand{\last}{\textrm{last}}
+\newcommand{\out}{\textrm{Out}}
 ```
+
 Nash equilibria and their variants seen so far describe stable situations
 from which players have no incentive to deviate. This however is of limited use
 in some situations. First, the stability relies on the fact that all players are informed
@@ -109,7 +39,9 @@ playing $B$ is the rational choice for Player $1$.
 
 Furthermore, by this analysis, Player $2$ knows that Player $1$ will player $B$.
 Given this information, the best response of Player $1$ is to play $C$.
-By **iterated elimination**, we established that$(B, C)$ should be the only strategy profile to be played by players following this reasoning.
+By **iterated elimination**, we established that
+
+$(B, C)$ should be the only strategy profile to be played by players following this reasoning.
 
 \begin{table}
   \caption{A normal form game solvable by iterated elimination.}
@@ -138,15 +70,19 @@ written \(\sigma_i \ge_S \sigma'_i\), if from all vertices \(v_0\):
 
 
 $$
-  \forall \sigma_{-i} \in S_{-i}, \payoff_i(\Out(v_0,\sigma'_i,\sigma_{-i}))
+  \forall \sigma_{-i} \in S_{-i}, \payoff_i(\outv_0,\sigma'_i,\sigma_{-i}))
   \ge
-  \payoff_i(\Out(v_0, \sigma_i, \sigma_{-i})).
+  \payoff_i(\outv_0, \sigma_i, \sigma_{-i})).
 $$
 
 
 Strategy \(\sigma_i\) **weakly dominates** strategy \(\sigma'_i\)
 in \(S\), written \(\sigma >_S \sigma'\), if
-\(\sigma \ge_S \sigma'\) and \(\neg(\sigma' \le_S \sigma)\).%\(\sigma \in S_i\) is weakly dominated in \(S\) if there existsA strategy that is
+\(\sigma \ge_S \sigma'\) and \(\neg(\sigma' \le_S \sigma)\).
+
+%\(\sigma \in S_i\) is weakly dominated in \(S\) if there exists
+
+A strategy that is
 not weakly dominated in \(S\) is **admissible** in \(S\). The
 subscripts on \(\ge_S\) and \(>_S\) are omitted when the sets of
 strategies are clear from the context.
@@ -165,7 +101,7 @@ the best the player can achieve with the help of other players, given the strate
 \(\sigma_i\) for a history \(h\) with respect to a rectangular set of
 strategies \(S\), is
 
-*    \(\pes_i(S,h,\sigma_i) = \inf_{\sigma_{-i} \in S_{-i}} \payoff_{i}(h \cdot \Out(\last(h), \sigma_i,\sigma_{-i})).\)
+*    \(\pes_i(S,h,\sigma_i) = \inf_{\sigma_{-i} \in S_{-i}} \payoff_{i}(h \cdot \textrm{Out}textrm{last}h), \sigma_i,\sigma_{-i})).\)
 
 The **pessimistic value of a history** \(h\) for \(A_i\) with respect
 to a rectangular set of strategies \(S\) is given by:
@@ -177,7 +113,7 @@ The **optimistic value** of a strategy \(\sigma_i\) for a history
 \(h\) with respect to a rectangular set of strategies \(S\) is given by:
 
 
-*    \(\opt_i(S,h,\sigma_i) = \sup_{\sigma_{-i} \in S_{-i}} \payoff_i (h_{\le |h|-2} \cdot \Out(\last(h), \sigma_i,\sigma_{-i})).\)
+*    \(\opt_i(S,h,\sigma_i) = \sup_{\sigma_{-i} \in S_{-i}} \payoff_i (h_{\le |h|-2} \cdot \textrm{Out}textrm{last}h), \sigma_i,\sigma_{-i})).\)
 
 The **optimistic value** of a history \(h\) for \(A_{i}\) with
 respect to a rectangular set of strategies \(S\) is given by:
@@ -200,7 +136,9 @@ and omit $S$ in the above notations.
 \draw (I.-90) node[below] {};
 \draw (4,1) node[draw, circle, inner sep=2pt] (C1) {$v_1$};
 \draw (C1.-100) node[below] {};
-\draw (4,-1) node[draw, circle, inner sep=2pt, circle] (C2) {$v_2$};%\draw (C2.-90) node[below] {};
+\draw (4,-1) node[draw, circle, inner sep=2pt, circle] (C2) {$v_2$};
+
+%\draw (C2.-90) node[below] {};
 \draw (8, 1) node[draw, circle, inner sep=2pt] (S1) {$v_3$};
 \draw (S1.-90) node[below] {$-1, -1, 0$};
 \draw (8,-1) node[draw, circle, inner sep=2pt] (S2) {$v_4$};
@@ -213,7 +151,9 @@ and omit $S$ in the above notations.
 \draw[-latex'] (C2) -- node[above]{$(*,*,a)$} (S2);
 \draw[-latex', rounded corners] (C2) -- +(1,1) -- node[right]{$(*,*,b)$}(C1);
 \end{tikzpicture}
-\caption{Example of a three-player turn-based simple safety game.Numbers below states describe the safety objective, for instance $-1, -1, 0$ is losing for player 1 and 2.
+\caption{Example of a three-player turn-based simple safety game.
+
+Numbers below states describe the safety objective, for instance $-1, -1, 0$ is losing for player 1 and 2.
 }
 \label{13-fig:simple-safety}
 \end{center}
@@ -230,7 +170,7 @@ players.
 
 For simple safety games, the pessimistic and optimistic values do not depend
 on the full history but only on the last state: for all histories
-\(\pes_i(h) = \pes_i(\last(h))\) and \(\opt_i(h) = \opt_i(\last(h))\).
+\(\pes_i(h) = \pes_i(\textrm{last}h))\) and \(\opt_i(h) = \opt_i(\textrm{last}h))\).
 
 Note that in safety games (and any qualitative games) values can be only
 1 (for winning) and 0 (for losing) and since the pessimistic value is
@@ -281,12 +221,14 @@ simple observation.
 
 
 ````{prf:definition} NEEDS TITLE AND LABEL  Let \(D_i\) be the set of edges
-\((v,v') \in E\) such that \(v \in V_i\)%\(i\) and
+\((v,v') \in E\) such that \(v \in V_i\) 
+%\(i\) and
 \(\pes_i(v) > \pes_i(v')\) or \(\opt_i(v) > \opt_i(v')\). These
 are called **dominated edges**.
  
  Let \(D_i\) be the set of edges
-\((v,v') \in E\) such that \(v \in V_i\)%\(i\) and
+\((v,v') \in E\) such that \(v \in V_i\) 
+%\(i\) and
 \(\pes_i(v) > \pes_i(v')\) or \(\opt_i(v) > \opt_i(v')\). These
 are called **dominated edges**.
 
@@ -306,7 +248,7 @@ in \(D_i\).
 :class: dropdown tip
  We show that if \(A_i\) plays an admissible strategy
 \(\sigma_i\) then the value cannot decrease on a transition controled by
-\(A_i\). Let \(\rho \in \Out(\sigma_i,\sigma_{-i})\), and \(k\) an index
+\(A_i\). Let \(\rho \in \textrm{Out}sigma_i,\sigma_{-i})\), and \(k\) an index
 such that \(\rho_k \in V_i\). Let \((v, v') = \sigma_i(\rho_{\le k})\):
 
 
@@ -315,12 +257,15 @@ such that \(\rho_k \in V_i\). Let \((v, v') = \sigma_i(\rho_{\le k})\):
   weakly dominated by such a strategy. Since there is no such strategy
   from a state with value \(\pes_i \leq 0\), we must have \(\pes_i(v')=1\).
 *    If \(\opt_i(\rho_k) = 1\), then, by definition, there is a profile \(\sigma'\) such that
-  \(\rho = \payoff(\Out(v, \sigma')) = 1\).
+  \(\rho = \payoff(\outv, \sigma')) = 1\).
   Assume that $\opt_i(v')=0$. Then $\sigma_i$ is dominated by the strategy
   $\sigma_i''$ obtained from $\sigma_i$ by making it switch to $\sigma'$ at $v$.
   In fact, $\sigma_i$ is losing against all strategies of $-i$, while $\sigma_i''$
   is winning at least against $\sigma_{-i}'$.
- %  \(h \cdot v \cdot v'\) is a prefix of \(\rho\). If \(\opt_i(s')=0\),*    If $\pes_i(v)=0$ or $\opt_i(s) = 0$, then the value cannot decrease further.
+  
+%  \(h \cdot v \cdot v'\) is a prefix of \(\rho\). If \(\opt_i(s')=0\),
+
+*    If $\pes_i(v)=0$ or $\opt_i(s) = 0$, then the value cannot decrease further.
 
 In the other direction, let \(\sigma_i,\sigma_i'\) be two strategies of
 player \(A_i\) and assume \(\sigma_i' >_S \sigma_i\). We will prove
@@ -328,9 +273,9 @@ player \(A_i\) and assume \(\sigma_i' >_S \sigma_i\). We will prove
 
 Let us fix some objects before developing the proof. There is a vertex
 \(v\) and strategy profile \(\sigma_{-i} \in S_{-i}\) such that
-\(\payoff(\Out(v,\sigma_i',\sigma_{-i}))=1 \wedge \payoff(\Out(v,\sigma_i,\sigma_{-i})=0\).
-Let \(\rho = \Out(v,\sigma_i,\sigma_{-i})\) and
-\(\rho' = \Out(v,\sigma_i',\sigma_{-i})\). Consider the first position
+\(\payoff(\outv,\sigma_i',\sigma_{-i}))=1 \wedge \payoff(\outv,\sigma_i,\sigma_{-i})=0\).
+Let \(\rho = \outv,\sigma_i,\sigma_{-i})\) and
+\(\rho' = \outv,\sigma_i',\sigma_{-i})\). Consider the first position
 where these runs differ: write \(\rho = w \cdot s' \cdot s_2 \cdot w'\)
 and \(\rho' = w \cdot s' \cdot s_1 \cdot w''\).
 
@@ -339,9 +284,9 @@ The following are simple facts that can be seen easily:
 *    \(s' \in V_i\), because the strategy of the other players
   are identical in the two runs.
 *    \(\opt_i(s_1) = 1\) because
-  \(\payoff(\Out(v,\sigma_i',\sigma_{-i}))=1\)
+  \(\payoff(\outv,\sigma_i',\sigma_{-i}))=1\)
 *    \(\pes_i(s_2) = 0\) because
-  \(\payoff(\Out(v,\sigma_i,\sigma_{-i}))=0\)
+  \(\payoff(\outv,\sigma_i,\sigma_{-i}))=0\)
 
 If \(\opt_i(s_2) = 0\) or \(\pes_i(s_1) = 1\) then
 \(s' \rightarrow s_2 \in D_i\) so \(\sigma_i\) takes a transition of
@@ -353,7 +298,13 @@ a strategy for $-i$ against which $\sigma_i$ wins and $\sigma_i'$ loses,
 which contradicts the hypothesis that $\sigma_i'$ weakly dominates $\sigma_i$.
 
 We first construct a profile \(\sigma_{-i}^2 \in S_{-i}\) such that
-\(\payoff(\Out(s_2,\sigma_i,\sigma_{-i}^2))=1\).%we must have %\(\opt_i(\sigma^2_{-i}(h)) = 0\) thenStrategy \(\sigma_{-i}^2\in S_{-i}\) never decreases
+\(\payoff(\outs_2,\sigma_i,\sigma_{-i}^2))=1\).
+
+%we must have 
+
+%\(\opt_i(\sigma^2_{-i}(h)) = 0\) then
+
+Strategy \(\sigma_{-i}^2\in S_{-i}\) never decreases
 the optimistic value from \(1\) to \(0\) since the optimistic value is nonincreasing.
 By assumption, \(\sigma_i\)
 itself does not decrease the value of \(A_i\) because it does not take
@@ -472,14 +423,14 @@ More precisely, we have the following property whose proof is omitted.
 ````{prf:lemma} NEEDS TITLE AND LABEL 
 Let \(v\in V\), \(P_i\in \Agt\) and \(\rho\) a play be
 such that \(\exists^\infty k. \opt_{i}(\rho_k) = 1\). There exists
-\(\sigma_i\) admissible such that \(\rho \in \Out(v, \sigma_i)\) if, and
+\(\sigma_i\) admissible such that \(\rho \in \outv, \sigma_i)\) if, and
 only if, \(\payoff_i(\rho) = 1\) or
 \(\exists^\infty k. \rho_k \in H_i\).
  
 
 Let \(v\in V\), \(P_i\in \Agt\) and \(\rho\) a play be
 such that \(\exists^\infty k. \opt_{i}(\rho_k) = 1\). There exists
-\(\sigma_i\) admissible such that \(\rho \in \Out(v, \sigma_i)\) if, and
+\(\sigma_i\) admissible such that \(\rho \in \outv, \sigma_i)\) if, and
 only if, \(\payoff_i(\rho) = 1\) or
 \(\exists^\infty k. \rho_k \in H_i\).
 
@@ -513,6 +464,7 @@ to admissible strategies defined above. Let us call them $1$-admissible.
 In step 2, we again compute strategies that are dominated by only
 considering $1$-admissible strategies for all players, and repeat.
 Strategies that survive all step of elimination are said **iteratively admissible**.
+
 
 ````{prf:theorem} NEEDS TITLE AND LABEL 
   In parity games, the sequence of iterative elimination converges, and it reaches a non-empty fixpoint.

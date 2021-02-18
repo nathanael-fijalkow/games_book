@@ -1,0 +1,193 @@
+\documentclass[preview,border=0mm,convert={density=600,outext=.png}]{standalone}
+\usepackage{amsfonts,amssymb,amsmath}
+\usepackage{tikz}
+\usetikzlibrary{automata,shapes,patterns,calc,arrows}
+\input{../tikz-style.tex}
+\input{../norenew_macros.tex}
+\input{./../11_Counters/norenew_macros_local.tex}
+\begin{document}
+\begin{tikzpicture}[auto,on grid,node distance=2.5cm]
+    \draw[step=1,lightgray!50,dotted] (-5.7,0) grid (5.7,3.8);
+    \node at (0,3.9) (sink) {\boldmath$\sink$};
+    \draw[step=1,lightgray!50] (1,0) grid (5.5,3.5);
+    \draw[step=1,lightgray!50] (-1,0) grid (-5.5,3.5);
+    \draw[color=white](0,-.3) -- (0,3.8);
+    \node at (0,0)[lightgray,font=\scriptsize,fill=white] {0};
+    \node at (0,1)[lightgray,font=\scriptsize,fill=white] {1};
+    \node at (0,2)[lightgray,font=\scriptsize,fill=white] {2};
+    \node at (0,3)[lightgray,font=\scriptsize,fill=white] {3};
+    \node at (1,3.9)[lightgray,font=\scriptsize,fill=white] {0};
+    \node at (2,3.9)[lightgray,font=\scriptsize,fill=white] {1};
+    \node at (3,3.9)[lightgray,font=\scriptsize,fill=white] {2};
+    \node at (4,3.9)[lightgray,font=\scriptsize,fill=white] {3};
+    \node at (5,3.9)[lightgray,font=\scriptsize,fill=white] {4};
+    \node at (-1,3.9)[lightgray,font=\scriptsize,fill=white] {0};
+    \node at (-2,3.9)[lightgray,font=\scriptsize,fill=white] {1};
+    \node at (-3,3.9)[lightgray,font=\scriptsize,fill=white] {2};
+    \node at (-4,3.9)[lightgray,font=\scriptsize,fill=white] {3};
+    \node at (-5,3.9)[lightgray,font=\scriptsize,fill=white] {4};
+    \node at (1,0)[s-eve-small] (e00) {};
+    \node at (1,1)[s-adam-small](a01){};
+    \node at (1,2)[s-eve-small] (e02){};
+    \node at (1,3)[s-adam-small](a03){};
+    \node at (2,0)[s-adam-small](a10){};
+    \node at (2,1)[s-eve-small] (e11){};
+    \node at (2,2)[s-adam-small](a12){};
+    \node at (2,3)[s-eve-small] (e13){};
+    \node at (3,0)[s-eve-small] (e20){};
+    \node at (3,1)[s-adam-small](a21){};
+    \node at (3,2)[s-eve-small] (e22){};
+    \node at (3,3)[s-adam-small](a23){};
+    \node at (4,0)[s-adam-small](a30){};
+    \node at (4,1)[s-eve-small] (e31){};
+    \node at (4,2)[s-adam-small](a32){};
+    \node at (4,3)[s-eve-small] (e33){};
+    \node at (5,0)[s-eve-small] (e40){};
+    \node at (5,1)[s-adam-small](a41){};
+    \node at (5,2)[s-eve-small] (e42){};
+    \node at (5,3)[s-adam-small](a43){};
+    \node at (-1,0)[s-adam-small](a00){};
+    \node at (-1,1)[s-eve-small] (e01){};
+    \node at (-1,2)[s-adam-small](a02){};
+    \node at (-1,3)[s-eve-small] (e03){};
+    \node at (-2,0)[s-eve-small] (e10){};
+    \node at (-2,1)[s-adam-small](a11){};
+    \node at (-2,2)[s-eve-small] (e12){};
+    \node at (-2,3)[s-adam-small](a13){};
+    \node at (-3,0)[s-adam-small](a20){};
+    \node at (-3,1)[s-eve-small] (e21){};
+    \node at (-3,2)[s-adam-small](a22){};
+    \node at (-3,3)[s-eve-small] (e23){};
+    \node at (-4,0)[s-eve-small] (e30){};
+    \node at (-4,1)[s-adam-small](a31){};
+    \node at (-4,2)[s-eve-small] (e32){};
+    \node at (-4,3)[s-adam-small](a33){};
+    \node at (-5,0)[s-adam-small](a40){};
+    \node at (-5,1)[s-eve-small] (e41){};
+    \node at (-5,2)[s-adam-small](a42){};
+    \node at (-5,3)[s-eve-small] (e43){};
+    \path[arrow] 
+    (e11) edge (e00)
+    (e22) edge (e11)
+    (e31) edge (e20)
+    (e32) edge (e21)
+    (e21) edge (e10)
+    (e12) edge (e01)
+    (e23) edge (e12)
+    (e33) edge (e22)
+    (e13) edge (e02)
+    (e43) edge (e32)
+    (e42) edge (e31)
+    (e41) edge (e30);
+    \path[arrow] 
+    (e11) edge (a01)
+    (e20) edge (a10)
+    (e22) edge (a12)
+    (e31) edge (a21)
+    (e32) edge (a22)
+    (e21) edge (a11)
+    (e12) edge (a02)
+    (e30) edge (a20)
+    (e10) edge (a00)
+    (e13) edge (a03)
+    (e23) edge (a13)
+    (e33) edge (a23)
+    (e43) edge (a33)
+    (e42) edge (a32)
+    (e41) edge (a31)
+    (e40) edge (a30);
+    \path[arrow] 
+    (a11) edge (e01)
+    (a20) edge (e10)
+    (a22) edge (e12)
+    (a31) edge (e21)
+    (a32) edge (e22)
+    (a21) edge (e11)
+    (a12) edge (e02)
+    (a30) edge (e20)
+    (a10) edge (e00)
+    (a33) edge (e23)
+    (a23) edge (e13)
+    (a13) edge (e03)
+    (a43) edge (e33)
+    (a42) edge (e32)
+    (a41) edge (e31)
+    (a40) edge (e30);
+    \path[arrow] 
+    (a01) edge (e22)
+    (a10) edge (e31)
+    (a11) edge (e32)
+    (a00) edge (e21)
+    (a02) edge (e23)
+    (a12) edge (e33)
+    (a22) edge (e43)
+    (a21) edge (e42)
+    (a20) edge (e41);
+    \path[arrow] 
+    (-5.5,3.5) edge (e43)
+    (5.5,2.5) edge (e42)
+    (2.5,3.5) edge (e13)
+    (5.5,0.5) edge (e40)
+    (-5.5,1.5) edge (e41)
+    (-3.5,3.5) edge (e23)
+    (-1.5,3.5) edge (e03)
+    (4.5,3.5) edge (e33)
+    (5.5,0) edge (e40)
+    (5.5,2) edge (e42)
+    (-5.5,1) edge (e41)
+    (-5.5,3) edge (e43);
+    \path[dotted]
+    (-5.7,3.7) edge (-5.5,3.5)
+    (5.7,2.7) edge (5.5,2.5)
+    (2.7,3.7) edge (2.5,3.5)
+    (5.7,0.7) edge (5.5,0.5)
+    (-3.7,3.7) edge (-3.5,3.5)
+    (-1.7,3.7) edge (-1.5,3.5)
+    (4.7,3.7) edge (4.5,3.5)
+    (-5.7,1.7) edge (-5.5,1.5)
+    (5.75,0) edge (5.5,0)
+    (5.75,2) edge (5.5,2)
+    (-5.75,1) edge (-5.5,1)
+    (-5.75,3) edge (-5.5,3);
+    \path[arrow]
+    (5.5,1) edge (a41)
+    (-5.5,2) edge (a42)
+    (-5.5,0) edge (a40)
+    (5.5,3) edge (a43);
+    \path[dotted]
+    (5.75,1) edge (5.5,1)
+    (-5.75,2) edge (-5.5,2)
+    (-5.75,0) edge (-5.5,0)
+    (5.75,3) edge (5.5,3);
+    \path[-]
+    (a30) edge (5.5,.75)
+    (a32) edge (5.5,2.75)
+    (a31) edge (-5.5,1.75)
+    (a23) edge (4,3.5)
+    (a03) edge (2,3.5)
+    (a13) edge (-3,3.5)
+    (a33) edge (-5,3.5)
+    (a43) edge (5.5,3.25)
+    (a41) edge (5.5,1.25)
+    (a40) edge (-5.5,0.25)
+    (a42) edge (-5.5,2.25);
+    \path[dotted]
+    (5.5,.75) edge (5.8,.9)
+    (5.5,2.75) edge (5.8,2.9)
+    (-5.5,1.75) edge (-5.8,1.9)
+    (4,3.5) edge (4.4,3.7)
+    (2,3.5) edge (2.4,3.7)
+    (-3,3.5) edge (-3.4,3.7)
+    (-5,3.5) edge (-5.4,3.7)
+    (5.5,3.25) edge (5.8,3.4)
+    (5.5,1.25) edge (5.8,1.4)
+    (-5.5,.25) edge (-5.8,0.4)
+    (-5.5,2.25) edge (-5.8,2.4);
+    \path[arrow]
+    (sink) edge[loop left] ()
+    (e00) edge[bend left=8] (sink)
+    (e01) edge[bend right=8] (sink)
+    (e02) edge[bend left=8] (sink)
+    (e03) edge[bend right=8] (sink);
+  \end{tikzpicture}
+\end{document}

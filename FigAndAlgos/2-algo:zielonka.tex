@@ -1,0 +1,61 @@
+\documentclass[preview,border=0mm,convert={density=600,outext=.png}]{standalone}
+\usepackage{amsfonts,amssymb,amsmath}
+\usepackage[norelsize,ruled,vlined,noend]{algorithm2e}
+\input{../norenew_macros.tex}
+\input{./../2_Regular/norenew_macros_local.tex}
+\begin{document}
+\begin{algorithm}[H]
+
+ \KwData{A parity game $\Game$ with priorities in $[1,d]$}
+ \SetKwFunction{FSolveEven}{SolveEven}
+ \SetKwFunction{FSolveOdd}{SolveOdd}
+ \SetKwProg{Fn}{Function}{:}{}
+ \DontPrintSemicolon
+
+\Fn{\FSolveEven{$\Game$}}{
+
+
+	Let $\Game'$ the subgame of $\Game$ induced by $V \setminus \AttrE(d)$
+	
+	$X \leftarrow$ \FSolveOdd{$\Game'$}
+
+	\If{$X = \emptyset$}{\Return{$V$}}
+	\Else{
+		Let $\Game''$ the subgame of $\Game$ induced by $V \setminus \AttrA(X)$
+		
+		\FSolveEven{$\Game''$}
+
+%
+
+	}
+}
+
+
+\Fn{\FSolveOdd{$\Game$}}{
+	\If{$d = 1$}{\Return{$V$}}
+
+	Let $\Game'$ the subgame of $\Game$ induced by $V \setminus \AttrA(d)$
+	
+	$X \leftarrow$ \FSolveEven{$\Game'$}
+
+	\If{$X = \emptyset$}{\Return{$V$}}
+	\Else{
+		Let $\Game''$ the subgame of $\Game$ induced by $V \setminus \AttrE(X)$
+		
+		\FSolveOdd{$\Game''$}
+
+%
+
+	}
+}
+
+
+\If{$d$ is even}{
+	\FSolveEven{$\Game$}
+}
+\Else{
+	\FSolveOdd{$\Game$}
+}
+
+\end{algorithm}
+\end{document}

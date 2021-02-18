@@ -731,319 +731,188 @@
   <div class="section" id="asymmetric-games">
 <span id="sec-avag"></span><h1>Asymmetric games<a class="headerlink" href="#asymmetric-games" title="Permalink to this headline">¶</a></h1>
 <div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}\begin{split}\newcommand{\?}{\mathcal}
-\newcommand{\+}{\mathbb}
-\newcommand{\tup}[1]{\langle #1\rangle}
-\newcommand{\eqby}[1]{\stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{#1}}}}{=}}
-\newcommand{\eqdef}{\eqby{def}}
+\[\newcommand{\eqdef}{\eqby{def}}
 \newcommand{\Loc}{\?L}
 \newcommand{\Act}{A}
-\providecommand{\dom}[1]{\mathrm{dom}\,#1}
-\newcommand\pto{\mathrel{\ooalign{\hfil$\mapstochar\mkern5mu$\hfil\cr$\to$\cr}}}
-\newcommand{\weight}{w}
 \newcommand{\loc}{\ell}
 \newcommand{\sink}{\bot}
 \newcommand{\dd}{k}
-\newcommand{\CounterReach}{\textsf{CounterReach}\xspace}
-\newcommand{\Cover}{\textsf{Cover}\xspace}
-\newcommand{\NonTerm}{\textsf{NonTerm}\xspace}
-\newcommand{\decpb}[3][]{\begin{problem}[#1]\\[-1.7em]\begin{description}     
-    \item[\textsc{input:}] {#2}
-    \item[\textsc{question:}] {#3}
-    \end{description}
-  \end{problem}}
-\newcommand{\step}[1]{\xrightarrow{\,\raisebox{-1pt}[0pt][0pt]{\scriptsize\ensuremath
-      {#1}}\,}}
-\newcommand{\mstep}[1]{\xrightarrow{\,\raisebox{-1pt}[6pt][0pt]{\scriptsize\ensuremath
-      {#1}}\,}}
-\newcommand{\inst}[1]{\mathrel{\mathtt{#1}}}
-\providecommand{\pop}{\mathrm{pop}}
-\providecommand{\push}[1]{\mathrm{push}(#1)}
-\providecommand{\mymoot}[1]{}
 \newcommand{\blank}{\Box}
 \newcommand{\emkl}{\triangleright}
 \newcommand{\emkr}{\triangleleft}
-\renewcommand{\natural}{\arena_\+N}
-\newcommand{\energy}{\arena_\+E}
-\newcommand{\bounded}{\arena_B}
-\newcommand{\capped}{\arena_C}
-\newcommand{\capp}[2][C]{\overline{\vec #2}^{#1}}
-\let\oldcite\cite
-\renewcommand{\cite}{\citep}
-\providecommand{\citep}{\oldcite}
-\providecommand{\citet}{\cite}
-\providecommand{\citem}[2][1]{#1 {cite}`#2`}
-\providecommand{\qedhere}{\ensuremath\Box}
-\providecommand{\col}{\mathfrak c}
 \newcommand{\lcol}{\mathrm{lcol}}
 \newcommand{\vcol}{\mathrm{vcol}}
-\newcommand{\litt}{\loc}
-\newcommand{\Effect}{\Delta}\end{split}\\\newcommand{\Eve}{\textrm{Eve}}
+\newcommand{\Eve}{\textrm{Eve}}
 \newcommand{\Adam}{\textrm{Adam}}
-\newcommand{\set}[1]{\left\{ #1 \right\}}
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
-\newcommand{\argmax}{\textrm{argmax}}
-\newcommand{\argmin}{\textrm{argmin}}
-\newcommand{\Op}{\mathbb{O}}
-\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\textrm{supp}} 
-\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
-\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
+\newcommand{\col}{\textsf{col}}
 \newcommand{\mEve}{\mathrm{Eve}}
 \newcommand{\mAdam}{\mathrm{Adam}}
-\newcommand{\mRandom}{\mathrm{Random}}
-\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
+\newcommand{\VE}{V_\mEve}
+\newcommand{\VA}{V_\mAdam}
 \newcommand{\ing}{\textrm{In}}
-\newcommand{\Ing}{\ing}
-\newcommand{\out}{\textrm{Out}}
-\newcommand{\Out}{\out}
-\newcommand{\dest}{\Delta} 
-\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
-\newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
-\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
-\newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\newcommand{\Win}{\textrm{Win}} 
-\newcommand{\Lose}{\textrm{Lose}} 
-\newcommand{\Value}{\textrm{val}} 
-\newcommand{\ValueE}{\textrm{val}_\mEve} 
-\newcommand{\ValueA}{\textrm{val}_\mAdam}
-\newcommand{\val}{\Value} 
-\newcommand{\Automaton}{\mathbf{A}} 
-\newcommand{\Safe}{\mathtt{Safe}}
-\newcommand{\Reach}{\mathtt{Reach}} 
-\newcommand{\Buchi}{\mathtt{Buchi}} 
-\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
-\newcommand{\Parity}{\mathtt{Parity}} 
-\newcommand{\Muller}{\mathtt{Muller}} 
-\newcommand{\Rabin}{\mathtt{Rabin}} 
-\newcommand{\Streett}{\mathtt{Streett}} 
-\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
-\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
-\newcommand{\Energy}{\mathtt{Energy}}
-\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
-\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
-\newcommand{\Sup}{\mathtt{Sup}}
-\newcommand{\Inf}{\mathtt{Inf}}
-\newcommand{\LimSup}{\mathtt{LimSup}}
-\newcommand{\LimInf}{\mathtt{LimInf}}
-\newcommand{\NL}{\textrm{NL}}
-\newcommand{\PTIME}{\textrm{PTIME}}
-\newcommand{\NP}{\textrm{NP}}
-\newcommand{\UP}{\textrm{UP}}
-\newcommand{\coNP}{\textrm{coNP}}
-\newcommand{\coUP}{\textrm{coUP}}
-\newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\dest}{\Delta}
+\newcommand{\WE}{W_\mEve}
+\newcommand{\WA}{W_\mAdam}
 \newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
-\newcommand{\EXP}{\textrm{EXP}}
-\newcommand{\kEXP}{\textrm{kEXP}}\end{aligned}\end{align} \]</div>
-<p>\Cref{11-th-undec} shows that vector games are too powerful to be
+\newcommand{\kEXP}{\textrm{kEXP}}\]</div>
+<p>\Cref{11-th:undec} shows that vector games are too powerful to be
 algorithmically relevant, except in dimension one where
-\cref{11-th-dim1} applies.  This prompts the study of restricted kinds
+\cref{11-th:dim1} applies.  This prompts the study of restricted kinds
 of vector games, which might be decidable in arbitrary dimension.
 This section introduces one such restriction, called
 <strong>asymmetry</strong>, which turns out to be very fruitful: it yields
-decidable games (see \cref{11-complexity}), and is
+decidable games (see Section <a class="reference internal" href="complexity.html#sec-complexity"><span class="std std-ref">The complexity of asymmetric monotone games</span></a>), and is
 related to another class of games on counter systems called “energy
-games” (see \cref{11-resource}).</p>
+games” (see Section <a class="reference internal" href="resource.html#sec-resource"><span class="std std-ref">Resource-conscious games</span></a>).</p>
 <blockquote>
 <div><p><strong>Asymmetric Games</strong></p>
 </div></blockquote>
 <p>A vector system
-<span class="math notranslate nohighlight">\(\?V=(\Loc,\Act,\Loc_\mEve,\Loc_\mAdam,\dd)\)</span> is
+<span class="math notranslate nohighlight">\(\?V=(\?LA\Loc_\mathrm{Eve}\Loc_\mathrm{Adam}k\)</span> is
 asymmetric\index{asymmetry|see{vector system}} if, for all
-locations <span class="math notranslate nohighlight">\(\loc\in\Loc_\mAdam\)</span> controlled by \Adam and all actions
-<span class="math notranslate nohighlight">\((\loc\step{\vec u}\loc')\in\Act\)</span> originating from those,
-<span class="math notranslate nohighlight">\(\vec u=\vec 0\)</span> the zero vector.  In other words, \Adam may only
+locations <span class="math notranslate nohighlight">\(\ellin\Loc_\mathrm{Adam} controlled by \textrm{Adam} and all actions
+\)</span>(\ellstep{\vec u}\ell)\inA originating from those,
+<span class="math notranslate nohighlight">\(\vec u=\vec 0\)</span> the zero vector.  In other words, \textrm{Adam} may only
 change the current location, and cannot interact directly with the
 counters.</p>
-<div class="proof example admonition" id="11-ex-avg">
-<p class="admonition-title"><span class="caption-number">Example 302 </span> (NEEDS TITLE 11-ex-avg)</p>
+<div class="proof example admonition" id="11-ex:avg">
+<p class="admonition-title"><span class="caption-number">Example 304 </span> (Asymmetric vector system)</p>
 <div class="example-content section" id="proof-content">
-<p>\Cref{11-fig-avg} presents an asymmetric vector system of
-dimension two with locations partitioned as <span class="math notranslate nohighlight">\(\Loc_\mEve=\{\loc,\loc_{2,1},\loc_{\text-1,0}\}\)</span> and <span class="math notranslate nohighlight">\(\Loc_\mAdam=\{\loc'\}   .  We omit the labels on the actions originating from \Adam's
-  locations, since those are necessarily the zero vector.  It is
-  worth observing that this vector system behaves quite differently
-  from the one of \cref{11-ex-mwg} on \cpageref{11-ex-mwg}: for
-  instance, in \)</span>\loc’(0,1)<span class="math notranslate nohighlight">\(, \Adam can now ensure that the sink will
-  be reached by playing the action \)</span>\loc’\step{0,0}\loc_{\text-1,0}<span class="math notranslate nohighlight">\(,
-  whereas in \cref{11-ex-mwg}, the action \)</span>\loc’\step{-1,0}\loc$
+<p><a class="reference internal" href="#fig-avg"><span class="std std-numref">Fig. 73</span></a> presents an asymmetric vector system of
+dimension two with locations partitioned as <span class="math notranslate nohighlight">\(\Loc_\mathrm{Eve}\{\ell\loc_{2,1},\loc_{\text-1,0}\}\)</span> and <span class="math notranslate nohighlight">\(\Loc_\mathrm{Adam}\{\ell\}\)</span></p>
+<p>.  We omit the labels on the actions originating from \textrm{Adam}s
+locations, since those are necessarily the zero vector.  It is
+worth observing that this vector system behaves quite differently
+from the one of  <a class="reference internal" href="counters.html#11-ex:mwg">Example 295</a> on \cpageref{11-ex:mwg}: for
+instance, in <span class="math notranslate nohighlight">\(\ell(0,1)\)</span>, \textrm{Adam} can now ensure that the sink will
+be reached by playing the action <span class="math notranslate nohighlight">\(\ell\step{0,0}\loc_{\text-1,0}\)</span>,
+whereas in  <a class="reference internal" href="counters.html#11-ex:mwg">Example 295</a>, the action $\ell\step{-1,0}\ell
 was just inhibited by the natural semantics.</p>
 </div>
-</div><p>\begin{figure}[htbp]
-\centering
-\begin{tikzpicture}[auto,on grid,node distance=2.5cm]
-\node<span class="xref myst">s-eve,inner sep=3pt</span>{<span class="math notranslate nohighlight">\(\loc\)</span>};
-\node<span class="xref myst">s-adam,right=of 0,inner sep=2pt</span>{<span class="math notranslate nohighlight">\(\loc'\)</span>};
-\node<span class="xref myst">s-eve,above left=1cm and 1.2cm of 1</span>{<span class="math notranslate nohighlight">\(\loc_{2,1}\)</span>};
-\node<span class="xref myst">s-eve,below left=1cm and 1.2cm of 1</span>{<span class="math notranslate nohighlight">\(\loc_{\text-1,0}\)</span>};
-\path[arrow,every node/.style={font=\footnotesize,inner sep=1}]
-(0) edge[loop left] node {<span class="math notranslate nohighlight">\(-1,-1\)</span>} ()
-(0) edge[bend right=10] node {<span class="math notranslate nohighlight">\(-1,0\)</span>} (1)
-(1) edge[bend right=10]  (2)
-(1) edge[bend left=10] (3)
-(2) edge[swap,bend right=10] node{<span class="math notranslate nohighlight">\(2,1\)</span>} (0)
-(3) edge[bend left=10] node{<span class="math notranslate nohighlight">\(-1,0\)</span>} (0);
-\end{tikzpicture}
-\caption{\label{11-fig-avg} An asymmetric vector system.}
-\end{figure}</p>
+</div><div class="figure align-center" id="fig-avg">
+<img alt="../_images/11-fig:avg.png" src="../_images/11-fig:avg.png" />
+<p class="caption"><span class="caption-number">Fig. 73 </span><span class="caption-text">An asymmetric vector system.</span><a class="headerlink" href="#fig-avg" title="Permalink to this image">¶</a></p>
+</div>
 <div class="section" id="the-case-of-configuration-reachability">
-<span id="subsec-reach"></span><h2>The Case of Configuration Reachability<a class="headerlink" href="#the-case-of-configuration-reachability" title="Permalink to this headline">¶</a></h2>
+<span id="sec-reach"></span><h2>The Case of Configuration Reachability<a class="headerlink" href="#the-case-of-configuration-reachability" title="Permalink to this headline">¶</a></h2>
 <p>In spite of the restriction to asymmetric vector systems,
 configuration reachability remains undecidable.</p>
-<div class="proof theorem admonition" id="11-th-asym-undec">
-<p class="admonition-title"><span class="caption-number">Theorem 303 </span> (NEEDS TITLE 11-th-asym-undec)</p>
+<div class="proof theorem admonition" id="11-th:asym-undec">
+<p class="admonition-title"><span class="caption-number">Theorem 305 </span> (Reachability in asymmetric vector games is undecidable)</p>
 <div class="theorem-content section" id="proof-content">
 <p>Configuration reachability asymmetric vector games, both with
 given and with existential initial credit, are undecidable in
-any dimension <span class="math notranslate nohighlight">\(\dd\geq 2\)</span>.</p>
+any dimension <span class="math notranslate nohighlight">\(kgeq 2\)</span>.</p>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
 <p>We first reduce from the halting problem of “deterministic Minsky
 machines to configuration reachability with given initial
 credit.  Given an instance of the halting problem”, i.e., given
-<span class="math notranslate nohighlight">\(\?M=(\Loc,\Act,\dd)\)</span> and an initial location <span class="math notranslate nohighlight">\(\loc_0\)</span> where we
+<span class="math notranslate nohighlight">\(\?M=(\?LAk\)</span> and an initial location <span class="math notranslate nohighlight">\(\loc_0\)</span> where we
 assume without loss of generality that <span class="math notranslate nohighlight">\(\?M\)</span> checks that all its
 counters are zero before going to <span class="math notranslate nohighlight">\(\loc_\mathtt{halt}\)</span>, we construct
 an asymmetric vector system
-<span class="math notranslate nohighlight">\(\?V\eqdef(\Loc\uplus\Loc_{\eqby?0}\uplus\Loc_{\dd},\Act',\Loc\uplus\Loc'_{\eqby?0},\Loc_{\eqby?0},\dd)\)</span>
-where all the original locations and <span class="math notranslate nohighlight">\(\Loc_{\dd}\)</span> are
-controlled by~\Eve and <span class="math notranslate nohighlight">\(\Loc_{\eqby?0}\)</span> is controlled by~\Adam.</p>
-<p>\begin{figure}[htbp]
-\centering
-\begin{tikzpicture}[auto,on grid,node distance=1.5cm]
-\node(to){<span class="math notranslate nohighlight">\(\mapsto\)</span>};
-\node<span class="xref myst">anchor=east,left=2.5cm of to</span>{deterministic Minsky machine};
-\node<span class="xref myst">anchor=west,right=2.5cm of to</span>{asymmetric vector system};
-\node<span class="xref myst">below=.7cm of to</span>{<span class="math notranslate nohighlight">\(\rightsquigarrow\)</span>};
-\node<span class="xref myst">left=2.75cm of map</span>{<span class="math notranslate nohighlight">\(\loc\)</span>};
-\node<span class="xref myst">right=of 0</span>{<span class="math notranslate nohighlight">\(\loc'\)</span>};
-\node<span class="xref myst">right=1.25cm of map,s-eve</span>{<span class="math notranslate nohighlight">\(\loc\)</span>};
-\node<span class="xref myst">right=of 2,s-eve</span>{<span class="math notranslate nohighlight">\(\loc'\)</span>};
-\node<span class="xref myst">below=2.5cm of map</span>{<span class="math notranslate nohighlight">\(\rightsquigarrow\)</span>};
-\node<span class="xref myst">left=2.75cm of map2</span>{<span class="math notranslate nohighlight">\(\loc\)</span>};
-\node<span class="xref myst">below right=.5cm and 1.5cm of 4</span>{<span class="math notranslate nohighlight">\(\loc''\)</span>};
-\node<span class="xref myst">above right=.5cm and 1.5cm of 4</span>{<span class="math notranslate nohighlight">\(\loc'\)</span>};
-\node<span class="xref myst">right=1.25cm of map2,s-eve</span>{<span class="math notranslate nohighlight">\(\loc\)</span>};
-\node<span class="xref myst">below right=.5cm and 1.5cm of 7,s-eve</span>{<span class="math notranslate nohighlight">\(\loc''\)</span>};
-\node<span class="xref myst">above right=.5cm and 1.5cm of 7,s-adam,inner sep=-1.5pt</span>{<span class="math notranslate nohighlight">\(\loc'_{i\eqby?0}\)</span>};
-\node<span class="xref myst">below right=.5cm and 1.5cm of 9,s-eve</span>{<span class="math notranslate nohighlight">\(\loc'\)</span>};
-\node<span class="xref myst">above right=.5cm and 1.5cm of 9,s-eve</span>{<span class="math notranslate nohighlight">\(\loc_{i}\)</span>};
-\node<span class="xref myst">right=of 11,s-eve,inner sep=0pt</span>{<span class="math notranslate nohighlight">\(\loc_{\mathtt{halt}}\)</span>};
-\path[arrow,every node/.style={font=\scriptsize}]
-(0) edge node{<span class="math notranslate nohighlight">\(\vec e_i\)</span>} (1)
-(2) edge node{<span class="math notranslate nohighlight">\(\vec e_i\)</span>} (3)
-(4) edge[swap] node{<span class="math notranslate nohighlight">\(-\vec e_i\)</span>} (5)
-(4) edge node{<span class="math notranslate nohighlight">\(i\eqby?0\)</span>} (6)
-(7) edge[swap] node{<span class="math notranslate nohighlight">\(-\vec e_i\)</span>} (8)
-(7) edge node{<span class="math notranslate nohighlight">\(\vec 0\)</span>} (9)
-(9) edge[swap] node{<span class="math notranslate nohighlight">\(\vec 0\)</span>} (10)
-(9) edge node{<span class="math notranslate nohighlight">\(\vec 0\)</span>} (11)
-(11) edge node{<span class="math notranslate nohighlight">\(\vec 0\)</span>} (12)
-(11) edge[loop above] node{<span class="math notranslate nohighlight">\(\forall j\neq i\mathbin.-\vec e_j\)</span>}();
-\end{tikzpicture}
-\caption{\label{11-fig-asym-undec}Schema of the reduction in the proof of \cref{11-th-asym-undec}.}
-\end{figure}</p>
+<span class="math notranslate nohighlight">\(\?V\eqby{def}\?Luplus\Loc_{\eqby?0}\uplus\Loc_{k,A,\?Luplus\?L_{\eqby?0},\Loc_{\eqby?0},k\)</span>
+where all the original locations and <span class="math notranslate nohighlight">\(\Loc_{k\)</span> are
+controlled by~\textrm{Eve} and <span class="math notranslate nohighlight">\(\Loc_{\eqby?0}\)</span> is controlled by~\textrm{Adam}</p>
+<div class="figure align-center" id="fig-asym-undec">
+<img alt="../_images/11-fig:asym-undec.png" src="../_images/11-fig:asym-undec.png" />
+<p class="caption"><span class="caption-number">Fig. 74 </span><span class="caption-text">Schema of the reduction in the proof of \cref{11-th:asym-undec}.</span><a class="headerlink" href="#fig-asym-undec" title="Permalink to this image">¶</a></p>
+</div>
 <p>We
-use <span class="math notranslate nohighlight">\(\Loc_{\eqby?0}\)</span> and <span class="math notranslate nohighlight">\(\Loc_{\dd}\)</span> as two sets of locations disjoint from <span class="math notranslate nohighlight">\(\Loc\)</span> defined by
-\begin{align*}
-\Loc_{\eqby?0}&amp;\eqdef{\loc’<em>{i\eqby?0}\in\Loc\times{1,\dots,\dd}\mid\exists\loc\in\Loc\mathbin.(\loc\step{i\eqby?0}\loc’)\in\Act}\
-\Loc</em>{\dd}&amp;\eqdef{\loc_{i}\mid 1\leq i\leq \dd}
-\intertext{and define the set of actions by (see \cref{11-fig-asym-undec})}
-\Act’&amp;\eqdef{\loc\step{\vec
-e_i}\loc’\mid(\loc\step{\vec e_i}\loc’)\in\Act}\cup{\loc\step{-\vec e_i}\loc’’\mid(\loc\step{-\vec e_i}\loc’’)\in\Act}\
-&amp;:\cup:{\loc\step{\vec
-0}\loc’<em>{i\eqby?0},;;:\loc’</em>{i\eqby?0}!!\step{\vec
-0}\loc’,;;:\loc’<em>{i\eqby?0}!!\step{\vec 0}\loc</em>{i}\mid
-(\loc\step{i\eqby?0}\loc’)\in\Act}\
-&amp;:\cup:{\loc_i!\step{-\vec e_j}\loc_{i},;;:\loc_{i}!\step{\vec
-0}\loc_\mathtt{halt}\mid 1\leq i,j\leq\dd, j\neq i};.
-\end{align*}
-We use <span class="math notranslate nohighlight">\(\loc_0(\vec 0)\)</span> as initial configuration and
-<span class="math notranslate nohighlight">\(\loc_\mathtt{halt}(\vec 0)\)</span> as target configuration for the
-constructed configuration reachability instance.  Here is the crux
-of the argument why \Eve has a winning strategy to reach
-<span class="math notranslate nohighlight">\(\loc_\mathtt{halt}(\vec 0)\)</span> from <span class="math notranslate nohighlight">\(\loc_0(\vec 0)\)</span> if and only if
-the Minsky machine&#64;deterministic Minsky machine halts, i.e., if
-and only if the Minsky machine&#64;deterministic Minsky machine
-reaches <span class="math notranslate nohighlight">\(\loc_\mathtt{halt}(\vec 0)\)</span>.
-Consider any configuration <span class="math notranslate nohighlight">\(\loc(\vec v)\)</span>.  If
-<span class="math notranslate nohighlight">\((\loc\step{\vec e_i}\loc')\in\Act\)</span>, \Eve has no choice but to apply
-<span class="math notranslate nohighlight">\(\loc\step{\vec e_i}\loc'\)</span> and go to the configuration
-<span class="math notranslate nohighlight">\(\loc'(\vec v+\vec e_i)\)</span> also reached in one step in <span class="math notranslate nohighlight">\(\?M\)</span>.  If
-<span class="math notranslate nohighlight">\(\{\loc\step{i\eqby?0}\loc',\loc\step{-\vec e_i}\loc''\}\in\Act\)</span> and
-<span class="math notranslate nohighlight">\(\vec v(i)=0\)</span>, due to the natural semantics, \Eve cannot use the
-action <span class="math notranslate nohighlight">\(\loc\step{-\vec e_i}\loc''\)</span>, thus she must use
-<span class="math notranslate nohighlight">\(\loc\step{\vec 0}\loc'_{i\eqby?0}\)</span>.  Then, either \Adam plays
-<span class="math notranslate nohighlight">\(\loc'_{i\eqby?0}\!\!\step{\vec 0}\loc'\)</span> and \Eve regains the
-control in <span class="math notranslate nohighlight">\(\loc'(\vec v)\)</span>, which was also the configuration reached
-in one step in <span class="math notranslate nohighlight">\(\?M\)</span>, or \Adam plays
-<span class="math notranslate nohighlight">\(\loc'_{i\eqby?0}\!\!\step{\vec 0}\loc_{i}\)</span> and \Eve
-regains the control in <span class="math notranslate nohighlight">\(\loc_{i}(\vec v)\)</span> with
+use <span class="math notranslate nohighlight">\(\Loc_{\eqby?0}\)</span> and <span class="math notranslate nohighlight">\(\Loc_{k\)</span> as two sets of locations disjoint from <span class="math notranslate nohighlight">\(\?L defined by
+  \begin{align*}
+    \Loc_{\eqby?0}&amp;\eqby{def}{\ell_{i\eqby?0}\in\?Ltimes\{1,\dots,k}\mid\exists\ellin\?Lmathbin.(\ellstep{i\eqby?0}\ell)\inA}\\
+    \Loc_{k&amp;\eqby{def}{\loc_{i}\mid 1\leq i\leq k}
+    \intertext{and define the set of actions by (see {numref}`11-fig:asym-undec`)}
+    A&amp;\eqby{def}{\ellstep{\vec
+          e_i}\ell\mid(\ellstep{\vec e_i}\ell)\inA}\cup\{\ellstep{-\vec e_i}\ell'\mid(\ellstep{-\vec e_i}\ell')\inA}\\
+    &amp;\:\cup\:\{\ellstep{\vec
+      0}\ell_{i\eqby?0},\;\;\:\ell_{i\eqby?0}\!\!\step{\vec
+      0}\ell,\;\;\:\ell_{i\eqby?0}\!\!\step{\vec 0}\loc_{i}\mid
+      (\ellstep{i\eqby?0}\ell)\inA}\\
+    &amp;\:\cup\:\{\loc_i\!\step{-\vec e_j}\loc_{i},\;\;\:\loc_{i}\!\step{\vec
+      0}\loc_\mathtt{halt}\mid 1\leq i,j\leqk j\neq i\}\;.
+  \end{align*}
+  We use \)</span>\loc_0(\vec 0)<span class="math notranslate nohighlight">\( as initial configuration and
+  \)</span>\loc_\mathtt{halt}(\vec 0)<span class="math notranslate nohighlight">\( as target configuration for the
+  constructed configuration reachability instance.  Here is the crux
+  of the argument why \textrm{Eve} has a winning strategy to reach
+  \)</span>\loc_\mathtt{halt}(\vec 0)<span class="math notranslate nohighlight">\( from \)</span>\loc_0(\vec 0)<span class="math notranslate nohighlight">\( if and only if
+  the Minsky machine&#64;deterministic Minsky machine halts, i.e., if
+  and only if the Minsky machine&#64;deterministic Minsky machine
+  reaches \)</span>\loc_\mathtt{halt}(\vec 0)$.</p>
+<p>Consider any configuration <span class="math notranslate nohighlight">\(\ell\vec v)\)</span>.  If
+<span class="math notranslate nohighlight">\((\ellstep{\vec e_i}\ell)\inA, \textrm{Eve} has no choice but to apply
+  \)</span>\ellstep{\vec e_i}\ell<span class="math notranslate nohighlight">\( and go to the configuration
+  \)</span>\ell(\vec v+\vec e_i)<span class="math notranslate nohighlight">\( also reached in one step in \)</span>?M<span class="math notranslate nohighlight">\(.  If
+  \)</span>{\ellstep{i\eqby?0}\ell,\ellstep{-\vec e_i}\ell’}\inA and
+<span class="math notranslate nohighlight">\(\vec v(i)=0\)</span>, due to the natural semantics, \textrm{Eve} cannot use the
+action <span class="math notranslate nohighlight">\(\ellstep{-\vec e_i}\ell'\)</span>, thus she must use
+<span class="math notranslate nohighlight">\(\ellstep{\vec 0}\ell_{i\eqby?0}\)</span>.  Then, either \textrm{Adam} plays
+<span class="math notranslate nohighlight">\(\ell_{i\eqby?0}\!\!\step{\vec 0}\ell\)</span> and \textrm{Eve} regains the
+control in <span class="math notranslate nohighlight">\(\ell(\vec v)\)</span>, which was also the configuration reached
+in one step in <span class="math notranslate nohighlight">\(\?M\)</span>, or \textrm{Adam} plays
+<span class="math notranslate nohighlight">\(\ell_{i\eqby?0}\!\!\step{\vec 0}\loc_{i}\)</span> and \textrm{Eve}  regains the control in <span class="math notranslate nohighlight">\(\loc_{i}(\vec v)\)</span> with
 <span class="math notranslate nohighlight">\(\vec v(i)=0\)</span>.  Using the actions
 <span class="math notranslate nohighlight">\(\loc_{i}\!\step{-\vec e_j}\loc_{i}\)</span> for
-<span class="math notranslate nohighlight">\(j\neq i\)</span>, \Eve can then reach <span class="math notranslate nohighlight">\(\loc_{i}(\vec 0)\)</span> and move
+<span class="math notranslate nohighlight">\(j\neq i\)</span>, \textrm{Eve} can then reach <span class="math notranslate nohighlight">\(\loc_{i}(\vec 0)\)</span> and move
 to <span class="math notranslate nohighlight">\(\loc_\mathtt{halt}(\vec 0)\)</span>.  Finally, if
-<span class="math notranslate nohighlight">\(\{\loc\step{i\eqby?0}\loc',\loc\step{-\vec e_i}\loc''\}\in\Act\)</span> and
-<span class="math notranslate nohighlight">\(\vec v(i)&gt;0\)</span>, \Eve can choose: if she uses
-<span class="math notranslate nohighlight">\(\loc\step{-\vec e_i}\loc''\)</span>, she ends in the configuration
-<span class="math notranslate nohighlight">\(\loc''(\vec v-\vec e_i)\)</span> also reached in one step in <span class="math notranslate nohighlight">\(\?M\)</span>.  In
-fact, she should not use <span class="math notranslate nohighlight">\(\loc\step{\vec 0}\loc'_{i\eqby?0}\)</span>,
-because \Adam would then have the opportunity to apply
-<span class="math notranslate nohighlight">\(\loc'_{i\eqby?0}\!\!\step{\vec 0}\loc_{i}\)</span>, and in
-<span class="math notranslate nohighlight">\(\loc_{i}(\vec v)\)</span> with <span class="math notranslate nohighlight">\(\vec v(i)&gt;0\)</span>, there is no way to
-reach a configuration with an empty <span class="math notranslate nohighlight">\(i\)</span>th component, let alone to
-reach <span class="math notranslate nohighlight">\(\loc_\mathtt{halt}(\vec 0)\)</span>.  Thus, if <span class="math notranslate nohighlight">\(\?M\)</span> halts, then \Eve
-has a winning strategy that mimics the unique play
-of <span class="math notranslate nohighlight">\(\?M\)</span>, and conversely, if \Eve wins, then necessarily she had to
-follow the play of <span class="math notranslate nohighlight">\(\?M\)</span> and thus the machine halts.</p>
+<span class="math notranslate nohighlight">\(\{\ellstep{i\eqby?0}\ell,\ellstep{-\vec e_i}\ell'\}\inA and
+  \)</span>\vec v(i)&gt;0<span class="math notranslate nohighlight">\(, \textrm{Eve} can choose: if she uses
+  \)</span>\ellstep{-\vec e_i}\ell’<span class="math notranslate nohighlight">\(, she ends in the configuration
+  \)</span>\ell’(\vec v-\vec e_i)<span class="math notranslate nohighlight">\( also reached in one step in \)</span>?M<span class="math notranslate nohighlight">\(.  In
+  fact, she should not use \)</span>\ellstep{\vec 0}\ell_{i\eqby?0}<span class="math notranslate nohighlight">\(,
+  because \textrm{Adam} would then have the opportunity to apply
+  \)</span>\ell_{i\eqby?0}!!\step{\vec 0}\loc_{i}<span class="math notranslate nohighlight">\(, and in
+  \)</span>\loc_{i}(\vec v)<span class="math notranslate nohighlight">\( with \)</span>\vec v(i)&gt;0<span class="math notranslate nohighlight">\(, there is no way to
+  reach a configuration with an empty \)</span>i<span class="math notranslate nohighlight">\(th component, let alone to
+  reach \)</span>\loc_\mathtt{halt}(\vec 0)<span class="math notranslate nohighlight">\(.  Thus, if \)</span>?M<span class="math notranslate nohighlight">\( halts, then \textrm{Eve}  has a winning strategy that mimics the unique play
+  of \)</span>?M<span class="math notranslate nohighlight">\(, and conversely, if \textrm{Eve} wins, then necessarily she had to
+  follow the play of \)</span>?M$ and thus the machine halts.</p>
 <p>\medskip Finally, regarding the existential initial credit
-variant, the arguments used in the proof of \cref{11-th-undec} apply
+variant, the arguments used in the proof of \cref{11-th:undec} apply
 similarly to show that it is also undecidable.</p>
 </div>
-<p>In dimension~one, \cref{11-th-dim1} applies, thus “configuration
-reachability” is decidable in \EXPSPACE.  This bound is actually
+<p>In dimension~one, \cref{11-th:dim1} applies, thus “configuration
+reachability” is decidable in \textrm{EXPSPACE}  This bound is actually
 tight.</p>
-<div class="proof theorem admonition" id="11-th-asym-dim1">
-<p class="admonition-title"><span class="caption-number">Theorem 304 </span> (NEEDS TITLE 11-th-asym-dim1)</p>
+<div class="proof theorem admonition" id="11-th:asym-dim1">
+<p class="admonition-title"><span class="caption-number">Theorem 306 </span> (Asymmetric vector games are \textrm{EXPSPACE}complete in dimension~one)</p>
 <div class="theorem-content section" id="proof-content">
 <p>Configuration reachability asymmetric vector games, both with
 given and with existential initial credit,
-are \EXPSPACE-complete in dimension~one.</p>
+are \textrm{EXPSPACE}complete in dimension~one.</p>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
 <p>Let us first consider the existential initial credit variant.  We
-proceed as in \cref{11-countdown-given,12-countdown-exist} and
+proceed as in \cref{11-th:countdown-given,11-th:countdown-exist} and
 reduce from the acceptance problem for a deterministic Turing
 machine working in exponential space <span class="math notranslate nohighlight">\(m=2^{p(n)}\)</span>.  The reduction is
-mostly the same as in \cref{11-countdown-given}, with a few changes.
+mostly the same as in \cref{11-th:countdown-given}, with a few changes.
 Consider the integer <span class="math notranslate nohighlight">\(m-n\)</span> from that reduction.  While this is an
 exponential value, it can be written as <span class="math notranslate nohighlight">\(m-n=\sum_{0\leq e\leq
   p(n)}2^{e}\cdot b_e\)</span> for a polynomial number of bits <span class="math notranslate nohighlight">\(b_0,\dots,b_{p(n)}\)</span>.
-For all <span class="math notranslate nohighlight">\(0\leq d\leq p(n)\)</span>, we define <span class="math notranslate nohighlight">\(m_d\eqdef \sum_{0\leq e\leq
+For all <span class="math notranslate nohighlight">\(0\leq d\leq p(n)\)</span>, we define <span class="math notranslate nohighlight">\(m_d\eqby{def}\sum_{0\leq e\leq
   d}2^{e}\cdot b_e\)</span>; thus <span class="math notranslate nohighlight">\(m-n+1=m_{p(n)}+1\)</span>.</p>
 <p>We define now the sets of
 locations
 \begin{align*}
-\Loc_\mEve&amp;\eqdef{\loc_0,\smiley}
+\Loc_\mathrm{Eve}\eqby{def}{\loc_0,\smiley}
 \cup{\loc_\gamma\mid\gamma\in\Gamma’}
 \cup{\loc_\gamma^k\mid 1\leq k\leq 3}
 \cup{\loc_{=j}\mid 0&lt;j\leq n}\
 &amp;:\cup:{\loc_{1\leq?\leq m_d+1}\mid 0\leq d\leq
 p(n)}\cup{\loc_{1\leq?\leq 2^d}\mid 1\leq d\leq p(n)};,\
-\Loc_\mAdam&amp;\eqdef{\loc_{(\gamma_1,\gamma_2,\gamma_3)}\mid\gamma_1,\gamma_2,\gamma_3\in\Gamma’};.
+\Loc_\mathrm{Adam}\eqby{def}{\loc_{(\gamma_1,\gamma_2,\gamma_3)}\mid\gamma_1,\gamma_2,\gamma_3\in\Gamma’};.
 \end{align*}
-The intention behind the locations <span class="math notranslate nohighlight">\(\loc_{=j}\in\Loc_\mEve\)</span> is
-that \Eve can reach <span class="math notranslate nohighlight">\(\smiley(0)\)</span> from a configuration <span class="math notranslate nohighlight">\(\loc_{=j}(c)\)</span> if
-and only if <span class="math notranslate nohighlight">\(c=j\)</span>; we define accordingly <span class="math notranslate nohighlight">\(\Act\)</span> with the
+The intention behind the locations <span class="math notranslate nohighlight">\(\loc_{=j}\in\Loc_\mathrm{Eve} is
+  that \textrm{Eve} can reach \)</span>\smiley(0)<span class="math notranslate nohighlight">\( from a configuration \)</span>\loc_{=j}(c)<span class="math notranslate nohighlight">\( if
+  and only if \)</span>c=j<span class="math notranslate nohighlight">\(; we define accordingly \)</span>A with the
 action <span class="math notranslate nohighlight">\(\loc_{=j}\step{-j}\smiley\)</span>.
-Similarly, \Eve should be able to reach <span class="math notranslate nohighlight">\(\smiley(0)\)</span> from
+Similarly, \textrm{Eve} should be able to reach <span class="math notranslate nohighlight">\(\smiley(0)\)</span> from
 <span class="math notranslate nohighlight">\(\loc_{1\leq?\leq m_d+1}(c)\)</span> for <span class="math notranslate nohighlight">\(0\leq d\leq p(n)\)</span> if and only if
 <span class="math notranslate nohighlight">\(1\leq c\leq m_d+1\)</span>,
 which is implemented by the following actions: if <span class="math notranslate nohighlight">\(b_{d+1}=1\)</span>, then
@@ -1063,20 +932,20 @@ reach <span class="math notranslate nohighlight">\(\smiley(0)\)</span> if and on
 2^1}&amp;\step{-1}\loc_{=1};,&amp;\loc_{1\leq?\leq 2^1}&amp;\step{0}\loc_{=1};.
 \end{align*}</p>
 <p>The remainder of the reduction is now very similar to the reduction shown
-in \cref{11-countdown-given}.
-Regarding initialisation, \Eve can choose her initial position,
+in \cref{11-th:countdown-given}.
+Regarding initialisation, \textrm{Eve} can choose her initial position,
 which we implement by the actions
 \begin{align*}
 \loc_0 &amp;\step{-1} \loc_0 &amp; \loc_0 &amp;\step{-1}\loc_{(q_\mathrm{final},a)}&amp;&amp;\text{for <span class="math notranslate nohighlight">\(a\in\Gamma\)</span>};.
 \intertext{Outside the boundary cases, the game is implemented by
 the following actions:}
 \loc_\gamma&amp;\step{-m}\loc_{(\gamma_1,\gamma_2,\gamma_3)}&amp;&amp;&amp;&amp;\text{for
-<span class="math notranslate nohighlight">\(\gamma_1,\gamma_2,\gamma_3\vdash\gamma\)</span>};,\ \loc_{(\gamma_1,\gamma_2,\gamma_3)}&amp;\step{0}\loc^k_{\gamma_k}&amp;\loc^k_{\gamma_k}&amp;\step{-k}\loc_{\gamma_k}&amp;&amp;\text{for
+<span class="math notranslate nohighlight">\(\gamma_1,\gamma_2,\gamma_3\vdash\gamma\)</span>};,\ \loc_{(\gamma_1,\gamma_2,\gamma_3)}&amp;\step{0}\ellk_{\gamma_k}&amp;\ellk_{\gamma_k}&amp;\step{-k}\loc_{\gamma_k}&amp;&amp;\text{for
 <span class="math notranslate nohighlight">\(k\in\{1,2,3\}\)</span>};.
 \intertext{We handle the endmarker positions via the following
-actions, where \Eve proceeds along the left edge
-of \cref{11-fig-exp} until she reaches the initial left endmarker:}
-\loc_\emkl&amp;\step{-m-2}\loc_\emkl;,&amp; \loc_\emkl&amp;\step{-1}\loc_{=1};,&amp; \loc_\emkr&amp;\step{-m-1}\loc_\emkl;.
+actions, where \textrm{Eve} proceeds along the left edge
+of <a class="reference internal" href="dim1.html#fig-exp"><span class="std std-numref">Fig. 72</span></a> until she reaches the initial left endmarker:}
+\loc_\triangleright\step{-m-2}\loc_\triangleright;,&amp; \loc_\triangleright\step{-1}\loc_{=1};,&amp; \loc_\triangleleft\step{-m-1}\loc_\triangleright;.
 \intertext{For the positions inside the input word <span class="math notranslate nohighlight">\(w=a_1\cdots
   a_n\)</span>, we use the actions}
 \loc_{(q_0,a_1)}&amp;\step{-2}\loc_{=1};,&amp;\loc_{a_j}&amp;\step{-2}\loc_{=j}&amp;&amp;\text{for
@@ -1085,19 +954,19 @@ of \cref{11-fig-exp} until she reaches the initial left endmarker:}
 associated with a counter value <span class="math notranslate nohighlight">\(c\)</span> such that <span class="math notranslate nohighlight">\(n+3\leq c\leq m+3\)</span>,
 i.e., such that <span class="math notranslate nohighlight">\(1\leq c-n-2\leq m-n+1=m_{p(n)}+1\)</span>, we use the
 action}
-\loc_\blank&amp;\step{-n-2}\loc_{1\leq?\leq m_{p(n)}+1};.
+\loc_\Box\step{-n-2}\loc_{1\leq?\leq m_{p(n)}+1};.
 \end{align*}</p>
 <p>Regarding the given initial credit variant, we add a new location
-<span class="math notranslate nohighlight">\(\loc'_0\)</span> controlled by \Eve and let her choose her initial credit
-when starting from <span class="math notranslate nohighlight">\(\loc'_0(0)\)</span> by using the new actions
-<span class="math notranslate nohighlight">\(\loc'_0\step{1}\loc'_0\)</span> and <span class="math notranslate nohighlight">\(\loc'_0\step{0}\loc_0\)</span>.</p>
+<span class="math notranslate nohighlight">\(\ell_0\)</span> controlled by \textrm{Eve} and let her choose her initial credit
+when starting from <span class="math notranslate nohighlight">\(\ell_0(0)\)</span> by using the new actions
+<span class="math notranslate nohighlight">\(\ell_0\step{1}\ell_0\)</span> and <span class="math notranslate nohighlight">\(\ell_0\step{0}\loc_0\)</span>.</p>
 </div>
 </div>
 <div class="section" id="asymmetric-monotone-games">
-<span id="subsec-mono"></span><h2>Asymmetric Monotone Games<a class="headerlink" href="#asymmetric-monotone-games" title="Permalink to this headline">¶</a></h2>
+<span id="sec-mono"></span><h2>Asymmetric Monotone Games<a class="headerlink" href="#asymmetric-monotone-games" title="Permalink to this headline">¶</a></h2>
 <p>The results on configuration reachability might give the impression
 that asymmetry does not help much for solving vector games: we
-obtained in Subsection <a class="reference internal" href="#subsec-reach"><span class="std std-ref">The Case of Configuration Reachability</span></a> exactly the same results as in the
+obtained in Section <a class="reference internal" href="#sec-reach"><span class="std std-ref">The Case of Configuration Reachability</span></a> exactly the same results as in the
 general case.  Thankfully, the situation changes drastically if we
 consider the other types of vector games: coverability,
 non-termination, and parity&#64;parity vector games become decidable
@@ -1114,12 +983,12 @@ equivalent if <span class="math notranslate nohighlight">\(x\leq y\)</span> and 
 <span class="math notranslate nohighlight">\(x&lt;y\)</span> holds if <span class="math notranslate nohighlight">\(x\leq y\)</span> and <span class="math notranslate nohighlight">\(y\not\leq x\)</span>.</p>
 <p>The upward closure of a subset <span class="math notranslate nohighlight">\(S\subseteq X\)</span> is the set of
 elements greater or equal to the elements of S:
-<span class="math notranslate nohighlight">\({\uparrow}S\eqdef\{x\in X\mid\exists y\in S\mathbin.y\leq x\}\)</span>.  A
+<span class="math notranslate nohighlight">\({\uparrow}S\eqby{def}{x\in X\mid\exists y\in S\mathbin.y\leq x\}\)</span>.  A
 subset <span class="math notranslate nohighlight">\(U\subseteq X\)</span> is upwards closed if <span class="math notranslate nohighlight">\({\uparrow}U=U\)</span>.  When
 <span class="math notranslate nohighlight">\(S=\{x\}\)</span> is a singleton, we write more simply <span class="math notranslate nohighlight">\({\uparrow}x\)</span> for its
 upward closure and call the resulting upwards closed set a
 principal filter.  Dually, the downward closure of <span class="math notranslate nohighlight">\(S\)</span> is
-<span class="math notranslate nohighlight">\({\downarrow}S\eqdef\{x\in X\mid\exists y\in S\mathbin.x\leq y\}\)</span>, a
+<span class="math notranslate nohighlight">\({\downarrow}S\eqby{def}{x\in X\mid\exists y\in S\mathbin.x\leq y\}\)</span>, a
 downwards closed set is a subset <span class="math notranslate nohighlight">\(D\subseteq X\)</span> such that
 <span class="math notranslate nohighlight">\(D={\downarrow}D\)</span>, and <span class="math notranslate nohighlight">\({\downarrow}x\)</span> is called a principal
 ideal.  Note that the complement <span class="math notranslate nohighlight">\(X\setminus U\)</span> of an upwards closed
@@ -1130,28 +999,28 @@ set <span class="math notranslate nohighlight">\(U\)</span> is downwards closed 
 <p>\AP
 Let us consider again the natural semantics <span class="math notranslate nohighlight">\(\natural(\?V)\)</span> of a
 vector system.  The set of vertices
-<span class="math notranslate nohighlight">\(V=\Loc\times\+N^\dd\cup\{\sink\}\)</span> is naturally equipped with a
-partial ordering: <span class="math notranslate nohighlight">\(v\leq v'\)</span> if either <span class="math notranslate nohighlight">\(v=v'=\sink\)</span>, or <span class="math notranslate nohighlight">\(v=\loc(\vec
-v)\)</span> and <span class="math notranslate nohighlight">\(v'=\loc(\vec v')\)</span> are two configurations that share the same
-location and satisfy <span class="math notranslate nohighlight">\(\vec v(i)\leq\vec v'(i)\)</span> for all <span class="math notranslate nohighlight">\(1\leq
-i\leq\dd\)</span>, i.e., if <span class="math notranslate nohighlight">\(\vec v\leq\vec v'\)</span> for the componentwise
+<span class="math notranslate nohighlight">\(V=\?Ltimes\+N^kcup\{\bot}\)</span> is naturally equipped with a
+partial ordering: <span class="math notranslate nohighlight">\(v\leq v'\)</span> if either <span class="math notranslate nohighlight">\(v=v'=\bot, or \)</span>v=\ell\vec
+v)<span class="math notranslate nohighlight">\( and \)</span>v’=\ell\vec v’)<span class="math notranslate nohighlight">\( are two configurations that share the same
+location and satisfy \)</span>\vec v(i)\leq\vec v’(i)<span class="math notranslate nohighlight">\( for all \)</span>1\leq
+i\leqk, i.e., if <span class="math notranslate nohighlight">\(\vec v\leq\vec v'\)</span> for the componentwise
 ordering.</p>
-<p>Consider a set of colours <span class="math notranslate nohighlight">\(C\)</span> and a vertex colouring <span class="math notranslate nohighlight">\(\vcol{:}\,V\to C\)</span>
+<p>Consider a set of colours <span class="math notranslate nohighlight">\(C\)</span> and a vertex colouring <span class="math notranslate nohighlight">\(\mathrm{vcol}:}\,V\to C\)</span>
 of the natural semantics <span class="math notranslate nohighlight">\(\natural(\?V)\)</span> of a vector system, which
-defines a colouring <span class="math notranslate nohighlight">\(\col{:}\,E\to C\)</span> where
-<span class="math notranslate nohighlight">\(\col(e)\eqdef\vcol(\ing(e))\)</span>.  We
-say that the colouring <span class="math notranslate nohighlight">\(\vcol\)</span> is monotonic if <span class="math notranslate nohighlight">\(C\)</span> is finite and,
-for every colour <span class="math notranslate nohighlight">\(p\in C\)</span>, the set <span class="math notranslate nohighlight">\(\vcol^{-1}(p)\)</span> of vertices coloured
-by <span class="math notranslate nohighlight">\(p\)</span> is upwards closed with respect to <span class="math notranslate nohighlight">\({\leq}\)</span>.  Clearly, the
+defines a colouring <span class="math notranslate nohighlight">\(\textsf{col}:}\,E\to C\)</span> where
+<span class="math notranslate nohighlight">\(\textsf{col}e)\eqby{def}vcol(\textrm{In}e))\)</span>.  We
+say that the colouring <span class="math notranslate nohighlight">\(\mathrm{vcol} is monotonic if \)</span>C<span class="math notranslate nohighlight">\( is finite and,
+for every colour \)</span>p\in C<span class="math notranslate nohighlight">\(, the set \)</span>\mathrm{vcol}{-1}(p)<span class="math notranslate nohighlight">\( of vertices coloured
+by \)</span>p<span class="math notranslate nohighlight">\( is upwards closed with respect to \)</span>{\leq}$.  Clearly, the
 colourings of coverability, non-termination, and “parity&#64;parity
 vector games vector games are monotonic”, whereas those of
 configuration reachability vector games are not.  By extension, we
 call a vector game <strong>monotonic</strong> if its underlying colouring
 is monotonic.</p>
-<div class="proof lemma admonition" id="11-fact-mono">
-<p class="admonition-title"><span class="caption-number">Lemma 305 </span> (Simulation)</p>
+<div class="proof lemma admonition" id="11-lem:mono">
+<p class="admonition-title"><span class="caption-number">Lemma 307 </span> (Simulation)</p>
 <div class="lemma-content section" id="proof-content">
-<p>In a monotonic asymmetric vector game, if \Eve wins from a
+<p>In a monotonic asymmetric vector game, if \textrm{Eve} wins from a
 vertex <span class="math notranslate nohighlight">\(v_0\)</span>, then she also wins from <span class="math notranslate nohighlight">\(v'_0\)</span> for all <span class="math notranslate nohighlight">\(v'_0\geq
   v_0\)</span>.</p>
 </div>
@@ -1159,38 +1028,38 @@ vertex <span class="math notranslate nohighlight">\(v_0\)</span>, then she also 
 <p class="admonition-title">Proof</p>
 <p>It suffices for this to check that, for all <span class="math notranslate nohighlight">\(v_1\leq v_2\)</span> in <span class="math notranslate nohighlight">\(V\)</span>,
 \begin{description}
-\item[(colours)] <span class="math notranslate nohighlight">\(\vcol(v_1)=\vcol(v_2)\)</span> since <span class="math notranslate nohighlight">\(\vcol\)</span> is monotonic;
-\item[(zig \Eve)] if <span class="math notranslate nohighlight">\(v_1,v_2\in V_\mEve\)</span>, <span class="math notranslate nohighlight">\(a\in\Act\)</span>, and
-<span class="math notranslate nohighlight">\(\dest(v_1,a)=v'_1\neq\sink\)</span> is defined, then
-<span class="math notranslate nohighlight">\(v'_2\eqdef\dest(v_2,a)\)</span> is such that <span class="math notranslate nohighlight">\(v'_2\geq v'_1\)</span>: indeed,
-<span class="math notranslate nohighlight">\(v'_1\neq\sink\)</span> entails that <span class="math notranslate nohighlight">\(v_1\)</span> is a configuration
-<span class="math notranslate nohighlight">\(\loc(\vec v_1)\)</span> and <span class="math notranslate nohighlight">\(v'_1=\loc'(\vec v_1+\vec u)\)</span> for the action
-<span class="math notranslate nohighlight">\(a=(\loc\step{\vec u}\loc')\in\Act\)</span>, but then <span class="math notranslate nohighlight">\(v_2=\loc(\vec v_2)\)</span>
+\item[(colours)] <span class="math notranslate nohighlight">\(\mathrm{vcol}v_1)=\mathrm{vcol}v_2)\)</span> since <span class="math notranslate nohighlight">\(\mathrm{vcol} is monotonic;
+  \item[(zig \textrm{Eve}] if \)</span>v_1,v_2\in V_\mathrm{Eve}, <span class="math notranslate nohighlight">\(a\inA, and
+    \)</span>\Deltav_1,a)=v’_1\neq\bot is defined, then
+<span class="math notranslate nohighlight">\(v'_2\eqby{def}dest(v_2,a)\)</span> is such that <span class="math notranslate nohighlight">\(v'_2\geq v'_1\)</span>: indeed,
+<span class="math notranslate nohighlight">\(v'_1\neq\bot entails that \)</span>v_1<span class="math notranslate nohighlight">\( is a configuration
+    \)</span>\ell\vec v_1)<span class="math notranslate nohighlight">\( and \)</span>v’_1=\ell(\vec v_1+\vec u)<span class="math notranslate nohighlight">\( for the action
+    \)</span>a=(\ellstep{\vec u}\ell)\inA, but then <span class="math notranslate nohighlight">\(v_2=\ell\vec v_2)\)</span>
 for some <span class="math notranslate nohighlight">\(\vec v_2\geq\vec v_1\)</span> and
-<span class="math notranslate nohighlight">\(v'_2=\loc'(\vec v_2+\vec u)\geq v'_1\)</span>;
-\item[(zig \Adam)] if <span class="math notranslate nohighlight">\(v_1,v_2\in V_\mAdam\)</span>, <span class="math notranslate nohighlight">\(a\in\Act\)</span>, and
-<span class="math notranslate nohighlight">\(\dest(v_2,a)=v'_2\)</span> is defined, then
-<span class="math notranslate nohighlight">\(v'_1\eqdef\dest(v_1,a)\leq v'_2\)</span>: indeed, either <span class="math notranslate nohighlight">\(v'_2=\sink\)</span> and
-then <span class="math notranslate nohighlight">\(v'_1=\sink\)</span>, or <span class="math notranslate nohighlight">\(v'_2\neq\sink\)</span>, thus
-<span class="math notranslate nohighlight">\(v_2=\loc(\vec v_2)\)</span>, <span class="math notranslate nohighlight">\(v'_2=\loc'(\vec v_2)\)</span>, and
-<span class="math notranslate nohighlight">\(a=(\loc\step{\vec 0}\loc')\in\Act\)</span> (recall that the game is
-asymmetric), but then <span class="math notranslate nohighlight">\(v_1=\loc(\vec v_1)\)</span> for some
-<span class="math notranslate nohighlight">\(\vec v_1\leq\vec v_2\)</span> and thus <span class="math notranslate nohighlight">\(v'_1=\loc'(\vec v_1)\leq v'_2\)</span>.
+<span class="math notranslate nohighlight">\(v'_2=\ell(\vec v_2+\vec u)\geq v'_1\)</span>;
+\item[(zig \textrm{Adam}] if <span class="math notranslate nohighlight">\(v_1,v_2\in V_\mathrm{Adam}, \)</span>a\inA, and
+<span class="math notranslate nohighlight">\(\Deltav_2,a)=v'_2\)</span> is defined, then
+<span class="math notranslate nohighlight">\(v'_1\eqby{def}dest(v_1,a)\leq v'_2\)</span>: indeed, either <span class="math notranslate nohighlight">\(v'_2=\bot and
+    then \)</span>v’_1=\bot, or <span class="math notranslate nohighlight">\(v'_2\neq\bot, thus
+    \)</span>v_2=\ell\vec v_2)<span class="math notranslate nohighlight">\(, \)</span>v’_2=\ell(\vec v_2)<span class="math notranslate nohighlight">\(, and
+    \)</span>a=(\ellstep{\vec 0}\ell)\inA (recall that the game is
+asymmetric), but then <span class="math notranslate nohighlight">\(v_1=\ell\vec v_1)\)</span> for some
+<span class="math notranslate nohighlight">\(\vec v_1\leq\vec v_2\)</span> and thus <span class="math notranslate nohighlight">\(v'_1=\ell(\vec v_1)\leq v'_2\)</span>.
 \end{description}
-The above conditions show that, if <span class="math notranslate nohighlight">\(\sigma{:}\,E^\ast\to\Act\)</span> is a
-strategy of \Eve that wins from <span class="math notranslate nohighlight">\(v_0\)</span>, then by
-simulating <span class="math notranslate nohighlight">\(\sigma\)</span> starting from <span class="math notranslate nohighlight">\(v'_0\)</span>—i.e., by applying the
+The above conditions show that, if <span class="math notranslate nohighlight">\(\sigma{:}\,E^\ast\toA is a
+  strategy of \textrm{Eve} that wins from \)</span>v_0<span class="math notranslate nohighlight">\(, then by
+  simulating \)</span>\sigma<span class="math notranslate nohighlight">\( starting from \)</span>v’_0$—i.e., by applying the
 same actions when given a pointwise larger or equal history—she
 will also win.\todoquestion{Is that clear?}</p>
 </div>
-<p>Note that \cref{11-fact-mono} implies that <span class="math notranslate nohighlight">\(\WE\)</span> is upwards closed:
-<span class="math notranslate nohighlight">\(v_0\in\WE\)</span> and <span class="math notranslate nohighlight">\(v_0\leq v'_0\)</span> imply <span class="math notranslate nohighlight">\(v_0'\in\WE\)</span>.  \Cref{11-fact-mono}
+<p>Note that  <a class="reference internal" href="#11-lem:mono">Lemma 307</a> implies that <span class="math notranslate nohighlight">\(W_\mathrm{Eve}is upwards closed:
+\)</span>v_0\inW_\mathrm{Eve}and <span class="math notranslate nohighlight">\(v_0\leq v'_0\)</span> imply <span class="math notranslate nohighlight">\(v_0'\inW_\mathrm{Eve}   {prf:ref}`11-lem:mono`
 does not necessarily hold in vector games without the asymmetry
-condition.  For instance, in both \cref{11-fig-cov,12-fig-nonterm} on
-\cpageref{11-fig-cov}, <span class="math notranslate nohighlight">\(\loc'(0,1)\in\WE\)</span> but <span class="math notranslate nohighlight">\(\loc'(1,2)\in\WA\)</span> for
+condition.  For instance, in both {numref}`11-fig:cov,11-fig:nonterm` on
+\cpageref{11-fig:cov}, \)</span>\ell(0,1)\inW_\mathrm{Eve}but <span class="math notranslate nohighlight">\(\ell(1,2)\inW_\mathrm{Adam}for
 the coverability and non-termination objectives.  This is due to
-the fact that the action <span class="math notranslate nohighlight">\(\loc'\step{-1,0}\loc\)</span> is available
-in <span class="math notranslate nohighlight">\(\loc'(1,2)\)</span> but not in <span class="math notranslate nohighlight">\(\loc'(0,1)\)</span>.</p>
+the fact that the action \)</span>\ell\step{-1,0}\ell is available
+in <span class="math notranslate nohighlight">\(\ell(1,2)\)</span> but not in <span class="math notranslate nohighlight">\(\ell(0,1)\)</span>.</p>
 <blockquote>
 <div><p><strong>Well-quasi-orders</strong></p>
 </div></blockquote>
@@ -1200,13 +1069,11 @@ natural semantics of a vector system is a well-quasi-order.  A
 quasi-order <span class="math notranslate nohighlight">\((X,{\leq})\)</span> is well&#64;well-quasi-order (a <strong>wqo</strong>)
 if any of the following equivalent characterisations
 hold <span id="id1">[<span>Kruskal:1972</span><span>Schmitz&amp;Schnoebelen:2012</span>]</span>:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>* \AP in any infinite sequence $x_0,x_1,\cdots$ of elements
-of $X$, there exists an infinite sequence of indices
-$n_0&lt;n_1&lt;\cdots$ such that $x_{n_0}\leq
-x_{n_1}\leq\cdots$---infinite sequences in $X$ are good---,
-</pre></div>
-</div>
 <ul class="simple">
+<li><p>\AP in any infinite sequence <span class="math notranslate nohighlight">\(x_0,x_1,\cdots\)</span> of elements
+of <span class="math notranslate nohighlight">\(X\)</span>, there exists an infinite sequence of indices
+<span class="math notranslate nohighlight">\(n_0&lt;n_1&lt;\cdots\)</span> such that <span class="math notranslate nohighlight">\(x_{n_0}\leq
+x_{n_1}\leq\cdots\)</span>—infinite sequences in <span class="math notranslate nohighlight">\(X\)</span> are good—,</p></li>
 <li><p>\AP any strictly ascending sequence <span class="math notranslate nohighlight">\(U_0\subsetneq
 U_1\subsetneq\cdots\)</span> of upwards closed sets <span class="math notranslate nohighlight">\(U_i\subseteq X\)</span> is
 finite—<span class="math notranslate nohighlight">\(X\)</span> has the ascending chain condition—,</p></li>
@@ -1223,10 +1090,10 @@ consequence of <strong>Dickson’s Lemma</strong> <span id="id2">[<span>Dickson:
 <div><p><strong>Pareto Limits</strong></p>
 </div></blockquote>
 <p>\AP By the finite basis property of
-<span class="math notranslate nohighlight">\((V,{\leq})\)</span> and \cref{11-fact-mono}, in a monotonic “asymmetric
-vector game”, <span class="math notranslate nohighlight">\(\WE=\bigcup_{1\leq j\leq n}{\uparrow}\loc_j(\vec v_j)\)</span>
+<span class="math notranslate nohighlight">\((V,{\leq})\)</span> and  <a class="reference internal" href="#11-lem:mono">Lemma 307</a>, in a monotonic “asymmetric
+vector game”, <span class="math notranslate nohighlight">\(W_\mathrm{Eve}bigcup_{1\leq j\leq n}{\uparrow}\loc_j(\vec v_j)\)</span>
 is a finite union of principal filters.  The set
-<span class="math notranslate nohighlight">\(\mathsf{Pareto}\eqdef\{\loc_1(\vec v_1),\dots,\loc_n(\vec v_n)\}\)</span> is
+<span class="math notranslate nohighlight">\(\mathsf{Pareto}\eqby{def}{\loc_1(\vec v_1),\dots,\loc_n(\vec v_n)\}\)</span> is
 called the Pareto limit or <strong>Pareto frontier</strong> of the game.
 Both the existential and the given initial credit variants of the
 game can be reduced to computing this Pareto limit: with
@@ -1236,69 +1103,52 @@ given initial credit and an initial configuration <span class="math notranslate 
 whether <span class="math notranslate nohighlight">\(\loc_0(\vec v)\in\mathsf{Pareto}\)</span> for some <span class="math notranslate nohighlight">\(\vec v\leq\vec
 v_0\)</span>.</p>
 <div class="proof example admonition" id="example-4">
-<p class="admonition-title"><span class="caption-number">Example 306 </span> (NEEDS TITLE AND LABEL)</p>
+<p class="admonition-title"><span class="caption-number">Example 308 </span> (NEEDS LABEL Pareto limit)</p>
 <div class="example-content section" id="proof-content">
-<p>Consider the asymmetric vector system from \cref{11-fig-avg} on
-\cpageref{11-fig-avg}.  For the coverability game with target
-configuration <span class="math notranslate nohighlight">\(\loc(2,2)\)</span>, the Pareto limit is
-<span class="math notranslate nohighlight">\(\mathsf{Pareto}=\{\loc(2,2),\loc'(3,2),\loc_{2,1}(0,1),\loc_{\text-1,0}(3,2)\}\)</span>,
+<p>Consider the asymmetric vector system from <a class="reference internal" href="#fig-avg"><span class="std std-numref">Fig. 73</span></a> on
+\cpageref{11-fig:avg}.  For the coverability game with target
+configuration <span class="math notranslate nohighlight">\(\ell2,2)\)</span>, the Pareto limit is
+<span class="math notranslate nohighlight">\(\mathsf{Pareto}=\{\ell2,2),\ell(3,2),\loc_{2,1}(0,1),\loc_{\text-1,0}(3,2)\}\)</span>,
 while for the non-termination game, <span class="math notranslate nohighlight">\(\mathsf{Pareto}=\emptyset\)</span>:
-\Eve loses from all the vertices.  Observe that this is consistent
-with \Eve’s winning region in the coverability energy game
-shown in \cref{11-fig-cov-nrg}.</p>
-<p>Consider the asymmetric vector system from \cref{11-fig-avg} on
-\cpageref{11-fig-avg}.  For the coverability game with target
-configuration <span class="math notranslate nohighlight">\(\loc(2,2)\)</span>, the Pareto limit is
-<span class="math notranslate nohighlight">\(\mathsf{Pareto}=\{\loc(2,2),\loc'(3,2),\loc_{2,1}(0,1),\loc_{\text-1,0}(3,2)\}\)</span>,
-while for the non-termination game, <span class="math notranslate nohighlight">\(\mathsf{Pareto}=\emptyset\)</span>:
-\Eve loses from all the vertices.  Observe that this is consistent
-with \Eve’s winning region in the coverability energy game
-shown in \cref{11-fig-cov-nrg}.</p>
+\textrm{Eve} loses from all the vertices.  Observe that this is consistent
+with \textrm{Eve}s winning region in the coverability energy game
+shown in <a class="reference internal" href="resource.html#fig-cov-nrg"><span class="std std-numref">Fig. 79</span></a>.</p>
 </div>
-</div><div class="proof example admonition" id="11-ex-pareto">
-<p class="admonition-title"><span class="caption-number">Example 307 </span> (NEEDS TITLE 11-ex-pareto)</p>
+</div><div class="proof example admonition" id="11-ex:pareto">
+<p class="admonition-title"><span class="caption-number">Example 309 </span> (Doubly exponential Pareto limit)</p>
 <div class="example-content section" id="proof-content">
-<p>Consider the one-player vector system of \cref{11-fig-pareto},
+<p>Consider the one-player vector system of <a class="reference internal" href="#fig-pareto"><span class="std std-numref">Fig. 75</span></a>,
 where the meta-decrement from <span class="math notranslate nohighlight">\(\loc_0\)</span> to <span class="math notranslate nohighlight">\(\loc_1\)</span> can be
-implemented using <span class="math notranslate nohighlight">\(O(n)\)</span> additional counters and a set <span class="math notranslate nohighlight">\(\Loc'\)</span> of
+implemented using <span class="math notranslate nohighlight">\(O(n)\)</span> additional counters and a set <span class="math notranslate nohighlight">\(\?L\)</span> of
 <span class="math notranslate nohighlight">\(O(n)\)</span> additional locations by the arguments of the
-forthcoming \cref{11-avag-hard}.</p>
-<p>\begin{figure}[htbp]
-\centering
-\begin{tikzpicture}[auto,on grid,node distance=2.5cm]
-\node<span class="xref myst">s-eve</span>{<span class="math notranslate nohighlight">\(\loc_0\)</span>};
-\node<span class="xref myst">s-eve,right=of 0</span>{<span class="math notranslate nohighlight">\(\loc_1\)</span>};
-\node<span class="xref myst">s-eve,below right=1.5 and 1.25 of 0</span>{<span class="math notranslate nohighlight">\(\loc_f\)</span>};
-\path[arrow,every node/.style={font=\footnotesize,inner sep=1}]
-(0) edge node {<span class="math notranslate nohighlight">\(-2^{2^n}\cdot\vec e_1\)</span>} (1)
-(0) edge[bend right=10,swap] node {<span class="math notranslate nohighlight">\(-\vec e_2\)</span>} (2)
-(1) edge[bend left=10] node {<span class="math notranslate nohighlight">\(\vec 0\)</span>} (2);
-\end{tikzpicture}
-\caption{\label{11-fig-pareto} A one-player vector system
-with a large Pareto limit.}
-\end{figure}
-For the coverability game with target
+forthcoming \cref{11-th:avag-hard}.</p>
+<div class="figure align-center" id="fig-pareto">
+<img alt="../_images/11-fig:pareto.png" src="../_images/11-fig:pareto.png" />
+<p class="caption"><span class="caption-number">Fig. 75 </span><span class="caption-text">A one-player vector system
+with a large Pareto limit.</span><a class="headerlink" href="#fig-pareto" title="Permalink to this image">¶</a></p>
+</div>
+<p>For the coverability game with target
 configuration <span class="math notranslate nohighlight">\(\loc_f(\vec 0)\)</span>, if <span class="math notranslate nohighlight">\(\loc_0\)</span> is the initial location
-and we are given initial credit <span class="math notranslate nohighlight">\(m\cdot\vec e_1\)</span>, \Eve wins if and
+and we are given initial credit <span class="math notranslate nohighlight">\(m\cdot\vec e_1\)</span>, \textrm{Eve} wins if and
 only if <span class="math notranslate nohighlight">\(m\geq 2^{2^n}\)</span>, but with existential initial credit she
 can start from <span class="math notranslate nohighlight">\(\loc_0(\vec e_2)\)</span> instead.  We have indeed
-<span class="math notranslate nohighlight">\(\mathsf{Pareto}\cap(\{\loc_0,\loc_1,\loc_f\}\times\+N^\dd)=\{\loc_0(\vec
+<span class="math notranslate nohighlight">\(\mathsf{Pareto}\cap(\{\loc_0,\loc_1,\loc_f\}\times\+N^k=\{\loc_0(\vec
   e_2),\loc_0(2^{2^n}\cdot\vec e_1),\loc_1(\vec 0),\loc_f(\vec 0)\}\)</span>.
-Looking more in-depth into the construction of \cref{11-avag-hard},
+Looking more in-depth into the construction of \cref{11-th:avag-hard},
 there is also an at least double exponential number of distinct
 minimal configurations in <span class="math notranslate nohighlight">\(\mathsf{Pareto}\)</span>.</p>
 </div>
 </div><blockquote>
 <div><p><strong>Finite Memory</strong></p>
 </div></blockquote>
-<p>Besides having a finitely represented winning region, \Eve also has
+<p>Besides having a finitely represented winning region, \textrm{Eve} also has
 finite memory strategies in asymmetric vector games with parity
 objectives; the following argument is straightforward to adapt to
-the other regular objectives from \cref{chap:regular}.</p>
-<div class="proof lemma admonition" id="11-fact-finmem">
-<p class="admonition-title"><span class="caption-number">Lemma 308 </span> (NEEDS TITLE 11-fact-finmem)</p>
+the other regular objectives from Chapter <a class="reference internal" href="../2_Regular/index.html#chap-regular"><span class="std std-ref">Regular Games</span></a>.</p>
+<div class="proof lemma admonition" id="11-lem:finmem">
+<p class="admonition-title"><span class="caption-number">Lemma 310 </span> (Finite memory suffices in parity asymmetric vector games)</p>
 <div class="lemma-content section" id="proof-content">
-<p>If \Eve has a strategy winning from some vertex <span class="math notranslate nohighlight">\(v_0\)</span> in a
+<p>If \textrm{Eve} has a strategy winning from some vertex <span class="math notranslate nohighlight">\(v_0\)</span> in a
 parity&#64;parity vector game asymmetric vector game, then she has a
 finite-memory one.</p>
 </div>
@@ -1311,99 +1161,50 @@ maximal priority occuring infinitely often is some even number <span class="math
 Since <span class="math notranslate nohighlight">\((V,{\leq})\)</span> is a wqo, this is a good sequence: there
 exists infinitely many indices <span class="math notranslate nohighlight">\(n_0&lt;n_1&lt;\cdots\)</span> such that
 <span class="math notranslate nohighlight">\(v_{n_0}\leq v_{n_1}\leq\cdots\)</span>.  There exists <span class="math notranslate nohighlight">\(i&lt;j\)</span> such
-that <span class="math notranslate nohighlight">\(p=\max_{n_i\leq n&lt;n_j}\vcol(v_n)\)</span> is the maximal priority
+that <span class="math notranslate nohighlight">\(p=\max_{n_i\leq n&lt;n_j}\mathrm{vcol}v_n)\)</span> is the maximal priority
 occurring in some interval <span class="math notranslate nohighlight">\(v_{n_i},v_{n_{i+1}},\dots,v_{n_{j-1}}\)</span>.
-Then \Eve can play in <span class="math notranslate nohighlight">\(v_{n_j}\)</span> as if she were in <span class="math notranslate nohighlight">\(v_{n_i}\)</span>, in
+Then \textrm{Eve} can play in <span class="math notranslate nohighlight">\(v_{n_j}\)</span> as if she were in <span class="math notranslate nohighlight">\(v_{n_i}\)</span>, in
 <span class="math notranslate nohighlight">\(v_{n_j+1}\)</span> as if she were in <span class="math notranslate nohighlight">\(v_{n_i+1}\)</span> and so on, and we prune
 the tree at index <span class="math notranslate nohighlight">\(n_j\)</span> along this branch so that <span class="math notranslate nohighlight">\(v_{n_j}\)</span> is a
 leaf, and we call <span class="math notranslate nohighlight">\(v_{n_i}\)</span> the return node of that leaf.  We
 therefore obtain a finitely branching tree with finite branches,
 which by K\H{o}nig’s Lemma is finite.</p>
 <p>The finite tree we obtain this way is sometimes called a
-self-covering tree.                        It is relatively straightforward to construct a finite “memory
-structure” <span class="math notranslate nohighlight">\((M,m_0,\delta)\)</span> (as defined in \cref{1-finite-memory}) from a
+self-covering tree.</p>
+<p>It is relatively straightforward to construct a finite “memory
+structure” <span class="math notranslate nohighlight">\((M,m_0,\delta)\)</span> (as defined in Section <a class="reference internal" href="../1_Introduction/memory.html#sec-memory"><span class="std std-ref">Memory</span></a>) from a
 self-covering tree, using its internal nodes as memory states plus
 an additional sink memory state <span class="math notranslate nohighlight">\(m_\bot\)</span>; the initial memory
 state <span class="math notranslate nohighlight">\(m_0\)</span> is the root of the tree.  In a node <span class="math notranslate nohighlight">\(m\)</span> labelled by
-<span class="math notranslate nohighlight">\(\loc(\vec v)\)</span>, given an edge
-<span class="math notranslate nohighlight">\(e=(\loc(\vec v'),\loc'(\vec v'+\vec u))\)</span> arising from an
-action <span class="math notranslate nohighlight">\(\loc\step{\vec u}\loc'\in\Act\)</span>, if <span class="math notranslate nohighlight">\(\vec v'\geq\vec v\)</span> and
-<span class="math notranslate nohighlight">\(m\)</span>~has a child <span class="math notranslate nohighlight">\(m'\)</span> labelled by <span class="math notranslate nohighlight">\(\loc'(\vec v+\vec u)\)</span> in the
-self-covering tree, then either <span class="math notranslate nohighlight">\(m'\)</span> is a leaf with “return
-node” <span class="math notranslate nohighlight">\(m''\)</span> and we set <span class="math notranslate nohighlight">\(\delta(m,e)\eqdef m''\)</span>, or <span class="math notranslate nohighlight">\(m'\)</span>~is an
-internal node and we set <span class="math notranslate nohighlight">\(\delta(m,e)\eqdef m'\)</span>; in all the other
-cases, <span class="math notranslate nohighlight">\(\delta(m,e)\eqdef m_\bot\)</span>.          \todoquestion{Is that reasonably clear?  A
+<span class="math notranslate nohighlight">\(\ell\vec v)\)</span>, given an edge
+<span class="math notranslate nohighlight">\(e=(\ell\vec v'),\ell(\vec v'+\vec u))\)</span> arising from an
+action <span class="math notranslate nohighlight">\(\ellstep{\vec u}\ell\inA, if \)</span>\vec v’\geq\vec v<span class="math notranslate nohighlight">\( and
+  \)</span>m<span class="math notranslate nohighlight">\(~has a child \)</span>m’<span class="math notranslate nohighlight">\( labelled by \)</span>\ell(\vec v+\vec u)<span class="math notranslate nohighlight">\( in the
+  self-covering tree, then either \)</span>m’<span class="math notranslate nohighlight">\( is a leaf with &quot;return
+  node&quot; \)</span>m’’<span class="math notranslate nohighlight">\( and we set \)</span>\delta(m,e)\eqby{def}m’’<span class="math notranslate nohighlight">\(, or \)</span>m’<span class="math notranslate nohighlight">\(~is an
+  internal node and we set \)</span>\delta(m,e)\eqby{def}m’<span class="math notranslate nohighlight">\(; in all the other
+  cases, \)</span>\delta(m,e)\eqby{def}m_\bot$.</p>
+<p>\todoquestion{Is that reasonably clear?  A
 bit heavy no?}</p>
 </div>
 <p>\TODO{Provide an additional example of a self-covering tree.}</p>
 <div class="proof example admonition" id="example-7">
-<p class="admonition-title"><span class="caption-number">Example 309 </span> (NEEDS TITLE AND LABEL)</p>
+<p class="admonition-title"><span class="caption-number">Example 311 </span> (NEEDS LABEL doubly exponential memory)</p>
 <div class="example-content section" id="proof-content">
-<p>Consider the one-player vector system of \cref{11-fig-finitemem},
+<p>Consider the one-player vector system of <a class="reference internal" href="#fig-finitemem"><span class="std std-numref">Fig. 76</span></a>,
 where the meta-decrement from <span class="math notranslate nohighlight">\(\loc_1\)</span> to <span class="math notranslate nohighlight">\(\loc_0\)</span> can be
 implemented using <span class="math notranslate nohighlight">\(O(n)\)</span> additional counters and <span class="math notranslate nohighlight">\(O(n)\)</span> additional
-locations by the arguments of the forthcoming \cref{11-avag-hard}
-on \cpageref{11-avag-hard}.</p>
-<p>\begin{figure}[htbp]
-\centering
-\begin{tikzpicture}[auto,on grid,node distance=2.5cm]
-\node<span class="xref myst">s-eve</span>{<span class="math notranslate nohighlight">\(\loc_0\)</span>};
-\node<span class="xref myst">s-eve,right=of 0</span>{<span class="math notranslate nohighlight">\(\loc_1\)</span>};
-\node[black!50,above=.5 of 0,font=\scriptsize]{<span class="math notranslate nohighlight">\(2\)</span>};
-\node[black!50,above=.5 of 1,font=\scriptsize]{<span class="math notranslate nohighlight">\(1\)</span>};
-\path[arrow,every node/.style={font=\footnotesize,inner sep=2}]
-(1) edge[bend left=15] node {<span class="math notranslate nohighlight">\(-2^{2^n}\cdot\vec e_1\)</span>} (0)
-(0) edge[bend left=15] node {<span class="math notranslate nohighlight">\(\vec 0\)</span>} (1)
-(1) edge[loop right] node{<span class="math notranslate nohighlight">\(\vec e_1\)</span>} ();
-\end{tikzpicture}
-\caption{\label{11-fig-finitemem} A one-player vector system
-witnessing the need for double exponential memory.}
-\end{figure}</p>
+locations by the arguments of the forthcoming \cref{11-th:avag-hard}
+on \cpageref{11-th:avag-hard}.</p>
+<div class="figure align-center" id="fig-finitemem">
+<img alt="../_images/11-fig:finitemem.png" src="../_images/11-fig:finitemem.png" />
+<p class="caption"><span class="caption-number">Fig. 76 </span><span class="caption-text">A one-player vector system
+witnessing the need for double exponential memory.</span><a class="headerlink" href="#fig-finitemem" title="Permalink to this image">¶</a></p>
+</div>
 <p>For the parity&#64;parity vector game game with location colouring
-<span class="math notranslate nohighlight">\(\lcol(\loc_0)\eqdef 2\)</span> and <span class="math notranslate nohighlight">\(\lcol(\loc_1)\eqdef 1\)</span>, note that \Eve
-must visit <span class="math notranslate nohighlight">\(\loc_0\)</span> infinitely often in order to fulfil the parity
+<span class="math notranslate nohighlight">\(\mathrm{lcol}\loc_0)\eqby{def}2\)</span> and <span class="math notranslate nohighlight">\(\mathrm{lcol}\loc_1)\eqby{def}1\)</span>, note that \textrm{Eve}  must visit <span class="math notranslate nohighlight">\(\loc_0\)</span> infinitely often in order to fulfil the parity
 requirements.  Starting from the initial
-configuration <span class="math notranslate nohighlight">\(\loc_0(\vec 0)\)</span>, any winning play of \Eve begins
-by \begin{equation*} \loc_0(\vec 0)\step{0}\loc_1(\vec 0)\step{\vec
-e_1}\loc_1(\vec e_1)\step{\vec e_1}\cdots\step{\vec
-e_1}\loc_1(m\cdot\vec
-e_1)\mstep{-2^{2^n}}\loc_0((m-2^{2^n})\cdot\vec
-e_1) \end{equation*} for some <span class="math notranslate nohighlight">\(m\geq 2^{2^n}\)</span> before she visits
-again a
-configuration—namely <span class="math notranslate nohighlight">\(\loc_0((m-2^{2^n})\cdot\vec e_1)\)</span>—greater
-or equal than a previous configuration—namely
-<span class="math notranslate nohighlight">\(\loc_0(\vec 0)\)</span>—<strong>and</strong> witnesses a maximal even parity in the
-meantime.  She then has a winning strategy that simply repeats this
-sequence of actions, allowing her to visit successively
-<span class="math notranslate nohighlight">\(\loc_0(2(m-2^{2^n})\cdot\vec e_1)\)</span>,
-<span class="math notranslate nohighlight">\(\loc_0(3(m-2^{2^n})\cdot\vec e_1)\)</span>, etc.  In this example, she
-needs at least <span class="math notranslate nohighlight">\(2^{2^n}\)</span> memory to remember how many times the
-<span class="math notranslate nohighlight">\(\loc_1\step{\vec e_1}\loc_1\)</span> loop should be taken.</p>
-<p>Consider the one-player vector system of \cref{11-fig-finitemem},
-where the meta-decrement from <span class="math notranslate nohighlight">\(\loc_1\)</span> to <span class="math notranslate nohighlight">\(\loc_0\)</span> can be
-implemented using <span class="math notranslate nohighlight">\(O(n)\)</span> additional counters and <span class="math notranslate nohighlight">\(O(n)\)</span> additional
-locations by the arguments of the forthcoming \cref{11-avag-hard}
-on \cpageref{11-avag-hard}.</p>
-<p>\begin{figure}[htbp]
-\centering
-\begin{tikzpicture}[auto,on grid,node distance=2.5cm]
-\node<span class="xref myst">s-eve</span>{<span class="math notranslate nohighlight">\(\loc_0\)</span>};
-\node<span class="xref myst">s-eve,right=of 0</span>{<span class="math notranslate nohighlight">\(\loc_1\)</span>};
-\node[black!50,above=.5 of 0,font=\scriptsize]{<span class="math notranslate nohighlight">\(2\)</span>};
-\node[black!50,above=.5 of 1,font=\scriptsize]{<span class="math notranslate nohighlight">\(1\)</span>};
-\path[arrow,every node/.style={font=\footnotesize,inner sep=2}]
-(1) edge[bend left=15] node {<span class="math notranslate nohighlight">\(-2^{2^n}\cdot\vec e_1\)</span>} (0)
-(0) edge[bend left=15] node {<span class="math notranslate nohighlight">\(\vec 0\)</span>} (1)
-(1) edge[loop right] node{<span class="math notranslate nohighlight">\(\vec e_1\)</span>} ();
-\end{tikzpicture}
-\caption{\label{11-fig-finitemem} A one-player vector system
-witnessing the need for double exponential memory.}
-\end{figure}</p>
-<p>For the parity&#64;parity vector game game with location colouring
-<span class="math notranslate nohighlight">\(\lcol(\loc_0)\eqdef 2\)</span> and <span class="math notranslate nohighlight">\(\lcol(\loc_1)\eqdef 1\)</span>, note that \Eve
-must visit <span class="math notranslate nohighlight">\(\loc_0\)</span> infinitely often in order to fulfil the parity
-requirements.  Starting from the initial
-configuration <span class="math notranslate nohighlight">\(\loc_0(\vec 0)\)</span>, any winning play of \Eve begins
+configuration <span class="math notranslate nohighlight">\(\loc_0(\vec 0)\)</span>, any winning play of \textrm{Eve} begins
 by \begin{equation*} \loc_0(\vec 0)\step{0}\loc_1(\vec 0)\step{\vec
 e_1}\loc_1(\vec e_1)\step{\vec e_1}\cdots\step{\vec
 e_1}\loc_1(m\cdot\vec
@@ -1421,16 +1222,16 @@ needs at least <span class="math notranslate nohighlight">\(2^{2^n}\)</span> mem
 <span class="math notranslate nohighlight">\(\loc_1\step{\vec e_1}\loc_1\)</span> loop should be taken.</p>
 </div>
 </div><div class="section" id="attractor-computation-for-coverability">
-<span id="subsec-attr"></span><h3>Attractor Computation for Coverability<a class="headerlink" href="#attractor-computation-for-coverability" title="Permalink to this headline">¶</a></h3>
+<span id="sec-attr"></span><h3>Attractor Computation for Coverability<a class="headerlink" href="#attractor-computation-for-coverability" title="Permalink to this headline">¶</a></h3>
 <p>So far, we have not seen how to compute the Pareto limit derived
-from \cref{11-fact-mono} nor the finite memory structure derived
-from \cref{11-fact-finmem}.  These objects are not merely finite but
+from  <a class="reference internal" href="#11-lem:mono">Lemma 307</a> nor the finite memory structure derived
+from  <a class="reference internal" href="#11-lem:finmem">Lemma 310</a>.  These objects are not merely finite but
 also computable.  The simplest case is the one of coverability
 asymmetric monotonic vector games: the fixed-point computation of
-\cref{chap:regular} for reachability objectives can be turned into
+Section <a class="reference internal" href="../2_Regular/attractors.html#sec-attractors"><span class="std std-ref">Reachability games</span></a> for reachability objectives can be turned into
 an algorithm computing the Pareto limit of the game.</p>
-<div class="proof observation admonition" id="11-pareto-cov">
-<p class="admonition-title"><span class="caption-number">Observation 310 </span> (NEEDS TITLE 11-pareto-cov)</p>
+<div class="proof observation admonition" id="11-fact:pareto-cov">
+<p class="admonition-title"><span class="caption-number">Observation 312 </span> (Computable Pareto limit)</p>
 <div class="observation-content section" id="proof-content">
 <p>The Pareto limit of a coverability asymmetric vector game is
 computable.</p>
@@ -1440,27 +1241,27 @@ computable.</p>
 <p>Let <span class="math notranslate nohighlight">\(\loc_f(\vec v_f)\)</span> be the target configuration.  We define a
 chain <span class="math notranslate nohighlight">\(U_0\subseteq U_1\subseteq\cdots\)</span> of sets <span class="math notranslate nohighlight">\(U_i\subseteq V\)</span> by
 \begin{align*}
-U_0&amp;\eqdef{\uparrow}\loc_f(\vec v_f);,&amp;
-U_{i+1}&amp;\eqdef U_i\cup\mathrm{Pre}(U_i);.
+U_0&amp;\eqby{def}\uparrow}\loc_f(\vec v_f);,&amp;
+U_{i+1}&amp;\eqby{def}U_i\cup\mathrm{Pre}(U_i);.
 \end{align*}
 Observe that for all <span class="math notranslate nohighlight">\(i\)</span>, <span class="math notranslate nohighlight">\(U_i\)</span> is upwards closed.  This can be
 checked by induction over <span class="math notranslate nohighlight">\(i\)</span>: it holds initially in <span class="math notranslate nohighlight">\(U_0\)</span>, and for
 the induction step, if <span class="math notranslate nohighlight">\(v\in U_{i+1}\)</span> and <span class="math notranslate nohighlight">\(v'\geq v\)</span>, then either</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(v=\loc(\vec v)\in\mathrm{Pre}(U_i)\cap\VE\)</span> thanks to some
-<span class="math notranslate nohighlight">\(\loc\step{\vec u}\loc'\in\Act\)</span> such that
-<span class="math notranslate nohighlight">\(\loc'(\vec v+\vec u)\in U_i\)</span>; therefore <span class="math notranslate nohighlight">\(v'=\loc(\vec v')\)</span> for some
-<span class="math notranslate nohighlight">\(\vec v'\geq \vec v\)</span> is such that <span class="math notranslate nohighlight">\(\loc'(\vec v'+\vec u)\in U_i\)</span> as
+<li><p><span class="math notranslate nohighlight">\(v=\ell\vec v)\in\mathrm{Pre}(U_i)\capV_\mathrm{Eve}thanks to some
+\)</span>\ellstep{\vec u}\ell\inA such that
+<span class="math notranslate nohighlight">\(\ell(\vec v+\vec u)\in U_i\)</span>; therefore <span class="math notranslate nohighlight">\(v'=\ell\vec v')\)</span> for some
+<span class="math notranslate nohighlight">\(\vec v'\geq \vec v\)</span> is such that <span class="math notranslate nohighlight">\(\ell(\vec v'+\vec u)\in U_i\)</span> as
 well, thus <span class="math notranslate nohighlight">\(v'\in \mathrm{Pre}(U_i)\subseteq U_{i+1}\)</span>, or</p></li>
-<li><p><span class="math notranslate nohighlight">\(v=\loc(\vec v)\in\mathrm{Pre}(U_i)\cap\VA\)</span> because for all
-<span class="math notranslate nohighlight">\(\loc\step{\vec 0}\loc'\in\Act\)</span>, <span class="math notranslate nohighlight">\(\loc'(\vec v)\in U_i\)</span>; therefore
-<span class="math notranslate nohighlight">\(v'=\loc(\vec v')\)</span> for some <span class="math notranslate nohighlight">\(\vec v'\geq \vec v\)</span> is such that
-<span class="math notranslate nohighlight">\(\loc'(\vec v')\in U_i\)</span> as well, thus
+<li><p><span class="math notranslate nohighlight">\(v=\ell\vec v)\in\mathrm{Pre}(U_i)\capV_\mathrm{Adam}because for all
+\)</span>\ellstep{\vec 0}\ell\inA, <span class="math notranslate nohighlight">\(\ell(\vec v)\in U_i\)</span>; therefore
+<span class="math notranslate nohighlight">\(v'=\ell\vec v')\)</span> for some <span class="math notranslate nohighlight">\(\vec v'\geq \vec v\)</span> is such that
+<span class="math notranslate nohighlight">\(\ell(\vec v')\in U_i\)</span> as well, thus
 <span class="math notranslate nohighlight">\(v'\in \mathrm{Pre}(U_i)\subseteq U_{i+1}\)</span>, or</p></li>
 <li><p><span class="math notranslate nohighlight">\(v\in U_i\)</span> and therefore <span class="math notranslate nohighlight">\(v'\in U_i\subseteq U_{i+1}\)</span>.</p></li>
 </ul>
 <p>By the ascending chain condition, there is a finite rank <span class="math notranslate nohighlight">\(i\)</span> such
-that <span class="math notranslate nohighlight">\(U_{i+1}\subseteq U_i\)</span> and then <span class="math notranslate nohighlight">\(\WE=U_i\)</span>.  Thus the
+that <span class="math notranslate nohighlight">\(U_{i+1}\subseteq U_i\)</span> and then <span class="math notranslate nohighlight">\(W_\mEveU_i\)</span>.  Thus the
 Pareto limit is obtained after finitely many steps.
 In order to turn this idea into an algorithm, we need a way of
 representing those infinite upwards closed sets <span class="math notranslate nohighlight">\(U_i\)</span>.  Thankfully,
@@ -1468,23 +1269,22 @@ by the finite basis property, each <span class="math notranslate nohighlight">\(
 such that <span class="math notranslate nohighlight">\({\uparrow}B_i=U_i\)</span>.  We therefore compute the following
 sequence of sets
 \begin{align*}
-B_0&amp;\eqdef{\loc_f(\vec v_f)}&amp;B_{i+1}&amp;\eqdef
-B_i\cup\min\mathrm{Pre}({\uparrow}B_i);.
+B_0&amp;\eqby{def}{\loc_f(\vec v_f)}&amp;B_{i+1}&amp;\eqby{def}                                       B_i\cup\min\mathrm{Pre}({\uparrow}B_i);.
 \end{align*}
 Indeed, given a finite basis <span class="math notranslate nohighlight">\(B_i\)</span> for <span class="math notranslate nohighlight">\(U_i\)</span>, it is straightforward to
 compute a finite basis for the upwards closed <span class="math notranslate nohighlight">\(\mathrm{Pre}(U_i)\)</span>.
-This results in <a class="reference internal" href="#algo-cov"><span class="std std-numref">Fig. 68</span></a> below.</p>
+This results in <a class="reference internal" href="#algo-cov"><span class="std std-numref">Fig. 77</span></a> below.</p>
 </div>
 <div class="figure align-center" id="algo-cov">
 <img alt="../_images/11-algo:cov.png" src="../_images/11-algo:cov.png" />
-<p class="caption"><span class="caption-number">Fig. 68 </span><span class="caption-text">Fixed point algorithm for coverability asymmetric “vector
+<p class="caption"><span class="caption-number">Fig. 77 </span><span class="caption-text">Fixed point algorithm for coverability in asymmetric “vector
 games”.</span><a class="headerlink" href="#algo-cov" title="Permalink to this image">¶</a></p>
 </div>
 <p>While this algorithm terminates thanks to the “ascending chain
 condition”, it may take quite long.  For instance, in
-\cref{11-ex-pareto}, it requires at least <span class="math notranslate nohighlight">\(2^{2^n}\)</span> steps before it
+<a class="reference internal" href="#11-ex:pareto">Example 309</a>, it requires at least <span class="math notranslate nohighlight">\(2^{2^n}\)</span> steps before it
 reaches its fixed point.  This is a worst-case instance, as it turns
-out that this algorithm works in \kEXP[2]; see the bibliographic notes
+out that this algorithm works in \textrm{kEXP}2]; see the bibliographic notes
 at the end of the chapter.  Note that such a
 fixed-point computation does not work directly for non-termination
 or parity vector games, due to the need for greatest fixed-points.</p>
