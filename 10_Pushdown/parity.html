@@ -711,21 +711,13 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#factorisation-of-a-play-in-game">
-     Factorisation of a play in
-     <span class="math notranslate nohighlight">
-      \(\game\)
-     </span>
-     .
+    <a class="reference internal nav-link" href="#factorisation-of-a-play-in-mathcal-g">
+     Factorisation of a play in $\mathcal{G}.
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#factorisation-of-a-play-in-fgame">
-     Factorisation of a play in
-     <span class="math notranslate nohighlight">
-      \(\fgame\)
-     </span>
-     .
+    <a class="reference internal nav-link" href="#factorisation-of-a-play-in-widetilde-mathcal-g">
+     Factorisation of a play in $\widetilde{\mathcal{G}.
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -774,202 +766,134 @@
   <div class="section" id="parity-pushdown-games">
 <span id="sec-parity"></span><h1>Parity pushdown games<a class="headerlink" href="#parity-pushdown-games" title="Permalink to this headline">¶</a></h1>
 <div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}\def\AC#1{\textcolor{green!50!black}{\checkmark}\marginpar{\color{green!50!black}AC: #1}} 
-\def\acchanged#1{{#1}}
-\def\OS#1{\textcolor{red}{\checkmark}\marginpar{\color{red}OS: #1}} \\\renewcommand{\qed}{$\square$}
-\newcommand{\pop}{\mathrm{pop}}
-\newcommand{\push}[1]{\mathrm{push}(#1)}
+\[\newcommand{\pop}{\mathrm{pop}}
 \newcommand{\PDS}{\mathcal{P}}
-\newcommand{\pdscol}[1]{\col(#1)}
-\newcommand{\vect}[1]{\overrightarrow{#1}}
 \newcommand{\ttrue}{t\! t}
 \newcommand{\ffalse}{f\!\! f}
-\newcommand {\Stepsg}[1]{\ensuremath{\mathit{Steps}_{#1}}}
 \newcommand{\sh}{\mathrm{sh}}
-\newcommand{\fgraph}{\widetilde{G}}
 \newcommand{\farena}{\widetilde{\arena}}
 \newcommand{\fgame}{\widetilde{\game}}
 \newcommand{\fplay}{\widetilde{\play}}
 \newcommand{\fsigma}{\widetilde{\sigma}}
-\newcommand {\Rounds}[1]{\ensuremath{\mathit{Rounds}_{#1}}}
-\newcommand{\kind}[2]{kind(#1,#2)}
-\newcommand{\factcol}[2]{\mathrm{mcol}(#1,#2)}
-\newcommand{\fac}[1]{kind^{#1}}
-\newcommand{\pcol}[1]{\mathrm{mcol}^{#1}}
-\newcommand{\hgraph}{\widehat{G}}
 \newcommand{\harena}{\widehat{\arena}}
 \newcommand{\hgame}{\widehat{\game}}
 \newcommand{\hplay}{\widehat{\play}}
 \newcommand{\hsigma}{\widehat{\sigma}}
 \newcommand{\Eve}{\textrm{Eve}}
 \newcommand{\Adam}{\textrm{Adam}}
-\newcommand{\set}[1]{\left\{ #1 \right\}}
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
-\newcommand{\argmax}{\textrm{argmax}}
-\newcommand{\argmin}{\textrm{argmin}}
-\newcommand{\Op}{\mathbb{O}}
-\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\textrm{supp}} 
-\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
-\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
+\newcommand{\game}{\mathcal{G}}
+\newcommand{\arena}{\mathcal{A}}
 \newcommand{\mEve}{\mathrm{Eve}}
 \newcommand{\mAdam}{\mathrm{Adam}}
-\newcommand{\mRandom}{\mathrm{Random}}
-\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
-\newcommand{\ing}{\textrm{In}}
-\newcommand{\Ing}{\ing}
-\newcommand{\out}{\textrm{Out}}
-\newcommand{\Out}{\out}
-\newcommand{\dest}{\Delta} 
-\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
-\newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
-\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
-\newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\newcommand{\Win}{\textrm{Win}} 
-\newcommand{\Lose}{\textrm{Lose}} 
-\newcommand{\Value}{\textrm{val}} 
-\newcommand{\ValueE}{\textrm{val}_\mEve} 
-\newcommand{\ValueA}{\textrm{val}_\mAdam}
-\newcommand{\val}{\Value} 
-\newcommand{\Automaton}{\mathbf{A}} 
-\newcommand{\Safe}{\mathtt{Safe}}
-\newcommand{\Reach}{\mathtt{Reach}} 
-\newcommand{\Buchi}{\mathtt{Buchi}} 
-\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
-\newcommand{\Parity}{\mathtt{Parity}} 
-\newcommand{\Muller}{\mathtt{Muller}} 
-\newcommand{\Rabin}{\mathtt{Rabin}} 
-\newcommand{\Streett}{\mathtt{Streett}} 
-\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
-\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
-\newcommand{\Energy}{\mathtt{Energy}}
-\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
-\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
-\newcommand{\Sup}{\mathtt{Sup}}
-\newcommand{\Inf}{\mathtt{Inf}}
-\newcommand{\LimSup}{\mathtt{LimSup}}
-\newcommand{\LimInf}{\mathtt{LimInf}}
-\newcommand{\NL}{\textrm{NL}}
-\newcommand{\PTIME}{\textrm{PTIME}}
-\newcommand{\NP}{\textrm{NP}}
-\newcommand{\UP}{\textrm{UP}}
-\newcommand{\coNP}{\textrm{coNP}}
-\newcommand{\coUP}{\textrm{coUP}}
-\newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
-\newcommand{\EXP}{\textrm{EXP}}
-\newcommand{\kEXP}{\textrm{kEXP}}\end{aligned}\end{align} \]</div>
+\newcommand{\VE}{V_\mEve}
+\newcommand{\VA}{V_\mAdam}
+\newcommand{\play}{\pi}
+\newcommand{\EXP}{\textrm{EXP}}\]</div>
 <p>We now focus on the central case of parity objectives.
 In Subsection <a class="reference internal" href="#subsec-computing-profiles"><span class="std std-ref">Computing the Profiles</span></a>, we show how to compute the set of profils using a reduction to finite parity game.</p>
-<p>For the rest of this section, we fix a parity pushdown game <span class="math notranslate nohighlight">\(\game\)</span> played on an arena <span class="math notranslate nohighlight">\(\arena = (G,\VE,\VA)\)</span> generated by a pushdown system <span class="math notranslate nohighlight">\(\PDS = (Q,Q_{\mEve}, Q_{\mAdam}, \Gamma,\Delta)\)</span>. We also let <span class="math notranslate nohighlight">\(V=\VE\cup\VA\)</span> and we let the colours used in the game be <span class="math notranslate nohighlight">\(\{0,\dots,d\}\)</span>.</p>
+<p>For the rest of this section, we fix a parity pushdown game <span class="math notranslate nohighlight">\(\mathcal{G} played on an arena \)</span>\mathcal{A}= (G,V_\mEveV_\mathrm{Adam} generated by a pushdown system <span class="math notranslate nohighlight">\(\mathcal{P}= (Q,Q_{\mathrm{Eve}, Q_{\mathrm{Adam}, \Gamma,\Delta)\)</span>. We also let <span class="math notranslate nohighlight">\(V=V_\mEvecupV_\mathrm{Adam}and we let the colours used in the game be \)</span>{0,\dots,d}$.</p>
 <div class="section" id="computing-the-profiles">
 <span id="subsec-computing-profiles"></span><h2>Computing the Profiles<a class="headerlink" href="#computing-the-profiles" title="Permalink to this headline">¶</a></h2>
-<p>In this section we show how to build a parity game played on a <strong>finite</strong> arena that permits to compute the profiles in <span class="math notranslate nohighlight">\(\game\)</span>.</p>
-<p>We first start with some terminology and a basic result. For an infinite play <span class="math notranslate nohighlight">\(\play=v_0v_1\cdots\)</span>, let
-<span class="math notranslate nohighlight">\(\Stepsg{\play}\)</span> be the set of indices of positions where no
+<p>In this section we show how to build a parity game played on a <strong>finite</strong> arena that permits to compute the profiles in $\mathcal{G}.</p>
+<p>We first start with some terminology and a basic result. For an infinite play <span class="math notranslate nohighlight">\(\piv_0v_1\cdots\)</span>, let
+<span class="math notranslate nohighlight">\(\Stepsg{\pi\)</span> be the set of indices of positions where no
 configuration of strictly smaller stack height is visited later in the
 play. More formally,
 $<span class="math notranslate nohighlight">\(
-\Stepsg{\play}=\{i\in\mathbb{N}\mid \forall
-j\geq i, \sh(v_j)\geq \sh(v_i)\}.
+\Stepsg{\pi=\{i\in\mathbb{N}\mid \forall
+j\geq i, \mathrm{sh}v_j)\geq \mathrm{sh}v_i)\}.
 \)</span><span class="math notranslate nohighlight">\(
- Note that \)</span>\Stepsg{\play}<span class="math notranslate nohighlight">\( is always
-infinite and hence induces a factorisation of the play \)</span>\play$ into
+ Note that \)</span>\Stepsg{\pi<span class="math notranslate nohighlight">\( is always
+infinite and hence induces a factorisation of the play \)</span>\pi into
 finite pieces.</p>
-<p>In the factorisation induced by <span class="math notranslate nohighlight">\(\Stepsg{\play}\)</span>, a factor <span class="math notranslate nohighlight">\(v_i\cdots v_j\)</span> is called a
-<strong>bump</strong> if <span class="math notranslate nohighlight">\(\sh(v_j)=\sh(v_i)\)</span>, called a <strong>Stair</strong> otherwise (that is, if <span class="math notranslate nohighlight">\(\sh(v_j)=\sh(v_i)+1\)</span>).</p>
-<p>For any play <span class="math notranslate nohighlight">\(\play\)</span> with <span class="math notranslate nohighlight">\(\Stepsg{\play}=\{n_0&lt;n_1&lt;\cdots\}\)</span>, we can define the sequence <span class="math notranslate nohighlight">\((\pdscol{\play}_i)_{i\geq
-0}\in\{0,\dots,d\}^{\mathbb{N}}\)</span> by setting <span class="math notranslate nohighlight">\(\pdscol{\play}_i=\max\{\pdscol{v_k}\mid n_i\leq k\leq n_{i+1}\}\)</span>.
+<p>In the factorisation induced by <span class="math notranslate nohighlight">\(\Stepsg{\pi\)</span>, a factor <span class="math notranslate nohighlight">\(v_i\cdots v_j\)</span> is called a
+<strong>bump</strong> if <span class="math notranslate nohighlight">\(\mathrm{sh}v_j)=\mathrm{sh}v_i)\)</span>, called a <strong>Stair</strong> otherwise (that is, if <span class="math notranslate nohighlight">\(\mathrm{sh}v_j)=\mathrm{sh}v_i)+1\)</span>).</p>
+<p>For any play <span class="math notranslate nohighlight">\(\pi with \)</span>\Stepsg{\pi={n_0&lt;n_1&lt;\cdots}<span class="math notranslate nohighlight">\(, we can define the sequence \)</span>(\pdscol{\pi_i)<em>{i\geq
+0}\in{0,\dots,d}^{\mathbb{N}}<span class="math notranslate nohighlight">\( by setting \)</span>\pdscol{\pi_i=\max{\pdscol{v_k}\mid n_i\leq k\leq n</em>{i+1}}$.
 This sequence fully characterises the parity objective.</p>
 <div class="proof proposition admonition" id="10-prop:trans_cond">
 <p class="admonition-title"><span class="caption-number">Proposition 281 </span> (NEEDS TITLE 10-prop:trans_cond)</p>
 <div class="proposition-content section" id="proof-content">
-<p>Let <span class="math notranslate nohighlight">\(\play\)</span> be a play. Then <span class="math notranslate nohighlight">\(\play\)</span> satisfies the parity condition  if and only if <span class="math notranslate nohighlight">\(\limsup((\pdscol{\play}_i)_{i\geq 0})\)</span> is even.</p>
+<p>Let <span class="math notranslate nohighlight">\(\pi be a play. Then \)</span>\pi satisfies the parity condition  if and only if <span class="math notranslate nohighlight">\(\limsup((\pdscol{\pi_i)_{i\geq 0})\)</span> is even.</p>
 </div>
 </div><div class="section" id="simulation-game">
 <h3>Simulation Game<a class="headerlink" href="#simulation-game" title="Permalink to this headline">¶</a></h3>
-<p>In the sequel, we build a new parity game <span class="math notranslate nohighlight">\(\fgame\)</span> over a <strong>finite</strong> arena <span class="math notranslate nohighlight">\(\farena\)</span>.
+<p>In the sequel, we build a new parity game <span class="math notranslate nohighlight">\(\widetilde{\mathcal{G} over a **finite** arena \)</span>\widetilde{\mathcal{A}.
 This new game
 <strong>simulates</strong> the original pushdown game, in the sense that the
-sequence of visited colours during a correct simulation of some play <span class="math notranslate nohighlight">\(\play\)</span> in <span class="math notranslate nohighlight">\(\game\)</span> is
-exactly the sequence <span class="math notranslate nohighlight">\((\pdscol{\play}_i)_{i\geq 0}\)</span>. Moreover, a play in which
+sequence of visited colours during a correct simulation of some play <span class="math notranslate nohighlight">\(\pi in \)</span>\mathcal{G} is
+exactly the sequence <span class="math notranslate nohighlight">\((\pdscol{\pi_i)_{i\geq 0}\)</span>. Moreover, a play in which
 a player does not correctly simulate the pushdown game is losing
-for that player. We shall see that the winning region in <span class="math notranslate nohighlight">\(\fgame\)</span> allows us to compute the set of profiles <span class="math notranslate nohighlight">\(\{\mathcal{R}(q,\gamma) \mid q\in Q \text{ and } \gamma\in\Gamma\}\)</span>. Hence, by  <a class="reference internal" href="profiles.html#10-thm:regularity-wr">Theorem 280</a>, it will imply that one can solve a pushdown game as well as compute its winning region.</p>
+for that player. We shall see that the winning region in <span class="math notranslate nohighlight">\(\widetilde{\mathcal{G} allows us to compute the set of profiles \)</span>{\mathcal{R}(q,\gamma) \mid q\in Q \text{ and } \gamma\in\Gamma}$. Hence, by  <a class="reference internal" href="profiles.html#10-thm:regularity-wr">Theorem 280</a>, it will imply that one can solve a pushdown game as well as compute its winning region.</p>
 <div class="figure align-center" id="fig-reduced-arena">
 <img alt="../_images/10-fig:reduced-arena.png" src="../_images/10-fig:reduced-arena.png" />
-<p class="caption"><span class="caption-number">Fig. 67 </span><span class="caption-text">Local structure of the arena <span class="math notranslate nohighlight">\(\farena\)</span></span><a class="headerlink" href="#fig-reduced-arena" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 66 </span><span class="caption-text">Local structure of the arena $\widetilde{\mathcal{A}</span><a class="headerlink" href="#fig-reduced-arena" title="Permalink to this image">¶</a></p>
 </div>
 <p>Before providing a precise description of the arena
-<span class="math notranslate nohighlight">\(\farena\)</span>, let us consider the following informal description of
-this simulation game. We aim at simulating a play in the pushdown game from some initial vertex <span class="math notranslate nohighlight">\((p_{in},\bot)\)</span>. In <span class="math notranslate nohighlight">\(\farena\)</span> we
+<span class="math notranslate nohighlight">\(\widetilde{\mathcal{A}, let us consider the following informal description of
+this simulation game. We aim at simulating a play in the pushdown game from some initial vertex \)</span>(p_{in},\bot)<span class="math notranslate nohighlight">\(. In \)</span>\widetilde{\mathcal{A} we
 keep track of only the control state and the top stack symbol of
 the currently simulated configuration.</p>
 <p>The interesting case is when it is in a control state <span class="math notranslate nohighlight">\(p\)</span> with top
 stack symbol <span class="math notranslate nohighlight">\(\alpha\)</span>, and the player owning <span class="math notranslate nohighlight">\(p\)</span> wants to push a
 symbol <span class="math notranslate nohighlight">\(\beta\)</span> onto the stack and change the control state to <span class="math notranslate nohighlight">\(q\)</span>. For
-every strategy of \Eve, there is a certain set of possible
+every strategy of \textrm{Eve} there is a certain set of possible
 (finite) continuations of the play that will end with popping
-<span class="math notranslate nohighlight">\(\beta\)</span> from the stack. We require \Eve to declare a vector
+<span class="math notranslate nohighlight">\(\beta\)</span> from the stack. We require \textrm{Eve}to declare a vector
 <span class="math notranslate nohighlight">\(\vect{S}=(S_0,\dots,S_d)\)</span> of <span class="math notranslate nohighlight">\((d+1)\)</span> subsets of
 <span class="math notranslate nohighlight">\(Q\)</span>, where <span class="math notranslate nohighlight">\(S_i\)</span> is the set of all
 states the game can be in after popping <span class="math notranslate nohighlight">\(\beta\)</span> along those
 plays where in addition the largest visited colour while <span class="math notranslate nohighlight">\(\beta\)</span> was on
 the stack is <span class="math notranslate nohighlight">\(i\)</span>.</p>
-<p>\Adam has then two choices. He can continue the game by pushing
+<p>\textrm{Adam}has then two choices. He can continue the game by pushing
 <span class="math notranslate nohighlight">\(\beta\)</span> onto the stack and updating the state (we call this a
 <strong>pursue</strong> move). Otherwise, he can pick a set <span class="math notranslate nohighlight">\(S_i\)</span>
 and a state <span class="math notranslate nohighlight">\(r\in S_i\)</span>, and
 continue the simulation from that state <span class="math notranslate nohighlight">\(r\)</span> (we call this a
 <strong>jump</strong> move). If he does a pursue move, then he remembers the
-vector <span class="math notranslate nohighlight">\(\vect{S}\)</span> claimed by \Eve; if later on, a pop transition is simulated, the play
-goes in a sink vertex and \Eve wins if and only if the resulting state is in
+vector <span class="math notranslate nohighlight">\(\vect{S}\)</span> claimed by \textrm{Eve} if later on, a pop transition is simulated, the play
+goes in a sink vertex and \textrm{Eve}wins if and only if the resulting state is in
 <span class="math notranslate nohighlight">\(S_c\)</span> where <span class="math notranslate nohighlight">\(c\)</span> is the largest colour seen in
 the current stack level (this information is encoded in the vertex, reset after each pursue move and updated after each jump
-move). If \Adam
-does a jump move to a state <span class="math notranslate nohighlight">\(r\)</span> in <span class="math notranslate nohighlight">\(S_{i}\)</span>, the currently
+move). If \textrm{Adam}does a jump move to a state <span class="math notranslate nohighlight">\(r\)</span> in <span class="math notranslate nohighlight">\(S_{i}\)</span>, the currently
 stored value for <span class="math notranslate nohighlight">\(c\)</span> is updated to <span class="math notranslate nohighlight">\(\max(c,i,\pdscol{r})\)</span>,
 which is the largest colour seen since the current stack level was
 reached.</p>
 <p>Therefore the main vertices of this new arena are of the form <span class="math notranslate nohighlight">\((p,\alpha,\vect{R},c)\)</span>, which are controlled by the player who controls <span class="math notranslate nohighlight">\(p\)</span>.
 Intermediate vertices are used to handle the previously
 described intermediate steps. The local structure is given in
-<a class="reference internal" href="#fig-reduced-arena"><span class="std std-numref">Fig. 67</span></a>. Two special sink vertices <span class="math notranslate nohighlight">\(\ttrue\)</span> and <span class="math notranslate nohighlight">\(\ffalse\)</span> are
+<a class="reference internal" href="#fig-reduced-arena"><span class="std std-numref">Fig. 66</span></a>. Two special sink vertices <span class="math notranslate nohighlight">\(t\! t and \)</span>f!! f are
 used to simulate pop moves. This arena is equipped with a
 colouring function on the edges: an edge from a vertex
 <span class="math notranslate nohighlight">\((p,\alpha,\vect{R},c,q,\beta,\vect{S})\)</span> to a vertex <span class="math notranslate nohighlight">\((r,\alpha,\vect{R},\max(c,i,\pdscol{r})\)</span> has colour <span class="math notranslate nohighlight">\(i\)</span> where <span class="math notranslate nohighlight">\(i\)</span> is the colour of the simulated bump, an edge from a vertex
-<span class="math notranslate nohighlight">\((p,\alpha,\vect{R},c,q,\beta,\vect{S})\)</span> to a vertex <span class="math notranslate nohighlight">\((q,\beta,\vect{S}\pdscol{q})\)</span> simulating a jump move has colour <span class="math notranslate nohighlight">\(\pdscol{q}\)</span>, the loop on <span class="math notranslate nohighlight">\(\ttrue\)</span> has colour <span class="math notranslate nohighlight">\(0\)</span> while the loop on <span class="math notranslate nohighlight">\(\ffalse\)</span> has colour <span class="math notranslate nohighlight">\(1\)</span>; all other edges get the irrelevant colour <span class="math notranslate nohighlight">\(0\)</span>.</p>
+<span class="math notranslate nohighlight">\((p,\alpha,\vect{R},c,q,\beta,\vect{S})\)</span> to a vertex <span class="math notranslate nohighlight">\((q,\beta,\vect{S}\pdscol{q})\)</span> simulating a jump move has colour <span class="math notranslate nohighlight">\(\pdscol{q}\)</span>, the loop on <span class="math notranslate nohighlight">\(t\! t has colour \)</span>0<span class="math notranslate nohighlight">\( while the loop on \)</span>f!! f has colour <span class="math notranslate nohighlight">\(1\)</span>; all other edges get the irrelevant colour <span class="math notranslate nohighlight">\(0\)</span>.</p>
 <p>We now formally describe arena
-<span class="math notranslate nohighlight">\(\farena\)</span> (we refer to <a class="reference internal" href="#fig-reduced-arena"><span class="std std-numref">Fig. 67</span></a>) and provide some extra insight.</p>
+$\widetilde{\mathcal{A} (we refer to <a class="reference internal" href="#fig-reduced-arena"><span class="std std-numref">Fig. 66</span></a>) and provide some extra insight.</p>
 <ul class="simple">
-<li><p>The main vertices of <span class="math notranslate nohighlight">\(\farena\)</span> are those of the form
-<span class="math notranslate nohighlight">\((p,\alpha,\vect{R},c)\)</span>, where <span class="math notranslate nohighlight">\(p\in Q\)</span>, <span class="math notranslate nohighlight">\(\alpha\in
-\Gamma\)</span>, <span class="math notranslate nohighlight">\(\vect{R}=(R_0,\dots,R_d)\in
-(2^Q)^{d+1}\)</span> and <span class="math notranslate nohighlight">\(c\in\{0,\dots,d\}\)</span>. A vertex <span class="math notranslate nohighlight">\((p,\alpha,\vect{R},c)\)</span> is reached when
-simulating a finite play <span class="math notranslate nohighlight">\(\play\)</span> in <span class="math notranslate nohighlight">\(\game\)</span> such that:
+<li><p>The main vertices of <span class="math notranslate nohighlight">\(\widetilde{\mathcal{A} are those of the form
+\)</span>(p,\alpha,\vect{R},c)<span class="math notranslate nohighlight">\(, where \)</span>p\in Q<span class="math notranslate nohighlight">\(, \)</span>\alpha\in
+\Gamma<span class="math notranslate nohighlight">\(, \)</span>\vect{R}=(R_0,\dots,R_d)\in
+(2^Q)^{d+1}<span class="math notranslate nohighlight">\( and \)</span>c\in{0,\dots,d}<span class="math notranslate nohighlight">\(. A vertex \)</span>(p,\alpha,\vect{R},c)<span class="math notranslate nohighlight">\( is reached when
+simulating a finite play \)</span>\pi in $\mathcal{G} such that:
 \begin{itemize}</p></li>
-<li><p>The last vertex in <span class="math notranslate nohighlight">\(\play\)</span> is <span class="math notranslate nohighlight">\((p,\bot s\alpha)\)</span> for some <span class="math notranslate nohighlight">\(s\in \Gamma^*\)</span>.</p></li>
-<li><p>\Eve claims that she has a strategy to continue <span class="math notranslate nohighlight">\(\play\)</span> in such
-a way that if <span class="math notranslate nohighlight">\(\alpha\)</span> is eventually popped, the control state
-reached after popping belongs to <span class="math notranslate nohighlight">\(R_m\)</span>, where <span class="math notranslate nohighlight">\(m\)</span> is
-the largest colour visited since the stack height was at least <span class="math notranslate nohighlight">\(|s\alpha|\)</span>.</p></li>
+<li><p>The last vertex in <span class="math notranslate nohighlight">\(\pi is \)</span>(p,\bot s\alpha)<span class="math notranslate nohighlight">\( for some \)</span>s\in \Gamma^*$.</p></li>
+<li><p>\textrm{Eve}claims that she has a strategy to continue <span class="math notranslate nohighlight">\(\pi in such
+a way that if \)</span>\alpha<span class="math notranslate nohighlight">\( is eventually popped, the control state
+reached after popping belongs to \)</span>R_m<span class="math notranslate nohighlight">\(, where \)</span>m<span class="math notranslate nohighlight">\( is
+the largest colour visited since the stack height was at least \)</span>|s\alpha|$.</p></li>
 <li><p>The colour <span class="math notranslate nohighlight">\(c\)</span> is the largest one since the current stack level was reached from a lower stack level.</p></li>
 </ul>
-<p>A vertex <span class="math notranslate nohighlight">\((p,\alpha,\vect{R},c)\)</span> is controlled by \Eve if
-and only if <span class="math notranslate nohighlight">\(p\in Q_\mEve\)</span>.</p>
-<p>\item The vertices <span class="math notranslate nohighlight">\(\ttrue\)</span> and <span class="math notranslate nohighlight">\(\ffalse\)</span> are here to ensure
-that the vectors <span class="math notranslate nohighlight">\(\vect{R}\)</span> encoded in the main vertices are correct. They are both controlled by \Eve and are sink vertices with a self loop with colour <span class="math notranslate nohighlight">\(0\)</span> for <span class="math notranslate nohighlight">\(\ttrue\)</span> and <span class="math notranslate nohighlight">\(1\)</span> for <span class="math notranslate nohighlight">\(\ffalse\)</span>.</p>
+<p>A vertex <span class="math notranslate nohighlight">\((p,\alpha,\vect{R},c)\)</span> is controlled by \textrm{Eve}if
+and only if $p\in Q_\mathrm{Eve}.</p>
+<p>\item The vertices <span class="math notranslate nohighlight">\(t\! t and \)</span>f!! f are here to ensure
+that the vectors <span class="math notranslate nohighlight">\(\vect{R}\)</span> encoded in the main vertices are correct. They are both controlled by \textrm{Eve}and are sink vertices with a self loop with colour <span class="math notranslate nohighlight">\(0\)</span> for <span class="math notranslate nohighlight">\(t\! t and \)</span>1<span class="math notranslate nohighlight">\( for \)</span>f!! f.</p>
 <p>There is a transition from some vertex
-<span class="math notranslate nohighlight">\((p,\alpha,\vect{R},c)\)</span> to <span class="math notranslate nohighlight">\(\ttrue\)</span>, if and
-only if there exists a transition rule <span class="math notranslate nohighlight">\((r,pop)\in\Delta(p,\alpha)\)</span>,
-such that <span class="math notranslate nohighlight">\(r\in R_{c}\)</span> (this means that <span class="math notranslate nohighlight">\(\vect{R}\)</span> is correct with respect
+<span class="math notranslate nohighlight">\((p,\alpha,\vect{R},c)\)</span> to <span class="math notranslate nohighlight">\(t\! t, if and
+only if there exists a transition rule \)</span>(r,pop)\in\Delta(p,\alpha)<span class="math notranslate nohighlight">\(,
+such that \)</span>r\in R_{c}<span class="math notranslate nohighlight">\( (this means that \)</span>\vect{R}<span class="math notranslate nohighlight">\( is correct with respect
 to this transition rule).
 Dually, there is a transition from a vertex
-<span class="math notranslate nohighlight">\((p,\alpha,\vect{R},c)\)</span> to <span class="math notranslate nohighlight">\(\ffalse\)</span>
+\)</span>(p,\alpha,\vect{R},c)<span class="math notranslate nohighlight">\( to \)</span>f!! f
 if and only if there exists a transition rule
 <span class="math notranslate nohighlight">\((r,pop)\in\Delta(p,\alpha)\)</span> such that <span class="math notranslate nohighlight">\(r\notin R_{c}\)</span> (this means that
 <span class="math notranslate nohighlight">\(\vect{R}\)</span> is not correct with respect to this transition rule).</p>
@@ -977,19 +901,19 @@ if and only if there exists a transition rule
 <span class="math notranslate nohighlight">\((q,push(\beta))\in\Delta(p,\alpha)\)</span>, the player that controls
 <span class="math notranslate nohighlight">\((p,\alpha,\vect{R},c)\)</span> moves to
 <span class="math notranslate nohighlight">\((p,\alpha,\vect{R},c,q,\beta)\)</span>. This vertex is
-controlled by \Eve who has to give a vector
+controlled by \textrm{Eve}who has to give a vector
 <span class="math notranslate nohighlight">\(\vect{S}=(S_0,\dots,S_d)\in
 (2^Q)^{d+1}\)</span> that describes the control states that can be
 reached if <span class="math notranslate nohighlight">\(\beta\)</span> is eventually popped. To describe this vector,
 she goes to the corresponding vertex <span class="math notranslate nohighlight">\((p,\alpha,\vect{R},c,q,\beta,\vect{S})\)</span>.</p>
 <p>Any vertex <span class="math notranslate nohighlight">\((p,\alpha,\vect{R},c,q,\beta,\vect{S})\)</span> is
-controlled by \Adam who chooses either to simulate a bump or a
+controlled by \textrm{Adam}who chooses either to simulate a bump or a
 stair. In the first case, he additionally has to pick the maximal colour of the
 bump. To simulate a bump with maximal
 colour <span class="math notranslate nohighlight">\(i\)</span>, he goes, through an edge coloured by <span class="math notranslate nohighlight">\(i\)</span>, to a vertex
 <span class="math notranslate nohighlight">\((r,\alpha,\vect{R},\max(c,i,\pdscol{r}))\)</span>, for some <span class="math notranslate nohighlight">\(r\in
 S_i\)</span>.</p>
-<p>To simulate a stair, \Adam goes, through an edge coloured by <span class="math notranslate nohighlight">\(\pdscol{q}\)</span>, to the vertex
+<p>To simulate a stair, \textrm{Adam}goes, through an edge coloured by <span class="math notranslate nohighlight">\(\pdscol{q}\)</span>, to the vertex
 <span class="math notranslate nohighlight">\((q,\beta,\vect{S},\pdscol{q})\)</span>.</p>
 <p>The last component of the vertex (that stores the
 largest colour seen since the currently simulated stack level was
@@ -1001,48 +925,48 @@ therefore <span class="math notranslate nohighlight">\(\pdscol{q}\)</span>, whic
 level was reached.</p>
 <p>\end{itemize}</p>
 <p>The edges for which we did not precise the colour are assigned colour <span class="math notranslate nohighlight">\(0\)</span>.</p>
-<p>The following theorem relates this new game <span class="math notranslate nohighlight">\(\fgame\)</span> and the profiles in the pushdown game <span class="math notranslate nohighlight">\(\game\)</span>.</p>
+<p>The following theorem relates this new game <span class="math notranslate nohighlight">\(\widetilde{\mathcal{G} and the profiles in the pushdown game \)</span>\mathcal{G}.</p>
 <div class="proof theorem admonition" id="10-thm:games">
 <p class="admonition-title"><span class="caption-number">Theorem 282 </span> (NEEDS TITLE 10-thm:games)</p>
 <div class="theorem-content section" id="proof-content">
 <p>The following holds.</p>
 <ol class="simple">
-<li><p>[(i)] A configuration <span class="math notranslate nohighlight">\((p_{in},\bot)\)</span> is winning for \Eve in <span class="math notranslate nohighlight">\(\game\)</span>
+<li><p>[(i)] A configuration <span class="math notranslate nohighlight">\((p_{in},\bot)\)</span> is winning for \textrm{Eve}in <span class="math notranslate nohighlight">\(\mathcal{G}
 if and only if
-<span class="math notranslate nohighlight">\((p_{in},\bot,(\emptyset,\dots,\emptyset),\pdscol{p_{in}})\)</span>
-is winning for \Eve in
-<span class="math notranslate nohighlight">\(\fgame\)</span>.</p></li>
+\)</span>(p_{in},\bot,(\emptyset,\dots,\emptyset),\pdscol{p_{in}})<span class="math notranslate nohighlight">\(
+is winning for \textrm{Eve}in
+\)</span>\widetilde{\mathcal{G}.</p></li>
 <li><p>[(ii)] For every <span class="math notranslate nohighlight">\(q\in Q\)</span>, <span class="math notranslate nohighlight">\(\gamma\in\Gamma\)</span> and <span class="math notranslate nohighlight">\(R\subseteq Q\)</span>, <span class="math notranslate nohighlight">\(R\in\mathcal{R}(q,\gamma)\)</span> if and only if
 <span class="math notranslate nohighlight">\((q,\gamma,(R,\dots,R),\pdscol{q})\)</span>
-is winning for \Eve in
-<span class="math notranslate nohighlight">\(\fgame\)</span>.</p></li>
+is winning for \textrm{Eve}in
+$\widetilde{\mathcal{G}.</p></li>
 </ol>
 </div>
 </div><p>The rest of the section is devoted to the proof of  <a class="reference internal" href="#10-thm:games">Theorem 282</a>. We only prove point <span class="math notranslate nohighlight">\((i)\)</span> as the proof of point <span class="math notranslate nohighlight">\((ii)\)</span> is a subpart of the proof of <span class="math notranslate nohighlight">\((i)\)</span>.</p>
 </div>
-<div class="section" id="factorisation-of-a-play-in-game">
-<h3>Factorisation of a play in <span class="math notranslate nohighlight">\(\game\)</span>.<a class="headerlink" href="#factorisation-of-a-play-in-game" title="Permalink to this headline">¶</a></h3>
-<p>Recall that, for an infinite play <span class="math notranslate nohighlight">\(\play=v_0v_1\cdots\)</span> in <span class="math notranslate nohighlight">\(\game\)</span>,
-<span class="math notranslate nohighlight">\(\Stepsg{\play}\)</span> denotes the set of indices of positions where no
+<div class="section" id="factorisation-of-a-play-in-mathcal-g">
+<h3>Factorisation of a play in $\mathcal{G}.<a class="headerlink" href="#factorisation-of-a-play-in-mathcal-g" title="Permalink to this headline">¶</a></h3>
+<p>Recall that, for an infinite play <span class="math notranslate nohighlight">\(\piv_0v_1\cdots\)</span> in <span class="math notranslate nohighlight">\(\mathcal{G}, 
+\)</span>\Stepsg{\pi$ denotes the set of indices of positions where no
 configuration of strictly smaller stack height is visited later in the
 play.</p>
-<p>Note that <span class="math notranslate nohighlight">\(\Stepsg{\play}\)</span> is always
-infinite and hence induces a factorisation of the play <span class="math notranslate nohighlight">\(\play\)</span> into
+<p>Note that <span class="math notranslate nohighlight">\(\Stepsg{\pi\)</span> is always
+infinite and hence induces a factorisation of the play $\pi into
 finite pieces.</p>
-<p>Indeed, for any play <span class="math notranslate nohighlight">\(\play\)</span> with <span class="math notranslate nohighlight">\(\Stepsg{\play}=\{n_0&lt;n_1&lt;\cdots\}\)</span>, one can define the sequence <span class="math notranslate nohighlight">\((\play_i)_{i\geq
-0}\)</span> by setting <span class="math notranslate nohighlight">\({\play}_i=v_{n_i}\cdots v_{n_{i+1}}\)</span>. Note that each of the <span class="math notranslate nohighlight">\(\Lambda_i\)</span> is either a bump or a stair.
-We designate <span class="math notranslate nohighlight">\((\play_i)_{i\geq 0}\)</span> as the <strong>rounds factorisation</strong> of <span class="math notranslate nohighlight">\(\play\)</span> and we let <span class="math notranslate nohighlight">\(\pdscol{\play_i}\)</span> denotes the largest colour in <span class="math notranslate nohighlight">\(\play_i\)</span>.</p>
+<p>Indeed, for any play <span class="math notranslate nohighlight">\(\pi with \)</span>\Stepsg{\pi={n_0&lt;n_1&lt;\cdots}<span class="math notranslate nohighlight">\(, one can define the sequence \)</span>(\play_i)<em>{i\geq
+0}<span class="math notranslate nohighlight">\( by setting \)</span>{\pi_i=v</em>{n_i}\cdots v_{n_{i+1}}<span class="math notranslate nohighlight">\(. Note that each of the \)</span>\Lambda_i<span class="math notranslate nohighlight">\( is either a bump or a stair.
+We designate \)</span>(\play_i)_{i\geq 0}<span class="math notranslate nohighlight">\( as the **rounds factorisation** of \)</span>\pi and we let <span class="math notranslate nohighlight">\(\pdscol{\play_i}\)</span> denotes the largest colour in <span class="math notranslate nohighlight">\(\play_i\)</span>.</p>
 </div>
-<div class="section" id="factorisation-of-a-play-in-fgame">
-<h3>Factorisation of a play in <span class="math notranslate nohighlight">\(\fgame\)</span>.<a class="headerlink" href="#factorisation-of-a-play-in-fgame" title="Permalink to this headline">¶</a></h3>
-<p>Recall that in <span class="math notranslate nohighlight">\(\farena\)</span> only some edges have a relevant colour while all others get colour <span class="math notranslate nohighlight">\(0\)</span>. Hence, to represent a play, we
+<div class="section" id="factorisation-of-a-play-in-widetilde-mathcal-g">
+<h3>Factorisation of a play in $\widetilde{\mathcal{G}.<a class="headerlink" href="#factorisation-of-a-play-in-widetilde-mathcal-g" title="Permalink to this headline">¶</a></h3>
+<p>Recall that in <span class="math notranslate nohighlight">\(\widetilde{\mathcal{A} only some edges have a relevant colour while all others get colour \)</span>0<span class="math notranslate nohighlight">\(. Hence, to represent a play, we
 only keep the relevant colours of edges. More precisely, we only need to encode the
-colours in <span class="math notranslate nohighlight">\(\{0,\dots,d\}\)</span> that appears when simulating a bump: a play will be
+colours in \)</span>{0,\dots,d}<span class="math notranslate nohighlight">\( that appears when simulating a bump: a play will be
 represented as a sequence of vertices together with colours in
-<span class="math notranslate nohighlight">\(\{0,\dots,d\}\)</span> that correspond to (relevant) colours appearing on edges.</p>
-<p>For any play in <span class="math notranslate nohighlight">\(\fgame\)</span>, a <strong>round</strong> is a factor between two
+\)</span>{0,\dots,d}$ that correspond to (relevant) colours appearing on edges.</p>
+<p>For any play in <span class="math notranslate nohighlight">\(\widetilde{\mathcal{G}, a **round** is a factor between two
 visits through vertices of the form
-<span class="math notranslate nohighlight">\((p,\alpha,\vect{R},c)\)</span>. We have the following possible forms for a round:</p>
+\)</span>(p,\alpha,\vect{R},c)$. We have the following possible forms for a round:</p>
 <ul class="simple">
 <li><p>The round is of the form</p></li>
 </ul>
@@ -1063,75 +987,75 @@ followed by a sequence of moves that ends by popping <span class="math notransla
 <p>and
 corresponds therefore to the simulation of a rule pushing a symbol <span class="math notranslate nohighlight">\(\beta\)</span>
 leading to a new stack level below which the play will never go. We designate it as a <strong>stair</strong>.</p>
-<p>For any play <span class="math notranslate nohighlight">\(\fplay=v_0v_1v_2\cdots\)</span> in <span class="math notranslate nohighlight">\(\fgame\)</span>, we consider the
+<p>For any play <span class="math notranslate nohighlight">\(\widetilde{\piv_0v_1v_2\cdots\)</span> in <span class="math notranslate nohighlight">\(\widetilde{\mathcal{G}, we consider the
 subset of indices corresponding to vertices of the form
-<span class="math notranslate nohighlight">\((p,\alpha,\vect{R},c)\)</span>. More precisely:
+\)</span>(p,\alpha,\vect{R},c)$. More precisely:
 \begin{equation*}</p>
-<p>\Rounds{\fplay}={n\mid v_n=(p,\alpha,\vect{R},c),\ p\in Q,<br />
+<p>\Rounds{\widetilde{\pi={n\mid v_n=(p,\alpha,\vect{R},c),\ p\in Q,<br />
 \alpha\in\Gamma,\ \vect{R}\in(2^Q)^{d+1},<br />
 0\leq c\leq d}</p>
 <p>\end{equation*}</p>
-<p>Therefore, the set <span class="math notranslate nohighlight">\(\Rounds{\fplay}\)</span> induces a natural factorisation
-of <span class="math notranslate nohighlight">\(\fplay\)</span> into rounds.</p>
+<p>Therefore, the set <span class="math notranslate nohighlight">\(\Rounds{\widetilde{\pi\)</span> induces a natural factorisation
+of $\widetilde{\pi into rounds.</p>
 <div class="proof definition admonition" id="definition-2">
 <p class="admonition-title"><span class="caption-number">Definition 283 </span> (NEEDS LABEL Rounds factorisation)</p>
 <div class="definition-content section" id="proof-content">
-<p>For a (possibly finite) play <span class="math notranslate nohighlight">\(\fplay=v_0v_1v_2\cdots\)</span>, we call
-<strong>rounds factorisation</strong> of <span class="math notranslate nohighlight">\(\fplay\)</span>, the (possibly finite) sequence
-<span class="math notranslate nohighlight">\((\fplay_i)_{i\geq 0}\)</span> of rounds defined as follows. Let
-<span class="math notranslate nohighlight">\(\Rounds{\fplay}=\{n_0&lt;n_1&lt;n_2&lt;\cdots\}\)</span>, then for all <span class="math notranslate nohighlight">\(0\leq i&lt;|\Rounds{\fplay}|\)</span>,
-define <span class="math notranslate nohighlight">\(\fplay_i=v_{n_i}\cdots v_{n_{i+1}}\)</span>.</p>
+<p>For a (possibly finite) play <span class="math notranslate nohighlight">\(\widetilde{\piv_0v_1v_2\cdots\)</span>, we call
+<strong>rounds factorisation</strong> of <span class="math notranslate nohighlight">\(\widetilde{\pi, the (possibly finite) sequence
+\)</span>(\fplay_i)<em>{i\geq 0}<span class="math notranslate nohighlight">\( of rounds defined as follows. Let
+\)</span>\Rounds{\widetilde{\pi={n_0&lt;n_1&lt;n_2&lt;\cdots}<span class="math notranslate nohighlight">\(, then for all \)</span>0\leq i&lt;|\Rounds{\widetilde{\pi|<span class="math notranslate nohighlight">\(,
+define \)</span>\fplay_i=v</em>{n_i}\cdots v_{n_{i+1}}$.</p>
 <p>Therefore, for every <span class="math notranslate nohighlight">\(i\geq 0\)</span>, the first vertex in <span class="math notranslate nohighlight">\(\fplay_{i+1}\)</span> equals
 the last one in <span class="math notranslate nohighlight">\(\fplay_i\)</span>. Moreover,
-<span class="math notranslate nohighlight">\(\fplay=\fplay_1\odot\fplay_2\odot\fplay_3\odot\cdots\)</span>, where
+<span class="math notranslate nohighlight">\(\widetilde{\pi\fplay_1\odot\fplay_2\odot\fplay_3\odot\cdots\)</span>, where
 <span class="math notranslate nohighlight">\(\fplay_i\odot\fplay_{i+1}\)</span> denotes the concatenation of <span class="math notranslate nohighlight">\(\fplay_i\)</span>
 with <span class="math notranslate nohighlight">\(\fplay_{i+1}\)</span> without its first vertex.</p>
 <p>Finally, the <strong>colour</strong> of a round is the unique colour in
 <span class="math notranslate nohighlight">\(\{0,\dots,d\}\)</span> appearing in the round.</p>
 </div>
 </div><p>In order to prove both implications of  <a class="reference internal" href="#10-thm:games">Theorem 282</a> , we
-build from a winning strategy for \Eve in one game a winning strategy
+build from a winning strategy for \textrm{Eve}in one game a winning strategy
 for her in the other game. The main argument to prove that the new
 strategy is winning is to prove a correspondence between the
 factorisations of plays in both games.</p>
 </div>
 <div class="section" id="proof-of-the-direct-implication-of-10-thm-games">
 <h3>Proof of the Direct Implication of  <a class="reference internal" href="#10-thm:games">Theorem 282</a><a class="headerlink" href="#proof-of-the-direct-implication-of-10-thm-games" title="Permalink to this headline">¶</a></h3>
-<p>Assume that the configuration <span class="math notranslate nohighlight">\((p_{in},\bot)\)</span> is winning for \Eve in <span class="math notranslate nohighlight">\(\game\)</span>,
-and let <span class="math notranslate nohighlight">\(\sigma\)</span> be a corresponding winning strategy for her.</p>
-<p>Using <span class="math notranslate nohighlight">\(\sigma\)</span>, we define a strategy <span class="math notranslate nohighlight">\(\fsigma\)</span> for \Eve in
-<span class="math notranslate nohighlight">\(\fgame\)</span> from <span class="math notranslate nohighlight">\((p_{in},\bot,(\emptyset,\dots,\emptyset),\pdscol{p_{in}})\)</span>.
-This strategy stores a finite play in <span class="math notranslate nohighlight">\(\game\)</span>, that is an element in
-<span class="math notranslate nohighlight">\(V^*\)</span>. This memory will
-be denoted <span class="math notranslate nohighlight">\(\play\)</span>. At the beginning <span class="math notranslate nohighlight">\(\play\)</span> is initialized to
-the vertex <span class="math notranslate nohighlight">\((p_{in},\bot)\)</span>. We first describe <span class="math notranslate nohighlight">\(\fsigma\)</span>, and then we
-explain how <span class="math notranslate nohighlight">\(\play\)</span> is updated. Both the strategy <span class="math notranslate nohighlight">\(\fsigma\)</span> and the
-update of <span class="math notranslate nohighlight">\(\play\)</span>, are described for a round.</p>
+<p>Assume that the configuration <span class="math notranslate nohighlight">\((p_{in},\bot)\)</span> is winning for \textrm{Eve}in <span class="math notranslate nohighlight">\(\mathcal{G},
+and let \)</span>\sigma$ be a corresponding winning strategy for her.</p>
+<p>Using <span class="math notranslate nohighlight">\(\sigma\)</span>, we define a strategy <span class="math notranslate nohighlight">\(\widetilde{\sigma} for \textrm{Eve}in
+\)</span>\widetilde{\mathcal{G} from <span class="math notranslate nohighlight">\((p_{in},\bot,(\emptyset,\dots,\emptyset),\pdscol{p_{in}})\)</span>.
+This strategy stores a finite play in <span class="math notranslate nohighlight">\(\mathcal{G}, that is an element in
+\)</span>V^*<span class="math notranslate nohighlight">\(. This memory will
+be denoted \)</span>\pi. At the beginning <span class="math notranslate nohighlight">\(\pi is initialized to
+the vertex \)</span>(p_{in},\bot)<span class="math notranslate nohighlight">\(. We first describe \)</span>\widetilde{\sigma}, and then we
+explain how <span class="math notranslate nohighlight">\(\pi is updated. Both the strategy \)</span>\widetilde{\sigma} and the
+update of $\pi, are described for a round.</p>
 <p>\vspace{0.1cm}
 **Choice of the move. ** Assume that the play is in some
-vertex <span class="math notranslate nohighlight">\((p,\alpha,\vect{R},c)\)</span> for <span class="math notranslate nohighlight">\(p\in Q_\mEve\)</span>. The
-move given by <span class="math notranslate nohighlight">\(\fsigma\)</span> depends on <span class="math notranslate nohighlight">\(\sigma(\play)\)</span>:</p>
+vertex <span class="math notranslate nohighlight">\((p,\alpha,\vect{R},c)\)</span> for <span class="math notranslate nohighlight">\(p\in Q_\mathrm{Eve}. The
+move given by \)</span>\widetilde{\sigma} depends on <span class="math notranslate nohighlight">\(\sigma(\pi\)</span>:</p>
 <ul class="simple">
-<li><p>If <span class="math notranslate nohighlight">\(\sigma(\play)=(r,pop)\)</span>, then \Eve goes to
-<span class="math notranslate nohighlight">\(\ttrue\)</span> (Proposition \ref{prop:par_dir_dep_paritexp} will
+<li><p>If <span class="math notranslate nohighlight">\(\sigma(\pi=(r,pop)\)</span>, then \textrm{Eve}goes to
+$t! t (Proposition \ref{prop:par_dir_dep_paritexp} will
 prove that this move is always possible).</p></li>
-<li><p>If <span class="math notranslate nohighlight">\(\sigma(\play)=(q,push(\beta))\)</span>, then \Eve goes to
+<li><p>If <span class="math notranslate nohighlight">\(\sigma(\pi=(q,push(\beta))\)</span>, then \textrm{Eve}goes to
 <span class="math notranslate nohighlight">\((p,\alpha,\vect{R},c,q,\beta)\)</span>.</p></li>
 </ul>
-<p>In this last case, or in the case where <span class="math notranslate nohighlight">\(p\in Q_\mAdam\)</span> and \Adam goes
-to <span class="math notranslate nohighlight">\((p,\alpha,\vect{R},c,q,\beta)\)</span>, we also have to explain
-how \Eve behaves from
-<span class="math notranslate nohighlight">\((p,\alpha,\vect{R},c,q,\beta)\)</span>. She has to provide a
-vector <span class="math notranslate nohighlight">\(\vect{S}\in (2^Q)^{d+1}\)</span> that describes which states
-can be reached if <span class="math notranslate nohighlight">\(\beta\)</span> is eventually popped, depending on the largest colour visited in the
-meantime. In order to define <span class="math notranslate nohighlight">\(\vect{S}\)</span>, \Eve considers the set of
-all possible continuations of <span class="math notranslate nohighlight">\(\play\cdot(q,s\alpha\beta)\)</span> (where
-<span class="math notranslate nohighlight">\((p,s\alpha)\)</span> denotes the last vertex of <span class="math notranslate nohighlight">\(\play\)</span>) where she
+<p>In this last case, or in the case where <span class="math notranslate nohighlight">\(p\in Q_\mathrm{Adam} and \textrm{Adam}goes
+to \)</span>(p,\alpha,\vect{R},c,q,\beta)<span class="math notranslate nohighlight">\(, we also have to explain
+how \textrm{Eve}behaves from
+\)</span>(p,\alpha,\vect{R},c,q,\beta)<span class="math notranslate nohighlight">\(. She has to provide a
+vector \)</span>\vect{S}\in (2^Q)^{d+1}<span class="math notranslate nohighlight">\( that describes which states
+can be reached if \)</span>\beta<span class="math notranslate nohighlight">\( is eventually popped, depending on the largest colour visited in the
+meantime. In order to define \)</span>\vect{S}<span class="math notranslate nohighlight">\(, \textrm{Eve}considers the set of
+all possible continuations of \)</span>\picdot(q,s\alpha\beta)<span class="math notranslate nohighlight">\( (where
+\)</span>(p,s\alpha)<span class="math notranslate nohighlight">\( denotes the last vertex of \)</span>\pi) where she
 respects her strategy <span class="math notranslate nohighlight">\(\sigma\)</span>. For each such play, she checks whether some
-configuration of the form <span class="math notranslate nohighlight">\((r,s\alpha)\)</span> is visited after <span class="math notranslate nohighlight">\(\play\cdot
+configuration of the form <span class="math notranslate nohighlight">\((r,s\alpha)\)</span> is visited after <span class="math notranslate nohighlight">\(\picdot
 (q,s\alpha\beta)\)</span>, that is if the stack level of <span class="math notranslate nohighlight">\(\beta\)</span> is eventually left. If it
 is the case, she considers the first configuration <span class="math notranslate nohighlight">\((r,s\alpha)\)</span>
-appearing after <span class="math notranslate nohighlight">\(\play\cdot (q,\sigma\alpha\beta)\)</span> and the largest
+appearing after <span class="math notranslate nohighlight">\(\picdot (q,\sigma\alpha\beta)\)</span> and the largest
 colour <span class="math notranslate nohighlight">\(i\)</span> since
 <span class="math notranslate nohighlight">\(\beta\)</span> was on the stack.
 For every <span class="math notranslate nohighlight">\(i\in\{0,\dots d\}\)</span>, <span class="math notranslate nohighlight">\(S_i\)</span>, is exactly the set of states
@@ -1139,63 +1063,61 @@ For every <span class="math notranslate nohighlight">\(i\in\{0,\dots d\}\)</span
 More formally,</p>
 <p>\begin{equation*}
 \begin{split}
-S_i=&amp;{r\mid \exists\ \pi\cdot(q,s\alpha\beta)v_0\cdots v_k(r,s\alpha)\cdots\text{ play in } \game  \text{ where \Eve respects } \sigma \text{ and s.t. }\ &amp; \sh(v_j)&gt;|\sigma\alpha|,\ \forall j=0,\dots,k  \text{, and }\max({\pdscol{v_j}\mid j=0,\dots,k}\cup{\pdscol{q}})=i}
+S_i=&amp;{r\mid \exists\ \pi\cdot(q,s\alpha\beta)v_0\cdots v_k(r,s\alpha)\cdots\text{ play in } \mathcal{G} \text{ where \textrm{Eve}respects } \sigma \text{ and s.t. }\ &amp; \mathrm{sh}v_j)&gt;|\sigma\alpha|,\ \forall j=0,\dots,k  \text{, and }\max({\pdscol{v_j}\mid j=0,\dots,k}\cup{\pdscol{q}})=i}
 \end{split}
 \end{equation*}</p>
-<p>Finally, we set <span class="math notranslate nohighlight">\(\vect{S}=(S_0,\dots,S_d)\)</span> and \Eve moves to
+<p>Finally, we set <span class="math notranslate nohighlight">\(\vect{S}=(S_0,\dots,S_d)\)</span> and \textrm{Eve}moves to
 <span class="math notranslate nohighlight">\((p,\alpha,\vect{R},c,q,\beta,\vect{S})\)</span>.</p>
 <p>\vspace{0.1cm}
-**Update of <span class="math notranslate nohighlight">\(\play\)</span>. ** The memory <span class="math notranslate nohighlight">\(\play\)</span> is updated after
+**Update of <span class="math notranslate nohighlight">\(\pi. ** The memory \)</span>\pi is updated after
 each visit to a vertex of the form <span class="math notranslate nohighlight">\((p,\alpha,\vect{R},c)\)</span>.
 We have two cases depending on the kind of the last round:</p>
 <ul class="simple">
 <li><p>The round is a bump, and therefore a bump
 of colour <span class="math notranslate nohighlight">\(i\)</span> (where <span class="math notranslate nohighlight">\(i\)</span> is the colour of the round) starting with some
 transition <span class="math notranslate nohighlight">\((q,push(\beta))\)</span> and ending in a state <span class="math notranslate nohighlight">\(r\in S_i\)</span> was simulated. Let <span class="math notranslate nohighlight">\((p,s\alpha)\)</span> be the last vertex in
-<span class="math notranslate nohighlight">\(\play\)</span>. Then the memory becomes <span class="math notranslate nohighlight">\(\play\)</span> extended by
-<span class="math notranslate nohighlight">\((q,s\alpha\beta)\)</span> followed by a sequence of moves, where \Eve
-respects <span class="math notranslate nohighlight">\(\sigma\)</span>, that ends by popping <span class="math notranslate nohighlight">\(\beta\)</span> and reach
+<span class="math notranslate nohighlight">\(\pi. Then the memory becomes \)</span>\pi extended by
+<span class="math notranslate nohighlight">\((q,s\alpha\beta)\)</span> followed by a sequence of moves, where \textrm{Eve}  respects <span class="math notranslate nohighlight">\(\sigma\)</span>, that ends by popping <span class="math notranslate nohighlight">\(\beta\)</span> and reach
 <span class="math notranslate nohighlight">\((r,s\alpha)\)</span> while having <span class="math notranslate nohighlight">\(i\)</span> as largest colour. By definition of <span class="math notranslate nohighlight">\(S_i\)</span> such a sequence of moves always exists.</p></li>
 <li><p>The round is a stair and therefore we have simulated a transition
-<span class="math notranslate nohighlight">\((q,push(\beta))\)</span>. If <span class="math notranslate nohighlight">\((p,s\alpha)\)</span> denotes the last vertex in <span class="math notranslate nohighlight">\(\play\)</span>, then the updated memory is <span class="math notranslate nohighlight">\(\play\cdot (q,s\alpha\beta)\)</span>.</p></li>
+<span class="math notranslate nohighlight">\((q,push(\beta))\)</span>. If <span class="math notranslate nohighlight">\((p,s\alpha)\)</span> denotes the last vertex in <span class="math notranslate nohighlight">\(\pi, then the updated memory is \)</span>\picdot (q,s\alpha\beta)$.</p></li>
 </ul>
-<p>Therefore, with any finite play <span class="math notranslate nohighlight">\(\fplay\)</span> in <span class="math notranslate nohighlight">\(\fgame\)</span> in which \Eve
-respects her strategy <span class="math notranslate nohighlight">\(\fsigma\)</span>, is associated a finite play <span class="math notranslate nohighlight">\(\play\)</span> in
-<span class="math notranslate nohighlight">\(\game\)</span>. An immediate induction shows that \Eve respects <span class="math notranslate nohighlight">\(\sigma\)</span> in
-<span class="math notranslate nohighlight">\(\play\)</span>. The same arguments works for an infinite play <span class="math notranslate nohighlight">\(\fplay\)</span>, and the
-corresponding play <span class="math notranslate nohighlight">\(\play\)</span> is therefore infinite, starts from
-<span class="math notranslate nohighlight">\((p_{in},\bot)\)</span> and \Eve respects <span class="math notranslate nohighlight">\(\sigma\)</span> in that play. Therefore it is
+<p>Therefore, with any finite play <span class="math notranslate nohighlight">\(\widetilde{\pi in \)</span>\widetilde{\mathcal{G} in which \textrm{Eve}respects her strategy <span class="math notranslate nohighlight">\(\widetilde{\sigma}, is associated a finite play \)</span>\pi in
+<span class="math notranslate nohighlight">\(\mathcal{G}. An immediate induction shows that \textrm{Eve}respects \)</span>\sigma<span class="math notranslate nohighlight">\( in
+\)</span>\pi. The same arguments works for an infinite play <span class="math notranslate nohighlight">\(\widetilde{\pi, and the
+corresponding play \)</span>\pi is therefore infinite, starts from
+<span class="math notranslate nohighlight">\((p_{in},\bot)\)</span> and \textrm{Eve}respects <span class="math notranslate nohighlight">\(\sigma\)</span> in that play. Therefore it is
 a winning play.</p>
-<p>The following proposition is a direct consequence of how <span class="math notranslate nohighlight">\(\fsigma\)</span> was defined.</p>
+<p>The following proposition is a direct consequence of how $\widetilde{\sigma} was defined.</p>
 <div class="proof proposition admonition" id="prop:par_dir_dep_paritexp">
 <p class="admonition-title"><span class="caption-number">Proposition 284 </span> (NEEDS TITLE prop:par_dir_dep_paritexp)</p>
 <div class="proposition-content section" id="proof-content">
-<p>Let <span class="math notranslate nohighlight">\(\fplay\)</span> be a finite play in <span class="math notranslate nohighlight">\(\fgame\)</span> that starts from
+<p>Let <span class="math notranslate nohighlight">\(\widetilde{\pi be a finite play in \)</span>\widetilde{\mathcal{G} that starts from
 <span class="math notranslate nohighlight">\((p_{in},\bot,(\emptyset,\dots,\emptyset),\pdscol{p_{in}})\)</span>,
 ends in a vertex of the form <span class="math notranslate nohighlight">\((p,\alpha,\vect{R},c)\)</span>,
-and where \Eve respects <span class="math notranslate nohighlight">\(\fsigma\)</span>. Let <span class="math notranslate nohighlight">\(\play\)</span> be the play associated with <span class="math notranslate nohighlight">\(\fplay\)</span>
-built by the strategy <span class="math notranslate nohighlight">\(\fsigma\)</span>. Then the following holds:</p>
+and where \textrm{Eve}respects <span class="math notranslate nohighlight">\(\widetilde{\sigma}. Let \)</span>\pi be the play associated with <span class="math notranslate nohighlight">\(\widetilde{\pi
+built by the strategy \)</span>\widetilde{\sigma}. Then the following holds:</p>
 <ol class="simple">
-<li><p><span class="math notranslate nohighlight">\(\play\)</span> ends in a vertex of the form <span class="math notranslate nohighlight">\((p,s\alpha)\)</span> for some <span class="math notranslate nohighlight">\(s\in\Gamma^*\)</span>.</p></li>
-<li><p><span class="math notranslate nohighlight">\(c\)</span> is the largest colour visited in <span class="math notranslate nohighlight">\(\play\)</span> since <span class="math notranslate nohighlight">\(\alpha\)</span> was pushed.</p></li>
-<li><p>Assume that <span class="math notranslate nohighlight">\(\play\)</span> is extended, that \Eve keeps respecting
-<span class="math notranslate nohighlight">\(\sigma\)</span> and that the next move after <span class="math notranslate nohighlight">\((p,\sigma\alpha)\)</span> is to some
-vertex <span class="math notranslate nohighlight">\((r,\sigma)\)</span>. Then <span class="math notranslate nohighlight">\(r\in R_c\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\pi ends in a vertex of the form \)</span>(p,s\alpha)<span class="math notranslate nohighlight">\( for some \)</span>s\in\Gamma^*$.</p></li>
+<li><p><span class="math notranslate nohighlight">\(c\)</span> is the largest colour visited in <span class="math notranslate nohighlight">\(\pi since \)</span>\alpha$ was pushed.</p></li>
+<li><p>Assume that <span class="math notranslate nohighlight">\(\pi is extended, that \textrm{Eve}keeps respecting
+\)</span>\sigma<span class="math notranslate nohighlight">\( and that the next move after \)</span>(p,\sigma\alpha)<span class="math notranslate nohighlight">\( is to some
+vertex \)</span>(r,\sigma)<span class="math notranslate nohighlight">\(. Then \)</span>r\in R_c$.</p></li>
 </ol>
 </div>
 </div><p>Proposition \ref{prop:par_dir_dep_paritexp} implies that the
-strategy <span class="math notranslate nohighlight">\(\fsigma\)</span> is well defined when it provides a move to
-<span class="math notranslate nohighlight">\(\ttrue\)</span>. Moreover, one can deduce that, if \Eve respects <span class="math notranslate nohighlight">\(\fsigma\)</span>, <span class="math notranslate nohighlight">\(\ffalse\)</span> is never reached.</p>
-<p>For plays that do not visits <span class="math notranslate nohighlight">\(\ttrue\)</span> nor <span class="math notranslate nohighlight">\(\ffalse\)</span>, using the definitions of <span class="math notranslate nohighlight">\(\farena\)</span> and <span class="math notranslate nohighlight">\(\fsigma\)</span>, we easily deduce the
+strategy <span class="math notranslate nohighlight">\(\widetilde{\sigma} is well defined when it provides a move to
+\)</span>t! t. Moreover, one can deduce that, if \textrm{Eve}respects <span class="math notranslate nohighlight">\(\widetilde{\sigma}, \)</span>f!! f is never reached.</p>
+<p>For plays that do not visits <span class="math notranslate nohighlight">\(t\! t nor \)</span>f!! f, using the definitions of <span class="math notranslate nohighlight">\(\widetilde{\mathcal{A} and \)</span>\widetilde{\sigma}, we easily deduce the
 following proposition.</p>
 <div class="proof proposition admonition" id="prop:toto">
 <p class="admonition-title"><span class="caption-number">Proposition 285 </span> (NEEDS TITLE prop:toto)</p>
 <div class="proposition-content section" id="proof-content">
-<p>Let <span class="math notranslate nohighlight">\(\fplay\)</span> be an infinite play in <span class="math notranslate nohighlight">\(\fgame\)</span> that starts from
+<p>Let <span class="math notranslate nohighlight">\(\widetilde{\pi be an infinite play in \)</span>\widetilde{\mathcal{G} that starts from
 <span class="math notranslate nohighlight">\((p_{in},\bot,(\emptyset,\dots,\emptyset),\)</span> <span class="math notranslate nohighlight">\(\pdscol{p_{in}})\)</span>,
-and where \Eve respects <span class="math notranslate nohighlight">\(\fsigma\)</span>. Let <span class="math notranslate nohighlight">\(\play\)</span> be the associated
-play built by the strategy <span class="math notranslate nohighlight">\(\fsigma\)</span>, and let <span class="math notranslate nohighlight">\((\play_i)_{i\geq 0}\)</span> be its rounds factorisation. Let <span class="math notranslate nohighlight">\((\fplay_i)_{i\geq 0}\)</span> be
-the rounds factorisation of <span class="math notranslate nohighlight">\(\fplay\)</span>. Then, for every <span class="math notranslate nohighlight">\(i\geq 1\)</span> the
+and where \textrm{Eve}respects <span class="math notranslate nohighlight">\(\widetilde{\sigma}. Let \)</span>\pi be the associated
+play built by the strategy <span class="math notranslate nohighlight">\(\widetilde{\sigma}, and let \)</span>(\play_i)<em>{i\geq 0}<span class="math notranslate nohighlight">\( be its rounds factorisation. Let \)</span>(\fplay_i)</em>{i\geq 0}<span class="math notranslate nohighlight">\( be
+the rounds factorisation of \)</span>\widetilde{\pi. Then, for every <span class="math notranslate nohighlight">\(i\geq 1\)</span> the
 following hold:</p>
 <ol class="simple">
 <li><p><span class="math notranslate nohighlight">\(\fplay_i\)</span> is a bump if and only if <span class="math notranslate nohighlight">\(\play_i\)</span> is a bump</p></li>
@@ -1203,80 +1125,80 @@ following hold:</p>
 </ol>
 </div>
 </div><p>\Cref{prop:toto} implies that for any infinite play
-<span class="math notranslate nohighlight">\(\fplay\)</span> in <span class="math notranslate nohighlight">\(\fgame\)</span> starting from
+<span class="math notranslate nohighlight">\(\widetilde{\pi in \)</span>\widetilde{\mathcal{G} starting from
 <span class="math notranslate nohighlight">\((p_{in},\bot,(\emptyset,\dots,\emptyset),\)</span> <span class="math notranslate nohighlight">\(\pdscol{p_{in}})\)</span>
-where \Eve respects <span class="math notranslate nohighlight">\(\fsigma\)</span>, the sequence of visited colours in <span class="math notranslate nohighlight">\(\fplay\)</span> is
-<span class="math notranslate nohighlight">\((\pdscol{\play}_i)_{i\geq 0}\)</span> for the corresponding play <span class="math notranslate nohighlight">\(\play\)</span>
-in <span class="math notranslate nohighlight">\(\game\)</span>.
+where \textrm{Eve}respects <span class="math notranslate nohighlight">\(\widetilde{\sigma}, the sequence of visited colours in \)</span>\widetilde{\pi is
+<span class="math notranslate nohighlight">\((\pdscol{\pi_i)_{i\geq 0}\)</span> for the corresponding play <span class="math notranslate nohighlight">\(\pi
+in \)</span>\mathcal{G}.
 Hence, using  <a class="reference internal" href="#10-prop:trans_cond">Proposition 281</a> we conclude that
-<span class="math notranslate nohighlight">\(\fplay\)</span> is winning if
-and only if <span class="math notranslate nohighlight">\(\play\)</span> is winning. As <span class="math notranslate nohighlight">\(\play\)</span>
-is winning for \Eve, it follows that <span class="math notranslate nohighlight">\(\fplay\)</span> is also winning for
+<span class="math notranslate nohighlight">\(\widetilde{\pi is winning if
+and only if \)</span>\pi is winning. As <span class="math notranslate nohighlight">\(\pi
+is winning for \textrm{Eve} it follows that \)</span>\widetilde{\pi is also winning for
 her.</p>
 </div>
 <div class="section" id="proof-of-the-converse-implication-of-10-thm-games">
 <span id="subsec-strategy-pushdown"></span><h3>Proof of the Converse Implication of  <a class="reference internal" href="#10-thm:games">Theorem 282</a><a class="headerlink" href="#proof-of-the-converse-implication-of-10-thm-games" title="Permalink to this headline">¶</a></h3>
-<p>Note that in order to prove the converse implication of  <a class="reference internal" href="#10-thm:games">Theorem 282</a> one could follow the direct implication and consider the point of view of \Adam. Nevertheless the proof we give here starts from a winning strategy for \Eve in <span class="math notranslate nohighlight">\(\fgame\)</span> and deduces a strategy for her in <span class="math notranslate nohighlight">\(\game\)</span>: this induces a more involved proof but has the advantage to lead to an effective construction of a winning strategy for \Eve in <span class="math notranslate nohighlight">\(\game\)</span> if one has an effective strategy for her in <span class="math notranslate nohighlight">\(\fgame\)</span></p>
-<p>Assume now that \Eve has a winning strategy <span class="math notranslate nohighlight">\(\fsigma\)</span> in <span class="math notranslate nohighlight">\(\fgame\)</span>
+<p>Note that in order to prove the converse implication of  <a class="reference internal" href="#10-thm:games">Theorem 282</a> one could follow the direct implication and consider the point of view of \textrm{Adam} Nevertheless the proof we give here starts from a winning strategy for \textrm{Eve}in <span class="math notranslate nohighlight">\(\widetilde{\mathcal{G} and deduces a strategy for her in \)</span>\mathcal{G}: this induces a more involved proof but has the advantage to lead to an effective construction of a winning strategy for \textrm{Eve}in <span class="math notranslate nohighlight">\(\mathcal{G} if one has an effective strategy for her in \)</span>\widetilde{\mathcal{G}</p>
+<p>Assume now that \textrm{Eve}has a winning strategy <span class="math notranslate nohighlight">\(\widetilde{\sigma} in \)</span>\widetilde{\mathcal{G}
 from <span class="math notranslate nohighlight">\((p_{\mathit in},\bot,(\emptyset,\dots,\emptyset),\pdscol{p_{in}})\)</span>.
-Using <span class="math notranslate nohighlight">\(\fsigma\)</span>, we build a strategy <span class="math notranslate nohighlight">\(\sigma\)</span> for \Eve in
-<span class="math notranslate nohighlight">\(\game\)</span> for plays starting from <span class="math notranslate nohighlight">\((p_{\mathit in},\bot)\)</span>.</p>
+Using <span class="math notranslate nohighlight">\(\widetilde{\sigma}, we build a strategy \)</span>\sigma<span class="math notranslate nohighlight">\( for \textrm{Eve}in
+\)</span>\mathcal{G} for plays starting from <span class="math notranslate nohighlight">\((p_{\mathit in},\bot)\)</span>.</p>
 <p>The strategy <span class="math notranslate nohighlight">\(\sigma\)</span> uses, as memory, a stack <span class="math notranslate nohighlight">\(\Pi\)</span>, to store the complete
-description of a play in <span class="math notranslate nohighlight">\(\fgame\)</span>. Recall here that a play in
-<span class="math notranslate nohighlight">\(\fgame\)</span> is represented as a sequence of vertices together with
+description of a play in <span class="math notranslate nohighlight">\(\widetilde{\mathcal{G}. Recall here that a play in
+\)</span>\widetilde{\mathcal{G} is represented as a sequence of vertices together with
 colours in <span class="math notranslate nohighlight">\(\{0,\dots d\}\)</span>. Up to coding we can assume that we distinguish for free between stairs and bumps for transitions from vertices of the form <span class="math notranslate nohighlight">\((p,\alpha,\vect{R},c,q,\beta,\vect{S})\)</span>.</p>
 <p>The stack alphabet of <span class="math notranslate nohighlight">\(\Pi\)</span> is the set of vertices of
-<span class="math notranslate nohighlight">\(\farena\)</span> together with the colours <span class="math notranslate nohighlight">\(\{0,\dots,d\}\)</span>. In the following, <span class="math notranslate nohighlight">\(top(\Pi)\)</span> will denote
-the top stack symbol of <span class="math notranslate nohighlight">\(\Pi\)</span> while <span class="math notranslate nohighlight">\(StCont(\Pi)\)</span> will be
-the word obtained by reading <span class="math notranslate nohighlight">\(\Pi\)</span> from bottom to top (without
-considering the bottom-of-stack symbol of <span class="math notranslate nohighlight">\(\Pi\)</span>). In any play
-where \Eve respects <span class="math notranslate nohighlight">\(\sigma\)</span>, <span class="math notranslate nohighlight">\(StCont(\Pi)\)</span> will be a play
-in <span class="math notranslate nohighlight">\(\fgame\)</span> that starts from <span class="math notranslate nohighlight">\((p_{\mathit
+<span class="math notranslate nohighlight">\(\widetilde{\mathcal{A} together with the colours \)</span>{0,\dots,d}<span class="math notranslate nohighlight">\(. In the following, \)</span>top(\Pi)<span class="math notranslate nohighlight">\( will denote
+the top stack symbol of \)</span>\Pi<span class="math notranslate nohighlight">\( while \)</span>StCont(\Pi)<span class="math notranslate nohighlight">\( will be
+the word obtained by reading \)</span>\Pi<span class="math notranslate nohighlight">\( from bottom to top (without
+considering the bottom-of-stack symbol of \)</span>\Pi<span class="math notranslate nohighlight">\(). In any play
+where \textrm{Eve}respects \)</span>\sigma<span class="math notranslate nohighlight">\(, \)</span>StCont(\Pi)<span class="math notranslate nohighlight">\( will be a play
+in \)</span>\widetilde{\mathcal{G} that starts from <span class="math notranslate nohighlight">\((p_{\mathit
 in},\bot,(\emptyset,\dots,\emptyset),\pdscol{p_{in}})\)</span> and where
-\Eve respects her winning strategy <span class="math notranslate nohighlight">\(\fsigma\)</span>. Moreover, for any
-play <span class="math notranslate nohighlight">\(\play\)</span> where \Eve respects <span class="math notranslate nohighlight">\(\sigma\)</span>, we will always have that
+\textrm{Eve}respects her winning strategy <span class="math notranslate nohighlight">\(\widetilde{\sigma}. Moreover, for any
+play \)</span>\pi where \textrm{Eve}respects <span class="math notranslate nohighlight">\(\sigma\)</span>, we will always have that
 <span class="math notranslate nohighlight">\(top(\Pi)=(p,\alpha,\vect{R},c)\)</span> if and only if
-the current configuration in <span class="math notranslate nohighlight">\(\play\)</span> is of the form
-<span class="math notranslate nohighlight">\((p,s\alpha)\)</span>. Finally, if \Eve keeps respecting <span class="math notranslate nohighlight">\(\sigma\)</span>, and
-if <span class="math notranslate nohighlight">\(\alpha\)</span>  is eventually popped the configuration reached
-will be of the form <span class="math notranslate nohighlight">\((r,s)\)</span> for some <span class="math notranslate nohighlight">\(r\in R_i\)</span>, where
-<span class="math notranslate nohighlight">\(i\)</span> is the largest visited colour since <span class="math notranslate nohighlight">\(\alpha\)</span>  was on the stack.
-Initially, <span class="math notranslate nohighlight">\(\Pi\)</span> only contains <span class="math notranslate nohighlight">\((p_{in},\bot,(\emptyset,\dots,\emptyset),\pdscol{p_{in}})\)</span>.</p>
+the current configuration in <span class="math notranslate nohighlight">\(\pi is of the form
+\)</span>(p,s\alpha)<span class="math notranslate nohighlight">\(. Finally, if \textrm{Eve}keeps respecting \)</span>\sigma<span class="math notranslate nohighlight">\(, and
+if \)</span>\alpha<span class="math notranslate nohighlight">\(  is eventually popped the configuration reached
+will be of the form \)</span>(r,s)<span class="math notranslate nohighlight">\( for some \)</span>r\in R_i<span class="math notranslate nohighlight">\(, where
+\)</span>i<span class="math notranslate nohighlight">\( is the largest visited colour since \)</span>\alpha<span class="math notranslate nohighlight">\(  was on the stack.
+Initially, \)</span>\Pi<span class="math notranslate nohighlight">\( only contains \)</span>(p_{in},\bot,(\emptyset,\dots,\emptyset),\pdscol{p_{in}})$.</p>
 <p>In order to describe <span class="math notranslate nohighlight">\(\sigma\)</span>, we assume that we are in some
 configuration <span class="math notranslate nohighlight">\((p,s\alpha)\)</span> and that
 <span class="math notranslate nohighlight">\(top(\Pi)=(p,\alpha,\vect{R},c)\)</span>. We first
-describe how \Eve plays if <span class="math notranslate nohighlight">\(p\in Q_\mEve\)</span>, and then we explain how
+describe how \textrm{Eve}plays if $p\in Q_\mathrm{Eve}, and then we explain how
 the stack is updated.</p>
 <ul class="simple">
-<li><p><strong>Choice of the move.</strong> Assume that <span class="math notranslate nohighlight">\(p\in Q_\mEve\)</span> and
-that \Eve has to play from some vertex <span class="math notranslate nohighlight">\((p,s\alpha)\)</span>. For
-this, she considers the value of <span class="math notranslate nohighlight">\(\fsigma\)</span> on <span class="math notranslate nohighlight">\(StCont(\Pi)\)</span>.</p></li>
+<li><p><strong>Choice of the move.</strong> Assume that <span class="math notranslate nohighlight">\(p\in Q_\mathrm{Eve} and
+that \textrm{Eve}has to play from some vertex \)</span>(p,s\alpha)<span class="math notranslate nohighlight">\(. For
+this, she considers the value of \)</span>\widetilde{\sigma} on <span class="math notranslate nohighlight">\(StCont(\Pi)\)</span>.</p></li>
 </ul>
-<p>If it is a move to <span class="math notranslate nohighlight">\(\ttrue\)</span>, \Eve plays a transition
-<span class="math notranslate nohighlight">\((r,pop)\)</span> for some state <span class="math notranslate nohighlight">\(r\in R_c\)</span>. \Cref{10-ini:lemma:games:ReturningSets_paritexp} will prove that such
-an <span class="math notranslate nohighlight">\(r\)</span> always exists.</p>
-<p>If the move given by <span class="math notranslate nohighlight">\(\fsigma\)</span> is to go to some vertex
-<span class="math notranslate nohighlight">\((p,\alpha,\vect{R},c,q,\beta)\)</span>, then \Eve applies
-the transition <span class="math notranslate nohighlight">\((q,push(\beta))\)</span>.</p>
+<p>If it is a move to <span class="math notranslate nohighlight">\(t\! t, \textrm{Eve}plays a transition
+\)</span>(r,pop)<span class="math notranslate nohighlight">\( for some state \)</span>r\in R_c<span class="math notranslate nohighlight">\(. \Cref{10-ini:lemma:games:ReturningSets_paritexp} will prove that such
+an \)</span>r$ always exists.</p>
+<p>If the move given by <span class="math notranslate nohighlight">\(\widetilde{\sigma} is to go to some vertex
+\)</span>(p,\alpha,\vect{R},c,q,\beta)<span class="math notranslate nohighlight">\(, then \textrm{Eve}applies
+the transition \)</span>(q,push(\beta))$.</p>
 <ul class="simple">
 <li><p><strong>Update of <span class="math notranslate nohighlight">\(\Pi\)</span>.</strong> Assume that the last move,
-played by \Eve or \Adam, was to go from <span class="math notranslate nohighlight">\((p,s\alpha)\)</span> to some
+played by \textrm{Eve}or \textrm{Adam} was to go from <span class="math notranslate nohighlight">\((p,s\alpha)\)</span> to some
 configuration <span class="math notranslate nohighlight">\((r,s)\)</span>. The update of <span class="math notranslate nohighlight">\(\Pi\)</span> is illustrated
 by <code class="xref std std-numref docutils literal notranslate"><span class="pre">10-fig:mise_a_jour_pile_strategie</span></code> and
-explained in what follows. \Eve pops in <span class="math notranslate nohighlight">\(\Pi\)</span> until she finds
+explained in what follows. \textrm{Eve}pops in <span class="math notranslate nohighlight">\(\Pi\)</span> until she finds
 some configuration of the form
 <span class="math notranslate nohighlight">\((p',\alpha',\vect{R'},c',p'',\alpha,\vect{R})\)</span>
 that is part of a stair. This
 configuration is therefore in the stair that simulates the pushing
-of <span class="math notranslate nohighlight">\(\alpha\)</span> onto the stack. \Eve updates <span class="math notranslate nohighlight">\(\Pi\)</span> by pushing
+of <span class="math notranslate nohighlight">\(\alpha\)</span> onto the stack. \textrm{Eve}updates <span class="math notranslate nohighlight">\(\Pi\)</span> by pushing
 <span class="math notranslate nohighlight">\(c\)</span> in <span class="math notranslate nohighlight">\(\Pi\)</span> followed by
 <span class="math notranslate nohighlight">\((r,\alpha',\vect{R'},\max(c',c,\pdscol{r}))\)</span>.</p></li>
 </ul>
-<p>Assume that the last move, played by \Eve or \Adam, was to go from
+<p>Assume that the last move, played by \textrm{Eve}or \textrm{Adam} was to go from
 <span class="math notranslate nohighlight">\((p,s\alpha)\)</span> to some configuration <span class="math notranslate nohighlight">\((q,s\alpha\beta)\)</span>, and let
-<span class="math notranslate nohighlight">\((p,\alpha,\vect{R},c,q,\beta,\vect{S})=\fsigma(StCont(\Pi)\cdot(p,\alpha,\vect{R},c,q,\beta))\)</span>.
-Intuitively, <span class="math notranslate nohighlight">\(\vect{S}\)</span> describes which states \Eve can force a play to
-reach if <span class="math notranslate nohighlight">\(\beta\)</span> is eventually popped. \Eve updates <span class="math notranslate nohighlight">\(\Pi\)</span> by
+<span class="math notranslate nohighlight">\((p,\alpha,\vect{R},c,q,\beta,\vect{S})=\widetilde{\sigma}StCont(\Pi)\cdot(p,\alpha,\vect{R},c,q,\beta))\)</span>.
+Intuitively, <span class="math notranslate nohighlight">\(\vect{S}\)</span> describes which states \textrm{Eve}can force a play to
+reach if <span class="math notranslate nohighlight">\(\beta\)</span> is eventually popped. \textrm{Eve}updates <span class="math notranslate nohighlight">\(\Pi\)</span> by
 successively pushing
 <span class="math notranslate nohighlight">\((p,\alpha,\vect{R},c,q,\beta)\)</span>,
 <span class="math notranslate nohighlight">\((p,\alpha,\vect{R},c,q,\beta,\vect{S})\)</span>, and
@@ -1292,51 +1214,51 @@ in <span class="math notranslate nohighlight">\(\Pi\)</span>.</p>
 <div class="proof lemma admonition" id="10-ini:lemma:games:ReturningSets_paritexp">
 <p class="admonition-title"><span class="caption-number">Lemma 286 </span> (NEEDS TITLE 10-ini:lemma:games:ReturningSets_paritexp)</p>
 <div class="lemma-content section" id="proof-content">
-<p>Let <span class="math notranslate nohighlight">\(\play\)</span> be a finite play in <span class="math notranslate nohighlight">\(\game\)</span>, where \Eve respects
+<p>Let <span class="math notranslate nohighlight">\(\pi be a finite play in \)</span>\mathcal{G}, where \textrm{Eve}respects
 <span class="math notranslate nohighlight">\(\sigma\)</span>, that starts from <span class="math notranslate nohighlight">\((p_{\mathit in},\bot)\)</span> and
 that ends in a configuration <span class="math notranslate nohighlight">\((p,s\alpha)\)</span>. We have the
 following facts:</p>
 <ol class="simple">
 <li><p><span class="math notranslate nohighlight">\(top(\Pi)=(p,\alpha,\vect{R},c)\)</span> with
 <span class="math notranslate nohighlight">\(\vect{R}\in(2^Q)^{d+1}\)</span> and <span class="math notranslate nohighlight">\(0\leq c\leq d\)</span>.</p></li>
-<li><p><span class="math notranslate nohighlight">\(StCont(\Pi)\)</span> is a finite play in <span class="math notranslate nohighlight">\(\fgame\)</span> that starts
-from <span class="math notranslate nohighlight">\((p_{\mathit in},\bot,(\emptyset,\dots,\emptyset),\pdscol{p_{in}})\)</span>,
-that ends with <span class="math notranslate nohighlight">\((p,\alpha,\vect{R},c)\)</span> and where
-\Eve respects <span class="math notranslate nohighlight">\(\fsigma\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(StCont(\Pi)\)</span> is a finite play in <span class="math notranslate nohighlight">\(\widetilde{\mathcal{G} that starts
+from \)</span>(p_{\mathit in},\bot,(\emptyset,\dots,\emptyset),\pdscol{p_{in}})<span class="math notranslate nohighlight">\(,
+that ends with \)</span>(p,\alpha,\vect{R},c)<span class="math notranslate nohighlight">\( and where
+\textrm{Eve}respects \)</span>\widetilde{\sigma}.</p></li>
 <li><p><span class="math notranslate nohighlight">\(c\)</span> is the largest colour visited since <span class="math notranslate nohighlight">\(\alpha\)</span> was pushed.</p></li>
-<li><p>If <span class="math notranslate nohighlight">\(\play\)</span> is extended by some move
-that pops <span class="math notranslate nohighlight">\(\alpha\)</span>, the configuration <span class="math notranslate nohighlight">\((r,s)\)</span> that is reached
-is such that <span class="math notranslate nohighlight">\(r\in R_c\)</span>.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(\pi is extended by some move
+that pops \)</span>\alpha<span class="math notranslate nohighlight">\(, the configuration \)</span>(r,s)<span class="math notranslate nohighlight">\( that is reached
+is such that \)</span>r\in R_c$.</p></li>
 </ol>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
-<p>The proof goes by induction on <span class="math notranslate nohighlight">\(\play\)</span>. We first show that the
-last point is a consequence of the second and third points. To aid readability, one can refer to
-<code class="xref std std-numref docutils literal notranslate"><span class="pre">10-fig:mise_a_jour_pile_strategie</span></code>. Assume that
-the next move after <span class="math notranslate nohighlight">\((p,s\alpha)\)</span> is to apply a transition
-<span class="math notranslate nohighlight">\((r,pop)\in\Delta(p,\alpha)\)</span>. The second point implies that
-<span class="math notranslate nohighlight">\((p,\alpha,\vect{R},c)\)</span> is winning for \Eve in
-<span class="math notranslate nohighlight">\(\fgame\)</span>. If <span class="math notranslate nohighlight">\(p\in Q_\mEve\)</span>, by definition of <span class="math notranslate nohighlight">\(\sigma\)</span>, there is
-some edge from that vertex to <span class="math notranslate nohighlight">\(\ttrue\)</span>, which means that
-<span class="math notranslate nohighlight">\(r\in R_c\)</span> and allows us to conclude. If <span class="math notranslate nohighlight">\(p\in Q_\mAdam\)</span>, note that there is no
-edge from <span class="math notranslate nohighlight">\((p,\alpha,\vect{R},c)\)</span> (winning position
-for \Eve) to the (losing) vertex <span class="math notranslate nohighlight">\(\ffalse\)</span>. Hence we
+<p>The proof goes by induction on <span class="math notranslate nohighlight">\(\pi. We first show that the
+last point is a consequence of the second and third points. To aid readability, one can refer to 
+{numref}`10-fig:mise_a_jour_pile_strategie`. Assume that
+the next move after \)</span>(p,s\alpha)<span class="math notranslate nohighlight">\( is to apply a transition
+\)</span>(r,pop)\in\Delta(p,\alpha)<span class="math notranslate nohighlight">\(. The second point implies that
+\)</span>(p,\alpha,\vect{R},c)<span class="math notranslate nohighlight">\( is winning for \textrm{Eve}in
+\)</span>\widetilde{\mathcal{G}. If <span class="math notranslate nohighlight">\(p\in Q_\mathrm{Eve}, by definition of \)</span>\sigma<span class="math notranslate nohighlight">\(, there is
+some edge from that vertex to \)</span>t! t, which means that
+<span class="math notranslate nohighlight">\(r\in R_c\)</span> and allows us to conclude. If <span class="math notranslate nohighlight">\(p\in Q_\mathrm{Adam}, note that there is no
+edge from \)</span>(p,\alpha,\vect{R},c)<span class="math notranslate nohighlight">\( (winning position
+for \textrm{Eve} to the (losing) vertex \)</span>f!! f. Hence we
 conclude in the same way.</p>
 <p>Let us now prove the other points. For this, assume that the
-result is proved for some play <span class="math notranslate nohighlight">\(\play\)</span>, and let <span class="math notranslate nohighlight">\(\play'\)</span> be an
-extension of <span class="math notranslate nohighlight">\(\play\)</span>. We have two cases, depending on how <span class="math notranslate nohighlight">\(\play'\)</span>
-extends <span class="math notranslate nohighlight">\(\play\)</span>:</p>
+result is proved for some play <span class="math notranslate nohighlight">\(\pi, and let \)</span>\pi<span class="math notranslate nohighlight">\( be an
+extension of \)</span>\pi. We have two cases, depending on how <span class="math notranslate nohighlight">\(\pi\)</span>
+extends $\pi:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\play'\)</span> is obtained by applying a push transition. The result is trivial in that case.</p></li>
-<li><p><span class="math notranslate nohighlight">\(\play'\)</span> is obtained by applying a pop transition. Let
-<span class="math notranslate nohighlight">\((p,s\alpha)\)</span> be the last configuration in <span class="math notranslate nohighlight">\(\play\)</span>, and let
-<span class="math notranslate nohighlight">\(\vect{R}\)</span> be the last vector component in <span class="math notranslate nohighlight">\(top(\Pi)\)</span> when
-in configuration <span class="math notranslate nohighlight">\((p,s\alpha)\)</span>. By the induction
-hypothesis, it follows that <span class="math notranslate nohighlight">\(\play'=\play\cdot(r,s)\)</span> with
-<span class="math notranslate nohighlight">\(r\in R_c\)</span>. Considering how <span class="math notranslate nohighlight">\(\Pi\)</span> is updated, and
+<li><p><span class="math notranslate nohighlight">\(\pi\)</span> is obtained by applying a push transition. The result is trivial in that case.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\pi\)</span> is obtained by applying a pop transition. Let
+<span class="math notranslate nohighlight">\((p,s\alpha)\)</span> be the last configuration in <span class="math notranslate nohighlight">\(\pi, and let
+\)</span>\vect{R}<span class="math notranslate nohighlight">\( be the last vector component in \)</span>top(\Pi)<span class="math notranslate nohighlight">\( when
+in configuration \)</span>(p,s\alpha)<span class="math notranslate nohighlight">\(. By the induction
+hypothesis, it follows that \)</span>\pi=\picdot(r,s)<span class="math notranslate nohighlight">\( with
+\)</span>r\in R_c<span class="math notranslate nohighlight">\(. Considering how \)</span>\Pi<span class="math notranslate nohighlight">\( is updated, and
 using the fourth point, we easily deduce that the new strategy
-stack <span class="math notranslate nohighlight">\(\Pi\)</span> is as desired (one can have a look at
+stack \)</span>\Pi$ is as desired (one can have a look at
 <code class="xref std std-numref docutils literal notranslate"><span class="pre">10-fig:mise_a_jour_pile_strategie</span></code> for more
 intuition).</p></li>
 </ul>
@@ -1345,32 +1267,32 @@ intuition).</p></li>
 <div class="proof lemma admonition" id="10-lemme:toto_paritexp">
 <p class="admonition-title"><span class="caption-number">Lemma 287 </span> (NEEDS TITLE 10-lemme:toto_paritexp)</p>
 <div class="lemma-content section" id="proof-content">
-<p>Let <span class="math notranslate nohighlight">\(\play\)</span> be a finite play in <span class="math notranslate nohighlight">\(\game\)</span> starting from
-<span class="math notranslate nohighlight">\((p_{in},\bot)\)</span> and where \Eve respects <span class="math notranslate nohighlight">\(\sigma\)</span>. Let <span class="math notranslate nohighlight">\((\play_i)_{i\geq 0}\)</span> be its rounds factorisation. Let
-<span class="math notranslate nohighlight">\(\play=StCont(\Pi)\)</span>, where <span class="math notranslate nohighlight">\(\Pi\)</span> denotes the strategy’s
-stack in the last vertex of <span class="math notranslate nohighlight">\(\play\)</span>. Let
-<span class="math notranslate nohighlight">\((\play_i)_{i=0,\dots,k}\)</span> be the rounds factorisation of <span class="math notranslate nohighlight">\(\play\)</span>.
+<p>Let <span class="math notranslate nohighlight">\(\pi be a finite play in \)</span>\mathcal{G} starting from
+<span class="math notranslate nohighlight">\((p_{in},\bot)\)</span> and where \textrm{Eve}respects <span class="math notranslate nohighlight">\(\sigma\)</span>. Let <span class="math notranslate nohighlight">\((\play_i)_{i\geq 0}\)</span> be its rounds factorisation. Let
+<span class="math notranslate nohighlight">\(\piStCont(\Pi)\)</span>, where <span class="math notranslate nohighlight">\(\Pi\)</span> denotes the strategy’s
+stack in the last vertex of <span class="math notranslate nohighlight">\(\pi. Let
+\)</span>(\play_i)_{i=0,\dots,k}<span class="math notranslate nohighlight">\( be the rounds factorisation of \)</span>\pi.
 Then the following holds:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\play_i\)</span> is a bump if and only if <span class="math notranslate nohighlight">\({\play}_i\)</span> is a bump.</p></li>
-<li><p><span class="math notranslate nohighlight">\(\play_i\)</span> has colour <span class="math notranslate nohighlight">\(\pdscol{\play}_i\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\play_i\)</span> is a bump if and only if <span class="math notranslate nohighlight">\({\pi_i\)</span> is a bump.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\play_i\)</span> has colour <span class="math notranslate nohighlight">\(\pdscol{\pi_i\)</span>.</p></li>
 </ul>
 </div>
 </div><p>Both \Cref{10-ini:lemma:games:ReturningSets_paritexp} and
 \Cref{10-lemme:toto_paritexp} are for finite plays. A version for
-infinite plays would allow us to conclude. Let <span class="math notranslate nohighlight">\(\play\)</span>
-be an infinite play in <span class="math notranslate nohighlight">\(\game\)</span>. We define an
-infinite version of <span class="math notranslate nohighlight">\(\play\)</span> by considering the limit of the stack
-contents <span class="math notranslate nohighlight">\((StCont(\Pi_i))_{i\geq 0}\)</span> where <span class="math notranslate nohighlight">\(\Pi_i\)</span> is the
-strategy’s stack after the first <span class="math notranslate nohighlight">\(i\)</span> moves in <span class="math notranslate nohighlight">\(\play\)</span>.</p>
+infinite plays would allow us to conclude. Let <span class="math notranslate nohighlight">\(\pi
+be an infinite play in \)</span>\mathcal{G}. We define an
+infinite version of <span class="math notranslate nohighlight">\(\pi by considering the limit of the stack
+contents \)</span>(StCont(\Pi_i))_{i\geq 0}<span class="math notranslate nohighlight">\( where \)</span>\Pi_i<span class="math notranslate nohighlight">\( is the
+strategy's stack after the first \)</span>i<span class="math notranslate nohighlight">\( moves in \)</span>\pi.</p>
 <p>It is easily seen that such a limit
-always exists, is infinite and corresponds to a play won by \Eve in <span class="math notranslate nohighlight">\(\fgame\)</span>.
+always exists, is infinite and corresponds to a play won by \textrm{Eve}in $\widetilde{\mathcal{G}.
 Moreover the results of \Cref{10-lemme:toto_paritexp} apply.</p>
-<p>Let <span class="math notranslate nohighlight">\(\play\)</span> be a play in <span class="math notranslate nohighlight">\(\game\)</span> with initial
-vertex <span class="math notranslate nohighlight">\((p_{in},\bot)\)</span>, and where \Eve respects <span class="math notranslate nohighlight">\(\sigma\)</span>,
-and let <span class="math notranslate nohighlight">\(\play\)</span> be the associated infinite play in <span class="math notranslate nohighlight">\(\fgame\)</span>.
-Therefore <span class="math notranslate nohighlight">\(\play\)</span> is won by \Eve. Using \Cref{10-lemme:toto_paritexp} and  <a class="reference internal" href="#10-prop:trans_cond">Proposition 281</a>,
-we conclude, as in the direct implication that <span class="math notranslate nohighlight">\(\play\)</span> is
+<p>Let <span class="math notranslate nohighlight">\(\pi be a play in \)</span>\mathcal{G} with initial
+vertex <span class="math notranslate nohighlight">\((p_{in},\bot)\)</span>, and where \textrm{Eve}respects <span class="math notranslate nohighlight">\(\sigma\)</span>,
+and let <span class="math notranslate nohighlight">\(\pi be the associated infinite play in \)</span>\widetilde{\mathcal{G}.
+Therefore <span class="math notranslate nohighlight">\(\pi is won by \textrm{Eve} Using \Cref{10-lemme:toto_paritexp} and  {prf:ref}`10-prop:trans_cond`,
+we conclude, as in the direct implication that \)</span>\pi is
 winning.</p>
 </div>
 </div>
@@ -1380,36 +1302,36 @@ winning.</p>
 <div class="proof theorem admonition" id="10-thm:solving-upper-bound">
 <p class="admonition-title"><span class="caption-number">Theorem 288 </span> (NEEDS TITLE 10-thm:solving-upper-bound)</p>
 <div class="theorem-content section" id="proof-content">
-<p>Let <span class="math notranslate nohighlight">\(\game\)</span> be a parity pushdown game using colours <span class="math notranslate nohighlight">\(\{0,\dots,d-1\}\)</span> and played on an arena generated by a pushdown system with <span class="math notranslate nohighlight">\(n\)</span> control states and with a stack alphabet of size <span class="math notranslate nohighlight">\(m\)</span>. Then the following holds</p>
+<p>Let <span class="math notranslate nohighlight">\(\mathcal{G} be a parity pushdown game using colours \)</span>{0,\dots,d-1}<span class="math notranslate nohighlight">\( and played on an arena generated by a pushdown system with \)</span>n<span class="math notranslate nohighlight">\( control states and with a stack alphabet of size \)</span>m$. Then the following holds</p>
 <ol class="simple">
-<li><p>[(i)] One can construct in time <span class="math notranslate nohighlight">\(\mathcal{O}(m^d 2^{nd^2})\)</span> a deterministic finite state automaton with <span class="math notranslate nohighlight">\(2^n\)</span> states recognising the winning region of \Eve in <span class="math notranslate nohighlight">\(\game\)</span>.</p></li>
-<li><p>[(ii)] One can decide in time <span class="math notranslate nohighlight">\(\mathcal{O}(m^d 2^{nd^2}+|s|)\)</span>, for any configuration <span class="math notranslate nohighlight">\((p,\bot s)\)</span>, whether it is winning for \Eve in <span class="math notranslate nohighlight">\(\game\)</span>.</p></li>
+<li><p>[(i)] One can construct in time <span class="math notranslate nohighlight">\(\mathcal{O}(m^d 2^{nd^2})\)</span> a deterministic finite state automaton with <span class="math notranslate nohighlight">\(2^n\)</span> states recognising the winning region of \textrm{Eve}in $\mathcal{G}.</p></li>
+<li><p>[(ii)] One can decide in time <span class="math notranslate nohighlight">\(\mathcal{O}(m^d 2^{nd^2}+|s|)\)</span>, for any configuration <span class="math notranslate nohighlight">\((p,\bot s)\)</span>, whether it is winning for \textrm{Eve}in $\mathcal{G}.</p></li>
 </ol>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
-<p>Consider the parity game <span class="math notranslate nohighlight">\(\fgame\)</span> from Subsection <a class="reference internal" href="#subsec-computing-profiles"><span class="std std-ref">Computing the Profiles</span></a>. Let <span class="math notranslate nohighlight">\(n=|Q|\)</span> and <span class="math notranslate nohighlight">\(m=|\Gamma|\)</span>. Then <span class="math notranslate nohighlight">\(\fgame\)</span> is played on an arena with <span class="math notranslate nohighlight">\(\mathcal{O}(n m 2^{2nd})\)</span> vertices and it uses <span class="math notranslate nohighlight">\(d\)</span> colours. Hence\OS{Ajouter ref a un chapitre precedent}, computing the winning region of this later game can be achieved in time <span class="math notranslate nohighlight">\(\mathcal{O}(m^d 2^{nd^2})\)</span>.\OS{Bien vérifier que je ne me trompe pas dans les calculs ici}</p>
-<p>Using,  <a class="reference internal" href="#10-thm:games">Theorem 282</a>, it follows that the set of profiles can be computed in time <span class="math notranslate nohighlight">\(\mathcal{O}(m^d 2^{nd^2})\)</span>, and by  <a class="reference internal" href="profiles.html#10-thm:regularity-wr">Theorem 280</a> (and its proof) we know that we can construct (in the same time complexity) a deterministic finite state automaton with <span class="math notranslate nohighlight">\(2^n\)</span> states recognising the winning region <span class="math notranslate nohighlight">\(W_\mEve\)</span>.</p>
+<p>Consider the parity game <span class="math notranslate nohighlight">\(\widetilde{\mathcal{G} from Subsection {ref}`10-subsec:computing-profiles`. Let \)</span>n=|Q|<span class="math notranslate nohighlight">\( and \)</span>m=|\Gamma|<span class="math notranslate nohighlight">\(. Then \)</span>\widetilde{\mathcal{G} is played on an arena with <span class="math notranslate nohighlight">\(\mathcal{O}(n m 2^{2nd})\)</span> vertices and it uses <span class="math notranslate nohighlight">\(d\)</span> colours. Hence\OS{Ajouter ref a un chapitre precedent}, computing the winning region of this later game can be achieved in time <span class="math notranslate nohighlight">\(\mathcal{O}(m^d 2^{nd^2})\)</span>.\OS{Bien vérifier que je ne me trompe pas dans les calculs ici}</p>
+<p>Using,  <a class="reference internal" href="#10-thm:games">Theorem 282</a>, it follows that the set of profiles can be computed in time <span class="math notranslate nohighlight">\(\mathcal{O}(m^d 2^{nd^2})\)</span>, and by  <a class="reference internal" href="profiles.html#10-thm:regularity-wr">Theorem 280</a> (and its proof) we know that we can construct (in the same time complexity) a deterministic finite state automaton with <span class="math notranslate nohighlight">\(2^n\)</span> states recognising the winning region $W_\mathrm{Eve}.</p>
 <p>The upper bound for the second item simply follows from the fact that running a deterministic automaton on a word is performed in linear time in the length of the word.</p>
 </div>
 <p>Regarding lower bound, the following result shows that the previous upper bound is optimal. Note that it is enough to consider a reachability objective.</p>
 <div class="proof theorem admonition" id="10-thm:solving-lower-bound">
 <p class="admonition-title"><span class="caption-number">Theorem 289 </span> (NEEDS TITLE 10-thm:solving-lower-bound)</p>
 <div class="theorem-content section" id="proof-content">
-<p>Let <span class="math notranslate nohighlight">\(\game\)</span> be a reachability pushdown game. Then the following problem is hard for \EXP: decide whether <span class="math notranslate nohighlight">\((p,\bot)\)</span> is winning for \Eve in <span class="math notranslate nohighlight">\(\game\)</span>.</p>
+<p>Let <span class="math notranslate nohighlight">\(\mathcal{G} be a reachability pushdown game. Then the following problem is hard for \textrm{EXP} decide whether \)</span>(p,\bot)<span class="math notranslate nohighlight">\( is winning for \textrm{Eve}in \)</span>\mathcal{G}.</p>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
 <p>The lower bound is established by reducing the halting problem for alternating linear space bounded Turing machine.</p>
 <p>Consider an alternating linear space bounded Turing machine <span class="math notranslate nohighlight">\(\mathcal{M}\)</span>. We can safely assume that <span class="math notranslate nohighlight">\(\mathcal{M}\)</span> has a unique tape and on an input of size <span class="math notranslate nohighlight">\(n\)</span> it uses at most <span class="math notranslate nohighlight">\(n\)</span> tape squares. Let <span class="math notranslate nohighlight">\(Q=Q_\exists\cup Q_\forall\)</span> be the states of the Turing machine where <span class="math notranslate nohighlight">\(Q_\exists\)</span> are the existential states and <span class="math notranslate nohighlight">\(Q_\forall\)</span> are the universal ones; we let <span class="math notranslate nohighlight">\(q_a\)</span> be the (unique) accepting state of the machine. Call <span class="math notranslate nohighlight">\(A\)</span> the tape alphabet and let <span class="math notranslate nohighlight">\(T\subseteq Q\times A\times Q\times A\times \{\leftarrow,\rightarrow\}\)</span> the transition table of the machine. A configuration of <span class="math notranslate nohighlight">\(\mathcal{M}\)</span> is a word <span class="math notranslate nohighlight">\(C\)</span> of the form <span class="math notranslate nohighlight">\(uqv\in A^*QA^*\)</span> of length <span class="math notranslate nohighlight">\(n+1\)</span> (the meaning being that <span class="math notranslate nohighlight">\(\mathcal{M}\)</span> is in state <span class="math notranslate nohighlight">\(q\)</span> and that the tape contains <span class="math notranslate nohighlight">\(uv\)</span>).</p>
-<p>We now informally describe a two-player game simulating a computation of <span class="math notranslate nohighlight">\(\mathcal{M}\)</span> and argue that it can be encoded as a reachability pushdown game. Think first of <span class="math notranslate nohighlight">\(\mathcal{M}\)</span> as being non-deterministic, i.e. <span class="math notranslate nohighlight">\(Q_\forall=\emptyset\)</span> and call <span class="math notranslate nohighlight">\(C_0\)</span> the initial configuration. A run of <span class="math notranslate nohighlight">\(\mathcal{M}\)</span> can be encoded as a word <span class="math notranslate nohighlight">\(r=C_0\sharp t_0\sharp C_1\sharp t_1\sharp C_2\sharp t_2\sharp C_3\sharp\cdots\)</span> where for every <span class="math notranslate nohighlight">\(i\geq 0\)</span>, <span class="math notranslate nohighlight">\(t_i\in T\)</span> is a transition of <span class="math notranslate nohighlight">\(\mathcal{M}\)</span> that can be applied in configuration <span class="math notranslate nohighlight">\(C_i\)</span> and <span class="math notranslate nohighlight">\(C_{i+1}\)</span> is the configuration reached from <span class="math notranslate nohighlight">\(C_i\)</span> by applying <span class="math notranslate nohighlight">\(t_i\)</span>; it is accepting if some <span class="math notranslate nohighlight">\(t_i\)</span> is a transition to the accepting state of <span class="math notranslate nohighlight">\(\mathcal{M}\)</span>. A way to encode such <span class="math notranslate nohighlight">\(r\)</span> with a pushdown game is that \Eve pushes symbols in the stack to describe <span class="math notranslate nohighlight">\(r\)</span> and to use the control states to impose some structural constraints on the sequence of pushed symbols:</p>
+<p>We now informally describe a two-player game simulating a computation of <span class="math notranslate nohighlight">\(\mathcal{M}\)</span> and argue that it can be encoded as a reachability pushdown game. Think first of <span class="math notranslate nohighlight">\(\mathcal{M}\)</span> as being non-deterministic, i.e. <span class="math notranslate nohighlight">\(Q_\forall=\emptyset\)</span> and call <span class="math notranslate nohighlight">\(C_0\)</span> the initial configuration. A run of <span class="math notranslate nohighlight">\(\mathcal{M}\)</span> can be encoded as a word <span class="math notranslate nohighlight">\(r=C_0\sharp t_0\sharp C_1\sharp t_1\sharp C_2\sharp t_2\sharp C_3\sharp\cdots\)</span> where for every <span class="math notranslate nohighlight">\(i\geq 0\)</span>, <span class="math notranslate nohighlight">\(t_i\in T\)</span> is a transition of <span class="math notranslate nohighlight">\(\mathcal{M}\)</span> that can be applied in configuration <span class="math notranslate nohighlight">\(C_i\)</span> and <span class="math notranslate nohighlight">\(C_{i+1}\)</span> is the configuration reached from <span class="math notranslate nohighlight">\(C_i\)</span> by applying <span class="math notranslate nohighlight">\(t_i\)</span>; it is accepting if some <span class="math notranslate nohighlight">\(t_i\)</span> is a transition to the accepting state of <span class="math notranslate nohighlight">\(\mathcal{M}\)</span>. A way to encode such <span class="math notranslate nohighlight">\(r\)</span> with a pushdown game is that \textrm{Eve}pushes symbols in the stack to describe <span class="math notranslate nohighlight">\(r\)</span> and to use the control states to impose some structural constraints on the sequence of pushed symbols:</p>
 <ul class="simple">
 <li><p>The first pushed configuration is <span class="math notranslate nohighlight">\(C_0\)</span>.</p></li>
 <li><p>Every configuration pushed has the right form, i.e. it is a word in <span class="math notranslate nohighlight">\(A^*QA^*\)</span> of length <span class="math notranslate nohighlight">\(n+1\)</span>.</p></li>
 <li><p>Every configuration <span class="math notranslate nohighlight">\(C\)</span> is followed by some pattern <span class="math notranslate nohighlight">\(\sharp t\sharp\)</span> and the transition <span class="math notranslate nohighlight">\(t\)</span> in this pattern can be applied from the configuration. This is ensured by storing in the control state of the pushdown process the state of <span class="math notranslate nohighlight">\(\mathcal{M}\)</span> and the content of the currently read cell in <span class="math notranslate nohighlight">\(C\)</span>.</p></li>
 </ul>
 <p>To ensure these properties a linear number of control states suffices.</p>
-<p>Of course, this is not enough because \Eve could cheat and push a configuration <span class="math notranslate nohighlight">\(C_{i+1}=x_0x_1\cdots x_n\)</span> which is not the successor of <span class="math notranslate nohighlight">\(C_i=y_0y_1\cdots y_n\)</span> by <span class="math notranslate nohighlight">\(t_i\)</span>. To avoid this, after she described a configuration (say <span class="math notranslate nohighlight">\(C_{i+1}\)</span>) and pushed the <span class="math notranslate nohighlight">\(\sharp\)</span> symbol, \Adam can stop the simulation and claim a mistake by indicating the index <span class="math notranslate nohighlight">\(k\)</span> of a wrong update in <span class="math notranslate nohighlight">\(C_{i+1}\)</span>. If so, the game goes to a special mode where the following is performed:</p>
+<p>Of course, this is not enough because \textrm{Eve}could cheat and push a configuration <span class="math notranslate nohighlight">\(C_{i+1}=x_0x_1\cdots x_n\)</span> which is not the successor of <span class="math notranslate nohighlight">\(C_i=y_0y_1\cdots y_n\)</span> by <span class="math notranslate nohighlight">\(t_i\)</span>. To avoid this, after she described a configuration (say <span class="math notranslate nohighlight">\(C_{i+1}\)</span>) and pushed the <span class="math notranslate nohighlight">\(\sharp\)</span> symbol, \textrm{Adam}can stop the simulation and claim a mistake by indicating the index <span class="math notranslate nohighlight">\(k\)</span> of a wrong update in <span class="math notranslate nohighlight">\(C_{i+1}\)</span>. If so, the game goes to a special mode where the following is performed:</p>
 <ul class="simple">
 <li><p>the <span class="math notranslate nohighlight">\(\sharp\)</span> symbol is popped as well as the next <span class="math notranslate nohighlight">\(n-i\)</span> symbols;</p></li>
 <li><p>the current top symbol is <span class="math notranslate nohighlight">\(x_i\)</span> and it is stored in the control state of the pushdown process</p></li>
@@ -1417,177 +1339,177 @@ winning.</p>
 <li><p>then the players pop <span class="math notranslate nohighlight">\(n-i-1\)</span> symbols and then considering the next three symbols they can check whether the update was correct or not (there are several cases depending whether the reading tape was at distance at most <span class="math notranslate nohighlight">\(1\)</span> of the position of index <span class="math notranslate nohighlight">\(i\)</span>).</p></li>
 </ul>
 <p>Again, this can be implemented thanks to a linear number of control states in the pushdown process.</p>
-<p>In case \Eve cheats the play loops in a non-final sink configuration. Otherwise it loops in a final sink configuration.</p>
-<p>Now, if the Turing Machine <span class="math notranslate nohighlight">\(\mathcal{M}\)</span> is alternating, the only difference is that the choice of the transition <span class="math notranslate nohighlight">\(t_i\)</span> is made by \Eve if the control state in <span class="math notranslate nohighlight">\(C_i\)</span> is existential and by \Adam if it is universal. The rest of the game is unchanged (in particular \Eve is still in charge of describing all configurations, regardless of whom picks the transition).</p>
-<p>It is then immediate to check that \Eve has a winning strategy in this game if and only if the Turing machine accepts from its initial configuration.</p>
+<p>In case \textrm{Eve}cheats the play loops in a non-final sink configuration. Otherwise it loops in a final sink configuration.</p>
+<p>Now, if the Turing Machine <span class="math notranslate nohighlight">\(\mathcal{M}\)</span> is alternating, the only difference is that the choice of the transition <span class="math notranslate nohighlight">\(t_i\)</span> is made by \textrm{Eve}if the control state in <span class="math notranslate nohighlight">\(C_i\)</span> is existential and by \textrm{Adam}if it is universal. The rest of the game is unchanged (in particular \textrm{Eve}is still in charge of describing all configurations, regardless of whom picks the transition).</p>
+<p>It is then immediate to check that \textrm{Eve}has a winning strategy in this game if and only if the Turing machine accepts from its initial configuration.</p>
 </div>
 </div>
 <div class="section" id="regular-winning-strategies">
 <span id="subsec-regular-strat"></span><h2>Regular Winning Strategies<a class="headerlink" href="#regular-winning-strategies" title="Permalink to this headline">¶</a></h2>
-<p>In \ref{10-subsec:strategy-pushdown}, we have seen that the proof of  <a class="reference internal" href="#10-thm:games">Theorem 282</a> shows that a winning strategy for \Eve (when it exists) can be implemented by pushdown automaton that reads the pushdown system transitions chosen by the players and indicates \Eve moves by a function depending only of the current control state and the top-most stack symbol of the strategy automaton.</p>
-<p>In this section, we present a different reduction whose aim is to be able to compute a positional winning strategy for \Eve which furthermore can be implemented by a finite state automata. As an added benefit, we will see that this strategy is uniform in the sense that it is winning from every vertex of the winning region of \Eve.</p>
-<p>For the rest of this section, we fix a parity pushdown game <span class="math notranslate nohighlight">\(\game\)</span> played on an arena <span class="math notranslate nohighlight">\(\arena = (G,\VE,\VA)\)</span> generated by a pushdown system <span class="math notranslate nohighlight">\(\PDS = (Q,Q_{\mEve}, Q_{\mAdam}, \Gamma,\Delta)\)</span>. We also let <span class="math notranslate nohighlight">\(V=\VE\cup\VA\)</span> and we let the colours used in the game be <span class="math notranslate nohighlight">\(\{0,\dots,d\}\)</span>.</p>
+<p>In \ref{10-subsec:strategy-pushdown}, we have seen that the proof of  <a class="reference internal" href="#10-thm:games">Theorem 282</a> shows that a winning strategy for \textrm{Eve}(when it exists) can be implemented by pushdown automaton that reads the pushdown system transitions chosen by the players and indicates \textrm{Eve}moves by a function depending only of the current control state and the top-most stack symbol of the strategy automaton.</p>
+<p>In this section, we present a different reduction whose aim is to be able to compute a positional winning strategy for \textrm{Eve}which furthermore can be implemented by a finite state automata. As an added benefit, we will see that this strategy is uniform in the sense that it is winning from every vertex of the winning region of \textrm{Eve}</p>
+<p>For the rest of this section, we fix a parity pushdown game <span class="math notranslate nohighlight">\(\mathcal{G} played on an arena \)</span>\mathcal{A}= (G,V_\mEveV_\mathrm{Adam} generated by a pushdown system <span class="math notranslate nohighlight">\(\mathcal{P}= (Q,Q_{\mathrm{Eve}, Q_{\mathrm{Adam}, \Gamma,\Delta)\)</span>. We also let <span class="math notranslate nohighlight">\(V=V_\mEvecupV_\mathrm{Adam}and we let the colours used in the game be \)</span>{0,\dots,d}$.</p>
 <p>A <strong>summary</strong> is a triple <span class="math notranslate nohighlight">\((p,c,q)\in Q\times \{0,\dots,d\} \times Q\)</span>. A set <span class="math notranslate nohighlight">\(S\)</span> of summaries is <strong>complete</strong> if <span class="math notranslate nohighlight">\((p_1,c_1,q),(q,c_2,p_2)\in S\)</span> implies that <span class="math notranslate nohighlight">\((p_1,\max(c_1,c_2),p_2)\in S\)</span>; it is winning if <span class="math notranslate nohighlight">\((p,c,p)\in S\)</span> implies that <span class="math notranslate nohighlight">\(c\)</span> is even. For <span class="math notranslate nohighlight">\(R\subseteq Q\)</span>, a set of <span class="math notranslate nohighlight">\(R\)</span>-summaries is a set of summaries <span class="math notranslate nohighlight">\(S\subseteq R\times\{0,\dots,d\}\times R\)</span>. Associated with some stack content <span class="math notranslate nohighlight">\(s\)</span>, a summary <span class="math notranslate nohighlight">\((p,c,q)\)</span> aims to encode the existence of a sequence of moves from <span class="math notranslate nohighlight">\((p,s)\)</span> to <span class="math notranslate nohighlight">\((q,s)\)</span> where the top symbol of <span class="math notranslate nohighlight">\(s\)</span> is never removed and where <span class="math notranslate nohighlight">\(c\)</span> is the largest colour visited in the sequence.</p>
-<p>Let <span class="math notranslate nohighlight">\(P\subseteq Q_\mEve\)</span> and <span class="math notranslate nohighlight">\(\gamma\in\Gamma_\bot\)</span>. A <strong><span class="math notranslate nohighlight">\((P,\gamma)\)</span>-local strategy</strong> for \Eve is a partial function <span class="math notranslate nohighlight">\(\sigma_\gamma:P\rightarrow {Q\times\{\pop,\push{\gamma}\mid \gamma\in\Gamma\}}\)</span> such that <span class="math notranslate nohighlight">\(\sigma_\gamma(p)\in \Delta(p,\gamma)\)</span> for all <span class="math notranslate nohighlight">\(p\in P\)</span>. Equivalently it is a selection for every state in <span class="math notranslate nohighlight">\(P\)</span> of a consistent transition of <span class="math notranslate nohighlight">\(\PDS\)</span> when the top symbol is <span class="math notranslate nohighlight">\(\gamma\)</span>. For a subset <span class="math notranslate nohighlight">\(R\subseteq Q\)</span>, we say that <span class="math notranslate nohighlight">\(\sigma_\gamma\)</span> <strong>pops in <span class="math notranslate nohighlight">\(R\)</span></strong> if <span class="math notranslate nohighlight">\(\sigma_\gamma(q)=(r,pop)\)</span> implies <span class="math notranslate nohighlight">\(r\in R\)</span>.
+<p>Let <span class="math notranslate nohighlight">\(P\subseteq Q_\mathrm{Eve} and \)</span>\gamma\in\Gamma_\bot<span class="math notranslate nohighlight">\(. A **\)</span>(P,\gamma)<span class="math notranslate nohighlight">\(-local strategy** for \textrm{Eve}is a partial function \)</span>\sigma_\gamma:P\rightarrow {Q\times{\mathrm{pop}\push{\gamma}\mid \gamma\in\Gamma}}<span class="math notranslate nohighlight">\( such that \)</span>\sigma_\gamma(p)\in \Delta(p,\gamma)<span class="math notranslate nohighlight">\( for all \)</span>p\in P<span class="math notranslate nohighlight">\(. Equivalently it is a selection for every state in \)</span>P<span class="math notranslate nohighlight">\( of a consistent transition of \)</span>\mathcal{P} when the top symbol is <span class="math notranslate nohighlight">\(\gamma\)</span>. For a subset <span class="math notranslate nohighlight">\(R\subseteq Q\)</span>, we say that <span class="math notranslate nohighlight">\(\sigma_\gamma\)</span> <strong>pops in <span class="math notranslate nohighlight">\(R\)</span></strong> if <span class="math notranslate nohighlight">\(\sigma_\gamma(q)=(r,pop)\)</span> implies <span class="math notranslate nohighlight">\(r\in R\)</span>.
 We say that a <span class="math notranslate nohighlight">\((P,\gamma)\)</span>-local strategy is <strong>safe</strong> if <span class="math notranslate nohighlight">\(\sigma_\gamma(p)=(q,push(\alpha))\)</span> implies that <span class="math notranslate nohighlight">\(P\in\mathcal{R}(q,\alpha)\)</span>. From now on, we only allowed safe local strategies.</p>
 <p>Let <span class="math notranslate nohighlight">\(R\subseteq Q\)</span> and <span class="math notranslate nohighlight">\(\gamma\in\Gamma\)</span>. We associate with <span class="math notranslate nohighlight">\((R,\gamma)\)</span> the subset
 $<span class="math notranslate nohighlight">\(
 W(R,\gamma)=\{q\mid R\in\mathcal{R}(q,\gamma)\}
 \)</span><span class="math notranslate nohighlight">\(
- By a small abuse of notation we let \)</span>W(\emptyset,\bot) = {q\mid (q,\bot)\in W_\mEve}<span class="math notranslate nohighlight">\(. Remark that for every \)</span>q\in W(R,\gamma)\cap Q_\mAdam<span class="math notranslate nohighlight">\( and \)</span>(r,pop)\in \Delta(q,\gamma)<span class="math notranslate nohighlight">\( one has \)</span>r\in R$.</p>
-<p>We now define a new game <span class="math notranslate nohighlight">\(\hgame\)</span> played on a finite arena and equipped with an <span class="math notranslate nohighlight">\(\omega\)</span>-regular objective. We start by an informal description of plays in <span class="math notranslate nohighlight">\(\hgame\)</span> and later formally describe the arena and the objective.</p>
-<p>A play in <span class="math notranslate nohighlight">\(\hgame\)</span> begins by an initialisation phase:</p>
+ By a small abuse of notation we let \)</span>W(\emptyset,\bot) = {q\mid (q,\bot)\in W_\mathrm{Eve}}<span class="math notranslate nohighlight">\(. Remark that for every \)</span>q\in W(R,\gamma)\cap Q_\mathrm{Adam} and <span class="math notranslate nohighlight">\((r,pop)\in \Delta(q,\gamma)\)</span> one has <span class="math notranslate nohighlight">\(r\in R\)</span>.</p>
+<p>We now define a new game <span class="math notranslate nohighlight">\(\widehat{\mathcal{G} played on a finite arena and equipped with an \)</span>\omega<span class="math notranslate nohighlight">\(-regular objective. We start by an informal description of plays in \)</span>\widehat{\mathcal{G} and later formally describe the arena and the objective.</p>
+<p>A play in $\widehat{\mathcal{G} begins by an initialisation phase:</p>
 <ul class="simple">
-<li><p>The play starts in <span class="math notranslate nohighlight">\((\bot, R)\)</span> where <span class="math notranslate nohighlight">\(R=W(\emptyset,\bot)=\{q\mid (q,\bot)\in W_\mEve\}\)</span>.</p></li>
-<li><p>From there, \Eve chooses <span class="math notranslate nohighlight">\(\sigma_\bot\)</span> an <span class="math notranslate nohighlight">\((R,\bot)\)</span>-local strategy and a set of <span class="math notranslate nohighlight">\(R\)</span>-summaries that is both complete and winning. Then, the play goes to <span class="math notranslate nohighlight">\((\bot,R,\sigma_\bot,S)\)</span>.</p></li>
+<li><p>The play starts in <span class="math notranslate nohighlight">\((\bot, R)\)</span> where <span class="math notranslate nohighlight">\(R=W(\emptyset,\bot)=\{q\mid (q,\bot)\in W_\mathrm{Eve}}\)</span>.</p></li>
+<li><p>From there, \textrm{Eve}chooses <span class="math notranslate nohighlight">\(\sigma_\bot\)</span> an <span class="math notranslate nohighlight">\((R,\bot)\)</span>-local strategy and a set of <span class="math notranslate nohighlight">\(R\)</span>-summaries that is both complete and winning. Then, the play goes to <span class="math notranslate nohighlight">\((\bot,R,\sigma_\bot,S)\)</span>.</p></li>
 </ul>
 <p>Then, the plays goes for rounds of the following form:</p>
 <ul class="simple">
-<li><p>From a vertex <span class="math notranslate nohighlight">\((\gamma,R,\sigma_\gamma,S)\)</span>, where <span class="math notranslate nohighlight">\(\gamma\in \Gamma\)</span>, <span class="math notranslate nohighlight">\(R\subseteq Q\)</span>, <span class="math notranslate nohighlight">\(\sigma_\gamma\)</span> is an <span class="math notranslate nohighlight">\((R,\gamma)\)</span>-local strategy and <span class="math notranslate nohighlight">\(S\)</span> is a set of <span class="math notranslate nohighlight">\(R\)</span>-summaries, \Eve chooses for every <span class="math notranslate nohighlight">\(\alpha\in\Gamma\)</span> a <span class="math notranslate nohighlight">\((W(R,\alpha),\alpha))\)</span>-local strategy <span class="math notranslate nohighlight">\(\sigma_\alpha\)</span> that pops in <span class="math notranslate nohighlight">\(R\)</span> and a set of <span class="math notranslate nohighlight">\( W(R,\alpha)\)</span>-summaries <span class="math notranslate nohighlight">\(S_\alpha\)</span> that is both complete and winning. The play then goes in <span class="math notranslate nohighlight">\((\gamma,R,\sigma_\gamma,S,(\sigma_\alpha,S_\alpha)_{\alpha\in\Gamma})\)</span>.</p></li>
-<li><p>Then, \Adam chooses some <span class="math notranslate nohighlight">\(\alpha\)</span> in <span class="math notranslate nohighlight">\(\Gamma\)</span> and the play goes in <span class="math notranslate nohighlight">\((\alpha,W(R,\alpha),\sigma_\alpha,S_\alpha)\)</span>.</p></li>
+<li><p>From a vertex <span class="math notranslate nohighlight">\((\gamma,R,\sigma_\gamma,S)\)</span>, where <span class="math notranslate nohighlight">\(\gamma\in \Gamma\)</span>, <span class="math notranslate nohighlight">\(R\subseteq Q\)</span>, <span class="math notranslate nohighlight">\(\sigma_\gamma\)</span> is an <span class="math notranslate nohighlight">\((R,\gamma)\)</span>-local strategy and <span class="math notranslate nohighlight">\(S\)</span> is a set of <span class="math notranslate nohighlight">\(R\)</span>-summaries, \textrm{Eve}chooses for every <span class="math notranslate nohighlight">\(\alpha\in\Gamma\)</span> a <span class="math notranslate nohighlight">\((W(R,\alpha),\alpha))\)</span>-local strategy <span class="math notranslate nohighlight">\(\sigma_\alpha\)</span> that pops in <span class="math notranslate nohighlight">\(R\)</span> and a set of <span class="math notranslate nohighlight">\( W(R,\alpha)\)</span>-summaries <span class="math notranslate nohighlight">\(S_\alpha\)</span> that is both complete and winning. The play then goes in <span class="math notranslate nohighlight">\((\gamma,R,\sigma_\gamma,S,(\sigma_\alpha,S_\alpha)_{\alpha\in\Gamma})\)</span>.</p></li>
+<li><p>Then, \textrm{Adam}chooses some <span class="math notranslate nohighlight">\(\alpha\)</span> in <span class="math notranslate nohighlight">\(\Gamma\)</span> and the play goes in <span class="math notranslate nohighlight">\((\alpha,W(R,\alpha),\sigma_\alpha,S_\alpha)\)</span>.</p></li>
 </ul>
 <p>Consider a tuple <span class="math notranslate nohighlight">\((\gamma,R,\sigma_\gamma,S,(\sigma_\alpha,S_\alpha)_{\alpha\in\Gamma})\)</span> where <span class="math notranslate nohighlight">\(\gamma\in\Gamma\)</span>, <span class="math notranslate nohighlight">\(R\subseteq Q\)</span>, <span class="math notranslate nohighlight">\(\sigma_\gamma\)</span> is an <span class="math notranslate nohighlight">\((R,\gamma)\)</span>-local strategy, <span class="math notranslate nohighlight">\(S\)</span> is a set of <span class="math notranslate nohighlight">\(R\)</span>-summaries, and, for every <span class="math notranslate nohighlight">\(\alpha\in\Gamma\)</span>, <span class="math notranslate nohighlight">\(\sigma_\alpha\)</span> is a <span class="math notranslate nohighlight">\((W(R,\alpha),\alpha))\)</span>-local strategy <span class="math notranslate nohighlight">\(\sigma_\alpha\)</span> that pops in <span class="math notranslate nohighlight">\(R\)</span> and <span class="math notranslate nohighlight">\(S_\alpha\)</span> is a set of <span class="math notranslate nohighlight">\(W(R,\alpha)\)</span>-summaries that is both complete and winning. The tuple <span class="math notranslate nohighlight">\((\gamma,R,\sigma_\gamma,(\sigma_\alpha,S_\alpha)_{\alpha\in\Gamma})\)</span> is <strong>consistent</strong> if, for every <span class="math notranslate nohighlight">\((p,r)\in R^2\)</span>, one has <span class="math notranslate nohighlight">\((p,\max(\pdscol{p},c,\pdscol{r}),r)\in S\)</span> as soon as we are in one of the following  two situations (the second one being the degenerated version of the first one).</p>
 <ul class="simple">
 <li><p>There exists <span class="math notranslate nohighlight">\(\alpha\in\Gamma\)</span>, <span class="math notranslate nohighlight">\((q,c,q')\in S_\alpha\)</span> such that</p></li>
-<li><p>[(i)] either <span class="math notranslate nohighlight">\(p\in Q_\mEve\)</span> and <span class="math notranslate nohighlight">\((q,\push{\alpha})=\sigma_\gamma(p)\)</span>, or <span class="math notranslate nohighlight">\(p\in Q_\mAdam\)</span> and <span class="math notranslate nohighlight">\((q,\push{\alpha})\in \Delta(p,\gamma)\)</span>, and</p></li>
-<li><p>[(ii)] either <span class="math notranslate nohighlight">\(q'\in Q_\mEve\)</span> and <span class="math notranslate nohighlight">\((r,\pop)=\sigma_\alpha(q')\)</span>, or <span class="math notranslate nohighlight">\(q'\in Q_\mAdam\)</span> and <span class="math notranslate nohighlight">\((r,\pop)\in \Delta(q',\alpha)\)</span>.</p></li>
+<li><p>[(i)] either <span class="math notranslate nohighlight">\(p\in Q_\mathrm{Eve} and \)</span>(q,\push{\alpha})=\sigma_\gamma(p)<span class="math notranslate nohighlight">\(, or \)</span>p\in Q_\mathrm{Adam} and <span class="math notranslate nohighlight">\((q,\push{\alpha})\in \Delta(p,\gamma)\)</span>, and</p></li>
+<li><p>[(ii)] either <span class="math notranslate nohighlight">\(q'\in Q_\mathrm{Eve} and \)</span>(r,\mathrm{pop}=\sigma_\alpha(q’)<span class="math notranslate nohighlight">\(, or \)</span>q’\in Q_\mathrm{Adam} and <span class="math notranslate nohighlight">\((r,\mathrm{pop}\in \Delta(q',\alpha)\)</span>.</p></li>
 </ul>
 <p>Intuitively, if with state <span class="math notranslate nohighlight">\(p\)</span> and top symbol <span class="math notranslate nohighlight">\(\gamma\)</span> one can push <span class="math notranslate nohighlight">\(\alpha\)</span> and go to state <span class="math notranslate nohighlight">\(q\)</span> from which we know that we can later go back to the same stack content with state <span class="math notranslate nohighlight">\(q'\)</span> and maximal colour <span class="math notranslate nohighlight">\(c\)</span>, and finally pop <span class="math notranslate nohighlight">\(\gamma\)</span> and end in state <span class="math notranslate nohighlight">\(r\)</span>, then we conclude that we can go from <span class="math notranslate nohighlight">\(p\)</span> to <span class="math notranslate nohighlight">\(r\)</span> while seeing <span class="math notranslate nohighlight">\(\max(\pdscol{p},c,\pdscol{r})\)</span> as the maximal colour.</p>
 <ul class="simple">
 <li><p>There exists <span class="math notranslate nohighlight">\(\alpha\in\Gamma\)</span> and <span class="math notranslate nohighlight">\(q\in W(R,\alpha)\)</span> such that</p></li>
-<li><p>[(i)] either <span class="math notranslate nohighlight">\(p\in Q_\mEve\)</span> and <span class="math notranslate nohighlight">\((q,\push{\alpha})=\sigma_\gamma(p)\)</span>, or <span class="math notranslate nohighlight">\(p\in Q_\mAdam\)</span> and <span class="math notranslate nohighlight">\((q,\push{\alpha})\in \Delta(p,\gamma)\)</span>, and</p></li>
-<li><p>[(ii)] either <span class="math notranslate nohighlight">\(q\in Q_\mEve\)</span> and <span class="math notranslate nohighlight">\((r,\pop)=\sigma_\alpha(q)\)</span>, or <span class="math notranslate nohighlight">\(q\in Q_\mAdam\)</span> and <span class="math notranslate nohighlight">\((r,\pop)\in \Delta(q,\alpha)\)</span>,</p></li>
+<li><p>[(i)] either <span class="math notranslate nohighlight">\(p\in Q_\mathrm{Eve} and \)</span>(q,\push{\alpha})=\sigma_\gamma(p)<span class="math notranslate nohighlight">\(, or \)</span>p\in Q_\mathrm{Adam} and <span class="math notranslate nohighlight">\((q,\push{\alpha})\in \Delta(p,\gamma)\)</span>, and</p></li>
+<li><p>[(ii)] either <span class="math notranslate nohighlight">\(q\in Q_\mathrm{Eve} and \)</span>(r,\mathrm{pop}=\sigma_\alpha(q)<span class="math notranslate nohighlight">\(, or \)</span>q\in Q_\mathrm{Adam} and <span class="math notranslate nohighlight">\((r,\mathrm{pop}\in \Delta(q,\alpha)\)</span>,</p></li>
 <li><p>[(iii)] <span class="math notranslate nohighlight">\(c=\pdscol{q}\)</span>.</p></li>
 </ul>
 <p>Intuitively, if with state <span class="math notranslate nohighlight">\(p\)</span> and top symbol <span class="math notranslate nohighlight">\(\gamma\)</span> one can push <span class="math notranslate nohighlight">\(\alpha\)</span> and go to state <span class="math notranslate nohighlight">\(q\)</span> and directly pops <span class="math notranslate nohighlight">\(\gamma\)</span> and end in state <span class="math notranslate nohighlight">\(r\)</span>, then we conclude that we can go from <span class="math notranslate nohighlight">\(p\)</span> to <span class="math notranslate nohighlight">\(r\)</span> while seeing <span class="math notranslate nohighlight">\(\max(\pdscol{p},\pdscol{q},\pdscol{r})\)</span> as the maximal colour.</p>
 <p>In the previous informal description, the only allowed choices for <span class="math notranslate nohighlight">\((\sigma_\alpha,S_\alpha)_{\alpha\in\Gamma}\)</span> are those that leads to consistent tuples.
-Formally, we define the arena <span class="math notranslate nohighlight">\(\harena\)</span> as follows:</p>
+Formally, we define the arena $\widehat{\mathcal{A} as follows:</p>
 <ul class="simple">
-<li><p>There is a special initial vertex <span class="math notranslate nohighlight">\((\bot,W(\emptyset,\bot))\)</span> controlled by \Eve.</p></li>
-<li><p>For every <span class="math notranslate nohighlight">\(\gamma\in \Gamma_\bot\)</span>, every <span class="math notranslate nohighlight">\(R\subseteq Q\)</span>, every <span class="math notranslate nohighlight">\((R,\gamma)\)</span>-local strategy <span class="math notranslate nohighlight">\(\sigma_\gamma\)</span> and every set of <span class="math notranslate nohighlight">\(R\)</span>-summaries that is both complete and winning there is a vertex <span class="math notranslate nohighlight">\((\gamma,R,\sigma_\gamma,S)\)</span> controlled by \Eve.</p></li>
-<li><p>There is a vertex <span class="math notranslate nohighlight">\((\gamma,R,\sigma_\gamma,S,(\sigma_\alpha,S_\alpha)_{\alpha\in\Gamma})\)</span> controlled by \Adam  for every consistent such tuple.</p></li>
+<li><p>There is a special initial vertex <span class="math notranslate nohighlight">\((\bot,W(\emptyset,\bot))\)</span> controlled by \textrm{Eve}</p></li>
+<li><p>For every <span class="math notranslate nohighlight">\(\gamma\in \Gamma_\bot\)</span>, every <span class="math notranslate nohighlight">\(R\subseteq Q\)</span>, every <span class="math notranslate nohighlight">\((R,\gamma)\)</span>-local strategy <span class="math notranslate nohighlight">\(\sigma_\gamma\)</span> and every set of <span class="math notranslate nohighlight">\(R\)</span>-summaries that is both complete and winning there is a vertex <span class="math notranslate nohighlight">\((\gamma,R,\sigma_\gamma,S)\)</span> controlled by \textrm{Eve}</p></li>
+<li><p>There is a vertex <span class="math notranslate nohighlight">\((\gamma,R,\sigma_\gamma,S,(\sigma_\alpha,S_\alpha)_{\alpha\in\Gamma})\)</span> controlled by \textrm{Adam} for every consistent such tuple.</p></li>
 <li><p>From every vertex <span class="math notranslate nohighlight">\((\gamma,R,\sigma_\gamma,S)\)</span> there is an edge to every vertex of the form <span class="math notranslate nohighlight">\((\gamma,R,\sigma_\gamma,S,(\sigma_\alpha,S_\alpha)_{\alpha\in\Gamma})\)</span>.</p></li>
 <li><p>From every vertex <span class="math notranslate nohighlight">\((\gamma,R,\sigma_\gamma,S,(\sigma_\alpha,S_\alpha)_{\alpha\in\Gamma})\)</span> there is an edge to <span class="math notranslate nohighlight">\((\alpha,W(R,\alpha),\sigma_\alpha,S_\alpha)\)</span> for every <span class="math notranslate nohighlight">\(\alpha\in\Gamma\)</span>.</p></li>
 </ul>
-<p>Hence, a play in <span class="math notranslate nohighlight">\(\hgame\)</span> from the initial vertex <span class="math notranslate nohighlight">\((\gamma_0,R_0)=(\bot,W(\emptyset,\bot))\)</span> is a sequence of vertices
+<p>Hence, a play in <span class="math notranslate nohighlight">\(\widehat{\mathcal{G} from the initial vertex \)</span>(\gamma_0,R_0)=(\bot,W(\emptyset,\bot))<span class="math notranslate nohighlight">\( is a sequence of vertices 
 \begin{equation*}
 \begin{split}
-\hplay = &amp; (\bot,R_0)(\gamma_0,R_0,\sigma_0,S_0)(\gamma_0,R_0,\sigma_0,S_0,(\sigma^1_\alpha,S^1_\alpha)<em>{\alpha\in\Gamma}))(\gamma_1,R_1,\sigma_1,S_1)\ &amp;\quad (\gamma_1,R_1,\sigma_1,S_1,(\sigma^2</em>\alpha,S^2_\alpha)_{\alpha\in\Gamma}))(\gamma_2,R_2,\sigma_2,S_2)\cdots
+\widehat{\pi= &amp; (\bot,R_0)(\gamma_0,R_0,\sigma_0,S_0)(\gamma_0,R_0,\sigma_0,S_0,(\sigma^1_\alpha,S^1_\alpha)_{\alpha\in\Gamma}))(\gamma_1,R_1,\sigma_1,S_1)\\ &amp;\quad (\gamma_1,R_1,\sigma_1,S_1,(\sigma^2_\alpha,S^2_\alpha)_{\alpha\in\Gamma}))(\gamma_2,R_2,\sigma_2,S_2)\cdots
 \end{split}
 \end{equation*}
-with <span class="math notranslate nohighlight">\(\sigma_i=\sigma_{\gamma_i}^i\)</span> and <span class="math notranslate nohighlight">\(S_i=S_{\gamma_i}^i\)</span> for every <span class="math notranslate nohighlight">\(i\geq 1\)</span>.</p>
-<p>It is loosing for \Eve if there exists <span class="math notranslate nohighlight">\((q_i)_{i\geq 0},(p_i)_{i\geq 0}\in Q^{\mathbb{N}}\)</span> and <span class="math notranslate nohighlight">\((c_i)_{i\geq 0}\in \{0,\dots,d\}^{\mathbb{N}}\)</span> such that <span class="math notranslate nohighlight">\(\limsup(c_i)_{i\geq 0}\)</span> is odd and for every <span class="math notranslate nohighlight">\(i\geq 0\)</span> one has</p>
+with \)</span>\sigma_i=\sigma_{\gamma_i}^i<span class="math notranslate nohighlight">\( and \)</span>S_i=S_{\gamma_i}^i<span class="math notranslate nohighlight">\( for every \)</span>i\geq 1$.</p>
+<p>It is loosing for \textrm{Eve}if there exists <span class="math notranslate nohighlight">\((q_i)_{i\geq 0},(p_i)_{i\geq 0}\in Q^{\mathbb{N}}\)</span> and <span class="math notranslate nohighlight">\((c_i)_{i\geq 0}\in \{0,\dots,d\}^{\mathbb{N}}\)</span> such that <span class="math notranslate nohighlight">\(\limsup(c_i)_{i\geq 0}\)</span> is odd and for every <span class="math notranslate nohighlight">\(i\geq 0\)</span> one has</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\((q_i,c_i,p_i)\in S_i\)</span>; and</p></li>
-<li><p>either <span class="math notranslate nohighlight">\(p_i\in Q_\mEve\)</span> and <span class="math notranslate nohighlight">\((q_{i+1},\push{\gamma_{i+1}})=\sigma_i(p_i,\gamma_i)\)</span> or <span class="math notranslate nohighlight">\(p_i\in Q_\mAdam\)</span> and <span class="math notranslate nohighlight">\((q_{i+1},\push{\gamma_{i+1}})\in \Delta((p_i,\gamma_i)\)</span>.</p></li>
+<li><p>either <span class="math notranslate nohighlight">\(p_i\in Q_\mathrm{Eve} and \)</span>(q_{i+1},\push{\gamma_{i+1}})=\sigma_i(p_i,\gamma_i)<span class="math notranslate nohighlight">\( or \)</span>p_i\in Q_\mathrm{Adam} and <span class="math notranslate nohighlight">\((q_{i+1},\push{\gamma_{i+1}})\in \Delta((p_i,\gamma_i)\)</span>.</p></li>
 </ul>
 <p>Note that it is easily seen that the previous objective is an <span class="math notranslate nohighlight">\(\omega\)</span>-regular one.</p>
-<p>We denote by <span class="math notranslate nohighlight">\(\hgame\)</span> the previous game. The following result relies on the connection between <span class="math notranslate nohighlight">\(\hgame\)</span> and the original pushdown game <span class="math notranslate nohighlight">\(\game\)</span>.</p>
+<p>We denote by <span class="math notranslate nohighlight">\(\widehat{\mathcal{G} the previous game. The following result relies on the connection between \)</span>\widehat{\mathcal{G} and the original pushdown game $\mathcal{G}.</p>
 <div class="proof theorem admonition" id="10-thm:hgame">
 <p class="admonition-title"><span class="caption-number">Theorem 290 </span> (NEEDS TITLE 10-thm:hgame)</p>
 <div class="theorem-content section" id="proof-content">
-<p>\Eve has a finite memory winning strategy in <span class="math notranslate nohighlight">\(\hgame\)</span> from <span class="math notranslate nohighlight">\((\bot,W(\emptyset,\bot))\)</span>.</p>
+<p>\textrm{Eve}has a finite memory winning strategy in <span class="math notranslate nohighlight">\(\widehat{\mathcal{G} from \)</span>(\bot,W(\emptyset,\bot))$.</p>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
-<p>As the game <span class="math notranslate nohighlight">\(\hgame\)</span> is played on a finite arena and equipped with an <span class="math notranslate nohighlight">\(\omega\)</span>-regular objective, it suffices to prove that \Eve has a winning strategy from <span class="math notranslate nohighlight">\((\bot,W(\emptyset,\bot))\)</span>.</p>
-<p>Consider a <strong>positional</strong> strategy <span class="math notranslate nohighlight">\(\sigma\)</span> for \Eve in <span class="math notranslate nohighlight">\(\game\)</span> that is winning on the whole winning region <span class="math notranslate nohighlight">\(W_\mEve\)</span>. Note that existence of positional winning strategies is ensure because <span class="math notranslate nohighlight">\(\game\)</span> is a parity game.</p>
+<p>As the game <span class="math notranslate nohighlight">\(\widehat{\mathcal{G} is played on a finite arena and equipped with an \)</span>\omega<span class="math notranslate nohighlight">\(-regular objective, it suffices to prove that \textrm{Eve}has a winning strategy from \)</span>(\bot,W(\emptyset,\bot))$.</p>
+<p>Consider a <strong>positional</strong> strategy <span class="math notranslate nohighlight">\(\sigma\)</span> for \textrm{Eve}in <span class="math notranslate nohighlight">\(\mathcal{G} that is winning on the whole winning region \)</span>W_\mathrm{Eve}. Note that existence of positional winning strategies is ensure because $\mathcal{G} is a parity game.</p>
 <p>Let <span class="math notranslate nohighlight">\(s\in\bot\Gamma^*\)</span> be some stack content. We define a set of summaries <span class="math notranslate nohighlight">\(S_s^\sigma\)</span> associated with <span class="math notranslate nohighlight">\(s\)</span> (and <span class="math notranslate nohighlight">\(\sigma\)</span>) by letting
 \begin{equation*}
 \begin{split}
-S^s_\sigma=&amp; {(p,c,q) \mid \exists \play=v_0\cdots v_k \text{ with <span class="math notranslate nohighlight">\(k&gt;0\)</span>, <span class="math notranslate nohighlight">\(v_0=(p,s)\)</span>, <span class="math notranslate nohighlight">\(v_k=(q,s)\)</span>, <span class="math notranslate nohighlight">\(\sh(v_i)\geq \sh(v_0)\)</span> }\  &amp; \text{for all <span class="math notranslate nohighlight">\(0\leq i\leq k\)</span>, and such that \Eve respects <span class="math notranslate nohighlight">\(\sigma\)</span> in <span class="math notranslate nohighlight">\(\play\)</span> and <span class="math notranslate nohighlight">\(c\)</span> is the largest}\ &amp; \text{colour visited in <span class="math notranslate nohighlight">\(\play\)</span>}}
+S^s_\sigma=&amp; {(p,c,q) \mid \exists \piv_0\cdots v_k \text{ with <span class="math notranslate nohighlight">\(k&gt;0\)</span>, <span class="math notranslate nohighlight">\(v_0=(p,s)\)</span>, <span class="math notranslate nohighlight">\(v_k=(q,s)\)</span>, <span class="math notranslate nohighlight">\(\mathrm{sh}v_i)\geq \mathrm{sh}v_0)\)</span> }\  &amp; \text{for all <span class="math notranslate nohighlight">\(0\leq i\leq k\)</span>, and such that \textrm{Eve}respects <span class="math notranslate nohighlight">\(\sigma\)</span> in <span class="math notranslate nohighlight">\(\pi and \)</span>c<span class="math notranslate nohighlight">\( is the largest}\\ &amp; \text{colour visited in \)</span>\pi}}
 \end{split}
 \end{equation*}
 and, for every <span class="math notranslate nohighlight">\((p,c,q)\in S^s_\sigma\)</span>, we select a play <span class="math notranslate nohighlight">\(\play_{(p,c,q)}^s\)</span> that witnesses <span class="math notranslate nohighlight">\((p,c,q)\in S_\sigma^s\)</span>.</p>
-<p>Using <span class="math notranslate nohighlight">\(\sigma\)</span> we define a strategy <span class="math notranslate nohighlight">\(\hsigma\)</span> for \Eve in <span class="math notranslate nohighlight">\(\hgame\)</span> and we later argue that it is winning for her from <span class="math notranslate nohighlight">\((\bot,W(\emptyset,\bot))\)</span>.</p>
+<p>Using <span class="math notranslate nohighlight">\(\sigma\)</span> we define a strategy <span class="math notranslate nohighlight">\(\widehat{\sigma} for \textrm{Eve}in \)</span>\widehat{\mathcal{G} and we later argue that it is winning for her from <span class="math notranslate nohighlight">\((\bot,W(\emptyset,\bot))\)</span>.</p>
 <ul class="simple">
-<li><p>At the beginning of the play in <span class="math notranslate nohighlight">\((\bot,R)\)</span> with <span class="math notranslate nohighlight">\(R=W(\emptyset,\bot)\)</span>, \Eve moves to <span class="math notranslate nohighlight">\((\bot,R,\sigma_\bot,S)\)</span> where <span class="math notranslate nohighlight">\(\sigma_\bot(r) = \sigma((r,\bot))\)</span> for every <span class="math notranslate nohighlight">\(r\in R\)</span>, and <span class="math notranslate nohighlight">\(S=S_\sigma^\bot\)</span></p></li>
+<li><p>At the beginning of the play in <span class="math notranslate nohighlight">\((\bot,R)\)</span> with <span class="math notranslate nohighlight">\(R=W(\emptyset,\bot)\)</span>, \textrm{Eve}moves to <span class="math notranslate nohighlight">\((\bot,R,\sigma_\bot,S)\)</span> where <span class="math notranslate nohighlight">\(\sigma_\bot(r) = \sigma((r,\bot))\)</span> for every <span class="math notranslate nohighlight">\(r\in R\)</span>, and <span class="math notranslate nohighlight">\(S=S_\sigma^\bot\)</span></p></li>
 <li><p>Assume the current play is
 $<span class="math notranslate nohighlight">\(
-\hplay=(\bot,R_0)(\gamma_0,R_0,\sigma_0,S_0)(\gamma_0,R_0,\sigma_0,S_0,(\sigma^1_\alpha,S^1_\alpha)_{\alpha\in\Gamma}))(\gamma_1,R_1,\sigma_1,S_1)\cdots (\gamma_k,R_k,\sigma_k,S_k)
+\widehat{\pi(\bot,R_0)(\gamma_0,R_0,\sigma_0,S_0)(\gamma_0,R_0,\sigma_0,S_0,(\sigma^1_\alpha,S^1_\alpha)_{\alpha\in\Gamma}))(\gamma_1,R_1,\sigma_1,S_1)\cdots (\gamma_k,R_k,\sigma_k,S_k)
 \)</span><span class="math notranslate nohighlight">\(
-and let \)</span>s_{\hplay} = \gamma_0\cdots\gamma_k<span class="math notranslate nohighlight">\(. Then, \Eve goes to \)</span>(\gamma_k,R_k,\sigma_k,S_k,(\sigma^{k+1}<em>\alpha,S^{k+1}</em>\alpha)<em>{\alpha\in\Gamma}))<span class="math notranslate nohighlight">\( with \)</span>\sigma^{k+1}</em>{\alpha}(r) = \sigma((r,s_{\hplay}\alpha))<span class="math notranslate nohighlight">\( for every \)</span>r<span class="math notranslate nohighlight">\( such that \)</span>(r,s_{\hplay}\alpha)\in W_\mEve<span class="math notranslate nohighlight">\( and \)</span>S^{k+1}<em>\alpha = S</em>\sigma^{\hplay\alpha}$.</p></li>
+and let \)</span>s_{\widehat{\pi = \gamma_0\cdots\gamma_k<span class="math notranslate nohighlight">\(. Then, \textrm{Eve}goes to \)</span>(\gamma_k,R_k,\sigma_k,S_k,(\sigma^{k+1}<em>\alpha,S^{k+1}</em>\alpha)<em>{\alpha\in\Gamma}))<span class="math notranslate nohighlight">\( with \)</span>\sigma^{k+1}</em>{\alpha}(r) = \sigma((r,s_{\widehat{\pi\alpha))<span class="math notranslate nohighlight">\( for every \)</span>r<span class="math notranslate nohighlight">\( such that \)</span>(r,s_{\widehat{\pi\alpha)\in W_\mathrm{Eve} and <span class="math notranslate nohighlight">\(S^{k+1}_\alpha = S_\sigma^{\widehat{\pialpha}\)</span>.</p></li>
 </ul>
-<p>Assume now by contradiction that <span class="math notranslate nohighlight">\(\hsigma\)</span> is not winning and consider a loosing play \begin{equation*}
+<p>Assume now by contradiction that $\widehat{\sigma} is not winning and consider a loosing play \begin{equation*}
 \begin{split}
-\hplay = &amp; (\bot,R_0)(\gamma_0,R_0,\sigma_0,S_0)(\gamma_0,R_0,\sigma_0,S_0,(\sigma^1_\alpha,S^1_\alpha)<em>{\alpha\in\Gamma}))(\gamma_1,R_1,\sigma_1,S_1)\ &amp;\quad (\gamma_1,R_1,\sigma_1,S_1,(\sigma^2</em>\alpha,S^2_\alpha)_{\alpha\in\Gamma}))(\gamma_2,R_2,\sigma_2,S_2)\cdots
+\widehat{\pi= &amp; (\bot,R_0)(\gamma_0,R_0,\sigma_0,S_0)(\gamma_0,R_0,\sigma_0,S_0,(\sigma^1_\alpha,S^1_\alpha)<em>{\alpha\in\Gamma}))(\gamma_1,R_1,\sigma_1,S_1)\ &amp;\quad (\gamma_1,R_1,\sigma_1,S_1,(\sigma^2</em>\alpha,S^2_\alpha)_{\alpha\in\Gamma}))(\gamma_2,R_2,\sigma_2,S_2)\cdots
 \end{split}
 \end{equation*}</p>
 <p>Hence, there exists <span class="math notranslate nohighlight">\((q_i)_{i\geq 0},(p_i)_{i\geq 0}\in Q^{\mathbb{N}}\)</span> and <span class="math notranslate nohighlight">\((c_i)_{i\geq 0}\in \{0,\dots,d\}^{\mathbb{N}}\)</span> such that <span class="math notranslate nohighlight">\(\limsup(c_i)_{i\geq 0}\)</span> is odd and for every <span class="math notranslate nohighlight">\(i\geq 0\)</span> one has</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\((q_i,c_i,p_i)\in S_i\)</span>; and</p></li>
-<li><p>either <span class="math notranslate nohighlight">\(p_i\in Q_\mEve\)</span> and <span class="math notranslate nohighlight">\((q_{i+1},\push{\gamma_{i+1}})=\sigma_i(p_i,\gamma_i)\)</span> or <span class="math notranslate nohighlight">\(p_i\in Q_\mAdam\)</span> and <span class="math notranslate nohighlight">\((q_{i+1},\push{\gamma_{i+1}})\in \Delta((p_i,\gamma_i)\)</span>.</p></li>
+<li><p>either <span class="math notranslate nohighlight">\(p_i\in Q_\mathrm{Eve} and \)</span>(q_{i+1},\push{\gamma_{i+1}})=\sigma_i(p_i,\gamma_i)<span class="math notranslate nohighlight">\( or \)</span>p_i\in Q_\mathrm{Adam} and <span class="math notranslate nohighlight">\((q_{i+1},\push{\gamma_{i+1}})\in \Delta((p_i,\gamma_i)\)</span>.</p></li>
 </ul>
 <p>Now, consider the play
 $<span class="math notranslate nohighlight">\(
-\play=\play^{\gamma_0}_{(q_0,c_0,p_0)}\play^{\gamma_0\gamma_1}_{(q_1,c_1,p_1)}\play^{\gamma_0\gamma_1\gamma_2}_{(q_2,c_2,p_2)}\play^{\gamma_0\gamma_1\gamma_2\gamma_3}_{(q_3,c_3,p_3)}\cdots
+\pi\pi{\gamma_0}_{(q_0,c_0,p_0)}\pi{\gamma_0\gamma_1}_{(q_1,c_1,p_1)}\pi{\gamma_0\gamma_1\gamma_2}_{(q_2,c_2,p_2)}\pi{\gamma_0\gamma_1\gamma_2\gamma_3}_{(q_3,c_3,p_3)}\cdots
 \)</span>$</p>
-<p>Then it is easily seen by definition that <span class="math notranslate nohighlight">\(\play\)</span> is loosing (because <span class="math notranslate nohighlight">\(\hplay\)</span> is) while \Eve respects her winning strategy <span class="math notranslate nohighlight">\(\sigma\)</span>, which leads a contradiction and concludes the proof.</p>
+<p>Then it is easily seen by definition that <span class="math notranslate nohighlight">\(\pi is loosing (because \)</span>\widehat{\pi is) while \textrm{Eve}respects her winning strategy <span class="math notranslate nohighlight">\(\sigma\)</span>, which leads a contradiction and concludes the proof.</p>
 </div>
-<p>Following  <a class="reference internal" href="#10-thm:hgame">Theorem 290</a>, fix a finite memory winning strategy <span class="math notranslate nohighlight">\(\hsigma\)</span> for \Eve in <span class="math notranslate nohighlight">\(\hgame\)</span> from <span class="math notranslate nohighlight">\((\bot,W(\emptyset,\bot))\)</span>. Using <span class="math notranslate nohighlight">\(\hsigma\)</span> we define a positional strategy <span class="math notranslate nohighlight">\(\sigma\)</span> for \Eve in <span class="math notranslate nohighlight">\(\game\)</span>.</p>
-<p>First, we inductively associate, with any word <span class="math notranslate nohighlight">\(s\in \bot \Gamma^*\)</span>, a finite play <span class="math notranslate nohighlight">\(\hplay_s\)</span> in <span class="math notranslate nohighlight">\(\hgame\)</span> where \Eve respects her strategy <span class="math notranslate nohighlight">\(\hsigma\)</span>:</p>
+<p>Following  <a class="reference internal" href="#10-thm:hgame">Theorem 290</a>, fix a finite memory winning strategy <span class="math notranslate nohighlight">\(\widehat{\sigma} for \textrm{Eve}in \)</span>\widehat{\mathcal{G} from <span class="math notranslate nohighlight">\((\bot,W(\emptyset,\bot))\)</span>. Using <span class="math notranslate nohighlight">\(\widehat{\sigma} we define a positional strategy \)</span>\sigma<span class="math notranslate nohighlight">\( for \textrm{Eve}in \)</span>\mathcal{G}.</p>
+<p>First, we inductively associate, with any word <span class="math notranslate nohighlight">\(s\in \bot \Gamma^*\)</span>, a finite play <span class="math notranslate nohighlight">\(\hplay_s\)</span> in <span class="math notranslate nohighlight">\(\widehat{\mathcal{G} where \textrm{Eve}respects her strategy \)</span>\widehat{\sigma}:</p>
 <ul class="simple">
-<li><p>If <span class="math notranslate nohighlight">\(s=\bot\)</span>, we let <span class="math notranslate nohighlight">\(\hplay_s = (\bot,W(\emptyset,\bot))(\bot,W(\emptyset,\bot),\sigma_\bot,S)\)</span> where <span class="math notranslate nohighlight">\((\bot,W(\emptyset,\bot),\sigma_\bot,S) = \hsigma((\bot,W(\emptyset,\bot)))\)</span>.</p></li>
-<li><p>If <span class="math notranslate nohighlight">\(s=s'\beta\)</span> for some <span class="math notranslate nohighlight">\(\beta\in\Gamma\)</span>, let <span class="math notranslate nohighlight">\(\hsigma(\hplay_{s'}) = (\gamma,R,\sigma_\gamma,S,(\sigma_\alpha,S_\alpha)_{\alpha\in\Gamma}))\)</span> and define
+<li><p>If <span class="math notranslate nohighlight">\(s=\bot\)</span>, we let <span class="math notranslate nohighlight">\(\hplay_s = (\bot,W(\emptyset,\bot))(\bot,W(\emptyset,\bot),\sigma_\bot,S)\)</span> where <span class="math notranslate nohighlight">\((\bot,W(\emptyset,\bot),\sigma_\bot,S) = \widehat{\sigma}(\bot,W(\emptyset,\bot)))\)</span>.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(s=s'\beta\)</span> for some <span class="math notranslate nohighlight">\(\beta\in\Gamma\)</span>, let <span class="math notranslate nohighlight">\(\widehat{\sigma}\hplay_{s'}) = (\gamma,R,\sigma_\gamma,S,(\sigma_\alpha,S_\alpha)_{\alpha\in\Gamma}))\)</span> and define
 $<span class="math notranslate nohighlight">\(
 \hplay_{s}= \hplay_{s'}(\gamma,R,\sigma_\gamma,S,(\sigma_\alpha,S_\alpha)_{\alpha\in\Gamma}))(\beta,W(R,\beta),\sigma_\beta,S_\beta).
 \)</span>$</p></li>
 </ul>
-<p>Now, for every configuration <span class="math notranslate nohighlight">\((q,s)\)</span> with <span class="math notranslate nohighlight">\(q\in Q_\mEve\)</span>, we let <span class="math notranslate nohighlight">\((\gamma,R,\sigma_\gamma,S_\gamma)\)</span> be the last vertex in <span class="math notranslate nohighlight">\(\hplay_s\)</span> and if <span class="math notranslate nohighlight">\(q\in R\)</span> we let <span class="math notranslate nohighlight">\(\sigma((q,s)) = \sigma_\gamma(q)\)</span> and otherwise we pick an arbitrary transition for <span class="math notranslate nohighlight">\(\sigma((q,s))\)</span> as <span class="math notranslate nohighlight">\((q,s)\)</span> will be a loosing position for \Eve (see \Cref{10-proposition:R-winning-states} below).</p>
+<p>Now, for every configuration <span class="math notranslate nohighlight">\((q,s)\)</span> with <span class="math notranslate nohighlight">\(q\in Q_\mathrm{Eve}, we let \)</span>(\gamma,R,\sigma_\gamma,S_\gamma)<span class="math notranslate nohighlight">\( be the last vertex in \)</span>\hplay_s<span class="math notranslate nohighlight">\( and if \)</span>q\in R<span class="math notranslate nohighlight">\( we let \)</span>\sigma((q,s)) = \sigma_\gamma(q)<span class="math notranslate nohighlight">\( and otherwise we pick an arbitrary transition for \)</span>\sigma((q,s))<span class="math notranslate nohighlight">\( as \)</span>(q,s)$ will be a loosing position for \textrm{Eve}(see \Cref{10-proposition:R-winning-states} below).</p>
 <p>The following is a direct rephrasing of the proof of  <a class="reference internal" href="profiles.html#10-thm:regularity-wr">Theorem 280</a>.</p>
 <div class="proof proposition admonition" id="10-proposition:R-winning-states">
 <p class="admonition-title"><span class="caption-number">Proposition 291 </span> (NEEDS TITLE 10-proposition:R-winning-states)</p>
 <div class="proposition-content section" id="proof-content">
-<p>Let <span class="math notranslate nohighlight">\(s\in\Gamma^*\bot\)</span> and let <span class="math notranslate nohighlight">\((\gamma,R,\sigma_\gamma,S)\)</span> be the last vertex in <span class="math notranslate nohighlight">\(\hplay_s\)</span>. Then <span class="math notranslate nohighlight">\(R=\{p\mid (p,s)\in W_\mEve\}\)</span>.</p>
+<p>Let <span class="math notranslate nohighlight">\(s\in\Gamma^*\bot\)</span> and let <span class="math notranslate nohighlight">\((\gamma,R,\sigma_\gamma,S)\)</span> be the last vertex in <span class="math notranslate nohighlight">\(\hplay_s\)</span>. Then <span class="math notranslate nohighlight">\(R=\{p\mid (p,s)\in W_\mathrm{Eve}}\)</span>.</p>
 </div>
-</div><p>The following is  consequence of \Cref{10-proposition:R-winning-states} and of the requirement that in a vertex <span class="math notranslate nohighlight">\((\gamma,R,\sigma_\gamma,S)\)</span> \Eve should only propose <span class="math notranslate nohighlight">\((W(R,\alpha),\alpha)\)</span>-local strategies that pops in <span class="math notranslate nohighlight">\(R\)</span>.</p>
+</div><p>The following is  consequence of \Cref{10-proposition:R-winning-states} and of the requirement that in a vertex <span class="math notranslate nohighlight">\((\gamma,R,\sigma_\gamma,S)\)</span> \textrm{Eve}should only propose <span class="math notranslate nohighlight">\((W(R,\alpha),\alpha)\)</span>-local strategies that pops in <span class="math notranslate nohighlight">\(R\)</span>.</p>
 <div class="proof proposition admonition" id="10-proposition:stays-in-winning-region">
 <p class="admonition-title"><span class="caption-number">Proposition 292 </span> (NEEDS TITLE 10-proposition:stays-in-winning-region)</p>
 <div class="proposition-content section" id="proof-content">
-<p>Let <span class="math notranslate nohighlight">\(\play\)</span> be an infinite play in <span class="math notranslate nohighlight">\(\game\)</span> starting from some winning position for \Eve and where \Eve respects strategy <span class="math notranslate nohighlight">\(\sigma\)</span>. Then any vertex visited in <span class="math notranslate nohighlight">\(\play\)</span> is a winning position for \Eve.</p>
+<p>Let <span class="math notranslate nohighlight">\(\pi be an infinite play in \)</span>\mathcal{G} starting from some winning position for \textrm{Eve}and where \textrm{Eve}respects strategy <span class="math notranslate nohighlight">\(\sigma\)</span>. Then any vertex visited in $\pi is a winning position for \textrm{Eve}</p>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
-<p>It suffices to prove that the property is true for the second vertex in <span class="math notranslate nohighlight">\(\play\)</span> (and then conclude by induction as the strategy <span class="math notranslate nohighlight">\(\play\)</span> is positional). If the initial vertex belongs to \Adam, then by definition all possible successors are winning for \Eve (otherwise the initial one would be winning for \Adam as well by prefix independence of the parity objective). If the initial vertex is controlled by \Eve there are two cases depending whether her move is to push or pop a symbol. If the move is to pop a symbol then, by construction, the state reached belong to <span class="math notranslate nohighlight">\(R\)</span> where the last vertex in <span class="math notranslate nohighlight">\(\hplay_s\)</span> is <span class="math notranslate nohighlight">\((\gamma,R,\sigma_\gamma,S)\)</span>, if <span class="math notranslate nohighlight">\(s\)</span> denote the stack content after popping: hence, by \Cref{10-proposition:R-winning-states} we conclude. If the move is to push a symbol then the result follows directly from the fact that we only consider safe local strategies and by \Cref{10-proposition:R-winning-states}.</p>
+<p>It suffices to prove that the property is true for the second vertex in <span class="math notranslate nohighlight">\(\pi (and then conclude by induction as the strategy \)</span>\pi is positional). If the initial vertex belongs to \textrm{Adam} then by definition all possible successors are winning for \textrm{Eve}(otherwise the initial one would be winning for \textrm{Adam}as well by prefix independence of the parity objective). If the initial vertex is controlled by \textrm{Eve}there are two cases depending whether her move is to push or pop a symbol. If the move is to pop a symbol then, by construction, the state reached belong to <span class="math notranslate nohighlight">\(R\)</span> where the last vertex in <span class="math notranslate nohighlight">\(\hplay_s\)</span> is <span class="math notranslate nohighlight">\((\gamma,R,\sigma_\gamma,S)\)</span>, if <span class="math notranslate nohighlight">\(s\)</span> denote the stack content after popping: hence, by \Cref{10-proposition:R-winning-states} we conclude. If the move is to push a symbol then the result follows directly from the fact that we only consider safe local strategies and by \Cref{10-proposition:R-winning-states}.</p>
 </div>
 <p>The following is an easy consequence of the notion of consistent tuples.</p>
 <div class="proof proposition admonition" id="10-proposition:bumps">
 <p class="admonition-title"><span class="caption-number">Proposition 293 </span> (NEEDS TITLE 10-proposition:bumps)</p>
 <div class="proposition-content section" id="proof-content">
-<p>Let <span class="math notranslate nohighlight">\((p,s)\in V\)</span> and let <span class="math notranslate nohighlight">\((\gamma,R,\sigma_\gamma,S)\)</span> be the last vertex in <span class="math notranslate nohighlight">\(\hplay_s\)</span>. Assume that <span class="math notranslate nohighlight">\(p\in R\)</span>. Let <span class="math notranslate nohighlight">\(\play=v_0\cdots v_k\)</span> be a finite play in <span class="math notranslate nohighlight">\(\game\)</span> such that <span class="math notranslate nohighlight">\(k&gt; 0\)</span>, <span class="math notranslate nohighlight">\(v_0=(p,s)\)</span>, <span class="math notranslate nohighlight">\(\sh(v_i)\geq\sh(v_0)\)</span> for every <span class="math notranslate nohighlight">\(0&lt; i&lt; k\)</span> and <span class="math notranslate nohighlight">\(v_k=(q,s)\)</span> for some <span class="math notranslate nohighlight">\(q\in Q\)</span>. Then <span class="math notranslate nohighlight">\((p,c,q)\in S\)</span> where <span class="math notranslate nohighlight">\(c\)</span> is the largest colour visited in <span class="math notranslate nohighlight">\(\play\)</span>.</p>
+<p>Let <span class="math notranslate nohighlight">\((p,s)\in V\)</span> and let <span class="math notranslate nohighlight">\((\gamma,R,\sigma_\gamma,S)\)</span> be the last vertex in <span class="math notranslate nohighlight">\(\hplay_s\)</span>. Assume that <span class="math notranslate nohighlight">\(p\in R\)</span>. Let <span class="math notranslate nohighlight">\(\piv_0\cdots v_k\)</span> be a finite play in <span class="math notranslate nohighlight">\(\mathcal{G} such that \)</span>k&gt; 0<span class="math notranslate nohighlight">\(, \)</span>v_0=(p,s)<span class="math notranslate nohighlight">\(, \)</span>\mathrm{sh}v_i)\geq\mathrm{sh}v_0)<span class="math notranslate nohighlight">\( for every \)</span>0&lt; i&lt; k<span class="math notranslate nohighlight">\( and \)</span>v_k=(q,s)<span class="math notranslate nohighlight">\( for some \)</span>q\in Q<span class="math notranslate nohighlight">\(. Then \)</span>(p,c,q)\in S<span class="math notranslate nohighlight">\( where \)</span>c<span class="math notranslate nohighlight">\( is the largest colour visited in \)</span>\pi.</p>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
-<p>We do the proof only when we assume that the inequality <span class="math notranslate nohighlight">\(\sh(v_i)\geq\sh(v_0)\)</span> is strict. The case where it is large is then a consequence of the fact that <span class="math notranslate nohighlight">\(S\)</span> is complete with successive application of the strict case.
+<p>We do the proof only when we assume that the inequality <span class="math notranslate nohighlight">\(\mathrm{sh}v_i)\geq\mathrm{sh}v_0)\)</span> is strict. The case where it is large is then a consequence of the fact that <span class="math notranslate nohighlight">\(S\)</span> is complete with successive application of the strict case.
 The proof is by induction on <span class="math notranslate nohighlight">\(k\)</span>. The base case is when <span class="math notranslate nohighlight">\(k=2\)</span>, and it corresponds to the degenerated case in the definition of consistent tuple. Now for the general case, when <span class="math notranslate nohighlight">\(k&gt;2\)</span>, one simply considers the play <span class="math notranslate nohighlight">\(v_1\cdots v_{k-1}\)</span>, applies the induction hypothesis and conclude with the definition of consistent tuple again.</p>
 </div>
-<p>We are now ready to conclude and prove that <span class="math notranslate nohighlight">\(\sigma\)</span> is a winning strategy for \Eve.</p>
+<p>We are now ready to conclude and prove that <span class="math notranslate nohighlight">\(\sigma\)</span> is a winning strategy for \textrm{Eve}</p>
 <div class="proof theorem admonition" id="10-thm:positional-strategy">
 <p class="admonition-title"><span class="caption-number">Theorem 294 </span> (NEEDS TITLE 10-thm:positional-strategy)</p>
 <div class="theorem-content section" id="proof-content">
-<p>The positional strategy <span class="math notranslate nohighlight">\(\sigma\)</span> is winning for \Eve on the whole winning region in <span class="math notranslate nohighlight">\(\game\)</span>.</p>
+<p>The positional strategy <span class="math notranslate nohighlight">\(\sigma\)</span> is winning for \textrm{Eve}on the whole winning region in $\mathcal{G}.</p>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
-<p>Consider an infinite play <span class="math notranslate nohighlight">\(\play=v_0v_1\cdots\)</span> starting from some winning position for \Eve. Then by \Cref{10-proposition:stays-in-winning-region} we know that the play stays in the winning region.</p>
-<p>By contradiction assume that <span class="math notranslate nohighlight">\(\play\)</span> is loosing. We distinguish between two cases depending whether there is some vertex that is infinitely visited or not in <span class="math notranslate nohighlight">\(\play\)</span>.</p>
+<p>Consider an infinite play <span class="math notranslate nohighlight">\(\piv_0v_1\cdots\)</span> starting from some winning position for \textrm{Eve} Then by \Cref{10-proposition:stays-in-winning-region} we know that the play stays in the winning region.</p>
+<p>By contradiction assume that <span class="math notranslate nohighlight">\(\pi is loosing. We distinguish between two cases depending whether there is some vertex that is infinitely visited or not in \)</span>\pi.</p>
 <ul class="simple">
-<li><p>Assume that there is a vertex <span class="math notranslate nohighlight">\(v=(q,s)\)</span> that appears infinitely often in <span class="math notranslate nohighlight">\(\play\)</span> and choose one of minimal stack height. Let <span class="math notranslate nohighlight">\(k_0\)</span> be such that <span class="math notranslate nohighlight">\(v_{k_0}=v\)</span> and such that <span class="math notranslate nohighlight">\(\sh(v_j)\geq \sh(v)\)</span> for every <span class="math notranslate nohighlight">\(j\geq k_0\)</span>. Let <span class="math notranslate nohighlight">\((k_i)_{i\geq 0}\)</span> be the increasing sequence of integers <span class="math notranslate nohighlight">\(k_i\geq k_0\)</span> such that <span class="math notranslate nohighlight">\(v_{k_i}=v\)</span>. We claim that the largest colour visited in the segment <span class="math notranslate nohighlight">\(v_{k_i}\cdots v_{k_{i+1}}\)</span> is even: indeed, it is a direct consequence of \Cref{10-proposition:bumps} and of the fact that the set of summaries we consider are winning. We then conclude that the largest colour infinitely visited in <span class="math notranslate nohighlight">\(\play\)</span> is even hence, leading a contradiction.</p></li>
-<li><p>Assume that no vertex is infinitely often visited in <span class="math notranslate nohighlight">\(\play\)</span>. As the parity objective is prefix independent we can assume without loss of generality that there is no visited vertex with stack-height strictly smaller than <span class="math notranslate nohighlight">\(h=\sh(v_0)\)</span>.
-Factorise <span class="math notranslate nohighlight">\(\play\)</span> as <span class="math notranslate nohighlight">\(v_{i_0}\cdots v_{i_1-1}v_{i_1}\cdots v_{i_2-1}v_{i_2}\cdots v_{i_3-1}\cdots\)</span> where <span class="math notranslate nohighlight">\(\sh(v_{i_j})=\sh(v_{i_{j+1}-1})=h+j\)</span> and <span class="math notranslate nohighlight">\(\sh(v_k)&gt;h+j\)</span> for all <span class="math notranslate nohighlight">\(k\geq j+1\)</span> (equivalently stack height <span class="math notranslate nohighlight">\(h+j\)</span> is left forever in <span class="math notranslate nohighlight">\(v_{j+1}\)</span>). Call <span class="math notranslate nohighlight">\(s_j\)</span> the stack content in <span class="math notranslate nohighlight">\(v_{i_j}\)</span> and consider the infinite play <span class="math notranslate nohighlight">\(\hplay\)</span> defined as the limit of the increasing (for prefix ordering) sequence of finite plays <span class="math notranslate nohighlight">\((\hplay_{s_j})_{j\geq 0}\)</span>: it is a play in <span class="math notranslate nohighlight">\(\hgame\)</span> where \Eve respects <span class="math notranslate nohighlight">\(\hsigma\)</span> hence, it is winning for her.
-Now let <span class="math notranslate nohighlight">\(v_{i_j}=(q_j,s_j)\)</span>, <span class="math notranslate nohighlight">\(v_{i_{j+1}-1}=(p_j,s_j)\)</span> and let <span class="math notranslate nohighlight">\(c_j\)</span> be the largest colour visited in <span class="math notranslate nohighlight">\(v_{i_j}\cdots v_{i_{j+1}-1}\)</span>. Then, as we assume that <span class="math notranslate nohighlight">\(\play\)</span> is loosing one has <span class="math notranslate nohighlight">\(\limsup(c_i)_{i\geq 0}\)</span> is odd. Moreover, if one lets \begin{equation*}
+<li><p>Assume that there is a vertex <span class="math notranslate nohighlight">\(v=(q,s)\)</span> that appears infinitely often in <span class="math notranslate nohighlight">\(\pi and choose one of minimal stack height. Let \)</span>k_0<span class="math notranslate nohighlight">\( be such that \)</span>v_{k_0}=v<span class="math notranslate nohighlight">\( and such that \)</span>\mathrm{sh}v_j)\geq \mathrm{sh}v)<span class="math notranslate nohighlight">\( for every \)</span>j\geq k_0<span class="math notranslate nohighlight">\(. Let \)</span>(k_i)<em>{i\geq 0}<span class="math notranslate nohighlight">\( be the increasing sequence of integers \)</span>k_i\geq k_0<span class="math notranslate nohighlight">\( such that \)</span>v</em>{k_i}=v<span class="math notranslate nohighlight">\(. We claim that the largest colour visited in the segment \)</span>v_{k_i}\cdots v_{k_{i+1}}<span class="math notranslate nohighlight">\( is even: indeed, it is a direct consequence of \Cref{10-proposition:bumps} and of the fact that the set of summaries we consider are winning. We then conclude that the largest colour infinitely visited in \)</span>\pi is even hence, leading a contradiction.</p></li>
+<li><p>Assume that no vertex is infinitely often visited in <span class="math notranslate nohighlight">\(\pi. As the parity objective is prefix independent we can assume without loss of generality that there is no visited vertex with stack-height strictly smaller than \)</span>h=\mathrm{sh}v_0)<span class="math notranslate nohighlight">\(. 
+Factorise \)</span>\pi as <span class="math notranslate nohighlight">\(v_{i_0}\cdots v_{i_1-1}v_{i_1}\cdots v_{i_2-1}v_{i_2}\cdots v_{i_3-1}\cdots\)</span> where <span class="math notranslate nohighlight">\(\mathrm{sh}v_{i_j})=\mathrm{sh}v_{i_{j+1}-1})=h+j\)</span> and <span class="math notranslate nohighlight">\(\mathrm{sh}v_k)&gt;h+j\)</span> for all <span class="math notranslate nohighlight">\(k\geq j+1\)</span> (equivalently stack height <span class="math notranslate nohighlight">\(h+j\)</span> is left forever in <span class="math notranslate nohighlight">\(v_{j+1}\)</span>). Call <span class="math notranslate nohighlight">\(s_j\)</span> the stack content in <span class="math notranslate nohighlight">\(v_{i_j}\)</span> and consider the infinite play <span class="math notranslate nohighlight">\(\widehat{\pi defined as the limit of the increasing (for prefix ordering) sequence of finite plays \)</span>(\hplay_{s_j})<em>{j\geq 0}<span class="math notranslate nohighlight">\(: it is a play in \)</span>\widehat{\mathcal{G} where \textrm{Eve}respects <span class="math notranslate nohighlight">\(\widehat{\sigma} hence, it is winning for her. 
+Now let \)</span>v</em>{i_j}=(q_j,s_j)<span class="math notranslate nohighlight">\(, \)</span>v_{i_{j+1}-1}=(p_j,s_j)<span class="math notranslate nohighlight">\( and let \)</span>c_j<span class="math notranslate nohighlight">\( be the largest colour visited in \)</span>v_{i_j}\cdots v_{i_{j+1}-1}<span class="math notranslate nohighlight">\(. Then, as we assume that \)</span>\pi is loosing one has <span class="math notranslate nohighlight">\(\limsup(c_i)_{i\geq 0}\)</span> is odd. Moreover, if one lets \begin{equation*}
 \begin{split}
-\hplay = &amp; (\bot,R_0)(\gamma_0,R_0,\sigma_0,S_0)(\gamma_0,R_0,\sigma_0,S_0,(\sigma^1_\alpha,S^1_\alpha)<em>{\alpha\in\Gamma}))(\gamma_1,R_1,\sigma_1,S_1)\ &amp;\quad (\gamma_1,R_1,\sigma_1,S_1,(\sigma^2</em>\alpha,S^2_\alpha)_{\alpha\in\Gamma}))(\gamma_2,R_2,\sigma_2,S_2)\cdots
+\widehat{\pi= &amp; (\bot,R_0)(\gamma_0,R_0,\sigma_0,S_0)(\gamma_0,R_0,\sigma_0,S_0,(\sigma^1_\alpha,S^1_\alpha)<em>{\alpha\in\Gamma}))(\gamma_1,R_1,\sigma_1,S_1)\ &amp;\quad (\gamma_1,R_1,\sigma_1,S_1,(\sigma^2</em>\alpha,S^2_\alpha)_{\alpha\in\Gamma}))(\gamma_2,R_2,\sigma_2,S_2)\cdots
 \end{split}
 \end{equation*}
 one has that
 \begin{itemize}</p></li>
 <li><p><span class="math notranslate nohighlight">\((q_i,c_i,p_i)\in S_i\)</span> (by \Cref{10-proposition:bumps}); and</p></li>
-<li><p>either <span class="math notranslate nohighlight">\(p_i\in Q_\mEve\)</span> and <span class="math notranslate nohighlight">\((q_{i+1},\push{\gamma_{i+1}})=\sigma_i(p_i,\gamma_i)\)</span> (by definition of <span class="math notranslate nohighlight">\(\sigma\)</span>) or <span class="math notranslate nohighlight">\(p_i\in Q_\mAdam\)</span> and <span class="math notranslate nohighlight">\((q_{i+1},\push{\gamma_{i+1}})\in \Delta((p_i,\gamma_i)\)</span>  (by definition of <span class="math notranslate nohighlight">\(\sigma\)</span>).</p></li>
+<li><p>either <span class="math notranslate nohighlight">\(p_i\in Q_\mathrm{Eve} and \)</span>(q_{i+1},\push{\gamma_{i+1}})=\sigma_i(p_i,\gamma_i)<span class="math notranslate nohighlight">\( (by definition of \)</span>\sigma<span class="math notranslate nohighlight">\() or \)</span>p_i\in Q_\mathrm{Adam} and <span class="math notranslate nohighlight">\((q_{i+1},\push{\gamma_{i+1}})\in \Delta((p_i,\gamma_i)\)</span>  (by definition of <span class="math notranslate nohighlight">\(\sigma\)</span>).</p></li>
 </ul>
-<p>This means that <span class="math notranslate nohighlight">\(\hplay\)</span> is loosing, leading a contradiction.
+<p>This means that <span class="math notranslate nohighlight">\(\widehat{\pi is loosing, leading a contradiction.
 \end{itemize}
-Hence, we conclude that <span class="math notranslate nohighlight">\(\play\)</span> is winning which concludes the proof.</p>
+Hence, we conclude that \)</span>\pi is winning which concludes the proof.</p>
 </div>
 <div class="admonition-remark admonition">
 <p class="admonition-title">Remark</p>

@@ -705,122 +705,33 @@
   <div class="section" id="controllable-predecessor-operator">
 <span id="sec-controllable-predecessor-operator"></span><h1>Controllable-Predecessor Operator<a class="headerlink" href="#controllable-predecessor-operator" title="Permalink to this headline">¶</a></h1>
 <div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}\usepackage{amsmath}
-  
-\newcommand*\Realnn{\mathbb{R}_{\geq 0}}
-\newcommand*\Clocks{\mathcal{C}}
-\newcommand*\TA{\ensuremath{\mathcal{A}}}
-\newcommand*\Locs{\mathcal{L}}
-\newcommand*\Clocksz{\mathcal{C}_0}
-\newcommand*\calQ{\mathcal{Q}}
-\newcommand*\state{\mathsf{state}}
-\newcommand*\trans{\mathsf{trans}}
-\newcommand*\post{\mathsf{post}}
-\newcommand*\step{\mathsf{step}}
-\newcommand*\postta{\ensuremath{\textrm{\sf Post}}}
-\newcommand*\preta{\ensuremath{\textrm{\sf Pre}}}
-\newcommand*\unreset{\ensuremath{\textrm{\sf Unreset}}}
-\newcommand*\posttime{\ensuremath{\textrm{\sf Post}_{\geq 0}}}
-\newcommand*\pretime{\ensuremath{\textrm{\sf Pre}_{\geq 0}}} \newcommand*\reset{\mathsf{Reset}}
-\newcommand{\sem}[1]{\ensuremath{#1}}
-\newcommand{\size}[1]{\ensuremath{|#1|}}\\\def\predc{\textrm{\sf Pred}_c}
-\def\predt{\textrm{\sf Pred}_{\geq 0}} \def\predu{\textrm{\sf Pred}_u}
-\def\calP{\mathcal P}
-\def\calC{\mathcal C}
-\def\calT{\mathcal T}
-\def\Dep{\textsf{Dep}}
-\def\Wait{\textsf{Wait}}
-\def\Passed{\textsf{Passed}}
-\def\Act{\textsf{Act}}
-\def\EA{E_{\Adam}}
-\def\EE{E_{\Eve}}\\\newcommand\zone[1]{\ensuremath{\left\llbracket#1\right\rrbracket}}
-\def\NM#1{\textcolor{green!50!black}{\checkmark}\marginpar{\color{green!50!black}NM: #1}} 
-\long\def\NMlong#1{\medskip\par{\color{green!50!black}NM: #1}\medskip\par}
-\def\OS#1{\textcolor{blue!50!black}{\checkmark}\marginpar{\color{blue!50!black}OS: #1}} 
-\long\def\OSlong#1{\medskip\par{\color{blue!50!black}OS: #1}\medskip\par}\\\newcommand{\Eve}{\textrm{Eve}}
+\[\newcommand{\Eve}{\textrm{Eve}}
 \newcommand{\Adam}{\textrm{Adam}}
-\newcommand{\set}[1]{\left\{ #1 \right\}}
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
-\newcommand{\argmax}{\textrm{argmax}}
-\newcommand{\argmin}{\textrm{argmin}}
-\newcommand{\Op}{\mathbb{O}}
-\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\textrm{supp}} 
-\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
-\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
+\newcommand{\vertices}{V}
+\newcommand{\VE}{V_\mEve}
+\newcommand{\VA}{V_\mAdam}
 \newcommand{\mEve}{\mathrm{Eve}}
-\newcommand{\mAdam}{\mathrm{Adam}}
-\newcommand{\mRandom}{\mathrm{Random}}
-\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
-\newcommand{\ing}{\textrm{In}}
-\newcommand{\Ing}{\ing}
-\newcommand{\out}{\textrm{Out}}
-\newcommand{\Out}{\out}
-\newcommand{\dest}{\Delta} 
-\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
-\newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
-\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
-\newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\newcommand{\Win}{\textrm{Win}} 
-\newcommand{\Lose}{\textrm{Lose}} 
-\newcommand{\Value}{\textrm{val}} 
-\newcommand{\ValueE}{\textrm{val}_\mEve} 
-\newcommand{\ValueA}{\textrm{val}_\mAdam}
-\newcommand{\val}{\Value} 
-\newcommand{\Automaton}{\mathbf{A}} 
-\newcommand{\Safe}{\mathtt{Safe}}
-\newcommand{\Reach}{\mathtt{Reach}} 
-\newcommand{\Buchi}{\mathtt{Buchi}} 
-\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
-\newcommand{\Parity}{\mathtt{Parity}} 
-\newcommand{\Muller}{\mathtt{Muller}} 
-\newcommand{\Rabin}{\mathtt{Rabin}} 
-\newcommand{\Streett}{\mathtt{Streett}} 
-\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
-\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
-\newcommand{\Energy}{\mathtt{Energy}}
-\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
-\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
-\newcommand{\Sup}{\mathtt{Sup}}
-\newcommand{\Inf}{\mathtt{Inf}}
-\newcommand{\LimSup}{\mathtt{LimSup}}
-\newcommand{\LimInf}{\mathtt{LimInf}}
-\newcommand{\NL}{\textrm{NL}}
-\newcommand{\PTIME}{\textrm{PTIME}}
-\newcommand{\NP}{\textrm{NP}}
-\newcommand{\UP}{\textrm{UP}}
-\newcommand{\coNP}{\textrm{coNP}}
-\newcommand{\coUP}{\textrm{coUP}}
-\newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
-\newcommand{\EXP}{\textrm{EXP}}
-\newcommand{\kEXP}{\textrm{kEXP}}\end{aligned}\end{align} \]</div>
+\newcommand{\mAdam}{\mathrm{Adam}}\]</div>
 <p>We present the controllable-predecessor operator which, given sets of
-states <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span>, returns the set of states from which \Eve can
-reach <span class="math notranslate nohighlight">\(X\)</span> in one step, while avoiding states of <span class="math notranslate nohighlight">\(Y\)</span> during \Eve’s
-delay. Intuitively, the states in <span class="math notranslate nohighlight">\(Y\)</span> are the states from which \Adam
-may force an action leading outside of <span class="math notranslate nohighlight">\(X\)</span>, which \Eve would better avoid.</p>
-<p>Recall that <span class="math notranslate nohighlight">\(\vertices = \Locs \times \Realnn^\Clocks\)</span>.
-The set of <strong>safe time-predecessors</strong> to reach <span class="math notranslate nohighlight">\(X \subseteq \vertices\)</span> while
-avoiding <span class="math notranslate nohighlight">\(Y \subseteq \vertices\)</span></p>
+states <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span>, returns the set of states from which \textrm{Eve}can
+reach <span class="math notranslate nohighlight">\(X\)</span> in one step, while avoiding states of <span class="math notranslate nohighlight">\(Y\)</span> during \textrm{Eve}s
+delay. Intuitively, the states in <span class="math notranslate nohighlight">\(Y\)</span> are the states from which \textrm{Adam}may force an action leading outside of <span class="math notranslate nohighlight">\(X\)</span>, which \textrm{Eve}would better avoid.</p>
+<p>Recall that <span class="math notranslate nohighlight">\(V= \Locs \times \Realnn^\Clocks\)</span>.
+The set of <strong>safe time-predecessors</strong> to reach <span class="math notranslate nohighlight">\(X \subseteq V while
+avoiding \)</span>Y \subseteq V</p>
 <p>is defined as follows:</p>
 <p>\begin{multline*}
-\predt(X,Y) = {(\ell,\nu) \in \vertices \mid \exists d\geq
+\predt(X,Y) = {(\ell,\nu) \in V\mid \exists d\geq
 0.\ (\ell,\nu+d) \in X \wedge{} \
 \forall d’ \in[0,d).\ (\ell,\nu+d’) \not  \in Y}.
 \end{multline*}</p>
 <p>In words, from any configuration of <span class="math notranslate nohighlight">\(\predt(X,Y)\)</span>,
 the set <span class="math notranslate nohighlight">\(X\)</span> can be reached by
 delaying while never crossing any configuration of <span class="math notranslate nohighlight">\(Y\)</span> on the way.
-For any <span class="math notranslate nohighlight">\(X \subseteq \vertices\)</span>, let us denote</p>
+For any $X \subseteq V, let us denote</p>
 <div class="math notranslate nohighlight">
 \[
-  \predc(X) = \{ (\ell,\nu) \in \vertices \mid \exists e \in \EE(\ell).\ 
+  \predc(X) = \{ (\ell,\nu) \in V\mid \exists e \in \EE(\ell).\ 
 \exists (\ell',\nu') \in X.\ (\ell,\nu) \xrightarrow{e} (\ell',\nu')\}.
 \]</div>
 <p>This is the set of immediate predecessors of <span class="math notranslate nohighlight">\(X\)</span> by edges in <span class="math notranslate nohighlight">\(\EE\)</span>.
@@ -828,12 +739,12 @@ Symmetrically, we~define <span class="math notranslate nohighlight">\(\predu(X)\
 Our controllable-predecessor operator is then defined as</p>
 <div class="math notranslate nohighlight">
 \[
-  \pi(X) = \predt(X\cup \predc(X), \predu(\vertices \setminus X)).
+  \pi(X) = \predt(X\cup \predc(X), \predu(V\setminus X)).
 \]</div>
-<p>Intuitively, the states in <span class="math notranslate nohighlight">\(\pi(X)\)</span> are those from which \Eve~can wait
+<p>Intuitively, the states in <span class="math notranslate nohighlight">\(\pi(X)\)</span> are those from which \textrm{Eve}can wait
 until she
 can take a controllable transition to~reach <span class="math notranslate nohighlight">\(X\)</span>, and so that</p>
-<p>no transitions that \Adam could take while \Eve is waiting may lead
+<p>no transitions that \textrm{Adam}could take while \textrm{Eve}is waiting may lead
 outside of <span class="math notranslate nohighlight">\(X\)</span>.</p>
 <div class="proof lemma admonition" id="9-lem:pimonotonic">
 <p class="admonition-title"><span class="caption-number">Lemma 270 </span> (NEEDS TITLE 9-lem:pimonotonic)</p>
@@ -846,65 +757,64 @@ order-preserving: if <span class="math notranslate nohighlight">\(X\subseteq Y\)
 <p class="admonition-title"><span class="caption-number">Example 271 </span> (NEEDS TITLE AND LABEL)</p>
 <div class="example-content section" id="proof-content">
 <p>Consider the timed game to the left of
-<code class="xref std std-numref docutils literal notranslate"><span class="pre">9-fig:contpred</span></code>. In~that game, \Eve can reach her target when
+<code class="xref std std-numref docutils literal notranslate"><span class="pre">9-fig:contpred</span></code>. In~that game, \textrm{Eve}can reach her target when
 clock <span class="math notranslate nohighlight">\(x_2\)</span> reaches value <span class="math notranslate nohighlight">\(3\)</span> while <span class="math notranslate nohighlight">\(x_1\)</span> is in <span class="math notranslate nohighlight">\([1;4]\)</span>. However,
-\Adam can take the game to a bad state when simultaneously
+\textrm{Adam}can take the game to a bad state when simultaneously
 <span class="math notranslate nohighlight">\(x_1\in[1;2]\)</span> and <span class="math notranslate nohighlight">\(x_2\leq 2\)</span>. The~diagram to the right of
-<code class="xref std std-numref docutils literal notranslate"><span class="pre">9-fig:contpred</span></code> shows the set of winning valuations for~\Eve:
+<code class="xref std std-numref docutils literal notranslate"><span class="pre">9-fig:contpred</span></code> shows the set of winning valuations for~\textrm{Eve}
 it~is computed as <span class="math notranslate nohighlight">\(\predt(X,Y)\)</span> where <span class="math notranslate nohighlight">\(X=\predc(\{W\}\times\Realnn)\)</span>
 and <span class="math notranslate nohighlight">\(Y=\predu(\{\ell_0,\ell_1\}\times\Realnn)\)</span>.</p>
 <div class="figure align-center" id="fig-contpred">
 <img alt="9_Timed/./../FigAndAlgos/9-fig:contpred.png" src="9_Timed/./../FigAndAlgos/9-fig:contpred.png" />
-<p class="caption"><span class="caption-number">Fig. 63 </span><span class="caption-text">Controllable predecessors</span><a class="headerlink" href="#fig-contpred" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 62 </span><span class="caption-text">Controllable predecessors</span><a class="headerlink" href="#fig-contpred" title="Permalink to this image">¶</a></p>
 </div>
 <p>Consider the timed game to the left of
-<code class="xref std std-numref docutils literal notranslate"><span class="pre">9-fig:contpred</span></code>. In~that game, \Eve can reach her target when
+<code class="xref std std-numref docutils literal notranslate"><span class="pre">9-fig:contpred</span></code>. In~that game, \textrm{Eve}can reach her target when
 clock <span class="math notranslate nohighlight">\(x_2\)</span> reaches value <span class="math notranslate nohighlight">\(3\)</span> while <span class="math notranslate nohighlight">\(x_1\)</span> is in <span class="math notranslate nohighlight">\([1;4]\)</span>. However,
-\Adam can take the game to a bad state when simultaneously
+\textrm{Adam}can take the game to a bad state when simultaneously
 <span class="math notranslate nohighlight">\(x_1\in[1;2]\)</span> and <span class="math notranslate nohighlight">\(x_2\leq 2\)</span>. The~diagram to the right of
-<code class="xref std std-numref docutils literal notranslate"><span class="pre">9-fig:contpred</span></code> shows the set of winning valuations for~\Eve:
+<code class="xref std std-numref docutils literal notranslate"><span class="pre">9-fig:contpred</span></code> shows the set of winning valuations for~\textrm{Eve}
 it~is computed as <span class="math notranslate nohighlight">\(\predt(X,Y)\)</span> where <span class="math notranslate nohighlight">\(X=\predc(\{W\}\times\Realnn)\)</span>
 and <span class="math notranslate nohighlight">\(Y=\predu(\{\ell_0,\ell_1\}\times\Realnn)\)</span>.</p>
 <div class="figure align-center" id="id1">
 <img alt="9_Timed/./../FigAndAlgos/9-fig:contpred.png" src="9_Timed/./../FigAndAlgos/9-fig:contpred.png" />
-<p class="caption"><span class="caption-number">Fig. 64 </span><span class="caption-text">Controllable predecessors</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 63 </span><span class="caption-text">Controllable predecessors</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 </div><div class="admonition-remark admonition">
 <p class="admonition-title">Remark</p>
 <p>When considering zero-sum objectives (which we do in this chapter),
-a~turn-based arena can be built to decide whether \Eve has a winning
+a~turn-based arena can be built to decide whether \textrm{Eve}has a winning
 strategy (and~possibly construct~one).  Intuitively, the turn-based
-arena is obtained by letting \Eve first pick a pair <span class="math notranslate nohighlight">\((d,e)\)</span> with <span class="math notranslate nohighlight">\(e
-\in \EE\)</span>, and then letting \Adam either respect this choice (i.e.,
-play a larger delay) or preempt \Eve’s action by choosing <span class="math notranslate nohighlight">\((d',e')\)</span>
+arena is obtained by letting \textrm{Eve}first pick a pair <span class="math notranslate nohighlight">\((d,e)\)</span> with <span class="math notranslate nohighlight">\(e
+\in \EE\)</span>, and then letting \textrm{Adam}either respect this choice (i.e.,
+play a larger delay) or preempt \textrm{Eve}s action by choosing <span class="math notranslate nohighlight">\((d',e')\)</span>
 with <span class="math notranslate nohighlight">\(d' \leq d\)</span> and <span class="math notranslate nohighlight">\(e' \in \EA\)</span>.
-\Eve has a winning strategy in this turn-based arena if, and only if she has one in the original game.
-However, this does not apply to \Adam; if he has a winning strategy, this only means that \Eve
-does not have a winning strategy in the original game.</p>
+\textrm{Eve}has a winning strategy in this turn-based arena if, and only if she has one in the original game.
+However, this does not apply to \textrm{Adam} if he has a winning strategy, this only means that \textrm{Eve}does not have a winning strategy in the original game.</p>
 <p>Given <span class="math notranslate nohighlight">\(\calT = (\Locs, \Clocks,\EE,\EA, c)\)</span>, we define the arena <span class="math notranslate nohighlight">\(\TA
-= (\vertices,\VE,\VA,E, c'')\)</span>
-with objective <span class="math notranslate nohighlight">\(\Omega\)</span>, where <span class="math notranslate nohighlight">\(\VE = \Locs\times \Realnn^\Clocks\)</span> and
-<span class="math notranslate nohighlight">\(\VA=\Locs\times\Realnn^\Clocks\times(\Realnn \times \EE
+= (VV_\mEveV_\mAdamE, c'')\)</span>
+with objective <span class="math notranslate nohighlight">\(\Omega\)</span>, where <span class="math notranslate nohighlight">\(V_\mathrm{Eve} \Locs\times \Realnn^\Clocks\)</span> and
+<span class="math notranslate nohighlight">\(V_\mathrm{Adam}Locs\times\Realnn^\Clocks\times(\Realnn \times \EE
 \cup\{\bot\})\)</span>.  The~set of successors of configuration <span class="math notranslate nohighlight">\((\ell,\nu)
-\in \VE\)</span> is the set <span class="math notranslate nohighlight">\(\{(\ell,\nu,a)\mid a \text{ available at
-}(\ell,\nu)\}\)</span>.</p>
-<p>From a configuration <span class="math notranslate nohighlight">\(((\ell,\nu),(d,e))\in\VA\)</span>, several cases may
+\in V_\mathrm{Eve}is the set \)</span>{(\ell,\nu,a)\mid a \text{ available at
+}(\ell,\nu)}$.</p>
+<p>From a configuration $((\ell,\nu),(d,e))\inV_\mathrm{Adam} several cases may
 occur:</p>
 <ul class="simple">
-<li><p>if \Adam has no available action from <span class="math notranslate nohighlight">\((\ell,\nu)\)</span>, or if he can
+<li><p>if \textrm{Adam}has no available action from <span class="math notranslate nohighlight">\((\ell,\nu)\)</span>, or if he can
 only play actions <span class="math notranslate nohighlight">\((d',e')\)</span> with <span class="math notranslate nohighlight">\(d'&gt;d\)</span>, then the only transition
 from <span class="math notranslate nohighlight">\(((\ell,\nu),(d,e))\)</span> goes to <span class="math notranslate nohighlight">\(\step((\ell,\nu),(d,e))\)</span>;</p></li>
-<li><p>Otherwise, for all actions <span class="math notranslate nohighlight">\((d',e')\)</span> for \Adam satisfying <span class="math notranslate nohighlight">\(d'\leq d\)</span>,
+<li><p>Otherwise, for all actions <span class="math notranslate nohighlight">\((d',e')\)</span> for \textrm{Adam}satisfying <span class="math notranslate nohighlight">\(d'\leq d\)</span>,
 there is a transition from <span class="math notranslate nohighlight">\(((\ell,\nu),(d,e))\)</span>
 to <span class="math notranslate nohighlight">\(\step((\ell,\nu),(d',e'))\)</span>.
-Moreover, if \Adam has an available action <span class="math notranslate nohighlight">\((d',e')\)</span> with <span class="math notranslate nohighlight">\(d'\geq d\)</span>,
+Moreover, if \textrm{Adam}has an available action <span class="math notranslate nohighlight">\((d',e')\)</span> with <span class="math notranslate nohighlight">\(d'\geq d\)</span>,
 then there is also a transition
 from <span class="math notranslate nohighlight">\(((\ell,\nu),(d,e))\)</span> to <span class="math notranslate nohighlight">\(\step((\ell,\nu),(d,e))\)</span>.</p></li>
 </ul>
 <p>From a configuration <span class="math notranslate nohighlight">\(((\ell,\nu),\bot)\)</span>, there is a transition
 to <span class="math notranslate nohighlight">\(\step((\ell,\nu),(d',e'))\)</span> for each available action <span class="math notranslate nohighlight">\((d',e')\)</span>
-of~\Adam.
+of~\textrm{Adam}
 The coloring function is defined as <span class="math notranslate nohighlight">\(c''((\ell,\nu)) = c(\ell)\)</span>
 and <span class="math notranslate nohighlight">\(c''((\ell,\nu),(d,e)) = c(\ell)\)</span>.</p>
 </div>

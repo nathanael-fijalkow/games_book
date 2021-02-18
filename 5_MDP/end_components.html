@@ -705,180 +705,96 @@
   <div class="section" id="end-components">
 <span id="sec-end-components"></span><h1>End components<a class="headerlink" href="#end-components" title="Permalink to this headline">¶</a></h1>
 <div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}\newcommand{\expv}{\mathbb{E}} \newcommand{\discProbDist}{f} \newcommand{\sampleSpace}{S} \newcommand{\sigmaAlg}{\mathcal{F}} \newcommand{\probm}{\mathbb{P}} \newcommand{\rvar}{X} \\\newcommand{\actions}{A} \newcommand{\colouring}{c} \newcommand{\probTranFunc}{\Delta} \newcommand{\edges}{E} \newcommand{\colours}{C} \newcommand{\mdp}{\mathcal{M}} \newcommand{\vinit}{v_0} \newcommand{\cylProb}{p} \newcommand{\emptyPlay}{\epsilon} \newcommand{\objective}{\Omega} \newcommand{\genColour}{\textsc{c}} \newcommand{\quantObj}{f} \newcommand{\quantObjExt}{\bar{\quantObj}} \newcommand{\indicator}[1]{\mathbf{1}_{#1}} \newcommand{\eps}{\varepsilon} \newcommand{\maxc}{\max_{\colouring}} 
+\[\newcommand{\probm}{\mathbb{P}}
+\newcommand{\probTranFunc}{\Delta}
+\newcommand{\edges}{E}
+\newcommand{\mdp}{\mathcal{M}}
+\newcommand{\vinit}{v_0}
 \newcommand{\winPos}{W_{&gt;0}}
 \newcommand{\winAS}{W_{=1}}
-\newcommand{\cylinder}{\mathit{Cyl}}
-\newcommand{\PrePos}{\text{Pre}_{&gt;0}}
-\newcommand{\PreAS}{\text{Pre}_{=1}}
-\newcommand{\PreOPPos}{\mathcal{P}_{&gt;0}}
 \newcommand{\OPAS}{\mathcal{P}_{=1}}
-\newcommand{\safeOP}{\mathit{Safe_{=1}}}
-\newcommand{\closed}{\mathit{Cl}}\\\newcommand{\reachOP}{\mathcal{V}}
-\newcommand{\discOP}{\mathcal{D}}
-\newcommand{\valsigma}{\vec{x}^{\sigma}}
-\newcommand{\lp}{\mathcal{L}}
-\newcommand{\lpdisc}{\lp_{\mathit{disc}}}
-\newcommand{\lpreach}{\lp_{\mathit{reach}}}
-\newcommand{\lpmp}{\lp_{\mathit{mp}}}
-\newcommand{\lpsol}[1]{\bar{\vec{#1}}}
-\newcommand{\lpsolg}[1]{\bar{#1}}
-\newcommand{\lpmpdual}{\lpmp^{\mathit{dual}}}
-\newcommand{\actevent}[3]{\actions^{#1}_{#2,#3}} 
-\newcommand{\MeanPayoffSup}{\MeanPayoff^{\;+}}
-\newcommand{\MeanPayoffInf}{\MeanPayoff^{\;-}}
-\newcommand{\mcprob}{P}
-\newcommand{\invdist}{\vec{z}}
-\newcommand{\hittime}{T}
-\newcommand{\playPay}{\textsf{p-Payoff}}
-\newcommand{\stepPay}{\textsf{s-Payoff}}
-\newcommand{\Pay}{\textsf{Payoff}}
 \newcommand{\mec}{M}
-\newcommand{\OPS}{\mathcal{S}_{=1}}
-\newcommand{\smallmp}{\mathit{mp}}
-\newcommand{\vgood}{v_{\mathit{good}}}
-\newcommand{\vbad}{v_{\mathit{bad}}}
-\newcommand{\finact}{fin}
 \newcommand{\mecs}{\mathit{MEC}}
-\newcommand{\slice}[2]{#1_{#2-}}
-\newcommand{\ReachOp}{\mathcal{R}}
-\newcommand{\dPayoffStep}[1]{\DiscountedPayoff^{\;(#1)}}
-\newcommand{\solvset}{S}
-\newcommand{\Eve}{\textrm{Eve}}
-\newcommand{\Adam}{\textrm{Adam}}
-\newcommand{\set}[1]{\left\{ #1 \right\}}
 \newcommand{\N}{\mathbb{N}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
-\newcommand{\argmax}{\textrm{argmax}}
-\newcommand{\argmin}{\textrm{argmin}}
-\newcommand{\Op}{\mathbb{O}}
-\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\textrm{supp}} 
-\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
-\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
-\newcommand{\mEve}{\mathrm{Eve}}
-\newcommand{\mAdam}{\mathrm{Adam}}
-\newcommand{\mRandom}{\mathrm{Random}}
-\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
-\newcommand{\ing}{\textrm{In}}
+\newcommand{\vertices}{V}
 \newcommand{\Ing}{\ing}
-\newcommand{\out}{\textrm{Out}}
-\newcommand{\Out}{\out}
-\newcommand{\dest}{\Delta} 
-\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
-\newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
-\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
-\newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\newcommand{\Win}{\textrm{Win}} 
-\newcommand{\Lose}{\textrm{Lose}} 
-\newcommand{\Value}{\textrm{val}} 
-\newcommand{\ValueE}{\textrm{val}_\mEve} 
-\newcommand{\ValueA}{\textrm{val}_\mAdam}
-\newcommand{\val}{\Value} 
-\newcommand{\Automaton}{\mathbf{A}} 
+\newcommand{\play}{\pi}
 \newcommand{\Safe}{\mathtt{Safe}}
-\newcommand{\Reach}{\mathtt{Reach}} 
-\newcommand{\Buchi}{\mathtt{Buchi}} 
-\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
-\newcommand{\Parity}{\mathtt{Parity}} 
-\newcommand{\Muller}{\mathtt{Muller}} 
-\newcommand{\Rabin}{\mathtt{Rabin}} 
-\newcommand{\Streett}{\mathtt{Streett}} 
-\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
-\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
-\newcommand{\Energy}{\mathtt{Energy}}
-\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
-\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
-\newcommand{\Sup}{\mathtt{Sup}}
+\newcommand{\Reach}{\mathtt{Reach}}
 \newcommand{\Inf}{\mathtt{Inf}}
-\newcommand{\LimSup}{\mathtt{LimSup}}
-\newcommand{\LimInf}{\mathtt{LimInf}}
-\newcommand{\NL}{\textrm{NL}}
-\newcommand{\PTIME}{\textrm{PTIME}}
-\newcommand{\NP}{\textrm{NP}}
-\newcommand{\UP}{\textrm{UP}}
-\newcommand{\coNP}{\textrm{coNP}}
-\newcommand{\coUP}{\textrm{coUP}}
-\newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
-\newcommand{\EXP}{\textrm{EXP}}
-\newcommand{\kEXP}{\textrm{kEXP}}\end{aligned}\end{align} \]</div>
+\newcommand{\ing}{\textrm{In}}\]</div>
 <p>To solve mean-payoff optimization in general MDPs, as well as general optimization problems for <span class="math notranslate nohighlight">\(\omega\)</span>-regular objectives, we need to introduce a crucial notion of an <strong>end component</strong>.</p>
 <div class="proof definition admonition" id="definition-0">
 <p class="admonition-title"><span class="caption-number">Definition 175 </span> (NEEDS TITLE AND LABEL)</p>
 <div class="definition-content section" id="proof-content">
 <p>\label{5-def:ec}
-An <strong>end component (EC)</strong> of an MDP is any set <span class="math notranslate nohighlight">\(\mec\)</span> of vertices having the following two properties:</p>
+An <strong>end component (EC)</strong> of an MDP is any set $M of vertices having the following two properties:</p>
 <ul class="simple">
-<li><p>For each <span class="math notranslate nohighlight">\(u \in \mec\)</span> there exists an action <span class="math notranslate nohighlight">\( a \)</span> that is <strong><span class="math notranslate nohighlight">\( \mec\)</span>-safe</strong> in <span class="math notranslate nohighlight">\( u \)</span>, i.e. satisfies that for all vertices  <span class="math notranslate nohighlight">\(v\)</span> with <span class="math notranslate nohighlight">\( \probTranFunc(v \mid u,a) &gt; 0 \)</span> it holds <span class="math notranslate nohighlight">\( v \in \mec \)</span>.</p></li>
-<li><p>For each pair of distinct vertices <span class="math notranslate nohighlight">\( u,v \in \mec\)</span> there is a path from <span class="math notranslate nohighlight">\( u \)</span> to <span class="math notranslate nohighlight">\( v \)</span> visiting only the states from <span class="math notranslate nohighlight">\(\mec\)</span>.</p></li>
+<li><p>For each <span class="math notranslate nohighlight">\(u \in M there exists an action \)</span> a <span class="math notranslate nohighlight">\( that is **\)</span> M-safe** in <span class="math notranslate nohighlight">\( u \)</span>, i.e. satisfies that for all vertices  <span class="math notranslate nohighlight">\(v\)</span> with <span class="math notranslate nohighlight">\( \Deltav \mid u,a) &gt; 0 \)</span> it holds <span class="math notranslate nohighlight">\( v \in M\)</span>.</p></li>
+<li><p>For each pair of distinct vertices <span class="math notranslate nohighlight">\( u,v \in M there is a path from \)</span> u <span class="math notranslate nohighlight">\( to \)</span> v <span class="math notranslate nohighlight">\( visiting only the states from \)</span>M.</p></li>
 </ul>
-<p>In other words, <span class="math notranslate nohighlight">\( \mec \)</span> is an EC of <span class="math notranslate nohighlight">\( \mdp \)</span> if and only if <span class="math notranslate nohighlight">\( \mec \)</span> is a closed set and the sub-MDP <span class="math notranslate nohighlight">\( \mdp_\mec \)</span> is strongly connected.</p>
+<p>In other words, <span class="math notranslate nohighlight">\( M\)</span> is an EC of <span class="math notranslate nohighlight">\( \mathcal{M}\)</span> if and only if <span class="math notranslate nohighlight">\( M\)</span> is a closed set and the sub-MDP <span class="math notranslate nohighlight">\( \mdp_M\)</span> is strongly connected.</p>
 <p>\label{5-def:ec}
-An <strong>end component (EC)</strong> of an MDP is any set <span class="math notranslate nohighlight">\(\mec\)</span> of vertices having the following two properties:</p>
+An <strong>end component (EC)</strong> of an MDP is any set $M of vertices having the following two properties:</p>
 <ul class="simple">
-<li><p>For each <span class="math notranslate nohighlight">\(u \in \mec\)</span> there exists an action <span class="math notranslate nohighlight">\( a \)</span> that is <strong><span class="math notranslate nohighlight">\( \mec\)</span>-safe</strong> in <span class="math notranslate nohighlight">\( u \)</span>, i.e. satisfies that for all vertices  <span class="math notranslate nohighlight">\(v\)</span> with <span class="math notranslate nohighlight">\( \probTranFunc(v \mid u,a) &gt; 0 \)</span> it holds <span class="math notranslate nohighlight">\( v \in \mec \)</span>.</p></li>
-<li><p>For each pair of distinct vertices <span class="math notranslate nohighlight">\( u,v \in \mec\)</span> there is a path from <span class="math notranslate nohighlight">\( u \)</span> to <span class="math notranslate nohighlight">\( v \)</span> visiting only the states from <span class="math notranslate nohighlight">\(\mec\)</span>.</p></li>
+<li><p>For each <span class="math notranslate nohighlight">\(u \in M there exists an action \)</span> a <span class="math notranslate nohighlight">\( that is **\)</span> M-safe** in <span class="math notranslate nohighlight">\( u \)</span>, i.e. satisfies that for all vertices  <span class="math notranslate nohighlight">\(v\)</span> with <span class="math notranslate nohighlight">\( \Deltav \mid u,a) &gt; 0 \)</span> it holds <span class="math notranslate nohighlight">\( v \in M\)</span>.</p></li>
+<li><p>For each pair of distinct vertices <span class="math notranslate nohighlight">\( u,v \in M there is a path from \)</span> u <span class="math notranslate nohighlight">\( to \)</span> v <span class="math notranslate nohighlight">\( visiting only the states from \)</span>M.</p></li>
 </ul>
-<p>In other words, <span class="math notranslate nohighlight">\( \mec \)</span> is an EC of <span class="math notranslate nohighlight">\( \mdp \)</span> if and only if <span class="math notranslate nohighlight">\( \mec \)</span> is a closed set and the sub-MDP <span class="math notranslate nohighlight">\( \mdp_\mec \)</span> is strongly connected.</p>
+<p>In other words, <span class="math notranslate nohighlight">\( M\)</span> is an EC of <span class="math notranslate nohighlight">\( \mathcal{M}\)</span> if and only if <span class="math notranslate nohighlight">\( M\)</span> is a closed set and the sub-MDP <span class="math notranslate nohighlight">\( \mdp_M\)</span> is strongly connected.</p>
 </div>
 </div><p>From the player’s point of view, the following property of ECs is important.</p>
 <div class="proof lemma admonition" id="lemma-1">
 <p class="admonition-title"><span class="caption-number">Lemma 176 </span> (NEEDS TITLE AND LABEL)</p>
 <div class="lemma-content section" id="proof-content">
 <p>\label{5-lem:EC-sweep}
-Let <span class="math notranslate nohighlight">\(\mec\)</span> be an EC and <span class="math notranslate nohighlight">\(v \in \mec\)</span>. Then there is an MD strategy <span class="math notranslate nohighlight">\(\sigma\)</span> which, when starting in a vertex inside <span class="math notranslate nohighlight">\(\mec\)</span>, never visits a vertex outside of <span class="math notranslate nohighlight">\( \mec \)</span> and at the same time ensures that with probability one, the vertex <span class="math notranslate nohighlight">\(v\)</span> is visited infinitely often. Moreover, <span class="math notranslate nohighlight">\(\sigma\)</span> can be computed in polynomial time.</p>
+Let <span class="math notranslate nohighlight">\(M be an EC and \)</span>v \in M. Then there is an MD strategy <span class="math notranslate nohighlight">\(\sigma\)</span> which, when starting in a vertex inside <span class="math notranslate nohighlight">\(M, never visits a vertex outside of \)</span> M<span class="math notranslate nohighlight">\( and at the same time ensures that with probability one, the vertex \)</span>v<span class="math notranslate nohighlight">\( is visited infinitely often. Moreover, \)</span>\sigma$ can be computed in polynomial time.</p>
 <p>\label{5-lem:EC-sweep}
-Let <span class="math notranslate nohighlight">\(\mec\)</span> be an EC and <span class="math notranslate nohighlight">\(v \in \mec\)</span>. Then there is an MD strategy <span class="math notranslate nohighlight">\(\sigma\)</span> which, when starting in a vertex inside <span class="math notranslate nohighlight">\(\mec\)</span>, never visits a vertex outside of <span class="math notranslate nohighlight">\( \mec \)</span> and at the same time ensures that with probability one, the vertex <span class="math notranslate nohighlight">\(v\)</span> is visited infinitely often. Moreover, <span class="math notranslate nohighlight">\(\sigma\)</span> can be computed in polynomial time.</p>
+Let <span class="math notranslate nohighlight">\(M be an EC and \)</span>v \in M. Then there is an MD strategy <span class="math notranslate nohighlight">\(\sigma\)</span> which, when starting in a vertex inside <span class="math notranslate nohighlight">\(M, never visits a vertex outside of \)</span> M<span class="math notranslate nohighlight">\( and at the same time ensures that with probability one, the vertex \)</span>v<span class="math notranslate nohighlight">\( is visited infinitely often. Moreover, \)</span>\sigma$ can be computed in polynomial time.</p>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
-<p>From  <a class="reference internal" href="reachability.html#5-thm:as-char">Theorem 139</a> we know that we can compute, in polynomial time, an MD strategy <span class="math notranslate nohighlight">\(\sigma\)</span> in the sub-MDP <span class="math notranslate nohighlight">\( \mdp_\mec \)</span> ensuring that <span class="math notranslate nohighlight">\(v\)</span> is reached with probability 1 from any initial vertex in <span class="math notranslate nohighlight">\( \mec \)</span>. Indeed, this is because <span class="math notranslate nohighlight">\(\mec = \winPos(\mdp_M,\Reach(v))\)</span>, due to the second condition in the definition of a MEC. Since <span class="math notranslate nohighlight">\(\mec\)</span> is closed, this strategy never leaves <span class="math notranslate nohighlight">\(\mec\)</span>. Whenever, the strategy leaves <span class="math notranslate nohighlight">\(v\)</span>, it guarantees that we return to <span class="math notranslate nohighlight">\(v\)</span> with probability 1. Hence, for each <span class="math notranslate nohighlight">\(k\)</span>, the probability of event <span class="math notranslate nohighlight">\(V_k\)</span> — visiting <span class="math notranslate nohighlight">\(v\)</span> at least <span class="math notranslate nohighlight">\(k\)</span> times — is <span class="math notranslate nohighlight">\(1\)</span>. Since <span class="math notranslate nohighlight">\(V_{k+1}\subseteq V_k\)</span>, it follows that also the probability of <span class="math notranslate nohighlight">\(\bigcap_{i=1}^\infty V_i\)</span> is equal to <span class="math notranslate nohighlight">\(1\)</span>, which is what we aimed to prove.</p>
+<p>From  <a class="reference internal" href="reachability.html#5-thm:as-char">Theorem 139</a> we know that we can compute, in polynomial time, an MD strategy <span class="math notranslate nohighlight">\(\sigma\)</span> in the sub-MDP <span class="math notranslate nohighlight">\( \mdp_M\)</span> ensuring that <span class="math notranslate nohighlight">\(v\)</span> is reached with probability 1 from any initial vertex in <span class="math notranslate nohighlight">\( M\)</span>. Indeed, this is because <span class="math notranslate nohighlight">\(M= W_{&gt;0}\mdp_M,\mathtt{Reach}v))\)</span>, due to the second condition in the definition of a MEC. Since <span class="math notranslate nohighlight">\(M is closed, this strategy never leaves \)</span>M. Whenever, the strategy leaves <span class="math notranslate nohighlight">\(v\)</span>, it guarantees that we return to <span class="math notranslate nohighlight">\(v\)</span> with probability 1. Hence, for each <span class="math notranslate nohighlight">\(k\)</span>, the probability of event <span class="math notranslate nohighlight">\(V_k\)</span> — visiting <span class="math notranslate nohighlight">\(v\)</span> at least <span class="math notranslate nohighlight">\(k\)</span> times — is <span class="math notranslate nohighlight">\(1\)</span>. Since <span class="math notranslate nohighlight">\(V_{k+1}\subseteq V_k\)</span>, it follows that also the probability of <span class="math notranslate nohighlight">\(\bigcap_{i=1}^\infty V_i\)</span> is equal to <span class="math notranslate nohighlight">\(1\)</span>, which is what we aimed to prove.</p>
 </div>
 <p>The main reason for introducing ECs is that they are crucial for understanding the limiting behaviour of MDPs.</p>
 <div class="proof definition admonition" id="5-def:inf">
 <p class="admonition-title"><span class="caption-number">Definition 177 </span> (NEEDS TITLE 5-def:inf)</p>
 <div class="definition-content section" id="proof-content">
-<p>We denote by <span class="math notranslate nohighlight">\(\Inf(\play)\)</span> the set of vertices that appear infinitely often along a play <span class="math notranslate nohighlight">\( \play \)</span>.</p>
+<p>We denote by <span class="math notranslate nohighlight">\(\mathtt{Inf}\pi\)</span> the set of vertices that appear infinitely often along a play <span class="math notranslate nohighlight">\( \pi\)</span>.</p>
 </div>
 </div><div class="proof lemma admonition" id="5-lem:EC-inf">
 <p class="admonition-title"><span class="caption-number">Lemma 178 </span> (NEEDS TITLE 5-lem:EC-inf)</p>
 <div class="lemma-content section" id="proof-content">
-<p>For any <span class="math notranslate nohighlight">\( \vinit \)</span> and <span class="math notranslate nohighlight">\( \sigma \)</span> it holds <span class="math notranslate nohighlight">\( \probm^\sigma_{\vinit} ( \{\play \mid \Inf(\play) \text{ is an EC }  \}) = 1 \)</span>.</p>
+<p>For any <span class="math notranslate nohighlight">\( v_0\)</span> and <span class="math notranslate nohighlight">\( \sigma \)</span> it holds <span class="math notranslate nohighlight">\( \mathbb{P}\sigma_{v_0 ( \{\pi\mid \mathtt{Inf}\pi \text{ is an EC }  \}) = 1 \)</span>.</p>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
-<p>Assume the converse. Then in some MDP there is a set of vertices <span class="math notranslate nohighlight">\( X \)</span> which is not an EC but satisfies <span class="math notranslate nohighlight">\( \probm^\sigma_{\vinit}(\Inf = X ) &gt; 0 \)</span>. Since <span class="math notranslate nohighlight">\( X \)</span> is not an EC, there is a vertex <span class="math notranslate nohighlight">\( v \in X \)</span> in which any (even randomized) choice of action results in leaving <span class="math notranslate nohighlight">\( X \)</span> with probability at least <span class="math notranslate nohighlight">\(  p_{\min} &gt; 0\)</span> (recall that <span class="math notranslate nohighlight">\( p_{\min} \)</span> is the smallest non-zero edge probability in the MDP).</p>
-<p>Let <span class="math notranslate nohighlight">\( \mathit{Stay}_k \)</span> be the set of plays in <span class="math notranslate nohighlight">\(\{\Inf = X \}\)</span> which, from step <span class="math notranslate nohighlight">\( k \)</span> on, never visit a vertex outside of <span class="math notranslate nohighlight">\( X \)</span>. Since <span class="math notranslate nohighlight">\( \{\Inf = X \}  = \bigcup_{i=1}^{\infty} \mathit{Stay}_i\)</span>, by union bound we get <span class="math notranslate nohighlight">\( \probm^\sigma_{\vinit}(\mathit{Stay}_{k_0})&gt;0 \)</span> for some  <span class="math notranslate nohighlight">\( k_0\in \N \)</span>. Let <span class="math notranslate nohighlight">\( \mathit{Vis}_j \)</span> denote the set of all plays in <span class="math notranslate nohighlight">\( \mathit{Stay}_{k_0} \)</span> that visit <span class="math notranslate nohighlight">\( v \)</span> at least <span class="math notranslate nohighlight">\( j \)</span> times <strong>after</strong> the step <span class="math notranslate nohighlight">\( k_0 \)</span>. Since <span class="math notranslate nohighlight">\(  \mathit{Stay}_{k_0} \subseteq \{\Inf = X\}\)</span>, we have <span class="math notranslate nohighlight">\(  \mathit{Stay}_{k_0} \cap \mathit{Vis}_j = \mathit{Stay}_{k_0} \)</span> for each <span class="math notranslate nohighlight">\( j \)</span>. But an easy induction shows that  <span class="math notranslate nohighlight">\( \probm_{\vinit}^\sigma (\mathit{Stay}_{k_0} \cap \mathit{Vis}_{j+1} ) \leq \probm_{\vinit}^\sigma(\{\Ing(\play_{k_0}) \in X \})\cdot p_{\min}^j\)</span>, since every visit to <span class="math notranslate nohighlight">\( v \)</span> brings a  risk at least <span class="math notranslate nohighlight">\(p_{\min}\)</span> of falling out of <span class="math notranslate nohighlight">\( X \)</span>. The latter number converges to zero, so <span class="math notranslate nohighlight">\( \probm_{\vinit}^\sigma (\mathit{Stay}_{k_0}) = \lim_{j\rightarrow \infty}\probm_{\vinit}^\sigma (\mathit{Stay}_{k_0}) = \lim_{j\rightarrow \infty}\probm_{\vinit}^\sigma (\mathit{Stay}_{k_0} \cap\mathit{Vis}_{j+1}) =  0\)</span>, a contradiction.</p>
+<p>Assume the converse. Then in some MDP there is a set of vertices <span class="math notranslate nohighlight">\( X \)</span> which is not an EC but satisfies <span class="math notranslate nohighlight">\( \mathbb{P}\sigma_{v_0(\mathtt{Inf}= X ) &gt; 0 \)</span>. Since <span class="math notranslate nohighlight">\( X \)</span> is not an EC, there is a vertex <span class="math notranslate nohighlight">\( v \in X \)</span> in which any (even randomized) choice of action results in leaving <span class="math notranslate nohighlight">\( X \)</span> with probability at least <span class="math notranslate nohighlight">\(  p_{\min} &gt; 0\)</span> (recall that <span class="math notranslate nohighlight">\( p_{\min} \)</span> is the smallest non-zero edge probability in the MDP).</p>
+<p>Let <span class="math notranslate nohighlight">\( \mathit{Stay}_k \)</span> be the set of plays in <span class="math notranslate nohighlight">\(\{\mathtt{Inf}= X \}\)</span> which, from step <span class="math notranslate nohighlight">\( k \)</span> on, never visit a vertex outside of <span class="math notranslate nohighlight">\( X \)</span>. Since <span class="math notranslate nohighlight">\( \{\mathtt{Inf}= X \}  = \bigcup_{i=1}^{\infty} \mathit{Stay}_i\)</span>, by union bound we get <span class="math notranslate nohighlight">\( \mathbb{P}\sigma_{v_0(\mathit{Stay}_{k_0})&gt;0 \)</span> for some  <span class="math notranslate nohighlight">\( k_0\in \mathbb{N}\)</span>. Let <span class="math notranslate nohighlight">\( \mathit{Vis}_j \)</span> denote the set of all plays in <span class="math notranslate nohighlight">\( \mathit{Stay}_{k_0} \)</span> that visit <span class="math notranslate nohighlight">\( v \)</span> at least <span class="math notranslate nohighlight">\( j \)</span> times <strong>after</strong> the step <span class="math notranslate nohighlight">\( k_0 \)</span>. Since <span class="math notranslate nohighlight">\(  \mathit{Stay}_{k_0} \subseteq \{\mathtt{Inf}= X\}\)</span>, we have <span class="math notranslate nohighlight">\(  \mathit{Stay}_{k_0} \cap \mathit{Vis}_j = \mathit{Stay}_{k_0} \)</span> for each <span class="math notranslate nohighlight">\( j \)</span>. But an easy induction shows that  <span class="math notranslate nohighlight">\( \probm_{v_0^\sigma (\mathit{Stay}_{k_0} \cap \mathit{Vis}_{j+1} ) \leq \probm_{v_0^\sigma(\{\textrm{In}play_{k_0}) \in X \})\cdot p_{\min}^j\)</span>, since every visit to <span class="math notranslate nohighlight">\( v \)</span> brings a  risk at least <span class="math notranslate nohighlight">\(p_{\min}\)</span> of falling out of <span class="math notranslate nohighlight">\( X \)</span>. The latter number converges to zero, so <span class="math notranslate nohighlight">\( \probm_{v_0^\sigma (\mathit{Stay}_{k_0}) = \lim_{j\rightarrow \infty}\probm_{v_0^\sigma (\mathit{Stay}_{k_0}) = \lim_{j\rightarrow \infty}\probm_{v_0^\sigma (\mathit{Stay}_{k_0} \cap\mathit{Vis}_{j+1}) =  0\)</span>, a contradiction.</p>
 </div>
 <p>In general, there can be exponentially many end components in an MDP (e.g. for a complete underlying graph and one action per edge, each subset of vertices is an EC). However, we can usually restrict to analysing <strong>maximal</strong> ECs.</p>
 <div class="proof definition admonition" id="definition-4">
 <p class="admonition-title"><span class="caption-number">Definition 179 </span> (NEEDS TITLE AND LABEL)</p>
 <div class="definition-content section" id="proof-content">
 <p>\label{5-def:mec}
-An end component <span class="math notranslate nohighlight">\( \mec \)</span> is a <strong>maximal end component (MEC)</strong> if no other end-component <span class="math notranslate nohighlight">\( \mec' \)</span> is a superset of <span class="math notranslate nohighlight">\( \mec \)</span>. We denote by <span class="math notranslate nohighlight">\(\mecs(\mdp)\)</span> the set of all MECs of <span class="math notranslate nohighlight">\(\mdp.\)</span></p>
+An end component <span class="math notranslate nohighlight">\( M\)</span> is a <strong>maximal end component (MEC)</strong> if no other end-component <span class="math notranslate nohighlight">\( M \)</span> is a superset of <span class="math notranslate nohighlight">\( M\)</span>. We denote by <span class="math notranslate nohighlight">\(\mathit{MEC}\mathcal{M}\)</span> the set of all MECs of <span class="math notranslate nohighlight">\(\mathcal{M}\)</span></p>
 <p>\label{5-def:mec}
-An end component <span class="math notranslate nohighlight">\( \mec \)</span> is a <strong>maximal end component (MEC)</strong> if no other end-component <span class="math notranslate nohighlight">\( \mec' \)</span> is a superset of <span class="math notranslate nohighlight">\( \mec \)</span>. We denote by <span class="math notranslate nohighlight">\(\mecs(\mdp)\)</span> the set of all MECs of <span class="math notranslate nohighlight">\(\mdp.\)</span></p>
+An end component <span class="math notranslate nohighlight">\( M\)</span> is a <strong>maximal end component (MEC)</strong> if no other end-component <span class="math notranslate nohighlight">\( M \)</span> is a superset of <span class="math notranslate nohighlight">\( M\)</span>. We denote by <span class="math notranslate nohighlight">\(\mathit{MEC}\mathcal{M}\)</span> the set of all MECs of <span class="math notranslate nohighlight">\(\mathcal{M}\)</span></p>
 </div>
-</div><p>If two ECs have a non-empty intersection, then their union is again an EC. Hence, every EC is contained in exactly one MEC, and the total number of MECs is bounded by <span class="math notranslate nohighlight">\( |\vertices| \)</span>, since two distinct MECs must be disjoint. Moreover, the decomposition of an MDP into MECs can be computed in polynomial time.</p>
+</div><p>If two ECs have a non-empty intersection, then their union is again an EC. Hence, every EC is contained in exactly one MEC, and the total number of MECs is bounded by <span class="math notranslate nohighlight">\( |V \)</span>, since two distinct MECs must be disjoint. Moreover, the decomposition of an MDP into MECs can be computed in polynomial time.</p>
 <p>\begin{algorithm}
-\KwData{An MDP <span class="math notranslate nohighlight">\( \mdp \)</span>}
+\KwData{An MDP <span class="math notranslate nohighlight">\( \mathcal{M}\)</span>}
 \SetKwFunction{FTreat}{Treat}
 \SetKwProg{Fn}{Function}{:}{}</p>
 <p><span class="math notranslate nohighlight">\(**List** \leftarrow \emptyset\)</span> \tcp*{List of found MECs}</p>
-<p><span class="math notranslate nohighlight">\( G \leftarrow (\vertices,\edges) \)</span> \tcp*{The underlying graph of <span class="math notranslate nohighlight">\( \mdp \)</span>}</p>
+<p><span class="math notranslate nohighlight">\( G \leftarrow (VE \)</span> \tcp*{The underlying graph of <span class="math notranslate nohighlight">\( \mathcal{M}\)</span>}</p>
 <p>\While{<span class="math notranslate nohighlight">\(G\)</span> is non-empty}{
 Decompose <span class="math notranslate nohighlight">\( G \)</span> into strongly connected components;</p>
 <p><span class="math notranslate nohighlight">\( R \leftarrow \emptyset \)</span> \tcp*{The list of vertices to remove.}
 \ForEach{bottom SCC <span class="math notranslate nohighlight">\( B \)</span> of <span class="math notranslate nohighlight">\( G \)</span>}{
-<span class="math notranslate nohighlight">\( B \)</span> is a MEC of <span class="math notranslate nohighlight">\( \mdp \)</span>, add it to <span class="math notranslate nohighlight">\( **List** \)</span>;\
-<span class="math notranslate nohighlight">\( R \leftarrow R \cup (\vertices \setminus \winAS(\mdp,\Safe(\vertices\setminus B)))\)</span> \tcp*{Schedule removal of vertices from which <span class="math notranslate nohighlight">\(B\)</span> cannot be avoided in <span class="math notranslate nohighlight">\(\mdp\)</span>.}
-}
-remove vertices in <span class="math notranslate nohighlight">\(R\)</span> from <span class="math notranslate nohighlight">\(G\)</span> along with adjacent edges
+<span class="math notranslate nohighlight">\( B \)</span> is a MEC of <span class="math notranslate nohighlight">\( \mathcal{M}\)</span>, add it to <span class="math notranslate nohighlight">\( **List** \)</span>;\
+<span class="math notranslate nohighlight">\( R \leftarrow R \cup (V\setminus W_{=1}\mathcal{M}\mathtt{Safe}Vsetminus B)))\)</span> \tcp*{Schedule removal of vertices from which <span class="math notranslate nohighlight">\(B\)</span> cannot be avoided in <span class="math notranslate nohighlight">\(\mathcal{M}.}
+} 
+remove vertices in \)</span>R<span class="math notranslate nohighlight">\( from \)</span>G$ along with adjacent edges
 }</p>
 <p>\Return{<span class="math notranslate nohighlight">\(**List**\)</span>}
 \caption{Algorithm for MEC decomposition of an MDP.}
@@ -891,7 +807,7 @@ remove vertices in <span class="math notranslate nohighlight">\(R\)</span> from 
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
-<p>There are several known algorithms, a simple one is pictured in <code class="xref std std-numref docutils literal notranslate"><span class="pre">5-algo:MEC-decomposition</span></code>. Each iteration goes as follows: we first take the underlying directed graph of the MDP and find its strongly connected components using some of the well-known polynomial algorithms <span id="id1">[<a class="reference internal" href="references.html#id105"><span>CLRS09</span></a>]</span>. We identify the bottom SCCs, i.e. those from which there is no outgoing edge in the graph. It is easy to see that each such SCC must form a MEC of <span class="math notranslate nohighlight">\(\mdp\)</span>, and conversely, each MDP has at least one MEC that is also a bottom SCC of its underlying graph. Moreover, for each such bottom SCC <span class="math notranslate nohighlight">\(B \)</span> we compute the <strong>random attractor</strong> of <span class="math notranslate nohighlight">\(B\)</span>, i.e. the set of vertices of <span class="math notranslate nohighlight">\(\mdp\)</span> from which <span class="math notranslate nohighlight">\(B\)</span> cannot be avoided under any strategy. To this end, we compute, in polynomial time, the almost-surely winning set <span class="math notranslate nohighlight">\( \winAS(\mdp,\Safe(\vertices \setminus B)) \)</span> which is the largest largest (w.r.t. set inclusion) subset of <span class="math notranslate nohighlight">\(\vertices\)</span> from which the player can ensure to stay in <span class="math notranslate nohighlight">\(\vertices \setminus B\)</span> forever (i.e. the complement of the random attractor of <span class="math notranslate nohighlight">\(B\)</span>). The computation can be done in polynomial time by  <a class="reference internal" href="reachability.html#5-thm:safety-main">Theorem 138</a>). No vertex of the random attractor of <span class="math notranslate nohighlight">\(B\)</span> can belong to a MEC different from <span class="math notranslate nohighlight">\( B \)</span>: such a MEC would be disjoint from <span class="math notranslate nohighlight">\( B \)</span> bu the player could not force avoiding <span class="math notranslate nohighlight">\( B \)</span> from within this MEC, a contradiction with MEC being a closed set. Hence, all MECs of <span class="math notranslate nohighlight">\(\mdp\)</span> which are not a bottom SCC of <span class="math notranslate nohighlight">\(G\)</span> are subsets of <span class="math notranslate nohighlight">\(\winAS(\mdp,\Safe(\vertices \setminus B)) \subseteq \vertices \setminus R\)</span>, so we can remove all vertices in <span class="math notranslate nohighlight">\(R\)</span> from the graph and continue to the next iteration (note that removing vertices in <span class="math notranslate nohighlight">\(R\)</span> from <span class="math notranslate nohighlight">\(\mdp\)</span> again yields a MDP, since the complement of <span class="math notranslate nohighlight">\(R\)</span> is an intersection of closed sets, and thus again a closed set). The main loop performs at most <span class="math notranslate nohighlight">\(|\vertices|\)</span> iterations, which yields the polynomial complexity.</p>
+<p>There are several known algorithms, a simple one is pictured in <code class="xref std std-numref docutils literal notranslate"><span class="pre">5-algo:MEC-decomposition</span></code>. Each iteration goes as follows: we first take the underlying directed graph of the MDP and find its strongly connected components using some of the well-known polynomial algorithms <span id="id1">[<a class="reference internal" href="references.html#id103"><span>CLRS09</span></a>]</span>. We identify the bottom SCCs, i.e. those from which there is no outgoing edge in the graph. It is easy to see that each such SCC must form a MEC of <span class="math notranslate nohighlight">\(\mathcal{M}, and conversely, each MDP has at least one MEC that is also a bottom SCC of its underlying graph. Moreover, for each such bottom SCC \)</span>B <span class="math notranslate nohighlight">\( we compute the **random attractor** of \)</span>B<span class="math notranslate nohighlight">\(, i.e. the set of vertices of \)</span>\mathcal{M} from which <span class="math notranslate nohighlight">\(B\)</span> cannot be avoided under any strategy. To this end, we compute, in polynomial time, the almost-surely winning set <span class="math notranslate nohighlight">\( W_{=1}\mathcal{M}\mathtt{Safe}V\setminus B)) \)</span> which is the largest largest (w.r.t. set inclusion) subset of <span class="math notranslate nohighlight">\(V from which the player can ensure to stay in \)</span>V\setminus B<span class="math notranslate nohighlight">\( forever (i.e. the complement of the random attractor of \)</span>B<span class="math notranslate nohighlight">\(). The computation can be done in polynomial time by  {prf:ref}`5-thm:safety-main`). No vertex of the random attractor of \)</span>B<span class="math notranslate nohighlight">\( can belong to a MEC different from \)</span> B <span class="math notranslate nohighlight">\(: such a MEC would be disjoint from \)</span> B <span class="math notranslate nohighlight">\( bu the player could not force avoiding \)</span> B <span class="math notranslate nohighlight">\( from within this MEC, a contradiction with MEC being a closed set. Hence, all MECs of \)</span>\mathcal{M} which are not a bottom SCC of <span class="math notranslate nohighlight">\(G\)</span> are subsets of <span class="math notranslate nohighlight">\(W_{=1}\mathcal{M}\mathtt{Safe}V\setminus B)) \subseteq V\setminus R\)</span>, so we can remove all vertices in <span class="math notranslate nohighlight">\(R\)</span> from the graph and continue to the next iteration (note that removing vertices in <span class="math notranslate nohighlight">\(R\)</span> from <span class="math notranslate nohighlight">\(\mathcal{M} again yields a MDP, since the complement of \)</span>R<span class="math notranslate nohighlight">\( is an intersection of closed sets, and thus again a closed set). The main loop performs at most \)</span>|V$ iterations, which yields the polynomial complexity.</p>
 </div>
 </div>
 

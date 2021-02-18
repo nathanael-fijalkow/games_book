@@ -724,101 +724,12 @@
   <div class="section" id="forward-algorithm">
 <span id="sec-forward-algorithm"></span><h1>Forward Algorithm<a class="headerlink" href="#forward-algorithm" title="Permalink to this headline">¶</a></h1>
 <div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}\usepackage{amsmath}
-  
-\newcommand*\Realnn{\mathbb{R}_{\geq 0}}
-\newcommand*\Clocks{\mathcal{C}}
-\newcommand*\TA{\ensuremath{\mathcal{A}}}
-\newcommand*\Locs{\mathcal{L}}
-\newcommand*\Clocksz{\mathcal{C}_0}
-\newcommand*\calQ{\mathcal{Q}}
-\newcommand*\state{\mathsf{state}}
-\newcommand*\trans{\mathsf{trans}}
-\newcommand*\post{\mathsf{post}}
-\newcommand*\step{\mathsf{step}}
-\newcommand*\postta{\ensuremath{\textrm{\sf Post}}}
-\newcommand*\preta{\ensuremath{\textrm{\sf Pre}}}
-\newcommand*\unreset{\ensuremath{\textrm{\sf Unreset}}}
-\newcommand*\posttime{\ensuremath{\textrm{\sf Post}_{\geq 0}}}
-\newcommand*\pretime{\ensuremath{\textrm{\sf Pre}_{\geq 0}}} \newcommand*\reset{\mathsf{Reset}}
-\newcommand{\sem}[1]{\ensuremath{#1}}
-\newcommand{\size}[1]{\ensuremath{|#1|}}\\\def\predc{\textrm{\sf Pred}_c}
-\def\predt{\textrm{\sf Pred}_{\geq 0}} \def\predu{\textrm{\sf Pred}_u}
-\def\calP{\mathcal P}
-\def\calC{\mathcal C}
-\def\calT{\mathcal T}
-\def\Dep{\textsf{Dep}}
-\def\Wait{\textsf{Wait}}
-\def\Passed{\textsf{Passed}}
-\def\Act{\textsf{Act}}
-\def\EA{E_{\Adam}}
-\def\EE{E_{\Eve}}\\\newcommand\zone[1]{\ensuremath{\left\llbracket#1\right\rrbracket}}
-\def\NM#1{\textcolor{green!50!black}{\checkmark}\marginpar{\color{green!50!black}NM: #1}} 
-\long\def\NMlong#1{\medskip\par{\color{green!50!black}NM: #1}\medskip\par}
-\def\OS#1{\textcolor{blue!50!black}{\checkmark}\marginpar{\color{blue!50!black}OS: #1}} 
-\long\def\OSlong#1{\medskip\par{\color{blue!50!black}OS: #1}\medskip\par}\\\newcommand{\Eve}{\textrm{Eve}}
+\[\newcommand{\Eve}{\textrm{Eve}}
 \newcommand{\Adam}{\textrm{Adam}}
-\newcommand{\set}[1]{\left\{ #1 \right\}}
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
-\newcommand{\argmax}{\textrm{argmax}}
-\newcommand{\argmin}{\textrm{argmin}}
-\newcommand{\Op}{\mathbb{O}}
-\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\textrm{supp}} 
-\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
-\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
-\newcommand{\mEve}{\mathrm{Eve}}
-\newcommand{\mAdam}{\mathrm{Adam}}
-\newcommand{\mRandom}{\mathrm{Random}}
-\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
-\newcommand{\ing}{\textrm{In}}
-\newcommand{\Ing}{\ing}
-\newcommand{\out}{\textrm{Out}}
-\newcommand{\Out}{\out}
-\newcommand{\dest}{\Delta} 
-\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
-\newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
-\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
-\newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\newcommand{\Win}{\textrm{Win}} 
-\newcommand{\Lose}{\textrm{Lose}} 
-\newcommand{\Value}{\textrm{val}} 
-\newcommand{\ValueE}{\textrm{val}_\mEve} 
-\newcommand{\ValueA}{\textrm{val}_\mAdam}
-\newcommand{\val}{\Value} 
-\newcommand{\Automaton}{\mathbf{A}} 
-\newcommand{\Safe}{\mathtt{Safe}}
-\newcommand{\Reach}{\mathtt{Reach}} 
-\newcommand{\Buchi}{\mathtt{Buchi}} 
-\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
-\newcommand{\Parity}{\mathtt{Parity}} 
-\newcommand{\Muller}{\mathtt{Muller}} 
-\newcommand{\Rabin}{\mathtt{Rabin}} 
-\newcommand{\Streett}{\mathtt{Streett}} 
-\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
-\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
-\newcommand{\Energy}{\mathtt{Energy}}
-\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
-\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
-\newcommand{\Sup}{\mathtt{Sup}}
-\newcommand{\Inf}{\mathtt{Inf}}
-\newcommand{\LimSup}{\mathtt{LimSup}}
-\newcommand{\LimInf}{\mathtt{LimInf}}
-\newcommand{\NL}{\textrm{NL}}
-\newcommand{\PTIME}{\textrm{PTIME}}
-\newcommand{\NP}{\textrm{NP}}
-\newcommand{\UP}{\textrm{UP}}
-\newcommand{\coNP}{\textrm{coNP}}
-\newcommand{\coUP}{\textrm{coUP}}
-\newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
-\newcommand{\EXP}{\textrm{EXP}}
-\newcommand{\kEXP}{\textrm{kEXP}}\end{aligned}\end{align} \]</div>
+\newcommand{\game}{\mathcal{G}}
+\newcommand{\arena}{\mathcal{A}}
+\newcommand{\Win}{\textrm{Win}}
+\newcommand{\Reach}{\mathtt{Reach}}\]</div>
 <p>The backward algorithm we just presented is conceptually simple, but
 it~is often not very efficient in practice,
 as federations tend to grow too much in size in each iteration of the
@@ -831,7 +742,7 @@ this limits the size of the federations.</p>
 <p>We present below the algorithm proposed in <span id="id1">[<span>CDFLL05</span>]</span>,
 and as a first step, we explain the untimed version of that algorithm,
 based on an algorithm of Liu and Smolka for computing
-fixpoints <span id="id2">[<span>LS98</span>]</span>.</p>
+fixpoints <span id="id2">[<a class="reference internal" href="references.html#id159"><span>LS98</span></a>]</span>.</p>
 <div class="section" id="a-forward-algorithm-for-finite-state-games">
 <h2>A Forward Algorithm for Finite-State Games<a class="headerlink" href="#a-forward-algorithm-for-finite-state-games" title="Permalink to this headline">¶</a></h2>
 <p>The original algorithm of Liu and Smolka is expressed in terms of
@@ -864,29 +775,29 @@ is~not, in the least fixpoint of <span class="math notranslate nohighlight">\(f_
 <p>Before tackling the algorithm, let us link least fixpoints in
 dependency graphs and winning sets in concurrent games (with
 reachability objectives): with a concurrent arena
-<span class="math notranslate nohighlight">\(\calC=(V,\Act,\delta,c')\)</span> and a target set <span class="math notranslate nohighlight">\(\Win\)</span>, we~associate
-the dependency graph <span class="math notranslate nohighlight">\(G=(V,E)\)</span>, where <span class="math notranslate nohighlight">\((v,T)\in E\)</span> whenever <span class="math notranslate nohighlight">\(v\in V\)</span>
-and <span class="math notranslate nohighlight">\(T\subseteq V\)</span> is such that there exists an action <span class="math notranslate nohighlight">\(a\)</span> for which
-<span class="math notranslate nohighlight">\(T=\{v' \mid \exists a'\in\Act.\ v'=\delta(v,a,a')\}\)</span>.  Then for any
-set <span class="math notranslate nohighlight">\(X\subseteq V\)</span>, the~set <span class="math notranslate nohighlight">\(f_{\Win}(X)\)</span> contains <span class="math notranslate nohighlight">\(\Win\)</span> and all the
+<span class="math notranslate nohighlight">\(\calC=(V,\Act,\delta,c')\)</span> and a target set <span class="math notranslate nohighlight">\(\textrm{Win}, we~associate
+the dependency graph \)</span>G=(V,E)<span class="math notranslate nohighlight">\(, where \)</span>(v,T)\in E<span class="math notranslate nohighlight">\( whenever \)</span>v\in V<span class="math notranslate nohighlight">\(
+and \)</span>T\subseteq V<span class="math notranslate nohighlight">\( is such that there exists an action \)</span>a<span class="math notranslate nohighlight">\( for which
+\)</span>T={v’ \mid \exists a’\in\Act.\ v’=\delta(v,a,a’)}<span class="math notranslate nohighlight">\(.  Then for any
+set \)</span>X\subseteq V<span class="math notranslate nohighlight">\(, the~set \)</span>f_{\textrm{Win}(X)<span class="math notranslate nohighlight">\( contains \)</span>\textrm{Win} and all the
 states from which Eve can force a visit to <span class="math notranslate nohighlight">\(X\)</span> in one step.
 We~then~have:</p>
 <div class="proof proposition admonition" id="9-prop:fixp-game">
 <p class="admonition-title"><span class="caption-number">Proposition 273 </span> (NEEDS TITLE 9-prop:fixp-game)</p>
 <div class="proposition-content section" id="proof-content">
-<p>The least fixpoint of <span class="math notranslate nohighlight">\(f_{\Win}\)</span> in <span class="math notranslate nohighlight">\(G\)</span> corresponds to the set <span class="math notranslate nohighlight">\(W\)</span> of
-winning states for~\Eve in <span class="math notranslate nohighlight">\(\calC\)</span>.</p>
+<p>The least fixpoint of <span class="math notranslate nohighlight">\(f_{\textrm{Win}\)</span> in <span class="math notranslate nohighlight">\(G\)</span> corresponds to the set <span class="math notranslate nohighlight">\(W\)</span> of
+winning states for~\textrm{Eve}in <span class="math notranslate nohighlight">\(\calC\)</span>.</p>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
-<p>The winning states of~\Eve form a pre-fixpoint of <span class="math notranslate nohighlight">\(f_{\Win}\)</span>
-containing~\Win: indeed, for any <span class="math notranslate nohighlight">\(v\in f_{\Win}(W)\)</span>, either <span class="math notranslate nohighlight">\(v\in
-  \Win\)</span>, or \Eve has an action to move from <span class="math notranslate nohighlight">\(v\)</span> to some state
-in <span class="math notranslate nohighlight">\(W\)</span>. Hence <span class="math notranslate nohighlight">\(v\)</span> is winning, i.e., <span class="math notranslate nohighlight">\(v\in W\)</span>.</p>
+<p>The winning states of~\textrm{Eve}form a pre-fixpoint of <span class="math notranslate nohighlight">\(f_{\textrm{Win}\)</span>
+containing~\textrm{Win} indeed, for any <span class="math notranslate nohighlight">\(v\in f_{\textrm{Win}(W)\)</span>, either <span class="math notranslate nohighlight">\(v\in
+  \textrm{Win}, or \textrm{Eve}has an action to move from \)</span>v<span class="math notranslate nohighlight">\( to some state
+  in \)</span>W<span class="math notranslate nohighlight">\(. Hence \)</span>v<span class="math notranslate nohighlight">\( is winning, i.e., \)</span>v\in W$.</p>
 <p>Conversely, from any state <span class="math notranslate nohighlight">\(v\)</span> that is not in the least
 pre-fixpoint <span class="math notranslate nohighlight">\(X\)</span>, for any~edge <span class="math notranslate nohighlight">\((v,T)\)</span>, there is a state <span class="math notranslate nohighlight">\(v'\in T\)</span>
-that again is not in <span class="math notranslate nohighlight">\(X\)</span>. This defines a strategy for \Adam to avoid
-reaching <span class="math notranslate nohighlight">\(\Win\)</span>, so that \Eve does not have a winning strategy from <span class="math notranslate nohighlight">\(v\)</span>.</p>
+that again is not in <span class="math notranslate nohighlight">\(X\)</span>. This defines a strategy for \textrm{Adam}to avoid
+reaching <span class="math notranslate nohighlight">\(\textrm{Win}, so that \textrm{Eve}does not have a winning strategy from \)</span>v$.</p>
 </div>
 <p>\begin{algorithm}
 \SetKwFunction{Pop}{pop}\SetAlgoNoEnd
@@ -915,7 +826,7 @@ reaching <span class="math notranslate nohighlight">\(\Win\)</span>, so that \Ev
 \label{9-algo:LS98}
 \end{algorithm}
 \footnotetext{Our version of the algorithm slightly differs from the
-original one <span id="id3">[<span>LS98</span>]</span>: we~let <span class="math notranslate nohighlight">\(\Dep(v'):=\{(v,T)\}\)</span> at the penultimate line
+original one <span id="id3">[<a class="reference internal" href="references.html#id159"><span>LS98</span></a>]</span>: we~let <span class="math notranslate nohighlight">\(\Dep(v'):=\{(v,T)\}\)</span> at the penultimate line
 of the <strong>while</strong> loop (which otherwise results in a wrong
 result, as~already noticed in <span id="id4">[<span>JLSO13</span>]</span>), reinforce the
 condition for case <span class="math notranslate nohighlight">\(1\)</span> (which otherwise would not guarantee
@@ -935,7 +846,7 @@ are scheduled to be visited again to check whether their statuses have to be cha
 This is how the backward propagation is triggered; in~fact, the~search will climb in the tree as long as the values of
 vertices can be updated to <span class="math notranslate nohighlight">\(1\)</span>.</p>
 <p>The correctness of this algorithm relies on the following lemma:</p>
-<p>````{prf:lemma} <span id="id5">[<span>LS98</span>]</span>
+<p>````{prf:lemma} <span id="id5">[<a class="reference internal" href="references.html#id159"><span>LS98</span></a>]</span>
 :label: 9-lemma:ls98</p>
 <p>The following properties hold at the end of each run in the
 <strong>while</strong> loop of <code class="xref std std-numref docutils literal notranslate"><span class="pre">9-algo:LS98</span></code>:</p>
@@ -1150,16 +1061,16 @@ to be revisited upon update of the winning subzone of a zone.
 The algorithm is given in <code class="xref std std-numref docutils literal notranslate"><span class="pre">9-algo:sotftr</span></code>.</p>
 <p>\begin{algorithm}
 \SetKwFunction{Pop}{pop}\SetAlgoNoEnd
-\KwData{A reachability timed game <span class="math notranslate nohighlight">\(\game=(\arena, \Reach(\Win))\)</span>,
+\KwData{A reachability timed game <span class="math notranslate nohighlight">\(\mathcal{G}(\mathcal{A} \mathtt{Reach}\textrm{Win})\)</span>,
 a~location <span class="math notranslate nohighlight">\(\ell_0\in \Locs\)</span>}
 \KwResult{Is <span class="math notranslate nohighlight">\((\ell_0,\mathbf{0})\)</span> winning for Eve?}</p>
 <p><span class="math notranslate nohighlight">\(S_0:=\posttime(\ell_0,\mathbf 0)\)</span>;</p>
-<p>\leIf{<span class="math notranslate nohighlight">\(c(S_0)==\Win\)</span>}{<span class="math notranslate nohighlight">\(F(S_0):=S_0\)</span>}{<span class="math notranslate nohighlight">\(F(S_0):=\emptyset\)</span>}</p>
+<p>\leIf{<span class="math notranslate nohighlight">\(c(S_0)==\textrm{Win}}{\)</span>F(S_0):=S_0<span class="math notranslate nohighlight">\(}{\)</span>F(S_0):=\emptyset$}</p>
 <p><span class="math notranslate nohighlight">\(\Passed:=\{S_0\}\)</span>;<br />
 // <span class="math notranslate nohighlight">\(\Passed\)</span> stores all configurations for which <span class="math notranslate nohighlight">\(F\)</span> is defined</p>
 <p><span class="math notranslate nohighlight">\(\Dep(S_0):=\emptyset\)</span>;</p>
 <p><span class="math notranslate nohighlight">\(\Wait:=\{(S_0,\alpha,T) \mid 
-    T=\posttime(\postta_{\alpha}(S_0))\not=\emptyset, \alpha\text{ transition of }\game\}\)</span>;</p>
+    T=\posttime(\postta_{\alpha}(S_0))\not=\emptyset, \alpha\text{ transition of }\mathcal{G}}\)</span>;</p>
 <p>\While{(<span class="math notranslate nohighlight">\(\Wait\not=\emptyset\)</span> and <span class="math notranslate nohighlight">\((v_0,\mathbf 0)\notin F(S_0)\)</span>)}
 {<span class="math notranslate nohighlight">\((S,\alpha,T)):=\Pop{\Wait}\)</span>;\
 \If({// case <span class="math notranslate nohighlight">\(A\)</span>}){<span class="math notranslate nohighlight">\(T\in\Passed\)</span>}
@@ -1169,13 +1080,13 @@ a~location <span class="math notranslate nohighlight">\(\ell_0\in \Locs\)</span>
 <span class="math notranslate nohighlight">\(\Wait:=\Wait\cup\Dep(S)\)</span>;}}
 \Else({// case <span class="math notranslate nohighlight">\(B\)</span>})
 {<span class="math notranslate nohighlight">\(\Passed:=\Passed \cup\{T\}\)</span>; \
-\If{<span class="math notranslate nohighlight">\(c(T)==\Win\)</span>}{<span class="math notranslate nohighlight">\(F(T):=T\)</span>\ <span class="math notranslate nohighlight">\(\Wait:=\Wait\cup\{(S,\alpha,T)\}\)</span>}
-\Else{<span class="math notranslate nohighlight">\(F(T):=\emptyset\)</span>}
-<span class="math notranslate nohighlight">\(\Dep(T):=\{(S,\alpha,T)\}\)</span>;\
-<span class="math notranslate nohighlight">\(\Wait:=\Wait\cup\{(T,\alpha,U) \mid U=\posttime(\postta_{\alpha}(T))\not=\emptyset, \alpha\text{ transition of }\game\}\)</span>;
-}
-}
-\leIf{<span class="math notranslate nohighlight">\((v_0,\mathbf 0)\in F(S_0)\)</span>}{\Return 1}{\Return 0}</p>
+\If{<span class="math notranslate nohighlight">\(c(T)==\textrm{Win}}{\)</span>F(T):=T<span class="math notranslate nohighlight">\(\\ \)</span>\Wait:=\Wait\cup{(S,\alpha,T)}<span class="math notranslate nohighlight">\(}
+                       \Else{\)</span>F(T):=\emptyset<span class="math notranslate nohighlight">\(}
+                  \)</span>\Dep(T):={(S,\alpha,T)}<span class="math notranslate nohighlight">\(;\\
+                  \)</span>\Wait:=\Wait\cup{(T,\alpha,U) \mid U=\posttime(\postta_{\alpha}(T))\not=\emptyset, \alpha\text{ transition of }\mathcal{G}}<span class="math notranslate nohighlight">\(;
+        }
+        }
+  \leIf{\)</span>(v_0,\mathbf 0)\in F(S_0)$}{\Return 1}{\Return 0}</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    \caption{Symbolic on-the-fly algorithm for timed reachability}
 </pre></div>
 </div>
@@ -1235,11 +1146,11 @@ and</p>
 S\in\Passed^n.\ q\in S\setminus F^n(S)\}\)</span>, and <span class="math notranslate nohighlight">\(M\)</span> be the complement
 of <span class="math notranslate nohighlight">\(L\)</span>. For~any <span class="math notranslate nohighlight">\(S\in\Passed^n\)</span>, we~then have <span class="math notranslate nohighlight">\(M\cap S\subseteq
 F^n(S)\)</span>.</p>
-<p>Pick <span class="math notranslate nohighlight">\(q\in \pi(M)\cup \Win\)</span>, where we abusively write <span class="math notranslate nohighlight">\(\Win\)</span> to denote
-all configurations with location colored <span class="math notranslate nohighlight">\(\Win\)</span>. We~prove that <span class="math notranslate nohighlight">\(q\in M\)</span>:</p>
+<p>Pick <span class="math notranslate nohighlight">\(q\in \pi(M)\cup \textrm{Win}, where we abusively write \)</span>\textrm{Win} to denote
+all configurations with location colored <span class="math notranslate nohighlight">\(\textrm{Win}. We~prove that \)</span>q\in M$:</p>
 <ul class="simple">
-<li><p>if <span class="math notranslate nohighlight">\(q\in\Win\)</span>: assume <span class="math notranslate nohighlight">\(q\in L\)</span>, and pick <span class="math notranslate nohighlight">\(S\in\Passed^n\)</span> such
-that <span class="math notranslate nohighlight">\(q\in S\setminus F^n(S)\)</span>. Since <span class="math notranslate nohighlight">\(q\in S\)</span>, it~holds <span class="math notranslate nohighlight">\(c(S)=\Win\)</span>;
+<li><p>if <span class="math notranslate nohighlight">\(q\in\textrm{Win}: assume \)</span>q\in L<span class="math notranslate nohighlight">\(, and pick \)</span>S\in\Passed^n<span class="math notranslate nohighlight">\( such
+that \)</span>q\in S\setminus F^n(S)<span class="math notranslate nohighlight">\(. Since \)</span>q\in S<span class="math notranslate nohighlight">\(, it~holds \)</span>c(S)=\textrm{Win};
 but then <span class="math notranslate nohighlight">\(F^n(S)\)</span> is defined (since <span class="math notranslate nohighlight">\(S\in\Passed^n\)</span>), and it
 equals <span class="math notranslate nohighlight">\(S\)</span> by initialization of <span class="math notranslate nohighlight">\(F\)</span>. This contradicts the fact that
 <span class="math notranslate nohighlight">\(q\in S\setminus F^n(S)\)</span>, hence <span class="math notranslate nohighlight">\(q\in M\)</span>.</p></li>
@@ -1268,9 +1179,9 @@ Now, it~can be checked that <span class="math notranslate nohighlight">\(\predc(
       V}} \predu(V\setminus (M\cap V))\)</span>.  So the fact that <span class="math notranslate nohighlight">\(q\in
   \pi(M)\)</span> and <span class="math notranslate nohighlight">\(q\in S\)</span> leads to a contradiction. This entails that
 <span class="math notranslate nohighlight">\(q\notin L\)</span>, hence <span class="math notranslate nohighlight">\(q\in M\)</span>.</p>
-<p>In the end, we~have proven that <span class="math notranslate nohighlight">\(\pi(M)\cup\Win \subseteq M\)</span>, so that
-<span class="math notranslate nohighlight">\(M\)</span> is a pre-fixpoint of <span class="math notranslate nohighlight">\(X\mapsto \pi(X)\cup\Win\)</span>, hence it~contains
-all winning configurations of~\Eve and <span class="math notranslate nohighlight">\(L\)</span> only contains losing
+<p>In the end, we~have proven that <span class="math notranslate nohighlight">\(\pi(M)\cup\textrm{Win}\subseteq M\)</span>, so that
+<span class="math notranslate nohighlight">\(M\)</span> is a pre-fixpoint of <span class="math notranslate nohighlight">\(X\mapsto \pi(X)\cup\textrm{Win}, hence it~contains
+all winning configurations of~\textrm{Eve}and \)</span>L$ only contains losing
 configurations.</p>
 </div>
 <p>The procedure given in <code class="xref std std-numref docutils literal notranslate"><span class="pre">9-algo:sotftr</span></code> will in general not
@@ -1290,9 +1201,9 @@ in <span class="math notranslate nohighlight">\(T\)</span>).</p>
 <p class="admonition-title"><span class="caption-number">Theorem 277 </span> (NEEDS TITLE AND LABEL)</p>
 <div class="theorem-content section" id="proof-content">
 <p><code class="xref std std-numref docutils literal notranslate"><span class="pre">9-algo:sotftr</span></code> terminates when extrapolation is used, and returns <span class="math notranslate nohighlight">\(1\)</span> if, and only~if,
-<span class="math notranslate nohighlight">\((\ell_0,\mathbf{0})\)</span>~is winning for~\Eve.</p>
+<span class="math notranslate nohighlight">\((\ell_0,\mathbf{0})\)</span>~is winning for~\textrm{Eve}</p>
 <p><code class="xref std std-numref docutils literal notranslate"><span class="pre">9-algo:sotftr</span></code> terminates when extrapolation is used, and returns <span class="math notranslate nohighlight">\(1\)</span> if, and only~if,
-<span class="math notranslate nohighlight">\((\ell_0,\mathbf{0})\)</span>~is winning for~\Eve.</p>
+<span class="math notranslate nohighlight">\((\ell_0,\mathbf{0})\)</span>~is winning for~\textrm{Eve}</p>
 </div>
 </div></div>
 </div>

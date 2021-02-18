@@ -1,99 +1,18 @@
 (8-sec:finite_duration)=
 # Finite duration
 
+
 ```{math}
-\newcommand{\probimp}[3]{\mathbb{P}^{#1}_{#2}\left({#3}\right)}
-\newcommand{\rand}{{\tt rand}}
-\newcommand{\Isafe}{{\tt ISafe}}
-\newcommand{\LL}{\mathcal{L}}
-\newcommand{\KK}{\mathcal{K}}
-\newcommand{\LLE}{\LL_{\text{Eve},=1}}
-\newcommand{\LLA}{\LL_{\text{Adam},>0}}
-\newcommand{\can}{\textsf{max}}
-\newcommand{\targets}{TT}
-\newcommand{\bh}{\setminus}
-\newcommand{\signauxdeux}{T}
-\newcommand{\actionsun}{A}
+\newcommand{\pay}{ {\tt pay}}
 \newcommand{\Strat}{\text{Strat}}
 \newcommand{\Act}{\text{Act}}
 \newcommand{\ini}{\delta_0}
-\newcommand{\win}{{\tt Win}}
-\newcommand{\winreach}{{\tt Reach}}
-\newcommand{\winsafe}{{\tt Safety}}
-\newcommand{\winbuchi}{{\tt Buchi}}
-\newcommand{\wincobuchi}{{\tt CoBuchi}}
-\newcommand{\states}{V}
-\newcommand{\ar}{\arena}
-\newcommand{\action}{a}
-\newcommand{\belun}{\mathcal{B}_{\text{Eve}}}
-\newcommand{\beldeux}{\mathcal{B}_{\text{Adam}}}
-\newcommand{\deuxbelun}{\mathcal{B}^{(2)}_{Eve}}
-\newcommand{\tp}{\Delta}
-\newcommand{\parties}[1]{\ensuremath{\mathcal{P}(#1)}}
-\newcommand{\Eve}{\textrm{Eve}}
-\newcommand{\Adam}{\textrm{Adam}}
-\newcommand{\set}[1]{\left\{ #1 \right\}}
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
 \newcommand{\R}{\mathbb{R}}
-\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
-\newcommand{\argmax}{\textrm{argmax}}
-\newcommand{\argmin}{\textrm{argmin}}
-\newcommand{\Op}{\mathbb{O}}
-\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\textrm{supp}} 
-\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
-\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
-\newcommand{\mEve}{\mathrm{Eve}}
-\newcommand{\mAdam}{\mathrm{Adam}}
-\newcommand{\mRandom}{\mathrm{Random}}
-\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
-\newcommand{\ing}{\textrm{In}}
-\newcommand{\Ing}{\ing}
-\newcommand{\out}{\textrm{Out}}
-\newcommand{\Out}{\out}
-\newcommand{\dest}{\Delta} 
-\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
-\newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
-\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
-\newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\newcommand{\Win}{\textrm{Win}} 
-\newcommand{\Lose}{\textrm{Lose}} 
-\newcommand{\Value}{\textrm{val}} 
-\newcommand{\ValueE}{\textrm{val}_\mEve} 
-\newcommand{\ValueA}{\textrm{val}_\mAdam}
-\newcommand{\val}{\Value} 
-\newcommand{\Automaton}{\mathbf{A}} 
-\newcommand{\Safe}{\mathtt{Safe}}
-\newcommand{\Reach}{\mathtt{Reach}} 
-\newcommand{\Buchi}{\mathtt{Buchi}} 
-\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
-\newcommand{\Parity}{\mathtt{Parity}} 
-\newcommand{\Muller}{\mathtt{Muller}} 
-\newcommand{\Rabin}{\mathtt{Rabin}} 
-\newcommand{\Streett}{\mathtt{Streett}} 
-\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
-\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
-\newcommand{\Energy}{\mathtt{Energy}}
-\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
-\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
-\newcommand{\Sup}{\mathtt{Sup}}
-\newcommand{\Inf}{\mathtt{Inf}}
-\newcommand{\LimSup}{\mathtt{LimSup}}
-\newcommand{\LimInf}{\mathtt{LimInf}}
-\newcommand{\NL}{\textrm{NL}}
-\newcommand{\PTIME}{\textrm{PTIME}}
-\newcommand{\NP}{\textrm{NP}}
-\newcommand{\UP}{\textrm{UP}}
-\newcommand{\coNP}{\textrm{coNP}}
-\newcommand{\coUP}{\textrm{coUP}}
-\newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
-\newcommand{\EXP}{\textrm{EXP}}
-\newcommand{\kEXP}{\textrm{kEXP}}
+\newcommand{\dist}{\mathcal{D}}
+\newcommand{\val}{\Value}
+\newcommand{\Value}{\textrm{val}}
 ```
+
 We start with some results on the very interesting class of game
 with finite duration.
 
@@ -125,14 +44,14 @@ $$
 
 
 
-An initial distribution $\ini$ and two strategies $\sigma$ and $\tau$ of Eve and Adam naturally induce a probability distribution $\mathbb{P}_{\ini}^{\sigma,\tau}$
-on the set of terminal plays starting in one of the vertices $v_0, \ini(v_0)>0$.
+An initial distribution $\delta_0 and two strategies $\sigma$ and $\tau$ of Eve and Adam naturally induce a probability distribution $\mathbb{P}_{\delta_0^{\sigma,\tau}$
+on the set of terminal plays starting in one of the vertices $v_0, \delta_0v_0)>0$.
 Players have opposite interests:
 Eve seeks to maximize her expected payoff
 
 $$
-\mathbb{E}_{\ini}^{\sigma,\tau}= \sum_{\text{ terminal plays }\pi} 
-\mathbb{P}_{\ini}^{\sigma,\tau}(\pi) \cdot {\pay}(\pi)\enspace,
+\mathbb{E}_{\delta_0^{\sigma,\tau}= \sum_{\text{ terminal plays }\pi} 
+\mathbb{P}_{\delta_0^{\sigma,\tau}(\pi) \cdot { {\tt pay}(\pi)\enspace,
 $$
 
 while Adam wants to minimize it.
@@ -147,15 +66,15 @@ Next theorem gathers several folklore results.
 :label: 8-thm:finiteimperfecthaveval
 
 A game with finite duration and imperfect information has a value:
-for every initial distribution $\ini$,
+for every initial distribution $\delta_0,
 
 $$
-\sup_\sigma \inf_\tau \mathbb{E}_{\ini}^{\sigma,\tau}
+\sup_\sigma \inf_\tau \mathbb{E}_{\delta_0^{\sigma,\tau}
 ~=~
- \inf_\tau \sup_\sigma \mathbb{E}_{\ini}^{\sigma,\tau}\enspace.
+ \inf_\tau \sup_\sigma \mathbb{E}_{\delta_0^{\sigma,\tau}\enspace.
 $$
 
-This value is denoted $\val(\ini)$
+This value is denoted $\textrm{val}delta_0$
 and is computable.
 
 ```{margin}
@@ -180,7 +99,7 @@ may choose once for all at the beginning of the game
 how to react to every possible sequence of signals
 she might receive in the future.
 
-Fix an initial distribution $\ini$.
+Fix an initial distribution $\delta_0.
 In the normal form version the game,
 Eve  picks 
 a **deterministic** strategy
@@ -190,7 +109,7 @@ Adam picks
 $\tau : R_A \to A$.
 Then the game is over
 and Eve receives payoff
-$\mathbb{E}_{\ini}^{\sigma,\tau}$.
+$\mathbb{E}_{\delta_0^{\sigma,\tau}$.
 There are finitely many such deterministic strategies,
 thus the normal form game is a **matrix game**.
 See Section {ref}`7-sec:matrix_games` for more details
@@ -279,42 +198,42 @@ In the general case, the correspondance can be stated as follows.
 ````{prf:lemma} NEEDS TITLE 8-lem:impinffinite
 :label: 8-lem:impinffinite
 
-Denote $\Strat$ the set of behavioural strategies,
+Denote $\text{Strat} the set of behavioural strategies,
 $\Strat_d$ the subset of deterministic strategies
-and $\dist(\Strat_d)$ the set of strategies in the normal form game.
+and $\mathcal{D}\Strat_d)$ the set of strategies in the normal form game.
 
 1.  There is a mapping 
 $
-\Phi : \Strat \to \dist(\Strat_d)
+\Phi : \text{Strat}\to \mathcal{D}\Strat_d)
 $ 
 
 %in the normal form game 
 which preserves payoffs:
 
 $$
-\forall \sigma,\tau \in \Strat,
-\mathbb{E}_{\ini}^{\sigma,\tau}
+\forall \sigma,\tau \in \text{Strat}
+\mathbb{E}_{\delta_0^{\sigma,\tau}
 =
 \sum_{\sigma',\tau' \in \Strat_d}\Phi(\sigma)(\sigma')\cdot\Phi(\tau)(\tau') 
-\cdot\mathbb{E}_{\ini}^{\sigma',\tau'}\enspace.
+\cdot\mathbb{E}_{\delta_0^{\sigma',\tau'}\enspace.
 $$
 
 
 2.  Since actions are observable,
 there is a mapping 
 $
-\Phi' : \dist(\Strat_d) \to \Strat 
+\Phi' : \mathcal{D}\Strat_d) \to \text{Strat}
 $ 
 
 %in the  imperfect information game  
 which preserves payoffs:
 
 $$
-\forall \Sigma,T \in \dist(\Strat),
+\forall \Sigma,T \in \mathcal{D}\text{Strat},
 \sum_{\sigma',\tau' \in \Strat_d}\Sigma(\sigma') T(\tau')
-\mathbb{E}_{\ini}^{\sigma',\tau'}
+\mathbb{E}_{\delta_0^{\sigma',\tau'}
 =
-\mathbb{E}_{\ini}^{\Phi'(\sigma),\Phi'(\tau)}
+\mathbb{E}_{\delta_0^{\Phi'(\sigma),\Phi'(\tau)}
 \enspace.
 $$
 
@@ -345,12 +264,12 @@ $$
 
 
 We prove ii).
-Let $\Sigma\in\dist(\Strat)$. The definition of the behavioural strategy
+Let $\Sigma\in\mathcal{D}\text{Strat}$. The definition of the behavioural strategy
 $\sigma=\Phi'(\Sigma)$ is as follows.
 Let $s_0\ldots s_k$ be a finite sequence of signals.
 Since actions are observable, this defines unambigously
 the sequence of corresponding actions $a_0\ldots a_k$
-where $a_i = \Act(s_i)$.
+where $a_i = \text{Act}s_i)$.
 
 %consistent with $s_0\ldots s_k$ and $a_0\ldots a_k$ :
 
@@ -368,7 +287,7 @@ $$
 \sigma(s_0\ldots s_k)(a) 
 =
 \Sigma\left(\sigma'(s_0\ldots s_k)=a \mid \forall 0\leq i \leq k,
- \sigma'(s_0\ldots s_{i-1})=\Act(s_i)\right)\enspace,
+ \sigma'(s_0\ldots s_{i-1})=\text{Act}s_i)\right)\enspace,
 $$
 
 where the vertical pipe denotes a conditional probability.
@@ -388,12 +307,12 @@ of at least $\val_N$ in the imperfect information game,
 because for every strategy $\tau$,
 
 $$
-\mathbb{E}_{\ini}^{\sigma^\sharp,\tau}
+\mathbb{E}_{\delta_0^{\sigma^\sharp,\tau}
 =
-\mathbb{E}_{\ini}^{\Phi'(\Sigma^\sharp),\Phi'(\Phi(\tau))}
+\mathbb{E}_{\delta_0^{\Phi'(\Sigma^\sharp),\Phi'(\Phi(\tau))}
 =
 \sum_{\sigma',\tau' \in \Strat_d}\Sigma^\sharp(\sigma') \Phi(\tau)(\tau')
-\mathbb{E}_{\ini}^{\sigma',\tau'}
+\mathbb{E}_{\delta_0^{\sigma',\tau'}
 \geq \val_N\enspace,
 $$
 
@@ -401,7 +320,7 @@ where the first equalities are applications of {prf:ref}`8-lem:impinffinite`
 and the inequality is by optimality of $\Sigma^\sharp$.
 Symmetrically, 
 $\tau^\sharp=\Phi'(T^\sharp)$ guarantees 
-$\forall \sigma,\mathbb{E}_{\ini}^{\sigma,\tau^\sharp}\leq\val_N$. 
+$\forall \sigma,\mathbb{E}_{\delta_0^{\sigma,\tau^\sharp}\leq\val_N$. 
 Thus the value of the game with finite duration
 is $\val_N$ and $\sigma^\sharp$
 and $\tau^\sharp$ are optimal.\qed
@@ -423,11 +342,11 @@ might contain all sequences of $S$ of length $\leq n$.
 Koller, Meggido and von Stengel did provide a
 more efficient direct reduction to linear programming.
 Strategies of Eve in the normal form game live
-in $\R^{A^{R_E}}$
+in $\mathbb{R}{A^{R_E}}$
 while her strategies in the game with imperfect information
 live in a space
 with exponentially fewer dimensions, namely
-$\R^{R_E\times A}$.
+$\mathbb{R}{R_E\times A}$.
 The direct reduction avoids this dimensional blowup.
 
 
@@ -453,15 +372,15 @@ like stated in {cite}`stengel`.
 
 The construction of the linear program relies on three key ideas.
 
-First, representing a behavioral strategy $\sigma:R_E \to \dist(A)$
+First, representing a behavioral strategy $\sigma:R_E \to \mathcal{D}A)$
  of Eve as a **plan** $\pi:R_E  \to [0,1]$
  recursively defined by $\pi(\epsilon) = 1$
  and for every $s_0\cdots s_n \in R_E, s\in S$,
  \begin{align*}
 & \pi(s_0\cdots s_n\cdot s) = \pi(s_0\cdots s_n) \cdot
- \sigma(s_0\cdots s_n)(\Act(s))\enspace.
+ \sigma(s_0\cdots s_n)(\text{Act}s))\enspace.
  \end{align*}
-Remind that actions are observable and $\Act(s)$
+Remind that actions are observable and $\text{Act}s)$
 denotes the action that Eve has just played
 before receiving signal $s$.
 In the linear program, plans are represented by variables 
@@ -472,10 +391,10 @@ First, $p_\epsilon = 1$.
 Second, for every 
 $s_0\ldots s_{n-1}s,s_0\ldots s_{n-1}s' \in R_E$,
 \begin{align*}
-(\Act(s)=\Act(s')) \implies \left(p_{s_0\ldots s_{n-1}s}= p_{s_0\ldots s_{n-1}s'}\right)\enspace.
+(\text{Act}s)=\text{Act}s')) \implies \left(p_{s_0\ldots s_{n-1}s}= p_{s_0\ldots s_{n-1}s'}\right)\enspace.
 \end{align*}
 We denote $p_{s_0\ldots s_{n-1}a}$ the common value of
-all $p_{s_0\ldots s_{n-1}s}$ with $a=\Act(s)$.
+all $p_{s_0\ldots s_{n-1}s}$ with $a=\text{Act}s)$.
 The third equality is 
 $p_{s_0\ldots s_{n-1}}=\sum_{a\in A} p_{s_0\ldots s_{n-1}a}$ \enspace.
 
@@ -491,7 +410,7 @@ For every play $(v_0,a_0,b_0,s_0,t_0,c_0),\ldots,(v_k,a_k,b_k,s_k,t_k,c_k)$
  we denote $\mathbb{E}(\pi)$ the product of all transition
 probabilities of $\pi$ and $r_{E}(\pi)$ the sequence of signals of Eve in this play:
 \begin{align*}
-&\mathbb{E}(\pi) = \ini(v_0)\cdot \Delta(v_0,a_0,b_0,s_0,t_0,c_0)
+&\mathbb{E}(\pi) = \delta_0v_0)\cdot \Delta(v_0,a_0,b_0,s_0,t_0,c_0)
   \cdots \Delta(v_k,a_k,b_k,s_k,t_k,c_k)\\
  & r_{E}(\pi) = s_0,s_1,\ldots,s_k\enspace.
 \end{align*}
@@ -499,7 +418,7 @@ probabilities of $\pi$ and $r_{E}(\pi)$ the sequence of signals of Eve in this p
   
 We show that the following linear program with variables
   $(p_r)_{r \in R_E}$, $(v_r)_{r\in R_A}$
-  has an optimal solution which equals to $\val(\ini)$.
+  has an optimal solution which equals to $\textrm{val}delta_0$.
  For every sequences of signals $r \in R_A$
  we denote $T_A(r)$ the (possibly empty)
  set of terminal plays whose sequence of signals for Adam is $r$.
@@ -517,8 +436,8 @@ We show that the following linear program with variables
 
 &
 \label{eq:implp2}
-v_{r} \leq \sum\limits_{\substack{rs \in R_A\\s \in S, \Act(s)=a}}
-v_{rs}~+~\sum\limits_{\pi \in T(r)} \mathbb{E}(\pi) \cdot \pay(\pi) \cdot 
+v_{r} \leq \sum\limits_{\substack{rs \in R_A\\s \in S, \text{Act}s)=a}}
+v_{rs}~+~\sum\limits_{\pi \in T(r)} \mathbb{E}(\pi) \cdot  {\tt pay}\pi) \cdot 
 p_{r_E(\pi)}
 
 \end{align}
@@ -529,7 +448,7 @@ that the optimal solution of the LP
 is 
 
 $$
-\val(\ini) = \sup_\sigma \min\limits_{\tau\text{ deterministic}} \mathbb{E}_{\ini}^{\sigma,\tau}\enspace.
+\textrm{val}delta_0 = \sup_\sigma \min\limits_{\tau\text{ deterministic}} \mathbb{E}_{\delta_0^{\sigma,\tau}\enspace.
 $$
 
 The reason is that in a matrix game,
@@ -539,24 +458,24 @@ with probability $1$.
 Thus, according to the reduction to normal form seen in the previous chapter,
 for every strategy $\sigma$ of Eve,
 there is a **deterministic** strategy $\tau$ of Adam
-which minimizes $\mathbb{E}_{\ini}^{\sigma,\tau}$.
+which minimizes $\mathbb{E}_{\delta_0^{\sigma,\tau}$.
 
 
 We show first that for every feasible solution 
 $(p_r)_{r \in R_E}$, $(v_r)_{r\in R_A}$ of the linear program,
 the strategy $\sigma$ corresponding to the plan $(p_r)_{r \in R_E}$
 guarantees that for every **deterministic** strategy $\tau$,
-$\mathbb{E}_{\ini}^{\sigma,\tau} \geq v_\epsilon$.
+$\mathbb{E}_{\delta_0^{\sigma,\tau} \geq v_\epsilon$.
 Since $\tau$ is deterministic
-then $\mathbb{E}_{\ini}^{\sigma,\tau}$
-is the sum of all $\mathbb{E}(\pi) \cdot \pay(\pi) \cdot 
+then $\mathbb{E}_{\delta_0^{\sigma,\tau}$
+is the sum of all $\mathbb{E}(\pi) \cdot  {\tt pay}\pi) \cdot 
 p_{r_E(\pi)}$ over plays $\pi$ played according to $\tau$
-thus a trivial induction shows $\mathbb{E}_{\ini}^{\sigma,\tau}\geq v_\epsilon$.
+thus a trivial induction shows $\mathbb{E}_{\delta_0^{\sigma,\tau}\geq v_\epsilon$.
 
 We show now that to every strategy $\sigma$ of Eve,
 and to every deterministic optimal answer $\tau$ of Adam, 
 corresponds a feasible solution of the program
-such that $v_\epsilon = \mathbb{E}_{\ini}^{\sigma,\tau}$.
+such that $v_\epsilon = \mathbb{E}_{\delta_0^{\sigma,\tau}$.
 Let  $(p_r)_{r \in R_E}$ the plan corresponding to $\sigma$.
 For every $r\in R_A$ define $v_r$ be the expected payoff of Eve
 in an auxiliary game where she plays $\sigma$
