@@ -1,17 +1,100 @@
 (8-sec:notations)=
 # Notations
 
-
 ```{math}
+\newcommand{\pay}{ {\tt pay}}
+\newcommand{\probimp}[3]{\mathbb{P}^{#1}_{#2}\left({#3}\right)}
+\newcommand{\rand}{{\tt rand}}
+\newcommand{\Isafe}{{\tt ISafe}}
+\newcommand{\LL}{\mathcal{L}}
+\newcommand{\KK}{\mathcal{K}}
+\newcommand{\LLE}{\LL_{\text{Eve},=1}}
+\newcommand{\LLA}{\LL_{\text{Adam},>0}}
+\newcommand{\can}{\textsf{max}}
+\newcommand{\targets}{TT}
+\newcommand{\bh}{\setminus}
+\newcommand{\signauxdeux}{T}
+\newcommand{\actionsun}{A}
+\newcommand{\Strat}{\text{Strat}}
 \newcommand{\Act}{\text{Act}}
 \newcommand{\ini}{\delta_0}
+\newcommand{\win}{{\tt Win}}
+\newcommand{\winreach}{{\tt Reach}}
+\newcommand{\winsafe}{{\tt Safety}}
+\newcommand{\winbuchi}{{\tt Buchi}}
+\newcommand{\wincobuchi}{{\tt CoBuchi}}
+\newcommand{\states}{V}
+\newcommand{\ar}{\arena}
+\newcommand{\action}{a}
+\newcommand{\belun}{\mathcal{B}_{\text{Eve}}}
+\newcommand{\beldeux}{\mathcal{B}_{\text{Adam}}}
+\newcommand{\deuxbelun}{\mathcal{B}^{(2)}_{Eve}}
+\newcommand{\tp}{\Delta}
+\newcommand{\parties}[1]{\ensuremath{\mathcal{P}(#1)}}
 \newcommand{\Eve}{\textrm{Eve}}
-\newcommand{\dist}{\mathcal{D}}
-\newcommand{\arena}{\mathcal{A}}
+\newcommand{\Adam}{\textrm{Adam}}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
+\newcommand{\argmax}{\textrm{argmax}}
+\newcommand{\argmin}{\textrm{argmin}}
+\newcommand{\Op}{\mathbb{O}}
+\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\textrm{supp}} 
+\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
+\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
+\newcommand{\mEve}{\mathrm{Eve}}
 \newcommand{\mAdam}{\mathrm{Adam}}
-\newcommand{\SA}{S_{\mAdam}}
+\newcommand{\mRandom}{\mathrm{Random}}
+\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
+\newcommand{\ing}{\textrm{In}}
+\newcommand{\Ing}{\ing}
+\newcommand{\out}{\textrm{Out}}
+\newcommand{\Out}{\out}
+\newcommand{\dest}{\Delta} 
+\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
+\newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
+\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
+\newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
+\newcommand{\Win}{\textrm{Win}} 
+\newcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Value}{\textrm{val}} 
+\newcommand{\ValueE}{\textrm{val}_\mEve} 
+\newcommand{\ValueA}{\textrm{val}_\mAdam}
+\newcommand{\val}{\Value} 
+\newcommand{\Automaton}{\mathbf{A}} 
+\newcommand{\Safe}{\mathtt{Safe}}
+\newcommand{\Reach}{\mathtt{Reach}} 
+\newcommand{\Buchi}{\mathtt{Buchi}} 
+\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
+\newcommand{\Parity}{\mathtt{Parity}} 
+\newcommand{\Muller}{\mathtt{Muller}} 
+\newcommand{\Rabin}{\mathtt{Rabin}} 
+\newcommand{\Streett}{\mathtt{Streett}} 
+\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
+\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
+\newcommand{\Energy}{\mathtt{Energy}}
+\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
+\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
+\newcommand{\Sup}{\mathtt{Sup}}
+\newcommand{\Inf}{\mathtt{Inf}}
+\newcommand{\LimSup}{\mathtt{LimSup}}
+\newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NL}{\textrm{NL}}
+\newcommand{\PTIME}{\textrm{PTIME}}
+\newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
+\newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
+\newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
+\newcommand{\EXP}{\textrm{EXP}}
+\newcommand{\kEXP}{\textrm{kEXP}}
 ```
-
 We consider **stochastic games with signals**, that are a standard tool in game theory to model imperfect information in stochastic games {cite}`sorinafirst,dinahnicolas1,renault2`.
 When playing a stochastic game with signals, players cannot observe
 the actual state of the game, nor the actions played by themselves or
@@ -23,33 +106,33 @@ monitoring {cite}`dinahnicolas1`, concurrent games {cite}`dAH00` and
 deterministic games with imperfect information on one
 side {cite}`reif,chdr07`.
 
-%\newcommand{S_{\mathrm{Adam}{S_{\mathrm{Adam}}
+%\newcommand{\SA}{S_{\mAdam}}
 Like in previous chapters, $V$, $C$ and $A$  
 denote respectively the sets
 of vertices, colors and actions.
 
 ````{prf:definition} NEEDS TITLE AND LABEL 
-An imperfect information arena $\mathcal{A} is a tuple $(S,\Delta)$ where 
+An imperfect information arena $\arena$ is a tuple $(S,\Delta)$ where 
 
 *  $S$ is the set of **signals**
-*  $\Delta : V \times A \times A \to \mathcal{D}V \times S \times S \times C)$
+*  $\Delta : V \times A \times A \to \dist(V \times S \times S \times C)$
  maps the current vertex and a pair of actions to a probability distribution
  over vertices, pairs of signals and colors.
 
  
 
-An imperfect information arena $\mathcal{A} is a tuple $(S,\Delta)$ where 
+An imperfect information arena $\arena$ is a tuple $(S,\Delta)$ where 
 
 *  $S$ is the set of **signals**
-*  $\Delta : V \times A \times A \to \mathcal{D}V \times S \times S \times C)$
+*  $\Delta : V \times A \times A \to \dist(V \times S \times S \times C)$
  maps the current vertex and a pair of actions to a probability distribution
  over vertices, pairs of signals and colors.
 
 ````
 
 Initially, the game is in a state $v_0 \in V$ chosen according to a probability distribution
-$\delta_0in\mathcal{D}V)$ known by both players; the initial state is
-$v_0$ with probability $\delta_0v_0)$.  At each step $n\in\NN$, both players
+$\ini\in\dist(V)$ known by both players; the initial state is
+$v_0$ with probability $\ini(v_0)$.  At each step $n\in\NN$, both players
 simultaneously choose some actions $a,b \in A$
  They respectively receive signals
 $s,t \in S$ ,
@@ -98,7 +181,7 @@ DEAL WITH THIS FIGURE!
 
 %\path[->](root) edge node[near start,left,align=center]  
 
-%\\textrm{Eve}receives $\spadesuit$
+%\\Eve receives $\spadesuit$
 
 %} (spade);
 
@@ -244,7 +327,7 @@ with every realisable sequence of signals a probability distribution
 over actions:  
 
 $$
-\sigma: R_E \to \mathcal{D}A)\enspace.
+\sigma: R_E \to \dist(A)\enspace.
 $$
 
 When Eve plays $\sigma$, after having received a sequence of signals
@@ -257,13 +340,13 @@ for example $S$ might be a singleton
 in which case the players only knows the number of steps so far.
 
 A game has **observable actions** if there exists a mapping
- $\text{Act}S \to A$ 
+ $\Act:S \to A$ 
  such that
 
 $$
 \Delta(v,a,b)(w,s,t)>0 
 \implies
-(a=\text{Act}s) \land b=\text{Act}t))\enspace. 
+(a=\Act(s) \land b=\Act(t))\enspace. 
 $$
 
 

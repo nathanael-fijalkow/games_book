@@ -763,10 +763,81 @@
   <div class="section" id="nash-equilibria-for-games-in-normal-form">
 <span id="sec-nash-equilibria-normal-form"></span><h1>Nash Equilibria for games in normal form<a class="headerlink" href="#nash-equilibria-for-games-in-normal-form" title="Permalink to this headline">¶</a></h1>
 <div class="math notranslate nohighlight">
-\[\newcommand{\Eve}{\textrm{Eve}}
+\[\def\payoff{\ensuremath{f}}
+\def\Act{A}
+\def\Agt{\mathcal{P}}
+\def\move{\textsf{move}}
+\def\Out{\textsf{Out}}
+\def\Dev{\textsf{Dev}}
+\def\maxinf{\text{\rm maxinf}}
+\def\pes{\textsf{pes}}
+\def\opt{\textsf{opt}}
+\def\proj{\textsf{proj}}
+\def\devg{\textsf{DevGame}}
+\def\Coalition{\ensuremath{\mathcal{C}}}
+\newcommand{\Eve}{\textrm{Eve}}
+\newcommand{\Adam}{\textrm{Adam}}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
+\newcommand{\argmax}{\textrm{argmax}}
+\newcommand{\argmin}{\textrm{argmin}}
+\newcommand{\Op}{\mathbb{O}}
+\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\textrm{supp}} 
+\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
+\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
+\newcommand{\mEve}{\mathrm{Eve}}
+\newcommand{\mAdam}{\mathrm{Adam}}
+\newcommand{\mRandom}{\mathrm{Random}}
+\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
+\newcommand{\ing}{\textrm{In}}
+\newcommand{\Ing}{\ing}
+\newcommand{\out}{\textrm{Out}}
 \newcommand{\Out}{\out}
-\newcommand{\last}{\textrm{last}}
-\newcommand{\out}{\textrm{Out}}\]</div>
+\newcommand{\dest}{\Delta} 
+\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
+\newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
+\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
+\newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
+\newcommand{\Win}{\textrm{Win}} 
+\newcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Value}{\textrm{val}} 
+\newcommand{\ValueE}{\textrm{val}_\mEve} 
+\newcommand{\ValueA}{\textrm{val}_\mAdam}
+\newcommand{\val}{\Value} 
+\newcommand{\Automaton}{\mathbf{A}} 
+\newcommand{\Safe}{\mathtt{Safe}}
+\newcommand{\Reach}{\mathtt{Reach}} 
+\newcommand{\Buchi}{\mathtt{Buchi}} 
+\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
+\newcommand{\Parity}{\mathtt{Parity}} 
+\newcommand{\Muller}{\mathtt{Muller}} 
+\newcommand{\Rabin}{\mathtt{Rabin}} 
+\newcommand{\Streett}{\mathtt{Streett}} 
+\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
+\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
+\newcommand{\Energy}{\mathtt{Energy}}
+\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
+\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
+\newcommand{\Sup}{\mathtt{Sup}}
+\newcommand{\Inf}{\mathtt{Inf}}
+\newcommand{\LimSup}{\mathtt{LimSup}}
+\newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NL}{\textrm{NL}}
+\newcommand{\PTIME}{\textrm{PTIME}}
+\newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
+\newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
+\newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
+\newcommand{\EXP}{\textrm{EXP}}
+\newcommand{\kEXP}{\textrm{kEXP}}\]</div>
 <p>The normal form games we consider differ from the matrix games of Chapter <a class="reference internal" href="../7_Concurrent/index.html#chap-concurrent"><span class="std std-ref">Concurrent Games</span></a>, in that each player has their own payoff.
 So for instance, when player 1 chooses column Hawk, and player 2 chooses
 row Dove, the payoff for player 1 is <span class="math notranslate nohighlight">\(\payoff_{P_1}(\text{Hawk}, \text{Dove}) = 4\)</span>.</p>
@@ -943,7 +1014,7 @@ which actions.</p>
 (\pi = \pi_0 \cdot \move_0(\pi \cdot \pi_1 \cdots \move_{n-1}(\pi)\cdot \pi_n), and
 with this notation <span class="math notranslate nohighlight">\(\move_i(\pi)_P\)</span> is the <span class="math notranslate nohighlight">\(i\)</span>-th action of player <span class="math notranslate nohighlight">\(P\)</span> in <span class="math notranslate nohighlight">\(h\)</span>.
 The length <span class="math notranslate nohighlight">\(|\pi|\)</span> of such a history is <span class="math notranslate nohighlight">\(n + 1\)</span>. We write
-<span class="math notranslate nohighlight">\(\textrm{last}\pi)\)</span> the last vertex of h, i.e. (\pi_{|\pi|-1}).
+<span class="math notranslate nohighlight">\(\last(\pi)\)</span> the last vertex of h, i.e. (\pi_{|\pi|-1}).
 A play (\rho) is an
 infinite sequence of vertices and moves, i.e.~an element of
 ((V \cdot \Act^{\Agt})^\omega).</p>
@@ -991,7 +1062,7 @@ strategies:</p>
 </ul>
 <p>The outcome from <span class="math notranslate nohighlight">\(v_0\)</span> in that case is
 \begin{align*}
-\outv_0, \sigma_{{P_1, P_2, P_3}}) ~ = &amp; ~ v_0 \cdot (a, a, b) \cdot v_2 \cdot (a, b, b)
+\Out(v_0, \sigma_{{P_1, P_2, P_3}}) ~ = &amp; ~ v_0 \cdot (a, a, b) \cdot v_2 \cdot (a, b, b)
 \cdot v_4 \cdot (a, b, b) \cdot\
 &amp; \left(v_0 \cdot (a, b, b)
 \cdot v_1 \cdot (a, b, b)
@@ -1006,7 +1077,7 @@ strategies:</p>
 </ul>
 <p>The outcome from <span class="math notranslate nohighlight">\(v_0\)</span> in that case is
 \begin{align*}
-\outv_0, \sigma_{{P_1, P_2, P_3}}) ~ = &amp; ~ v_0 \cdot (a, a, b) \cdot v_2 \cdot (a, b, b)
+\Out(v_0, \sigma_{{P_1, P_2, P_3}}) ~ = &amp; ~ v_0 \cdot (a, a, b) \cdot v_2 \cdot (a, b, b)
 \cdot v_4 \cdot (a, b, b) \cdot\
 &amp; \left(v_0 \cdot (a, b, b)
 \cdot v_1 \cdot (a, b, b)
@@ -1041,7 +1112,7 @@ bounds <span class="math notranslate nohighlight">\((b_P)_{P\in\ \Agt}\)</span>,
 <p><strong>QUESTION</strong>:
 \parbox[t]{0.75\textwidth}{is there
 a Nash equilibrium <span class="math notranslate nohighlight">\(\sigma_{\Agt}\)</span> such that for all
-<span class="math notranslate nohighlight">\(P \in \Agt, \payoff_P(\textrm{Out}v_0,\sigma_{\Agt}})) \ge b_P\)</span>?}</p>
+<span class="math notranslate nohighlight">\(P \in \Agt, \payoff_P(\Out({v_0,\sigma_{\Agt}})) \ge b_P\)</span>?}</p>
 </div>
 <p>\todo{OS: I don’t know how to fix this alignment issue}</p>
 <p>The algorithm is based on a reduction to zero-sum two-players games,
@@ -1083,7 +1154,7 @@ changed their strategies from (\sigma_{\Agt}) in order to generate
 <div class="lemma-content section" id="proof-content">
 <p>Given a play (\rho), strategy profile <span class="math notranslate nohighlight">\(\sigma_\Agt\)</span>, a coalition (\Coalition)
 contains (\Dev(\rho)), if and only if, there exists a strategy
-(\sigma’<em>\Coalition) such that (\textrm{Out}rho_1, \sigma</em>{-\Coalition}, \sigma’_\Coalition) = \rho).</p>
+(\sigma’<em>\Coalition) such that (\Out(\rho_1, \sigma</em>{-\Coalition}, \sigma’_\Coalition) = \rho).</p>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
@@ -1217,16 +1288,16 @@ We cannot represent the full construction here, as there are 40 vertices.</p>
 <p>(V) and from (V’) to (2^{\Agt}) respectively, as well as
 (\proj_{\Act}) from (Act^{\Agt} \times Act^{\Agt}) to (Act^{\Agt}) which
 maps to the second component of the product, that is, Adam’s action.</p>
-<p>For a history or play (\rho), define (\pi_{\textrm{Out}\rho)) as the play
+<p>For a history or play (\rho), define (\pi_{\Out}(\rho)) as the play
 (\rho’) for which, (\rho’<em>i = \proj_V(\rho_i)) and
 (\move_i(\rho’) = \proj</em>{\Act}(\move_i(\rho))) for all <span class="math notranslate nohighlight">\(i\)</span>. This is thus the play
 induced by Adam’s actions.
-Let us also denote <span class="math notranslate nohighlight">\(\Dev(\rho) = \proj_{\Dev}(\textrm{last}\rho))\)</span>.</p>
+Let us also denote <span class="math notranslate nohighlight">\(\Dev(\rho) = \proj_{\Dev}(\last(\rho))\)</span>.</p>
 <p>We can associate a strategy of Eve to each strategy profile
 (\sigma_{\Agt}) such that she chooses the moves prescribed by
 (\sigma_{\Agt}) at each history of (\devg(\mathcal{G})). Formally, we write
 (\kappa(\sigma_{\Agt})) for the strategy defined by
-(\kappa(\sigma_{\Agt})(\pi) = \sigma_{\Agt}(\proj_{\textrm{Out}\pi))) for all histories <span class="math notranslate nohighlight">\(\pi\)</span>.</p>
+(\kappa(\sigma_{\Agt})(\pi) = \sigma_{\Agt}(\proj_{\Out}(\pi))) for all histories <span class="math notranslate nohighlight">\(\pi\)</span>.</p>
 <p>The following lemma states the correctness of the construction of the
 deviator game (\devg(\mathcal{G})), in the sense that it records the set of
 deviators in the strategy profile suggested by Adam with respect to the
@@ -1241,7 +1312,7 @@ associated strategy in the deviator game.</p>
 <li><div class="highlight-none notranslate"><div class="highlight"><pre><span></span> If \(\rho \in \Out_{\devg(\mathcal{G})}((v,\emptyset),\sigma_\exists)\), then
 </pre></div>
 </div>
-<p>(\Dev(\proj_{\textrm{Out}\rho), \sigma_{\Agt} ) = \Dev(\rho)).</p>
+<p>(\Dev(\proj_{\Out}(\rho), \sigma_{\Agt} ) = \Dev(\rho)).</p>
 </li>
 <li><div class="highlight-none notranslate"><div class="highlight"><pre><span></span> If \(\rho \in \Out_G(v)\) and for all index \(i\),
 </pre></div>
@@ -1255,14 +1326,14 @@ associated strategy in the deviator game.</p>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
 <p>We prove that for all <span class="math notranslate nohighlight">\(i\)</span>,
-(\Dev(\proj_{\textrm{Out}\rho_{\le i} , \sigma_{\Agt}) = \proj_{\Dev} (\rho_{\le i} )),
+(\Dev(\proj_{\Out}(\rho_{\le i} , \sigma_{\Agt}) = \proj_{\Dev} (\rho_{\le i} )),
 which implies the property. The property holds for i = 0, since
 initially both sets are empty. Assume now that it holds for (i \ge 0).
 Then:
 \begin{align*}
-\Dev(\proj_{\textrm{Out}\rho_{\le i+1}) , \sigma_{\Agt} ) = &amp; \Dev(\proj_{\textrm{Out}\rho_{\le i}), \sigma_{\Agt} ) \cup \Dev(\sigma_{\Agt} (\proj_{\textrm{Out}\rho_{\le i})), \proj_{\Act} (\move_{i+1} (\rho))) \
+\Dev(\proj_{\Out}(\rho_{\le i+1}) , \sigma_{\Agt} ) = &amp; \Dev(\proj_{\Out}(\rho_{\le i}), \sigma_{\Agt} ) \cup \Dev(\sigma_{\Agt} (\proj_{\Out}(\rho_{\le i})), \proj_{\Act} (\move_{i+1} (\rho))) \
 &amp; \text{(by definition of deviators)}\
-=&amp; \Dev (\rho_{\le i} ) \cup \Dev(\sigma_{\Agt} (\proj_{\textrm{Out}(\rho_{\le i}), \proj_{\Act} (\move_{i+1} (\rho))) \
+=&amp; \Dev (\rho_{\le i} ) \cup \Dev(\sigma_{\Agt} (\proj_{\Out} (\rho_{\le i}), \proj_{\Act} (\move_{i+1} (\rho))) \
 &amp; \text{(by induction hypothesis)} \
 = &amp; \Dev (\rho_{\le i} ) \cup \Dev(\sigma_\exists (\rho_{\le i} ), \proj_{\Act} (\move_{i+1}(\rho))) \
 &amp; \text{(by definition of (\sigma_\exists) )}\
@@ -1298,7 +1369,7 @@ their strategies.
 Consider the following objective in (\devg(\mathcal{G})):</p>
 <div class="math notranslate nohighlight">
 \[
-  \Omega(\Coalition, P, b) = \{\rho \in \Out_{\devg(\mathcal{G})} \mid \Dev(\rho) \subseteq \Coalition \Rightarrow \payoff_P(\proj_{\textrm{Out}\rho)) \le b\}.
+  \Omega(\Coalition, P, b) = \{\rho \in \Out_{\devg(\mathcal{G})} \mid \Dev(\rho) \subseteq \Coalition \Rightarrow \payoff_P(\proj_{\Out}(\rho)) \le b\}.
 \]</div>
 <p>Intuitively, this says that if only players
 in <span class="math notranslate nohighlight">\(\Coalition\)</span> deviated from the strategy suggested by Eve, then the payoff
@@ -1371,7 +1442,7 @@ winning in (\devg(\mathcal{A})) for the objective (N(F)) defined by:</p>
 <div class="math notranslate nohighlight">
 \[N(F) = \{\rho \mid |\Dev(\rho)| \ne 1\}
     \cup \bigcup_{P\in \Agt} \{\rho \mid \Dev(\rho) = \{P\}
-    \land \payoff_P(\proj_{\textrm{Out}\rho)) \le F_P\}.\]</div>
+    \land \payoff_P(\proj_{\Out}(\rho)) \le F_P\}.\]</div>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
@@ -1389,7 +1460,7 @@ So it is enough to show that for each player (P),
 <li><p>If (|\Dev(\rho)| \ne 1), then (\rho) is in (N(F)) by
 definition.</p></li>
 <li><p>If (|\Dev(\rho)| = 1), then for ({P} = \Dev(\rho)),
-(\payoff_P(\proj_{\textrm{Out}\rho)) \leq F_P) because
+(\payoff_P(\proj_{\Out}(\rho)) \leq F_P) because
 (\kappa(\sigma_{\Agt})) is winning for
 (\Omega(\Dev(\rho), P, F_P)). Therefore (\rho) is
 in (N(F)).</p></li>
@@ -1405,7 +1476,7 @@ Assume that
 (\rho \in N(F)). We show that (\rho) belongs to
 (\Omega({P}, P, F_P)):</p>
 <ul class="simple">
-<li><p>If (\Dev(\rho) = \varnothing) then (\rho = \outv_0, \sigma_{\Agt})) and
+<li><p>If (\Dev(\rho) = \varnothing) then (\rho = \Out(v_0, \sigma_{\Agt})) and
 (\payoff_P(\rho) = F_P), so (\rho) is in
 (\Omega({P},P, F_P))</p></li>
 <li><p>If (\Dev(\rho) \not\subseteq { P }), then
@@ -1433,9 +1504,9 @@ we can deduce from the previous theorem an algorithm that
 constructs a Nash equilibrium if there exists one. We construct the
 deviator game and note that we can reduce the number of vertices as
 follows: since  (\Dev(\rho</em>{\le k})) is nondecreasing,
-we know that \textrm{Eve}wins whenever this set has at least two elements.
+we know that \Eve wins whenever this set has at least two elements.
 In the construction, states with at least two deviators can be replaced by a
-sink vertex that is winning for \textrm{Eve} This means that the constructed
+sink vertex that is winning for \Eve. This means that the constructed
 game has at most (n \times (|\Agt| + 1) + 1) states.</p>
 <p>The objective can be expressed as a Parity condition in the following
 way:</p>
@@ -1449,7 +1520,7 @@ i.e.~it is winning for Eve.</p></li>
 in the case where there is a single deviator who is losing in the
 prescribed strategy profile (that is, <span class="math notranslate nohighlight">\(F_P=0\)</span>). In fact,
 when <span class="math notranslate nohighlight">\(F_P=1\)</span>, the player cannot obtain more since they are already winning
-so the colour is set to <span class="math notranslate nohighlight">\(2\cdot \max_v c_P(v) \)</span> which is winning for \textrm{Eve}</p>
+so the colour is set to <span class="math notranslate nohighlight">\(2\cdot \max_v c_P(v) \)</span> which is winning for \Eve.</p>
 <div class="proof lemma admonition" id="lemma-15">
 <p class="admonition-title"><span class="caption-number">Lemma 370 </span> (NEEDS TITLE AND LABEL)</p>
 <div class="lemma-content section" id="proof-content">
@@ -1625,8 +1696,8 @@ if, strategy (\kappa(\sigma_{\Agt})) is winning in (\devg(\mathcal{A})) for the
     \begin{array}{ll}
       \mathcal{R}(k,F) = &amp; \{ \rho \in \Out_{\devg(\mathcal{A})}\mid ~ |\Dev(\rho)| &gt; k \} \\
                           &amp;\cup
-                            \{ \rho  \in \Out_{\devg(\mathcal{A})} \mid ~ |\Dev(\rho)| = k \land \forall P \in \Dev(\rho).\ \payoff_{P}(\proj_{\textrm{Out}\rho)) \le F_P\} \\
-                          &amp; \cup \{ \rho  \in \Out_{\devg(\mathcal{A})}\mid ~ |\Dev(\rho)| &lt; k \land \forall P \in \Agt.\ \payoff_{P}(\proj_{\textrm{Out}\rho)) \le F_P\}.
+                            \{ \rho  \in \Out_{\devg(\mathcal{A})} \mid ~ |\Dev(\rho)| = k \land \forall P \in \Dev(\rho).\ \payoff_{P}(\proj_{\Out}(\rho)) \le F_P\} \\
+                          &amp; \cup \{ \rho  \in \Out_{\devg(\mathcal{A})}\mid ~ |\Dev(\rho)| &lt; k \land \forall P \in \Agt.\ \payoff_{P}(\proj_{\Out}(\rho)) \le F_P\}.
     \end{array}
   \end{split}\]</div>
 <ul class="simple">
@@ -1640,7 +1711,7 @@ objective</strong> (\mathcal{I}(t,F)) where
 \[\begin{split}
     \begin{array}{ll}
     \mathcal{I}(t,F) = &amp; \{ \rho  \in \Out_{\devg(\mathcal{A})} \mid |\Dev(\rho)| &gt; t \}  \\
-      &amp; \cup \{ \rho  \in \Out_{\devg(\mathcal{A})} \mid ~ \forall P \in \Agt \setminus \Dev(\rho).\  F_P \le \payoff_{P}(\proj_{\textrm{Out}\rho)) \}.
+      &amp; \cup \{ \rho  \in \Out_{\devg(\mathcal{A})} \mid ~ \forall P \in \Agt \setminus \Dev(\rho).\  F_P \le \payoff_{P}(\proj_{\Out}(\rho)) \}.
     \end{array}
   \end{split}\]</div>
 <ul class="simple">

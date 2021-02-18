@@ -1,7 +1,7 @@
 import re
 
 from macros_transformer import macros_transformer
-from rewrite_macros import rewrite_macros
+# from rewrite_macros import rewrite_macros
 
 def match_next(s, i=0, d=0):
 	if s[i] == '{':
@@ -196,7 +196,7 @@ def section_transformer(nb_chap, file_name, path, title, label):
 
 	pattern = r'\\decisionproblem\{([\s\S]*)'
 	match = re.search(pattern, content)
-	while match != None:
+	while match:
 		content = re.sub(pattern, rewrite_decisionproblems, content)
 		match = re.search(pattern, content)
 
@@ -210,7 +210,7 @@ def section_transformer(nb_chap, file_name, path, title, label):
 
 	pattern = r'\\task\{([\s\S]*)'
 	match = re.search(pattern, content)
-	while match != None:
+	while match:
 		content = re.sub(pattern, rewrite_tasks, content)
 		match = re.search(pattern, content)
 
@@ -239,7 +239,7 @@ def section_transformer(nb_chap, file_name, path, title, label):
 
 	pattern = r'\\subsection\*?\{([\s\S]*)'
 	match = re.search(pattern, content)
-	while match != None:
+	while match:
 		content = re.sub(pattern, rewrite_subsections, content)
 		match = re.search(pattern, content)
 
@@ -257,7 +257,7 @@ def section_transformer(nb_chap, file_name, path, title, label):
 
 	pattern = r'\\subsubsection\*?\{([\s\S]*)'
 	match = re.search(pattern, content)
-	while match != None:
+	while match:
 		content = re.sub(pattern, rewrite_subsubsections, content)
 		match = re.search(pattern, content)
 
@@ -277,13 +277,13 @@ def section_transformer(nb_chap, file_name, path, title, label):
 
 	pattern = r'\\paragraph\*?\{\\bf ([\s\S]*)'
 	match = re.search(pattern, content)
-	while match != None:
+	while match:
 		content = re.sub(pattern, rewrite_paragraphs, content)
 		match = re.search(pattern, content)
 
 	pattern = r'\\paragraph\*?\{([\s\S]*)'
 	match = re.search(pattern, content)
-	while match != None:
+	while match:
 		content = re.sub(pattern, rewrite_paragraphs, content)
 		match = re.search(pattern, content)
 
@@ -307,19 +307,19 @@ def section_transformer(nb_chap, file_name, path, title, label):
 
 	pattern = r'\\textit\*?\{([\s\S]*)'
 	match = re.search(pattern, content)
-	while match != None:
+	while match:
 		content = re.sub(pattern, rewrite_highlighted, content)
 		match = re.search(pattern, content)
 
 	pattern = r'\\emph\*?\{([\s\S]*)'
 	match = re.search(pattern, content)
-	while match != None:
+	while match:
 		content = re.sub(pattern, rewrite_highlighted, content)
 		match = re.search(pattern, content)
 
 	pattern = r'\\textbf\*?\{([\s\S]*)'
 	match = re.search(pattern, content)
-	while match != None:
+	while match:
 		content = re.sub(pattern, rewrite_highlighted, content)
 		match = re.search(pattern, content)
 
@@ -457,5 +457,5 @@ def section_transformer(nb_chap, file_name, path, title, label):
 	g.write(content)
 	g.close()
 
-	rewrite_macros(path,file_name)
+	# rewrite_macros(path,file_name)
 

@@ -1,16 +1,109 @@
 (9-sec:forward_algorithm)=
 # Forward Algorithm
 
-
 ```{math}
+\usepackage{amsmath}
+  
+\newcommand*\Realnn{\mathbb{R}_{\geq 0}}
+\newcommand*\Clocks{\mathcal{C}}
+\newcommand*\TA{\ensuremath{\mathcal{A}}}
+\newcommand*\Locs{\mathcal{L}}
+\newcommand*\Clocksz{\mathcal{C}_0}
+\newcommand*\calQ{\mathcal{Q}}
+\newcommand*\state{\mathsf{state}}
+\newcommand*\trans{\mathsf{trans}}
+\newcommand*\post{\mathsf{post}}
+\newcommand*\step{\mathsf{step}}
+\newcommand*\postta{\ensuremath{\textrm{\sf Post}}}
+\newcommand*\preta{\ensuremath{\textrm{\sf Pre}}}
+\newcommand*\unreset{\ensuremath{\textrm{\sf Unreset}}}
+\newcommand*\posttime{\ensuremath{\textrm{\sf Post}_{\geq 0}}}
+\newcommand*\pretime{\ensuremath{\textrm{\sf Pre}_{\geq 0}}} \newcommand*\reset{\mathsf{Reset}}
+\newcommand{\sem}[1]{\ensuremath{#1}}
+\newcommand{\size}[1]{\ensuremath{|#1|}}
+
+\def\predc{\textrm{\sf Pred}_c}
+\def\predt{\textrm{\sf Pred}_{\geq 0}} \def\predu{\textrm{\sf Pred}_u}
+\def\calP{\mathcal P}
+\def\calC{\mathcal C}
+\def\calT{\mathcal T}
+\def\Dep{\textsf{Dep}}
+\def\Wait{\textsf{Wait}}
+\def\Passed{\textsf{Passed}}
+\def\Act{\textsf{Act}}
+\def\EA{E_{\Adam}}
+\def\EE{E_{\Eve}}
+
+\newcommand\zone[1]{\ensuremath{\left\llbracket#1\right\rrbracket}}
+\def\NM#1{\textcolor{green!50!black}{\checkmark}\marginpar{\color{green!50!black}NM: #1}} 
+\long\def\NMlong#1{\medskip\par{\color{green!50!black}NM: #1}\medskip\par}
+\def\OS#1{\textcolor{blue!50!black}{\checkmark}\marginpar{\color{blue!50!black}OS: #1}} 
+\long\def\OSlong#1{\medskip\par{\color{blue!50!black}OS: #1}\medskip\par}
+
 \newcommand{\Eve}{\textrm{Eve}}
 \newcommand{\Adam}{\textrm{Adam}}
-\newcommand{\game}{\mathcal{G}}
-\newcommand{\arena}{\mathcal{A}}
-\newcommand{\Win}{\textrm{Win}}
-\newcommand{\Reach}{\mathtt{Reach}}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
+\newcommand{\argmax}{\textrm{argmax}}
+\newcommand{\argmin}{\textrm{argmin}}
+\newcommand{\Op}{\mathbb{O}}
+\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\textrm{supp}} 
+\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
+\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
+\newcommand{\mEve}{\mathrm{Eve}}
+\newcommand{\mAdam}{\mathrm{Adam}}
+\newcommand{\mRandom}{\mathrm{Random}}
+\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
+\newcommand{\ing}{\textrm{In}}
+\newcommand{\Ing}{\ing}
+\newcommand{\out}{\textrm{Out}}
+\newcommand{\Out}{\out}
+\newcommand{\dest}{\Delta} 
+\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
+\newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
+\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
+\newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
+\newcommand{\Win}{\textrm{Win}} 
+\newcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Value}{\textrm{val}} 
+\newcommand{\ValueE}{\textrm{val}_\mEve} 
+\newcommand{\ValueA}{\textrm{val}_\mAdam}
+\newcommand{\val}{\Value} 
+\newcommand{\Automaton}{\mathbf{A}} 
+\newcommand{\Safe}{\mathtt{Safe}}
+\newcommand{\Reach}{\mathtt{Reach}} 
+\newcommand{\Buchi}{\mathtt{Buchi}} 
+\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
+\newcommand{\Parity}{\mathtt{Parity}} 
+\newcommand{\Muller}{\mathtt{Muller}} 
+\newcommand{\Rabin}{\mathtt{Rabin}} 
+\newcommand{\Streett}{\mathtt{Streett}} 
+\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
+\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
+\newcommand{\Energy}{\mathtt{Energy}}
+\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
+\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
+\newcommand{\Sup}{\mathtt{Sup}}
+\newcommand{\Inf}{\mathtt{Inf}}
+\newcommand{\LimSup}{\mathtt{LimSup}}
+\newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NL}{\textrm{NL}}
+\newcommand{\PTIME}{\textrm{PTIME}}
+\newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
+\newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
+\newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
+\newcommand{\EXP}{\textrm{EXP}}
+\newcommand{\kEXP}{\textrm{kEXP}}
 ```
-
 The backward algorithm we just presented is conceptually simple, but
 it~is often not very efficient in practice,
 as federations tend to grow too much in size in each iteration of the
@@ -79,19 +172,19 @@ is~not, in the least fixpoint of $f_W$.
 Before tackling the algorithm, let us link least fixpoints in
 dependency graphs and winning sets in concurrent games (with
 reachability objectives): with a concurrent arena
-$\calC=(V,\Act,\delta,c')$ and a target set $\textrm{Win}, we~associate
+$\calC=(V,\Act,\delta,c')$ and a target set $\Win$, we~associate
 the dependency graph $G=(V,E)$, where $(v,T)\in E$ whenever $v\in V$
 and $T\subseteq V$ is such that there exists an action $a$ for which
 $T=\{v' \mid \exists a'\in\Act.\ v'=\delta(v,a,a')\}$.  Then for any
-set $X\subseteq V$, the~set $f_{\textrm{Win}(X)$ contains $\textrm{Win} and all the
+set $X\subseteq V$, the~set $f_{\Win}(X)$ contains $\Win$ and all the
 states from which Eve can force a visit to $X$ in one step.
 We~then~have:
 
 ````{prf:proposition} NEEDS TITLE 9-prop:fixp-game
 :label: 9-prop:fixp-game
 
-The least fixpoint of $f_{\textrm{Win}$ in $G$ corresponds to the set $W$ of
-winning states for~\textrm{Eve}in $\calC$.
+The least fixpoint of $f_{\Win}$ in $G$ corresponds to the set $W$ of
+winning states for~\Eve in $\calC$.
 
 ````
 
@@ -99,18 +192,18 @@ winning states for~\textrm{Eve}in $\calC$.
 ````{admonition} Proof
 :class: dropdown tip
 
-  The winning states of~\textrm{Eve}form a pre-fixpoint of $f_{\textrm{Win}$
-  containing~\textrm{Win} indeed, for any $v\in f_{\textrm{Win}(W)$, either $v\in
-  \textrm{Win}, or \textrm{Eve}has an action to move from $v$ to some state
+  The winning states of~\Eve form a pre-fixpoint of $f_{\Win}$
+  containing~\Win: indeed, for any $v\in f_{\Win}(W)$, either $v\in
+  \Win$, or \Eve has an action to move from $v$ to some state
   in $W$. Hence $v$ is winning, i.e., $v\in W$.
   
 
-%  are all winning. Hence all the states in the least fixpoint of $f_{\textrm{Win}$ 
+%  are all winning. Hence all the states in the least fixpoint of $f_{\Win}$ 
 
   Conversely, from any state $v$ that is not in the least
   pre-fixpoint $X$, for any~edge $(v,T)$, there is a state $v'\in T$
-  that again is not in $X$. This defines a strategy for \textrm{Adam}to avoid
-  reaching $\textrm{Win}, so that \textrm{Eve}does not have a winning strategy from $v$.
+  that again is not in $X$. This defines a strategy for \Adam to avoid
+  reaching $\Win$, so that \Eve does not have a winning strategy from $v$.
 
 ````
 
@@ -523,7 +616,7 @@ The algorithm is given in {numref}`9-algo:sotftr`.
 
 \begin{algorithm}
   \SetKwFunction{Pop}{pop}\SetAlgoNoEnd
-  \KwData{A reachability timed game $\mathcal{G}(\mathcal{A} \mathtt{Reach}\textrm{Win})$,
+  \KwData{A reachability timed game $\game=(\arena, \Reach(\Win))$,
     a~location $\ell_0\in \Locs$}
   \KwResult{Is $(\ell_0,\mathbf{0})$ winning for Eve?}
 
@@ -533,7 +626,7 @@ The algorithm is given in {numref}`9-algo:sotftr`.
   
   
 
-  \leIf{$c(S_0)==\textrm{Win}}{$F(S_0):=S_0$}{$F(S_0):=\emptyset$}
+  \leIf{$c(S_0)==\Win$}{$F(S_0):=S_0$}{$F(S_0):=\emptyset$}
 
   $\Passed:=\{S_0\}$;  
   // $\Passed$ stores all configurations for which $F$ is defined
@@ -543,7 +636,7 @@ The algorithm is given in {numref}`9-algo:sotftr`.
   $\Dep(S_0):=\emptyset$;
 
   $\Wait:=\{(S_0,\alpha,T) \mid 
-    T=\posttime(\postta_{\alpha}(S_0))\not=\emptyset, \alpha\text{ transition of }\mathcal{G}}$;
+    T=\posttime(\postta_{\alpha}(S_0))\not=\emptyset, \alpha\text{ transition of }\game\}$;
 
   \While{($\Wait\not=\emptyset$ and $(v_0,\mathbf 0)\notin F(S_0)$)}
         {$(S,\alpha,T)):=\Pop{\Wait}$;\\
@@ -554,10 +647,10 @@ The algorithm is given in {numref}`9-algo:sotftr`.
               $\Wait:=\Wait\cup\Dep(S)$;}}
           \Else({// case $B$})
                   {$\Passed:=\Passed \cup\{T\}$; \\
-                    \If{$c(T)==\textrm{Win}}{$F(T):=T$\\ $\Wait:=\Wait\cup\{(S,\alpha,T)\}$}
+                    \If{$c(T)==\Win$}{$F(T):=T$\\ $\Wait:=\Wait\cup\{(S,\alpha,T)\}$}
                        \Else{$F(T):=\emptyset$}
                   $\Dep(T):=\{(S,\alpha,T)\}$;\\
-                  $\Wait:=\Wait\cup\{(T,\alpha,U) \mid U=\posttime(\postta_{\alpha}(T))\not=\emptyset, \alpha\text{ transition of }\mathcal{G}}$;
+                  $\Wait:=\Wait\cup\{(T,\alpha,U) \mid U=\posttime(\postta_{\alpha}(T))\not=\emptyset, \alpha\text{ transition of }\game\}$;
         }
         }
   \leIf{$(v_0,\mathbf 0)\in F(S_0)$}{\Return 1}{\Return 0}
@@ -826,11 +919,11 @@ F^n(S)$.
 
 %  Since $q\in S$, then $q \in F^n(S)$.}
 
-Pick $q\in \pi(M)\cup \textrm{Win}, where we abusively write $\textrm{Win} to denote
-all configurations with location colored $\textrm{Win}. We~prove that $q\in M$:
+Pick $q\in \pi(M)\cup \Win$, where we abusively write $\Win$ to denote
+all configurations with location colored $\Win$. We~prove that $q\in M$:
 
-*  if $q\in\textrm{Win}: assume $q\in L$, and pick $S\in\Passed^n$ such
-  that $q\in S\setminus F^n(S)$. Since $q\in S$, it~holds $c(S)=\textrm{Win};
+*  if $q\in\Win$: assume $q\in L$, and pick $S\in\Passed^n$ such
+  that $q\in S\setminus F^n(S)$. Since $q\in S$, it~holds $c(S)=\Win$;
   but then $F^n(S)$ is defined (since $S\in\Passed^n$), and it
   equals $S$ by initialization of $F$. This contradicts the fact that
   $q\in S\setminus F^n(S)$, hence $q\in M$.
@@ -866,9 +959,9 @@ $$
   \pi(M)$ and $q\in S$ leads to a contradiction. This entails that
   $q\notin L$, hence $q\in M$.
 
-In the end, we~have proven that $\pi(M)\cup\textrm{Win}\subseteq M$, so that
-$M$ is a pre-fixpoint of $X\mapsto \pi(X)\cup\textrm{Win}, hence it~contains
-all winning configurations of~\textrm{Eve}and $L$ only contains losing
+In the end, we~have proven that $\pi(M)\cup\Win \subseteq M$, so that
+$M$ is a pre-fixpoint of $X\mapsto \pi(X)\cup\Win$, hence it~contains
+all winning configurations of~\Eve and $L$ only contains losing
 configurations.
 
 ````
@@ -893,11 +986,11 @@ We~can then conclude:
 
 ````{prf:theorem} NEEDS TITLE AND LABEL 
 {numref}`9-algo:sotftr` terminates when extrapolation is used, and returns $1$ if, and only~if,
-$(\ell_0,\mathbf{0})$~is winning for~\textrm{Eve}
+$(\ell_0,\mathbf{0})$~is winning for~\Eve.
  
 
 {numref}`9-algo:sotftr` terminates when extrapolation is used, and returns $1$ if, and only~if,
-$(\ell_0,\mathbf{0})$~is winning for~\textrm{Eve}
+$(\ell_0,\mathbf{0})$~is winning for~\Eve.
 
 ````
 

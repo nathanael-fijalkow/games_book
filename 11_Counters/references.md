@@ -1,25 +1,124 @@
 (11-sec:references)=
 # Bibliographic references
 
-
 ```{math}
+\newcommand{\?}{\mathcal}
+\newcommand{\+}{\mathbb}
+\newcommand{\tup}[1]{\langle #1\rangle}
+\newcommand{\eqby}[1]{\stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{#1}}}}{=}}
 \newcommand{\eqdef}{\eqby{def}}
 \newcommand{\Loc}{\?L}
 \newcommand{\Act}{A}
+\providecommand{\dom}{\mathrm{dom}\,}
+\newcommand\pto{\mathrel{\ooalign{\hfil$\mapstochar\mkern5mu$\hfil\cr$\to$\cr}}}
+\newcommand{\weight}{w}
 \newcommand{\loc}{\ell}
+\newcommand{\sink}{\bot}
 \newcommand{\dd}{k}
+\newcommand{\CounterReach}{\textsf{CounterReach}\xspace}
+\newcommand{\Cover}{\textsf{Cover}\xspace}
+\newcommand{\NonTerm}{\textsf{NonTerm}\xspace}
+\newcommand{\decpb}[3][]{\begin{problem}[#1]\\[-1.7em]\begin{description}     
+    \item[\textsc{input:}] {#2}
+    \item[\textsc{question:}] {#3}
+    \end{description}
+  \end{problem}}
+\newcommand{\step}[1]{\xrightarrow{\,\raisebox{-1pt}[0pt][0pt]{\scriptsize\ensuremath
+      {#1}}\,}}
+\newcommand{\mstep}[1]{\xrightarrow{\,\raisebox{-1pt}[6pt][0pt]{\scriptsize\ensuremath
+      {#1}}\,}}
+\newcommand{\inst}[1]{\mathrel{\mathtt{#1}}}
+\providecommand{\pop}{\mathrm{pop}}
+\providecommand{\push}[1]{\mathrm{push}(#1)}
+\providecommand{\mymoot}[1]{}
+\newcommand{\blank}{\Box}
+\newcommand{\emkl}{\triangleright}
+\newcommand{\emkr}{\triangleleft}
+\renewcommand{\natural}{\arena_\+N}
 \newcommand{\energy}{\arena_\+E}
+\newcommand{\bounded}{\arena_B}
+\newcommand{\capped}{\arena_C}
+\newcommand{\capp}[2][C]{\overline{\vec #2}^{#1}}
+\let\oldcite\cite
+\renewcommand{\cite}{\citep}
+\providecommand{\citep}{\oldcite}
+\providecommand{\citet}{\cite}
+\providecommand{\citem}[2][1]{#1 {cite}`#2`}
+\providecommand{\qedhere}{\ensuremath\Box}
+\providecommand{\col}{\mathfrak c}
+\newcommand{\lcol}{\mathrm{lcol}}
+\newcommand{\vcol}{\mathrm{vcol}}
+\newcommand{\litt}{\loc}
+\newcommand{\Effect}{\Delta}
+\providecommand{\AP}{}
+\providecommand{\medskip}{}
+\providecommand{\ensuremath}{}
+\providecommand{\raisebox}[1]{}
+\providecommand{\scalebox}[1]{}
+\newcommand{\Eve}{\textrm{Eve}}
 \newcommand{\Adam}{\textrm{Adam}}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
+\newcommand{\argmax}{\textrm{argmax}}
+\newcommand{\argmin}{\textrm{argmin}}
+\newcommand{\Op}{\mathbb{O}}
+\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\textrm{supp}} 
+\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
+\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
 \newcommand{\mEve}{\mathrm{Eve}}
 \newcommand{\mAdam}{\mathrm{Adam}}
+\newcommand{\mRandom}{\mathrm{Random}}
+\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
+\newcommand{\ing}{\textrm{In}}
+\newcommand{\Ing}{\ing}
+\newcommand{\out}{\textrm{Out}}
+\newcommand{\Out}{\out}
+\newcommand{\dest}{\Delta} 
+\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
+\newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
+\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
+\newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
+\newcommand{\Win}{\textrm{Win}} 
+\newcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Value}{\textrm{val}} 
+\newcommand{\ValueE}{\textrm{val}_\mEve} 
+\newcommand{\ValueA}{\textrm{val}_\mAdam}
+\newcommand{\val}{\Value} 
+\newcommand{\Automaton}{\mathbf{A}} 
+\newcommand{\Safe}{\mathtt{Safe}}
+\newcommand{\Reach}{\mathtt{Reach}} 
+\newcommand{\Buchi}{\mathtt{Buchi}} 
+\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
+\newcommand{\Parity}{\mathtt{Parity}} 
+\newcommand{\Muller}{\mathtt{Muller}} 
+\newcommand{\Rabin}{\mathtt{Rabin}} 
+\newcommand{\Streett}{\mathtt{Streett}} 
+\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
+\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
+\newcommand{\Energy}{\mathtt{Energy}}
+\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
+\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
+\newcommand{\Sup}{\mathtt{Sup}}
+\newcommand{\Inf}{\mathtt{Inf}}
+\newcommand{\LimSup}{\mathtt{LimSup}}
+\newcommand{\LimInf}{\mathtt{LimInf}}
 \newcommand{\NL}{\textrm{NL}}
+\newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
 \newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
+\newcommand{\PSPACE}{\textrm{PSPACE}}
 \newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
 \newcommand{\EXP}{\textrm{EXP}}
 \newcommand{\kEXP}{\textrm{kEXP}}
 ```
-
 > **Vector Addition Systems with States**
 
 In their one-player version, i.e.\ in "vector addition systems with
@@ -30,11 +129,11 @@ called `reachability' and was first shown decidable by
 in {cite}`Kosaraju:1982,Lambert:1992,Leroux:2011`) and recently shown
 to be of non-elementary complexity {cite}`Czerwinski&Lasota&Lazic&Leroux&Mazowiecki:2019`.  Coverability and
 non-termination are considerably easier, as they are
-\textrm{EXPSPACE}complete {cite}`Lipton:1976,Rackoff:1978` and so is
+\EXPSPACE-complete {cite}`Lipton:1976,Rackoff:1978` and so is
 parity@parity vector game {cite}`Habermehl:1997`.  With "existential
 initial credit, the problems are markedly simpler: configuration
-reachability becomes \textrm{EXPSPACE}complete, while coverability" is in
-\textrm{NL} and non-termination and parity can be solved in polynomial
+reachability becomes \EXPSPACE-complete, while coverability" is in
+\NL\ and non-termination and parity can be solved in polynomial
 time by {prf:ref}`11-thm:zcycle` using linear programming
 techniques {cite}`Kosaraju&Sullivan:1988`.
 
@@ -52,11 +151,11 @@ of~\citet{Niskanen&Potapov&Reichert:2016}.
 
 One-dimensional vector systems are often called **one-counter
 nets** in the literature, by contrast with **one-counter automata**
-where zero tests are allowed.  The \textrm{EXPSPACE}completeness of "succinct
+where zero tests are allowed.  The \EXPSPACE-completeness of "succinct
 one-counter games was shown by~\citem[Hunter]{Hunter:2015}.  Countdown games"
 were originally defined with given initial credit and a "zero
 reachability" objective, and shown
-\textrm{EXP}complete in {cite}`Jurdzinski&Laroussinie&Sproston:2008`; see also
+\EXP-complete in {cite}`Jurdzinski&Laroussinie&Sproston:2008`; see also
 \citet{Kiefer:2013} for a variant called hit-or-run games.  The
 hardness proofs for \cref{11-th:countdown-given,11-th:countdown-exist} are
 adapted from~\citet{Jancar&Osicka&Sawa:2018}, where countdown games
@@ -99,7 +198,7 @@ also {cite}`Schmitz&Schnoebelen:2012` for more on the algorithmic uses of
 wqos.
 
 By analysing the attractor computation of Section {ref}`11-sec:attr`, one can
-show that {numref}`11-algo:cov` works in \textrm{kEXP}2], thus matching the
+show that {numref}`11-algo:cov` works in \kEXP[2], thus matching the
 optimal upper bound from~\cref{11-th:avag-easy}: this can be done using
 the Rackoff-style argument of \citet{Courtois&Schmitz:2014} and the
 analysis of \citet{Bozzelli&Ganty:2011}, or by a direct analysis of the
@@ -108,13 +207,13 @@ attractor computation algorithm {cite}`Lazic&Schmitz:2019`.
 > **Energy Games**
 
 \AP An alternative take on energy games is to see a vector system
-$\?V=(\?LA\Loc_\mathrm{Eve}\Loc_\mathrm{Adam}k$ as a finite arena with
-edges $\ellstep{\vec u}\ell$ coloured by $\vec u$, thus with set of
-colours $C\eqby{def}+Z^k.  For an initial credit $\vec v_0\in\+N^k
-and $1\leq i\leqk, the associated energy objective is then
+$\?V=(\Loc,\Act,\Loc_\mEve,\Loc_\mAdam,\dd)$ as a finite arena with
+edges $\loc\step{\vec u}\loc'$ coloured by $\vec u$, thus with set of
+colours $C\eqdef\+Z^\dd$.  For an initial credit $\vec v_0\in\+N^\dd$
+and $1\leq i\leq\dd$, the associated energy objective is then
 defined as\todoquestion{is that the right place for this?}
 \begin{equation*}
-  \mathsf{Energy}_{\vec v_0}(i)\eqby{def}left\{\pi\in E^\omega\;\middle|\;\forall
+  \mathsf{Energy}_{\vec v_0}(i)\eqdef\left\{\pi\in E^\omega\;\middle|\;\forall
   n\in\+N\mathbin.\left(\vec v_0(i)+\sum_{0\leq j\leq n}c(\pi)(i)\right)\geq 0\right\}\;,
 \end{equation*}
 %  or $\Omega\subseteq E^\omega$?}
@@ -122,10 +221,10 @@ that is, $\pi$ is winning if the successive sums of weights on
 coordinate $i$ are always non-negative.
 \AP The multi-energy objective then asks for the play $\pi$ to
 belong simultaneously to $\mathsf{Energy}_{\vec v_0}(i)$ for all
-$1\leq i\leqk.  This is a multiobjective in the sense of the
+$1\leq i\leq\dd$.  This is a multiobjective in the sense of the
 forthcoming Chapter {ref}`12-chap:multiobjective`.  Multi-energy games are
 equivalent to non-termination games played on the arena
-$\arena_\+E\?V)$ defined by the energy semantics.
+$\energy(\?V)$ defined by the energy semantics.
 
 %
 %
@@ -150,7 +249,7 @@ will be discussed in Chapter {ref}`12-chap:multiobjective`.
  \Cref{11-tbl:cmplx} summarises the complexity
 results for asymmetric vector games.  For the upper bounds with
 existential initial credit of Section {ref}`11-sec:up-exist`, the existence
-of counterless winning strategies for \textrm{Adam} was originally shown by
+of counterless winning strategies for \Adam\ was originally shown by
 \citem[Br\'azdil et al.]{Brazdil&Jancar&Kucera:2010} in the case of
 non-termination games; the proof of  {prf:ref}`11-lem:counterless` is a
 straightforward adaptation using
@@ -158,7 +257,7 @@ ideas from {cite}`Chatterjee&Doyen:2012` to handle "parities@parity
 vector game.  An alternative proof through bounding games" is
 presented in {cite}`Colcombet&Jurdzinski&Lazic&Schmitz:2017`.
 
-The \textrm{coNP} upper of \cref{11-th:exist-easy} was shown soon after
+The \coNP\ upper of \cref{11-th:exist-easy} was shown soon after
 Br\'azdil et al.'s work by
 \citem[Chatterjee et al.]{Chatterjee&Doyen&Henzinger&Raskin:2010} in
 the case of non-termination games.  The extension of
@@ -174,47 +273,47 @@ of~\cref{11-cor:exist-pseudop} is taken
 from {cite}`Colcombet&Jurdzinski&Lazic&Schmitz:2017`.
 
 For the upper bounds with given initial credit of
-Section {ref}`11-sec:up-given`, regarding coverability, the \textrm{kEXP}2] upper
+Section {ref}`11-sec:up-given`, regarding coverability, the \kEXP[2] upper
 bound of \cref{11-th:avag-easy} was first shown by~\citem[Courtois and
 Schmitz]{Courtois&Schmitz:2014} by adapting Rackoff's technique for
 vector addition systems with states {cite}`Rackoff:1978`.  Regarding
 non-termination, the first complexity upper bounds were shown
 by~\citem[Br\'azdil et al.]{Brazdil&Jancar&Kucera:2010} and were
-in \textrm{kEXP} thus non-elementary in the size of the input.  Very
+in \kEXP, thus non-elementary in the size of the input.  Very
 roughly, \todo{This is a leftover from a previous write-up}
 their argument went as follows: one can extract a pseudo-polynomial
 existential Pareto bound $B$ in the one-player case from the proof
 of  {prf:ref}`11-thm:zcycle`, from which the proof of  {prf:ref}`11-lem:counterless`
-yields a $2^{|A}(B+|\?L)$ existential Pareto bound in the
+yields a $2^{|\Act|}(B+|\Loc|)$ existential Pareto bound in the
 two-player case, and finally by arguments similar to \cref{?} a tower
-of $k exponentials on the given initial credit problem.  The
+of $\dd$ exponentials on the given initial credit problem.  The
 two-dimensional case with a unary encoding was shown a bit later to be
 in~\P\ by~\citem[Chaloupka]{Chaloupka:2013}.  Finally, a
-matching \textrm{kEXP}2] upper bound (and pseudo-polynomial in any fixed
+matching \kEXP[2] upper bound (and pseudo-polynomial in any fixed
 dimension) was obtained by~\citem[Jurdzi\'nski et
 al.]{Jurdzinski&Lazic&Schmitz:2015}.  Regarding "parity@parity vector
 game", \citem[Jan\v{c}ar]{Jancar:2015} showed how to obtain
 non-elementary upper bounds by reducing to the case
-of~\citet{Brazdil&Jancar&Kucera:2010}, before a tight \textrm{kEXP}2] upper
+of~\citet{Brazdil&Jancar&Kucera:2010}, before a tight \kEXP[2] upper
 bound (and pseudo-polynomial in fixed dimension with a fixed number of
 priorities) was shown
 in {cite}`Colcombet&Jurdzinski&Lazic&Schmitz:2017`.
 
-The \textrm{coNP} hardness with existential initial credit in
+The \coNP\ hardness with existential initial credit in
 \cref{11-th:exist-hard} originates from
-\citet{Chatterjee&Doyen&Henzinger&Raskin:2010}.  The \textrm{kEXP}2]-hardness
+\citet{Chatterjee&Doyen&Henzinger&Raskin:2010}.  The \kEXP[2]-hardness
 of both coverability and non-termination games with "given initial
 credit" from \cref{11-th:avag-hard} was shown
 in {cite}`Courtois&Schmitz:2014` by adapting Lipton's construction for
 vector addition systems with states {cite}`Lipton:1976`; similar
 proofs can be found for instance
 in {cite}`Demri&Jurdzinski&Lachish&Lazic:2012,Berard&Haddad&Sassolas&Sznajder:2012`.
-The hardness for \textrm{EXP}hardness in dimension two was first shown by
+The hardness for \EXP-hardness in dimension two was first shown by
 {cite}`Fahrenberg&Juhl&Larsen&Srba:2011`; the direct proof in
 \cref{11-th:avag-two} by a reduction from countdown games was suggested
 by~\citet{Mazowiecki&Perez:2017}.
 
-The $\textrm{NP}cap\textrm{coNP} upper bounds in dimension~one from
+The $\NP\cap\coNP$ upper bounds in dimension~one from
 Section {ref}`11-sec:mono-dim1` are due to \citem[Bouyer et
 al.]{Bouyer&Fahrenberg&Larsen&Markey&Srba:2008} for "given
 initial credit" and \citem[Chatterjee

@@ -734,18 +734,69 @@
   <div class="section" id="value-iteration-algorithms">
 <span id="sec-value-iteration"></span><h1>Value iteration algorithms<a class="headerlink" href="#value-iteration-algorithms" title="Permalink to this headline">¶</a></h1>
 <div class="math notranslate nohighlight">
-\[\newcommand{\N}{\mathbb{N}}
-\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
-\newcommand{\Op}{\mathbb{O}}
-\newcommand{\game}{\mathcal{G}}
-\newcommand{\col}{\textsf{col}}
-\newcommand{\VE}{V_\mEve}
-\newcommand{\VA}{V_\mAdam}
-\newcommand{\Value}{\textrm{val}}
-\newcommand{\val}{\Value}
+\[\newcommand{\Eve}{\textrm{Eve}}
+\newcommand{\Adam}{\textrm{Adam}}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
 \newcommand{\R}{\mathbb{R}}
+\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
+\newcommand{\argmax}{\textrm{argmax}}
+\newcommand{\argmin}{\textrm{argmin}}
+\newcommand{\Op}{\mathbb{O}}
+\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\textrm{supp}} 
+\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
+\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
 \newcommand{\mEve}{\mathrm{Eve}}
-\newcommand{\mAdam}{\mathrm{Adam}}\]</div>
+\newcommand{\mAdam}{\mathrm{Adam}}
+\newcommand{\mRandom}{\mathrm{Random}}
+\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
+\newcommand{\ing}{\textrm{In}}
+\newcommand{\Ing}{\ing}
+\newcommand{\out}{\textrm{Out}}
+\newcommand{\Out}{\out}
+\newcommand{\dest}{\Delta} 
+\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
+\newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
+\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
+\newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
+\newcommand{\Win}{\textrm{Win}} 
+\newcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Value}{\textrm{val}} 
+\newcommand{\ValueE}{\textrm{val}_\mEve} 
+\newcommand{\ValueA}{\textrm{val}_\mAdam}
+\newcommand{\val}{\Value} 
+\newcommand{\Automaton}{\mathbf{A}} 
+\newcommand{\Safe}{\mathtt{Safe}}
+\newcommand{\Reach}{\mathtt{Reach}} 
+\newcommand{\Buchi}{\mathtt{Buchi}} 
+\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
+\newcommand{\Parity}{\mathtt{Parity}} 
+\newcommand{\Muller}{\mathtt{Muller}} 
+\newcommand{\Rabin}{\mathtt{Rabin}} 
+\newcommand{\Streett}{\mathtt{Streett}} 
+\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
+\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
+\newcommand{\Energy}{\mathtt{Energy}}
+\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
+\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
+\newcommand{\Sup}{\mathtt{Sup}}
+\newcommand{\Inf}{\mathtt{Inf}}
+\newcommand{\LimSup}{\mathtt{LimSup}}
+\newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NL}{\textrm{NL}}
+\newcommand{\PTIME}{\textrm{PTIME}}
+\newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
+\newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
+\newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
+\newcommand{\EXP}{\textrm{EXP}}
+\newcommand{\kEXP}{\textrm{kEXP}}\]</div>
 <p>In this section and the next we discuss two families of fixed point algorithms for solving games.
 The goal is to highlight the main ingredients for constructing algorithms in these two families.
 If the descriptions below are too abstract it may be useful to see concrete instantiations:
@@ -753,86 +804,87 @@ we refer to Chapter <a class="reference internal" href="../4_Payoffs/index.html#
 <div class="section" id="the-value-function">
 <h2>The value function<a class="headerlink" href="#the-value-function" title="Permalink to this headline">¶</a></h2>
 <p>The key ingredient of a value iteration algorithm is a value function.
-For a quantitative game <span class="math notranslate nohighlight">\(\Game\)</span> with condition <span class="math notranslate nohighlight">\(f = \Phi[\textsf{col}\)</span> over the set of colours <span class="math notranslate nohighlight">\(C\)</span>,
+For a quantitative game <span class="math notranslate nohighlight">\(\Game\)</span> with condition <span class="math notranslate nohighlight">\(f = \Phi[\col]\)</span> over the set of colours <span class="math notranslate nohighlight">\(C\)</span>,
 assuming that <span class="math notranslate nohighlight">\(\Game\)</span> is determined it admits a value function</p>
 <div class="math notranslate nohighlight">
 \[
-\textrm{val}{\mathcal{G} : V \to \mathbb{R}\cup \set{\pm \infty}
+\Value^{\game} : V \to \Rinfty,
 \]</div>
 <p>which is defined as</p>
 <div class="math notranslate nohighlight">
 \[
-\textrm{val}{\mathcal{G} = \sup_{\sigma}\ \inf_{\tau}\ f(\pi_{\sigma,\tau}^v) = \inf_{\tau}\ \sup_{\sigma}\ f(\pi_{\sigma,\tau}^v),
+\Value^{\game} = \sup_{\sigma}\ \inf_{\tau}\ f(\pi_{\sigma,\tau}^v) = \inf_{\tau}\ \sup_{\sigma}\ f(\pi_{\sigma,\tau}^v),
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(\sigma\)</span> ranges over strategies of Eve, <span class="math notranslate nohighlight">\(\tau\)</span> over strategies of Adam,
 and <span class="math notranslate nohighlight">\(\pi_{\sigma,\tau}^v\)</span> is the play consistent with <span class="math notranslate nohighlight">\(\sigma\)</span> and <span class="math notranslate nohighlight">\(\tau\)</span> from <span class="math notranslate nohighlight">\(v\)</span>.
-In particular we write <span class="math notranslate nohighlight">\(\textrm{val}{\sigma}\)</span> for <span class="math notranslate nohighlight">\(\inf_{\tau}\ f(\pi_{\sigma,\tau}^v)\)</span>.</p>
+In particular we write <span class="math notranslate nohighlight">\(\Value^{\sigma}\)</span> for <span class="math notranslate nohighlight">\(\inf_{\tau}\ f(\pi_{\sigma,\tau}^v)\)</span>.</p>
 <p>For a qualitative game <span class="math notranslate nohighlight">\(\Game\)</span> there is no notion of a value function so the first step in constructing a value iteration
 algorithm is to define a meaningful notion of value function.
-Let us assume that the condition is <span class="math notranslate nohighlight">\(\Omega[\textsf{col}\)</span> over the set of colours <span class="math notranslate nohighlight">\(C\)</span>.
-The first ingredient is a lattice <span class="math notranslate nohighlight">\((Y,\le)\)</span> together with a function <span class="math notranslate nohighlight">\(\textrm{val} C^\omega \to Y\)</span> for evaluating plays, taking the role of the quantitative condition <span class="math notranslate nohighlight">\(f\)</span>.
-The value function is <span class="math notranslate nohighlight">\(\textrm{val}{\mathcal{G} : V \to Y\)</span> defined as</p>
+Let us assume that the condition is <span class="math notranslate nohighlight">\(\Omega[\col]\)</span> over the set of colours <span class="math notranslate nohighlight">\(C\)</span>.
+The first ingredient is a lattice <span class="math notranslate nohighlight">\((Y,\le)\)</span> together with a function <span class="math notranslate nohighlight">\(\val : C^\omega \to Y\)</span> for evaluating plays, taking the role of the quantitative condition <span class="math notranslate nohighlight">\(f\)</span>.
+The value function is <span class="math notranslate nohighlight">\(\Value^{\game} : V \to Y\)</span> defined as</p>
 <div class="math notranslate nohighlight">
 \[
-\textrm{val}{\mathcal{G}(v) = \sup_{\sigma}\ \inf_{\tau}\ \textrm{val}pi_{\sigma,\tau}^v).
+\Value^{\game}(v) = \sup_{\sigma}\ \inf_{\tau}\ \val(\pi_{\sigma,\tau}^v).
 \]</div>
-<p>As above we write <span class="math notranslate nohighlight">\(\textrm{val}{\sigma}\)</span> for <span class="math notranslate nohighlight">\(\inf_{\tau}\ \textrm{val}pi_{\sigma,\tau}^v)\)</span>.</p>
+<p>As above we write <span class="math notranslate nohighlight">\(\Value^{\sigma}\)</span> for <span class="math notranslate nohighlight">\(\inf_{\tau}\ \val(\pi_{\sigma,\tau}^v)\)</span>.</p>
 <p>The following principle implies that computing the value function in particular yields the winning regions.</p>
 <div class="proof property admonition" id="1-property:characterisation_winning_regions">
 <p class="admonition-title"><span class="caption-number">Property 26 </span> (Characterisation of the winning regions)</p>
 <div class="property-content section" id="proof-content">
-<p>For all vertices <span class="math notranslate nohighlight">\(v\)</span> we have that Eve wins from <span class="math notranslate nohighlight">\(v\)</span> if and only if <span class="math notranslate nohighlight">\(\textrm{val}{\mathcal{G}(v) \neq \bot\)</span>, where <span class="math notranslate nohighlight">\(\bot\)</span> is the least element in <span class="math notranslate nohighlight">\(Y\)</span>.</p>
+<p>For all vertices <span class="math notranslate nohighlight">\(v\)</span> we have that Eve wins from <span class="math notranslate nohighlight">\(v\)</span> if and only if <span class="math notranslate nohighlight">\(\Value^{\game}(v) \neq \bot\)</span>, where <span class="math notranslate nohighlight">\(\bot\)</span> is the least element in <span class="math notranslate nohighlight">\(Y\)</span>.</p>
 </div>
-</div><p>In the remainder of this section we assume the existence of a value function <span class="math notranslate nohighlight">\(\textrm{val}{\mathcal{G} : V \to Y\)</span> (note that choosing $Y = \mathbb{R}\cup \set{\pm \infty} covers the quantitative case) and fix as a goal to either compute or approximate it.</p>
+</div><p>In the remainder of this section we assume the existence of a value function <span class="math notranslate nohighlight">\(\Value^{\game} : V \to Y\)</span> (note that choosing <span class="math notranslate nohighlight">\(Y = \Rinfty\)</span> covers the quantitative case) and fix as a goal to either compute or approximate it.</p>
 </div>
 <div class="section" id="fixed-point">
 <h2>Fixed point<a class="headerlink" href="#fixed-point" title="Permalink to this headline">¶</a></h2>
 <p>We let <span class="math notranslate nohighlight">\(F_V\)</span> denote the set of functions <span class="math notranslate nohighlight">\(V \to Y\)</span>, it is a lattice when equipped with the componentwise (partial) order induced by <span class="math notranslate nohighlight">\(Y\)</span>:
 we say that <span class="math notranslate nohighlight">\(\mu \le \mu'\)</span> if for all vertices <span class="math notranslate nohighlight">\(v\)</span> we have <span class="math notranslate nohighlight">\(\mu(v) \le \mu'(v)\)</span>.</p>
-<p>The second ingredient is a function <span class="math notranslate nohighlight">\(\delta : Y \times C \to Y\)</span> inducing an operator <span class="math notranslate nohighlight">\(\mathbb{O}: F_V \to F_V\)</span> defined by and satisfying the following principle:</p>
+<p>The second ingredient is a function <span class="math notranslate nohighlight">\(\delta : Y \times C \to Y\)</span> inducing an operator <span class="math notranslate nohighlight">\(\Op : F_V \to F_V\)</span> defined by and satisfying the following principle:</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>This form is for two player games, the operator has to be adapted to more complex settings such as stochastic or concurrent games.</p>
 </div>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-\mathbb{O}\mu)(v) = 
+\Op(\mu)(v) = 
 \begin{cases}
-\max \set{\delta( \mu(v'), \textsf{col}v)) : (v,v') \in E} &amp; \text{ if } v \in V_\mathrm{Eve}\\
-\min \set{\delta( \mu(v'), \textsf{col}v)) : (v,v') \in E} &amp; \text{ if } v \in V_\mathrm{Adam}\end{cases}
+\max \set{\delta( \mu(v'), \col(v)) : (v,v') \in E} &amp; \text{ if } v \in \VE, \\
+\min \set{\delta( \mu(v'), \col(v)) : (v,v') \in E} &amp; \text{ if } v \in \VA.
+\end{cases}
 \end{split}\]</div>
 <div class="proof property admonition" id="1-property:fixed_point">
 <p class="admonition-title"><span class="caption-number">Property 27 </span> (Fixed point)</p>
 <div class="property-content section" id="proof-content">
-<p>The function <span class="math notranslate nohighlight">\(\textrm{val}\mathcal{G}\)</span> is a fixed point of the operator $\mathbb{O}.</p>
+<p>The function <span class="math notranslate nohighlight">\(\val^{\game}\)</span> is a fixed point of the operator <span class="math notranslate nohighlight">\(\Op\)</span>.</p>
 </div>
 </div><p>This fixed point principle is often tightly related to the fact the <span class="math notranslate nohighlight">\(\Game\)</span> is positionally determined for both players.
-The fact that <span class="math notranslate nohighlight">\(\textrm{val}\mathcal{G} = \mathbb{O}\textrm{val}\mathcal{G})\)</span> means that from a vertex <span class="math notranslate nohighlight">\(v\)</span>,
-the value <span class="math notranslate nohighlight">\(\textrm{val}\mathcal{G}(v)\)</span> can be computed locally, <strong>i.e.</strong> by considering the maximum or the minimum over all edges <span class="math notranslate nohighlight">\((v,v')\)</span>
-of a function <span class="math notranslate nohighlight">\(\delta\)</span> of <span class="math notranslate nohighlight">\(\textrm{val}\mathcal{G}(v')\)</span> and of <span class="math notranslate nohighlight">\(\textsf{col}v)\)</span>.
+The fact that <span class="math notranslate nohighlight">\(\val^{\game} = \Op(\val^{\game})\)</span> means that from a vertex <span class="math notranslate nohighlight">\(v\)</span>,
+the value <span class="math notranslate nohighlight">\(\val^{\game}(v)\)</span> can be computed locally, <strong>i.e.</strong> by considering the maximum or the minimum over all edges <span class="math notranslate nohighlight">\((v,v')\)</span>
+of a function <span class="math notranslate nohighlight">\(\delta\)</span> of <span class="math notranslate nohighlight">\(\val^{\game}(v')\)</span> and of <span class="math notranslate nohighlight">\(\col(v)\)</span>.
 The choice of minimum or maximum corresponds to the goal of the players: Eve wants to maximise the outcome and Adam to minimise it.</p>
 </div>
 <div class="section" id="fixed-point-through-contraction">
 <h2>Fixed point through contraction<a class="headerlink" href="#fixed-point-through-contraction" title="Permalink to this headline">¶</a></h2>
 <p>Let us first consider the family of value iteration algorithms based on Banach’s fixed point theorem as stated in  <a class="reference internal" href="fixed_points.html#1-thm:banach">Theorem 23</a>
-and let us fix as a goal to approximate <span class="math notranslate nohighlight">\(\textrm{val}{\mathcal{G}\)</span>.
+and let us fix as a goal to approximate <span class="math notranslate nohighlight">\(\Value^{\game}\)</span>.
 We equip <span class="math notranslate nohighlight">\(F_V\)</span> with a norm <span class="math notranslate nohighlight">\(||\cdot||\)</span>.</p>
 <div class="proof property admonition" id="1-property:fixed_point_contraction">
 <p class="admonition-title"><span class="caption-number">Property 28 </span> (Fixed point through contraction)</p>
 <div class="property-content section" id="proof-content">
-<p>The operator <span class="math notranslate nohighlight">\(\mathbb{O} is contracting in the complete space \)</span>(F_V,||\cdot||)<span class="math notranslate nohighlight">\( implying that \)</span>\textrm{val}{\mathcal{G}<span class="math notranslate nohighlight">\( is the unique fixed point of \)</span>\mathbb{O}.</p>
+<p>The operator <span class="math notranslate nohighlight">\(\Op\)</span> is contracting in the complete space <span class="math notranslate nohighlight">\((F_V,||\cdot||)\)</span> implying that <span class="math notranslate nohighlight">\(\Value^{\game}\)</span> is the unique fixed point of <span class="math notranslate nohighlight">\(\Op\)</span>.</p>
 </div>
 </div><p>The algorithm is the following:
-we choose some <span class="math notranslate nohighlight">\(\Value_0 : V \to Y\)</span> and then compute the sequence <span class="math notranslate nohighlight">\((\Value_k)_{k \in \mathbb{N}\)</span> defined by <span class="math notranslate nohighlight">\(\Value_{k+1} = \mathbb{O}\Value_k)\)</span>
-until we get the desired quality of approximation for <span class="math notranslate nohighlight">\(\textrm{val}{\mathcal{G}\)</span>.
+we choose some <span class="math notranslate nohighlight">\(\Value_0 : V \to Y\)</span> and then compute the sequence <span class="math notranslate nohighlight">\((\Value_k)_{k \in \N}\)</span> defined by <span class="math notranslate nohighlight">\(\Value_{k+1} = \Op(\Value_k)\)</span>
+until we get the desired quality of approximation for <span class="math notranslate nohighlight">\(\Value^{\game}\)</span>.
 We have</p>
 <div class="math notranslate nohighlight">
 \[
-||\Value_k - \textrm{val}{\mathcal{G}|| \le \frac{\lambda^k}{1 - \lambda} \cdot ||\Value_1 - \Value_0||,
+||\Value_k - \Value^{\game}|| \le \frac{\lambda^k}{1 - \lambda} \cdot ||\Value_1 - \Value_0||,
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(\lambda \in (0,1)\)</span> is the contraction factor of <span class="math notranslate nohighlight">\(\mathbb{O}.
-Hence to get an \)</span>\varepsilon<span class="math notranslate nohighlight">\(-approximation of \)</span>\textrm{val}{\mathcal{G}<span class="math notranslate nohighlight">\( it is enough to perform 
-\)</span>k = O \left( \frac{\log(\varepsilon)}{\log(\lambda)} \right)$ iterations.</p>
+<p>where <span class="math notranslate nohighlight">\(\lambda \in (0,1)\)</span> is the contraction factor of <span class="math notranslate nohighlight">\(\Op\)</span>.
+Hence to get an <span class="math notranslate nohighlight">\(\varepsilon\)</span>-approximation of <span class="math notranslate nohighlight">\(\Value^{\game}\)</span> it is enough to perform
+<span class="math notranslate nohighlight">\(k = O \left( \frac{\log(\varepsilon)}{\log(\lambda)} \right)\)</span> iterations.</p>
 </div>
 <div class="section" id="fixed-point-through-monotonicity">
 <h2>Fixed point through monotonicity<a class="headerlink" href="#fixed-point-through-monotonicity" title="Permalink to this headline">¶</a></h2>
@@ -841,32 +893,34 @@ Hence to get an \)</span>\varepsilon<span class="math notranslate nohighlight">\
 <p class="admonition-title"><span class="caption-number">Property 29 </span> (Fixed point through monotonicity)</p>
 <div class="property-content section" id="proof-content">
 <p>The function <span class="math notranslate nohighlight">\(\delta\)</span> is monotonic (meaning that if <span class="math notranslate nohighlight">\(y \le y'\)</span> then for all colours <span class="math notranslate nohighlight">\(c\)</span> we have <span class="math notranslate nohighlight">\(\delta(y,c) \le \delta(y',c)\)</span>)
-and <span class="math notranslate nohighlight">\(\textrm{val}\mathcal{G}\)</span> is the greatest fixed point of the monotonic operator $\mathbb{O}.</p>
+and <span class="math notranslate nohighlight">\(\val^{\game}\)</span> is the greatest fixed point of the monotonic operator <span class="math notranslate nohighlight">\(\Op\)</span>.</p>
 </div>
 </div><div class="admonition-remark admonition">
 <p class="admonition-title">Remark</p>
-<p>It is possible to define the value function as the <strong>least</strong> fixed point of <span class="math notranslate nohighlight">\(\mathbb{O}, 
-and this is equivalent up to some inversions in the lattice \)</span>(Y,\le)<span class="math notranslate nohighlight">\( and the operator \)</span>\mathbb{O}.
-There are two reasons why we chose to define the value function as the <strong>greatest</strong> fixed point of <span class="math notranslate nohighlight">\(\mathbb{O}.
-The first is that this implies that the operator \)</span>\mathbb{O} is defined in the same way in both qualitative and quantitative cases (for the other definition, min and max would be swapped in the definition of <span class="math notranslate nohighlight">\(\mathbb{O} for qualitative games, which contradicts the intuition given above),
-and the second is that with this convention losing from \)</span>v<span class="math notranslate nohighlight">\( is equivalent to \)</span>\textrm{val}{\mathcal{G}(v) = \bot<span class="math notranslate nohighlight">\(,
-while in the other convention it is equivalent to \)</span>\textrm{val}{\mathcal{G}(v) = \top<span class="math notranslate nohighlight">\(, where \)</span>\top<span class="math notranslate nohighlight">\( is the greatest element in \)</span>Y$.</p>
+<p>It is possible to define the value function as the <strong>least</strong> fixed point of <span class="math notranslate nohighlight">\(\Op\)</span>,
+and this is equivalent up to some inversions in the lattice <span class="math notranslate nohighlight">\((Y,\le)\)</span> and the operator <span class="math notranslate nohighlight">\(\Op\)</span>.
+There are two reasons why we chose to define the value function as the <strong>greatest</strong> fixed point of <span class="math notranslate nohighlight">\(\Op\)</span>.
+The first is that this implies that the operator <span class="math notranslate nohighlight">\(\Op\)</span> is defined in the same way in both qualitative and quantitative cases (for the other definition, min and max would be swapped in the definition of <span class="math notranslate nohighlight">\(\Op\)</span> for qualitative games, which contradicts the intuition given above),
+and the second is that with this convention losing from <span class="math notranslate nohighlight">\(v\)</span> is equivalent to <span class="math notranslate nohighlight">\(\Value^{\game}(v) = \bot\)</span>,
+while in the other convention it is equivalent to <span class="math notranslate nohighlight">\(\Value^{\game}(v) = \top\)</span>, where <span class="math notranslate nohighlight">\(\top\)</span> is the greatest element in <span class="math notranslate nohighlight">\(Y\)</span>.</p>
 </div>
-<p><a class="reference internal" href="fixed_points.html#1-thm:kleene">Theorem 24</a> states that <span class="math notranslate nohighlight">\(\textrm{val}{\mathcal{G}\)</span> is also the greatest post-fixed point.
-Recall that a post-fixed point is <span class="math notranslate nohighlight">\(\mu\)</span> such that <span class="math notranslate nohighlight">\(\mu \le \mathbb{O}\mu)\)</span>, which in this context we call a progress measure.
+<p><a class="reference internal" href="fixed_points.html#1-thm:kleene">Theorem 24</a> states that <span class="math notranslate nohighlight">\(\Value^{\game}\)</span> is also the greatest post-fixed point.
+Recall that a post-fixed point is <span class="math notranslate nohighlight">\(\mu\)</span> such that <span class="math notranslate nohighlight">\(\mu \le \Op(\mu)\)</span>, which in this context we call a progress measure.
 Expanding the definitions: for all vertices <span class="math notranslate nohighlight">\(v\)</span>, we have</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{array}{llll}
-\mu(v) &amp; \le &amp; \max \set{\delta( \mu(v'), \textsf{col}v)) : (v,v') \in E} &amp; \text{ if } v \in V_\mathrm{Eve}\\
-\mu(v) &amp; \le &amp; \min \set{\delta( \mu(v'), \textsf{col}v)) : (v,v') \in E} &amp; \text{ if } v \in V_\mathrm{Adam}\end{array}
+\mu(v) &amp; \le &amp; \max \set{\delta( \mu(v'), \col(v)) : (v,v') \in E} &amp; \text{ if } v \in \VE, \\
+\mu(v) &amp; \le &amp; \min \set{\delta( \mu(v'), \col(v)) : (v,v') \in E} &amp; \text{ if } v \in \VA,
+\end{array}
 \end{split}\]</div>
 <p>which is equivalent to the more familiar definition of progress measures: for all vertices <span class="math notranslate nohighlight">\(v\)</span>, we have</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{array}{llll}
-\exists (v,v') \in E,\ &amp; \mu(v) \le \delta( \mu(v'), \textsf{col}v)) &amp; \text{ if } v \in V_\mathrm{Eve}\\
-\forall (v,v') \in E,\ &amp; \mu(v) \le \delta( \mu(v'), \textsf{col}v)) &amp; \text{ if } v \in V_\mathrm{Adam}\end{array}
+\exists (v,v') \in E,\ &amp; \mu(v) \le \delta( \mu(v'), \col(v)) &amp; \text{ if } v \in \VE, \\
+\forall (v,v') \in E,\ &amp; \mu(v) \le \delta( \mu(v'), \col(v)) &amp; \text{ if } v \in \VA.
+\end{array}
 \end{split}\]</div>
 <p>The characterisation principle can be equivalently stated as follows.</p>
 <div class="proof property admonition" id="1-property:progress_measure">
@@ -874,26 +928,27 @@ Expanding the definitions: for all vertices <span class="math notranslate nohigh
 <div class="property-content section" id="proof-content">
 <p>For all vertices <span class="math notranslate nohighlight">\(v\)</span> we have Eve wins from <span class="math notranslate nohighlight">\(v\)</span> if and only if there exists a progress measure <span class="math notranslate nohighlight">\(\mu\)</span> such that <span class="math notranslate nohighlight">\(\mu(v) \neq \bot\)</span>.</p>
 </div>
-</div><p>The third information given by  <a class="reference internal" href="fixed_points.html#1-thm:kleene">Theorem 24</a> is that <span class="math notranslate nohighlight">\(\textrm{val}{\mathcal{G}\)</span> is the limit of the sequence <span class="math notranslate nohighlight">\((\mathbb{O}k(\top))_{k \in \mathbb{N}\)</span>.</p>
-<p>If <span class="math notranslate nohighlight">\(Y\)</span> is a finite lattice then so is <span class="math notranslate nohighlight">\(F_V\)</span>, and the algorithm for computing <span class="math notranslate nohighlight">\(\textrm{val}{\mathcal{G}\)</span> is as follows:
-we let <span class="math notranslate nohighlight">\(\Value_0\)</span> defined by <span class="math notranslate nohighlight">\(\Value_0(v) = \top\)</span> and then compute the sequence <span class="math notranslate nohighlight">\((\Value_k)_{k \in \mathbb{N}\)</span> defined by
-<span class="math notranslate nohighlight">\(\Value_{k+1} = \min(\mathbb{O}\Value_k), \Value_k)\)</span>.
-There exists <span class="math notranslate nohighlight">\(k\)</span> such that <span class="math notranslate nohighlight">\(\Value_{k+1} = \Value_k\)</span>, at which point we have that <span class="math notranslate nohighlight">\(\Value_k = \textrm{val}{\mathcal{G}\)</span>,
+</div><p>The third information given by  <a class="reference internal" href="fixed_points.html#1-thm:kleene">Theorem 24</a> is that <span class="math notranslate nohighlight">\(\Value^{\game}\)</span> is the limit of the sequence <span class="math notranslate nohighlight">\((\Op^k(\top))_{k \in \N}\)</span>.</p>
+<p>If <span class="math notranslate nohighlight">\(Y\)</span> is a finite lattice then so is <span class="math notranslate nohighlight">\(F_V\)</span>, and the algorithm for computing <span class="math notranslate nohighlight">\(\Value^{\game}\)</span> is as follows:
+we let <span class="math notranslate nohighlight">\(\Value_0\)</span> defined by <span class="math notranslate nohighlight">\(\Value_0(v) = \top\)</span> and then compute the sequence <span class="math notranslate nohighlight">\((\Value_k)_{k \in \N}\)</span> defined by
+<span class="math notranslate nohighlight">\(\Value_{k+1} = \min(\Op(\Value_k), \Value_k)\)</span>.
+There exists <span class="math notranslate nohighlight">\(k\)</span> such that <span class="math notranslate nohighlight">\(\Value_{k+1} = \Value_k\)</span>, at which point we have that <span class="math notranslate nohighlight">\(\Value_k = \Value^{\game}\)</span>,
 from which we obtain the winning regions thanks to the characterisation principle.
 A naive upper bound on <span class="math notranslate nohighlight">\(k\)</span> is <span class="math notranslate nohighlight">\(|F_V| \le |Y|^n\)</span>, but usually a finer analysis of the algorithm yields better bounds on the number of iterations to reach the fixed point.</p>
-<p>If <span class="math notranslate nohighlight">\(Y\)</span> is not finite that the sequence <span class="math notranslate nohighlight">\((\Value_k)_{k \in \mathbb{N}\)</span> converges towards <span class="math notranslate nohighlight">\(\textrm{val}{\mathcal{G}\)</span> and further analysis is required to evaluate the convergence speed.</p>
+<p>If <span class="math notranslate nohighlight">\(Y\)</span> is not finite that the sequence <span class="math notranslate nohighlight">\((\Value_k)_{k \in \N}\)</span> converges towards <span class="math notranslate nohighlight">\(\Value^{\game}\)</span> and further analysis is required to evaluate the convergence speed.</p>
 <div class="admonition-remark admonition">
 <p class="admonition-title">Remark</p>
-<p>It is sometimes useful to define instead of the operator <span class="math notranslate nohighlight">\(\mathbb{O} a set of operators \)</span>(\Op_v)_{v \in V}$:</p>
+<p>It is sometimes useful to define instead of the operator <span class="math notranslate nohighlight">\(\Op\)</span> a set of operators <span class="math notranslate nohighlight">\((\Op_v)_{v \in V}\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \Op_v(\mu)(u) = 
 \begin{cases}
 \mu(v) &amp; \text{ if } u \neq v, \\
-\max \set{\delta( \mu(v'), \textsf{col}v)) : (v,v') \in E} &amp; \text{ if } u = v \in V_\mathrm{Eve}\\
-\min \set{\delta( \mu(v'), \textsf{col}v)) : (v,v') \in E} &amp; \text{ if } u = v \in V_\mathrm{Adam}\end{cases}
+\max \set{\delta( \mu(v'), \col(v)) : (v,v') \in E} &amp; \text{ if } u = v \in \VE, \\
+\min \set{\delta( \mu(v'), \col(v)) : (v,v') \in E} &amp; \text{ if } u = v \in \VA.
+\end{cases}
 \end{split}\]</div>
-<p>The fixed points of <span class="math notranslate nohighlight">\(\mathbb{O} and of the set of operators \)</span>(\Op_v)_{v \in V}$ are the same
+<p>The fixed points of <span class="math notranslate nohighlight">\(\Op\)</span> and of the set of operators <span class="math notranslate nohighlight">\((\Op_v)_{v \in V}\)</span> are the same
 and the ideas described above can be applied using  <a class="reference internal" href="fixed_points.html#1-thm:kleene_set_operators">Theorem 25</a> instead of  <a class="reference internal" href="fixed_points.html#1-thm:kleene">Theorem 24</a>.</p>
 </div>
 </div>

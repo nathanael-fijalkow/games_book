@@ -724,41 +724,139 @@
   <div class="section" id="games-in-dimension-one">
 <span id="sec-dim1"></span><h1>Games in dimension one<a class="headerlink" href="#games-in-dimension-one" title="Permalink to this headline">¶</a></h1>
 <div class="math notranslate nohighlight">
-\[\newcommand{\eqdef}{\eqby{def}}
+\[\begin{split}\newcommand{\?}{\mathcal}
+\newcommand{\+}{\mathbb}
+\newcommand{\tup}[1]{\langle #1\rangle}
+\newcommand{\eqby}[1]{\stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{#1}}}}{=}}
+\newcommand{\eqdef}{\eqby{def}}
 \newcommand{\Loc}{\?L}
 \newcommand{\Act}{A}
+\providecommand{\dom}{\mathrm{dom}\,}
+\newcommand\pto{\mathrel{\ooalign{\hfil$\mapstochar\mkern5mu$\hfil\cr$\to$\cr}}}
+\newcommand{\weight}{w}
 \newcommand{\loc}{\ell}
+\newcommand{\sink}{\bot}
+\newcommand{\dd}{k}
+\newcommand{\CounterReach}{\textsf{CounterReach}\xspace}
+\newcommand{\Cover}{\textsf{Cover}\xspace}
+\newcommand{\NonTerm}{\textsf{NonTerm}\xspace}
+\newcommand{\decpb}[3][]{\begin{problem}[#1]\\[-1.7em]\begin{description}     
+    \item[\textsc{input:}] {#2}
+    \item[\textsc{question:}] {#3}
+    \end{description}
+  \end{problem}}
+\newcommand{\step}[1]{\xrightarrow{\,\raisebox{-1pt}[0pt][0pt]{\scriptsize\ensuremath
+      {#1}}\,}}
+\newcommand{\mstep}[1]{\xrightarrow{\,\raisebox{-1pt}[6pt][0pt]{\scriptsize\ensuremath
+      {#1}}\,}}
+\newcommand{\inst}[1]{\mathrel{\mathtt{#1}}}
+\providecommand{\pop}{\mathrm{pop}}
+\providecommand{\push}[1]{\mathrm{push}(#1)}
+\providecommand{\mymoot}[1]{}
 \newcommand{\blank}{\Box}
 \newcommand{\emkl}{\triangleright}
 \newcommand{\emkr}{\triangleleft}
+\renewcommand{\natural}{\arena_\+N}
+\newcommand{\energy}{\arena_\+E}
+\newcommand{\bounded}{\arena_B}
+\newcommand{\capped}{\arena_C}
+\newcommand{\capp}[2][C]{\overline{\vec #2}^{#1}}
+\let\oldcite\cite
+\renewcommand{\cite}{\citep}
+\providecommand{\citep}{\oldcite}
+\providecommand{\citet}{\cite}
+\providecommand{\citem}[2][1]{#1 {cite}`#2`}
+\providecommand{\qedhere}{\ensuremath\Box}
+\providecommand{\col}{\mathfrak c}
+\newcommand{\lcol}{\mathrm{lcol}}
+\newcommand{\vcol}{\mathrm{vcol}}
+\newcommand{\litt}{\loc}
+\newcommand{\Effect}{\Delta}
+\providecommand{\AP}{}
+\providecommand{\medskip}{}
+\providecommand{\ensuremath}{}
+\providecommand{\raisebox}[1]{}
+\providecommand{\scalebox}[1]{}
 \newcommand{\Eve}{\textrm{Eve}}
 \newcommand{\Adam}{\textrm{Adam}}
-\newcommand{\col}{\textsf{col}}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
+\newcommand{\argmax}{\textrm{argmax}}
+\newcommand{\argmin}{\textrm{argmin}}
+\newcommand{\Op}{\mathbb{O}}
+\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\textrm{supp}} 
+\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
+\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
 \newcommand{\mEve}{\mathrm{Eve}}
 \newcommand{\mAdam}{\mathrm{Adam}}
+\newcommand{\mRandom}{\mathrm{Random}}
+\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
 \newcommand{\ing}{\textrm{In}}
-\newcommand{\Win}{\textrm{Win}}
-\newcommand{\Reach}{\mathtt{Reach}}
+\newcommand{\Ing}{\ing}
+\newcommand{\out}{\textrm{Out}}
+\newcommand{\Out}{\out}
+\newcommand{\dest}{\Delta} 
+\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
+\newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
+\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
+\newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
+\newcommand{\Win}{\textrm{Win}} 
+\newcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Value}{\textrm{val}} 
+\newcommand{\ValueE}{\textrm{val}_\mEve} 
+\newcommand{\ValueA}{\textrm{val}_\mAdam}
+\newcommand{\val}{\Value} 
+\newcommand{\Automaton}{\mathbf{A}} 
+\newcommand{\Safe}{\mathtt{Safe}}
+\newcommand{\Reach}{\mathtt{Reach}} 
+\newcommand{\Buchi}{\mathtt{Buchi}} 
+\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
+\newcommand{\Parity}{\mathtt{Parity}} 
+\newcommand{\Muller}{\mathtt{Muller}} 
+\newcommand{\Rabin}{\mathtt{Rabin}} 
+\newcommand{\Streett}{\mathtt{Streett}} 
+\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
+\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
+\newcommand{\Energy}{\mathtt{Energy}}
+\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
+\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
+\newcommand{\Sup}{\mathtt{Sup}}
+\newcommand{\Inf}{\mathtt{Inf}}
+\newcommand{\LimSup}{\mathtt{LimSup}}
+\newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NL}{\textrm{NL}}
+\newcommand{\PTIME}{\textrm{PTIME}}
+\newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
+\newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
 \newcommand{\PSPACE}{\textrm{PSPACE}}
 \newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
-\newcommand{\EXP}{\textrm{EXP}}\]</div>
+\newcommand{\EXP}{\textrm{EXP}}
+\newcommand{\kEXP}{\textrm{kEXP}}\end{split}\]</div>
 <p>\AP \Cref{11-th:undec} leaves open whether vector games might be
 decidable in dimension one.  They are indeed decidable, and more
 generally we learned in Chapter <a class="reference internal" href="../10_Pushdown/index.html#chap-pushdown"><span class="std std-ref">Pushdown Games</span></a> that “one-counter
 games”—with the additional ability to test the counter for
-zero—were decidable and in fact \textrm{PSPACE}complete.  This might seem
+zero—were decidable and in fact \PSPACE-complete.  This might seem
 to settle the case of vector games in dimension one, except that the
 one-counter games of Chapter <a class="reference internal" href="../10_Pushdown/index.html#chap-pushdown"><span class="std std-ref">Pushdown Games</span></a> only allow integer
 weights in <span class="math notranslate nohighlight">\(\{-1,1\}\)</span>, whereas we allow arbitrary updates in <span class="math notranslate nohighlight">\(\+Z\)</span>
-with a binary encoding.  Hence the \textrm{PSPACE} upper bound of
-Chapter <a class="reference internal" href="../10_Pushdown/index.html#chap-pushdown"><span class="std std-ref">Pushdown Games</span></a> becomes an~\textrm{EXPSPACE} one for succinct
+with a binary encoding.  Hence the \PSPACE\ upper bound of
+Chapter <a class="reference internal" href="../10_Pushdown/index.html#chap-pushdown"><span class="std std-ref">Pushdown Games</span></a> becomes an~\EXPSPACE\ one for succinct
 one-counter games.</p>
-<div class="proof corollary admonition" id="corollary-0">
-<p class="admonition-title"><span class="caption-number">Corollary 299 </span> (One-dimensional vector games are in \textrm{EXPSPACE}:label: 11-cor:dim1)</p>
+<div class="proof corollary admonition" id="11-cor:dim1">
+<p class="admonition-title"><span class="caption-number">Corollary 299 </span> (One-dimensional vector games are in \EXPSPACE)</p>
 <div class="corollary-content section" id="proof-content">
 <p>Configuration reachability, coverability, non-termination, and
 parity&#64;parity vector game vector games, both with given and with “existential
-initial credit”, are in \textrm{EXPSPACE} in dimension one.</p>
+initial credit”, are in \EXPSPACE\ in dimension one.</p>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
@@ -766,51 +864,51 @@ initial credit”, are in \textrm{EXPSPACE} in dimension one.</p>
 \TODO{proof of \cref{11-cor:dim1} depends on how Section <span class="xref std std-ref">10-sec:one-counter</span> is written}</p>
 </div>
 <p>The goal of this section is therefore to establish that this
-\textrm{EXPSPACE} upper bound is tight (in most cases), by proving a matching
+\EXPSPACE\ upper bound is tight (in most cases), by proving a matching
 lower bound in Section <a class="reference internal" href="#sec-one-counter"><span class="std std-ref">Vector Games in Dimension One</span></a>.  But first, we will study a
 class of one-dimensional vector games of independent interest in
 Section <a class="reference internal" href="#sec-countdown"><span class="std std-ref">Countdown Games</span></a>: countdown games.</p>
 <div class="section" id="countdown-games">
 <span id="sec-countdown"></span><h2>Countdown Games<a class="headerlink" href="#countdown-games" title="Permalink to this headline">¶</a></h2>
 <p>\AP A one-dimensional vector system
-<span class="math notranslate nohighlight">\(\?V=(\?LA\Loc_\mathrm{Eve}\Loc_\mathrm{Adam}1)\)</span> is called a countdown
-system if <span class="math notranslate nohighlight">\(Asubseteq\?Ltimes\+Z_{&lt;0}\times\?L, that is, if
-for all \)</span>(\ellstep z\ell)\inA, <span class="math notranslate nohighlight">\(z&lt;0\)</span>.  We consider the games
+<span class="math notranslate nohighlight">\(\?V=(\Loc,\Act,\Loc_\mEve,\Loc_\mAdam,1)\)</span> is called a countdown
+system if <span class="math notranslate nohighlight">\(\Act\subseteq\Loc\times\+Z_{&lt;0}\times\Loc\)</span>, that is, if
+for all <span class="math notranslate nohighlight">\((\loc\step z\loc')\in\Act\)</span>, <span class="math notranslate nohighlight">\(z&lt;0\)</span>.  We consider the games
 defined by countdown systems, both with given and with
 existential initial credit, and call the resulting games countdown
 games.</p>
 <div class="proof theorem admonition" id="11-th:countdown-given">
-<p class="admonition-title"><span class="caption-number">Theorem 300 </span> (Countdown games are \textrm{EXP}complete)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 300 </span> (Countdown games are \EXP-complete)</p>
 <div class="theorem-content section" id="proof-content">
 <p>Configuration reachability and coverability countdown games
-with given initial credit are \textrm{EXP}complete.</p>
+with given initial credit are \EXP-complete.</p>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
 <p>For the upper bound, consider an instance, i.e., a “countdown
-system” <span class="math notranslate nohighlight">\(\?V=(\?LA\Loc_\mathrm{Eve}\Loc_\mathrm{Adam}1)\)</span>, an initial
-location <span class="math notranslate nohighlight">\(\loc_0\in\?L, an initial credit \)</span>n_0\in+N<span class="math notranslate nohighlight">\(, and a
-  target configuration \)</span>\loc_f(n_f)\in?Ltimes+N<span class="math notranslate nohighlight">\(.  Because every
-  action decreases strictly the counter value, the reachable part
-  of the natural semantics of \)</span>?V<span class="math notranslate nohighlight">\( starting from \)</span>\loc_0(n_0)<span class="math notranslate nohighlight">\( is
-  finite and of size at most \)</span>1+|?L\cdot (n_0+1)<span class="math notranslate nohighlight">\(, and because \)</span>n_0$
+system” <span class="math notranslate nohighlight">\(\?V=(\Loc,\Act,\Loc_\mEve,\Loc_\mAdam,1)\)</span>, an initial
+location <span class="math notranslate nohighlight">\(\loc_0\in\Loc\)</span>, an initial credit <span class="math notranslate nohighlight">\(n_0\in\+N\)</span>, and a
+target configuration <span class="math notranslate nohighlight">\(\loc_f(n_f)\in\Loc\times\+N\)</span>.  Because every
+action decreases strictly the counter value, the reachable part
+of the natural semantics of <span class="math notranslate nohighlight">\(\?V\)</span> starting from <span class="math notranslate nohighlight">\(\loc_0(n_0)\)</span> is
+finite and of size at most <span class="math notranslate nohighlight">\(1+|\Loc|\cdot (n_0+1)\)</span>, and because <span class="math notranslate nohighlight">\(n_0\)</span>
 is encoded in binary, this is at most exponential in the size of the
 instance.  As seen in Chapter <a class="reference internal" href="../2_Regular/index.html#chap-regular"><span class="std std-ref">Regular Games</span></a>, such a reachability
 game can be solved in time polynomial in the size of the finite
-graph, thus in \textrm{EXP} overall.</p>
+graph, thus in \EXP\ overall.</p>
 <p>\medskip For the lower bound, we start by considering a game played
 over an exponential-time Turing machine, before showing how to
 implement this game as a countdown game.  Let us consider for this
 an arbitrary Turing machine <span class="math notranslate nohighlight">\(\?M\)</span> working in deterministic
 exponential time <span class="math notranslate nohighlight">\(2^{p(n)}\)</span> for some fixed polynomial <span class="math notranslate nohighlight">\(p\)</span> and an
 input word <span class="math notranslate nohighlight">\(w=a_1\cdots a_n\)</span> of length <span class="math notranslate nohighlight">\(n\)</span>, which we assume to be
-positive.  Let <span class="math notranslate nohighlight">\(m\eqby{def}2^{p(n)}\geq n\)</span>.  The computation of <span class="math notranslate nohighlight">\(\?M\)</span>
+positive.  Let <span class="math notranslate nohighlight">\(m\eqdef 2^{p(n)}\geq n\)</span>.  The computation of <span class="math notranslate nohighlight">\(\?M\)</span>
 on <span class="math notranslate nohighlight">\(w\)</span> is a sequence of configurations <span class="math notranslate nohighlight">\(C_1,C_2,\dots,C_t\)</span> of
 length <span class="math notranslate nohighlight">\(t\leq m\)</span>.  Each configuration <span class="math notranslate nohighlight">\(C_i\)</span> is of the form
-<span class="math notranslate nohighlight">\(\triangleright\gamma_{i,1}\cdots\gamma_{i,m}\triangleleft where \)</span>\triangleright and
-<span class="math notranslate nohighlight">\(\triangleleft are endmarkers and the symbols \)</span>\gamma_{i,j}<span class="math notranslate nohighlight">\( are either
-  taken from the finite tape alphabet \)</span>\Gamma<span class="math notranslate nohighlight">\( (which includes a blank
-  symbol \)</span>\Box) or a pair <span class="math notranslate nohighlight">\((q,a)\)</span> of a state from <span class="math notranslate nohighlight">\(Q\)</span> and a tape
+<span class="math notranslate nohighlight">\(\emkl \gamma_{i,1}\cdots\gamma_{i,m}\emkr\)</span> where <span class="math notranslate nohighlight">\(\emkl\)</span> and
+<span class="math notranslate nohighlight">\(\emkr\)</span> are endmarkers and the symbols <span class="math notranslate nohighlight">\(\gamma_{i,j}\)</span> are either
+taken from the finite tape alphabet <span class="math notranslate nohighlight">\(\Gamma\)</span> (which includes a blank
+symbol <span class="math notranslate nohighlight">\(\blank\)</span>) or a pair <span class="math notranslate nohighlight">\((q,a)\)</span> of a state from <span class="math notranslate nohighlight">\(Q\)</span> and a tape
 symbol <span class="math notranslate nohighlight">\(a\)</span>.  We assume that the set of states <span class="math notranslate nohighlight">\(Q\)</span> contains a single
 accepting state <span class="math notranslate nohighlight">\(q_\mathrm{final}\)</span>.  The entire computation can be
 arranged over a <span class="math notranslate nohighlight">\(t\times m\)</span> grid where each line corresponds to a
@@ -823,70 +921,72 @@ starts by rewriting <span class="math notranslate nohighlight">\(a_1\)</span> in
 state <span class="math notranslate nohighlight">\(q_1\)</span>, and empties its tape before accepting its input by going
 to state <span class="math notranslate nohighlight">\(q_\mathrm{final}\)</span>.</span><a class="headerlink" href="#fig-exp" title="Permalink to this image">¶</a></p>
 </div>
-<p>We now set up a two-player game where \textrm{Eve} wants to prove that the
+<p>We now set up a two-player game where \Eve\ wants to prove that the
 input <span class="math notranslate nohighlight">\(w\)</span> is accepted.  Let
-<span class="math notranslate nohighlight">\(\Gamma'\eqby{def}\{\triangleright\triangleleft}\cup\Gamma\cup(Q\times\Gamma)\)</span>. Rather
+<span class="math notranslate nohighlight">\(\Gamma'\eqdef \{\emkl,\emkr\}\cup\Gamma\cup(Q\times\Gamma)\)</span>. Rather
 than exhibiting the full computation from <a class="reference internal" href="#fig-exp"><span class="std std-numref">Fig. 72</span></a>, the
 game will be played over positions <span class="math notranslate nohighlight">\((i,j,\gamma_{i,j})\)</span> where
-<span class="math notranslate nohighlight">\(0&lt;i\leq m\)</span>, <span class="math notranslate nohighlight">\(0\leq j\leq m+1\)</span>, and <span class="math notranslate nohighlight">\(\gamma_{i,j}\in\Gamma'\)</span>.  \textrm{Eve}  wants to show that, in the computation of <span class="math notranslate nohighlight">\(\?M\)</span> over <span class="math notranslate nohighlight">\(w\)</span> as depicted
+<span class="math notranslate nohighlight">\(0&lt;i\leq m\)</span>, <span class="math notranslate nohighlight">\(0\leq j\leq m+1\)</span>, and <span class="math notranslate nohighlight">\(\gamma_{i,j}\in\Gamma'\)</span>.  \Eve
+wants to show that, in the computation of <span class="math notranslate nohighlight">\(\?M\)</span> over <span class="math notranslate nohighlight">\(w\)</span> as depicted
 in <a class="reference internal" href="#fig-exp"><span class="std std-numref">Fig. 72</span></a>, the <span class="math notranslate nohighlight">\(j\)</span>th cell of the <span class="math notranslate nohighlight">\(i\)</span>th
 configuration <span class="math notranslate nohighlight">\(C_i\)</span> contains <span class="math notranslate nohighlight">\(\gamma_{i,j}\)</span>.  In order to
 substantiate this claim, observe that the content of any cell
 <span class="math notranslate nohighlight">\(\gamma_{i,j}\)</span> in the grid is determined by the actions of <span class="math notranslate nohighlight">\(\?M\)</span>
 and the contents of (up to) three cells in the previous
-configuration.  Thus, if <span class="math notranslate nohighlight">\(i&gt;1\)</span> and <span class="math notranslate nohighlight">\(0&lt;j&lt;m+1\)</span>, \textrm{Eve} provides a triple
+configuration.  Thus, if <span class="math notranslate nohighlight">\(i&gt;1\)</span> and <span class="math notranslate nohighlight">\(0&lt;j&lt;m+1\)</span>, \Eve\ provides a triple
 <span class="math notranslate nohighlight">\((\gamma_{i-1,j-1},\gamma_{i-1,j},\gamma_{i-1,j+1})\)</span> of symbols
 in <span class="math notranslate nohighlight">\(\Gamma'\)</span> that yield <span class="math notranslate nohighlight">\(\gamma_{i,j}\)</span> according to the actions
 of <span class="math notranslate nohighlight">\(\?M\)</span>, which we denote by
 <span class="math notranslate nohighlight">\(\gamma_{i-1,j-1},\gamma_{i-1,j},\gamma_{i-1,j+1}\vdash\gamma_{i,j}\)</span>,
-and \textrm{Adam} chooses <span class="math notranslate nohighlight">\(j'\in\{j-1,j,j+1\}\)</span> and returns the control
-to \textrm{Eve} in position <span class="math notranslate nohighlight">\((i-1,j',\gamma_{i-1,j'})\)</span>.  Regarding the
-boundary cases where <span class="math notranslate nohighlight">\(i=0\)</span> or <span class="math notranslate nohighlight">\(j=0\)</span> or <span class="math notranslate nohighlight">\(j=m+1\)</span>, \textrm{Eve} wins
-immediately if <span class="math notranslate nohighlight">\(j=0\)</span> and <span class="math notranslate nohighlight">\(\gamma={\triangleright\)</span>, or if <span class="math notranslate nohighlight">\(j=m+1\)</span> and
-<span class="math notranslate nohighlight">\(\gamma={\triangleleft\)</span>, or if <span class="math notranslate nohighlight">\(i=0\)</span> and <span class="math notranslate nohighlight">\(0&lt;j\leq n\)</span> and <span class="math notranslate nohighlight">\(\gamma=a_j\)</span>, or if
-<span class="math notranslate nohighlight">\(i=0\)</span> and <span class="math notranslate nohighlight">\(n&lt;j\leq m\)</span> and <span class="math notranslate nohighlight">\(\gamma={\Box\)</span>, and otherwise \textrm{Adam} wins
+and \Adam\ chooses <span class="math notranslate nohighlight">\(j'\in\{j-1,j,j+1\}\)</span> and returns the control
+to \Eve\ in position <span class="math notranslate nohighlight">\((i-1,j',\gamma_{i-1,j'})\)</span>.  Regarding the
+boundary cases where <span class="math notranslate nohighlight">\(i=0\)</span> or <span class="math notranslate nohighlight">\(j=0\)</span> or <span class="math notranslate nohighlight">\(j=m+1\)</span>, \Eve\ wins
+immediately if <span class="math notranslate nohighlight">\(j=0\)</span> and <span class="math notranslate nohighlight">\(\gamma={\emkl}\)</span>, or if <span class="math notranslate nohighlight">\(j=m+1\)</span> and
+<span class="math notranslate nohighlight">\(\gamma={\emkr}\)</span>, or if <span class="math notranslate nohighlight">\(i=0\)</span> and <span class="math notranslate nohighlight">\(0&lt;j\leq n\)</span> and <span class="math notranslate nohighlight">\(\gamma=a_j\)</span>, or if
+<span class="math notranslate nohighlight">\(i=0\)</span> and <span class="math notranslate nohighlight">\(n&lt;j\leq m\)</span> and <span class="math notranslate nohighlight">\(\gamma={\blank}\)</span>, and otherwise \Adam\ wins
 immediately.  The game starts in a position
 <span class="math notranslate nohighlight">\((t,j,(q_\mathrm{final},a))\)</span> for some <span class="math notranslate nohighlight">\(0&lt;t\leq m\)</span>, <span class="math notranslate nohighlight">\(0&lt; j\leq m\)</span>,
-and <span class="math notranslate nohighlight">\(a\in\Gamma\)</span> of \textrm{Eve}s choosing.  It should be clear that \textrm{Eve}  has a winning strategy in this game if and only if <span class="math notranslate nohighlight">\(w\)</span> is accepted
+and <span class="math notranslate nohighlight">\(a\in\Gamma\)</span> of \Eve’s choosing.  It should be clear that \Eve
+has a winning strategy in this game if and only if <span class="math notranslate nohighlight">\(w\)</span> is accepted
 by <span class="math notranslate nohighlight">\(\?M\)</span>.</p>
 <p>We now implement the previous game as a coverability game over a
-countdown system <span class="math notranslate nohighlight">\(\?V\eqby{def}\?LA\Loc_\mathrm{Eve}\Loc_\mathrm{Adam}1)\)</span>.
+countdown system <span class="math notranslate nohighlight">\(\?V\eqdef(\Loc,\Act,\Loc_\mEve,\Loc_\mAdam,1)\)</span>.
 The idea is that the pair <span class="math notranslate nohighlight">\((i,j)\)</span> will be encoded as
 <span class="math notranslate nohighlight">\((i-1)\cdot(m+2)+j+2\)</span> in the counter value, while the
 symbol <span class="math notranslate nohighlight">\(\gamma_{i,j}\)</span> will be encoded in the location.  For
-instance, the endmarker <span class="math notranslate nohighlight">\(\triangleright at position \)</span>(1,0)<span class="math notranslate nohighlight">\( will be
-  represented by configuration \)</span>\loc_{\triangleright(2)<span class="math notranslate nohighlight">\(, the first input
-  \)</span>(q_0,a_1)<span class="math notranslate nohighlight">\( at position \)</span>(1,1)<span class="math notranslate nohighlight">\( by \)</span>\loc_{(q_0,a_1)}(3)<span class="math notranslate nohighlight">\(, and the
-  endmarker \)</span>\triangleleft at position <span class="math notranslate nohighlight">\((m,m+1)\)</span> by
-<span class="math notranslate nohighlight">\(\loc_{\triangleleft(m\cdot(m+2)+1)\)</span>. The game starts from the initial
-configuration <span class="math notranslate nohighlight">\(\loc_0(n_0)\)</span> where <span class="math notranslate nohighlight">\(n_0\eqby{def}m\cdot(m+2)+1\)</span> and the
+instance, the endmarker <span class="math notranslate nohighlight">\(\emkl\)</span> at position <span class="math notranslate nohighlight">\((1,0)\)</span> will be
+represented by configuration <span class="math notranslate nohighlight">\(\loc_{\emkl}(2)\)</span>, the first input
+<span class="math notranslate nohighlight">\((q_0,a_1)\)</span> at position <span class="math notranslate nohighlight">\((1,1)\)</span> by <span class="math notranslate nohighlight">\(\loc_{(q_0,a_1)}(3)\)</span>, and the
+endmarker <span class="math notranslate nohighlight">\(\emkr\)</span> at position <span class="math notranslate nohighlight">\((m,m+1)\)</span> by
+<span class="math notranslate nohighlight">\(\loc_{\emkr}(m\cdot(m+2)+1)\)</span>. The game starts from the initial
+configuration <span class="math notranslate nohighlight">\(\loc_0(n_0)\)</span> where <span class="math notranslate nohighlight">\(n_0\eqdef m\cdot(m+2)+1\)</span> and the
 target location is <span class="math notranslate nohighlight">\(\smiley\)</span>.</p>
 <p>We define for this the sets of locations
 \begin{align*}
-\Loc_\mathrm{Eve}\eqby{def}{\loc_0,\smiley,\frownie}
+\Loc_\mEve&amp;\eqdef{\loc_0,\smiley,\frownie}
 \cup{\loc_\gamma\mid\gamma\in\Gamma’};,\
-\Loc_\mathrm{Adam}\eqby{def}{\loc_{(\gamma_1,\gamma_2,\gamma_3)}\mid\gamma_1,\gamma_2,\gamma_3\in\Gamma’}
+\Loc_\mAdam&amp;\eqdef{\loc_{(\gamma_1,\gamma_2,\gamma_3)}\mid\gamma_1,\gamma_2,\gamma_3\in\Gamma’}
 \cup{\loc_{=j}\mid 0&lt;j\leq n}
 \cup{\loc_{1\leq?\leq m-n+1}};.
 \end{align*}
-The intention behind the locations <span class="math notranslate nohighlight">\(\loc_{=j}\in\Loc_\mathrm{Adam} is
-  that \textrm{Eve} can reach \)</span>\smiley<span class="math notranslate nohighlight">\( from a configuration \)</span>\loc_{=j}(c)<span class="math notranslate nohighlight">\( if
-  and only if \)</span>c=j<span class="math notranslate nohighlight">\(; we accordingly define \)</span>A with the following
+The intention behind the locations <span class="math notranslate nohighlight">\(\loc_{=j}\in\Loc_\mAdam\)</span> is
+that \Eve\ can reach <span class="math notranslate nohighlight">\(\smiley\)</span> from a configuration <span class="math notranslate nohighlight">\(\loc_{=j}(c)\)</span> if
+and only if <span class="math notranslate nohighlight">\(c=j\)</span>; we accordingly define <span class="math notranslate nohighlight">\(\Act\)</span> with the following
 actions, where <span class="math notranslate nohighlight">\(\frownie\)</span> is a deadlock location:
 \begin{align*}
 \loc_{=j}&amp;\step{-j-1}\frownie;,&amp;\loc_{=j}&amp;\step{-j}\smiley;.
-\intertext{Similarly, \textrm{Eve} should be able to reach <span class="math notranslate nohighlight">\(\smiley\)</span> from
+\intertext{Similarly, \Eve\ should be able to reach <span class="math notranslate nohighlight">\(\smiley\)</span> from
 <span class="math notranslate nohighlight">\(\loc_{1\leq?\leq m-n+1}(c)\)</span> if and only if <span class="math notranslate nohighlight">\(1\leq c\leq m-n+1\)</span>,
 which is implemented by the actions}
 \loc_{1\leq?\leq m-n+1}&amp;\step{-m+n-2}\frownie;,&amp;
 \loc_{1\leq?\leq m-n+1}&amp;\step{-1}\smiley;,&amp;
 \smiley&amp;\step{-1}\smiley;.
 \end{align*}
-Note this last action also ensures that \textrm{Eve} can reach the
+Note this last action also ensures that \Eve\ can reach the
 location <span class="math notranslate nohighlight">\(\smiley\)</span> if and only if she can reach the configuration
 <span class="math notranslate nohighlight">\(\smiley(0)\)</span>, thus the game can equivalently be seen as a
 configuration reachability game.</p>
-<p>Regarding initialisation, \textrm{Eve} can choose her initial position,
+<p>Regarding initialisation, \Eve\ can choose her initial position,
 which we implement by the actions
 \begin{align*}
 \loc_0 &amp;\step{-1} \loc_0 &amp; \loc_0 &amp;\step{-1}\loc_{(q_\mathrm{final},a)}&amp;&amp;\text{for <span class="math notranslate nohighlight">\(a\in\Gamma\)</span>};.
@@ -896,9 +996,9 @@ the following actions:}
 <span class="math notranslate nohighlight">\(\gamma_1,\gamma_2,\gamma_3\vdash\gamma\)</span>};,\ \loc_{(\gamma_1,\gamma_2,\gamma_3)}&amp;\step{-k}\loc_{\gamma_k}&amp;&amp;&amp;&amp;\text{for
 <span class="math notranslate nohighlight">\(k\in\{1,2,3\}\)</span>};.
 \intertext{We handle the endmarker positions via the following
-actions, where \textrm{Eve} proceeds along the left edge
+actions, where \Eve\ proceeds along the left edge
 of <a class="reference internal" href="#fig-exp"><span class="std std-numref">Fig. 72</span></a> until she reaches the initial left endmarker:}
-\loc_\triangleright\step{-m-2}\loc_\triangleright;,&amp; \loc_\triangleright\step{-1}\loc_{=1};,&amp; \loc_\triangleleft\step{-m-1}\loc_\triangleright;.
+\loc_\emkl&amp;\step{-m-2}\loc_\emkl;,&amp; \loc_\emkl&amp;\step{-1}\loc_{=1};,&amp; \loc_\emkr&amp;\step{-m-1}\loc_\emkl;.
 \intertext{For the positions inside the input word <span class="math notranslate nohighlight">\(w=a_1\cdots
   a_n\)</span>, we use the actions}
 \loc_{(q_0,a_1)}&amp;\step{-2}\loc_{=1};,&amp;\loc_{a_j}&amp;\step{-2}\loc_{=j}&amp;&amp;\text{for
@@ -906,27 +1006,27 @@ of <a class="reference internal" href="#fig-exp"><span class="std std-numref">Fi
 \intertext{Finally, for the blank symbols of <span class="math notranslate nohighlight">\(C_1\)</span>, which should be
 associated with a counter value <span class="math notranslate nohighlight">\(c\)</span> such that <span class="math notranslate nohighlight">\(n+3\leq c\leq m+3\)</span>, we use the
 action}
-\loc_\Box\step{-n-2}\loc_{1\leq?\leq m-n+1};.&amp;&amp;&amp;&amp;&amp;\qedhere\hspace*{-1.5em}
+\loc_\blank&amp;\step{-n-2}\loc_{1\leq?\leq m-n+1};.&amp;&amp;&amp;&amp;&amp;\qedhere\hspace*{-1.5em}
 \end{align*}</p>
 </div>
 <div class="proof theorem admonition" id="11-th:countdown-exist">
-<p class="admonition-title"><span class="caption-number">Theorem 301 </span> (Existential countdown games are \textrm{EXPSPACE}complete)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 301 </span> (Existential countdown games are \EXPSPACE-complete)</p>
 <div class="theorem-content section" id="proof-content">
 <p>Configuration reachability and coverability countdown games
-with existential initial credit are \textrm{EXPSPACE}complete.</p>
+with existential initial credit are \EXPSPACE-complete.</p>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
 <p>For the upper bound, consider an instance, i.e., a “countdown
-system” <span class="math notranslate nohighlight">\(\?V=(\?LA\Loc_\mathrm{Eve}\Loc_\mathrm{Adam}1)\)</span>, an initial
-location <span class="math notranslate nohighlight">\(\loc_0\)</span>, and a target configuration <span class="math notranslate nohighlight">\(\loc_f\in\?L.  We
-   reduce this to an instance of configuration reachability with
-   given initial credit in a one-dimensional vector system by
-   adding a new location \)</span>\ell_0<span class="math notranslate nohighlight">\( controlled by~\textrm{Eve} with actions
-   \)</span>\ell_0\step{1}\ell_0<span class="math notranslate nohighlight">\( and \)</span>\ell_0\step 0\loc_0<span class="math notranslate nohighlight">\(, and asking
-   whether \textrm{Eve} has a winning strategy starting from \)</span>\ell_0(0)$ in
+system” <span class="math notranslate nohighlight">\(\?V=(\Loc,\Act,\Loc_\mEve,\Loc_\mAdam,1)\)</span>, an initial
+location <span class="math notranslate nohighlight">\(\loc_0\)</span>, and a target configuration <span class="math notranslate nohighlight">\(\loc_f\in\Loc\)</span>.  We
+reduce this to an instance of configuration reachability with
+given initial credit in a one-dimensional vector system by
+adding a new location <span class="math notranslate nohighlight">\(\loc'_0\)</span> controlled by~\Eve\ with actions
+<span class="math notranslate nohighlight">\(\loc'_0\step{1}\loc'_0\)</span> and <span class="math notranslate nohighlight">\(\loc'_0\step 0\loc_0\)</span>, and asking
+whether \Eve\ has a winning strategy starting from <span class="math notranslate nohighlight">\(\loc'_0(0)\)</span> in
 the new system.  By \cref{11-cor:dim1}, this “configuration
-reachability” game can be solved in \textrm{EXPSPACE}</p>
+reachability” game can be solved in \EXPSPACE.</p>
 <p>\medskip For the lower bound, we reduce from the acceptance problem
 of a deterministic Turing machine working in exponential space.
 The reduction is the same as in the proof
@@ -940,19 +1040,19 @@ Originally, countdown games were introduced with a slightly
 different objective, which corresponds to the following decision
 problem.
 \AP\decpb[zero reachability with given initial credit]
-{A countdown system <span class="math notranslate nohighlight">\(\?V=(\?LT,\Loc_\mathrm{Eve}\Loc_\mathrm{Adam}1)\)</span>, an
-initial location <span class="math notranslate nohighlight">\(\loc_0\in\?L, and an initial credit
-  \)</span>n_0\in+N<span class="math notranslate nohighlight">\(.}
-  {Does \textrm{Eve} have a strategy to reach a configuration \)</span>\ell0)<span class="math notranslate nohighlight">\( for
-  some \)</span>\ellin?L?\That is, does she win the zero
+{A countdown system <span class="math notranslate nohighlight">\(\?V=(\Loc,T,\Loc_\mEve,\Loc_\mAdam,1)\)</span>, an
+initial location <span class="math notranslate nohighlight">\(\loc_0\in\Loc\)</span>, and an initial credit
+<span class="math notranslate nohighlight">\(n_0\in\+N\)</span>.}
+{Does \Eve\ have a strategy to reach a configuration <span class="math notranslate nohighlight">\(\loc(0)\)</span> for
+some <span class="math notranslate nohighlight">\(\loc\in\Loc\)</span>?\That is, does she win the zero
 reachability\index{zero reachability|see{countdown game}}
-game <span class="math notranslate nohighlight">\((\?A_\+N(\?V),\textsf{col}\mathtt{Reach}\)</span> from <span class="math notranslate nohighlight">\(\loc_0(n_0)\)</span>, where
-<span class="math notranslate nohighlight">\(\textsf{col}e)=\textrm{Win} if and only if \)</span>\textrm{In}e)=\ell0)<span class="math notranslate nohighlight">\( for some \)</span>\ellin?L?}</p>
+game <span class="math notranslate nohighlight">\((\?A_\+N(\?V),\col,\Reach)\)</span> from <span class="math notranslate nohighlight">\(\loc_0(n_0)\)</span>, where
+<span class="math notranslate nohighlight">\(\col(e)=\Win\)</span> if and only if <span class="math notranslate nohighlight">\(\ing(e)=\loc(0)\)</span> for some <span class="math notranslate nohighlight">\(\loc\in\Loc\)</span>?}</p>
 <div class="proof theorem admonition" id="11-th:countdown-zero">
-<p class="admonition-title"><span class="caption-number">Theorem 302 </span> (Countdown to zero games are \textrm{EXP}complete)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 302 </span> (Countdown to zero games are \EXP-complete)</p>
 <div class="theorem-content section" id="proof-content">
 <p>Zero reachability countdown games with given initial credit
-are \textrm{EXP}complete.</p>
+are \EXP-complete.</p>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
@@ -960,51 +1060,51 @@ are \textrm{EXP}complete.</p>
 way.  Regarding the lower bound, we modify the lower bound
 construction of \cref{11-th:countdown-given} in the following way: we
 use <span class="math notranslate nohighlight">\(\loc_0(2\cdot n_0+1)\)</span> as initial configuration, multiply all
-the action weights in <span class="math notranslate nohighlight">\(A by two, and add a new
-  location \)</span>\loc_\mathrm{zero}<span class="math notranslate nohighlight">\( with an action
-  \)</span>\smiley\step{-1}\loc_\mathrm{zero}<span class="math notranslate nohighlight">\(.  Because all the counter
-  values in the new game are odd unless we reach \)</span>\loc_\mathrm{zero}<span class="math notranslate nohighlight">\(,
-  the only way for \textrm{Eve} to bring the counter to zero in this new game
-  is to first reach \)</span>\smiley(1)<span class="math notranslate nohighlight">\(, which occurs if and only if she
-  could reach \)</span>\smiley(0)$ in the original game.</p>
+the action weights in <span class="math notranslate nohighlight">\(\Act\)</span> by two, and add a new
+location <span class="math notranslate nohighlight">\(\loc_\mathrm{zero}\)</span> with an action
+<span class="math notranslate nohighlight">\(\smiley\step{-1}\loc_\mathrm{zero}\)</span>.  Because all the counter
+values in the new game are odd unless we reach <span class="math notranslate nohighlight">\(\loc_\mathrm{zero}\)</span>,
+the only way for \Eve\ to bring the counter to zero in this new game
+is to first reach <span class="math notranslate nohighlight">\(\smiley(1)\)</span>, which occurs if and only if she
+could reach <span class="math notranslate nohighlight">\(\smiley(0)\)</span> in the original game.</p>
 </div>
 </div>
 <div class="section" id="vector-games-in-dimension-one">
 <span id="sec-one-counter"></span><h2>Vector Games in Dimension One<a class="headerlink" href="#vector-games-in-dimension-one" title="Permalink to this headline">¶</a></h2>
 <p>Countdown games are frequently employed to prove complexity lower
-bounds.  Here, we use them to show that the \textrm{EXPSPACE} upper bounds
+bounds.  Here, we use them to show that the \EXPSPACE\ upper bounds
 from \cref{11-cor:dim1} are tight in most cases.</p>
 <div class="proof theorem admonition" id="11-th:dim1">
 <p class="admonition-title"><span class="caption-number">Theorem 303 </span> (The complexity of vector games in dimension one)</p>
 <div class="theorem-content section" id="proof-content">
 <p>Configuration reachability, coverability, and “parity&#64;parity
 vector game vector games, both with given and with existential
-initial credit”, are \textrm{EXPSPACE}complete in dimension one;
-non-termination vector games in dimension one are \textrm{EXP}hard with
-given initial credit and \textrm{EXPSPACE}complete with “existential
+initial credit”, are \EXPSPACE-complete in dimension one;
+non-termination vector games in dimension one are \EXP-hard with
+given initial credit and \EXPSPACE-complete with “existential
 initial credit”.</p>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
 <p>By \cref{11-th:countdown-exist}, configuration reachability and
 coverability vector games with existential initial credit
-are \textrm{EXPSPACE}hard in dimension one.
+are \EXPSPACE-hard in dimension one.
 Furthermore, \cref{11-rk:cov2parity} allows to deduce that
-parity&#64;parity vector game is also \textrm{EXPSPACE}hard.  Finally, we can
+parity&#64;parity vector game is also \EXPSPACE-hard.  Finally, we can
 argue as in the upper bound proof of \cref{11-th:countdown-exist} that
 all these games are also hard with given initial credit: we add a
-new initial location <span class="math notranslate nohighlight">\(\ell_0\)</span> controlled by \textrm{Eve} with actions
-<span class="math notranslate nohighlight">\(\ell_0\step 1\ell_0\)</span> and <span class="math notranslate nohighlight">\(\ell_0\step 0\loc_0\)</span> and play the game
-starting from <span class="math notranslate nohighlight">\(\ell_0(0)\)</span>.</p>
+new initial location <span class="math notranslate nohighlight">\(\loc'_0\)</span> controlled by \Eve\ with actions
+<span class="math notranslate nohighlight">\(\loc'_0\step 1\loc'_0\)</span> and <span class="math notranslate nohighlight">\(\loc'_0\step 0\loc_0\)</span> and play the game
+starting from <span class="math notranslate nohighlight">\(\loc'_0(0)\)</span>.</p>
 <p>Regarding non-termination, we can add a self loop <span class="math notranslate nohighlight">\(\smiley\step
   0\smiley\)</span> to the construction
 of \cref{11-th:countdown-given,11-th:countdown-exist}: then the only way
 to build an infinite play that avoids the sink is to reach the
-target location <span class="math notranslate nohighlight">\(\smiley\)</span>.  This shows that the games are \textrm{EXP}hard
-with given initial credit and \textrm{EXPSPACE}hard with “existential
+target location <span class="math notranslate nohighlight">\(\smiley\)</span>.  This shows that the games are \EXP-hard
+with given initial credit and \EXPSPACE-hard with “existential
 initial credit.  Note that the trick of reducing existential” to
-given initial credit with an initial incrementing loop <span class="math notranslate nohighlight">\(\ell_0\step
-  1\ell_0\)</span> does not work, because \textrm{Eve} would have a trivial winning
+given initial credit with an initial incrementing loop <span class="math notranslate nohighlight">\(\loc'_0\step
+  1\loc'_0\)</span> does not work, because \Eve\ would have a trivial winning
 strategy that consists in just playing this loop forever.</p>
 </div>
 </div>

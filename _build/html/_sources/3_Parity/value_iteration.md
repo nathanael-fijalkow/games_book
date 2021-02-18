@@ -1,25 +1,76 @@
 (3-sec:value_iteration)=
 # A quasipolynomial time value iteration algorithm
 
-
 ```{math}
+\renewcommand{\H}{\mathcal{H}} 
+\newcommand{\Lift}{\textrm{Lift}} 
+\newcommand{\F}{\mathcal{F}} 
+\newcommand{\sinit}{\sigma_{\textnormal{init}}}
+\newcommand{\siblank}{\mathtt{-}}
+\newcommand{\Eve}{\textrm{Eve}}
+\newcommand{\Adam}{\textrm{Adam}}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
+\newcommand{\argmax}{\textrm{argmax}}
+\newcommand{\argmin}{\textrm{argmin}}
 \newcommand{\Op}{\mathbb{O}}
-\newcommand{\game}{\mathcal{G}}
-\newcommand{\arena}{\mathcal{A}}
-\newcommand{\col}{\textsf{col}}
-\newcommand{\VE}{V_\mEve}
-\newcommand{\VA}{V_\mAdam}
-\newcommand{\Ing}{\ing}
-\newcommand{\Out}{\out}
-\newcommand{\val}{\Value}
-\newcommand{\Parity}{\mathtt{Parity}}
+\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\textrm{supp}} 
+\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
+\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
 \newcommand{\mEve}{\mathrm{Eve}}
 \newcommand{\mAdam}{\mathrm{Adam}}
+\newcommand{\mRandom}{\mathrm{Random}}
+\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
 \newcommand{\ing}{\textrm{In}}
+\newcommand{\Ing}{\ing}
 \newcommand{\out}{\textrm{Out}}
-\newcommand{\Value}{\textrm{val}}
+\newcommand{\Out}{\out}
+\newcommand{\dest}{\Delta} 
+\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
+\newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
+\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
+\newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
+\newcommand{\Win}{\textrm{Win}} 
+\newcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Value}{\textrm{val}} 
+\newcommand{\ValueE}{\textrm{val}_\mEve} 
+\newcommand{\ValueA}{\textrm{val}_\mAdam}
+\newcommand{\val}{\Value} 
+\newcommand{\Automaton}{\mathbf{A}} 
+\newcommand{\Safe}{\mathtt{Safe}}
+\newcommand{\Reach}{\mathtt{Reach}} 
+\newcommand{\Buchi}{\mathtt{Buchi}} 
+\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
+\newcommand{\Parity}{\mathtt{Parity}} 
+\newcommand{\Muller}{\mathtt{Muller}} 
+\newcommand{\Rabin}{\mathtt{Rabin}} 
+\newcommand{\Streett}{\mathtt{Streett}} 
+\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
+\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
+\newcommand{\Energy}{\mathtt{Energy}}
+\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
+\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
+\newcommand{\Sup}{\mathtt{Sup}}
+\newcommand{\Inf}{\mathtt{Inf}}
+\newcommand{\LimSup}{\mathtt{LimSup}}
+\newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NL}{\textrm{NL}}
+\newcommand{\PTIME}{\textrm{PTIME}}
+\newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
+\newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
+\newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
+\newcommand{\EXP}{\textrm{EXP}}
+\newcommand{\kEXP}{\textrm{kEXP}}
 ```
-
 
 ````{prf:theorem} NEEDS TITLE 3-thm:value_iteration_quasipoly
 :label: 3-thm:value_iteration_quasipoly
@@ -36,32 +87,33 @@ The space complexity of the algorithm is $O(m + n \log(d))$.
 ````
 
 We rely on the high-level presentation of value iteration algorithms given in Section {ref}`1-sec:value_iteration`.
-Let $\mathcal{G}= (\mathcal{A}\mathtt{Parity}\textsf{col})$ a parity game with $n$ vertices and priorities in $[1,d]$,
+Let $\game = (\arena,\Parity[\col])$ a parity game with $n$ vertices and priorities in $[1,d]$,
 and without loss of generality $d$ is even.
 
-The first step is to define a notion of value function $\textrm{val}mathcal{G}: V \to Y$ with $(Y,\le)$ a lattice satisfying the characterisation principle:
-for all vertices $v$ we have that Eve wins from $v$ if and only if $\textrm{val}mathcal{G}v) \neq \bot$, where $\bot$ is the least element in $Y$.
-The goal of the algorithm is to compute $\textrm{val}mathcal{G}, from which we then easily obtain the winning region thanks to the characterisation principle.
+The first step is to define a notion of value function $\val^\game : V \to Y$ with $(Y,\le)$ a lattice satisfying the characterisation principle:
+for all vertices $v$ we have that Eve wins from $v$ if and only if $\val^\game(v) \neq \bot$, where $\bot$ is the least element in $Y$.
+The goal of the algorithm is to compute $\val^\game$, from which we then easily obtain the winning region thanks to the characterisation principle.
 
-To set the machinery of value iteration algorithms in motion we can either construct $\textrm{val}mathcal{G} as the unique fixed point of a contracting operator using Banach's fixed point theorem or the greatest fixed point of a monotonic operator using Kleene's fixed point theorem.
+To set the machinery of value iteration algorithms in motion we can either construct $\val^\game$ as the unique fixed point of a contracting operator using Banach's fixed point theorem or the greatest fixed point of a monotonic operator using Kleene's fixed point theorem.
 
 Let us here follow the second approach. 
 We let $F_V$ be the lattice of functions $V \to Y$ equipped with the componentwise order induced by $Y$.
-We are looking for a monotonic function $\delta : Y \times [1,d] \to Y$ inducing the operator $\mathbb{O}: F_V \to F_V$ defined by:
+We are looking for a monotonic function $\delta : Y \times [1,d] \to Y$ inducing the operator $\Op : F_V \to F_V$ defined by:
 
 $$
-\mathbb{O}\mu)(v) = 
+\Op(\mu)(v) = 
 \begin{cases}
-\max \set{\delta( \mu(v'), \textsf{col}v)) : (v,v') \in E} & \text{ if } v \in V_\mathrm{Eve}\\
-\min \set{\delta( \mu(v'), \textsf{col}v)) : (v,v') \in E} & \text{ if } v \in V_\mathrm{Adam}\end{cases}
+\max \set{\delta( \mu(v'), \col(v)) : (v,v') \in E} & \text{ if } v \in \VE, \\
+\min \set{\delta( \mu(v'), \col(v)) : (v,v') \in E} & \text{ if } v \in \VA,
+\end{cases}
 $$
 
-such that $\textrm{val}mathcal{G} is the greatest fixed point of $\mathbb{O}.
-The algorithm would then simply use  {prf:ref}`1-thm:kleene` to compute $\textrm{val}mathcal{G} by iterating the operator $\mathbb{O}.
+such that $\val^\game$ is the greatest fixed point of $\Op$.
+The algorithm would then simply use  {prf:ref}`1-thm:kleene` to compute $\val^\game$ by iterating the operator $\Op$.
 
-Let us look at this question using the notion of progress measures, which are post-fixed points of $\mathbb{O},
-meaning $\mu$ such that $\mu \le \mathbb{O}\mu)$. 
-Since the greatest fixed point of $\mathbb{O} is also its greatest post-fixed point, an equivalent formulation of the characterisation principle above reads: for all vertices $v$ we have that Eve wins from $v$ if and only if there exists a progress measure $\mu$ such that $\mu(v) \neq \bot$.
+Let us look at this question using the notion of progress measures, which are post-fixed points of $\Op$,
+meaning $\mu$ such that $\mu \le \Op(\mu)$. 
+Since the greatest fixed point of $\Op$ is also its greatest post-fixed point, an equivalent formulation of the characterisation principle above reads: for all vertices $v$ we have that Eve wins from $v$ if and only if there exists a progress measure $\mu$ such that $\mu(v) \neq \bot$.
 
 To summarise this discussion, we are looking for a lattice $(Y,\le)$ and a monotonic function $\delta : Y \times [1,d] \to Y$ 
 such that for all parity games $\Game$ with $n$ vertices and priorities in $[1,d]$, 
@@ -294,10 +346,11 @@ $$
 This in turn induces a monotonic operator $\Op_t : F_V \to F_V$ defined by:
 
 $$
-\mathbb{O}\mu)(v) = 
+\Op(\mu)(v) = 
 \begin{cases}
-\max \set{\delta( \mu(v'), \textsf{col}v)) : (v,v') \in E} & \text{ if } v \in V_\mathrm{Eve}\\
-\min \set{\delta( \mu(v'), \textsf{col}v)) : (v,v') \in E} & \text{ if } v \in V_\mathrm{Adam}\end{cases}
+\max \set{\delta( \mu(v'), \col(v)) : (v,v') \in E} & \text{ if } v \in \VE, \\
+\min \set{\delta( \mu(v'), \col(v)) : (v,v') \in E} & \text{ if } v \in \VA.
+\end{cases}
 $$
 
 
@@ -306,16 +359,18 @@ Expanding the definitions, this means that for all vertices $v$, we have
 
 $$
 \begin{array}{llll}
-\exists (v,v') \in E,\ & \mu(v) \le \delta_t( \mu(v'), \textsf{col}v)) & \text{ if } v \in V_\mathrm{Eve}\\
-\forall (v,v') \in E,\ & \mu(v) \le \delta_t( \mu(v'), \textsf{col}v)) & \text{ if } v \in V_\mathrm{Adam}\end{array}
+\exists (v,v') \in E,\ & \mu(v) \le \delta_t( \mu(v'), \col(v)) & \text{ if } v \in \VE, \\
+\forall (v,v') \in E,\ & \mu(v) \le \delta_t( \mu(v'), \col(v)) & \text{ if } v \in \VA.
+\end{array}
 $$
 
 The definition of $\delta_t$ further simplifies it to: for all vertices $v$, we have
 
 $$
 \begin{array}{llll}
-\exists (v,v') \in E,\ & \mu(v) \vartriangleleft_{\textsf{col}v)} \mu(v') & \text{ if } v \in V_\mathrm{Eve}\\
-\forall (v,v') \in E,\ & \mu(v) \vartriangleleft_{\textsf{col}v)} \mu(v') & \text{ if } v \in V_\mathrm{Adam}\end{array}
+\exists (v,v') \in E,\ & \mu(v) \vartriangleleft_{\col(v)} \mu(v') & \text{ if } v \in \VE, \\
+\forall (v,v') \in E,\ & \mu(v) \vartriangleleft_{\col(v)} \mu(v') & \text{ if } v \in \VA.
+\end{array}
 $$
 
 
@@ -331,7 +386,7 @@ Then Eve wins from $v$ if and only if there exists a tree $t$ and a progress mea
 
 In order to prove  {prf:ref}`3-thm:progress_measure`, we first consider the case of parity graphs.
 A progress measure in a parity graph is a function $\mu : V \to Y_t$ such that 
-for all edges $(v,v') \in E$ we have $\mu(v) \vartriangleleft_{\textsf{col}v)} \mu(v')$.
+for all edges $(v,v') \in E$ we have $\mu(v) \vartriangleleft_{\col(v)} \mu(v')$.
 
 Recall that a graph satisfies parity from $v$ if all infinite paths from $v$ satisfy parity.
 This is equivalent to asking whether all cycles reachable from $v$ are even, meaning the maximal priority appearing in the cycle is even.
@@ -350,7 +405,7 @@ there exists a tree $t$ and a progress measure $\mu : V \to Y_t$ such that $\mu(
 :class: dropdown tip
 
 Let us assume that there exists a tree $t$ and a progress measure $\mu : V \to Y_t$ such that $\mu(v) \neq \bot$
-and for all edges $(v,v') \in E$ we have $\mu(v) \vartriangleleft_{\textsf{col}v)} \mu(v')$.
+and for all edges $(v,v') \in E$ we have $\mu(v) \vartriangleleft_{\col(v)} \mu(v')$.
 To show that $G$ satisfies parity from $v$ we show that any cycle reachable from $v$ is even.
 Let us consider such a cycle:
 
@@ -359,16 +414,16 @@ $$
 $$
 
 Since the cycle is reachable from $v$ and $\mu(v) \neq \bot$, this implies that $\mu(v_i) \neq \bot$ for $i \in [1,k]$.
-Let us assume towards contradiction that its maximal priority is odd, and without loss of generality it is $\textsf{col}v_1)$.
+Let us assume towards contradiction that its maximal priority is odd, and without loss of generality it is $\col(v_1)$.
 Applying our hypothesis to each edge of the cycle we have
 
 $$
-\mu(v_1) \vartriangleleft_{\textsf{col}v_1)} \mu(v_2) \vartriangleleft_{\textsf{col}v_2)} \cdots 
-\vartriangleleft_{\textsf{col}v_{k-1})} \mu(v_k) \vartriangleleft_{\textsf{col}v_k)} \mu(v_1).
+\mu(v_1) \vartriangleleft_{\col(v_1)} \mu(v_2) \vartriangleleft_{\col(v_2)} \cdots 
+\vartriangleleft_{\col(v_{k-1})} \mu(v_k) \vartriangleleft_{\col(v_k)} \mu(v_1).
 $$
 
-The second item of  {prf:ref}`3-lem:properties_tree` implies that $\mu(v_1) \vartriangleleft_{\textsf{col}v_1)} \mu(v_1)$, 
-which contradicts the third item since $\vartriangleleft_{\textsf{col}v_1)}$ is non-reflexive given that $\textsf{col}v_1)$ is odd.
+The second item of  {prf:ref}`3-lem:properties_tree` implies that $\mu(v_1) \vartriangleleft_{\col(v_1)} \mu(v_1)$, 
+which contradicts the third item since $\vartriangleleft_{\col(v_1)}$ is non-reflexive given that $\col(v_1)$ is odd.
 
 
 Let us now prove the converse implication.
@@ -388,7 +443,7 @@ such that $\mu_d(v) \neq \bot$ for all vertices $v \in V \setminus V_d$.
 We extend $\mu_d$ to $\mu : V \to Y_t$: for $v \in V_d$ we let $\mu(v) = \ell_{\max}$ where $\ell_{\max}$ is the maximal element in $Y_t$.
 Then $\mu$ is a progress measure such that $\mu_d(v) \neq \bot$ for all vertices $v \in V$.
 Indeed the additional edges are of the form $(v,v')$ for either $v \in V_d$ or $v' \in V_d$:
-in the first case $\mu(v) \vartriangleleft_{\textsf{col}v)} \mu(v')$ holds because $\vartriangleleft_d$ is the full relation,
+in the first case $\mu(v) \vartriangleleft_{\col(v)} \mu(v')$ holds because $\vartriangleleft_d$ is the full relation,
 and in the second case because $\mu(v') = \ell_{\max}$.
 
 
@@ -409,7 +464,7 @@ Formally, $t_1 = [t^1_1,\dots,t^k_1]$ and $t_2 = [t^1_2,\dots,t^{k'}_2]$, let
 $t = [t^1_2,\dots,t^{k'}_2,\ t^1_1,\dots,t^k_1]$.
 We define $\mu : V \to Y_t$ by $\mu(v) = \mu_i(v)$ if $v \in W_i$.
 Then $\mu$ is a progress measure: for edges in the graphs induced by $W_1$ and $W_2$ this is because $\mu_1$ and $\mu_2$ are,
-and the additional edges are from $v \in W_2$ to $v' \in W_1$, so indeed $\mu(v) \vartriangleleft_{\textsf{col}v)} \mu(v')$ holds.
+and the additional edges are from $v \in W_2$ to $v' \in W_1$, so indeed $\mu(v) \vartriangleleft_{\col(v)} \mu(v')$ holds.
 This finishes the inductive proof of the property.
 
 
@@ -422,7 +477,7 @@ We extend $\mu_W$ to $\mu : V \to Y_t$: for $v \notin W$ we let $\mu(v) = \bot$.
 To see that $\mu$ is a progress measure we make two remarks.
 First, if $v \in W$ then all successors of $v$ are also in $W$ (by prefix independence of parity),
 so the edges in $G$ are either in $G'$ or from $v \in V \setminus W$ to $v' \in W$.
-In the first case $\mu(v) \vartriangleleft_{\textsf{col}v)} \mu(v')$ holds because $\mu_W$ is a progress measure,
+In the first case $\mu(v) \vartriangleleft_{\col(v)} \mu(v')$ holds because $\mu_W$ is a progress measure,
 and in the second case because $\mu(v) = \bot$.
 
 ````
@@ -435,13 +490,13 @@ We can now prove  {prf:ref}`3-thm:progress_measure`.
 Assume that Eve wins from $v$ and let $\sigma$ be a positional strategy.
 The parity graph $\Game[\sigma]$ satisfies parity from $v$, so thanks to  {prf:ref}`3-lem:progress_measure`
 there exists a tree $t$ and a function $\mu : V \to Y_t$ such that $\mu(v) \neq \bot$
-and for all edges $(v,v') \in E$ we have $\mu(v) \vartriangleleft_{\textsf{col}v)} \mu(v')$.
-We remark that $\mu : V \to Y_t$ is actually a progress measure: the condition for $v \in V_\mathrm{Eve}is ensured by the edge $\sigma(v)$,
-and the condition for $v \in V_\mathrm{Adam}by assumption on $\mu$.
+and for all edges $(v,v') \in E$ we have $\mu(v) \vartriangleleft_{\col(v)} \mu(v')$.
+We remark that $\mu : V \to Y_t$ is actually a progress measure: the condition for $v \in \VE$ is ensured by the edge $\sigma(v)$,
+and the condition for $v \in \VA$ by assumption on $\mu$.
 
 
 Conversely, assume that there exists a tree $t$ and a progress measure $\mu : V \to Y_t$.
-It induces a positional strategy defined by $\sigma(v) = (v,v')$ such that $\mu(v) \vartriangleleft_{\textsf{col}v)} \mu(v')$.
+It induces a positional strategy defined by $\sigma(v) = (v,v')$ such that $\mu(v) \vartriangleleft_{\col(v)} \mu(v')$.
 We argue that $\sigma$ is a winning strategy from any vertex $v$ such that $\mu(v) \neq \bot$.
 This is a consequence of  {prf:ref}`3-lem:progress_measure` for the parity graph $\Game[\sigma]$.
 
@@ -489,18 +544,19 @@ Since $T$ is fixed we do not specify the subscript $T$ for all these objects.
 The last step is to construct an algorithm returning the maximal progress measure relying on Kleene's fixed point theorem (stated as  {prf:ref}`1-thm:kleene`).
 The generic algorithm is explained in Section {ref}`1-sec:value_iteration`, let us instantiate it here.
 
-For the complexity analysis it is useful to decompose $\mathbb{O} into a set of operators:
+For the complexity analysis it is useful to decompose $\Op$ into a set of operators:
 
 $$
 \Op_v(\mu)(u) = 
 \begin{cases}
 \mu(v) & \text{ if } u \neq v, \\
-\max \set{\delta( \mu(v'), \textsf{col}v)) : (v,v') \in E} & \text{ if } u = v \in V_\mathrm{Eve}\\
-\min \set{\delta( \mu(v'), \textsf{col}v)) : (v,v') \in E} & \text{ if } u = v \in V_\mathrm{Adam}\end{cases}
+\max \set{\delta( \mu(v'), \col(v)) : (v,v') \in E} & \text{ if } u = v \in \VE, \\
+\min \set{\delta( \mu(v'), \col(v)) : (v,v') \in E} & \text{ if } u = v \in \VA.
+\end{cases}
 $$
 
 
-We introduce some terminology: we say that an edge $e = (v,v')$ is **neglected** if $\neg (\mu(v) \vartriangleleft_{\textsf{col}v)} \mu(v'))$,
+We introduce some terminology: we say that an edge $e = (v,v')$ is **neglected** if $\neg (\mu(v) \vartriangleleft_{\col(v)} \mu(v'))$,
 and a vertex $v$ is **neglected** if $\neg (\mu(v) \le \Op_v(\mu)(v))$.
 
 ```{figure} ./../FigAndAlgos/3-fig:lifting.png
@@ -520,12 +576,12 @@ The value iteration algorithm.
 ```
 
 ````{prf:theorem} NEEDS TITLE AND LABEL 
-For all $(n, d/2)$-universal tree $T$, for all parity games $\mathcal{G} with $n$ vertices and priorities in $[1,d]$,
-the value iteration algorithm over the tree $T$ returns the maximal progress measure $\mu$ for $\mathcal{G} over $T$.
+For all $(n, d/2)$-universal tree $T$, for all parity games $\game$ with $n$ vertices and priorities in $[1,d]$,
+the value iteration algorithm over the tree $T$ returns the maximal progress measure $\mu$ for $\game$ over $T$.
  
 
-For all $(n, d/2)$-universal tree $T$, for all parity games $\mathcal{G} with $n$ vertices and priorities in $[1,d]$,
-the value iteration algorithm over the tree $T$ returns the maximal progress measure $\mu$ for $\mathcal{G} over $T$.
+For all $(n, d/2)$-universal tree $T$, for all parity games $\game$ with $n$ vertices and priorities in $[1,d]$,
+the value iteration algorithm over the tree $T$ returns the maximal progress measure $\mu$ for $\game$ over $T$.
 
 ````
 
@@ -543,17 +599,17 @@ To determine the overall complexity we need to discuss two aspects of the algori
 *  the data structure and in particular the choice of the vertex $v$ in the loop;
 *  the computation of $\Op_v$ and in particular the encoding of branches of $T$.
 
-We note that a vertex $v \in V_\mathrm{Eve}is neglected if and only if all its outgoing edges are neglected,
-and a vertex $v \in V_\mathrm{Adam}is neglected if and only if it has a neglected outgoing edge.
+We note that a vertex $v \in \VE$ is neglected if and only if all its outgoing edges are neglected,
+and a vertex $v \in \VA$ is neglected if and only if it has a neglected outgoing edge.
 Hence checking whether a vertex $v$ is neglected requires considering all of its outgoing edges $(v,v')$
-and checking whether $\mu(v) \vartriangleleft_{\textsf{col}v)} \mu(v')$.
-Let us write $\Delta$ for the complexity of checking whether $\mu(v) \vartriangleleft_{\textsf{col}v)} \mu(v')$.
+and checking whether $\mu(v) \vartriangleleft_{\col(v)} \mu(v')$.
+Let us write $\Delta$ for the complexity of checking whether $\mu(v) \vartriangleleft_{\col(v)} \mu(v')$.
 Hence checking whether $v$ is neglected costs 
-$O(|\textrm{In}-1}(v)| \cdot \Delta)$, where $|\textrm{In}-1}(v)|$ is the number of outgoing edges of $v$.
+$O(|\Ing^{-1}(v)| \cdot \Delta)$, where $|\Ing^{-1}(v)|$ is the number of outgoing edges of $v$.
 
 A naive implementation of {numref}`3-algo:value_iteration` would in each repeat loop go through every vertex $v$ 
 to check whether it is neglected.
-This would incur a linear cost: $\sum_{v \in V} O(|\textrm{In}-1}(v)| \cdot \Delta) = O(m \cdot \Delta)$.
+This would incur a linear cost: $\sum_{v \in V} O(|\Ing^{-1}(v)| \cdot \Delta) = O(m \cdot \Delta)$.
 Thus the overall complexity would be
 
 $$
@@ -586,7 +642,7 @@ The space complexity of this data structure depends on the encoding of $T$, whic
 
 The invariant of the algorithm satisfied before each iteration of the repeat loop is the following:
 
-*  for $v \in V_\mathrm{Adam} the value of $\text{number}$-$\text{neglected}$-$\text{edges}(v)$
+*  for $v \in \VA$, the value of $\text{number}$-$\text{neglected}$-$\text{edges}(v)$
 is the number of neglected edges of $v$;
 *  $S$ is the set of neglected vertices.
 
@@ -602,7 +658,7 @@ but it also has implications on the complexity.
 Indeed one iteration of the repeat loop over some vertex $v$ involves 
 
 $$
-O\left( (|\textrm{In}-1}(v)| + |\textrm{Out}-1}(v)|) \cdot \Delta \right)
+O\left( (|\Ing^{-1}(v)| + |\Out^{-1}(v)|) \cdot \Delta \right)
 $$
 
 operations,
@@ -613,7 +669,7 @@ Thus the overall complexity is
 
 $$
 O\left( 
-\sum_{v \in V} (|\textrm{In}-1}(v)| + |\textrm{Out}-1}(v)|) \cdot \Delta \cdot |T|
+\sum_{v \in V} (|\Ing^{-1}(v)| + |\Out^{-1}(v)|) \cdot \Delta \cdot |T|
 \right) 
 = O(m \cdot \Delta \cdot |T|).
 $$
