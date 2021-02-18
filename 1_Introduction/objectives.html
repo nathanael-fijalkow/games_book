@@ -746,62 +746,111 @@
   <div class="section" id="objectives">
 <span id="sec-objectives"></span><h1>Objectives<a class="headerlink" href="#objectives" title="Permalink to this headline">¶</a></h1>
 <div class="math notranslate nohighlight">
-\[\newcommand{\N}{\mathbb{N}}
+\[\newcommand{\Eve}{\textrm{Eve}}
+\newcommand{\Adam}{\textrm{Adam}}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
-\newcommand{\col}{\textsf{col}}
+\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
+\newcommand{\argmax}{\textrm{argmax}}
+\newcommand{\argmin}{\textrm{argmin}}
+\newcommand{\Op}{\mathbb{O}}
+\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\textrm{supp}} 
+\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
+\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
+\newcommand{\mEve}{\mathrm{Eve}}
+\newcommand{\mAdam}{\mathrm{Adam}}
+\newcommand{\mRandom}{\mathrm{Random}}
+\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
+\newcommand{\ing}{\textrm{In}}
 \newcommand{\Ing}{\ing}
-\newcommand{\play}{\pi}
-\newcommand{\Win}{\textrm{Win}}
-\newcommand{\Lose}{\textrm{Lose}}
+\newcommand{\out}{\textrm{Out}}
+\newcommand{\Out}{\out}
+\newcommand{\dest}{\Delta} 
+\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
+\newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
+\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
+\newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
+\newcommand{\Win}{\textrm{Win}} 
+\newcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Value}{\textrm{val}} 
+\newcommand{\ValueE}{\textrm{val}_\mEve} 
+\newcommand{\ValueA}{\textrm{val}_\mAdam}
+\newcommand{\val}{\Value} 
+\newcommand{\Automaton}{\mathbf{A}} 
 \newcommand{\Safe}{\mathtt{Safe}}
-\newcommand{\Reach}{\mathtt{Reach}}
-\newcommand{\Buchi}{\mathtt{Buchi}}
-\newcommand{\CoBuchi}{\mathtt{CoBuchi}}
-\newcommand{\Parity}{\mathtt{Parity}}
-\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}}
-\newcommand{\ing}{\textrm{In}}\]</div>
+\newcommand{\Reach}{\mathtt{Reach}} 
+\newcommand{\Buchi}{\mathtt{Buchi}} 
+\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
+\newcommand{\Parity}{\mathtt{Parity}} 
+\newcommand{\Muller}{\mathtt{Muller}} 
+\newcommand{\Rabin}{\mathtt{Rabin}} 
+\newcommand{\Streett}{\mathtt{Streett}} 
+\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
+\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
+\newcommand{\Energy}{\mathtt{Energy}}
+\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
+\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
+\newcommand{\Sup}{\mathtt{Sup}}
+\newcommand{\Inf}{\mathtt{Inf}}
+\newcommand{\LimSup}{\mathtt{LimSup}}
+\newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NL}{\textrm{NL}}
+\newcommand{\PTIME}{\textrm{PTIME}}
+\newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
+\newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
+\newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
+\newcommand{\EXP}{\textrm{EXP}}
+\newcommand{\kEXP}{\textrm{kEXP}}\]</div>
 <p>We present in this section the main objectives and their representations.
 An objective may depend upon a set of parameters which are sometimes omitted when clear from the context.</p>
-<p>Let us recall how we define classes of conditions: we first define an objective, for instance <span class="math notranslate nohighlight">\(\mathtt{Safe}\subseteq \set{\textrm{Win}\textrm{Lose}^\omega\)</span>.
-For an arena and a colouring function <span class="math notranslate nohighlight">\(\textsf{col} defined over this arena this induces the safety condition \)</span>\mathtt{Safe}\textsf{col}<span class="math notranslate nohighlight">\(.
-Given an arena and a condition \)</span>W<span class="math notranslate nohighlight">\( over this arena we say that \)</span>W<span class="math notranslate nohighlight">\( is **a** safety condition if 
-there exists \)</span>\textsf{col} such that <span class="math notranslate nohighlight">\(W = \mathtt{Safe}\textsf{col}\)</span>.
+<p>Let us recall how we define classes of conditions: we first define an objective, for instance <span class="math notranslate nohighlight">\(\Safe \subseteq \set{\Win,\Lose}^\omega\)</span>.
+For an arena and a colouring function <span class="math notranslate nohighlight">\(\col\)</span> defined over this arena this induces the safety condition <span class="math notranslate nohighlight">\(\Safe[\col]\)</span>.
+Given an arena and a condition <span class="math notranslate nohighlight">\(W\)</span> over this arena we say that <span class="math notranslate nohighlight">\(W\)</span> is <strong>a</strong> safety condition if
+there exists <span class="math notranslate nohighlight">\(\col\)</span> such that <span class="math notranslate nohighlight">\(W = \Safe[\col]\)</span>.
 The same terminology is used for all other objectives.</p>
 <div class="section" id="prefix-dependent-qualitative-objectives-safety-and-reachability">
 <h2>Prefix dependent qualitative objectives: safety and reachability<a class="headerlink" href="#prefix-dependent-qualitative-objectives-safety-and-reachability" title="Permalink to this headline">¶</a></h2>
 <p>The safety objective is the simplest qualitative objective:
-the set of colours is <span class="math notranslate nohighlight">\(\set{\textrm{Win}\textrm{Lose}\)</span>,
-and safety requires that the colour $\textrm{Lose} is never seen.
+the set of colours is <span class="math notranslate nohighlight">\(\set{\Win,\Lose}\)</span>,
+and safety requires that the colour <span class="math notranslate nohighlight">\(\Lose\)</span> is never seen.
 Formally:</p>
 <div class="math notranslate nohighlight">
 \[
-\mathtt{Safe}= \set{\rho \in \set{\textrm{Win}\textrm{Lose}^\omega : \forall i, \rho_i \neq \textrm{Lose}.
+\Safe = \set{\rho \in \set{\Win,\Lose}^\omega : \forall i, \rho_i \neq \Lose}.
 \]</div>
 <p>In the example represented in <a class="reference internal" href="#fig-safety-game-example"><span class="std std-numref">Fig. 2</span></a>,
-a play is winning if if it never visits the vertex labelled $\textrm{Lose}.
+a play is winning if if it never visits the vertex labelled <span class="math notranslate nohighlight">\(\Lose\)</span>.
 Eve wins from the four vertices on the left and loses from all the others, which is represented by the two dotted areas.</p>
 <div class="figure align-center" id="fig-safety-game-example">
 <img alt="../_images/1-fig:safety_game_example.png" src="../_images/1-fig:safety_game_example.png" />
 <p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text">An example of a safety game.
-The vertex on the bottom right is labelled <span class="math notranslate nohighlight">\(\textrm{Lose}, all the others are implicitly labelled \)</span>\textrm{Win};
-the condition of Eve is to avoid the vertex labelled $\textrm{Lose}.
+The vertex on the bottom right is labelled <span class="math notranslate nohighlight">\(\Lose\)</span>, all the others are implicitly labelled <span class="math notranslate nohighlight">\(\Win\)</span>;
+the condition of Eve is to avoid the vertex labelled <span class="math notranslate nohighlight">\(\Lose\)</span>.
 The two dotted areas represent the winning regions of each player.</span><a class="headerlink" href="#fig-safety-game-example" title="Permalink to this image">¶</a></p>
 </div>
 <p>The dual of the safety objective is the reachability objective:
-the set of colours is <span class="math notranslate nohighlight">\(\set{\textrm{Win}\textrm{Lose}\)</span>,
-and reachability requires that the colour $\textrm{Win} is seen at least once.
+the set of colours is <span class="math notranslate nohighlight">\(\set{\Win,\Lose}\)</span>,
+and reachability requires that the colour <span class="math notranslate nohighlight">\(\Win\)</span> is seen at least once.
 Formally:</p>
 <div class="math notranslate nohighlight">
 \[
-\mathtt{Reach}= \set{\rho \in \set{\textrm{Win}\textrm{Lose}^\omega : \exists i, \rho_i = \textrm{Win}.
+\Reach = \set{\rho \in \set{\Win,\Lose}^\omega : \exists i, \rho_i = \Win}.
 \]</div>
 <p>Safety and reachability conditions are dual:</p>
 <div class="math notranslate nohighlight">
 \[
-\Paths_\omega \setminus \mathtt{Safe}\textsf{col} = \mathtt{Reach}\overline{\textsf{col}] \quad ; \quad
-\Paths_\omega \setminus \mathtt{Reach}\textsf{col} = \mathtt{Safe}\overline{\textsf{col}].
+\Paths_\omega \setminus \Safe[\col] = \Reach[\overline{\col}] \quad ; \quad
+\Paths_\omega \setminus \Reach[\col] = \Safe[\overline{\col}].
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(\overline{\textsf{col}\)</span> swaps <span class="math notranslate nohighlight">\(\textrm{Win} and \)</span>\textrm{Lose} in $\textsf{col}.
+<p>where <span class="math notranslate nohighlight">\(\overline{\col}\)</span> swaps <span class="math notranslate nohighlight">\(\Win\)</span> and <span class="math notranslate nohighlight">\(\Lose\)</span> in <span class="math notranslate nohighlight">\(\col\)</span>.
 Consequently, if the condition for Eve is a safety condition, then the condition for Adam is a reachability condition, and conversely.</p>
 </div>
 <div class="section" id="prefix-independent-qualitative-objectives-buchi-cobuchi-and-parity">
@@ -813,43 +862,43 @@ it requires that the colour <span class="math notranslate nohighlight">\(2\)</sp
 Formally:</p>
 <div class="math notranslate nohighlight">
 \[
-\mathtt{Buchi}= \set{\rho \in \set{1,2}^\omega : \forall j, \exists i \ge j, \rho_i = 2}.
+\Buchi = \set{\rho \in \set{1,2}^\omega : \forall j, \exists i \ge j, \rho_i = 2}.
 \]</div>
 <p>The dual of the Büchi objective is the <strong>CoB{“uchi}</strong> objective:
 the set of colours is <span class="math notranslate nohighlight">\(\set{2,3}\)</span>, it requires that the colour <span class="math notranslate nohighlight">\(3\)</span> is seen finitely many times.
 Formally:</p>
 <div class="math notranslate nohighlight">
 \[
-\mathtt{CoBuchi}= \set{\rho \in \set{2,3}^\omega : \exists j, \forall i \ge j, \rho_i \neq 3}.
+\CoBuchi = \set{\rho \in \set{2,3}^\omega : \exists j, \forall i \ge j, \rho_i \neq 3}.
 \]</div>
 <p>Büchi and CoBüchi conditions are dual:</p>
 <div class="math notranslate nohighlight">
 \[
-\Paths_\omega \setminus \mathtt{Buchi}\textsf{col} = \mathtt{CoBuchi}\textsf{col}+ 1] \quad ; \quad
-\Paths_\omega \setminus \mathtt{CoBuchi}\textsf{col} = \mathtt{Buchi}\textsf{col}- 1].
+\Paths_\omega \setminus \Buchi[\col] = \CoBuchi[\col + 1] \quad ; \quad
+\Paths_\omega \setminus \CoBuchi[\col] = \Buchi[\col - 1].
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(\textsf{col}+ 1\)</span> adds one to <span class="math notranslate nohighlight">\(\textsf{col} (since \)</span>\textsf{col} maps vertices to <span class="math notranslate nohighlight">\(\set{1,2}\)</span>, <span class="math notranslate nohighlight">\(\textsf{col}+ 1\)</span> maps vertices to <span class="math notranslate nohighlight">\(\set{2,3}\)</span>),
-and similarly for <span class="math notranslate nohighlight">\(\textsf{col}- 1\)</span>.
+<p>where <span class="math notranslate nohighlight">\(\col + 1\)</span> adds one to <span class="math notranslate nohighlight">\(\col\)</span> (since <span class="math notranslate nohighlight">\(\col\)</span> maps vertices to <span class="math notranslate nohighlight">\(\set{1,2}\)</span>, <span class="math notranslate nohighlight">\(\col + 1\)</span> maps vertices to <span class="math notranslate nohighlight">\(\set{2,3}\)</span>),
+and similarly for <span class="math notranslate nohighlight">\(\col - 1\)</span>.
 Consequently, if the condition for Eve is a Büchi condition, then the condition for Adam is a CoBüchi condition, and conversely.</p>
 <p>We now define the parity objectives.
-Let <span class="math notranslate nohighlight">\([i,j]\)</span> be an interval with <span class="math notranslate nohighlight">\(i,j \in \mathbb{N} used as a parameter defining the range of priorities.
-The parity objective with parameters \)</span>i,j<span class="math notranslate nohighlight">\( uses the set of colours \)</span>[i,j]$, which are referred to as priorities, and is defined by</p>
+Let <span class="math notranslate nohighlight">\([i,j]\)</span> be an interval with <span class="math notranslate nohighlight">\(i,j \in \N\)</span> used as a parameter defining the range of priorities.
+The parity objective with parameters <span class="math notranslate nohighlight">\(i,j\)</span> uses the set of colours <span class="math notranslate nohighlight">\([i,j]\)</span>, which are referred to as priorities, and is defined by</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-\mathtt{Parity}[i,j]) = \set{\rho \in [i,j]^\omega \left| \begin{array}{c} \text{ the largest priority appearing} \\ \text{infinitely many times in } \rho \text{ is even}\end{array} \right.}.
+\Parity([i,j]) = \set{\rho \in [i,j]^\omega \left| \begin{array}{c} \text{ the largest priority appearing} \\ \text{infinitely many times in } \rho \text{ is even}\end{array} \right.}.
 \end{split}\]</div>
-<p>We made the dependence in <span class="math notranslate nohighlight">\([i,j]\)</span> explicit by writing <span class="math notranslate nohighlight">\(\mathtt{Parity}[i,j])\)</span>, but we will most of the time write <span class="math notranslate nohighlight">\(\mathtt{Parity}
-and assume that the range of priorities is \)</span>[1,d]<span class="math notranslate nohighlight">\(, so \)</span>d<span class="math notranslate nohighlight">\( is the number of priorities.
-There are two possible conventions for defining parity objectives: considering the largest priority appearing infinitely many times, or the smallest one. They are strictly equivalent (through the transformation \)</span>x \mapsto 2d - x$) but depending on the situation one can be technically more convenient than the other.</p>
+<p>We made the dependence in <span class="math notranslate nohighlight">\([i,j]\)</span> explicit by writing <span class="math notranslate nohighlight">\(\Parity([i,j])\)</span>, but we will most of the time write <span class="math notranslate nohighlight">\(\Parity\)</span>
+and assume that the range of priorities is <span class="math notranslate nohighlight">\([1,d]\)</span>, so <span class="math notranslate nohighlight">\(d\)</span> is the number of priorities.
+There are two possible conventions for defining parity objectives: considering the largest priority appearing infinitely many times, or the smallest one. They are strictly equivalent (through the transformation <span class="math notranslate nohighlight">\(x \mapsto 2d - x\)</span>) but depending on the situation one can be technically more convenient than the other.</p>
 <p>We illustrate the definition on two examples.</p>
 <div class="math notranslate nohighlight">
 \[
-1\ 2\ 4\ 7\ 5\ 7\ 5\ 3\ 6\ 3\ 6\ 3\ 6\ 3\ 6\ \cdots \in \mathtt{Parity}
+1\ 2\ 4\ 7\ 5\ 7\ 5\ 3\ 6\ 3\ 6\ 3\ 6\ 3\ 6\ \cdots \in \Parity,
 \]</div>
 <p>because the two priorities which appear infinitely often are <span class="math notranslate nohighlight">\(3\)</span> and <span class="math notranslate nohighlight">\(6\)</span>, and the largest one is <span class="math notranslate nohighlight">\(6\)</span>, which is even.</p>
 <div class="math notranslate nohighlight">
 \[
-2\ 2\ 2\ 4\ 1\ 7\ 5\ 3\ 3\ 3\ 3\ 3\ 3\ 3\ 3\ \cdots \notin \mathtt{Parity}
+2\ 2\ 2\ 4\ 1\ 7\ 5\ 3\ 3\ 3\ 3\ 3\ 3\ 3\ 3\ \cdots \notin \Parity,
 \]</div>
 <p>because the only priority which appears infinitely often is <span class="math notranslate nohighlight">\(3\)</span> and it is odd.</p>
 <p>Two remarks are in order.
@@ -857,9 +906,9 @@ First, Büchi and CoBüchi objectives are parity objectives for the set of colou
 Second, the parity conditions are self dual:</p>
 <div class="math notranslate nohighlight">
 \[
-\Paths_\omega \setminus \mathtt{Parity}[i,j])[\textsf{col} = \mathtt{Parity}[i+1,j+1])[\textsf{col}+ 1],
+\Paths_\omega \setminus \Parity([i,j])[\col] = \Parity([i+1,j+1])[\col + 1],
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(\textsf{col}+ 1\)</span> adds one to $\textsf{col}.
+<p>where <span class="math notranslate nohighlight">\(\col + 1\)</span> adds one to <span class="math notranslate nohighlight">\(\col\)</span>.
 Hence if the condition for Eve is a parity condition, then the condition for Adam is also a parity condition.</p>
 <p><a class="reference internal" href="#fig-parity-game-example"><span class="std std-numref">Fig. 3</span></a> presents an example of a parity game.
 The priority of a vertex is given by its label.</p>
@@ -871,22 +920,22 @@ The two dotted areas represent the winning regions of each player.</span><a clas
 </div>
 <div class="section" id="conventions">
 <h2>Conventions<a class="headerlink" href="#conventions" title="Permalink to this headline">¶</a></h2>
-<p>Given an objective <span class="math notranslate nohighlight">\(\Omega \subseteq C^\omega\)</span> we use a colouring function <span class="math notranslate nohighlight">\(\textsf{col}: V \to C\)</span> to induce the condition <span class="math notranslate nohighlight">\(\Omega[\textsf{col}\)</span>.
+<p>Given an objective <span class="math notranslate nohighlight">\(\Omega \subseteq C^\omega\)</span> we use a colouring function <span class="math notranslate nohighlight">\(\col : V \to C\)</span> to induce the condition <span class="math notranslate nohighlight">\(\Omega[\col]\)</span>.
 We extend this notation to sets of vertices and colours as follows.</p>
 <ul class="simple">
 <li><p>A set of vertices <span class="math notranslate nohighlight">\(F \subseteq V\)</span> induces the colouring function <span class="math notranslate nohighlight">\(\col_F\)</span> defined by
-<span class="math notranslate nohighlight">\(\col_F(v) = \textrm{Win} if \)</span>v \in F<span class="math notranslate nohighlight">\( and \)</span>\col_F(v) = \textrm{Lose} otherwise.
-For <span class="math notranslate nohighlight">\(F \subseteq V\)</span> we define <span class="math notranslate nohighlight">\(\mathtt{Safe}F]\)</span> as <span class="math notranslate nohighlight">\(\mathtt{Safe}\col_F]\)</span>: it requires that no vertex from <span class="math notranslate nohighlight">\(F\)</span> is ever visited.</p></li>
-<li><p>A colour <span class="math notranslate nohighlight">\(c \in C\)</span> induces the set of vertices <span class="math notranslate nohighlight">\(\textsf{col}{-1}(c)\)</span> labelled by <span class="math notranslate nohighlight">\(c\)</span>.
-The condition <span class="math notranslate nohighlight">\(\mathtt{Safe}c]\)</span> requires that the colour <span class="math notranslate nohighlight">\(c\)</span> is never visited.</p></li>
+<span class="math notranslate nohighlight">\(\col_F(v) = \Win\)</span> if <span class="math notranslate nohighlight">\(v \in F\)</span> and <span class="math notranslate nohighlight">\(\col_F(v) = \Lose\)</span> otherwise.
+For <span class="math notranslate nohighlight">\(F \subseteq V\)</span> we define <span class="math notranslate nohighlight">\(\Safe[F]\)</span> as <span class="math notranslate nohighlight">\(\Safe[\col_F]\)</span>: it requires that no vertex from <span class="math notranslate nohighlight">\(F\)</span> is ever visited.</p></li>
+<li><p>A colour <span class="math notranslate nohighlight">\(c \in C\)</span> induces the set of vertices <span class="math notranslate nohighlight">\(\col^{-1}(c)\)</span> labelled by <span class="math notranslate nohighlight">\(c\)</span>.
+The condition <span class="math notranslate nohighlight">\(\Safe[c]\)</span> requires that the colour <span class="math notranslate nohighlight">\(c\)</span> is never visited.</p></li>
 </ul>
 <p>We apply this convention to safety, Büchi, and CoBüchi conditions: for <span class="math notranslate nohighlight">\(F \subseteq V\)</span>,</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{array}{ccccc}
-\mathtt{Reach}F] &amp; = &amp; \mathtt{Reach}\col_F] &amp; = &amp; \set{\pi\in \Paths_\omega : \exists i, \textrm{In}play_i) \in F}, \\
-\mathtt{Buchi}F] &amp; = &amp; \mathtt{Buchi}\col_F] &amp; = &amp; \set{\pi\in \Paths_\omega : \forall j, \exists i \ge j, \textrm{In}play_i) \in F}, \\
-\mathtt{CoBuchi}F] &amp; = &amp; \mathtt{CoBuchi}\col_F] &amp; = &amp; \set{\pi\in \Paths_\omega : \exists j, \forall i \ge j, \textrm{In}play_i) \notin F},
+\Reach[F] &amp; = &amp; \Reach[\col_F] &amp; = &amp; \set{\play \in \Paths_\omega : \exists i, \Ing(\play_i) \in F}, \\
+\Buchi[F] &amp; = &amp; \Buchi[\col_F] &amp; = &amp; \set{\play \in \Paths_\omega : \forall j, \exists i \ge j, \Ing(\play_i) \in F}, \\
+\CoBuchi[F] &amp; = &amp; \CoBuchi[\col_F] &amp; = &amp; \set{\play \in \Paths_\omega : \exists j, \forall i \ge j, \Ing(\play_i) \notin F},
 \end{array}
 \end{split}\]</div>
 <p>similarly extended to colours.</p>
@@ -903,24 +952,24 @@ either an edge or a vertex together with its priority.</p>
 <h2>Quantitative objectives<a class="headerlink" href="#quantitative-objectives" title="Permalink to this headline">¶</a></h2>
 <p>In this introduction chapter we only define two quantitative objectives: mean payoff and discounted payoff.
 More objectives will be defined and studied in Chapter <a class="reference internal" href="../4_Payoffs/index.html#chap-payoffs"><span class="std std-ref">Games with Payoffs</span></a>, and later in Chapter <a class="reference internal" href="../12_Multiobjectives/index.html#chap-multiobjective"><span class="std std-ref">Games with multiple objectives</span></a>.</p>
-<p>Mean payoff and discounted payoff use the set of colours $C = \mathbb{Z} the set of integers.
+<p>Mean payoff and discounted payoff use the set of colours <span class="math notranslate nohighlight">\(C = \Z\)</span> the set of integers.
 A colour is called a weight, interpreted as a payoff for Eve.</p>
 <p>The mean payoff quantitative objective comes in two different flavours: using the supremum limit</p>
 <div class="math notranslate nohighlight">
 \[
-\mathtt{MeanPayoff}+(\rho) = \limsup_k \frac{1}{k} \sum_{i = 0}^{k-1} \rho_i.
+\MeanPayoff^+(\rho) = \limsup_k \frac{1}{k} \sum_{i = 0}^{k-1} \rho_i.
 \]</div>
 <p>or the infimum limit</p>
 <div class="math notranslate nohighlight">
 \[
-\mathtt{MeanPayoff}-(\rho) = \liminf_k \frac{1}{k} \sum_{i = 0}^{k-1} \rho_i.
+\MeanPayoff^-(\rho) = \liminf_k \frac{1}{k} \sum_{i = 0}^{k-1} \rho_i.
 \]</div>
 <p>As we shall see, in most settings the two objectives will be equivalent.
-For this reason, we often use <span class="math notranslate nohighlight">\(\mathtt{MeanPayoff} to denote \)</span>\mathtt{MeanPayoff}-$.</p>
+For this reason, we often use <span class="math notranslate nohighlight">\(\MeanPayoff\)</span> to denote <span class="math notranslate nohighlight">\(\MeanPayoff^-\)</span>.</p>
 <p><a class="reference internal" href="#fig-mp-game-example"><span class="std std-numref">Fig. 4</span></a> presents an example of a mean payoff game.
 The weight of a vertex is given by its label.
 In this example the dotted areas represent the winning regions for the threshold is <span class="math notranslate nohighlight">\(0\)</span>,
-<strong>i.e.</strong> the induced qualitative objective <span class="math notranslate nohighlight">\(\MeanPayoff_{\ge 0} = \set{\rho \in C^\omega : \mathtt{MeanPayoff}\rho) \ge 0}\)</span>.</p>
+<strong>i.e.</strong> the induced qualitative objective <span class="math notranslate nohighlight">\(\MeanPayoff_{\ge 0} = \set{\rho \in C^\omega : \MeanPayoff(\rho) \ge 0}\)</span>.</p>
 <div class="figure align-center" id="fig-mp-game-example">
 <img alt="../_images/1-fig:mp_game_example.png" src="../_images/1-fig:mp_game_example.png" />
 <p class="caption"><span class="caption-number">Fig. 4 </span><span class="caption-text">An example of a mean payoff game.

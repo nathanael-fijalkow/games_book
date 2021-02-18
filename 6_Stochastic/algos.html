@@ -771,27 +771,78 @@
   <div class="section" id="algorithms">
 <span id="sec-algos"></span><h1>Algorithms<a class="headerlink" href="#algorithms" title="Permalink to this headline">¶</a></h1>
 <div class="math notranslate nohighlight">
-\[\newcommand{\probm}{\mathbb{P}}
+\[ \begin{align}\begin{aligned}\newcommand{\adist}{\ensuremath{f}}
+\newcommand{\probm}{\mathbb{P}}
+\newcommand{\lfp}{**lfp**}
 \newcommand{\vwin}{\ensuremath{v_{\textsc{win}}}}
 \newcommand{\vlose}{\ensuremath{v_{\textsc{lose}}}}
 \newcommand{\Adamvertices}{\VA}
 \newcommand{\Evevertices}{\VE}
 \newcommand{\Randomvertices}{\vertices_{\text{Rand}}}
 \newcommand{\perm}{\pi}
-\newcommand{\DetAtt}{\ensuremath{**DetAtt**}}
-\newcommand{\nats}{\mathbb{N}}\newcommand{\Eve}{\textrm{Eve}}
+\newcommand{\DetAtt}{\ensuremath{**DetAtt**}}\\\newcommand{\weight}{\mathbf{w}} \newcommand{\nats}{\mathbb{N}}\newcommand{\Eve}{\textrm{Eve}}
 \newcommand{\Adam}{\textrm{Adam}}
-\newcommand{\game}{\mathcal{G}}
-\newcommand{\arena}{\mathcal{A}}
-\newcommand{\vertices}{V}
-\newcommand{\VE}{V_\mEve}
-\newcommand{\VA}{V_\mAdam}
-\newcommand{\Win}{\textrm{Win}}
-\newcommand{\val}{\Value}
-\newcommand{\Reach}{\mathtt{Reach}}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
+\newcommand{\argmax}{\textrm{argmax}}
+\newcommand{\argmin}{\textrm{argmin}}
+\newcommand{\Op}{\mathbb{O}}
+\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\textrm{supp}} 
+\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
+\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
 \newcommand{\mEve}{\mathrm{Eve}}
 \newcommand{\mAdam}{\mathrm{Adam}}
-\newcommand{\Value}{\textrm{val}}\]</div>
+\newcommand{\mRandom}{\mathrm{Random}}
+\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
+\newcommand{\ing}{\textrm{In}}
+\newcommand{\Ing}{\ing}
+\newcommand{\out}{\textrm{Out}}
+\newcommand{\Out}{\out}
+\newcommand{\dest}{\Delta} 
+\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
+\newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
+\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
+\newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
+\newcommand{\Win}{\textrm{Win}} 
+\newcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Value}{\textrm{val}} 
+\newcommand{\ValueE}{\textrm{val}_\mEve} 
+\newcommand{\ValueA}{\textrm{val}_\mAdam}
+\newcommand{\val}{\Value} 
+\newcommand{\Automaton}{\mathbf{A}} 
+\newcommand{\Safe}{\mathtt{Safe}}
+\newcommand{\Reach}{\mathtt{Reach}} 
+\newcommand{\Buchi}{\mathtt{Buchi}} 
+\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
+\newcommand{\Parity}{\mathtt{Parity}} 
+\newcommand{\Muller}{\mathtt{Muller}} 
+\newcommand{\Rabin}{\mathtt{Rabin}} 
+\newcommand{\Streett}{\mathtt{Streett}} 
+\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
+\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
+\newcommand{\Energy}{\mathtt{Energy}}
+\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
+\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
+\newcommand{\Sup}{\mathtt{Sup}}
+\newcommand{\Inf}{\mathtt{Inf}}
+\newcommand{\LimSup}{\mathtt{LimSup}}
+\newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NL}{\textrm{NL}}
+\newcommand{\PTIME}{\textrm{PTIME}}
+\newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
+\newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
+\newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
+\newcommand{\EXP}{\textrm{EXP}}
+\newcommand{\kEXP}{\textrm{kEXP}}\end{aligned}\end{align} \]</div>
 <p>We have shown that stochastic reachability games are central to the (quantitative) analysis of stochastic games.
 We have indeed reduced the quantitative analysis of all kinds of stochastic games to stochastic reachability games. We will now present algorithms for stochastic reachability games.</p>
 <div class="section" id="value-iteration">
@@ -799,33 +850,33 @@ We have indeed reduced the quantitative analysis of all kinds of stochastic game
 <div class="proof definition admonition" id="definition-0">
 <p class="admonition-title"><span class="caption-number">Definition 203 </span> (NEEDS TITLE AND LABEL)</p>
 <div class="definition-content section" id="proof-content">
-<p>A stochastic arena <span class="math notranslate nohighlight">\(\mathcal{A}= (VE,\delta)\)</span> is said to be
+<p>A stochastic arena <span class="math notranslate nohighlight">\(\arena = (\vertices,E,\delta)\)</span> is said to be
 <strong>simple</strong> if</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(V\)</span> contains two sink vertices <span class="math notranslate nohighlight">\(v_{\Eve}\)</span> and <span class="math notranslate nohighlight">\(v_{\textrm{Adam}\)</span>;</p></li>
+<li><p><span class="math notranslate nohighlight">\(V\)</span> contains two sink vertices <span class="math notranslate nohighlight">\(v_{\Eve}\)</span> and <span class="math notranslate nohighlight">\(v_{\Adam}\)</span>;</p></li>
 <li><p>every non-sink vertex
-<span class="math notranslate nohighlight">\(v \in V\setminus \{v_{\Eve},v_{\textrm{Adam}\}\)</span> has two
+<span class="math notranslate nohighlight">\(v \in \vertices \setminus \{v_{\Eve},v_{\Adam}\}\)</span> has two
 successors;</p></li>
-<li><p>every random vertex <span class="math notranslate nohighlight">\(v \in \vertices_{\text{Rand}} is an
-**average vertex**, that is, for every vertex
-\)</span>v’\in V, <span class="math notranslate nohighlight">\((v,v') \in E\)</span> implies
+<li><p>every random vertex <span class="math notranslate nohighlight">\(v \in \Randomvertices\)</span> is an
+<strong>average vertex</strong>, that is, for every vertex
+<span class="math notranslate nohighlight">\(v'\in \vertices\)</span>, <span class="math notranslate nohighlight">\((v,v') \in E\)</span> implies
 <span class="math notranslate nohighlight">\(\delta(v,v')=\frac{1}{2}\)</span>.</p></li>
 </ul>
-<p>A stochastic arena <span class="math notranslate nohighlight">\(\mathcal{A}= (VE,\delta)\)</span> is said to be
+<p>A stochastic arena <span class="math notranslate nohighlight">\(\arena = (\vertices,E,\delta)\)</span> is said to be
 <strong>simple</strong> if</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(V\)</span> contains two sink vertices <span class="math notranslate nohighlight">\(v_{\Eve}\)</span> and <span class="math notranslate nohighlight">\(v_{\textrm{Adam}\)</span>;</p></li>
+<li><p><span class="math notranslate nohighlight">\(V\)</span> contains two sink vertices <span class="math notranslate nohighlight">\(v_{\Eve}\)</span> and <span class="math notranslate nohighlight">\(v_{\Adam}\)</span>;</p></li>
 <li><p>every non-sink vertex
-<span class="math notranslate nohighlight">\(v \in V\setminus \{v_{\Eve},v_{\textrm{Adam}\}\)</span> has two
+<span class="math notranslate nohighlight">\(v \in \vertices \setminus \{v_{\Eve},v_{\Adam}\}\)</span> has two
 successors;</p></li>
-<li><p>every random vertex <span class="math notranslate nohighlight">\(v \in \vertices_{\text{Rand}} is an
-**average vertex**, that is, for every vertex
-\)</span>v’\in V, <span class="math notranslate nohighlight">\((v,v') \in E\)</span> implies
+<li><p>every random vertex <span class="math notranslate nohighlight">\(v \in \Randomvertices\)</span> is an
+<strong>average vertex</strong>, that is, for every vertex
+<span class="math notranslate nohighlight">\(v'\in \vertices\)</span>, <span class="math notranslate nohighlight">\((v,v') \in E\)</span> implies
 <span class="math notranslate nohighlight">\(\delta(v,v')=\frac{1}{2}\)</span>.</p></li>
 </ul>
 </div>
 </div><p>With a simple stochastic arena is naturally associated the
-reachability objective <span class="math notranslate nohighlight">\(\mathtt{Reach}\{v_{\Eve}\})\)</span>. The resulting game is
+reachability objective <span class="math notranslate nohighlight">\(\Reach(\{v_{\Eve}\})\)</span>. The resulting game is
 called a <strong>simple stochastic game</strong>.</p>
 <div class="proof proposition admonition" id="proposition-1">
 <p class="admonition-title"><span class="caption-number">Proposition 204 </span> (NEEDS TITLE AND LABEL)</p>
@@ -838,16 +889,16 @@ to simple stochastic games, which preserves the values.</p>
 </div><p>More precisely,</p>
 <div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
-<p>Let <span class="math notranslate nohighlight">\(\mathcal{A}= (VE,\delta)\)</span> be an arbitrary stochastic
-arena. First of all, all vertices in <span class="math notranslate nohighlight">\(\textrm{Win} are merged into a single
-  sink vertex \)</span>v_\Eve$.</p>
-<p>Assume <span class="math notranslate nohighlight">\(v \in \vertices_{\text{Rand}} is a random vertex with \)</span>k<span class="math notranslate nohighlight">\( outgoing
-  edges, with probabilities \)</span>p_1, \cdots, p_k<span class="math notranslate nohighlight">\(, leading respectively
-  to \)</span>v_1,\cdots,v_k<span class="math notranslate nohighlight">\(. We first introduce intermediary vertices in
-  order to build a binary tree, whose leaves are \)</span>v_1 \cdots v_k<span class="math notranslate nohighlight">\(,
-  root is \)</span>v<span class="math notranslate nohighlight">\(, and probabilities are set at each level of the tree in
-  order to recover \)</span>p_1, \cdots p_k<span class="math notranslate nohighlight">\( on the respective branches. This
-  introduces \)</span>O(\log(k))$ fresh vertices, and is illustrated on an
+<p>Let <span class="math notranslate nohighlight">\(\arena = (\vertices,E,\delta)\)</span> be an arbitrary stochastic
+arena. First of all, all vertices in <span class="math notranslate nohighlight">\(\Win\)</span> are merged into a single
+sink vertex <span class="math notranslate nohighlight">\(v_\Eve\)</span>.</p>
+<p>Assume <span class="math notranslate nohighlight">\(v \in \Randomvertices\)</span> is a random vertex with <span class="math notranslate nohighlight">\(k\)</span> outgoing
+edges, with probabilities <span class="math notranslate nohighlight">\(p_1, \cdots, p_k\)</span>, leading respectively
+to <span class="math notranslate nohighlight">\(v_1,\cdots,v_k\)</span>. We first introduce intermediary vertices in
+order to build a binary tree, whose leaves are <span class="math notranslate nohighlight">\(v_1 \cdots v_k\)</span>,
+root is <span class="math notranslate nohighlight">\(v\)</span>, and probabilities are set at each level of the tree in
+order to recover <span class="math notranslate nohighlight">\(p_1, \cdots p_k\)</span> on the respective branches. This
+introduces <span class="math notranslate nohighlight">\(O(\log(k))\)</span> fresh vertices, and is illustrated on an
 example on <a class="reference internal" href="#fig-gen2binary"><span class="std std-numref">Fig. 48</span></a>.</p>
 <div class="figure align-center" id="fig-gen2binary">
 <img alt="../_images/6-fig:gen2binary.png" src="../_images/6-fig:gen2binary.png" />
@@ -856,20 +907,20 @@ example on <a class="reference internal" href="#fig-gen2binary"><span class="std
 <p>It remains to explain how to simulate a discrete probability
 distribution from say vertex <span class="math notranslate nohighlight">\(v\)</span> to vertices <span class="math notranslate nohighlight">\(v_1\)</span> and <span class="math notranslate nohighlight">\(v_2\)</span> with
 probabilities <span class="math notranslate nohighlight">\(\frac{p}{q}\)</span>, resp.  <span class="math notranslate nohighlight">\(\frac{q-p}{q}\)</span>, using average
-vertices only.  We let <span class="math notranslate nohighlight">\(t \in\mathbb{N}}\newcommand{\Eve}{\textrm{Eve} be such that
-  \)</span>2^{t-1} \leq q &lt; 2^{t}<span class="math notranslate nohighlight">\(. Using the binary encodings of \)</span>p<span class="math notranslate nohighlight">\( resp.
-  \)</span>q-p<span class="math notranslate nohighlight">\( as \)</span>a_1 \cdots a_t<span class="math notranslate nohighlight">\( resp. \)</span>b_1 \cdots b_t<span class="math notranslate nohighlight">\( (with most
-  significant bit first) we build the following gadget. The input
-  vertex is \)</span>v<span class="math notranslate nohighlight">\( and for every \)</span>2 \leq i \leq t+1<span class="math notranslate nohighlight">\(, it has two exit
-  edges with accumulated probabilities \)</span>2^{-i}<span class="math notranslate nohighlight">\(. Now, if \)</span>a_i=1<span class="math notranslate nohighlight">\(
-  (resp.  \)</span>b_1 =1<span class="math notranslate nohighlight">\(), one vertex with probability \)</span>2^{-(i+1)}<span class="math notranslate nohighlight">\( is \)</span>v_1<span class="math notranslate nohighlight">\(
-  (resp. \)</span>v_2<span class="math notranslate nohighlight">\(). The pending edges are redirected to \)</span>v<span class="math notranslate nohighlight">\( itself. The
-  transformation is depicted in {numref}`6-fig:simul`, assuming
-  \)</span>p=11\equiv_{b} 1011<span class="math notranslate nohighlight">\( and \)</span>q=14<span class="math notranslate nohighlight">\( (so that
-  \)</span>p-q = 3 \equiv_{b} 0011<span class="math notranslate nohighlight">\().  For simplicity some vertices are
-  represented several times to avoid intricate transitions. One can
-  check that this gadget indeed simulates probabilities \)</span>\frac p q<span class="math notranslate nohighlight">\( to
-  \)</span>v_1<span class="math notranslate nohighlight">\( and \)</span>\frac {q-p} q<span class="math notranslate nohighlight">\( to \)</span>v_2$.</p>
+vertices only.  We let <span class="math notranslate nohighlight">\(t \in\nats\)</span> be such that
+<span class="math notranslate nohighlight">\(2^{t-1} \leq q &lt; 2^{t}\)</span>. Using the binary encodings of <span class="math notranslate nohighlight">\(p\)</span> resp.
+<span class="math notranslate nohighlight">\(q-p\)</span> as <span class="math notranslate nohighlight">\(a_1 \cdots a_t\)</span> resp. <span class="math notranslate nohighlight">\(b_1 \cdots b_t\)</span> (with most
+significant bit first) we build the following gadget. The input
+vertex is <span class="math notranslate nohighlight">\(v\)</span> and for every <span class="math notranslate nohighlight">\(2 \leq i \leq t+1\)</span>, it has two exit
+edges with accumulated probabilities <span class="math notranslate nohighlight">\(2^{-i}\)</span>. Now, if <span class="math notranslate nohighlight">\(a_i=1\)</span>
+(resp.  <span class="math notranslate nohighlight">\(b_1 =1\)</span>), one vertex with probability <span class="math notranslate nohighlight">\(2^{-(i+1)}\)</span> is <span class="math notranslate nohighlight">\(v_1\)</span>
+(resp. <span class="math notranslate nohighlight">\(v_2\)</span>). The pending edges are redirected to <span class="math notranslate nohighlight">\(v\)</span> itself. The
+transformation is depicted in <a class="reference internal" href="#fig-simul"><span class="std std-numref">Fig. 49</span></a>, assuming
+<span class="math notranslate nohighlight">\(p=11\equiv_{b} 1011\)</span> and <span class="math notranslate nohighlight">\(q=14\)</span> (so that
+<span class="math notranslate nohighlight">\(p-q = 3 \equiv_{b} 0011\)</span>).  For simplicity some vertices are
+represented several times to avoid intricate transitions. One can
+check that this gadget indeed simulates probabilities <span class="math notranslate nohighlight">\(\frac p q\)</span> to
+<span class="math notranslate nohighlight">\(v_1\)</span> and <span class="math notranslate nohighlight">\(\frac {q-p} q\)</span> to <span class="math notranslate nohighlight">\(v_2\)</span>.</p>
 <div class="figure align-center" id="fig-simul">
 <img alt="../_images/6-fig:simul.png" src="../_images/6-fig:simul.png" />
 <p class="caption"><span class="caption-number">Fig. 49 </span><span class="caption-text">From binary random vertices to average ones.</span><a class="headerlink" href="#fig-simul" title="Permalink to this image">¶</a></p>
@@ -879,18 +930,18 @@ of the above transformation is needed (injection of a binary tree).</p>
 <p>The overall transformation yields a simple stochastic game with
 <span class="math notranslate nohighlight">\(O(n(\log(n)+k))\)</span> additional vertices, where <span class="math notranslate nohighlight">\(k\)</span> is the maximum
 number of bits required to represent probabilities in
-<span class="math notranslate nohighlight">\(\mathcal{G}. Moreover, for vertices in \)</span>V<span class="math notranslate nohighlight">\( that were originally
-  in \)</span>V, the value is preserved.</p>
+<span class="math notranslate nohighlight">\(\game\)</span>. Moreover, for vertices in <span class="math notranslate nohighlight">\(\vertices'\)</span> that were originally
+in <span class="math notranslate nohighlight">\(\vertices\)</span>, the value is preserved.</p>
 </div>
 <div class="proof definition admonition" id="definition-2">
 <p class="admonition-title"><span class="caption-number">Definition 205 </span> (NEEDS TITLE AND LABEL)</p>
 <div class="definition-content section" id="proof-content">
 <p>A simple stochastic game is <strong>stopping</strong> if for every vertex
-<span class="math notranslate nohighlight">\(v \in V and under every \nat{pure positional} strategy profile
-  \)</span>(\sigma,\tau)<span class="math notranslate nohighlight">\(, \)</span>\probm_{\sigma,\tau}^v(\mathtt{Reach}{v_\Eve,v_\textrm{Adam}})) &gt;0$.</p>
+<span class="math notranslate nohighlight">\(v \in \vertices\)</span> and under every \nat{pure positional} strategy profile
+<span class="math notranslate nohighlight">\((\sigma,\tau)\)</span>, <span class="math notranslate nohighlight">\(\probm_{\sigma,\tau}^v(\Reach(\{v_\Eve,v_\Adam\})) &gt;0\)</span>.</p>
 <p>A simple stochastic game is <strong>stopping</strong> if for every vertex
-<span class="math notranslate nohighlight">\(v \in V and under every \nat{pure positional} strategy profile
-  \)</span>(\sigma,\tau)<span class="math notranslate nohighlight">\(, \)</span>\probm_{\sigma,\tau}^v(\mathtt{Reach}{v_\Eve,v_\textrm{Adam}})) &gt;0$.</p>
+<span class="math notranslate nohighlight">\(v \in \vertices\)</span> and under every \nat{pure positional} strategy profile
+<span class="math notranslate nohighlight">\((\sigma,\tau)\)</span>, <span class="math notranslate nohighlight">\(\probm_{\sigma,\tau}^v(\Reach(\{v_\Eve,v_\Adam\})) &gt;0\)</span>.</p>
 </div>
 </div><div class="proof theorem admonition" id="6-thm:reduction_stopping_games">
 <p class="admonition-title"><span class="caption-number">Theorem 206 </span> (Reduction to stopping games)</p>
@@ -904,7 +955,7 @@ stopping one by decreasing the fixed termination probability at each step.</p>
 <div class="proof proposition admonition" id="6-prop:fixed_point_characterisation_stopping_ssg">
 <p class="admonition-title"><span class="caption-number">Proposition 207 </span> (Fixed point characterisation for stopping simple stochastic games)</p>
 <div class="proposition-content section" id="proof-content">
-<p>Let <span class="math notranslate nohighlight">\(\mathcal{G} be a stopping simple stochastic game. Then, the operator \)</span>\mathfrak{F}$ has a unique fixpoint.</p>
+<p>Let <span class="math notranslate nohighlight">\(\game\)</span> be a stopping simple stochastic game. Then, the operator <span class="math notranslate nohighlight">\(\mathfrak{F}\)</span> has a unique fixpoint.</p>
 </div>
 </div><p>The first proof of determinacy of those games already gave a first
 value iteration algorithm. This was first due to Shapley under the
@@ -919,9 +970,10 @@ strategy improvement algorithm to compute the values at each vertex of
 the game, and strategies achieving these values.</p>
 <p>The algorithm focuses on the role of random vertices in the game, and
 is based on the fact that amongst two random vertices, one of them is
-likely to be better for \Eve, while the other will be better for \textrm{Adam}(or they are equally good). We will start proving a strategy
+likely to be better for \Eve, while the other will be better for \Adam
+(or they are equally good). We will start proving a strategy
 enumeration algorithm, where, given a permutation of the set of random
-vertices, one computes adequate strategies for \Eve and \textrm{Adam} under
+vertices, one computes adequate strategies for \Eve and \Adam; under
 some assumptions on the permutation (liveness and self-consistency),
 those strategies will be provably optimal. We will show that there
 will be some live and self-consistent permutation, implying the
@@ -934,15 +986,15 @@ conclude with the strategy improvement algorithm
 <div class="section" id="computing-almost-sure-winning-or-almost-sure-losing-states">
 <span id="subsubsec-first"></span><h3>Computing almost-sure winning or almost-sure losing states<a class="headerlink" href="#computing-almost-sure-winning-or-almost-sure-losing-states" title="Permalink to this headline">¶</a></h3>
 <p>The algorithms we will present assume that games are
-<strong>normalized</strong>, that is, there is a unique vertex denoted <span class="math notranslate nohighlight">\(\ensuremath{v_{\textsc{win}}}
-(resp. \)</span>\ensuremath{v_{\textsc{lose}}}) with value <span class="math notranslate nohighlight">\(1\)</span> (resp. <span class="math notranslate nohighlight">\(0\)</span>).  This is without loss of
+<strong>normalized</strong>, that is, there is a unique vertex denoted <span class="math notranslate nohighlight">\(\vwin\)</span>
+(resp. <span class="math notranslate nohighlight">\(\vlose\)</span>) with value <span class="math notranslate nohighlight">\(1\)</span> (resp. <span class="math notranslate nohighlight">\(0\)</span>).  This is without loss of
 generality since:</p>
 <ul class="simple">
 <li><p>vertices with value <span class="math notranslate nohighlight">\(1\)</span> (resp. <span class="math notranslate nohighlight">\(0\)</span>) can be computed in
 polynomial time;</p></li>
 <li><p>all vertices with value <span class="math notranslate nohighlight">\(1\)</span> (resp. <span class="math notranslate nohighlight">\(0\)</span>) can be replaced by a
-single sink vertex <span class="math notranslate nohighlight">\(\ensuremath{v_{\textsc{win}}} (resp. \)</span>\ensuremath{v_{\textsc{lose}}});</p></li>
-<li><p>the target reachability state is set to $\ensuremath{v_{\textsc{win}}}.</p></li>
+single sink vertex <span class="math notranslate nohighlight">\(\vwin\)</span> (resp. <span class="math notranslate nohighlight">\(\vlose\)</span>);</p></li>
+<li><p>the target reachability state is set to <span class="math notranslate nohighlight">\(\vwin\)</span>.</p></li>
 </ul>
 <p>The only point that we will discuss is the first item above. General
 transformations assigning a non-stochastic parity game to each
@@ -953,20 +1005,20 @@ games that we are focusing on, and we briefly describe the
 construction here, inspired by <span id="id2">[<span>paulin-nathalie</span>]</span>:</p>
 <ul class="simple">
 <li><p>For computing vertices with value <span class="math notranslate nohighlight">\(1\)</span>: replace a random vertex
-<span class="math notranslate nohighlight">\(v\)</span> with an \textrm{Adam}vertex <span class="math notranslate nohighlight">\(v_A\)</span> and an \Eve vertex <span class="math notranslate nohighlight">\(v_E\)</span>. Any edge
+<span class="math notranslate nohighlight">\(v\)</span> with an \Adam vertex <span class="math notranslate nohighlight">\(v_A\)</span> and an \Eve vertex <span class="math notranslate nohighlight">\(v_E\)</span>. Any edge
 going to <span class="math notranslate nohighlight">\(v\)</span> in the original game will go to <span class="math notranslate nohighlight">\(v_A\)</span>; there will be an
 edge <span class="math notranslate nohighlight">\(v_A \to v_E\)</span> with priority <span class="math notranslate nohighlight">\(1\)</span>; if <span class="math notranslate nohighlight">\(v \to v'\)</span> in the original
 game, then <span class="math notranslate nohighlight">\(v_A \to v'\)</span> with priority <span class="math notranslate nohighlight">\(2\)</span> in the new game, and <span class="math notranslate nohighlight">\(v_E
 \to v'\)</span> with priority <span class="math notranslate nohighlight">\(1\)</span> in the new game. We add a selfloop over
-<span class="math notranslate nohighlight">\(\textrm{Win} with priority \)</span>2<span class="math notranslate nohighlight">\(. Then, a vertex is almost-sure winning
-(that is, has value \)</span>1$) in the original game if and only if it is
+<span class="math notranslate nohighlight">\(\Win\)</span> with priority <span class="math notranslate nohighlight">\(2\)</span>. Then, a vertex is almost-sure winning
+(that is, has value <span class="math notranslate nohighlight">\(1\)</span>) in the original game if and only if it is
 winning in the constructed non-stochastic parity game.</p></li>
 <li><p>For computing vertices with value <span class="math notranslate nohighlight">\(0\)</span>: give each random vertex
-<span class="math notranslate nohighlight">\(v\)</span> to \textrm{Adam} Then, a vertex has value <span class="math notranslate nohighlight">\(0\)</span> in the original game if
+<span class="math notranslate nohighlight">\(v\)</span> to \Adam. Then, a vertex has value <span class="math notranslate nohighlight">\(0\)</span> in the original game if
 and only if it is losing in the constructed non-stochastic parity
 game.</p></li>
 </ul>
-<p>From now on, we assume that the game $\mathcal{G} is normalized.</p>
+<p>From now on, we assume that the game <span class="math notranslate nohighlight">\(\game\)</span> is normalized.</p>
 </div>
 <div class="section" id="permutation-of-random-vertices">
 <h3>Permutation of random vertices<a class="headerlink" href="#permutation-of-random-vertices" title="Permalink to this headline">¶</a></h3>
@@ -975,25 +1027,25 @@ two random vertices <span class="math notranslate nohighlight">\(v_1\)</span> an
 larger than the value of <span class="math notranslate nohighlight">\(v_2\)</span>, then obviously \Eve should choose to
 go to <span class="math notranslate nohighlight">\(v_1\)</span>. The idea will then be for \Eve to target random vertices
 with the largest possible values. We formalize this idea below</p>
-<p>We write <span class="math notranslate nohighlight">\(\vertices_{\text{Rand}}= \{v_1,\ldots,v_k\}\)</span>.</p>
+<p>We write <span class="math notranslate nohighlight">\(\Randomvertices = \{v_1,\ldots,v_k\}\)</span>.</p>
 <p>The idea will be to order random vertices in such a way that the
 higher is a random vertice (in the order), the better it is for \Eve;
 and conversely, the smaller is a random vertice (in the order), the
-worse it is for \textrm{Adam} We fix a permutation
-<span class="math notranslate nohighlight">\(\pi \vertices_{\text{Rand}}\to \vertices_{\text{Rand}}, and abusively write
-\)</span>\perm_i = \pi{-1}(v_i)<span class="math notranslate nohighlight">\(, the \)</span>i<span class="math notranslate nohighlight">\(-th element in the order defined
-by \)</span>\pi.</p>
-<p>We define the deterministic attractor operator <span class="math notranslate nohighlight">\(\ensuremath{**DetAtt**} as
-follows. If \)</span>X \subseteq V, we define inductively the
+worse it is for \Adam. We fix a permutation
+<span class="math notranslate nohighlight">\(\perm: \Randomvertices \to \Randomvertices\)</span>, and abusively write
+<span class="math notranslate nohighlight">\(\perm_i = \perm^{-1}(v_i)\)</span>, the <span class="math notranslate nohighlight">\(i\)</span>-th element in the order defined
+by <span class="math notranslate nohighlight">\(\perm\)</span>.</p>
+<p>We define the deterministic attractor operator <span class="math notranslate nohighlight">\(\DetAtt\)</span> as
+follows. If <span class="math notranslate nohighlight">\(X \subseteq \vertices\)</span>, we define inductively the
 sequence <span class="math notranslate nohighlight">\((X_i)_{i \ge 0}\)</span> by:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \left\{
 \begin{array}{rcl}
   X_0 &amp; =&amp; X \\
-  X_{i+1} &amp;=&amp; X_i \cup \{v \in V_\mEvemid \exists w \in X_i\
+  X_{i+1} &amp;=&amp; X_i \cup \{v \in \Evevertices \mid \exists w \in X_i\
   \text{s.t.}\ (v,w) \in E\} \\
-   &amp;&amp; \phantom{X_i} \cup \{v \in V_\mAdammid \forall w \in X_i,\ 
+   &amp;&amp; \phantom{X_i} \cup \{v \in \Adamvertices \mid \forall w \in X_i,\ 
   (v,w) \in E\ \text{implies}\ v \in X_i\}
 \end{array}
 \right.
@@ -1001,51 +1053,51 @@ sequence <span class="math notranslate nohighlight">\((X_i)_{i \ge 0}\)</span> b
 <p>The deterministic attractor of <span class="math notranslate nohighlight">\(X\)</span> is then given by:</p>
 <div class="math notranslate nohighlight">
 \[
-\ensuremath{**DetAtt**}X) = \lim_{i \to +\infty} X_i = \bigcup_{i =0}^{+\infty} X_i
+\DetAtt(X) = \lim_{i \to +\infty} X_i = \bigcup_{i =0}^{+\infty} X_i
 \]</div>
-<p>Note that since <span class="math notranslate nohighlight">\(V is finite, the sequence \)</span>(X_i)_{i \ge 0}$
+<p>Note that since <span class="math notranslate nohighlight">\(\vertices\)</span> is finite, the sequence <span class="math notranslate nohighlight">\((X_i)_{i \ge 0}\)</span>
 stabilizes and the above union is actually finite.  \pat{refer to the
 relevant previous chapter, there certainly is one.}</p>
-<p>Let <span class="math notranslate nohighlight">\(\pi be a permutation. We define the \)</span>\pi-regions as
+<p>Let <span class="math notranslate nohighlight">\(\perm\)</span> be a permutation. We define the <span class="math notranslate nohighlight">\(\perm\)</span>-regions as
 deterministic attractors to the random vertices (taken in the correct
 order) as follows:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \left\{
 \begin{array}{l}
-  W_\pi{k+1}  = \{\ensuremath{v_{\textsc{win}}}} \\
-  W_\pii =
-  \ensuremath{**DetAtt**}\{\perm_i,\ldots,\perm_k,\ensuremath{v_{\textsc{win}}}}) \setminus \bigcup_{j=i+1}^{k+1}
-  W_\pij\quad \forall 1 \le i \le k \\ 
-  W_\pi0 = V \setminus \bigcup_{j=1}^{k+1} W_\pij = \{\ensuremath{v_{\textsc{lose}}}}
+  W_\perm^{k+1}  = \{\vwin\} \\
+  W_\perm^i =
+  \DetAtt(\{\perm_i,\ldots,\perm_k,\vwin\}) \setminus \bigcup_{j=i+1}^{k+1}
+  W_\perm^j\quad \forall 1 \le i \le k \\ 
+  W_\perm^0 = V \setminus \bigcup_{j=1}^{k+1} W_\perm^j = \{\vlose\}
 \end{array}
 \right.
 \end{split}\]</div>
-<p>The last equality (for <span class="math notranslate nohighlight">\(W_\pi0\)</span>) holds since (i) from vertices in
-<span class="math notranslate nohighlight">\(W_\pi0\)</span> \textrm{Adam}can enforce avoiding <span class="math notranslate nohighlight">\(\vertices_{\text{Rand}}\cup
-\{\ensuremath{v_{\textsc{win}}}}\)</span> (by determinacy of non-stochastic reachability games
+<p>The last equality (for <span class="math notranslate nohighlight">\(W_\perm^0\)</span>) holds since (i) from vertices in
+<span class="math notranslate nohighlight">\(W_\perm^0\)</span> \Adam can enforce avoiding <span class="math notranslate nohighlight">\(\Randomvertices \cup
+\{\vwin\}\)</span> (by determinacy of non-stochastic reachability games
 \pat{ref to a previous chapter?}), yielding only losing outcomes, and
-(ii) <span class="math notranslate nohighlight">\(\ensuremath{v_{\textsc{lose}}} is the unique vertex with value \)</span>0<span class="math notranslate nohighlight">\( (by
-assumption). Later, we will write \)</span>W_\pi{\ge j}<span class="math notranslate nohighlight">\( for
-\)</span>\bigcup_{i=j}^{k+1} W_\pii$.</p>
-<p>Given <span class="math notranslate nohighlight">\(\pi a permutation, we define strategies \)</span>\sigma_\pi (for
-\Eve) and <span class="math notranslate nohighlight">\(\tau_\pi (for \textrm{Adam} such that on \)</span>W_\pii$:</p>
+(ii) <span class="math notranslate nohighlight">\(\vlose\)</span> is the unique vertex with value <span class="math notranslate nohighlight">\(0\)</span> (by
+assumption). Later, we will write <span class="math notranslate nohighlight">\(W_\perm^{\ge j}\)</span> for
+<span class="math notranslate nohighlight">\(\bigcup_{i=j}^{k+1} W_\perm^i\)</span>.</p>
+<p>Given <span class="math notranslate nohighlight">\(\perm\)</span> a permutation, we define strategies <span class="math notranslate nohighlight">\(\sigma_\perm\)</span> (for
+\Eve) and <span class="math notranslate nohighlight">\(\tau_\perm\)</span> (for \Adam) such that on <span class="math notranslate nohighlight">\(W_\perm^i\)</span>:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\sigma_\pi is a pure and positional attractor strategy to
-\)</span>{\perm_i,\ldots,\perm_k,\ensuremath{v_{\textsc{win}}}}$;</p></li>
-<li><p><span class="math notranslate nohighlight">\(\tau_\pi is a pure and positional trapping strategy avoiding
-\)</span>{\perm_{i+1},\ldots,\perm_k,\ensuremath{v_{\textsc{win}}}}$.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\sigma_\perm\)</span> is a pure and positional attractor strategy to
+<span class="math notranslate nohighlight">\(\{\perm_i,\ldots,\perm_k,\vwin\}\)</span>;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\tau_\perm\)</span> is a pure and positional trapping strategy avoiding
+<span class="math notranslate nohighlight">\(\{\perm_{i+1},\ldots,\perm_k,\vwin\}\)</span>.</p></li>
 </ul>
-<p>Those two strategies obviously exist: <span class="math notranslate nohighlight">\(\sigma_\pi exists by
-definition of the deterministic attractor, while \)</span>\tau_\pi exists
+<p>Those two strategies obviously exist: <span class="math notranslate nohighlight">\(\sigma_\perm\)</span> exists by
+definition of the deterministic attractor, while <span class="math notranslate nohighlight">\(\tau_\perm\)</span> exists
 by determinacy of reachability games (if a vertex is not winning for
-\Eve for a reachability objective, then it is winning for \textrm{Adam}for
+\Eve for a reachability objective, then it is winning for \Adam for
 the corresponding safety objective).</p>
-<p>We can then define for every $v \in V:</p>
+<p>We can then define for every <span class="math notranslate nohighlight">\(v \in \vertices\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
 \begin{array}{rcl}
-\val_\piv) &amp;=&amp; \probm_{\sigma_\pi\tau_\pi^v(\mathtt{Reach}\textrm{Win})
+\val_\perm(v) &amp;=&amp; \probm_{\sigma_\perm,\tau_\perm}^v(\Reach(\Win))
 \end{array}
 \]</div>
 <p>which can be easily computed using systems of linear
@@ -1056,15 +1108,15 @@ result, which uses only basic arguments:</p>
 <p class="admonition-title"><span class="caption-number">Theorem 208 </span> (NEEDS TITLE AND LABEL)</p>
 <div class="theorem-content section" id="proof-content">
 <p>\label{6-thm:corr-strat-improv}
-There is a permutation <span class="math notranslate nohighlight">\(\pi such that \)</span>\sigma_\pi is optimal
-for \Eve and <span class="math notranslate nohighlight">\(\tau_\pi is optimal for \textrm{Adam} Given a permutation
-  \)</span>\pi, we can check in polynomial time whether <span class="math notranslate nohighlight">\(\sigma_\pi and
-  \)</span>\tau_\pi are optimal.</p>
+There is a permutation <span class="math notranslate nohighlight">\(\perm\)</span> such that <span class="math notranslate nohighlight">\(\sigma_\perm\)</span> is optimal
+for \Eve and <span class="math notranslate nohighlight">\(\tau_\perm\)</span> is optimal for \Adam. Given a permutation
+<span class="math notranslate nohighlight">\(\perm\)</span>, we can check in polynomial time whether <span class="math notranslate nohighlight">\(\sigma_\perm\)</span> and
+<span class="math notranslate nohighlight">\(\tau_\perm\)</span> are optimal.</p>
 <p>\label{6-thm:corr-strat-improv}
-There is a permutation <span class="math notranslate nohighlight">\(\pi such that \)</span>\sigma_\pi is optimal
-for \Eve and <span class="math notranslate nohighlight">\(\tau_\pi is optimal for \textrm{Adam} Given a permutation
-  \)</span>\pi, we can check in polynomial time whether <span class="math notranslate nohighlight">\(\sigma_\pi and
-  \)</span>\tau_\pi are optimal.</p>
+There is a permutation <span class="math notranslate nohighlight">\(\perm\)</span> such that <span class="math notranslate nohighlight">\(\sigma_\perm\)</span> is optimal
+for \Eve and <span class="math notranslate nohighlight">\(\tau_\perm\)</span> is optimal for \Adam. Given a permutation
+<span class="math notranslate nohighlight">\(\perm\)</span>, we can check in polynomial time whether <span class="math notranslate nohighlight">\(\sigma_\perm\)</span> and
+<span class="math notranslate nohighlight">\(\tau_\perm\)</span> are optimal.</p>
 </div>
 </div><p>We will explain in Subsection <span class="xref std std-ref">6-subsec:algo-strat-improv</span> how this
 theorem can be turned into a strategy improvement algorithm for
@@ -1073,162 +1125,163 @@ games.</p>
 </div>
 <div class="section" id="live-and-self-consistent-permutations">
 <h3>Live and self-consistent permutations<a class="headerlink" href="#live-and-self-consistent-permutations" title="Permalink to this headline">¶</a></h3>
-<p>We say that a permutation $\pi is <strong>self-consistent</strong> whenever:</p>
+<p>We say that a permutation <span class="math notranslate nohighlight">\(\perm\)</span> is <strong>self-consistent</strong> whenever:</p>
 <div class="math notranslate nohighlight">
 \[
-\val_\pi\perm_1) \le \val_\pi\perm_2) \le \ldots \le \val_\pi\perm_k)
+\val_\perm(\perm_1) \le \val_\perm(\perm_2) \le \ldots \le \val_\perm(\perm_k)
 \]</div>
-<p>That is, the order given by $\pi coincides with the preference of
+<p>That is, the order given by <span class="math notranslate nohighlight">\(\perm\)</span> coincides with the preference of
 \Eve.</p>
-<p>We say <span class="math notranslate nohighlight">\(\pi is **live** whenever for every \)</span>1 \le i \le k$:</p>
+<p>We say <span class="math notranslate nohighlight">\(\perm\)</span> is <strong>live</strong> whenever for every <span class="math notranslate nohighlight">\(1 \le i \le k\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
-\delta(\perm_i)\big(W_\pi{\ge i+1}\big)&gt;0
+\delta(\perm_i)\big(W_\perm^{\ge i+1}\big)&gt;0
 \]</div>
 <p>That is, there is a direct move from <span class="math notranslate nohighlight">\(\perm_i\)</span> to one of the vertices
 in larger attractors. In particular, with positive probability, one
-goes closer to <span class="math notranslate nohighlight">\(\ensuremath{v_{\textsc{win}}} and hence eventually reach \)</span>\ensuremath{v_{\textsc{win}}}.</p>
-<p>\medskip We will show that <span class="math notranslate nohighlight">\(\pi-strategies associated with a live
-and self-consistent permutation \)</span>\pi are optimal for both players.
+goes closer to <span class="math notranslate nohighlight">\(\vwin\)</span> and hence eventually reach <span class="math notranslate nohighlight">\(\vwin\)</span>.</p>
+<p>\medskip We will show that <span class="math notranslate nohighlight">\(\perm\)</span>-strategies associated with a live
+and self-consistent permutation <span class="math notranslate nohighlight">\(\perm\)</span> are optimal for both players.
 And that such a permutation always exists. We start with the
 correctness, and will turn to the existence later.</p>
 </div>
 <div class="section" id="correctness-of-live-and-self-consistent-permutations">
 <h3>Correctness of live and self-consistent permutations<a class="headerlink" href="#correctness-of-live-and-self-consistent-permutations" title="Permalink to this headline">¶</a></h3>
 <p>We first give some properties always satisfied by strategies
-<span class="math notranslate nohighlight">\(\sigma_\pi and \)</span>\tau_\pi without any condition on <span class="math notranslate nohighlight">\(\pi, and
-refine these properties to show that \)</span>\sigma_\pi and $\tau_\pi
+<span class="math notranslate nohighlight">\(\sigma_\perm\)</span> and <span class="math notranslate nohighlight">\(\tau_\perm\)</span> without any condition on <span class="math notranslate nohighlight">\(\perm\)</span>, and
+refine these properties to show that <span class="math notranslate nohighlight">\(\sigma_\perm\)</span> and <span class="math notranslate nohighlight">\(\tau_\perm\)</span>
 are (local) best responses to each others, when the permutation is
 self-consistent.</p>
 <div class="proof lemma admonition" id="lemma-6">
 <p class="admonition-title"><span class="caption-number">Lemma 209 </span> (NEEDS TITLE AND LABEL)</p>
 <div class="lemma-content section" id="proof-content">
 <p>\label{stoch:lemma2}
-We write (\ddag) for the assumption that $\pi is self-consistent.</p>
+We write (\ddag) for the assumption that <span class="math notranslate nohighlight">\(\perm\)</span> is self-consistent.</p>
 <ol class="simple">
-<li><p><span class="math notranslate nohighlight">\(\val_\pi\ensuremath{v_{\textsc{lose}}} = 0\)</span> and <span class="math notranslate nohighlight">\(\val_\pi\ensuremath{v_{\textsc{win}}} = 1\)</span>;</p></li>
-<li><p>for every <span class="math notranslate nohighlight">\(1 \le i \le k\)</span>, for every <span class="math notranslate nohighlight">\(v \in W_\pii\)</span>,
-<span class="math notranslate nohighlight">\(\val_\piv) = \val_\pi\perm_i)\)</span>;</p></li>
-<li><p>For every $v \in V_\mathrm{Eve}</p></li>
+<li><p><span class="math notranslate nohighlight">\(\val_\perm(\vlose) = 0\)</span> and <span class="math notranslate nohighlight">\(\val_\perm(\vwin) = 1\)</span>;</p></li>
+<li><p>for every <span class="math notranslate nohighlight">\(1 \le i \le k\)</span>, for every <span class="math notranslate nohighlight">\(v \in W_\perm^i\)</span>,
+<span class="math notranslate nohighlight">\(\val_\perm(v) = \val_\perm(\perm_i)\)</span>;</p></li>
+<li><p>For every <span class="math notranslate nohighlight">\(v \in \Evevertices\)</span>,</p></li>
 </ol>
 <div class="math notranslate nohighlight">
 \[
-    \val_\piv) = \val_\pi\sigma_\piv)) \stackrel{(\ddag)}{=}
-    \max_{w\ \text{s.t.}\ (v,w) \in E} \val_\piw)
+    \val_\perm(v) = \val_\perm(\sigma_\perm(v)) \stackrel{(\ddag)}{=}
+    \max_{w\ \text{s.t.}\ (v,w) \in E} \val_\perm(w)
     \]</div>
 <ol class="simple">
-<li><p>For every $v \in V_\mathrm{Adam}</p></li>
+<li><p>For every <span class="math notranslate nohighlight">\(v \in \Adamvertices\)</span>,</p></li>
 </ol>
 <div class="math notranslate nohighlight">
 \[
-    \val_\piv) = \val_\pi\tau_\piv)) \stackrel{(\ddag)}{=}
-    \min_{w\ \text{s.t.}\ (v,w) \in E} \val_\piw)
+    \val_\perm(v) = \val_\perm(\tau_\perm(v)) \stackrel{(\ddag)}{=}
+    \min_{w\ \text{s.t.}\ (v,w) \in E} \val_\perm(w)
     \]</div>
 <ol class="simple">
-<li><p>For every <span class="math notranslate nohighlight">\(v \in \vertices_{\text{Rand}}, \)</span>\val_\piv) = \sum_{w<br />
-\text{s.t.}\ (v,w) \in E} \delta(v)(w) \cdot \val_\piw)$.</p></li>
+<li><p>For every <span class="math notranslate nohighlight">\(v \in \Randomvertices\)</span>, <span class="math notranslate nohighlight">\(\val_\perm(v) = \sum_{w\
+  \text{s.t.}\ (v,w) \in E} \delta(v)(w) \cdot \val_\perm(w)\)</span>.</p></li>
 </ol>
 <p>\label{stoch:lemma2}
-We write (\ddag) for the assumption that $\pi is self-consistent.</p>
+We write (\ddag) for the assumption that <span class="math notranslate nohighlight">\(\perm\)</span> is self-consistent.</p>
 <ol class="simple">
-<li><p><span class="math notranslate nohighlight">\(\val_\pi\ensuremath{v_{\textsc{lose}}} = 0\)</span> and <span class="math notranslate nohighlight">\(\val_\pi\ensuremath{v_{\textsc{win}}} = 1\)</span>;</p></li>
-<li><p>for every <span class="math notranslate nohighlight">\(1 \le i \le k\)</span>, for every <span class="math notranslate nohighlight">\(v \in W_\pii\)</span>,
-<span class="math notranslate nohighlight">\(\val_\piv) = \val_\pi\perm_i)\)</span>;</p></li>
-<li><p>For every $v \in V_\mathrm{Eve}</p></li>
+<li><p><span class="math notranslate nohighlight">\(\val_\perm(\vlose) = 0\)</span> and <span class="math notranslate nohighlight">\(\val_\perm(\vwin) = 1\)</span>;</p></li>
+<li><p>for every <span class="math notranslate nohighlight">\(1 \le i \le k\)</span>, for every <span class="math notranslate nohighlight">\(v \in W_\perm^i\)</span>,
+<span class="math notranslate nohighlight">\(\val_\perm(v) = \val_\perm(\perm_i)\)</span>;</p></li>
+<li><p>For every <span class="math notranslate nohighlight">\(v \in \Evevertices\)</span>,</p></li>
 </ol>
 <div class="math notranslate nohighlight">
 \[
-    \val_\piv) = \val_\pi\sigma_\piv)) \stackrel{(\ddag)}{=}
-    \max_{w\ \text{s.t.}\ (v,w) \in E} \val_\piw)
+    \val_\perm(v) = \val_\perm(\sigma_\perm(v)) \stackrel{(\ddag)}{=}
+    \max_{w\ \text{s.t.}\ (v,w) \in E} \val_\perm(w)
     \]</div>
 <ol class="simple">
-<li><p>For every $v \in V_\mathrm{Adam}</p></li>
+<li><p>For every <span class="math notranslate nohighlight">\(v \in \Adamvertices\)</span>,</p></li>
 </ol>
 <div class="math notranslate nohighlight">
 \[
-    \val_\piv) = \val_\pi\tau_\piv)) \stackrel{(\ddag)}{=}
-    \min_{w\ \text{s.t.}\ (v,w) \in E} \val_\piw)
+    \val_\perm(v) = \val_\perm(\tau_\perm(v)) \stackrel{(\ddag)}{=}
+    \min_{w\ \text{s.t.}\ (v,w) \in E} \val_\perm(w)
     \]</div>
 <ol class="simple">
-<li><p>For every <span class="math notranslate nohighlight">\(v \in \vertices_{\text{Rand}}, \)</span>\val_\piv) = \sum_{w<br />
-\text{s.t.}\ (v,w) \in E} \delta(v)(w) \cdot \val_\piw)$.</p></li>
+<li><p>For every <span class="math notranslate nohighlight">\(v \in \Randomvertices\)</span>, <span class="math notranslate nohighlight">\(\val_\perm(v) = \sum_{w\
+  \text{s.t.}\ (v,w) \in E} \delta(v)(w) \cdot \val_\perm(w)\)</span>.</p></li>
 </ol>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
 <p>The first item is obvious.</p>
-<p>For every <span class="math notranslate nohighlight">\(v \in W_\pii\)</span>, up to the first visit to a random
-vertex, the strategy profile <span class="math notranslate nohighlight">\((\sigma_\pi\tau_\pi\)</span> generates a
+<p>For every <span class="math notranslate nohighlight">\(v \in W_\perm^i\)</span>, up to the first visit to a random
+vertex, the strategy profile <span class="math notranslate nohighlight">\((\sigma_\perm,\tau_\perm)\)</span> generates a
 unique path. So we can speak of the first random vertex encountered
-from <span class="math notranslate nohighlight">\(v\)</span> when applying <span class="math notranslate nohighlight">\((\sigma_\pi\tau_\pi\)</span>. By definition of
-<span class="math notranslate nohighlight">\(\sigma_\pi (attractor to \)</span>{\perm_i,\ldots,\perm_k,\ensuremath{v_{\textsc{win}}}}<span class="math notranslate nohighlight">\() and
-  \)</span>\tau_\pi (trapping strategy avoiding
-<span class="math notranslate nohighlight">\(\{\perm_{i+1},\ldots,\perm_k,\ensuremath{v_{\textsc{win}}}}\)</span>), this random vertex can only
+from <span class="math notranslate nohighlight">\(v\)</span> when applying <span class="math notranslate nohighlight">\((\sigma_\perm,\tau_\perm)\)</span>. By definition of
+<span class="math notranslate nohighlight">\(\sigma_\perm\)</span> (attractor to <span class="math notranslate nohighlight">\(\{\perm_i,\ldots,\perm_k,\vwin\}\)</span>) and
+<span class="math notranslate nohighlight">\(\tau_\perm\)</span> (trapping strategy avoiding
+<span class="math notranslate nohighlight">\(\{\perm_{i+1},\ldots,\perm_k,\vwin\}\)</span>), this random vertex can only
 be <span class="math notranslate nohighlight">\(\perm_i\)</span>. According values follow, proving the second item.</p>
-<p>Assume <span class="math notranslate nohighlight">\(v \in V_\mEvecap W_\pii\)</span>.  By definition of
-<span class="math notranslate nohighlight">\(\sigma_\pi (being an attractor strategy), \)</span>\sigma_\piv) \in
-W_\pii \cup {\perm_i,\ldots,\perm_k,\ensuremath{v_{\textsc{win}}}}<span class="math notranslate nohighlight">\(. Dually, since \)</span>v
-\notin W_\pi{\ge i+1}<span class="math notranslate nohighlight">\(, \)</span>\sigma_\piv) \notin
-{\perm_{i+1},\ldots,\perm_k,\ensuremath{v_{\textsc{win}}}}<span class="math notranslate nohighlight">\(. Hence, \)</span>\sigma_\piv) \in
-W_\pii \cup {\perm_i} = W_\pii<span class="math notranslate nohighlight">\(, and we get that
-  \)</span>\val_\piv) = \val_\pi\perm_i) = \val_\pi\sigma_\piv))<span class="math notranslate nohighlight">\(.
-  Assume (towards a contradiction) that there is \)</span>w \in V
-such that <span class="math notranslate nohighlight">\((v,w) \in E\)</span> and <span class="math notranslate nohighlight">\(\val_\piw)&gt;\val_\piv)\)</span>.  Since
-<span class="math notranslate nohighlight">\(\val_\piw) &gt; \val_\piv) = \val_\pi\perm_i)\)</span>, by
-self-consistence, it is the case that <span class="math notranslate nohighlight">\(w \in W_\pij\)</span> with <span class="math notranslate nohighlight">\(j &gt; i\)</span>
-(with <span class="math notranslate nohighlight">\(\val_\piw) = \val_\pi\perm_j)\)</span>). But then, we can
-deduce that <span class="math notranslate nohighlight">\(v \in \ensuremath{**DetAtt**}w) \subseteq
-  \ensuremath{**DetAtt**}\{\perm_j,\ldots,\perm_k,\ensuremath{v_{\textsc{win}}}})\)</span>, which is not the case,
-since <span class="math notranslate nohighlight">\(v \notin W_\pi{\ge i+1} \supseteq W_\pij\)</span>. There is
-therefore a contradiction, and we can conclude that <span class="math notranslate nohighlight">\(\val_\piv) =
-  \max_{w\ \text{s.t.}\ (v,w) \in E} \val_\piw)\)</span>.</p>
-<p>Assume <span class="math notranslate nohighlight">\(v \in V_\mAdamcap W_\pii\)</span>. By definition of
-<span class="math notranslate nohighlight">\(\sigma_\pi (being a trapping strategy), \)</span>\tau_\piv) \notin
-{\perm_{i+1},\ldots,\perm_k,\ensuremath{v_{\textsc{win}}}}<span class="math notranslate nohighlight">\(. However since \)</span>v \in
-W_\pii<span class="math notranslate nohighlight">\(, we nevertheless have that \)</span>\tau_\piv) \in W_\pii
-\cup {\perm_i,\ldots,\perm_k,\ensuremath{v_{\textsc{win}}}}<span class="math notranslate nohighlight">\(, hence \)</span>\tau_\piv) \in
-W_\pii \cup {\perm_i} = W_\pii<span class="math notranslate nohighlight">\(. Hence \)</span>\val_\piv) =
-\val_\pi\perm_i) = \val_\pi\tau_\piv))<span class="math notranslate nohighlight">\(.  Assume (towards a
-  contradiction) that there is \)</span>w \in V such that <span class="math notranslate nohighlight">\((v,w) \in
-  E\)</span> and <span class="math notranslate nohighlight">\(\val_\piw)&lt;\val_\piv)\)</span>. As in the previous item, by
-self-consistence, <span class="math notranslate nohighlight">\(w \in W_\pij\)</span> with <span class="math notranslate nohighlight">\(j&lt;i\)</span>. But, <span class="math notranslate nohighlight">\(v\)</span> can only be
+<p>Assume <span class="math notranslate nohighlight">\(v \in \Evevertices \cap W_\perm^i\)</span>.  By definition of
+<span class="math notranslate nohighlight">\(\sigma_\perm\)</span> (being an attractor strategy), <span class="math notranslate nohighlight">\(\sigma_\perm(v) \in
+  W_\perm^i \cup \{\perm_i,\ldots,\perm_k,\vwin\}\)</span>. Dually, since <span class="math notranslate nohighlight">\(v
+  \notin W_\perm^{\ge i+1}\)</span>, <span class="math notranslate nohighlight">\(\sigma_\perm(v) \notin
+  \{\perm_{i+1},\ldots,\perm_k,\vwin\}\)</span>. Hence, <span class="math notranslate nohighlight">\(\sigma_\perm(v) \in
+  W_\perm^i \cup \{\perm_i\} = W_\perm^i\)</span>, and we get that
+<span class="math notranslate nohighlight">\(\val_\perm(v) = \val_\perm(\perm_i) = \val_\perm(\sigma_\perm(v))\)</span>.
+Assume (towards a contradiction) that there is <span class="math notranslate nohighlight">\(w \in \vertices\)</span>
+such that <span class="math notranslate nohighlight">\((v,w) \in E\)</span> and <span class="math notranslate nohighlight">\(\val_\perm(w)&gt;\val_\perm(v)\)</span>.  Since
+<span class="math notranslate nohighlight">\(\val_\perm(w) &gt; \val_\perm(v) = \val_\perm(\perm_i)\)</span>, by
+self-consistence, it is the case that <span class="math notranslate nohighlight">\(w \in W_\perm^j\)</span> with <span class="math notranslate nohighlight">\(j &gt; i\)</span>
+(with <span class="math notranslate nohighlight">\(\val_\perm(w) = \val_\perm(\perm_j)\)</span>). But then, we can
+deduce that <span class="math notranslate nohighlight">\(v \in \DetAtt(w) \subseteq
+  \DetAtt(\{\perm_j,\ldots,\perm_k,\vwin\})\)</span>, which is not the case,
+since <span class="math notranslate nohighlight">\(v \notin W_\perm^{\ge i+1} \supseteq W_\perm^j\)</span>. There is
+therefore a contradiction, and we can conclude that <span class="math notranslate nohighlight">\(\val_\perm(v) =
+  \max_{w\ \text{s.t.}\ (v,w) \in E} \val_\perm(w)\)</span>.</p>
+<p>Assume <span class="math notranslate nohighlight">\(v \in \Adamvertices \cap W_\perm^i\)</span>. By definition of
+<span class="math notranslate nohighlight">\(\sigma_\perm\)</span> (being a trapping strategy), <span class="math notranslate nohighlight">\(\tau_\perm(v) \notin
+  \{\perm_{i+1},\ldots,\perm_k,\vwin\}\)</span>. However since <span class="math notranslate nohighlight">\(v \in
+  W_\perm^i\)</span>, we nevertheless have that <span class="math notranslate nohighlight">\(\tau_\perm(v) \in W_\perm^i
+  \cup \{\perm_i,\ldots,\perm_k,\vwin\}\)</span>, hence <span class="math notranslate nohighlight">\(\tau_\perm(v) \in
+  W_\perm^i \cup \{\perm_i\} = W_\perm^i\)</span>. Hence <span class="math notranslate nohighlight">\(\val_\perm(v) =
+  \val_\perm(\perm_i) = \val_\perm(\tau_\perm(v))\)</span>.  Assume (towards a
+contradiction) that there is <span class="math notranslate nohighlight">\(w \in \vertices\)</span> such that <span class="math notranslate nohighlight">\((v,w) \in
+  E\)</span> and <span class="math notranslate nohighlight">\(\val_\perm(w)&lt;\val_\perm(v)\)</span>. As in the previous item, by
+self-consistence, <span class="math notranslate nohighlight">\(w \in W_\perm^j\)</span> with <span class="math notranslate nohighlight">\(j&lt;i\)</span>. But, <span class="math notranslate nohighlight">\(v\)</span> can only be
 in a deterministic attractor if all its successors already are. This
-contradicts the fact that <span class="math notranslate nohighlight">\(w \in W_\pij\)</span>, hence <span class="math notranslate nohighlight">\(w \notin
-  W_\pi{\ge j+1} \supseteq W_\pii\)</span>. Hence, we conclude that
-<span class="math notranslate nohighlight">\(\val_\piv) = \min_{w\ \text{s.t.}\ (v,w) \in E} \val_\piw)\)</span>.</p>
+contradicts the fact that <span class="math notranslate nohighlight">\(w \in W_\perm^j\)</span>, hence <span class="math notranslate nohighlight">\(w \notin
+  W_\perm^{\ge j+1} \supseteq W_\perm^i\)</span>. Hence, we conclude that
+<span class="math notranslate nohighlight">\(\val_\perm(v) = \min_{w\ \text{s.t.}\ (v,w) \in E} \val_\perm(w)\)</span>.</p>
 <p>The fifth item is straightforward hence omitted.  \qed</p>
 </div>
-<p>As a consequence of <code class="xref prf prf-ref docutils literal notranslate"><span class="pre">6-lem:lemma2</span></code>, we get that <span class="math notranslate nohighlight">\(\val_\pi
-is a fixpoint of Bellman's equations, hence it is larger than (or
-equal to) the least fixpoint of Bellman's equations, that is \)</span>\textrm{val}$:</p>
+<p>As a consequence of <code class="xref prf prf-ref docutils literal notranslate"><span class="pre">6-lem:lemma2</span></code>, we get that <span class="math notranslate nohighlight">\(\val_\perm\)</span>
+is a fixpoint of Bellman’s equations, hence it is larger than (or
+equal to) the least fixpoint of Bellman’s equations, that is <span class="math notranslate nohighlight">\(\val^*\)</span>:</p>
 <div class="proof corollary admonition" id="corollary-7">
 <p class="admonition-title"><span class="caption-number">Corollary 210 </span> (NEEDS TITLE AND LABEL)</p>
 <div class="corollary-content section" id="proof-content">
-<p>Assume <span class="math notranslate nohighlight">\(\pi is self-consistent.  Then for every \)</span>v \in
-V, <span class="math notranslate nohighlight">\(\textrm{val}(v) \le \val_\piv)\)</span>.</p>
-<p>Assume <span class="math notranslate nohighlight">\(\pi is self-consistent.  Then for every \)</span>v \in
-V, <span class="math notranslate nohighlight">\(\textrm{val}(v) \le \val_\piv)\)</span>.</p>
+<p>Assume <span class="math notranslate nohighlight">\(\perm\)</span> is self-consistent.  Then for every <span class="math notranslate nohighlight">\(v \in
+  \vertices\)</span>, <span class="math notranslate nohighlight">\(\val^*(v) \le \val_\perm(v)\)</span>.</p>
+<p>Assume <span class="math notranslate nohighlight">\(\perm\)</span> is self-consistent.  Then for every <span class="math notranslate nohighlight">\(v \in
+  \vertices\)</span>, <span class="math notranslate nohighlight">\(\val^*(v) \le \val_\perm(v)\)</span>.</p>
 </div>
 </div><p>The converse inequality is not true for general or self-consistent
 permutations, but will require the liveness property. One of the main
-advantages of a live permutation <span class="math notranslate nohighlight">\(\pi is that it induces a
-stopping MDP when \Eve plays according to \)</span>\sigma_\pi: \textrm{Adam}will not be able to prevent the game converging to <span class="math notranslate nohighlight">\(\ensuremath{v_{\textsc{lose}}} and \)</span>\ensuremath{v_{\textsc{win}}}.</p>
+advantages of a live permutation <span class="math notranslate nohighlight">\(\perm\)</span> is that it induces a
+stopping MDP when \Eve plays according to <span class="math notranslate nohighlight">\(\sigma_\perm\)</span>: \Adam
+will not be able to prevent the game converging to <span class="math notranslate nohighlight">\(\vlose\)</span> and <span class="math notranslate nohighlight">\(\vwin\)</span>.</p>
 <div class="proof lemma admonition" id="lemma-8">
 <p class="admonition-title"><span class="caption-number">Lemma 211 </span> (NEEDS TITLE AND LABEL)</p>
 <div class="lemma-content section" id="proof-content">
 <p>\label{stoch:lemma:stopping}
-Let <span class="math notranslate nohighlight">\(\pi be a live permutation. Then, for every \textrm{Adam}s strategy
-  \)</span>\tau<span class="math notranslate nohighlight">\(, for every vertex \)</span>v$:</p>
+Let <span class="math notranslate nohighlight">\(\perm\)</span> be a live permutation. Then, for every \Adam’s strategy
+<span class="math notranslate nohighlight">\(\tau\)</span>, for every vertex <span class="math notranslate nohighlight">\(v\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
-  \mathbb{P}v_{\sigma_\pi\tau} (\mathtt{Reach}\{\ensuremath{v_{\textsc{lose}}}\ensuremath{v_{\textsc{win}}}})) = 1
+  \probm^v_{\sigma_\perm,\tau} (\Reach(\{\vlose,\vwin\})) = 1
   \]</div>
 <p>\label{stoch:lemma:stopping}
-Let <span class="math notranslate nohighlight">\(\pi be a live permutation. Then, for every \textrm{Adam}s strategy
-  \)</span>\tau<span class="math notranslate nohighlight">\(, for every vertex \)</span>v$:</p>
+Let <span class="math notranslate nohighlight">\(\perm\)</span> be a live permutation. Then, for every \Adam’s strategy
+<span class="math notranslate nohighlight">\(\tau\)</span>, for every vertex <span class="math notranslate nohighlight">\(v\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
-  \mathbb{P}v_{\sigma_\pi\tau} (\mathtt{Reach}\{\ensuremath{v_{\textsc{lose}}}\ensuremath{v_{\textsc{win}}}})) = 1
+  \probm^v_{\sigma_\perm,\tau} (\Reach(\{\vlose,\vwin\})) = 1
   \]</div>
 </div>
 </div><div class="dropdown tip admonition">
@@ -1237,86 +1290,86 @@ Let <span class="math notranslate nohighlight">\(\pi be a live permutation. Then
 Let</p>
 <div class="math notranslate nohighlight">
 \[
-  \alpha = \min_{1 \le i \le k} \delta(\perm_i) \big(W_\pi{\ge
+  \alpha = \min_{1 \le i \le k} \delta(\perm_i) \big(W_\perm^{\ge
     i+1}\big)
   \]</div>
 <p>By definition of a live permutation, <span class="math notranslate nohighlight">\(\alpha&gt;0\)</span>.</p>
 <p>We write <span class="math notranslate nohighlight">\(V_i\)</span> for the random variable representing the <span class="math notranslate nohighlight">\(i\)</span>-th state
 of a run.</p>
-<p>By definition of <span class="math notranslate nohighlight">\(\alpha\)</span>, for every <span class="math notranslate nohighlight">\(v \in V, for every \)</span>1
-\le i \le k<span class="math notranslate nohighlight">\( and for every \)</span>l \ge 0$,</p>
+<p>By definition of <span class="math notranslate nohighlight">\(\alpha\)</span>, for every <span class="math notranslate nohighlight">\(v \in \vertices\)</span>, for every <span class="math notranslate nohighlight">\(1
+  \le i \le k\)</span> and for every <span class="math notranslate nohighlight">\(l \ge 0\)</span>,</p>
 <div class="math notranslate nohighlight">
 \[
-  \mathbb{P}v_{\sigma_\pi\tau}\Big(V_{l+1} \in W_\pi{\ge i+1} \mid
+  \probm^v_{\sigma_\perm,\tau}\Big(V_{l+1} \in W_\perm^{\ge i+1} \mid
   V_l = \perm_i\Big) \ge \alpha
   \]</div>
-<p>Also, for every <span class="math notranslate nohighlight">\(1 \le i \le k\)</span>, for every <span class="math notranslate nohighlight">\(v \in V, for
-  every \)</span>l \ge 0$,</p>
+<p>Also, for every <span class="math notranslate nohighlight">\(1 \le i \le k\)</span>, for every <span class="math notranslate nohighlight">\(v \in \vertices\)</span>, for
+every <span class="math notranslate nohighlight">\(l \ge 0\)</span>,</p>
 <div class="math notranslate nohighlight">
 \[
-  \mathbb{P}v_{\sigma_\pi\tau}\Big(\exists h &lt; |W_\pii|\
-  \text{s.t.}\ V_{l+h} \in \{\perm_i,\ldots,\perm_k,\ensuremath{v_{\textsc{win}}}} \mid V_l
-  \in W_\pii\Big)=1
+  \probm^v_{\sigma_\perm,\tau}\Big(\exists h &lt; |W_\perm^i|\
+  \text{s.t.}\ V_{l+h} \in \{\perm_i,\ldots,\perm_k,\vwin\} \mid V_l
+  \in W_\perm^i\Big)=1
   \]</div>
-<p>since $\sigma_\pi plays according to attractor strategies in
+<p>since <span class="math notranslate nohighlight">\(\sigma_\perm\)</span> plays according to attractor strategies in
 according subsets of vertices.</p>
-<p>Hence we deduce that for every <span class="math notranslate nohighlight">\(v \in V, for every \)</span>l \ge
-0$,</p>
+<p>Hence we deduce that for every <span class="math notranslate nohighlight">\(v \in \vertices\)</span>, for every <span class="math notranslate nohighlight">\(l \ge
+  0\)</span>,</p>
 <div class="math notranslate nohighlight">
 \[
-  \mathbb{P}v_{\sigma_\pi\tau}\Big(V_{l+|V}=\ensuremath{v_{\textsc{win}}}\mid V_l
-  \ne \ensuremath{v_{\textsc{lose}}}Big) \ge \alpha^k
+  \probm^v_{\sigma_\perm,\tau}\Big(V_{l+|\vertices|}=\vwin \mid V_l
+  \ne \vlose\Big) \ge \alpha^k
   \]</div>
 <p>which we can rewrite as:</p>
 <div class="math notranslate nohighlight">
 \[
-  \mathbb{P}v_{\sigma_\pi\tau}\Big(\forall 0 \le l \le l' \le
-  l+|V,\ V_{l'} \ne \ensuremath{v_{\textsc{win}}}\mid V_l \ne \ensuremath{v_{\textsc{lose}}}Big) \le
+  \probm^v_{\sigma_\perm,\tau}\Big(\forall 0 \le l \le l' \le
+  l+|\vertices|,\ V_{l'} \ne \vwin \mid V_l \ne \vlose\Big) \le
   (1-\alpha^k)
   \]</div>
-<p>Iterating, we get that for every <span class="math notranslate nohighlight">\(i\)</span>, for every $v \in V,</p>
+<p>Iterating, we get that for every <span class="math notranslate nohighlight">\(i\)</span>, for every <span class="math notranslate nohighlight">\(v \in \vertices\)</span>,</p>
 <div class="math notranslate nohighlight">
 \[
-  \mathbb{P}v_{\sigma_\pi\tau}\Big(\forall l \le i \cdot |V,\
-  V_{l} \ne \ensuremath{v_{\textsc{win}}}\mid V_0 \ne \ensuremath{v_{\textsc{lose}}}Big) \le (1-\alpha^k)^i
+  \probm^v_{\sigma_\perm,\tau}\Big(\forall l \le i \cdot |\vertices|,\
+  V_{l} \ne \vwin \mid V_0 \ne \vlose\Big) \le (1-\alpha^k)^i
   \]</div>
-<p>We  deduce that for every $v \in V,</p>
+<p>We  deduce that for every <span class="math notranslate nohighlight">\(v \in \vertices\)</span>,</p>
 <div class="math notranslate nohighlight">
 \[
-  \mathbb{P}v_{\sigma_\pi\tau}(\forall l \ge 0,\ V_l \ne \ensuremath{v_{\textsc{win}}}\mid
-  V_0 \ne \ensuremath{v_{\textsc{lose}}} = 0
+  \probm^v_{\sigma_\perm,\tau}(\forall l \ge 0,\ V_l \ne \vwin \mid
+  V_0 \ne \vlose) = 0
   \]</div>
 <p>We conclude with</p>
 <div class="math notranslate nohighlight">
 \[
-  \mathbb{P}v_{\sigma_\pi\tau}(\exists l \ge 0,\ V_l = \ensuremath{v_{\textsc{win}}}\mid V_0
-  \ne \ensuremath{v_{\textsc{lose}}} = 1
+  \probm^v_{\sigma_\perm,\tau}(\exists l \ge 0,\ V_l = \vwin \mid V_0
+  \ne \vlose) = 1
   \]</div>
 <p>hence with the statement.</p>
 </div>
 <div class="proof lemma admonition" id="lemma-9">
 <p class="admonition-title"><span class="caption-number">Lemma 212 </span> (NEEDS TITLE AND LABEL)</p>
 <div class="lemma-content section" id="proof-content">
-<p>Let <span class="math notranslate nohighlight">\(\pi be a live and self-consistent permutation.  Then for
-  every \)</span>v \in V,  <span class="math notranslate nohighlight">\(\val_\piv) \le \textrm{val}(v)\)</span>.</p>
-<p>Let <span class="math notranslate nohighlight">\(\pi be a live and self-consistent permutation.  Then for
-  every \)</span>v \in V,  <span class="math notranslate nohighlight">\(\val_\piv) \le \textrm{val}(v)\)</span>.</p>
+<p>Let <span class="math notranslate nohighlight">\(\perm\)</span> be a live and self-consistent permutation.  Then for
+every <span class="math notranslate nohighlight">\(v \in \vertices\)</span>,  <span class="math notranslate nohighlight">\(\val_\perm(v) \le \val^*(v)\)</span>.</p>
+<p>Let <span class="math notranslate nohighlight">\(\perm\)</span> be a live and self-consistent permutation.  Then for
+every <span class="math notranslate nohighlight">\(v \in \vertices\)</span>,  <span class="math notranslate nohighlight">\(\val_\perm(v) \le \val^*(v)\)</span>.</p>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
-<p>Fix a pure positional \textrm{Adam}s strategy <span class="math notranslate nohighlight">\(\tau\)</span>. The tuple
-<span class="math notranslate nohighlight">\((\probm_{\sigma_\pi\tau}^v(\mathtt{Reach}\textrm{Win}))_{v \in V\)</span> is
+<p>Fix a pure positional \Adam’s strategy <span class="math notranslate nohighlight">\(\tau\)</span>. The tuple
+<span class="math notranslate nohighlight">\((\probm_{\sigma_\perm,\tau}^v(\Reach(\Win)))_{v \in \vertices}\)</span> is
 a</p>
 <p>solution to the following equations:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
   \left\{\begin{array}{ll} x_v =
-      x_{\tau(v)} &amp; \text{if}\ v \in V_\mathrm{Adam}
-      x_v = x_{\sigma_\piv)} &amp; \text{if}\ v \in V_\mathrm{Eve}
+      x_{\tau(v)} &amp; \text{if}\ v \in \Adamvertices \\
+      x_v = x_{\sigma_\perm(v)} &amp; \text{if}\ v \in \Evevertices \\
       x_v = \sum_{w\ \text{s.t.}\ (v,w) \in E} \delta(v)(w) \cdot
-      x_w  &amp; \text{if}\ v \in \vertices_{\text{Rand}}\\
-      x_{\ensuremath{v_{\textsc{win}}} = 1 \\
-      x_{\ensuremath{v_{\textsc{lose}}} = 0
+      x_w  &amp; \text{if}\ v \in \Randomvertices \\
+      x_{\vwin} = 1 \\
+      x_{\vlose} = 0
     \end{array}\right.
   \end{split}\]</div>
 <p>In particular, it is a solution to the following inequations:</p>
@@ -1324,41 +1377,41 @@ a</p>
 \[\begin{split}
   \left\{\begin{array}{ll} 
       x_v \ge \min_{w\ \text{s.t.}\ (v,w) \in E}
-      x_w &amp; \text{if}\ v \in V_\mathrm{Adam}
-      x_v = x_{\sigma_\piv)}  &amp; \text{if}\ v \in V_\mathrm{Eve}
+      x_w &amp; \text{if}\ v \in \Adamvertices \\
+      x_v = x_{\sigma_\perm(v)}  &amp; \text{if}\ v \in \Evevertices \\
       x_v = \sum_{w\ \text{s.t.}\ (v,w) \in E} \delta(v)(w) \cdot x_w
-      &amp; \text{if}\ v \in \vertices_{\text{Rand}}\\
-      x_{\ensuremath{v_{\textsc{win}}} = 1 \\
-      x_{\ensuremath{v_{\textsc{lose}}} = 0
+      &amp; \text{if}\ v \in \Randomvertices \\
+      x_{\vwin} = 1 \\
+      x_{\vlose} = 0
     \end{array}\right.
   \end{split}\]</div>
-<p>Since the MDP (when <span class="math notranslate nohighlight">\(\sigma_\pi has been fixed) is stopping (see {prf:ref}`6-lem:stopping`), there is no proper end-component
-  (except \)</span>{\ensuremath{v_{\textsc{win}}}}<span class="math notranslate nohighlight">\( and \)</span>{\ensuremath{v_{\textsc{lose}}}}<span class="math notranslate nohighlight">\(), and the above system of
-  inequations has a unique minimal solution, which is the unique
-  solution of the same system with \)</span>=<span class="math notranslate nohighlight">\( instead of \)</span>\ge$.</p>
+<p>Since the MDP (when <span class="math notranslate nohighlight">\(\sigma_\perm\)</span> has been fixed) is stopping (see <code class="xref prf prf-ref docutils literal notranslate"><span class="pre">6-lem:stopping</span></code>), there is no proper end-component
+(except <span class="math notranslate nohighlight">\(\{\vwin\}\)</span> and <span class="math notranslate nohighlight">\(\{\vlose\}\)</span>), and the above system of
+inequations has a unique minimal solution, which is the unique
+solution of the same system with <span class="math notranslate nohighlight">\(=\)</span> instead of <span class="math notranslate nohighlight">\(\ge\)</span>.</p>
 <p>On the other hand <code class="xref prf prf-ref docutils literal notranslate"><span class="pre">6-lem:lemma2</span></code> tells us that
-<span class="math notranslate nohighlight">\((\val_\piv))_{v \inV\)</span> can only be that unique
-solution. Hence, for every $v \in V:</p>
+<span class="math notranslate nohighlight">\((\val_\perm(v))_{v \in\vertices}\)</span> can only be that unique
+solution. Hence, for every <span class="math notranslate nohighlight">\(v \in \vertices\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
-  \val_\piv) \le \probm_{\sigma_\pi\tau}^v(\mathtt{Reach}\textrm{Win})
+  \val_\perm(v) \le \probm_{\sigma_\perm,\tau}^v(\Reach(\Win))
   \]</div>
 <div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}%           E}\\%         x_v = x_{\tau_\piv)} &amp; \text{if}\ v \in V_\mathrm{Adam}\\\begin{split}%         x_w \\\end{split}\\%         x_{\ensuremath{v_{\textsc{lose}}} = 0\\%     \end{aligned}\end{align} \]</div>
+\[ \begin{align}\begin{aligned}%           E}\\\begin{split}%         x_v = x_{\tau_\perm(v)} &amp; \text{if}\ v \in \Adamvertices \\\end{split}\\\begin{split}%         x_w \\\end{split}\\%         x_{\vlose} = 0\\%     \end{aligned}\end{align} \]</div>
 <p>$$</p>
-<p>Since this holds for every pure positional strategy <span class="math notranslate nohighlight">\(\tau\)</span> of \textrm{Adam}
-we conclude that for every <span class="math notranslate nohighlight">\(v \in V,
-  \)</span>\val_\piv) \le \textrm{val}(v)$. \qed</p>
+<p>Since this holds for every pure positional strategy <span class="math notranslate nohighlight">\(\tau\)</span> of \Adam,
+we conclude that for every <span class="math notranslate nohighlight">\(v \in \vertices\)</span>,
+<span class="math notranslate nohighlight">\(\val_\perm(v) \le \val^*(v)\)</span>. \qed</p>
 </div>
 <div class="proof corollary admonition" id="corollary-10">
 <p class="admonition-title"><span class="caption-number">Corollary 213 </span> (NEEDS TITLE AND LABEL)</p>
 <div class="corollary-content section" id="proof-content">
 <p>\label{stoch:coro}
-Let <span class="math notranslate nohighlight">\(\pi be a live and self-consistent permutation. Then, for
-  every \)</span>v \in V, <span class="math notranslate nohighlight">\(\textrm{val}(v) = \val_\piv)\)</span>.</p>
+Let <span class="math notranslate nohighlight">\(\perm\)</span> be a live and self-consistent permutation. Then, for
+every <span class="math notranslate nohighlight">\(v \in \vertices\)</span>, <span class="math notranslate nohighlight">\(\val^*(v) = \val_\perm(v)\)</span>.</p>
 <p>\label{stoch:coro}
-Let <span class="math notranslate nohighlight">\(\pi be a live and self-consistent permutation. Then, for
-  every \)</span>v \in V, <span class="math notranslate nohighlight">\(\textrm{val}(v) = \val_\piv)\)</span>.</p>
+Let <span class="math notranslate nohighlight">\(\perm\)</span> be a live and self-consistent permutation. Then, for
+every <span class="math notranslate nohighlight">\(v \in \vertices\)</span>, <span class="math notranslate nohighlight">\(\val^*(v) = \val_\perm(v)\)</span>.</p>
 </div>
 </div></div>
 <div class="section" id="existence-of-a-live-and-self-consistent-permutation">
@@ -1367,24 +1420,24 @@ Let <span class="math notranslate nohighlight">\(\pi be a live and self-consiste
 <p class="admonition-title"><span class="caption-number">Lemma 214 </span> (NEEDS TITLE AND LABEL)</p>
 <div class="lemma-content section" id="proof-content">
 <p>\label{stoch:lemma:croissant}
-Let <span class="math notranslate nohighlight">\(\pi be a live permutation such that
-  \[
-  \textrm{val}(\perm_1) \le \textrm{val}(\perm_2) \le \ldots \le \textrm{val}(\perm_k)
-  \)</span>$</p>
-<p>Then, $\pi is self-consistent.</p>
+Let <span class="math notranslate nohighlight">\(\perm\)</span> be a live permutation such that
+[
+\val^<em>(\perm_1) \le \val^</em>(\perm_2) \le \ldots \le \val^*(\perm_k)
+$$</p>
+<p>Then, <span class="math notranslate nohighlight">\(\perm\)</span> is self-consistent.</p>
 <p>\label{stoch:lemma:croissant}
-Let <span class="math notranslate nohighlight">\(\pi be a live permutation such that
-  \[
-  \textrm{val}(\perm_1) \le \textrm{val}(\perm_2) \le \ldots \le \textrm{val}(\perm_k)
-  \)</span>$</p>
-<p>Then, $\pi is self-consistent.</p>
+Let <span class="math notranslate nohighlight">\(\perm\)</span> be a live permutation such that
+[
+\val^<em>(\perm_1) \le \val^</em>(\perm_2) \le \ldots \le \val^*(\perm_k)
+$$</p>
+<p>Then, <span class="math notranslate nohighlight">\(\perm\)</span> is self-consistent.</p>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
-<p>We will show that for every vertex <span class="math notranslate nohighlight">\(v \in V, \)</span>\textrm{val}(v) =
-\val_\piv)$. This will ne enough for proving the expected result.</p>
+<p>We will show that for every vertex <span class="math notranslate nohighlight">\(v \in \vertices\)</span>, <span class="math notranslate nohighlight">\(\val^*(v) =
+  \val_\perm(v)\)</span>. This will ne enough for proving the expected result.</p>
 <p>We first show a counterpart to <code class="xref prf prf-ref docutils literal notranslate"><span class="pre">6-lem:lemma2</span></code> for
-<span class="math notranslate nohighlight">\(\textrm{val}\)</span>:</p>
+<span class="math notranslate nohighlight">\(\val^*\)</span>:</p>
 <div class="proof lemma admonition" id="lemma-12">
 <p class="admonition-title"><span class="caption-number">Lemma 215 </span> (NEEDS TITLE AND LABEL)</p>
 <div class="lemma-content section" id="proof-content">
@@ -1392,39 +1445,39 @@ Let <span class="math notranslate nohighlight">\(\pi be a live permutation such 
 </pre></div>
 </div>
 <ol>
-<li><p><span class="math notranslate nohighlight">\(\textrm{val}(\ensuremath{v_{\textsc{lose}}} = 0\)</span> and <span class="math notranslate nohighlight">\(\textrm{val}(\ensuremath{v_{\textsc{win}}} = 1\)</span>;</p></li>
-<li><p>for every <span class="math notranslate nohighlight">\(1 \le i \le k\)</span>, for every <span class="math notranslate nohighlight">\(v \in W_\pii\)</span>,
-<span class="math notranslate nohighlight">\(\textrm{val}(v) = \textrm{val}(\perm_i)\)</span>.</p>
+<li><p><span class="math notranslate nohighlight">\(\val^*(\vlose) = 0\)</span> and <span class="math notranslate nohighlight">\(\val^*(\vwin) = 1\)</span>;</p></li>
+<li><p>for every <span class="math notranslate nohighlight">\(1 \le i \le k\)</span>, for every <span class="math notranslate nohighlight">\(v \in W_\perm^i\)</span>,
+<span class="math notranslate nohighlight">\(\val^*(v) = \val^*(\perm_i)\)</span>.</p>
 <p>Same hypotheses as <code class="xref prf prf-ref docutils literal notranslate"><span class="pre">6-lem:croissant</span></code>. Then:</p>
 </li>
-<li><p><span class="math notranslate nohighlight">\(\textrm{val}(\ensuremath{v_{\textsc{lose}}} = 0\)</span> and <span class="math notranslate nohighlight">\(\textrm{val}(\ensuremath{v_{\textsc{win}}} = 1\)</span>;</p></li>
-<li><p>for every <span class="math notranslate nohighlight">\(1 \le i \le k\)</span>, for every <span class="math notranslate nohighlight">\(v \in W_\pii\)</span>,
-<span class="math notranslate nohighlight">\(\textrm{val}(v) = \textrm{val}(\perm_i)\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\val^*(\vlose) = 0\)</span> and <span class="math notranslate nohighlight">\(\val^*(\vwin) = 1\)</span>;</p></li>
+<li><p>for every <span class="math notranslate nohighlight">\(1 \le i \le k\)</span>, for every <span class="math notranslate nohighlight">\(v \in W_\perm^i\)</span>,
+<span class="math notranslate nohighlight">\(\val^*(v) = \val^*(\perm_i)\)</span>.</p></li>
 </ol>
 </div>
 </div></div>
 <p>\begin{proof}
 Notice that item 1 is obvious.</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>We then focus on item 2.  Assume $v \in W_\pii$, and define
-strategy $\sigma^*$ from $v$ as $\sigma_\pi (attractor strategy
-to $\{\perm_i,\ldots,\perm_k,\ensuremath{v_{\textsc{win}}}}$) until $\ensuremath{v_{\textsc{win}}} or a random
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>We then focus on item 2.  Assume $v \in W_\perm^i$, and define
+strategy $\sigma^*$ from $v$ as $\sigma_\perm$ (attractor strategy
+to $\{\perm_i,\ldots,\perm_k,\vwin\}$) until $\vwin$ or a random
 vertex $\pi_j$ ($j \ge i$) is reached; in the latter case, switch
 to an optimal strategy out of $\pi_j$. We obviously get that for
-every strategy $\tau$ for \textrm{Adam}
-$\probm_{\sigma^*,\tau}^v(\mathtt{Reach}\{\ensuremath{v_{\textsc{win}}}})) \ge \min_{i \le j \le
-  k}\textrm{val}(\perm_j) = \textrm{val}(\perm_i)$. Hence $\textrm{val}(v) \ge
-\textrm{val}(\perm_i)$.
+every strategy $\tau$ for \Adam,
+$\probm_{\sigma^*,\tau}^v(\Reach(\{\vwin\})) \ge \min_{i \le j \le
+  k}\val^*(\perm_j) = \val^*(\perm_i)$. Hence $\val^*(v) \ge
+\val^*(\perm_i)$.
 
-Conversely define strategy $\tau^*$ from $v$ as $\tau_\pi
-(trapping strategy out of $\{\perm_{i+1},\ldots,\perm_k,\ensuremath{v_{\textsc{win}}}}$)
-until $\ensuremath{v_{\textsc{lose}}} or a random vertex $\pi_j$ ($j \le i$) is reached;
+Conversely define strategy $\tau^*$ from $v$ as $\tau_\perm$
+(trapping strategy out of $\{\perm_{i+1},\ldots,\perm_k,\vwin\}$)
+until $\vlose$ or a random vertex $\pi_j$ ($j \le i$) is reached;
 in the latter case, switch to an optimal strategy out of
 $\pi_j$. Note that it can a priori be the case that we never hit
-$\ensuremath{v_{\textsc{lose}}} or a random vertex, but this is good to \textrm{Adam} However we
+$\vlose$ or a random vertex, but this is good to \Adam. However we
 can conclude that for every strategy $\sigma$ for \Eve,
-$\probm_{\sigma,\tau^*}^v(\mathtt{Reach}\{\ensuremath{v_{\textsc{win}}}})) \le \max_{1 \le j \le
-  i}\textrm{val}(\perm_j) = \textrm{val}(\perm_i)$. Hence
-$\textrm{val}(v) \le \textrm{val}(\perm_i)$.
+$\probm_{\sigma,\tau^*}^v(\Reach(\{\vwin\})) \le \max_{1 \le j \le
+  i}\val^*(\perm_j) = \val^*(\perm_i)$. Hence
+$\val^*(v) \le \val^*(\perm_i)$.
 
 
 
@@ -1433,18 +1486,18 @@ This allows to conclude item 2, hence the lemma.
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
-  Both $\textrm{val}$ and $\val_\pi satisfy the system of equations:
+  Both $\val^*$ and $\val_\perm$ satisfy the system of equations:
   
 
 $$
   \left\{\begin{array}{ll} 
-      x_v = x_{\perm_i} &amp; \text{if}\ v \in W_\pii \\ 
+      x_v = x_{\perm_i} &amp; \text{if}\ v \in W_\perm^i \\ 
       
       
       x_v = \sum_{w\ \text{s.t.}\ (v,w) \in E} \delta(v)(w) \cdot x_w
-      &amp; \text{if}\ v \in \vertices_{\text{Rand}}\\
-      x_{\ensuremath{v_{\textsc{win}}} = 1 \\
-      x_{\ensuremath{v_{\textsc{lose}}} = 0
+      &amp; \text{if}\ v \in \Randomvertices \\
+      x_{\vwin} = 1 \\
+      x_{\vlose} = 0
     \end{array}\right.
   $$
 
@@ -1453,18 +1506,18 @@ $$
 
 $$
   \left\{\begin{array}{ll} 
-      x_v = x_{\perm_i} &amp; \text{if}\ v \in W_\pii \\ 
+      x_v = x_{\perm_i} &amp; \text{if}\ v \in W_\perm^i \\ 
       
       
-      x_{\perm_i} = \sum_{j=0}^{k+1} \delta(\perm_i)(W_\pij) \cdot x_{\perm_j}
+      x_{\perm_i} = \sum_{j=0}^{k+1} \delta(\perm_i)(W_\perm^j) \cdot x_{\perm_j}
       &amp; \\
-      x_{\ensuremath{v_{\textsc{win}}} = 1 \\
-      x_{\ensuremath{v_{\textsc{lose}}} = 0
+      x_{\vwin} = 1 \\
+      x_{\vlose} = 0
     \end{array}\right.
   $$
 
-  Since $\pi is live this system has a unique solution!  Hence
-  $\textrm{val} = \val_\pi, and $\pi is self-consistent.
+  Since $\perm$ is live this system has a unique solution!  Hence
+  $\val^* = \val_\perm$, and $\perm$ is self-consistent.
 \end{proof}
 
 It remains to show that there always exist  a live permutation
@@ -1475,66 +1528,66 @@ will help building an appropriate live permutation.
 
 ````{prf:lemma} NEEDS TITLE AND LABEL 
   \label{stoch:lemma:structure}
-  Let $\{\ensuremath{v_{\textsc{win}}}} \subseteq X \subseteq V$ be a subset of vertices, and
-  $Y = V \setminus \ensuremath{**DetAtt**}X)$. Then either $Y = \{\ensuremath{v_{\textsc{lose}}}}$, or there
-  is a random vertex $v \in Y$ such that $\textrm{val}(v) = \max\{\textrm{val}(w)
-  \mid w \in Y\}$ and $\delta(v)\Big(\ensuremath{**DetAtt**}X)\Big)&gt;0$.
+  Let $\{\vwin\} \subseteq X \subseteq V$ be a subset of vertices, and
+  $Y = V \setminus \DetAtt(X)$. Then either $Y = \{\vlose\}$, or there
+  is a random vertex $v \in Y$ such that $\val^*(v) = \max\{\val^*(w)
+  \mid w \in Y\}$ and $\delta(v)\Big(\DetAtt(X)\Big)&gt;0$.
  
 
   \label{stoch:lemma:structure}
-  Let $\{\ensuremath{v_{\textsc{win}}}} \subseteq X \subseteq V$ be a subset of vertices, and
-  $Y = V \setminus \ensuremath{**DetAtt**}X)$. Then either $Y = \{\ensuremath{v_{\textsc{lose}}}}$, or there
-  is a random vertex $v \in Y$ such that $\textrm{val}(v) = \max\{\textrm{val}(w)
-  \mid w \in Y\}$ and $\delta(v)\Big(\ensuremath{**DetAtt**}X)\Big)&gt;0$.
+  Let $\{\vwin\} \subseteq X \subseteq V$ be a subset of vertices, and
+  $Y = V \setminus \DetAtt(X)$. Then either $Y = \{\vlose\}$, or there
+  is a random vertex $v \in Y$ such that $\val^*(v) = \max\{\val^*(w)
+  \mid w \in Y\}$ and $\delta(v)\Big(\DetAtt(X)\Big)&gt;0$.
 
 </pre></div>
 </div>
 <div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
-<p>Let <span class="math notranslate nohighlight">\(Z = \textsf{Argmax}_Y (\textrm{val})\)</span>. We assume that there is no
-random vertex <span class="math notranslate nohighlight">\(v \in Z \cap \vertices_{\text{Rand}} such that
-  \)</span>\delta(v)\Big(\ensuremath{<strong>DetAtt</strong>}X)\Big)&gt;0<span class="math notranslate nohighlight">\(. We will show that \)</span>Z =
-{\ensuremath{v_{\textsc{lose}}}}<span class="math notranslate nohighlight">\(, which will imply \)</span>Y = {\ensuremath{v_{\textsc{lose}}}}<span class="math notranslate nohighlight">\(. To do so, we show
-  that if \)</span>v \in Z<span class="math notranslate nohighlight">\(, then \)</span>\textrm{val}(v) = 0<span class="math notranslate nohighlight">\(.  We fix \)</span>v \in Z<span class="math notranslate nohighlight">\(, and we
-  assume towards a contradiction that \)</span>\textrm{val}(v)&gt;0$.</p>
-<p>Let <span class="math notranslate nohighlight">\(\tau\)</span> be a pure positional \textrm{Adam}s strategy on <span class="math notranslate nohighlight">\(Y\)</span> avoiding
-<span class="math notranslate nohighlight">\(\ensuremath{**DetAtt**}X)\)</span>: by definition, <span class="math notranslate nohighlight">\(\tau(Y) \subseteq Y\)</span>. Also, one can
+<p>Let <span class="math notranslate nohighlight">\(Z = \textsf{Argmax}_Y (\val^*)\)</span>. We assume that there is no
+random vertex <span class="math notranslate nohighlight">\(v \in Z \cap \Randomvertices\)</span> such that
+<span class="math notranslate nohighlight">\(\delta(v)\Big(\DetAtt(X)\Big)&gt;0\)</span>. We will show that <span class="math notranslate nohighlight">\(Z =
+  \{\vlose\}\)</span>, which will imply <span class="math notranslate nohighlight">\(Y = \{\vlose\}\)</span>. To do so, we show
+that if <span class="math notranslate nohighlight">\(v \in Z\)</span>, then <span class="math notranslate nohighlight">\(\val^*(v) = 0\)</span>.  We fix <span class="math notranslate nohighlight">\(v \in Z\)</span>, and we
+assume towards a contradiction that <span class="math notranslate nohighlight">\(\val^*(v)&gt;0\)</span>.</p>
+<p>Let <span class="math notranslate nohighlight">\(\tau\)</span> be a pure positional \Adam’s strategy on <span class="math notranslate nohighlight">\(Y\)</span> avoiding
+<span class="math notranslate nohighlight">\(\DetAtt(X)\)</span>: by definition, <span class="math notranslate nohighlight">\(\tau(Y) \subseteq Y\)</span>. Also, one can
 argue that <span class="math notranslate nohighlight">\(\tau(Z) \subseteq Z\)</span>. Indeed otherwise there is <span class="math notranslate nohighlight">\(v' \in
-  Z\)</span> such that <span class="math notranslate nohighlight">\(\tau(v') \in Y \setminus Z\)</span>. Thus, <span class="math notranslate nohighlight">\(\textrm{val}(\tau(v')) &lt;
-  \textrm{val}(v')\)</span>, which is not possible since <span class="math notranslate nohighlight">\(\textrm{val}(v') = \min_{w\
-    \text{s.t.}\ (v',w) \in E} \textrm{val}(w)\)</span> (Bellman’s equations). Also
-by Bellman’s equations, if <span class="math notranslate nohighlight">\(v' \in \vertices_{\text{Rand}}\cap Z\)</span>, for
-every <span class="math notranslate nohighlight">\(w'\)</span> such that <span class="math notranslate nohighlight">\(\delta(v')(w')&gt;0\)</span>, <span class="math notranslate nohighlight">\(\textrm{val}(w') =
-  \textrm{val}(v')\)</span>. By assumption, it cannot be the case that <span class="math notranslate nohighlight">\(w' \in
-  \ensuremath{**DetAtt**}X)\)</span>, hence <span class="math notranslate nohighlight">\(w' \in Z\)</span>.  Let <span class="math notranslate nohighlight">\(v' \in Z \cap V_\mathrm{Eve}If
-  there is \)</span>w’ \notin Z<span class="math notranslate nohighlight">\( such that \)</span>(v’,w’) \in E<span class="math notranslate nohighlight">\(, then it must be
-  the case that \)</span>w’ \in Y \setminus Z<span class="math notranslate nohighlight">\(: indeed, it cannot be the case
-  that \)</span>w’ \in \ensuremath{<strong>DetAtt</strong>}X)<span class="math notranslate nohighlight">\(, otherwise \)</span>v’<span class="math notranslate nohighlight">\( would also be in
-  \)</span>\ensuremath{<strong>DetAtt</strong>}X)$.</p>
+  Z\)</span> such that <span class="math notranslate nohighlight">\(\tau(v') \in Y \setminus Z\)</span>. Thus, <span class="math notranslate nohighlight">\(\val^*(\tau(v')) &lt;
+  \val^*(v')\)</span>, which is not possible since <span class="math notranslate nohighlight">\(\val^*(v') = \min_{w\
+    \text{s.t.}\ (v',w) \in E} \val^*(w)\)</span> (Bellman’s equations). Also
+by Bellman’s equations, if <span class="math notranslate nohighlight">\(v' \in \Randomvertices \cap Z\)</span>, for
+every <span class="math notranslate nohighlight">\(w'\)</span> such that <span class="math notranslate nohighlight">\(\delta(v')(w')&gt;0\)</span>, <span class="math notranslate nohighlight">\(\val^*(w') =
+  \val^*(v')\)</span>. By assumption, it cannot be the case that <span class="math notranslate nohighlight">\(w' \in
+  \DetAtt(X)\)</span>, hence <span class="math notranslate nohighlight">\(w' \in Z\)</span>.  Let <span class="math notranslate nohighlight">\(v' \in Z \cap \Evevertices\)</span>. If
+there is <span class="math notranslate nohighlight">\(w' \notin Z\)</span> such that <span class="math notranslate nohighlight">\((v',w') \in E\)</span>, then it must be
+the case that <span class="math notranslate nohighlight">\(w' \in Y \setminus Z\)</span>: indeed, it cannot be the case
+that <span class="math notranslate nohighlight">\(w' \in \DetAtt(X)\)</span>, otherwise <span class="math notranslate nohighlight">\(v'\)</span> would also be in
+<span class="math notranslate nohighlight">\(\DetAtt(X)\)</span>.</p>
 <p>We now define strategy <span class="math notranslate nohighlight">\(\tau'\)</span> which plays from <span class="math notranslate nohighlight">\(v\)</span> as <span class="math notranslate nohighlight">\(\tau\)</span> until
-<span class="math notranslate nohighlight">\(Z\)</span> is left, and then <span class="math notranslate nohighlight">\(\tau'\)</span> plays an optimal strategy for \textrm{Adam}
+<span class="math notranslate nohighlight">\(Z\)</span> is left, and then <span class="math notranslate nohighlight">\(\tau'\)</span> plays an optimal strategy for \Adam.
 Let <span class="math notranslate nohighlight">\(\sigma\)</span> be a strategy for \Eve. Under the profile
 <span class="math notranslate nohighlight">\((\sigma,\tau')\)</span> from <span class="math notranslate nohighlight">\(v\)</span>, either we stay forever in <span class="math notranslate nohighlight">\(Z\)</span>, or we
 leave at some \Eve’s vertex <span class="math notranslate nohighlight">\(v'\)</span> towards a vertex <span class="math notranslate nohighlight">\(w'\)</span> with
-<span class="math notranslate nohighlight">\(\textrm{val}(w') &lt; \textrm{val}(v') = \textrm{val}(v)\)</span> (recall the discussion
+<span class="math notranslate nohighlight">\(\val^*(w') &lt; \val^*(v') = \val^*(v)\)</span> (recall the discussion
 above). We can then write:
 \begin{eqnarray*}
-\probm_{\sigma,\tau’}(\mathtt{Reach}{\ensuremath{v_{\textsc{win}}}})) &amp;=&amp;
-\probm_{\sigma,\tau’}(\mathtt{Reach}{\ensuremath{v_{\textsc{win}}}}) \mid \text{stays in}\  Z<br />
+\probm_{\sigma,\tau’}(\Reach({\vwin})) &amp;=&amp;
+\probm_{\sigma,\tau’}(\Reach({\vwin}) \mid \text{stays in}\  Z<br />
 \text{forever}) \cdot  \probm_{\sigma,\tau’}(\text{stays in}\  Z<br />
 \text{forever}) \
 &amp;&amp; + \sum_{(v’,w’) \in (Z \times (Y \setminus Z) \cap E)}
-\probm_{\sigma,\tau’}(\mathtt{Reach}{\ensuremath{v_{\textsc{win}}}}) \mid
+\probm_{\sigma,\tau’}(\Reach({\vwin}) \mid
 \text{leave via}\  (v’,w’)) \cdot
 \probm_{\sigma,\tau’}(\text{leave via}\  (v’,w’)) \
 &amp; = &amp; 0 \cdot \probm_{\sigma,\tau’}(\text{stays in}\  Z<br />
 \text{forever}) + \sum_{(v’,w’) \in (Z \times (Y \setminus Z) \cap
-E)}  \textrm{val}(w’) \cdot
+E)}  \val^<em>(w’) \cdot
 \probm_{\sigma,\tau’}(\text{leave via}\  (v’,w’)) \
 &amp; \le &amp; \beta
-\end{eqnarray*}
-where <span class="math notranslate nohighlight">\(\beta = \max \{\textrm{val}(w) \mid w \in Y \setminus Z\} &lt;
-  \textrm{val}(v)\)</span>.  Hence, we get <span class="math notranslate nohighlight">\(\textrm{val}(v) \le \beta &lt; \textrm{val}(v)\)</span>. This
+\end{eqnarray</em>}
+where <span class="math notranslate nohighlight">\(\beta = \max \{\val^*(w) \mid w \in Y \setminus Z\} &lt;
+  \val^*(v)\)</span>.  Hence, we get <span class="math notranslate nohighlight">\(\val^*(v) \le \beta &lt; \val^*(v)\)</span>. This
 is a contradiction.</p>
 </div>
 <div class="proof lemma admonition" id="lemma-13">
@@ -1547,16 +1600,16 @@ There is a live and self-consistent permutation.</p>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
-<p>We will define a permutation <span class="math notranslate nohighlight">\(\pi inductively, by repeatedly
-  using {prf:ref}`6-lem:structure`.  For every \)</span>i =k, \ldots
-,1<span class="math notranslate nohighlight">\( we define \)</span>\perm_i<span class="math notranslate nohighlight">\( by applying
-  Lemma {prf:ref}`6-lem:structure` to \)</span>X =
-{\perm_{i+1},\ldots,\perm_k,\ensuremath{v_{\textsc{win}}}}$.</p>
+<p>We will define a permutation <span class="math notranslate nohighlight">\(\perm\)</span> inductively, by repeatedly
+using <code class="xref prf prf-ref docutils literal notranslate"><span class="pre">6-lem:structure</span></code>.  For every <span class="math notranslate nohighlight">\(i =k, \ldots
+  ,1\)</span> we define <span class="math notranslate nohighlight">\(\perm_i\)</span> by applying
+Lemma <code class="xref prf prf-ref docutils literal notranslate"><span class="pre">6-lem:structure</span></code> to <span class="math notranslate nohighlight">\(X =
+  \{\perm_{i+1},\ldots,\perm_k,\vwin\}\)</span>.</p>
 <p>By construction,</p>
 <ul>
-<li><p><span class="math notranslate nohighlight">\(\textrm{val}(\perm_i) = \max \{\textrm{val}(v) \mid v \in V \setminus
-\ensuremath{**DetAtt**}\{\perm_{i+1},\ldots,\perm_k,\ensuremath{v_{\textsc{win}}}})\}\)</span>;</p></li>
-<li><div class="highlight-none notranslate"><div class="highlight"><pre><span></span> $\delta(\perm_i)\Big(\ensuremath{**DetAtt**}\{\perm_{i+1},\ldots,\perm_k,\ensuremath{v_{\textsc{win}}}})\Big)
+<li><p><span class="math notranslate nohighlight">\(\val^*(\perm_i) = \max \{\val^*(v) \mid v \in V \setminus
+\DetAtt(\{\perm_{i+1},\ldots,\perm_k,\vwin\})\}\)</span>;</p></li>
+<li><div class="highlight-none notranslate"><div class="highlight"><pre><span></span> $\delta(\perm_i)\Big(\DetAtt(\{\perm_{i+1},\ldots,\perm_k,\vwin\})\Big)
 </pre></div>
 </div>
 <blockquote>
@@ -1564,21 +1617,21 @@ There is a live and self-consistent permutation.</p>
 </div></blockquote>
 </li>
 </ul>
-<p>Hence, <span class="math notranslate nohighlight">\(\pi is live, and the hypothesis of {prf:ref}`6-lem:croissant` is satisfied. Hence \)</span>\pi is
+<p>Hence, <span class="math notranslate nohighlight">\(\perm\)</span> is live, and the hypothesis of <code class="xref prf prf-ref docutils literal notranslate"><span class="pre">6-lem:croissant</span></code> is satisfied. Hence <span class="math notranslate nohighlight">\(\perm\)</span> is
 self-consistent. This concludes the proof.</p>
 </div>
 </div>
 <div class="section" id="complexity-analysis">
 <h3>Complexity analysis<a class="headerlink" href="#complexity-analysis" title="Permalink to this headline">¶</a></h3>
 <p>To obtain the polynomial-time complexity claimed in <code class="xref prf prf-ref docutils literal notranslate"><span class="pre">6-thm:corr-strat-improv</span></code>, we realize that once a
-permutation <span class="math notranslate nohighlight">\(\pi is fixed, computing the sets \)</span>W_\pi^i<span class="math notranslate nohighlight">\( can be done
+permutation <span class="math notranslate nohighlight">\(\perm\)</span> is fixed, computing the sets <span class="math notranslate nohighlight">\(W_\pi^i\)</span> can be done
 in polynomial time (those are simple attractors), and corresponding
-strategies \)</span>\sigma_\pi and <span class="math notranslate nohighlight">\(\tau_\pi can be simultaneously
-computed as well. Now, computing \)</span>\val_\pi reduces to computing the
-probability to reach <span class="math notranslate nohighlight">\(\ensuremath{v_{\textsc{win}}} in the induced Markov chain, which is
+strategies <span class="math notranslate nohighlight">\(\sigma_\perm\)</span> and <span class="math notranslate nohighlight">\(\tau_\perm\)</span> can be simultaneously
+computed as well. Now, computing <span class="math notranslate nohighlight">\(\val_\perm\)</span> reduces to computing the
+probability to reach <span class="math notranslate nohighlight">\(\vwin\)</span> in the induced Markov chain, which is
 known to be possible in polynomial time. Note that we could improve
 the complexity by reducing the Markov chain to a Markov chain where
-the only vertices are \)</span>\vertices_{\text{Rand}}\cup {\ensuremath{v_{\textsc{lose}}}\ensuremath{v_{\textsc{win}}}}$, but
+the only vertices are <span class="math notranslate nohighlight">\(\Randomvertices \cup \{\vlose,\vwin\}\)</span>, but
 this would only marginally impact the overall complexity.</p>
 </div>
 <div class="section" id="strategy-enumeration-algorithm">
@@ -1589,7 +1642,7 @@ stochastic reachability game: enumerate permutations of random
 vertices, and for each of them, check whether it is live and
 self-consistent; stop when one is found.</p>
 <p>However, as such, this requires to enumerate all permutations of
-random vertices, and there are <span class="math notranslate nohighlight">\(|\vertices_{\text{Rand}}!\)</span> of them. Hence the
+random vertices, and there are <span class="math notranslate nohighlight">\(|\Randomvertices|!\)</span> of them. Hence the
 overall complexity of finding the values and the optimal strategies is
 exponential.</p>
 </div>
@@ -1601,133 +1654,133 @@ guarantee that the overall complexity will be betther than the
 strategy enumeration algorithm.</p>
 <p>The algorithm consists in the following steps:</p>
 <ul class="simple">
-<li><p>Initialization step: Compute a live permutation $\pi</p></li>
-<li><p>Improvement step: Given a live permutation <span class="math notranslate nohighlight">\(\pi, compute a
-live and self-consistent permutation in \)</span>\mathcal{G}\sigma_\pi<span class="math notranslate nohighlight">\(, the
-restriction of game \)</span>\mathcal{G} where <span class="math notranslate nohighlight">\(\Eve\)</span> always plays according to
-$\sigma_\pi.</p></li>
+<li><p>Initialization step: Compute a live permutation <span class="math notranslate nohighlight">\(\perm\)</span></p></li>
+<li><p>Improvement step: Given a live permutation <span class="math notranslate nohighlight">\(\perm\)</span>, compute a
+live and self-consistent permutation in <span class="math notranslate nohighlight">\(\game[\sigma_\perm]\)</span>, the
+restriction of game <span class="math notranslate nohighlight">\(\game\)</span> where <span class="math notranslate nohighlight">\(\Eve\)</span> always plays according to
+<span class="math notranslate nohighlight">\(\sigma_\perm\)</span>.</p></li>
 </ul>
-<p>Below, since we will speak of games <span class="math notranslate nohighlight">\(\mathcal{G}, \)</span>\mathcal{G}\sigma_\pi<span class="math notranslate nohighlight">\( and
-even \)</span>\mathcal{G}\sigma_{\pi}]<span class="math notranslate nohighlight">\(, when speaking about the value of the
+<p>Below, since we will speak of games <span class="math notranslate nohighlight">\(\game\)</span>, <span class="math notranslate nohighlight">\(\game[\sigma_\perm]\)</span> and
+even <span class="math notranslate nohighlight">\(\game[\sigma_{\perm'}]\)</span>, when speaking about the value of the
 game, we will specify the game in which we consider the value. For
-instance, \)</span>\textrm{val}<em>{\mathcal{G}\sigma</em>\pi}<span class="math notranslate nohighlight">\( denotes the value vector of the game
-\)</span>\mathcal{G}\sigma_\pi<span class="math notranslate nohighlight">\(, and \)</span>\val_{\mathcal{G}\pi<span class="math notranslate nohighlight">\( denotes the former
-\)</span>\val_\pi.</p>
+instance, <span class="math notranslate nohighlight">\(\val^*_{\game[\sigma_\perm]}\)</span> denotes the value vector of the game
+<span class="math notranslate nohighlight">\(\game[\sigma_\perm]\)</span>, and <span class="math notranslate nohighlight">\(\val_{\game,\perm}\)</span> denotes the former
+<span class="math notranslate nohighlight">\(\val_\perm\)</span>.</p>
 <p>We will argue (though not with full details) that the following
 properties are satisfied by the algorithm:</p>
 <ol class="simple">
 <li><p>An initial live permutation can be computed in polynomial time.</p></li>
-<li><p>For every live permutation <span class="math notranslate nohighlight">\(\pi, one can compute in
-polynomial time a live and self-consistent permutation \)</span>\pi<span class="math notranslate nohighlight">\( in
-\)</span>\mathcal{G}\sigma_\pi$.</p></li>
-<li><p>The above-mentioned permutation <span class="math notranslate nohighlight">\(\pi\)</span> is live in $\mathcal{G} as
+<li><p>For every live permutation <span class="math notranslate nohighlight">\(\perm\)</span>, one can compute in
+polynomial time a live and self-consistent permutation <span class="math notranslate nohighlight">\(\perm'\)</span> in
+<span class="math notranslate nohighlight">\(\game[\sigma_\perm]\)</span>.</p></li>
+<li><p>The above-mentioned permutation <span class="math notranslate nohighlight">\(\perm'\)</span> is live in <span class="math notranslate nohighlight">\(\game\)</span> as
 well.</p></li>
 <li><p>The improvement step really implements some improvement:</p></li>
 </ol>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\textrm{val}_{\mathcal{G}\sigma_\pi} \le
-\textrm{val}_{\mathcal{G}\sigma_{\pi}]}\)</span>, and</p></li>
-<li><p><span class="math notranslate nohighlight">\(\textrm{val}_{\mathcal{G}\sigma_\pi} =
-\textrm{val}_{\mathcal{G}\sigma_{\pi}]}\)</span> implies that <span class="math notranslate nohighlight">\(\pi\)</span> is
+<li><p><span class="math notranslate nohighlight">\(\val^*_{\game[\sigma_\perm]} \le
+\val^*_{\game[\sigma_{\perm'}]}\)</span>, and</p></li>
+<li><p><span class="math notranslate nohighlight">\(\val^*_{\game[\sigma_\perm]} =
+\val^*_{\game[\sigma_{\perm'}]}\)</span> implies that <span class="math notranslate nohighlight">\(\perm'\)</span> is
 self-consistent.</p></li>
 </ul>
 <p>The first property is based on the construction of <code class="xref prf prf-ref docutils literal notranslate"><span class="pre">6-lem:existence</span></code>.</p>
 <p>For the second property, we know as a consequence of <code class="xref prf prf-ref docutils literal notranslate"><span class="pre">6-thm:corr-strat-improv</span></code> that there exists a live and
-self-consistent permutation <span class="math notranslate nohighlight">\(\pi\)</span> in <span class="math notranslate nohighlight">\(\mathcal{G}\sigma_{\pi]\)</span>,
-provided we prove that <span class="math notranslate nohighlight">\(\mathcal{G}\sigma_{\pi]\)</span> is normalized (this was
+self-consistent permutation <span class="math notranslate nohighlight">\(\perm'\)</span> in <span class="math notranslate nohighlight">\(\game[\sigma_{\perm}]\)</span>,
+provided we prove that <span class="math notranslate nohighlight">\(\game[\sigma_{\perm}]\)</span> is normalized (this was
 a general assumption of the approach, mentioned in Subsection <span class="xref std std-ref">6-subsec:first</span>). This is actually the case since
 every proper vertex <span class="math notranslate nohighlight">\(v\)</span> can be proven to have a value strictly within
-<span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(1\)</span> in <span class="math notranslate nohighlight">\(\mathcal{G}\sigma_{\pi]\)</span> (it is indeed smaller in
-<span class="math notranslate nohighlight">\(\mathcal{G}\sigma_{\pi]\)</span> than in <span class="math notranslate nohighlight">\(\mathcal{G} since \)</span>\mathcal{G}\sigma_{\pi]<span class="math notranslate nohighlight">\(
-offers less options to \Eve, and it cannot be \)</span>0$, using a proof
+<span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(1\)</span> in <span class="math notranslate nohighlight">\(\game[\sigma_{\perm}]\)</span> (it is indeed smaller in
+<span class="math notranslate nohighlight">\(\game[\sigma_{\perm}]\)</span> than in <span class="math notranslate nohighlight">\(\game\)</span> since <span class="math notranslate nohighlight">\(\game[\sigma_{\perm}]\)</span>
+offers less options to \Eve, and it cannot be <span class="math notranslate nohighlight">\(0\)</span>, using a proof
 similar to that of <code class="xref prf prf-ref docutils literal notranslate"><span class="pre">6-lem:stopping</span></code>).</p>
-<p>Now, since <span class="math notranslate nohighlight">\(\mathcal{G}\sigma_\pi\)</span> turns out to be a Markov decision
+<p>Now, since <span class="math notranslate nohighlight">\(\game[\sigma_\perm]\)</span> turns out to be a Markov decision
 process, values of all random vertices can be computed in polynomial
 time using linear programming; then we can apply a construction
 similar to that of <code class="xref prf prf-ref docutils literal notranslate"><span class="pre">6-lem:existence</span></code> to get a live and
-self-consistent permutation <span class="math notranslate nohighlight">\(\pi\)</span> in <span class="math notranslate nohighlight">\(\mathcal{G}\sigma_\pi\)</span>. This
-yields a polynomial time algorithm to compute <span class="math notranslate nohighlight">\(\pi\)</span>.</p>
+self-consistent permutation <span class="math notranslate nohighlight">\(\perm'\)</span> in <span class="math notranslate nohighlight">\(\game[\sigma_\perm]\)</span>. This
+yields a polynomial time algorithm to compute <span class="math notranslate nohighlight">\(\perm'\)</span>.</p>
 <p>For the third property, we realize that</p>
-<p><span class="math notranslate nohighlight">\(\pi\)</span>-regions in <span class="math notranslate nohighlight">\(\mathcal{G}\sigma_\pi\)</span> are included in
-<span class="math notranslate nohighlight">\(\pi\)</span>-regions in $\mathcal{G}, which immediately implies the result.</p>
+<p><span class="math notranslate nohighlight">\(\perm'\)</span>-regions in <span class="math notranslate nohighlight">\(\game[\sigma_\perm]\)</span> are included in
+<span class="math notranslate nohighlight">\(\perm'\)</span>-regions in <span class="math notranslate nohighlight">\(\game\)</span>, which immediately implies the result.</p>
 <p>The last property is harder to argue; it expresses the fact that the
-new permutation <span class="math notranslate nohighlight">\(\pi\)</span> improves over $\pi.</p>
+new permutation <span class="math notranslate nohighlight">\(\perm'\)</span> improves over <span class="math notranslate nohighlight">\(\perm\)</span>.</p>
 <div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
-<p>Since <span class="math notranslate nohighlight">\(\pi\)</span> is live and self-consistent in <span class="math notranslate nohighlight">\(\mathcal{G}\sigma_\pi\)</span>,
+<p>Since <span class="math notranslate nohighlight">\(\perm'\)</span> is live and self-consistent in <span class="math notranslate nohighlight">\(\game[\sigma_\perm]\)</span>,
 by~\cref{6-cor:}, extending the previous notations, we
 get that
-<span class="math notranslate nohighlight">\(\textrm{val}_{\mathcal{G}\sigma_\pi} =
-  \val_{\mathcal{G}\sigma_\pi,\pi}\)</span>. Now, since <span class="math notranslate nohighlight">\(\pi\)</span> is
-self-consistent in <span class="math notranslate nohighlight">\(\mathcal{G}\sigma_\pi\)</span>, we deduce that</p>
+<span class="math notranslate nohighlight">\(\val^*_{\game[\sigma_\perm]} =
+  \val_{\game[\sigma_\perm],\perm'}\)</span>. Now, since <span class="math notranslate nohighlight">\(\perm'\)</span> is
+self-consistent in <span class="math notranslate nohighlight">\(\game[\sigma_\perm]\)</span>, we deduce that</p>
 <div class="math notranslate nohighlight">
 \[
-    \textrm{val}_{\mathcal{G}\sigma_\pi}(\pi_1) \le
-    \textrm{val}_{\mathcal{G}\sigma_\pi}(\pi_2) \le \dots \le
-    \textrm{val}_{\mathcal{G}\sigma_\pi}(\pi_k)
+    \val^*_{\game[\sigma_\perm]}(\perm'_1) \le
+    \val^*_{\game[\sigma_\perm]}(\perm'_2) \le \dots \le
+    \val^*_{\game[\sigma_\perm]}(\perm'_k)
   \]</div>
-<p>We consider the following family of strategies for \Eve in <span class="math notranslate nohighlight">\(\mathcal{G}:
-  for every \)</span>n<span class="math notranslate nohighlight">\(, \)</span>\sigma^{(n)}<span class="math notranslate nohighlight">\( is the strategy where \Eve plays
-  according to \)</span>\sigma_{\pi}<span class="math notranslate nohighlight">\( up to its \)</span>n<span class="math notranslate nohighlight">\(-th visit to a random
-  vertex, and then switches to \)</span>\sigma_\pi.</p>
+<p>We consider the following family of strategies for \Eve in <span class="math notranslate nohighlight">\(\game\)</span>:
+for every <span class="math notranslate nohighlight">\(n\)</span>, <span class="math notranslate nohighlight">\(\sigma^{(n)}\)</span> is the strategy where \Eve plays
+according to <span class="math notranslate nohighlight">\(\sigma_{\perm'}\)</span> up to its <span class="math notranslate nohighlight">\(n\)</span>-th visit to a random
+vertex, and then switches to <span class="math notranslate nohighlight">\(\sigma_\perm\)</span>.</p>
 </div>
 <p>We can then prove:</p>
 <div class="proof lemma admonition" id="6-lem:convergence_sequence_values">
 <p class="admonition-title"><span class="caption-number">Lemma 217 </span> (Converge of the sequence of values)</p>
 <div class="lemma-content section" id="proof-content">
-<p>The sequence <span class="math notranslate nohighlight">\((\val_{\mathcal{G}\sigma^{(n)}})_n\)</span> is non-decreasing.</p>
+<p>The sequence <span class="math notranslate nohighlight">\((\val_{\game,\sigma^{(n)}})_n\)</span> is non-decreasing.</p>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>We do the proof by induction on $n$.  We focus on $n=0$, and prove
-below that $\val_{\mathcal{G}\sigma^{(1)}} \ge
-\val_{\mathcal{G}\sigma^{(0)}}$. First notice that $\sigma^{(0)} =
-\sigma_\pi.
+below that $\val_{\game,\sigma^{(1)}} \ge
+\val_{\game,\sigma^{(0)}}$. First notice that $\sigma^{(0)} =
+\sigma_\perm$.
 
-First, notice that $v \in W_{\mathcal{G}\pi}^i$ for some $i$, and $v
-\in W_{\mathcal{G}\sigma_\pi,\pi}^j$ for some $j$. This
-$game[\pi$ restricts actions of \Eve, we immediately get $i \ge
+First, notice that $v \in W_{\game,\perm&#39;}^i$ for some $i$, and $v
+\in W_{\game[\sigma_\perm],\perm&#39;}^j$ for some $j$. This
+$game[\perm]$ restricts actions of \Eve, we immediately get $i \ge
 j$. Hence, applying the line of inequalities at the beginning of
 the proof of the larger lemma,
-$\textrm{val}_{\mathcal{G}\sigma_\pi}(\pi_j) \le
-\textrm{val}_{\mathcal{G}\sigma_\pi}(\pi_i)$.
+$\val^*_{\game[\sigma_\perm]}(\perm&#39;_j) \le
+\val^*_{\game[\sigma_\perm]}(\perm&#39;_i)$.
 
 If \Eve plays with $\sigma^{(1)}$, the definition of
-$\sigma_{\pi}$ ensures that the first random vertex (or
+$\sigma_{\perm&#39;}$ ensures that the first random vertex (or
 terminal vertex) which is visited when starting in $v$ belongs to
-$\{\pi_i,\pi_{i+1},\dots,\pi_k,\ensuremath{v_{\textsc{win}}}}$, so since from
-that vertex, $\sigma^{(1)}$ plays according to $\sigma_\pi, we
+$\{\perm&#39;_i,\perm&#39;_{i+1},\dots,\perm&#39;_k,\vwin\}$, so since from
+that vertex, $\sigma^{(1)}$ plays according to $\sigma_\perm$, we
 get:
 </pre></div>
 </div>
 <div class="math notranslate nohighlight">
 \[
-    \val_{\mathcal{G}\sigma^{(1)}}(v) \ge \min
-    \{\textrm{val}_{\mathcal{G}\sigma_\pi}(\pi_i),
-    \textrm{val}_{\mathcal{G}\sigma_\pi}(\pi_{i+1}),\dots,
-    \textrm{val}_{\mathcal{G}\sigma_\pi}(\pi_k),1\} \ge
-    \textrm{val}_{\mathcal{G}\sigma_\pi}(\pi_i)
+    \val_{\game,\sigma^{(1)}}(v) \ge \min
+    \{\val^*_{\game[\sigma_\perm]}(\perm'_i),
+    \val^*_{\game[\sigma_\perm]}(\perm'_{i+1}),\dots,
+    \val^*_{\game[\sigma_\perm]}(\perm'_k),1\} \ge
+    \val^*_{\game[\sigma_\perm]}(\perm'_i)
     \]</div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>since $\textrm{val}_{\mathcal{G}\sigma_\pi} = \val_{\mathcal{G}\sigma_\pi$.
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>since $\val^*_{\game[\sigma_\perm]} = \val_{\game,\sigma_\perm}$.
 
-Now, when playing $\sigma_\pi= \sigma^{(0)}$ from $v$, 
+Now, when playing $\sigma_\perm = \sigma^{(0)}$ from $v$, 
 
 Thanks to  {prf:ref}`6-lem:lemma2`, since $v \in
-W_{\mathcal{G}\sigma_\pi,\pi}^j$,
-$\val_{\mathcal{G}\sigma_\pi,\pi}(v) =
-\val_{\mathcal{G}\sigma_\pi,\pi}(\pi_j)$ and hence (as argued
+W_{\game[\sigma_\perm],\perm&#39;}^j$,
+$\val_{\game[\sigma_\perm],\perm&#39;}(v) =
+\val_{\game[\sigma_\perm],\perm&#39;}(\perm&#39;_j)$ and hence (as argued
 in the proof of the larger lemma,
-$\val_{\mathcal{G}\sigma_\pi,\pi} =
-\textrm{val}_{\mathcal{G}\sigma_\pi}$), $\textrm{val}_{\mathcal{G}\sigma_\pi}(v) =
-\textrm{val}_{\mathcal{G}\sigma_\pi}(\pi_j)$. We conclude that:
+$\val_{\game[\sigma_\perm],\perm&#39;} =
+\val^*_{\game[\sigma_\perm]}$), $\val^*_{\game[\sigma_\perm]}(v) =
+\val^*_{\game[\sigma_\perm]}(\perm&#39;_j)$. We conclude that:
 </pre></div>
 </div>
 <div class="math notranslate nohighlight">
 \[
-    \val_{\sigma_\pi(v) = \textrm{val}_{\mathcal{G}\sigma_\pi}(v) \le
-    \textrm{val}_{\mathcal{G}\sigma_\pi}(\pi_j) \le
-    \textrm{val}_{\mathcal{G}\sigma_\pi}(\pi_i) \le
-    \val_{\mathcal{G}\sigma^{(1)}}(v)
+    \val_{\sigma_\perm}(v) = \val^*_{\game[\sigma_\perm]}(v) \le
+    \val^*_{\game[\sigma_\perm]}(\perm'_j) \le
+    \val^*_{\game[\sigma_\perm]}(\perm'_i) \le
+    \val_{\game,\sigma^{(1)}}(v)
     \]</div>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>which concludes the initial case for the induction.
 
@@ -1741,56 +1794,56 @@ conclude.
 </pre></div>
 </div>
 </div>
-<p>Let <span class="math notranslate nohighlight">\(\tau\)</span> be an \textrm{Adam}s strategy. Since <span class="math notranslate nohighlight">\(\pi\)</span> has been shown to
-be live in <span class="math notranslate nohighlight">\(\mathcal{G}, applying  {prf:ref}`6-lem:stopping`, we
-  get that: \)</span>\mathbb{P}v_{\sigma_{\pi},\tau} (\mathtt{Reach}{\ensuremath{v_{\textsc{win}}}})) =
-\mathbb{P}v_{\sigma_{\pi},\tau} (\neg\mathtt{Reach}{\ensuremath{v_{\textsc{lose}}}}))<span class="math notranslate nohighlight">\(. This last
-  probability value coincides with \)</span>\lim_{n \to +\infty}
-\mathbb{P}v_{\sigma_{\pi},\tau} (\neg\Reach_{\le n}({\ensuremath{v_{\textsc{lose}}}}))<span class="math notranslate nohighlight">\(,
-  the probability to not reach \)</span>\ensuremath{v_{\textsc{lose}}} for the first <span class="math notranslate nohighlight">\(n\)</span> visits to a
-random vertex; for these <span class="math notranslate nohighlight">\(n\)</span> first visits, <span class="math notranslate nohighlight">\(\sigma_{\pi}\)</span>
+<p>Let <span class="math notranslate nohighlight">\(\tau\)</span> be an \Adam’s strategy. Since <span class="math notranslate nohighlight">\(\perm'\)</span> has been shown to
+be live in <span class="math notranslate nohighlight">\(\game\)</span>, applying  <code class="xref prf prf-ref docutils literal notranslate"><span class="pre">6-lem:stopping</span></code>, we
+get that: <span class="math notranslate nohighlight">\(\probm^v_{\sigma_{\perm'},\tau} (\Reach(\{\vwin\})) =
+  \probm^v_{\sigma_{\perm'},\tau} (\neg\Reach(\{\vlose\}))\)</span>. This last
+probability value coincides with <span class="math notranslate nohighlight">\(\lim_{n \to +\infty}
+  \probm^v_{\sigma_{\perm'},\tau} (\neg\Reach_{\le n}(\{\vlose\}))\)</span>,
+the probability to not reach <span class="math notranslate nohighlight">\(\vlose\)</span> for the first <span class="math notranslate nohighlight">\(n\)</span> visits to a
+random vertex; for these <span class="math notranslate nohighlight">\(n\)</span> first visits, <span class="math notranslate nohighlight">\(\sigma_{\perm'}\)</span>
 coincides with <span class="math notranslate nohighlight">\(\sigma^{(n)}\)</span>, hence
-<span class="math notranslate nohighlight">\(\mathbb{P}v_{\sigma_{\pi},\tau} (\mathtt{Reach}\{\ensuremath{v_{\textsc{win}}}})) \ge \lim_{n\to
-    +\infty} \mathbb{P}v_{\sigma^{(n)},\tau} (\mathtt{Reach}\{\ensuremath{v_{\textsc{win}}}}))\)</span>. By
+<span class="math notranslate nohighlight">\(\probm^v_{\sigma_{\perm'},\tau} (\Reach(\{\vwin\})) \ge \lim_{n\to
+    +\infty} \probm^v_{\sigma^{(n)},\tau} (\Reach(\{\vwin\}))\)</span>. By
 definition of value in a game, this last term is larger than or
-equal to <span class="math notranslate nohighlight">\(\lim_{n \to+\infty}\val_{\mathcal{G}\sigma^{(n)}}\)</span>, hence
-<span class="math notranslate nohighlight">\(\lim_{n \to+\infty}\val_{\mathcal{G}\sigma^{(n)}} \le
-  \val_{\mathcal{G}\pi}\)</span>.</p>
+equal to <span class="math notranslate nohighlight">\(\lim_{n \to+\infty}\val_{\game,\sigma^{(n)}}\)</span>, hence
+<span class="math notranslate nohighlight">\(\lim_{n \to+\infty}\val_{\game,\sigma^{(n)}} \le
+  \val_{\game,\perm'}\)</span>.</p>
 <p>We conclude that:</p>
 <div class="math notranslate nohighlight">
 \[
-  \textrm{val}_{\mathcal{G}\sigma_\pi} = \val_{\mathcal{G}\sigma^{(0)}} \le
-  \val_{\mathcal{G}\sigma^{(1)}} \le \val_{\mathcal{G}\sigma^{(2)}} \le \dots\le
-  \lim_{n \to +\infty} \val_{\mathcal{G}\sigma^{(n)}} \le
-  \textrm{val}_{\mathcal{G}\sigma_{\pi}]}
+  \val^*_{\game[\sigma_\perm]} = \val_{\game,\sigma^{(0)}} \le
+  \val_{\game,\sigma^{(1)}} \le \val_{\game,\sigma^{(2)}} \le \dots\le
+  \lim_{n \to +\infty} \val_{\game,\sigma^{(n)}} \le
+  \val^*_{\game[\sigma_{\perm'}]}
   \]</div>
-<p>\medskip Assume now that <span class="math notranslate nohighlight">\(\textrm{val}_{\mathcal{G}\sigma_\pi} =
-  \textrm{val}_{\mathcal{G}\sigma_{\pi}]}\)</span>. Then applying the first line of
+<p>\medskip Assume now that <span class="math notranslate nohighlight">\(\val^*_{\game[\sigma_\perm]} =
+  \val^*_{\game[\sigma_{\perm'}]}\)</span>. Then applying the first line of
 inequalities above, we get:</p>
 <div class="math notranslate nohighlight">
 \[
-  \textrm{val}_{\mathcal{G}\sigma_{\pi}]}(\pi_1) \le
-  \textrm{val}_{\mathcal{G}\sigma_{\pi}]}(\pi_2) \le \dots \le
-  \textrm{val}_{\mathcal{G}\sigma_{\pi}]}(\pi_k)
+  \val^*_{\game[\sigma_{\perm'}]}(\perm'_1) \le
+  \val^*_{\game[\sigma_{\perm'}]}(\perm'_2) \le \dots \le
+  \val^*_{\game[\sigma_{\perm'}]}(\perm'_k)
   \]</div>
-<p>Now, the strategy <span class="math notranslate nohighlight">\(\tau_{\pi}\)</span> is precisely the optimal strategy
-against <span class="math notranslate nohighlight">\(\sigma_{\pi}\)</span> \pat{Not so sure of the argument, it is
+<p>Now, the strategy <span class="math notranslate nohighlight">\(\tau_{\perm'}\)</span> is precisely the optimal strategy
+against <span class="math notranslate nohighlight">\(\sigma_{\perm'}\)</span> \pat{Not so sure of the argument, it is
 not argued that way in GH09}, hence for every vertex <span class="math notranslate nohighlight">\(v\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
-  \textrm{val}_{\mathcal{G}\sigma_{\pi}]}(v) = \inf_\tau
-  \mathbb{P}v_{\sigma_{\pi},\tau} (\mathtt{Reach}\{\ensuremath{v_{\textsc{win}}}})) =
-  \mathbb{P}v_{\sigma_{\pi},\tau_{\pi}} (\mathtt{Reach}\{\ensuremath{v_{\textsc{win}}}})) =
-  \val_{\mathcal{G}\pi}
+  \val^*_{\game[\sigma_{\perm'}]}(v) = \inf_\tau
+  \probm^v_{\sigma_{\perm'},\tau} (\Reach(\{\vwin\})) =
+  \probm^v_{\sigma_{\perm'},\tau_{\perm'}} (\Reach(\{\vwin\})) =
+  \val_{\game,\perm'}
   \]</div>
 <p>We deduce that</p>
 <div class="math notranslate nohighlight">
 \[
-  \val_{\mathcal{G}\pi}(\pi_1) \le \val_{\mathcal{G}\pi}(\pi_2) \le
-  \dots \le \val_{\mathcal{G}\pi}(\pi_k)
+  \val_{\game,\perm'}(\perm'_1) \le \val_{\game,\perm'}(\perm'_2) \le
+  \dots \le \val_{\game,\perm'}(\perm'_k)
   \]</div>
 <p>which is precisely the definition of a self-consistent permutation
-in $\mathcal{G}, so we are done.</p>
+in <span class="math notranslate nohighlight">\(\game\)</span>, so we are done.</p>
 <p>\end{proof}</p>
 <p>This last property ensures both termination of the algorithm: indeed,
 it is ensured by the finiteness of the number of permutations, and by

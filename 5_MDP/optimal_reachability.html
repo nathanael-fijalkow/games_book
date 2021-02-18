@@ -705,111 +705,194 @@
   <div class="section" id="optimal-reachability">
 <span id="sec-optimal-reachability"></span><h1>Optimal reachability<a class="headerlink" href="#optimal-reachability" title="Permalink to this headline">¶</a></h1>
 <div class="math notranslate nohighlight">
-\[\newcommand{\expv}{\mathbb{E}}
-\newcommand{\probm}{\mathbb{P}}
-\newcommand{\actions}{A}
-\newcommand{\colouring}{c}
-\newcommand{\probTranFunc}{\Delta}
-\newcommand{\mdp}{\mathcal{M}}
-\newcommand{\vinit}{v_0}
+\[ \begin{align}\begin{aligned}\newcommand{\expv}{\mathbb{E}} \newcommand{\discProbDist}{f} \newcommand{\sampleSpace}{S} \newcommand{\sigmaAlg}{\mathcal{F}} \newcommand{\probm}{\mathbb{P}} \newcommand{\rvar}{X} \\\newcommand{\actions}{A} \newcommand{\colouring}{c} \newcommand{\probTranFunc}{\Delta} \newcommand{\edges}{E} \newcommand{\colours}{C} \newcommand{\mdp}{\mathcal{M}} \newcommand{\vinit}{v_0} \newcommand{\cylProb}{p} \newcommand{\emptyPlay}{\epsilon} \newcommand{\objective}{\Omega} \newcommand{\genColour}{\textsc{c}} \newcommand{\quantObj}{f} \newcommand{\quantObjExt}{\bar{\quantObj}} \newcommand{\indicator}[1]{\mathbf{1}_{#1}} \newcommand{\eps}{\varepsilon} \newcommand{\maxc}{\max_{\colouring}} 
 \newcommand{\winPos}{W_{&gt;0}}
+\newcommand{\winAS}{W_{=1}}
+\newcommand{\cylinder}{\mathit{Cyl}}
+\newcommand{\PrePos}{\text{Pre}_{&gt;0}}
+\newcommand{\PreAS}{\text{Pre}_{=1}}
+\newcommand{\PreOPPos}{\mathcal{P}_{&gt;0}}
+\newcommand{\OPAS}{\mathcal{P}_{=1}}
+\newcommand{\safeOP}{\mathit{Safe_{=1}}}
+\newcommand{\closed}{\mathit{Cl}}\\\newcommand{\reachOP}{\mathcal{V}}
 \newcommand{\discOP}{\mathcal{D}}
+\newcommand{\valsigma}{\vec{x}^{\sigma}}
+\newcommand{\lp}{\mathcal{L}}
+\newcommand{\lpdisc}{\lp_{\mathit{disc}}}
 \newcommand{\lpreach}{\lp_{\mathit{reach}}}
+\newcommand{\lpmp}{\lp_{\mathit{mp}}}
+\newcommand{\lpsol}[1]{\bar{\vec{#1}}}
+\newcommand{\lpsolg}[1]{\bar{#1}}
+\newcommand{\lpmpdual}{\lpmp^{\mathit{dual}}}
+\newcommand{\actevent}[3]{\actions^{#1}_{#2,#3}} 
+\newcommand{\MeanPayoffSup}{\MeanPayoff^{\;+}}
+\newcommand{\MeanPayoffInf}{\MeanPayoff^{\;-}}
+\newcommand{\mcprob}{P}
+\newcommand{\invdist}{\vec{z}}
+\newcommand{\hittime}{T}
+\newcommand{\playPay}{\textsf{p-Payoff}}
+\newcommand{\stepPay}{\textsf{s-Payoff}}
+\newcommand{\Pay}{\textsf{Payoff}}
+\newcommand{\mec}{M}
+\newcommand{\OPS}{\mathcal{S}_{=1}}
+\newcommand{\smallmp}{\mathit{mp}}
+\newcommand{\vgood}{v_{\mathit{good}}}
+\newcommand{\vbad}{v_{\mathit{bad}}}
+\newcommand{\finact}{fin}
+\newcommand{\mecs}{\mathit{MEC}}
+\newcommand{\slice}[2]{#1_{#2-}}
 \newcommand{\ReachOp}{\mathcal{R}}
+\newcommand{\dPayoffStep}[1]{\DiscountedPayoff^{\;(#1)}}
+\newcommand{\solvset}{S}
+\newcommand{\Eve}{\textrm{Eve}}
+\newcommand{\Adam}{\textrm{Adam}}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
 \newcommand{\N}{\mathbb{N}}
-\newcommand{\vertices}{V}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
+\newcommand{\argmax}{\textrm{argmax}}
+\newcommand{\argmin}{\textrm{argmin}}
+\newcommand{\Op}{\mathbb{O}}
+\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\textrm{supp}} 
+\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
+\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
+\newcommand{\mEve}{\mathrm{Eve}}
+\newcommand{\mAdam}{\mathrm{Adam}}
+\newcommand{\mRandom}{\mathrm{Random}}
+\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
+\newcommand{\ing}{\textrm{In}}
+\newcommand{\Ing}{\ing}
+\newcommand{\out}{\textrm{Out}}
 \newcommand{\Out}{\out}
-\newcommand{\play}{\pi}
-\newcommand{\Win}{\textrm{Win}}
-\newcommand{\Value}{\textrm{val}}
-\newcommand{\Reach}{\mathtt{Reach}}
-\newcommand{\out}{\textrm{Out}}\]</div>
-<p>In this final section, we prove  <a class="reference internal" href="reductions.html#5-thm:quant-reachability-main">Theorem 181</a>. The proof bears many similarities to the methods for discounted MDPs, hence we only sketch the process and point out the key differences. Throughout the section we assume that <strong>targets are sinks</strong>, i.e. that a vertex coloured by $\textrm{Win} has only a self loop as the single outgoing edge. Modifying an MDP to accommodate this does not influence reachability probabilities in any way.</p>
-<p>Consider the reachability operator <span class="math notranslate nohighlight">\(\mathcal{R}colon[0,1]^{V\rightarrow [0,1]^{V\)</span> such that for <span class="math notranslate nohighlight">\(\vec{y} = \mathcal{R}\vec{x})\)</span> it holds</p>
+\newcommand{\dest}{\Delta} 
+\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
+\newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
+\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
+\newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
+\newcommand{\Win}{\textrm{Win}} 
+\newcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Value}{\textrm{val}} 
+\newcommand{\ValueE}{\textrm{val}_\mEve} 
+\newcommand{\ValueA}{\textrm{val}_\mAdam}
+\newcommand{\val}{\Value} 
+\newcommand{\Automaton}{\mathbf{A}} 
+\newcommand{\Safe}{\mathtt{Safe}}
+\newcommand{\Reach}{\mathtt{Reach}} 
+\newcommand{\Buchi}{\mathtt{Buchi}} 
+\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
+\newcommand{\Parity}{\mathtt{Parity}} 
+\newcommand{\Muller}{\mathtt{Muller}} 
+\newcommand{\Rabin}{\mathtt{Rabin}} 
+\newcommand{\Streett}{\mathtt{Streett}} 
+\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
+\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
+\newcommand{\Energy}{\mathtt{Energy}}
+\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
+\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
+\newcommand{\Sup}{\mathtt{Sup}}
+\newcommand{\Inf}{\mathtt{Inf}}
+\newcommand{\LimSup}{\mathtt{LimSup}}
+\newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NL}{\textrm{NL}}
+\newcommand{\PTIME}{\textrm{PTIME}}
+\newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
+\newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
+\newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
+\newcommand{\EXP}{\textrm{EXP}}
+\newcommand{\kEXP}{\textrm{kEXP}}\end{aligned}\end{align} \]</div>
+<p>In this final section, we prove  <a class="reference internal" href="reductions.html#5-thm:quant-reachability-main">Theorem 181</a>. The proof bears many similarities to the methods for discounted MDPs, hence we only sketch the process and point out the key differences. Throughout the section we assume that <strong>targets are sinks</strong>, i.e. that a vertex coloured by <span class="math notranslate nohighlight">\(\Win\)</span> has only a self loop as the single outgoing edge. Modifying an MDP to accommodate this does not influence reachability probabilities in any way.</p>
+<p>Consider the reachability operator <span class="math notranslate nohighlight">\(\ReachOp\colon[0,1]^{\vertices}\rightarrow [0,1]^{\vertices}\)</span> such that for <span class="math notranslate nohighlight">\(\vec{y} = \ReachOp(\vec{x})\)</span> it holds</p>
 <div class="math notranslate nohighlight">
 \[ \begin{align}\begin{aligned}
-\vec{y}_v = \begin{cases}\\\begin{split} \max_{a\in A \sum_{u\in V \Deltau \mid v,a)\cdot x_u &amp; cv) \neq \textrm{Win}\\
- 1 &amp; cv) = \textrm{Win}
+\vec{y}_v = \begin{cases}\\\begin{split} \max_{a\in \actions} \sum_{u\in \vertices} \probTranFunc(u \mid v,a)\cdot x_u &amp; \colouring(v) \neq \Win \\
+ 1 &amp; \colouring(v) = \Win.
 \end{cases} 
 \end{split}\end{aligned}\end{align} \]</div>
 <div class="proof lemma admonition" id="5-lem:quant-reach-operator-fixed-point">
 <p class="admonition-title"><span class="caption-number">Lemma 188 </span> (NEEDS TITLE 5-lem:quant-reach-operator-fixed-point)</p>
 <div class="lemma-content section" id="proof-content">
-<p>For each initial vector <span class="math notranslate nohighlight">\(\vec{x}\)</span>, the limit <span class="math notranslate nohighlight">\(\lim_{k \rightarrow \infty}\mathcal{R}k(\vec{x})\)</span> exists. Moreover, if <span class="math notranslate nohighlight">\(\vec{x} \leq \mathcal{R}\vec{x})\)</span>, then the limit is equal to the least fixed point of <span class="math notranslate nohighlight">\(\mathcal{R} that is greater than or equal to \)</span>\vec{x}<span class="math notranslate nohighlight">\(; if \)</span>\mathcal{R}\vec{x})\leq \vec{x}<span class="math notranslate nohighlight">\(, then the limit is equal to the greatest fixed point of \)</span>\mathcal{R} that is less than or equal to <span class="math notranslate nohighlight">\(\vec{x}\)</span>.</p>
+<p>For each initial vector <span class="math notranslate nohighlight">\(\vec{x}\)</span>, the limit <span class="math notranslate nohighlight">\(\lim_{k \rightarrow \infty}\ReachOp^k(\vec{x})\)</span> exists. Moreover, if <span class="math notranslate nohighlight">\(\vec{x} \leq \ReachOp(\vec{x})\)</span>, then the limit is equal to the least fixed point of <span class="math notranslate nohighlight">\(\ReachOp\)</span> that is greater than or equal to <span class="math notranslate nohighlight">\(\vec{x}\)</span>; if <span class="math notranslate nohighlight">\(\ReachOp(\vec{x})\leq \vec{x}\)</span>, then the limit is equal to the greatest fixed point of <span class="math notranslate nohighlight">\(\ReachOp\)</span> that is less than or equal to <span class="math notranslate nohighlight">\(\vec{x}\)</span>.</p>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
-<p>The existence of the limit follows from the monotonicity of <span class="math notranslate nohighlight">\(\mathcal{R}.
-In addition, it can be easily checked that the set \)</span>[0,1]^{V<span class="math notranslate nohighlight">\( is a directed complete partial order and that \)</span>\mathcal{R} is a Scott-continuous operator on this set. Hence, the result follows from the Kleene’s theorem (see also Tarski-Kantorovich principle).</p>
+<p>The existence of the limit follows from the monotonicity of <span class="math notranslate nohighlight">\(\ReachOp\)</span>.
+In addition, it can be easily checked that the set <span class="math notranslate nohighlight">\([0,1]^{\vertices}\)</span> is a directed complete partial order and that <span class="math notranslate nohighlight">\(\ReachOp\)</span> is a Scott-continuous operator on this set. Hence, the result follows from the Kleene’s theorem (see also Tarski-Kantorovich principle).</p>
 </div>
-<p>We denote by <span class="math notranslate nohighlight">\(\mathtt{Reach}k(\textrm{Win}\)</span> the set of all plays that reach <span class="math notranslate nohighlight">\(\textrm{Win} within the first \)</span>k<span class="math notranslate nohighlight">\( steps. Clearly, for each \)</span>\sigma<span class="math notranslate nohighlight">\( and \)</span>v_0 we have <span class="math notranslate nohighlight">\(\lim_{k \rightarrow \infty} \mathbb{P}\sigma_{v_0(\mathtt{Reach}k(\textrm{Win}) = \mathbb{P}\sigma_{v_0(\mathtt{Reach}\textrm{Win})\)</span>.</p>
+<p>We denote by <span class="math notranslate nohighlight">\(\Reach^k(\Win)\)</span> the set of all plays that reach <span class="math notranslate nohighlight">\(\Win\)</span> within the first <span class="math notranslate nohighlight">\(k\)</span> steps. Clearly, for each <span class="math notranslate nohighlight">\(\sigma\)</span> and <span class="math notranslate nohighlight">\(\vinit\)</span> we have <span class="math notranslate nohighlight">\(\lim_{k \rightarrow \infty} \probm^\sigma_{\vinit}(\Reach^k(\Win)) = \probm^\sigma_{\vinit}(\Reach(\Win))\)</span>.</p>
 <div class="proof lemma admonition" id="5-lem:quant-reach-step-operator">
 <p class="admonition-title"><span class="caption-number">Lemma 189 </span> (NEEDS TITLE 5-lem:quant-reach-step-operator)</p>
 <div class="lemma-content section" id="proof-content">
-<p>For each <span class="math notranslate nohighlight">\(k\in \mathbb{N} and \)</span>v\in V, <span class="math notranslate nohighlight">\(\mathcal{R}k(\vec{0})_v = \sup_{\sigma}\mathbb{P}\sigma_v(\mathtt{Reach}k(\textrm{Win})\)</span>. In particular, the vector <span class="math notranslate nohighlight">\(\vec{x}^* = \lim_{k \rightarrow\infty} \mathcal{R}k(\vec{0})\)</span> is the least fixed point of <span class="math notranslate nohighlight">\( \mathcal{R}\)</span> and it is equal to the vector of reachability values.</p>
+<p>For each <span class="math notranslate nohighlight">\(k\in \N\)</span> and <span class="math notranslate nohighlight">\(v\in \vertices\)</span>, <span class="math notranslate nohighlight">\(\ReachOp^k(\vec{0})_v = \sup_{\sigma}\probm^\sigma_v(\Reach^k(\Win))\)</span>. In particular, the vector <span class="math notranslate nohighlight">\(\vec{x}^* = \lim_{k \rightarrow\infty} \ReachOp^k(\vec{0})\)</span> is the least fixed point of <span class="math notranslate nohighlight">\( \ReachOp \)</span> and it is equal to the vector of reachability values.</p>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
 <p>The first part can be proved by a straightforward induction, the second part follows by  <a class="reference internal" href="#5-lem:quant-reach-operator-fixed-point">Lemma 188</a> and a simple limiting argument.</p>
 </div>
-<p>Similarly to  <a class="reference internal" href="discounted.html#5-def:disc-safe-act">Definition 144</a> we say that an action <span class="math notranslate nohighlight">\(a\)</span> is <span class="math notranslate nohighlight">\(\vec{x}\)</span>-safe in <span class="math notranslate nohighlight">\(v\)</span> if it holds that <span class="math notranslate nohighlight">\(a= \underset{a' \in A{\arg\max} \sum_{u\in V 
-\Deltau\mid v,a') \cdot\vec{x}_u.\)</span> Recall that a strategy <span class="math notranslate nohighlight">\(\sigma\)</span> is <span class="math notranslate nohighlight">\(\vec{x}\)</span>-safe if all actions selected in a vertex with non-zero probability are <span class="math notranslate nohighlight">\(\vec{x}\)</span>-safe in that vertex.</p>
+<p>Similarly to  <a class="reference internal" href="discounted.html#5-def:disc-safe-act">Definition 144</a> we say that an action <span class="math notranslate nohighlight">\(a\)</span> is <span class="math notranslate nohighlight">\(\vec{x}\)</span>-safe in <span class="math notranslate nohighlight">\(v\)</span> if it holds that <span class="math notranslate nohighlight">\(a= \underset{a' \in \actions}{\arg\max} \sum_{u\in \vertices} 
+\probTranFunc(u\mid v,a') \cdot\vec{x}_u.\)</span> Recall that a strategy <span class="math notranslate nohighlight">\(\sigma\)</span> is <span class="math notranslate nohighlight">\(\vec{x}\)</span>-safe if all actions selected in a vertex with non-zero probability are <span class="math notranslate nohighlight">\(\vec{x}\)</span>-safe in that vertex.</p>
 <div class="proof lemma admonition" id="5-lem:quant-reach-value-distribution">
 <p class="admonition-title"><span class="caption-number">Lemma 190 </span> (NEEDS TITLE 5-lem:quant-reach-value-distribution)</p>
 <div class="lemma-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\( \vec{x}^* \)</span> be as in  <a class="reference internal" href="#5-lem:quant-reach-step-operator">Lemma 189</a>.
-Next, let <span class="math notranslate nohighlight">\(Z^{(n)}\)</span> be a random variable which for a given time step <span class="math notranslate nohighlight">\(n\)</span> looks at the current vertex <span class="math notranslate nohighlight">\(v\)</span> after <span class="math notranslate nohighlight">\(n\)</span> steps and returns the value <span class="math notranslate nohighlight">\(\vec{x}^*_v\)</span>. Then for every <span class="math notranslate nohighlight">\(\vec{x}^*\)</span>-safe strategy <span class="math notranslate nohighlight">\(\sigma\)</span> it holds <span class="math notranslate nohighlight">\(\mathbb{E}\sigma_{v_0[Z^{(n)}] = \vec{x}^*_{v_0\)</span>. Moreover, it holds <span class="math notranslate nohighlight">\(\mathbb{E}\sigma_{v_0[Z^{(n)}\cdot \indicator{c(\textrm{Out}\play_{n})})}=\textrm{Win}] = \mathbb{P}\sigma_{v_0(\mathtt{Reach}n(\textrm{Win}).\)</span></p>
+Next, let <span class="math notranslate nohighlight">\(Z^{(n)}\)</span> be a random variable which for a given time step <span class="math notranslate nohighlight">\(n\)</span> looks at the current vertex <span class="math notranslate nohighlight">\(v\)</span> after <span class="math notranslate nohighlight">\(n\)</span> steps and returns the value <span class="math notranslate nohighlight">\(\vec{x}^*_v\)</span>. Then for every <span class="math notranslate nohighlight">\(\vec{x}^*\)</span>-safe strategy <span class="math notranslate nohighlight">\(\sigma\)</span> it holds <span class="math notranslate nohighlight">\(\expv^\sigma_{\vinit}[Z^{(n)}] = \vec{x}^*_{\vinit}\)</span>. Moreover, it holds <span class="math notranslate nohighlight">\(\expv^\sigma_{\vinit}[Z^{(n)}\cdot \indicator{\colouring{(\Out{(\play_{n})})}=\Win}] = \probm^\sigma_{\vinit}(\Reach^n(\Win)).\)</span></p>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
 <p>By an easy induction on <span class="math notranslate nohighlight">\(n\)</span>, using the fact that target states are  sinks.</p>
 </div>
-<p>Now an analogue of  <a class="reference internal" href="discounted.html#5-lem:disc-val-lower">Lemma 146</a> does not hold for reachability: a strategy playing only <span class="math notranslate nohighlight">\(\vec{x}^*\)</span>-safe actions might not be optimal (indeed, it might not reach <span class="math notranslate nohighlight">\(\textrm{Win} at all). Instead, we proceed as follows: Let \)</span>\mathcal{M}<em><span class="math notranslate nohighlight">\( be an MDP in which we disable, in each state \)</span>v<span class="math notranslate nohighlight">\(, all actions that are not \)</span>\vec{x}^</em><span class="math notranslate nohighlight">\(-safe in \)</span>v<span class="math notranslate nohighlight">\(. This can be formally done by adding a new non-target sink vertex \)</span> \mathit{sink} <span class="math notranslate nohighlight">\(, an edge from each original vertex to \)</span> \mathit{sink} <span class="math notranslate nohighlight">\(, and stipulating that each action \)</span>a<span class="math notranslate nohighlight">\( that is disabled in a vertex \)</span> v <span class="math notranslate nohighlight">\( chooses, when played in \)</span> v <span class="math notranslate nohighlight">\( in \)</span> \mathcal{M}*<span class="math notranslate nohighlight">\(, the edge leading to \)</span> \mathit{sink} $ with probability 1.</p>
+<p>Now an analogue of  <a class="reference internal" href="discounted.html#5-lem:disc-val-lower">Lemma 146</a> does not hold for reachability: a strategy playing only <span class="math notranslate nohighlight">\(\vec{x}^*\)</span>-safe actions might not be optimal (indeed, it might not reach <span class="math notranslate nohighlight">\(\Win\)</span> at all). Instead, we proceed as follows: Let <span class="math notranslate nohighlight">\(\mdp^*\)</span> be an MDP in which we disable, in each state <span class="math notranslate nohighlight">\(v\)</span>, all actions that are not <span class="math notranslate nohighlight">\(\vec{x}^*\)</span>-safe in <span class="math notranslate nohighlight">\(v\)</span>. This can be formally done by adding a new non-target sink vertex <span class="math notranslate nohighlight">\( \mathit{sink} \)</span>, an edge from each original vertex to <span class="math notranslate nohighlight">\( \mathit{sink} \)</span>, and stipulating that each action <span class="math notranslate nohighlight">\(a\)</span> that is disabled in a vertex <span class="math notranslate nohighlight">\( v \)</span> chooses, when played in <span class="math notranslate nohighlight">\( v \)</span> in <span class="math notranslate nohighlight">\( \mdp^*\)</span>, the edge leading to <span class="math notranslate nohighlight">\( \mathit{sink} \)</span> with probability 1.</p>
 <div class="proof lemma admonition" id="5-lem:quant-reach-pruning-unsafe">
 <p class="admonition-title"><span class="caption-number">Lemma 191 </span> (NEEDS TITLE 5-lem:quant-reach-pruning-unsafe)</p>
 <div class="lemma-content section" id="proof-content">
-<p>The vectors of reachability values <span class="math notranslate nohighlight">\( \textrm{val}\mathcal{M}\)</span> and <span class="math notranslate nohighlight">\(\textrm{val}\mathcal{M}*) \)</span> are equal.
-In particular, <span class="math notranslate nohighlight">\( W_{&gt;0}\mathcal{M}\mathtt{Reach}\textrm{Win}) = W_{&gt;0}\mathcal{M}*,\mathtt{Reach}\textrm{Win}).\)</span></p>
+<p>The vectors of reachability values <span class="math notranslate nohighlight">\( \Value(\mdp)\)</span> and <span class="math notranslate nohighlight">\(\Value(\mdp^*) \)</span> are equal.
+In particular, <span class="math notranslate nohighlight">\( \winPos(\mdp,\Reach(\Win)) = \winPos(\mdp^*,\Reach(\Win)).\)</span></p>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
-<p>Let <span class="math notranslate nohighlight">\(\vec{x}^*\)</span> again denote the vector of optimal values in <span class="math notranslate nohighlight">\(\mathcal{M}. If all actions in \)</span> \mathcal{M}<span class="math notranslate nohighlight">\( are \)</span>\vec{x}^<em><span class="math notranslate nohighlight">\(-safes, then the lemma clearly holds. Otherwise there is some \)</span>\delta\in(0,1)<span class="math notranslate nohighlight">\( such that for each action \)</span>a<span class="math notranslate nohighlight">\( that is not \)</span>\vec{x}^</em><span class="math notranslate nohighlight">\(-safe in some vertex \)</span> v <span class="math notranslate nohighlight">\( it holds \)</span>\sum_{u\in V \Deltau\mid v,a) \cdot\vec{x}_u \leq \vec{x}^*_v - \delta$.</p>
-<p>Let <span class="math notranslate nohighlight">\(\epsilon \in(0,\delta)\)</span> be arbitrary and fix an <span class="math notranslate nohighlight">\(\epsilon\)</span>-optimal strategy <span class="math notranslate nohighlight">\(\sigma\)</span> in <span class="math notranslate nohighlight">\(\mathcal{M}. We will show that there is a \)</span>(2\eps/\delta)<span class="math notranslate nohighlight">\(-optimal  strategy \)</span>\sigma’<span class="math notranslate nohighlight">\( which only uses \)</span>\vec{x}^<em><span class="math notranslate nohighlight">\(-safe actions. Since \)</span>\eps<span class="math notranslate nohighlight">\( can be chosen arbitrarily close to \)</span>0<span class="math notranslate nohighlight">\(, this shows that \)</span>\vec{x}^</em><span class="math notranslate nohighlight">\(-safe strategies can get arbitrarily close to the value, hence \)</span>\textrm{val}\mathcal{M}*)=\textrm{val}\mathcal{M}$.</p>
-<p>The strategy <span class="math notranslate nohighlight">\(\sigma'\)</span> initially mimics <span class="math notranslate nohighlight">\(\sigma\)</span> up to the first point in time when an action that is not <span class="math notranslate nohighlight">\(\vec{x}^*\)</span>-safe in the current vertex is to be selected. At this point <span class="math notranslate nohighlight">\(\sigma'\)</span> switches to behave as any <span class="math notranslate nohighlight">\(\vec{x}^*\)</span>-safe strategy. To analyse the value achieved by <span class="math notranslate nohighlight">\(\sigma'\)</span>, we need to bound the probability of the event <span class="math notranslate nohighlight">\(\mathit{NonSafe}\)</span> that the switch occurs. By the same reasoning as in  <a class="reference internal" href="#5-lem:quant-reach-value-distribution">Lemma 190</a>, we can show that for all <span class="math notranslate nohighlight">\(n\)</span> it holds <span class="math notranslate nohighlight">\(\mathbb{P}\sigma_{v_0(\mathtt{Reach}n(\textrm{Win}) \leq \mathbb{E}\sigma_{v_0[Z^{(n)}] \leq  \vec{x}^*_{v_0- \delta\cdot\probm_{v_0^\sigma(\mathit{NonSafe^{(n)}})\)</span>, where <span class="math notranslate nohighlight">\(\mathit{NonSafe^{(n)}}\)</span> is the probability that a switch occurs in the first <span class="math notranslate nohighlight">\(n\)</span> steps. By taking <span class="math notranslate nohighlight">\(n\)</span> to the limit we get <span class="math notranslate nohighlight">\(\mathbb{P}\sigma_{v_0(\mathtt{Reach}\textrm{Win}) \leq \vec{x}^*_{v_0- \delta\cdot\probm_{v_0^\sigma(\mathit{NonSafe})\)</span>. At the same time <span class="math notranslate nohighlight">\(\vec{x}^*_{v_0-\eps\leq  \mathbb{P}\sigma_{v_0(\mathtt{Reach}\textrm{Win})\)</span>. Combining these two inequalities yields <span class="math notranslate nohighlight">\(\probm_{v_0^\sigma(\mathit{NonSafe}) \leq  \frac{\eps}{\delta}.\)</span> Now clearly <span class="math notranslate nohighlight">\(\probm_{v_0^{\sigma'}(\mathtt{Reach}\textrm{Win}) \geq \vec{x}^*_{v_0 - \eps - \probm_{v_0^{\sigma}(\mathit{NonSafe}) \geq \vec{x}^*_{v_0 - \eps - \eps/\delta \geq \vec{x}^*_{v_0 -2\eps/\delta\)</span>.</p>
+<p>Let <span class="math notranslate nohighlight">\(\vec{x}^*\)</span> again denote the vector of optimal values in <span class="math notranslate nohighlight">\(\mdp\)</span>. If all actions in <span class="math notranslate nohighlight">\( \mdp \)</span> are <span class="math notranslate nohighlight">\(\vec{x}^*\)</span>-safes, then the lemma clearly holds. Otherwise there is some <span class="math notranslate nohighlight">\(\delta\in(0,1)\)</span> such that for each action <span class="math notranslate nohighlight">\(a\)</span> that is not <span class="math notranslate nohighlight">\(\vec{x}^*\)</span>-safe in some vertex <span class="math notranslate nohighlight">\( v \)</span> it holds <span class="math notranslate nohighlight">\(\sum_{u\in \vertices} \probTranFunc(u\mid v,a) \cdot\vec{x}_u \leq \vec{x}^*_v - \delta\)</span>.</p>
+<p>Let <span class="math notranslate nohighlight">\(\epsilon \in(0,\delta)\)</span> be arbitrary and fix an <span class="math notranslate nohighlight">\(\epsilon\)</span>-optimal strategy <span class="math notranslate nohighlight">\(\sigma\)</span> in <span class="math notranslate nohighlight">\(\mdp\)</span>. We will show that there is a <span class="math notranslate nohighlight">\((2\eps/\delta)\)</span>-optimal  strategy <span class="math notranslate nohighlight">\(\sigma'\)</span> which only uses <span class="math notranslate nohighlight">\(\vec{x}^*\)</span>-safe actions. Since <span class="math notranslate nohighlight">\(\eps\)</span> can be chosen arbitrarily close to <span class="math notranslate nohighlight">\(0\)</span>, this shows that <span class="math notranslate nohighlight">\(\vec{x}^*\)</span>-safe strategies can get arbitrarily close to the value, hence <span class="math notranslate nohighlight">\(\Value(\mdp^*)=\Value(\mdp)\)</span>.</p>
+<p>The strategy <span class="math notranslate nohighlight">\(\sigma'\)</span> initially mimics <span class="math notranslate nohighlight">\(\sigma\)</span> up to the first point in time when an action that is not <span class="math notranslate nohighlight">\(\vec{x}^*\)</span>-safe in the current vertex is to be selected. At this point <span class="math notranslate nohighlight">\(\sigma'\)</span> switches to behave as any <span class="math notranslate nohighlight">\(\vec{x}^*\)</span>-safe strategy. To analyse the value achieved by <span class="math notranslate nohighlight">\(\sigma'\)</span>, we need to bound the probability of the event <span class="math notranslate nohighlight">\(\mathit{NonSafe}\)</span> that the switch occurs. By the same reasoning as in  <a class="reference internal" href="#5-lem:quant-reach-value-distribution">Lemma 190</a>, we can show that for all <span class="math notranslate nohighlight">\(n\)</span> it holds <span class="math notranslate nohighlight">\(\probm^\sigma_{\vinit}(\Reach^n(\Win)) \leq \expv^\sigma_{\vinit}[Z^{(n)}] \leq  \vec{x}^*_{\vinit}- \delta\cdot\probm_{\vinit}^\sigma(\mathit{NonSafe^{(n)}})\)</span>, where <span class="math notranslate nohighlight">\(\mathit{NonSafe^{(n)}}\)</span> is the probability that a switch occurs in the first <span class="math notranslate nohighlight">\(n\)</span> steps. By taking <span class="math notranslate nohighlight">\(n\)</span> to the limit we get <span class="math notranslate nohighlight">\(\probm^\sigma_{\vinit}(\Reach(\Win)) \leq \vec{x}^*_{\vinit}- \delta\cdot\probm_{\vinit}^\sigma(\mathit{NonSafe})\)</span>. At the same time <span class="math notranslate nohighlight">\(\vec{x}^*_{\vinit}-\eps\leq  \probm^\sigma_{\vinit}(\Reach(\Win))\)</span>. Combining these two inequalities yields <span class="math notranslate nohighlight">\(\probm_{\vinit}^\sigma(\mathit{NonSafe}) \leq  \frac{\eps}{\delta}.\)</span> Now clearly <span class="math notranslate nohighlight">\(\probm_{\vinit}^{\sigma'}(\Reach(\Win)) \geq \vec{x}^*_{\vinit} - \eps - \probm_{\vinit}^{\sigma}(\mathit{NonSafe}) \geq \vec{x}^*_{\vinit} - \eps - \eps/\delta \geq \vec{x}^*_{\vinit} -2\eps/\delta\)</span>.</p>
 </div>
 <div class="proof lemma admonition" id="5-lem:quant-reach-strat-contsruction">
 <p class="admonition-title"><span class="caption-number">Lemma 192 </span> (NEEDS TITLE 5-lem:quant-reach-strat-contsruction)</p>
 <div class="lemma-content section" id="proof-content">
-<p>Given the vector <span class="math notranslate nohighlight">\(\vec{x}^*\)</span> of optimal reachability values, we can compute, in polynomial time, the optimal MD reachability strategy in $\mathcal{M}.</p>
+<p>Given the vector <span class="math notranslate nohighlight">\(\vec{x}^*\)</span> of optimal reachability values, we can compute, in polynomial time, the optimal MD reachability strategy in <span class="math notranslate nohighlight">\(\mdp\)</span>.</p>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
-<p>Given <span class="math notranslate nohighlight">\(\vec{x}^*\)</span>, we construct the MDP <span class="math notranslate nohighlight">\(\mathcal{M}*\)</span> and compute the winning strategy <span class="math notranslate nohighlight">\(\sigma\)</span> for positive reachability in <span class="math notranslate nohighlight">\(\mathcal{M}*\)</span>. We already know that <span class="math notranslate nohighlight">\(\sigma\)</span> can be taken memoryless and computed in polynomial time ( <a class="reference internal" href="reachability.html#5-thm:positive-char">Theorem 134</a>). We claim that <span class="math notranslate nohighlight">\(\sigma\)</span> is an optimal reachability strategy in <span class="math notranslate nohighlight">\(\mathcal{M}. By  {prf:ref}`5-lem:quant-reach-pruning-unsafe` it suffices to show that \)</span>\sigma<span class="math notranslate nohighlight">\( is optimal in \)</span>\mathcal{M}<em><span class="math notranslate nohighlight">\(. Let \)</span>W<span class="math notranslate nohighlight">\( be the winning region for positive reachability in \)</span>\mathcal{M}</em><span class="math notranslate nohighlight">\(. Since \)</span>\sigma<span class="math notranslate nohighlight">\( is memoryless, with probability \)</span>1<span class="math notranslate nohighlight">\( we reach either \)</span>\textrm{Win} or a vertex of value <span class="math notranslate nohighlight">\(0\)</span> (from which we cannot return to <span class="math notranslate nohighlight">\(W\)</span> anymore); in other words, for almost all plays <span class="math notranslate nohighlight">\(\pi we have that \)</span>\indicator{\textrm{Out}play_n)\in W}<span class="math notranslate nohighlight">\( eventually equals \)</span>\indicator{c\textrm{Out}play_n)) = \textrm{Win}<span class="math notranslate nohighlight">\(. Hence, using  {prf:ref}`5-lem:quant-reach-value-distribution` we get \)</span>\vec{x}^<em><em>{v_0 = \lim</em>{n\rightarrow\infty}\mathbb{E}\sigma_{v_0[Z^{(n)}] = \mathbb{E}\sigma_{v_0[\lim_{n\rightarrow\infty} Z^{(n)}] = \mathbb{E}\sigma_{v_0[\lim_{n\rightarrow\infty} Z^{(n)}\cdot\indicator{\textrm{Out}play_n)\in W}] = \mathbb{E}\sigma_{v_0[\lim_{n\rightarrow\infty} Z^{(n)}\cdot \indicator{c\textrm{Out}play_{n})) = \textrm{Win}} ] = \probm_{v_0^\sigma(\mathtt{Reach}\textrm{Win})<span class="math notranslate nohighlight">\(. Here, the third equality holds since \)</span> \vec{x}^</em>_v <span class="math notranslate nohighlight">\( is zero for \)</span> v\not\in W $, while the  swapping of expectations and limits can be performed due to the dominated convergence theorem.</p>
+<p>Given <span class="math notranslate nohighlight">\(\vec{x}^*\)</span>, we construct the MDP <span class="math notranslate nohighlight">\(\mdp^*\)</span> and compute the winning strategy <span class="math notranslate nohighlight">\(\sigma\)</span> for positive reachability in <span class="math notranslate nohighlight">\(\mdp^*\)</span>. We already know that <span class="math notranslate nohighlight">\(\sigma\)</span> can be taken memoryless and computed in polynomial time ( <a class="reference internal" href="reachability.html#5-thm:positive-char">Theorem 134</a>). We claim that <span class="math notranslate nohighlight">\(\sigma\)</span> is an optimal reachability strategy in <span class="math notranslate nohighlight">\(\mdp\)</span>. By  <a class="reference internal" href="#5-lem:quant-reach-pruning-unsafe">Lemma 191</a> it suffices to show that <span class="math notranslate nohighlight">\(\sigma\)</span> is optimal in <span class="math notranslate nohighlight">\(\mdp^*\)</span>. Let <span class="math notranslate nohighlight">\(W\)</span> be the winning region for positive reachability in <span class="math notranslate nohighlight">\(\mdp^*\)</span>. Since <span class="math notranslate nohighlight">\(\sigma\)</span> is memoryless, with probability <span class="math notranslate nohighlight">\(1\)</span> we reach either <span class="math notranslate nohighlight">\(\Win\)</span> or a vertex of value <span class="math notranslate nohighlight">\(0\)</span> (from which we cannot return to <span class="math notranslate nohighlight">\(W\)</span> anymore); in other words, for almost all plays <span class="math notranslate nohighlight">\(\play\)</span> we have that <span class="math notranslate nohighlight">\(\indicator{\Out(\play_n)\in W}\)</span> eventually equals <span class="math notranslate nohighlight">\(\indicator{\colouring(\Out(\play_n)) = \Win}\)</span>. Hence, using  <a class="reference internal" href="#5-lem:quant-reach-value-distribution">Lemma 190</a> we get <span class="math notranslate nohighlight">\(\vec{x}^*_{\vinit} = \lim_{n\rightarrow\infty}\expv^\sigma_{\vinit}[Z^{(n)}] = \expv^\sigma_{\vinit}[\lim_{n\rightarrow\infty} Z^{(n)}] = \expv^\sigma_{\vinit}[\lim_{n\rightarrow\infty} Z^{(n)}\cdot\indicator{\Out(\play_n)\in W}] = \expv^\sigma_{\vinit}[\lim_{n\rightarrow\infty} Z^{(n)}\cdot \indicator{\colouring(\Out(\play_{n})) = \Win } ] = \probm_{\vinit}^\sigma(\Reach(\Win))\)</span>. Here, the third equality holds since <span class="math notranslate nohighlight">\( \vec{x}^*_v \)</span> is zero for <span class="math notranslate nohighlight">\( v\not\in W \)</span>, while the  swapping of expectations and limits can be performed due to the dominated convergence theorem.</p>
 </div>
 <p>To finish the proof of  <a class="reference internal" href="reductions.html#5-thm:quant-reachability-main">Theorem 181</a>, it remains to prove that the vector of optimal values <span class="math notranslate nohighlight">\(\vec{x}^*\)</span> can be computed in polynomial time. We again employ linear programming.</p>
 <p>\begin{figure}[h]
 \begin{align*}
-&amp;\text{minimize} \sum_{v\in V x_v, \text{ subject to }&amp;\
-x_v &amp;=1 &amp;\text{if <span class="math notranslate nohighlight">\(c{v}) = \textrm{Win}}\\
-x_v &amp;=0 &amp;\text{if \)</span>v \not \in W_{&gt;0}\mathcal{M}\mathtt{Reach}\textrm{Win})<span class="math notranslate nohighlight">\(  } \\
-x_v &amp;\geq \sum_{u\in V \Deltau\mid v,a)\cdot x_u&amp;\text{for all other \)</span>v\in V and $a\in A.}</p>
+&amp;\text{minimize} \sum_{v\in \vertices} x_v, \text{ subject to }&amp;\
+x_v &amp;=1 &amp;\text{if <span class="math notranslate nohighlight">\(\colouring({v}) = \Win\)</span>}\
+x_v &amp;=0 &amp;\text{if <span class="math notranslate nohighlight">\(v \not \in \winPos(\mdp,\Reach(\Win))\)</span>  } \
+x_v &amp;\geq \sum_{u\in \vertices} \probTranFunc(u\mid v,a)\cdot x_u&amp;\text{for all other <span class="math notranslate nohighlight">\(v\in \vertices\)</span> and <span class="math notranslate nohighlight">\(a\in \actions\)</span>.}</p>
 <p>\end{align*}
-\caption{The linear program <span class="math notranslate nohighlight">\(\lp_{\mathit{reach}} with variables \)</span>x_v<span class="math notranslate nohighlight">\(, \)</span>v\in V.}
+\caption{The linear program <span class="math notranslate nohighlight">\(\lpreach\)</span> with variables <span class="math notranslate nohighlight">\(x_v\)</span>, <span class="math notranslate nohighlight">\(v\in \vertices\)</span>.}
 \label{5-fig:reach-lp}
 \end{figure}</p>
 <div class="proof lemma admonition" id="lemma-5">
 <p class="admonition-title"><span class="caption-number">Lemma 193 </span> (NEEDS TITLE AND LABEL)</p>
 <div class="lemma-content section" id="proof-content">
 <p>\label{5-lem:quant-reach-lp}
-The linear program <span class="math notranslate nohighlight">\(\lp_{\mathit{reach}} in {numref}`5-fig:reach-lp` has a unique optimal solution 
-\)</span>\bar{\vec{x}}<span class="math notranslate nohighlight">\( such that \)</span>\bar{\vec{x}} = \vec{x}^*$.</p>
+The linear program <span class="math notranslate nohighlight">\(\lpreach\)</span> in <code class="xref std std-numref docutils literal notranslate"><span class="pre">5-fig:reach-lp</span></code> has a unique optimal solution
+<span class="math notranslate nohighlight">\(\bar{\vec{x}}\)</span> such that <span class="math notranslate nohighlight">\(\bar{\vec{x}} = \vec{x}^*\)</span>.</p>
 <p>\label{5-lem:quant-reach-lp}
-The linear program <span class="math notranslate nohighlight">\(\lp_{\mathit{reach}} in {numref}`5-fig:reach-lp` has a unique optimal solution 
-\)</span>\bar{\vec{x}}<span class="math notranslate nohighlight">\( such that \)</span>\bar{\vec{x}} = \vec{x}^*$.</p>
+The linear program <span class="math notranslate nohighlight">\(\lpreach\)</span> in <code class="xref std std-numref docutils literal notranslate"><span class="pre">5-fig:reach-lp</span></code> has a unique optimal solution
+<span class="math notranslate nohighlight">\(\bar{\vec{x}}\)</span> such that <span class="math notranslate nohighlight">\(\bar{\vec{x}} = \vec{x}^*\)</span>.</p>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
-<p>Clearly <span class="math notranslate nohighlight">\(\vec{x}^*\)</span> is a feasible solution of <span class="math notranslate nohighlight">\(\lp_{\mathit{reach}}. Similarly to  {prf:ref}`5-lem:disc-lp` we prove that each feasible solution \)</span>\vec{x}<span class="math notranslate nohighlight">\( of \)</span>\lp_{\mathit{reach}} satisfies <span class="math notranslate nohighlight">\(\vec{x}\geq \vec{x}^*\)</span>. We can proceed analogously  to  <a class="reference internal" href="discounted.html#5-lem:disc-lp">Lemma 155</a>, just replacing the operator <span class="math notranslate nohighlight">\(\mathcal{D} with \)</span>\mathcal{R}. The proof can be mimicked up to the point where we get that <span class="math notranslate nohighlight">\(\lim_{k\rightarrow \infty} \mathcal{R}k (\vec{x}) \leq \vec{x}\)</span> (the limit exists by  <a class="reference internal" href="#5-lem:quant-reach-operator-fixed-point">Lemma 188</a>). Since <span class="math notranslate nohighlight">\(\mathcal{R}\vec{x})\leq \vec{x}\)</span> for each feasible solution <span class="math notranslate nohighlight">\(\vec{x}\)</span>, from  <a class="reference internal" href="#5-lem:quant-reach-operator-fixed-point">Lemma 188</a> we get that the limit is a fixed point of <span class="math notranslate nohighlight">\(\mathcal{R}, and in hence it is greater or equal to the least fixed point of \)</span>\mathcal{R}, i.e. <span class="math notranslate nohighlight">\(\vec{x}^*\)</span> ( <a class="reference internal" href="#5-lem:quant-reach-step-operator">Lemma 189</a>). Hence, also <span class="math notranslate nohighlight">\(\vec{x} \geq \lim_{k\rightarrow \infty} \mathcal{R}k (\vec{x}_0)\geq \vec{x}^*\)</span>.</p>
+<p>Clearly <span class="math notranslate nohighlight">\(\vec{x}^*\)</span> is a feasible solution of <span class="math notranslate nohighlight">\(\lpreach\)</span>. Similarly to  <a class="reference internal" href="discounted.html#5-lem:disc-lp">Lemma 155</a> we prove that each feasible solution <span class="math notranslate nohighlight">\(\vec{x}\)</span> of <span class="math notranslate nohighlight">\(\lpreach\)</span> satisfies <span class="math notranslate nohighlight">\(\vec{x}\geq \vec{x}^*\)</span>. We can proceed analogously  to  <a class="reference internal" href="discounted.html#5-lem:disc-lp">Lemma 155</a>, just replacing the operator <span class="math notranslate nohighlight">\(\discOP\)</span> with <span class="math notranslate nohighlight">\(\ReachOp\)</span>. The proof can be mimicked up to the point where we get that <span class="math notranslate nohighlight">\(\lim_{k\rightarrow \infty} \ReachOp^k (\vec{x}) \leq \vec{x}\)</span> (the limit exists by  <a class="reference internal" href="#5-lem:quant-reach-operator-fixed-point">Lemma 188</a>). Since <span class="math notranslate nohighlight">\(\ReachOp(\vec{x})\leq \vec{x}\)</span> for each feasible solution <span class="math notranslate nohighlight">\(\vec{x}\)</span>, from  <a class="reference internal" href="#5-lem:quant-reach-operator-fixed-point">Lemma 188</a> we get that the limit is a fixed point of <span class="math notranslate nohighlight">\(\ReachOp\)</span>, and in hence it is greater or equal to the least fixed point of <span class="math notranslate nohighlight">\(\ReachOp\)</span>, i.e. <span class="math notranslate nohighlight">\(\vec{x}^*\)</span> ( <a class="reference internal" href="#5-lem:quant-reach-step-operator">Lemma 189</a>). Hence, also <span class="math notranslate nohighlight">\(\vec{x} \geq \lim_{k\rightarrow \infty} \ReachOp^k (\vec{x}_0)\geq \vec{x}^*\)</span>.</p>
 </div>
 <p>Lemmas \ref{5-lem:quant-reach-strat-contsruction} and \ref{5-lem:quant-reach-lp} give us  <a class="reference internal" href="reductions.html#5-thm:quant-reachability-main">Theorem 181</a>.</p>
 </div>

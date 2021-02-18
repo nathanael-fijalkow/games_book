@@ -705,47 +705,105 @@
   <div class="section" id="notations">
 <span id="sec-notations"></span><h1>Notations<a class="headerlink" href="#notations" title="Permalink to this headline">¶</a></h1>
 <div class="math notranslate nohighlight">
-\[\newcommand{\Randomvertices}{\vertices_{\text{Rand}}}
-\newcommand{\dist}{\mathcal{D}}
-\newcommand{\game}{\mathcal{G}}
-\newcommand{\arena}{\mathcal{A}}
-\newcommand{\vertices}{V}
-\newcommand{\VE}{V_\mEve}
-\newcommand{\VA}{V_\mAdam}
-\newcommand{\Win}{\textrm{Win}}
-\newcommand{\Value}{\textrm{val}}
-\newcommand{\ValueE}{\textrm{val}_\mEve}
-\newcommand{\ValueA}{\textrm{val}_\mAdam}
-\newcommand{\Reach}{\mathtt{Reach}}
+\[ \begin{align}\begin{aligned}\newcommand{\adist}{\ensuremath{f}}
+\newcommand{\probm}{\mathbb{P}}
+\newcommand{\lfp}{**lfp**}
+\newcommand{\vwin}{\ensuremath{v_{\textsc{win}}}}
+\newcommand{\vlose}{\ensuremath{v_{\textsc{lose}}}}
+\newcommand{\Adamvertices}{\VA}
+\newcommand{\Evevertices}{\VE}
+\newcommand{\Randomvertices}{\vertices_{\text{Rand}}}
+\newcommand{\perm}{\pi}
+\newcommand{\DetAtt}{\ensuremath{**DetAtt**}}\\\newcommand{\weight}{\mathbf{w}} \newcommand{\nats}{\mathbb{N}}\newcommand{\Eve}{\textrm{Eve}}
+\newcommand{\Adam}{\textrm{Adam}}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
+\newcommand{\argmax}{\textrm{argmax}}
+\newcommand{\argmin}{\textrm{argmin}}
+\newcommand{\Op}{\mathbb{O}}
+\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\textrm{supp}} 
+\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
+\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
 \newcommand{\mEve}{\mathrm{Eve}}
-\newcommand{\mAdam}{\mathrm{Adam}}\]</div>
+\newcommand{\mAdam}{\mathrm{Adam}}
+\newcommand{\mRandom}{\mathrm{Random}}
+\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
+\newcommand{\ing}{\textrm{In}}
+\newcommand{\Ing}{\ing}
+\newcommand{\out}{\textrm{Out}}
+\newcommand{\Out}{\out}
+\newcommand{\dest}{\Delta} 
+\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
+\newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
+\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
+\newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
+\newcommand{\Win}{\textrm{Win}} 
+\newcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Value}{\textrm{val}} 
+\newcommand{\ValueE}{\textrm{val}_\mEve} 
+\newcommand{\ValueA}{\textrm{val}_\mAdam}
+\newcommand{\val}{\Value} 
+\newcommand{\Automaton}{\mathbf{A}} 
+\newcommand{\Safe}{\mathtt{Safe}}
+\newcommand{\Reach}{\mathtt{Reach}} 
+\newcommand{\Buchi}{\mathtt{Buchi}} 
+\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
+\newcommand{\Parity}{\mathtt{Parity}} 
+\newcommand{\Muller}{\mathtt{Muller}} 
+\newcommand{\Rabin}{\mathtt{Rabin}} 
+\newcommand{\Streett}{\mathtt{Streett}} 
+\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
+\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
+\newcommand{\Energy}{\mathtt{Energy}}
+\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
+\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
+\newcommand{\Sup}{\mathtt{Sup}}
+\newcommand{\Inf}{\mathtt{Inf}}
+\newcommand{\LimSup}{\mathtt{LimSup}}
+\newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NL}{\textrm{NL}}
+\newcommand{\PTIME}{\textrm{PTIME}}
+\newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
+\newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
+\newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
+\newcommand{\EXP}{\textrm{EXP}}
+\newcommand{\kEXP}{\textrm{kEXP}}\end{aligned}\end{align} \]</div>
 <p>Let us first define the arenas stochastic games will be played on:</p>
 <div class="proof definition admonition" id="definition-0">
 <p class="admonition-title"><span class="caption-number">Definition 194 </span> (NEEDS TITLE AND LABEL)</p>
 <div class="definition-content section" id="proof-content">
-<p>A stochastic arena is a tuple <span class="math notranslate nohighlight">\(\mathcal{A}= (VE,\delta)\)</span> where</p>
+<p>A stochastic arena is a tuple <span class="math notranslate nohighlight">\(\arena = (\vertices,E,\delta)\)</span> where</p>
 <ul class="simple">
-<li><p>$V= V_\mathrm{Adam}sqcup V_\mathrm{Eve}sqcup \vertices_{\text{Rand}} is a
+<li><p><span class="math notranslate nohighlight">\(\vertices = \VA \sqcup \VE \sqcup \Randomvertices\)</span> is a
 finite set of vertices, partitionned into vertices of Adam, Eve,
 and random vertices;</p></li>
-<li><p>$E \subseteq V\times V is the set of
+<li><p><span class="math notranslate nohighlight">\(E \subseteq \vertices \times \vertices\)</span> is the set of
 edges;</p></li>
-<li><p><span class="math notranslate nohighlight">\(\delta : \vertices_{\text{Rand}}\to \mathcal{D}V\)</span> is the
+<li><p><span class="math notranslate nohighlight">\(\delta : \Randomvertices \to \dist(\vertices)\)</span> is the
 probabilistic transition function, which satisfies:
-<span class="math notranslate nohighlight">\(\forall v \in \vertices_{\text{Rand}}, \)</span>\delta(v)(w)&gt;0<span class="math notranslate nohighlight">\( iff
-\)</span>(v,w) \in E$.</p></li>
+<span class="math notranslate nohighlight">\(\forall v \in \Randomvertices\)</span>, <span class="math notranslate nohighlight">\(\delta(v)(w)&gt;0\)</span> iff
+<span class="math notranslate nohighlight">\((v,w) \in E\)</span>.</p></li>
 </ul>
-<p>A stochastic arena is a tuple <span class="math notranslate nohighlight">\(\mathcal{A}= (VE,\delta)\)</span> where</p>
+<p>A stochastic arena is a tuple <span class="math notranslate nohighlight">\(\arena = (\vertices,E,\delta)\)</span> where</p>
 <ul class="simple">
-<li><p>$V= V_\mathrm{Adam}sqcup V_\mathrm{Eve}sqcup \vertices_{\text{Rand}} is a
+<li><p><span class="math notranslate nohighlight">\(\vertices = \VA \sqcup \VE \sqcup \Randomvertices\)</span> is a
 finite set of vertices, partitionned into vertices of Adam, Eve,
 and random vertices;</p></li>
-<li><p>$E \subseteq V\times V is the set of
+<li><p><span class="math notranslate nohighlight">\(E \subseteq \vertices \times \vertices\)</span> is the set of
 edges;</p></li>
-<li><p><span class="math notranslate nohighlight">\(\delta : \vertices_{\text{Rand}}\to \mathcal{D}V\)</span> is the
+<li><p><span class="math notranslate nohighlight">\(\delta : \Randomvertices \to \dist(\vertices)\)</span> is the
 probabilistic transition function, which satisfies:
-<span class="math notranslate nohighlight">\(\forall v \in \vertices_{\text{Rand}}, \)</span>\delta(v)(w)&gt;0<span class="math notranslate nohighlight">\( iff
-\)</span>(v,w) \in E$.</p></li>
+<span class="math notranslate nohighlight">\(\forall v \in \Randomvertices\)</span>, <span class="math notranslate nohighlight">\(\delta(v)(w)&gt;0\)</span> iff
+<span class="math notranslate nohighlight">\((v,w) \in E\)</span>.</p></li>
 </ul>
 </div>
 </div><div class="figure align-center" id="fig-ex-stoch-arena">
@@ -758,30 +816,30 @@ with a winning objectives to define a stochastic game.</p>
 <div class="proof definition admonition" id="definition-1">
 <p class="admonition-title"><span class="caption-number">Definition 195 </span> (NEEDS TITLE AND LABEL)</p>
 <div class="definition-content section" id="proof-content">
-<p>A stochastic game is a tuple <span class="math notranslate nohighlight">\(\mathcal{G}= (\mathcal{A}\Omega)\)</span> where</p>
+<p>A stochastic game is a tuple <span class="math notranslate nohighlight">\(\game = (\arena,\Omega)\)</span> where</p>
 <ul class="simple">
-<li><p>$\mathcal{A} is a stochastic arena;</p></li>
-<li><p><span class="math notranslate nohighlight">\(\Omega \subseteq V\omega\)</span> is the (qualitative)
+<li><p><span class="math notranslate nohighlight">\(\arena\)</span> is a stochastic arena;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Omega \subseteq \vertices^\omega\)</span> is the (qualitative)
 winning objective.</p></li>
 </ul>
-<p>A stochastic game is a tuple <span class="math notranslate nohighlight">\(\mathcal{G}= (\mathcal{A}\Omega)\)</span> where</p>
+<p>A stochastic game is a tuple <span class="math notranslate nohighlight">\(\game = (\arena,\Omega)\)</span> where</p>
 <ul class="simple">
-<li><p>$\mathcal{A} is a stochastic arena;</p></li>
-<li><p><span class="math notranslate nohighlight">\(\Omega \subseteq V\omega\)</span> is the (qualitative)
+<li><p><span class="math notranslate nohighlight">\(\arena\)</span> is a stochastic arena;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Omega \subseteq \vertices^\omega\)</span> is the (qualitative)
 winning objective.</p></li>
 </ul>
 </div>
-</div><p>For <span class="math notranslate nohighlight">\(\textrm{Win}\subseteq V, letting \)</span>\Omega = \mathtt{Reach}\textrm{Win}<span class="math notranslate nohighlight">\( gives
+</div><p>For <span class="math notranslate nohighlight">\(\Win \subseteq \vertices\)</span>, letting <span class="math notranslate nohighlight">\(\Omega = \Reach(\Win)\)</span> gives
 rise to a stochastic reachability game.
-Of course, one may consider more general \)</span>\omega<span class="math notranslate nohighlight">\(-regular
-properties. We write \)</span>\mathds{1}_\Omega<span class="math notranslate nohighlight">\( for the characteristic
-function of the winning objective \)</span>\Omega$.</p>
+Of course, one may consider more general <span class="math notranslate nohighlight">\(\omega\)</span>-regular
+properties. We write <span class="math notranslate nohighlight">\(\mathds{1}_\Omega\)</span> for the characteristic
+function of the winning objective <span class="math notranslate nohighlight">\(\Omega\)</span>.</p>
 <p>In this game, Eve aims at maximizing the probability that a play
 belongs to <span class="math notranslate nohighlight">\(\Omega\)</span>, while Adam has the opposite objective of
 minimizing that probability. In that sense, we study quantitative
 games, although the winning objective is qualitative.</p>
 <p>A <strong>strategy</strong> for Eve is a function
-<span class="math notranslate nohighlight">\(\sigma: V^* V_\mathrm{Eve}to \mathcal{D}V\)</span> such that whenever
+<span class="math notranslate nohighlight">\(\sigma: V^* \VE \to \dist(\vertices)\)</span> such that whenever
 <span class="math notranslate nohighlight">\(\sigma(h v)(v') &gt;0\)</span> then <span class="math notranslate nohighlight">\((v,v') \in E\)</span>. Similarly, one can define
 strategies for Adam. When a strategy profile <span class="math notranslate nohighlight">\((\sigma,\tau)\)</span> is
 fixed, and assuming the arena is clear from context, we write
@@ -789,30 +847,30 @@ fixed, and assuming the arena is clear from context, we write
 when the initial vertex is <span class="math notranslate nohighlight">\(v\)</span>. In particular,
 <span class="math notranslate nohighlight">\(\probm_{\sigma,\tau}^v(\mathds{1}_\Omega)\)</span> is the outcome of the profile
 <span class="math notranslate nohighlight">\((\sigma,\tau)\)</span>.</p>
-<p>The <strong>value for Eve</strong> in <span class="math notranslate nohighlight">\(\mathcal{G} from \)</span>v<span class="math notranslate nohighlight">\( is defined as
-\)</span>\textrm{val}<em>\mathrm{Eve}mathcal{G}v) = \sup</em>{\sigma} \inf_{\tau}
-\probm_{\sigma,\tau}^v(\mathds{1}<em>\Omega)<span class="math notranslate nohighlight">\(, whereas symmetrically the
-**supremum value** is
-\)</span>\textrm{val}</em>\mathrm{Adam}mathcal{G}v) = \inf_{\tau}\sup_{\sigma}
-\probm_{\sigma,\tau}^v(\mathds{1}<em>\Omega)<span class="math notranslate nohighlight">\(. Clearly enough,
-\)</span>\textrm{val}</em>\mathrm{Eve}mathcal{G}v) \leq \textrm{val}_\mathrm{Adam}mathcal{G}v)<span class="math notranslate nohighlight">\(.  When the converse
-inequality holds, the game is **determined** and the **value**
-of \)</span>v<span class="math notranslate nohighlight">\( in \)</span>\mathcal{G} is denoted <span class="math notranslate nohighlight">\(\textrm{val}\mathcal{G}v)\)</span>. Moreover, if the value
-is attained by positional strategies <span class="math notranslate nohighlight">\(\sigma\)</span> and <span class="math notranslate nohighlight">\(\tau\)</span>, <span class="math notranslate nohighlight">\(\mathcal{G} is
-said to be **positionally determined**. **Strong determinacy**
-means that for every threshold \)</span>c<span class="math notranslate nohighlight">\(, either Eve has a strategy to
-ensure that the probability that the play belongs to \)</span>\Omega<span class="math notranslate nohighlight">\( is at
-least \)</span>c<span class="math notranslate nohighlight">\(, or Adam has a strategy to ensure probability \)</span>&lt; c<span class="math notranslate nohighlight">\( to for
-the set of plays satisfying \)</span>\Omega$.</p>
+<p>The <strong>value for Eve</strong> in <span class="math notranslate nohighlight">\(\game\)</span> from <span class="math notranslate nohighlight">\(v\)</span> is defined as
+<span class="math notranslate nohighlight">\(\ValueE^\game(v) = \sup_{\sigma} \inf_{\tau}
+\probm_{\sigma,\tau}^v(\mathds{1}_\Omega)\)</span>, whereas symmetrically the
+<strong>supremum value</strong> is
+<span class="math notranslate nohighlight">\(\ValueA^\game(v) = \inf_{\tau}\sup_{\sigma}
+\probm_{\sigma,\tau}^v(\mathds{1}_\Omega)\)</span>. Clearly enough,
+<span class="math notranslate nohighlight">\(\ValueE^\game(v) \leq \ValueA^\game(v)\)</span>.  When the converse
+inequality holds, the game is <strong>determined</strong> and the <strong>value</strong>
+of <span class="math notranslate nohighlight">\(v\)</span> in <span class="math notranslate nohighlight">\(\game\)</span> is denoted <span class="math notranslate nohighlight">\(\Value^\game(v)\)</span>. Moreover, if the value
+is attained by positional strategies <span class="math notranslate nohighlight">\(\sigma\)</span> and <span class="math notranslate nohighlight">\(\tau\)</span>, <span class="math notranslate nohighlight">\(\game\)</span> is
+said to be <strong>positionally determined</strong>. <strong>Strong determinacy</strong>
+means that for every threshold <span class="math notranslate nohighlight">\(c\)</span>, either Eve has a strategy to
+ensure that the probability that the play belongs to <span class="math notranslate nohighlight">\(\Omega\)</span> is at
+least <span class="math notranslate nohighlight">\(c\)</span>, or Adam has a strategy to ensure probability <span class="math notranslate nohighlight">\(&lt; c\)</span> to for
+the set of plays satisfying <span class="math notranslate nohighlight">\(\Omega\)</span>.</p>
 <p>Back to the example of Figure~\ref{6-fig:ex-stoch-arena}, assume that
 Eve and Adam play the following pure positional strategies:
 <span class="math notranslate nohighlight">\(\sigma(v_0) = v_1\)</span>, <span class="math notranslate nohighlight">\(\sigma(v_2) = v_3\)</span>, <span class="math notranslate nohighlight">\(\sigma(v_5) = v_5\)</span> and
 <span class="math notranslate nohighlight">\(\tau(v_6) = v_5\)</span>. Under such a strategy profile, starting in <span class="math notranslate nohighlight">\(v_0\)</span>,
 the probability to reach <span class="math notranslate nohighlight">\(v_7\)</span> is
-<span class="math notranslate nohighlight">\(\probm_{\sigma,\tau}^{v_0}(\mathds{1}_{\mathtt{Reach}\{v_7\})}) = \frac 2
+<span class="math notranslate nohighlight">\(\probm_{\sigma,\tau}^{v_0}(\mathds{1}_{\Reach(\{v_7\})}) = \frac 2
 3\)</span>. In fact, strategy <span class="math notranslate nohighlight">\(\sigma\)</span> for Eve is optimal for the
-reachability objective <span class="math notranslate nohighlight">\(\mathtt{Reach}\{v_7\})\)</span>, and we will justify that
-<span class="math notranslate nohighlight">\(\textrm{val}_\mathrm{Eve}mathcal{G}v_0) = \textrm{val}_\mathrm{Adam}mathcal{G}v_0) = \frac 2 3\)</span>.</p>
+reachability objective <span class="math notranslate nohighlight">\(\Reach(\{v_7\})\)</span>, and we will justify that
+<span class="math notranslate nohighlight">\(\ValueE^\game(v_0) = \ValueA^\game(v_0) = \frac 2 3\)</span>.</p>
 </div>
 
     <script type="text/x-thebe-config">

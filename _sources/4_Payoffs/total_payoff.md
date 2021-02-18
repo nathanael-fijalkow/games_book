@@ -1,30 +1,86 @@
 (4-sec:total_payoff)=
 # Total payoff games
 
-
 ```{math}
+\newcommand{\FC}{\mathrm{FC}\xspace} 
+\newcommand{\Cycles}{\mathrm{Cycles}\xspace} 
+\newcommand{\Mean}{\mathrm{Mean}\xspace} 
+\newcommand{\FirstCycle}{\mathrm{FirstCycle}\xspace} 
+\newcommand{\SuffixAllCycles}{\mathrm{SuffixAllCycles}\xspace} 
+\newcommand{\FirstCycleReset}{\mathrm{FirstCycleReset}\xspace} 
+\newcommand{\siblank}{\mathtt{-}}
+\newcommand{\Lift}{\textrm{Lift}}
+\newcommand{\Rbar}{\overline\R}
+\newcommand{\downward}[1]{\mathop{\downarrow_{#1}}}
+\newcommand{\gval}{\mathrm{gr}\text{-}\val}
+\newcommand{\bigO}{O}\newcommand{\Eve}{\textrm{Eve}}
+\newcommand{\Adam}{\textrm{Adam}}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
 \newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
 \newcommand{\R}{\mathbb{R}}
-\newcommand{\arena}{\mathcal{A}}
-\newcommand{\VE}{V_\mEve}
-\newcommand{\VA}{V_\mAdam}
-\newcommand{\Parity}{\mathtt{Parity}}
-\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}}
+\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
+\newcommand{\argmax}{\textrm{argmax}}
+\newcommand{\argmin}{\textrm{argmin}}
+\newcommand{\Op}{\mathbb{O}}
+\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\textrm{supp}} 
+\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
+\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
+\newcommand{\mEve}{\mathrm{Eve}}
+\newcommand{\mAdam}{\mathrm{Adam}}
+\newcommand{\mRandom}{\mathrm{Random}}
+\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
+\newcommand{\ing}{\textrm{In}}
+\newcommand{\Ing}{\ing}
+\newcommand{\out}{\textrm{Out}}
+\newcommand{\Out}{\out}
+\newcommand{\dest}{\Delta} 
+\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
+\newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
+\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
+\newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
+\newcommand{\Win}{\textrm{Win}} 
+\newcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Value}{\textrm{val}} 
+\newcommand{\ValueE}{\textrm{val}_\mEve} 
+\newcommand{\ValueA}{\textrm{val}_\mAdam}
+\newcommand{\val}{\Value} 
+\newcommand{\Automaton}{\mathbf{A}} 
+\newcommand{\Safe}{\mathtt{Safe}}
+\newcommand{\Reach}{\mathtt{Reach}} 
+\newcommand{\Buchi}{\mathtt{Buchi}} 
+\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
+\newcommand{\Parity}{\mathtt{Parity}} 
+\newcommand{\Muller}{\mathtt{Muller}} 
+\newcommand{\Rabin}{\mathtt{Rabin}} 
+\newcommand{\Streett}{\mathtt{Streett}} 
+\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
+\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
+\newcommand{\Energy}{\mathtt{Energy}}
 \newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
+\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
 \newcommand{\Sup}{\mathtt{Sup}}
 \newcommand{\Inf}{\mathtt{Inf}}
 \newcommand{\LimSup}{\mathtt{LimSup}}
 \newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NL}{\textrm{NL}}
+\newcommand{\PTIME}{\textrm{PTIME}}
 \newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
 \newcommand{\coNP}{\textrm{coNP}}
-\newcommand{\mEve}{\mathrm{Eve}}
-\newcommand{\mAdam}{\mathrm{Adam}}
+\newcommand{\coUP}{\textrm{coUP}}
+\newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
+\newcommand{\EXP}{\textrm{EXP}}
+\newcommand{\kEXP}{\textrm{kEXP}}
 ```
-
 Yet another interesting quantitative objective---that is closely
 related with shortest path objective---is the total payoff defined by
 
-$$\mathtt{TotalPayoff}\pi)=\limsup_{n} \sum_{i=0}^{n-1} c(\pi_i)$$
+$$\TotalPayoff(\pi)=\limsup_{n} \sum_{i=0}^{n-1} c(\pi_i)$$
 
 Contrary to the shortest path objective, total payoff games have no
 reachability objective intertwined with the quantitative objective. In
@@ -80,9 +136,9 @@ positional determinacy.
     $\min(\mathsf{P}(x^\omega),\mathsf{P}(y)) \leq \mathsf{P}(xy)\leq
     \max(\mathsf{P}(x^\omega),\mathsf{P}(y))$;
   
-3.  if $(x_i)_{i\in \mathbb{N}$ is a sequence of non-empty words
+3.  if $(x_i)_{i\in \N}$ is a sequence of non-empty words
     $x_i\in C^+$ such that $x_0x_1x_2\cdots$ contains only a finite
-    number of colours, and $I\uplus J=\mathbb{N} is a partition of $\mathbb{N} into two
+    number of colours, and $I\uplus J=\N$ is a partition of $\N$ into two
     infinite sets, then
     
 
@@ -104,10 +160,10 @@ It is not difficult to convince oneself that
 ````{prf:proposition} NEEDS TITLE 4-prop:objectives-fairly
 :label: 4-prop:objectives-fairly
 
-  Quantitative objectives $\mathtt{Inf}, $\mathtt{Sup}, $\mathtt{LimInf}, $\mathtt{LimSup},
-  $\mathtt{Parity} (mapping $1$ to sequences whose the greatest colour seen
-  infinitely often is even), $\mathtt{MeanPayoff},
-  $\DiscountedPayoff_\lambda$, $\mathtt{TotalPayoff} are fairly mixing
+  Quantitative objectives $\Inf$, $\Sup$, $\LimInf$, $\LimSup$,
+  $\Parity$ (mapping $1$ to sequences whose the greatest colour seen
+  infinitely often is even), $\MeanPayoff$,
+  $\DiscountedPayoff_\lambda$, $\TotalPayoff$ are fairly mixing
   payoffs.
 
 ````
@@ -120,7 +176,7 @@ in the arena allows one to get the following strong result:
 :label: 4-thm:fairly-mixing
 
   If $\mathsf P$ is a fairly mixing payoff function, then all finite
-  games $(\mathcal{A}\mathsf P)$ are positionally determined.
+  games $(\arena,\mathsf P)$ are positionally determined.
 
 ````
 
@@ -132,20 +188,21 @@ in the arena allows one to get the following strong result:
 
 ````
 
-In particular, it gives $\textrm{NP}cap\textrm{coNP} complexity to solve
+In particular, it gives $\NP\cap\coNP$ complexity to solve
 total payoff games, since one-player total payoff games can be solved
 in polynomial time using Floyd-Warshall algorithm to compute all-pairs
 shortest path in a weighted graph. Obtaining a deterministic algorithm
 is nonetheless not as immediate as before, using the operator
-$F\colon \mathbb{R}V\to \mathbb{R}V$ mapping every vector $\vec x=(x_v)_{v\in V}$
+$F\colon \R^V\to \R^V$ mapping every vector $\vec x=(x_v)_{v\in V}$
 towards the new vector $(y_v)_{v\in V}$, defined, for all $v\in V$,
 by:
 
 $$y_v =
   \begin{cases}
     \max_{(v,v')\in E} [c(v,v') + x_{v'}] &
-    \text{ if } v\in V_\mathrm{Eve}
-    \min_{(v,v')\in E} [c(v,v') + x_{v'}] & \text{ if } v\in V_\mathrm{Adam} \end{cases}$$
+    \text{ if } v\in \VE\\
+    \min_{(v,v')\in E} [c(v,v') + x_{v'}] & \text{ if } v\in \VA
+  \end{cases}$$
 
 
 Indeed, this operator may have several fixed points, and even more
@@ -177,9 +234,9 @@ costs---resulting in a pseudopolynomial time algorithm.
 ````{admonition} Proof
 :class: dropdown tip
 [Sketch of proof]
-  Let $\mathcal{A} be the arena of the total payoff game. Consider an
-  arena $\mathcal{A}k$ consisting of $k$ modified copies of $\mathcal{A} as
-  well as a fresh target vertex $v_f$: in the $j$-th copy of $\mathcal{A}
+  Let $\arena$ be the arena of the total payoff game. Consider an
+  arena $\arena^k$ consisting of $k$ modified copies of $\arena$ as
+  well as a fresh target vertex $v_f$: in the $j$-th copy of $\arena$
   (with $1\leq j\leq k$), every time an edge is taken, Adam has the
   opportunity (encoded via a copy of each vertex, owned by Adam) to
   exit the $j$-th copy when he wants, then giving the token to Eve
@@ -190,14 +247,14 @@ costs---resulting in a pseudopolynomial time algorithm.
   fact that Eve can delay the stopping of the game for a great number
   of times precludes Adam to cheat by asking to stop while obtaining a
   too low value. We can prove, by a careful analysis, that the
-  shortest path game played on arena $\mathcal{A}K$ with
+  shortest path game played on arena $\arena^K$ with
   $K= n\big((2n-1)W +1\big)$ has a value equal to the
-  total payoff game on arena $\mathcal{A}.
+  total payoff game on arena $\arena$.
 
   By using the previous value iteration techniques, we obtain a
   pseudopolynomial time algorithm to compute the optimal values in
   the total payoff game. Instead of building the entire arena
-  $\mathcal{A}k$, we can benefit from the multiple copies of the same
+  $\arena^k$, we can benefit from the multiple copies of the same
   sub-arena to emulate the construction with an operator $H$ mapping
   the values of each vertex in the $k$-th copy, to the values of each
   vertex in the $k+1$-th copy (operator $H$ does not depend on

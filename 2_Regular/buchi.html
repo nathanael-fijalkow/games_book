@@ -724,23 +724,76 @@
   <div class="section" id="buchi-games">
 <span id="sec-buchi"></span><h1>Büchi games<a class="headerlink" href="#buchi-games" title="Permalink to this headline">¶</a></h1>
 <div class="math notranslate nohighlight">
-\[\newcommand{\N}{\mathbb{N}}
-\newcommand{\game}{\mathcal{G}}
-\newcommand{\VE}{V_\mEve}
-\newcommand{\VA}{V_\mAdam}
-\newcommand{\WE}{W_\mEve}
-\newcommand{\WA}{W_\mAdam}
-\newcommand{\PreE}{\textrm{Pre}_\mEve}
-\newcommand{\AttrE}{\textrm{Attr}_\mEve}
-\newcommand{\AttrA}{\textrm{Attr}_\mAdam}
-\newcommand{\Win}{\textrm{Win}}
-\newcommand{\Lose}{\textrm{Lose}}
-\newcommand{\Buchi}{\mathtt{Buchi}}
-\newcommand{\CoBuchi}{\mathtt{CoBuchi}}
+\[\newcommand{\F}{\mathcal{F}} 
+\newcommand{\LAR}{\mathrm{LAR}}
+\newcommand{\Zielonka}{\mathrm{Zielonka}}
+\newcommand{\depth}{\mathrm{depth}}
+\newcommand{\support}{\mathrm{supp}}
+\newcommand{\Eve}{\textrm{Eve}}
+\newcommand{\Adam}{\textrm{Adam}}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
+\newcommand{\argmax}{\textrm{argmax}}
+\newcommand{\argmin}{\textrm{argmin}}
+\newcommand{\Op}{\mathbb{O}}
+\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\textrm{supp}} 
+\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
+\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
 \newcommand{\mEve}{\mathrm{Eve}}
-\newcommand{\mAdam}{\mathrm{Adam}}\]</div>
-<p>Recall that the objective <span class="math notranslate nohighlight">\(\mathtt{Buchi} requires that the colour \)</span>\textrm{Win} appears infinitely many times
-and <span class="math notranslate nohighlight">\(\mathtt{CoBuchi} requires that the colour \)</span>\textrm{Lose} appears finitely many times.</p>
+\newcommand{\mAdam}{\mathrm{Adam}}
+\newcommand{\mRandom}{\mathrm{Random}}
+\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
+\newcommand{\ing}{\textrm{In}}
+\newcommand{\Ing}{\ing}
+\newcommand{\out}{\textrm{Out}}
+\newcommand{\Out}{\out}
+\newcommand{\dest}{\Delta} 
+\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
+\newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
+\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
+\newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
+\newcommand{\Win}{\textrm{Win}} 
+\newcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Value}{\textrm{val}} 
+\newcommand{\ValueE}{\textrm{val}_\mEve} 
+\newcommand{\ValueA}{\textrm{val}_\mAdam}
+\newcommand{\val}{\Value} 
+\newcommand{\Automaton}{\mathbf{A}} 
+\newcommand{\Safe}{\mathtt{Safe}}
+\newcommand{\Reach}{\mathtt{Reach}} 
+\newcommand{\Buchi}{\mathtt{Buchi}} 
+\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
+\newcommand{\Parity}{\mathtt{Parity}} 
+\newcommand{\Muller}{\mathtt{Muller}} 
+\newcommand{\Rabin}{\mathtt{Rabin}} 
+\newcommand{\Streett}{\mathtt{Streett}} 
+\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
+\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
+\newcommand{\Energy}{\mathtt{Energy}}
+\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
+\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
+\newcommand{\Sup}{\mathtt{Sup}}
+\newcommand{\Inf}{\mathtt{Inf}}
+\newcommand{\LimSup}{\mathtt{LimSup}}
+\newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NL}{\textrm{NL}}
+\newcommand{\PTIME}{\textrm{PTIME}}
+\newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
+\newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
+\newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
+\newcommand{\EXP}{\textrm{EXP}}
+\newcommand{\kEXP}{\textrm{kEXP}}\]</div>
+<p>Recall that the objective <span class="math notranslate nohighlight">\(\Buchi\)</span> requires that the colour <span class="math notranslate nohighlight">\(\Win\)</span> appears infinitely many times
+and <span class="math notranslate nohighlight">\(\CoBuchi\)</span> requires that the colour <span class="math notranslate nohighlight">\(\Lose\)</span> appears finitely many times.</p>
 <div class="proof theorem admonition" id="2-thm:Buchi">
 <p class="admonition-title"><span class="caption-number">Theorem 36 </span> (Positional determinacy and complexity of Buchi games)</p>
 <div class="theorem-content section" id="proof-content">
@@ -762,55 +815,55 @@ We present two different yet very similar algorithms.</p>
 <div class="lemma-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\Game\)</span> be a Büchi game.</p>
 <ul class="simple">
-<li><p>If <span class="math notranslate nohighlight">\(\textrm{Attr}_\mathrm{Eve}textrm{Win} = V\)</span>, then <span class="math notranslate nohighlight">\(W_\mathrm{Eve}Game) = V\)</span>.</p></li>
-<li><p>If <span class="math notranslate nohighlight">\(\textrm{Attr}_\mathrm{Eve}textrm{Win} \neq V\)</span>,
-let <span class="math notranslate nohighlight">\(\Game'\)</span> be the subgame of <span class="math notranslate nohighlight">\(\Game\)</span> induced by <span class="math notranslate nohighlight">\(V \setminus \textrm{Attr}_\mathrm{Adam}V \setminus \textrm{Attr}_\mathrm{Eve}textrm{Win} )\)</span>,
-then <span class="math notranslate nohighlight">\(W_\mathrm{Eve}Game) = W_\mathrm{Eve}Game')\)</span>.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(\AttrE(\Win) = V\)</span>, then <span class="math notranslate nohighlight">\(\WE(\Game) = V\)</span>.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(\AttrE(\Win) \neq V\)</span>,
+let <span class="math notranslate nohighlight">\(\Game'\)</span> be the subgame of <span class="math notranslate nohighlight">\(\Game\)</span> induced by <span class="math notranslate nohighlight">\(V \setminus \AttrA( V \setminus \AttrE(\Win) )\)</span>,
+then <span class="math notranslate nohighlight">\(\WE(\Game) = \WE(\Game')\)</span>.</p></li>
 </ul>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
 <p>We prove the first item.</p>
-<p>Let <span class="math notranslate nohighlight">\(\sigma_a\)</span> be an attractor strategy ensuring to reach <span class="math notranslate nohighlight">\(\textrm{Win} from \)</span>\textrm{Attr}_\mathrm{Eve}textrm{Win}<span class="math notranslate nohighlight">\(, and \)</span>\sigma_p<span class="math notranslate nohighlight">\( any (positional) strategy from \)</span>\textrm{Win}.
+<p>Let <span class="math notranslate nohighlight">\(\sigma_a\)</span> be an attractor strategy ensuring to reach <span class="math notranslate nohighlight">\(\Win\)</span> from <span class="math notranslate nohighlight">\(\AttrE(\Win)\)</span>, and <span class="math notranslate nohighlight">\(\sigma_p\)</span> any (positional) strategy from <span class="math notranslate nohighlight">\(\Win\)</span>.
 We construct the strategy <span class="math notranslate nohighlight">\(\sigma\)</span> as the disjoint union of <span class="math notranslate nohighlight">\(\sigma_a\)</span> and <span class="math notranslate nohighlight">\(\sigma_p\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \sigma(v) = 
 \begin{cases}
-\sigma_a(v) &amp; \text{ if } v \in \textrm{Attr}_\mathrm{Eve}textrm{Win} \setminus \textrm{Win} \\
-\sigma_p(v) &amp; \text{ if } v \in \textrm{Win}
+\sigma_a(v) &amp; \text{ if } v \in \AttrE(\Win) \setminus \Win, \\
+\sigma_p(v) &amp; \text{ if } v \in \Win.
 \end{cases}
 \end{split}\]</div>
 <p>Note that <span class="math notranslate nohighlight">\(\sigma\)</span> is positional.
-We argue that <span class="math notranslate nohighlight">\(\sigma\)</span> ensures <span class="math notranslate nohighlight">\(\mathtt{Buchi}\textrm{Win}\)</span>.
+We argue that <span class="math notranslate nohighlight">\(\sigma\)</span> ensures <span class="math notranslate nohighlight">\(\Buchi[\Win]\)</span>.
 Indeed a play consistent with <span class="math notranslate nohighlight">\(\sigma\)</span> can be divided into infinitely many finite plays,
-each of them consistent with <span class="math notranslate nohighlight">\(\sigma_a\)</span> until reaching <span class="math notranslate nohighlight">\(\textrm{Win},
-then one step consistent with \)</span>\sigma_p<span class="math notranslate nohighlight">\(.
-Thus \)</span>\sigma<span class="math notranslate nohighlight">\( is winning from \)</span>V$.</p>
+each of them consistent with <span class="math notranslate nohighlight">\(\sigma_a\)</span> until reaching <span class="math notranslate nohighlight">\(\Win\)</span>,
+then one step consistent with <span class="math notranslate nohighlight">\(\sigma_p\)</span>.
+Thus <span class="math notranslate nohighlight">\(\sigma\)</span> is winning from <span class="math notranslate nohighlight">\(V\)</span>.</p>
 <p>We now look at the second item.</p>
-<p>We first prove that <span class="math notranslate nohighlight">\(\textrm{Attr}_\mAdamV \setminus \textrm{Attr}_\mathrm{Eve}textrm{Win}) \subseteq W_\mathrm{Adam}Game)\)</span>.
-Let <span class="math notranslate nohighlight">\(\tau_a\)</span> denote an attractor strategy ensuring to reach <span class="math notranslate nohighlight">\(V \setminus \textrm{Attr}_\mathrm{Eve}textrm{Win}\)</span> from <span class="math notranslate nohighlight">\(\textrm{Attr}_\mAdamV \setminus \textrm{Attr}_\mathrm{Eve}textrm{Win})\)</span>,
-and <span class="math notranslate nohighlight">\(\tau_c\)</span> a counter-attractor strategy ensuring to stay in <span class="math notranslate nohighlight">\(V \setminus \textrm{Attr}_\mathrm{Eve}textrm{Win}\)</span> hence in never to reach <span class="math notranslate nohighlight">\(\textrm{Win}.
-We construct the strategy \)</span>\tau<span class="math notranslate nohighlight">\( as the disjoint union of \)</span>\tau_a<span class="math notranslate nohighlight">\( and \)</span>\tau_c$:</p>
+<p>We first prove that <span class="math notranslate nohighlight">\(\AttrA(V \setminus \AttrE(\Win)) \subseteq \WA(\Game)\)</span>.
+Let <span class="math notranslate nohighlight">\(\tau_a\)</span> denote an attractor strategy ensuring to reach <span class="math notranslate nohighlight">\(V \setminus \AttrE(\Win)\)</span> from <span class="math notranslate nohighlight">\(\AttrA(V \setminus \AttrE(\Win))\)</span>,
+and <span class="math notranslate nohighlight">\(\tau_c\)</span> a counter-attractor strategy ensuring to stay in <span class="math notranslate nohighlight">\(V \setminus \AttrE(\Win)\)</span> hence in never to reach <span class="math notranslate nohighlight">\(\Win\)</span>.
+We construct the strategy <span class="math notranslate nohighlight">\(\tau\)</span> as the disjoint union of <span class="math notranslate nohighlight">\(\tau_a\)</span> and <span class="math notranslate nohighlight">\(\tau_c\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \tau(v) = 
 \begin{cases}
-\tau_a(v) &amp; \text{ if } v \in \textrm{Attr}_\mAdamV \setminus \textrm{Attr}_\mathrm{Eve}textrm{Win}) \setminus (V \setminus \textrm{Attr}_\mathrm{Eve}textrm{Win}), \\
-\tau_c(v) &amp; \text{ if } v \in V \setminus \textrm{Attr}_\mathrm{Eve}textrm{Win}.
+\tau_a(v) &amp; \text{ if } v \in \AttrA(V \setminus \AttrE(\Win)) \setminus (V \setminus \AttrE(\Win)), \\
+\tau_c(v) &amp; \text{ if } v \in V \setminus \AttrE(\Win).
 \end{cases}
 \end{split}\]</div>
 <p>Note that <span class="math notranslate nohighlight">\(\tau\)</span> is positional.
-Any play consistent with <span class="math notranslate nohighlight">\(\tau\)</span> is first consistent with <span class="math notranslate nohighlight">\(\tau_a\)</span> until reaching <span class="math notranslate nohighlight">\(V \setminus \textrm{Attr}_\mathrm{Eve}textrm{Win}\)</span> and
+Any play consistent with <span class="math notranslate nohighlight">\(\tau\)</span> is first consistent with <span class="math notranslate nohighlight">\(\tau_a\)</span> until reaching <span class="math notranslate nohighlight">\(V \setminus \AttrE(\Win)\)</span> and
 then is consistent with <span class="math notranslate nohighlight">\(\tau_c\)</span> and stays there forever.
-In this second phase it in particular does not visit <span class="math notranslate nohighlight">\(\textrm{Win}, 
-implying that the play visits \)</span>\textrm{Win} finitely many times, so it is winning.
-Thus we have proved that <span class="math notranslate nohighlight">\(\textrm{Attr}_\mAdamV \setminus \textrm{Attr}_\mathrm{Eve}textrm{Win}) \subseteq W_\mathrm{Adam}Game)\)</span>,
-implying <span class="math notranslate nohighlight">\(W_\mathrm{Eve}Game) \subseteq V \setminus \textrm{Attr}_\mAdamV \setminus \textrm{Attr}_\mathrm{Eve}textrm{Win})\)</span>.</p>
-<p>We now show that <span class="math notranslate nohighlight">\(W_\mathrm{Eve}Game') \subseteq W_\mathrm{Eve}Game)\)</span>, which implies the converse inclusion.
-Consider a winning strategy from <span class="math notranslate nohighlight">\(W_\mathrm{Eve}Game')\)</span> in <span class="math notranslate nohighlight">\(\Game'\)</span>, it induces a strategy <span class="math notranslate nohighlight">\(\sigma\)</span> in <span class="math notranslate nohighlight">\(\Game\)</span>.
-Since <span class="math notranslate nohighlight">\(\Game'\)</span> is a trap for Adam, any play consistent with <span class="math notranslate nohighlight">\(\sigma\)</span> stays forever in <span class="math notranslate nohighlight">\(W_\mathrm{Eve}Game')\)</span>,
-implying that <span class="math notranslate nohighlight">\(\sigma\)</span> is winning from <span class="math notranslate nohighlight">\(W_\mathrm{Eve}Game')\)</span> in <span class="math notranslate nohighlight">\(\Game\)</span>.</p>
+In this second phase it in particular does not visit <span class="math notranslate nohighlight">\(\Win\)</span>,
+implying that the play visits <span class="math notranslate nohighlight">\(\Win\)</span> finitely many times, so it is winning.
+Thus we have proved that <span class="math notranslate nohighlight">\(\AttrA(V \setminus \AttrE(\Win)) \subseteq \WA(\Game)\)</span>,
+implying <span class="math notranslate nohighlight">\(\WE(\Game) \subseteq V \setminus \AttrA(V \setminus \AttrE(\Win))\)</span>.</p>
+<p>We now show that <span class="math notranslate nohighlight">\(\WE(\Game') \subseteq \WE(\Game)\)</span>, which implies the converse inclusion.
+Consider a winning strategy from <span class="math notranslate nohighlight">\(\WE(\Game')\)</span> in <span class="math notranslate nohighlight">\(\Game'\)</span>, it induces a strategy <span class="math notranslate nohighlight">\(\sigma\)</span> in <span class="math notranslate nohighlight">\(\Game\)</span>.
+Since <span class="math notranslate nohighlight">\(\Game'\)</span> is a trap for Adam, any play consistent with <span class="math notranslate nohighlight">\(\sigma\)</span> stays forever in <span class="math notranslate nohighlight">\(\WE(\Game')\)</span>,
+implying that <span class="math notranslate nohighlight">\(\sigma\)</span> is winning from <span class="math notranslate nohighlight">\(\WE(\Game')\)</span> in <span class="math notranslate nohighlight">\(\Game\)</span>.</p>
 </div>
 <p>The algorithm is presented in pseudocode in <a class="reference internal" href="#algo-buchi-first"><span class="std std-numref">Fig. 9</span></a>.
 For the complexity analysis, the algorithm performs at most <span class="math notranslate nohighlight">\(n\)</span> recursive calls
@@ -826,71 +879,71 @@ and each of them involves two attractor computations, implying the time complexi
 <div class="proof lemma admonition" id="2-lem:Buchi">
 <p class="admonition-title"><span class="caption-number">Lemma 38 </span> (Second fixed point characterisation of the winning region for Buchi games)</p>
 <div class="lemma-content section" id="proof-content">
-<p>Let <span class="math notranslate nohighlight">\(\mathcal{G} a B&amp;uuml;chi game.
-Then \)</span>W_\mathrm{Eve}mathcal{G}$ is the greatest fixed point of the monotonic operator</p>
+<p>Let <span class="math notranslate nohighlight">\(\game\)</span> a Büchi game.
+Then <span class="math notranslate nohighlight">\(\WE(\game)\)</span> is the greatest fixed point of the monotonic operator</p>
 <div class="math notranslate nohighlight">
 \[
-Y \mapsto \textrm{Attr}_\mathrm{Eve}left( \textrm{Win}\cap \textrm{Pre}_\mEveY) \right).
+Y \mapsto \AttrE \left( \Win \cap \PreE(Y) \right).
 \]</div>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
 <p>Thanks to  <a class="reference internal" href="../1_Introduction/fixed_points.html#1-thm:kleene">Theorem 24</a> the fixed point computation is realised by setting <span class="math notranslate nohighlight">\(Y_0 = V\)</span>
-and <span class="math notranslate nohighlight">\(Y_{k+1} = Y_k \cap \textrm{Attr}_\mathrm{Eve}left(\textrm{Win}\cap \textrm{Pre}_\mEveY_k) \right)\)</span>.
-This constructs a non-increasing sequence <span class="math notranslate nohighlight">\((Y_k)_{k \in \mathbb{N}\)</span> of subsets of <span class="math notranslate nohighlight">\(V\)</span>
+and <span class="math notranslate nohighlight">\(Y_{k+1} = Y_k \cap \AttrE \left(\Win \cap \PreE(Y_k) \right)\)</span>.
+This constructs a non-increasing sequence <span class="math notranslate nohighlight">\((Y_k)_{k \in \N}\)</span> of subsets of <span class="math notranslate nohighlight">\(V\)</span>
 satisfying the property:
 \begin{center}
 If <span class="math notranslate nohighlight">\(Y_k = Y_{k+1}\)</span>, then <span class="math notranslate nohighlight">\(Y_{k+1} = Y_{k+2}\)</span>.
 \end{center}
 It follows that the sequence stabilises after at most <span class="math notranslate nohighlight">\(n-1\)</span> steps, i.e. <span class="math notranslate nohighlight">\(Y_{n-1} = Y_n\)</span>.
-We let <span class="math notranslate nohighlight">\(Y\)</span> denote the fixed point, and note that <span class="math notranslate nohighlight">\(Y = \textrm{Attr}_\mathrm{Eve}textrm{Win}\cap \textrm{Pre}_\mEveY))\)</span>.</p>
-<p>We first show that <span class="math notranslate nohighlight">\(Y \subseteq W_\mathrm{Eve}mathcal{G}\)</span>.
-Let <span class="math notranslate nohighlight">\(\sigma_a\)</span> be an attractor strategy ensuring to reach <span class="math notranslate nohighlight">\(\textrm{Win}\cap \textrm{Pre}_\mEveY)\)</span> from <span class="math notranslate nohighlight">\(Y\)</span>.
+We let <span class="math notranslate nohighlight">\(Y\)</span> denote the fixed point, and note that <span class="math notranslate nohighlight">\(Y = \AttrE(\Win \cap \PreE(Y))\)</span>.</p>
+<p>We first show that <span class="math notranslate nohighlight">\(Y \subseteq \WE(\game)\)</span>.
+Let <span class="math notranslate nohighlight">\(\sigma_a\)</span> be an attractor strategy ensuring to reach <span class="math notranslate nohighlight">\(\Win \cap \PreE(Y)\)</span> from <span class="math notranslate nohighlight">\(Y\)</span>.
 We also define a positional strategy <span class="math notranslate nohighlight">\(\sigma_p\)</span>:
-for <span class="math notranslate nohighlight">\(v \in V_\mathrm{Eve} if \)</span>v \in \textrm{Pre}_\mEveY)<span class="math notranslate nohighlight">\( there exists \)</span>(v,v’) \in E<span class="math notranslate nohighlight">\( such that \)</span>v’ \in Y<span class="math notranslate nohighlight">\(, let us define \)</span>\sigma_p(v) = (v,v’)$.</p>
+for <span class="math notranslate nohighlight">\(v \in \VE\)</span>, if <span class="math notranslate nohighlight">\(v \in \PreE(Y)\)</span> there exists <span class="math notranslate nohighlight">\((v,v') \in E\)</span> such that <span class="math notranslate nohighlight">\(v' \in Y\)</span>, let us define <span class="math notranslate nohighlight">\(\sigma_p(v) = (v,v')\)</span>.</p>
 <p>We define a positional strategy <span class="math notranslate nohighlight">\(\sigma\)</span> as follows:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \sigma(v) = 
 \begin{cases}
-\sigma_a(v) &amp; \text{if } v \in \textrm{Attr}_\mathrm{Eve}textrm{Win}\cap \textrm{Pre}_\mEveY)) \setminus (\textrm{Win}\cap \textrm{Pre}_\mEveY)), \\
-\sigma_p(v)&amp; \text{if } v \in \textrm{Win}\cap \textrm{Pre}_\mEveY).
+\sigma_a(v) &amp; \text{if } v \in \AttrE(\Win \cap \PreE(Y)) \setminus (\Win \cap \PreE(Y)), \\
+\sigma_p(v)&amp; \text{if } v \in \Win \cap \PreE(Y).
 \end{cases}
 \end{split}\]</div>
-<p>We argue that <span class="math notranslate nohighlight">\(\sigma\)</span> ensures <span class="math notranslate nohighlight">\(\mathtt{Buchi}\textrm{Win}\)</span> from <span class="math notranslate nohighlight">\(Y\)</span>.
+<p>We argue that <span class="math notranslate nohighlight">\(\sigma\)</span> ensures <span class="math notranslate nohighlight">\(\Buchi[\Win]\)</span> from <span class="math notranslate nohighlight">\(Y\)</span>.
 Indeed a play consistent with <span class="math notranslate nohighlight">\(\sigma\)</span> can be divided into infinitely many finite plays,
-each of them consistent with <span class="math notranslate nohighlight">\(\sigma_a\)</span> until reaching <span class="math notranslate nohighlight">\(\textrm{Win}\cap \textrm{Pre}_\mEveY)\)</span>,
+each of them consistent with <span class="math notranslate nohighlight">\(\sigma_a\)</span> until reaching <span class="math notranslate nohighlight">\(\Win \cap \PreE(Y)\)</span>,
 then one step consistent with <span class="math notranslate nohighlight">\(\sigma_p\)</span> and leading to <span class="math notranslate nohighlight">\(Y\)</span>.</p>
-<p>We now show that <span class="math notranslate nohighlight">\(W_\mathrm{Eve}mathcal{G} \subseteq Y\)</span>.
-For this we show <span class="math notranslate nohighlight">\(V \setminus Y \subseteq W_\mathrm{Adam}mathcal{G}\)</span>.
-For <span class="math notranslate nohighlight">\(v \in V \setminus Y\)</span>, the rank of <span class="math notranslate nohighlight">\(v\)</span> is the smallest <span class="math notranslate nohighlight">\(k \in \mathbb{N} such that \)</span>v \in V \setminus Y_k<span class="math notranslate nohighlight">\(.
-Equivalently, \)</span>v \in Y_{k-1} \setminus Y_k<span class="math notranslate nohighlight">\(.
-Note that no vertices have rank \)</span>0$.</p>
-<p>Let <span class="math notranslate nohighlight">\(k \in \mathbb{N}. 
-Let \)</span>\tau_{a,k}<span class="math notranslate nohighlight">\( be a counter-attractor strategy ensuring from \)</span>V \setminus \textrm{Attr}<em>\mathrm{Eve}textrm{Win}\cap \textrm{Pre}</em>\mEveY_k))<span class="math notranslate nohighlight">\(
-to stay in \)</span>V \setminus \textrm{Attr}<em>\mathrm{Eve}textrm{Win}\cap \textrm{Pre}</em>\mEveY_k))<span class="math notranslate nohighlight">\( so in particular never to reach \)</span>\textrm{Win}\cap \textrm{Pre}<em>\mEveY_k)<span class="math notranslate nohighlight">\(.
-We also define a positional strategy \)</span>\tau</em>{p,k}<span class="math notranslate nohighlight">\(:
-for \)</span>v \in V_\mathrm{Adam}of rank <span class="math notranslate nohighlight">\(k+1\)</span>, if <span class="math notranslate nohighlight">\(v \in \textrm{Win}\setminus \textrm{Pre}_\mEveY_k)\)</span> there exists <span class="math notranslate nohighlight">\((v,v') \in E\)</span> such that <span class="math notranslate nohighlight">\(v' \in V \setminus Y_k\)</span>
+<p>We now show that <span class="math notranslate nohighlight">\(\WE(\game) \subseteq Y\)</span>.
+For this we show <span class="math notranslate nohighlight">\(V \setminus Y \subseteq \WA(\game)\)</span>.
+For <span class="math notranslate nohighlight">\(v \in V \setminus Y\)</span>, the rank of <span class="math notranslate nohighlight">\(v\)</span> is the smallest <span class="math notranslate nohighlight">\(k \in \N\)</span> such that <span class="math notranslate nohighlight">\(v \in V \setminus Y_k\)</span>.
+Equivalently, <span class="math notranslate nohighlight">\(v \in Y_{k-1} \setminus Y_k\)</span>.
+Note that no vertices have rank <span class="math notranslate nohighlight">\(0\)</span>.</p>
+<p>Let <span class="math notranslate nohighlight">\(k \in \N\)</span>.
+Let <span class="math notranslate nohighlight">\(\tau_{a,k}\)</span> be a counter-attractor strategy ensuring from <span class="math notranslate nohighlight">\(V \setminus \AttrE(\Win \cap \PreE(Y_k))\)</span>
+to stay in <span class="math notranslate nohighlight">\(V \setminus \AttrE(\Win \cap \PreE(Y_k))\)</span> so in particular never to reach <span class="math notranslate nohighlight">\(\Win \cap \PreE(Y_k)\)</span>.
+We also define a positional strategy <span class="math notranslate nohighlight">\(\tau_{p,k}\)</span>:
+for <span class="math notranslate nohighlight">\(v \in \VA\)</span> of rank <span class="math notranslate nohighlight">\(k+1\)</span>, if <span class="math notranslate nohighlight">\(v \in \Win \setminus \PreE(Y_k)\)</span> there exists <span class="math notranslate nohighlight">\((v,v') \in E\)</span> such that <span class="math notranslate nohighlight">\(v' \in V \setminus Y_k\)</span>
 implying that the rank of <span class="math notranslate nohighlight">\(v'\)</span> is at most <span class="math notranslate nohighlight">\(k\)</span>, let us define <span class="math notranslate nohighlight">\(\tau_{p,k}(v) = (v,v')\)</span>.</p>
 <p>We construct the strategy <span class="math notranslate nohighlight">\(\tau\)</span> as the disjoint union of all <span class="math notranslate nohighlight">\(\tau_{a,k}\)</span> and <span class="math notranslate nohighlight">\(\tau_{p,k}\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \tau(v) = 
 \begin{cases}
-\tau_{a,k}(v) &amp; \text{if } v \in (Y_k \setminus Y_{k+1}) \setminus \textrm{Win} \\
-\tau_{p,k}(v) &amp; \text{if } v \in \textrm{Win}\cap (Y_k \setminus Y_{k+1}).
+\tau_{a,k}(v) &amp; \text{if } v \in (Y_k \setminus Y_{k+1}) \setminus \Win, \\
+\tau_{p,k}(v) &amp; \text{if } v \in \Win \cap (Y_k \setminus Y_{k+1}).
 \end{cases}
 \end{split}\]</div>
-<p>We argue that <span class="math notranslate nohighlight">\(\tau\)</span> ensures <span class="math notranslate nohighlight">\(\mathtt{CoBuchi}\textrm{Win}\)</span>.
+<p>We argue that <span class="math notranslate nohighlight">\(\tau\)</span> ensures <span class="math notranslate nohighlight">\(\CoBuchi[\Win]\)</span>.
 Consider a play consistent with <span class="math notranslate nohighlight">\(\tau\)</span> starting from a vertex <span class="math notranslate nohighlight">\(v\)</span> of rank <span class="math notranslate nohighlight">\(k+1\)</span>.
-First, as long as the play is consistent with <span class="math notranslate nohighlight">\(\tau_{a,k}\)</span>, it remains in <span class="math notranslate nohighlight">\(V \setminus \textrm{Attr}_\mathrm{Eve}textrm{Win}\cap \textrm{Pre}_\mEveY_k))\)</span>
+First, as long as the play is consistent with <span class="math notranslate nohighlight">\(\tau_{a,k}\)</span>, it remains in <span class="math notranslate nohighlight">\(V \setminus \AttrE(\Win \cap \PreE(Y_k))\)</span>
 and the rank does not increase.
 We distinguish two cases.
-If the play never reaches <span class="math notranslate nohighlight">\(\textrm{Win}, then it satisfies \)</span>\mathtt{CoBuchi}\textrm{Win}<span class="math notranslate nohighlight">\(.
-Otherwise it reaches \)</span>\textrm{Win}, and then the next step is consistent with <span class="math notranslate nohighlight">\(\tau_{p,k}\)</span>
+If the play never reaches <span class="math notranslate nohighlight">\(\Win\)</span>, then it satisfies <span class="math notranslate nohighlight">\(\CoBuchi[\Win]\)</span>.
+Otherwise it reaches <span class="math notranslate nohighlight">\(\Win\)</span>, and then the next step is consistent with <span class="math notranslate nohighlight">\(\tau_{p,k}\)</span>
 so the next vertex has rank at most <span class="math notranslate nohighlight">\(k\)</span>.
-Thus along any play consistent with <span class="math notranslate nohighlight">\(\tau\)</span>, the rank never increases and each time a vertex in <span class="math notranslate nohighlight">\(\textrm{Win} is reached the rank decreases,
-implying that it satisfies \)</span>\mathtt{CoBuchi}\textrm{Win}$.</p>
+Thus along any play consistent with <span class="math notranslate nohighlight">\(\tau\)</span>, the rank never increases and each time a vertex in <span class="math notranslate nohighlight">\(\Win\)</span> is reached the rank decreases,
+implying that it satisfies <span class="math notranslate nohighlight">\(\CoBuchi[\Win]\)</span>.</p>
 </div>
 <p><a class="reference internal" href="#2-lem:Buchi">Lemma 38</a> directly transfers to <a class="reference internal" href="#algo-buchi-second"><span class="std std-numref">Fig. 10</span></a>.</p>
 <div class="figure align-center" id="algo-buchi-second">

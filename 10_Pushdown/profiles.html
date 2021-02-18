@@ -719,91 +719,168 @@
   <div class="section" id="profiles-and-regularity-of-the-winning-regions">
 <span id="sec-profiles"></span><h1>Profiles and regularity of the winning regions<a class="headerlink" href="#profiles-and-regularity-of-the-winning-regions" title="Permalink to this headline">¶</a></h1>
 <div class="math notranslate nohighlight">
-\[\newcommand{\pop}{\mathrm{pop}}
+\[ \begin{align}\begin{aligned}\def\AC#1{\textcolor{green!50!black}{\checkmark}\marginpar{\color{green!50!black}AC: #1}} 
+\def\acchanged#1{{#1}}
+\def\OS#1{\textcolor{red}{\checkmark}\marginpar{\color{red}OS: #1}} \\\renewcommand{\qed}{$\square$}
+\newcommand{\pop}{\mathrm{pop}}
+\newcommand{\push}[1]{\mathrm{push}(#1)}
 \newcommand{\PDS}{\mathcal{P}}
+\newcommand{\pdscol}[1]{\col(#1)}
+\newcommand{\vect}[1]{\overrightarrow{#1}}
+\newcommand{\ttrue}{t\! t}
+\newcommand{\ffalse}{f\!\! f}
+\newcommand {\Stepsg}[1]{\ensuremath{\mathit{Steps}_{#1}}}
+\newcommand{\sh}{\mathrm{sh}}
+\newcommand{\fgraph}{\widetilde{G}}
+\newcommand{\farena}{\widetilde{\arena}}
+\newcommand{\fgame}{\widetilde{\game}}
+\newcommand{\fplay}{\widetilde{\play}}
+\newcommand{\fsigma}{\widetilde{\sigma}}
+\newcommand {\Rounds}[1]{\ensuremath{\mathit{Rounds}_{#1}}}
+\newcommand{\kind}[2]{kind(#1,#2)}
+\newcommand{\factcol}[2]{\mathrm{mcol}(#1,#2)}
+\newcommand{\fac}[1]{kind^{#1}}
+\newcommand{\pcol}[1]{\mathrm{mcol}^{#1}}
+\newcommand{\hgraph}{\widehat{G}}
+\newcommand{\harena}{\widehat{\arena}}
+\newcommand{\hgame}{\widehat{\game}}
+\newcommand{\hplay}{\widehat{\play}}
+\newcommand{\hsigma}{\widehat{\sigma}}
 \newcommand{\Eve}{\textrm{Eve}}
-\newcommand{\game}{\mathcal{G}}
-\newcommand{\arena}{\mathcal{A}}
+\newcommand{\Adam}{\textrm{Adam}}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
+\newcommand{\argmax}{\textrm{argmax}}
+\newcommand{\argmin}{\textrm{argmin}}
+\newcommand{\Op}{\mathbb{O}}
+\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\textrm{supp}} 
+\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
+\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
 \newcommand{\mEve}{\mathrm{Eve}}
 \newcommand{\mAdam}{\mathrm{Adam}}
-\newcommand{\VE}{V_\mEve}
-\newcommand{\VA}{V_\mAdam}
-\newcommand{\play}{\pi}
-\newcommand{\Reach}{\mathtt{Reach}}
-\newcommand{\Omegapar}{\Omega_{\textrm{pal}}}
-\newcommand{\Profs}{\mathrm{Profs}}\]</div>
+\newcommand{\mRandom}{\mathrm{Random}}
+\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
+\newcommand{\ing}{\textrm{In}}
+\newcommand{\Ing}{\ing}
+\newcommand{\out}{\textrm{Out}}
+\newcommand{\Out}{\out}
+\newcommand{\dest}{\Delta} 
+\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
+\newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
+\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
+\newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
+\newcommand{\Win}{\textrm{Win}} 
+\newcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Value}{\textrm{val}} 
+\newcommand{\ValueE}{\textrm{val}_\mEve} 
+\newcommand{\ValueA}{\textrm{val}_\mAdam}
+\newcommand{\val}{\Value} 
+\newcommand{\Automaton}{\mathbf{A}} 
+\newcommand{\Safe}{\mathtt{Safe}}
+\newcommand{\Reach}{\mathtt{Reach}} 
+\newcommand{\Buchi}{\mathtt{Buchi}} 
+\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
+\newcommand{\Parity}{\mathtt{Parity}} 
+\newcommand{\Muller}{\mathtt{Muller}} 
+\newcommand{\Rabin}{\mathtt{Rabin}} 
+\newcommand{\Streett}{\mathtt{Streett}} 
+\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
+\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
+\newcommand{\Energy}{\mathtt{Energy}}
+\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
+\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
+\newcommand{\Sup}{\mathtt{Sup}}
+\newcommand{\Inf}{\mathtt{Inf}}
+\newcommand{\LimSup}{\mathtt{LimSup}}
+\newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NL}{\textrm{NL}}
+\newcommand{\PTIME}{\textrm{PTIME}}
+\newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
+\newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
+\newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
+\newcommand{\EXP}{\textrm{EXP}}
+\newcommand{\kEXP}{\textrm{kEXP}}\end{aligned}\end{align} \]</div>
 <p>In this section, we consider a large class of objectives called <strong>prefix independent</strong>. For these objectives, a pushdown game can be meaningfully decomposed by considering the part of the game between the moment a symbol is pushed onto the stack and stopping as soon as it is popped.  As a consequence, we will see that for prefix independent
 objectives, the winning region can be described  using finite state automata.</p>
 <p>\acchanged{To this extent, we introduce <strong>reduced games</strong> which start with a stack containing only one symbol <span class="math notranslate nohighlight">\(\gamma\)</span> and stop as soon as this symbol is popped from the stack. If the symbol is never popped, the objective is unchanged and otherwise the winner of the game is determined by the state reached when popping the symbol.}</p>
-<p>Let <span class="math notranslate nohighlight">\(\mathcal{G}(\mathcal{A}\Omega)\)</span> be a pushdown game played on an arena <span class="math notranslate nohighlight">\(\mathcal{A}= (G,V_\mEveV_\mathrm{Adam} generated by a pushdown system \)</span>\mathcal{P}= (Q,Q_{\mathrm{Eve}, Q_{\mathrm{Adam}, \Gamma,\Delta)<span class="math notranslate nohighlight">\(. For any subset \)</span>R\subseteq Q<span class="math notranslate nohighlight">\( of control states of \)</span>\mathcal{P}, we define a new objective <span class="math notranslate nohighlight">\(\Omega(R)\)</span> such that a play <span class="math notranslate nohighlight">\(\pi belongs to \)</span>\Omega(R)$ if one of the following happens:</p>
+<p>Let <span class="math notranslate nohighlight">\(\game=(\arena,\Omega)\)</span> be a pushdown game played on an arena <span class="math notranslate nohighlight">\(\arena = (G,\VE,\VA)\)</span> generated by a pushdown system <span class="math notranslate nohighlight">\(\PDS = (Q,Q_{\mEve}, Q_{\mAdam}, \Gamma,\Delta)\)</span>. For any subset <span class="math notranslate nohighlight">\(R\subseteq Q\)</span> of control states of <span class="math notranslate nohighlight">\(\PDS\)</span>, we define a new objective <span class="math notranslate nohighlight">\(\Omega(R)\)</span> such that a play <span class="math notranslate nohighlight">\(\play\)</span> belongs to <span class="math notranslate nohighlight">\(\Omega(R)\)</span> if one of the following happens:</p>
 <p>\acchanged{</p>
 <ul class="simple">
-<li><p>the play <span class="math notranslate nohighlight">\(\pi belongs to \)</span>\Omega<span class="math notranslate nohighlight">\( and does not contain
-any configuration with an empty stack ( {i.e.}, of the form \)</span>(q,\bot)<span class="math notranslate nohighlight">\( for some state \)</span>q \in Q$),</p></li>
-<li><p>the play $\pi contains a configuration with the empty stack and the first such configuration has a state in R.
+<li><p>the play <span class="math notranslate nohighlight">\(\play\)</span> belongs to <span class="math notranslate nohighlight">\(\Omega\)</span> and does not contain
+any configuration with an empty stack ( {i.e.}, of the form <span class="math notranslate nohighlight">\((q,\bot)\)</span> for some state <span class="math notranslate nohighlight">\(q \in Q\)</span>),</p></li>
+<li><p>the play <span class="math notranslate nohighlight">\(\play\)</span> contains a configuration with the empty stack and the first such configuration has a state in R.
 }</p></li>
 </ul>
-<p>More formally, letting <span class="math notranslate nohighlight">\(V=V_\mathrm{Eve}cup V_\mathrm{Adam}, \)</span>V_R = R \times \bot \Gamma^*<span class="math notranslate nohighlight">\( and \)</span>V_\bot = Q \times {\bot}$</p>
+<p>More formally, letting <span class="math notranslate nohighlight">\(V=V_\mEve\cup V_\mAdam\)</span>, <span class="math notranslate nohighlight">\(V_R = R \times \bot \Gamma^*\)</span> and <span class="math notranslate nohighlight">\(V_\bot = Q \times \{\bot\}\)</span></p>
 <div class="math notranslate nohighlight">
 \[
  \Omega(R) = (\Omega \setminus V^*V_\bot V^\omega)\cup (V \setminus V_\bot)^* V_R V^\omega
 \]</div>
-<p>Finally, we let <span class="math notranslate nohighlight">\(\mathcal{G}R)\)</span> denote the game <span class="math notranslate nohighlight">\((\mathcal{A}\Omega(R))\)</span>.</p>
+<p>Finally, we let <span class="math notranslate nohighlight">\(\game(R)\)</span> denote the game <span class="math notranslate nohighlight">\((\arena,\Omega(R))\)</span>.</p>
 <p>\acchanged{Remark that contrarily to the rest of the objectives considered in this chapter, <span class="math notranslate nohighlight">\(\Omega(R)\)</span> does depend on the sequences of vertices visited by the play and not only on their colour. It would have been possible by a slight modification of the arena to only express the objective on their colours. However, our choice simplifies the presentation of the reduced games.}</p>
-<p>For any state <span class="math notranslate nohighlight">\(q\in Q\)</span> and any stack letter <span class="math notranslate nohighlight">\(\gamma\in\Gamma\)</span>, we denote by <span class="math notranslate nohighlight">\(\mathcal{R}(q,\gamma)\)</span> the set of subsets <span class="math notranslate nohighlight">\(R\subseteq Q\)</span> for which \textrm{Eve}wins in <span class="math notranslate nohighlight">\(\mathcal{G}R)\)</span> from <span class="math notranslate nohighlight">\((q,\bot\gamma)\)</span>:</p>
+<p>For any state <span class="math notranslate nohighlight">\(q\in Q\)</span> and any stack letter <span class="math notranslate nohighlight">\(\gamma\in\Gamma\)</span>, we denote by <span class="math notranslate nohighlight">\(\mathcal{R}(q,\gamma)\)</span> the set of subsets <span class="math notranslate nohighlight">\(R\subseteq Q\)</span> for which \Eve wins in <span class="math notranslate nohighlight">\(\game(R)\)</span> from <span class="math notranslate nohighlight">\((q,\bot\gamma)\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
 \mathcal{R}(q,\gamma)=\{
-R\subseteq Q\mid (q,\bot\gamma) \text{ is winning for \textrm{Eve}in } \mathcal{G}R)
+R\subseteq Q\mid (q,\bot\gamma) \text{ is winning for \Eve in } \game(R)
 \}
 \]</div>
-<p>and we refer to <span class="math notranslate nohighlight">\(\mathcal{R}(q,\gamma)\)</span> as the <strong><span class="math notranslate nohighlight">\((q,\gamma)\)</span>-profile</strong> of $\mathcal{G}.</p>
+<p>and we refer to <span class="math notranslate nohighlight">\(\mathcal{R}(q,\gamma)\)</span> as the <strong><span class="math notranslate nohighlight">\((q,\gamma)\)</span>-profile</strong> of <span class="math notranslate nohighlight">\(\game\)</span>.</p>
 <p>An objective <span class="math notranslate nohighlight">\(\Omega\subseteq C^\omega\)</span> is <strong>prefix independent</strong> if the following holds: for every <span class="math notranslate nohighlight">\(u\in C^\omega\)</span> and for every \acchanged{<span class="math notranslate nohighlight">\(v\in C^*\)</span>},  <span class="math notranslate nohighlight">\(u\in \Omega\)</span> if and only if <span class="math notranslate nohighlight">\(vu\in \Omega\)</span>. The Büchi, co-Büchi and parity objectives are examples of prefix independent objectives and the reachability objective is not.</p>
 <div class="admonition-remark admonition">
 <p class="admonition-title">Remark</p>
 <p>\label{10-rem:stay-staying-alive}
-For a prefix independent objective, a play respecting a winning strategy for <span class="math notranslate nohighlight">\(\textrm{Eve} that starts in \textrm{Eve}s winning region always stay in this region. Obviously this is no longer true if the objective is not prefix independent. For instance in a reachability game, a play following a winning strategy for \)</span>\textrm{Eve} can leave the winning region of \textrm{Eve}once the target has been reached.</p>
+For a prefix independent objective, a play respecting a winning strategy for <span class="math notranslate nohighlight">\(\Eve\)</span> that starts in \Eve’s winning region always stay in this region. Obviously this is no longer true if the objective is not prefix independent. For instance in a reachability game, a play following a winning strategy for <span class="math notranslate nohighlight">\(\Eve\)</span> can leave the winning region of \Eve once the target has been reached.</p>
 </div>
-<p>This simple property allows to use profiles to give an inductive characterization of the winning region for \textrm{Eve}when the objectif is prefix independent.</p>
+<p>This simple property allows to use profiles to give an inductive characterization of the winning region for \Eve when the objectif is prefix independent.</p>
 <div class="proof proposition admonition" id="10-prop:returning">
 <p class="admonition-title"><span class="caption-number">Proposition 279 </span> (NEEDS TITLE 10-prop:returning)</p>
 <div class="proposition-content section" id="proof-content">
 <p>Assume that <span class="math notranslate nohighlight">\(\Omega\subseteq C^\omega\)</span> is prefix independent.
-Let <span class="math notranslate nohighlight">\(s\in \Gamma^*\)</span>, <span class="math notranslate nohighlight">\(q\in Q\)</span> and <span class="math notranslate nohighlight">\(\gamma\in\Gamma\)</span>. Then \textrm{Eve}has a winning strategy in <span class="math notranslate nohighlight">\(\mathcal{G} from \)</span>(q,\bot s\gamma)<span class="math notranslate nohighlight">\( if and only if there exists some \)</span>R\in\mathcal{R}(q,\gamma)<span class="math notranslate nohighlight">\( such that \)</span>(r,\bot s)<span class="math notranslate nohighlight">\( is winning for \textrm{Eve}in \)</span>\mathcal{G} for every <span class="math notranslate nohighlight">\(r\in R\)</span>.</p>
+Let <span class="math notranslate nohighlight">\(s\in \Gamma^*\)</span>, <span class="math notranslate nohighlight">\(q\in Q\)</span> and <span class="math notranslate nohighlight">\(\gamma\in\Gamma\)</span>. Then \Eve has a winning strategy in <span class="math notranslate nohighlight">\(\game\)</span> from <span class="math notranslate nohighlight">\((q,\bot s\gamma)\)</span> if and only if there exists some <span class="math notranslate nohighlight">\(R\in\mathcal{R}(q,\gamma)\)</span> such that <span class="math notranslate nohighlight">\((r,\bot s)\)</span> is winning for \Eve in <span class="math notranslate nohighlight">\(\game\)</span> for every <span class="math notranslate nohighlight">\(r\in R\)</span>.</p>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
-<p>Assume \textrm{Eve}has a winning strategy <span class="math notranslate nohighlight">\(\sigma\)</span> from <span class="math notranslate nohighlight">\((q,\bot s\gamma)\)</span> in <span class="math notranslate nohighlight">\(\mathcal{G}. Consider the set \)</span>\Pi_\sigma<span class="math notranslate nohighlight">\( of all plays in \)</span>\mathcal{G} that starts from <span class="math notranslate nohighlight">\((q,\bot s\gamma)\)</span> and where \textrm{Eve}respects <span class="math notranslate nohighlight">\(\sigma\)</span>. Define <span class="math notranslate nohighlight">\(R\)</span> to be the (possibly empty) set that consists of all <span class="math notranslate nohighlight">\(r\in Q\)</span> such that there is a play in <span class="math notranslate nohighlight">\(\Pi_\sigma\)</span> of the form <span class="math notranslate nohighlight">\(v_0\cdots v_k (r,\bot s) v_{k+1}\cdots\)</span> where each <span class="math notranslate nohighlight">\(v_i\)</span> for <span class="math notranslate nohighlight">\(0\leq i\leq k\)</span> is of the form <span class="math notranslate nohighlight">\((p_i,\bot s t_i)\)</span> for some non-empty <span class="math notranslate nohighlight">\(t_i\)</span>. In other words, <span class="math notranslate nohighlight">\(R\)</span> consists of all states that can be reached on popping <span class="math notranslate nohighlight">\(\gamma\)</span> for the first time in a play where \textrm{Eve}respects <span class="math notranslate nohighlight">\(\sigma\)</span>. As seen in \cref{10-rem:stay-staying-alive}, \textrm{Eve}is winning from <span class="math notranslate nohighlight">\((r,\bot s)\)</span> for all <span class="math notranslate nohighlight">\(r \in R\)</span>. It remains to show that <span class="math notranslate nohighlight">\(R\in\mathcal{R}(q,\gamma)\)</span>.</p>
-<p>To this end, define a (partial) function <span class="math notranslate nohighlight">\(\xi\)</span> as <span class="math notranslate nohighlight">\(\xi((p,\bot s t))=(p,\bot t)\)</span> for every <span class="math notranslate nohighlight">\(p\in Q\)</span> and set <span class="math notranslate nohighlight">\(\xi^{-1}((p,\bot t))=(p,\bot s t)\)</span>. Then <span class="math notranslate nohighlight">\(\xi^{-1}\)</span> is extended as a morphism over <span class="math notranslate nohighlight">\(V^*\)</span>.  Now a winning strategy for \textrm{Eve}in <span class="math notranslate nohighlight">\(\mathcal{G}R)\)</span> is defined as follows:</p>
+<p>Assume \Eve has a winning strategy <span class="math notranslate nohighlight">\(\sigma\)</span> from <span class="math notranslate nohighlight">\((q,\bot s\gamma)\)</span> in <span class="math notranslate nohighlight">\(\game\)</span>. Consider the set <span class="math notranslate nohighlight">\(\Pi_\sigma\)</span> of all plays in <span class="math notranslate nohighlight">\(\game\)</span> that starts from <span class="math notranslate nohighlight">\((q,\bot s\gamma)\)</span> and where \Eve respects <span class="math notranslate nohighlight">\(\sigma\)</span>. Define <span class="math notranslate nohighlight">\(R\)</span> to be the (possibly empty) set that consists of all <span class="math notranslate nohighlight">\(r\in Q\)</span> such that there is a play in <span class="math notranslate nohighlight">\(\Pi_\sigma\)</span> of the form <span class="math notranslate nohighlight">\(v_0\cdots v_k (r,\bot s) v_{k+1}\cdots\)</span> where each <span class="math notranslate nohighlight">\(v_i\)</span> for <span class="math notranslate nohighlight">\(0\leq i\leq k\)</span> is of the form <span class="math notranslate nohighlight">\((p_i,\bot s t_i)\)</span> for some non-empty <span class="math notranslate nohighlight">\(t_i\)</span>. In other words, <span class="math notranslate nohighlight">\(R\)</span> consists of all states that can be reached on popping <span class="math notranslate nohighlight">\(\gamma\)</span> for the first time in a play where \Eve respects <span class="math notranslate nohighlight">\(\sigma\)</span>. As seen in \cref{10-rem:stay-staying-alive}, \Eve is winning from <span class="math notranslate nohighlight">\((r,\bot s)\)</span> for all <span class="math notranslate nohighlight">\(r \in R\)</span>. It remains to show that <span class="math notranslate nohighlight">\(R\in\mathcal{R}(q,\gamma)\)</span>.</p>
+<p>To this end, define a (partial) function <span class="math notranslate nohighlight">\(\xi\)</span> as <span class="math notranslate nohighlight">\(\xi((p,\bot s t))=(p,\bot t)\)</span> for every <span class="math notranslate nohighlight">\(p\in Q\)</span> and set <span class="math notranslate nohighlight">\(\xi^{-1}((p,\bot t))=(p,\bot s t)\)</span>. Then <span class="math notranslate nohighlight">\(\xi^{-1}\)</span> is extended as a morphism over <span class="math notranslate nohighlight">\(V^*\)</span>.  Now a winning strategy for \Eve in <span class="math notranslate nohighlight">\(\game(R)\)</span> is defined as follows:</p>
 <ul class="simple">
 <li><p>if some empty stack configuration has already been visited play any valid move,</p></li>
 <li><p>otherwise go to <span class="math notranslate nohighlight">\(\xi(\sigma(\xi^{-1}(\pi))\)</span>, where <span class="math notranslate nohighlight">\(\pi\)</span> is the current play.</p></li>
 </ul>
-<p>By definition of <span class="math notranslate nohighlight">\(\Pi_\sigma\)</span> and <span class="math notranslate nohighlight">\(R\)</span>, it easily follows that the previous strategy is winning for \textrm{Eve}in <span class="math notranslate nohighlight">\(\mathcal{G}R)\)</span>, and therefore <span class="math notranslate nohighlight">\(R\in\mathcal{R}(p,\gamma)\)</span>.</p>
-<p>Conversely, let us assume that there is some <span class="math notranslate nohighlight">\(R\in\mathcal{R}(q,\gamma)\)</span> such that <span class="math notranslate nohighlight">\((r,\bot s)\)</span> is winning for \textrm{Eve}in <span class="math notranslate nohighlight">\(\mathcal{G} for every \)</span>r\in R<span class="math notranslate nohighlight">\(. For every \)</span>r\in R<span class="math notranslate nohighlight">\(, let us denote by \)</span>\sigma_r<span class="math notranslate nohighlight">\( a winning strategy for \textrm{Eve}from \)</span>(r,\bot s)<span class="math notranslate nohighlight">\( in \)</span>\mathcal{G}. Let <span class="math notranslate nohighlight">\(\sigma_R\)</span> be a winning strategy for \textrm{Eve}in <span class="math notranslate nohighlight">\(\mathcal{G}R)\)</span> from <span class="math notranslate nohighlight">\((q,\bot\gamma)\)</span>. Let us define <span class="math notranslate nohighlight">\(\xi\)</span> and <span class="math notranslate nohighlight">\(\xi^{-1}\)</span> as in the direct implication and extend them as (partial) morphism over <span class="math notranslate nohighlight">\(V^*\)</span>. Define the following strategy <span class="math notranslate nohighlight">\(\sigma\)</span> for \textrm{Eve}in <span class="math notranslate nohighlight">\(\mathcal{G} for plays starting from \)</span>(q,\bot s\gamma)<span class="math notranslate nohighlight">\(. For any such play \)</span>\pi$,</p>
+<p>By definition of <span class="math notranslate nohighlight">\(\Pi_\sigma\)</span> and <span class="math notranslate nohighlight">\(R\)</span>, it easily follows that the previous strategy is winning for \Eve in <span class="math notranslate nohighlight">\(\game(R)\)</span>, and therefore <span class="math notranslate nohighlight">\(R\in\mathcal{R}(p,\gamma)\)</span>.</p>
+<p>Conversely, let us assume that there is some <span class="math notranslate nohighlight">\(R\in\mathcal{R}(q,\gamma)\)</span> such that <span class="math notranslate nohighlight">\((r,\bot s)\)</span> is winning for \Eve in <span class="math notranslate nohighlight">\(\game\)</span> for every <span class="math notranslate nohighlight">\(r\in R\)</span>. For every <span class="math notranslate nohighlight">\(r\in R\)</span>, let us denote by <span class="math notranslate nohighlight">\(\sigma_r\)</span> a winning strategy for \Eve from <span class="math notranslate nohighlight">\((r,\bot s)\)</span> in <span class="math notranslate nohighlight">\(\game\)</span>. Let <span class="math notranslate nohighlight">\(\sigma_R\)</span> be a winning strategy for \Eve in <span class="math notranslate nohighlight">\(\game(R)\)</span> from <span class="math notranslate nohighlight">\((q,\bot\gamma)\)</span>. Let us define <span class="math notranslate nohighlight">\(\xi\)</span> and <span class="math notranslate nohighlight">\(\xi^{-1}\)</span> as in the direct implication and extend them as (partial) morphism over <span class="math notranslate nohighlight">\(V^*\)</span>. Define the following strategy <span class="math notranslate nohighlight">\(\sigma\)</span> for \Eve in <span class="math notranslate nohighlight">\(\game\)</span> for plays starting from <span class="math notranslate nohighlight">\((q,\bot s\gamma)\)</span>. For any such play <span class="math notranslate nohighlight">\(\pi\)</span>,</p>
 <ul class="simple">
 <li><p>if <span class="math notranslate nohighlight">\(\pi\)</span> does not contain a configuration of the form <span class="math notranslate nohighlight">\((p,\bot s)\)</span> then we take <span class="math notranslate nohighlight">\(\sigma(\pi)=\xi^{-1}(\sigma_R(\xi(\pi)))\)</span>;</p></li>
 <li><p>otherwise let <span class="math notranslate nohighlight">\(\pi = \pi'\cdot(r,\bot s)\cdot \pi''\)</span> where <span class="math notranslate nohighlight">\(\pi'\)</span> does not contain any configuration of the form <span class="math notranslate nohighlight">\((p,\bot s)\)</span>. If <span class="math notranslate nohighlight">\(r\)</span> does not belong to <span class="math notranslate nohighlight">\(R\)</span>, <span class="math notranslate nohighlight">\(\sigma\)</span> is undefined. Note that this situation will never be encountered in a play respecting <span class="math notranslate nohighlight">\(\sigma\)</span> as <span class="math notranslate nohighlight">\(\sigma_R\)</span> ensures that <span class="math notranslate nohighlight">\(r \in R\)</span>. If <span class="math notranslate nohighlight">\(r \in R\)</span>, one finally sets <span class="math notranslate nohighlight">\(\sigma(\pi)=\sigma_r((r,\bot s)\pi'')\)</span>.</p></li>
 </ul>
-<p>The strategy <span class="math notranslate nohighlight">\(\sigma\)</span> is a winning strategy for \textrm{Eve}in <span class="math notranslate nohighlight">\(\mathcal{G} from \)</span>(q,\bot s\gamma)<span class="math notranslate nohighlight">\(. To see this, consider a play \)</span>\pi<span class="math notranslate nohighlight">\( starting from \)</span>(p,\bot s \gamma)<span class="math notranslate nohighlight">\( and respecting \)</span>\sigma$.</p>
-<p>If the play <span class="math notranslate nohighlight">\(\pi\)</span> does not contain configurations of the form <span class="math notranslate nohighlight">\((r,\bot s)\)</span> for some <span class="math notranslate nohighlight">\(r \in Q\)</span>, then the play <span class="math notranslate nohighlight">\(\xi(\pi)\)</span> starting in <span class="math notranslate nohighlight">\((p,\bot \gamma)\)</span> respects <span class="math notranslate nohighlight">\(\sigma_R\)</span> and is won by <span class="math notranslate nohighlight">\(\textrm{Eve}.
-As \)</span>\xi(\pi)<span class="math notranslate nohighlight">\( does not contain configurations with an empty stack, it must be the case that \)</span>\xi(\pi) \in \Omega<span class="math notranslate nohighlight">\(. As \)</span>\Omega<span class="math notranslate nohighlight">\( only depends on the colours of the states, it is also the case that \)</span>\pi \in \Omega<span class="math notranslate nohighlight">\( and hence, \)</span>\pi<span class="math notranslate nohighlight">\( is winning for \)</span>\textrm{Eve}.</p>
-<p>If the play <span class="math notranslate nohighlight">\(\pi\)</span> can be decomposed as <span class="math notranslate nohighlight">\(\pi' (r,\bot s) \pi''\)</span> where <span class="math notranslate nohighlight">\(\pi'\)</span> does not contain any configuration with the stack <span class="math notranslate nohighlight">\(\bot s\)</span>, the play <span class="math notranslate nohighlight">\(\xi(\pi' (r,\bot s))\)</span> respects <span class="math notranslate nohighlight">\(\sigma_R\)</span> in <span class="math notranslate nohighlight">\(\mathcal{G}R)\)</span>. As <span class="math notranslate nohighlight">\(\sigma_R\)</span> is winning, it follows that <span class="math notranslate nohighlight">\(r \in R\)</span>. By definition of <span class="math notranslate nohighlight">\(\sigma\)</span>, <span class="math notranslate nohighlight">\((r,\bot s)\pi''\)</span> respects <span class="math notranslate nohighlight">\(\sigma_r\)</span> which being winning for \textrm{Eve}implies that <span class="math notranslate nohighlight">\((r,\bot s) \pi'' \in \Omega\)</span>. As <span class="math notranslate nohighlight">\(\Omega\)</span> is prefix independent, it follows that <span class="math notranslate nohighlight">\(\pi \in \Omega\)</span>.</p>
+<p>The strategy <span class="math notranslate nohighlight">\(\sigma\)</span> is a winning strategy for \Eve in <span class="math notranslate nohighlight">\(\game\)</span> from <span class="math notranslate nohighlight">\((q,\bot s\gamma)\)</span>. To see this, consider a play <span class="math notranslate nohighlight">\(\pi\)</span> starting from <span class="math notranslate nohighlight">\((p,\bot s \gamma)\)</span> and respecting <span class="math notranslate nohighlight">\(\sigma\)</span>.</p>
+<p>If the play <span class="math notranslate nohighlight">\(\pi\)</span> does not contain configurations of the form <span class="math notranslate nohighlight">\((r,\bot s)\)</span> for some <span class="math notranslate nohighlight">\(r \in Q\)</span>, then the play <span class="math notranslate nohighlight">\(\xi(\pi)\)</span> starting in <span class="math notranslate nohighlight">\((p,\bot \gamma)\)</span> respects <span class="math notranslate nohighlight">\(\sigma_R\)</span> and is won by <span class="math notranslate nohighlight">\(\Eve\)</span>.
+As <span class="math notranslate nohighlight">\(\xi(\pi)\)</span> does not contain configurations with an empty stack, it must be the case that <span class="math notranslate nohighlight">\(\xi(\pi) \in \Omega\)</span>. As <span class="math notranslate nohighlight">\(\Omega\)</span> only depends on the colours of the states, it is also the case that <span class="math notranslate nohighlight">\(\pi \in \Omega\)</span> and hence, <span class="math notranslate nohighlight">\(\pi\)</span> is winning for <span class="math notranslate nohighlight">\(\Eve\)</span>.</p>
+<p>If the play <span class="math notranslate nohighlight">\(\pi\)</span> can be decomposed as <span class="math notranslate nohighlight">\(\pi' (r,\bot s) \pi''\)</span> where <span class="math notranslate nohighlight">\(\pi'\)</span> does not contain any configuration with the stack <span class="math notranslate nohighlight">\(\bot s\)</span>, the play <span class="math notranslate nohighlight">\(\xi(\pi' (r,\bot s))\)</span> respects <span class="math notranslate nohighlight">\(\sigma_R\)</span> in <span class="math notranslate nohighlight">\(\game(R)\)</span>. As <span class="math notranslate nohighlight">\(\sigma_R\)</span> is winning, it follows that <span class="math notranslate nohighlight">\(r \in R\)</span>. By definition of <span class="math notranslate nohighlight">\(\sigma\)</span>, <span class="math notranslate nohighlight">\((r,\bot s)\pi''\)</span> respects <span class="math notranslate nohighlight">\(\sigma_r\)</span> which being winning for \Eve implies that <span class="math notranslate nohighlight">\((r,\bot s) \pi'' \in \Omega\)</span>. As <span class="math notranslate nohighlight">\(\Omega\)</span> is prefix independent, it follows that <span class="math notranslate nohighlight">\(\pi \in \Omega\)</span>.</p>
 </div>
 <p><a class="reference internal" href="#10-prop:returning">Proposition 279</a> implies that the winning region of any pushdown game equipped with a prefix independent objectives can be described by regular languages.</p>
 <div class="proof theorem admonition" id="10-thm:regularity-wr">
 <p class="admonition-title"><span class="caption-number">Theorem 280 </span> (NEEDS TITLE 10-thm:regularity-wr)</p>
 <div class="theorem-content section" id="proof-content">
-<p>Let <span class="math notranslate nohighlight">\(\mathcal{G}(\mathcal{A}\Omega)\)</span> be a pushdown game played on an arena <span class="math notranslate nohighlight">\(\mathcal{A}= (G,V_\mEveV_\mathrm{Adam} generated by a pushdown system \)</span>\mathcal{P}= (Q,Q_{\mathrm{Eve}, Q_{\mathrm{Adam}, \Gamma,\Delta)<span class="math notranslate nohighlight">\(, and such that \)</span>\Omega\subseteq C^\omega<span class="math notranslate nohighlight">\( is prefix independent. Then for any state \)</span>q\in Q$, the set</p>
+<p>Let <span class="math notranslate nohighlight">\(\game=(\arena,\Omega)\)</span> be a pushdown game played on an arena <span class="math notranslate nohighlight">\(\arena = (G,\VE,\VA)\)</span> generated by a pushdown system <span class="math notranslate nohighlight">\(\PDS = (Q,Q_{\mEve}, Q_{\mAdam}, \Gamma,\Delta)\)</span>, and such that <span class="math notranslate nohighlight">\(\Omega\subseteq C^\omega\)</span> is prefix independent. Then for any state <span class="math notranslate nohighlight">\(q\in Q\)</span>, the set</p>
 <div class="math notranslate nohighlight">
 \[
-L_q=\{u\in \Gamma^*\mid (q,\bot s)\in W_\mathrm{Eve}\}
+L_q=\{u\in \Gamma^*\mid (q,\bot s)\in W_\mEve \}
 \]</div>
 <p>is a regular language over the alphabet <span class="math notranslate nohighlight">\(\Gamma\)</span>.</p>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
-<p>Fix a control state <span class="math notranslate nohighlight">\(q \in Q\)</span>, we consider a deterministic finite state automaton defined as follows. Its set of control states consists of the subsets of <span class="math notranslate nohighlight">\(Q\)</span> and the initial state is <span class="math notranslate nohighlight">\(S_{in}=\{p\mid (p,\bot)\in W_\mathrm{Eve}}\)</span>. From the state <span class="math notranslate nohighlight">\(S\)</span> upon reading the letter <span class="math notranslate nohighlight">\(\gamma\)</span> the automaton goes to the state <span class="math notranslate nohighlight">\(\{p\mid S\in\mathcal{R}(p,\gamma)\}\)</span>. Finally a state <span class="math notranslate nohighlight">\(S\)</span> is final if and only if <span class="math notranslate nohighlight">\(q\in S\)</span>. It is then an immediate consequence of  <a class="reference internal" href="#10-prop:returning">Proposition 279</a> that this automaton accepts the language <span class="math notranslate nohighlight">\(L_q\)</span>.</p>
+<p>Fix a control state <span class="math notranslate nohighlight">\(q \in Q\)</span>, we consider a deterministic finite state automaton defined as follows. Its set of control states consists of the subsets of <span class="math notranslate nohighlight">\(Q\)</span> and the initial state is <span class="math notranslate nohighlight">\(S_{in}=\{p\mid (p,\bot)\in W_\mEve\}\)</span>. From the state <span class="math notranslate nohighlight">\(S\)</span> upon reading the letter <span class="math notranslate nohighlight">\(\gamma\)</span> the automaton goes to the state <span class="math notranslate nohighlight">\(\{p\mid S\in\mathcal{R}(p,\gamma)\}\)</span>. Finally a state <span class="math notranslate nohighlight">\(S\)</span> is final if and only if <span class="math notranslate nohighlight">\(q\in S\)</span>. It is then an immediate consequence of  <a class="reference internal" href="#10-prop:returning">Proposition 279</a> that this automaton accepts the language <span class="math notranslate nohighlight">\(L_q\)</span>.</p>
 </div>
 <div class="admonition-remark-label-10-rk-automata-winning-region admonition">
 <p class="admonition-title">Remark \label{10-rk:automata-winning-region}</p>
@@ -811,14 +888,14 @@ L_q=\{u\in \Gamma^*\mid (q,\bot s)\in W_\mathrm{Eve}\}
 </div>
 <div class="admonition-remark admonition">
 <p class="admonition-title">Remark</p>
-<p>Note that the characterisation in  <a class="reference internal" href="#10-thm:regularity-wr">Theorem 280</a> is <strong>a priori</strong> not effective. Indeed, to construct automata for the languages <span class="math notranslate nohighlight">\(L_q\)</span> one needs to be able to compute all the <span class="math notranslate nohighlight">\((q,\gamma)\)</span>-profiles <span class="math notranslate nohighlight">\(\mathcal{R}(q,\gamma)\)</span> of <span class="math notranslate nohighlight">\(\mathcal{G} and compute
-the winner from configurations of the form \)</span>(q,\bot)$.</p>
-<p>\newcommand{\Omega_{\textrm{pal}}{\Omega_{\textrm{pal}}}
+<p>Note that the characterisation in  <a class="reference internal" href="#10-thm:regularity-wr">Theorem 280</a> is <strong>a priori</strong> not effective. Indeed, to construct automata for the languages <span class="math notranslate nohighlight">\(L_q\)</span> one needs to be able to compute all the <span class="math notranslate nohighlight">\((q,\gamma)\)</span>-profiles <span class="math notranslate nohighlight">\(\mathcal{R}(q,\gamma)\)</span> of <span class="math notranslate nohighlight">\(\game\)</span> and compute
+the winner from configurations of the form <span class="math notranslate nohighlight">\((q,\bot)\)</span>.</p>
+<p>\newcommand{\Omegapar}{\Omega_{\textrm{pal}}}
 Consider, for instance, the objective over the set of the colours <span class="math notranslate nohighlight">\(C=\{0,1,\#,\$\}\)</span></p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{array}{l}
-\Omega_{\textrm{pal}}= \{ w \in C^\omega \mid w \;\textrm{contains infinitely many factors of the form}\\
+\Omegapar = \{ w \in C^\omega \mid w \;\textrm{contains infinitely many factors of the form}\\
 \quad\quad\quad\quad\quad\quad\quad\;\;\textrm{$\#u\$\tilde{u}\#$ with $u \in \{0,1\}^*$} \} \\
 \end{array}
 \end{split}\]</div>
@@ -829,55 +906,55 @@ Consider, for instance, the objective over the set of the colours <span class="m
 -symbol is read, it only allows to read the symbol that is on the top of the stack before popping it. Finally when a \)</span>#<span class="math notranslate nohighlight">\(-symbol is read, if the top-most symbol of the stack is \)</span>\bot’<span class="math notranslate nohighlight">\(  the unique final state is visited. Hence ensuring that a final state is visited if the word \)</span>w<span class="math notranslate nohighlight">\( is of the required form. If \)</span>w<span class="math notranslate nohighlight">\( contains several \)</span><br />
 $<span class="math notranslate nohighlight">\(
  symbols or if the symbol read does not correspond to the top of the stack, the automaton enters a non-final state is in which it waits for the next \)</span>#$-symbol.</p>
-<p>For games with finite arenas and the <span class="math notranslate nohighlight">\(\Omega_{\textrm{pal}} objective,  deciding the winner reduces to deciding the winner in a  pushdown game with the Büchi objective which is decidable as we will prove later in this chapter. The pushdown game is essentially a synchronized product between the finite arena and the \)</span>\omega$-pushdown automaton described previously.</p>
-<p>However the problem of deciding the winner in a pushdown game with the <span class="math notranslate nohighlight">\(\Omega_{\textrm{pal}} objective is undecidable even if all vertices belong to \textrm{Eve} The undecidability is proved by a reduction from  Post correspondance problem (PCP) which is a well-known to be undecidable. Recall that an instance of PCP is a finite sequence \)</span>(r_1,\ell_1),\ldots,(r_n,\ell_n)<span class="math notranslate nohighlight">\( of pairs of words over \)</span>{0,1}<span class="math notranslate nohighlight">\(. Such an instance is said to admit a solution if there exists a sequence of indices \)</span>i_1\cdots i_k \in [1,n]^*$ such that:</p>
+<p>For games with finite arenas and the <span class="math notranslate nohighlight">\(\Omegapar\)</span> objective,  deciding the winner reduces to deciding the winner in a  pushdown game with the Büchi objective which is decidable as we will prove later in this chapter. The pushdown game is essentially a synchronized product between the finite arena and the <span class="math notranslate nohighlight">\(\omega\)</span>-pushdown automaton described previously.</p>
+<p>However the problem of deciding the winner in a pushdown game with the <span class="math notranslate nohighlight">\(\Omegapar\)</span> objective is undecidable even if all vertices belong to \Eve. The undecidability is proved by a reduction from  Post correspondance problem (PCP) which is a well-known to be undecidable. Recall that an instance of PCP is a finite sequence <span class="math notranslate nohighlight">\((r_1,\ell_1),\ldots,(r_n,\ell_n)\)</span> of pairs of words over <span class="math notranslate nohighlight">\(\{0,1\}\)</span>. Such an instance is said to admit a solution if there exists a sequence of indices <span class="math notranslate nohighlight">\(i_1\cdots i_k \in [1,n]^*\)</span> such that:</p>
 <div class="math notranslate nohighlight">
 \[
  r_{i_1} r_{i_2} \cdots r_{i_k} = \ell_{i_1} \ell_{i_2} \cdots \ell_{i_k}.
 \]</div>
 <p>The PCP problem is, given an instance, to decide if it admits a solution.</p>
-<p>For an instance <span class="math notranslate nohighlight">\(I=(\ell_1,r_1),\ldots,(\ell_n,r_n)\)</span> of PCP, we construct a pushdown game <span class="math notranslate nohighlight">\(G_I\)</span>  with the objective <span class="math notranslate nohighlight">\(\Omega_{\textrm{pal}} such that \textrm{Eve}wins \)</span>G_I<span class="math notranslate nohighlight">\( from \)</span>(p_\star,\bot)<span class="math notranslate nohighlight">\( if and only if \)</span>I$ admits a solution. In this game, \textrm{Eve}plays alone and the play is decomposed in two phases that will repeat:</p>
+<p>For an instance <span class="math notranslate nohighlight">\(I=(\ell_1,r_1),\ldots,(\ell_n,r_n)\)</span> of PCP, we construct a pushdown game <span class="math notranslate nohighlight">\(G_I\)</span>  with the objective <span class="math notranslate nohighlight">\(\Omegapar\)</span> such that \Eve wins <span class="math notranslate nohighlight">\(G_I\)</span> from <span class="math notranslate nohighlight">\((p_\star,\bot)\)</span> if and only if <span class="math notranslate nohighlight">\(I\)</span> admits a solution. In this game, \Eve plays alone and the play is decomposed in two phases that will repeat:</p>
 <ul class="simple">
-<li><p>in phase 1, \textrm{Eve}can push any indice <span class="math notranslate nohighlight">\(i\)</span> in <span class="math notranslate nohighlight">\([1,n]\)</span>while producing the sequence of colors <span class="math notranslate nohighlight">\(r_i\)</span>. As soon as at least one index has been pushed, she can also choose to move to the sequence phase while producing the colour <span class="math notranslate nohighlight">\(\
+<li><p>in phase 1, \Eve can push any indice <span class="math notranslate nohighlight">\(i\)</span> in <span class="math notranslate nohighlight">\([1,n]\)</span>while producing the sequence of colors <span class="math notranslate nohighlight">\(r_i\)</span>. As soon as at least one index has been pushed, she can also choose to move to the sequence phase while producing the colour <span class="math notranslate nohighlight">\(\
 \)</span>$
 .</p></li>
-<li><p>in phase 2, \textrm{Eve}must (until the bottom of stack symbol is reached) pop the top most element of the stack <span class="math notranslate nohighlight">\(i\)</span> while producing the sequence of colours <span class="math notranslate nohighlight">\(\tilde{\ell_i}\)</span>. When the bottom of stack symbol is encountered, \textrm{Eve}goes back to the first phase while producing the colour <span class="math notranslate nohighlight">\(\#\)</span>.</p></li>
+<li><p>in phase 2, \Eve must (until the bottom of stack symbol is reached) pop the top most element of the stack <span class="math notranslate nohighlight">\(i\)</span> while producing the sequence of colours <span class="math notranslate nohighlight">\(\tilde{\ell_i}\)</span>. When the bottom of stack symbol is encountered, \Eve goes back to the first phase while producing the colour <span class="math notranslate nohighlight">\(\#\)</span>.</p></li>
 </ul>
-<p>If <span class="math notranslate nohighlight">\(I\)</span> has a solution <span class="math notranslate nohighlight">\(i_1 \cdots i_k\)</span> then the strategy in which \textrm{Eve}always pushes this sequence in phase 1 is winning for her. As <span class="math notranslate nohighlight">\(i_1 \cdots i_k\)</span> is a solution of <span class="math notranslate nohighlight">\(I\)</span>,
-we have <span class="math notranslate nohighlight">\(u=r_{i_1}\cdot r_{i_k}=\ell_{i_1}\cdots\ell_{i_k} \)</span> and by construction of the game, the sequence of colors associated with the play is <span class="math notranslate nohighlight">\((u\$\tilde{u})^\omega \in \Omega_{\textrm{pal}}. Conversely if \textrm{Eve}has a winning strategy from \)</span>(q_\star,\bot)<span class="math notranslate nohighlight">\( then the sequence of colours associated with the winning play belongs to \)</span>\Omega_{\textrm{pal}}. In particular, it must contain a factor of the form <span class="math notranslate nohighlight">\(\#u\$\tilde{u}\#\)</span>. By construction of the game the sequence of indices <span class="math notranslate nohighlight">\(i_1 \cdots i_k\)</span> pushed while producing <span class="math notranslate nohighlight">\(u\)</span> is a solution of <span class="math notranslate nohighlight">\(I\)</span>.</p>
+<p>If <span class="math notranslate nohighlight">\(I\)</span> has a solution <span class="math notranslate nohighlight">\(i_1 \cdots i_k\)</span> then the strategy in which \Eve always pushes this sequence in phase 1 is winning for her. As <span class="math notranslate nohighlight">\(i_1 \cdots i_k\)</span> is a solution of <span class="math notranslate nohighlight">\(I\)</span>,
+we have <span class="math notranslate nohighlight">\(u=r_{i_1}\cdot r_{i_k}=\ell_{i_1}\cdots\ell_{i_k} \)</span> and by construction of the game, the sequence of colors associated with the play is <span class="math notranslate nohighlight">\((u\$\tilde{u})^\omega \in \Omegapar\)</span>. Conversely if \Eve has a winning strategy from <span class="math notranslate nohighlight">\((q_\star,\bot)\)</span> then the sequence of colours associated with the winning play belongs to <span class="math notranslate nohighlight">\(\Omegapar\)</span>. In particular, it must contain a factor of the form <span class="math notranslate nohighlight">\(\#u\$\tilde{u}\#\)</span>. By construction of the game the sequence of indices <span class="math notranslate nohighlight">\(i_1 \cdots i_k\)</span> pushed while producing <span class="math notranslate nohighlight">\(u\)</span> is a solution of <span class="math notranslate nohighlight">\(I\)</span>.</p>
 </div>
 <div class="section" id="reachability-pushdown-game">
 <h2>Reachability Pushdown Game<a class="headerlink" href="#reachability-pushdown-game" title="Permalink to this headline">¶</a></h2>
 <p>We will see in the following section that for the parity condition and more generally for any <span class="math notranslate nohighlight">\(\omega\)</span>-regular winning conditions the <span class="math notranslate nohighlight">\((q,\gamma)\)</span>-profiles can be computed for any <span class="math notranslate nohighlight">\(q \in Q\)</span> and <span class="math notranslate nohighlight">\(\gamma \in \Gamma\)</span>. We start by the simpler case of the reachability objective.</p>
-<p>At first sight, the reachability objective is not captured by  <a class="reference internal" href="#10-thm:regularity-wr">Theorem 280</a> as it is not prefix independent. However with a slight adaptation of the reduced game <span class="math notranslate nohighlight">\(\mathcal{G}R)\)</span>  <a class="reference internal" href="#10-thm:regularity-wr">Theorem 280</a>  for the reachability condition. Intuitively we ask that the play stops as soon as a target vertex is reached.</p>
-<p>More formally, for a reachability objective <span class="math notranslate nohighlight">\(\mathtt{Reach}F)\)</span> and letting <span class="math notranslate nohighlight">\(V=V_\mathrm{Eve}cup V_\mathrm{Adam} and \)</span>V_F = { v \in V \mid \pdscol{v} \in F}$:</p>
+<p>At first sight, the reachability objective is not captured by  <a class="reference internal" href="#10-thm:regularity-wr">Theorem 280</a> as it is not prefix independent. However with a slight adaptation of the reduced game <span class="math notranslate nohighlight">\(\game(R)\)</span>  <a class="reference internal" href="#10-thm:regularity-wr">Theorem 280</a>  for the reachability condition. Intuitively we ask that the play stops as soon as a target vertex is reached.</p>
+<p>More formally, for a reachability objective <span class="math notranslate nohighlight">\(\Reach(F)\)</span> and letting <span class="math notranslate nohighlight">\(V=V_\mEve\cup V_\mAdam\)</span> and <span class="math notranslate nohighlight">\(V_F = \{ v \in V \mid \pdscol{v} \in F\}\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[ \overline{\Omega}(R) = [(V \setminus Q \times \{\bot\})^* \cdot V_F \cdot V^\omega]\cup [(V \setminus (Q\times\{\bot\} \cup V_F))^* \cdot (R\times \{\bot\}) \cdot V^\omega]
 \]</div>
 <p>It is easily shown that with this modification to the definition of profiles both  <a class="reference internal" href="#10-prop:returning">Proposition 279</a> and  <a class="reference internal" href="#10-thm:regularity-wr">Theorem 280</a> are true for the reachability objective.
-\newcommand{\mathrm{Profs}{\mathrm{Profs}}
-In the special case of the reachability objective, the set <span class="math notranslate nohighlight">\(\mathrm{Profs} of triples \)</span>(p,\gamma,R)<span class="math notranslate nohighlight">\( such that \)</span>R \in \mathcal{R}(p,\gamma)$ can be expressed as a smallest fix-point.</p>
-<p>More precisely, <span class="math notranslate nohighlight">\(\mathrm{Profs} is the smallest subset of \)</span>Q\times \Gamma \times \mathcal{P}(Q))<span class="math notranslate nohighlight">\( such that for \)</span>p \in Q<span class="math notranslate nohighlight">\(, \)</span>\gamma \in \Gamma<span class="math notranslate nohighlight">\( and \)</span>R \subseteq Q<span class="math notranslate nohighlight">\(, \)</span>(p,\gamma,R)<span class="math notranslate nohighlight">\( belongs \)</span>\mathrm{Profs} if either:</p>
+\newcommand{\Profs}{\mathrm{Profs}}
+In the special case of the reachability objective, the set <span class="math notranslate nohighlight">\(\Profs\)</span> of triples <span class="math notranslate nohighlight">\((p,\gamma,R)\)</span> such that <span class="math notranslate nohighlight">\(R \in \mathcal{R}(p,\gamma)\)</span> can be expressed as a smallest fix-point.</p>
+<p>More precisely, <span class="math notranslate nohighlight">\(\Profs\)</span> is the smallest subset of <span class="math notranslate nohighlight">\(Q\times \Gamma \times \mathcal{P}(Q))\)</span> such that for <span class="math notranslate nohighlight">\(p \in Q\)</span>, <span class="math notranslate nohighlight">\(\gamma \in \Gamma\)</span> and <span class="math notranslate nohighlight">\(R \subseteq Q\)</span>, <span class="math notranslate nohighlight">\((p,\gamma,R)\)</span> belongs <span class="math notranslate nohighlight">\(\Profs\)</span> if either:</p>
 <ol class="simple">
 <li><p><span class="math notranslate nohighlight">\(p \in Q_F=\{ q \in Q \mid \pdscol{q} \in F\}\)</span>,</p></li>
-<li><p>or <span class="math notranslate nohighlight">\(p \in Q_{\mathrm{Eve}\)</span> and for some <span class="math notranslate nohighlight">\(q \in Q\)</span>,</p></li>
+<li><p>or <span class="math notranslate nohighlight">\(p \in Q_{\mEve}\)</span> and for some <span class="math notranslate nohighlight">\(q \in Q\)</span>,</p></li>
 </ol>
 <ul class="simple">
-<li><p>either <span class="math notranslate nohighlight">\((q,\mathrm{pop} \in \Delta(p,\gamma)\)</span> and <span class="math notranslate nohighlight">\(q \in R\)</span>,</p></li>
-<li><p>or <span class="math notranslate nohighlight">\((q,\push{\gamma'}) \in \Delta(p,\gamma)\)</span>  and <span class="math notranslate nohighlight">\((q,\gamma',R') \in \mathrm{Profs} for some \)</span>R’ \subseteq Q<span class="math notranslate nohighlight">\( such that for all \)</span>p’ \in R’<span class="math notranslate nohighlight">\(, \)</span>(p’,\gamma,R) \in \mathrm{Profs}.</p></li>
+<li><p>either <span class="math notranslate nohighlight">\((q,\pop) \in \Delta(p,\gamma)\)</span> and <span class="math notranslate nohighlight">\(q \in R\)</span>,</p></li>
+<li><p>or <span class="math notranslate nohighlight">\((q,\push{\gamma'}) \in \Delta(p,\gamma)\)</span>  and <span class="math notranslate nohighlight">\((q,\gamma',R') \in \Profs\)</span> for some <span class="math notranslate nohighlight">\(R' \subseteq Q\)</span> such that for all <span class="math notranslate nohighlight">\(p' \in R'\)</span>, <span class="math notranslate nohighlight">\((p',\gamma,R) \in \Profs\)</span>.</p></li>
 </ul>
 <ol class="simple">
 <li><p>or <span class="math notranslate nohighlight">\(p \in Q_A\)</span> and for all <span class="math notranslate nohighlight">\(q \in Q\)</span> the following hold:</p></li>
 </ol>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\((q,\mathrm{pop} \in \Delta(p,\gamma)\)</span> implies <span class="math notranslate nohighlight">\(q \in R\)</span>,</p></li>
-<li><p><span class="math notranslate nohighlight">\((q,\push{\gamma'}) \in \Delta(p,\gamma)\)</span> implies that there exists <span class="math notranslate nohighlight">\(R' \subseteq Q\)</span> such that <span class="math notranslate nohighlight">\((q,\gamma',R') \in \mathrm{Profs} and for all \)</span>p’ \in R’<span class="math notranslate nohighlight">\(, \)</span>(p’,\gamma,R) \in \mathrm{Profs}.</p></li>
+<li><p><span class="math notranslate nohighlight">\((q,\pop) \in \Delta(p,\gamma)\)</span> implies <span class="math notranslate nohighlight">\(q \in R\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\((q,\push{\gamma'}) \in \Delta(p,\gamma)\)</span> implies that there exists <span class="math notranslate nohighlight">\(R' \subseteq Q\)</span> such that <span class="math notranslate nohighlight">\((q,\gamma',R') \in \Profs\)</span> and for all <span class="math notranslate nohighlight">\(p' \in R'\)</span>, <span class="math notranslate nohighlight">\((p',\gamma,R) \in \Profs\)</span>.</p></li>
 </ul>
 <p>\AC{Do we include the proof of the correctness of the characterization ?}</p>
-<p>Using this characterization, the set <span class="math notranslate nohighlight">\(\mathrm{Profs} can be computed using the standard method for computing small-fixed point of a monotonic function by computing the sequence of approximants \)</span>\Profs_0 = \emptyset \subseteq \Profs_1 \subseteq \Profs_2 \cdots<span class="math notranslate nohighlight">\( until it stabilizes. More precisely, for all \)</span>i \geq 0<span class="math notranslate nohighlight">\(, \)</span>\Profs_{i+1}<span class="math notranslate nohighlight">\( is obtained by adding to \)</span>\Profs_{i}<span class="math notranslate nohighlight">\( all the tuples that can be inferred using the properties \)</span>(1)<span class="math notranslate nohighlight">\(, \)</span>(2)<span class="math notranslate nohighlight">\( and \)</span>(3)<span class="math notranslate nohighlight">\( above applied to \)</span>\Profs_i<span class="math notranslate nohighlight">\(. As at most \)</span>|Q|\cdot |\Gamma|\cdot 2^{|Q|}<span class="math notranslate nohighlight">\( tuples can be added, the sequence must stabilize in at most \)</span>|Q| \cdot |\Gamma| \cdot 2^{|Q|}<span class="math notranslate nohighlight">\( steps. As the computation of \)</span>\Profs_{i+1}<span class="math notranslate nohighlight">\( from \)</span>\Profs_i<span class="math notranslate nohighlight">\( can be performed in polynomial time, the profils in a reachability pushdown game can be computed in time  \)</span>p(|Q| \cdot |\Gamma| \cdot 2^{|Q|})<span class="math notranslate nohighlight">\( for some polynomial \)</span>p$.</p>
+<p>Using this characterization, the set <span class="math notranslate nohighlight">\(\Profs\)</span> can be computed using the standard method for computing small-fixed point of a monotonic function by computing the sequence of approximants <span class="math notranslate nohighlight">\(\Profs_0 = \emptyset \subseteq \Profs_1 \subseteq \Profs_2 \cdots\)</span> until it stabilizes. More precisely, for all <span class="math notranslate nohighlight">\(i \geq 0\)</span>, <span class="math notranslate nohighlight">\(\Profs_{i+1}\)</span> is obtained by adding to <span class="math notranslate nohighlight">\(\Profs_{i}\)</span> all the tuples that can be inferred using the properties <span class="math notranslate nohighlight">\((1)\)</span>, <span class="math notranslate nohighlight">\((2)\)</span> and <span class="math notranslate nohighlight">\((3)\)</span> above applied to <span class="math notranslate nohighlight">\(\Profs_i\)</span>. As at most <span class="math notranslate nohighlight">\(|Q|\cdot |\Gamma|\cdot 2^{|Q|}\)</span> tuples can be added, the sequence must stabilize in at most <span class="math notranslate nohighlight">\(|Q| \cdot |\Gamma| \cdot 2^{|Q|}\)</span> steps. As the computation of <span class="math notranslate nohighlight">\(\Profs_{i+1}\)</span> from <span class="math notranslate nohighlight">\(\Profs_i\)</span> can be performed in polynomial time, the profils in a reachability pushdown game can be computed in time  <span class="math notranslate nohighlight">\(p(|Q| \cdot |\Gamma| \cdot 2^{|Q|})\)</span> for some polynomial <span class="math notranslate nohighlight">\(p\)</span>.</p>
 <div class="admonition-remark admonition">
 <p class="admonition-title">Remark</p>
-<p>In the case where \textrm{Eve}plays alone (i.e., <span class="math notranslate nohighlight">\(Q=Q_\mathrm{Eve}), there is only on play respecting a fixed strategy for \textrm{Eve}and as a result, one only need to compute profils of the form \)</span>(p,\gamma,R)<span class="math notranslate nohighlight">\( with \)</span>|R|\leq 1$. In this setting, the fixed-point characterization yields a polynomial time algorithm to compute the set of profiles.</p>
+<p>In the case where \Eve plays alone (i.e., <span class="math notranslate nohighlight">\(Q=Q_\mEve\)</span>), there is only on play respecting a fixed strategy for \Eve and as a result, one only need to compute profils of the form <span class="math notranslate nohighlight">\((p,\gamma,R)\)</span> with <span class="math notranslate nohighlight">\(|R|\leq 1\)</span>. In this setting, the fixed-point characterization yields a polynomial time algorithm to compute the set of profiles.</p>
 </div>
 </div>
 </div>

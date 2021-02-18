@@ -1,18 +1,74 @@
 (7-sec:reachability)=
 # Concurrent reachability games
 
-
 ```{math}
 \newcommand{\ValueOp}{\text{valOp}}
+\newcommand{\rk}{\text{rk}}
 \newcommand{\crgLim}{\text{crgLim1}}
+\newcommand{\Eve}{\textrm{Eve}}
+\newcommand{\Adam}{\textrm{Adam}}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
 \newcommand{\R}{\mathbb{R}}
-\newcommand{\dist}{\mathcal{D}}
-\newcommand{\supp}{\textrm{supp}}
-\newcommand{\dest}{\Delta}
-\newcommand{\Win}{\textrm{Win}}
-\newcommand{\Value}{\textrm{val}}
+\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
+\newcommand{\argmax}{\textrm{argmax}}
+\newcommand{\argmin}{\textrm{argmin}}
+\newcommand{\Op}{\mathbb{O}}
+\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\textrm{supp}} 
+\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
+\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
+\newcommand{\mEve}{\mathrm{Eve}}
+\newcommand{\mAdam}{\mathrm{Adam}}
+\newcommand{\mRandom}{\mathrm{Random}}
+\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
+\newcommand{\ing}{\textrm{In}}
+\newcommand{\Ing}{\ing}
+\newcommand{\out}{\textrm{Out}}
+\newcommand{\Out}{\out}
+\newcommand{\dest}{\Delta} 
+\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
+\newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
+\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
+\newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
+\newcommand{\Win}{\textrm{Win}} 
+\newcommand{\Lose}{\textrm{Lose}} 
+\newcommand{\Value}{\textrm{val}} 
+\newcommand{\ValueE}{\textrm{val}_\mEve} 
+\newcommand{\ValueA}{\textrm{val}_\mAdam}
+\newcommand{\val}{\Value} 
+\newcommand{\Automaton}{\mathbf{A}} 
+\newcommand{\Safe}{\mathtt{Safe}}
+\newcommand{\Reach}{\mathtt{Reach}} 
+\newcommand{\Buchi}{\mathtt{Buchi}} 
+\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
+\newcommand{\Parity}{\mathtt{Parity}} 
+\newcommand{\Muller}{\mathtt{Muller}} 
+\newcommand{\Rabin}{\mathtt{Rabin}} 
+\newcommand{\Streett}{\mathtt{Streett}} 
+\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
+\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
+\newcommand{\Energy}{\mathtt{Energy}}
+\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
+\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
+\newcommand{\Sup}{\mathtt{Sup}}
+\newcommand{\Inf}{\mathtt{Inf}}
+\newcommand{\LimSup}{\mathtt{LimSup}}
+\newcommand{\LimInf}{\mathtt{LimInf}}
+\newcommand{\NL}{\textrm{NL}}
+\newcommand{\PTIME}{\textrm{PTIME}}
+\newcommand{\NP}{\textrm{NP}}
+\newcommand{\UP}{\textrm{UP}}
+\newcommand{\coNP}{\textrm{coNP}}
+\newcommand{\coUP}{\textrm{coUP}}
+\newcommand{\PSPACE}{\textrm{PSPACE}}
+\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
+\newcommand{\EXP}{\textrm{EXP}}
+\newcommand{\kEXP}{\textrm{kEXP}}
 ```
-
 In this section we consider concurrent reachability games. 
 Intuitively, unlike concurrent discounted games, these games cares only about the final part of the play.
 This, while perhaps not clear directly from the definitions, makes the games somewhat harder. For instance, the value iteration algorithm requires double-exponential time.
@@ -32,9 +88,9 @@ We will argue that there might not be optimal strategies for Eve in concurrent r
 The game we will use will later be a member of a family of games that requires high patience to play well.
 
 The snowball game (or purgatory 1) is defined as follows:
-There are 3 vertices, the goal vertex $\textrm{Win}, $\bot$ (an absorbing vertex) and a vertex 1, which has a 2x2 matrix, such that $\Deltax,r,c)$ is a dirac distribution over (1)
-$\textrm{Win} for $r=c$, (2) $1$ for $r<c$ and (3) $\bot$ for $r>c$.
-When we illustrate the game, we write view the goal vertex $\textrm{Win} as being an absorbing vertex with color 1.
+There are 3 vertices, the goal vertex $\Win$, $\bot$ (an absorbing vertex) and a vertex 1, which has a 2x2 matrix, such that $\dest(x,r,c)$ is a dirac distribution over (1)
+$\Win$ for $r=c$, (2) $1$ for $r<c$ and (3) $\bot$ for $r>c$.
+When we illustrate the game, we write view the goal vertex $\Win$ as being an absorbing vertex with color 1.
 There is an illustration of the snowball game in \ref{7-fig:snowball}. 
 
 ```{figure} ./../FigAndAlgos/7-fig:snowball.png
@@ -44,7 +100,7 @@ The snowball game or purgatory 1, in which no optimal strategy exists for Eve
 ```
 
 For any $\epsilon>0$, consider the stationary strategy for Eve that plays the first action with probability $1-\epsilon$. 
-If Adam plays the left column always, play will reach $\textrm{Win} with pr. $1-\epsilon$. If Adam plays the right column always, play reaches $\textrm{Win} with pr. 1. Hence, the strategy for Eve is $\epsilon$-optimal and the value of the vertex is 1.
+If Adam plays the left column always, play will reach $\Win$ with pr. $1-\epsilon$. If Adam plays the right column always, play reaches $\Win$ with pr. 1. Hence, the strategy for Eve is $\epsilon$-optimal and the value of the vertex is 1.
 
 On the other hand, if Adam plays the right column whenever Eve plays the first action with pr. 1, and otherwise plays the first action, 
 then in the last round in the vertex there must be a positive pr. that play goes to vertex 0. Hence, Eve has no optimal strategy.
@@ -64,7 +120,7 @@ The following lemma states some classical results for concurrent reachability ga
 
 *  For any $\epsilon>0$, there are always $\epsilon$-optimal stationary strategies for Eve and optimal stationary strategies for Adam. 
 *  The value iteration algorithm converges to the optimal value and is defined exactly like for concurrent discounted games, except that $\gamma=0$ and the target vertex has value 1 in the first iteration
-*  The values $v$ are the least fix-point (i.e., every other fix-point $v'$ is such that for all $i$ $v_i\leq v'$) of the value iteration operator $\text{valOp}
+*  The values $v$ are the least fix-point (i.e., every other fix-point $v'$ is such that for all $i$ $v_i\leq v'$) of the value iteration operator $\ValueOp$
 
 
 ````
@@ -75,7 +131,7 @@ The following lemma states some classical results for concurrent reachability ga
 
 
 The decision problem for the existential first order theory over the reals is the following decision problem:
-Given a function $F:\mathbb{R}n\rightarrow \{\text{true},\text{false}\}$, is there an vector $v$ such that $F(v)$ is true?
+Given a function $F:\R^n\rightarrow \{\text{true},\text{false}\}$, is there an vector $v$ such that $F(v)$ is true?
 The function $F$ must be an well-formed (i.e. connected with logical and, or and not) quantifier-free formula over polynomial inequalities.
 E.g. $x^2y+z\geq 5\wedge \neg (xz\leq 3)$ would be such a function.
 
@@ -90,7 +146,7 @@ The decision problem for the existential theory over the reals is in PSPACE
 
 We will now, given a number $c$, encode the problem whether the value in a concurrent reachability game is  $<c$, starting from some vertex $x$.
 The idea is that we can describe a fix-point of the value iteration operator, i.e.
-we can describe that $v_i=\textrm{val}M^i(v)]_i$. Since we know that the values are the least fix-point, we can then just add the condition that $v_x<c$. 
+we can describe that $v_i=\Value[M^i(v)]_i$. Since we know that the values are the least fix-point, we can then just add the condition that $v_x<c$. 
 We can describe the value of a matrix game by guessing a strategy for each player, $\sigma$ for Eve and $\tau$ for Adam, and then checking that these strategies are optimal by showing that the outcome obtained by following Eve's strategy is equal to what is obtained by following Adam's.
 I.e. we check that for Eve's strategy, the least outcome obtained when Adam plays any given column is $v_i$ and similar for Adam.
 We describe that as $v_i=\min_{a\in [m]} (\sigma M^i_{*,a}(v))$ and $v_i=\max_{a\in [m]} (\tau M^i_{a,*}(v))$, where $M^i_{*,j}(v)$ is the $j$-th column of $M^i(v)$ and $M^i_{j,*}(v)$ is the $j$-th row for all $j$. 
@@ -128,12 +184,12 @@ F^{\sigma,\tau}(x,S):=\sum_{r\in A_1}\sum_{c\in A_2}\sum_{x'\in S}\sigma(x)(r)\t
 
  i.e. the probability when the players follows $\sigma,\tau$ to go from $x$ directly to a vertex in $S$.
 
-For a set $S$, containing $\textrm{Win} and a non-empty subset $S'\subseteq(S\setminus \{\textrm{Win}})$ and a vertex $x\in S'$, let the {\em subset property} be the following:
+For a set $S$, containing $\Win$ and a non-empty subset $S'\subseteq(S\setminus \{\Win\})$ and a vertex $x\in S'$, let the {\em subset property} be the following:
 For each $\epsilon>0$, there is a strategy $\sigma$ for Eve, such that for any strategy $\tau$ for Adam, $F^{\sigma,\tau}(x,S\setminus S')\cdot \epsilon >F^{\sigma,\tau}(x,V\setminus S)$.
 
-For a set $S$, containing $\textrm{Win}, let the {\em value-1-property} be that the subset property is satisfied for each $S'\subseteq(S\setminus \{\textrm{Win}})$ (with some $x\in S'$).
+For a set $S$, containing $\Win$, let the {\em value-1-property} be that the subset property is satisfied for each $S'\subseteq(S\setminus \{\Win\})$ (with some $x\in S'$).
 For a set $S$ satisfying the value-1-property, we will define some subsets.
-Let $S^0$ be the set consisting of $\textrm{Win}.
+Let $S^0$ be the set consisting of $\Win$.
 Let $S^i$, for each $i\geq 1$ be the set of vertices such that for each $x\in S^i$,
 the vertex $x$ satisfies the subset property for $S'$ and $S=\bigcup_{j=0}^{i-1}S^j$.
 Let $\ell$ be the largest number such that $S^\ell$ is non-empty (note that $S^i$, for $i>\ell$ must then be empty).
@@ -153,10 +209,10 @@ The set of vertices $S_1$ of value 1 satisfies the value-1-property
 ````{admonition} Proof
 :class: dropdown tip
 
-The proof is by contradiction. Thus, there is an $S$ (not containing $\textrm{Win}) such that $S_1$ and $S$ does not satisfy the subset property for any $x\in S$. I.e. for some constant $\epsilon>0$,
+The proof is by contradiction. Thus, there is an $S$ (not containing $\Win$) such that $S_1$ and $S$ does not satisfy the subset property for any $x\in S$. I.e. for some constant $\epsilon>0$,
 $F^{\sigma,\tau}(x,S_1\setminus S)\epsilon \leq F^{\sigma,\tau}(x,V\setminus S_1)$ for any strategy $\sigma$ for Eve and some strategy $\tau_{\sigma}$ for Adam and for every $x\in S$.
 But then, all vertices in $S$ have value $\leq (1-\epsilon)+\epsilon V_{\max}$ where $v_{\max}<1$ is the largest value of a vertex in $V\setminus S_1$.
-This is because to get to $\textrm{Win} from $S$, it must leave $S$ and in that step, the probability to go to a vertex in  $V\setminus S_1$ (from which one cannot obtain more than $v_{\max}$) is at least the constant $\epsilon$.  
+This is because to get to $\Win$ from $S$, it must leave $S$ and in that step, the probability to go to a vertex in  $V\setminus S_1$ (from which one cannot obtain more than $v_{\max}$) is at least the constant $\epsilon$.  
 
 ````
 
@@ -189,7 +245,7 @@ The inductive construction then follows by applying union bound over the $1/(1-p
 
 Note that the lemmas together shows that $S_1$ is the largest set satisfying value-1-property.
 
-Our algorithm, \text{crgLim1} for finding $S_1$ is then as follows:
+Our algorithm, \crgLim, for finding $S_1$ is then as follows:
 Assign to each vertex $x$ a rank $\rk_x$, a value in $0,1,\dots,n,\bot$, starting with $\rk_x=0$.
 Let $\overline{S}^i$ be the set of vertices of rank $i$.
 Let $\overline{S}_1=V\setminus S^{\bot}$.
@@ -199,10 +255,10 @@ Whenever a stable configuration is reached, output $\overline{S}_1$.
 
 
 ````{prf:lemma} NEEDS TITLE AND LABEL 
-The output of the \text{crgLim1} algorithm is correct
+The output of the \crgLim\ algorithm is correct
  
 
-The output of the \text{crgLim1} algorithm is correct
+The output of the \crgLim\ algorithm is correct
 
 ````
 
@@ -228,10 +284,10 @@ There are $n+1$ ranks, so in total for $x$, we use at most $(n+1)(2|S_x|+1)$ che
 Hence, in total over all $x$, we do $O(n\sum_{x} |S_x|)$ checks.
 
 ````{prf:lemma} NEEDS TITLE AND LABEL 
-The run time of the \text{crgLim1} algorithm is $O(nk\sum_{x} |S_x|)$ times 
+The run time of the \crgLim\ algorithm is $O(nk\sum_{x} |S_x|)$ times 
  
 
-The run time of the \text{crgLim1} algorithm is $O(nk\sum_{x} |S_x|)$ times 
+The run time of the \crgLim\ algorithm is $O(nk\sum_{x} |S_x|)$ times 
 
 ````
 
@@ -257,18 +313,18 @@ There is a strategy $\sigma(\epsilon)$ for all $\epsilon>0$ iff $C_{\ell}^*$ is 
 
 We will first argue that if $C_{\ell}^{*}$ is not all columns $C$, then the strategy $\tau$ that plays uniformly over $C'=(C\setminus C_{\ell}^*)$ shows that no strategy $\sigma(\epsilon)$ exists for small enough $\epsilon>0$. This is because any row $r$ such that $F^{r,c}(x,S\setminus S')>0$ for some $c\in C'$ is also such that $F^{r,c'}(x,V\setminus S)>0$ for some column $c'\in C'$. This is because otherwise $r$ would be in $R^i$ for some $i$ and then $c$ would be in $C_{\ell}^*$. Hence, the probability $F^{r,c'}(x,V\setminus S)$ cannot be more than a constant factor smaller than $F^{r,c}(x,S\setminus S')$.
 
-Otherwise, if $C_{\ell}^*=C$, then let $\sigma(\epsilon)$ be the strategy that picks an $i$ from the distribution $\mathcal{D} and then plays an action in $R^i$ uniformly at random. The distribution $\mathcal{D} is such that for all $j\in \{1,\dots,\ell-1\}$ we have $\Pr^{\mathcal{D}[i=j]\epsilon\delta_{\min}/m=\Pr^{\mathcal{D}[i>j]$. 
+Otherwise, if $C_{\ell}^*=C$, then let $\sigma(\epsilon)$ be the strategy that picks an $i$ from the distribution $\dist$ and then plays an action in $R^i$ uniformly at random. The distribution $\dist$ is such that for all $j\in \{1,\dots,\ell-1\}$ we have $\Pr^{\dist}[i=j]\epsilon\delta_{\min}/m=\Pr^{\dist}[i>j]$. 
 
 To argue that $\sigma=\sigma(\epsilon)$ satisfies the subset property for $x,S,S'$
 consider each column $c$. We have that $c\in C^j$ for some $j$. 
 Let $p$ be the pr. with which a row in $R^j$ is played by $\sigma$ and thus, $F^{\sigma,c}(x,S\setminus S')\geq p\delta_{\min}>0$.
 Any row $r$ such that $F^{r,c}(x,V\setminus S)>0$ must be outside $R^*_j$ by construction (and if such a row exists $j<\ell$). 
-We play such rows with pr. $\leq \Pr^{\mathcal{D}[i>j]$ and thus $\Pr^{\mathcal{D}[i>j]\geq F^{\sigma,c}(x,V\setminus S)$.
-We have that $pm>\Pr^{\mathcal{D}[i=j]$ (strict because $j<\ell$) and thus, 
+We play such rows with pr. $\leq \Pr^{\dist}[i>j]$ and thus $\Pr^{\dist}[i>j]\geq F^{\sigma,c}(x,V\setminus S)$.
+We have that $pm>\Pr^{\dist}[i=j]$ (strict because $j<\ell$) and thus, 
 
 $$
-F^{\sigma,c}(x,S\setminus S')\epsilon\geq p\delta_{\min}\epsilon>\delta_{\min}\epsilon/m\Pr^{\mathcal{D}\nolimits[i=j]\geq 
-\Pr^{\mathcal{D}\nolimits[i>j]\geq F^{\sigma,c}(x,V\setminus S) \enspace .$$
+F^{\sigma,c}(x,S\setminus S')\epsilon\geq p\delta_{\min}\epsilon>\delta_{\min}\epsilon/m\Pr^{\dist}\nolimits[i=j]\geq 
+\Pr^{\dist}\nolimits[i>j]\geq F^{\sigma,c}(x,V\setminus S) \enspace .$$
 
 This completes the proof of the lemma.
 ````
@@ -290,18 +346,18 @@ For each row $r$ in $R^i$ go through $c\in L_r$ and subtract 1 from the counter 
 Increment $i$.
 Go to line 3.
 
-The total time is $O(\sum_{r,c}|\textrm{supp}\Deltax,r,c))|)$ for the algorithm.
+The total time is $O(\sum_{r,c}|\supp(\dest(x,r,c))|)$ for the algorithm.
 
 ````{prf:lemma} NEEDS TITLE AND LABEL 
 We can check whether a vertex $x$ satisfies the subset property for sets $S$ and $S'$ in time 
 
-$$O(\sum_{r,c}|\textrm{supp}\Deltax,r,c))|)$$
+$$O(\sum_{r,c}|\supp(\dest(x,r,c))|)$$
 
  
 
 We can check whether a vertex $x$ satisfies the subset property for sets $S$ and $S'$ in time 
 
-$$O(\sum_{r,c}|\textrm{supp}\Deltax,r,c))|)$$
+$$O(\sum_{r,c}|\supp(\dest(x,r,c))|)$$
 
 
 ````
@@ -310,20 +366,20 @@ We therefore get that
 ````{prf:lemma} NEEDS TITLE lem:val1
 :label: lem:val1
 \label{lemm:find_1_reach}
-We can find the set of vertices of value 1 in time $O(n\sum_{x} |S_x|\sum_{r,c}|\textrm{supp}\Deltax,r,c))|)$
+We can find the set of vertices of value 1 in time $O(n\sum_{x} |S_x|\sum_{r,c}|\supp(\dest(x,r,c))|)$
 
 ````
 
 Next, we will give a lower bound for patience, i.e. that in some games, the patience for every $\epsilon$-optimal stationary strategy must be high. 
 For a number $k$, let purgatory $k$ be the following game:
-There are $2+k$ vertices, $\textrm{Win} (which is vertex 0), one vertex $\bot$ which is absorbing and each other vertex $i\in \{1,\dots, k\}$ has a 2x2 matrix, such that $\Deltax,r,c)$ is a dirac distribution over (1)
+There are $2+k$ vertices, $\Win$ (which is vertex 0), one vertex $\bot$ which is absorbing and each other vertex $i\in \{1,\dots, k\}$ has a 2x2 matrix, such that $\dest(x,r,c)$ is a dirac distribution over (1)
 $i-1$ for $r=c$, (2) $k$ for $r<c$ and (3) $\bot$ for $r>c$.
 There is an illustration of Purgatory $4$ in Figure \ref{7-fig:purgatory}. 
 
 ```{figure} ./../FigAndAlgos/7-fig:purgatory.png
 :name: 7-fig:purgatory
 :align: center
-Purgatory $4$. For clarity, the colors are omitted, except that $0^*$ corresponds to an edge to an absorbing vertex different from $\textrm{Win} and $1^*$ corresponds to an edge to $\textrm{Win}
+Purgatory $4$. For clarity, the colors are omitted, except that $0^*$ corresponds to an edge to an absorbing vertex different from $\Win$ and $1^*$ corresponds to an edge to $\Win$
 ```
 
 It is easy to see that all vertices but $\bot$ is in $S_1$, using the value 1 property.
@@ -345,7 +401,7 @@ Let $x_k=1-p$ and let $x_i=1-\sqrt{1-x_{i+1}}$. We will argue that $x_i$ is the 
 The unique best strategy in vertex $k$ is to play the top action with pr. $1-p$ and the bottom action with pr. $p$. This ensures that the pr. $x_k$ of reaching $k-1$ from $k$ is $1-p$ if Adam plays the left column.
 
 Consider now vertex $i\in \{1,\dots,k-1\}$.
-For the purpose of finding good strategies in $i$, we can view vertex $i$, when Eve plays her best strategy in $j>i$ and Adam plays a best response, as a smaller reachability game with 3 vertices, i.e. $i-1$ (as $\textrm{Win}), $\bot$ and $i$, where $\Deltai,r,c)$ is (1) a dirac distribution over $i-1$ for $r=c$, (2) a dirac distribution over $\bot$ for $r>c$ and (3) a distribution that goes to $\bot$ with pr. $1-x_{i-1}$ and to $i$ with the remaining pr. for $r<c$. See Figure \ref{7-fig:1purgatory}
+For the purpose of finding good strategies in $i$, we can view vertex $i$, when Eve plays her best strategy in $j>i$ and Adam plays a best response, as a smaller reachability game with 3 vertices, i.e. $i-1$ (as $\Win$), $\bot$ and $i$, where $\dest(i,r,c)$ is (1) a dirac distribution over $i-1$ for $r=c$, (2) a dirac distribution over $\bot$ for $r>c$ and (3) a distribution that goes to $\bot$ with pr. $1-x_{i-1}$ and to $i$ with the remaining pr. for $r<c$. See Figure \ref{7-fig:1purgatory}
 
 Let $p_i$ be the probability with which a strategy $\sigma$ plays the top row in vertex $i$.
 We can then consider the game as a MDP, since we have fixed a stationary strategy for one of the players.
@@ -377,15 +433,15 @@ This completes the proof of the lemma.
 Concurrent reachability games are not symmetric in the players. E.g. Adam always have an optimal strategy but Eve might not. We will next argue that Adam still requires double exponential patience to play well.
 
 Consider the following game called purgatory duel $k$ which can be viewed as a symmetric version of purgatory $k$.
-There are $3+2k$ vertices, $\textrm{Win} (which is vertex 0), one vertex $\bot$ which is absorbing (and is also vertex $0'$), and the start vertex $s$ and each other vertex $\{1,\dots, k,1',\dots,k'\}$ has a 2x2 matrix. Each vertex $x\in \{1,\dots, k\}$ is such that $\Deltax,r,c)$ is a dirac distribution over (1) $x-1$ for $r=c$, (2) $s$ for $r<c$ and (3) $\bot$ for $r>c$.
- Each vertex $x'\in \{1',\dots, k'\}$ is such that $\Deltax',r,c)$ is a dirac distribution over (1) $x-1'$ for $r=c$, (2) $s$ for $r<c$ and (3) $\textrm{Win} for $r>c$. The start vertex is 1x1 matrix and is such that $\Deltas,r,c)$ is a uniform distribution over $k$ and $k'$.
+There are $3+2k$ vertices, $\Win$ (which is vertex 0), one vertex $\bot$ which is absorbing (and is also vertex $0'$), and the start vertex $s$ and each other vertex $\{1,\dots, k,1',\dots,k'\}$ has a 2x2 matrix. Each vertex $x\in \{1,\dots, k\}$ is such that $\dest(x,r,c)$ is a dirac distribution over (1) $x-1$ for $r=c$, (2) $s$ for $r<c$ and (3) $\bot$ for $r>c$.
+ Each vertex $x'\in \{1',\dots, k'\}$ is such that $\dest(x',r,c)$ is a dirac distribution over (1) $x-1'$ for $r=c$, (2) $s$ for $r<c$ and (3) $\Win$ for $r>c$. The start vertex is 1x1 matrix and is such that $\dest(s,r,c)$ is a uniform distribution over $k$ and $k'$.
 There is a illustration of Purgatory Duel $2$ in Figure \ref{7-fig:purgatoryduel}.
 
 
 ```{figure} ./../FigAndAlgos/7-fig:purgatoryduel.png
 :name: 7-fig:purgatoryduel
 :align: center
-Purgatory duel $2$. For clarity, the colors are omitted, except that $0^*$ corresponds to an edge to an absorbing vertex different from $\textrm{Win} and $1^*$ corresponds to an edge to $\textrm{Win}
+Purgatory duel $2$. For clarity, the colors are omitted, except that $0^*$ corresponds to an edge to an absorbing vertex different from $\Win$ and $1^*$ corresponds to an edge to $\Win$
 ```
 
 We will say that a strategy $\sigma$ for Eve mirrors a strategy $\tau$ for Adam, if $\sigma(i)=\tau(i')$ and $\sigma(i')=\tau(i)$ for all $i$.
@@ -402,14 +458,14 @@ The value of vertex $s$ is $1/2$. Also, for any $\epsilon>0$, any $(1/2-\epsilon
 ````{admonition} Proof
 :class: dropdown tip
 
-First, the value of vertex $s$ is at most $1/2$. This is because Adam can mirror any strategy $\sigma$ for Eve. This ensures that any play reaching $\textrm{Win} is mirrored by an equally likely play reaching $\bot$. Thus, then the players follows these strategies, the pr. to reach $\textrm{Win} is equal to the pr. to reach $\bot$ (there might also be some positive pr. to not reach neither, but Adam also wins those plays). 
+First, the value of vertex $s$ is at most $1/2$. This is because Adam can mirror any strategy $\sigma$ for Eve. This ensures that any play reaching $\Win$ is mirrored by an equally likely play reaching $\bot$. Thus, then the players follows these strategies, the pr. to reach $\Win$ is equal to the pr. to reach $\bot$ (there might also be some positive pr. to not reach neither, but Adam also wins those plays). 
 
-Fix $\epsilon>0$ and consider a strategy $\tau$ for Eve that plays a dirac distribution in $i'\in\{1',\dots,k'\}$. Then $\tau$ is not $(1/2-\epsilon)$-optimal. We can see that as follows: Let $\sigma$ be the strategy for Eve that plays $r=1$ when in $j'\in \{(i+1)',\dots,k'\}$ and the action which is not equal to $\tau(i')$ when in $i'$. This ensures that the play will always reach either $\textrm{Win} or $s$ from $k'$. But then  Eve can play an $(\epsilon/2)$-optimal strategy for purgatory $k$ in $\{1,\dots,k\}$, ensuring that $\textrm{Win} is reached with pr. at least $1-\epsilon/2$. But then $\tau$ is not $(1/2-\epsilon)$-optimal.
+Fix $\epsilon>0$ and consider a strategy $\tau$ for Eve that plays a dirac distribution in $i'\in\{1',\dots,k'\}$. Then $\tau$ is not $(1/2-\epsilon)$-optimal. We can see that as follows: Let $\sigma$ be the strategy for Eve that plays $r=1$ when in $j'\in \{(i+1)',\dots,k'\}$ and the action which is not equal to $\tau(i')$ when in $i'$. This ensures that the play will always reach either $\Win$ or $s$ from $k'$. But then  Eve can play an $(\epsilon/2)$-optimal strategy for purgatory $k$ in $\{1,\dots,k\}$, ensuring that $\Win$ is reached with pr. at least $1-\epsilon/2$. But then $\tau$ is not $(1/2-\epsilon)$-optimal.
 
-Consider that Adam is following a strategy $\tau$ that is not playing a dirac distribution in $i'\in\{1',\dots,k'\}$ and Eve is playing an arbitrary strategy $\sigma$. Then, eventually play reaches $\textrm{Win} or $\bot$ with pr. 1,  because in every $k+1$ steps, either $s$ is visited or either $\textrm{Win} or $\bot$ is reached, and after $s$ has been visited, $k'$ is next half the time and from $k'$ $\bot$ is reached with positive pr.
+Consider that Adam is following a strategy $\tau$ that is not playing a dirac distribution in $i'\in\{1',\dots,k'\}$ and Eve is playing an arbitrary strategy $\sigma$. Then, eventually play reaches $\Win$ or $\bot$ with pr. 1,  because in every $k+1$ steps, either $s$ is visited or either $\Win$ or $\bot$ is reached, and after $s$ has been visited, $k'$ is next half the time and from $k'$ $\bot$ is reached with positive pr.
 
 Consider an $\epsilon$-optimal strategy $\tau$ for Adam, for $\epsilon<1/2$. 
-Then, let Eve's mirror strategy to $\tau$ be $\sigma_{\tau}$. Now, either $\textrm{Win} or $\bot$ is reached and because the strategies mirrors each other, the pr. to reach $\textrm{Win} is equal to that of reaching $\bot$. Thus, we see that the value is at most $1/2$, implying that it is exactly $1/2$.
+Then, let Eve's mirror strategy to $\tau$ be $\sigma_{\tau}$. Now, either $\Win$ or $\bot$ is reached and because the strategies mirrors each other, the pr. to reach $\Win$ is equal to that of reaching $\bot$. Thus, we see that the value is at most $1/2$, implying that it is exactly $1/2$.
 
 It also follows that the strategies that are $\epsilon$-optimal mirrors each other.
 
@@ -425,7 +481,7 @@ In a game $G$, for a vertex $v$ and a duration $T$, let $v^T_G$ be the value of 
 ````{prf:lemma} NEEDS TITLE lem:change_succ
 :label: lem:change_succ
 
-Consider a concurrent reachability game $G$ and a pair of vertices $u,v$, such that for all $T$, we have that $u^T_G\geq v^T_G$. Consider a vertex $w$ such that for a pair of actions, $(r,c)$ we have that $v\in \textrm{supp}\Deltaw,r,c))$. Consider an alternate game $G'$ equal to $G$, except that some of the probability mass is moved from $v$ to $u$ when playing $(r,c)$ in $w$, i.e. $0<\DeltaG,w,r,c)(v)-\DeltaG',w,r,c)(v)=\DeltaG',w,r,c)(u)-\DeltaG,w,r,c)(u)$.
+Consider a concurrent reachability game $G$ and a pair of vertices $u,v$, such that for all $T$, we have that $u^T_G\geq v^T_G$. Consider a vertex $w$ such that for a pair of actions, $(r,c)$ we have that $v\in \supp(\dest(w,r,c))$. Consider an alternate game $G'$ equal to $G$, except that some of the probability mass is moved from $v$ to $u$ when playing $(r,c)$ in $w$, i.e. $0<\dest(G,w,r,c)(v)-\dest(G',w,r,c)(v)=\dest(G',w,r,c)(u)-\dest(G,w,r,c)(u)$.
 Then for all vertices $z$ we have that $z^T_G\leq z^T_{G'}$
 
 ````
@@ -434,7 +490,7 @@ Then for all vertices $z$ we have that $z^T_G\leq z^T_{G'}$
 :class: dropdown tip
 
 The proof is by induction in $T$.
-The proof is trivial for $T=0$, because $z^T_G=0= z^T_{G'}$ for all non-goal vertices (and the goal vertex $\textrm{Win} has value 1).
+The proof is trivial for $T=0$, because $z^T_G=0= z^T_{G'}$ for all non-goal vertices (and the goal vertex $\Win$ has value 1).
 For $T\geq 1$, we have that $z^{T-1}_G\leq z^{T-1}_{G'}$.
 But, matrix games are monotone in their entries, so it follows directly that for $z\neq w$ we have that $z^{T}_G\leq z^{T}_{G'}$.
 Consider the matrix for $w^T_G$ compared to $w^T_{G'}$. All entries but the one for $(r,c)$ are smaller directly by induction. We also have that $v^T_{G}\leq u^T_{G}\leq u^T_{G'}$, the first inequality by definition and the second by induction. We thus see that all entries in $w^T_{G}$ are smaller than in $w^T_{G'}$.
@@ -456,8 +512,8 @@ Any $(1/4)$-optimal strategy, for either player, in purgatory duel $k$ has patie
 :class: dropdown tip
 
 We will show that the lemma is true for Eve's strategies and that it is true for Adam's follows from Lemma \ref{lem:change_succ}.
-Consider an $(1/4)$-optimal strategy $\sigma$ for Eve. Fixing this strategy for Eve, we get a MDP for Adam. Clearly, in this MDP $G'$, we have that $0=\bot^T_{G'}\leq s^T_{G'}$ for all $T$. We can thus apply Lemma \ref{lem:change_succ} to changing $\Delta1',1,1)$ from $\bot$ to $s$. In the resulting game $G''$, 
-we still have that $0=\bot^T_{G''}\leq s^T_{G''}$ and thus, we can change $\Delta1',2,2)$ from $\bot$ to $s$.
+Consider an $(1/4)$-optimal strategy $\sigma$ for Eve. Fixing this strategy for Eve, we get a MDP for Adam. Clearly, in this MDP $G'$, we have that $0=\bot^T_{G'}\leq s^T_{G'}$ for all $T$. We can thus apply Lemma \ref{lem:change_succ} to changing $\dest(1',1,1)$ from $\bot$ to $s$. In the resulting game $G''$, 
+we still have that $0=\bot^T_{G''}\leq s^T_{G''}$ and thus, we can change $\dest(1',2,2)$ from $\bot$ to $s$.
 Let the next game be $G^*$.
 Thus, for any $i'\in \{1',\dots,k'\}$, the plays from $i'$ to $\bot$ in $G^*$ all goes through $s$. Note that Adam can ensure that the play reaches $s$ from $i'$ and thus, when he plays optimally, do so.
 Thus, whenever $s$ is entered and Adam plays optimally, $k$ is enter eventually with pr. 1.
