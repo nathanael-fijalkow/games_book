@@ -16,7 +16,7 @@ We will first prove that they are prefix independent, then that they are positio
 and then construct algorithms for solving them and compute the value function.
 The best known time complexity for both problems is pseudopolynomial, meaning polynomial when the numerical inputs are given in unary.
 
-\begin{lemma}
+\begin{lemma}[Prefix independence] 
 \label{4-lem:prefix_independence_mean_payoff}
 $\MeanPayoff^+$ is prefix independent.
 \end{lemma}
@@ -37,7 +37,8 @@ Note that by duality this implies that $\MeanPayoff^-$ is also prefix independen
 
 In the setting we consider in this chapter, meaning two player zero sum games of perfect information, 
 the two objectives are equivalent, which will be a corollary of~\cref{4-thm:mean_payoff_positional}.
-We refer to~\cref{13-thm:MMP-Eve} for a setting where limit superior and limit inferior are not equivalent.
+We refer to~\cref{12-thm:MMP-Eve}\todo{I do not know where this
+theorem has disappeared...} for a setting where limit superior and limit inferior are not equivalent.
 
 As an example, consider the mean payoff game represented in~\cref{4-fig:MP}. 
 As we will show later, the positional strategies defined below are optimal strategies for Eve and Adam:
@@ -119,7 +120,7 @@ Let us now prove that positional strategies are indeed sufficient for mean payof
 %\end{figure}
 
 \subsection*{Positional determinacy via first cycle games}
-\begin{theorem}
+\begin{theorem}[Positional determinacy of Mean-Payoff]
 \label{4-thm:mean_payoff_positional}
 Limit superior mean payoff objectives are uniformly positionally determined for both players.
 \end{theorem}
@@ -436,7 +437,7 @@ which is also optimal in $\game_{\text{FC}}$ thanks to the equality $\val^{\game
 %Before drawing corollaries from this result, 
 Let us extract from the proof of~\cref{4-thm:mean_payoff_positional} a more general positionality result via first cycle games.
 
-\begin{theorem}
+\begin{theorem}[Generalised positional determinacy]
 \label{4-thm:first_cycle_games}
 Let $\Phi$ a quantitative objective over the set of colours $C$.
 Let $f : C^* \to \R$ satisfying the following properties,
@@ -462,7 +463,7 @@ and the third item to prove the equivalence with first cycle games with reset;
 the equivalence between the two types of first cycle games yield the positionality of these games,
 implying the positionality of games with objective $\Phi$.
 
-\begin{corollary}\hfill
+\begin{corollary}[Limit superior and limit inferior mean payoff games]\hfill
 \label{4-cor:rational-MP}
 \begin{itemize}
 	\item Limit superior and limit inferior mean payoff games are equivalent:
@@ -507,10 +508,10 @@ then by prefix independence $\MeanPayoff(\pi^v_{\sigma,\tau}) = \Mean(c)$,
 thus $\val^\game(v)$ is the mean of at most $n$ weights from $\game$.
 \end{proof}
 
-\subsection*{Solving mean payoff games in $\NP\cap\coNP$}
+\subsection*{\texorpdfstring{Solving mean payoff games in $\NP\cap\coNP$}{Solving mean payoff games in NP and coNP}}
 The positional determinacy of mean payoff games easily gives an upper bound on the complexity of \emph{solving} these games.
 
-\begin{theorem}
+\begin{theorem}[Complexity of mean payoff]
 \label{4-thm:MP-NPcoNP}
 Solving mean payoff games is in $\NP\cap\coNP$.
 \end{theorem}
@@ -537,7 +538,7 @@ with exponential complexity since there are exponential many positional strategi
 
 We now show that solving mean payoff games is at least as hard as solving parity games.
 
-\begin{theorem}
+\begin{theorem}[Link with parity games]
 \label{4-thm:parity2MP}
   Solving parity games reduce in polynomial time to solving mean payoff games with threshold $0$.
 \end{theorem}
@@ -614,7 +615,7 @@ As a corollary of~\cref{4-thm:MP-NPcoNP}, this polynomial reduction gives an alt
 that solving parity games is in $\NP \cap \coNP$.
 
 \subsection*{A strategy improvement algorithm}
-\begin{theorem}
+\begin{theorem}[Strategy improvement algorithm]
 \label{4-thm:strategy_improvement}
 There exists a strategy improvement algorithm for solving mean payoff games in \mynote{FILL IN}.
 \end{theorem}
@@ -642,7 +643,7 @@ equivalently all infinite paths in $\Game[\sigma]$ satisfy mean payoff, not requ
 
 We say that a cycle is non-negative if the sum of the weights in the cycle is non-negative, and it is negative otherwise. 
 Respecting mean payoff is characterised using cycles:
-\begin{fact}
+\begin{fact}[Characterisation using cycles]\label{4-fact:characterisation}
 A strategy $\sigma$ ""respects"" mean payoff if and only if all cycles in $\Game[\sigma]$ are non-negative.
 \end{fact}
 The algorithm will only manipulate strategies respecting mean payoff.
@@ -684,7 +685,7 @@ We then define an operator $\Op : F^\sigma_V \to F^\sigma_V$ by
 \]
 Since $\delta$ is monotonic so is $\Op$.
 
-\begin{fact}
+\begin{fact}[Fixed point]\label{4-fact:fixed-point]
 The function $\val^\sigma$ is a fixed point of $\Op$ in $F^\sigma_V$.
 \end{fact}
 Unfortunately, $\val^{\sigma}$ is not in general the greatest fixed point of $\Op$ in $F^\sigma_V$;
@@ -696,7 +697,7 @@ The problem is for a vertex $v$ such that no plays starting from $v$ are stopped
 we can have either $\mu(v) = \top$ or $\mu(v) = \bot$, irrespective of whether the play satisfies mean payoff or not.
 From this discussion we obtain the following result.
 
-\begin{lemma}
+\begin{lemma}[Greatest fixed point]
 \label{4-lem:greatest_fixed_point}
 If $\sigma$ "respects" mean payoff, then $\val^{\sigma}$ is the greatest fixed point of $\Op$ in $F^\sigma_V$.
 \end{lemma}
@@ -765,14 +766,14 @@ The pseudocode of the algorithm is given in \cref{4-algo:strategy_improvement}.
 \paragraph{\bf Proof of correctness.}
 We start by stating a very simple property of $\delta$, which is key in the arguments below.
 
-\begin{fact}
+\begin{fact}[Non-negative sum of weights]\label{4-fact:non-negative-sum}
 Let $t \in Y$ and $w_1,\dots,w_k \in [-W,W]$ such that $t$ and $\delta(t,w_1 \dots w_k)$ are neither $\top$ nor $\bot$.
 Then $t \le \delta(t,w_1 \dots w_k)$ if and only if $\sum_{i \in [1,k]} w_i \ge 0$.
 \end{fact}
 
 The following lemma states the two important properties of $(Y,\le)$ and $\delta$.
 
-\begin{lemma}
+\begin{lemma}[Value functions vs satisfaction of mean payoff]
 \label{4-lem:key_property}
 Let $G$ a mean payoff graph (with no stopping option).
 \begin{itemize}
@@ -793,7 +794,7 @@ Let us consider a cycle in $G$:
 \]
 For all $i \in [0,k-1]$ we have $\mu(v_i) \le \delta(\mu(v_{i+1 \mod k}),\col(v_i))$.
 By monotonicity of $\delta$ this implies $\mu(v_1) \le \delta(\mu(v_1),\col(v_{k-1}) \cdots \col(v_0))$.
-Thanks to \cref{4-lem:key_property} this implies that $\sum_{i \in [0,k-1]} \col(v_i) \ge 0$.
+Thanks to \cref{4-fact:non-negative-sum}, this implies that $\sum_{i \in [0,k-1]} \col(v_i) \ge 0$.
 \end{proof}
 
 Let $\sigma$ a strategy respecting mean payoff. 
@@ -803,8 +804,8 @@ which means that $\mu(v) \le \min \set{ \delta(\mu(v'),\col(v)) : (v,v') \in E}$
 
 We now rely on \cref{4-lem:greatest_fixed_point} and \cref{4-lem:key_property} to prove the two principles: progress and optimality.
 
-\begin{lemma}[Progress]
-Let $\sigma$ a strategy respecting mean payoff and $e = (v,v')$ a switchable edge.
+\begin{lemma}[Progress]\label{4-lem:progress}
+Let $\sigma$ be a strategy respecting mean payoff and $e = (v,v')$ be a switchable edge.
 We let $\sigma'$ denote $\sigma[v \to e]$.
 Then $\sigma'$ respects mean payoff and $\sigma < \sigma'$.
 \end{lemma}
@@ -848,8 +849,8 @@ and together with $\val^\sigma(v) < \delta(\val^\sigma(v'),\col(v))$ this implie
 $\val^\sigma(v) < \val^{\sigma'}(v)$.
 \end{proof}
 
-\begin{lemma}[Optimality]
-Let $\sigma$ a strategy respecting mean payoff that has no switchable edges, then 
+\begin{lemma}[Optimality]\label{4-lem:optimality}
+Let $\sigma$ be a strategy respecting mean payoff that has no switchable edges, then 
 $\sigma$ is winning from all vertices of $\WE(\Game)$.
 \end{lemma}
 
@@ -897,7 +898,7 @@ Hence the overall complexity is exponential; we do not elaborate further here.
 We refer to \cref{4-sec:references} for bibliographic references and a discussion on the family of strategy improvement algorithms.
 
 Notice that we can easily compute the largest progress measure
-(i.e.~the value) of~$G$ by an adaptation of Bellman-Ford algorithm
+(i.e. the value) of~$G$ by an adaptation of Bellman-Ford algorithm
 computing shortest paths from all sources to the sink vertex
 $\octagon$. For a positional strategy $\sigma$ of Eve, we let
 $\game[\sigma]$ the graph obtained by removing all edges
@@ -927,9 +928,9 @@ Bellman-Ford algorithm by a more clever computation.
 \paragraph{A binary search to compute the values.}
 Now that we know how to decide if Eve has a strategy to ensure a
 positive value, we can even use this procedure to compute the values
-of the game in case of an arena with only integral costs. By
-Corollary~\ref{4-cor:rational-MP}, we know that the value $\val(v)$ of
-all vertices $v$ is a rational number with denominator in
+of the game in case of an arena with only integral
+costs. By~\cref{4-cor:rational-MP}, we know that the value $\val(v)$
+of all vertices $v$ is a rational number with denominator in
 $\{1,\ldots,n\}$. Moreover, since it is the average value of the
 weight of a cycle, it lies in the interval $[-W,W]$. A binary search
 of the value will thus require $\log_2(n^2W)$ steps. We can use the
@@ -943,9 +944,9 @@ of edges are rational, instead of integers, since the number of
 switches can now be bigger. Indeed, the largest progress measure is
 now the weight of a path of length $k\leq n$ which is thus of the form
 $(\sum_{i=1}^k c_i)-k\alpha$, with $c_i$ the original weights of
-edges. There are still $\bigO(n^2W)$ possible weights of this
-form, which implies that
-\begin{theorem}\label{4-thm:MP-strategy-improvement-binary-search}
+edges. There are still $\bigO(n^2W)$ possible weights of this form,
+which implies that
+\begin{theorem}[Binary search computation]\label{4-thm:MP-strategy-improvement-binary-search}
   Strategy improvement algorithm with a binary search computes the
   values of a mean payoff game in time
   $\bigO(n^3 mW(\log n+\log W))$.
@@ -987,7 +988,7 @@ all progress measures a complete lattice. It is not empty, since the
 function mapping each vertex to $-\infty$ is a progress
 measure. Therefore, there exists a greatest progress measure.
 
-\begin{theorem}\label{4-thm:greatest-progress-measure}
+\begin{theorem}[Greatest progress measure]\label{4-thm:greatest-progress-measure}
   Let $\game$ be a mean payoff game. The greatest progress measure $\mu$
   of $\game$ is such that Eve can guarantee a non-negative mean payoff
   from $v$ if and only if $\mu(v)\neq -\infty$.
@@ -996,33 +997,32 @@ measure. Therefore, there exists a greatest progress measure.
   We consider the qualitative game with non-negative mean payoff as an
   objective.
 
-  We first prove that for all progress measures $\mu$, if
-  $\mu(v)\neq -\infty$, then Eve wins mean payoff from $v$. Indeed,
-  the progress measure $\mu$ induces a positional strategy for Eve
-  defined by $\sigma(v)=(v,c,v')$ for an edge $(v,c,v')$ (that is
-  certain to exist, by definition) such that $\mu(v)\leq
-  \mu(v')+c$. We argue that $\sigma$ is a winning strategy from
-  $U=\{v\mid \mu(v)\neq -\infty\}$. Let us consider the graph $G$
-  obtained by restricting $\game$ to vertices in $U$ and to edges
-  prescribed by $\sigma$. The progress measure $\mu$ induces a
-  progress measure for the graph $G$, so thanks to
-  Theorem~\ref{4-thm:MP-progress-measure}, the graph $G$ satisfies
-  mean payoff, which means that $\sigma$ is indeed winning from $U$.
+  We first prove that for all progress measures $\mu$, if $\mu(v)\neq
+  -\infty$, then Eve wins mean payoff from $v$. Indeed, the progress
+  measure $\mu$ induces a positional strategy for Eve defined by
+  $\sigma(v)=(v,c,v')$ for an edge $(v,c,v')$ (that is certain to
+  exist, by definition) such that $\mu(v)\leq \mu(v')+c$. We argue
+  that $\sigma$ is a winning strategy from $U=\{v\mid \mu(v)\neq
+  -\infty\}$. Let us consider the graph $G$ obtained by restricting
+  $\game$ to vertices in $U$ and to edges prescribed by $\sigma$. The
+  progress measure $\mu$ induces a progress measure for the graph $G$,
+  so thanks to~\cref{4-thm:MP-progress-measure}, the graph $G$
+  satisfies mean payoff, which means that $\sigma$ is indeed winning
+  from $U$.
 
   Reciprocally, let $\sigma$ be a positional strategy winning from the
   winning set $\WE$ of Eve for mean payoff. We build a progress
   measure $\mu$ as follows. As above, we consider the graph $G$
   obtained by restricting $\game$ to vertices in $\WE$ and to the
   edges prescribed by $\sigma$. Since $\sigma$ is a winning strategy,
-  the graph $G$ satisfies mean payoff, so thanks to
-  Theorem~\ref{4-thm:MP-progress-measure}, there exists a largest
-  progress measure $\mu\colon \WE\to \R\cup\{+\infty\}$. It extends
-  into a mapping $\mu'\colon V\to \R\cup\{+\infty,-\infty\}$ by
-  letting $\mu'(v)=-\infty$ if $v\in\WA$, and $\mu'(v)=\min(0,\mu(v))$
-  if $v\in \WE$. This is a progress measure since, if
-  $v\in \VA\cap\WE$,
+  the graph $G$ satisfies mean payoff, so thanks
+  to~\cref{4-thm:MP-progress-measure}, there exists a largest progress
+  measure $\mu\colon \WE\to \R\cup\{+\infty\}$. It extends into a
+  mapping $\mu'\colon V\to \R\cup\{+\infty,-\infty\}$ by letting
+  $\mu'(v)=-\infty$ if $v\in\WA$, and $\mu'(v)=\min(0,\mu(v))$ if
+  $v\in \WE$. This is a progress measure since, if $v\in \VA\cap\WE$,
   $\mu'(v)=\min(0,\mu(v))\leq \min(0,\min_{(v,c,w)\in
-    E}(\mu(w)+c)$\todo{Euh, non, ça va pas du tout !}  This progress
+  E}(\mu(w)+c)$\todo{Euh, non, ça va pas du tout !}  This progress
   measure satisfies the property that if $\mu'(v)\neq -\infty$ then
   $v\in \WE$. It follows that the greatest progress measure of $\game$
   satisfies the same property.
@@ -1051,7 +1051,7 @@ $\downward k(x) = -\infty$ otherwise. The overall method, very
 simple, is given in~\cref{4-algo:value_iteration_MP}. 
 
 
-\begin{algorithm}[ht]
+\begin{algorithm}
  \KwData{A mean payoff game}
 
 \For{$v \in V$}{
@@ -1098,7 +1098,7 @@ explanation), so that the overall complexity of the value iteration
 algorithm is of the form
 \[\sum_{v\in V}\bigO\big((|\mathrm{post}(v)| +
   |\mathrm{pre}(v)|)nW\big) = \bigO(mn W)\]
-\begin{theorem}\label{4-thm:MP-value-iteration-Brim}
+\begin{theorem}[Value iteration algorithm]\label{4-thm:MP-value-iteration-Brim}
   Value iteration algorithm finds the set $\WE$ of vertices from which
   Eve can guarantee a non-negative mean payoff in a game $\game$ with a
   complexity $\bigO(mnW)$.
@@ -1106,7 +1106,7 @@ algorithm is of the form
 As a corollary, we can compute the values of all vertices in a
 mean payoff game, using a similar binary search as explained before for
 strategy improvement:
-\begin{theorem}\label{4-thm:MP-value-iteration-Brim-binary-search}
+\begin{theorem}[Binary search computation]\label{4-thm:MP-value-iteration-Brim-binary-search}
   Value iteration algorithm with a binary search allows one to compute
   the values of a mean payoff game in time
   $\bigO(n^2 mW(\log n+\log W))$.

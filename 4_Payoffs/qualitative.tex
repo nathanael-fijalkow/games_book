@@ -41,17 +41,18 @@ Similarly the following quantitative objectives refine $\Buchi$ and $\CoBuchi$:
 
 The analyses and algorithms for solving games with $\Reach$, $\Safe$, $\Buchi$, and $\CoBuchi$ objectives extend to these four quantitative objectives.
 
-\begin{theorem}
+\begin{theorem}[Sup, Inf, LimSup, LimInf objectives]
 \label{4-thm:sup-inf-limsup-liminf}
-Games with objectives $\Sup$ and $\LimSup$ are uniformly positionally determined for both players.
-There exists an algorithm for computing the value function of both games in polynomial time and space.
+Games with objectives $\Sup$, $\Inf$, $\LimSup$, and $\LimInf$ are uniformly positionally determined for both players.
+There exists an algorithm for computing the value function of those games in polynomial time and space.
 More precisely, let $k$ be the number of different weights in the game,
-the time complexity is $O(m)$ for objective $\Sup$ and $O(knm)$ for objective $\LimSup$,
-and for both algorithms the space complexity is $O(m)$.
+the time complexity is $O(m)$ for objectives $\Sup$ and $\Inf$, and
+$O(knm)$ for objectives $\LimSup$ and $\LimInf$,
+and for all algorithms the space complexity is $O(m)$.
 \end{theorem}
 
 \begin{proof}
-We sketch the algorithm for the objective $\Sup$, the cae $\LimSup$ is similar.
+We sketch the algorithm for the objective $\Sup$, the other cases are similar.
 Let $c_1 < \dots < c_k$ be the ordered enumeration of all weights in the game.
 The set of vertices of value $c_k$ is $\AttrE(c_k)$, which can be computed in linear time.
 We then construct the subgame $\Game'$ of $\Game$ induced by $V \setminus \AttrE(c_k)$,
@@ -60,5 +61,5 @@ and continue recursively: $\Game'$ has one less weight.
 A naive complexity analysis yields a time complexity $O(km)$, but it is easily refined to $O(m)$ 
 by revisiting the attractor computation and showing that each edge in the whole game is treated at most once
 throughout the recursive attractor computations.
-This complexity analysis does not extend to $\LimSup$ objectives, where the complexity is multiplied by $k$.
+This complexity analysis does not extend to $\LimSup$ and $\LimInf$ objectives, where the complexity is multiplied by $k$.
 \end{proof}

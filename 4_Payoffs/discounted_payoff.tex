@@ -80,7 +80,7 @@ $\vec x$ afterwards: for all $v\in V$, we thus let
   \end{cases}\label{4-eq:F-contraction}
 \end{equation}
 
-\begin{theorem}\label{4-thm:discounted}
+\begin{theorem}[Positional determinacy]\label{4-thm:discounted}
   Discounted payoff games are positionally determined.
 \end{theorem}
 \begin{proof}
@@ -133,14 +133,14 @@ non-deterministic). Calling $\UP$ the class of problems that can be
 solved by an unambiguous Turing machine running in polynomial time,
 and $\coUP$ the class of problems whose complement are in $\UP$, we
 then obtain the theorem:
-\begin{theorem}\label{4-thm:disc-up}
+\begin{theorem}[Complexity]\label{4-thm:disc-up}
   Discounted payoff games with integer costs and rational discount
   factor $\lambda$ can be solved in $\UP\cap\coUP$.
 \end{theorem}
 \begin{proof}
-  Using the previous result, we know that the value of a
-  discounted payoff game is the \emph{unique} solution of the fixed
-  point equation $\vec x = F(\vec x)$, with $F$ a contraction
+  Using the previous result, we know that the value of a discounted
+  payoff game is the \emph{unique} solution of the fixed point
+  equation $\vec x = F(\vec x)$, with $F$ a contraction
   mapping. Therefore, guessing vector $\vec x$ and checking it is
   indeed a fixed point of $F$ can be performed in an unambiguous
   Turing machine. To conclude, it only remains to show that this check
@@ -165,11 +165,12 @@ then obtain the theorem:
   polynomial in the representation of the game), and are therefore
   bounded in absolute value by $2^N$. By induction on the size of the
   matrix, we can then show that the determinant of $A$ is at most
-  $4^{Nn}$. \cref{4-eq:1} then resolves, using Cramer's formula, by
-  $x_v = \det (A_v) / \det (A)$, with $A_v$ the matrix obtained from $A$
-  by replacing the $v$-th column with vector $(b-a)\vec c$. Therefore,
-  all components of $\vec x$ can be written with only a polynomial of
-  bits with respect to the size of the costs in the arena and $N$.
+  $4^{Nn}$. \cref{4-eq:1}\todo{Ne s'affiche pas dans la version html} then resolves, using Cramer's formula, by
+  $x_v = \det (A_v) / \det (A)$, with $A_v$ the matrix obtained from
+  $A$ by replacing the $v$-th column with vector $(b-a)\vec
+  c$. Therefore, all components of $\vec x$ can be written with only a
+  polynomial of bits with respect to the size of the costs in the
+  arena and $N$.
 
   The $\coUP$ membership follows, as in \cref{4-thm:MP-NPcoNP}, from a
   dual reasoning for Adam, using the above determinacy result for
@@ -254,7 +255,7 @@ one-player game is still the unique fixed point of the contraction
 mapping $F_\sigma$ defined for all $\vec x\in \R^V$ and $v\in V$ by
 \[F_\sigma(\vec x)_v = \min_{(v,v')\in E}[(1-\lambda)c(v,v')+\lambda x_{v'}].\]
 
-\begin{proposition}\label{4-lem:one-player-DP}
+\begin{proposition}[One player]\label{4-lem:one-player-DP}
   We can compute in polynomial time the optimal value of a one-player
   discounted payoff game, by finding the unique fixed point
   $\vec{x^*}$ of the previous contraction mapping $F_\sigma$.
@@ -343,7 +344,7 @@ algorithm in~\cref{4-algo:DP-strategy-improvement}, and prove its
 correctness.  For a particular strategy $\sigma$ for Eve, once
 $\Value^\sigma$ computed, we can check whether
 $F(\Value^\sigma)=\Value^\sigma$ (with $F$ the more general operator
-defined in \eqref{4-eq:F-contraction}). If it is the case, then we
+defined in \cref{4-eq:F-contraction}). If it is the case, then we
 know that the optimal value vector of the game is indeed
 $\Value^\sigma$: thus, $\sigma$ is a positional optimal strategy for
 Eve, and the best response of Adam is a positional optimal strategy
@@ -385,7 +386,7 @@ better value, to ensure the termination of the algorithm).
 \label{4-algo:DP-strategy-improvement}
 \end{algorithm}
 
-\begin{theorem}\label{4-thm:DP-strategy-improvement-correctness}
+\begin{theorem}[Strategy improvement]\label{4-thm:DP-strategy-improvement-correctness}
   Strategy improvement algorithm computes the value of the game, as
   well as a positional optimal strategy for Eve, in exponential time. 
 \end{theorem}
@@ -462,7 +463,7 @@ $\lambda$).
 \subsection*{Value iteration algorithm}
 
 Another way to make use of the contraction mapping $F$
-of~\eqref{4-eq:F-contraction} is to compute the sequence
+of~\cref{4-eq:F-contraction} is to compute the sequence
 $\big(F^n(\vec 0)\big)_{n\in \N}$ that converges towards the value
 vector. However, the sequence is not stationary in general, and thus,
 to obtain an exact value we find a index~$K$ for which $F^K(\vec 0)$
@@ -486,7 +487,8 @@ manner as for~\cref{4-cor:rational-MP} in the mean payoff setting:
   encountered through the play is of the form
   $w_0,w_1,\ldots,w_{k-1},(w_{k},\ldots,w_\ell)^\omega$, with
   $0\leq k\leq\ell< n$ and $w_i\in \Z$. We can thus compute the
-  optimal value exactly:
+  optimal value exactly:\todo{Ça ne passe pas dans la version
+  html... pourquoi ?}
   \begin{align*}
     \Value(v) &= (1-\lambda) \left[\sum_{i=0}^{k-1} \lambda^i w_i +
                \lambda^{k}\sum_{m=0}^\infty
@@ -515,7 +517,7 @@ rounding leads to the correct optimal value vector. In the following,
 we let again $W = \max_{(v,c,v')\in E} |c|$ the maximal weight on edges of the arena, in
 absolute values.
 
-\begin{lemma}\label{4-lem:number-steps-VI-discounted}
+\begin{lemma}[Number of steps of value iteration]\label{4-lem:number-steps-VI-discounted}
   Let $K\in \N$ at most
   $\frac{1}{-\log_2\lambda} \left(\frac{n(n+3)}{2}\log_2b +
     \log_2 W+2\right)$. Then,
@@ -562,7 +564,7 @@ overall, it thus has complexity $O(K m)$.
 \label{4-algo:DP-value-iteration}
 \end{algorithm}
 
-\begin{theorem}\label{4-thm:DP-value-iteration}
+\begin{theorem}[Correctness and complexity of value iteration]\label{4-thm:DP-value-iteration}
   Value iteration algorithm computes in pseudopolynomial time the
   value vector of a given discounted payoff game with only rational
   weights and a rational discount factor $\lambda\in (0,1)$. 
@@ -595,7 +597,7 @@ seen in~\cref{1-sec:memory}:
 % $\bigO(\sum_{v} \log d(v))$ calls to the above value iteration
 % algorithm. Since, $\sum_v\log d(v) \leq n \log (m/n)$, we get
 % that
-\begin{theorem}\label{4-thm:DP-strategies}
+\begin{theorem}[Optimal strategies]\label{4-thm:DP-strategies}
   In a discounted payoff game with integer costs and rational discount
   factor $\lambda = a/b$, optimal strategies for both players can be
   found in
@@ -603,8 +605,7 @@ seen in~\cref{1-sec:memory}:
   \log(m/n) m\big)$ time.
 \end{theorem}
 
-\subsection*{Polynomial reduction from mean payoff games to
-  discounted payoff games}\label{4-sec:mean_payoff-values}
+\subsection*{Polynomial reduction from mean payoff games to discounted payoff games}\label{4-sec:mean_payoff-values}
 
 Building upon the pseudopolynomial time algorithm for
 discounted payoff, we now describe a classical encoding of mean payoff
@@ -628,7 +629,7 @@ $[\beta-\frac{1}{2n(n-1)}, \beta+\frac{1}{2n(n-1)}]$. By
 interpreting the mean payoff game as a discounted payoff game with a
 nicely chosen $\lambda$, we are able to find such a good
 approximation:
-\begin{theorem}\label{4-thm:MP-Zwick-Paterson}
+\begin{theorem}[Discounted payoff approximation]\label{4-thm:MP-Zwick-Paterson}
   Let $\arena$ be an arena with integer costs. Let
   $\lambda\in(0,1)$. We let $\Value(v)$ be the value of vertex $v$ in
   the mean payoff game on $\arena$, and $\Value_\lambda(v)$ be the
@@ -656,7 +657,8 @@ approximation:
   $\DiscountedPayoff_\lambda(\play)$: therefore, by the determinacy
   result of~\cref{4-thm:discounted},
   $\Value_\lambda(v)\geq \DiscountedPayoff_\lambda(\play)$. We now
-  compute precisely $\DiscountedPayoff_\lambda(\play)$:
+  compute precisely $\DiscountedPayoff_\lambda(\play)$:\todo{Ne
+  fonctionne pas en HTML}
   \begin{align*}
     \DiscountedPayoff_\lambda(\play)
     &=
@@ -667,7 +669,7 @@ approximation:
       \lambda^{(\ell-k+1)m} \sum_{i=0}^{\ell-k}\lambda^iw_{k+i}\\
     & \geq -(1-\lambda^k)W +
       \frac{(1-\lambda) \lambda^k}{1-\lambda^{\ell-k+1}}
-      \sum_{i=0}^{\ell-k}\lambda^iw_{k+i} \tag*{\eqref{4-eq:1}}
+      \sum_{i=0}^{\ell-k}\lambda^iw_{k+i} \tag*{\label{4-eq:1}}
   \end{align*}
   By shifting all weights by $W$, we can rewrite the remaining
   sum as:
@@ -725,7 +727,7 @@ representation of $\lambda$: here, it is therefore polynomial in
 $4n^2(n-1)W$ which leads to a pseudopolynomial complexity to solve
 mean payoff games. More precisely,
 
-\begin{theorem}\label{4-thm:MP-direct-value-iteration}
+\begin{theorem}[Direct value iteration]\label{4-thm:MP-direct-value-iteration}
   The direct value iteration algorithm computes the values of a
   mean payoff game in complexity $O(mn^3W)$.
 \end{theorem}
@@ -737,7 +739,7 @@ $\bigO\big(n^4m\log(m/n)W\big)$ time.
 Notice that the previous encoding implies a better theoretical
 complexity for mean payoff and parity games, that what we obtained
 before:
-\begin{corollary}\label{4-col:UP}
+\begin{corollary}[Complexity]\label{4-col:UP}
   Deciding the winner (with respect to a threshold) for mean payoff
   games, and deciding the winner for parity games, can be done in
   $\UP\cap\coUP$.

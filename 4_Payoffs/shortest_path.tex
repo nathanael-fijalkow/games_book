@@ -51,7 +51,7 @@ Most of the difficulty lies in the third case, where
 %games. We will afterwards return to the study of the $\ShortestPath$
 %objective with negative weights in~\cref{4-sec:shortestpath}.
 
-\begin{lemma}
+\begin{lemma}[Detection of infinite value]
 \label{4-lem:detecting_minus_infinity}
 Let $\Game$ a shortest path game and $v$ a vertex.
 Then $\val(v) = -\infty$ if and only if $v \notin \AttrE(\Win)$.
@@ -79,7 +79,7 @@ However, if she never reaches $\Win$ the outcome is $-\infty$.}
 \end{figure}
 
 \subsection*{Shortest path games with non-negative weights}
-\begin{theorem}
+\begin{theorem}[Positional determinacy and value iteration algorithm]
 \label{4-thm:shortest path-positive}
 Shortest path games with non-negative weights are uniformly positionally determined for both players\footnote{This positionality result does not extend to infinite games.}.
 There exists a value iteration algorithm for computing the value function of these games in polynomial time and space.
@@ -91,7 +91,7 @@ There exists a value iteration algorithm for computing the value function of the
 
 We rely on the high-level presentation of value iteration algorithms given in \cref{1-sec:value_iteration}.
 %Our first lemma shows the existence of optimal strategies.
-\begin{lemma}
+\begin{lemma}[Optimal strategies]
 \label{4-lem:optimal_strategies_shortest_path_games}
 Let $\Game$ be a shortest path game with non-negative weights, then there exists an optimal strategy $\sigma$ for Eve.
 \end{lemma}
@@ -125,7 +125,7 @@ Note that $\delta$ is monotonic, it induces the monotonic operator $\Op : F_V \t
 Thanks to \cref{1-thm:kleene}, the operator $\Op$ has a greatest fixed point which is also the greatest post-fixed point of $\Op$.
 The latter are functions $f \in F_V$ such that $f \le \Op(f)$ and called progress measures.
 
-\begin{lemma}
+\begin{lemma}[Greatest fixed point]\label{4-lem:SP-greatest-fixed-point}
 Let $\Game$ be a shortest path game with non-negative weights, then $\val$ is the greatest fixed point of $\Op$.
 \end{lemma}
 
@@ -330,7 +330,7 @@ vertices with optimal value $-\infty$: this is the case when Adam may
 reach a target of $\Win$ while controlling a negative cycle along the
 way. As previously announced, this is closely related with mean payoff
 games: \cite{Brihaye&Geeraerts&HaddadA&Monmege:2017}
-\begin{theorem}\label{4-thm:-infty-MP}
+\begin{theorem}[Detection of infinite values]\label{4-thm:-infty-MP}
   Let $\arena$ be an arena.
   \begin{itemize}
   \item If the game $\game=(\arena,\ShortestPath(\Win))$ has no
@@ -429,7 +429,7 @@ following lemma (where we again let $W=\max_{(v,c,v')\in E} |c|$), we
 know that finite values are bounded below, so that an intermediate
 step of speed-up can detect the vertices of value $-\infty$.
 
-\begin{lemma}\label{4-lem:-infty}
+\begin{lemma}[Lower bound on values]\label{4-lem:-infty}
   In a shortest path game $\game$, all vertices $v$ with a value
   $\Value(v)<-(n-1) W$ have value $\Value(v)=-\infty$.
 \end{lemma}
@@ -467,10 +467,10 @@ $(2n-1)W n + n$. A careful analysis allows one to show that
 $\vec x^N=\Value^\game$: the main argument is the fact that the
 stabilisation of the sequence at index $N$ allows one to show by
 induction that $N$ steps suffice for Adam to guarantee that he has
-reached a target vertex while getting the optimal value.
-
-\cite{Brihaye&Geeraerts&HaddadA&Monmege:2017}
-\begin{theorem}\label{4-thm:SP-pseudopoly-algo}
+reached a target vertex while getting the optimal value. With all the
+details provided in \cite{Brihaye&Geeraerts&HaddadA&Monmege:2017}, we
+finally obtain
+\begin{theorem}[Pseudopolynomial computation of values]\label{4-thm:SP-pseudopoly-algo}
   We can compute in pseudopolynomial time the values of a
   shortest path game. 
 \end{theorem}
