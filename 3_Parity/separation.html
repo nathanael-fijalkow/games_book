@@ -724,135 +724,69 @@
   <div class="section" id="a-quasipolynomial-time-separating-automata-algorithm">
 <span id="sec-separation"></span><h1>A quasipolynomial time separating automata algorithm<a class="headerlink" href="#a-quasipolynomial-time-separating-automata-algorithm" title="Permalink to this headline">¶</a></h1>
 <div class="math notranslate nohighlight">
-\[\renewcommand{\H}{\mathcal{H}} 
-\newcommand{\Lift}{\textrm{Lift}} 
-\newcommand{\F}{\mathcal{F}} 
-\newcommand{\sinit}{\sigma_{\textnormal{init}}}
-\newcommand{\siblank}{\mathtt{-}}
-\newcommand{\Eve}{\textrm{Eve}}
-\newcommand{\Adam}{\textrm{Adam}}
-\newcommand{\set}[1]{\left\{ #1 \right\}}
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
-\newcommand{\argmax}{\textrm{argmax}}
-\newcommand{\argmin}{\textrm{argmin}}
-\newcommand{\Op}{\mathbb{O}}
-\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\textrm{supp}} 
-\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
-\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
-\newcommand{\mEve}{\mathrm{Eve}}
-\newcommand{\mAdam}{\mathrm{Adam}}
-\newcommand{\mRandom}{\mathrm{Random}}
-\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
-\newcommand{\ing}{\textrm{In}}
-\newcommand{\Ing}{\ing}
-\newcommand{\out}{\textrm{Out}}
-\newcommand{\Out}{\out}
-\newcommand{\dest}{\Delta} 
-\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
-\newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
-\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
-\newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\newcommand{\Win}{\textrm{Win}} 
-\newcommand{\Lose}{\textrm{Lose}} 
-\newcommand{\Value}{\textrm{val}} 
-\newcommand{\ValueE}{\textrm{val}_\mEve} 
-\newcommand{\ValueA}{\textrm{val}_\mAdam}
-\newcommand{\val}{\Value} 
-\newcommand{\Automaton}{\mathbf{A}} 
-\newcommand{\Safe}{\mathtt{Safe}}
-\newcommand{\Reach}{\mathtt{Reach}} 
-\newcommand{\Buchi}{\mathtt{Buchi}} 
-\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
-\newcommand{\Parity}{\mathtt{Parity}} 
-\newcommand{\Muller}{\mathtt{Muller}} 
-\newcommand{\Rabin}{\mathtt{Rabin}} 
-\newcommand{\Streett}{\mathtt{Streett}} 
-\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
-\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
-\newcommand{\Energy}{\mathtt{Energy}}
-\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
-\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
-\newcommand{\Sup}{\mathtt{Sup}}
-\newcommand{\Inf}{\mathtt{Inf}}
-\newcommand{\LimSup}{\mathtt{LimSup}}
-\newcommand{\LimInf}{\mathtt{LimInf}}
-\newcommand{\NL}{\textrm{NL}}
-\newcommand{\PTIME}{\textrm{PTIME}}
-\newcommand{\NP}{\textrm{NP}}
-\newcommand{\UP}{\textrm{UP}}
-\newcommand{\coNP}{\textrm{coNP}}
-\newcommand{\coUP}{\textrm{coUP}}
-\newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
-\newcommand{\EXP}{\textrm{EXP}}
-\newcommand{\kEXP}{\textrm{kEXP}}\]</div>
+\[ \begin{align}\begin{aligned}\renewcommand{\H}{\mathcal{H}}\\\renewcommand{\Game}{\game}
+\end{aligned}\end{align} \]</div>
 <div class="section" id="the-separation-framework">
 <h2>The separation framework<a class="headerlink" href="#the-separation-framework" title="Permalink to this headline">¶</a></h2>
 <p>We describe a general approach for reducing parity games to safety games.
 Section <a class="reference internal" href="../1_Introduction/reductions.html#sec-reductions"><span class="std std-ref">Reductions</span></a> constructs reductions between objectives using automata:
-in the case at hand parity reduces to safety if there exists a deterministic automaton <span class="math notranslate nohighlight">\(\Automaton\)</span> over the alphabet <span class="math notranslate nohighlight">\([1,d]\)</span>
-with acceptance objective <span class="math notranslate nohighlight">\(\Safe\)</span> and defining <span class="math notranslate nohighlight">\(\Parity([1,d])\)</span>,
-meaning <span class="math notranslate nohighlight">\(L(\Automaton) = \Parity([1,d])\)</span>.
-With such an automaton in hand <a class="reference internal" href="../1_Introduction/reductions.html#1-lem:automata_reduction">Lemma 18</a> implies the following reduction:
-from a parity game <span class="math notranslate nohighlight">\(\game\)</span> construct the safety game <span class="math notranslate nohighlight">\(\game \times \Automaton\)</span> satisfying that
-Eve has a winning strategy in <span class="math notranslate nohighlight">\(\Game\)</span> from <span class="math notranslate nohighlight">\(v_0\)</span> if and only if she has a winning strategy in <span class="math notranslate nohighlight">\(\Game \times \Automaton\)</span> from <span class="math notranslate nohighlight">\((v_0,q_0)\)</span>.</p>
+in the case at hand parity reduces to safety if there exists a deterministic automaton <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> over the alphabet <span class="math notranslate nohighlight">\([1,d]\)</span>
+with acceptance objective <span class="math notranslate nohighlight">\(\mathtt{Safe}\)</span> and defining <span class="math notranslate nohighlight">\(\mathtt{Parity}([1,d])\)</span>,
+meaning <span class="math notranslate nohighlight">\(L( \mathbf{A}) =  \mathtt{Parity}([1,d])\)</span>.
+With such an automaton in hand  <a class="reference internal" href="../1_Introduction/reductions.html#1-lem:automata_reduction">Lemma 18</a> implies the following reduction:
+from a parity game <span class="math notranslate nohighlight">\(\mathcal{G}\)</span> construct the safety game <span class="math notranslate nohighlight">\(\mathcal{G} \times  \mathbf{A}\)</span> satisfying that
+Eve has a winning strategy in <span class="math notranslate nohighlight">\(\Game\)</span> from <span class="math notranslate nohighlight">\(v_0\)</span> if and only if she has a winning strategy in <span class="math notranslate nohighlight">\(\Game \times  \mathbf{A}\)</span> from <span class="math notranslate nohighlight">\((v_0,q_0)\)</span>.</p>
 <p>Unfortunately, it can be shown (using a topological argument) that there is no such automaton.
 The separation framework defines a (weaker) sufficient condition for the reduction above to be correct.
-Instead of insisting that <span class="math notranslate nohighlight">\(L(\Automaton) = \Parity([1,d])\)</span>,
-it is enough to have <span class="math notranslate nohighlight">\(\WE(\arena,\Parity[\col]) = \WE(\arena,L(\Automaton)[\col])\)</span>.
-To ensure this equality we will only require that <span class="math notranslate nohighlight">\(L(\Automaton)\)</span> <strong>separates</strong> winning plays from losing plays.
+Instead of insisting that <span class="math notranslate nohighlight">\(L( \mathbf{A}) =  \mathtt{Parity}([1,d])\)</span>,
+it is enough to have <span class="math notranslate nohighlight">\(W_\mathrm{Eve}( \mathcal{A}, \mathtt{Parity}[ \textsf{col}]) =  W_\mathrm{Eve}( \mathcal{A},L( \mathbf{A})[ \textsf{col}])\)</span>.
+To ensure this equality we will only require that <span class="math notranslate nohighlight">\(L( \mathbf{A})\)</span> <strong>separates</strong> winning plays from losing plays.
 The two <strong>key</strong> ideas are first to take advantage of the positionality of parity objectives
 by restricting further winning plays to <strong>positional</strong> winning plays,
-and second to state <span class="math notranslate nohighlight">\(\WE(\arena,\Parity[\col]) = \WE(\arena,L(\Automaton)[\col])\)</span> not for all parity games,
+and second to state <span class="math notranslate nohighlight">\(W_\mathrm{Eve}( \mathcal{A}, \mathtt{Parity}[ \textsf{col}]) =  W_\mathrm{Eve}( \mathcal{A},L( \mathbf{A})[ \textsf{col}])\)</span> not for all parity games,
 but only for parity games with <span class="math notranslate nohighlight">\(n\)</span> vertices and priorities in <span class="math notranslate nohighlight">\([1,d]\)</span>.</p>
 <p>A deterministic safety automaton over the alphabet <span class="math notranslate nohighlight">\([1,d]\)</span> is given by</p>
 <div class="math notranslate nohighlight">
 \[
-\Automaton = (Q,q_0,\delta : Q \times [1,d] \to Q,\Safe[\col_\Automaton]),
+ \mathbf{A} = (Q,q_0,\delta : Q \times [1,d] \to Q, \mathtt{Safe}[ \textsf{col}_\mathbf{A}]),
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(\col_\Automaton : Q \times [1,d] \to \set{\Win,\Lose}\)</span>.
-A word <span class="math notranslate nohighlight">\(w \in [1,d]^\omega\)</span> is accepted if the run <span class="math notranslate nohighlight">\(\rho\)</span> over <span class="math notranslate nohighlight">\(w\)</span> only contains transitions in <span class="math notranslate nohighlight">\(\Win\)</span>.
+<p>where <span class="math notranslate nohighlight">\(\textsf{col}_\mathbf{A} : Q \times [1,d] \to  \left\{  \textrm{Win \right\}, \textrm{Lose}}\)</span>.
+A word <span class="math notranslate nohighlight">\(w \in [1,d]^\omega\)</span> is accepted if the run <span class="math notranslate nohighlight">\(\rho\)</span> over <span class="math notranslate nohighlight">\(w\)</span> only contains transitions in <span class="math notranslate nohighlight">\(\textrm{Win}\)</span>.
 We use the following simplifying convention for safety automata: we distinguish a special rejecting state <span class="math notranslate nohighlight">\(\bot\)</span>
 and assume that all transitions are accepting except the ones leading to <span class="math notranslate nohighlight">\(\bot\)</span>.
 Said differently, a word <span class="math notranslate nohighlight">\(w\)</span> is accepted if and only if it the run over <span class="math notranslate nohighlight">\(w\)</span> does not contain the state <span class="math notranslate nohighlight">\(\bot\)</span>.
-Hence we do not need to specify <span class="math notranslate nohighlight">\(\col_\Automaton\)</span>:
+Hence we do not need to specify <span class="math notranslate nohighlight">\(\textsf{col}_\mathbf{A}\)</span>:
 in the next two sections by an automaton we mean a deterministic safety automaton
-given by <span class="math notranslate nohighlight">\(\Automaton = (Q,q_0,\delta : Q \times [1,d] \to Q)\)</span>.</p>
-<p>Let us now give a sufficient condition for the automaton <span class="math notranslate nohighlight">\(\Automaton\)</span>
-to imply the correctness of the reduction from the parity game <span class="math notranslate nohighlight">\(\Game\)</span> to the safety game <span class="math notranslate nohighlight">\(\Game \times \Automaton\)</span>.
-The condition that we define now is that the automaton <span class="math notranslate nohighlight">\(\Automaton\)</span> is <span class="math notranslate nohighlight">\((n,d)\)</span>-separating; it relies on the notion of parity graphs.
+given by <span class="math notranslate nohighlight">\(\mathbf{A} = (Q,q_0,\delta : Q \times [1,d] \to Q)\)</span>.</p>
+<p>Let us now give a sufficient condition for the automaton <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>
+to imply the correctness of the reduction from the parity game <span class="math notranslate nohighlight">\(\Game\)</span> to the safety game <span class="math notranslate nohighlight">\(\Game \times  \mathbf{A}\)</span>.
+The condition that we define now is that the automaton <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is <span class="math notranslate nohighlight">\((n,d)\)</span>-separating; it relies on the notion of parity graphs.
 Recall a parity graph satisfies parity from <span class="math notranslate nohighlight">\(v\)</span> if all infinite paths from <span class="math notranslate nohighlight">\(v\)</span> satisfy parity,
 and that a strategy <span class="math notranslate nohighlight">\(\sigma\)</span> is winning from <span class="math notranslate nohighlight">\(v\)</span> if and only if the parity graph <span class="math notranslate nohighlight">\(\Game[\sigma]\)</span> satisfies parity from <span class="math notranslate nohighlight">\(v\)</span>.</p>
 <p>We say that an automaton reads, accepts, or rejects a path <span class="math notranslate nohighlight">\(\pi\)</span> in a parity graph,
-which is an abuse because what the automaton reads is the induced sequence of colours <span class="math notranslate nohighlight">\(\col(\pi)\)</span>.</p>
+which is an abuse because what the automaton reads is the induced sequence of colours <span class="math notranslate nohighlight">\(\textsf{col}(\pi)\)</span>.</p>
 <div class="proof definition admonition" id="3-def:separating_automata">
 <p class="admonition-title"><span class="caption-number">Definition 71 </span> (Separating automata)</p>
 <div class="definition-content section" id="proof-content">
-<p>An automaton <span class="math notranslate nohighlight">\(\Automaton\)</span> is <span class="math notranslate nohighlight">\((n,d)\)</span>-<strong>separating</strong> if the two following properties hold.</p>
+<p>An automaton <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is <span class="math notranslate nohighlight">\((n,d)\)</span>-<strong>separating</strong> if the two following properties hold.</p>
 <ul class="simple">
 <li><p>For all parity graphs <span class="math notranslate nohighlight">\(G\)</span> with <span class="math notranslate nohighlight">\(n\)</span> vertices and priorities in <span class="math notranslate nohighlight">\([1,d]\)</span> satisfying parity from <span class="math notranslate nohighlight">\(v\)</span>,
-all paths from <span class="math notranslate nohighlight">\(v\)</span> are accepted by <span class="math notranslate nohighlight">\(\Automaton\)</span>.</p></li>
-<li><p>All words accepted by <span class="math notranslate nohighlight">\(\Automaton\)</span> satisfy parity.</p></li>
+all paths from <span class="math notranslate nohighlight">\(v\)</span> are accepted by <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>.</p></li>
+<li><p>All words accepted by <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> satisfy parity.</p></li>
 </ul>
 </div>
-</div><p>We define the objective <span class="math notranslate nohighlight">\(\Parity_{\mid n}\)</span> over the set of colours <span class="math notranslate nohighlight">\([1,d]\)</span> as:</p>
+</div><p>We define the objective <span class="math notranslate nohighlight">\(\mathtt{Parity}_{\mid n}\)</span> over the set of colours <span class="math notranslate nohighlight">\([1,d]\)</span> as:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-\Parity_{\mid n} = 
-\set{ \play : 
-\begin{array}{l}
-\play \text{ is a path starting from some vertex $v$ in some parity graph} \\
-\text{with } n \text{ vertices and priorities in } [1,d] \text{ satisfying } \Parity \text{ from } v
+ \mathtt{Parity}_{\mid n} = 
+ \left\{   \pi : 
+\begin{array \right\}{l}
+ \pi \text{ is a path starting from some vertex $v$ in some parity graph} \\
+\text{with } n \text{ vertices and priorities in } [1,d] \text{ satisfying }  \mathtt{Parity} \text{ from } v
 \end{array}}.
 \end{split}\]</div>
 <p>The definition of <span class="math notranslate nohighlight">\((n,d)\)</span>-separating automata is illustrated in <a class="reference internal" href="#fig-separation"><span class="std std-numref">Fig. 23</span></a> and can be summarised
-as <span class="math notranslate nohighlight">\(\Parity_{\mid n} \subseteq L(\Automaton) \subseteq \Parity\)</span>.</p>
+as <span class="math notranslate nohighlight">\(\mathtt{Parity}_{\mid n} \subseteq L( \mathbf{A}) \subseteq  \mathtt{Parity}\)</span>.</p>
 <div class="figure align-center" id="fig-separation">
 <img alt="3_Parity/./../FigAndAlgos/3-fig:separation.png" src="3_Parity/./../FigAndAlgos/3-fig:separation.png" />
 <p class="caption"><span class="caption-number">Fig. 23 </span><span class="caption-text">The separation problem.</span><a class="headerlink" href="#fig-separation" title="Permalink to this image">¶</a></p>
@@ -861,58 +795,58 @@ as <span class="math notranslate nohighlight">\(\Parity_{\mid n} \subseteq L(\Au
 <div class="proof lemma admonition" id="3-lem:separating_automata">
 <p class="admonition-title"><span class="caption-number">Lemma 72 </span> (Game equivalence using separating automata)</p>
 <div class="lemma-content section" id="proof-content">
-<p>Let <span class="math notranslate nohighlight">\(\Automaton\)</span> an <span class="math notranslate nohighlight">\((n,d)\)</span>-separating automaton.
-Then for all parity games <span class="math notranslate nohighlight">\(\game = (\arena,\Parity[\col])\)</span> with <span class="math notranslate nohighlight">\(n\)</span> vertices and priorities in <span class="math notranslate nohighlight">\([1,d]\)</span>,
+<p>Let <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> an <span class="math notranslate nohighlight">\((n,d)\)</span>-separating automaton.
+Then for all parity games <span class="math notranslate nohighlight">\(\mathcal{G} = ( \mathcal{A}, \mathtt{Parity}[ \textsf{col}])\)</span> with <span class="math notranslate nohighlight">\(n\)</span> vertices and priorities in <span class="math notranslate nohighlight">\([1,d]\)</span>,
 we have</p>
 <div class="math notranslate nohighlight">
 \[
-\WE(\game) = \WE(\arena,L(\Automaton)[\col]).
+ W_\mathrm{Eve}( \mathcal{G}) =  W_\mathrm{Eve}( \mathcal{A},L( \mathbf{A})[ \textsf{col}]).
 \]</div>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
-<p>The inclusion <span class="math notranslate nohighlight">\(\WE(\game) \subseteq \WE(\arena,L(\Automaton)[\col])\)</span> follows from positional determinacy and the inclusion
-<span class="math notranslate nohighlight">\(\Parity_{\mid n} \subseteq L(\Automaton)\)</span>.
-Let <span class="math notranslate nohighlight">\(v \in \WE(\game)\)</span>.
-Consider <span class="math notranslate nohighlight">\(\sigma\)</span> a positional strategy ensuring parity from <span class="math notranslate nohighlight">\(v\)</span> and construct the parity graph <span class="math notranslate nohighlight">\(\game[\sigma]\)</span>, it satisfies parity from <span class="math notranslate nohighlight">\(v\)</span>.
-Hence the strategy <span class="math notranslate nohighlight">\(\sigma\)</span> also ensures <span class="math notranslate nohighlight">\(L(\Automaton)[\col]\)</span> from <span class="math notranslate nohighlight">\(v\)</span>, so <span class="math notranslate nohighlight">\(v \in \WE(\arena,L(\Automaton)[\col])\)</span>.</p>
-<p>Conversely, the inclusion <span class="math notranslate nohighlight">\(L(\Automaton) \subseteq \Parity\)</span> implies the inclusion
-<span class="math notranslate nohighlight">\(L(\Automaton)[\col] \subseteq \Parity[\col]\)</span>, which in turn implies
-<span class="math notranslate nohighlight">\(\WE(\arena,L(\Automaton)[\col]) \subseteq \WE(\game)\)</span>.</p>
+<p>The inclusion <span class="math notranslate nohighlight">\(W_\mathrm{Eve}( \mathcal{G}) \subseteq  W_\mathrm{Eve}( \mathcal{A},L( \mathbf{A})[ \textsf{col}])\)</span> follows from positional determinacy and the inclusion
+<span class="math notranslate nohighlight">\(\mathtt{Parity}_{\mid n} \subseteq L( \mathbf{A})\)</span>.
+Let <span class="math notranslate nohighlight">\(v \in  W_\mathrm{Eve}( \mathcal{G})\)</span>.
+Consider <span class="math notranslate nohighlight">\(\sigma\)</span> a positional strategy ensuring parity from <span class="math notranslate nohighlight">\(v\)</span> and construct the parity graph <span class="math notranslate nohighlight">\(\mathcal{G}[\sigma]\)</span>, it satisfies parity from <span class="math notranslate nohighlight">\(v\)</span>.
+Hence the strategy <span class="math notranslate nohighlight">\(\sigma\)</span> also ensures <span class="math notranslate nohighlight">\(L( \mathbf{A})[ \textsf{col}]\)</span> from <span class="math notranslate nohighlight">\(v\)</span>, so <span class="math notranslate nohighlight">\(v \in  W_\mathrm{Eve}( \mathcal{A},L( \mathbf{A})[ \textsf{col}])\)</span>.</p>
+<p>Conversely, the inclusion <span class="math notranslate nohighlight">\(L( \mathbf{A}) \subseteq  \mathtt{Parity}\)</span> implies the inclusion
+<span class="math notranslate nohighlight">\(L( \mathbf{A})[ \textsf{col}] \subseteq  \mathtt{Parity}[ \textsf{col}]\)</span>, which in turn implies
+<span class="math notranslate nohighlight">\(W_\mathrm{Eve}( \mathcal{A},L( \mathbf{A})[ \textsf{col}]) \subseteq  W_\mathrm{Eve}( \mathcal{G})\)</span>.</p>
 </div>
-<p>The last step is to explain how to solve a game with objective <span class="math notranslate nohighlight">\(L(\Automaton)\)</span>, as already discussed in Section <a class="reference internal" href="../1_Introduction/reductions.html#sec-reductions"><span class="std std-ref">Reductions</span></a>.
-Let <span class="math notranslate nohighlight">\(\Game = (\arena, L(\Automaton)[\col])\)</span>.
+<p>The last step is to explain how to solve a game with objective <span class="math notranslate nohighlight">\(L( \mathbf{A})\)</span>, as already discussed in Section <a class="reference internal" href="../1_Introduction/reductions.html#sec-reductions"><span class="std std-ref">Reductions</span></a>.
+Let <span class="math notranslate nohighlight">\(\Game = ( \mathcal{A}, L( \mathbf{A})[ \textsf{col}])\)</span>.
 We construct a safety game by making the synchronised product of the arena with the automaton:</p>
 <div class="math notranslate nohighlight">
 \[
-\Game \times \Automaton = (\arena \times \Automaton, \Safe[\col']),
+\Game \times  \mathbf{A} = ( \mathcal{A} \times  \mathbf{A},  \mathtt{Safe}[ \textsf{col}']),
 \]</div>
-<p>where the safety condition ensures that the play is accepted by <span class="math notranslate nohighlight">\(\Automaton\)</span>.
-Formally, we construct the arena <span class="math notranslate nohighlight">\(\arena \times \Automaton\)</span> as follows.
+<p>where the safety condition ensures that the play is accepted by <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>.
+Formally, we construct the arena <span class="math notranslate nohighlight">\(\mathcal{A} \times  \mathbf{A}\)</span> as follows.
 We first define the graph <span class="math notranslate nohighlight">\(G \times Q\)</span> whose set of vertices is <span class="math notranslate nohighlight">\(V \times Q\)</span> and set of edges is defined as follows:
-for every edge <span class="math notranslate nohighlight">\((v,v') \in E\)</span> and state <span class="math notranslate nohighlight">\(q \in Q\)</span> there is an edge from <span class="math notranslate nohighlight">\((v,q)\)</span> to <span class="math notranslate nohighlight">\((v',\delta(q,\col(u)))\)</span>.
-The arena is <span class="math notranslate nohighlight">\(\arena \times \Automaton = (G \times Q, \VE \times Q, \VA \times Q)\)</span>.
+for every edge <span class="math notranslate nohighlight">\((v,v') \in E\)</span> and state <span class="math notranslate nohighlight">\(q \in Q\)</span> there is an edge from <span class="math notranslate nohighlight">\((v,q)\)</span> to <span class="math notranslate nohighlight">\((v',\delta(q, \textsf{col}(u)))\)</span>.
+The arena is <span class="math notranslate nohighlight">\(\mathcal{A} \times  \mathbf{A} = (G \times Q,  V_\mathrm{Eve} \times Q,  V_\mathrm{Adam} \times Q)\)</span>.
 Using the convention for safety automata that the rejecting transitions are precisely those leading to the rejecting state <span class="math notranslate nohighlight">\(\bot\)</span>,
-the colouring function is defined by <span class="math notranslate nohighlight">\(\col'(v,q) = \Win\)</span> if <span class="math notranslate nohighlight">\(q \neq \bot\)</span>, and <span class="math notranslate nohighlight">\(\Lose\)</span> otherwise.</p>
+the colouring function is defined by <span class="math notranslate nohighlight">\(\textsf{col}'(v,q) =  \textrm{Win}\)</span> if <span class="math notranslate nohighlight">\(q \neq \bot\)</span>, and <span class="math notranslate nohighlight">\(\textrm{Lose}\)</span> otherwise.</p>
 <div class="proof observation admonition" id="3-fact:reduction">
 <p class="admonition-title"><span class="caption-number">Observation 73 </span> (Reduction to safety games using separating automata)</p>
 <div class="observation-content section" id="proof-content">
-<p>Eve has a winning strategy in <span class="math notranslate nohighlight">\(\game\)</span> from <span class="math notranslate nohighlight">\(v_0\)</span> if and only if
-she has a winning strategy in <span class="math notranslate nohighlight">\(\Game \times \Automaton\)</span> from <span class="math notranslate nohighlight">\((v_0,q_0)\)</span>.</p>
+<p>Eve has a winning strategy in <span class="math notranslate nohighlight">\(\mathcal{G}\)</span> from <span class="math notranslate nohighlight">\(v_0\)</span> if and only if
+she has a winning strategy in <span class="math notranslate nohighlight">\(\Game \times  \mathbf{A}\)</span> from <span class="math notranslate nohighlight">\((v_0,q_0)\)</span>.</p>
 </div>
 </div><div class="proof theorem admonition" id="3-thm:algorithm_separating_automata">
 <p class="admonition-title"><span class="caption-number">Theorem 74 </span> (Algorithm using separating automata)</p>
 <div class="theorem-content section" id="proof-content">
-<p>Let <span class="math notranslate nohighlight">\(\Automaton\)</span> an <span class="math notranslate nohighlight">\((n,d)\)</span>-separating automaton.
-There exists an algorithm for solving parity games of complexity <span class="math notranslate nohighlight">\(O(m \cdot |\Automaton|)\)</span>.</p>
+<p>Let <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> an <span class="math notranslate nohighlight">\((n,d)\)</span>-separating automaton.
+There exists an algorithm for solving parity games of complexity <span class="math notranslate nohighlight">\(O(m \cdot | \mathbf{A}|)\)</span>.</p>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
 <p>Let <span class="math notranslate nohighlight">\(\Game\)</span> a parity game with <span class="math notranslate nohighlight">\(n\)</span> vertices and priorities in <span class="math notranslate nohighlight">\([1,d]\)</span>.
-Thanks to <a class="reference internal" href="#3-lem:separating_automata">Lemma 72</a> and \cref{3-fact:reduction}, solving <span class="math notranslate nohighlight">\(\Game\)</span>
-is equivalent to solving the safety game <span class="math notranslate nohighlight">\(\Game \times \Automaton\)</span>.
-Thanks to <a class="reference internal" href="../2_Regular/attractors.html#2-thm:reachability">Theorem 33</a> solving safety games can be done in time linear in the number of edges.
-This yields an algorithm for solving parity games whose running time is <span class="math notranslate nohighlight">\(O(m \cdot |\Automaton|)\)</span>.</p>
+Thanks to  <a class="reference internal" href="#3-lem:separating_automata">Lemma 72</a> and \cref{3-fact:reduction}, solving <span class="math notranslate nohighlight">\(\Game\)</span>
+is equivalent to solving the safety game <span class="math notranslate nohighlight">\(\Game \times  \mathbf{A}\)</span>.
+Thanks to  <a class="reference internal" href="../2_Regular/attractors.html#2-thm:reachability">Theorem 33</a> solving safety games can be done in time linear in the number of edges.
+This yields an algorithm for solving parity games whose running time is <span class="math notranslate nohighlight">\(O(m \cdot | \mathbf{A}|)\)</span>.</p>
 </div>
 <p>In the remainder of this section we give a construction for a quasipolynomial <span class="math notranslate nohighlight">\((n,d)\)</span>-separating automaton.</p>
 </div>
@@ -1008,12 +942,12 @@ The automaton is defined by a data structure that we call a <strong>record</stro
 contains information about the <span class="math notranslate nohighlight">\(i\)</span>-sequences that have been seen so far in the
 sequence.</p>
 <p>A record is a sequence <span class="math notranslate nohighlight">\(b_k, b_{k-1}, \dots, b_1, b_0\)</span>, where each
-<span class="math notranslate nohighlight">\(b_i\)</span> is either a priority, or the special symbol <span class="math notranslate nohighlight">\(\siblank\)</span>. The value of <span class="math notranslate nohighlight">\(b_i\)</span>
+<span class="math notranslate nohighlight">\(b_i\)</span> is either a priority, or the special symbol <span class="math notranslate nohighlight">\(\mathtt{-}\)</span>. The value of <span class="math notranslate nohighlight">\(b_i\)</span>
 has the following meaning:</p>
 <ul class="simple">
-<li><p><strong>Witnessing.</strong> If <span class="math notranslate nohighlight">\(b_i \ne \siblank\)</span>, then we have seen an
+<li><p><strong>Witnessing.</strong> If <span class="math notranslate nohighlight">\(b_i \ne  \mathtt{-}\)</span>, then we have seen an
 <span class="math notranslate nohighlight">\(i\)</span>-sequence, and the final priority on that <span class="math notranslate nohighlight">\(i\)</span>-sequence is <span class="math notranslate nohighlight">\(b_i\)</span>.</p></li>
-<li><p><strong>Order.</strong> If <span class="math notranslate nohighlight">\(b_i \ne \siblank\)</span> and <span class="math notranslate nohighlight">\(b_j \ne \siblank\)</span> and <span class="math notranslate nohighlight">\(j &lt; i\)</span>,
+<li><p><strong>Order.</strong> If <span class="math notranslate nohighlight">\(b_i \ne  \mathtt{-}\)</span> and <span class="math notranslate nohighlight">\(b_j \ne  \mathtt{-}\)</span> and <span class="math notranslate nohighlight">\(j &lt; i\)</span>,
 then the first index of the <span class="math notranslate nohighlight">\(j\)</span>-sequence witnessed by <span class="math notranslate nohighlight">\(b_j\)</span> occurs after the
 last index of the <span class="math notranslate nohighlight">\(i\)</span>-sequence witnessed by <span class="math notranslate nohighlight">\(b_i\)</span>.</p></li>
 </ul>
@@ -1023,16 +957,16 @@ of this <span class="math notranslate nohighlight">\(i\)</span>-sequence, it onl
 sequence.</p>
 <div class="figure align-center" id="fig-ds">
 <img alt="../_images/3-fig:ds.png" src="../_images/3-fig:ds.png" />
-<p class="caption"><span class="caption-number">Fig. 25 </span><span class="caption-text">An example sequence that corresponds to the record <span class="math notranslate nohighlight">\(\siblank 8 4 2\)</span>.</span><a class="headerlink" href="#fig-ds" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 25 </span><span class="caption-text">An example sequence that corresponds to the record <span class="math notranslate nohighlight">\(\mathtt{-} 8 4 2\)</span>.</span><a class="headerlink" href="#fig-ds" title="Permalink to this image">¶</a></p>
 </div>
 <p><a class="reference internal" href="#fig-ds"><span class="std std-numref">Fig. 25</span></a> shows an example sequence that is consistent with the
-record that sets <span class="math notranslate nohighlight">\(b_3 = \siblank\)</span>, <span class="math notranslate nohighlight">\(b_2 = 8\)</span>, <span class="math notranslate nohighlight">\(b_1 = 4\)</span>, and <span class="math notranslate nohighlight">\(b_0 = 2\)</span>.
+record that sets <span class="math notranslate nohighlight">\(b_3 =  \mathtt{-}\)</span>, <span class="math notranslate nohighlight">\(b_2 = 8\)</span>, <span class="math notranslate nohighlight">\(b_1 = 4\)</span>, and <span class="math notranslate nohighlight">\(b_0 = 2\)</span>.
 The red <span class="math notranslate nohighlight">\(2\)</span>-sequence is represented by <span class="math notranslate nohighlight">\(b_2 = 8\)</span>, which is the last priority of
 the <span class="math notranslate nohighlight">\(2\)</span>-sequence. The blue <span class="math notranslate nohighlight">\(1\)</span>-sequence starts after the end of the
 <span class="math notranslate nohighlight">\(2\)</span>-sequence, and it is represented by <span class="math notranslate nohighlight">\(b_1 = 4\)</span>. Likewise the grey
 <span class="math notranslate nohighlight">\(0\)</span>-sequence starts after the end of the <span class="math notranslate nohighlight">\(1\)</span>-sequence, and is represented by
 <span class="math notranslate nohighlight">\(b_0 = 2\)</span>. There is no <span class="math notranslate nohighlight">\(3\)</span>-sequence in the example, and this is represented by
-setting <span class="math notranslate nohighlight">\(b_3 = \siblank\)</span>.</p>
+setting <span class="math notranslate nohighlight">\(b_3 =  \mathtt{-}\)</span>.</p>
 <blockquote>
 <div><p><strong>The update rule.</strong></p>
 </div></blockquote>
@@ -1043,42 +977,45 @@ account. We do this by applying the following <strong>update rule</strong>.
 The update rule consists of two steps, which occur one after the other.</p>
 <ul class="simple">
 <li><p><strong>Step 1.</strong> In this step, we find the largest index <span class="math notranslate nohighlight">\(i\)</span>
-such that <span class="math notranslate nohighlight">\(b_j\)</span> is even for all <span class="math notranslate nohighlight">\(j \le i\)</span>. If <span class="math notranslate nohighlight">\(b_i = \siblank\)</span>, or <span class="math notranslate nohighlight">\(b_i &lt; p\)</span>,
+such that <span class="math notranslate nohighlight">\(b_j\)</span> is even for all <span class="math notranslate nohighlight">\(j \le i\)</span>. If <span class="math notranslate nohighlight">\(b_i =  \mathtt{-}\)</span>, or <span class="math notranslate nohighlight">\(b_i &lt; p\)</span>,
 then we create a new record <span class="math notranslate nohighlight">\(b'_k\)</span>, <span class="math notranslate nohighlight">\(b'_{k-1}\)</span>, \dots, <span class="math notranslate nohighlight">\(b'_0\)</span> by
-setting:
-\begin{equation*}
-b’_j = \begin{cases}
-b_j &amp; \text{if <span class="math notranslate nohighlight">\(j &gt; i\)</span>,} \
-p &amp; \text{if <span class="math notranslate nohighlight">\(j = i\)</span>,} \
-\siblank &amp; \text{if <span class="math notranslate nohighlight">\(j &lt; i\)</span>.}
-\end{cases}
-\end{equation*}
-If there is no index <span class="math notranslate nohighlight">\(i\)</span> that satisfies the conditions, then we do not modify
-the record.</p></li>
-<li><p><strong>Step 2.</strong> In step 2, we take the output of step 1, and we find the
-largest index <span class="math notranslate nohighlight">\(i\)</span> such that <span class="math notranslate nohighlight">\(p &gt; b_i\)</span> and we create a new record <span class="math notranslate nohighlight">\(b'_k\)</span>,
-<span class="math notranslate nohighlight">\(b'_{k-1}\)</span>, \dots, <span class="math notranslate nohighlight">\(b'_0\)</span> by setting:
-\begin{equation*}
-b’_j = \begin{cases}
-b_j &amp; \text{if <span class="math notranslate nohighlight">\(j &gt; i\)</span>,} \
-p &amp; \text{if <span class="math notranslate nohighlight">\(j = i\)</span>,} \
-\siblank &amp; \text{if <span class="math notranslate nohighlight">\(j &lt; i\)</span>.}
-\end{cases}
-\end{equation*}
-Again, if there is no such index <span class="math notranslate nohighlight">\(i\)</span>, then the record is not modified.</p></li>
+setting:</p></li>
 </ul>
-<div class="figure align-center" id="fig-ds1">
-<img alt="../_images/3-fig:ds1.png" src="../_images/3-fig:ds1.png" />
-<p class="caption"><span class="caption-number">Fig. 26 </span><span class="caption-text">An example of a Step 1 update applied to the sequence and record from <a class="reference internal" href="#fig-ds"><span class="std std-numref">Fig. 25</span></a></span><a class="headerlink" href="#fig-ds1" title="Permalink to this image">¶</a></p>
+<div class="highlight-{math}\n notranslate"><div class="highlight"><pre><span></span>b&#39;_j = \begin{cases}
+b_j &amp; \text{if $j &gt; i$,} \\
+p &amp; \text{if $j = i$,} \\
+ \mathtt{-} &amp; \text{if $j &lt; i$.} 
+\end{cases}
+\\n```
+If there is no index $i$ that satisfies the conditions, then we do not modify
+the record.
+
+*  **Step 2.** In step 2, we take the output of step 1, and we find the
+largest index $i$ such that $p &gt; b_i$ and we create a new record $b&#39;_k$,
+$b&#39;_{k-1}$, \dots, $b&#39;_0$ by setting:
+```{math}\n
+b&#39;_j = \begin{cases}
+b_j &amp; \text{if $j &gt; i$,} \\
+p &amp; \text{if $j = i$,} \\
+ \mathtt{-} &amp; \text{if $j &lt; i$.} 
+\end{cases}
+\\n```
+Again, if there is no such index $i$, then the record is not modified.
+
+```{figure} ./../FigAndAlgos/3-fig:ds1.png
+:name: 3-fig:ds1
+:align: center
+An example of a Step 1 update applied to the sequence and record from {numref}`3-fig:ds`
+</pre></div>
 </div>
 <p>Intuitively, Step 1 attempts to combine the <span class="math notranslate nohighlight">\(i\)</span>-sequences in the existing record
 into a longer <span class="math notranslate nohighlight">\(i\)</span>-sequence. Suppose that we have read the sequence shown in <a class="reference internal" href="#fig-ds"><span class="std std-numref">Fig. 25</span></a>,
-that we have compute the record <span class="math notranslate nohighlight">\(\siblank 8 4 2\)</span>, and that the next priority in the sequence is <span class="math notranslate nohighlight">\(4\)</span>.
-<a class="reference internal" href="#fig-ds1"><span class="std std-numref">Fig. 26</span></a> shows the result of applying Step 1 to this situation.
+that we have compute the record <span class="math notranslate nohighlight">\(\mathtt{-} 8 4 2\)</span>, and that the next priority in the sequence is <span class="math notranslate nohighlight">\(4\)</span>.
+<code class="xref std std-numref docutils literal notranslate"><span class="pre">3-fig:ds1</span></code> shows the result of applying Step 1 to this situation.
 Observe that <span class="math notranslate nohighlight">\(3\)</span> is the largest index <span class="math notranslate nohighlight">\(i\)</span> such that for all <span class="math notranslate nohighlight">\(j &lt; i\)</span> we have that
-<span class="math notranslate nohighlight">\(b_j\)</span> is even, so Step 1 will output the record <span class="math notranslate nohighlight">\(4 \siblank \siblank \siblank\)</span>.</p>
+<span class="math notranslate nohighlight">\(b_j\)</span> is even, so Step 1 will output the record <span class="math notranslate nohighlight">\(4  \mathtt{-}  \mathtt{-}  \mathtt{-}\)</span>.</p>
 <p>So in this circumstance, Step 1 claims that we have now seen a <span class="math notranslate nohighlight">\(3\)</span>-sequence.
-<a class="reference internal" href="#fig-ds1"><span class="std std-numref">Fig. 26</span></a> shows why this is correct: the <span class="math notranslate nohighlight">\(0\)</span>-sequence of <span class="math notranslate nohighlight">\(b_0\)</span>, the
+<code class="xref std std-numref docutils literal notranslate"><span class="pre">3-fig:ds1</span></code> shows why this is correct: the <span class="math notranslate nohighlight">\(0\)</span>-sequence of <span class="math notranslate nohighlight">\(b_0\)</span>, the
 <span class="math notranslate nohighlight">\(1\)</span>-sequence of <span class="math notranslate nohighlight">\(b_1\)</span>, and the <span class="math notranslate nohighlight">\(2\)</span>-sequence of <span class="math notranslate nohighlight">\(b_2\)</span> can be merged together,
 along with the new priority, to create a <span class="math notranslate nohighlight">\(3\)</span>-sequence. Observe that inner
 domination in this new <span class="math notranslate nohighlight">\(3\)</span>-sequence is satisfied due to the outer domination
@@ -1089,22 +1026,22 @@ at priority <span class="math notranslate nohighlight">\(2\)</span>, and we know
 follow it.</p>
 <div class="figure align-center" id="fig-ds2">
 <img alt="../_images/3-fig:ds2.png" src="../_images/3-fig:ds2.png" />
-<p class="caption"><span class="caption-number">Fig. 27 </span><span class="caption-text">An example of a Step 2 update applied to the sequence and record from <a class="reference internal" href="#fig-ds"><span class="std std-numref">Fig. 25</span></a></span><a class="headerlink" href="#fig-ds2" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 26 </span><span class="caption-text">An example of a Step 2 update applied to the sequence and record from <a class="reference internal" href="#fig-ds"><span class="std std-numref">Fig. 25</span></a></span><a class="headerlink" href="#fig-ds2" title="Permalink to this image">¶</a></p>
 </div>
 <p>Step 2 ensures that the outer domination property holds.
-In <a class="reference internal" href="#fig-ds2"><span class="std std-numref">Fig. 27</span></a>, we show the result of applying Step 2 to the record
-<span class="math notranslate nohighlight">\(\siblank 8 4 2\)</span> that corresponds to the sequence shown in <a class="reference internal" href="#fig-ds"><span class="std std-numref">Fig. 25</span></a>,
+In <a class="reference internal" href="#fig-ds2"><span class="std std-numref">Fig. 26</span></a>, we show the result of applying Step 2 to the record
+<span class="math notranslate nohighlight">\(\mathtt{-} 8 4 2\)</span> that corresponds to the sequence shown in <a class="reference internal" href="#fig-ds"><span class="std std-numref">Fig. 25</span></a>,
 when the next priority in the sequence is <span class="math notranslate nohighlight">\(9\)</span>. Observe that since <span class="math notranslate nohighlight">\(9 &gt; 8\)</span>, the
 outer domination property for the <span class="math notranslate nohighlight">\(2\)</span>-sequence ending at <span class="math notranslate nohighlight">\(8\)</span> now fails to hold,
 and likewise for the sequences ending at <span class="math notranslate nohighlight">\(4\)</span> and <span class="math notranslate nohighlight">\(2\)</span>. Hence, Step 2 deletes the
 <span class="math notranslate nohighlight">\(0\)</span>-sequence and <span class="math notranslate nohighlight">\(1\)</span>-sequence from the record, and updates the <span class="math notranslate nohighlight">\(2\)</span>-sequence to
-end at <span class="math notranslate nohighlight">\(9\)</span>, thereby restoring outer domination. The resulting record is <span class="math notranslate nohighlight">\(\siblank
-9 \siblank \siblank\)</span>.</p>
+end at <span class="math notranslate nohighlight">\(9\)</span>, thereby restoring outer domination. The resulting record is <span class="math notranslate nohighlight">\(\mathtt{-}
+9  \mathtt{-}  \mathtt{-}\)</span>.</p>
 <blockquote>
 <div><p><strong>Correctness.</strong></p>
 </div></blockquote>
 <p>To compute a record for a particular sequence of priorities, we start with the
-record <span class="math notranslate nohighlight">\(\siblank \siblank \dots \siblank\)</span>, and then process the sequence one
+record <span class="math notranslate nohighlight">\(\mathtt{-}  \mathtt{-} \dots  \mathtt{-}\)</span>, and then process the sequence one
 priority at a time, using the update rule that we have described.</p>
 <p>We must now argue that the record data structure and update rule is sufficient
 to decide the winner of a parity game. The following lemma states that a record
@@ -1113,7 +1050,7 @@ will never falsely claim that an <span class="math notranslate nohighlight">\(i\
 <p class="admonition-title"><span class="caption-number">Lemma 77 </span> (Correctness for the separating automaton)</p>
 <div class="lemma-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(b_k, b_{k-1}, \dots, b_0\)</span> the record for a sequence of priorities <span class="math notranslate nohighlight">\(\pi\)</span>.
-If <span class="math notranslate nohighlight">\(b_i \ne \siblank\)</span>, then <span class="math notranslate nohighlight">\(\pi\)</span> contains an <span class="math notranslate nohighlight">\(i\)</span>-sequence.</p>
+If <span class="math notranslate nohighlight">\(b_i \ne  \mathtt{-}\)</span>, then <span class="math notranslate nohighlight">\(\pi\)</span> contains an <span class="math notranslate nohighlight">\(i\)</span>-sequence.</p>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
@@ -1121,7 +1058,7 @@ If <span class="math notranslate nohighlight">\(b_i \ne \siblank\)</span>, then 
 will prove the slightly stronger order property that we mentioned earlier:
 the <span class="math notranslate nohighlight">\(i\)</span>-sequence corresponding to
 <span class="math notranslate nohighlight">\(b_i\)</span> starts after the <span class="math notranslate nohighlight">\(j\)</span> sequence corresponding to <span class="math notranslate nohighlight">\(b_j\)</span> whenever <span class="math notranslate nohighlight">\(i &lt; j\)</span> and
-<span class="math notranslate nohighlight">\(b_i \ne \siblank\)</span> and <span class="math notranslate nohighlight">\(b_j \ne \siblank\)</span>.</p>
+<span class="math notranslate nohighlight">\(b_i \ne  \mathtt{-}\)</span> and <span class="math notranslate nohighlight">\(b_j \ne  \mathtt{-}\)</span>.</p>
 <p>The base case is trivially true, since the value of <span class="math notranslate nohighlight">\(b_0\)</span> asserts the existence
 of a 0-sequence, and any priority by itself is a <span class="math notranslate nohighlight">\(0\)</span>-sequence. So when Step 1 or
 Step 2 updates <span class="math notranslate nohighlight">\(b_0\)</span>, the corresponding <span class="math notranslate nohighlight">\(0\)</span>-sequence is the new priority, and
@@ -1142,7 +1079,7 @@ the new priority, to create an <span class="math notranslate nohighlight">\(i\)<
 exactly the same point as the sequence corresponding to <span class="math notranslate nohighlight">\(b_{i-1}\)</span>, and so the
 order property still holds.</p></li>
 <li><p>For Step 2 updates, we only need to argue that the value of <span class="math notranslate nohighlight">\(b'_i\)</span>
-correspond to an <span class="math notranslate nohighlight">\(i\)</span> sequence. This can be constructed as we showed in <a class="reference internal" href="#fig-ds2"><span class="std std-numref">Fig. 27</span></a>:
+correspond to an <span class="math notranslate nohighlight">\(i\)</span> sequence. This can be constructed as we showed in <a class="reference internal" href="#fig-ds2"><span class="std std-numref">Fig. 26</span></a>:
 take the <span class="math notranslate nohighlight">\(i\)</span>-sequence that corresponds to <span class="math notranslate nohighlight">\(b_i\)</span>, and
 replace the final priority with the new priority. Observe that the final
 priority of an <span class="math notranslate nohighlight">\(i\)</span>-sequence is permitted to be odd, and so this new sequence
@@ -1152,9 +1089,9 @@ point of this sequence has not changed, and so the order property is preserved.<
 </div>
 <p>As a consequence of the lemma above, if Adam has a strategy to ensure that no
 <span class="math notranslate nohighlight">\(k\)</span>-sequence occurs in the game, then Adam has a strategy to ensure that the
-<span class="math notranslate nohighlight">\(b_k\)</span> component of the record is never set so that <span class="math notranslate nohighlight">\(b_k \ne \siblank\)</span>.</p>
+<span class="math notranslate nohighlight">\(b_k\)</span> component of the record is never set so that <span class="math notranslate nohighlight">\(b_k \ne  \mathtt{-}\)</span>.</p>
 <p>It can be shown that the other direction is also true: if an <span class="math notranslate nohighlight">\(i\)</span>-sequence has
-occurred, then there will be some index <span class="math notranslate nohighlight">\(j \ge i\)</span> such that <span class="math notranslate nohighlight">\(b_j \ne \siblank\)</span>.
+occurred, then there will be some index <span class="math notranslate nohighlight">\(j \ge i\)</span> such that <span class="math notranslate nohighlight">\(b_j \ne  \mathtt{-}\)</span>.
 However, the proof is somewhat tedious, and this statement is actually stronger
 than what we need. To argue that the record can determine the winner of a parity
 game, the following weaker lemma suffices.</p>
@@ -1162,14 +1099,14 @@ game, the following weaker lemma suffices.</p>
 <p class="admonition-title"><span class="caption-number">Lemma 78 </span> (Weaker correctness for the separating automaton)</p>
 <div class="lemma-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\pi\)</span> an infinite play that is winning for Eve. For all <span class="math notranslate nohighlight">\(k\)</span>, there exists
-a prefix of <span class="math notranslate nohighlight">\(\pi\)</span> such that <span class="math notranslate nohighlight">\(b_k \ne \siblank\)</span>.</p>
+a prefix of <span class="math notranslate nohighlight">\(\pi\)</span> such that <span class="math notranslate nohighlight">\(b_k \ne  \mathtt{-}\)</span>.</p>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
 <p>Let <span class="math notranslate nohighlight">\(p\)</span> the largest even priority that is seen infinitely often, and let <span class="math notranslate nohighlight">\(j\)</span>
 be the first index after which no priority larger than <span class="math notranslate nohighlight">\(p\)</span> is visited. We argue
 that after index <span class="math notranslate nohighlight">\(j\)</span> has been reached, the record will eventually set <span class="math notranslate nohighlight">\(b_i \ne
-\siblank\)</span> for all <span class="math notranslate nohighlight">\(i\)</span>.</p>
+ \mathtt{-}\)</span> for all <span class="math notranslate nohighlight">\(i\)</span>.</p>
 <p>To see why, observe that after index <span class="math notranslate nohighlight">\(j\)</span> has been reached, Step 2 cannot replace
 any component <span class="math notranslate nohighlight">\(b_j\)</span> with <span class="math notranslate nohighlight">\(b_j = p\)</span>, since Step 2 can only overwrite the priority
 in <span class="math notranslate nohighlight">\(b_j\)</span> when the new priority <span class="math notranslate nohighlight">\(p'\)</span> satisfies <span class="math notranslate nohighlight">\(p' &gt; b_j\)</span>, but no priority <span class="math notranslate nohighlight">\(p' &gt;
@@ -1180,16 +1117,16 @@ we have observed this cannot be overwritten by Step 2. Moreover, since <span cla
 even, repeated application of Step 1 will
 build a longer and longer <span class="math notranslate nohighlight">\(i\)</span>-sequences whose outer domination
 priority is <span class="math notranslate nohighlight">\(p\)</span>. Thus, after we have made <span class="math notranslate nohighlight">\(2^k\)</span> visits to <span class="math notranslate nohighlight">\(p\)</span>, we will have set
-<span class="math notranslate nohighlight">\(b_k = p \ne \siblank\)</span>, if we have not done so already.</p>
+<span class="math notranslate nohighlight">\(b_k = p \ne  \mathtt{-}\)</span>, if we have not done so already.</p>
 </div>
 <p>Hence, if Eve wins the parity game, then she has a strategy to eventually ensure
-that <span class="math notranslate nohighlight">\(b_k \ne \siblank\)</span>. Combining the two lemmas above, with <a class="reference internal" href="#3-lem:isequencewin">Lemma 76</a> gives the following corollary.</p>
+that <span class="math notranslate nohighlight">\(b_k \ne  \mathtt{-}\)</span>. Combining the two lemmas above, with  <a class="reference internal" href="#3-lem:isequencewin">Lemma 76</a> gives the following corollary.</p>
 <div class="proof corollary admonition" id="3-cor:correctness_reduction_separating_automaton">
 <p class="admonition-title"><span class="caption-number">Corollary 79 </span> (Correctness of the reduction for the separating automaton)</p>
 <div class="corollary-content section" id="proof-content">
 <p>Suppose that we monitor the play of a parity game with a record <span class="math notranslate nohighlight">\(b_{\lceil \log
 n \rceil}, \dots, b_0\)</span>. Eve has a strategy that ensures <span class="math notranslate nohighlight">\(b_{\lceil \log n
-\rceil} \ne \siblank\)</span> if and only if Eve wins the parity game.</p>
+\rceil} \ne  \mathtt{-}\)</span> if and only if Eve wins the parity game.</p>
 </div>
 </div><blockquote>
 <div><p><strong>The size of the automaton.</strong></p>
@@ -1201,7 +1138,7 @@ transitions of the automaton are defined by the update rule.</p>
 <p>This automaton has quasipolynomial size. The number of states used in the
 automaton is the number of possible configurations of
 <span class="math notranslate nohighlight">\(b_{\lceil \log n \rceil}, \dots, b_0\)</span>. Each <span class="math notranslate nohighlight">\(b_i\)</span> can be one of the <span class="math notranslate nohighlight">\(d\)</span>
-priorities in the game, or the symbol <span class="math notranslate nohighlight">\(\siblank\)</span>, and so there are <span class="math notranslate nohighlight">\(d + 1\)</span>
+priorities in the game, or the symbol <span class="math notranslate nohighlight">\(\mathtt{-}\)</span>, and so there are <span class="math notranslate nohighlight">\(d + 1\)</span>
 possible values that it can take. Moreover there are <span class="math notranslate nohighlight">\(\log n + 1\)</span> components of
 the record, so the total number of configurations is at most
 <span class="math notranslate nohighlight">\((d+1)^{\log n +1} = n^{O(\log d)}\)</span>.</p>

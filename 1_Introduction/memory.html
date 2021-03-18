@@ -729,71 +729,10 @@
   <div class="section" id="memory">
 <span id="sec-memory"></span><h1>Memory<a class="headerlink" href="#memory" title="Permalink to this headline">¶</a></h1>
 <div class="math notranslate nohighlight">
-\[\newcommand{\Eve}{\textrm{Eve}}
-\newcommand{\Adam}{\textrm{Adam}}
-\newcommand{\set}[1]{\left\{ #1 \right\}}
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
-\newcommand{\argmax}{\textrm{argmax}}
-\newcommand{\argmin}{\textrm{argmin}}
-\newcommand{\Op}{\mathbb{O}}
-\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\textrm{supp}} 
-\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
-\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
-\newcommand{\mEve}{\mathrm{Eve}}
-\newcommand{\mAdam}{\mathrm{Adam}}
-\newcommand{\mRandom}{\mathrm{Random}}
-\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
-\newcommand{\ing}{\textrm{In}}
-\newcommand{\Ing}{\ing}
-\newcommand{\out}{\textrm{Out}}
-\newcommand{\Out}{\out}
-\newcommand{\dest}{\Delta} 
-\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
-\newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
-\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
-\newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\newcommand{\Win}{\textrm{Win}} 
-\newcommand{\Lose}{\textrm{Lose}} 
-\newcommand{\Value}{\textrm{val}} 
-\newcommand{\ValueE}{\textrm{val}_\mEve} 
-\newcommand{\ValueA}{\textrm{val}_\mAdam}
-\newcommand{\val}{\Value} 
-\newcommand{\Automaton}{\mathbf{A}} 
-\newcommand{\Safe}{\mathtt{Safe}}
-\newcommand{\Reach}{\mathtt{Reach}} 
-\newcommand{\Buchi}{\mathtt{Buchi}} 
-\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
-\newcommand{\Parity}{\mathtt{Parity}} 
-\newcommand{\Muller}{\mathtt{Muller}} 
-\newcommand{\Rabin}{\mathtt{Rabin}} 
-\newcommand{\Streett}{\mathtt{Streett}} 
-\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
-\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
-\newcommand{\Energy}{\mathtt{Energy}}
-\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
-\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
-\newcommand{\Sup}{\mathtt{Sup}}
-\newcommand{\Inf}{\mathtt{Inf}}
-\newcommand{\LimSup}{\mathtt{LimSup}}
-\newcommand{\LimInf}{\mathtt{LimInf}}
-\newcommand{\NL}{\textrm{NL}}
-\newcommand{\PTIME}{\textrm{PTIME}}
-\newcommand{\NP}{\textrm{NP}}
-\newcommand{\UP}{\textrm{UP}}
-\newcommand{\coNP}{\textrm{coNP}}
-\newcommand{\coUP}{\textrm{coUP}}
-\newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
-\newcommand{\EXP}{\textrm{EXP}}
-\newcommand{\kEXP}{\textrm{kEXP}}\]</div>
+\[\renewcommand{\Game}{\game}
+\]</div>
 <p>A strategy can be a very complicated object, in particular it is infinite.
-Indeed, it is a function <span class="math notranslate nohighlight">\(\sigma : \Paths \to E\)</span>,
+Indeed, it is a function <span class="math notranslate nohighlight">\(\sigma :  \textrm{Paths} \to E\)</span>,
 which means that in order to choose the next move the strategy considers everything played so far:
 the strategy depends upon the whole play.</p>
 <p>An important part of the study of games is to prove that simple strategies suffice for many purposes,
@@ -809,13 +748,13 @@ Formally, a positional strategy for Eve is a function</p>
 \[
 \sigma : V \to E.
 \]</div>
-<p>A positional strategy induces a strategy by <span class="math notranslate nohighlight">\(\widehat{\sigma}(\pi) = \sigma(\last(\pi))\)</span>.</p>
+<p>A positional strategy induces a strategy by <span class="math notranslate nohighlight">\(\widehat{\sigma}(\pi) = \sigma( \textrm{last}(\pi))\)</span>.</p>
 <p>For reasoning about positional strategies it is useful to define the following notion.
 Let <span class="math notranslate nohighlight">\(\Game\)</span> be a game and <span class="math notranslate nohighlight">\(\sigma\)</span> a positional strategy, we define <span class="math notranslate nohighlight">\(\Game[\sigma]\)</span> the graph with condition <span class="math notranslate nohighlight">\(W\)</span> induced by <span class="math notranslate nohighlight">\(\sigma\)</span> on <span class="math notranslate nohighlight">\(\Game\)</span>.
 The set of vertices is <span class="math notranslate nohighlight">\(V\)</span> and the set of edges is</p>
 <div class="math notranslate nohighlight">
 \[
-E[\sigma] = \set{e = (v,v') \in E : v \in \VA \text{ or } \left( v \in \VE \text{ and } \sigma(v) = e \right)}.
+E[\sigma] =  \left\{ e = (v,v') \in E : v \in  V_\mathrm{Adam} \text{ or  \right\} \left( v \in  V_\mathrm{Eve} \text{ and } \sigma(v) = e \right)}.
 \]</div>
 <p>It is equipped with the condition <span class="math notranslate nohighlight">\(W\)</span> inherited from <span class="math notranslate nohighlight">\(\Game\)</span>.</p>
 <div class="proof observation admonition" id="1-fact:game_induced_positional_strategy">
@@ -825,7 +764,7 @@ E[\sigma] = \set{e = (v,v') \in E : v \in \VA \text{ or } \left( v \in \VE \text
 Then the strategy <span class="math notranslate nohighlight">\(\sigma\)</span> is winning from <span class="math notranslate nohighlight">\(v\)</span> if and only if all infinite paths in <span class="math notranslate nohighlight">\(\Game[\sigma]\)</span> from <span class="math notranslate nohighlight">\(v\)</span> satisfy <span class="math notranslate nohighlight">\(W\)</span>.</p>
 </div>
 </div><p>We say that a qualitative objective <span class="math notranslate nohighlight">\(\Omega\)</span> is positionally determined (sometimes simply positional) if
-for every game <span class="math notranslate nohighlight">\(\game\)</span> with objective <span class="math notranslate nohighlight">\(\Omega\)</span> and every vertex <span class="math notranslate nohighlight">\(v\)</span>,
+for every game <span class="math notranslate nohighlight">\(\mathcal{G}\)</span> with objective <span class="math notranslate nohighlight">\(\Omega\)</span> and every vertex <span class="math notranslate nohighlight">\(v\)</span>,
 if Eve has a winning strategy from <span class="math notranslate nohighlight">\(v\)</span>, then she has a positional winning strategy from <span class="math notranslate nohighlight">\(v\)</span>.</p>
 <p>As we discussed earlier, the task of solving a game does not include constructing winning strategies.
 We present a general binary search technique for doing so assuming positional determinacy.</p>
@@ -840,8 +779,8 @@ using <span class="math notranslate nohighlight">\(n \cdot \log(\frac{m}{n})\)</
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
 <p>Let <span class="math notranslate nohighlight">\(\Omega\)</span> be a positionally determined objective and <span class="math notranslate nohighlight">\(\Game\)</span> a qualitative game with objective <span class="math notranslate nohighlight">\(\Omega\)</span>.
-We first determine <span class="math notranslate nohighlight">\(\WE(\Game)\)</span>, which requires one call to a solving algorithm for each vertex.
-We fix a vertex <span class="math notranslate nohighlight">\(v \in \WE(\Game)\)</span> and determine a winning positional move from <span class="math notranslate nohighlight">\(v\)</span>.
+We first determine <span class="math notranslate nohighlight">\(W_\mathrm{Eve}(\Game)\)</span>, which requires one call to a solving algorithm for each vertex.
+We fix a vertex <span class="math notranslate nohighlight">\(v \in  W_\mathrm{Eve}(\Game)\)</span> and determine a winning positional move from <span class="math notranslate nohighlight">\(v\)</span>.
 We let <span class="math notranslate nohighlight">\(d(v)\)</span> denote the outdegree of <span class="math notranslate nohighlight">\(v\)</span>.
 We choose a subset of <span class="math notranslate nohighlight">\(\lfloor \frac{d(v)}{2} \rfloor\)</span> outgoing edges of <span class="math notranslate nohighlight">\(v\)</span>, construct the game where we remove these edges,
 and solve it using <span class="math notranslate nohighlight">\(v\)</span> as initial vertex.
@@ -864,9 +803,9 @@ We illustrate it on <a class="reference internal" href="#fig-parity-game-example
 <p class="caption"><span class="caption-number">Fig. 5 </span><span class="caption-text">The example of a parity game given in <a class="reference internal" href="objectives.html#fig-parity-game-example"><span class="std std-numref">Fig. 3</span></a> with additional positional winning strategies for both players (corresponding to dashed edges).</span><a class="headerlink" href="#fig-parity-game-example-positional" title="Permalink to this image">¶</a></p>
 </div>
 <p>We say that a quantitative objective <span class="math notranslate nohighlight">\(\Phi\)</span> is positionally determined if
-for every game <span class="math notranslate nohighlight">\(\game\)</span> with objective <span class="math notranslate nohighlight">\(\Phi\)</span> and every vertex <span class="math notranslate nohighlight">\(v\)</span>,
+for every game <span class="math notranslate nohighlight">\(\mathcal{G}\)</span> with objective <span class="math notranslate nohighlight">\(\Phi\)</span> and every vertex <span class="math notranslate nohighlight">\(v\)</span>,
 there exists a positional optimal strategy from <span class="math notranslate nohighlight">\(v\)</span>.
-Let us state the quantitative counterpart of <a class="reference internal" href="#1-lem:constructing_winning_strategy">Lemma 15</a>.
+Let us state the quantitative counterpart of  <a class="reference internal" href="#1-lem:constructing_winning_strategy">Lemma 15</a>.
 The proof is the same.</p>
 <div class="proof lemma admonition" id="1-lem:constructing_winning_strategy_quantitative">
 <p class="admonition-title"><span class="caption-number">Lemma 16 </span> (Binary search for constructive winning strategies, quantitative case)</p>
@@ -879,8 +818,8 @@ using <span class="math notranslate nohighlight">\(n \cdot \log(\frac{m}{n})\)</
 </div></div>
 <div class="section" id="uniformity">
 <h2>Uniformity<a class="headerlink" href="#uniformity" title="Permalink to this headline">¶</a></h2>
-<p>A qualitative objective <span class="math notranslate nohighlight">\(\Omega\)</span> is uniformly positionally determined if for every game <span class="math notranslate nohighlight">\(\game\)</span> with objective <span class="math notranslate nohighlight">\(\Omega\)</span>,
-Eve has a positional strategy which is winning from <span class="math notranslate nohighlight">\(\WE(\game)\)</span>, meaning from every vertex in <span class="math notranslate nohighlight">\(\WE(\game)\)</span>.
+<p>A qualitative objective <span class="math notranslate nohighlight">\(\Omega\)</span> is uniformly positionally determined if for every game <span class="math notranslate nohighlight">\(\mathcal{G}\)</span> with objective <span class="math notranslate nohighlight">\(\Omega\)</span>,
+Eve has a positional strategy which is winning from <span class="math notranslate nohighlight">\(W_\mathrm{Eve}( \mathcal{G})\)</span>, meaning from every vertex in <span class="math notranslate nohighlight">\(W_\mathrm{Eve}( \mathcal{G})\)</span>.
 Similarly, a quantitative objective <span class="math notranslate nohighlight">\(\Phi\)</span> is uniformly positionally determined if for every game with objective <span class="math notranslate nohighlight">\(\Phi\)</span>,
 Eve has a positional strategy which is optimal from every vertex.</p>
 <p>Being uniformly positionally determined is a stronger property than being positionally determined, but in most cases an objective satisfies either both or none, as for example if the objective is prefix independent.</p>
@@ -891,9 +830,9 @@ Eve has a positional strategy which is optimal from every vertex.</p>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
-<p>Let us consider a game <span class="math notranslate nohighlight">\(\game\)</span> with qualitative objective <span class="math notranslate nohighlight">\(\Omega\)</span> (the argument is exactly the same for quantitative objectives so we will not repeat it).
-For each <span class="math notranslate nohighlight">\(v \in \WE(\game)\)</span> let <span class="math notranslate nohighlight">\(\sigma_v\)</span> be a positional winning strategy.
-Thanks to~\cref{1-fact:winning_prefix_independent_qualitative}
+<p>Let us consider a game <span class="math notranslate nohighlight">\(\mathcal{G}\)</span> with qualitative objective <span class="math notranslate nohighlight">\(\Omega\)</span> (the argument is exactly the same for quantitative objectives so we will not repeat it).
+For each <span class="math notranslate nohighlight">\(v \in  W_\mathrm{Eve}( \mathcal{G})\)</span> let <span class="math notranslate nohighlight">\(\sigma_v\)</span> be a positional winning strategy.
+Thanks to \cref{1-fact:winning_prefix_independent_qualitative}
 the strategy <span class="math notranslate nohighlight">\(\sigma_v\)</span> is winning from all vertices reachable by a play consistent with <span class="math notranslate nohighlight">\(\sigma_v\)</span> starting from <span class="math notranslate nohighlight">\(v\)</span>.
 Without loss of generality let us assume that <span class="math notranslate nohighlight">\(\sigma_v\)</span> is only defined on these vertices.</p>
 <p>We fix <span class="math notranslate nohighlight">\(\le\)</span> a total order on the set of vertices.</p>
@@ -902,8 +841,8 @@ Without loss of generality let us assume that <span class="math notranslate nohi
 <p>The argument we give in this proof extends to infinite games whose set of vertices can be well ordered. A well-order is a total order such that every non-empty subset has a least element, which is exactly the property we need in this proof.</p>
 </div>
 <p>We let <span class="math notranslate nohighlight">\(\sigma\)</span> be the positional strategy defined by <span class="math notranslate nohighlight">\(\sigma(u)\)</span> is <span class="math notranslate nohighlight">\(\sigma_v(u)\)</span> where <span class="math notranslate nohighlight">\(v\)</span> is the least vertex (with respect to <span class="math notranslate nohighlight">\(\le\)</span>) such that <span class="math notranslate nohighlight">\(\sigma_v\)</span> is defined on <span class="math notranslate nohighlight">\(u\)</span>. We say that <span class="math notranslate nohighlight">\(\sigma\)</span> uses <span class="math notranslate nohighlight">\(\sigma_v\)</span> at <span class="math notranslate nohighlight">\(u\)</span>.</p>
-<p>We argue that <span class="math notranslate nohighlight">\(\sigma\)</span> is winning from <span class="math notranslate nohighlight">\(\WE(\game)\)</span>.
-Consider a play consistent with <span class="math notranslate nohighlight">\(\sigma\)</span> starting from some vertex in <span class="math notranslate nohighlight">\(\WE(\game)\)</span> and look at the sequence of strategies it uses.
+<p>We argue that <span class="math notranslate nohighlight">\(\sigma\)</span> is winning from <span class="math notranslate nohighlight">\(W_\mathrm{Eve}( \mathcal{G})\)</span>.
+Consider a play consistent with <span class="math notranslate nohighlight">\(\sigma\)</span> starting from some vertex in <span class="math notranslate nohighlight">\(W_\mathrm{Eve}( \mathcal{G})\)</span> and look at the sequence of strategies it uses.
 By definition this sequence is non-increasing (with respect to <span class="math notranslate nohighlight">\(\le\)</span>), hence it is stationary.
 In other words the play is eventually consistent with some strategy <span class="math notranslate nohighlight">\(\sigma_v\)</span>, implying that this suffix satisfies <span class="math notranslate nohighlight">\(\Omega\)</span>.
 Since <span class="math notranslate nohighlight">\(\Omega\)</span> is prefix independent this means that the play itself satisfies <span class="math notranslate nohighlight">\(\Omega\)</span>, so <span class="math notranslate nohighlight">\(\sigma\)</span> is indeed winning.</p>
@@ -917,30 +856,30 @@ A more powerful class of strategies is <strong>finite memory</strong> strategies
 Intuitively, a finite memory strategy uses a finite state machine called a memory structure
 to store the relevant pieces of information about the play constructed so far.</p>
 <p>To define finite memory strategies formally, we fix a graph <span class="math notranslate nohighlight">\(G\)</span>.
-A memory structure is <span class="math notranslate nohighlight">\(\mem = (M, m_0, \delta)\)</span>: the set <span class="math notranslate nohighlight">\(M\)</span> is a set of (memory) states,
+A memory structure is <span class="math notranslate nohighlight">\(\mathcal{M} = (M, m_0, \delta)\)</span>: the set <span class="math notranslate nohighlight">\(M\)</span> is a set of (memory) states,
 <span class="math notranslate nohighlight">\(m_0 \in M\)</span> is the initial state and <span class="math notranslate nohighlight">\(\delta : M \times E \to M\)</span> is the update function.
 The update function is extended to <span class="math notranslate nohighlight">\(\delta^* : E^* \to M\)</span> by
 <span class="math notranslate nohighlight">\(\delta^*(\varepsilon) = m_0\)</span> and <span class="math notranslate nohighlight">\(\delta^* (\rho e) = \delta(\delta^*(\rho), e)\)</span>.
 The size of a memory structure is its number of states.
 Note that a memory structure is a deterministic automaton over the alphabet <span class="math notranslate nohighlight">\(E\)</span> but without specifying the acceptance condition.</p>
-<p>We define a strategy using <span class="math notranslate nohighlight">\(\mem\)</span> as a function</p>
+<p>We define a strategy using <span class="math notranslate nohighlight">\(\mathcal{M}\)</span> as a function</p>
 <div class="math notranslate nohighlight">
 \[
-\sigma : \VE \times M \to E.
+\sigma :  V_\mathrm{Eve} \times M \to E.
 \]</div>
-<p>It induces a strategy <span class="math notranslate nohighlight">\(\widehat{\sigma}\)</span> via <span class="math notranslate nohighlight">\(\widehat{\sigma}(\pi) = \sigma(\last(\pi), \delta^*(\pi))\)</span>.
+<p>It induces a strategy <span class="math notranslate nohighlight">\(\widehat{\sigma}\)</span> via <span class="math notranslate nohighlight">\(\widehat{\sigma}(\pi) = \sigma( \textrm{last}(\pi), \delta^*(\pi))\)</span>.
 A common abuse of notations is to write <span class="math notranslate nohighlight">\(\sigma\)</span> for <span class="math notranslate nohighlight">\(\widehat{\sigma}\)</span>.</p>
 <p>We note that positional strategies correspond to strategies using the trivial memory structure consisting of only one state.</p>
 <p>We say that a qualitative objective <span class="math notranslate nohighlight">\(\Omega\)</span> is determined with finite memory strategies if
-for every game <span class="math notranslate nohighlight">\(\game\)</span> and every vertex <span class="math notranslate nohighlight">\(v\)</span>,
+for every game <span class="math notranslate nohighlight">\(\mathcal{G}\)</span> and every vertex <span class="math notranslate nohighlight">\(v\)</span>,
 if Eve has a winning strategy from <span class="math notranslate nohighlight">\(v\)</span>, then she has a winning strategy from <span class="math notranslate nohighlight">\(v\)</span> using finite memory.
 There are several variants of this definition covering cases where the memory is constant or bounded, and whether it holds for one or both players,
 and uniformly over all vertices or not.</p>
 <p>We give in <a class="reference internal" href="#fig-memory-required"><span class="std std-numref">Fig. 6</span></a> an example of a game where Eve has a winning strategy using two memory states
 but no positional winning strategy.
-Let us consider the condition <span class="math notranslate nohighlight">\(\Buchi[\set{v_1}] \wedge \Buchi[\set{v_2}]\)</span>, meaning that a play is winning if both <span class="math notranslate nohighlight">\(v_1\)</span> and <span class="math notranslate nohighlight">\(v_2\)</span> are visited infinitely many times. A positional strategy would either always choose to go left to <span class="math notranslate nohighlight">\(v_1\)</span> or to the right to <span class="math notranslate nohighlight">\(v_2\)</span>, hence does not satisfy the condition.
+Let us consider the condition <span class="math notranslate nohighlight">\(\mathtt{Buchi}[ \left\{ v_1 \right\}] \wedge  \mathtt{Buchi}[ \left\{ v_2 \right\}]\)</span>, meaning that a play is winning if both <span class="math notranslate nohighlight">\(v_1\)</span> and <span class="math notranslate nohighlight">\(v_2\)</span> are visited infinitely many times. A positional strategy would either always choose to go left to <span class="math notranslate nohighlight">\(v_1\)</span> or to the right to <span class="math notranslate nohighlight">\(v_2\)</span>, hence does not satisfy the condition.
 Some memory is required to switch between the two.</p>
-<p>Formally we let <span class="math notranslate nohighlight">\(\mem = (\set{m_1,m_2},m_1,\delta)\)</span> defined by</p>
+<p>Formally we let <span class="math notranslate nohighlight">\(\mathcal{M} = ( \left\{ m_1,m_2 \right\},m_1,\delta)\)</span> defined by</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{array}{lll}
@@ -951,10 +890,10 @@ Some memory is required to switch between the two.</p>
 \end{array}
 \end{split}\]</div>
 <p>Then we define <span class="math notranslate nohighlight">\(\sigma(v_0,m_1) = (v_0,v_1)\)</span> and <span class="math notranslate nohighlight">\(\sigma(v_0,m_2) = (v_0,v_2)\)</span>
-inducing the winning strategy <span class="math notranslate nohighlight">\(\widehat{\sigma}\)</span> using <span class="math notranslate nohighlight">\(\Mem\)</span>.</p>
+inducing the winning strategy <span class="math notranslate nohighlight">\(\widehat{\sigma}\)</span> using <span class="math notranslate nohighlight">\(\mathcal{M}\)</span>.</p>
 <div class="figure align-center" id="fig-memory-required">
 <img alt="../_images/1-fig:memory_required.png" src="../_images/1-fig:memory_required.png" />
-<p class="caption"><span class="caption-number">Fig. 6 </span><span class="caption-text">A game where Eve has a winning strategy for <span class="math notranslate nohighlight">\(\Buchi(v_1) \wedge \Buchi(v_2)\)</span> using two memory states
+<p class="caption"><span class="caption-number">Fig. 6 </span><span class="caption-text">A game where Eve has a winning strategy for <span class="math notranslate nohighlight">\(\mathtt{Buchi}(v_1) \wedge  \mathtt{Buchi}(v_2)\)</span> using two memory states
 but no positional winning strategy.</span><a class="headerlink" href="#fig-memory-required" title="Permalink to this image">¶</a></p>
 </div>
 </div>

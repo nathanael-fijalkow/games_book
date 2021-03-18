@@ -754,74 +754,8 @@
   <div class="section" id="a-quasipolynomial-time-value-iteration-algorithm">
 <span id="sec-value-iteration"></span><h1>A quasipolynomial time value iteration algorithm<a class="headerlink" href="#a-quasipolynomial-time-value-iteration-algorithm" title="Permalink to this headline">¶</a></h1>
 <div class="math notranslate nohighlight">
-\[\renewcommand{\H}{\mathcal{H}} 
-\newcommand{\Lift}{\textrm{Lift}} 
-\newcommand{\F}{\mathcal{F}} 
-\newcommand{\sinit}{\sigma_{\textnormal{init}}}
-\newcommand{\siblank}{\mathtt{-}}
-\newcommand{\Eve}{\textrm{Eve}}
-\newcommand{\Adam}{\textrm{Adam}}
-\newcommand{\set}[1]{\left\{ #1 \right\}}
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
-\newcommand{\argmax}{\textrm{argmax}}
-\newcommand{\argmin}{\textrm{argmin}}
-\newcommand{\Op}{\mathbb{O}}
-\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\textrm{supp}} 
-\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
-\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
-\newcommand{\mEve}{\mathrm{Eve}}
-\newcommand{\mAdam}{\mathrm{Adam}}
-\newcommand{\mRandom}{\mathrm{Random}}
-\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
-\newcommand{\ing}{\textrm{In}}
-\newcommand{\Ing}{\ing}
-\newcommand{\out}{\textrm{Out}}
-\newcommand{\Out}{\out}
-\newcommand{\dest}{\Delta} 
-\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
-\newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
-\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
-\newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\newcommand{\Win}{\textrm{Win}} 
-\newcommand{\Lose}{\textrm{Lose}} 
-\newcommand{\Value}{\textrm{val}} 
-\newcommand{\ValueE}{\textrm{val}_\mEve} 
-\newcommand{\ValueA}{\textrm{val}_\mAdam}
-\newcommand{\val}{\Value} 
-\newcommand{\Automaton}{\mathbf{A}} 
-\newcommand{\Safe}{\mathtt{Safe}}
-\newcommand{\Reach}{\mathtt{Reach}} 
-\newcommand{\Buchi}{\mathtt{Buchi}} 
-\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
-\newcommand{\Parity}{\mathtt{Parity}} 
-\newcommand{\Muller}{\mathtt{Muller}} 
-\newcommand{\Rabin}{\mathtt{Rabin}} 
-\newcommand{\Streett}{\mathtt{Streett}} 
-\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
-\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
-\newcommand{\Energy}{\mathtt{Energy}}
-\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
-\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
-\newcommand{\Sup}{\mathtt{Sup}}
-\newcommand{\Inf}{\mathtt{Inf}}
-\newcommand{\LimSup}{\mathtt{LimSup}}
-\newcommand{\LimInf}{\mathtt{LimInf}}
-\newcommand{\NL}{\textrm{NL}}
-\newcommand{\PTIME}{\textrm{PTIME}}
-\newcommand{\NP}{\textrm{NP}}
-\newcommand{\UP}{\textrm{UP}}
-\newcommand{\coNP}{\textrm{coNP}}
-\newcommand{\coUP}{\textrm{coUP}}
-\newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
-\newcommand{\EXP}{\textrm{EXP}}
-\newcommand{\kEXP}{\textrm{kEXP}}\]</div>
+\[ \begin{align}\begin{aligned}\renewcommand{\H}{\mathcal{H}}\\\renewcommand{\Game}{\game}
+\end{aligned}\end{align} \]</div>
 <div class="proof theorem admonition" id="3-thm:value_iteration_quasipoly">
 <p class="admonition-title"><span class="caption-number">Theorem 80 </span> (NEEDS TITLE 3-thm:value_iteration_quasipoly)</p>
 <div class="theorem-content section" id="proof-content">
@@ -834,28 +768,28 @@ O\left(nm \log(n) \log(d) \cdot  \binom{\lceil \log(n) \rceil + d/2 - 1}{\lceil 
 The space complexity of the algorithm is <span class="math notranslate nohighlight">\(O(m + n \log(d))\)</span>.</p>
 </div>
 </div><p>We rely on the high-level presentation of value iteration algorithms given in Section <a class="reference internal" href="../1_Introduction/value_iteration.html#sec-value-iteration"><span class="std std-ref">Value iteration algorithms</span></a>.
-Let <span class="math notranslate nohighlight">\(\game = (\arena,\Parity[\col])\)</span> a parity game with <span class="math notranslate nohighlight">\(n\)</span> vertices and priorities in <span class="math notranslate nohighlight">\([1,d]\)</span>,
+Let <span class="math notranslate nohighlight">\(\mathcal{G} = ( \mathcal{A}, \mathtt{Parity}[ \textsf{col}])\)</span> a parity game with <span class="math notranslate nohighlight">\(n\)</span> vertices and priorities in <span class="math notranslate nohighlight">\([1,d]\)</span>,
 and without loss of generality <span class="math notranslate nohighlight">\(d\)</span> is even.</p>
-<p>The first step is to define a notion of value function <span class="math notranslate nohighlight">\(\val^\game : V \to Y\)</span> with <span class="math notranslate nohighlight">\((Y,\le)\)</span> a lattice satisfying the characterisation principle:
-for all vertices <span class="math notranslate nohighlight">\(v\)</span> we have that Eve wins from <span class="math notranslate nohighlight">\(v\)</span> if and only if <span class="math notranslate nohighlight">\(\val^\game(v) \neq \bot\)</span>, where <span class="math notranslate nohighlight">\(\bot\)</span> is the least element in <span class="math notranslate nohighlight">\(Y\)</span>.
-The goal of the algorithm is to compute <span class="math notranslate nohighlight">\(\val^\game\)</span>, from which we then easily obtain the winning region thanks to the characterisation principle.</p>
-<p>To set the machinery of value iteration algorithms in motion we can either construct <span class="math notranslate nohighlight">\(\val^\game\)</span> as the unique fixed point of a contracting operator using Banach’s fixed point theorem or the greatest fixed point of a monotonic operator using Kleene’s fixed point theorem.</p>
+<p>The first step is to define a notion of value function <span class="math notranslate nohighlight">\(\textrm{val}^ \mathcal{G} : V \to Y\)</span> with <span class="math notranslate nohighlight">\((Y,\le)\)</span> a lattice satisfying the characterisation principle:
+for all vertices <span class="math notranslate nohighlight">\(v\)</span> we have that Eve wins from <span class="math notranslate nohighlight">\(v\)</span> if and only if <span class="math notranslate nohighlight">\(\textrm{val}^ \mathcal{G}(v) \neq \bot\)</span>, where <span class="math notranslate nohighlight">\(\bot\)</span> is the least element in <span class="math notranslate nohighlight">\(Y\)</span>.
+The goal of the algorithm is to compute <span class="math notranslate nohighlight">\(\textrm{val}^ \mathcal{G}\)</span>, from which we then easily obtain the winning region thanks to the characterisation principle.</p>
+<p>To set the machinery of value iteration algorithms in motion we can either construct <span class="math notranslate nohighlight">\(\textrm{val}^ \mathcal{G}\)</span> as the unique fixed point of a contracting operator using Banach’s fixed point theorem or the greatest fixed point of a monotonic operator using Kleene’s fixed point theorem.</p>
 <p>Let us here follow the second approach.
 We let <span class="math notranslate nohighlight">\(F_V\)</span> be the lattice of functions <span class="math notranslate nohighlight">\(V \to Y\)</span> equipped with the componentwise order induced by <span class="math notranslate nohighlight">\(Y\)</span>.
-We are looking for a monotonic function <span class="math notranslate nohighlight">\(\delta : Y \times [1,d] \to Y\)</span> inducing the operator <span class="math notranslate nohighlight">\(\Op : F_V \to F_V\)</span> defined by:</p>
+We are looking for a monotonic function <span class="math notranslate nohighlight">\(\delta : Y \times [1,d] \to Y\)</span> inducing the operator <span class="math notranslate nohighlight">\(\mathbb{O} : F_V \to F_V\)</span> defined by:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-\Op(\mu)(v) = 
+ \mathbb{O}(\mu)(v) = 
 \begin{cases}
-\max \set{\delta( \mu(v'), \col(v)) : (v,v') \in E} &amp; \text{ if } v \in \VE, \\
-\min \set{\delta( \mu(v'), \col(v)) : (v,v') \in E} &amp; \text{ if } v \in \VA,
+\max  \left\{ \delta( \mu(v'),  \textsf{col \right\}(v)) : (v,v') \in E} &amp; \text{ if } v \in  V_\mathrm{Eve}, \\
+\min  \left\{ \delta( \mu(v'),  \textsf{col \right\}(v)) : (v,v') \in E} &amp; \text{ if } v \in  V_\mathrm{Adam},
 \end{cases}
 \end{split}\]</div>
-<p>such that <span class="math notranslate nohighlight">\(\val^\game\)</span> is the greatest fixed point of <span class="math notranslate nohighlight">\(\Op\)</span>.
-The algorithm would then simply use  <a class="reference internal" href="../1_Introduction/fixed_points.html#1-thm:kleene">Theorem 24</a> to compute <span class="math notranslate nohighlight">\(\val^\game\)</span> by iterating the operator <span class="math notranslate nohighlight">\(\Op\)</span>.</p>
-<p>Let us look at this question using the notion of progress measures, which are post-fixed points of <span class="math notranslate nohighlight">\(\Op\)</span>,
-meaning <span class="math notranslate nohighlight">\(\mu\)</span> such that <span class="math notranslate nohighlight">\(\mu \le \Op(\mu)\)</span>.
-Since the greatest fixed point of <span class="math notranslate nohighlight">\(\Op\)</span> is also its greatest post-fixed point, an equivalent formulation of the characterisation principle above reads: for all vertices <span class="math notranslate nohighlight">\(v\)</span> we have that Eve wins from <span class="math notranslate nohighlight">\(v\)</span> if and only if there exists a progress measure <span class="math notranslate nohighlight">\(\mu\)</span> such that <span class="math notranslate nohighlight">\(\mu(v) \neq \bot\)</span>.</p>
+<p>such that <span class="math notranslate nohighlight">\(\textrm{val}^ \mathcal{G}\)</span> is the greatest fixed point of <span class="math notranslate nohighlight">\(\mathbb{O}\)</span>.
+The algorithm would then simply use  <a class="reference internal" href="../1_Introduction/fixed_points.html#1-thm:kleene">Theorem 24</a> to compute <span class="math notranslate nohighlight">\(\textrm{val}^ \mathcal{G}\)</span> by iterating the operator <span class="math notranslate nohighlight">\(\mathbb{O}\)</span>.</p>
+<p>Let us look at this question using the notion of progress measures, which are post-fixed points of <span class="math notranslate nohighlight">\(\mathbb{O}\)</span>,
+meaning <span class="math notranslate nohighlight">\(\mu\)</span> such that <span class="math notranslate nohighlight">\(\mu \le  \mathbb{O}(\mu)\)</span>.
+Since the greatest fixed point of <span class="math notranslate nohighlight">\(\mathbb{O}\)</span> is also its greatest post-fixed point, an equivalent formulation of the characterisation principle above reads: for all vertices <span class="math notranslate nohighlight">\(v\)</span> we have that Eve wins from <span class="math notranslate nohighlight">\(v\)</span> if and only if there exists a progress measure <span class="math notranslate nohighlight">\(\mu\)</span> such that <span class="math notranslate nohighlight">\(\mu(v) \neq \bot\)</span>.</p>
 <p>To summarise this discussion, we are looking for a lattice <span class="math notranslate nohighlight">\((Y,\le)\)</span> and a monotonic function <span class="math notranslate nohighlight">\(\delta : Y \times [1,d] \to Y\)</span>
 such that for all parity games <span class="math notranslate nohighlight">\(\Game\)</span> with <span class="math notranslate nohighlight">\(n\)</span> vertices and priorities in <span class="math notranslate nohighlight">\([1,d]\)</span>,
 for all vertices <span class="math notranslate nohighlight">\(v\)</span> we have that Eve wins from <span class="math notranslate nohighlight">\(v\)</span> if and only if there exists a progress measure <span class="math notranslate nohighlight">\(\mu\)</span> such that <span class="math notranslate nohighlight">\(\mu(v) \neq \bot\)</span>.
@@ -870,7 +804,7 @@ and a tree <span class="math notranslate nohighlight">\(t\)</span> of height <sp
 All trees we consider have height <span class="math notranslate nohighlight">\(h = d/2\)</span>.</p>
 <div class="figure align-center" id="fig-example-universal">
 <img alt="../_images/3-fig:example_universal.png" src="../_images/3-fig:example_universal.png" />
-<p class="caption"><span class="caption-number">Fig. 28 </span><span class="caption-text">On the left, a tree for <span class="math notranslate nohighlight">\(d = 4\)</span>, which is the smallest <span class="math notranslate nohighlight">\((5,2)\)</span>-universal tree:
+<p class="caption"><span class="caption-number">Fig. 27 </span><span class="caption-text">On the left, a tree for <span class="math notranslate nohighlight">\(d = 4\)</span>, which is the smallest <span class="math notranslate nohighlight">\((5,2)\)</span>-universal tree:
 it has size <span class="math notranslate nohighlight">\(11\)</span> (meaning it has <span class="math notranslate nohighlight">\(11\)</span> branches).
 On the right, a tree of size <span class="math notranslate nohighlight">\(5\)</span> and one possible embedding into the universal tree.</span><a class="headerlink" href="#fig-example-universal" title="Permalink to this image">¶</a></p>
 </div>
@@ -886,7 +820,7 @@ there exist <span class="math notranslate nohighlight">\(i_1 &lt; \dots &lt; i_k
 <p>A tree is <span class="math notranslate nohighlight">\((n,h)\)</span>-<strong>universal</strong> if it embeds all trees of size <span class="math notranslate nohighlight">\(n\)</span> and height <span class="math notranslate nohighlight">\(h\)</span>.</p>
 <p>A tree is <span class="math notranslate nohighlight">\((n,h)\)</span>-<strong>universal</strong> if it embeds all trees of size <span class="math notranslate nohighlight">\(n\)</span> and height <span class="math notranslate nohighlight">\(h\)</span>.</p>
 </div>
-</div><p>We refer to <a class="reference internal" href="#fig-example-universal"><span class="std std-numref">Fig. 28</span></a> for an example of a <span class="math notranslate nohighlight">\((5,2)\)</span>-universal tree.
+</div><p>We refer to <a class="reference internal" href="#fig-example-universal"><span class="std std-numref">Fig. 27</span></a> for an example of a <span class="math notranslate nohighlight">\((5,2)\)</span>-universal tree.
 A first example of an <span class="math notranslate nohighlight">\((n,h)\)</span>-universal tree is the tree where each node has degree <span class="math notranslate nohighlight">\(n\)</span>:
 formally we define it recursively by <span class="math notranslate nohighlight">\(T_{n,0}\)</span> is a leaf, and <span class="math notranslate nohighlight">\(T_{n,h+1} = [\underbrace{T_{n,h},\dots,T_{n,h}}_{n \text{ copies}}]\)</span>.
 It has size <span class="math notranslate nohighlight">\(n^h\)</span>.</p>
@@ -899,13 +833,11 @@ It has size <span class="math notranslate nohighlight">\(n^h\)</span>.</p>
 <div class="theorem-content section" id="proof-content">
 <p>There exists an <span class="math notranslate nohighlight">\((n,h)\)</span>-universal tree with size <span class="math notranslate nohighlight">\(f(n,h)\)</span>, where <span class="math notranslate nohighlight">\(\mu\)</span> satisfies the following:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{array}{lll}
+\[\begin{split}\begin{array}{lll}
 f(n,h) &amp; = &amp; f(n,h-1) + f(\lfloor n/2 \rfloor,h) + f(\lceil n/2 \rceil - 1,h), \\
 f(n,1) &amp; = &amp; n, \\
 f(1,h) &amp; = &amp; 1.
-\end{array}
-\end{split}\]</div>
+\end{array}\end{split}\]</div>
 </div>
 </div><p>An upper bound is given by</p>
 <div class="math notranslate nohighlight">
@@ -932,10 +864,10 @@ we define <span class="math notranslate nohighlight">\(T\)</span> as</p>
 \[
 [T^1_{\text{left}},\dots,T^k_{\text{left}},\ T_\text{middle},\ T^1_{\text{right}},\dots,T^{k'}_{\text{right}}].
 \]</div>
-<p>The construction is illustrated in <a class="reference internal" href="#fig-smallest-tree-construction"><span class="std std-numref">Fig. 29</span></a>.</p>
+<p>The construction is illustrated in <a class="reference internal" href="#fig-smallest-tree-construction"><span class="std std-numref">Fig. 28</span></a>.</p>
 <div class="figure align-center" id="fig-smallest-tree-construction">
 <img alt="../_images/3-fig:smallest_tree_construction.png" src="../_images/3-fig:smallest_tree_construction.png" />
-<p class="caption"><span class="caption-number">Fig. 29 </span><span class="caption-text">The inductive construction.</span><a class="headerlink" href="#fig-smallest-tree-construction" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 28 </span><span class="caption-text">The inductive construction.</span><a class="headerlink" href="#fig-smallest-tree-construction" title="Permalink to this image">¶</a></p>
 </div>
 <p>We argue that <span class="math notranslate nohighlight">\(T\)</span> is <span class="math notranslate nohighlight">\((n,h)\)</span>-universal.
 Consider a tree <span class="math notranslate nohighlight">\(t = [t_1,\dots,t_k]\)</span> with <span class="math notranslate nohighlight">\(n\)</span> branches.
@@ -956,7 +888,7 @@ so it embeds into <span class="math notranslate nohighlight">\(T_\text{left}\)</
 so it embeds into <span class="math notranslate nohighlight">\(T_\text{right}\)</span> by induction hypothesis.</p></li>
 </ul>
 </div>
-<p>The construction given in the proof yields the smallest <span class="math notranslate nohighlight">\((5,2)\)</span>-universal tree illustrated in <a class="reference internal" href="#fig-example-universal"><span class="std std-numref">Fig. 28</span></a>.</p>
+<p>The construction given in the proof yields the smallest <span class="math notranslate nohighlight">\((5,2)\)</span>-universal tree illustrated in <a class="reference internal" href="#fig-example-universal"><span class="std std-numref">Fig. 27</span></a>.</p>
 </div>
 <div class="section" id="ordering-the-branches">
 <h2>Ordering the branches<a class="headerlink" href="#ordering-the-branches" title="Permalink to this headline">¶</a></h2>
@@ -977,14 +909,14 @@ if <span class="math notranslate nohighlight">\(b_{\ge p}\ &lt;\ b'_{\ge p}\)</s
 <li><p>For <span class="math notranslate nohighlight">\(p\)</span> even, we say that <span class="math notranslate nohighlight">\(b \vartriangleleft_p b'\)</span>
 if <span class="math notranslate nohighlight">\(b_{\ge p}\ \le\ b'_{\ge p}\)</span>.</p></li>
 </ul>
-<p>To interpret <span class="math notranslate nohighlight">\(\vartriangleleft_p\)</span> on the tree, we label the levels by priorities from bottom to top as in <a class="reference internal" href="#fig-example-universal"><span class="std std-numref">Fig. 28</span></a>.
+<p>To interpret <span class="math notranslate nohighlight">\(\vartriangleleft_p\)</span> on the tree, we label the levels by priorities from bottom to top as in <a class="reference internal" href="#fig-example-universal"><span class="std std-numref">Fig. 27</span></a>.
 Then <span class="math notranslate nohighlight">\(b \vartriangleleft_p b'\)</span> if and only if the <span class="math notranslate nohighlight">\(p\)</span>-truncated branch of <span class="math notranslate nohighlight">\(b\)</span> is to the left of the <span class="math notranslate nohighlight">\(p\)</span>-truncated branch of <span class="math notranslate nohighlight">\(b'\)</span>,
 strictly if <span class="math notranslate nohighlight">\(p\)</span> is odd, and non-strictly if <span class="math notranslate nohighlight">\(p\)</span> is even.</p>
 <div class="figure align-center" id="fig-example-relations">
 <img alt="../_images/3-fig:example_relations.png" src="../_images/3-fig:example_relations.png" />
-<p class="caption"><span class="caption-number">Fig. 30 </span><span class="caption-text">Illustration of the relations <span class="math notranslate nohighlight">\(\vartriangleleft_p\)</span>.</span><a class="headerlink" href="#fig-example-relations" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 29 </span><span class="caption-text">Illustration of the relations <span class="math notranslate nohighlight">\(\vartriangleleft_p\)</span>.</span><a class="headerlink" href="#fig-example-relations" title="Permalink to this image">¶</a></p>
 </div>
-<p>We refer to <a class="reference internal" href="#fig-example-relations"><span class="std std-numref">Fig. 30</span></a> for some examples:</p>
+<p>We refer to <a class="reference internal" href="#fig-example-relations"><span class="std std-numref">Fig. 29</span></a> for some examples:</p>
 <div class="math notranslate nohighlight">
 \[
 v \vartriangleleft_1 u \quad ; \quad  
@@ -1027,32 +959,32 @@ For each <span class="math notranslate nohighlight">\(p \in [1,d]\)</span> and <
 We then define <span class="math notranslate nohighlight">\(\delta : Y_t \times [1,d] \to Y_t\)</span> by</p>
 <div class="math notranslate nohighlight">
 \[
-\delta(b,p) = \max \set{b' : b' \vartriangleleft_p b}.
+\delta(b,p) = \max  \left\{ b' : b' \vartriangleleft_p b \right\}.
 \]</div>
-<p>This in turn induces a monotonic operator <span class="math notranslate nohighlight">\(\Op_t : F_V \to F_V\)</span> defined by:</p>
+<p>This in turn induces a monotonic operator <span class="math notranslate nohighlight">\(\mathbb{O}_t : F_V \to F_V\)</span> defined by:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-\Op(\mu)(v) = 
+ \mathbb{O}(\mu)(v) = 
 \begin{cases}
-\max \set{\delta( \mu(v'), \col(v)) : (v,v') \in E} &amp; \text{ if } v \in \VE, \\
-\min \set{\delta( \mu(v'), \col(v)) : (v,v') \in E} &amp; \text{ if } v \in \VA.
+\max  \left\{ \delta( \mu(v'),  \textsf{col \right\}(v)) : (v,v') \in E} &amp; \text{ if } v \in  V_\mathrm{Eve}, \\
+\min  \left\{ \delta( \mu(v'),  \textsf{col \right\}(v)) : (v,v') \in E} &amp; \text{ if } v \in  V_\mathrm{Adam}.
 \end{cases}
 \end{split}\]</div>
-<p>Let <span class="math notranslate nohighlight">\(\Game\)</span> be a parity game, a progress measure is a function <span class="math notranslate nohighlight">\(\mu : V \to Y_t\)</span> which is a post-fixed point: <span class="math notranslate nohighlight">\(\mu \le \Op_t(\mu)\)</span>.
+<p>Let <span class="math notranslate nohighlight">\(\Game\)</span> be a parity game, a progress measure is a function <span class="math notranslate nohighlight">\(\mu : V \to Y_t\)</span> which is a post-fixed point: <span class="math notranslate nohighlight">\(\mu \le  \mathbb{O}_t(\mu)\)</span>.
 Expanding the definitions, this means that for all vertices <span class="math notranslate nohighlight">\(v\)</span>, we have</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{array}{llll}
-\exists (v,v') \in E,\ &amp; \mu(v) \le \delta_t( \mu(v'), \col(v)) &amp; \text{ if } v \in \VE, \\
-\forall (v,v') \in E,\ &amp; \mu(v) \le \delta_t( \mu(v'), \col(v)) &amp; \text{ if } v \in \VA.
+\exists (v,v') \in E,\ &amp; \mu(v) \le \delta_t( \mu(v'),  \textsf{col}(v)) &amp; \text{ if } v \in  V_\mathrm{Eve}, \\
+\forall (v,v') \in E,\ &amp; \mu(v) \le \delta_t( \mu(v'),  \textsf{col}(v)) &amp; \text{ if } v \in  V_\mathrm{Adam}.
 \end{array}
 \end{split}\]</div>
 <p>The definition of <span class="math notranslate nohighlight">\(\delta_t\)</span> further simplifies it to: for all vertices <span class="math notranslate nohighlight">\(v\)</span>, we have</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{array}{llll}
-\exists (v,v') \in E,\ &amp; \mu(v) \vartriangleleft_{\col(v)} \mu(v') &amp; \text{ if } v \in \VE, \\
-\forall (v,v') \in E,\ &amp; \mu(v) \vartriangleleft_{\col(v)} \mu(v') &amp; \text{ if } v \in \VA.
+\exists (v,v') \in E,\ &amp; \mu(v) \vartriangleleft_{ \textsf{col}(v)} \mu(v') &amp; \text{ if } v \in  V_\mathrm{Eve}, \\
+\forall (v,v') \in E,\ &amp; \mu(v) \vartriangleleft_{ \textsf{col}(v)} \mu(v') &amp; \text{ if } v \in  V_\mathrm{Adam}.
 \end{array}
 \end{split}\]</div>
 <p>The following theorem is our first and main step towards proving the characterisation principle.</p>
@@ -1064,7 +996,7 @@ Then Eve wins from <span class="math notranslate nohighlight">\(v\)</span> if an
 </div>
 </div><p>In order to prove  <a class="reference internal" href="#3-thm:progress_measure">Theorem 85</a>, we first consider the case of parity graphs.
 A progress measure in a parity graph is a function <span class="math notranslate nohighlight">\(\mu : V \to Y_t\)</span> such that
-for all edges <span class="math notranslate nohighlight">\((v,v') \in E\)</span> we have <span class="math notranslate nohighlight">\(\mu(v) \vartriangleleft_{\col(v)} \mu(v')\)</span>.</p>
+for all edges <span class="math notranslate nohighlight">\((v,v') \in E\)</span> we have <span class="math notranslate nohighlight">\(\mu(v) \vartriangleleft_{ \textsf{col}(v)} \mu(v')\)</span>.</p>
 <p>Recall that a graph satisfies parity from <span class="math notranslate nohighlight">\(v\)</span> if all infinite paths from <span class="math notranslate nohighlight">\(v\)</span> satisfy parity.
 This is equivalent to asking whether all cycles reachable from <span class="math notranslate nohighlight">\(v\)</span> are even, meaning the maximal priority appearing in the cycle is even.</p>
 <div class="proof lemma admonition" id="3-lem:progress_measure">
@@ -1077,7 +1009,7 @@ there exists a tree <span class="math notranslate nohighlight">\(t\)</span> and 
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
 <p>Let us assume that there exists a tree <span class="math notranslate nohighlight">\(t\)</span> and a progress measure <span class="math notranslate nohighlight">\(\mu : V \to Y_t\)</span> such that <span class="math notranslate nohighlight">\(\mu(v) \neq \bot\)</span>
-and for all edges <span class="math notranslate nohighlight">\((v,v') \in E\)</span> we have <span class="math notranslate nohighlight">\(\mu(v) \vartriangleleft_{\col(v)} \mu(v')\)</span>.
+and for all edges <span class="math notranslate nohighlight">\((v,v') \in E\)</span> we have <span class="math notranslate nohighlight">\(\mu(v) \vartriangleleft_{ \textsf{col}(v)} \mu(v')\)</span>.
 To show that <span class="math notranslate nohighlight">\(G\)</span> satisfies parity from <span class="math notranslate nohighlight">\(v\)</span> we show that any cycle reachable from <span class="math notranslate nohighlight">\(v\)</span> is even.
 Let us consider such a cycle:</p>
 <div class="math notranslate nohighlight">
@@ -1085,15 +1017,15 @@ Let us consider such a cycle:</p>
 (v_1,v_2) (v_2,v_3) \cdots (v_k,v_1).
 \]</div>
 <p>Since the cycle is reachable from <span class="math notranslate nohighlight">\(v\)</span> and <span class="math notranslate nohighlight">\(\mu(v) \neq \bot\)</span>, this implies that <span class="math notranslate nohighlight">\(\mu(v_i) \neq \bot\)</span> for <span class="math notranslate nohighlight">\(i \in [1,k]\)</span>.
-Let us assume towards contradiction that its maximal priority is odd, and without loss of generality it is <span class="math notranslate nohighlight">\(\col(v_1)\)</span>.
+Let us assume towards contradiction that its maximal priority is odd, and without loss of generality it is <span class="math notranslate nohighlight">\(\textsf{col}(v_1)\)</span>.
 Applying our hypothesis to each edge of the cycle we have</p>
 <div class="math notranslate nohighlight">
 \[
-\mu(v_1) \vartriangleleft_{\col(v_1)} \mu(v_2) \vartriangleleft_{\col(v_2)} \cdots 
-\vartriangleleft_{\col(v_{k-1})} \mu(v_k) \vartriangleleft_{\col(v_k)} \mu(v_1).
+\mu(v_1) \vartriangleleft_{ \textsf{col}(v_1)} \mu(v_2) \vartriangleleft_{ \textsf{col}(v_2)} \cdots 
+\vartriangleleft_{ \textsf{col}(v_{k-1})} \mu(v_k) \vartriangleleft_{ \textsf{col}(v_k)} \mu(v_1).
 \]</div>
-<p>The second item of  <a class="reference internal" href="#3-lem:properties_tree">Lemma 83</a> implies that <span class="math notranslate nohighlight">\(\mu(v_1) \vartriangleleft_{\col(v_1)} \mu(v_1)\)</span>,
-which contradicts the third item since <span class="math notranslate nohighlight">\(\vartriangleleft_{\col(v_1)}\)</span> is non-reflexive given that <span class="math notranslate nohighlight">\(\col(v_1)\)</span> is odd.</p>
+<p>The second item of  <a class="reference internal" href="#3-lem:properties_tree">Lemma 83</a> implies that <span class="math notranslate nohighlight">\(\mu(v_1) \vartriangleleft_{ \textsf{col}(v_1)} \mu(v_1)\)</span>,
+which contradicts the third item since <span class="math notranslate nohighlight">\(\vartriangleleft_{ \textsf{col}(v_1)}\)</span> is non-reflexive given that <span class="math notranslate nohighlight">\(\textsf{col}(v_1)\)</span> is odd.</p>
 <p>Let us now prove the converse implication.
 We prove the following property by induction on the number of vertices:
 for all graphs satisfying parity (without the usual assumption that every vertex has an outgoing edge),
@@ -1108,17 +1040,17 @@ such that <span class="math notranslate nohighlight">\(\mu_d(v) \neq \bot\)</spa
 We extend <span class="math notranslate nohighlight">\(\mu_d\)</span> to <span class="math notranslate nohighlight">\(\mu : V \to Y_t\)</span>: for <span class="math notranslate nohighlight">\(v \in V_d\)</span> we let <span class="math notranslate nohighlight">\(\mu(v) = \ell_{\max}\)</span> where <span class="math notranslate nohighlight">\(\ell_{\max}\)</span> is the maximal element in <span class="math notranslate nohighlight">\(Y_t\)</span>.
 Then <span class="math notranslate nohighlight">\(\mu\)</span> is a progress measure such that <span class="math notranslate nohighlight">\(\mu_d(v) \neq \bot\)</span> for all vertices <span class="math notranslate nohighlight">\(v \in V\)</span>.
 Indeed the additional edges are of the form <span class="math notranslate nohighlight">\((v,v')\)</span> for either <span class="math notranslate nohighlight">\(v \in V_d\)</span> or <span class="math notranslate nohighlight">\(v' \in V_d\)</span>:
-in the first case <span class="math notranslate nohighlight">\(\mu(v) \vartriangleleft_{\col(v)} \mu(v')\)</span> holds because <span class="math notranslate nohighlight">\(\vartriangleleft_d\)</span> is the full relation,
+in the first case <span class="math notranslate nohighlight">\(\mu(v) \vartriangleleft_{ \textsf{col}(v)} \mu(v')\)</span> holds because <span class="math notranslate nohighlight">\(\vartriangleleft_d\)</span> is the full relation,
 and in the second case because <span class="math notranslate nohighlight">\(\mu(v') = \ell_{\max}\)</span>.</p>
 <p><strong>Case <span class="math notranslate nohighlight">\(d\)</span> odd.</strong>
 We claim that there exists a non-trivial partition <span class="math notranslate nohighlight">\(V = W_1 \uplus W_2\)</span> such that there is no edge from <span class="math notranslate nohighlight">\(W_1\)</span> to <span class="math notranslate nohighlight">\(W_2\)</span>.
 Let <span class="math notranslate nohighlight">\(u \in V_d\)</span>, define <span class="math notranslate nohighlight">\(U\)</span> the set of vertices reachable from <span class="math notranslate nohighlight">\(u\)</span> by a non-trivial path.
-If <span class="math notranslate nohighlight">\(U\)</span> is empty, then <span class="math notranslate nohighlight">\(V = \set{u} \uplus (V \setminus \set{u})\)</span> is a non-trivial partition as desired.
+If <span class="math notranslate nohighlight">\(U\)</span> is empty, then <span class="math notranslate nohighlight">\(V =  \left\{ u \right\} \uplus (V \setminus  \left\{ u \right\})\)</span> is a non-trivial partition as desired.
 Otherwise <span class="math notranslate nohighlight">\(U\)</span> is non empty, then <span class="math notranslate nohighlight">\(V = U \uplus (V \setminus U)\)</span> is a non-trivial partition as desired:
 to see that <span class="math notranslate nohighlight">\(V \setminus U\)</span> is non empty we note that <span class="math notranslate nohighlight">\(u \in V \setminus U\)</span>, otherwise there would be an odd cycle
 (containing the maximal and odd priority <span class="math notranslate nohighlight">\(d\)</span>).</p>
 <p>We consider the graphs induced by <span class="math notranslate nohighlight">\(W_1\)</span> and <span class="math notranslate nohighlight">\(W_2\)</span>.
-They both satisfy parity, so by induction hypothesis for <span class="math notranslate nohighlight">\(i \in \set{1,2}\)</span>
+They both satisfy parity, so by induction hypothesis for <span class="math notranslate nohighlight">\(i \in  \left\{ 1,2 \right\}\)</span>
 there exists a tree <span class="math notranslate nohighlight">\(t_i\)</span> and a progress measure <span class="math notranslate nohighlight">\(\mu_i : W_i \to Y_{t_i}\)</span>
 such that <span class="math notranslate nohighlight">\(\mu_i(v) \neq \bot\)</span> for all vertices <span class="math notranslate nohighlight">\(v \in W_i\)</span>.
 We let <span class="math notranslate nohighlight">\(t\)</span> denote the tree obtained by putting the two trees <span class="math notranslate nohighlight">\(t_1\)</span> and <span class="math notranslate nohighlight">\(t_2\)</span> side by side with <span class="math notranslate nohighlight">\(t_2\)</span> on the left of <span class="math notranslate nohighlight">\(t_1\)</span>.
@@ -1126,7 +1058,7 @@ Formally, <span class="math notranslate nohighlight">\(t_1 = [t^1_1,\dots,t^k_1]
 <span class="math notranslate nohighlight">\(t = [t^1_2,\dots,t^{k'}_2,\ t^1_1,\dots,t^k_1]\)</span>.
 We define <span class="math notranslate nohighlight">\(\mu : V \to Y_t\)</span> by <span class="math notranslate nohighlight">\(\mu(v) = \mu_i(v)\)</span> if <span class="math notranslate nohighlight">\(v \in W_i\)</span>.
 Then <span class="math notranslate nohighlight">\(\mu\)</span> is a progress measure: for edges in the graphs induced by <span class="math notranslate nohighlight">\(W_1\)</span> and <span class="math notranslate nohighlight">\(W_2\)</span> this is because <span class="math notranslate nohighlight">\(\mu_1\)</span> and <span class="math notranslate nohighlight">\(\mu_2\)</span> are,
-and the additional edges are from <span class="math notranslate nohighlight">\(v \in W_2\)</span> to <span class="math notranslate nohighlight">\(v' \in W_1\)</span>, so indeed <span class="math notranslate nohighlight">\(\mu(v) \vartriangleleft_{\col(v)} \mu(v')\)</span> holds.
+and the additional edges are from <span class="math notranslate nohighlight">\(v \in W_2\)</span> to <span class="math notranslate nohighlight">\(v' \in W_1\)</span>, so indeed <span class="math notranslate nohighlight">\(\mu(v) \vartriangleleft_{ \textsf{col}(v)} \mu(v')\)</span> holds.
 This finishes the inductive proof of the property.</p>
 <p>We show that the property extends to graphs not satisfying parity.
 Let <span class="math notranslate nohighlight">\(G\)</span> a parity graph and <span class="math notranslate nohighlight">\(W\)</span> the set of vertices <span class="math notranslate nohighlight">\(v\)</span> such that <span class="math notranslate nohighlight">\(G\)</span> satisfies parity from <span class="math notranslate nohighlight">\(v\)</span>.
@@ -1137,7 +1069,7 @@ We extend <span class="math notranslate nohighlight">\(\mu_W\)</span> to <span c
 To see that <span class="math notranslate nohighlight">\(\mu\)</span> is a progress measure we make two remarks.
 First, if <span class="math notranslate nohighlight">\(v \in W\)</span> then all successors of <span class="math notranslate nohighlight">\(v\)</span> are also in <span class="math notranslate nohighlight">\(W\)</span> (by prefix independence of parity),
 so the edges in <span class="math notranslate nohighlight">\(G\)</span> are either in <span class="math notranslate nohighlight">\(G'\)</span> or from <span class="math notranslate nohighlight">\(v \in V \setminus W\)</span> to <span class="math notranslate nohighlight">\(v' \in W\)</span>.
-In the first case <span class="math notranslate nohighlight">\(\mu(v) \vartriangleleft_{\col(v)} \mu(v')\)</span> holds because <span class="math notranslate nohighlight">\(\mu_W\)</span> is a progress measure,
+In the first case <span class="math notranslate nohighlight">\(\mu(v) \vartriangleleft_{ \textsf{col}(v)} \mu(v')\)</span> holds because <span class="math notranslate nohighlight">\(\mu_W\)</span> is a progress measure,
 and in the second case because <span class="math notranslate nohighlight">\(\mu(v) = \bot\)</span>.</p>
 </div>
 <p>We can now prove  <a class="reference internal" href="#3-thm:progress_measure">Theorem 85</a>.</p>
@@ -1146,11 +1078,11 @@ and in the second case because <span class="math notranslate nohighlight">\(\mu(
 <p>Assume that Eve wins from <span class="math notranslate nohighlight">\(v\)</span> and let <span class="math notranslate nohighlight">\(\sigma\)</span> be a positional strategy.
 The parity graph <span class="math notranslate nohighlight">\(\Game[\sigma]\)</span> satisfies parity from <span class="math notranslate nohighlight">\(v\)</span>, so thanks to  <a class="reference internal" href="#3-lem:progress_measure">Lemma 86</a>
 there exists a tree <span class="math notranslate nohighlight">\(t\)</span> and a function <span class="math notranslate nohighlight">\(\mu : V \to Y_t\)</span> such that <span class="math notranslate nohighlight">\(\mu(v) \neq \bot\)</span>
-and for all edges <span class="math notranslate nohighlight">\((v,v') \in E\)</span> we have <span class="math notranslate nohighlight">\(\mu(v) \vartriangleleft_{\col(v)} \mu(v')\)</span>.
-We remark that <span class="math notranslate nohighlight">\(\mu : V \to Y_t\)</span> is actually a progress measure: the condition for <span class="math notranslate nohighlight">\(v \in \VE\)</span> is ensured by the edge <span class="math notranslate nohighlight">\(\sigma(v)\)</span>,
-and the condition for <span class="math notranslate nohighlight">\(v \in \VA\)</span> by assumption on <span class="math notranslate nohighlight">\(\mu\)</span>.</p>
+and for all edges <span class="math notranslate nohighlight">\((v,v') \in E\)</span> we have <span class="math notranslate nohighlight">\(\mu(v) \vartriangleleft_{ \textsf{col}(v)} \mu(v')\)</span>.
+We remark that <span class="math notranslate nohighlight">\(\mu : V \to Y_t\)</span> is actually a progress measure: the condition for <span class="math notranslate nohighlight">\(v \in  V_\mathrm{Eve}\)</span> is ensured by the edge <span class="math notranslate nohighlight">\(\sigma(v)\)</span>,
+and the condition for <span class="math notranslate nohighlight">\(v \in  V_\mathrm{Adam}\)</span> by assumption on <span class="math notranslate nohighlight">\(\mu\)</span>.</p>
 <p>Conversely, assume that there exists a tree <span class="math notranslate nohighlight">\(t\)</span> and a progress measure <span class="math notranslate nohighlight">\(\mu : V \to Y_t\)</span>.
-It induces a positional strategy defined by <span class="math notranslate nohighlight">\(\sigma(v) = (v,v')\)</span> such that <span class="math notranslate nohighlight">\(\mu(v) \vartriangleleft_{\col(v)} \mu(v')\)</span>.
+It induces a positional strategy defined by <span class="math notranslate nohighlight">\(\sigma(v) = (v,v')\)</span> such that <span class="math notranslate nohighlight">\(\mu(v) \vartriangleleft_{ \textsf{col}(v)} \mu(v')\)</span>.
 We argue that <span class="math notranslate nohighlight">\(\sigma\)</span> is a winning strategy from any vertex <span class="math notranslate nohighlight">\(v\)</span> such that <span class="math notranslate nohighlight">\(\mu(v) \neq \bot\)</span>.
 This is a consequence of  <a class="reference internal" href="#3-lem:progress_measure">Lemma 86</a> for the parity graph <span class="math notranslate nohighlight">\(\Game[\sigma]\)</span>.</p>
 </div>
@@ -1180,63 +1112,63 @@ Then the composition <span class="math notranslate nohighlight">\(\mu' \circ \mu
 <h2>The algorithm<a class="headerlink" href="#the-algorithm" title="Permalink to this headline">¶</a></h2>
 <p>Let us fix <span class="math notranslate nohighlight">\(T\)</span> an <span class="math notranslate nohighlight">\((n,d/2)\)</span>-universal tree.
 It induces both a lattice <span class="math notranslate nohighlight">\((Y_T,\le)\)</span> and a monotonic function <span class="math notranslate nohighlight">\(\delta_T : Y_T \times [1,d] \to Y_T\)</span>,
-which in turn induces a monotonic operator <span class="math notranslate nohighlight">\(\Op_T : F_V \to F_V\)</span>.
+which in turn induces a monotonic operator <span class="math notranslate nohighlight">\(\mathbb{O}_T : F_V \to F_V\)</span>.
 Since <span class="math notranslate nohighlight">\(T\)</span> is fixed we do not specify the subscript <span class="math notranslate nohighlight">\(T\)</span> for all these objects.</p>
 <p>The last step is to construct an algorithm returning the maximal progress measure relying on Kleene’s fixed point theorem (stated as  <a class="reference internal" href="../1_Introduction/fixed_points.html#1-thm:kleene">Theorem 24</a>).
 The generic algorithm is explained in Section <a class="reference internal" href="../1_Introduction/value_iteration.html#sec-value-iteration"><span class="std std-ref">Value iteration algorithms</span></a>, let us instantiate it here.</p>
-<p>For the complexity analysis it is useful to decompose <span class="math notranslate nohighlight">\(\Op\)</span> into a set of operators:</p>
+<p>For the complexity analysis it is useful to decompose <span class="math notranslate nohighlight">\(\mathbb{O}\)</span> into a set of operators:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-\Op_v(\mu)(u) = 
+ \mathbb{O}_v(\mu)(u) = 
 \begin{cases}
 \mu(v) &amp; \text{ if } u \neq v, \\
-\max \set{\delta( \mu(v'), \col(v)) : (v,v') \in E} &amp; \text{ if } u = v \in \VE, \\
-\min \set{\delta( \mu(v'), \col(v)) : (v,v') \in E} &amp; \text{ if } u = v \in \VA.
+\max  \left\{ \delta( \mu(v'),  \textsf{col \right\}(v)) : (v,v') \in E} &amp; \text{ if } u = v \in  V_\mathrm{Eve}, \\
+\min  \left\{ \delta( \mu(v'),  \textsf{col \right\}(v)) : (v,v') \in E} &amp; \text{ if } u = v \in  V_\mathrm{Adam}.
 \end{cases}
 \end{split}\]</div>
-<p>We introduce some terminology: we say that an edge <span class="math notranslate nohighlight">\(e = (v,v')\)</span> is <strong>neglected</strong> if <span class="math notranslate nohighlight">\(\neg (\mu(v) \vartriangleleft_{\col(v)} \mu(v'))\)</span>,
-and a vertex <span class="math notranslate nohighlight">\(v\)</span> is <strong>neglected</strong> if <span class="math notranslate nohighlight">\(\neg (\mu(v) \le \Op_v(\mu)(v))\)</span>.</p>
+<p>We introduce some terminology: we say that an edge <span class="math notranslate nohighlight">\(e = (v,v')\)</span> is <strong>neglected</strong> if <span class="math notranslate nohighlight">\(\neg (\mu(v) \vartriangleleft_{ \textsf{col}(v)} \mu(v'))\)</span>,
+and a vertex <span class="math notranslate nohighlight">\(v\)</span> is <strong>neglected</strong> if <span class="math notranslate nohighlight">\(\neg (\mu(v) \le  \mathbb{O}_v(\mu)(v))\)</span>.</p>
 <div class="figure align-center" id="fig-lifting">
 <img alt="../_images/3-fig:lifting.png" src="../_images/3-fig:lifting.png" />
-<p class="caption"><span class="caption-number">Fig. 31 </span><span class="caption-text">The operator <span class="math notranslate nohighlight">\(\Op_v\)</span> in action: <span class="math notranslate nohighlight">\(\Op_v(\mu)(v)\)</span> is the maximal leaf (meaning the rightmost leaf)
-which satisfies <span class="math notranslate nohighlight">\(\Op_v(\mu)(v) \vartriangleleft_3 \mu(v')\)</span> and <span class="math notranslate nohighlight">\(\Op_v(\mu)(v) \vartriangleleft_3 \mu(v'')\)</span>.</span><a class="headerlink" href="#fig-lifting" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 30 </span><span class="caption-text">The operator <span class="math notranslate nohighlight">\(\mathbb{O}_v\)</span> in action: <span class="math notranslate nohighlight">\(\mathbb{O}_v(\mu)(v)\)</span> is the maximal leaf (meaning the rightmost leaf)
+which satisfies <span class="math notranslate nohighlight">\(\mathbb{O}_v(\mu)(v) \vartriangleleft_3 \mu(v')\)</span> and <span class="math notranslate nohighlight">\(\mathbb{O}_v(\mu)(v) \vartriangleleft_3 \mu(v'')\)</span>.</span><a class="headerlink" href="#fig-lifting" title="Permalink to this image">¶</a></p>
 </div>
-<p>The pseudocode for the algorithm is given in <a class="reference internal" href="#algo-value-iteration"><span class="std std-numref">Fig. 32</span></a>,
+<p>The pseudocode for the algorithm is given in <a class="reference internal" href="#algo-value-iteration"><span class="std std-numref">Fig. 31</span></a>,
 where we let <span class="math notranslate nohighlight">\(\ell_{\max}\)</span> denote the maximal leaf in <span class="math notranslate nohighlight">\(T\)</span>.</p>
 <div class="figure align-center" id="algo-value-iteration">
 <img alt="../_images/3-algo:value_iteration.png" src="../_images/3-algo:value_iteration.png" />
-<p class="caption"><span class="caption-number">Fig. 32 </span><span class="caption-text">The value iteration algorithm.</span><a class="headerlink" href="#algo-value-iteration" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 31 </span><span class="caption-text">The value iteration algorithm.</span><a class="headerlink" href="#algo-value-iteration" title="Permalink to this image">¶</a></p>
 </div>
 <div class="proof theorem admonition" id="theorem-8">
 <p class="admonition-title"><span class="caption-number">Theorem 88 </span> (NEEDS TITLE AND LABEL)</p>
 <div class="theorem-content section" id="proof-content">
-<p>For all <span class="math notranslate nohighlight">\((n, d/2)\)</span>-universal tree <span class="math notranslate nohighlight">\(T\)</span>, for all parity games <span class="math notranslate nohighlight">\(\game\)</span> with <span class="math notranslate nohighlight">\(n\)</span> vertices and priorities in <span class="math notranslate nohighlight">\([1,d]\)</span>,
-the value iteration algorithm over the tree <span class="math notranslate nohighlight">\(T\)</span> returns the maximal progress measure <span class="math notranslate nohighlight">\(\mu\)</span> for <span class="math notranslate nohighlight">\(\game\)</span> over <span class="math notranslate nohighlight">\(T\)</span>.</p>
-<p>For all <span class="math notranslate nohighlight">\((n, d/2)\)</span>-universal tree <span class="math notranslate nohighlight">\(T\)</span>, for all parity games <span class="math notranslate nohighlight">\(\game\)</span> with <span class="math notranslate nohighlight">\(n\)</span> vertices and priorities in <span class="math notranslate nohighlight">\([1,d]\)</span>,
-the value iteration algorithm over the tree <span class="math notranslate nohighlight">\(T\)</span> returns the maximal progress measure <span class="math notranslate nohighlight">\(\mu\)</span> for <span class="math notranslate nohighlight">\(\game\)</span> over <span class="math notranslate nohighlight">\(T\)</span>.</p>
+<p>For all <span class="math notranslate nohighlight">\((n, d/2)\)</span>-universal tree <span class="math notranslate nohighlight">\(T\)</span>, for all parity games <span class="math notranslate nohighlight">\(\mathcal{G}\)</span> with <span class="math notranslate nohighlight">\(n\)</span> vertices and priorities in <span class="math notranslate nohighlight">\([1,d]\)</span>,
+the value iteration algorithm over the tree <span class="math notranslate nohighlight">\(T\)</span> returns the maximal progress measure <span class="math notranslate nohighlight">\(\mu\)</span> for <span class="math notranslate nohighlight">\(\mathcal{G}\)</span> over <span class="math notranslate nohighlight">\(T\)</span>.</p>
+<p>For all <span class="math notranslate nohighlight">\((n, d/2)\)</span>-universal tree <span class="math notranslate nohighlight">\(T\)</span>, for all parity games <span class="math notranslate nohighlight">\(\mathcal{G}\)</span> with <span class="math notranslate nohighlight">\(n\)</span> vertices and priorities in <span class="math notranslate nohighlight">\([1,d]\)</span>,
+the value iteration algorithm over the tree <span class="math notranslate nohighlight">\(T\)</span> returns the maximal progress measure <span class="math notranslate nohighlight">\(\mu\)</span> for <span class="math notranslate nohighlight">\(\mathcal{G}\)</span> over <span class="math notranslate nohighlight">\(T\)</span>.</p>
 </div>
 </div><p>Thanks to \cref{3-cor:progress_measure}, the maximal progress measure yields a solution for parity games:
 Eve wins from <span class="math notranslate nohighlight">\(v\)</span> if and only if <span class="math notranslate nohighlight">\(\mu(v) \neq \bot\)</span>.</p>
 </div>
 <div class="section" id="complexity-analysis">
 <h2>Complexity analysis<a class="headerlink" href="#complexity-analysis" title="Permalink to this headline">¶</a></h2>
-<p>The number of times the operator <span class="math notranslate nohighlight">\(\Op_v\)</span> is used is bounded by the number of leaves of <span class="math notranslate nohighlight">\(T\)</span>,
+<p>The number of times the operator <span class="math notranslate nohighlight">\(\mathbb{O}_v\)</span> is used is bounded by the number of leaves of <span class="math notranslate nohighlight">\(T\)</span>,
 which we write <span class="math notranslate nohighlight">\(|T|\)</span>, implying that the total number of iterations is bounded by <span class="math notranslate nohighlight">\(n \cdot |T|\)</span>.</p>
 <p>To determine the overall complexity we need to discuss two aspects of the algorithm:</p>
 <ul class="simple">
 <li><p>the data structure and in particular the choice of the vertex <span class="math notranslate nohighlight">\(v\)</span> in the loop;</p></li>
-<li><p>the computation of <span class="math notranslate nohighlight">\(\Op_v\)</span> and in particular the encoding of branches of <span class="math notranslate nohighlight">\(T\)</span>.</p></li>
+<li><p>the computation of <span class="math notranslate nohighlight">\(\mathbb{O}_v\)</span> and in particular the encoding of branches of <span class="math notranslate nohighlight">\(T\)</span>.</p></li>
 </ul>
-<p>We note that a vertex <span class="math notranslate nohighlight">\(v \in \VE\)</span> is neglected if and only if all its outgoing edges are neglected,
-and a vertex <span class="math notranslate nohighlight">\(v \in \VA\)</span> is neglected if and only if it has a neglected outgoing edge.
+<p>We note that a vertex <span class="math notranslate nohighlight">\(v \in  V_\mathrm{Eve}\)</span> is neglected if and only if all its outgoing edges are neglected,
+and a vertex <span class="math notranslate nohighlight">\(v \in  V_\mathrm{Adam}\)</span> is neglected if and only if it has a neglected outgoing edge.
 Hence checking whether a vertex <span class="math notranslate nohighlight">\(v\)</span> is neglected requires considering all of its outgoing edges <span class="math notranslate nohighlight">\((v,v')\)</span>
-and checking whether <span class="math notranslate nohighlight">\(\mu(v) \vartriangleleft_{\col(v)} \mu(v')\)</span>.
-Let us write <span class="math notranslate nohighlight">\(\Delta\)</span> for the complexity of checking whether <span class="math notranslate nohighlight">\(\mu(v) \vartriangleleft_{\col(v)} \mu(v')\)</span>.
+and checking whether <span class="math notranslate nohighlight">\(\mu(v) \vartriangleleft_{ \textsf{col}(v)} \mu(v')\)</span>.
+Let us write <span class="math notranslate nohighlight">\(\Delta\)</span> for the complexity of checking whether <span class="math notranslate nohighlight">\(\mu(v) \vartriangleleft_{ \textsf{col}(v)} \mu(v')\)</span>.
 Hence checking whether <span class="math notranslate nohighlight">\(v\)</span> is neglected costs
-<span class="math notranslate nohighlight">\(O(|\Ing^{-1}(v)| \cdot \Delta)\)</span>, where <span class="math notranslate nohighlight">\(|\Ing^{-1}(v)|\)</span> is the number of outgoing edges of <span class="math notranslate nohighlight">\(v\)</span>.</p>
-<p>A naive implementation of <a class="reference internal" href="#algo-value-iteration"><span class="std std-numref">Fig. 32</span></a> would in each repeat loop go through every vertex <span class="math notranslate nohighlight">\(v\)</span>
+<span class="math notranslate nohighlight">\(O(|  \textrm{In}^{-1}(v)| \cdot \Delta)\)</span>, where <span class="math notranslate nohighlight">\(|  \textrm{In}^{-1}(v)|\)</span> is the number of outgoing edges of <span class="math notranslate nohighlight">\(v\)</span>.</p>
+<p>A naive implementation of <a class="reference internal" href="#algo-value-iteration"><span class="std std-numref">Fig. 31</span></a> would in each repeat loop go through every vertex <span class="math notranslate nohighlight">\(v\)</span>
 to check whether it is neglected.
-This would incur a linear cost: <span class="math notranslate nohighlight">\(\sum_{v \in V} O(|\Ing^{-1}(v)| \cdot \Delta) = O(m \cdot \Delta)\)</span>.
+This would incur a linear cost: <span class="math notranslate nohighlight">\(\sum_{v \in V} O(|  \textrm{In}^{-1}(v)| \cdot \Delta) = O(m \cdot \Delta)\)</span>.
 Thus the overall complexity would be</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1244,14 +1176,14 @@ O((m \cdot \Delta) \cdot (n \cdot |T|)) = O(nm \cdot \Delta \cdot |T|).
 \]</div>
 <p>Typically <span class="math notranslate nohighlight">\(\Delta\)</span> is small (we will see that for a well chosen universal tree <span class="math notranslate nohighlight">\(T\)</span> it is polylogarithmic in <span class="math notranslate nohighlight">\(n\)</span> and <span class="math notranslate nohighlight">\(d\)</span>),
 and <span class="math notranslate nohighlight">\(T\)</span> is the dominating factor (quasipolynomial in <span class="math notranslate nohighlight">\(n\)</span> and <span class="math notranslate nohighlight">\(d\)</span> thanks to  <a class="reference internal" href="#3-thm:universal_tree">Theorem 82</a>).</p>
-<p>We first explain that using a better data structure we can maintain the list of vertices <span class="math notranslate nohighlight">\(v\)</span> such that <span class="math notranslate nohighlight">\(\neg (\mu \le \Op_v(\mu))\)</span>,
+<p>We first explain that using a better data structure we can maintain the list of vertices <span class="math notranslate nohighlight">\(v\)</span> such that <span class="math notranslate nohighlight">\(\neg (\mu \le  \mathbb{O}_v(\mu))\)</span>,
 saving a linear factor in the complexity.
-We then discuss the cost <span class="math notranslate nohighlight">\(\Delta\)</span> by choosing an appropriate encoding of the quasipolynomial universal tree constructed in <a class="reference internal" href="#3-thm:universal_tree">Theorem 82</a>.</p>
+We then discuss the cost <span class="math notranslate nohighlight">\(\Delta\)</span> by choosing an appropriate encoding of the quasipolynomial universal tree constructed in  <a class="reference internal" href="#3-thm:universal_tree">Theorem 82</a>.</p>
 </div>
 <div class="section" id="data-structure">
 <h2>Data structure<a class="headerlink" href="#data-structure" title="Permalink to this headline">¶</a></h2>
 <p>We use a data structure similar to the attractor computation presented in Section <a class="reference internal" href="../2_Regular/attractors.html#sec-attractors"><span class="std std-ref">Reachability games</span></a>.
-The pseudocode is given in <a class="reference internal" href="#algo-value-iteration-data-structure"><span class="std std-numref">Fig. 33</span></a>.
+The pseudocode is given in <a class="reference internal" href="#algo-value-iteration-data-structure"><span class="std std-numref">Fig. 32</span></a>.
 We did not provide the pseudocode for the functions <span class="math notranslate nohighlight">\(\texttt{Init}\)</span> and <span class="math notranslate nohighlight">\(\texttt{Update}\)</span>.</p>
 <p>The data structure consists of the following objects:</p>
 <ul class="simple">
@@ -1265,7 +1197,7 @@ so that an edge together with its priority can be stored in one machine word.
 The space complexity of this data structure depends on the encoding of <span class="math notranslate nohighlight">\(T\)</span>, which we will discuss later.</p>
 <p>The invariant of the algorithm satisfied before each iteration of the repeat loop is the following:</p>
 <ul class="simple">
-<li><p>for <span class="math notranslate nohighlight">\(v \in \VA\)</span>, the value of <span class="math notranslate nohighlight">\(\text{number}\)</span>-<span class="math notranslate nohighlight">\(\text{neglected}\)</span>-<span class="math notranslate nohighlight">\(\text{edges}(v)\)</span>
+<li><p>for <span class="math notranslate nohighlight">\(v \in  V_\mathrm{Adam}\)</span>, the value of <span class="math notranslate nohighlight">\(\text{number}\)</span>-<span class="math notranslate nohighlight">\(\text{neglected}\)</span>-<span class="math notranslate nohighlight">\(\text{edges}(v)\)</span>
 is the number of neglected edges of <span class="math notranslate nohighlight">\(v\)</span>;</p></li>
 <li><p><span class="math notranslate nohighlight">\(S\)</span> is the set of neglected vertices.</p></li>
 </ul>
@@ -1275,12 +1207,12 @@ Since we modify only <span class="math notranslate nohighlight">\(\mu(v)\)</span
 for the latter each of them is checked and added to <span class="math notranslate nohighlight">\(S\)</span> when required.
 By monotonicity, neglected vertices remain neglected so all vertices in <span class="math notranslate nohighlight">\(S\)</span> (minus <span class="math notranslate nohighlight">\(v\)</span>) are still neglected.
 Hence the invariant is satisfied.</p>
-<p>The invariant implies that the algorithm indeed implements <a class="reference internal" href="#algo-value-iteration"><span class="std std-numref">Fig. 32</span></a> hence returns the maximal progress measure,
+<p>The invariant implies that the algorithm indeed implements <a class="reference internal" href="#algo-value-iteration"><span class="std std-numref">Fig. 31</span></a> hence returns the maximal progress measure,
 but it also has implications on the complexity.
 Indeed one iteration of the repeat loop over some vertex <span class="math notranslate nohighlight">\(v\)</span> involves</p>
 <div class="math notranslate nohighlight">
 \[
-O\left( (|\Ing^{-1}(v)| + |\Out^{-1}(v)|) \cdot \Delta \right)
+O\left( (|  \textrm{In}^{-1}(v)| + |  \textrm{Out}^{-1}(v)|) \cdot \Delta \right)
 \]</div>
 <p>operations,
 the first term corresponds to updating <span class="math notranslate nohighlight">\(\mu(v)\)</span> and <span class="math notranslate nohighlight">\(\text{number}\)</span>-<span class="math notranslate nohighlight">\(\text{neglected}\)</span>-<span class="math notranslate nohighlight">\(\text{edges}(v)\)</span>,
@@ -1290,13 +1222,13 @@ Thus the overall complexity is</p>
 <div class="math notranslate nohighlight">
 \[
 O\left( 
-\sum_{v \in V} (|\Ing^{-1}(v)| + |\Out^{-1}(v)|) \cdot \Delta \cdot |T|
+\sum_{v \in V} (|  \textrm{In}^{-1}(v)| + |  \textrm{Out}^{-1}(v)|) \cdot \Delta \cdot |T|
 \right) 
 = O(m \cdot \Delta \cdot |T|).
 \]</div>
 <div class="figure align-center" id="algo-value-iteration-data-structure">
 <img alt="../_images/3-algo:value_iteration_data_structure.png" src="../_images/3-algo:value_iteration_data_structure.png" />
-<p class="caption"><span class="caption-number">Fig. 33 </span><span class="caption-text">The value iteration algorithm with explicit data structure.</span><a class="headerlink" href="#algo-value-iteration-data-structure" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 32 </span><span class="caption-text">The value iteration algorithm with explicit data structure.</span><a class="headerlink" href="#algo-value-iteration-data-structure" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="encoding-branches">
@@ -1308,7 +1240,7 @@ Any other total order can be used to that effect, and a more appropriate order m
 Indeed, using <span class="math notranslate nohighlight">\([1,k]\)</span> for ordering subtrees, if a tree has height <span class="math notranslate nohighlight">\(h\)</span> and <span class="math notranslate nohighlight">\(n\)</span> branches then a branch is a sequence of <span class="math notranslate nohighlight">\(h\)</span> numbers in <span class="math notranslate nohighlight">\([1,n]\)</span>,
 so it uses <span class="math notranslate nohighlight">\(O(h \log(n))\)</span> bits.</p>
 <p>Let us consider an order well suited for encoding <span class="math notranslate nohighlight">\(T\)</span>.
-We use <span class="math notranslate nohighlight">\(\set{0,1}^*\)</span> the set of binary words and order them using the following three rules that apply for any <span class="math notranslate nohighlight">\(u,v \in \set{0,1}^*\)</span>:</p>
+We use <span class="math notranslate nohighlight">\(\left\{ 0,1 \right\}^*\)</span> the set of binary words and order them using the following three rules that apply for any <span class="math notranslate nohighlight">\(u,v \in  \left\{ 0,1 \right\}^*\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
 0u &lt; \varepsilon &lt; 1u \quad ; \quad (0u &lt; 0v \Longleftrightarrow u &lt; v) \quad ; \quad (1u &lt; 1v \Longleftrightarrow u &lt; v).
@@ -1316,7 +1248,7 @@ We use <span class="math notranslate nohighlight">\(\set{0,1}^*\)</span> the set
 <p>For words of length at most <span class="math notranslate nohighlight">\(2\)</span> the order is <span class="math notranslate nohighlight">\(00 &lt; 0 &lt; 01 &lt; \varepsilon &lt; 10 &lt; 1 &lt; 11\)</span>.</p>
 <div class="figure align-center" id="fig-tree-encoded">
 <img alt="../_images/3-fig:tree_encoded.png" src="../_images/3-fig:tree_encoded.png" />
-<p class="caption"><span class="caption-number">Fig. 34 </span><span class="caption-text">The succinct encoding on the <span class="math notranslate nohighlight">\((5,2)\)</span>-universal tree.</span><a class="headerlink" href="#fig-tree-encoded" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 33 </span><span class="caption-text">The succinct encoding on the <span class="math notranslate nohighlight">\((5,2)\)</span>-universal tree.</span><a class="headerlink" href="#fig-tree-encoded" title="Permalink to this image">¶</a></p>
 </div>
 <p>We can now revisit the construction of the universal tree by defining directly the set of branches.
 Recall that <span class="math notranslate nohighlight">\(T\)</span> is obtained from <span class="math notranslate nohighlight">\(T_\text{left},T_\text{middle}\)</span>, and <span class="math notranslate nohighlight">\(T_\text{right}\)</span>.
@@ -1328,7 +1260,7 @@ The branches of <span class="math notranslate nohighlight">\(T\)</span> are:</p>
 <li><p>branches of <span class="math notranslate nohighlight">\(T_\text{middle}\)</span> augmented with a new component <span class="math notranslate nohighlight">\(\varepsilon\)</span>;</p></li>
 <li><p>branches of <span class="math notranslate nohighlight">\(T_\text{right}\)</span> where the first component is prefixed with a <span class="math notranslate nohighlight">\(1\)</span>.</p></li>
 </ul>
-<p>We call this encoding the succinct encoding, it is illustrated in <a class="reference internal" href="#fig-tree-encoded"><span class="std std-numref">Fig. 34</span></a> for the <span class="math notranslate nohighlight">\((5,2)\)</span>-universal tree.
+<p>We call this encoding the succinct encoding, it is illustrated in <a class="reference internal" href="#fig-tree-encoded"><span class="std std-numref">Fig. 33</span></a> for the <span class="math notranslate nohighlight">\((5,2)\)</span>-universal tree.
 The leftmost branch is <span class="math notranslate nohighlight">\((00,\varepsilon)\)</span>, and the middle branch <span class="math notranslate nohighlight">\((\varepsilon,\varepsilon)\)</span>.
 In general, the inductive construction implies that every branch is a tuple <span class="math notranslate nohighlight">\((D_{d-1},\dots,D_1)\)</span>
 such that the sum of the lengths of the directions <span class="math notranslate nohighlight">\(D_i\)</span> is at most <span class="math notranslate nohighlight">\(\log(n)\)</span>.

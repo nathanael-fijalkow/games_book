@@ -705,216 +705,119 @@
   <div class="section" id="notations">
 <span id="sec-notations"></span><h1>Notations<a class="headerlink" href="#notations" title="Permalink to this headline">¶</a></h1>
 <div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}\newcommand{\expv}{\mathbb{E}} \newcommand{\discProbDist}{f} \newcommand{\sampleSpace}{S} \newcommand{\sigmaAlg}{\mathcal{F}} \newcommand{\probm}{\mathbb{P}} \newcommand{\rvar}{X} \\\newcommand{\actions}{A} \newcommand{\colouring}{c} \newcommand{\probTranFunc}{\Delta} \newcommand{\edges}{E} \newcommand{\colours}{C} \newcommand{\mdp}{\mathcal{M}} \newcommand{\vinit}{v_0} \newcommand{\cylProb}{p} \newcommand{\emptyPlay}{\epsilon} \newcommand{\objective}{\Omega} \newcommand{\genColour}{\textsc{c}} \newcommand{\quantObj}{f} \newcommand{\quantObjExt}{\bar{\quantObj}} \newcommand{\indicator}[1]{\mathbf{1}_{#1}} \newcommand{\eps}{\varepsilon} \newcommand{\maxc}{\max_{\colouring}} 
-\newcommand{\winPos}{W_{&gt;0}}
-\newcommand{\winAS}{W_{=1}}
-\newcommand{\cylinder}{\mathit{Cyl}}
-\newcommand{\PrePos}{\text{Pre}_{&gt;0}}
-\newcommand{\PreAS}{\text{Pre}_{=1}}
-\newcommand{\PreOPPos}{\mathcal{P}_{&gt;0}}
-\newcommand{\OPAS}{\mathcal{P}_{=1}}
-\newcommand{\safeOP}{\mathit{Safe_{=1}}}
-\newcommand{\closed}{\mathit{Cl}}\\\newcommand{\reachOP}{\mathcal{V}}
-\newcommand{\discOP}{\mathcal{D}}
-\newcommand{\valsigma}{\vec{x}^{\sigma}}
-\newcommand{\lp}{\mathcal{L}}
-\newcommand{\lpdisc}{\lp_{\mathit{disc}}}
-\newcommand{\lpreach}{\lp_{\mathit{reach}}}
-\newcommand{\lpmp}{\lp_{\mathit{mp}}}
-\newcommand{\lpsol}[1]{\bar{\vec{#1}}}
-\newcommand{\lpsolg}[1]{\bar{#1}}
-\newcommand{\lpmpdual}{\lpmp^{\mathit{dual}}}
-\newcommand{\actevent}[3]{\actions^{#1}_{#2,#3}} 
-\newcommand{\MeanPayoffSup}{\MeanPayoff^{\;+}}
-\newcommand{\MeanPayoffInf}{\MeanPayoff^{\;-}}
-\newcommand{\mcprob}{P}
-\newcommand{\invdist}{\vec{z}}
-\newcommand{\hittime}{T}
-\newcommand{\playPay}{\textsf{p-Payoff}}
-\newcommand{\stepPay}{\textsf{s-Payoff}}
-\newcommand{\Pay}{\textsf{Payoff}}
-\newcommand{\mec}{M}
-\newcommand{\OPS}{\mathcal{S}_{=1}}
-\newcommand{\smallmp}{\mathit{mp}}
-\newcommand{\vgood}{v_{\mathit{good}}}
-\newcommand{\vbad}{v_{\mathit{bad}}}
-\newcommand{\finact}{fin}
-\newcommand{\mecs}{\mathit{MEC}}
-\newcommand{\slice}[2]{#1_{#2-}}
-\newcommand{\ReachOp}{\mathcal{R}}
-\newcommand{\dPayoffStep}[1]{\DiscountedPayoff^{\;(#1)}}
-\newcommand{\solvset}{S}
-\newcommand{\Eve}{\textrm{Eve}}
-\newcommand{\Adam}{\textrm{Adam}}
-\newcommand{\set}[1]{\left\{ #1 \right\}}
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
-\newcommand{\argmax}{\textrm{argmax}}
-\newcommand{\argmin}{\textrm{argmin}}
-\newcommand{\Op}{\mathbb{O}}
-\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\textrm{supp}} 
-\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
-\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
-\newcommand{\mEve}{\mathrm{Eve}}
-\newcommand{\mAdam}{\mathrm{Adam}}
-\newcommand{\mRandom}{\mathrm{Random}}
-\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
-\newcommand{\ing}{\textrm{In}}
-\newcommand{\Ing}{\ing}
-\newcommand{\out}{\textrm{Out}}
-\newcommand{\Out}{\out}
-\newcommand{\dest}{\Delta} 
-\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
-\newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
-\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
-\newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\newcommand{\Win}{\textrm{Win}} 
-\newcommand{\Lose}{\textrm{Lose}} 
-\newcommand{\Value}{\textrm{val}} 
-\newcommand{\ValueE}{\textrm{val}_\mEve} 
-\newcommand{\ValueA}{\textrm{val}_\mAdam}
-\newcommand{\val}{\Value} 
-\newcommand{\Automaton}{\mathbf{A}} 
-\newcommand{\Safe}{\mathtt{Safe}}
-\newcommand{\Reach}{\mathtt{Reach}} 
-\newcommand{\Buchi}{\mathtt{Buchi}} 
-\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
-\newcommand{\Parity}{\mathtt{Parity}} 
-\newcommand{\Muller}{\mathtt{Muller}} 
-\newcommand{\Rabin}{\mathtt{Rabin}} 
-\newcommand{\Streett}{\mathtt{Streett}} 
-\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
-\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
-\newcommand{\Energy}{\mathtt{Energy}}
-\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
-\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
-\newcommand{\Sup}{\mathtt{Sup}}
-\newcommand{\Inf}{\mathtt{Inf}}
-\newcommand{\LimSup}{\mathtt{LimSup}}
-\newcommand{\LimInf}{\mathtt{LimInf}}
-\newcommand{\NL}{\textrm{NL}}
-\newcommand{\PTIME}{\textrm{PTIME}}
-\newcommand{\NP}{\textrm{NP}}
-\newcommand{\UP}{\textrm{UP}}
-\newcommand{\coNP}{\textrm{coNP}}
-\newcommand{\coUP}{\textrm{coUP}}
-\newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
-\newcommand{\EXP}{\textrm{EXP}}
-\newcommand{\kEXP}{\textrm{kEXP}}\end{aligned}\end{align} \]</div>
+\[\renewcommand{\Game}{\game}
+\]</div>
 <p>We write vectors in boldface: <span class="math notranslate nohighlight">\( \vec{x}, \vec{y}, \)</span> etc. For a vector <span class="math notranslate nohighlight">\( \vec{x} \)</span> indexed by a set <span class="math notranslate nohighlight">\( I \)</span> (i.e. <span class="math notranslate nohighlight">\( \vec{x}\in \mathbb{R}^I \)</span>) we denote by <span class="math notranslate nohighlight">\( \vec{x}_i \)</span> the value of the component whose index is  <span class="math notranslate nohighlight">\(i\in I  \)</span>.</p>
-<p>A (discrete) probability distribution over a finite or countably infinite set <span class="math notranslate nohighlight">\(A\)</span> is a function <span class="math notranslate nohighlight">\(\discProbDist A \colon \rightarrow [0,1]\)</span> such that <span class="math notranslate nohighlight">\(\sum_{a\in A}\discProbDist(a)=1\)</span>. The support of such a distribution <span class="math notranslate nohighlight">\(\discProbDist\)</span> is the set of all <span class="math notranslate nohighlight">\(a\in A\)</span> with <span class="math notranslate nohighlight">\(\discProbDist(a)&gt;0\)</span>. A distribution <span class="math notranslate nohighlight">\(f\)</span> is called Dirac if its support has size 1.</p>
-<p>We denote by <span class="math notranslate nohighlight">\(\dist(A)\)</span> the set of all probability distributions over <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<p>A (discrete) probability distribution over a finite or countably infinite set <span class="math notranslate nohighlight">\(A\)</span> is a function <span class="math notranslate nohighlight">\(f \colon A \rightarrow [0,1]\)</span> such that <span class="math notranslate nohighlight">\(\sum_{a\in A} f(a)=1\)</span>. The support of such a distribution <span class="math notranslate nohighlight">\(f\)</span> is the set of all <span class="math notranslate nohighlight">\(a\in A\)</span> with <span class="math notranslate nohighlight">\(f(a)&gt;0\)</span>. A distribution <span class="math notranslate nohighlight">\(f\)</span> is called Dirac if its support has size 1.</p>
+<p>We denote by <span class="math notranslate nohighlight">\(\mathcal{D}(A)\)</span> the set of all probability distributions over <span class="math notranslate nohighlight">\(A\)</span>.</p>
 <p>We also deal with probabilities over uncountable sets of events. This is accomplished via the standard notion of a <strong>probability space.</strong></p>
 <div class="proof definition admonition" id="5-def:probspace">
 <p class="admonition-title"><span class="caption-number">Definition 132 </span> (Probability space)</p>
 <div class="definition-content section" id="proof-content">
 <p>A probability space is a triple
-<span class="math notranslate nohighlight">\((\sampleSpace,\sigmaAlg,\probm)\)</span> where</p>
+<span class="math notranslate nohighlight">\(( S, \mathcal{F}, \mathbb{P})\)</span> where</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\sampleSpace\)</span> is a non-empty set of <strong>events</strong> (so called
+<li><p><span class="math notranslate nohighlight">\(S\)</span> is a non-empty set of <strong>events</strong> (so called
 <strong>sample space</strong>).</p></li>
-<li><p><span class="math notranslate nohighlight">\(\sigmaAlg\)</span> is a sigma-algebra over <span class="math notranslate nohighlight">\(\sampleSpace\)</span>,
-i.e. a collection of subsets of <span class="math notranslate nohighlight">\(\sampleSpace\)</span> that contains the empty set
-<span class="math notranslate nohighlight">\(\emptyset\)</span> and that is closed under complementation and countable unions. The members of <span class="math notranslate nohighlight">\(\sigmaAlg\)</span> are called <span class="math notranslate nohighlight">\(\sigmaAlg\)</span>-measurable
+<li><p><span class="math notranslate nohighlight">\(\mathcal{F}\)</span> is a sigma-algebra over <span class="math notranslate nohighlight">\(S\)</span>,
+i.e. a collection of subsets of <span class="math notranslate nohighlight">\(S\)</span> that contains the empty set
+<span class="math notranslate nohighlight">\(\emptyset\)</span> and that is closed under complementation and countable unions. The members of <span class="math notranslate nohighlight">\(\mathcal{F}\)</span> are called <span class="math notranslate nohighlight">\(\mathcal{F}\)</span>-measurable
 sets.</p></li>
-<li><p><span class="math notranslate nohighlight">\(\probm\)</span> is a probability measure on <span class="math notranslate nohighlight">\(\sigmaAlg\)</span>, i.e. a function
-<span class="math notranslate nohighlight">\(\probm\colon \sigmaAlg\rightarrow[0,1]\)</span> such that:</p></li>
-<li><p><span class="math notranslate nohighlight">\(\probm(\emptyset)=0\)</span>;</p></li>
-<li><p>for all <span class="math notranslate nohighlight">\(A\in \sigmaAlg\)</span> it holds <span class="math notranslate nohighlight">\(\probm(\sampleSpace \setminus
-A)=1-\probm(A)\)</span>; and</p></li>
-<li><p>for all countable sequences of pairwise disjoint sets <span class="math notranslate nohighlight">\(A_1,A_2,\dots \in \sigmaAlg\)</span> (i.e., <span class="math notranslate nohighlight">\(A_i \cap A_j = \emptyset\)</span> for all <span class="math notranslate nohighlight">\(i\neq j\)</span>)
-we have <span class="math notranslate nohighlight">\(\sum_{i=1}^{\infty}\probm(A_i)=\probm(\bigcup_{i=1}^{\infty} A_i)\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbb{P}\)</span> is a probability measure on <span class="math notranslate nohighlight">\(\mathcal{F}\)</span>, i.e. a function
+<span class="math notranslate nohighlight">\(\mathbb{P}\colon  \mathcal{F}\rightarrow[0,1]\)</span> such that:</p>
+<ol class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mathbb{P}(\emptyset)=0\)</span>;</p></li>
+<li><p>for all <span class="math notranslate nohighlight">\(A\in  \mathcal{F}\)</span> it holds <span class="math notranslate nohighlight">\(\mathbb{P}( S \setminus
+A)=1- \mathbb{P}(A)\)</span>; and</p></li>
+<li><p>for all countable sequences of pairwise disjoint sets <span class="math notranslate nohighlight">\(A_1,A_2,\dots \in  \mathcal{F}\)</span> (i.e., <span class="math notranslate nohighlight">\(A_i \cap A_j = \emptyset\)</span> for all <span class="math notranslate nohighlight">\(i\neq j\)</span>)
+we have <span class="math notranslate nohighlight">\(\sum_{i=1}^{\infty} \mathbb{P}(A_i)= \mathbb{P}(\bigcup_{i=1}^{\infty} A_i)\)</span>.</p></li>
+</ol>
+</li>
 </ul>
 </div>
-</div><p>A random variable in the probability space <span class="math notranslate nohighlight">\((\sampleSpace,\sigmaAlg,\probm)\)</span> is an <span class="math notranslate nohighlight">\(\sigmaAlg\)</span>-measurable function <span class="math notranslate nohighlight">\(\rvar\colon \Omega \rightarrow \R \cup
+</div><p>A random variable in the probability space <span class="math notranslate nohighlight">\(( S, \mathcal{F}, \mathbb{P})\)</span> is an <span class="math notranslate nohighlight">\(\mathcal{F}\)</span>-measurable function <span class="math notranslate nohighlight">\(X\colon \Omega \rightarrow  \mathbb{R} \cup
 \{-\infty,\infty\}\)</span>, i.e.,
-a function such that for every <span class="math notranslate nohighlight">\(a\in \R \cup \{ -\infty,\infty\}\)</span> the set
-<span class="math notranslate nohighlight">\(\{\omega\in \Omega\mid \rvar(\omega)\leq a\}\)</span> belongs to <span class="math notranslate nohighlight">\(\mathcal{F}\)</span>. We denote by <span class="math notranslate nohighlight">\(\expv[\rvar]\)</span> the expected value of a random variable <span class="math notranslate nohighlight">\(\rvar\)</span>~(see Chapter 5 in <span id="id1">[<span>Bil:1995</span>]</span> for a formal definition).</p>
+a function such that for every <span class="math notranslate nohighlight">\(a\in  \mathbb{R} \cup \{ -\infty,\infty\}\)</span> the set
+<span class="math notranslate nohighlight">\(\{\omega\in \Omega\mid  X(\omega)\leq a\}\)</span> belongs to <span class="math notranslate nohighlight">\(\mathcal{F}\)</span>. We denote by <span class="math notranslate nohighlight">\(\mathbb{E}[ X]\)</span> the expected value of a random variable <span class="math notranslate nohighlight">\(X\)</span> (see Chapter 5 in <span id="id1">[<a class="reference internal" href="references.html#id104"><span>Bil95</span></a>]</span> for a formal definition).</p>
 <p>We first give a syntactic notion of an MDP which is an analogue of the notion of an arena for games.</p>
 <div class="proof definition admonition" id="5-def:MDP">
 <p class="admonition-title"><span class="caption-number">Definition 133 </span> (MDP)</p>
 <div class="definition-content section" id="proof-content">
-<p>A Markov decision process is a tuple <span class="math notranslate nohighlight">\((\vertices,\edges,\probTranFunc,\colouring)\)</span>. The meaning of <span class="math notranslate nohighlight">\(\vertices\)</span>, <span class="math notranslate nohighlight">\(\edges\)</span>, and <span class="math notranslate nohighlight">\(\colouring\)</span> is the same as for games, i.e. <span class="math notranslate nohighlight">\(\vertices\)</span> is a finite set of vertices, <span class="math notranslate nohighlight">\(\edges\subseteq \vertices\times\vertices\)</span> is a set of edges and <span class="math notranslate nohighlight">\(\colouring\colon \edges \rightarrow \colours\)</span> a mapping of edges to a set of colours. However, the meaning of <span class="math notranslate nohighlight">\(\probTranFunc\)</span> is now different: <span class="math notranslate nohighlight">\(\probTranFunc\)</span> is a partial probabilistic transition function of type <span class="math notranslate nohighlight">\(\probTranFunc\colon \vertices \times \actions \rightarrow \dist(\edges)\)</span>, such that the support of <span class="math notranslate nohighlight">\(\probTranFunc(v,a)\)</span> only contains edges outgoing from <span class="math notranslate nohighlight">\(v\)</span>.</p>
-<p>We usually write <span class="math notranslate nohighlight">\(\probTranFunc(v'\mid v,a)\)</span> as a shorthand for <span class="math notranslate nohighlight">\(\probTranFunc(v,a)((v,v'))\)</span>, i.e. the probability of transitioning from <span class="math notranslate nohighlight">\(v\)</span> to <span class="math notranslate nohighlight">\(v'\)</span> under action <span class="math notranslate nohighlight">\(a\)</span>.</p>
+<p>A Markov decision process is a tuple <span class="math notranslate nohighlight">\(( V, E, \Delta, c)\)</span>. The meaning of <span class="math notranslate nohighlight">\(V\)</span>, <span class="math notranslate nohighlight">\(E\)</span>, and <span class="math notranslate nohighlight">\(c\)</span> is the same as for games, i.e. <span class="math notranslate nohighlight">\(V\)</span> is a finite set of vertices, <span class="math notranslate nohighlight">\(E\subseteq  V\times V\)</span> is a set of edges and <span class="math notranslate nohighlight">\(c\colon  E \rightarrow  C\)</span> a mapping of edges to a set of colours. However, the meaning of <span class="math notranslate nohighlight">\(\Delta\)</span> is now different: <span class="math notranslate nohighlight">\(\Delta\)</span> is a partial probabilistic transition function of type <span class="math notranslate nohighlight">\(\Delta\colon  V \times  A \rightarrow  \mathcal{D}( E)\)</span>, such that the support of <span class="math notranslate nohighlight">\(\Delta(v,a)\)</span> only contains edges outgoing from <span class="math notranslate nohighlight">\(v\)</span>.</p>
+<p>We usually write <span class="math notranslate nohighlight">\(\Delta(v'\mid v,a)\)</span> as a shorthand for <span class="math notranslate nohighlight">\(\Delta(v,a)((v,v'))\)</span>, i.e. the probability of transitioning from <span class="math notranslate nohighlight">\(v\)</span> to <span class="math notranslate nohighlight">\(v'\)</span> under action <span class="math notranslate nohighlight">\(a\)</span>.</p>
 </div>
-</div><p>We also stipulate that for each edge <span class="math notranslate nohighlight">\((v_1,v_2)\)</span> there exists an action <span class="math notranslate nohighlight">\(a\in \actions\)</span> such that <span class="math notranslate nohighlight">\(\probTranFunc(v_2\mid v_1,a)&gt;0\)</span>. Edges not satisfying this can be always removed without changing the semantics of the MDP, which is defined below. We denote by <span class="math notranslate nohighlight">\( p_{\min} \)</span> the smallest non-zero edge probability in a given MDP, i.e. <span class="math notranslate nohighlight">\( p_{\min} = \min\{x&gt;0 \mid \exists u,v \in \vertices, a \in \actions \text{ s.t. } x = \probTranFunc(v\mid u,a)\}. \)</span></p>
-<p>We denote by <span class="math notranslate nohighlight">\(\edges_\genColour\)</span> the set of edges coloured by <span class="math notranslate nohighlight">\(\genColour\)</span>. Also, for MDPs where <span class="math notranslate nohighlight">\(\colours\)</span> is some set of numbers, we use <span class="math notranslate nohighlight">\(\maxc\)</span> to denote the number <span class="math notranslate nohighlight">\(\max_{e\in 
-\edges}|\colouring(e)|\)</span>.
-In the setting of MDPs it is technically convenient to encode regular objectives (Reachability, Büchi,\dots) by colours on <strong>vertices</strong> as opposed to edges. Hence, when discussing these objectives, we assume that the colouring function <span class="math notranslate nohighlight">\(\colouring\)</span> has the type <span class="math notranslate nohighlight">\(\vertices \rightarrow \colours\)</span>.</p>
+</div><p>We also stipulate that for each edge <span class="math notranslate nohighlight">\((v_1,v_2)\)</span> there exists an action <span class="math notranslate nohighlight">\(a\in  A\)</span> such that <span class="math notranslate nohighlight">\(\Delta(v_2\mid v_1,a)&gt;0\)</span>. Edges not satisfying this can be always removed without changing the semantics of the MDP, which is defined below. We denote by <span class="math notranslate nohighlight">\( p_{\min} \)</span> the smallest non-zero edge probability in a given MDP, i.e. <span class="math notranslate nohighlight">\( p_{\min} = \min\{x&gt;0 \mid \exists u,v \in  V, a \in  A \text{ s.t. } x =  \Delta(v\mid u,a)\}. \)</span></p>
+<p>We denote by <span class="math notranslate nohighlight">\(E_c\)</span> the set of edges coloured by <span class="math notranslate nohighlight">\(c\)</span>. Also, for MDPs where <span class="math notranslate nohighlight">\(C\)</span> is some set of numbers, we use <span class="math notranslate nohighlight">\(\max_{ c}\)</span> to denote the number <span class="math notranslate nohighlight">\(\max_{e\in 
+ E}| c(e)|\)</span>.
+In the setting of MDPs it is technically convenient to encode regular objectives (Reachability, Büchi,\dots) by colours on <strong>vertices</strong> as opposed to edges. Hence, when discussing these objectives, we assume that the colouring function <span class="math notranslate nohighlight">\(c\)</span> has the type <span class="math notranslate nohighlight">\(V \rightarrow  C\)</span>.</p>
 <blockquote>
 <div><p><strong>Plays and strategies in MDPs</strong></p>
 </div></blockquote>
-<p>The way in which a play is generated in an MDP is similar to games, but now encompasses a certain degree of randomness. There is a single player, say Eve, who controls all the vertices. Eve’s interaction with the world described by an MDP is probabilistic. One reason is the stochasticity of the transition function, the other is the fact that in MDP settings, it is usually permitted for Eve to use randomised strategies. Formally, a randomised strategy is a function <span class="math notranslate nohighlight">\(\sigma : E^* \to \dist(A)\)</span>, which to each finite play assigns a probability distribution over actions.</p>
-<p>We typically shorten <span class="math notranslate nohighlight">\(\sigma(\play)(a)\)</span> to <span class="math notranslate nohighlight">\(\sigma(a\mid \play)\)</span>.</p>
+<p>The way in which a play is generated in an MDP is similar to games, but now encompasses a certain degree of randomness. There is a single player, say Eve, who controls all the vertices. Eve’s interaction with the world described by an MDP is probabilistic. One reason is the stochasticity of the transition function, the other is the fact that in MDP settings, it is usually permitted for Eve to use randomised strategies. Formally, a randomised strategy is a function <span class="math notranslate nohighlight">\(\sigma : E^* \to  \mathcal{D}(A)\)</span>, which to each finite play assigns a probability distribution over actions.</p>
+<p>We typically shorten <span class="math notranslate nohighlight">\(\sigma( \pi)(a)\)</span> to <span class="math notranslate nohighlight">\(\sigma(a\mid  \pi)\)</span>.</p>
 <p>In this section, we will refer to randomised strategies simply as strategies. The strategies known from the game setting will be called  deterministic strategies. Formally, a deterministic strategy can be viewed as a special type of a randomised strategy which always selects a Dirac distribution over the edges. We shorten memoryless randomised/deterministic to MR and MD, respectively.</p>
-<p>Now a play in an MDP is produced as follows: in each step, when the finite play produced so far (i.e. the history of the game token’s movement) is <span class="math notranslate nohighlight">\(\play\)</span>, Eve chooses an action <span class="math notranslate nohighlight">\(a\)</span> randomly according to the distribution <span class="math notranslate nohighlight">\(\sigma(\play)\)</span>. Then, an edge outgoing from <span class="math notranslate nohighlight">\(\last(\play)\)</span> is chosen randomly according to <span class="math notranslate nohighlight">\(\probTranFunc(\last(\play),a)\)</span> and the token is pushed along the selected edge. As shown below, this intuitive process can be formalized by constructing a special probability space whose sample space consists of infinite plays in the MDP.</p>
+<p>Now a play in an MDP is produced as follows: in each step, when the finite play produced so far (i.e. the history of the game token’s movement) is <span class="math notranslate nohighlight">\(\pi\)</span>, Eve chooses an action <span class="math notranslate nohighlight">\(a\)</span> randomly according to the distribution <span class="math notranslate nohighlight">\(\sigma( \pi)\)</span>. Then, an edge outgoing from <span class="math notranslate nohighlight">\(\textrm{last}( \pi)\)</span> is chosen randomly according to <span class="math notranslate nohighlight">\(\Delta( \textrm{last}( \pi),a)\)</span> and the token is pushed along the selected edge. As shown below, this intuitive process can be formalized by constructing a special probability space whose sample space consists of infinite plays in the MDP.</p>
 <blockquote>
 <div><p><strong>Formal semantics of MDPs</strong></p>
 </div></blockquote>
-<p>Formally, to each MDP <span class="math notranslate nohighlight">\(\mdp\)</span>, each (Eve’s) strategy <span class="math notranslate nohighlight">\(\sigma\)</span> in <span class="math notranslate nohighlight">\(\mdp\)</span>, and
-each initial vertex <span class="math notranslate nohighlight">\(\vinit\)</span> we assign a probability space
-<span class="math notranslate nohighlight">\((\sampleSpace_{\mdp},\sigmaAlg_{\mdp},\probm^{\sigma}_{\mdp,\vinit})\)</span>. To
+<p>Formally, to each MDP <span class="math notranslate nohighlight">\(\mathcal{M}\)</span>, each (Eve’s) strategy <span class="math notranslate nohighlight">\(\sigma\)</span> in <span class="math notranslate nohighlight">\(\mathcal{M}\)</span>, and
+each initial vertex <span class="math notranslate nohighlight">\(v_0\)</span> we assign a probability space
+<span class="math notranslate nohighlight">\(( S_{ \mathcal{M}}, \mathcal{F}_{ \mathcal{M}}, \mathbb{P}^{\sigma}_{ \mathcal{M}, v_0})\)</span>. To
 explain the individual components, we need the notion of a cylinder set. A
-basic cylinder determined by a finite play <span class="math notranslate nohighlight">\(\play\)</span> is the set of
-all infinite plays in <span class="math notranslate nohighlight">\(\mdp\)</span> having <span class="math notranslate nohighlight">\(\play\)</span> as a prefix. Now the above
+basic cylinder determined by a finite play <span class="math notranslate nohighlight">\(\pi\)</span> is the set of
+all infinite plays in <span class="math notranslate nohighlight">\(\mathcal{M}\)</span> having <span class="math notranslate nohighlight">\(\pi\)</span> as a prefix. Now the above
 probability space consists of the following components:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\sampleSpace_{\mdp}\)</span> is the set of all infinite plays in <span class="math notranslate nohighlight">\(\mdp\)</span>;</p></li>
-<li><p><span class="math notranslate nohighlight">\(\sigmaAlg_{\mdp}\)</span> is the <strong>Borel</strong> sigma-algebra over
-<span class="math notranslate nohighlight">\(\Omega_{\mdp}\)</span>; this is the smallest sigma-algebra containing all the
-basic cylinder sets determined by finite plays in <span class="math notranslate nohighlight">\(\mdp\)</span>. The sets in
-<span class="math notranslate nohighlight">\(\sigmaAlg_{\mdp}\)</span> are called events. Note that the smallest sigma-algebra of the desired property is guaranteed to exist, since an intersection of an arbitrary number of sigma-algebras is again a sigma algebra.</p></li>
-<li><p><span class="math notranslate nohighlight">\(\probm^{\sigma}_{\mdp,\vinit}\)</span> is the unique probability measure
+<li><p><span class="math notranslate nohighlight">\(S_{ \mathcal{M}}\)</span> is the set of all infinite plays in <span class="math notranslate nohighlight">\(\mathcal{M}\)</span>;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathcal{F}_{ \mathcal{M}}\)</span> is the <strong>Borel</strong> sigma-algebra over
+<span class="math notranslate nohighlight">\(\Omega_{ \mathcal{M}}\)</span>; this is the smallest sigma-algebra containing all the
+basic cylinder sets determined by finite plays in <span class="math notranslate nohighlight">\(\mathcal{M}\)</span>. The sets in
+<span class="math notranslate nohighlight">\(\mathcal{F}_{ \mathcal{M}}\)</span> are called events. Note that the smallest sigma-algebra of the desired property is guaranteed to exist, since an intersection of an arbitrary number of sigma-algebras is again a sigma algebra.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbb{P}^{\sigma}_{ \mathcal{M}, v_0}\)</span> is the unique probability measure
 arising from the <strong>cylinder construction</strong> detailed below. We use
-<span class="math notranslate nohighlight">\(\expv^{\sigma}_{\mdp,\vinit}\)</span> to denote the expectation operator
-associated to the measure <span class="math notranslate nohighlight">\(\probm^{\sigma}_{\mdp,\vinit}\)</span>.</p></li>
+<span class="math notranslate nohighlight">\(\mathbb{E}^{\sigma}_{ \mathcal{M}, v_0}\)</span> to denote the expectation operator
+associated to the measure <span class="math notranslate nohighlight">\(\mathbb{P}^{\sigma}_{ \mathcal{M}, v_0}\)</span>.</p></li>
 </ul>
-<p>Since the sample space <span class="math notranslate nohighlight">\(\sampleSpace_{\mdp}\)</span> is uncountable, we construct the
+<p>Since the sample space <span class="math notranslate nohighlight">\(S_{ \mathcal{M}}\)</span> is uncountable, we construct the
 probability measure by first specifying a probability of certain simple sets of
 runs and then using an appropriate <strong>measure-extension</strong> theorem to extend
-the probability measure, in a unique way, to all sets in <span class="math notranslate nohighlight">\(\sigmaAlg_{\mdp}\)</span>.
+the probability measure, in a unique way, to all sets in <span class="math notranslate nohighlight">\(\mathcal{F}_{ \mathcal{M}}\)</span>.
 The standard cylinder construction<br />
-proceeds as follows: for each finite play <span class="math notranslate nohighlight">\(\play\)</span> we define the probability
-<span class="math notranslate nohighlight">\(\cylProb(\play)\)</span> such that</p>
+proceeds as follows: for each finite play <span class="math notranslate nohighlight">\(\pi\)</span> we define the probability
+<span class="math notranslate nohighlight">\(p( \pi)\)</span> such that</p>
 <ul class="simple">
-<li><p>for an empty play <span class="math notranslate nohighlight">\(\emptyPlay\)</span> we put <span class="math notranslate nohighlight">\(\cylProb(\emptyPlay)=1\)</span>;</p></li>
-<li><p>for a non-empty play <span class="math notranslate nohighlight">\(\play=\play_0\cdots \play_{k}\)</span> initiated in
-<span class="math notranslate nohighlight">\(\vinit\)</span> we put</p></li>
+<li><p>for an empty play <span class="math notranslate nohighlight">\(\epsilon\)</span> we put <span class="math notranslate nohighlight">\(p( \epsilon)=1\)</span>;</p></li>
+<li><p>for a non-empty play <span class="math notranslate nohighlight">\(\pi= \pi_0\cdots  \pi_{k}\)</span> initiated in
+<span class="math notranslate nohighlight">\(v_0\)</span> we put</p></li>
 </ul>
 <div class="math notranslate nohighlight">
-\[\cylProb(\play) = \cylProb(\play_{&lt; k})\cdot \Big(\sum_{a \in \actions} 
-\sigma(a\mid \play_{&lt; k})\cdot \probTranFunc(\last(\play)\mid 
-\last(\play_{&lt; k}),a) 
+\[p( \pi) =  p( \pi_{&lt; k})\cdot \Big(\sum_{a \in  A} 
+\sigma(a\mid  \pi_{&lt; k})\cdot  \Delta( \textrm{last}( \pi)\mid 
+ \textrm{last}( \pi_{&lt; k}),a) 
 \Big), \]</div>
-<p>where we use the convention that <span class="math notranslate nohighlight">\(\last(\play_{&lt; 0})=\vinit\)</span>;</p>
+<p>where we use the convention that <span class="math notranslate nohighlight">\(\textrm{last}( \pi_{&lt; 0})= v_0\)</span>;</p>
 <ul class="simple">
-<li><p>for all other <span class="math notranslate nohighlight">\(\play\)</span> we have <span class="math notranslate nohighlight">\(\cylProb(\play)=0\)</span>.</p></li>
+<li><p>for all other <span class="math notranslate nohighlight">\(\pi\)</span> we have <span class="math notranslate nohighlight">\(p( \pi)=0\)</span>.</p></li>
 </ul>
 <p>Now using an appropriate measure-extension theorem
-(such as Hahn-Kol-mo-go-rov theorem~\cite[Corollary 2.5.4 and Proposition  2.5.7]{Rosenthal:2006}, or Carath’eodory theorem~\cite[Theorem 1.3.10]{Ash&amp;Doleans-Dade:2000}) one can show that there is a
+(such as Hahn-Kol-mo-go-rov theorem Corollary 2.5.4 and Proposition  2.5.7 in <span id="id2">[<span>Rosenthal:2006</span>]</span>, or Carath’eodory theorem Theorem 1.3.10 in <span id="id3">[<a class="reference internal" href="references.html#id99"><span>ADoleansD00</span></a>]</span>) one can show that there is a
 unique probability
-measure <span class="math notranslate nohighlight">\(\probm^{\sigma}_{\mdp,\vinit} \)</span> on <span class="math notranslate nohighlight">\(\sigmaAlg_{\mdp}\)</span> such that for
-every cylinder set <span class="math notranslate nohighlight">\(\cylinder(\play)\)</span> determined by some finite play <span class="math notranslate nohighlight">\(\play\)</span> we have <span class="math notranslate nohighlight">\(\probm_{\vinit}^\sigma(\cylinder(\play))=\cylProb(\play)\)</span>. (Abusing the notation, we write <span class="math notranslate nohighlight">\(\probm^{\sigma}_{\mdp,\vinit}(\play)\)</span> for the probability of this cylinder set). There
+measure <span class="math notranslate nohighlight">\(\mathbb{P}^{\sigma}_{ \mathcal{M}, v_0} \)</span> on <span class="math notranslate nohighlight">\(\mathcal{F}_{ \mathcal{M}}\)</span> such that for
+every cylinder set <span class="math notranslate nohighlight">\(\mathit{Cyl}( \pi)\)</span> determined by some finite play <span class="math notranslate nohighlight">\(\pi\)</span> we have <span class="math notranslate nohighlight">\(\mathbb{P}_{ v_0}^\sigma( \mathit{Cyl}( \pi))= p( \pi)\)</span>. (Abusing the notation, we write <span class="math notranslate nohighlight">\(\mathbb{P}^{\sigma}_{ \mathcal{M}, v_0}( \pi)\)</span> for the probability of this cylinder set). There
 are some intermediate steps to be performed before an extension theorem
 can be applied, and we omit these due to space constraints. Full details on the
-cylinder construction can be found, e.g. in <span id="id2">[<a class="reference internal" href="references.html#id99"><span>ADoleansD00</span></a>,<a class="reference internal" href="references.html#id121"><span>Novotny15</span></a>]</span>.</p>
+cylinder construction can be found, e.g. in <span id="id4">[<a class="reference internal" href="references.html#id99"><span>ADoleansD00</span></a>,<a class="reference internal" href="references.html#id122"><span>Novotny15</span></a>]</span>.</p>
 <p>While the construction of the probability measure
-<span class="math notranslate nohighlight">\(\probm^{\sigma}_{\mdp,\vinit}\)</span> might seem a bit esoteric, in the context of
+<span class="math notranslate nohighlight">\(\mathbb{P}^{\sigma}_{ \mathcal{M}, v_0}\)</span> might seem a bit esoteric, in the context of
 MDP verification we do not usually need to be concerned with all the delicacies
 behind the associated probability space. The sets of plays that we work with
 typically arise from the basic cylinder sets by means of countable unions,
 intersections, and simple combinations thereof; such sets by definition belong
 to the
-sigma-algebra <span class="math notranslate nohighlight">\(\sigmaAlg_{\mdp}\)</span>, and their probabilities can be inferred using
+sigma-algebra <span class="math notranslate nohighlight">\(\mathcal{F}_{ \mathcal{M}}\)</span>, and their probabilities can be inferred using
 basic probabilistic reasoning. Nevertheless, one should keep in mind that all the
 probabilistic argumentation rests on solid formal grounds.</p>
-<p>In the standard MDP literature <span id="id3">[<a class="reference internal" href="references.html#id122"><span>Put05</span></a>]</span>, the plays are often defined as alternating sequence of vertices and actions. Here we stick to the edge-based definition inherited from deterministic games. Still, we would sometimes like to speak about quantities such as probability that action <span class="math notranslate nohighlight">\(a\)</span> is taken in step <span class="math notranslate nohighlight">\(i\)</span>. To this end, we introduce, for each strategy <span class="math notranslate nohighlight">\(\sigma\)</span>, each action <span class="math notranslate nohighlight">\(a\)</span>,  and each <span class="math notranslate nohighlight">\(i\geq 0\)</span>,  a random variable <span class="math notranslate nohighlight">\(\actevent{\sigma}{a}{i}\)</span> such that <span class="math notranslate nohighlight">\(\actevent{\sigma}{a}{i}(\play)=\sigma(\play_{&lt; i})(a)\)</span>. It is easy to check that  <span class="math notranslate nohighlight">\(\expv^\sigma_v[\actevent{\sigma}{a}{i}]\)</span> is the probability that action <span class="math notranslate nohighlight">\(a\)</span> is played in step <span class="math notranslate nohighlight">\(i\)</span> when using strategy <span class="math notranslate nohighlight">\(\sigma\)</span>.</p>
+<p>In the standard MDP literature <span id="id5">[<a class="reference internal" href="references.html#id123"><span>Put05</span></a>]</span>, the plays are often defined as alternating sequence of vertices and actions. Here we stick to the edge-based definition inherited from deterministic games. Still, we would sometimes like to speak about quantities such as probability that action <span class="math notranslate nohighlight">\(a\)</span> is taken in step <span class="math notranslate nohighlight">\(i\)</span>. To this end, we introduce, for each strategy <span class="math notranslate nohighlight">\(\sigma\)</span>, each action <span class="math notranslate nohighlight">\(a\)</span>,  and each <span class="math notranslate nohighlight">\(i\geq 0\)</span>,  a random variable <span class="math notranslate nohighlight">\(\actevent{\sigma}{a}{i}\)</span> such that <span class="math notranslate nohighlight">\(\actevent{\sigma}{a}{i}( \pi)=\sigma( \pi_{&lt; i})(a)\)</span>. It is easy to check that  <span class="math notranslate nohighlight">\(\mathbb{E}^\sigma_v[\actevent{\sigma}{a}{i}]\)</span> is the probability that action <span class="math notranslate nohighlight">\(a\)</span> is played in step <span class="math notranslate nohighlight">\(i\)</span> when using strategy <span class="math notranslate nohighlight">\(\sigma\)</span>.</p>
 <blockquote>
 <div><p><strong>Objectives in MDPs</strong></p>
 </div></blockquote>
@@ -925,46 +828,46 @@ typically no single infinite play that would constitute the outcome of
 <span class="math notranslate nohighlight">\(\sigma\)</span>. A concrete <span class="math notranslate nohighlight">\(\sigma\)</span> might yield different outcomes, depending on the
 results of random events during the interaction with the MDP. Hence, we need a
 more general way of evaluating strategies in MDPs.</p>
-<p>In the game setting, a qualitative objective was given as a set <span class="math notranslate nohighlight">\(\objective
-\subseteq \colours^{\omega}\)</span>. In the MDP setting, we require that such
-<span class="math notranslate nohighlight">\(\objective\)</span> is measurable in the sense that the set <span class="math notranslate nohighlight">\(\colouring^{-1}(\objective) = \{\play \in \sampleSpace_{\mdp} \mdp \colouring(\play) \in \objective \}\)</span> belongs to <span class="math notranslate nohighlight">\(\sigmaAlg_{\mdp}\)</span>. We can then talk about a
-probability that the produced play falls satisfies <span class="math notranslate nohighlight">\(\objective\)</span>. For instance, for a
-colour <span class="math notranslate nohighlight">\(\genColour\)</span> the objective <span class="math notranslate nohighlight">\( \Reach(\genColour) \)</span> is indeed measurable, since <span class="math notranslate nohighlight">\( \colouring^{-1}(\objective) \)</span> can be written as a countable union of all basic cylinders that are determined by finite plays ending in a vertex coloured by <span class="math notranslate nohighlight">\( \genColour \)</span>. Indeed, all the qualitative objectives studied in previous chapters can be shown measurable in a similar way, and we encourage the reader to prove this as an exercise.
+<p>In the game setting, a qualitative objective was given as a set <span class="math notranslate nohighlight">\(\Omega
+\subseteq  C^{\omega}\)</span>. In the MDP setting, we require that such
+<span class="math notranslate nohighlight">\(\Omega\)</span> is measurable in the sense that the set <span class="math notranslate nohighlight">\(c^{-1}( \Omega) = \{ \pi \in  S_{ \mathcal{M}}  \mathcal{M}  c( \pi) \in  \Omega \}\)</span> belongs to <span class="math notranslate nohighlight">\(\mathcal{F}_{ \mathcal{M}}\)</span>. We can then talk about a
+probability that the produced play falls satisfies <span class="math notranslate nohighlight">\(\Omega\)</span>. For instance, for a
+colour <span class="math notranslate nohighlight">\(c\)</span> the objective <span class="math notranslate nohighlight">\(  \mathtt{Reach}( c) \)</span> is indeed measurable, since <span class="math notranslate nohighlight">\(  c^{-1}( \Omega) \)</span> can be written as a countable union of all basic cylinders that are determined by finite plays ending in a vertex coloured by <span class="math notranslate nohighlight">\(  c \)</span>. Indeed, all the qualitative objectives studied in previous chapters can be shown measurable in a similar way, and we encourage the reader to prove this as an exercise.
 Hence, the expression
-<span class="math notranslate nohighlight">\(\probm^{\sigma}_{\mdp,\vinit}(\Reach(\genColour))\)</span>
-denotes the probability that a vertex of colour <span class="math notranslate nohighlight">\(\genColour\)</span> is reached when
+<span class="math notranslate nohighlight">\(\mathbb{P}^{\sigma}_{ \mathcal{M}, v_0}( \mathtt{Reach}( c))\)</span>
+denotes the probability that a vertex of colour <span class="math notranslate nohighlight">\(c\)</span> is reached when
 using
-strategy <span class="math notranslate nohighlight">\(\sigma\)</span> from vertex <span class="math notranslate nohighlight">\(\vinit\)</span>.
+strategy <span class="math notranslate nohighlight">\(\sigma\)</span> from vertex <span class="math notranslate nohighlight">\(v_0\)</span>.
 In line with previous conventions, we
 stipulate that Eve aims to maximize this probability.</p>
 <p>The situation is more complex for quantitative objectives. As shown in the previous chapter,
-when working with quantitative objectives, the set of colours <span class="math notranslate nohighlight">\(\colours\)</span> is typically the set of real numbers (or a subset thereof), and the quantitative objective is given by an aggregating function <span class="math notranslate nohighlight">\(\quantObj\colon \colours^\omega \rightarrow \R\)</span>, which can be extended into a function <span class="math notranslate nohighlight">\(\quantObjExt\colon \edges^\omega \rightarrow \R \)</span> by putting <span class="math notranslate nohighlight">\( \quantObjExt(\play) = \quantObj( \colouring(\play_0)\colouring(\play_1)\cdots) \)</span>.</p>
+when working with quantitative objectives, the set of colours <span class="math notranslate nohighlight">\(C\)</span> is typically the set of real numbers (or a subset thereof), and the quantitative objective is given by an aggregating function <span class="math notranslate nohighlight">\(f\colon  C^\omega \rightarrow  \mathbb{R}\)</span>, which can be extended into a function <span class="math notranslate nohighlight">\(\bar{ f}\colon  E^\omega \rightarrow  \mathbb{R} \)</span> by putting <span class="math notranslate nohighlight">\(  \bar{ f}( \pi) =  f(  c( \pi_0) c( \pi_1)\cdots) \)</span>.</p>
 <p>In the MDP setting, we
-require that <span class="math notranslate nohighlight">\(\quantObjExt\)</span> is <span class="math notranslate nohighlight">\(\sigmaAlg_{\mdp}\)</span>-measurable, which
-means that for each <span class="math notranslate nohighlight">\(x\in \R\)</span> the set <span class="math notranslate nohighlight">\(\{\pi\in \edges^\omega\mid 
-\quantObj(\colouring(\play_0)\colouring(\play_1)\cdots) \leq x\}\)</span> belongs to
-<span class="math notranslate nohighlight">\(\sigmaAlg_{\mdp}\)</span> (again this holds for all the objectives studied
+require that <span class="math notranslate nohighlight">\(\bar{ f}\)</span> is <span class="math notranslate nohighlight">\(\mathcal{F}_{ \mathcal{M}}\)</span>-measurable, which
+means that for each <span class="math notranslate nohighlight">\(x\in  \mathbb{R}\)</span> the set <span class="math notranslate nohighlight">\(\{\pi\in  E^\omega\mid 
+ f( c( \pi_0) c( \pi_1)\cdots) \leq x\}\)</span> belongs to
+<span class="math notranslate nohighlight">\(\mathcal{F}_{ \mathcal{M}}\)</span> (again this holds for all the objectives studied
 in the previous chapters). Then there are two ways in which we can define the expected payoff achieved by strategy <span class="math notranslate nohighlight">\( \sigma \)</span> from a vertex <span class="math notranslate nohighlight">\( v \)</span>.
 First, we can treat
-<span class="math notranslate nohighlight">\(\quantObjExt\)</span> as a random variable
+<span class="math notranslate nohighlight">\(\bar{ f}\)</span> as a random variable
 in the probability space
-<span class="math notranslate nohighlight">\((\sampleSpace_{\mdp},\sigmaAlg_{\mdp},\probm^{\sigma}_{\mdp,v})\)</span>. Then the play-based payoff of <span class="math notranslate nohighlight">\(\sigma\)</span> from <span class="math notranslate nohighlight">\( v \)</span>, which we denote by <span class="math notranslate nohighlight">\( \playPay_\quantObj(v,\sigma) \)</span>, is the expected value of this random variable, i.e. <span class="math notranslate nohighlight">\( \playPay_\quantObj(v,\sigma) = \expv_{v}^\sigma [\quantObjExt] \)</span>. That is, we compute the expected payoff over all plays. This approach subsumes also qualitative objectives: For such an objective <span class="math notranslate nohighlight">\(\objective\)</span> we can consider an indicator random
-variable <span class="math notranslate nohighlight">\(\indicator{\objective}\)</span>, such that <span class="math notranslate nohighlight">\(\indicator{\objective}(\play)=1\)</span>
+<span class="math notranslate nohighlight">\(( S_{ \mathcal{M}}, \mathcal{F}_{ \mathcal{M}}, \mathbb{P}^{\sigma}_{ \mathcal{M},v})\)</span>. Then the play-based payoff of <span class="math notranslate nohighlight">\(\sigma\)</span> from <span class="math notranslate nohighlight">\( v \)</span>, which we denote by <span class="math notranslate nohighlight">\(  \textsf{p-Payoff}_f(v,\sigma) \)</span>, is the expected value of this random variable, i.e. <span class="math notranslate nohighlight">\(  \textsf{p-Payoff}_f(v,\sigma) =  \mathbb{E}_{v}^\sigma [ \bar{ f}] \)</span>. That is, we compute the expected payoff over all plays. This approach subsumes also qualitative objectives: For such an objective <span class="math notranslate nohighlight">\(\Omega\)</span> we can consider an indicator random
+variable <span class="math notranslate nohighlight">\(\mathbf{1}_{ \Omega}\)</span>, such that <span class="math notranslate nohighlight">\(\mathbf{1}_{ \Omega}( \pi)=1\)</span>
 of
-<span class="math notranslate nohighlight">\(\play\in\Omega\)</span> and <span class="math notranslate nohighlight">\(\indicator{\objective}(\play)=0\)</span> otherwise. Then
-<span class="math notranslate nohighlight">\(\probm^{\sigma}_{\mdp,v}(\objective) = 
-\expv^{\sigma}_{\mdp,v}[\indicator{\objective}] = \playPay_{\indicator{\objective}}(v,\sigma)\)</span>.</p>
-<p>The second approach to quantitative objectives in MDPs, common e.g. in the operations research literature, is step-based: for each time step <span class="math notranslate nohighlight">\(i\)</span> we compute the expected one-step reward (i.e. colour) encountered in that step and then  aggregate  these one-step expectations. Formally, the step-based payoff of <span class="math notranslate nohighlight">\( \sigma \)</span> from <span class="math notranslate nohighlight">\( v \)</span> is <span class="math notranslate nohighlight">\( \stepPay_f(v,\sigma) = \quantObj(\expv_{v}^\sigma[\colouring(\play_0)] \expv_{v}^\sigma[\colouring(\play_1)]\cdots] ) \)</span>, where for each <span class="math notranslate nohighlight">\( i \)</span> we treat the expression <span class="math notranslate nohighlight">\( \colouring(\play_i) \)</span> as a random variable returning the colour (i.e. a number) which labels the <span class="math notranslate nohighlight">\( i \)</span>-th edge of the randomly produced play (recall here that we index edges from <span class="math notranslate nohighlight">\( 0 \)</span>).</p>
-<p>Depending on the concrete quantitative objective and on the shape of <span class="math notranslate nohighlight">\(\sigma\)</span>, the path- and step-based payoffs from a given vertex might or might not be equal. Nevertheless, in this chapter we study only objectives for which these two semantics yield the <strong>same optimization criteria:</strong> no matter which of the two semantics we use, the optimal values will be the same and strategy that is optimal w.r.t. one of the semantics is also optimal for the other one. Hence, we will fix the play-based approach as the default one, writing just <span class="math notranslate nohighlight">\( \Pay_f(v,\sigma)\)</span> instead of <span class="math notranslate nohighlight">\( \playPay_f(v,\sigma) \)</span>. We will prove the equivalence with step-based payoff where necessary. Also, we will drop the subscript <span class="math notranslate nohighlight">\( f \)</span> when the payoff function is known from the context.</p>
+<span class="math notranslate nohighlight">\(\pi\in\Omega\)</span> and <span class="math notranslate nohighlight">\(\mathbf{1}_{ \Omega}( \pi)=0\)</span> otherwise. Then
+<span class="math notranslate nohighlight">\(\mathbb{P}^{\sigma}_{ \mathcal{M},v}( \Omega) = 
+ \mathbb{E}^{\sigma}_{ \mathcal{M},v}[ \mathbf{1}_{ \Omega}] =  \textsf{p-Payoff}_{ \mathbf{1}_{ \Omega}}(v,\sigma)\)</span>.</p>
+<p>The second approach to quantitative objectives in MDPs, common e.g. in the operations research literature, is step-based: for each time step <span class="math notranslate nohighlight">\(i\)</span> we compute the expected one-step reward (i.e. colour) encountered in that step and then  aggregate  these one-step expectations. Formally, the step-based payoff of <span class="math notranslate nohighlight">\( \sigma \)</span> from <span class="math notranslate nohighlight">\( v \)</span> is <span class="math notranslate nohighlight">\(  \textsf{s-Payoff}_f(v,\sigma) =  f( \mathbb{E}_{v}^\sigma[ c( \pi_0)]  \mathbb{E}_{v}^\sigma[ c( \pi_1)]\cdots] ) \)</span>, where for each <span class="math notranslate nohighlight">\( i \)</span> we treat the expression <span class="math notranslate nohighlight">\(  c( \pi_i) \)</span> as a random variable returning the colour (i.e. a number) which labels the <span class="math notranslate nohighlight">\( i \)</span>-th edge of the randomly produced play (recall here that we index edges from <span class="math notranslate nohighlight">\( 0 \)</span>).</p>
+<p>Depending on the concrete quantitative objective and on the shape of <span class="math notranslate nohighlight">\(\sigma\)</span>, the path- and step-based payoffs from a given vertex might or might not be equal. Nevertheless, in this chapter we study only objectives for which these two semantics yield the <strong>same optimization criteria:</strong> no matter which of the two semantics we use, the optimal values will be the same and strategy that is optimal w.r.t. one of the semantics is also optimal for the other one. Hence, we will fix the play-based approach as the default one, writing just <span class="math notranslate nohighlight">\(  \textsf{Payoff}_f(v,\sigma)\)</span> instead of <span class="math notranslate nohighlight">\(  \textsf{p-Payoff}_f(v,\sigma) \)</span>. We will prove the equivalence with step-based payoff where necessary. Also, we will drop the subscript <span class="math notranslate nohighlight">\( f \)</span> when the payoff function is known from the context.</p>
 <blockquote>
 <div><p><strong>Optimal strategies and decision problems</strong></p>
 </div></blockquote>
-<p>Let us fix an MDP <span class="math notranslate nohighlight">\(\mdp\)</span> and an objective given by a random variable
-<span class="math notranslate nohighlight">\(\quantObj\)</span>. The value of a vertex <span class="math notranslate nohighlight">\(v\in\vertices\)</span> is the number
-<span class="math notranslate nohighlight">\(\Value(v)=\sup_{\sigma} \Pay_f(v,\sigma)\)</span>. We let <span class="math notranslate nohighlight">\(\Value(\mdp)\)</span> denote the <span class="math notranslate nohighlight">\(|\vertices|\)</span>-dimensional vector whose component
-indexed by <span class="math notranslate nohighlight">\(v\)</span> equals <span class="math notranslate nohighlight">\(\Value(v)\)</span>.</p>
-<p>We say that a strategy <span class="math notranslate nohighlight">\(\sigma\)</span> is <span class="math notranslate nohighlight">\(\eps\)</span>-optimal in <span class="math notranslate nohighlight">\(v\)</span>, for some <span class="math notranslate nohighlight">\(\eps\geq 0\)</span>, if <span class="math notranslate nohighlight">\(\Pay_f(v,\sigma) \geq \Value(v) - \eps\)</span>. A <span class="math notranslate nohighlight">\(0\)</span>-optimal strategy is simply called optimal.</p>
-<p>For qualitative objectives, there are additional modes of objective satisfaction. Given such an objective <span class="math notranslate nohighlight">\(\objective\)</span>, we say that a strategy <span class="math notranslate nohighlight">\(\sigma\)</span> is almost-surely winning from <span class="math notranslate nohighlight">\(v\)</span> if <span class="math notranslate nohighlight">\(\expv^{\sigma}_{\mdp,v}[\indicator{\objective}]=1\)</span>, i.e. if the run produced by <span class="math notranslate nohighlight">\(\sigma\)</span> falls into <span class="math notranslate nohighlight">\(\objective\)</span> with probability <span class="math notranslate nohighlight">\(1\)</span>. We also say that <span class="math notranslate nohighlight">\(\sigma\)</span> is positively winning from <span class="math notranslate nohighlight">\( v \)</span> if <span class="math notranslate nohighlight">\(\expv^{\sigma}_{\mdp,v}[\indicator{\objective}]&gt;0\)</span>. For strategies that are winning in the non-stochastic game sense, i.e. that <strong>cannot</strong> produce a run not belonging to <span class="math notranslate nohighlight">\(\objective\)</span>, are usually called surely winning to distinguish them from the above concepts. We denote by <span class="math notranslate nohighlight">\(\winPos(\mdp,\objective)\)</span> and <span class="math notranslate nohighlight">\(\winAS(\mdp,\objective)\)</span> the sets of all vertices of <span class="math notranslate nohighlight">\(\mdp\)</span> from which there exists a positively or almost-surely winning strategy for the objective <span class="math notranslate nohighlight">\(\objective\)</span>, respectively.</p>
+<p>Let us fix an MDP <span class="math notranslate nohighlight">\(\mathcal{M}\)</span> and an objective given by a random variable
+<span class="math notranslate nohighlight">\(f\)</span>. The value of a vertex <span class="math notranslate nohighlight">\(v\in V\)</span> is the number
+<span class="math notranslate nohighlight">\(\textrm{val}(v)=\sup_{\sigma}  \textsf{Payoff}_f(v,\sigma)\)</span>. We let <span class="math notranslate nohighlight">\(\textrm{val}( \mathcal{M})\)</span> denote the <span class="math notranslate nohighlight">\(| V|\)</span>-dimensional vector whose component
+indexed by <span class="math notranslate nohighlight">\(v\)</span> equals <span class="math notranslate nohighlight">\(\textrm{val}(v)\)</span>.</p>
+<p>We say that a strategy <span class="math notranslate nohighlight">\(\sigma\)</span> is <span class="math notranslate nohighlight">\(\varepsilon\)</span>-optimal in <span class="math notranslate nohighlight">\(v\)</span>, for some <span class="math notranslate nohighlight">\(\varepsilon\geq 0\)</span>, if <span class="math notranslate nohighlight">\(\textsf{Payoff}_f(v,\sigma) \geq  \textrm{val}(v) -  \varepsilon\)</span>. A <span class="math notranslate nohighlight">\(0\)</span>-optimal strategy is simply called optimal.</p>
+<p>For qualitative objectives, there are additional modes of objective satisfaction. Given such an objective <span class="math notranslate nohighlight">\(\Omega\)</span>, we say that a strategy <span class="math notranslate nohighlight">\(\sigma\)</span> is almost-surely winning from <span class="math notranslate nohighlight">\(v\)</span> if <span class="math notranslate nohighlight">\(\mathbb{E}^{\sigma}_{ \mathcal{M},v}[ \mathbf{1}_{ \Omega}]=1\)</span>, i.e. if the run produced by <span class="math notranslate nohighlight">\(\sigma\)</span> falls into <span class="math notranslate nohighlight">\(\Omega\)</span> with probability <span class="math notranslate nohighlight">\(1\)</span>. We also say that <span class="math notranslate nohighlight">\(\sigma\)</span> is positively winning from <span class="math notranslate nohighlight">\( v \)</span> if <span class="math notranslate nohighlight">\(\mathbb{E}^{\sigma}_{ \mathcal{M},v}[ \mathbf{1}_{ \Omega}]&gt;0\)</span>. For strategies that are winning in the non-stochastic game sense, i.e. that <strong>cannot</strong> produce a run not belonging to <span class="math notranslate nohighlight">\(\Omega\)</span>, are usually called surely winning to distinguish them from the above concepts. We denote by <span class="math notranslate nohighlight">\(W_{&gt;0}( \mathcal{M}, \Omega)\)</span> and <span class="math notranslate nohighlight">\(W_{=1}( \mathcal{M}, \Omega)\)</span> the sets of all vertices of <span class="math notranslate nohighlight">\(\mathcal{M}\)</span> from which there exists a positively or almost-surely winning strategy for the objective <span class="math notranslate nohighlight">\(\Omega\)</span>, respectively.</p>
 <p>The problems pertaining to the existence of almost-surely or positively winning strategy are often called <strong>qualitative problems</strong> in the MDP literature, while the notion <strong>quantitative problems</strong> covers the general notion of optimizing the expectation of some random variable. We do not use such a nomenclature here so as to avoid confusion with qualitative vs. quantitative objectives as defined in Chapter <a class="reference internal" href="../1_Introduction/index.html#chap-introduction"><span class="std std-ref">Introduction</span></a>. Instead, we will refer directly to, e.g. almost-sure reachability while using the term optimal reachability to refer to the expectation-maximization problem.</p>
 </div>
 

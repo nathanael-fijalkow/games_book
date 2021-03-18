@@ -2,73 +2,11 @@
 # Concurrent discounted games
 
 ```{math}
-\newcommand{\ValueOp}{\text{valOp}}
-\newcommand{\rk}{\text{rk}}
-\newcommand{\crgLim}{\text{crgLim1}}
-\newcommand{\Eve}{\textrm{Eve}}
-\newcommand{\Adam}{\textrm{Adam}}
-\newcommand{\set}[1]{\left\{ #1 \right\}}
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
-\newcommand{\argmax}{\textrm{argmax}}
-\newcommand{\argmin}{\textrm{argmin}}
-\newcommand{\Op}{\mathbb{O}}
-\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\textrm{supp}} 
-\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
-\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
-\newcommand{\mEve}{\mathrm{Eve}}
-\newcommand{\mAdam}{\mathrm{Adam}}
-\newcommand{\mRandom}{\mathrm{Random}}
-\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
-\newcommand{\ing}{\textrm{In}}
-\newcommand{\Ing}{\ing}
-\newcommand{\out}{\textrm{Out}}
-\newcommand{\Out}{\out}
-\newcommand{\dest}{\Delta} 
-\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
-\newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
-\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
-\newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\newcommand{\Win}{\textrm{Win}} 
-\newcommand{\Lose}{\textrm{Lose}} 
-\newcommand{\Value}{\textrm{val}} 
-\newcommand{\ValueE}{\textrm{val}_\mEve} 
-\newcommand{\ValueA}{\textrm{val}_\mAdam}
-\newcommand{\val}{\Value} 
-\newcommand{\Automaton}{\mathbf{A}} 
-\newcommand{\Safe}{\mathtt{Safe}}
-\newcommand{\Reach}{\mathtt{Reach}} 
-\newcommand{\Buchi}{\mathtt{Buchi}} 
-\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
-\newcommand{\Parity}{\mathtt{Parity}} 
-\newcommand{\Muller}{\mathtt{Muller}} 
-\newcommand{\Rabin}{\mathtt{Rabin}} 
-\newcommand{\Streett}{\mathtt{Streett}} 
-\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
-\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
-\newcommand{\Energy}{\mathtt{Energy}}
-\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
-\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
-\newcommand{\Sup}{\mathtt{Sup}}
-\newcommand{\Inf}{\mathtt{Inf}}
-\newcommand{\LimSup}{\mathtt{LimSup}}
-\newcommand{\LimInf}{\mathtt{LimInf}}
-\newcommand{\NL}{\textrm{NL}}
-\newcommand{\PTIME}{\textrm{PTIME}}
-\newcommand{\NP}{\textrm{NP}}
-\newcommand{\UP}{\textrm{UP}}
-\newcommand{\coNP}{\textrm{coNP}}
-\newcommand{\coUP}{\textrm{coUP}}
-\newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
-\newcommand{\EXP}{\textrm{EXP}}
-\newcommand{\kEXP}{\textrm{kEXP}}
+
+\renewcommand{\Game}{\game}
+
 ```
+
 In this section we focus on concurrent discounted games. 
 The key property of these games is that to a high degree, only the relative early part of the play matters.
 We will first argue that the value iteration algorithm works and especially converges to the value of the game and then that there are stationary optimal strategies in concurrent discounted games.
@@ -77,29 +15,24 @@ While the value iteration algorithm also works for the games considered in the l
 The value iteration algorithm is based on the concept of finite-horizon (or time limited) games. It is also sometimes referred to as dynamic programming.
 Specifically, apart from the usual definition of a game, there is an additional integer $T$, denoting how many rounds are remaining initially, and a vector $v$, assigning a reward to each node if the game ends in that node with 0 rounds remaining. After round $T$ the reward is 0. 
 I.e. for $T=0$, the outcome reward from node $x$ is $v_x$ in the first round and 0 in each later round.
-Let $\ValueOp^T(v)$ be the vector that assigns to each node its value in the game with time-limit $T$ with vector $v$.
+Let $\text{valOp}^T(v)$ be the vector that assigns to each node its value in the game with time-limit $T$ with vector $v$.
 
-In general this formulation leads to a simple dynamic algorithm that computes $\ValueOp^T(v)$ inductively in $T$. 
-We have that $\ValueOp^0(v)=v$ and given $\ValueOp^{T-1}(v)$ it is easy to compute $\ValueOp^T(v)$ because, if Eve selects row $i$ and Adam column $j$ in node $x$ in the first round, the outcome is 
-
-$$
-\sum_{v\in V}\ValueOp^{T-1}(v)\dest(x,i,j)(v)
-$$
-
-and thus $(\ValueOp^T(v))_x$ is the value of the matrix $M^{T,x,v}$, where entry $i,j$ is 
+In general this formulation leads to a simple dynamic algorithm that computes $\text{valOp}^T(v)$ inductively in $T$. 
+We have that $\text{valOp}^0(v)=v$ and given $\text{valOp}^{T-1}(v)$ it is easy to compute $\text{valOp}^T(v)$ because, if Eve selects row $i$ and Adam column $j$ in node $x$ in the first round, the outcome is 
 
 $$
-\sum_{v\in V}\ValueOp^{T-1}(v)\dest(x,i,j)(v)
+\sum_{v\in V} \text{valOp}^{T-1}(v) \Delta(x,i,j)(v)
 $$
 
+and thus $( \text{valOp}^T(v))_x$ is the value of the matrix $M^{T,x,v}$, where entry $i,j$ is 
+
+$$
+\sum_{v\in V} \text{valOp}^{T-1}(v) \Delta(x,i,j)(v)
+$$
 
 It is common to start with the all-0 vector for $v$ when using the value iteration algorithm.
 
 The following lemma shows many interesting properties of concurrent discounted games.
-
-
-
-
 
 ````{prf:lemma} NEEDS TITLE cor:long
 :label: cor:long
@@ -117,18 +50,18 @@ Concurrent discounted games have the following properties:
 ````{admonition} Proof
 :class: dropdown tip
 
-The first item comes from considering the vectors $v$ and $\ValueOp^1(v)$. We thus have that $\ValueOp^{T+1}(v)\in [\ValueOp^{T}(v)-(1-\gamma)^T,\ValueOp^{T}(v)+(1-\gamma)^T]$ for all $T$. The statement then comes from that $\sum_{i=1}^\infty (1-\gamma)^i$ is a converging sum.
+The first item comes from considering the vectors $v$ and $\text{valOp}^1(v)$. We thus have that $\text{valOp}^{T+1}(v)\in [ \text{valOp}^{T}(v)-(1-\gamma)^T, \text{valOp}^{T}(v)+(1-\gamma)^T]$ for all $T$. The statement then comes from that $\sum_{i=1}^\infty (1-\gamma)^i$ is a converging sum.
 
-The second item comes from considering two fix-points, $u,v$. I.e., $\ValueOp^1(v)=v$ and thus $\ValueOp^T(v)=v$ for all $T$. Similar for $u$.
-But, $v=\ValueOp^T(v)\in [\ValueOp^T(u)-(1-\gamma)^T, \ValueOp^T(u)+(1-\gamma)^T]=[u-(1-\gamma)^T, u+(1-\gamma)^T]$. Since it is true for all $T$, we have that $u=v$.
+The second item comes from considering two fix-points, $u,v$. I.e., $\text{valOp}^1(v)=v$ and thus $\text{valOp}^T(v)=v$ for all $T$. Similar for $u$.
+But, $v= \text{valOp}^T(v)\in [ \text{valOp}^T(u)-(1-\gamma)^T,  \text{valOp}^T(u)+(1-\gamma)^T]=[u-(1-\gamma)^T, u+(1-\gamma)^T]$. Since it is true for all $T$, we have that $u=v$.
 
 \begin{claim}
  Consider some $T$ and the strategy for Eve that plays the first $T$ steps following an optimal strategy in the finite-horizon game of length $T$ with vector $v$, followed by playing arbitrarily. 
-Then, the outcome is above $\ValueOp^T(v)- (1-\gamma)^T\max_{i} v_i$.
+Then, the outcome is above $\text{valOp}^T(v)- (1-\gamma)^T\max_{i} v_i$.
 \end{claim}
 \begin{proof}
 For any strategy for Adam, the expected reward for the first $T$ rounds is at least the expected reward in the finite-horizon game. In each remaining round, the reward is at least $0$ in the real game, but $v_i$ in round $T$ for some $i$ followed by 0's in the finite-horizon game.
-Since the outcome is $\ValueOp^T(v)$ in the finite-horizon game, the real outcome is then as described.
+Since the outcome is $\text{valOp}^T(v)$ in the finite-horizon game, the real outcome is then as described.
 
 ````
 
@@ -136,8 +69,8 @@ One can show a similar statement for Adam.
 For any $\epsilon>0$ one can pick a big enough $T$ such that $(1-\gamma)^T\max_{i} v_i\leq \epsilon$.
 
 Let $v^*$ be the unique fix-point of the value iteration algorithm. 
-Thus, $v^*=\ValueOp^T(v^*)$ for all $T$. Pick some optimal strategies $\sigma_x,\tau_x$ in $M^{T,x,v^*}$ for each $x$. Let $\sigma^*,\tau^*$ be the strategies that play $\sigma_x,\tau_x$ whenever in node $x$ in each round.
-The strategy $\sigma,\tau$ are optimal in $\ValueOp^T(v^*)$ for each $T$, because $v^*$ is a fix-point. 
+Thus, $v^*= \text{valOp}^T(v^*)$ for all $T$. Pick some optimal strategies $\sigma_x,\tau_x$ in $M^{T,x,v^*}$ for each $x$. Let $\sigma^*,\tau^*$ be the strategies that play $\sigma_x,\tau_x$ whenever in node $x$ in each round.
+The strategy $\sigma,\tau$ are optimal in $\text{valOp}^T(v^*)$ for each $T$, because $v^*$ is a fix-point. 
 But, for each $\epsilon>0$,  the strategy $\sigma$ ensures outcome at least $v-\epsilon$ and $\tau$ ensures outcome at most $v+\epsilon$ using the claim. Hence, the third item follows.
 
 The fourth item follows from that the value iteration algorithm is a contraction.
@@ -182,8 +115,6 @@ $$
 t(\Delta,\Delta')=\frac{1}{2}\sum_{x\in S} |\Delta(x)-\Delta'(x)|
 $$
 
- 
-
 ````{prf:lemma} NEEDS TITLE AND LABEL 
 For any distributions $\Delta$ and $\Delta'$ over a set $S$, we have 
 
@@ -199,9 +130,6 @@ $$
 t(\Delta,\Delta)= \Pr[X'\neq Y']
 $$
 
-
- 
-
 For any distributions $\Delta$ and $\Delta'$ over a set $S$, we have 
 
 *  for all couplings $(X,Y)$ of $\Delta$ and $\Delta'$, that 
@@ -216,32 +144,21 @@ $$
 t(\Delta,\Delta)= \Pr[X'\neq Y']
 $$
 
-
-
 ````
 
 Because of our rounding, we have that $t(X'_{x,T'},Y'_{x,T'})<\frac{m}{2q}$. 
 Using that with the coupling lemma (the second part to be precise), lets us find a coupling $C_{x,T'}=(X'_{x,T'},Y'_{x,T'})$ 
 such that $\Pr[X'_{x,T'}\neq Y'_{x,T'}]<\frac{m}{2q}$.
 
-Consider the plays $\play_1,\play_2$ for when Eve follows $\sigma$ or $\sigma'$ respectively.
+Consider the plays $\pi_1, \pi_2$ for when Eve follows $\sigma$ or $\sigma'$ respectively.
 We can view the first $T$ steps of these plays by considering $X'_{x,T'}$ instead of $X_{x,T'}$ and similar when Eve follows $\sigma'$.
 We can therefore see that the first $T$ steps two plays are different with probability 
 $=p<\frac{mT}{2q}=\epsilon/2$
- using union bounds. 
- 
+ using union bounds.
 
-We therefore see that the value for the path $\play_1$ cannot differ from the value of $\play_2$ with more than $p\gamma\sum_{i=1}^T(1-\gamma)^i=p$. I.e. in the worst case, if $\play_1$ and $\play_2$ differs, the reward is 1 in each step for $\play_1$ but 0 in each step for $\play_2$.
+We therefore see that the value for the path $\pi_1$ cannot differ from the value of $\pi_2$ with more than $p\gamma\sum_{i=1}^T(1-\gamma)^i=p$. I.e. in the worst case, if $\pi_1$ and $\pi_2$ differs, the reward is 1 in each step for $\pi_1$ but 0 in each step for $\pi_2$.
 Also, the rewards in the steps after step $T$ can also differ by at most $1$ and by our choice of $T$, we have that outcome contributed from these remaining steps are worth less than $\epsilon/2$ as well.
 Hence, we see that $\sigma'$ obtains the same as $\sigma$ except for $\epsilon$ against any strategy $\tau$ and is thus $\epsilon$-optimal.
-
-
-
-
-
-
-
-
 
 \end{proof}
 
@@ -254,10 +171,9 @@ We will use the sum-of-square-roots problem to give an informal hardness argumen
 
 Consider the following game $G$:
 There are three vertices, $\{0,1,s\}$ where $0$ and $1$ are absorbing, with color 0 and 1 respectively.
-The vertex $s$ is such that (1) $c(s,i,j)=0$, (2) $\dest(s,i,i)=1$ (for $i\in \{1,2\}$), (3) $\dest(s,2,1)=0$ and (4) $\dest(s,1,i)$ is the uniform distribution over $s$ and $0$. The game is illustrated in Figure \ref{7-fig:sqroot}.
+The vertex $s$ is such that (1) $c(s,i,j)=0$, (2) $\Delta(s,i,i)=1$ (for $i\in \{1,2\}$), (3) $\Delta(s,2,1)=0$ and (4) $\Delta(s,1,i)$ is the uniform distribution over $s$ and $0$. The game is illustrated in Figure \cref\{7-fig:sqroot}.
 
 Consider an optimal stationary strategy in $G$ for Eve. Let $p$ be the probability with which she plays the first action. If Adam knows that Eve will follow this strategy, the game devolves into a MDP. We know from that for such there exists optimal positional strategies and thus Adam is either going to play the left or right column always. Clearly, $0<p<1$ because $p=0$ or 1 means that either playing the left or right column with probability 1 would ensure that no positive reward ever happens.
-
 
 ```{figure} ./../FigAndAlgos/7-fig:sqroot.png
 :name: 7-fig:sqroot
@@ -265,32 +181,32 @@ Consider an optimal stationary strategy in $G$ for Eve. Let $p$ be the probabili
 Concurrent discounted game with value $v_s=-2+\sqrt{4+2(1-\gamma)}$
 ```
 
-
-
 Let $v_0=0,v_1=1,v_s$ be the values of the three vertices. If he plays the left column, the outcome is $p(1-\gamma)$.
 If he plays the right column, the outcome is $p/2(1-\gamma)v_s+(1-p)(1-\gamma)$. Observe that the former is increasing in $p$ and the latter is decreasing (since clearly, $0<(1-\gamma)v_s<v_s$). Also, both are continues. Thus, the optimum is for $p(1-\gamma)$ to be equal to $p/2(1-\gamma)v_s+(1-p)(1-\gamma)$ and both equal to $v_s$.
 We will first isolate $v_s$ in $v_s=p/2(1-\gamma)v_s+(1-p)(1-\gamma)$.
-\begin{align*}
+```{math}
+
 v_s&=p/2(1-\gamma)v_s+(1-p)(1-\gamma)\Rightarrow (1-p/2(1-\gamma))v_s=(1-p)(1-\gamma)\Rightarrow \\
 v_s&=\frac{(1-p)(1-\gamma)}{1-p/2(1-\gamma)}\enspace .
-\end{align*}
+
+```
 
 Note that $p,\gamma<1$ thus, $1-p/2(1-\gamma)\neq 0$.
 We then have the equality 
-\begin{align*}
+```{math}
+
 \frac{(1-p)(1-\gamma)}{1-p/2(1-\gamma)}&=p(1-\gamma)\Rightarrow\\(1-p)(1-\gamma)&=p(1-\gamma)(1-p/2(1-\gamma))\Rightarrow\\
 0&=\frac{1-\gamma}{2} p^2+2p-1\Rightarrow \\
 p&=\frac{-2\pm\sqrt{4+2(1-\gamma)}}{1-\gamma} \enspace .
-\end{align*}
+
+```
 
 We see that $\frac{-2-\sqrt{4+2(1-\gamma)}}{1-\gamma}<0$. Thus, $p=\frac{-2+\sqrt{4+2(1-\gamma)}}{1-\gamma}$.
 Also, 
 
 $$v_s=-2+\sqrt{4+2(1-\gamma)}\enspace .$$
 
- 
-It is straight-forward to modify the construction to get any square-root desired for a fixed $\gamma$. 
-
+It is straight-forward to modify the construction to get any square-root desired for a fixed $\gamma$.
 
 By making such a construction for each number $\sqrt{b_i}$, we can make another vertex $s^*$ that has the value of $(1-\gamma)\frac{\sum_{i=1}^n\sqrt{b_i}}{n}$ with a single action for each player and that goes to a uniformly random vertex. 
 Observe that decreasing each reward by $x$, reduces the value of each vertex by $x$. Reduce each reward by $\frac{an}{1-\gamma}$.
@@ -300,14 +216,12 @@ We get the following lemma.
 
 ````{prf:lemma} NEEDS TITLE AND LABEL 
 The (exact) decision problem for the value is sum-of-square-root hard for concurrent discounted games
- 
 
 The (exact) decision problem for the value is sum-of-square-root hard for concurrent discounted games
 
 ````
 
-We will use this game  $G$ as an example to illustrate how to make the $\dest$-function deterministic for concurrent games while having the same value and a similar optimal strategy.
-
+We will use this game  $G$ as an example to illustrate how to make the $\Delta$-function deterministic for concurrent games while having the same value and a similar optimal strategy.
 
 ```{figure} ./../FigAndAlgos/7-fig:sqroot2.png
 :name: 7-fig:sqroot2
@@ -318,8 +232,8 @@ Alternate concurrent discounted game with value $v_s=-2+\sqrt{4+2(1-\gamma)}$
 Consider the following game $G'$:
 There are three vertices, $\{0,1,s\}$ where $0$ and $1$ are absorbing, with color 0 and 1 respectively.
 The vertex $s$ is such that (1)
-$c(s,i,j)=0$ for all $i,j$, (2) $\dest(s,i,j)=s$ for $i+1=j$ (i.e. for $(i,j)\in \{(1,2),(2,3)\}$), (3) $\dest(s,i,j)=0$ for $i+j=4$ (i.e. the other diagonal, $(i,j)\in \{(3,1),(2,2),(1,3)\}$) and (4) $\dest(s,i,j)=1$ otherwise (i.e. for $(i,j)\in \{(1,1),(2,1),(3,2),(3,3)\}$).
- The game is illustrated in Figure \ref{7-fig:sqroot2}.
+$c(s,i,j)=0$ for all $i,j$, (2) $\Delta(s,i,j)=s$ for $i+1=j$ (i.e. for $(i,j)\in \{(1,2),(2,3)\}$), (3) $\Delta(s,i,j)=0$ for $i+j=4$ (i.e. the other diagonal, $(i,j)\in \{(3,1),(2,2),(1,3)\}$) and (4) $\Delta(s,i,j)=1$ otherwise (i.e. for $(i,j)\in \{(1,1),(2,1),(3,2),(3,3)\}$).
+ The game is illustrated in Figure \cref\{7-fig:sqroot2}.
  
 We will argue that the value of $G'$ is equal to that of $G$.
  We clearly have that the value of $s$ is in $(0,1)$.
@@ -344,13 +258,13 @@ Note that $\frac{p'_1}{1-p'_2}>\min_{i\in\{2,3\}\frac{p_{4-i}}{1-p_{i-1}}}$ and 
 
 A similar argument shows that for any strategy $\tau$ for Adam the similar strategy $\tau'$ where $\tau'(1)=\tau(1)$ and $\tau'(i)=\frac{\tau(2)+\tau(3)}{2}$ for $i\in\{2,3\}$ is at least as good as $\tau$.
 Consider that the players follows such stationary strategies $\sigma'$ and $\tau'$.
-Let $\sigma$ be 
+Let $\sigma$ be
 
 $$\sigma(i)=\begin{cases} \sigma'(1)+\sigma'(2)&\text{if }i=1\\
 \sigma'(3)&\text{if }i=2\enspace .\end{cases}$$
 
 Similarly, let 
- $\tau$ be 
+ $\tau$ be
 
 $$\tau(i)=\begin{cases} \tau'(1)&\text{if }i=1\\
 \tau'(2)+\tau'(3)&\text{if }i=2\enspace .\end{cases}$$
@@ -360,7 +274,7 @@ But playing $\sigma$ and $\tau$ in $G$ gives the same outcome as playing $\sigma
 $$
 \sigma'(1)\tau'(2)+\sigma'(2)\tau'(3)=\frac{\sigma(1)\tau(2)}{2}$$
 
- we play again with a reward of 0, with probability 
+ we play again with a reward of 0, with probability
 
 $$\sigma'(1)\tau'(3)+\sigma'(2)\tau'(2)+\sigma'(3)\tau'(1)=
 \frac{\sigma(1)\tau(2)}{2}
@@ -376,8 +290,7 @@ $$
  we get absorbed in 1 after a reward of 0.
 But this is in particular the case if the players play optimally and thus, the value is the same in the two games.
 
-
-Before, in Corollary \ref{cor:long}, we argued that the patience of $\epsilon$-optimal stationary strategies was $q=\frac{m\log(\epsilon/2)}{\log(1-\gamma)\epsilon}$.
+Before, in Corollary \cref\{cor:long}, we argued that the patience of $\epsilon$-optimal stationary strategies was $q=\frac{m\log(\epsilon/2)}{\log(1-\gamma)\epsilon}$.
 Giving a similar exponential bound for the optimal stationary strategies is harder than solving the sum-of-square-roots problem, as we will argue next.
 Assume that we had an exponential bound for optimal stationary strategies.
 
@@ -389,15 +302,14 @@ Concurrent discounted game that implies that if there is an exponential lower bo
 
 Consider an arbitrary yes-instance of the sum-of-square-roots problem, giving a vertex $s^*$. Reduce each reward by $a$ and in the new game let $s^*_a$ be the vertex corresponding to $s^*$. 
 We will now create a game that uses the previous game as a sub-game.
-The game has 1 additional vertex $s'$, which is a 2x2-matrix, such that $c(s',i,j)=0$ and $\dest(s,1,1)=1$ and $\dest(s,2,2)=s^*$ and $\dest(s,i,j)=0$ for $i\neq j$.
-There is an illustration in Figure~\ref{7-fig:exact-hard}, using the vertex $s^*$ as above. 
+The game has 1 additional vertex $s'$, which is a 2x2-matrix, such that $c(s',i,j)=0$ and $\Delta(s,1,1)=1$ and $\Delta(s,2,2)=s^*$ and $\Delta(s,i,j)=0$ for $i\neq j$.
+There is an illustration in Figure \cref\{7-fig:exact-hard}, using the vertex $s^*$ as above. 
 Using an argument like above, we see that the probability $p$ to play the top action in the vertex $s'$ is such that $p(1-\gamma)=(1-p)(1-\gamma)x$, where $x$ is the value of $s^*$. Thus, $x=\frac{p}{1-p}$. If $p$ only needs to be exponential small, then $x$ is exponentially small as well. This is true for any yes-instance of the sum-of-square-roots problem and thus, we only need polynomially many digits to decide the problem. We can find polynomially many digits of $\sqrt{b_i}$ for each $i$ in polynomial time. We get the following lemma.
 
 ````{prf:lemma} NEEDS TITLE AND LABEL 
-Giving an exponential lower-bound on patience for optimal stationary strategies in concurrent discounted games implies that the sum-of-square-roots problem is in $\PTIME$
- 
+Giving an exponential lower-bound on patience for optimal stationary strategies in concurrent discounted games implies that the sum-of-square-roots problem is in $\textrm{PTIME}$
 
-Giving an exponential lower-bound on patience for optimal stationary strategies in concurrent discounted games implies that the sum-of-square-roots problem is in $\PTIME$
+Giving an exponential lower-bound on patience for optimal stationary strategies in concurrent discounted games implies that the sum-of-square-roots problem is in $\textrm{PTIME}$
 
 ````
 

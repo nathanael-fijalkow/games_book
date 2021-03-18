@@ -2,73 +2,11 @@
 # Concurrent mean-payoff games
 
 ```{math}
-\newcommand{\ValueOp}{\text{valOp}}
-\newcommand{\rk}{\text{rk}}
-\newcommand{\crgLim}{\text{crgLim1}}
-\newcommand{\Eve}{\textrm{Eve}}
-\newcommand{\Adam}{\textrm{Adam}}
-\newcommand{\set}[1]{\left\{ #1 \right\}}
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
-\newcommand{\argmax}{\textrm{argmax}}
-\newcommand{\argmin}{\textrm{argmin}}
-\newcommand{\Op}{\mathbb{O}}
-\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\textrm{supp}} 
-\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
-\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
-\newcommand{\mEve}{\mathrm{Eve}}
-\newcommand{\mAdam}{\mathrm{Adam}}
-\newcommand{\mRandom}{\mathrm{Random}}
-\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
-\newcommand{\ing}{\textrm{In}}
-\newcommand{\Ing}{\ing}
-\newcommand{\out}{\textrm{Out}}
-\newcommand{\Out}{\out}
-\newcommand{\dest}{\Delta} 
-\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
-\newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
-\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
-\newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\newcommand{\Win}{\textrm{Win}} 
-\newcommand{\Lose}{\textrm{Lose}} 
-\newcommand{\Value}{\textrm{val}} 
-\newcommand{\ValueE}{\textrm{val}_\mEve} 
-\newcommand{\ValueA}{\textrm{val}_\mAdam}
-\newcommand{\val}{\Value} 
-\newcommand{\Automaton}{\mathbf{A}} 
-\newcommand{\Safe}{\mathtt{Safe}}
-\newcommand{\Reach}{\mathtt{Reach}} 
-\newcommand{\Buchi}{\mathtt{Buchi}} 
-\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
-\newcommand{\Parity}{\mathtt{Parity}} 
-\newcommand{\Muller}{\mathtt{Muller}} 
-\newcommand{\Rabin}{\mathtt{Rabin}} 
-\newcommand{\Streett}{\mathtt{Streett}} 
-\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
-\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
-\newcommand{\Energy}{\mathtt{Energy}}
-\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
-\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
-\newcommand{\Sup}{\mathtt{Sup}}
-\newcommand{\Inf}{\mathtt{Inf}}
-\newcommand{\LimSup}{\mathtt{LimSup}}
-\newcommand{\LimInf}{\mathtt{LimInf}}
-\newcommand{\NL}{\textrm{NL}}
-\newcommand{\PTIME}{\textrm{PTIME}}
-\newcommand{\NP}{\textrm{NP}}
-\newcommand{\UP}{\textrm{UP}}
-\newcommand{\coNP}{\textrm{coNP}}
-\newcommand{\coUP}{\textrm{coUP}}
-\newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
-\newcommand{\EXP}{\textrm{EXP}}
-\newcommand{\kEXP}{\textrm{kEXP}}
+
+\renewcommand{\Game}{\game}
+
 ```
+
 In this section we consider concurrent mean-payoff games. 
 We will show that in general, any  $\epsilon$-optimal strategy in some concurrent mean-payoff games are quite complex. 
 We will first, however, show that finding the value of a concurrent mean-payoff game can be done in polynomial space.
@@ -77,7 +15,7 @@ We will first, however, show that finding the value of a concurrent mean-payoff 
 :label: lemm:class_meanpayoff
 
 Concurrent mean-payoff games are determined and the value is the limit of the value of the corresponding time-limited game as well as the limit of the corresponding discounted game, for the discount factor going to 0 from above.
-There is an polynomial time algorithm, ala Lemma~\ref{lem:val1}, for finding the set of vertices where a finite memory strategy suffice to ensure $1-\epsilon$ (recall that all rewards are in $\{0,1\}$).
+There is an polynomial time algorithm, ala Lemma \cref\{lem:val1}, for finding the set of vertices where a finite memory strategy suffice to ensure $1-\epsilon$ (recall that all rewards are in $\{0,1\}$).
 For any fixed number $n$, there is a polynomial time algorithm for approximating the value in a concurrent mean-payoff game with $n$ vertices (i.e. the running time is polynomial in the number of actions)
 
 ````
@@ -85,11 +23,10 @@ For any fixed number $n$, there is a polynomial time algorithm for approximating
 We will not show this lemma, but simply note that the $\epsilon$-optimal strategies known for general concurrent mean-payoff games  can be viewed as playing the corresponding discounted game with a variable discount factor that depends on how nice the rewards has been up to now. Basically, in each round you play the optimal strategy in the corresponding discounted game with a discount factor $\gamma$. Whenever 
  your rewards are close to or better than the value, you decrease $\gamma$ towards 0 and in each round your rewards are much worse than the value you let $\gamma$ increase, except not bigger than the initial $\gamma$ in the first round. Much of this section will argue that many natural candidates for simpler types of strategies does not work.
 
-We will show that approximating the value, however, can, as mentioned, be done in polynomial space. The proof relies on Proposition~22 from {cite}`HKLMT:2011`, stating the following:
+We will show that approximating the value, however, can, as mentioned, be done in polynomial space. The proof relies on Proposition 22 from {cite}`HKLMT:2011`, stating the following:
 
 ````{prf:proposition} NEEDS TITLE AND LABEL 
 Let $\epsilon=2^{-j}$, where $j$ is some positive integer, and the probabilities be rational numbers where the nominator and denominator have bitsize at most $\tau$. Also, let $\lambda=\epsilon^{\tau m^{O(n^2)}}$. Consider some state $s$ and let the value of that state in the $\lambda$ discounted game be $v_{\lambda}$ and the value in mean-payoff game be $v$, then $|v-v_{\lambda}|<\epsilon$.
- 
 
 Let $\epsilon=2^{-j}$, where $j$ is some positive integer, and the probabilities be rational numbers where the nominator and denominator have bitsize at most $\tau$. Also, let $\lambda=\epsilon^{\tau m^{O(n^2)}}$. Consider some state $s$ and let the value of that state in the $\lambda$ discounted game be $v_{\lambda}$ and the value in mean-payoff game be $v$, then $|v-v_{\lambda}|<\epsilon$.
 
@@ -133,20 +70,17 @@ We get the following lemma.
 
 ````{prf:lemma} NEEDS TITLE AND LABEL 
 Approximating the value of a concurrent mean-payoff game can be in done in polynomial space
- 
 
 Approximating the value of a concurrent mean-payoff game can be in done in polynomial space
 
 ````
-
-
 
 We will now consider a specific, well-studied example of a concurrent mean-payoff game, since it shows that many natural kinds of strategies do not suffice in general.
 The game is called the big match and is defined as follows:
 There are 3 vertices, $\{0,s,1\}$, where the vertices in $\{0,1\}$ are absorbing, and with value equal to their name.
 The last vertex $s$ has a 2x2-matrix and for all $i,j$ for $i\neq j$, we have that 
 $c(s,1,1)=1$, and for $i\neq 1\neq j$ we have that $c(s,1,1)=0$.
-Also,  $\dest(s,1,i)=s$ for each $i$, $\dest(s,2,1)=0$ and $\dest(s,2,2)=1$. There is an illustration in Figure \ref{7-fig:bm}.
+Also,  $\Delta(s,1,i)=s$ for each $i$, $\Delta(s,2,1)=0$ and $\Delta(s,2,2)=1$. There is an illustration in Figure \cref\{7-fig:bm}.
 The value of the Big Match is $1/2$.
 
 ```{figure} ./../FigAndAlgos/7-fig:bm.png

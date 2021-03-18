@@ -705,72 +705,8 @@
   <div class="section" id="concurrent-discounted-games">
 <span id="sec-discounted"></span><h1>Concurrent discounted games<a class="headerlink" href="#concurrent-discounted-games" title="Permalink to this headline">¶</a></h1>
 <div class="math notranslate nohighlight">
-\[\newcommand{\ValueOp}{\text{valOp}}
-\newcommand{\rk}{\text{rk}}
-\newcommand{\crgLim}{\text{crgLim1}}
-\newcommand{\Eve}{\textrm{Eve}}
-\newcommand{\Adam}{\textrm{Adam}}
-\newcommand{\set}[1]{\left\{ #1 \right\}}
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
-\newcommand{\argmax}{\textrm{argmax}}
-\newcommand{\argmin}{\textrm{argmin}}
-\newcommand{\Op}{\mathbb{O}}
-\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\textrm{supp}} 
-\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
-\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
-\newcommand{\mEve}{\mathrm{Eve}}
-\newcommand{\mAdam}{\mathrm{Adam}}
-\newcommand{\mRandom}{\mathrm{Random}}
-\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
-\newcommand{\ing}{\textrm{In}}
-\newcommand{\Ing}{\ing}
-\newcommand{\out}{\textrm{Out}}
-\newcommand{\Out}{\out}
-\newcommand{\dest}{\Delta} 
-\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
-\newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
-\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
-\newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\newcommand{\Win}{\textrm{Win}} 
-\newcommand{\Lose}{\textrm{Lose}} 
-\newcommand{\Value}{\textrm{val}} 
-\newcommand{\ValueE}{\textrm{val}_\mEve} 
-\newcommand{\ValueA}{\textrm{val}_\mAdam}
-\newcommand{\val}{\Value} 
-\newcommand{\Automaton}{\mathbf{A}} 
-\newcommand{\Safe}{\mathtt{Safe}}
-\newcommand{\Reach}{\mathtt{Reach}} 
-\newcommand{\Buchi}{\mathtt{Buchi}} 
-\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
-\newcommand{\Parity}{\mathtt{Parity}} 
-\newcommand{\Muller}{\mathtt{Muller}} 
-\newcommand{\Rabin}{\mathtt{Rabin}} 
-\newcommand{\Streett}{\mathtt{Streett}} 
-\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
-\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
-\newcommand{\Energy}{\mathtt{Energy}}
-\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
-\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
-\newcommand{\Sup}{\mathtt{Sup}}
-\newcommand{\Inf}{\mathtt{Inf}}
-\newcommand{\LimSup}{\mathtt{LimSup}}
-\newcommand{\LimInf}{\mathtt{LimInf}}
-\newcommand{\NL}{\textrm{NL}}
-\newcommand{\PTIME}{\textrm{PTIME}}
-\newcommand{\NP}{\textrm{NP}}
-\newcommand{\UP}{\textrm{UP}}
-\newcommand{\coNP}{\textrm{coNP}}
-\newcommand{\coUP}{\textrm{coUP}}
-\newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
-\newcommand{\EXP}{\textrm{EXP}}
-\newcommand{\kEXP}{\textrm{kEXP}}\]</div>
+\[\renewcommand{\Game}{\game}
+\]</div>
 <p>In this section we focus on concurrent discounted games.
 The key property of these games is that to a high degree, only the relative early part of the play matters.
 We will first argue that the value iteration algorithm works and especially converges to the value of the game and then that there are stationary optimal strategies in concurrent discounted games.
@@ -778,22 +714,22 @@ While the value iteration algorithm also works for the games considered in the l
 <p>The value iteration algorithm is based on the concept of finite-horizon (or time limited) games. It is also sometimes referred to as dynamic programming.
 Specifically, apart from the usual definition of a game, there is an additional integer <span class="math notranslate nohighlight">\(T\)</span>, denoting how many rounds are remaining initially, and a vector <span class="math notranslate nohighlight">\(v\)</span>, assigning a reward to each node if the game ends in that node with 0 rounds remaining. After round <span class="math notranslate nohighlight">\(T\)</span> the reward is 0.
 I.e. for <span class="math notranslate nohighlight">\(T=0\)</span>, the outcome reward from node <span class="math notranslate nohighlight">\(x\)</span> is <span class="math notranslate nohighlight">\(v_x\)</span> in the first round and 0 in each later round.
-Let <span class="math notranslate nohighlight">\(\ValueOp^T(v)\)</span> be the vector that assigns to each node its value in the game with time-limit <span class="math notranslate nohighlight">\(T\)</span> with vector <span class="math notranslate nohighlight">\(v\)</span>.</p>
-<p>In general this formulation leads to a simple dynamic algorithm that computes <span class="math notranslate nohighlight">\(\ValueOp^T(v)\)</span> inductively in <span class="math notranslate nohighlight">\(T\)</span>.
-We have that <span class="math notranslate nohighlight">\(\ValueOp^0(v)=v\)</span> and given <span class="math notranslate nohighlight">\(\ValueOp^{T-1}(v)\)</span> it is easy to compute <span class="math notranslate nohighlight">\(\ValueOp^T(v)\)</span> because, if Eve selects row <span class="math notranslate nohighlight">\(i\)</span> and Adam column <span class="math notranslate nohighlight">\(j\)</span> in node <span class="math notranslate nohighlight">\(x\)</span> in the first round, the outcome is</p>
+Let <span class="math notranslate nohighlight">\(\text{valOp}^T(v)\)</span> be the vector that assigns to each node its value in the game with time-limit <span class="math notranslate nohighlight">\(T\)</span> with vector <span class="math notranslate nohighlight">\(v\)</span>.</p>
+<p>In general this formulation leads to a simple dynamic algorithm that computes <span class="math notranslate nohighlight">\(\text{valOp}^T(v)\)</span> inductively in <span class="math notranslate nohighlight">\(T\)</span>.
+We have that <span class="math notranslate nohighlight">\(\text{valOp}^0(v)=v\)</span> and given <span class="math notranslate nohighlight">\(\text{valOp}^{T-1}(v)\)</span> it is easy to compute <span class="math notranslate nohighlight">\(\text{valOp}^T(v)\)</span> because, if Eve selects row <span class="math notranslate nohighlight">\(i\)</span> and Adam column <span class="math notranslate nohighlight">\(j\)</span> in node <span class="math notranslate nohighlight">\(x\)</span> in the first round, the outcome is</p>
 <div class="math notranslate nohighlight">
 \[
-\sum_{v\in V}\ValueOp^{T-1}(v)\dest(x,i,j)(v)
+\sum_{v\in V} \text{valOp}^{T-1}(v) \Delta(x,i,j)(v)
 \]</div>
-<p>and thus <span class="math notranslate nohighlight">\((\ValueOp^T(v))_x\)</span> is the value of the matrix <span class="math notranslate nohighlight">\(M^{T,x,v}\)</span>, where entry <span class="math notranslate nohighlight">\(i,j\)</span> is</p>
+<p>and thus <span class="math notranslate nohighlight">\(( \text{valOp}^T(v))_x\)</span> is the value of the matrix <span class="math notranslate nohighlight">\(M^{T,x,v}\)</span>, where entry <span class="math notranslate nohighlight">\(i,j\)</span> is</p>
 <div class="math notranslate nohighlight">
 \[
-\sum_{v\in V}\ValueOp^{T-1}(v)\dest(x,i,j)(v)
+\sum_{v\in V} \text{valOp}^{T-1}(v) \Delta(x,i,j)(v)
 \]</div>
 <p>It is common to start with the all-0 vector for <span class="math notranslate nohighlight">\(v\)</span> when using the value iteration algorithm.</p>
 <p>The following lemma shows many interesting properties of concurrent discounted games.</p>
 <div class="proof lemma admonition" id="cor:long">
-<p class="admonition-title"><span class="caption-number">Lemma 219 </span> (NEEDS TITLE cor:long)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 218 </span> (NEEDS TITLE cor:long)</p>
 <div class="lemma-content section" id="proof-content">
 <p>Concurrent discounted games have the following properties:</p>
 <ul class="simple">
@@ -806,22 +742,22 @@ We have that <span class="math notranslate nohighlight">\(\ValueOp^0(v)=v\)</spa
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
-<p>The first item comes from considering the vectors <span class="math notranslate nohighlight">\(v\)</span> and <span class="math notranslate nohighlight">\(\ValueOp^1(v)\)</span>. We thus have that <span class="math notranslate nohighlight">\(\ValueOp^{T+1}(v)\in [\ValueOp^{T}(v)-(1-\gamma)^T,\ValueOp^{T}(v)+(1-\gamma)^T]\)</span> for all <span class="math notranslate nohighlight">\(T\)</span>. The statement then comes from that <span class="math notranslate nohighlight">\(\sum_{i=1}^\infty (1-\gamma)^i\)</span> is a converging sum.</p>
-<p>The second item comes from considering two fix-points, <span class="math notranslate nohighlight">\(u,v\)</span>. I.e., <span class="math notranslate nohighlight">\(\ValueOp^1(v)=v\)</span> and thus <span class="math notranslate nohighlight">\(\ValueOp^T(v)=v\)</span> for all <span class="math notranslate nohighlight">\(T\)</span>. Similar for <span class="math notranslate nohighlight">\(u\)</span>.
-But, <span class="math notranslate nohighlight">\(v=\ValueOp^T(v)\in [\ValueOp^T(u)-(1-\gamma)^T, \ValueOp^T(u)+(1-\gamma)^T]=[u-(1-\gamma)^T, u+(1-\gamma)^T]\)</span>. Since it is true for all <span class="math notranslate nohighlight">\(T\)</span>, we have that <span class="math notranslate nohighlight">\(u=v\)</span>.</p>
+<p>The first item comes from considering the vectors <span class="math notranslate nohighlight">\(v\)</span> and <span class="math notranslate nohighlight">\(\text{valOp}^1(v)\)</span>. We thus have that <span class="math notranslate nohighlight">\(\text{valOp}^{T+1}(v)\in [ \text{valOp}^{T}(v)-(1-\gamma)^T, \text{valOp}^{T}(v)+(1-\gamma)^T]\)</span> for all <span class="math notranslate nohighlight">\(T\)</span>. The statement then comes from that <span class="math notranslate nohighlight">\(\sum_{i=1}^\infty (1-\gamma)^i\)</span> is a converging sum.</p>
+<p>The second item comes from considering two fix-points, <span class="math notranslate nohighlight">\(u,v\)</span>. I.e., <span class="math notranslate nohighlight">\(\text{valOp}^1(v)=v\)</span> and thus <span class="math notranslate nohighlight">\(\text{valOp}^T(v)=v\)</span> for all <span class="math notranslate nohighlight">\(T\)</span>. Similar for <span class="math notranslate nohighlight">\(u\)</span>.
+But, <span class="math notranslate nohighlight">\(v= \text{valOp}^T(v)\in [ \text{valOp}^T(u)-(1-\gamma)^T,  \text{valOp}^T(u)+(1-\gamma)^T]=[u-(1-\gamma)^T, u+(1-\gamma)^T]\)</span>. Since it is true for all <span class="math notranslate nohighlight">\(T\)</span>, we have that <span class="math notranslate nohighlight">\(u=v\)</span>.</p>
 <p>\begin{claim}
 Consider some <span class="math notranslate nohighlight">\(T\)</span> and the strategy for Eve that plays the first <span class="math notranslate nohighlight">\(T\)</span> steps following an optimal strategy in the finite-horizon game of length <span class="math notranslate nohighlight">\(T\)</span> with vector <span class="math notranslate nohighlight">\(v\)</span>, followed by playing arbitrarily.
-Then, the outcome is above <span class="math notranslate nohighlight">\(\ValueOp^T(v)- (1-\gamma)^T\max_{i} v_i\)</span>.
+Then, the outcome is above <span class="math notranslate nohighlight">\(\text{valOp}^T(v)- (1-\gamma)^T\max_{i} v_i\)</span>.
 \end{claim}
 \begin{proof}
 For any strategy for Adam, the expected reward for the first <span class="math notranslate nohighlight">\(T\)</span> rounds is at least the expected reward in the finite-horizon game. In each remaining round, the reward is at least <span class="math notranslate nohighlight">\(0\)</span> in the real game, but <span class="math notranslate nohighlight">\(v_i\)</span> in round <span class="math notranslate nohighlight">\(T\)</span> for some <span class="math notranslate nohighlight">\(i\)</span> followed by 0’s in the finite-horizon game.
-Since the outcome is <span class="math notranslate nohighlight">\(\ValueOp^T(v)\)</span> in the finite-horizon game, the real outcome is then as described.</p>
+Since the outcome is <span class="math notranslate nohighlight">\(\text{valOp}^T(v)\)</span> in the finite-horizon game, the real outcome is then as described.</p>
 </div>
 <p>One can show a similar statement for Adam.
 For any <span class="math notranslate nohighlight">\(\epsilon&gt;0\)</span> one can pick a big enough <span class="math notranslate nohighlight">\(T\)</span> such that <span class="math notranslate nohighlight">\((1-\gamma)^T\max_{i} v_i\leq \epsilon\)</span>.</p>
 <p>Let <span class="math notranslate nohighlight">\(v^*\)</span> be the unique fix-point of the value iteration algorithm.
-Thus, <span class="math notranslate nohighlight">\(v^*=\ValueOp^T(v^*)\)</span> for all <span class="math notranslate nohighlight">\(T\)</span>. Pick some optimal strategies <span class="math notranslate nohighlight">\(\sigma_x,\tau_x\)</span> in <span class="math notranslate nohighlight">\(M^{T,x,v^*}\)</span> for each <span class="math notranslate nohighlight">\(x\)</span>. Let <span class="math notranslate nohighlight">\(\sigma^*,\tau^*\)</span> be the strategies that play <span class="math notranslate nohighlight">\(\sigma_x,\tau_x\)</span> whenever in node <span class="math notranslate nohighlight">\(x\)</span> in each round.
-The strategy <span class="math notranslate nohighlight">\(\sigma,\tau\)</span> are optimal in <span class="math notranslate nohighlight">\(\ValueOp^T(v^*)\)</span> for each <span class="math notranslate nohighlight">\(T\)</span>, because <span class="math notranslate nohighlight">\(v^*\)</span> is a fix-point.
+Thus, <span class="math notranslate nohighlight">\(v^*= \text{valOp}^T(v^*)\)</span> for all <span class="math notranslate nohighlight">\(T\)</span>. Pick some optimal strategies <span class="math notranslate nohighlight">\(\sigma_x,\tau_x\)</span> in <span class="math notranslate nohighlight">\(M^{T,x,v^*}\)</span> for each <span class="math notranslate nohighlight">\(x\)</span>. Let <span class="math notranslate nohighlight">\(\sigma^*,\tau^*\)</span> be the strategies that play <span class="math notranslate nohighlight">\(\sigma_x,\tau_x\)</span> whenever in node <span class="math notranslate nohighlight">\(x\)</span> in each round.
+The strategy <span class="math notranslate nohighlight">\(\sigma,\tau\)</span> are optimal in <span class="math notranslate nohighlight">\(\text{valOp}^T(v^*)\)</span> for each <span class="math notranslate nohighlight">\(T\)</span>, because <span class="math notranslate nohighlight">\(v^*\)</span> is a fix-point.
 But, for each <span class="math notranslate nohighlight">\(\epsilon&gt;0\)</span>,  the strategy <span class="math notranslate nohighlight">\(\sigma\)</span> ensures outcome at least <span class="math notranslate nohighlight">\(v-\epsilon\)</span> and <span class="math notranslate nohighlight">\(\tau\)</span> ensures outcome at most <span class="math notranslate nohighlight">\(v+\epsilon\)</span> using the claim. Hence, the third item follows.</p>
 <p>The fourth item follows from that the value iteration algorithm is a contraction.</p>
 <p>For the fifth item, consider the strategy used in the claim.
@@ -858,7 +794,7 @@ For each <span class="math notranslate nohighlight">\(x,T'\)</span>,  we will th
 t(\Delta,\Delta')=\frac{1}{2}\sum_{x\in S} |\Delta(x)-\Delta'(x)|
 \]</div>
 <div class="proof lemma admonition" id="lemma-1">
-<p class="admonition-title"><span class="caption-number">Lemma 220 </span> (NEEDS TITLE AND LABEL)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 219 </span> (NEEDS TITLE AND LABEL)</p>
 <div class="lemma-content section" id="proof-content">
 <p>For any distributions <span class="math notranslate nohighlight">\(\Delta\)</span> and <span class="math notranslate nohighlight">\(\Delta'\)</span> over a set <span class="math notranslate nohighlight">\(S\)</span>, we have</p>
 <ul class="simple">
@@ -894,12 +830,12 @@ t(\Delta,\Delta)= \Pr[X'\neq Y']
 </div><p>Because of our rounding, we have that <span class="math notranslate nohighlight">\(t(X'_{x,T'},Y'_{x,T'})&lt;\frac{m}{2q}\)</span>.
 Using that with the coupling lemma (the second part to be precise), lets us find a coupling <span class="math notranslate nohighlight">\(C_{x,T'}=(X'_{x,T'},Y'_{x,T'})\)</span>
 such that <span class="math notranslate nohighlight">\(\Pr[X'_{x,T'}\neq Y'_{x,T'}]&lt;\frac{m}{2q}\)</span>.</p>
-<p>Consider the plays <span class="math notranslate nohighlight">\(\play_1,\play_2\)</span> for when Eve follows <span class="math notranslate nohighlight">\(\sigma\)</span> or <span class="math notranslate nohighlight">\(\sigma'\)</span> respectively.
+<p>Consider the plays <span class="math notranslate nohighlight">\(\pi_1, \pi_2\)</span> for when Eve follows <span class="math notranslate nohighlight">\(\sigma\)</span> or <span class="math notranslate nohighlight">\(\sigma'\)</span> respectively.
 We can view the first <span class="math notranslate nohighlight">\(T\)</span> steps of these plays by considering <span class="math notranslate nohighlight">\(X'_{x,T'}\)</span> instead of <span class="math notranslate nohighlight">\(X_{x,T'}\)</span> and similar when Eve follows <span class="math notranslate nohighlight">\(\sigma'\)</span>.
 We can therefore see that the first <span class="math notranslate nohighlight">\(T\)</span> steps two plays are different with probability
 <span class="math notranslate nohighlight">\(=p&lt;\frac{mT}{2q}=\epsilon/2\)</span>
 using union bounds.</p>
-<p>We therefore see that the value for the path <span class="math notranslate nohighlight">\(\play_1\)</span> cannot differ from the value of <span class="math notranslate nohighlight">\(\play_2\)</span> with more than <span class="math notranslate nohighlight">\(p\gamma\sum_{i=1}^T(1-\gamma)^i=p\)</span>. I.e. in the worst case, if <span class="math notranslate nohighlight">\(\play_1\)</span> and <span class="math notranslate nohighlight">\(\play_2\)</span> differs, the reward is 1 in each step for <span class="math notranslate nohighlight">\(\play_1\)</span> but 0 in each step for <span class="math notranslate nohighlight">\(\play_2\)</span>.
+<p>We therefore see that the value for the path <span class="math notranslate nohighlight">\(\pi_1\)</span> cannot differ from the value of <span class="math notranslate nohighlight">\(\pi_2\)</span> with more than <span class="math notranslate nohighlight">\(p\gamma\sum_{i=1}^T(1-\gamma)^i=p\)</span>. I.e. in the worst case, if <span class="math notranslate nohighlight">\(\pi_1\)</span> and <span class="math notranslate nohighlight">\(\pi_2\)</span> differs, the reward is 1 in each step for <span class="math notranslate nohighlight">\(\pi_1\)</span> but 0 in each step for <span class="math notranslate nohighlight">\(\pi_2\)</span>.
 Also, the rewards in the steps after step <span class="math notranslate nohighlight">\(T\)</span> can also differ by at most <span class="math notranslate nohighlight">\(1\)</span> and by our choice of <span class="math notranslate nohighlight">\(T\)</span>, we have that outcome contributed from these remaining steps are worth less than <span class="math notranslate nohighlight">\(\epsilon/2\)</span> as well.
 Hence, we see that <span class="math notranslate nohighlight">\(\sigma'\)</span> obtains the same as <span class="math notranslate nohighlight">\(\sigma\)</span> except for <span class="math notranslate nohighlight">\(\epsilon\)</span> against any strategy <span class="math notranslate nohighlight">\(\tau\)</span> and is thus <span class="math notranslate nohighlight">\(\epsilon\)</span>-optimal.</p>
 <p>\end{proof}</p>
@@ -909,26 +845,26 @@ Let <span class="math notranslate nohighlight">\(a,b_1,b_2,\dots,b_n\)</span> be
 <p>We will use the sum-of-square-roots problem to give an informal hardness argument, in that finding the exact value of a concurrent game is in general harder than solving the sum-of-square-roots problem.</p>
 <p>Consider the following game <span class="math notranslate nohighlight">\(G\)</span>:
 There are three vertices, <span class="math notranslate nohighlight">\(\{0,1,s\}\)</span> where <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(1\)</span> are absorbing, with color 0 and 1 respectively.
-The vertex <span class="math notranslate nohighlight">\(s\)</span> is such that (1) <span class="math notranslate nohighlight">\(c(s,i,j)=0\)</span>, (2) <span class="math notranslate nohighlight">\(\dest(s,i,i)=1\)</span> (for <span class="math notranslate nohighlight">\(i\in \{1,2\}\)</span>), (3) <span class="math notranslate nohighlight">\(\dest(s,2,1)=0\)</span> and (4) <span class="math notranslate nohighlight">\(\dest(s,1,i)\)</span> is the uniform distribution over <span class="math notranslate nohighlight">\(s\)</span> and <span class="math notranslate nohighlight">\(0\)</span>. The game is illustrated in Figure \ref{7-fig:sqroot}.</p>
+The vertex <span class="math notranslate nohighlight">\(s\)</span> is such that (1) <span class="math notranslate nohighlight">\(c(s,i,j)=0\)</span>, (2) <span class="math notranslate nohighlight">\(\Delta(s,i,i)=1\)</span> (for <span class="math notranslate nohighlight">\(i\in \{1,2\}\)</span>), (3) <span class="math notranslate nohighlight">\(\Delta(s,2,1)=0\)</span> and (4) <span class="math notranslate nohighlight">\(\Delta(s,1,i)\)</span> is the uniform distribution over <span class="math notranslate nohighlight">\(s\)</span> and <span class="math notranslate nohighlight">\(0\)</span>. The game is illustrated in Figure \cref{7-fig:sqroot}.</p>
 <p>Consider an optimal stationary strategy in <span class="math notranslate nohighlight">\(G\)</span> for Eve. Let <span class="math notranslate nohighlight">\(p\)</span> be the probability with which she plays the first action. If Adam knows that Eve will follow this strategy, the game devolves into a MDP. We know from that for such there exists optimal positional strategies and thus Adam is either going to play the left or right column always. Clearly, <span class="math notranslate nohighlight">\(0&lt;p&lt;1\)</span> because <span class="math notranslate nohighlight">\(p=0\)</span> or 1 means that either playing the left or right column with probability 1 would ensure that no positive reward ever happens.</p>
 <div class="figure align-center" id="fig-sqroot">
 <img alt="../_images/7-fig:sqroot.png" src="../_images/7-fig:sqroot.png" />
-<p class="caption"><span class="caption-number">Fig. 51 </span><span class="caption-text">Concurrent discounted game with value <span class="math notranslate nohighlight">\(v_s=-2+\sqrt{4+2(1-\gamma)}\)</span></span><a class="headerlink" href="#fig-sqroot" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 50 </span><span class="caption-text">Concurrent discounted game with value <span class="math notranslate nohighlight">\(v_s=-2+\sqrt{4+2(1-\gamma)}\)</span></span><a class="headerlink" href="#fig-sqroot" title="Permalink to this image">¶</a></p>
 </div>
 <p>Let <span class="math notranslate nohighlight">\(v_0=0,v_1=1,v_s\)</span> be the values of the three vertices. If he plays the left column, the outcome is <span class="math notranslate nohighlight">\(p(1-\gamma)\)</span>.
 If he plays the right column, the outcome is <span class="math notranslate nohighlight">\(p/2(1-\gamma)v_s+(1-p)(1-\gamma)\)</span>. Observe that the former is increasing in <span class="math notranslate nohighlight">\(p\)</span> and the latter is decreasing (since clearly, <span class="math notranslate nohighlight">\(0&lt;(1-\gamma)v_s&lt;v_s\)</span>). Also, both are continues. Thus, the optimum is for <span class="math notranslate nohighlight">\(p(1-\gamma)\)</span> to be equal to <span class="math notranslate nohighlight">\(p/2(1-\gamma)v_s+(1-p)(1-\gamma)\)</span> and both equal to <span class="math notranslate nohighlight">\(v_s\)</span>.
-We will first isolate <span class="math notranslate nohighlight">\(v_s\)</span> in <span class="math notranslate nohighlight">\(v_s=p/2(1-\gamma)v_s+(1-p)(1-\gamma)\)</span>.
-\begin{align*}
-v_s&amp;=p/2(1-\gamma)v_s+(1-p)(1-\gamma)\Rightarrow (1-p/2(1-\gamma))v_s=(1-p)(1-\gamma)\Rightarrow \
+We will first isolate <span class="math notranslate nohighlight">\(v_s\)</span> in <span class="math notranslate nohighlight">\(v_s=p/2(1-\gamma)v_s+(1-p)(1-\gamma)\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}v_s&amp;=p/2(1-\gamma)v_s+(1-p)(1-\gamma)\Rightarrow (1-p/2(1-\gamma))v_s=(1-p)(1-\gamma)\Rightarrow \\
 v_s&amp;=\frac{(1-p)(1-\gamma)}{1-p/2(1-\gamma)}\enspace .
-\end{align*}</p>
+\end{split}\]</div>
 <p>Note that <span class="math notranslate nohighlight">\(p,\gamma&lt;1\)</span> thus, <span class="math notranslate nohighlight">\(1-p/2(1-\gamma)\neq 0\)</span>.
-We then have the equality
-\begin{align*}
-\frac{(1-p)(1-\gamma)}{1-p/2(1-\gamma)}&amp;=p(1-\gamma)\Rightarrow\(1-p)(1-\gamma)&amp;=p(1-\gamma)(1-p/2(1-\gamma))\Rightarrow\
-0&amp;=\frac{1-\gamma}{2} p^2+2p-1\Rightarrow \
+We then have the equality</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\frac{(1-p)(1-\gamma)}{1-p/2(1-\gamma)}&amp;=p(1-\gamma)\Rightarrow\\(1-p)(1-\gamma)&amp;=p(1-\gamma)(1-p/2(1-\gamma))\Rightarrow\\
+0&amp;=\frac{1-\gamma}{2} p^2+2p-1\Rightarrow \\
 p&amp;=\frac{-2\pm\sqrt{4+2(1-\gamma)}}{1-\gamma} \enspace .
-\end{align*}</p>
+\end{split}\]</div>
 <p>We see that <span class="math notranslate nohighlight">\(\frac{-2-\sqrt{4+2(1-\gamma)}}{1-\gamma}&lt;0\)</span>. Thus, <span class="math notranslate nohighlight">\(p=\frac{-2+\sqrt{4+2(1-\gamma)}}{1-\gamma}\)</span>.
 Also,</p>
 <div class="math notranslate nohighlight">
@@ -939,21 +875,21 @@ Observe that decreasing each reward by <span class="math notranslate nohighlight
 We can then decide the sum-of-square-roots problem by deciding whether the value of <span class="math notranslate nohighlight">\(s^*\)</span> is strictly above <span class="math notranslate nohighlight">\(0\)</span>.</p>
 <p>We get the following lemma.</p>
 <div class="proof lemma admonition" id="lemma-2">
-<p class="admonition-title"><span class="caption-number">Lemma 221 </span> (NEEDS TITLE AND LABEL)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 220 </span> (NEEDS TITLE AND LABEL)</p>
 <div class="lemma-content section" id="proof-content">
 <p>The (exact) decision problem for the value is sum-of-square-root hard for concurrent discounted games</p>
 <p>The (exact) decision problem for the value is sum-of-square-root hard for concurrent discounted games</p>
 </div>
-</div><p>We will use this game  <span class="math notranslate nohighlight">\(G\)</span> as an example to illustrate how to make the <span class="math notranslate nohighlight">\(\dest\)</span>-function deterministic for concurrent games while having the same value and a similar optimal strategy.</p>
+</div><p>We will use this game  <span class="math notranslate nohighlight">\(G\)</span> as an example to illustrate how to make the <span class="math notranslate nohighlight">\(\Delta\)</span>-function deterministic for concurrent games while having the same value and a similar optimal strategy.</p>
 <div class="figure align-center" id="fig-sqroot2">
 <img alt="../_images/7-fig:sqroot2.png" src="../_images/7-fig:sqroot2.png" />
-<p class="caption"><span class="caption-number">Fig. 52 </span><span class="caption-text">Alternate concurrent discounted game with value <span class="math notranslate nohighlight">\(v_s=-2+\sqrt{4+2(1-\gamma)}\)</span></span><a class="headerlink" href="#fig-sqroot2" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 51 </span><span class="caption-text">Alternate concurrent discounted game with value <span class="math notranslate nohighlight">\(v_s=-2+\sqrt{4+2(1-\gamma)}\)</span></span><a class="headerlink" href="#fig-sqroot2" title="Permalink to this image">¶</a></p>
 </div>
 <p>Consider the following game <span class="math notranslate nohighlight">\(G'\)</span>:
 There are three vertices, <span class="math notranslate nohighlight">\(\{0,1,s\}\)</span> where <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(1\)</span> are absorbing, with color 0 and 1 respectively.
 The vertex <span class="math notranslate nohighlight">\(s\)</span> is such that (1)
-<span class="math notranslate nohighlight">\(c(s,i,j)=0\)</span> for all <span class="math notranslate nohighlight">\(i,j\)</span>, (2) <span class="math notranslate nohighlight">\(\dest(s,i,j)=s\)</span> for <span class="math notranslate nohighlight">\(i+1=j\)</span> (i.e. for <span class="math notranslate nohighlight">\((i,j)\in \{(1,2),(2,3)\}\)</span>), (3) <span class="math notranslate nohighlight">\(\dest(s,i,j)=0\)</span> for <span class="math notranslate nohighlight">\(i+j=4\)</span> (i.e. the other diagonal, <span class="math notranslate nohighlight">\((i,j)\in \{(3,1),(2,2),(1,3)\}\)</span>) and (4) <span class="math notranslate nohighlight">\(\dest(s,i,j)=1\)</span> otherwise (i.e. for <span class="math notranslate nohighlight">\((i,j)\in \{(1,1),(2,1),(3,2),(3,3)\}\)</span>).
-The game is illustrated in Figure \ref{7-fig:sqroot2}.</p>
+<span class="math notranslate nohighlight">\(c(s,i,j)=0\)</span> for all <span class="math notranslate nohighlight">\(i,j\)</span>, (2) <span class="math notranslate nohighlight">\(\Delta(s,i,j)=s\)</span> for <span class="math notranslate nohighlight">\(i+1=j\)</span> (i.e. for <span class="math notranslate nohighlight">\((i,j)\in \{(1,2),(2,3)\}\)</span>), (3) <span class="math notranslate nohighlight">\(\Delta(s,i,j)=0\)</span> for <span class="math notranslate nohighlight">\(i+j=4\)</span> (i.e. the other diagonal, <span class="math notranslate nohighlight">\((i,j)\in \{(3,1),(2,2),(1,3)\}\)</span>) and (4) <span class="math notranslate nohighlight">\(\Delta(s,i,j)=1\)</span> otherwise (i.e. for <span class="math notranslate nohighlight">\((i,j)\in \{(1,1),(2,1),(3,2),(3,3)\}\)</span>).
+The game is illustrated in Figure \cref{7-fig:sqroot2}.</p>
 <p>We will argue that the value of <span class="math notranslate nohighlight">\(G'\)</span> is equal to that of <span class="math notranslate nohighlight">\(G\)</span>.
 We clearly have that the value of <span class="math notranslate nohighlight">\(s\)</span> is in <span class="math notranslate nohighlight">\((0,1)\)</span>.
 Consider a stationary strategy <span class="math notranslate nohighlight">\(\sigma\)</span> for Eve
@@ -999,23 +935,23 @@ Let <span class="math notranslate nohighlight">\(\sigma\)</span> be</p>
 \]</div>
 <p>we get absorbed in 1 after a reward of 0.
 But this is in particular the case if the players play optimally and thus, the value is the same in the two games.</p>
-<p>Before, in Corollary \ref{cor:long}, we argued that the patience of <span class="math notranslate nohighlight">\(\epsilon\)</span>-optimal stationary strategies was <span class="math notranslate nohighlight">\(q=\frac{m\log(\epsilon/2)}{\log(1-\gamma)\epsilon}\)</span>.
+<p>Before, in Corollary \cref{cor:long}, we argued that the patience of <span class="math notranslate nohighlight">\(\epsilon\)</span>-optimal stationary strategies was <span class="math notranslate nohighlight">\(q=\frac{m\log(\epsilon/2)}{\log(1-\gamma)\epsilon}\)</span>.
 Giving a similar exponential bound for the optimal stationary strategies is harder than solving the sum-of-square-roots problem, as we will argue next.
 Assume that we had an exponential bound for optimal stationary strategies.</p>
 <div class="figure align-center" id="fig-exact-hard">
 <img alt="../_images/7-fig:exact-hard.png" src="../_images/7-fig:exact-hard.png" />
-<p class="caption"><span class="caption-number">Fig. 53 </span><span class="caption-text">Concurrent discounted game that implies that if there is an exponential lower bound on patience, then the sum-of-square-roots problem is in P</span><a class="headerlink" href="#fig-exact-hard" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 52 </span><span class="caption-text">Concurrent discounted game that implies that if there is an exponential lower bound on patience, then the sum-of-square-roots problem is in P</span><a class="headerlink" href="#fig-exact-hard" title="Permalink to this image">¶</a></p>
 </div>
 <p>Consider an arbitrary yes-instance of the sum-of-square-roots problem, giving a vertex <span class="math notranslate nohighlight">\(s^*\)</span>. Reduce each reward by <span class="math notranslate nohighlight">\(a\)</span> and in the new game let <span class="math notranslate nohighlight">\(s^*_a\)</span> be the vertex corresponding to <span class="math notranslate nohighlight">\(s^*\)</span>.
 We will now create a game that uses the previous game as a sub-game.
-The game has 1 additional vertex <span class="math notranslate nohighlight">\(s'\)</span>, which is a 2x2-matrix, such that <span class="math notranslate nohighlight">\(c(s',i,j)=0\)</span> and <span class="math notranslate nohighlight">\(\dest(s,1,1)=1\)</span> and <span class="math notranslate nohighlight">\(\dest(s,2,2)=s^*\)</span> and <span class="math notranslate nohighlight">\(\dest(s,i,j)=0\)</span> for <span class="math notranslate nohighlight">\(i\neq j\)</span>.
-There is an illustration in Figure~\ref{7-fig:exact-hard}, using the vertex <span class="math notranslate nohighlight">\(s^*\)</span> as above.
+The game has 1 additional vertex <span class="math notranslate nohighlight">\(s'\)</span>, which is a 2x2-matrix, such that <span class="math notranslate nohighlight">\(c(s',i,j)=0\)</span> and <span class="math notranslate nohighlight">\(\Delta(s,1,1)=1\)</span> and <span class="math notranslate nohighlight">\(\Delta(s,2,2)=s^*\)</span> and <span class="math notranslate nohighlight">\(\Delta(s,i,j)=0\)</span> for <span class="math notranslate nohighlight">\(i\neq j\)</span>.
+There is an illustration in Figure \cref{7-fig:exact-hard}, using the vertex <span class="math notranslate nohighlight">\(s^*\)</span> as above.
 Using an argument like above, we see that the probability <span class="math notranslate nohighlight">\(p\)</span> to play the top action in the vertex <span class="math notranslate nohighlight">\(s'\)</span> is such that <span class="math notranslate nohighlight">\(p(1-\gamma)=(1-p)(1-\gamma)x\)</span>, where <span class="math notranslate nohighlight">\(x\)</span> is the value of <span class="math notranslate nohighlight">\(s^*\)</span>. Thus, <span class="math notranslate nohighlight">\(x=\frac{p}{1-p}\)</span>. If <span class="math notranslate nohighlight">\(p\)</span> only needs to be exponential small, then <span class="math notranslate nohighlight">\(x\)</span> is exponentially small as well. This is true for any yes-instance of the sum-of-square-roots problem and thus, we only need polynomially many digits to decide the problem. We can find polynomially many digits of <span class="math notranslate nohighlight">\(\sqrt{b_i}\)</span> for each <span class="math notranslate nohighlight">\(i\)</span> in polynomial time. We get the following lemma.</p>
 <div class="proof lemma admonition" id="lemma-3">
-<p class="admonition-title"><span class="caption-number">Lemma 222 </span> (NEEDS TITLE AND LABEL)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 221 </span> (NEEDS TITLE AND LABEL)</p>
 <div class="lemma-content section" id="proof-content">
-<p>Giving an exponential lower-bound on patience for optimal stationary strategies in concurrent discounted games implies that the sum-of-square-roots problem is in <span class="math notranslate nohighlight">\(\PTIME\)</span></p>
-<p>Giving an exponential lower-bound on patience for optimal stationary strategies in concurrent discounted games implies that the sum-of-square-roots problem is in <span class="math notranslate nohighlight">\(\PTIME\)</span></p>
+<p>Giving an exponential lower-bound on patience for optimal stationary strategies in concurrent discounted games implies that the sum-of-square-roots problem is in <span class="math notranslate nohighlight">\(\textrm{PTIME}\)</span></p>
+<p>Giving an exponential lower-bound on patience for optimal stationary strategies in concurrent discounted games implies that the sum-of-square-roots problem is in <span class="math notranslate nohighlight">\(\textrm{PTIME}\)</span></p>
 </div>
 </div></div>
 

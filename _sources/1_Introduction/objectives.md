@@ -2,124 +2,61 @@
 # Objectives
 
 ```{math}
-\newcommand{\Eve}{\textrm{Eve}}
-\newcommand{\Adam}{\textrm{Adam}}
-\newcommand{\set}[1]{\left\{ #1 \right\}}
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
-\newcommand{\argmax}{\textrm{argmax}}
-\newcommand{\argmin}{\textrm{argmin}}
-\newcommand{\Op}{\mathbb{O}}
-\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\textrm{supp}} 
-\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
-\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
-\newcommand{\mEve}{\mathrm{Eve}}
-\newcommand{\mAdam}{\mathrm{Adam}}
-\newcommand{\mRandom}{\mathrm{Random}}
-\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
-\newcommand{\ing}{\textrm{In}}
-\newcommand{\Ing}{\ing}
-\newcommand{\out}{\textrm{Out}}
-\newcommand{\Out}{\out}
-\newcommand{\dest}{\Delta} 
-\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
-\newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
-\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
-\newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\newcommand{\Win}{\textrm{Win}} 
-\newcommand{\Lose}{\textrm{Lose}} 
-\newcommand{\Value}{\textrm{val}} 
-\newcommand{\ValueE}{\textrm{val}_\mEve} 
-\newcommand{\ValueA}{\textrm{val}_\mAdam}
-\newcommand{\val}{\Value} 
-\newcommand{\Automaton}{\mathbf{A}} 
-\newcommand{\Safe}{\mathtt{Safe}}
-\newcommand{\Reach}{\mathtt{Reach}} 
-\newcommand{\Buchi}{\mathtt{Buchi}} 
-\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
-\newcommand{\Parity}{\mathtt{Parity}} 
-\newcommand{\Muller}{\mathtt{Muller}} 
-\newcommand{\Rabin}{\mathtt{Rabin}} 
-\newcommand{\Streett}{\mathtt{Streett}} 
-\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
-\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
-\newcommand{\Energy}{\mathtt{Energy}}
-\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
-\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
-\newcommand{\Sup}{\mathtt{Sup}}
-\newcommand{\Inf}{\mathtt{Inf}}
-\newcommand{\LimSup}{\mathtt{LimSup}}
-\newcommand{\LimInf}{\mathtt{LimInf}}
-\newcommand{\NL}{\textrm{NL}}
-\newcommand{\PTIME}{\textrm{PTIME}}
-\newcommand{\NP}{\textrm{NP}}
-\newcommand{\UP}{\textrm{UP}}
-\newcommand{\coNP}{\textrm{coNP}}
-\newcommand{\coUP}{\textrm{coUP}}
-\newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
-\newcommand{\EXP}{\textrm{EXP}}
-\newcommand{\kEXP}{\textrm{kEXP}}
+
+\renewcommand{\Game}{\game}
+
 ```
+
 We present in this section the main objectives and their representations.
 An objective may depend upon a set of parameters which are sometimes omitted when clear from the context.
 
-Let us recall how we define classes of conditions: we first define an objective, for instance $\Safe \subseteq \set{\Win,\Lose}^\omega$.
-For an arena and a colouring function $\col$ defined over this arena this induces the safety condition $\Safe[\col]$.
+Let us recall how we define classes of conditions: we first define an objective, for instance $\mathtt{Safe} \subseteq  \left\{  \textrm{Win \right\}, \textrm{Lose}}^\omega$.
+For an arena and a colouring function $\textsf{col}$ defined over this arena this induces the safety condition $\mathtt{Safe}[ \textsf{col}]$.
 Given an arena and a condition $W$ over this arena we say that $W$ is **a** safety condition if 
-there exists $\col$ such that $W = \Safe[\col]$.
+there exists $\textsf{col}$ such that $W =  \mathtt{Safe}[ \textsf{col}]$.
 The same terminology is used for all other objectives.
 
 ## Prefix dependent qualitative objectives: safety and reachability
 
 The safety objective is the simplest qualitative objective:
-the set of colours is $\set{\Win,\Lose}$, 
-and safety requires that the colour $\Lose$ is never seen.
+the set of colours is $\left\{  \textrm{Win \right\}, \textrm{Lose}}$, 
+and safety requires that the colour $\textrm{Lose}$ is never seen.
 Formally:
 
 $$
-\Safe = \set{\rho \in \set{\Win,\Lose}^\omega : \forall i, \rho_i \neq \Lose}.
+ \mathtt{Safe} =  \left\{ \rho \in  \left\{  \textrm{Win \right\ \right\}, \textrm{Lose}}^\omega : \forall i, \rho_i \neq  \textrm{Lose}}.
 $$
 
-
 In the example represented in {numref}`1-fig:safety_game_example`, 
-a play is winning if if it never visits the vertex labelled $\Lose$.
+a play is winning if if it never visits the vertex labelled $\textrm{Lose}$.
 Eve wins from the four vertices on the left and loses from all the others, which is represented by the two dotted areas.
 
 ```{figure} ./../FigAndAlgos/1-fig:safety_game_example.png
 :name: 1-fig:safety_game_example
 :align: center
 An example of a safety game. 
-The vertex on the bottom right is labelled $\Lose$, all the others are implicitly labelled $\Win$;
-the condition of Eve is to avoid the vertex labelled $\Lose$.
+The vertex on the bottom right is labelled $\textrm{Lose}$, all the others are implicitly labelled $\textrm{Win}$;
+the condition of Eve is to avoid the vertex labelled $\textrm{Lose}$.
 The two dotted areas represent the winning regions of each player.
 ```
 
 The dual of the safety objective is the reachability objective: 
-the set of colours is $\set{\Win,\Lose}$,
-and reachability requires that the colour $\Win$ is seen at least once.
+the set of colours is $\left\{  \textrm{Win \right\}, \textrm{Lose}}$,
+and reachability requires that the colour $\textrm{Win}$ is seen at least once.
 Formally:
 
 $$
-\Reach = \set{\rho \in \set{\Win,\Lose}^\omega : \exists i, \rho_i = \Win}.
+ \mathtt{Reach} =  \left\{ \rho \in  \left\{  \textrm{Win \right\ \right\}, \textrm{Lose}}^\omega : \exists i, \rho_i =  \textrm{Win}}.
 $$
-
-
-%We say that $W$ is a reachability condition if there exists $\col$ such that 
 
 Safety and reachability conditions are dual:
 
 $$
-\Paths_\omega \setminus \Safe[\col] = \Reach[\overline{\col}] \quad ; \quad
-\Paths_\omega \setminus \Reach[\col] = \Safe[\overline{\col}].
+ \textrm{Paths}_\omega \setminus  \mathtt{Safe}[ \textsf{col}] =  \mathtt{Reach}[\overline{ \textsf{col}}] \quad ; \quad
+ \textrm{Paths}_\omega \setminus  \mathtt{Reach}[ \textsf{col}] =  \mathtt{Safe}[\overline{ \textsf{col}}].
 $$
 
-where $\overline{\col}$ swaps $\Win$ and $\Lose$ in $\col$.
+where $\overline{ \textsf{col}}$ swaps $\textrm{Win}$ and $\textrm{Lose}$ in $\textsf{col}$.
 Consequently, if the condition for Eve is a safety condition, then the condition for Adam is a reachability condition, and conversely.
 
 ## Prefix independent qualitative objectives: B&uuml;chi, CoB&uuml;chi, and Parity
@@ -127,72 +64,68 @@ Consequently, if the condition for Eve is a safety condition, then the condition
 Safety and reachability objectives specify which colours occur or not, hence are prefix dependent.
 We now introduce objectives specifying which colours occur infinitely many times, which will naturally be prefix independent.
 
-The **B&uuml;chi** objective is over the set of colours $\set{1,2}$,
+The **B&uuml;chi** objective is over the set of colours $\left\{ 1,2 \right\}$,
 it requires that the colour $2$ is seen infinitely many times.
 Formally:
 
 $$
-\Buchi = \set{\rho \in \set{1,2}^\omega : \forall j, \exists i \ge j, \rho_i = 2}.
+ \mathtt{Buchi} =  \left\{ \rho \in  \left\{ 1,2 \right\ \right\}^\omega : \forall j, \exists i \ge j, \rho_i = 2}.
 $$
 
-
 The dual of the B&uuml;chi objective is the **CoB{\"uchi}** objective: 
-the set of colours is $\set{2,3}$, it requires that the colour $3$ is seen finitely many times.
+the set of colours is $\left\{ 2,3 \right\}$, it requires that the colour $3$ is seen finitely many times.
 Formally:
 
 $$
-\CoBuchi = \set{\rho \in \set{2,3}^\omega : \exists j, \forall i \ge j, \rho_i \neq 3}.
+ \mathtt{CoBuchi} =  \left\{ \rho \in  \left\{ 2,3 \right\ \right\}^\omega : \exists j, \forall i \ge j, \rho_i \neq 3}.
 $$
-
-
 
 B&uuml;chi and CoB&uuml;chi conditions are dual:
 
 $$
-\Paths_\omega \setminus \Buchi[\col] = \CoBuchi[\col + 1] \quad ; \quad
-\Paths_\omega \setminus \CoBuchi[\col] = \Buchi[\col - 1].
+ \textrm{Paths}_\omega \setminus  \mathtt{Buchi}[ \textsf{col}] =  \mathtt{CoBuchi}[ \textsf{col} + 1] \quad ; \quad
+ \textrm{Paths}_\omega \setminus  \mathtt{CoBuchi}[ \textsf{col}] =  \mathtt{Buchi}[ \textsf{col} - 1].
 $$
 
-where $\col + 1$ adds one to $\col$ (since $\col$ maps vertices to $\set{1,2}$, $\col + 1$ maps vertices to $\set{2,3}$),
-and similarly for $\col - 1$.
+where $\textsf{col} + 1$ adds one to $\textsf{col}$ (since $\textsf{col}$ maps vertices to $\left\{ 1,2 \right\}$, $\textsf{col} + 1$ maps vertices to $\left\{ 2,3 \right\}$),
+and similarly for $\textsf{col} - 1$.
 Consequently, if the condition for Eve is a B&uuml;chi condition, then the condition for Adam is a CoB&uuml;chi condition, and conversely.
 
-
 We now define the parity objectives.
-Let $[i,j]$ be an interval with $i,j \in \N$ used as a parameter defining the range of priorities.
+Let $[i,j]$ be an interval with $i,j \in  \mathbb{N}$ used as a parameter defining the range of priorities.
 The parity objective with parameters $i,j$ uses the set of colours $[i,j]$, which are referred to as priorities, and is defined by
 
 $$
-\Parity([i,j]) = \set{\rho \in [i,j]^\omega \left| \begin{array}{c} \text{ the largest priority appearing} \\ \text{infinitely many times in } \rho \text{ is even}\end{array} \right.}.
+ \mathtt{Parity}([i,j]) =  \left\{ \rho \in [i,j]^\omega \left| \begin{array \right\}{c} \text{ the largest priority appearing} \\ \text{infinitely many times in } \rho \text{ is even}\end{array} \right.}.
 $$
 
-We made the dependence in $[i,j]$ explicit by writing $\Parity([i,j])$, but we will most of the time write $\Parity$
+We made the dependence in $[i,j]$ explicit by writing $\mathtt{Parity}([i,j])$, but we will most of the time write $\mathtt{Parity}$
 and assume that the range of priorities is $[1,d]$, so $d$ is the number of priorities.
 There are two possible conventions for defining parity objectives: considering the largest priority appearing infinitely many times, or the smallest one. They are strictly equivalent (through the transformation $x \mapsto 2d - x$) but depending on the situation one can be technically more convenient than the other.
 
 We illustrate the definition on two examples.
 
 $$
-1\ 2\ 4\ 7\ 5\ 7\ 5\ 3\ 6\ 3\ 6\ 3\ 6\ 3\ 6\ \cdots \in \Parity,
+1\ 2\ 4\ 7\ 5\ 7\ 5\ 3\ 6\ 3\ 6\ 3\ 6\ 3\ 6\ \cdots \in  \mathtt{Parity},
 $$
 
 because the two priorities which appear infinitely often are $3$ and $6$, and the largest one is $6$, which is even.
 
 $$
-2\ 2\ 2\ 4\ 1\ 7\ 5\ 3\ 3\ 3\ 3\ 3\ 3\ 3\ 3\ \cdots \notin \Parity,
+2\ 2\ 2\ 4\ 1\ 7\ 5\ 3\ 3\ 3\ 3\ 3\ 3\ 3\ 3\ \cdots \notin  \mathtt{Parity},
 $$
 
 because the only priority which appears infinitely often is $3$ and it is odd.
 
 Two remarks are in order.
 First, B&uuml;chi and CoB&uuml;chi objectives are parity objectives for the set of colours $[1,2]$ and $[2,3]$, respectively.
-Second, the parity conditions are self dual: 
+Second, the parity conditions are self dual:
 
 $$
-\Paths_\omega \setminus \Parity([i,j])[\col] = \Parity([i+1,j+1])[\col + 1],
+ \textrm{Paths}_\omega \setminus  \mathtt{Parity}([i,j])[ \textsf{col}] =  \mathtt{Parity}([i+1,j+1])[ \textsf{col} + 1],
 $$
 
-where $\col + 1$ adds one to $\col$.
+where $\textsf{col} + 1$ adds one to $\textsf{col}$.
 Hence if the condition for Eve is a parity condition, then the condition for Adam is also a parity condition.
 
 {numref}`1-fig:parity_game_example` presents an example of a parity game. 
@@ -207,26 +140,25 @@ The two dotted areas represent the winning regions of each player.
 
 ## Conventions
 
-Given an objective $\Omega \subseteq C^\omega$ we use a colouring function $\col : V \to C$ to induce the condition $\Omega[\col]$.
+Given an objective $\Omega \subseteq C^\omega$ we use a colouring function $\textsf{col} : V \to C$ to induce the condition $\Omega[ \textsf{col}]$.
 We extend this notation to sets of vertices and colours as follows.
 
-*  A set of vertices $F \subseteq V$ induces the colouring function $\col_F$ defined by 
-$\col_F(v) = \Win$ if $v \in F$ and $\col_F(v) = \Lose$ otherwise.
-For $F \subseteq V$ we define $\Safe[F]$ as $\Safe[\col_F]$: it requires that no vertex from $F$ is ever visited.
-*  A colour $c \in C$ induces the set of vertices $\col^{-1}(c)$ labelled by $c$.
-The condition $\Safe[c]$ requires that the colour $c$ is never visited.
+*  A set of vertices $F \subseteq V$ induces the colouring function $\textsf{col}_F$ defined by 
+$\textsf{col}_F(v) =  \textrm{Win}$ if $v \in F$ and $\textsf{col}_F(v) =  \textrm{Lose}$ otherwise.
+For $F \subseteq V$ we define $\mathtt{Safe}[F]$ as $\mathtt{Safe}[ \textsf{col}_F]$: it requires that no vertex from $F$ is ever visited.
+*  A colour $c \in C$ induces the set of vertices $\textsf{col}^{-1}(c)$ labelled by $c$.
+The condition $\mathtt{Safe}[c]$ requires that the colour $c$ is never visited.
 
 We apply this convention to safety, B&uuml;chi, and CoB&uuml;chi conditions: for $F \subseteq V$,
 
 $$
 \begin{array}{ccccc}
-\Reach[F] & = & \Reach[\col_F] & = & \set{\play \in \Paths_\omega : \exists i, \Ing(\play_i) \in F}, \\
-\Buchi[F] & = & \Buchi[\col_F] & = & \set{\play \in \Paths_\omega : \forall j, \exists i \ge j, \Ing(\play_i) \in F}, \\
-\CoBuchi[F] & = & \CoBuchi[\col_F] & = & \set{\play \in \Paths_\omega : \exists j, \forall i \ge j, \Ing(\play_i) \notin F},
+ \mathtt{Reach}[F] & = &  \mathtt{Reach}[ \textsf{col}_F] & = &  \left\{  \pi \in  \textrm{Paths \right\}_\omega : \exists i,   \textrm{In}( \pi_i) \in F}, \\
+ \mathtt{Buchi}[F] & = &  \mathtt{Buchi}[ \textsf{col}_F] & = &  \left\{  \pi \in  \textrm{Paths \right\}_\omega : \forall j, \exists i \ge j,   \textrm{In}( \pi_i) \in F}, \\
+ \mathtt{CoBuchi}[F] & = &  \mathtt{CoBuchi}[ \textsf{col}_F] & = &  \left\{  \pi \in  \textrm{Paths \right\}_\omega : \exists j, \forall i \ge j,   \textrm{In}( \pi_i) \notin F},
 \end{array}
 $$
 
- 
 similarly extended to colours.
 
 ## Representations for qualitative objectives
@@ -243,45 +175,44 @@ either an edge or a vertex together with its priority.
 In this introduction chapter we only define two quantitative objectives: mean payoff and discounted payoff.
 More objectives will be defined and studied in Chapter {ref}`4-chap:payoffs`, and later in Chapter {ref}`12-chap:multiobjective`.
 
-Mean payoff and discounted payoff use the set of colours $C = \Z$ the set of integers.
+Mean payoff and discounted payoff use the set of colours $C =  \mathbb{Z}$ the set of integers.
 A colour is called a weight, interpreted as a payoff for Eve.
 
 The mean payoff quantitative objective comes in two different flavours: using the supremum limit
 
 $$
-\MeanPayoff^+(\rho) = \limsup_k \frac{1}{k} \sum_{i = 0}^{k-1} \rho_i.
+ \mathtt{MeanPayoff}^+(\rho) = \limsup_k \frac{1}{k} \sum_{i = 0}^{k-1} \rho_i.
 $$
 
 or the infimum limit
 
 $$
-\MeanPayoff^-(\rho) = \liminf_k \frac{1}{k} \sum_{i = 0}^{k-1} \rho_i.
+ \mathtt{MeanPayoff}^-(\rho) = \liminf_k \frac{1}{k} \sum_{i = 0}^{k-1} \rho_i.
 $$
 
 As we shall see, in most settings the two objectives will be equivalent.
-For this reason, we often use $\MeanPayoff$ to denote $\MeanPayoff^-$.
+For this reason, we often use $\mathtt{MeanPayoff}$ to denote $\mathtt{MeanPayoff}^-$.
 
 {numref}`1-fig:mp_game_example` presents an example of a mean payoff game. 
 The weight of a vertex is given by its label.
 In this example the dotted areas represent the winning regions for the threshold is $0$, 
-**i.e.** the induced qualitative objective $\MeanPayoff_{\ge 0} = \set{\rho \in C^\omega : \MeanPayoff(\rho) \ge 0}$.
+**i.e.** the induced qualitative objective $\mathtt{MeanPayoff}_{\ge 0} =  \left\{ \rho \in C^\omega :  \mathtt{MeanPayoff \right\}(\rho) \ge 0}$.
 
 ```{figure} ./../FigAndAlgos/1-fig:mp_game_example.png
 :name: 1-fig:mp_game_example
 :align: center
 An example of a mean payoff game. 
-The dotted areas represent the winning regions for the qualitative objective $\MeanPayoff_{\ge 0}$.
+The dotted areas represent the winning regions for the qualitative objective $\mathtt{MeanPayoff}_{\ge 0}$.
 ```
-
 
 The discounted payoff quantitative objective is parameterised by a discount factor $\lambda \in (0,1)$.
 It is defined by:
 
 $$
-\DiscountedPayoff_\lambda(\rho) = \lim_k \sum_{i = 0}^{k-1} \lambda^i \rho_i.
+ \mathtt{DiscountedPayoff}_\lambda(\rho) = \lim_k \sum_{i = 0}^{k-1} \lambda^i \rho_i.
 $$
 
-Expanding the definition: $\DiscountedPayoff_\lambda(\rho) = \rho_0 + \lambda \rho_1 + \lambda^2 \rho_2 + \dots$.
+Expanding the definition: $\mathtt{DiscountedPayoff}_\lambda(\rho) = \rho_0 + \lambda \rho_1 + \lambda^2 \rho_2 + \dots$.
 Intuitively, the importance of the weights decrease over time: the weight $\rho_i$ is multiplied by $\lambda^i$ which goes to $0$ as $i$ goes to infinity.
 The discount factor ensures that the limit exists for sequences with bounded weights,
 which is holds for all plays since a (finite) game contains finitely many different weights.
