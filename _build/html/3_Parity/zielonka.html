@@ -705,74 +705,8 @@
   <div class="section" id="a-quasipolynomial-time-attractor-decomposition-algorithm">
 <span id="sec-zielonka"></span><h1>A quasipolynomial time attractor decomposition algorithm<a class="headerlink" href="#a-quasipolynomial-time-attractor-decomposition-algorithm" title="Permalink to this headline">¶</a></h1>
 <div class="math notranslate nohighlight">
-\[\renewcommand{\H}{\mathcal{H}} 
-\newcommand{\Lift}{\textrm{Lift}} 
-\newcommand{\F}{\mathcal{F}} 
-\newcommand{\sinit}{\sigma_{\textnormal{init}}}
-\newcommand{\siblank}{\mathtt{-}}
-\newcommand{\Eve}{\textrm{Eve}}
-\newcommand{\Adam}{\textrm{Adam}}
-\newcommand{\set}[1]{\left\{ #1 \right\}}
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
-\newcommand{\argmax}{\textrm{argmax}}
-\newcommand{\argmin}{\textrm{argmin}}
-\newcommand{\Op}{\mathbb{O}}
-\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\textrm{supp}} 
-\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
-\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
-\newcommand{\mEve}{\mathrm{Eve}}
-\newcommand{\mAdam}{\mathrm{Adam}}
-\newcommand{\mRandom}{\mathrm{Random}}
-\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
-\newcommand{\ing}{\textrm{In}}
-\newcommand{\Ing}{\ing}
-\newcommand{\out}{\textrm{Out}}
-\newcommand{\Out}{\out}
-\newcommand{\dest}{\Delta} 
-\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
-\newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
-\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
-\newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\newcommand{\Win}{\textrm{Win}} 
-\newcommand{\Lose}{\textrm{Lose}} 
-\newcommand{\Value}{\textrm{val}} 
-\newcommand{\ValueE}{\textrm{val}_\mEve} 
-\newcommand{\ValueA}{\textrm{val}_\mAdam}
-\newcommand{\val}{\Value} 
-\newcommand{\Automaton}{\mathbf{A}} 
-\newcommand{\Safe}{\mathtt{Safe}}
-\newcommand{\Reach}{\mathtt{Reach}} 
-\newcommand{\Buchi}{\mathtt{Buchi}} 
-\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
-\newcommand{\Parity}{\mathtt{Parity}} 
-\newcommand{\Muller}{\mathtt{Muller}} 
-\newcommand{\Rabin}{\mathtt{Rabin}} 
-\newcommand{\Streett}{\mathtt{Streett}} 
-\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
-\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
-\newcommand{\Energy}{\mathtt{Energy}}
-\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
-\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
-\newcommand{\Sup}{\mathtt{Sup}}
-\newcommand{\Inf}{\mathtt{Inf}}
-\newcommand{\LimSup}{\mathtt{LimSup}}
-\newcommand{\LimInf}{\mathtt{LimInf}}
-\newcommand{\NL}{\textrm{NL}}
-\newcommand{\PTIME}{\textrm{PTIME}}
-\newcommand{\NP}{\textrm{NP}}
-\newcommand{\UP}{\textrm{UP}}
-\newcommand{\coNP}{\textrm{coNP}}
-\newcommand{\coUP}{\textrm{coUP}}
-\newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
-\newcommand{\EXP}{\textrm{EXP}}
-\newcommand{\kEXP}{\textrm{kEXP}}\]</div>
+\[ \begin{align}\begin{aligned}\renewcommand{\H}{\mathcal{H}}\\\renewcommand{\Game}{\game}
+\end{aligned}\end{align} \]</div>
 <div class="proof theorem admonition" id="3-thm:quasipolynomial_mcnaughton_zielonka_algorithm">
 <p class="admonition-title"><span class="caption-number">Theorem 68 </span> (Quasipolynomial McNaughton Zielonka algorithm)</p>
 <div class="theorem-content section" id="proof-content">
@@ -787,7 +721,7 @@ We refer to <a class="reference internal" href="#algo-zielonka-even"><span class
 where we make explicit all recursive calls involving the maximal priority <span class="math notranslate nohighlight">\(d\)</span>.
 The benefit of doing this is to make the following observation:
 during the <span class="math notranslate nohighlight">\(i\)</span>th recursive call for <span class="math notranslate nohighlight">\(d\)</span>, the algorithm removes from the game <span class="math notranslate nohighlight">\(\Game\)</span> the subset
-<span class="math notranslate nohighlight">\(X_i = \AttrA^{\Game}( \WA(\Game_i) )\)</span>.
+<span class="math notranslate nohighlight">\(X_i =  \textrm{Attr}_\mathrm{Adam}^{\Game}(  W_\mathrm{Adam}(\Game_i) )\)</span>.
 Note that <span class="math notranslate nohighlight">\(X_i\)</span> is a trap for Eve in <span class="math notranslate nohighlight">\(\Game\)</span> and a subset of the winning region of Adam in <span class="math notranslate nohighlight">\(\Game\)</span>:
 we say that <span class="math notranslate nohighlight">\(X_i\)</span> is a dominion for Eve.
 More generally, given a game <span class="math notranslate nohighlight">\(\Game\)</span>, a set <span class="math notranslate nohighlight">\(X\)</span> of vertices is a dominion for Eve if
@@ -795,10 +729,10 @@ it is a trap for Adam and a subset of the winning region of Eve.</p>
 <p>Let <span class="math notranslate nohighlight">\(i_{\infty}\)</span> be the final value of <span class="math notranslate nohighlight">\(i\)</span>, the sets <span class="math notranslate nohighlight">\(X_0,\dots,X_{i_{\infty}-1}\)</span> are disjoint.
 The <strong>key idea</strong> is that this implies that at most one of them can have size more than half the total size.</p>
 <p>To take advantage of this, we change the specification of the algorithm:
-the new algorithm takes as input a parity game and two parameters <span class="math notranslate nohighlight">\(s_{\mEve}\)</span> and <span class="math notranslate nohighlight">\(s_{\mAdam}\)</span>.
+the new algorithm takes as input a parity game and two parameters <span class="math notranslate nohighlight">\(s_{ \mathrm{Eve}}\)</span> and <span class="math notranslate nohighlight">\(s_{ \mathrm{Adam}}\)</span>.
 As before, they are two mutually recursive procedures, <span class="math notranslate nohighlight">\(\textsl{SolveE}\)</span> and <span class="math notranslate nohighlight">\(\textsl{SolveA}\)</span>.
-At an intuitive level, the objective of <span class="math notranslate nohighlight">\(\textsl{SolveE}(\Game,s_{\mEve},s_{\mAdam})\)</span>
-is to return a (non-empty whenever possible) dominion for Eve of size at most <span class="math notranslate nohighlight">\(s_{\mEve}\)</span>.</p>
+At an intuitive level, the objective of <span class="math notranslate nohighlight">\(\textsl{SolveE}(\Game,s_{ \mathrm{Eve}},s_{ \mathrm{Adam}})\)</span>
+is to return a (non-empty whenever possible) dominion for Eve of size at most <span class="math notranslate nohighlight">\(s_{ \mathrm{Eve}}\)</span>.</p>
 <p>We spell out the pseudocode of <span class="math notranslate nohighlight">\(\textsl{SolveE}\)</span> in <a class="reference internal" href="#algo-quasipoly-zielonka-even"><span class="std std-numref">Fig. 22</span></a>, leaving out the perfectly symmetric <span class="math notranslate nohighlight">\(\textsl{SolveA}\)</span>.
 The base cases are when there is only one priority, in which case Eve wins everywhere if the priority is even, and Adam wins everywhere if the priority is odd.</p>
 <div class="figure align-center" id="algo-quasipoly-zielonka-even">
@@ -811,9 +745,9 @@ The base cases are when there is only one priority, in which case Eve wins every
 <div class="observation-content section" id="proof-content">
 <ul class="simple">
 <li><p>Let <span class="math notranslate nohighlight">\(S\)</span> be a trap for Eve in the game <span class="math notranslate nohighlight">\(\Game\)</span> and <span class="math notranslate nohighlight">\(X\)</span> a set of vertices,
-then <span class="math notranslate nohighlight">\(S \setminus \AttrE(X)\)</span> is a trapfor Eve in the subgame of <span class="math notranslate nohighlight">\(\Game\)</span> induced by <span class="math notranslate nohighlight">\(V \setminus \AttrE(X)\)</span>.</p></li>
+then <span class="math notranslate nohighlight">\(S \setminus  \textrm{Attr}_\mathrm{Eve}(X)\)</span> is a trapfor Eve in the subgame of <span class="math notranslate nohighlight">\(\Game\)</span> induced by <span class="math notranslate nohighlight">\(V \setminus  \textrm{Attr}_\mathrm{Eve}(X)\)</span>.</p></li>
 <li><p>Let <span class="math notranslate nohighlight">\(S\)</span> be a trap for Eve in the game <span class="math notranslate nohighlight">\(\Game\)</span> and <span class="math notranslate nohighlight">\(X\)</span> a set of vertices such that <span class="math notranslate nohighlight">\(S \cap X = \emptyset\)</span>,
-then <span class="math notranslate nohighlight">\(S \subseteq V \setminus \AttrA(X)\)</span> and <span class="math notranslate nohighlight">\(S\)</span> is a trap for Eve in the subgame of <span class="math notranslate nohighlight">\(\Game\)</span> induced by <span class="math notranslate nohighlight">\(V \setminus \AttrA(X)\)</span>.</p></li>
+then <span class="math notranslate nohighlight">\(S \subseteq V \setminus  \textrm{Attr}_\mathrm{Adam}(X)\)</span> and <span class="math notranslate nohighlight">\(S\)</span> is a trap for Eve in the subgame of <span class="math notranslate nohighlight">\(\Game\)</span> induced by <span class="math notranslate nohighlight">\(V \setminus  \textrm{Attr}_\mathrm{Adam}(X)\)</span>.</p></li>
 <li><p>Let <span class="math notranslate nohighlight">\(S\)</span> be a trap for Eve in the game <span class="math notranslate nohighlight">\(\Game\)</span> and <span class="math notranslate nohighlight">\(Z\)</span> a trap for Eve in the subgame of <span class="math notranslate nohighlight">\(\Game\)</span> induced by <span class="math notranslate nohighlight">\(S\)</span>,
 then <span class="math notranslate nohighlight">\(Z\)</span> is a trap for Eve in <span class="math notranslate nohighlight">\(\Game\)</span>.</p></li>
 </ul>
@@ -823,73 +757,73 @@ then <span class="math notranslate nohighlight">\(Z\)</span> is a trap for Eve i
 <p class="admonition-title"><span class="caption-number">Lemma 70 </span> (Correctness of the quasipolynomial McNaughton Zielonka algorithm)</p>
 <div class="lemma-content section" id="proof-content">
 <ul class="simple">
-<li><p>For all dominions <span class="math notranslate nohighlight">\(S\)</span> for Eve, if <span class="math notranslate nohighlight">\(|S| \le s_{\mEve}\)</span>, then <span class="math notranslate nohighlight">\(S \subseteq \textsl{SolveE}(\Game,s_{\mEve},s_{\mAdam})\)</span>.</p></li>
-<li><p>For all dominions <span class="math notranslate nohighlight">\(S\)</span> for Adam, if <span class="math notranslate nohighlight">\(|S| \le s_{\mAdam}\)</span>, then <span class="math notranslate nohighlight">\(S \cap \textsl{SolveE}(\Game,s_{\mEve},s_{\mAdam}) = \emptyset\)</span>.</p></li>
+<li><p>For all dominions <span class="math notranslate nohighlight">\(S\)</span> for Eve, if <span class="math notranslate nohighlight">\(|S| \le s_{ \mathrm{Eve}}\)</span>, then <span class="math notranslate nohighlight">\(S \subseteq \textsl{SolveE}(\Game,s_{ \mathrm{Eve}},s_{ \mathrm{Adam}})\)</span>.</p></li>
+<li><p>For all dominions <span class="math notranslate nohighlight">\(S\)</span> for Adam, if <span class="math notranslate nohighlight">\(|S| \le s_{ \mathrm{Adam}}\)</span>, then <span class="math notranslate nohighlight">\(S \cap \textsl{SolveE}(\Game,s_{ \mathrm{Eve}},s_{ \mathrm{Adam}}) = \emptyset\)</span>.</p></li>
 </ul>
 </div>
-</div><p>Indeed, <span class="math notranslate nohighlight">\(\WE(\Game)\)</span> and <span class="math notranslate nohighlight">\(\WA(\Game)\)</span> are dominions for Eve and Adam in <span class="math notranslate nohighlight">\(\Game\)</span>,
-so  <a class="reference internal" href="#3-lem:correctness_quasipoly_zielonka">Lemma 70</a> implies that <span class="math notranslate nohighlight">\(\textsl{SolveE}(\Game,n,n) = \WE(\Game)\)</span>.</p>
+</div><p>Indeed, <span class="math notranslate nohighlight">\(W_\mathrm{Eve}(\Game)\)</span> and <span class="math notranslate nohighlight">\(W_\mathrm{Adam}(\Game)\)</span> are dominions for Eve and Adam in <span class="math notranslate nohighlight">\(\Game\)</span>,
+so  <a class="reference internal" href="#3-lem:correctness_quasipoly_zielonka">Lemma 70</a> implies that <span class="math notranslate nohighlight">\(\textsl{SolveE}(\Game,n,n) =  W_\mathrm{Eve}(\Game)\)</span>.</p>
 <div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
 <p>The proof is by induction on the number of priorities: indeed all recursive calls to <span class="math notranslate nohighlight">\(\textsl{SolveA}\)</span> are for games with one less priority.
 It follows that by induction hypothesis the following two properties hold, for all <span class="math notranslate nohighlight">\(i\)</span>.</p>
 <ul class="simple">
-<li><p>For all dominions <span class="math notranslate nohighlight">\(S\)</span> in <span class="math notranslate nohighlight">\(\Game_i\)</span> for Adam, if <span class="math notranslate nohighlight">\(|S| \le s_{\mAdam}\)</span>,
+<li><p>For all dominions <span class="math notranslate nohighlight">\(S\)</span> in <span class="math notranslate nohighlight">\(\Game_i\)</span> for Adam, if <span class="math notranslate nohighlight">\(|S| \le s_{ \mathrm{Adam}}\)</span>,
 then</p></li>
 </ul>
 <div class="math notranslate nohighlight">
-\[ S \subseteq \textsl{SolveA}(\Game_i,s_{\mEve},s_{\mAdam}). \]</div>
+\[ S \subseteq \textsl{SolveA}(\Game_i,s_{ \mathrm{Eve}},s_{ \mathrm{Adam}}). \]</div>
 <ul class="simple">
-<li><p>For all dominions <span class="math notranslate nohighlight">\(S\)</span> in <span class="math notranslate nohighlight">\(\Game_i\)</span> for Eve, if <span class="math notranslate nohighlight">\(|S| \le s_{\mEve}\)</span>,
+<li><p>For all dominions <span class="math notranslate nohighlight">\(S\)</span> in <span class="math notranslate nohighlight">\(\Game_i\)</span> for Eve, if <span class="math notranslate nohighlight">\(|S| \le s_{ \mathrm{Eve}}\)</span>,
 then</p></li>
 </ul>
 <div class="math notranslate nohighlight">
-\[ S \cap \textsl{SolveA}(\Game_i,s_{\mEve},s_{\mAdam}) = \emptyset. \]</div>
+\[ S \cap \textsl{SolveA}(\Game_i,s_{ \mathrm{Eve}},s_{ \mathrm{Adam}}) = \emptyset. \]</div>
 <p>Since there will be an induction inside this induction, we refer to the induction above as the external induction,
 and the second one as the internal induction.</p>
 <p>We write <span class="math notranslate nohighlight">\(i_{\infty}\)</span> for the final value of <span class="math notranslate nohighlight">\(i\)</span>, <strong>i.e.</strong> such that
-<span class="math notranslate nohighlight">\(\textsl{SolveE}(\Game,s_{\mEve},s_{\mAdam}) = V_{i_{\infty}}\)</span>.
+<span class="math notranslate nohighlight">\(\textsl{SolveE}(\Game,s_{ \mathrm{Eve}},s_{ \mathrm{Adam}}) = V_{i_{\infty}}\)</span>.
 Note that the first item reads <span class="math notranslate nohighlight">\(S \subseteq V_{i_{\infty}}\)</span>.</p>
-<p>Let <span class="math notranslate nohighlight">\(S\)</span> be a dominion for Eve in <span class="math notranslate nohighlight">\(\Game\)</span> such that <span class="math notranslate nohighlight">\(|S| \le s_{\mEve}\)</span>.
+<p>Let <span class="math notranslate nohighlight">\(S\)</span> be a dominion for Eve in <span class="math notranslate nohighlight">\(\Game\)</span> such that <span class="math notranslate nohighlight">\(|S| \le s_{ \mathrm{Eve}}\)</span>.
 We show by internal induction on <span class="math notranslate nohighlight">\(i\)</span> that
 <span class="math notranslate nohighlight">\(S \subseteq V_i\)</span>.</p>
 <p>For <span class="math notranslate nohighlight">\(i = 0\)</span> this is by definition.
 We now assume that <span class="math notranslate nohighlight">\(S \subseteq V_i\)</span>.
-Recall that <span class="math notranslate nohighlight">\(\Game_i\)</span> is the subgame of <span class="math notranslate nohighlight">\(\H_i\)</span> induced by <span class="math notranslate nohighlight">\(V_i \setminus \AttrE^{\H_i}(d)\)</span>.
-It follows from the first item of \cref{3-fact:traps} that <span class="math notranslate nohighlight">\(S \setminus \AttrE^{\H_i}(d)\)</span>
+Recall that <span class="math notranslate nohighlight">\(\Game_i\)</span> is the subgame of <span class="math notranslate nohighlight">\(\H_i\)</span> induced by <span class="math notranslate nohighlight">\(V_i \setminus  \textrm{Attr}_\mathrm{Eve}^{\H_i}(d)\)</span>.
+It follows from the first item of \cref{3-fact:traps} that <span class="math notranslate nohighlight">\(S \setminus  \textrm{Attr}_\mathrm{Eve}^{\H_i}(d)\)</span>
 is a dominion for Eve in <span class="math notranslate nohighlight">\(\Game_i\)</span>.
-Since <span class="math notranslate nohighlight">\(S \setminus \AttrE^{\H_i}(d)\)</span> has size at most <span class="math notranslate nohighlight">\(s_{\mEve}\)</span>,
+Since <span class="math notranslate nohighlight">\(S \setminus  \textrm{Attr}_\mathrm{Eve}^{\H_i}(d)\)</span> has size at most <span class="math notranslate nohighlight">\(s_{ \mathrm{Eve}}\)</span>,
 the second item of the external induction hypothesis implies that
-<span class="math notranslate nohighlight">\(S \setminus \AttrE^{\Game_i}(d)\)</span> has an empty intersection with <span class="math notranslate nohighlight">\(X_i = \textsl{SolveA}(\Game_i,s_{\mEve},s_{\mAdam})\)</span>,
+<span class="math notranslate nohighlight">\(S \setminus  \textrm{Attr}_\mathrm{Eve}^{\Game_i}(d)\)</span> has an empty intersection with <span class="math notranslate nohighlight">\(X_i = \textsl{SolveA}(\Game_i,s_{ \mathrm{Eve}},s_{ \mathrm{Adam}})\)</span>,
 implying that <span class="math notranslate nohighlight">\(S \cap X_i = \emptyset\)</span>.
-It follows from the second item of \cref{3-fact:traps} that <span class="math notranslate nohighlight">\(S \subseteq V_i \setminus \AttrA^{\H_i}(X_i) = V_{i+1}\)</span>.
+It follows from the second item of \cref{3-fact:traps} that <span class="math notranslate nohighlight">\(S \subseteq V_i \setminus  \textrm{Attr}_\mathrm{Adam}^{\H_i}(X_i) = V_{i+1}\)</span>.
 This finishes the internal induction, and implies the first item.</p>
 <p>We now prove the second item.</p>
-<p>Let <span class="math notranslate nohighlight">\(S\)</span> be a (non-empty) dominion for Adam in <span class="math notranslate nohighlight">\(\Game\)</span> such that <span class="math notranslate nohighlight">\(|S| \le s_{\mAdam}\)</span>.
+<p>Let <span class="math notranslate nohighlight">\(S\)</span> be a (non-empty) dominion for Adam in <span class="math notranslate nohighlight">\(\Game\)</span> such that <span class="math notranslate nohighlight">\(|S| \le s_{ \mathrm{Adam}}\)</span>.
 We write <span class="math notranslate nohighlight">\(S_i = S \cap V_i\)</span>.
 Note that the second item reads <span class="math notranslate nohighlight">\(S_{i_{\infty}} = \emptyset\)</span>.</p>
 <p>We first show by internal induction on <span class="math notranslate nohighlight">\(i\)</span> that
 <span class="math notranslate nohighlight">\(S_i\)</span> is a dominion for Adam in <span class="math notranslate nohighlight">\(\H_i\)</span>.
 For <span class="math notranslate nohighlight">\(i = 0\)</span> this is by definition.
 We now assume that <span class="math notranslate nohighlight">\(S_i\)</span> is a dominion for Adam in <span class="math notranslate nohighlight">\(\H_i\)</span>.
-Recall that <span class="math notranslate nohighlight">\(\H_{i+1}\)</span> is the subgame of <span class="math notranslate nohighlight">\(\H_i\)</span> induced by <span class="math notranslate nohighlight">\(V_{i+1} = V_i \setminus \AttrA^{\H_i}(X_i)\)</span>.
+Recall that <span class="math notranslate nohighlight">\(\H_{i+1}\)</span> is the subgame of <span class="math notranslate nohighlight">\(\H_i\)</span> induced by <span class="math notranslate nohighlight">\(V_{i+1} = V_i \setminus  \textrm{Attr}_\mathrm{Adam}^{\H_i}(X_i)\)</span>.
 It follows from the first item of \cref{3-fact:traps} applied to <span class="math notranslate nohighlight">\(S_i\)</span> (swapping the roles of Eve and Adam)
-that <span class="math notranslate nohighlight">\(S_i \setminus \AttrA^{\H_i}(X_i) = S_{i+1}\)</span> is a dominion for Adam in <span class="math notranslate nohighlight">\(\H_{i+1}\)</span>.
+that <span class="math notranslate nohighlight">\(S_i \setminus  \textrm{Attr}_\mathrm{Adam}^{\H_i}(X_i) = S_{i+1}\)</span> is a dominion for Adam in <span class="math notranslate nohighlight">\(\H_{i+1}\)</span>.
 This finishes the internal induction.</p>
 <p>We showed that <span class="math notranslate nohighlight">\(S_i\)</span> is a dominion for Adam in <span class="math notranslate nohighlight">\(\H_i\)</span> for each <span class="math notranslate nohighlight">\(i\)</span>.
 To apply the external inductive hypothesis, we need to exhibit dominions for Adam in <span class="math notranslate nohighlight">\(\Game_i\)</span> for each <span class="math notranslate nohighlight">\(i\)</span>.
 We consider <span class="math notranslate nohighlight">\(\H'_i\)</span> the subgame of <span class="math notranslate nohighlight">\(\H_i\)</span> induced by <span class="math notranslate nohighlight">\(S_i\)</span>.
-Let <span class="math notranslate nohighlight">\(Z_i = \WA^{\H'_i}(\Parity \cup \Reach(d))\)</span>:
+Let <span class="math notranslate nohighlight">\(Z_i =  W_\mathrm{Adam}^{\H'_i}( \mathtt{Parity} \cup  \mathtt{Reach}(d))\)</span>:
 in words, <span class="math notranslate nohighlight">\(Z_i\)</span> is the subset of vertices of <span class="math notranslate nohighlight">\(S_i\)</span> from where Adam can ensure that the parity objective is not satisfied
 and never to see priority <span class="math notranslate nohighlight">\(d\)</span>.
 We prove two properties:</p>
 <ul class="simple">
 <li><p>If <span class="math notranslate nohighlight">\(Z_i = \emptyset\)</span>, then <span class="math notranslate nohighlight">\(S_i = \emptyset\)</span>.</p></li>
 </ul>
-<p>The fact that <span class="math notranslate nohighlight">\(Z_i\)</span> is empty implies that Eve has a strategy <span class="math notranslate nohighlight">\(\sigma\)</span> in <span class="math notranslate nohighlight">\(\Game_i\)</span> which from <span class="math notranslate nohighlight">\(S_i\)</span> ensures <span class="math notranslate nohighlight">\(\Parity\)</span> or to see priority <span class="math notranslate nohighlight">\(d\)</span>.
-Since <span class="math notranslate nohighlight">\(S_i\)</span> is a dominion for Adam in <span class="math notranslate nohighlight">\(\H_i\)</span>, there exists a strategy <span class="math notranslate nohighlight">\(\tau\)</span> for Adam which from <span class="math notranslate nohighlight">\(S_i\)</span> ensures the complement of <span class="math notranslate nohighlight">\(\Parity\)</span>
+<p>The fact that <span class="math notranslate nohighlight">\(Z_i\)</span> is empty implies that Eve has a strategy <span class="math notranslate nohighlight">\(\sigma\)</span> in <span class="math notranslate nohighlight">\(\Game_i\)</span> which from <span class="math notranslate nohighlight">\(S_i\)</span> ensures <span class="math notranslate nohighlight">\(\mathtt{Parity}\)</span> or to see priority <span class="math notranslate nohighlight">\(d\)</span>.
+Since <span class="math notranslate nohighlight">\(S_i\)</span> is a dominion for Adam in <span class="math notranslate nohighlight">\(\H_i\)</span>, there exists a strategy <span class="math notranslate nohighlight">\(\tau\)</span> for Adam which from <span class="math notranslate nohighlight">\(S_i\)</span> ensures the complement of <span class="math notranslate nohighlight">\(\mathtt{Parity}\)</span>
 and to stay in <span class="math notranslate nohighlight">\(S_i\)</span>.
-Playing <span class="math notranslate nohighlight">\(\sigma\)</span> against <span class="math notranslate nohighlight">\(\tau\)</span> yields a contradiction, since <span class="math notranslate nohighlight">\(\sigma\)</span> ensures <span class="math notranslate nohighlight">\(\Parity\)</span> if the play remains in <span class="math notranslate nohighlight">\(S_i\)</span>.</p>
+Playing <span class="math notranslate nohighlight">\(\sigma\)</span> against <span class="math notranslate nohighlight">\(\tau\)</span> yields a contradiction, since <span class="math notranslate nohighlight">\(\sigma\)</span> ensures <span class="math notranslate nohighlight">\(\mathtt{Parity}\)</span> if the play remains in <span class="math notranslate nohighlight">\(S_i\)</span>.</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(Z_i\)</span> is a dominion for Adam in <span class="math notranslate nohighlight">\(\Game_i\)</span>.</p></li>
 </ul>
@@ -898,7 +832,7 @@ To see that <span class="math notranslate nohighlight">\(Z_i\)</span> is a trap 
 and <span class="math notranslate nohighlight">\(Z_i\)</span> is a trap for Eve in <span class="math notranslate nohighlight">\(\H'_i\)</span>, the subgame of <span class="math notranslate nohighlight">\(\H_i\)</span> induced by <span class="math notranslate nohighlight">\(S_i\)</span>,
 then <span class="math notranslate nohighlight">\(Z_i\)</span> is a trap in <span class="math notranslate nohighlight">\(\H_i\)</span> by the third item of \cref{3-fact:traps}.
 Now, since <span class="math notranslate nohighlight">\(Z_i\)</span> has an empty intersection with <span class="math notranslate nohighlight">\(d\)</span>, by the second item of \cref{3-fact:traps}
-this implies that <span class="math notranslate nohighlight">\(Z_i\)</span> is a trap for Eve in the subgame of <span class="math notranslate nohighlight">\(\H_i\)</span> induced by <span class="math notranslate nohighlight">\(V_i \setminus \AttrE^{\H_i}(d)\)</span>,
+this implies that <span class="math notranslate nohighlight">\(Z_i\)</span> is a trap for Eve in the subgame of <span class="math notranslate nohighlight">\(\H_i\)</span> induced by <span class="math notranslate nohighlight">\(V_i \setminus  \textrm{Attr}_\mathrm{Eve}^{\H_i}(d)\)</span>,
 which is exactly <span class="math notranslate nohighlight">\(\Game_i\)</span>.</p>
 <p>We are now fully equipped to prove that <span class="math notranslate nohighlight">\(S_{i_{\infty}} = \emptyset\)</span>.
 Let <span class="math notranslate nohighlight">\(i_{\ell}\)</span> be the value of <span class="math notranslate nohighlight">\(i\)</span> for which the algorithm performs a recursive call for a large dominion.
@@ -906,37 +840,37 @@ Since the sequence <span class="math notranslate nohighlight">\((S_i)_i\)</span>
 <p>The first while loop was exited for <span class="math notranslate nohighlight">\(i = i_{\ell}\)</span>, implying that</p>
 <div class="math notranslate nohighlight">
 \[
-\textsl{SolveA}(\Game_{i_{\ell}},s_{\mEve},\lfloor s_{\mAdam} / 2 \rfloor) = \emptyset.
+\textsl{SolveA}(\Game_{i_{\ell}},s_{ \mathrm{Eve}},\lfloor s_{ \mathrm{Adam}} / 2 \rfloor) = \emptyset.
 \]</div>
 <p>We apply the external inductive hypothesis to the dominion <span class="math notranslate nohighlight">\(Z_{i_{\ell}}\)</span> for Adam in <span class="math notranslate nohighlight">\(\Game_{i_{\ell}}\)</span>
-for the parameter <span class="math notranslate nohighlight">\(\lfloor s_{\mAdam} / 2 \rfloor\)</span>: if <span class="math notranslate nohighlight">\(|Z_{i_{\ell}}| \le \lfloor s_{\mAdam} / 2 \rfloor\)</span>, then
-<span class="math notranslate nohighlight">\(Z_{i_{\ell}} \subseteq \textsl{SolveA}(\Game_{i_{\ell}},s_{\mEve},\lfloor s_{\mAdam} / 2 \rfloor)\)</span>,
+for the parameter <span class="math notranslate nohighlight">\(\lfloor s_{ \mathrm{Adam}} / 2 \rfloor\)</span>: if <span class="math notranslate nohighlight">\(|Z_{i_{\ell}}| \le \lfloor s_{ \mathrm{Adam}} / 2 \rfloor\)</span>, then
+<span class="math notranslate nohighlight">\(Z_{i_{\ell}} \subseteq \textsl{SolveA}(\Game_{i_{\ell}},s_{ \mathrm{Eve}},\lfloor s_{ \mathrm{Adam}} / 2 \rfloor)\)</span>,
 implying that <span class="math notranslate nohighlight">\(Z_{i_{\ell}}\)</span> is empty, which by the first property above implies that <span class="math notranslate nohighlight">\(S_{i_{\ell}}\)</span> is empty,
 thus <span class="math notranslate nohighlight">\(S_{i_{\infty}}\)</span> as well, proving the second item of  <a class="reference internal" href="#3-lem:correctness_quasipoly_zielonka">Lemma 70</a>.
 Excluding this case, we then analyse the situation where
-<span class="math notranslate nohighlight">\(|Z_{i_{\ell}}| &gt; \lfloor s_{\mAdam} / 2 \rfloor\)</span>.</p>
+<span class="math notranslate nohighlight">\(|Z_{i_{\ell}}| &gt; \lfloor s_{ \mathrm{Adam}} / 2 \rfloor\)</span>.</p>
 <p>We apply again the external inductive hypothesis to <span class="math notranslate nohighlight">\(Z_{i_\ell}\)</span>, but this time
-for the parameter <span class="math notranslate nohighlight">\(s_{\mAdam}\)</span>:
-if <span class="math notranslate nohighlight">\(|Z_{i_\ell}| \le s_{\mAdam}\)</span>, then <span class="math notranslate nohighlight">\(Z_{i_\ell} \subseteq X_{i_\ell}\)</span>.
-Since <span class="math notranslate nohighlight">\(Z_{i_\ell} \subseteq S_{i_\ell} \subseteq S\)</span> and <span class="math notranslate nohighlight">\(|S| \le s_{\mAdam}\)</span>, the premise is satisfied,
+for the parameter <span class="math notranslate nohighlight">\(s_{ \mathrm{Adam}}\)</span>:
+if <span class="math notranslate nohighlight">\(|Z_{i_\ell}| \le s_{ \mathrm{Adam}}\)</span>, then <span class="math notranslate nohighlight">\(Z_{i_\ell} \subseteq X_{i_\ell}\)</span>.
+Since <span class="math notranslate nohighlight">\(Z_{i_\ell} \subseteq S_{i_\ell} \subseteq S\)</span> and <span class="math notranslate nohighlight">\(|S| \le s_{ \mathrm{Adam}}\)</span>, the premise is satisfied,
 so <span class="math notranslate nohighlight">\(Z_{i_\ell} \subseteq X_{i_\ell}\)</span>.
 Since <span class="math notranslate nohighlight">\(Z_{i_\ell}\)</span> is non-empty, so is <span class="math notranslate nohighlight">\(X_{i_\ell}\)</span>: the search for a large dominion was successful, and in particular
 <span class="math notranslate nohighlight">\(i\)</span> is incremented at this stage, implying that <span class="math notranslate nohighlight">\(i_\ell &lt; i_\infty\)</span>.</p>
-<p>Consider <span class="math notranslate nohighlight">\(S_{i_\ell + 1} = S_{i_\ell} \setminus \AttrA^{\H_{i_\ell}}(X_{i_\ell})\)</span>.
+<p>Consider <span class="math notranslate nohighlight">\(S_{i_\ell + 1} = S_{i_\ell} \setminus  \textrm{Attr}_\mathrm{Adam}^{\H_{i_\ell}}(X_{i_\ell})\)</span>.
 In particular <span class="math notranslate nohighlight">\(S_{i_\ell + 1} \subseteq S_{i_\ell} \setminus X_{i_\ell} \subseteq S_{i_\ell} \setminus Z_{i_\ell}\)</span>, so</p>
 <div class="math notranslate nohighlight">
 \[
-|S_{i_\ell + 1}| \le |S_{i_\ell}| - |Z_{i_\ell}| \le \lfloor s_{\mAdam} / 2 \rfloor.
+|S_{i_\ell + 1}| \le |S_{i_\ell}| - |Z_{i_\ell}| \le \lfloor s_{ \mathrm{Adam}} / 2 \rfloor.
 \]</div>
 <p>The second while loop was exited for <span class="math notranslate nohighlight">\(i = i_{\infty}\)</span>, implying that</p>
 <div class="math notranslate nohighlight">
 \[
-\textsl{SolveA}(\Game_{i_{\infty}},s_{\mEve},\lfloor s_{\mAdam} / 2 \rfloor) = \emptyset.
+\textsl{SolveA}(\Game_{i_{\infty}},s_{ \mathrm{Eve}},\lfloor s_{ \mathrm{Adam}} / 2 \rfloor) = \emptyset.
 \]</div>
 <p>We apply the external inductive hypothesis to the dominion <span class="math notranslate nohighlight">\(Z_{i_{\infty}}\)</span> for Adam in <span class="math notranslate nohighlight">\(\Game_{i_{\infty}}\)</span>
-for the parameter <span class="math notranslate nohighlight">\(\lfloor s_{\mAdam} / 2 \rfloor\)</span>: if <span class="math notranslate nohighlight">\(|Z_{i_{\infty}}| \le \lfloor s_{\mAdam} / 2 \rfloor\)</span>, then
-<span class="math notranslate nohighlight">\(Z_{i_{\infty}} \subseteq \textsl{SolveA}(\Game_{i_{\infty}},s_{\mEve},\lfloor s_{\mAdam} / 2 \rfloor)\)</span>.
-The premise holds because <span class="math notranslate nohighlight">\(|S_{i_\ell + 1}| \le \lfloor s_{\mAdam} / 2 \rfloor\)</span>, the sequence <span class="math notranslate nohighlight">\((S_i)_i\)</span> is non-increasing,
+for the parameter <span class="math notranslate nohighlight">\(\lfloor s_{ \mathrm{Adam}} / 2 \rfloor\)</span>: if <span class="math notranslate nohighlight">\(|Z_{i_{\infty}}| \le \lfloor s_{ \mathrm{Adam}} / 2 \rfloor\)</span>, then
+<span class="math notranslate nohighlight">\(Z_{i_{\infty}} \subseteq \textsl{SolveA}(\Game_{i_{\infty}},s_{ \mathrm{Eve}},\lfloor s_{ \mathrm{Adam}} / 2 \rfloor)\)</span>.
+The premise holds because <span class="math notranslate nohighlight">\(|S_{i_\ell + 1}| \le \lfloor s_{ \mathrm{Adam}} / 2 \rfloor\)</span>, the sequence <span class="math notranslate nohighlight">\((S_i)_i\)</span> is non-increasing,
 <span class="math notranslate nohighlight">\(i_\ell &lt; i_\infty\)</span>, and <span class="math notranslate nohighlight">\(Z_{i_{\infty}} \subseteq S_{i_\infty}\)</span>.
 Hence <span class="math notranslate nohighlight">\(Z_{i_\infty}\)</span> is empty. Thanks to the first property above for <span class="math notranslate nohighlight">\(Z_i\)</span>, this implies that <span class="math notranslate nohighlight">\(S_{i_\infty}\)</span> is empty.
 This finishes the proof of the second item of  <a class="reference internal" href="#3-lem:correctness_quasipoly_zielonka">Lemma 70</a>.</p>
@@ -944,20 +878,20 @@ This finishes the proof of the second item of  <a class="reference internal" hre
 <p>We obtain an algorithm for computing the winning regions of parity games using <span class="math notranslate nohighlight">\(\textsl{SolveE}(\Game,n,n)\)</span>,
 where <span class="math notranslate nohighlight">\(\Game\)</span> is a parity game with <span class="math notranslate nohighlight">\(n\)</span> vertices.</p>
 <p>We now perform a complexity analysis.
-Let us write <span class="math notranslate nohighlight">\(f(m,n,d,s_{\mEve},s_{\mAdam})\)</span> for the complexity of the algorithm over parity games with <span class="math notranslate nohighlight">\(m\)</span> edges, <span class="math notranslate nohighlight">\(n\)</span> vertices, <span class="math notranslate nohighlight">\(d\)</span> priorities,
-and parameters <span class="math notranslate nohighlight">\(s_{\mEve}\)</span> and <span class="math notranslate nohighlight">\(s_{\mAdam}\)</span>.
-We have <span class="math notranslate nohighlight">\(f(m,n,1,s_{\mEve},s_{\mAdam}) = O(n)\)</span> and <span class="math notranslate nohighlight">\(f(m,0,d,s_{\mEve},s_{\mAdam}) = f(m,n,d,0,s_{\mAdam}) = f(m,n,d,s_{\mEve},0) = O(1)\)</span>,
+Let us write <span class="math notranslate nohighlight">\(f(m,n,d,s_{ \mathrm{Eve}},s_{ \mathrm{Adam}})\)</span> for the complexity of the algorithm over parity games with <span class="math notranslate nohighlight">\(m\)</span> edges, <span class="math notranslate nohighlight">\(n\)</span> vertices, <span class="math notranslate nohighlight">\(d\)</span> priorities,
+and parameters <span class="math notranslate nohighlight">\(s_{ \mathrm{Eve}}\)</span> and <span class="math notranslate nohighlight">\(s_{ \mathrm{Adam}}\)</span>.
+We have <span class="math notranslate nohighlight">\(f(m,n,1,s_{ \mathrm{Eve}},s_{ \mathrm{Adam}}) = O(n)\)</span> and <span class="math notranslate nohighlight">\(f(m,0,d,s_{ \mathrm{Eve}},s_{ \mathrm{Adam}}) = f(m,n,d,0,s_{ \mathrm{Adam}}) = f(m,n,d,s_{ \mathrm{Eve}},0) = O(1)\)</span>,
 with the general induction</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{array}{lll}
-f(m,n,d,s_{\mEve},s_{\mAdam}) &amp; \le &amp; n \cdot f(m,n,d-1,s_{\mEve},\lfloor s_{\mAdam} / 2 \rfloor) \\
-  &amp; &amp; +\ f(m,n,d-1,s_{\mEve},s_{\mAdam}) \\
+f(m,n,d,s_{ \mathrm{Eve}},s_{ \mathrm{Adam}}) &amp; \le &amp; n \cdot f(m,n,d-1,s_{ \mathrm{Eve}},\lfloor s_{ \mathrm{Adam}} / 2 \rfloor) \\
+  &amp; &amp; +\ f(m,n,d-1,s_{ \mathrm{Eve}},s_{ \mathrm{Adam}}) \\
   &amp; &amp; +\ O(nm).
 \end{array}
 \end{split}\]</div>
-<p>The term <span class="math notranslate nohighlight">\(n \cdot f(m,n,d-1,s_{\mEve},\lfloor s_{\mAdam} / 2 \rfloor)\)</span> corresponds to the recursive calls for small dominions,
-the term <span class="math notranslate nohighlight">\(f(m,n,d-1,s_{\mEve},s_{\mAdam})\)</span> to the recursive call for a large dominion,
+<p>The term <span class="math notranslate nohighlight">\(n \cdot f(m,n,d-1,s_{ \mathrm{Eve}},\lfloor s_{ \mathrm{Adam}} / 2 \rfloor)\)</span> corresponds to the recursive calls for small dominions,
+the term <span class="math notranslate nohighlight">\(f(m,n,d-1,s_{ \mathrm{Eve}},s_{ \mathrm{Adam}})\)</span> to the recursive call for a large dominion,
 and <span class="math notranslate nohighlight">\(O(nm)\)</span> for the computation of the attractors.
 We obtain</p>
 <div class="math notranslate nohighlight">

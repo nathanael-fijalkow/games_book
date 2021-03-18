@@ -1,5 +1,3 @@
-\newcommand{\MeanPayoffOld}{\MeanPayoff}
-
 We will use the $\liminf$ variant of mean-payoff:
 
 \[
@@ -40,6 +38,7 @@ In mean-payoff  MDPs, a crucial role is played by the linear program $\lpmp$ pic
 
 %\vspace{-1em}
 
+$$
 \begin{figure}[h]
 	\begin{alignat}{2}
 	\text{{maximize}} \quad &\sum_{v\in \vertices, a \in \actions} x_{(v,a)} \cdot \colouring(v,a),\quad \textrm{ 
@@ -53,8 +52,9 @@ In mean-payoff  MDPs, a crucial role is played by the linear program $\lpmp$ pic
 	\caption{The linear program $\lpmp$ with variables $x_{(v,a)}$ for  $v\in \vertices,a\in \actions$.}
 	\label{5-fig:mp-lin}
 \end{figure}
+$$
 
-There is a correspondence between feasible solutions of $\lpmp$ and the strategies in the corresponding MDP. Intuitively, in a solution corresponding to a strategy $\sigma$, the value of a variable $x_{v,a}$ describes the expected frequency with which $\sigma$ visits $v$ and plays $a$ upon such a visit. These frequencies must obey the \emph{flow constraints}~\eqref{5-eq:mdp-flow} and must represent a probability distribution, which is ensured by~\eqref{5-eq:mdp-freq-1} and~\eqref{5-eq:mdp-freq-nonnegp}. The objective function then represents the expected mean payoff. Of high importance is also the linear program which is \emph{dual} to $\lpmp$. This dual program, denoted $\lpmpdual$, is pictured in Figure~\ref{5-fig:mp-dual}. (For a refresher on linear programming and duality, see, e.g.~\cite{Matousek:2007}).
+There is a correspondence between feasible solutions of $\lpmp$ and the strategies in the corresponding MDP. Intuitively, in a solution corresponding to a strategy $\sigma$, the value of a variable $x_{v,a}$ describes the expected frequency with which $\sigma$ visits $v$ and plays $a$ upon such a visit. These frequencies must obey the \emph{flow constraints}~\cref{5-eq:mdp-flow} and must represent a probability distribution, which is ensured by~\cref{5-eq:mdp-freq-1} and~\cref{5-eq:mdp-freq-nonnegp}. The objective function then represents the expected mean payoff. Of high importance is also the linear program which is \emph{dual} to $\lpmp$. This dual program, denoted $\lpmpdual$, is pictured in Figure~\cref\{5-fig:mp-dual}. (For a refresher on linear programming and duality, see, e.g.~\cite{Matousek:2007}).
 
 \begin{figure}[h]
 	\begin{alignat}{2}
@@ -89,20 +89,20 @@ By induction on $n$. For $n=0$, both sides are equal to 0. Now assume that the i
 \begingroup
 \allowdisplaybreaks
 \noindent
-We now obtain a bound for the third term on the RHS of~\eqref{5-eq:mpdual-1}. In the following, we denote by $\Pi_n$ the set of all plays of length $n$. Then we have
+We now obtain a bound for the third term on the RHS of~\cref{5-eq:mpdual-1}. In the following, we denote by $\Pi_n$ the set of all plays of length $n$. Then we have
 \begin{align*}
 \expv^\sigma_v [Y^{(n)}]&= \sum_{v\in\vertices}  \vec{y}_v\cdot\probm^\sigma_{\vinit}(\ing(\pi_n)=v)
 =\sum_{v\in\vertices}  \vec{y}_v\cdot \bigg(\sum_{\substack{\play'\in \Pi_n\\ \last(\play')=v}}\probm^\sigma_{\vinit}(\play') \bigg) \\
 &=\sum_{v\in\vertices}  \vec{y}_v\cdot \bigg(\sum_{\substack{\play'\in \Pi_n\\ \last(\play')=v}}\probm^\sigma_{\vinit}(\play')\cdot\big(\underbrace{\sum_{a\in\actions}\sigma(a\mid \play')}_{=1} \big)\bigg) \\
 &= \sum_{\substack{v\in\vertices\\ a \in \actions}}  \vec{y}_v\cdot \bigg(\sum_{\substack{\play'\in \Pi_n\\ \last(\play')=v}}\probm^\sigma_{\vinit}(\play')\cdot\sigma(a\mid \play')\bigg)\\
-\text{(by~\eqref{5-eq:mp-lpdual})}\hspace{3mm}
+\text{(by~\cref{5-eq:mp-lpdual})}\hspace{3mm}
 &{\leq}\sum_{\substack{v\in\vertices\\ a\in \actions}} \bigg( {g} -\colouring(v,a) + \sum_{u\in\vertices}\probTranFunc(u\mid v,a)\cdot  \vec{y}_u\bigg)\cdot\bigg(\sum_{\substack{\play'\in \Pi_n\\ \last(\play')=v}}\probm^\sigma_{\vinit}(\play')\cdot\sigma(a\mid \play')\bigg)\\
 &= {g}\cdot\underbrace{\sum_{\substack{v\in\vertices\\ a\in \actions}}\sum_{\substack{\play'\in \Pi_n\\ \last(\play')=v}}\probm^\sigma_{\vinit}(\play')\cdot\sigma(a\mid \play')}_{=1}\\&\quad-\underbrace{\sum_{\substack{v\in\vertices\\ a\in \actions}}\sum_{\substack{\play'\in \Pi_n\\ \last(\play')=v}}\probm^\sigma_{\vinit}(\play')\cdot\sigma(a\mid \play')\cdot\colouring(v,a)}_{=\expv^\sigma_{\vinit}[\colouring(\play_n)]}\\
 &\quad +\underbrace{\sum_{\substack{v,u\in \vertices\\ a \in \actions}}\sum_{\substack{\play'\in \Pi_n\\ \last(\play')=v}} \probm^\sigma_{\vinit}(\play')\cdot\sigma(a\mid \play')\cdot \probTranFunc(u\mid v,a)\cdot  \vec{y}_u}_{=\expv^\sigma_{\vinit}[Y^{(n+1)}]}.
 \end{align*}
 \endgroup
 
-Plugging this into~\eqref{5-eq:mpdual-1} yields the desired $\expv^\sigma_{\vinit}[\sum_{i=0}^{n}\colouring(\play_i)] \leq (n+1) {g}- \vec{y}_{\vinit} + \expv^\sigma_{\vinit}[Y^{(n+1)}]$. 
+Plugging this into~\cref{5-eq:mpdual-1} yields the desired $\expv^\sigma_{\vinit}[\sum_{i=0}^{n}\colouring(\play_i)] \leq (n+1) {g}- \vec{y}_{\vinit} + \expv^\sigma_{\vinit}[Y^{(n+1)}]$. 
 %We remark that the equalities on the last three lines of the above computations follow directly from the definition of $\probm^\sigma_{\vinit}$ and we leave the formal proof to the reader as an exercise.
 \end{proof}
 

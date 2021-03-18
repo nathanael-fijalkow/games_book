@@ -2,8 +2,8 @@ In this section, we consider MDPs with edges coloured by rational numbers
 and with the objective $\DiscountedPayoff$, defined in the same way as in 
 \Cref{chap:payoffs}. We start the chapter by proving that using the play-based semantics for the discounted-payoff objective yields no loss of generality. 
 
-\begin{lemma}
-	\label{5-lem:disc-step-one}
+\begin{lemma}[Equivalence of the definitions for discounted payoffs]
+\label{5-lem:disc-step-one}
 In a discounted-payoff MDP, for each strategy $ \sigma $ and each vertex $ v $ it holds $ \playPay(v, \sigma) = \stepPay(v, \sigma) $.
 \end{lemma}
 \begin{proof}
@@ -22,7 +22,7 @@ $)
 
 \subsection*{Optimal values and memoryless optimality}
 
- In this sub-section we give a 
+ In this subsection we give a 
 characterization of the value vector $\Value(\mdp)$ and prove that there always exists a 
 memoryless deterministic strategy that is optimal in every vertex. Our 
 exposition follows (in a condensed form) the one in~\cite{Puterman:2005}, the techniques 
@@ -40,20 +40,12 @@ being somewhat similar to the ones in the previous chapter.
 %$\Reach(\genColour)$, 
 
 We define an operator $\discOP\colon 
-\R^{\vertices}\rightarrow \R^{\vertices}$ as follows: each vector 
-$\vec{x}$%=(x_v)_{v\in \vertices}$ 
-is mapped to a vector 
-$\vec{y}
-%=(y_v)_{v\in\vertices} 
-= \discOP(\vec{x})$ such that:
+\R^{\vertices}\rightarrow \R^{\vertices}$ as follows: each vector $\vec{x}$ is mapped to a vector 
+$\vec{y} = \discOP(\vec{x})$ such that:
 $$
 \vec{y}_v = \max_{a \in \actions} \sum_{u\in \vertices} \probTranFunc(u\mid 
 v,a) 
 \cdot\left((1-\lambda)\cdot\colouring(v,u) + \lambda\cdot \vec{x}_u \right).
-%1 & \text{if $\colouring(v)=\genColour$} \\
-%\max_{a \in \actions} \sum_{u\in\in \vertices} \probTranFunc(u\mid v,a) \cdot 
-%x_u & \text{otherwise.}
-%\end{cases}
 $$
 
 \begin{lemma}
@@ -67,7 +59,7 @@ $\vec{x}\in\R^{\vertices}$.
 The proof proceeds by a computation analogous to the one in the first half of 
 the proof of~\Cref{4-thm:discounted}; we just need to reason about actions 
 rather than edges (and of course, use the formula defining $\discOP$ instead of 
-the one for games). The second part follows from the Banach fixed-point theorem.
+the one for games). The second part follows from the Banach fixed point theorem.
 \end{proof}
 
 We aim to prove that $\Value(\mdp)$ is the unique fixed point $\vec{x}^*$ of 
@@ -179,17 +171,12 @@ Hence,
 %
 \begin{align}
 \Value(v) &= \sup_{\sigma}\expv^\sigma_v[\DiscountedPayoff] \nonumber\\
-%\sup_{\sigma}\expv^\sigma_v[\lim_{k\rightarrow 
-%\infty}\DiscountedPayoff^k]\nonumber \\
 &= \sup_{\sigma}\lim_{k\rightarrow \infty}\expv^\sigma_v[\dPayoffStep{k}] 
-\label{5-eq:disc-limit-transition}.
-%&=\sup_{k\geq 1} \sup_{\sigma}\probm^\sigma_v(\Reach^k(\genColour)) 
-%=\big(\sup_{k\geq 1} \reachOP^k(\vec{0})\big)_v = \big(\lim_{k\rightarrow 
-%\infty} \reachOP^k(\vec{0})\big)_v.
+\label{5-eq:disc-limit-transition}
 \end{align}
 
 \noindent
-It remains to prove that the RHS of~\eqref{5-eq:disc-limit-transition} is not 
+It remains to prove that the RHS of~\cref{5-eq:disc-limit-transition} is not 
 greater than $\vec{x}^*= \lim_{k\rightarrow 
 \infty}\discOP^k(\vec{0})=\lim_{k\rightarrow \infty} 
 \sup_{\sigma}\expv^\sigma_v[\dPayoffStep{k}]$ (the last inequality follows 
@@ -211,7 +198,7 @@ memoryless deterministic strategy that is optimal in every vertex.
 \end{theorem}
 \begin{proof}
 The characterization of $\Value(\mdp)$ follows directly from 
-Lemmas~\ref{5-lem:disc-val-lower} and~\ref{5-lem:disc-val-upper}. The MD 
+Lemmas~\cref\{5-lem:disc-val-lower} and~\cref\{5-lem:disc-val-upper}. The MD 
 optimality follows from~\Cref{5-lem:disc-val-lower}.
 \end{proof}
 
@@ -264,10 +251,10 @@ let $\discOP_{\sigma}$ be the corresponding operator. We have that
 ||_{\infty}. \label{5-eq:disc-val-it-bound}
 \end{align}
 \noindent
-The first term in~\eqref{5-eq:disc-val-it-bound} is $\leq \eps/2$ 
+The first term in~\cref{5-eq:disc-val-it-bound} is $\leq \eps/2$ 
 by the choice of $k(\eps)$ and~\Cref{5-lem:disc-val-it-convergence}. We prove 
 that the second term 
-in~\eqref{5-eq:disc-val-it-bound} is also bounded by $\eps/2$. Note that we 
+in~\cref{5-eq:disc-val-it-bound} is also bounded by $\eps/2$. Note that we 
 have $\valsigma=\discOP_{\sigma}(\valsigma)$ (as was already proved 
 in~~\Cref{5-lem:disc-val-lower}) and $\discOP(\discOP^{k(\eps)}(\vec{0})) = 
 \discOP_\sigma(\discOP^{k(\eps)}(\vec{0}))$ (since $\sigma$ is 
@@ -409,8 +396,7 @@ An optimal MD strategy in discounted-payoff MDPs with a fixed discount factor ca
 The number $1/\eps^*$, where $\eps^*$ is from \Cref{5-lem:disc-vi-optimal-strategy}, has bitsize polynomial in the size of the MDP when the discount factor is fixed. Hence, the number $k(\eps^*)$ defined as in \Cref{5-lem:disc-val-it-eps-strategies} has a polynomial magnitude, so it suffices to perform only polynomially many iterations. Since each iteration requires polynomially many arithmetic operations that involve only summation and multiplication by a constant, the result follows.
 \end{proof}
 
-\subsection*{Strategy improvement, linear programming, and (strongly) 
-polynomial time}
+\subsection*{Strategy improvement, linear programming, and (strongly) polynomial time}
 
 The strategy (or policy) improvement (also called strategy/policy iteration in the literature) for MDPs works similarly as for games, see \Cref{5-algo:disc-strategy-improvement}. In the algorithm, we use $\discOP_{a,v}(\vec{x})$ as a shortcut for $ \sum_{u \in \vertices}\probTranFunc(u\mid v,a)\left((1-\lambda)\cdot\colouring(v,u) + \lambda\cdot \vec{x}_u \right)$
 

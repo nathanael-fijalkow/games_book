@@ -1,20 +1,24 @@
 import re
 
 from macros_transformer import macros_transformer
-# from rewrite_macros import rewrite_macros
+from rewrite_macros import rewrite_macros
 
-def match_next(s, i=0, d=0):
-	if s[i] == '{':
-		# print("found {")
-		return match_next(s, i+1, d+1)
-	elif s[i] == '}':
-		# print("found }")
-		if d == 0:
-			return i
+def match_next(s, open_parenthesis, closed_parenthesis, i=0, d=0):
+	while (i < len(s)):
+		if s[i:i + len(open_parenthesis)] == open_parenthesis:
+		# if s.startswith(open_parenthesis, i):
+			i += 1
+			d += 1
+		elif s[i:i + len(closed_parenthesis)] == closed_parenthesis:
+		# elif s.startswith(closed_parenthesis, i):
+			if d == 0:
+				return i
+			else:
+				i += 1
+				d -= 1
 		else:
-			return match_next(s, i+1, d-1)
-	else:
-		return match_next(s, i+1, d)
+				i += 1
+	return None
 
 def section_transformer(nb_chap, file_name, path, title, label):
 	f = open(path + file_name + ".tex", "r")
@@ -22,6 +26,9 @@ def section_transformer(nb_chap, file_name, path, title, label):
 	f.close()
 
 	print("> Reading %s" % file_name)
+
+	#### Remove comments
+	content = re.sub(r'(\s)%(.*?)(?=\n)', r'\1', content)
 
 	#### Add macros
 
@@ -32,15 +39,14 @@ def section_transformer(nb_chap, file_name, path, title, label):
 
 	f = open("macros.tex", "r")
 	macros = f.read()
-	macros = re.sub(r'%(.*?)\n', r'', macros)
+	macros = re.sub(r'%(.*?)\n', r'\n', macros)
 	macros = re.sub(r'\n\n', r'\n', macros)
 	content = macros + content
 	f.close()
 
 	f = open(path + "macros_local.tex", "r")
 	macros_local = f.read()
-	macros_local = re.sub(r'%(.*?)\n', r'', macros_local)
-	macros_local = re.sub(r'\n\n', r'\n', macros_local)
+	macros_local = re.sub(r'%(.*?)\n', r'\n', macros_local)
 	content = "```{math}\n" + macros_local + content
 	f.close()
 
@@ -54,22 +60,27 @@ def section_transformer(nb_chap, file_name, path, title, label):
 	else:
 		content = "(" + nb_chap + "-sec:" + label + ")=\n# " + title + "\n\n" + content
 
-	#### Remove comments
-	content = re.sub(r'([^\\])%(.*?)\n', r'\1\n', content)
 	#### Remove tilde
-	content = re.sub(r'~\$', r' $', content)
+	# Question: what can go wrong with ~?
+	# content = re.sub(r'~\$', r' $', content)
+	content = re.sub(r'~', r' ', content)
 	#### Remove hfill
 	content = re.sub(r'\\hfill', r'', content)
 	#### Rewrite textsuperscript
 	content = re.sub(r'\\textsuperscript\{([\s\S]*?)\}', r'\1', content)
 	#### Make sure $$ can breath
-	content = re.sub(r'\$\$', r'\n$$\n', content)
+	content = re.sub(r'\$\$', r'\n\n$$\n\n', content)
+	#### Rewrite textsc
+	content = re.sub(r'_\\textsc\{([\s\S]*?)\}', r'_{\1}', content)
+	content = re.sub(r'\\textsc\{([\s\S]*?)\}', r'\1', content)
 	#### Replace \[ \] by $$ $$
 	content = re.sub(r'\\\[([\s\S]*?)\\\]', r'\n\n$$\1$$\n\n', content)
 	#### Remove vskip1em
 	content = re.sub(r'\\vskip1em', r'\n', content)
 	#### Remove noindent
 	content = re.sub(r'\\noindent', r'\n', content)
+	#### Remove AP
+	content = re.sub(r'\\AP', r'\n', content)
 	#### Remove svgraybox
 	content = re.sub(r'\\begin\{svgraybox\}([\s\S]*?)\\end\{svgraybox\}', \
 		r'```{admonition} Problem\n\1\n```', content)
@@ -78,13 +89,61 @@ def section_transformer(nb_chap, file_name, path, title, label):
 	#### Rewrite footnotes
 	def rewrite_footnote(s):
 		st = s.group(1)
-		i = match_next(st)
+		i = match_next(st, '{', '}')
 		# print(st[:i])
 		end = re.match(r'[\s\S]*?[:.]', st[i+1:]).end()
 		# print(st[i+1:i+1+end])
 		return st[i+1:i+1+end] + "\n\n```{margin}\n" + st[:i] + "\n```\n\n" + st[i+1+end:] 
 
 	content = re.sub(r'~?\\footnote\{([\s\S]*)', rewrite_footnote, content)
+
+	#### Deal with equations with labels either using $$, align or align* 
+
+	# turn 
+
+	# begin{align}
+	# w_{t+1} = (1 + r_{t+1}) s(w_t) + y_{t+1}
+	# \label{5-eq:disc-limit-transition}
+	# \end{align}
+
+	# into
+
+	# ```{math}
+	# :label: 5-eq:disc-limit-transition
+	# w_{t+1} = (1 + r_{t+1}) s(w_t) + y_{t+1}
+	# ```
+
+	# THIS IS THE RIGHT WAY TO PROCEED. I SHOULD UPDATE THE NEXT ONES (theorems and so on): 
+	# the label can be anywhere
+	pattern = r'\\begin\{equation\*?\}([\s\S]*?)\\end\{equation\*?\}'
+	match = re.search(pattern, content)
+	while match:
+		(begin_eq,end_eq) = match.span()
+		eq = match.group(1)
+		# print(eq)
+		pattern_label = r'([\s\S]*?)\\label\{([\d]*?)-eq:(.*?)\}([\s\S]*?)$'
+		match_label = re.search(pattern_label, eq)
+		if match_label:
+			new_eq = '```{math}\n:label: ' + match_label.group(2) + '-eq:' + match_label.group(3) + '\n' + match_label.group(1) + '\n' + match_label.group(4) + '\n```'
+		else:
+			new_eq = '```{math}\\n' + eq + r'\\n```'
+		content = content[:begin_eq] + new_eq + content[end_eq:]
+		match = re.search(pattern, content)
+
+	pattern = r'\\begin\{align\*?\}([\s\S]*?)\\end\{align\*?\}'
+	match = re.search(pattern, content)
+	while match:
+		(begin_eq,end_eq) = match.span()
+		eq = match.group(1)
+		# print(eq)
+		pattern_label = r'([\s\S]*?)\\label\{([\d]*?)-eq:(.*?)\}([\s\S]*?)$'
+		match_label = re.search(pattern_label, eq)
+		if match_label:
+			new_eq = '```{math}\n:label: ' + match_label.group(2) + '-eq:' + match_label.group(3) + '\n' + match_label.group(1) + '\n' + match_label.group(4) + '\n```'
+		else:
+			new_eq = '```{math}\n' + eq + '\n```'
+		content = content[:begin_eq] + new_eq + content[end_eq:]
+		match = re.search(pattern, content)
 
 	#### Deal with references to (sub)*sections
 
@@ -131,6 +190,16 @@ def section_transformer(nb_chap, file_name, path, title, label):
 
 	for origin_name in l:
 		content = re.sub(p.format(origin_name), s.format(origin_name), content)
+
+	#### Deal with references to equations
+
+	p1 = r"~\\[cC]ref\{(\d*?)-eq:(.*?)\}"
+	s1 = r" {eq}`\1-eq:\2`"
+	p2 = r"\\[cC]ref\{(\d*?)-eq:(.*?)\}"
+	s2 = r"{eq}`\1-eq:\2`"
+
+	content = re.sub(p1, s1, content)
+	content = re.sub(p2, s2, content)
 
 	#### Deal with figures
 
@@ -188,9 +257,9 @@ def section_transformer(nb_chap, file_name, path, title, label):
 	#### Deal with decisionproblems and tasks
 	def rewrite_decisionproblems(s):
 		s = s.group(1)
-		i = match_next(s)
+		i = match_next(s, '{', '}')
 		inp = s[:i]
-		j = match_next(s[i+2:])
+		j = match_next(s[i+2:], '{', '}')
 		out = s[i+2:i+2+j]
 		return "**INPUT**: " + inp + "\n\n**QUESTION**: " + out + "\n" + s[i+2+j+1:]
 
@@ -202,9 +271,9 @@ def section_transformer(nb_chap, file_name, path, title, label):
 
 	def rewrite_tasks(s):
 		s = s.group(1)
-		i = match_next(s)
+		i = match_next(s, '{', '}')
 		inp = s[:i]
-		j = match_next(s[i+2:])
+		j = match_next(s[i+2:], '{', '}')
 		out = s[i+2:i+2+j]
 		return "**INPUT**: " + inp + "\n\n**COMPUTE**: " + out + "\n" + s[i+2+j+1:]
 
@@ -227,11 +296,11 @@ def section_transformer(nb_chap, file_name, path, title, label):
 
 	def rewrite_subsections(s):
 		s = s.group(1)
-		i = match_next(s)
+		i = match_next(s, '{', '}')
 		title = s[:i]
 		rest = s[i+1:]
 		pattern = r'\s*?\\label\{.*?\}'
-		if re.match(pattern, rest) != None:
+		if re.match(pattern, rest):
 			match = re.search(r'\{.*?\}', rest)
 			return "\n(" + match.group()[1:match.end()-match.start()-1] + ")=\n## " + title + "\n" + rest[match.end()+1:]
 		else:
@@ -245,11 +314,11 @@ def section_transformer(nb_chap, file_name, path, title, label):
 
 	def rewrite_subsubsections(s):
 		s = s.group(1)
-		i = match_next(s)
+		i = match_next(s, '{', '}')
 		title = s[:i]
 		rest = s[i+1:]
 		pattern = r'\s*?\\label\{.*?\}'
-		if re.match(pattern, rest) != None:
+		if re.match(pattern, rest):
 			match = re.search(r'\{.*?\}', rest)
 			return "\n(" + match.group()[1:match.end()-match.start()-1] + ")=\n### " + title + "\n" + rest[match.end()+1:]
 		else:
@@ -271,7 +340,7 @@ def section_transformer(nb_chap, file_name, path, title, label):
 
 	def rewrite_paragraphs(s):
 		s = s.group(1)
-		i = match_next(s)
+		i = match_next(s, '{', '}')
 		title = s[:i]
 		return "> **" + title + "**\n\n" + s[i+1:]
 
@@ -296,12 +365,12 @@ def section_transformer(nb_chap, file_name, path, title, label):
 	# by
 	# > An extraordinary number of basic ideas in model theory can be expressed in terms of games.
 
-	content = re.sub(r'\\begin\{quotation\}\n``([\s\S]*?)\'\'\n\\end\{quotation\}', r'\n\n> \1\n\n', content)
+	content = re.sub(r'\\begin\{quotation\}\n`([\s\S]*?)\'\n\\end\{quotation\}', r'\n\n> `\1\'\n\n', content)
 
 	#### Rewrite highlighted text
 	def rewrite_highlighted(s):
 		s = s.group(1)
-		i = match_next(s)
+		i = match_next(s, '{', '}')
 		high = s[:i]
 		return "**" + high + "**" + s[i+1:]
 
@@ -329,26 +398,58 @@ def section_transformer(nb_chap, file_name, path, title, label):
 	content = re.sub(r'\\knowledge.*?\n', r'', content)
 
 
-	#### Deal with itemize
-
-	def rewrite_itemize(s):
-		return re.sub(r'\\item', r"* ", s.group(1))
-
-	content = re.sub(r'\\begin\{itemize\}([\s\S]*?)\\end\{itemize\}', rewrite_itemize, content)
-
-	#### Deal with enumerate
+	#### Deal with itemize and enumerate
 
 	class rewrite_numbered_items(object):
 		def __init__(self, start = 1):
 			self.count = start - 1
 		def __call__(self, match):
 			self.count += 1
-			return "\n{}. ".format(self.count)
+			return "{}. ".format(self.count)
 
-	def rewrite_enumerate(s):
-		return re.sub(r'\\item', rewrite_numbered_items(), s.group(1))
+	# def rewrite_enumerate(s):
+	# 	return re.sub(r'\\item', rewrite_numbered_items(), s.group(1))
 
-	content = re.sub(r'\\begin\{enumerate\}([\s\S]*?)\\end\{enumerate\}', rewrite_enumerate, content)
+	# content = re.sub(r'\\begin\{enumerate\}([\s\S]*?)\\end\{enumerate\}', rewrite_enumerate, content)
+
+	def rewrite_itemize_enumerate(s, depth = 0):
+		pattern_it = r'\\begin\{itemize\}([\s\S]*?)'
+		match_it = re.search(pattern_it, s)
+		if match_it:
+			(begin,end) = match_it.span()
+			end = match_next(s[begin+15:], r'\begin{itemize}', r'\end{itemize}')
+			s_it = s[begin+15:begin+15+end]
+			s_it = rewrite_itemize_enumerate(s_it, depth + 1)
+			space = ""
+			for i in range(4 * depth): 
+				space += " "
+			s_it = re.sub(r'\\item', space + "* ", s_it)
+			new_s = s[:begin] + s_it + s[begin+28+end:]
+			return rewrite_itemize_enumerate(new_s, depth)
+
+		pattern_enum = r'\\begin\{enumerate\}([\s\S]*?)'
+		match_enum = re.search(pattern_enum, s)
+		if match_enum:
+			(begin,end) = match_enum.span()
+			end = match_next(s[begin+17:], r'\begin{enumerate}', r'\end{enumerate}')
+			s_enum = s[begin+17:begin+17+end]
+			s_enum = rewrite_itemize_enumerate(s_enum, depth + 1)
+			space = ""
+			for i in range(4 * depth): 
+				space += " "
+			s_enum = re.sub(r'\\item', space + r'\\item', s_enum)
+			s_enum = re.sub(r'\\item', rewrite_numbered_items(), s_enum)
+			new_s = s[:begin] + s_enum + s[begin+32+end:]
+			return rewrite_itemize_enumerate(new_s, depth)			
+
+		return s
+
+	content = rewrite_itemize_enumerate(content)
+
+	# def rewrite_itemize(s):
+	# 	return re.sub(r'\\item', r"* ", s.group(1))
+
+	# content = re.sub(r'\\begin\{itemize\}([\s\S]*?)\\end\{itemize\}', rewrite_itemize, content)
 
 	#### Deal with theorem and many other environments
 
@@ -445,11 +546,11 @@ def section_transformer(nb_chap, file_name, path, title, label):
 	#### Deal with citations
 	content = re.sub(r'~\\cite\{(.*?)\}', r' {cite}`\1`', content)
 	content = re.sub(r'\\cite\{(.*?)\}', r'{cite}`\1`', content)
+	content = re.sub(r'~\\cite\[(.*?)\]\{(.*?)\}', r' \1 in {cite}`\2`', content)
+	content = re.sub(r'\\cite\[(.*?)\]\{(.*?)\}', r'\1 in {cite}`\2`', content)
 
 	#### Remove indents
 	content = re.sub(r'\t', r'', content)
-	#### Remove double newlines
-	content = re.sub(r'\n\n\n', r'\n\n', content)
 
 	# print(content)
 
@@ -457,5 +558,6 @@ def section_transformer(nb_chap, file_name, path, title, label):
 	g.write(content)
 	g.close()
 
-	# rewrite_macros(path,file_name)
+	rewrite_macros(path,file_name)
 
+section_transformer("5", "notations", "5_MDP/", "Index", 'index')

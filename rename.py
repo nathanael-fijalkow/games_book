@@ -9,7 +9,7 @@ def rename():
 			g = open(f, "r")
 			content = g.read()
 			g.close()
-			content = re.sub(r'eqref', r'cref', content)
+			content = re.sub(r'\\ref\{', r'\\cref\{', content)
 			g = open(f, "w")
 			content = g.write(content)
 			g.close()

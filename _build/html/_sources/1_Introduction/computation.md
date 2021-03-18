@@ -2,69 +2,9 @@
 # Computational models
 
 ```{math}
-\newcommand{\Eve}{\textrm{Eve}}
-\newcommand{\Adam}{\textrm{Adam}}
-\newcommand{\set}[1]{\left\{ #1 \right\}}
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
-\newcommand{\argmax}{\textrm{argmax}}
-\newcommand{\argmin}{\textrm{argmin}}
-\newcommand{\Op}{\mathbb{O}}
-\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\textrm{supp}} 
-\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
-\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
-\newcommand{\mEve}{\mathrm{Eve}}
-\newcommand{\mAdam}{\mathrm{Adam}}
-\newcommand{\mRandom}{\mathrm{Random}}
-\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
-\newcommand{\ing}{\textrm{In}}
-\newcommand{\Ing}{\ing}
-\newcommand{\out}{\textrm{Out}}
-\newcommand{\Out}{\out}
-\newcommand{\dest}{\Delta} 
-\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
-\newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
-\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
-\newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\newcommand{\Win}{\textrm{Win}} 
-\newcommand{\Lose}{\textrm{Lose}} 
-\newcommand{\Value}{\textrm{val}} 
-\newcommand{\ValueE}{\textrm{val}_\mEve} 
-\newcommand{\ValueA}{\textrm{val}_\mAdam}
-\newcommand{\val}{\Value} 
-\newcommand{\Automaton}{\mathbf{A}} 
-\newcommand{\Safe}{\mathtt{Safe}}
-\newcommand{\Reach}{\mathtt{Reach}} 
-\newcommand{\Buchi}{\mathtt{Buchi}} 
-\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
-\newcommand{\Parity}{\mathtt{Parity}} 
-\newcommand{\Muller}{\mathtt{Muller}} 
-\newcommand{\Rabin}{\mathtt{Rabin}} 
-\newcommand{\Streett}{\mathtt{Streett}} 
-\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
-\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
-\newcommand{\Energy}{\mathtt{Energy}}
-\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
-\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
-\newcommand{\Sup}{\mathtt{Sup}}
-\newcommand{\Inf}{\mathtt{Inf}}
-\newcommand{\LimSup}{\mathtt{LimSup}}
-\newcommand{\LimInf}{\mathtt{LimInf}}
-\newcommand{\NL}{\textrm{NL}}
-\newcommand{\PTIME}{\textrm{PTIME}}
-\newcommand{\NP}{\textrm{NP}}
-\newcommand{\UP}{\textrm{UP}}
-\newcommand{\coNP}{\textrm{coNP}}
-\newcommand{\coUP}{\textrm{coUP}}
-\newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
-\newcommand{\EXP}{\textrm{EXP}}
-\newcommand{\kEXP}{\textrm{kEXP}}
+
+\renewcommand{\Game}{\game}
+
 ```
 
 ## The Random Access Machine model of computation
@@ -75,13 +15,11 @@ Intuitively this corresponds to using a standard imperative programming language
 There are variants of the RAM model; to be specific the one we use and describe here is called word RAM.
 The main reason to use the RAM model is to make our life easier by hiding some small computational costs which are inessential for our purposes.
 
-
 The memory is arranged in machine words whose size is a parameter $w$ to be fixed depending on the problem.
 A machine word is a register which stores some information as a binary word of length $w$.
 The first key assumption of the RAM model is that **memory can be accessed in constant time**.
 In other words, machine words are registers with a unique address and can be accessed either directly or indirectly.
 A concrete implication is that checking whether an element belongs to a set is a single operation (if each element of the set can be stored in a single machine word).
-
 
 We consider an (often implicit) set of basic operations operating on a constant number of machine words; 
 addition, multiplication, subtraction, division, and comparison of integers are typical examples.
@@ -91,13 +29,11 @@ This convention implies that we can manipulate counters for small numbers with n
 We note that this is unrealistic as it means that for instance we can compute the number $2^{2^n}$ by repeatedly squaring $2$: the complexity is $O(n)$ but this number uses $O(2^n)$ bits hence cannot be generated in polynomial time using a Turing machine.
 We will not make use of such weaknesses in our algorithms.
 
-
 The size of an input is the number of machine words required to store it.
 The most common choice for the machine word size is $w = \log(s)$ where $s$ is the size of the input as we want to at least be able to store an integer $x$ of order $s$ in one machine word.
 However in situations in which there are numerical inputs, it is reasonable to assume that each input number fits into one machine word,
 leading to a potentially larger $w$.
 Note that an algorithm in the word RAM model with machine word size $w$ is allowed to use numbers that are larger than $2^w$, but such numbers should be split among several machine words.
-
 
 The time complexity is the number of steps performed by the machine, as a function of the input size, 
 and the space complexity is the maximal number of machine words used throughout the computation.
@@ -142,7 +78,7 @@ A x \le b \text{ and } x \ge 0,
 $$
 
 where $c$ and $b$ are rational vectors (with $c^T$ the transpose of $c$) and $A$ is a rational matrix. 
-More explicitly: 
+More explicitly:
 
 $$
 \begin{array}{l}

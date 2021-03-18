@@ -2,227 +2,140 @@
 # Profiles and regularity of the winning regions
 
 ```{math}
+
 \def\AC#1{\textcolor{green!50!black}{\checkmark}\marginpar{\color{green!50!black}AC: #1}} 
+
 \def\acchanged#1{{#1}}
-\def\OS#1{\textcolor{red}{\checkmark}\marginpar{\color{red}OS: #1}} 
+\def\OS#1{\textcolor{red}{\checkmark}\marginpar{\color{red}OS: #1}}
 
 \renewcommand{\qed}{$\square$}
-\newcommand{\pop}{\mathrm{pop}}
-\newcommand{\push}[1]{\mathrm{push}(#1)}
-\newcommand{\PDS}{\mathcal{P}}
-\newcommand{\pdscol}[1]{\col(#1)}
-\newcommand{\vect}[1]{\overrightarrow{#1}}
-\newcommand{\ttrue}{t\! t}
-\newcommand{\ffalse}{f\!\! f}
+
 \newcommand {\Stepsg}[1]{\ensuremath{\mathit{Steps}_{#1}}}
-\newcommand{\sh}{\mathrm{sh}}
-\newcommand{\fgraph}{\widetilde{G}}
-\newcommand{\farena}{\widetilde{\arena}}
-\newcommand{\fgame}{\widetilde{\game}}
-\newcommand{\fplay}{\widetilde{\play}}
-\newcommand{\fsigma}{\widetilde{\sigma}}
+
 \newcommand {\Rounds}[1]{\ensuremath{\mathit{Rounds}_{#1}}}
-\newcommand{\kind}[2]{kind(#1,#2)}
-\newcommand{\factcol}[2]{\mathrm{mcol}(#1,#2)}
-\newcommand{\fac}[1]{kind^{#1}}
-\newcommand{\pcol}[1]{\mathrm{mcol}^{#1}}
-\newcommand{\hgraph}{\widehat{G}}
-\newcommand{\harena}{\widehat{\arena}}
-\newcommand{\hgame}{\widehat{\game}}
-\newcommand{\hplay}{\widehat{\play}}
-\newcommand{\hsigma}{\widehat{\sigma}}
-\newcommand{\Eve}{\textrm{Eve}}
-\newcommand{\Adam}{\textrm{Adam}}
-\newcommand{\set}[1]{\left\{ #1 \right\}}
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
-\newcommand{\argmax}{\textrm{argmax}}
-\newcommand{\argmin}{\textrm{argmin}}
-\newcommand{\Op}{\mathbb{O}}
-\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\textrm{supp}} 
-\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
-\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
-\newcommand{\mEve}{\mathrm{Eve}}
-\newcommand{\mAdam}{\mathrm{Adam}}
-\newcommand{\mRandom}{\mathrm{Random}}
-\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
-\newcommand{\ing}{\textrm{In}}
-\newcommand{\Ing}{\ing}
-\newcommand{\out}{\textrm{Out}}
-\newcommand{\Out}{\out}
-\newcommand{\dest}{\Delta} 
-\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
-\newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
-\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
-\newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\newcommand{\Win}{\textrm{Win}} 
-\newcommand{\Lose}{\textrm{Lose}} 
-\newcommand{\Value}{\textrm{val}} 
-\newcommand{\ValueE}{\textrm{val}_\mEve} 
-\newcommand{\ValueA}{\textrm{val}_\mAdam}
-\newcommand{\val}{\Value} 
-\newcommand{\Automaton}{\mathbf{A}} 
-\newcommand{\Safe}{\mathtt{Safe}}
-\newcommand{\Reach}{\mathtt{Reach}} 
-\newcommand{\Buchi}{\mathtt{Buchi}} 
-\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
-\newcommand{\Parity}{\mathtt{Parity}} 
-\newcommand{\Muller}{\mathtt{Muller}} 
-\newcommand{\Rabin}{\mathtt{Rabin}} 
-\newcommand{\Streett}{\mathtt{Streett}} 
-\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
-\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
-\newcommand{\Energy}{\mathtt{Energy}}
-\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
-\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
-\newcommand{\Sup}{\mathtt{Sup}}
-\newcommand{\Inf}{\mathtt{Inf}}
-\newcommand{\LimSup}{\mathtt{LimSup}}
-\newcommand{\LimInf}{\mathtt{LimInf}}
-\newcommand{\NL}{\textrm{NL}}
-\newcommand{\PTIME}{\textrm{PTIME}}
-\newcommand{\NP}{\textrm{NP}}
-\newcommand{\UP}{\textrm{UP}}
-\newcommand{\coNP}{\textrm{coNP}}
-\newcommand{\coUP}{\textrm{coUP}}
-\newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
-\newcommand{\EXP}{\textrm{EXP}}
-\newcommand{\kEXP}{\textrm{kEXP}}
+
+\renewcommand{\Game}{\game}
+
 ```
+
 In this section, we consider a large class of objectives called **prefix independent**. For these objectives, a pushdown game can be meaningfully decomposed by considering the part of the game between the moment a symbol is pushed onto the stack and stopping as soon as it is popped.  As a consequence, we will see that for prefix independent
 objectives, the winning region can be described  using finite state automata.
 
-
-
 \acchanged{To this extent, we introduce **reduced games** which start with a stack containing only one symbol $\gamma$ and stop as soon as this symbol is popped from the stack. If the symbol is never popped, the objective is unchanged and otherwise the winner of the game is determined by the state reached when popping the symbol.}
 
-Let $\game=(\arena,\Omega)$ be a pushdown game played on an arena $\arena = (G,\VE,\VA)$ generated by a pushdown system $\PDS = (Q,Q_{\mEve}, Q_{\mAdam}, \Gamma,\Delta)$. For any subset $R\subseteq Q$ of control states of $\PDS$, we define a new objective $\Omega(R)$ such that a play $\play$ belongs to $\Omega(R)$ if one of the following happens:
+Let $\mathcal{G}=( \mathcal{A},\Omega)$ be a pushdown game played on an arena $\mathcal{A} = (G, V_\mathrm{Eve}, V_\mathrm{Adam})$ generated by a pushdown system $\mathcal{P} = (Q,Q_{ \mathrm{Eve}}, Q_{ \mathrm{Adam}}, \Gamma,\Delta)$. For any subset $R\subseteq Q$ of control states of $\mathcal{P}$, we define a new objective $\Omega(R)$ such that a play $\pi$ belongs to $\Omega(R)$ if one of the following happens:
 
-%\item  In $\play$ no configuration with an empty stack, {i.e.} of the form $(q,\bot)$, is visited, and $\play\in\Omega$.
-
-%\end{itemize}
 \acchanged{
 
-*  the play $\play$ belongs to $\Omega$ and does not contain
+*  the play $\pi$ belongs to $\Omega$ and does not contain
 any configuration with an empty stack ( {i.e.}, of the form $(q,\bot)$ for some state $q \in Q$),
-*  the play $\play$ contains a configuration with the empty stack and the first such configuration has a state in R.
+*  the play $\pi$ contains a configuration with the empty stack and the first such configuration has a state in R.
 }
 
-More formally, letting $V=V_\mEve\cup V_\mAdam$, $V_R = R \times \bot \Gamma^*$ and $V_\bot = Q \times \{\bot\}$ 
+More formally, letting $V=V_\mathrm{Eve}\cup V_\mathrm{Adam}$, $V_R = R \times \bot \Gamma^*$ and $V_\bot = Q \times \{\bot\}$
 
 $$
+
  \Omega(R) = (\Omega \setminus V^*V_\bot V^\omega)\cup (V \setminus V_\bot)^* V_R V^\omega
+
 $$
 
-Finally, we let $\game(R)$ denote the game $(\arena,\Omega(R))$.
+Finally, we let $\mathcal{G}(R)$ denote the game $( \mathcal{A},\Omega(R))$.
 
 \acchanged{Remark that contrarily to the rest of the objectives considered in this chapter, $\Omega(R)$ does depend on the sequences of vertices visited by the play and not only on their colour. It would have been possible by a slight modification of the arena to only express the objective on their colours. However, our choice simplifies the presentation of the reduced games.}
 
-For any state $q\in Q$ and any stack letter $\gamma\in\Gamma$, we denote by $\mathcal{R}(q,\gamma)$ the set of subsets $R\subseteq Q$ for which \Eve wins in $\game(R)$ from $(q,\bot\gamma)$:
+For any state $q\in Q$ and any stack letter $\gamma\in\Gamma$, we denote by $\mathcal{R}(q,\gamma)$ the set of subsets $R\subseteq Q$ for which  \textrm{Eve} wins in $\mathcal{G}(R)$ from $(q,\bot\gamma)$:
 
 $$
+
 \mathcal{R}(q,\gamma)=\{
-R\subseteq Q\mid (q,\bot\gamma) \text{ is winning for \Eve in } \game(R)
+R\subseteq Q\mid (q,\bot\gamma) \text{ is winning for  \textrm{Eve} in }  \mathcal{G}(R)
 \}
+
 $$
- and we refer to $\mathcal{R}(q,\gamma)$ as the **$(q,\gamma)$-profile** of $\game$.
+
+ and we refer to $\mathcal{R}(q,\gamma)$ as the **$(q,\gamma)$-profile** of $\mathcal{G}$.
 
 An objective $\Omega\subseteq C^\omega$ is **prefix independent** if the following holds: for every $u\in C^\omega$ and for every \acchanged{$v\in C^*$},  $u\in \Omega$ if and only if $vu\in \Omega$. The Büchi, co-Büchi and parity objectives are examples of prefix independent objectives and the reachability objective is not.
 
-
 ````{admonition} Remark  
 \label{10-rem:stay-staying-alive}
-For a prefix independent objective, a play respecting a winning strategy for $\Eve$ that starts in \Eve's winning region always stay in this region. Obviously this is no longer true if the objective is not prefix independent. For instance in a reachability game, a play following a winning strategy for $\Eve$ can leave the winning region of \Eve once the target has been reached. 
+For a prefix independent objective, a play respecting a winning strategy for $\textrm{Eve}$ that starts in  \textrm{Eve}'s winning region always stay in this region. Obviously this is no longer true if the objective is not prefix independent. For instance in a reachability game, a play following a winning strategy for $\textrm{Eve}$ can leave the winning region of  \textrm{Eve} once the target has been reached. 
 
 ````
 
-
-This simple property allows to use profiles to give an inductive characterization of the winning region for \Eve when the objectif is prefix independent.
+This simple property allows to use profiles to give an inductive characterization of the winning region for  \textrm{Eve} when the objectif is prefix independent.
 
 ````{prf:proposition} NEEDS TITLE 10-prop:returning
 :label: 10-prop:returning
  Assume that $\Omega\subseteq C^\omega$ is prefix independent. 
-Let $s\in \Gamma^*$, $q\in Q$ and $\gamma\in\Gamma$. Then \Eve has a winning strategy in $\game$ from $(q,\bot s\gamma)$ if and only if there exists some $R\in\mathcal{R}(q,\gamma)$ such that $(r,\bot s)$ is winning for \Eve in $\game$ for every $r\in R$.
+Let $s\in \Gamma^*$, $q\in Q$ and $\gamma\in\Gamma$. Then  \textrm{Eve} has a winning strategy in $\mathcal{G}$ from $(q,\bot s\gamma)$ if and only if there exists some $R\in\mathcal{R}(q,\gamma)$ such that $(r,\bot s)$ is winning for  \textrm{Eve} in $\mathcal{G}$ for every $r\in R$.
 
 ````
-
 
 ````{admonition} Proof
 :class: dropdown tip
 
-Assume \Eve has a winning strategy $\sigma$ from $(q,\bot s\gamma)$ in $\game$. Consider the set $\Pi_\sigma$ of all plays in $\game$ that starts from $(q,\bot s\gamma)$ and where \Eve respects $\sigma$. Define $R$ to be the (possibly empty) set that consists of all $r\in Q$ such that there is a play in $\Pi_\sigma$ of the form $v_0\cdots v_k (r,\bot s) v_{k+1}\cdots$ where each $v_i$ for $0\leq i\leq k$ is of the form $(p_i,\bot s t_i)$ for some non-empty $t_i$. In other words, $R$ consists of all states that can be reached on popping $\gamma$ for the first time in a play where \Eve respects $\sigma$. As seen in \cref{10-rem:stay-staying-alive}, \Eve is winning from $(r,\bot s)$ for all $r \in R$. It remains to show that $R\in\mathcal{R}(q,\gamma)$.
+Assume  \textrm{Eve} has a winning strategy $\sigma$ from $(q,\bot s\gamma)$ in $\mathcal{G}$. Consider the set $\Pi_\sigma$ of all plays in $\mathcal{G}$ that starts from $(q,\bot s\gamma)$ and where  \textrm{Eve} respects $\sigma$. Define $R$ to be the (possibly empty) set that consists of all $r\in Q$ such that there is a play in $\Pi_\sigma$ of the form $v_0\cdots v_k (r,\bot s) v_{k+1}\cdots$ where each $v_i$ for $0\leq i\leq k$ is of the form $(p_i,\bot s t_i)$ for some non-empty $t_i$. In other words, $R$ consists of all states that can be reached on popping $\gamma$ for the first time in a play where  \textrm{Eve} respects $\sigma$. As seen in \cref{10-rem:stay-staying-alive},  \textrm{Eve} is winning from $(r,\bot s)$ for all $r \in R$. It remains to show that $R\in\mathcal{R}(q,\gamma)$.
 
-To this end, define a (partial) function $\xi$ as $\xi((p,\bot s t))=(p,\bot t)$ for every $p\in Q$ and set $\xi^{-1}((p,\bot t))=(p,\bot s t)$. Then $\xi^{-1}$ is extended as a morphism over $V^*$.  Now a winning strategy for \Eve in $\game(R)$ is defined as follows:
+To this end, define a (partial) function $\xi$ as $\xi((p,\bot s t))=(p,\bot t)$ for every $p\in Q$ and set $\xi^{-1}((p,\bot t))=(p,\bot s t)$. Then $\xi^{-1}$ is extended as a morphism over $V^*$.  Now a winning strategy for  \textrm{Eve} in $\mathcal{G}(R)$ is defined as follows:
 
 *  if some empty stack configuration has already been visited play any valid move, 
 *  otherwise go to $\xi(\sigma(\xi^{-1}(\pi))$, where $\pi$ is the current play.
 
-By definition of $\Pi_\sigma$ and $R$, it easily follows that the previous strategy is winning for \Eve in $\game(R)$, and therefore $R\in\mathcal{R}(p,\gamma)$. 
+By definition of $\Pi_\sigma$ and $R$, it easily follows that the previous strategy is winning for  \textrm{Eve} in $\mathcal{G}(R)$, and therefore $R\in\mathcal{R}(p,\gamma)$.
 
-Conversely, let us assume that there is some $R\in\mathcal{R}(q,\gamma)$ such that $(r,\bot s)$ is winning for \Eve in $\game$ for every $r\in R$. For every $r\in R$, let us denote by $\sigma_r$ a winning strategy for \Eve from $(r,\bot s)$ in $\game$. Let $\sigma_R$ be a winning strategy for \Eve in $\game(R)$ from $(q,\bot\gamma)$. Let us define $\xi$ and $\xi^{-1}$ as in the direct implication and extend them as (partial) morphism over $V^*$. Define the following strategy $\sigma$ for \Eve in $\game$ for plays starting from $(q,\bot s\gamma)$. For any such play $\pi$, 
+Conversely, let us assume that there is some $R\in\mathcal{R}(q,\gamma)$ such that $(r,\bot s)$ is winning for  \textrm{Eve} in $\mathcal{G}$ for every $r\in R$. For every $r\in R$, let us denote by $\sigma_r$ a winning strategy for  \textrm{Eve} from $(r,\bot s)$ in $\mathcal{G}$. Let $\sigma_R$ be a winning strategy for  \textrm{Eve} in $\mathcal{G}(R)$ from $(q,\bot\gamma)$. Let us define $\xi$ and $\xi^{-1}$ as in the direct implication and extend them as (partial) morphism over $V^*$. Define the following strategy $\sigma$ for  \textrm{Eve} in $\mathcal{G}$ for plays starting from $(q,\bot s\gamma)$. For any such play $\pi$, 
 
 *  if $\pi$ does not contain a configuration of the form $(p,\bot s)$ then we take $\sigma(\pi)=\xi^{-1}(\sigma_R(\xi(\pi)))$;
 *  otherwise let $\pi = \pi'\cdot(r,\bot s)\cdot \pi''$ where $\pi'$ does not contain any configuration of the form $(p,\bot s)$. If $r$ does not belong to $R$, $\sigma$ is undefined. Note that this situation will never be encountered in a play respecting $\sigma$ as $\sigma_R$ ensures that $r \in R$. If $r \in R$, one finally sets $\sigma(\pi)=\sigma_r((r,\bot s)\pi'')$.
  
-The strategy $\sigma$ is a winning strategy for \Eve in $\game$ from $(q,\bot s\gamma)$. To see this, consider a play $\pi$ starting from $(p,\bot s \gamma)$ and respecting $\sigma$.
+The strategy $\sigma$ is a winning strategy for  \textrm{Eve} in $\mathcal{G}$ from $(q,\bot s\gamma)$. To see this, consider a play $\pi$ starting from $(p,\bot s \gamma)$ and respecting $\sigma$.
 
- If the play $\pi$ does not contain configurations of the form $(r,\bot s)$ for some $r \in Q$, then the play $\xi(\pi)$ starting in $(p,\bot \gamma)$ respects $\sigma_R$ and is won by $\Eve$.
-As $\xi(\pi)$ does not contain configurations with an empty stack, it must be the case that $\xi(\pi) \in \Omega$. As $\Omega$ only depends on the colours of the states, it is also the case that $\pi \in \Omega$ and hence, $\pi$ is winning for $\Eve$. 
+ If the play $\pi$ does not contain configurations of the form $(r,\bot s)$ for some $r \in Q$, then the play $\xi(\pi)$ starting in $(p,\bot \gamma)$ respects $\sigma_R$ and is won by $\textrm{Eve}$.
+As $\xi(\pi)$ does not contain configurations with an empty stack, it must be the case that $\xi(\pi) \in \Omega$. As $\Omega$ only depends on the colours of the states, it is also the case that $\pi \in \Omega$ and hence, $\pi$ is winning for $\textrm{Eve}$. 
 
-If the play $\pi$ can be decomposed as $\pi' (r,\bot s) \pi''$ where $\pi'$ does not contain any configuration with the stack $\bot s$, the play $\xi(\pi' (r,\bot s))$ respects $\sigma_R$ in $\game(R)$. As $\sigma_R$ is winning, it follows that $r \in R$. By definition of $\sigma$, $(r,\bot s)\pi''$ respects $\sigma_r$ which being winning for \Eve implies that $(r,\bot s) \pi'' \in \Omega$. As $\Omega$ is prefix independent, it follows that $\pi \in \Omega$.
+If the play $\pi$ can be decomposed as $\pi' (r,\bot s) \pi''$ where $\pi'$ does not contain any configuration with the stack $\bot s$, the play $\xi(\pi' (r,\bot s))$ respects $\sigma_R$ in $\mathcal{G}(R)$. As $\sigma_R$ is winning, it follows that $r \in R$. By definition of $\sigma$, $(r,\bot s)\pi''$ respects $\sigma_r$ which being winning for  \textrm{Eve} implies that $(r,\bot s) \pi'' \in \Omega$. As $\Omega$ is prefix independent, it follows that $\pi \in \Omega$.
 
 ````
-
-
 
  {prf:ref}`10-prop:returning` implies that the winning region of any pushdown game equipped with a prefix independent objectives can be described by regular languages.
 
 ````{prf:theorem} NEEDS TITLE 10-thm:regularity-wr
 :label: 10-thm:regularity-wr
 
-Let $\game=(\arena,\Omega)$ be a pushdown game played on an arena $\arena = (G,\VE,\VA)$ generated by a pushdown system $\PDS = (Q,Q_{\mEve}, Q_{\mAdam}, \Gamma,\Delta)$, and such that $\Omega\subseteq C^\omega$ is prefix independent. Then for any state $q\in Q$, the set 
+Let $\mathcal{G}=( \mathcal{A},\Omega)$ be a pushdown game played on an arena $\mathcal{A} = (G, V_\mathrm{Eve}, V_\mathrm{Adam})$ generated by a pushdown system $\mathcal{P} = (Q,Q_{ \mathrm{Eve}}, Q_{ \mathrm{Adam}}, \Gamma,\Delta)$, and such that $\Omega\subseteq C^\omega$ is prefix independent. Then for any state $q\in Q$, the set 
 
 $$
-L_q=\{u\in \Gamma^*\mid (q,\bot s)\in W_\mEve \}
+L_q=\{u\in \Gamma^*\mid (q,\bot s)\in W_\mathrm{Eve} \}
 $$
 
  is a regular language over the alphabet $\Gamma$.
 
 ````
 
-
 ````{admonition} Proof
 :class: dropdown tip
 
-Fix a control state $q \in Q$, we consider a deterministic finite state automaton defined as follows. Its set of control states consists of the subsets of $Q$ and the initial state is $S_{in}=\{p\mid (p,\bot)\in W_\mEve\}$. From the state $S$ upon reading the letter $\gamma$ the automaton goes to the state $\{p\mid S\in\mathcal{R}(p,\gamma)\}$. Finally a state $S$ is final if and only if $q\in S$. It is then an immediate consequence of  {prf:ref}`10-prop:returning` that this automaton accepts the language $L_q$.
+Fix a control state $q \in Q$, we consider a deterministic finite state automaton defined as follows. Its set of control states consists of the subsets of $Q$ and the initial state is $S_{in}=\{p\mid (p,\bot)\in W_\mathrm{Eve}\}$. From the state $S$ upon reading the letter $\gamma$ the automaton goes to the state $\{p\mid S\in\mathcal{R}(p,\gamma)\}$. Finally a state $S$ is final if and only if $q\in S$. It is then an immediate consequence of  {prf:ref}`10-prop:returning` that this automaton accepts the language $L_q$.
 
 ````
-
-
 
 ````{admonition} Remark \label{10-rk:automata-winning-region}
 By a slight abuse, we can think of the $|Q|$ automata in  {prf:ref}`10-thm:regularity-wr`as a single automaton that is design to first read the stack content and finally reads the control state $q$ (in this latter step, from state $S$ it either go to a final state if $q\in S$ or to a rejecting one otherwise).
 
 ````
 
-
-
 ````{admonition} Remark 
-Note that the characterisation in  {prf:ref}`10-thm:regularity-wr` is **a priori** not effective. Indeed, to construct automata for the languages $L_q$ one needs to be able to compute all the $(q,\gamma)$-profiles $\mathcal{R}(q,\gamma)$ of $\game$ and compute
+Note that the characterisation in  {prf:ref}`10-thm:regularity-wr` is **a priori** not effective. Indeed, to construct automata for the languages $L_q$ one needs to be able to compute all the $(q,\gamma)$-profiles $\mathcal{R}(q,\gamma)$ of $\mathcal{G}$ and compute
 the winner from configurations of the form $(q,\bot)$. 
 
-\newcommand{\Omegapar}{\Omega_{\textrm{pal}}} 
+\newcommand{ \Omega_{\textrm{pal}}}{\Omega_{\textrm{pal}}} 
 Consider, for instance, the objective over the set of the colours $C=\{0,1,\#,\$\}$
 
 $$
 \begin{array}{l}
-\Omegapar = \{ w \in C^\omega \mid w \;\textrm{contains infinitely many factors of the form}\\
+ \Omega_{\textrm{pal}} = \{ w \in C^\omega \mid w \;\textrm{contains infinitely many factors of the form}\\
 \quad\quad\quad\quad\quad\quad\quad\;\;\textrm{$\#u\$\tilde{u}\#$ with $u \in \{0,1\}^*$} \} \\
 \end{array}
 $$
@@ -231,14 +144,18 @@ where $\tilde{u}$ denotes the mirror of the word $u$.
 
 As a language of $\omega$-words, this objective is accepted by a deterministic $\omega$-pushdown automaton with a Büchi acceptance condition. Between two consecutive occurrences of the $\#$-symbol, the automaton checks that the word $w$ appearing in between these two occurrences is of the form
 $u\$\tilde{u}$ for some word $u \in \{0,1\}^*$. This can be done in a deterministic maner as follows. First the automaton pushes onto the stack a symbol $\bot'$ (which will play the same role as the bottom of stack symbol) then it pushes onto the stack all symbols in $\{0,1\}$ that are read. Then when the first $\
+
 $$
+
 -symbol is read, it only allows to read the symbol that is on the top of the stack before popping it. Finally when a $\#$-symbol is read, if the top-most symbol of the stack is $\bot'$  the unique final state is visited. Hence ensuring that a final state is visited if the word $w$ is of the required form. If $w$ contains several $\
+
 $$
+
  symbols or if the symbol read does not correspond to the top of the stack, the automaton enters a non-final state is in which it waits for the next $\#$-symbol.
 
-For games with finite arenas and the $\Omegapar$ objective,  deciding the winner reduces to deciding the winner in a  pushdown game with the Büchi objective which is decidable as we will prove later in this chapter. The pushdown game is essentially a synchronized product between the finite arena and the $\omega$-pushdown automaton described previously.
+For games with finite arenas and the $\Omega_{\textrm{pal}}$ objective,  deciding the winner reduces to deciding the winner in a  pushdown game with the Büchi objective which is decidable as we will prove later in this chapter. The pushdown game is essentially a synchronized product between the finite arena and the $\omega$-pushdown automaton described previously.
 
-However the problem of deciding the winner in a pushdown game with the $\Omegapar$ objective is undecidable even if all vertices belong to \Eve. The undecidability is proved by a reduction from  Post correspondance problem (PCP) which is a well-known to be undecidable. Recall that an instance of PCP is a finite sequence $(r_1,\ell_1),\ldots,(r_n,\ell_n)$ of pairs of words over $\{0,1\}$. Such an instance is said to admit a solution if there exists a sequence of indices $i_1\cdots i_k \in [1,n]^*$ such that:
+However the problem of deciding the winner in a pushdown game with the $\Omega_{\textrm{pal}}$ objective is undecidable even if all vertices belong to  \textrm{Eve}. The undecidability is proved by a reduction from  Post correspondance problem (PCP) which is a well-known to be undecidable. Recall that an instance of PCP is a finite sequence $(r_1,\ell_1),\ldots,(r_n,\ell_n)$ of pairs of words over $\{0,1\}$. Such an instance is said to admit a solution if there exists a sequence of indices $i_1\cdots i_k \in [1,n]^*$ such that:
 
 $$
  r_{i_1} r_{i_2} \cdots r_{i_k} = \ell_{i_1} \ell_{i_2} \cdots \ell_{i_k}.
@@ -246,63 +163,54 @@ $$
 
 The PCP problem is, given an instance, to decide if it admits a solution.
  
-For an instance $I=(\ell_1,r_1),\ldots,(\ell_n,r_n)$ of PCP, we construct a pushdown game $G_I$  with the objective $\Omegapar$ such that \Eve wins $G_I$ from $(p_\star,\bot)$ if and only if $I$ admits a solution. In this game, \Eve plays alone and the play is decomposed in two phases that will repeat:
+For an instance $I=(\ell_1,r_1),\ldots,(\ell_n,r_n)$ of PCP, we construct a pushdown game $G_I$  with the objective $\Omega_{\textrm{pal}}$ such that  \textrm{Eve} wins $G_I$ from $(p_\star,\bot)$ if and only if $I$ admits a solution. In this game,  \textrm{Eve} plays alone and the play is decomposed in two phases that will repeat:
 
-*  in phase 1, \Eve can push any indice $i$ in $[1,n]$while producing the sequence of colors $r_i$. As soon as at least one index has been pushed, she can also choose to move to the sequence phase while producing the colour $\
+*  in phase 1,  \textrm{Eve} can push any indice $i$ in $[1,n]$while producing the sequence of colors $r_i$. As soon as at least one index has been pushed, she can also choose to move to the sequence phase while producing the colour $\
+
 $$
-.
-*  in phase 2, \Eve must (until the bottom of stack symbol is reached) pop the top most element of the stack $i$ while producing the sequence of colours $\tilde{\ell_i}$. When the bottom of stack symbol is encountered, \Eve goes back to the first phase while producing the colour $\#$.
 
-If $I$ has a solution $i_1 \cdots i_k$ then the strategy in which \Eve always pushes this sequence in phase 1 is winning for her. As $i_1 \cdots i_k$ is a solution of $I$,
-we have $u=r_{i_1}\cdot r_{i_k}=\ell_{i_1}\cdots\ell_{i_k} $ and by construction of the game, the sequence of colors associated with the play is $(u\$\tilde{u})^\omega \in \Omegapar$. Conversely if \Eve has a winning strategy from $(q_\star,\bot)$ then the sequence of colours associated with the winning play belongs to $\Omegapar$. In particular, it must contain a factor of the form $\#u\$\tilde{u}\#$. By construction of the game the sequence of indices $i_1 \cdots i_k$ pushed while producing $u$ is a solution of $I$.
+.
+*  in phase 2,  \textrm{Eve} must (until the bottom of stack symbol is reached) pop the top most element of the stack $i$ while producing the sequence of colours $\tilde{\ell_i}$. When the bottom of stack symbol is encountered,  \textrm{Eve} goes back to the first phase while producing the colour $\#$.
+
+If $I$ has a solution $i_1 \cdots i_k$ then the strategy in which  \textrm{Eve} always pushes this sequence in phase 1 is winning for her. As $i_1 \cdots i_k$ is a solution of $I$,
+we have $u=r_{i_1}\cdot r_{i_k}=\ell_{i_1}\cdots\ell_{i_k} $ and by construction of the game, the sequence of colors associated with the play is $(u\$\tilde{u})^\omega \in  \Omega_{\textrm{pal}}$. Conversely if  \textrm{Eve} has a winning strategy from $(q_\star,\bot)$ then the sequence of colours associated with the winning play belongs to $\Omega_{\textrm{pal}}$. In particular, it must contain a factor of the form $\#u\$\tilde{u}\#$. By construction of the game the sequence of indices $i_1 \cdots i_k$ pushed while producing $u$ is a solution of $I$.
 
 ````
-
-
 
 ## Reachability Pushdown Game
 
 We will see in the following section that for the parity condition and more generally for any $\omega$-regular winning conditions the $(q,\gamma)$-profiles can be computed for any $q \in Q$ and $\gamma \in \Gamma$. We start by the simpler case of the reachability objective.
 
-At first sight, the reachability objective is not captured by  {prf:ref}`10-thm:regularity-wr` as it is not prefix independent. However with a slight adaptation of the reduced game $\game(R)$  {prf:ref}`10-thm:regularity-wr`  for the reachability condition. Intuitively we ask that the play stops as soon as a target vertex is reached.
+At first sight, the reachability objective is not captured by  {prf:ref}`10-thm:regularity-wr` as it is not prefix independent. However with a slight adaptation of the reduced game $\mathcal{G}(R)$  {prf:ref}`10-thm:regularity-wr`  for the reachability condition. Intuitively we ask that the play stops as soon as a target vertex is reached.
 
-More formally, for a reachability objective $\Reach(F)$ and letting $V=V_\mEve\cup V_\mAdam$ and $V_F = \{ v \in V \mid \pdscol{v} \in F\}$:
+More formally, for a reachability objective $\mathtt{Reach}(F)$ and letting $V=V_\mathrm{Eve}\cup V_\mathrm{Adam}$ and $V_F = \{ v \in V \mid   \textsf{col}(v) \in F\}$:
 
 $$ \overline{\Omega}(R) = [(V \setminus Q \times \{\bot\})^* \cdot V_F \cdot V^\omega]\cup [(V \setminus (Q\times\{\bot\} \cup V_F))^* \cdot (R\times \{\bot\}) \cdot V^\omega]
 $$
 
-
 It is easily shown that with this modification to the definition of profiles both  {prf:ref}`10-prop:returning` and  {prf:ref}`10-thm:regularity-wr` are true for the reachability objective.
-\newcommand{\Profs}{\mathrm{Profs}}
-In the special case of the reachability objective, the set $\Profs$ of triples $(p,\gamma,R)$ such that $R \in \mathcal{R}(p,\gamma)$ can be expressed as a smallest fix-point.
+\newcommand{ \mathrm{Profs}}{\mathrm{Profs}}
+In the special case of the reachability objective, the set $\mathrm{Profs}$ of triples $(p,\gamma,R)$ such that $R \in \mathcal{R}(p,\gamma)$ can be expressed as a smallest fix-point.
 
-More precisely, $\Profs$ is the smallest subset of $Q\times \Gamma \times \mathcal{P}(Q))$ such that for $p \in Q$, $\gamma \in \Gamma$ and $R \subseteq Q$, $(p,\gamma,R)$ belongs $\Profs$ if either: 
+More precisely, $\mathrm{Profs}$ is the smallest subset of $Q\times \Gamma \times \mathcal{P}(Q))$ such that for $p \in Q$, $\gamma \in \Gamma$ and $R \subseteq Q$, $(p,\gamma,R)$ belongs $\mathrm{Profs}$ if either: 
 
-1.  $p \in Q_F=\{ q \in Q \mid \pdscol{q} \in F\}$,
+1.  $p \in Q_F=\{ q \in Q \mid   \textsf{col}(q) \in F\}$,
+2.  or $p \in Q_{ \mathrm{Eve}}$ and for some $q \in Q$,
 
-2.  or $p \in Q_{\mEve}$ and for some $q \in Q$,
-
-*  either $(q,\pop) \in \Delta(p,\gamma)$ and $q \in R$,
-*  or $(q,\push{\gamma'}) \in \Delta(p,\gamma)$  and $(q,\gamma',R') \in \Profs$ for some $R' \subseteq Q$ such that for all $p' \in R'$, $(p',\gamma,R) \in \Profs$.
+*  either $(q, \mathrm{pop}) \in \Delta(p,\gamma)$ and $q \in R$,
+*  or $(q, \mathrm{push}(\gamma')) \in \Delta(p,\gamma)$  and $(q,\gamma',R') \in  \mathrm{Profs}$ for some $R' \subseteq Q$ such that for all $p' \in R'$, $(p',\gamma,R) \in  \mathrm{Profs}$.
 
 3.  or $p \in Q_A$ and for all $q \in Q$ the following hold: 
 
-*  $(q,\pop) \in \Delta(p,\gamma)$ implies $q \in R$,
-*   $(q,\push{\gamma'}) \in \Delta(p,\gamma)$ implies that there exists $R' \subseteq Q$ such that $(q,\gamma',R') \in \Profs$ and for all $p' \in R'$, $(p',\gamma,R) \in \Profs$. 
-
+*  $(q, \mathrm{pop}) \in \Delta(p,\gamma)$ implies $q \in R$,
+*   $(q, \mathrm{push}(\gamma')) \in \Delta(p,\gamma)$ implies that there exists $R' \subseteq Q$ such that $(q,\gamma',R') \in  \mathrm{Profs}$ and for all $p' \in R'$, $(p',\gamma,R) \in  \mathrm{Profs}$.
 
 \AC{Do we include the proof of the correctness of the characterization ?}
 
-Using this characterization, the set $\Profs$ can be computed using the standard method for computing small-fixed point of a monotonic function by computing the sequence of approximants $\Profs_0 = \emptyset \subseteq \Profs_1 \subseteq \Profs_2 \cdots$ until it stabilizes. More precisely, for all $i \geq 0$, $\Profs_{i+1}$ is obtained by adding to $\Profs_{i}$ all the tuples that can be inferred using the properties $(1)$, $(2)$ and $(3)$ above applied to $\Profs_i$. As at most $|Q|\cdot |\Gamma|\cdot 2^{|Q|}$ tuples can be added, the sequence must stabilize in at most $|Q| \cdot |\Gamma| \cdot 2^{|Q|}$ steps. As the computation of $\Profs_{i+1}$ from $\Profs_i$ can be performed in polynomial time, the profils in a reachability pushdown game can be computed in time  $p(|Q| \cdot |\Gamma| \cdot 2^{|Q|})$ for some polynomial $p$.
+Using this characterization, the set $\mathrm{Profs}$ can be computed using the standard method for computing small-fixed point of a monotonic function by computing the sequence of approximants $\mathrm{Profs}_0 = \emptyset \subseteq  \mathrm{Profs}_1 \subseteq  \mathrm{Profs}_2 \cdots$ until it stabilizes. More precisely, for all $i \geq 0$, $\mathrm{Profs}_{i+1}$ is obtained by adding to $\mathrm{Profs}_{i}$ all the tuples that can be inferred using the properties $(1)$, $(2)$ and $(3)$ above applied to $\mathrm{Profs}_i$. As at most $|Q|\cdot |\Gamma|\cdot 2^{|Q|}$ tuples can be added, the sequence must stabilize in at most $|Q| \cdot |\Gamma| \cdot 2^{|Q|}$ steps. As the computation of $\mathrm{Profs}_{i+1}$ from $\mathrm{Profs}_i$ can be performed in polynomial time, the profils in a reachability pushdown game can be computed in time  $p(|Q| \cdot |\Gamma| \cdot 2^{|Q|})$ for some polynomial $p$.
 
 ````{admonition} Remark 
-In the case where \Eve plays alone (i.e., $Q=Q_\mEve$), there is only on play respecting a fixed strategy for \Eve and as a result, one only need to compute profils of the form $(p,\gamma,R)$ with $|R|\leq 1$. In this setting, the fixed-point characterization yields a polynomial time algorithm to compute the set of profiles.
+In the case where  \textrm{Eve} plays alone (i.e., $Q=Q_\mathrm{Eve}$), there is only on play respecting a fixed strategy for  \textrm{Eve} and as a result, one only need to compute profils of the form $(p,\gamma,R)$ with $|R|\leq 1$. In this setting, the fixed-point characterization yields a polynomial time algorithm to compute the set of profiles.
 
 ````
-
-
-
-%For every prefix independent winning condition on the state sequences, the winning region is regular. The construction is not effective but serves to introduces reduced games and their profiles.
-
-
 

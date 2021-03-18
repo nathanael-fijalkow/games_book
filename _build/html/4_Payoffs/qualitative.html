@@ -705,128 +705,57 @@
   <div class="section" id="refining-qualitative-objectives-with-quantities">
 <span id="sec-qualitative"></span><h1>Refining qualitative objectives with quantities<a class="headerlink" href="#refining-qualitative-objectives-with-quantities" title="Permalink to this headline">¶</a></h1>
 <div class="math notranslate nohighlight">
-\[\newcommand{\FC}{\mathrm{FC}\xspace} 
-\newcommand{\Cycles}{\mathrm{Cycles}\xspace} 
-\newcommand{\Mean}{\mathrm{Mean}\xspace} 
-\newcommand{\FirstCycle}{\mathrm{FirstCycle}\xspace} 
-\newcommand{\SuffixAllCycles}{\mathrm{SuffixAllCycles}\xspace} 
-\newcommand{\FirstCycleReset}{\mathrm{FirstCycleReset}\xspace} 
-\newcommand{\siblank}{\mathtt{-}}
-\newcommand{\Lift}{\textrm{Lift}}
-\newcommand{\Rbar}{\overline\R}
-\newcommand{\downward}[1]{\mathop{\downarrow_{#1}}}
-\newcommand{\gval}{\mathrm{gr}\text{-}\val}
-\newcommand{\bigO}{O}\newcommand{\Eve}{\textrm{Eve}}
-\newcommand{\Adam}{\textrm{Adam}}
-\newcommand{\set}[1]{\left\{ #1 \right\}}
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
-\newcommand{\argmax}{\textrm{argmax}}
-\newcommand{\argmin}{\textrm{argmin}}
-\newcommand{\Op}{\mathbb{O}}
-\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\textrm{supp}} 
-\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
-\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
-\newcommand{\mEve}{\mathrm{Eve}}
-\newcommand{\mAdam}{\mathrm{Adam}}
-\newcommand{\mRandom}{\mathrm{Random}}
-\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
-\newcommand{\ing}{\textrm{In}}
-\newcommand{\Ing}{\ing}
-\newcommand{\out}{\textrm{Out}}
-\newcommand{\Out}{\out}
-\newcommand{\dest}{\Delta} 
-\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
-\newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
-\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
-\newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\newcommand{\Win}{\textrm{Win}} 
-\newcommand{\Lose}{\textrm{Lose}} 
-\newcommand{\Value}{\textrm{val}} 
-\newcommand{\ValueE}{\textrm{val}_\mEve} 
-\newcommand{\ValueA}{\textrm{val}_\mAdam}
-\newcommand{\val}{\Value} 
-\newcommand{\Automaton}{\mathbf{A}} 
-\newcommand{\Safe}{\mathtt{Safe}}
-\newcommand{\Reach}{\mathtt{Reach}} 
-\newcommand{\Buchi}{\mathtt{Buchi}} 
-\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
-\newcommand{\Parity}{\mathtt{Parity}} 
-\newcommand{\Muller}{\mathtt{Muller}} 
-\newcommand{\Rabin}{\mathtt{Rabin}} 
-\newcommand{\Streett}{\mathtt{Streett}} 
-\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
-\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
-\newcommand{\Energy}{\mathtt{Energy}}
-\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
-\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
-\newcommand{\Sup}{\mathtt{Sup}}
-\newcommand{\Inf}{\mathtt{Inf}}
-\newcommand{\LimSup}{\mathtt{LimSup}}
-\newcommand{\LimInf}{\mathtt{LimInf}}
-\newcommand{\NL}{\textrm{NL}}
-\newcommand{\PTIME}{\textrm{PTIME}}
-\newcommand{\NP}{\textrm{NP}}
-\newcommand{\UP}{\textrm{UP}}
-\newcommand{\coNP}{\textrm{coNP}}
-\newcommand{\coUP}{\textrm{coUP}}
-\newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
-\newcommand{\EXP}{\textrm{EXP}}
-\newcommand{\kEXP}{\textrm{kEXP}}\]</div>
-<p>In this section we define quantitative objectives extending the qualitative objectives <span class="math notranslate nohighlight">\(\Safe\)</span>, <span class="math notranslate nohighlight">\(\Reach\)</span>, <span class="math notranslate nohighlight">\(\Buchi\)</span>, and <span class="math notranslate nohighlight">\(\CoBuchi\)</span>.</p>
+\[\renewcommand{\Game}{\game}
+\]</div>
+<p>In this section we define quantitative objectives extending the qualitative objectives <span class="math notranslate nohighlight">\(\mathtt{Safe}\)</span>, <span class="math notranslate nohighlight">\(\mathtt{Reach}\)</span>, <span class="math notranslate nohighlight">\(\mathtt{Buchi}\)</span>, and <span class="math notranslate nohighlight">\(\mathtt{CoBuchi}\)</span>.</p>
 <p>The four quantitative objectives we will define in this section return as outcome some weight in the sequence (for instance, the maximum weight).
-This is in contrast with the <span class="math notranslate nohighlight">\(\MeanPayoff\)</span> and <span class="math notranslate nohighlight">\(\DiscountedPayoff\)</span> objectives that we will study later,
+This is in contrast with the <span class="math notranslate nohighlight">\(\mathtt{MeanPayoff}\)</span> and <span class="math notranslate nohighlight">\(\mathtt{DiscountedPayoff}\)</span> objectives that we will study later,
 which perform <strong>arithmetic operations</strong> on the sequence of weights.</p>
-<p>A first way to compute a payoff from a sequence of weights <span class="math notranslate nohighlight">\(\rho \in \Z^\omega\)</span> is to consider the maximum weight in the sequence:</p>
+<p>A first way to compute a payoff from a sequence of weights <span class="math notranslate nohighlight">\(\rho \in  \mathbb{Z}^\omega\)</span> is to consider the maximum weight in the sequence:</p>
 <div class="math notranslate nohighlight">
 \[
-\Sup(\rho) = \sup_i \rho_i.
+ \mathtt{Sup}(\rho) = \sup_i \rho_i.
 \]</div>
-<p>This extends the qualitative objective <span class="math notranslate nohighlight">\(\Reach[\Win]\)</span> in the following sense:
-the objective <span class="math notranslate nohighlight">\(\Reach[\Win]\)</span> corresponds to the quantitative objective <span class="math notranslate nohighlight">\(\Sup\)</span> using two weights: <span class="math notranslate nohighlight">\(0\)</span> for <span class="math notranslate nohighlight">\(\Lose\)</span> and <span class="math notranslate nohighlight">\(1\)</span> for <span class="math notranslate nohighlight">\(\Win\)</span>.
-The outcome of a sequence is <span class="math notranslate nohighlight">\(1\)</span> if and only if the sequence contains <span class="math notranslate nohighlight">\(\Win\)</span>.
-It refines <span class="math notranslate nohighlight">\(\Reach[\Win]\)</span> by specifying (numerical) preferences.</p>
+<p>This extends the qualitative objective <span class="math notranslate nohighlight">\(\mathtt{Reach}[ \textrm{Win}]\)</span> in the following sense:
+the objective <span class="math notranslate nohighlight">\(\mathtt{Reach}[ \textrm{Win}]\)</span> corresponds to the quantitative objective <span class="math notranslate nohighlight">\(\mathtt{Sup}\)</span> using two weights: <span class="math notranslate nohighlight">\(0\)</span> for <span class="math notranslate nohighlight">\(\textrm{Lose}\)</span> and <span class="math notranslate nohighlight">\(1\)</span> for <span class="math notranslate nohighlight">\(\textrm{Win}\)</span>.
+The outcome of a sequence is <span class="math notranslate nohighlight">\(1\)</span> if and only if the sequence contains <span class="math notranslate nohighlight">\(\textrm{Win}\)</span>.
+It refines <span class="math notranslate nohighlight">\(\mathtt{Reach}[ \textrm{Win}]\)</span> by specifying (numerical) preferences.</p>
 <p>The dual objective is to consider the smallest weight:</p>
 <div class="math notranslate nohighlight">
 \[
-\Inf(\rho) = \inf_i \rho_i.
+ \mathtt{Inf}(\rho) = \inf_i \rho_i.
 \]</div>
-<p>The qualitative objective <span class="math notranslate nohighlight">\(\Safe[\Win]\)</span> corresponds to the quantitative objective <span class="math notranslate nohighlight">\(\Inf\)</span>
-using two weights: <span class="math notranslate nohighlight">\(0\)</span> for <span class="math notranslate nohighlight">\(\Win\)</span> and <span class="math notranslate nohighlight">\(1\)</span> for <span class="math notranslate nohighlight">\(\Lose\)</span>.
-The outcome of a sequence is <span class="math notranslate nohighlight">\(0\)</span> if and only if the sequence does not contain <span class="math notranslate nohighlight">\(\Lose\)</span>.</p>
-<p>Similarly the following quantitative objectives refine <span class="math notranslate nohighlight">\(\Buchi\)</span> and <span class="math notranslate nohighlight">\(\CoBuchi\)</span>:</p>
+<p>The qualitative objective <span class="math notranslate nohighlight">\(\mathtt{Safe}[ \textrm{Win}]\)</span> corresponds to the quantitative objective <span class="math notranslate nohighlight">\(\mathtt{Inf}\)</span>
+using two weights: <span class="math notranslate nohighlight">\(0\)</span> for <span class="math notranslate nohighlight">\(\textrm{Win}\)</span> and <span class="math notranslate nohighlight">\(1\)</span> for <span class="math notranslate nohighlight">\(\textrm{Lose}\)</span>.
+The outcome of a sequence is <span class="math notranslate nohighlight">\(0\)</span> if and only if the sequence does not contain <span class="math notranslate nohighlight">\(\textrm{Lose}\)</span>.</p>
+<p>Similarly the following quantitative objectives refine <span class="math notranslate nohighlight">\(\mathtt{Buchi}\)</span> and <span class="math notranslate nohighlight">\(\mathtt{CoBuchi}\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
-  \LimSup(\rho) = \limsup_i \rho_i,\qquad 
-  \LimInf(\rho) = \liminf_i \rho_i.
+   \mathtt{LimSup}(\rho) = \limsup_i \rho_i,\qquad 
+   \mathtt{LimInf}(\rho) = \liminf_i \rho_i.
 \]</div>
-<p>The analyses and algorithms for solving games with <span class="math notranslate nohighlight">\(\Reach\)</span>, <span class="math notranslate nohighlight">\(\Safe\)</span>, <span class="math notranslate nohighlight">\(\Buchi\)</span>, and <span class="math notranslate nohighlight">\(\CoBuchi\)</span> objectives extend to these four quantitative objectives.</p>
+<p>The analyses and algorithms for solving games with <span class="math notranslate nohighlight">\(\mathtt{Reach}\)</span>, <span class="math notranslate nohighlight">\(\mathtt{Safe}\)</span>, <span class="math notranslate nohighlight">\(\mathtt{Buchi}\)</span>, and <span class="math notranslate nohighlight">\(\mathtt{CoBuchi}\)</span> objectives extend to these four quantitative objectives.</p>
 <div class="proof theorem admonition" id="4-thm:sup-inf-limsup-liminf">
-<p class="admonition-title"><span class="caption-number">Theorem 90 </span> (NEEDS TITLE 4-thm:sup-inf-limsup-liminf)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 90 </span> (Sup, Inf, LimSup, LimInf objectives)</p>
 <div class="theorem-content section" id="proof-content">
-<p>Games with objectives <span class="math notranslate nohighlight">\(\Sup\)</span> and <span class="math notranslate nohighlight">\(\LimSup\)</span> are uniformly positionally determined for both players.
-There exists an algorithm for computing the value function of both games in polynomial time and space.
+<p>Games with objectives <span class="math notranslate nohighlight">\(\mathtt{Sup}\)</span>, <span class="math notranslate nohighlight">\(\mathtt{Inf}\)</span>, <span class="math notranslate nohighlight">\(\mathtt{LimSup}\)</span>, and <span class="math notranslate nohighlight">\(\mathtt{LimInf}\)</span> are uniformly positionally determined for both players.
+There exists an algorithm for computing the value function of those games in polynomial time and space.
 More precisely, let <span class="math notranslate nohighlight">\(k\)</span> be the number of different weights in the game,
-the time complexity is <span class="math notranslate nohighlight">\(O(m)\)</span> for objective <span class="math notranslate nohighlight">\(\Sup\)</span> and <span class="math notranslate nohighlight">\(O(knm)\)</span> for objective <span class="math notranslate nohighlight">\(\LimSup\)</span>,
-and for both algorithms the space complexity is <span class="math notranslate nohighlight">\(O(m)\)</span>.</p>
+the time complexity is <span class="math notranslate nohighlight">\(O(m)\)</span> for objectives <span class="math notranslate nohighlight">\(\mathtt{Sup}\)</span> and <span class="math notranslate nohighlight">\(\mathtt{Inf}\)</span>, and
+<span class="math notranslate nohighlight">\(O(knm)\)</span> for objectives <span class="math notranslate nohighlight">\(\mathtt{LimSup}\)</span> and <span class="math notranslate nohighlight">\(\mathtt{LimInf}\)</span>,
+and for all algorithms the space complexity is <span class="math notranslate nohighlight">\(O(m)\)</span>.</p>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
-<p>We sketch the algorithm for the objective <span class="math notranslate nohighlight">\(\Sup\)</span>, the cae <span class="math notranslate nohighlight">\(\LimSup\)</span> is similar.
+<p>We sketch the algorithm for the objective <span class="math notranslate nohighlight">\(\mathtt{Sup}\)</span>, the other cases are similar.
 Let <span class="math notranslate nohighlight">\(c_1 &lt; \dots &lt; c_k\)</span> be the ordered enumeration of all weights in the game.
-The set of vertices of value <span class="math notranslate nohighlight">\(c_k\)</span> is <span class="math notranslate nohighlight">\(\AttrE(c_k)\)</span>, which can be computed in linear time.
-We then construct the subgame <span class="math notranslate nohighlight">\(\Game'\)</span> of <span class="math notranslate nohighlight">\(\Game\)</span> induced by <span class="math notranslate nohighlight">\(V \setminus \AttrE(c_k)\)</span>,
+The set of vertices of value <span class="math notranslate nohighlight">\(c_k\)</span> is <span class="math notranslate nohighlight">\(\textrm{Attr}_\mathrm{Eve}(c_k)\)</span>, which can be computed in linear time.
+We then construct the subgame <span class="math notranslate nohighlight">\(\Game'\)</span> of <span class="math notranslate nohighlight">\(\Game\)</span> induced by <span class="math notranslate nohighlight">\(V \setminus  \textrm{Attr}_\mathrm{Eve}(c_k)\)</span>,
 and continue recursively: <span class="math notranslate nohighlight">\(\Game'\)</span> has one less weight.</p>
 <p>A naive complexity analysis yields a time complexity <span class="math notranslate nohighlight">\(O(km)\)</span>, but it is easily refined to <span class="math notranslate nohighlight">\(O(m)\)</span>
 by revisiting the attractor computation and showing that each edge in the whole game is treated at most once
 throughout the recursive attractor computations.
-This complexity analysis does not extend to <span class="math notranslate nohighlight">\(\LimSup\)</span> objectives, where the complexity is multiplied by <span class="math notranslate nohighlight">\(k\)</span>.</p>
+This complexity analysis does not extend to <span class="math notranslate nohighlight">\(\mathtt{LimSup}\)</span> and <span class="math notranslate nohighlight">\(\mathtt{LimInf}\)</span> objectives, where the complexity is multiplied by <span class="math notranslate nohighlight">\(k\)</span>.</p>
 </div>
 </div>
 

@@ -2,77 +2,13 @@
 # B&uuml;chi games
 
 ```{math}
-\newcommand{\F}{\mathcal{F}} 
-\newcommand{\LAR}{\mathrm{LAR}}
-\newcommand{\Zielonka}{\mathrm{Zielonka}}
-\newcommand{\depth}{\mathrm{depth}}
-\newcommand{\support}{\mathrm{supp}}
-\newcommand{\Eve}{\textrm{Eve}}
-\newcommand{\Adam}{\textrm{Adam}}
-\newcommand{\set}[1]{\left\{ #1 \right\}}
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
-\newcommand{\argmax}{\textrm{argmax}}
-\newcommand{\argmin}{\textrm{argmin}}
-\newcommand{\Op}{\mathbb{O}}
-\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\textrm{supp}} 
-\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
-\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
-\newcommand{\mEve}{\mathrm{Eve}}
-\newcommand{\mAdam}{\mathrm{Adam}}
-\newcommand{\mRandom}{\mathrm{Random}}
-\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
-\newcommand{\ing}{\textrm{In}}
-\newcommand{\Ing}{\ing}
-\newcommand{\out}{\textrm{Out}}
-\newcommand{\Out}{\out}
-\newcommand{\dest}{\Delta} 
-\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
-\newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
-\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
-\newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\newcommand{\Win}{\textrm{Win}} 
-\newcommand{\Lose}{\textrm{Lose}} 
-\newcommand{\Value}{\textrm{val}} 
-\newcommand{\ValueE}{\textrm{val}_\mEve} 
-\newcommand{\ValueA}{\textrm{val}_\mAdam}
-\newcommand{\val}{\Value} 
-\newcommand{\Automaton}{\mathbf{A}} 
-\newcommand{\Safe}{\mathtt{Safe}}
-\newcommand{\Reach}{\mathtt{Reach}} 
-\newcommand{\Buchi}{\mathtt{Buchi}} 
-\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
-\newcommand{\Parity}{\mathtt{Parity}} 
-\newcommand{\Muller}{\mathtt{Muller}} 
-\newcommand{\Rabin}{\mathtt{Rabin}} 
-\newcommand{\Streett}{\mathtt{Streett}} 
-\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
-\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
-\newcommand{\Energy}{\mathtt{Energy}}
-\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
-\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
-\newcommand{\Sup}{\mathtt{Sup}}
-\newcommand{\Inf}{\mathtt{Inf}}
-\newcommand{\LimSup}{\mathtt{LimSup}}
-\newcommand{\LimInf}{\mathtt{LimInf}}
-\newcommand{\NL}{\textrm{NL}}
-\newcommand{\PTIME}{\textrm{PTIME}}
-\newcommand{\NP}{\textrm{NP}}
-\newcommand{\UP}{\textrm{UP}}
-\newcommand{\coNP}{\textrm{coNP}}
-\newcommand{\coUP}{\textrm{coUP}}
-\newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
-\newcommand{\EXP}{\textrm{EXP}}
-\newcommand{\kEXP}{\textrm{kEXP}}
+
+\renewcommand{\Game}{\game}
+
 ```
-Recall that the objective $\Buchi$ requires that the colour $\Win$ appears infinitely many times
-and $\CoBuchi$ requires that the colour $\Lose$ appears finitely many times.
+
+Recall that the objective $\mathtt{Buchi}$ requires that the colour $\textrm{Win}$ appears infinitely many times
+and $\mathtt{CoBuchi}$ requires that the colour $\textrm{Lose}$ appears finitely many times.
 
 ````{prf:theorem} Positional determinacy and complexity of Buchi games
 :label: 2-thm:Buchi
@@ -89,7 +25,7 @@ and linear space, more precisely $O(m)$.
 ````
 
 The first sentence implies that CoB&uuml;chi games are also uniformly positionally determined.
-We present two different yet very similar algorithms. 
+We present two different yet very similar algorithms.
 
 ## A first algorithm
 
@@ -100,64 +36,63 @@ The following lemma implies  {prf:ref}`2-thm:Buchi`.
 
 Let $\Game$ be a B&uuml;chi game.
 
-*  If $\AttrE(\Win) = V$, then $\WE(\Game) = V$.
-*  If $\AttrE(\Win) \neq V$, 
-let $\Game'$ be the subgame of $\Game$ induced by $V \setminus \AttrA( V \setminus \AttrE(\Win) )$,
-then $\WE(\Game) = \WE(\Game')$.
+*  If $\textrm{Attr}_\mathrm{Eve}( \textrm{Win}) = V$, then $W_\mathrm{Eve}(\Game) = V$.
+*  If $\textrm{Attr}_\mathrm{Eve}( \textrm{Win}) \neq V$, 
+let $\Game'$ be the subgame of $\Game$ induced by $V \setminus  \textrm{Attr}_\mathrm{Adam}( V \setminus  \textrm{Attr}_\mathrm{Eve}( \textrm{Win}) )$,
+then $W_\mathrm{Eve}(\Game) =  W_\mathrm{Eve}(\Game')$.
 
 ````
-
 
 ````{admonition} Proof
 :class: dropdown tip
 
 We prove the first item. 
 
-Let $\sigma_a$ be an attractor strategy ensuring to reach $\Win$ from $\AttrE(\Win)$, and $\sigma_p$ any (positional) strategy from $\Win$.
+Let $\sigma_a$ be an attractor strategy ensuring to reach $\textrm{Win}$ from $\textrm{Attr}_\mathrm{Eve}( \textrm{Win})$, and $\sigma_p$ any (positional) strategy from $\textrm{Win}$.
 We construct the strategy $\sigma$ as the disjoint union of $\sigma_a$ and $\sigma_p$:
 
 $$
 \sigma(v) = 
 \begin{cases}
-\sigma_a(v) & \text{ if } v \in \AttrE(\Win) \setminus \Win, \\
-\sigma_p(v) & \text{ if } v \in \Win.
+\sigma_a(v) & \text{ if } v \in  \textrm{Attr}_\mathrm{Eve}( \textrm{Win}) \setminus  \textrm{Win}, \\
+\sigma_p(v) & \text{ if } v \in  \textrm{Win}.
 \end{cases}
 $$
 
 Note that $\sigma$ is positional.
-We argue that $\sigma$ ensures $\Buchi[\Win]$.
+We argue that $\sigma$ ensures $\mathtt{Buchi}[ \textrm{Win}]$.
 Indeed a play consistent with $\sigma$ can be divided into infinitely many finite plays,
-each of them consistent with $\sigma_a$ until reaching $\Win$,
+each of them consistent with $\sigma_a$ until reaching $\textrm{Win}$,
 then one step consistent with $\sigma_p$.
 Thus $\sigma$ is winning from $V$.
 
 We now look at the second item.
 
-We first prove that $\AttrA(V \setminus \AttrE(\Win)) \subseteq \WA(\Game)$.
-Let $\tau_a$ denote an attractor strategy ensuring to reach $V \setminus \AttrE(\Win)$ from $\AttrA(V \setminus \AttrE(\Win))$,
-and $\tau_c$ a counter-attractor strategy ensuring to stay in $V \setminus \AttrE(\Win)$ hence in never to reach $\Win$.
+We first prove that $\textrm{Attr}_\mathrm{Adam}(V \setminus  \textrm{Attr}_\mathrm{Eve}( \textrm{Win})) \subseteq  W_\mathrm{Adam}(\Game)$.
+Let $\tau_a$ denote an attractor strategy ensuring to reach $V \setminus  \textrm{Attr}_\mathrm{Eve}( \textrm{Win})$ from $\textrm{Attr}_\mathrm{Adam}(V \setminus  \textrm{Attr}_\mathrm{Eve}( \textrm{Win}))$,
+and $\tau_c$ a counter-attractor strategy ensuring to stay in $V \setminus  \textrm{Attr}_\mathrm{Eve}( \textrm{Win})$ hence in never to reach $\textrm{Win}$.
 We construct the strategy $\tau$ as the disjoint union of $\tau_a$ and $\tau_c$:
 
 $$
 \tau(v) = 
 \begin{cases}
-\tau_a(v) & \text{ if } v \in \AttrA(V \setminus \AttrE(\Win)) \setminus (V \setminus \AttrE(\Win)), \\
-\tau_c(v) & \text{ if } v \in V \setminus \AttrE(\Win).
+\tau_a(v) & \text{ if } v \in  \textrm{Attr}_\mathrm{Adam}(V \setminus  \textrm{Attr}_\mathrm{Eve}( \textrm{Win})) \setminus (V \setminus  \textrm{Attr}_\mathrm{Eve}( \textrm{Win})), \\
+\tau_c(v) & \text{ if } v \in V \setminus  \textrm{Attr}_\mathrm{Eve}( \textrm{Win}).
 \end{cases}
 $$
 
 Note that $\tau$ is positional.
-Any play consistent with $\tau$ is first consistent with $\tau_a$ until reaching $V \setminus \AttrE(\Win)$ and 
+Any play consistent with $\tau$ is first consistent with $\tau_a$ until reaching $V \setminus  \textrm{Attr}_\mathrm{Eve}( \textrm{Win})$ and 
 then is consistent with $\tau_c$ and stays there forever.
-In this second phase it in particular does not visit $\Win$, 
-implying that the play visits $\Win$ finitely many times, so it is winning.
-Thus we have proved that $\AttrA(V \setminus \AttrE(\Win)) \subseteq \WA(\Game)$,
-implying $\WE(\Game) \subseteq V \setminus \AttrA(V \setminus \AttrE(\Win))$.
+In this second phase it in particular does not visit $\textrm{Win}$, 
+implying that the play visits $\textrm{Win}$ finitely many times, so it is winning.
+Thus we have proved that $\textrm{Attr}_\mathrm{Adam}(V \setminus  \textrm{Attr}_\mathrm{Eve}( \textrm{Win})) \subseteq  W_\mathrm{Adam}(\Game)$,
+implying $W_\mathrm{Eve}(\Game) \subseteq V \setminus  \textrm{Attr}_\mathrm{Adam}(V \setminus  \textrm{Attr}_\mathrm{Eve}( \textrm{Win}))$.
 
-We now show that $\WE(\Game') \subseteq \WE(\Game)$, which implies the converse inclusion.
-Consider a winning strategy from $\WE(\Game')$ in $\Game'$, it induces a strategy $\sigma$ in $\Game$.
-Since $\Game'$ is a trap for Adam, any play consistent with $\sigma$ stays forever in $\WE(\Game')$, 
-implying that $\sigma$ is winning from $\WE(\Game')$ in $\Game$.
+We now show that $W_\mathrm{Eve}(\Game') \subseteq  W_\mathrm{Eve}(\Game)$, which implies the converse inclusion.
+Consider a winning strategy from $W_\mathrm{Eve}(\Game')$ in $\Game'$, it induces a strategy $\sigma$ in $\Game$.
+Since $\Game'$ is a trap for Adam, any play consistent with $\sigma$ stays forever in $W_\mathrm{Eve}(\Game')$, 
+implying that $\sigma$ is winning from $W_\mathrm{Eve}(\Game')$ in $\Game$.
 
 ````
 
@@ -178,62 +113,59 @@ The following lemma induces a different algorithm, it also implies  {prf:ref}`2-
 ````{prf:lemma} Second fixed point characterisation of the winning region for Buchi games
 :label: 2-lem:Buchi
 
-Let $\game$ a B&uuml;chi game.
-Then $\WE(\game)$ is the greatest fixed point of the monotonic operator 
+Let $\mathcal{G}$ a B&uuml;chi game.
+Then $W_\mathrm{Eve}( \mathcal{G})$ is the greatest fixed point of the monotonic operator
 
 $$
-Y \mapsto \AttrE \left( \Win \cap \PreE(Y) \right).
+Y \mapsto  \textrm{Attr}_\mathrm{Eve} \left(  \textrm{Win} \cap  \textrm{Pre}_\mathrm{Eve}(Y) \right).
 $$
-
 
 ````
-
 
 ````{admonition} Proof
 :class: dropdown tip
 
 Thanks to  {prf:ref}`1-thm:kleene` the fixed point computation is realised by setting $Y_0 = V$
-and $Y_{k+1} = Y_k \cap \AttrE \left(\Win \cap \PreE(Y_k) \right)$.
-This constructs a non-increasing sequence $(Y_k)_{k \in \N}$ of subsets of $V$
+and $Y_{k+1} = Y_k \cap  \textrm{Attr}_\mathrm{Eve} \left( \textrm{Win} \cap  \textrm{Pre}_\mathrm{Eve}(Y_k) \right)$.
+This constructs a non-increasing sequence $(Y_k)_{k \in  \mathbb{N}}$ of subsets of $V$
 satisfying the property:
 \begin{center}
 If $Y_k = Y_{k+1}$, then $Y_{k+1} = Y_{k+2}$.
 \end{center}
 It follows that the sequence stabilises after at most $n-1$ steps, i.e. $Y_{n-1} = Y_n$.
-We let $Y$ denote the fixed point, and note that $Y = \AttrE(\Win \cap \PreE(Y))$.
+We let $Y$ denote the fixed point, and note that $Y =  \textrm{Attr}_\mathrm{Eve}( \textrm{Win} \cap  \textrm{Pre}_\mathrm{Eve}(Y))$.
 
-We first show that $Y \subseteq \WE(\game)$. 
-Let $\sigma_a$ be an attractor strategy ensuring to reach $\Win \cap \PreE(Y)$ from $Y$.
+We first show that $Y \subseteq  W_\mathrm{Eve}( \mathcal{G})$. 
+Let $\sigma_a$ be an attractor strategy ensuring to reach $\textrm{Win} \cap  \textrm{Pre}_\mathrm{Eve}(Y)$ from $Y$.
 We also define a positional strategy $\sigma_p$:
-for $v \in \VE$, if $v \in \PreE(Y)$ there exists $(v,v') \in E$ such that $v' \in Y$, let us define $\sigma_p(v) = (v,v')$.
+for $v \in  V_\mathrm{Eve}$, if $v \in  \textrm{Pre}_\mathrm{Eve}(Y)$ there exists $(v,v') \in E$ such that $v' \in Y$, let us define $\sigma_p(v) = (v,v')$.
 
 We define a positional strategy $\sigma$ as follows:
 
 $$
 \sigma(v) = 
 \begin{cases}
-\sigma_a(v) & \text{if } v \in \AttrE(\Win \cap \PreE(Y)) \setminus (\Win \cap \PreE(Y)), \\
-\sigma_p(v)& \text{if } v \in \Win \cap \PreE(Y).
+\sigma_a(v) & \text{if } v \in  \textrm{Attr}_\mathrm{Eve}( \textrm{Win} \cap  \textrm{Pre}_\mathrm{Eve}(Y)) \setminus ( \textrm{Win} \cap  \textrm{Pre}_\mathrm{Eve}(Y)), \\
+\sigma_p(v)& \text{if } v \in  \textrm{Win} \cap  \textrm{Pre}_\mathrm{Eve}(Y).
 \end{cases}
 $$
 
-We argue that $\sigma$ ensures $\Buchi[\Win]$ from $Y$. 
+We argue that $\sigma$ ensures $\mathtt{Buchi}[ \textrm{Win}]$ from $Y$. 
 Indeed a play consistent with $\sigma$ can be divided into infinitely many finite plays,
-each of them consistent with $\sigma_a$ until reaching $\Win \cap \PreE(Y)$,
+each of them consistent with $\sigma_a$ until reaching $\textrm{Win} \cap  \textrm{Pre}_\mathrm{Eve}(Y)$,
 then one step consistent with $\sigma_p$ and leading to $Y$.
 
-
-We now show that $\WE(\game) \subseteq Y$.
-For this we show $V \setminus Y \subseteq \WA(\game)$.
-For $v \in V \setminus Y$, the rank of $v$ is the smallest $k \in \N$ such that $v \in V \setminus Y_k$.
+We now show that $W_\mathrm{Eve}( \mathcal{G}) \subseteq Y$.
+For this we show $V \setminus Y \subseteq  W_\mathrm{Adam}( \mathcal{G})$.
+For $v \in V \setminus Y$, the rank of $v$ is the smallest $k \in  \mathbb{N}$ such that $v \in V \setminus Y_k$.
 Equivalently, $v \in Y_{k-1} \setminus Y_k$.
 Note that no vertices have rank $0$.
 
-Let $k \in \N$. 
-Let $\tau_{a,k}$ be a counter-attractor strategy ensuring from $V \setminus \AttrE(\Win \cap \PreE(Y_k))$
-to stay in $V \setminus \AttrE(\Win \cap \PreE(Y_k))$ so in particular never to reach $\Win \cap \PreE(Y_k)$.
+Let $k \in  \mathbb{N}$. 
+Let $\tau_{a,k}$ be a counter-attractor strategy ensuring from $V \setminus  \textrm{Attr}_\mathrm{Eve}( \textrm{Win} \cap  \textrm{Pre}_\mathrm{Eve}(Y_k))$
+to stay in $V \setminus  \textrm{Attr}_\mathrm{Eve}( \textrm{Win} \cap  \textrm{Pre}_\mathrm{Eve}(Y_k))$ so in particular never to reach $\textrm{Win} \cap  \textrm{Pre}_\mathrm{Eve}(Y_k)$.
 We also define a positional strategy $\tau_{p,k}$:
-for $v \in \VA$ of rank $k+1$, if $v \in \Win \setminus \PreE(Y_k)$ there exists $(v,v') \in E$ such that $v' \in V \setminus Y_k$
+for $v \in  V_\mathrm{Adam}$ of rank $k+1$, if $v \in  \textrm{Win} \setminus  \textrm{Pre}_\mathrm{Eve}(Y_k)$ there exists $(v,v') \in E$ such that $v' \in V \setminus Y_k$
 implying that the rank of $v'$ is at most $k$, let us define $\tau_{p,k}(v) = (v,v')$.
 
 We construct the strategy $\tau$ as the disjoint union of all $\tau_{a,k}$ and $\tau_{p,k}$:
@@ -241,21 +173,21 @@ We construct the strategy $\tau$ as the disjoint union of all $\tau_{a,k}$ and $
 $$
 \tau(v) = 
 \begin{cases}
-\tau_{a,k}(v) & \text{if } v \in (Y_k \setminus Y_{k+1}) \setminus \Win, \\
-\tau_{p,k}(v) & \text{if } v \in \Win \cap (Y_k \setminus Y_{k+1}).
+\tau_{a,k}(v) & \text{if } v \in (Y_k \setminus Y_{k+1}) \setminus  \textrm{Win}, \\
+\tau_{p,k}(v) & \text{if } v \in  \textrm{Win} \cap (Y_k \setminus Y_{k+1}).
 \end{cases}
 $$
 
-We argue that $\tau$ ensures $\CoBuchi[\Win]$. 
+We argue that $\tau$ ensures $\mathtt{CoBuchi}[ \textrm{Win}]$. 
 Consider a play consistent with $\tau$ starting from a vertex $v$ of rank $k+1$.
-First, as long as the play is consistent with $\tau_{a,k}$, it remains in $V \setminus \AttrE(\Win \cap \PreE(Y_k))$
+First, as long as the play is consistent with $\tau_{a,k}$, it remains in $V \setminus  \textrm{Attr}_\mathrm{Eve}( \textrm{Win} \cap  \textrm{Pre}_\mathrm{Eve}(Y_k))$
 and the rank does not increase.
 We distinguish two cases.
-If the play never reaches $\Win$, then it satisfies $\CoBuchi[\Win]$.
-Otherwise it reaches $\Win$, and then the next step is consistent with $\tau_{p,k}$ 
+If the play never reaches $\textrm{Win}$, then it satisfies $\mathtt{CoBuchi}[ \textrm{Win}]$.
+Otherwise it reaches $\textrm{Win}$, and then the next step is consistent with $\tau_{p,k}$ 
 so the next vertex has rank at most $k$.
-Thus along any play consistent with $\tau$, the rank never increases and each time a vertex in $\Win$ is reached the rank decreases,
-implying that it satisfies $\CoBuchi[\Win]$.
+Thus along any play consistent with $\tau$, the rank never increases and each time a vertex in $\textrm{Win}$ is reached the rank decreases,
+implying that it satisfies $\mathtt{CoBuchi}[ \textrm{Win}]$.
 
 ````
 

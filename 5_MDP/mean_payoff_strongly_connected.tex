@@ -73,7 +73,7 @@ Let $\sigma_Q$ be the restriction of $\sigma$ to $Q$. Then for every $v\in Q$ it
 \begin{proof}
 Let $ \vec{w}\in\R^{\vertices \times\actions} $ be a vector sych that $\vec{w}_{(v,a)}=\lpsol{x}_{(v,a)}/\sum_{(q,a)\in Q\times\actions} \lpsol{x}_{(q,a)}$ for every $(v,a)\in Q\times \actions$, and $\vec{w}_{(v,a)}=0$ for all other $(v,a)$. We claim that $ \vec{w} $ is also an optimal solution of $\lpmp$. 
 
-To prove feasibility, note that setting $\vec{w}_{(v,a)}=0$ for each $v\in \vertices\setminus Q$ does not break the constraints~\eqref{5-eq:mdp-flow}. This is because $Q$ induces a strongly connected sub-chain of $\mdp_{\solvset}^{\sigma}$, and hence there are no $v\in \vertices$, $u\in \vertices\setminus Q$ such that $\lpsol{x}_{(u,a)}\cdot \probTranFunc(v\mid u,a)>0$. Next,~\eqref{5-eq:mdp-flow} is invariant w.r.t. multiplication of variables by a constant, so normalizing the remaining values preserves~\eqref{5-eq:mdp-flow} and ensures that~\eqref{5-eq:mdp-freq-1} holds. 
+To prove feasibility, note that setting $\vec{w}_{(v,a)}=0$ for each $v\in \vertices\setminus Q$ does not break the constraints~\cref{5-eq:mdp-flow}. This is because $Q$ induces a strongly connected sub-chain of $\mdp_{\solvset}^{\sigma}$, and hence there are no $v\in \vertices$, $u\in \vertices\setminus Q$ such that $\lpsol{x}_{(u,a)}\cdot \probTranFunc(v\mid u,a)>0$. Next,~\cref{5-eq:mdp-flow} is invariant w.r.t. multiplication of variables by a constant, so normalizing the remaining values preserves~\cref{5-eq:mdp-flow} and ensures that~\cref{5-eq:mdp-freq-1} holds. 
 
 To prove optimality, assume that the objective value of $\vec{w}$ is smaller than $r^*$. Then we can mirror the construction from the previous paragraph and produce a feasible solution ${\hat{\vec{w}}_{(v,a)}}$ whose $(Q\times\actions)$-indexed components are zero and the rest are normalized components of $\lpsol{x}$. Then $r^*$ is a convex combination of the objective values of $\vec{w}$ and $\hat{\vec{w}}$, so $\hat{\vec{w}}$ must have a strictly larger value than $r^*$, a contradiction with the latter's optimality.
 
@@ -85,16 +85,16 @@ We now plug $ \vec{w} $ into the ergodic theorem as follows: As in~\Cref{5-lem:m
 \end{align}
 
 %\noindent
-It remains to take a step from the left-hand side of~\eqref{5-eq:ergodic-use} towards the mean payoff. To this end, we construct a new Markov chain $\mdp_Q'$ from $\mdp_Q$ by ``splitting'' every edge $(u,v)$ with a new dummy vertex $d_{u,v}$ (i.e., $d_{u,v}$ has one edge incoming from $u$ with probability $\mcprob_{u,v}$ and one edge outgoing to $v$ with probability $1$). In $\mdp_Q'$ we define a vector $\vec{h}'$ s.t. for each vertex $d_{u,v}$ the vector $ \vec{h}' $ has the $ d_{u,v} $-component equal to $\colouring(u,v)$, while the components corresponding to the original vertices are zero. It is easy to check that $\mdp_Q'$  is strongly connected and that it has an invariant distribution $\invdist'$ defined by $\invdist'_v=\invdist_v/2$ for $v$ in $Q$ and $\invdist'_{d_{u,v}}=\frac{\invdist_u\cdot\mcprob_{u,v}}{2}$ for $(u,v)$ an edge of $\mdp_Q$.
+It remains to take a step from the left-hand side of~\cref{5-eq:ergodic-use} towards the mean payoff. To this end, we construct a new Markov chain $\mdp_Q'$ from $\mdp_Q$ by ``splitting'' every edge $(u,v)$ with a new dummy vertex $d_{u,v}$ (i.e., $d_{u,v}$ has one edge incoming from $u$ with probability $\mcprob_{u,v}$ and one edge outgoing to $v$ with probability $1$). In $\mdp_Q'$ we define a vector $\vec{h}'$ s.t. for each vertex $d_{u,v}$ the vector $ \vec{h}' $ has the $ d_{u,v} $-component equal to $\colouring(u,v)$, while the components corresponding to the original vertices are zero. It is easy to check that $\mdp_Q'$  is strongly connected and that it has an invariant distribution $\invdist'$ defined by $\invdist'_v=\invdist_v/2$ for $v$ in $Q$ and $\invdist'_{d_{u,v}}=\frac{\invdist_u\cdot\mcprob_{u,v}}{2}$ for $(u,v)$ an edge of $\mdp_Q$.
 Also, by easy induction, for each play $\play$ of length $n$ in $\mdp_Q$ it holds $\frac{1}{n}\sum_{i=0}^{n-1}\colouring(\play_i) = \frac{1}{n}\sum_{i=0}^{2n-1}\vec{h}'_{\ing(\play_i')}$, where $\play'$ is the unique play in $\mdp_Q'$ obtained from $\play$ by splitting edges with appropriate dummy vertices. Hence, 
 \begin{equation}
 \label{5-eq:mc-opt-limit}
-\lim_{n\rightarrow \infty}\frac{1}{n}\sum_{i=0}^{n-1}\colouring(\play_i) = 2\cdot \lim_{n\rightarrow \infty}\frac{1}{n}\sum_{i=0}^{n-1}\vec{h}'_{\ing(\play_i')},\end{equation} provided that both limits exist. By the ergodic theorem  applied to $\mdp_Q'$, we have that the RHS  limit in~\eqref{5-eq:mc-opt-limit} is defined with probability 1 and equal to
+\lim_{n\rightarrow \infty}\frac{1}{n}\sum_{i=0}^{n-1}\colouring(\play_i) = 2\cdot \lim_{n\rightarrow \infty}\frac{1}{n}\sum_{i=0}^{n-1}\vec{h}'_{\ing(\play_i')},\end{equation} provided that both limits exist. By the ergodic theorem  applied to $\mdp_Q'$, we have that the RHS  limit in~\cref{5-eq:mc-opt-limit} is defined with probability 1 and equal to
 \begin{align*}
 \underbrace{\sum_{v\in Q} \invdist'_v \cdot \vec{h}'_{v}}_{=0} + \sum_{u,v\in Q} \invdist'_{d_{u,v}}\cdot \vec{h}'_{d_{u,v}} = \frac{1}{2}\sum_{u\in Q}\invdist_u\cdot\left( \sum_{v\in Q}\mcprob_{u,v}\cdot \colouring(u,v)\right)\\ =\frac{1}{2}\sum_{u\in Q} \invdist_u\cdot \vec{h}_u=\frac{r^*}{2},
 \end{align*}
 \noindent
-the last equality being shown above. Plugging this into~\eqref{5-eq:mc-opt-limit} yields that if a limit on the LHS (i.e., the mean payoff of a play) is well-defined with probability 1, then it is equal to $r^*$ also with probability 1. But if there was a set $L$ of positive probability in $\mdp_Q$ with $\lim_{n \rightarrow \infty}\frac{1}{n}\sum_{i=0}^{n-1}\colouring(\play_i)$ undefined for each $\play\in L$, by splitting the plays in $L$ we would obtain a positive-probability set of plays in $\mdp_Q'$ in which $\lim_{n \rightarrow \infty}\frac{1}{n}\sum_{i=0}^{n-1}\vec{h}'_{\ing(\play_i')}$ is also undefined, a contradiction with the ergodic theorem. 
+the last equality being shown above. Plugging this into~\cref{5-eq:mc-opt-limit} yields that if a limit on the LHS (i.e., the mean payoff of a play) is well-defined with probability 1, then it is equal to $r^*$ also with probability 1. But if there was a set $L$ of positive probability in $\mdp_Q$ with $\lim_{n \rightarrow \infty}\frac{1}{n}\sum_{i=0}^{n-1}\colouring(\play_i)$ undefined for each $\play\in L$, by splitting the plays in $L$ we would obtain a positive-probability set of plays in $\mdp_Q'$ in which $\lim_{n \rightarrow \infty}\frac{1}{n}\sum_{i=0}^{n-1}\vec{h}'_{\ing(\play_i')}$ is also undefined, a contradiction with the ergodic theorem. 
 %
 %%
 %
@@ -316,7 +316,7 @@ The depth of recursion is bounded by $|\vertices|$, so the running time is polyn
 %better and better approximation of optimal values of all vertices. A 
 %disadvantage of value iteration is that it might not converge to the true 
 %reachability values in a finite number of steps, which is the case, e.g. for 
-%the MDP in Figure~\ref{xxx}. However,...
+%the MDP in Figure~\cref\{xxx}. However,...
 %
 %% NOTE ON A MORE EFFICIENT COMPUTATION, MAYBE ALSO FOR POS
 

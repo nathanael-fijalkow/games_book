@@ -2,7 +2,9 @@
 # Nash Equilibria for games in normal form
 
 ```{math}
+
 \def\payoff{\ensuremath{f}}
+
 \def\Act{A}
 \def\Agt{\mathcal{P}}
 \def\move{\textsf{move}}
@@ -14,70 +16,11 @@
 \def\proj{\textsf{proj}}
 \def\devg{\textsf{DevGame}}
 \def\Coalition{\ensuremath{\mathcal{C}}}
-\newcommand{\Eve}{\textrm{Eve}}
-\newcommand{\Adam}{\textrm{Adam}}
-\newcommand{\set}[1]{\left\{ #1 \right\}}
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\Zinfty}{\Z \cup \set{\pm \infty}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\Rinfty}{\R \cup \set{\pm \infty}}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\Qinfty}{\Q \cup \set{\pm \infty}}
-\newcommand{\argmax}{\textrm{argmax}}
-\newcommand{\argmin}{\textrm{argmin}}
-\newcommand{\Op}{\mathbb{O}}
-\newcommand{\Prob}{\mathbb{P}} \newcommand{\dist}{\mathcal{D}} \newcommand{\Dist}{\dist} \newcommand{\supp}{\textrm{supp}} 
-\newcommand{\game}{\mathcal{G}} \renewcommand{\Game}{\game} \newcommand{\arena}{\mathcal{A}} \newcommand{\Arena}{\arena} 
-\newcommand{\col}{\textsf{col}} \newcommand{\Col}{\col} 
-\newcommand{\mEve}{\mathrm{Eve}}
-\newcommand{\mAdam}{\mathrm{Adam}}
-\newcommand{\mRandom}{\mathrm{Random}}
-\newcommand{\vertices}{V} \newcommand{\VE}{V_\mEve} \newcommand{\VA}{V_\mAdam} \newcommand{\VR}{V_\mRandom} 
-\newcommand{\ing}{\textrm{In}}
-\newcommand{\Ing}{\ing}
-\newcommand{\out}{\textrm{Out}}
-\newcommand{\Out}{\out}
-\newcommand{\dest}{\Delta} 
-\newcommand{\WE}{W_\mEve} \newcommand{\WA}{W_\mAdam} 
-\newcommand{\Paths}{\textrm{Paths}} \newcommand{\play}{\pi} \newcommand{\first}{\textrm{first}} \newcommand{\last}{\textrm{last}} 
-\newcommand{\mem}{\mathcal{M}} \newcommand{\Mem}{\mem} 
-\newcommand{\Pre}{\textrm{Pre}} \newcommand{\PreE}{\textrm{Pre}_\mEve} \newcommand{\PreA}{\textrm{Pre}_\mAdam} \newcommand{\Attr}{\textrm{Attr}} \newcommand{\AttrE}{\textrm{Attr}_\mEve} \newcommand{\AttrA}{\textrm{Attr}_\mAdam} \newcommand{\rank}{\textrm{rank}}
-\newcommand{\Win}{\textrm{Win}} 
-\newcommand{\Lose}{\textrm{Lose}} 
-\newcommand{\Value}{\textrm{val}} 
-\newcommand{\ValueE}{\textrm{val}_\mEve} 
-\newcommand{\ValueA}{\textrm{val}_\mAdam}
-\newcommand{\val}{\Value} 
-\newcommand{\Automaton}{\mathbf{A}} 
-\newcommand{\Safe}{\mathtt{Safe}}
-\newcommand{\Reach}{\mathtt{Reach}} 
-\newcommand{\Buchi}{\mathtt{Buchi}} 
-\newcommand{\CoBuchi}{\mathtt{CoBuchi}} 
-\newcommand{\Parity}{\mathtt{Parity}} 
-\newcommand{\Muller}{\mathtt{Muller}} 
-\newcommand{\Rabin}{\mathtt{Rabin}} 
-\newcommand{\Streett}{\mathtt{Streett}} 
-\newcommand{\MeanPayoff}{\mathtt{MeanPayoff}} 
-\newcommand{\DiscountedPayoff}{\mathtt{DiscountedPayoff}}
-\newcommand{\Energy}{\mathtt{Energy}}
-\newcommand{\TotalPayoff}{\mathtt{TotalPayoff}}
-\newcommand{\ShortestPath}{\mathtt{ShortestPath}}
-\newcommand{\Sup}{\mathtt{Sup}}
-\newcommand{\Inf}{\mathtt{Inf}}
-\newcommand{\LimSup}{\mathtt{LimSup}}
-\newcommand{\LimInf}{\mathtt{LimInf}}
-\newcommand{\NL}{\textrm{NL}}
-\newcommand{\PTIME}{\textrm{PTIME}}
-\newcommand{\NP}{\textrm{NP}}
-\newcommand{\UP}{\textrm{UP}}
-\newcommand{\coNP}{\textrm{coNP}}
-\newcommand{\coUP}{\textrm{coUP}}
-\newcommand{\PSPACE}{\textrm{PSPACE}}
-\newcommand{\EXPSPACE}{\textrm{EXPSPACE}}
-\newcommand{\EXP}{\textrm{EXP}}
-\newcommand{\kEXP}{\textrm{kEXP}}
+
+\renewcommand{\Game}{\game}
+
 ```
+
 The normal form games we consider differ from the matrix games of Chapter {ref}`7-chap:concurrent`, in that each player has their own payoff.
 So for instance, when player 1 chooses column Hawk, and player 2 chooses
 row Dove, the payoff for player 1 is $\payoff_{P_1}(\text{Hawk}, \text{Dove}) = 4$.
@@ -87,7 +30,6 @@ Let us call a vector of strategies specifying a strategy for each player a **str
 ````{prf:definition} NEEDS TITLE AND LABEL 
   A **Nash equilibrium** is a **stable** strategy profile in which
   strategy is a best response against the other strategies.
- 
 
   A **Nash equilibrium** is a **stable** strategy profile in which
   strategy is a best response against the other strategies.
@@ -120,8 +62,6 @@ response than their current strategy.
 If no player has a better response, the strategy profile is a Nash equilibrium,
 otherwise we move to the next one, and if none satisfies the condition then there is no equilibrium.
 
-
-
 ````{prf:example} NEEDS LABEL Medium Access Control
 Consider a medium access control
 problem, where several users share access to a wireless channel. A
@@ -131,7 +71,7 @@ slot, each user chooses either to transmit or to idle. Intuitively, the
 number of packets transmitted without collision decreases with
 the number of users emitting in the same slot. Furthermore each attempt
 at transmitting has a cost. An example payoff for two players,
-is represented in Table~\ref{ex:medium-access}.
+is represented in Table \cref\{ex:medium-access}.
 
 \begin{table}
   \caption{A game of medium access.}
@@ -173,10 +113,6 @@ graphs.
   
   \(\langle V, \Act,\Delta,(c_P)_{P\in \Agt} \rangle \), where:
 
-%  \todo{$A$ for players shoould be replaced by $P_i$ and $c_A$ by $C_i$}
-
-  
-
   *      \(V\) is a finite set of vertices;
   *      \(\Agt = \{1,2,\ldots,k\}\) is the set of players;
   *      \(\Act\) is a finite set of actions, a tuple \((a_P)_{P \in \Agt}\)
@@ -186,17 +122,11 @@ graphs.
     associates to a pair of vertices and moves the resulting state;
   *      \((c_P)_{P \in \Agt}\) is a tuple of colouring functions
     with $c_P : V \rightarrow C$ for each $P \in \Agt$.
-  
- 
 
   A multiplayer **arena** \(\mathcal{A}\) with $k$ players is a tuple
   
   \(\langle V, \Act,\Delta,(c_P)_{P\in \Agt} \rangle \), where:
 
-%  \todo{$A$ for players shoould be replaced by $P_i$ and $c_A$ by $C_i$}
-
-  
-
   *      \(V\) is a finite set of vertices;
   *      \(\Agt = \{1,2,\ldots,k\}\) is the set of players;
   *      \(\Act\) is a finite set of actions, a tuple \((a_P)_{P \in \Agt}\)
@@ -206,10 +136,8 @@ graphs.
     associates to a pair of vertices and moves the resulting state;
   *      \((c_P)_{P \in \Agt}\) is a tuple of colouring functions
     with $c_P : V \rightarrow C$ for each $P \in \Agt$.
-  
 
 ````
-
 
 ````{prf:example} NEEDS TITLE AND LABEL 
 A simple three-player concurrent game is represented in {numref}`13-fig:example1`.
@@ -224,7 +152,6 @@ The colouring function is represented below vertices as tuples ranging over play
 For instance, a vertex labelled by $(1,1,0)$ assigns
 the first two players the colour $1$, and the third player the colour $0$,
 In particular, $c_{P_1}(v_2) = 1$, and $c_{P_3}(v_2)= 0$.
- 
 
 A simple three-player concurrent game is represented in {numref}`13-fig:example1`.
 Vertices are $v_0$, $v_1$, $v_2$, $v_3$ and $v_4$.
@@ -241,18 +168,16 @@ In particular, $c_{P_1}(v_2) = 1$, and $c_{P_3}(v_2)= 0$.
 
 ````
 
-
 ```{figure} ./../FigAndAlgos/13-fig:example1.png
 :name: 13-fig:example1
 :align: center
 Example of a three-player concurrent arena. The symbol $\ast$ on edges can be replaced by either $a$ or $b$.
 ```
 
-
 A **history** of the multiplayer arena
 
 \({\mathcal A}\) is a finite sequence of states and moves ending with a
-state, i.e.~a word in \((V \cdot \Act^\Agt)^* \cdot V\). Note that unlike
+state, i.e. a word in \((V \cdot \Act^\Agt)^* \cdot V\). Note that unlike
 for two player games we include actions in the history, because knowing
 the source and target vertices does not mean you know which player chose
 which actions.
@@ -263,9 +188,9 @@ For a history $\pi$, we write \(\pi_i\) the $i$-th vertex of $\pi$, starting fro
 \(\pi = \pi_0 \cdot \move_0(\pi \cdot \pi_1 \cdots \move_{n-1}(\pi)\cdot \pi_n\), and
 with this notation $\move_i(\pi)_P$ is the $i$-th action of player $P$ in $h$.
 The length $|\pi|$ of such a history is $n + 1$. We write
-$\last(\pi)$ the last vertex of h, i.e. \(\pi_{|\pi|-1}\).
+$\textrm{last}(\pi)$ the last vertex of h, i.e. \(\pi_{|\pi|-1}\).
 A play \(\rho\) is an
-infinite sequence of vertices and moves, i.e.~an element of
+infinite sequence of vertices and moves, i.e. an element of
 \((V \cdot \Act^{\Agt})^\omega\).
 
 ````{prf:definition} NEEDS LABEL Strategy and coalition
@@ -282,7 +207,6 @@ infinite sequence of vertices and moves, i.e.~an element of
 
 ````
 
-
 ````{prf:definition} NEEDS LABEL Outcomes
 
   A history \(\pi\) is compatible
@@ -291,16 +215,14 @@ infinite sequence of vertices and moves, i.e.~an element of
   \(\Delta(\pi_k, \move_k(\pi)) = \pi_{k+1}\). A play \(\rho\) is compatible with
   the strategy \(\sigma_\Coalition\) if all its prefixes are. We write
   
-  \(\Out_{\mathcal{A}}(v_0, \sigma_\Coalition)\) for the set of plays in \(\mathcal{A}\) that
+  \(  \textrm{Out}_{\mathcal{A}}(v_0, \sigma_\Coalition)\) for the set of plays in \(\mathcal{A}\) that
   are compatible with strategy \(\sigma_\Coalition\) and have initial vertex
-  \(v_0\). Let \(\Out_{\mathcal{A}}(\sigma_\Coalition)\) denote the union
-  of \(\Out_{\mathcal{A}}(v_0, \sigma_\Coalition)\) for all $v_0$,
-  and \(\Out_{\mathcal{A}}(v_0)\) the union of all \(\Out_{\mathcal{A}}(v_0, \sigma_\Coalition)\).
+  \(v_0\). Let \(  \textrm{Out}_{\mathcal{A}}(\sigma_\Coalition)\) denote the union
+  of \(  \textrm{Out}_{\mathcal{A}}(v_0, \sigma_\Coalition)\) for all $v_0$,
+  and \(  \textrm{Out}_{\mathcal{A}}(v_0)\) the union of all \(  \textrm{Out}_{\mathcal{A}}(v_0, \sigma_\Coalition)\).
   The subscript $\mathcal{A}$ can be omitted if it is clear from the context.
   These paths are called **outcomes** of \(\sigma_\Coalition\) from
-  \(v_0\). 
-
-%compatible with some strategy \(\sigma_{\Agt}\) of \(\Agt\) regardless of the initial vertex. 
+  \(v_0\).
 
 ````
 
@@ -317,14 +239,15 @@ the outcome from a given state is unique.
   *  $P_3$ always plays $b$, i.e. $\sigma_{P_3}(\pi) = b$.
   
   The outcome from $v_0$ in that case is
-  \begin{align*}
-    \Out(v_0, \sigma_{\{P_1, P_2, P_3\}}) ~ = & ~ v_0 \cdot (a, a, b) \cdot v_2 \cdot (a, b, b)
+  ```{math}
+
+      \textrm{Out}(v_0, \sigma_{\{P_1, P_2, P_3\}})   = &   v_0 \cdot (a, a, b) \cdot v_2 \cdot (a, b, b)
                                                 \cdot v_4 \cdot (a, b, b) \cdot\\
                                               & \left(v_0 \cdot (a, b, b)
                                                 \cdot v_1 \cdot (a, b, b)
                                                 \cdot v_3 \cdot (a, b, b)\right)^\omega
-  \end{align*}
- 
+  
+```
 
   Consider in the example of {numref}`13-fig:example1`, the following
   strategies:
@@ -334,17 +257,17 @@ the outcome from a given state is unique.
   *  $P_3$ always plays $b$, i.e. $\sigma_{P_3}(\pi) = b$.
   
   The outcome from $v_0$ in that case is
-  \begin{align*}
-    \Out(v_0, \sigma_{\{P_1, P_2, P_3\}}) ~ = & ~ v_0 \cdot (a, a, b) \cdot v_2 \cdot (a, b, b)
+  ```{math}
+
+      \textrm{Out}(v_0, \sigma_{\{P_1, P_2, P_3\}})   = &   v_0 \cdot (a, a, b) \cdot v_2 \cdot (a, b, b)
                                                 \cdot v_4 \cdot (a, b, b) \cdot\\
                                               & \left(v_0 \cdot (a, b, b)
                                                 \cdot v_1 \cdot (a, b, b)
                                                 \cdot v_3 \cdot (a, b, b)\right)^\omega
-  \end{align*}
+  
+```
 
 ````
-
-
 
 ````{prf:definition} NEEDS LABEL Multiplayer game
 
@@ -352,15 +275,12 @@ the outcome from a given state is unique.
   We will be mostly be interested in solving games with qualitative
   objectives, that is payoffs that take values $0$ and $1$.
 
-%  \todo{we hould talk of qualitative objective, and maybe quantitative objective rather than payoff}
   A **multiplayer game** \((\mathcal{A}, (\payoff_P)_{P \in \Agt})\) is given by a multiplayer arena $\mathcal{A}$, an initial
   vertex $v_0$ and payoff function $\payoff_P$ for each player $P$.
   When $\payoff_P$ is qualitative we simply write $\Omega_P$
   for the corresponding objective.
 
 ````
-
-
 
 (13-subsec:algorithm-for-finding-nash-equilibria)=
 ## The Nash equilibrium problem
@@ -381,7 +301,7 @@ satisfied.
 **QUESTION**: 
   \parbox[t]{0.75\textwidth}{is there
 a Nash equilibrium $\sigma_{\Agt}$ such that for all
-$P \in \Agt, \payoff_P(\Out({v_0,\sigma_{\Agt}})) \ge b_P$?}
+$P \in \Agt, \payoff_P(  \textrm{Out}({v_0,\sigma_{\Agt}})) \ge b_P$?}
 
 ```
 \todo{OS: I don't know how to fix this alignment issue}
@@ -414,7 +334,7 @@ taking the union of deviator sets of each step along the history.
 Formally,
 
 $$
-\Dev(\pi, \sigma_{\Agt}) = \bigcup_{0\le i < |h|}~ \Dev(\move_i(\pi), \sigma_{\Agt}(\pi_{\le i})).
+\Dev(\pi, \sigma_{\Agt}) = \bigcup_{0\le i < |h|}  \Dev(\move_i(\pi), \sigma_{\Agt}(\pi_{\le i})).
 $$
 
 For an infinite play \(\rho\), we define
@@ -430,7 +350,7 @@ changed their strategies from \(\sigma_{\Agt}\) in order to generate
 
 Given a play \(\rho\), strategy profile $\sigma_\Agt$, a coalition \(\Coalition\)
 contains \(\Dev(\rho)\), if and only if, there exists a strategy
-\(\sigma'_\Coalition\) such that \(\Out(\rho_1, \sigma_{-\Coalition}, \sigma'_\Coalition) = \rho\).
+\(\sigma'_\Coalition\) such that \(  \textrm{Out}(\rho_1, \sigma_{-\Coalition}, \sigma'_\Coalition) = \rho\).
 
 ````
 
@@ -461,7 +381,6 @@ Therefore for all players \(A \not\in \Coalition\),
 
 ````
 
-
 ````{prf:example} NEEDS TITLE AND LABEL 
   In the example of {numref}`13-fig:example1`, we consider again the strategies,
   such that for all histories $\pi$, $\sigma_{P_1}(\pi) = a$,
@@ -481,7 +400,6 @@ Therefore for all players \(A \not\in \Coalition\),
   (a, b, a) \cdot v_2, \sigma_{\Agt}) = \{ P_2, P_3\}$.
   This means that both $P_2$ and $P_3$ need to change their strategies
   from $\sigma_{\Agt}$ to obtain the given history.
- 
 
   In the example of {numref}`13-fig:example1`, we consider again the strategies,
   such that for all histories $\pi$, $\sigma_{P_1}(\pi) = a$,
@@ -510,20 +428,11 @@ payoffs than the prescribed profile when they single-handedly change
 strategies. Thus, only the outcomes with singleton deviator sets
 will be of interest for us in the next section where we present the algorithm.
 
-% single players.
-
-% simultaneously changing their strategies) should be of no matter to us.
-
-% reduction can be stopped.
-
-
-
 (deviator-game)=
 ## Deviator Game
 We now present an algorithm to reduce multiplayer games to two-player games
 using the notion of deviators we just defined.
 
-%games and a two-player game.
 Given a **game**
 \(\mathcal{G} = (\mathcal{A}, (\payoff_A)_{A \in \Agt})\),
 
@@ -548,7 +457,6 @@ a possibly different one \(a'_{\Agt}\). The next vertex is
   An example of a partial construction of the deviator game for the
   example of {numref}`13-fig:example1`, is given in figure {numref}`13-fig:ex-dev`.
   We cannot represent the full construction here, as there are 40 vertices.
- 
 
   An example of a partial construction of the deviator game for the
   example of {numref}`13-fig:example1`, is given in figure {numref}`13-fig:ex-dev`.
@@ -592,17 +500,17 @@ We define projections \(\proj_{V}\) and \(\proj_{\Dev}\) from \(V'\) to
 \(\proj_{\Act}\) from \(Act^{\Agt} \times Act^{\Agt}\) to \(Act^{\Agt}\) which
 maps to the second component of the product, that is, Adam's action.
 
-For a history or play \(\rho\), define \(\pi_{\Out}(\rho)\) as the play
+For a history or play \(\rho\), define \(\pi_{  \textrm{Out}}(\rho)\) as the play
 \(\rho'\) for which, \(\rho'_i = \proj_V(\rho_i)\) and
 \(\move_i(\rho') = \proj_{\Act}(\move_i(\rho))\) for all $i$. This is thus the play
 induced by Adam's actions.
-Let us also denote $\Dev(\rho) = \proj_{\Dev}(\last(\rho))$.
+Let us also denote $\Dev(\rho) = \proj_{\Dev}( \textrm{last}(\rho))$.
 
 We can associate a strategy of Eve to each strategy profile
 \(\sigma_{\Agt}\) such that she chooses the moves prescribed by
 \(\sigma_{\Agt}\) at each history of \(\devg(\mathcal{G})\). Formally, we write
 \(\kappa(\sigma_{\Agt})\) for the strategy defined by
-\(\kappa(\sigma_{\Agt})(\pi) = \sigma_{\Agt}(\proj_{\Out}(\pi))\) for all histories $\pi$.
+\(\kappa(\sigma_{\Agt})(\pi) = \sigma_{\Agt}(\proj_{  \textrm{Out}}(\pi))\) for all histories $\pi$.
 
 The following lemma states the correctness of the construction of the
 deviator game \(\devg(\mathcal{G})\), in the sense that it records the set of
@@ -616,17 +524,12 @@ strategy profile suggested by Eve.
   strategy profile, and \(\sigma_{\exists} = \kappa(\sigma_{\Agt})\) the
   associated strategy in the deviator game.
 
-  
-   
-  
-1.      If \(\rho \in \Out_{\devg(\mathcal{G})}((v,\emptyset),\sigma_\exists)\), then
-    \(\Dev(\proj_{\Out}(\rho), \sigma_{\Agt} ) = \Dev(\rho)\).
-  
-2.      If \(\rho \in \Out_G(v)\) and for all index \(i\),
+  1.      If \(\rho \in   \textrm{Out}_{\devg(\mathcal{G})}((v,\emptyset),\sigma_\exists)\), then
+    \(\Dev(\proj_{  \textrm{Out}}(\rho), \sigma_{\Agt} ) = \Dev(\rho)\).
+  2.      If \(\rho \in   \textrm{Out}_G(v)\) and for all index \(i\),
     \(\rho'_i = (\rho_i , \Dev(\rho_{\le i} , \sigma_{\Agt}))\) and
     \(\move_i(\rho') = (\sigma_{\Agt} (\rho_{\le i} ), \move_i(\rho))\), then
-    \(\rho' \in \Out_{\devg(\mathcal{G})}((v,\emptyset), \sigma_\exists)\).
-  
+    \(\rho' \in   \textrm{Out}_{\devg(\mathcal{G})}((v,\emptyset), \sigma_\exists)\).
 
 ````
 
@@ -634,28 +537,31 @@ strategy profile suggested by Eve.
 :class: dropdown tip
 
   We prove that for all $i$,
-  \(\Dev(\proj_{\Out}(\rho_{\le i} , \sigma_{\Agt}) = \proj_{\Dev} (\rho_{\le i} )\),
+  \(\Dev(\proj_{  \textrm{Out}}(\rho_{\le i} , \sigma_{\Agt}) = \proj_{\Dev} (\rho_{\le i} )\),
 which implies the property. The property holds for i = 0, since
 initially both sets are empty. Assume now that it holds for \(i \ge 0\).
 Then:
-\begin{align*}
-  \Dev(\proj_{\Out}(\rho_{\le i+1}) , \sigma_{\Agt} ) = & \Dev(\proj_{\Out}(\rho_{\le i}), \sigma_{\Agt} ) \cup \Dev(\sigma_{\Agt} (\proj_{\Out}(\rho_{\le i})), \proj_{\Act} (\move_{i+1} (\rho))) \\
+```{math}
+
+  \Dev(\proj_{  \textrm{Out}}(\rho_{\le i+1}) , \sigma_{\Agt} ) = & \Dev(\proj_{  \textrm{Out}}(\rho_{\le i}), \sigma_{\Agt} ) \cup \Dev(\sigma_{\Agt} (\proj_{  \textrm{Out}}(\rho_{\le i})), \proj_{\Act} (\move_{i+1} (\rho))) \\
   & \text{(by definition of deviators)}\\
-  =& \Dev (\rho_{\le i} ) \cup \Dev(\sigma_{\Agt} (\proj_{\Out} (\rho_{\le i}), \proj_{\Act} (\move_{i+1} (\rho))) \\
+  =& \Dev (\rho_{\le i} ) \cup \Dev(\sigma_{\Agt} (\proj_{  \textrm{Out}} (\rho_{\le i}), \proj_{\Act} (\move_{i+1} (\rho))) \\
   & \text{(by induction hypothesis)} \\
   = & \Dev (\rho_{\le i} ) \cup \Dev(\sigma_\exists (\rho_{\le i} ), \proj_{\Act} (\move_{i+1}(\rho))) \\
   & \text{(by definition of \(\sigma_\exists\) )}\\
   = & \Dev (\rho_{\le i} ) \cup \Dev(\move_{i+1}(\rho)) \\
-  & \text{(by assumption \(\rho \in \Out_{\devg(\mathcal{G})} ((v,\emptyset), \sigma_\exists)\))}\\
+  & \text{(by assumption \(\rho \in   \textrm{Out}_{\devg(\mathcal{G})} ((v,\emptyset), \sigma_\exists)\))}\\
   = & \Dev(\rho_{\le i+1} ) \\
   & \text{(by construction of \(\devg(\mathcal{G})\))} \\
-\end{align*}
+
+```
 
 Which concludes the induction.
 
 We now prove the second part. The property is shown by induction. It
 holds for \(v_0\). Assume it is true up to index \(i>0\), then
-\begin{align*}
+```{math}
+
 \Delta'(\rho'_i , \sigma_\exists(\rho'_{\le i}), \move_i(\rho)) = &
 \Delta'((\rho_i , \Dev(\rho_{\le i} , \sigma_{\Agt})), \sigma_{\exists} (\rho'_{\le i} ), \move_i(\rho))\\
 &  \text{(by definition of \(\rho'\))} \\
@@ -668,12 +574,10 @@ holds for \(v_0\). Assume it is true up to index \(i>0\), then
 = & (\rho_{i+1} , \Dev(\rho_{\le i+1} , \sigma_{\Agt} ))\\
 & \text{(by definition of deviators)} \\
 = & \rho'_{i+1}. \\
-\end{align*}
+
+```
 
 ````
-
-
-%Game}\label{objectives-in-the-deviator-game}
 
 The objective of Eve in the deviator game is defined so that winning
 strategies correspond to equilibria of the original game. First, as an
@@ -684,7 +588,7 @@ their strategies.
 Consider the following objective in \(\devg(\mathcal{G})\):
 
 $$
-  \Omega(\Coalition, P, b) = \{\rho \in \Out_{\devg(\mathcal{G})} \mid \Dev(\rho) \subseteq \Coalition \Rightarrow \payoff_P(\proj_{\Out}(\rho)) \le b\}.
+  \Omega(\Coalition, P, b) = \{\rho \in   \textrm{Out}_{\devg(\mathcal{G})} \mid \Dev(\rho) \subseteq \Coalition \Rightarrow \payoff_P(\proj_{  \textrm{Out}}(\rho)) \le b\}.
 $$
 
 Intuitively, this says that if only players
@@ -698,7 +602,7 @@ $P$ against coalition \(\Coalition\) corresponds to a winning strategy for
   Let \(\Coalition \subseteq \Agt\) be a coalition,
   \(\sigma_{\Agt}\) be a strategy profile, \(b \in \mathbb{R}\) a bound,
   and \(P\) a player. For all strategies \(\sigma'_\Coalition\), vertex $v_0$,
-  and coalition \Coalition, \(\payoff_P(\Out_{\devg(\mathcal{G})}(v_0, \sigma_{-\Coalition}, \sigma'_\Coalition)) \le b\) if, and
+  and coalition \Coalition, \(\payoff_P(  \textrm{Out}_{\devg(\mathcal{G})}(v_0, \sigma_{-\Coalition}, \sigma'_\Coalition)) \le b\) if, and
   only if, \(\kappa(\sigma_{\Agt})\) is winning in \(\devg(\mathcal{G})\) for objective
   \(\Omega(\Coalition, P, b)\).
  
@@ -706,7 +610,7 @@ $P$ against coalition \(\Coalition\) corresponds to a winning strategy for
   Let \(\Coalition \subseteq \Agt\) be a coalition,
   \(\sigma_{\Agt}\) be a strategy profile, \(b \in \mathbb{R}\) a bound,
   and \(P\) a player. For all strategies \(\sigma'_\Coalition\), vertex $v_0$,
-  and coalition \Coalition, \(\payoff_P(\Out_{\devg(\mathcal{G})}(v_0, \sigma_{-\Coalition}, \sigma'_\Coalition)) \le b\) if, and
+  and coalition \Coalition, \(\payoff_P(  \textrm{Out}_{\devg(\mathcal{G})}(v_0, \sigma_{-\Coalition}, \sigma'_\Coalition)) \le b\) if, and
   only if, \(\kappa(\sigma_{\Agt})\) is winning in \(\devg(\mathcal{G})\) for objective
   \(\Omega(\Coalition, P, b)\).
 
@@ -716,9 +620,9 @@ $P$ against coalition \(\Coalition\) corresponds to a winning strategy for
 :class: dropdown tip
  Let \(\rho\) be an outcome of
   \(\sigma_\exists=\kappa(\sigma_{\Agt}) \in \devg(\mathcal{G})\). By Lemma
-  \ref{13-prop:correctness-deviator-game}, we have that
+  \cref\{13-prop:correctness-deviator-game}, we have that
   \(\Dev(\rho) = \Dev(\proj_V(\rho),\sigma_{\Agt})\). By Lemma
-  \ref{13-lem:deviator}, \(\proj_V(\rho)\) is the outcome of
+  \cref\{13-lem:deviator}, \(\proj_V(\rho)\) is the outcome of
   \((\sigma_{-\Dev(\rho)},\sigma'_{\Dev(\rho)})\) for some
   \(\sigma'_{\Dev(\rho)}\). If \(\Dev(\rho) \subseteq \Coalition\), then
   \(\payoff_P(\proj_V(\rho)) = \payoff_P(\sigma_{-\Coalition},\sigma_{\Coalition\setminus \Dev(\rho)}, \sigma'_{\Dev(\rho)}) = \payoff_P(\sigma_{-\Coalition},\sigma''_{\Coalition})\)
@@ -732,9 +636,9 @@ $P$ against coalition \(\Coalition\) corresponds to a winning strategy for
   is a winning strategy in \(\devg(\mathcal{G})\) for \(\Omega(\Coalition,P,b)\). Let
   \(\sigma'_\Coalition\) be a strategy for \(\Coalition\) and \(\rho\) the outcome of
   \((\sigma'_{\Coalition},\sigma_{-{\Coalition}})\). By
-  Lem.~\ref{13-lem:deviator},
+  Lem. \cref\{13-lem:deviator},
   \(\Dev(\rho,\sigma_{\Agt}) \subseteq \Coalition\). By
-  Lem.~\ref{13-prop:correctness-deviator-game},
+  Lem. \cref\{13-prop:correctness-deviator-game},
   \(\rho'= (\rho_j, \Dev(\rho_{\le j},\sigma_{\Agt}))_{j\in \mathbb{N}}\) is
   an outcome of \(\sigma_\exists\). We have that
   \(\Dev(\rho') = \Dev(\rho,\sigma_{\Agt}) \subseteq \Coalition\). Since
@@ -756,17 +660,15 @@ deviators.
 :label: 13-thm:dev-nash
 
   Let \(\mathcal{G} = (\mathcal{A}, (\payoff_P)_{P \in \Agt})\) be a game, \(\sigma_{\Agt}\) a strategy
-  profile in \(\mathcal{G}\), vertex $v_0$, and \(F = (\payoff_P(\Out_{\mathcal{A}}(v_0,\sigma_{\Agt})))_{P\in \Agt}\)
+  profile in \(\mathcal{G}\), vertex $v_0$, and \(F = (\payoff_P(  \textrm{Out}_{\mathcal{A}}(v_0,\sigma_{\Agt})))_{P\in \Agt}\)
   the payoff
   profile of \(\sigma_{\Agt}\) from $v_0$. The strategy profile \(\sigma_{\Agt}\) is a
   Nash equilibrium if, and only if, strategy \(\kappa(\sigma_{\Agt})\) is
   winning in \(\devg(\mathcal{A})\) for the objective \(N(F)\) defined by:
-  
 
 $$N(F) = \{\rho \mid |\Dev(\rho)| \ne 1\}
     \cup \bigcup_{P\in \Agt} \{\rho \mid \Dev(\rho) = \{P\}
-    \land \payoff_P(\proj_{\Out}(\rho)) \le F_P\}.$$
-
+    \land \payoff_P(\proj_{  \textrm{Out}}(\rho)) \le F_P\}.$$
 
 ````
 
@@ -787,11 +689,10 @@ $$N(F) = \{\rho \mid |\Dev(\rho)| \ne 1\}
   **Implication** Let \(\rho\) be an outcome of
   \(\kappa(\sigma_{\Agt})\).
 
-
 *    If \(|\Dev(\rho)| \ne 1\), then \(\rho\) is in \(N(F)\) by
   definition.
 *    If \(|\Dev(\rho)| = 1\), then for \(\{P\} = \Dev(\rho)\),
-  \(\payoff_P(\proj_{\Out}(\rho)) \leq F_P\) because
+  \(\payoff_P(\proj_{  \textrm{Out}}(\rho)) \leq F_P\) because
   \(\kappa(\sigma_{\Agt})\) is winning for
   \(\Omega(\Dev(\rho), P, F_P)\). Therefore \(\rho\) is
   in \(N(F)\).
@@ -808,8 +709,7 @@ Assume that
 \(\rho \in N(F)\). We show that \(\rho\) belongs to
 \(\Omega(\{P\}, P, F_P)\):
 
-
-*    If \(\Dev(\rho) = \varnothing\) then \(\rho = \Out(v_0, \sigma_{\Agt})\) and
+*    If \(\Dev(\rho) = \varnothing\) then \(\rho =   \textrm{Out}(v_0, \sigma_{\Agt})\) and
   \(\payoff_P(\rho) = F_P\), so \(\rho\) is in
   \(\Omega(\{P\},P, F_P)\)
 *    If \(\Dev(\rho) \not\subseteq \{ P \}\), then
@@ -825,18 +725,12 @@ equilibrium.
 
 ````
 
-
-
 (13-subsec:algorithm-for-parity-objectives)=
 ### Algorithm for Parity Objectives
 We now focus on the case of Parity objectives.
 Recall that
 Each player $P$ has
 a colouring function $c_P : V \rightarrow \mathbb{N}$, inducing the parity objective $\Omega_A$.
-
-%\todo{$c_A$ should be $C_i$ and already given in the definition of game}
-
-%infinitely often is even.
 
 Thus the payoff $\payoff_Ps$ assigns 1 to paths belonging to $\Omega_A$ and 0
 to the others.
@@ -847,9 +741,9 @@ we can deduce from the previous theorem an algorithm that
 constructs a Nash equilibrium if there exists one. We construct the
 deviator game and note that we can reduce the number of vertices as
 follows: since  \(\Dev(\rho_{\le k})\) is nondecreasing,
-we know that \Eve wins whenever this set has at least two elements.
+we know that  \textrm{Eve} wins whenever this set has at least two elements.
 In the construction, states with at least two deviators can be replaced by a
-sink vertex that is winning for \Eve. This means that the constructed
+sink vertex that is winning for  \textrm{Eve}. This means that the constructed
 game has at most \(n \times (|\Agt| + 1) + 1\) states.
 
 The objective can be expressed as a Parity condition in the following
@@ -858,19 +752,18 @@ way:
 *    for each vertex \(v' = (v, \{ P \})\), \(c'(v') = c_P(v) + 1\) if
   \(F_P = 0\) and \(2 \cdot \max_v c_P(v) \) otherwise;
 *    for each vertex \(v' = (v, D)\) with \(|D| \ne 1\), \(c'(v') = 2 \cdot \max_v c_P(v)\)
-  i.e.~it is winning for Eve.
+  i.e. it is winning for Eve.
 
 Notice that the colouring function $c'$ inverts the parity
 in the case where there is a single deviator who is losing in the
 prescribed strategy profile (that is, $F_P=0$). In fact,
 when $F_P=1$, the player cannot obtain more since they are already winning
-so the colour is set to $2\cdot \max_v c_P(v) $ which is winning for \Eve.
+so the colour is set to $2\cdot \max_v c_P(v) $ which is winning for  \textrm{Eve}.
 
 ````{prf:lemma} NEEDS TITLE AND LABEL 
   We have \(\maxinf(c'(\rho_i)) \in 2 \mathbb{N}\) if, and
   only if, \(\rho\in N(F)\),
   where $N(F)$ is as defined in  {prf:ref}`13-thm:dev-nash`.
- 
 
   We have \(\maxinf(c'(\rho_i)) \in 2 \mathbb{N}\) if, and
   only if, \(\rho\in N(F)\),
@@ -910,13 +803,11 @@ implies the following theorem.
 ````{prf:theorem} NEEDS TITLE AND LABEL 
 For parity games, there is a quasipolynomial algorithm to decide whether there is a Nash
 equilibrium with a given payoff.
- 
 
 For parity games, there is a quasipolynomial algorithm to decide whether there is a Nash
 equilibrium with a given payoff.
 
 ````
-
 
 (13-subsection:extensions-of-nash-equilibria)=
 ## Extensions of Nash
@@ -960,7 +851,6 @@ reachability objectives.
   The only subgame perfect equilibrium of this game ends in 
   the vertex satisfying both
   $\Omega_1$ and $\Omega_2$.
- 
 
   Consider the example of {numref}`13-fig:ex-subgame`.
   There is a Nash equilibria whose outcome goes through states
@@ -1012,10 +902,10 @@ reachability objectives.
 ### Robust equilibria
 The notion of robust equilibria refines Nash equilibria in two ways:
 
-*    a robust equilibrium is **resilient**, i.e.~when a small coalition
+*    a robust equilibrium is **resilient**, i.e. when a small coalition
   change its strategy, none of the players of the coalition improves their
   payoff;
-*    it is **immune**, i.e.~when a small coalition changes its strategy,
+*    it is **immune**, i.e. when a small coalition changes its strategy,
   it does not decrease the payoffs of the non-deviating players.
 
 The size of small coalitions is determined by parameter \(k\) for
@@ -1046,49 +936,44 @@ The deviator construction can be reused for finding such equilibria. We
 only need to adapt the objectives. Given a game \(G=(\mathcal{A}, (\payoff_P)_{P \in \Agt})\), a
 strategy profile \(\sigma_{\Agt}\), and parameters \(k\), \(t\), we have
 
-
 *    The strategy profile \(\sigma_{\Agt}\) is \(k\)-resilient if, and only
   if, strategy \(\kappa(\sigma_{\Agt})\) is winning in \(\devg(\mathcal{A})\) for the
   **resilience objective** \(\mathcal{R}(k,F)\) where
-  \(F = (\payoff_P(\Out_{\mathcal{A}}(v_0, \sigma_{\Agt})))_{P \in \Agt}\) is the payoff profile of
+  \(F = (\payoff_P(  \textrm{Out}_{\mathcal{A}}(v_0, \sigma_{\Agt})))_{P \in \Agt}\) is the payoff profile of
   \(\sigma_{\Agt}\) and \(\mathcal{R}(k,F)\) is defined by:
-  
 
 $$
     \begin{array}{ll}
-      \mathcal{R}(k,F) = & \{ \rho \in \Out_{\devg(\mathcal{A})}\mid ~ |\Dev(\rho)| > k \} \\
+      \mathcal{R}(k,F) = & \{ \rho \in   \textrm{Out}_{\devg(\mathcal{A})}\mid   |\Dev(\rho)| > k \} \\
                           &\cup
-                            \{ \rho  \in \Out_{\devg(\mathcal{A})} \mid ~ |\Dev(\rho)| = k \land \forall P \in \Dev(\rho).\ \payoff_{P}(\proj_{\Out}(\rho)) \le F_P\} \\
-                          & \cup \{ \rho  \in \Out_{\devg(\mathcal{A})}\mid ~ |\Dev(\rho)| < k \land \forall P \in \Agt.\ \payoff_{P}(\proj_{\Out}(\rho)) \le F_P\}.
+                            \{ \rho  \in   \textrm{Out}_{\devg(\mathcal{A})} \mid   |\Dev(\rho)| = k \land \forall P \in \Dev(\rho).\ \payoff_{P}(\proj_{  \textrm{Out}}(\rho)) \le F_P\} \\
+                          & \cup \{ \rho  \in   \textrm{Out}_{\devg(\mathcal{A})}\mid   |\Dev(\rho)| < k \land \forall P \in \Agt.\ \payoff_{P}(\proj_{  \textrm{Out}}(\rho)) \le F_P\}.
     \end{array}
   $$
-
 
 *    The strategy profile \(\sigma_{\Agt}\) is \(t\)-immune if, and only if,
   strategy \(\kappa(\sigma_{\Agt})\) is winning for the **immunity
   objective** \(\mathcal{I}(t,F)\) where
-  \(F = (\payoff(\Out_{\mathcal{A}}(v_0, \sigma_{\Agt})))_{P \in \Agt}\) is the payoff profile of
+  \(F = (\payoff(  \textrm{Out}_{\mathcal{A}}(v_0, \sigma_{\Agt})))_{P \in \Agt}\) is the payoff profile of
   \(\sigma_{\Agt}\) and \(\mathcal{I}(t,F)\) is defined by:
-  
 
 $$
     \begin{array}{ll}
-    \mathcal{I}(t,F) = & \{ \rho  \in \Out_{\devg(\mathcal{A})} \mid |\Dev(\rho)| > t \}  \\
-      & \cup \{ \rho  \in \Out_{\devg(\mathcal{A})} \mid ~ \forall P \in \Agt \setminus \Dev(\rho).\  F_P \le \payoff_{P}(\proj_{\Out}(\rho)) \}.
+    \mathcal{I}(t,F) = & \{ \rho  \in   \textrm{Out}_{\devg(\mathcal{A})} \mid |\Dev(\rho)| > t \}  \\
+      & \cup \{ \rho  \in   \textrm{Out}_{\devg(\mathcal{A})} \mid   \forall P \in \Agt \setminus \Dev(\rho).\  F_P \le \payoff_{P}(\proj_{  \textrm{Out}}(\rho)) \}.
     \end{array}
   $$
 
 *    The strategy profile \(\sigma_{\Agt}\) is a \((k,t)\)-robust profile in
   \(G\) if, and only if, \(\kappa(\sigma_{\Agt})\) is winning for the
   **robustness objective**
-  
 
 $$
         \mathcal{R}(k,t,F)= \mathcal{R}(k,F) \cap \mathcal{I}(t,F),
         $$
 
  where
-        \(F = (\payoff_P(\Out_{\mathcal{A}}(v_0, \sigma_{\Agt})))_{P \in \Agt}\) is the payoff profile of
+        \(F = (\payoff_P(  \textrm{Out}_{\mathcal{A}}(v_0, \sigma_{\Agt})))_{P \in \Agt}\) is the payoff profile of
         \(\sigma_{\Agt}\).
 
 We omit the proof and encourage the reader to do it by themselves.
@@ -1123,8 +1008,6 @@ suspects. That is, if at vertex $v$, the suspect set is $S$, and the strategy pr
 and if the next vertex is $v'$, then
 the suspect set becomes $S \cap \{ P \in \Agt \mid \exists a'_P, \Delta(a'_P, a_{-P}) = (v, v')\}$.
 
-%will deviate (this is enough for Nash equilibria).
-
 The **suspect game** can be defined just like the deviator game by replacing the deviators component
 by the suspects component.
 The objective for Eve is that no suspect player improves their payoff. In fact, in
@@ -1132,7 +1015,7 @@ case of deviation, we know that the deviator belongs to the set of suspects alth
 we cannot know which one has deviated for sure so Eve must ensure this for all suspects.
 
 ````{prf:example} NEEDS TITLE AND LABEL 
-  Consider the example of figure~\ref{fig:hidden}.
+  Consider the example of figure \cref\{fig:hidden}.
   If actions were visible there would be an equilibrium ending in the
   state labeled with $\Omega_3$: player 3 simply has to punish the player
   who would deviate from this path.
@@ -1141,9 +1024,8 @@ we cannot know which one has deviated for sure so Eve must ensure this for all s
   and both Player 1 and Player 2 are suspects.
   Since Player 3 cannot punish both players at the same time, there is no
   Nash equilibrium ending satisfying $\Omega_3$.
- 
 
-  Consider the example of figure~\ref{fig:hidden}.
+  Consider the example of figure \cref\{fig:hidden}.
   If actions were visible there would be an equilibrium ending in the
   state labeled with $\Omega_3$: player 3 simply has to punish the player
   who would deviate from this path.
