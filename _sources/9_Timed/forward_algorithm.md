@@ -32,10 +32,8 @@ states with sets of states.
 For any order-preserving 
 function $f\colon 2^V\to2^V$
 (**order-preserving** meaning non-decreasing for the $\subseteq$-relation),
-
-a **pre-fixpoint** is a set $X\subseteq V$ for which $f(X)\subseteq
-X$; it is a **fixpoint** if $f(X)=X$. By Knaster-Tarski theorem, such
-functions always admit a least pre-fixpoint which is also the least fixpoint.
+a **pre-fixpoint** is a set $X\subseteq V$ for which $f(X)\subseteq X$; 
+it is a **fixpoint** if $f(X)=X$. By Knaster-Tarski theorem, such functions always admit a least pre-fixpoint which is also the least fixpoint.
 
 Fix a dependency graph $G=(V,E)$. 
 For $W\subseteq V$,
@@ -59,77 +57,57 @@ is not, in the least fixpoint of $f_W$.
 Before tackling the algorithm, let us link least fixpoints in
 dependency graphs and winning sets in concurrent games (with
 reachability objectives): with a concurrent arena
-$\mathcal C=(V, \textsf{Act},\delta,c')$ and a target set $Win$, we associate
+$\mathcal{C}=(V, \textsf{Act},\delta,c')$ and a target set $\textrm{Win}$, we associate
 the dependency graph $G=(V,E)$, where $(v,T)\in E$ whenever $v\in V$
 and $T\subseteq V$ is such that there exists an action $a$ for which
 $T=\{v' \mid \exists a'\in \textsf{Act}.\ v'=\delta(v,a,a')\}$.  Then for any
-set $X\subseteq V$, the set $f_{ Win}(X)$ contains $Win$ and all the
+set $X\subseteq V$, the set $f_{ \textrm{Win}}(X)$ contains $\textrm{Win}$ and all the
 states from which Eve can force a visit to $X$ in one step.
 We then have:
 
 ````{prf:proposition} NEEDS TITLE 9-prop:fixp-game
 :label: 9-prop:fixp-game
 
-The least fixpoint of $f_{ Win}$ in $G$ corresponds to the set $W$ of
-winning states for  Eve in $\mathcal C$.
+The least fixpoint of $f_{ \textrm{Win}}$ in $G$ corresponds to the set $W$ of
+winning states for Eve in $\mathcal{C}$.
 
 ````
 
 ````{admonition} Proof
 :class: dropdown tip
 
-  The winning states of  Eve form a pre-fixpoint of $f_{ Win}$
-  containing  Win: indeed, for any $v\in f_{ Win}(W)$, either $v\in
-   Win$, or  Eve has an action to move from $v$ to some state
+  The winning states of Eve form a pre-fixpoint of $f_{ \textrm{Win}}$
+  containing $\textrm{Win}$: indeed, for any $v\in f_{ \textrm{Win}}(W)$, either $v\in
+   \textrm{Win}$, or Eve has an action to move from $v$ to some state
   in $W$. Hence $v$ is winning, i.e., $v\in W$.
 
   Conversely, from any state $v$ that is not in the least
   pre-fixpoint $X$, for any edge $(v,T)$, there is a state $v'\in T$
-  that again is not in $X$. This defines a strategy for  Adam to avoid
-  reaching $Win$, so that  Eve does not have a winning strategy from $v$.
+  that again is not in $X$. This defines a strategy for Adam to avoid
+  reaching $\textrm{Win}$, so that Eve does not have a winning strategy from $v$.
 
 ````
 
-\begin{algorithm}
-  \SetKwFunction{Pop}{pop}\SetAlgoNoEnd
-  \KwData{A dependency graph $G=(V,E)$, a set $W\subseteq V$, a node $v_0\in V$}
-  \KwResult{Is $v_0$ in the least fixpoint of $f_W$?}
+```{figure} ./../FigAndAlgos/9-algo:LS98.png
+:name: 9-algo:LS98
+:align: center
+Liu-Smolka algorithm for least fixpoint of $f_W$
+```
 
-  \For{$v\in V$}{\lIf{$v\in W$}{$F(v):=1$}
-    \lElseIf{$v==v_0$}{$F(v):=0$}
-            \lElse{$F(v):=\bot$}}
-  
-  $\textsf{Dep}(v_0):=\emptyset$;
+{numref}`9-algo:LS98` can be seen as an alternation of forward
+exploration and backward propagation.
 
-  $\textsf{Wait}:=\{(v,T)\in E \mid v=v_0\}$;
-
-  \While{($\textsf{Wait}\not=\emptyset$ and $F(v_0)==0$)}
-        {$(v,T):=\Pop{ \textsf{Wait}}$;\\
-          \If({// case 1}){$F(v)==0$ and $\forall v'\in T.\ F(v')==1$}
-             {$F(v):=1$;\\
-              $\textsf{Wait}:= \textsf{Wait}\cup \textsf{Dep}(v)$;}
-          \ElseIf({// case 2}){$\exists v'\in T.\ F(v')==0$}
-                {$\textsf{Dep}(v'):= \textsf{Dep}(v') \cup \{(v,T)\}$;}
-                \ElseIf({// case 3}){$\exists v'\in T.\ F(v')==\bot$}
-                  {$F(v'):=0$; \\
-                  $\textsf{Dep}(v'):=\{(v,T)\}$;\\
-                  $\textsf{Wait}:= \textsf{Wait}\cup\{(w,U)\in E \mid w=v'\}$;
-                  }
-                  }
-                  \Return{$F(v_0)$}
-  \caption{Liu-Smolka algorithm\protect\footnotemark for least fixpoint of $f_W$}
-  \label{9-algo:LS98}
-\end{algorithm}
-\footnotetext{Our version of the algorithm slightly differs from the
+```{margin}
+Our version of the algorithm slightly differs from the
   original one {cite}`LS98`: we let $\textsf{Dep}(v'):=\{(v,T)\}$ at the penultimate line
   of the **while** loop (which otherwise results in a wrong
   result, as already noticed in {cite}`JLSO13`), reinforce the
   condition for case $1$ (which otherwise would not guarantee
   termination), and reinforce the condition of the **while** loop
-  to get earlier termination.}
+  to get earlier termination.
+```
 
-{numref}`9-algo:LS98` can be seen as an alternation of forward
-exploration and backward propagation. Intuitively, the algorithm first
+ Intuitively, the algorithm first
 explores the graph in a forward manner, remembering for each node $v$
 the set $\textsf{Dep}(v)$ of nodes that **depend** on $v$, and have to be
 reexplored if the status of $v$ is updated.
@@ -144,9 +122,9 @@ are scheduled to be visited again to check whether their statuses have to be cha
 This is how the backward propagation is triggered; in fact, the search will climb in the tree as long as the values of
 vertices can be updated to $1$.
 
-The correctness of this algorithm relies on the following lemma:
+The correctness of this algorithm relies on the following lemma {cite}`LS98`:
 
-````{prf:lemma} {cite}`LS98`
+````{prf:lemma} Invariant
 :label: 9-lemma:ls98
 
   The following properties hold at the end of each run in the
@@ -198,7 +176,6 @@ The correctness of this algorithm relies on the following lemma:
     $(x,Y)\in \textsf{Wait}^{i-1}$, or $(x,Y)\in \textsf{Dep}^{i-1}(x')$ for some $x'\in Y$
     with $F(x')=0$. In the former case: since $x\not=v^i$,
     if $(x,Y)\in \textsf{Wait}^{i-1}$ then also $(x,Y)\in  \textsf{Wait}^i$;
-
     in the latter case: if $(x,Y)\in \textsf{Dep}^{i-1}(x')$ for some $x'\in Y$
     with $F(x')=0$, then **(i)** either $x'=v^i$, and
     $(x,Y)\in \textsf{Wait}^i$ because $\textsf{Dep}^{i-1}(v^i)\subseteq  \textsf{Wait}^i$
@@ -253,10 +230,9 @@ $F^n(v_0)=0$ and $\textsf{Wait}^n=\emptyset$.
   not belong to that least fixpoint. In particular, $v_0$ is not in
   the fixpoint.
 
-\medskip
 It remains to prove termination. For this, we first notice that, for
 any hyper-edge $(v,S)$, if $(v,S)\in \textsf{Dep}^i(v')$ then $(v,S)\in \textsf{Wait}^j$
-for some $j<i$, and if $(v,S)\in \textsf{Wait}^j$ or $(v,S)\in \textsf{Dep}^j(v')$ for
+for some $j < i$, and if $(v,S)\in \textsf{Wait}^j$ or $(v,S)\in \textsf{Dep}^j(v')$ for
 some $v'$, then $F^j(v)\not=\bot$.
 
 We then set
@@ -267,7 +243,6 @@ M=
 2\hskip-4pt\sum_{v\text{ s.t. }F(v)=\bot}\hskip-4pt  |\{(v,S)\in E\|} 
 + \hskip-4pt\sum_{v\text{ s.t. }F(v)=0}\hskip-4pt  | \textsf{Dep|(v)}
 - \hskip-4pt\sum_{v\text{ s.t. }F(v)=1}\hskip-4pt  | \textsf{Dep|(v)}
-
 $$
 
 again writing $M^i$ for the value of $M$ after the $i$-th run through
@@ -322,44 +297,11 @@ zones to be explored, and a dependency list stores the list of nodes
 to be revisited upon update of the winning subzone of a zone.
 The algorithm is given in {numref}`9-algo:sotftr`.
 
-\begin{algorithm}
-  \SetKwFunction{Pop}{pop}\SetAlgoNoEnd
-  \KwData{A reachability timed game $\mathcal{G}=( \mathcal{A},  \mathtt{Reach}( Win))$,
-    a location $\ell_0\in  \mathcal{L}$}
-  \KwResult{Is $(\ell_0,\mathbf{0})$ winning for Eve?}
-
-  $S_0:= \sf Post_{\geq 0}(\ell_0,\mathbf 0)$;
-
-  \leIf{$c(S_0)== Win$}{$F(S_0):=S_0$}{$F(S_0):=\emptyset$}
-
-  $\textsf{Passed}:=\{S_0\}$;  
-  // $\textsf{Passed}$ stores all configurations for which $F$ is defined
-
-  $\textsf{Dep}(S_0):=\emptyset$;
-
-  $\textsf{Wait}:=\{(S_0,\alpha,T) \mid 
-    T= \sf Post_{\geq 0}( \sf Post_{\alpha}(S_0))\not=\emptyset, \alpha\text{ transition of } \mathcal{G}\}$;
-
-  \While{($\textsf{Wait}\not=\emptyset$ and $(v_0,\mathbf 0)\notin F(S_0)$)}
-        {$(S,\alpha,T)):=\Pop{ \textsf{Wait}}$;\\
-          \If({// case $A$}){$T\in \textsf{Passed}$}
-          {$\textsf{Dep}(T):= \textsf{Dep}(T) \cup \{(S,\alpha,T)\}$;\\
-          $W:= \sf Pred_{\geq 0}\left(F(S)\cup \bigcup_{\substack{S\xrightarrow{c} V\\ \!\!V\in \textsf{Passed}\!\!}}  \sf Pred_c(F(V)),\ \bigcup_{\substack{S\xrightarrow{u} V\\ \!\!V\in \textsf{Passed}\!\!}} \sf Pred_u(V\setminus F(V))\right) \cap S$;\\
-          \If{$F(S) \subsetneq W$}{$F(S):=W$;\\
-              $\textsf{Wait}:= \textsf{Wait}\cup \textsf{Dep}(S)$;}}
-          \Else({// case $B$})
-                  {$\textsf{Passed}:= \textsf{Passed} \cup\{T\}$; \\
-                    \If{$c(T)== Win$}{$F(T):=T$\\ $\textsf{Wait}:= \textsf{Wait}\cup\{(S,\alpha,T)\}$}
-                       \Else{$F(T):=\emptyset$}
-                  $\textsf{Dep}(T):=\{(S,\alpha,T)\}$;\\
-                  $\textsf{Wait}:= \textsf{Wait}\cup\{(T,\alpha,U) \mid U= \sf Post_{\geq 0}( \sf Post_{\alpha}(T))\not=\emptyset, \alpha\text{ transition of } \mathcal{G}\}$;
-        }
-        }
-  \leIf{$(v_0,\mathbf 0)\in F(S_0)$}{\Return 1}{\Return 0}
-
-        \caption{Symbolic on-the-fly algorithm for timed reachability}
-  \label{9-algo:sotftr}
-\end{algorithm}
+```{figure} ./../FigAndAlgos/9-algo:sotftr.png
+:name: 9-algo:sotftr
+:align: center
+Symbolic on-the-fly algorithm for timed reachability
+```
 
 The correctness of the algorithm can be proven using the following
 lemma. We omit the proof of this lemma, as it is tedious and and does
@@ -372,20 +314,18 @@ not contain any difficult argument.
   the **while** loop of {numref}`9-algo:sotftr`:
   
   *  for any $S\in \textsf{Passed}$ and any transition $\alpha$, if
-    $T= \sf Post_{\geq 0}( \sf Post_\alpha(S))\not=\emptyset$,
+    $T= \mathsf{Post}_{\geq 0}( \mathsf{Post}_\alpha(S))\not=\emptyset$,
     then either $(S,\alpha,T)\in \textsf{Wait}$, or
     $T\in \textsf{Passed}$ and $(S,\alpha,T)\in \textsf{Dep}(T)$;
   *  for any $S\in \textsf{Passed}$ and $q\in F(S)$,  $q$ is winning for Eve;
   *  for any $S\in \textsf{Passed}$ and $q\in S\setminus F(S)$,
     either
-    
     $\textsf{Wait}$ contains a symbolic transition $(S,\alpha,S')$ from $S$
     with $S'\in \textsf{Passed}$,
-
     or
 
 $$
-      q\notin  \sf Pred_{\geq 0}\Bigl(F(S)\cup \bigcup_{\substack{S\xrightarrow{c} V\\ V\in \textsf{Passed}}}  \sf Pred_c(F(V)),\ \bigcup_{\substack{S\xrightarrow{u} V\\ V\in \textsf{Passed}}}  \sf Pred_u(V\setminus F(V))\Bigr) \cap S.
+      q\notin  \mathsf{Pred}_{\geq 0}\Bigl(F(S)\cup \bigcup_{\substack{S\xrightarrow{c} V\\ V\in \textsf{Passed}}}  \mathsf{Pred}_c(F(V)),\ \bigcup_{\substack{S\xrightarrow{u} V\\ V\in \textsf{Passed}}}  \mathsf{Pred}_u(V\setminus F(V))\Bigr) \cap S.
     $$
 
 ````
@@ -420,11 +360,11 @@ S\in \textsf{Passed}^n.\ q\in S\setminus F^n(S)\}$, and $M$ be the complement
 of $L$. For any $S\in \textsf{Passed}^n$, we then have $M\cap S\subseteq
 F^n(S)$.
 
-Pick $q\in \pi(M)\cup  Win$, where we abusively write $Win$ to denote
-all configurations with location colored $Win$. We prove that $q\in M$:
+Pick $q\in \pi(M)\cup  \textrm{Win}$, where we abusively write $\textrm{Win}$ to denote
+all configurations with location colored $\textrm{Win}$. We prove that $q\in M$:
 
-*  if $q\in Win$: assume $q\in L$, and pick $S\in \textsf{Passed}^n$ such
-  that $q\in S\setminus F^n(S)$. Since $q\in S$, it holds $c(S)= Win$;
+*  if $q\in \textrm{Win}$: assume $q\in L$, and pick $S\in \textsf{Passed}^n$ such
+  that $q\in S\setminus F^n(S)$. Since $q\in S$, it holds $c(S)= \textrm{Win}$;
   but then $F^n(S)$ is defined (since $S\in \textsf{Passed}^n$), and it
   equals $S$ by initialization of $F$. This contradicts the fact that
   $q\in S\setminus F^n(S)$, hence $q\in M$.
@@ -438,26 +378,30 @@ all configurations with location colored $Win$. We prove that $q\in M$:
   and by monotonicity, we get
 
 $$
-  q\notin \sf Pred_{\geq 0}\Biggl((M\cap S)\cup \bigcup_{\substack{S\xrightarrow{c}
-    V}}  \sf Pred_c(M\cap V),\ \bigcup_{\substack{S\xrightarrow{u}
-    V}}  \sf Pred_u(V\setminus (M\cap V))\Biggr) \cap S.
+  q\notin \mathsf{Pred}_{\geq 0}\Biggl((M\cap S)\cup \bigcup_{\substack{S\xrightarrow{c}
+    V}}  \mathsf{Pred}_c(M\cap V),\ \bigcup_{\substack{S\xrightarrow{u}
+    V}}  \mathsf{Pred}_u(V\setminus (M\cap V))\Biggr) \cap S.
   $$
 
-  Now, notice that any $S\in \textsf{Passed}^n$ is closed under $\sf Post_{\geq 0}$. Then
-  \begin{xalignat*}1
-    \pi(M)\cap S &=  \sf Pred_{\geq 0}(M\cup \sf Pred_c(M),  \sf Pred_u(\overline M)) \\
-     &=  \sf Pred_{\geq 0}((M\cap S)\cup ( \sf Pred_c(M)\cap S),  \sf Pred_u(\overline M)).
-  \end{xalignat*}
-  Now, it can be checked that $\sf Pred_c(M)\cap S \subseteq
-  \bigcup_{\substack{S\xrightarrow{c} V}}  \sf Pred_c(M\cap V)$ and
-  $\sf Pred_u(\overline M) \supseteq \bigcup_{\substack{S\xrightarrow{u}
-      V}}  \sf Pred_u(V\setminus (M\cap V))$.  So the fact that $q\in
+  Now, notice that any $S\in \textsf{Passed}^n$ is closed under $\mathsf{Post}_{\geq 0}$. Then
+  
+$$
+1
+    \pi(M)\cap S &=  \mathsf{Pred}_{\geq 0}(M\cup \mathsf{Pred}_c(M),  \mathsf{Pred}_u(\overline M)) \\
+     &=  \mathsf{Pred}_{\geq 0}((M\cap S)\cup ( \mathsf{Pred}_c(M)\cap S),  \mathsf{Pred}_u(\overline M)).
+  
+$$
+
+  Now, it can be checked that $\mathsf{Pred}_c(M)\cap S \subseteq
+  \bigcup_{\substack{S\xrightarrow{c} V}}  \mathsf{Pred}_c(M\cap V)$ and
+  $\mathsf{Pred}_u(\overline M) \supseteq \bigcup_{\substack{S\xrightarrow{u}
+      V}}  \mathsf{Pred}_u(V\setminus (M\cap V))$.  So the fact that $q\in
   \pi(M)$ and $q\in S$ leads to a contradiction. This entails that
   $q\notin L$, hence $q\in M$.
 
-In the end, we have proven that $\pi(M)\cup Win \subseteq M$, so that
-$M$ is a pre-fixpoint of $X\mapsto \pi(X)\cup Win$, hence it contains
-all winning configurations of  Eve and $L$ only contains losing
+In the end, we have proven that $\pi(M)\cup \textrm{Win} \subseteq M$, so that
+$M$ is a pre-fixpoint of $X\mapsto \pi(X)\cup \textrm{Win}$, hence it contains
+all winning configurations of Eve and $L$ only contains losing
 configurations.
 
 ````
@@ -479,10 +423,10 @@ We can then conclude:
 
 ````{prf:theorem} NEEDS TITLE AND LABEL 
 {numref}`9-algo:sotftr` terminates when extrapolation is used, and returns $1$ if, and only if,
-$(\ell_0,\mathbf{0})$ is winning for  Eve.
+$(\ell_0,\mathbf{0})$ is winning for Eve.
 
 {numref}`9-algo:sotftr` terminates when extrapolation is used, and returns $1$ if, and only if,
-$(\ell_0,\mathbf{0})$ is winning for  Eve.
+$(\ell_0,\mathbf{0})$ is winning for Eve.
 
 ````
 

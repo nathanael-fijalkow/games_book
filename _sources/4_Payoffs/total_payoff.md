@@ -111,7 +111,7 @@ in the arena allows one to get the following strong result {cite}`Gimbert&Zielon
 
 ````
 
-In particular, it gives $NP\cap coNP$ complexity to solve
+In particular, it gives $\textrm{NP}\cap \textrm{coNP}$ complexity to solve
 total payoff games, since one-player total payoff games can be solved
 in polynomial time using Floyd-Warshall algorithm to compute all-pairs
 shortest path in a weighted graph. Obtaining a deterministic algorithm

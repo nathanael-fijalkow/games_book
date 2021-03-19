@@ -770,10 +770,10 @@ The space complexity of the algorithm is <span class="math notranslate nohighlig
 </div><p>We rely on the high-level presentation of value iteration algorithms given in Section <a class="reference internal" href="../1_Introduction/value_iteration.html#sec-value-iteration"><span class="std std-ref">Value iteration algorithms</span></a>.
 Let <span class="math notranslate nohighlight">\(\mathcal{G} = ( \mathcal{A}, \mathtt{Parity}[ \textsf{col}])\)</span> a parity game with <span class="math notranslate nohighlight">\(n\)</span> vertices and priorities in <span class="math notranslate nohighlight">\([1,d]\)</span>,
 and without loss of generality <span class="math notranslate nohighlight">\(d\)</span> is even.</p>
-<p>The first step is to define a notion of value function <span class="math notranslate nohighlight">\(val^ \mathcal{G} : V \to Y\)</span> with <span class="math notranslate nohighlight">\((Y,\le)\)</span> a lattice satisfying the characterisation principle:
-for all vertices <span class="math notranslate nohighlight">\(v\)</span> we have that Eve wins from <span class="math notranslate nohighlight">\(v\)</span> if and only if <span class="math notranslate nohighlight">\(val^ \mathcal{G}(v) \neq \bot\)</span>, where <span class="math notranslate nohighlight">\(\bot\)</span> is the least element in <span class="math notranslate nohighlight">\(Y\)</span>.
-The goal of the algorithm is to compute <span class="math notranslate nohighlight">\(val^ \mathcal{G}\)</span>, from which we then easily obtain the winning region thanks to the characterisation principle.</p>
-<p>To set the machinery of value iteration algorithms in motion we can either construct <span class="math notranslate nohighlight">\(val^ \mathcal{G}\)</span> as the unique fixed point of a contracting operator using Banach’s fixed point theorem or the greatest fixed point of a monotonic operator using Kleene’s fixed point theorem.</p>
+<p>The first step is to define a notion of value function <span class="math notranslate nohighlight">\(\textrm{val}^ \mathcal{G} : V \to Y\)</span> with <span class="math notranslate nohighlight">\((Y,\le)\)</span> a lattice satisfying the characterisation principle:
+for all vertices <span class="math notranslate nohighlight">\(v\)</span> we have that Eve wins from <span class="math notranslate nohighlight">\(v\)</span> if and only if <span class="math notranslate nohighlight">\(\textrm{val}^ \mathcal{G}(v) \neq \bot\)</span>, where <span class="math notranslate nohighlight">\(\bot\)</span> is the least element in <span class="math notranslate nohighlight">\(Y\)</span>.
+The goal of the algorithm is to compute <span class="math notranslate nohighlight">\(\textrm{val}^ \mathcal{G}\)</span>, from which we then easily obtain the winning region thanks to the characterisation principle.</p>
+<p>To set the machinery of value iteration algorithms in motion we can either construct <span class="math notranslate nohighlight">\(\textrm{val}^ \mathcal{G}\)</span> as the unique fixed point of a contracting operator using Banach’s fixed point theorem or the greatest fixed point of a monotonic operator using Kleene’s fixed point theorem.</p>
 <p>Let us here follow the second approach.
 We let <span class="math notranslate nohighlight">\(F_V\)</span> be the lattice of functions <span class="math notranslate nohighlight">\(V \to Y\)</span> equipped with the componentwise order induced by <span class="math notranslate nohighlight">\(Y\)</span>.
 We are looking for a monotonic function <span class="math notranslate nohighlight">\(\delta : Y \times [1,d] \to Y\)</span> inducing the operator <span class="math notranslate nohighlight">\(\mathbb{O} : F_V \to F_V\)</span> defined by:</p>
@@ -785,8 +785,8 @@ We are looking for a monotonic function <span class="math notranslate nohighligh
 \min  \left\{ \delta( \mu(v'),  \textsf{col \right\}(v)) : (v,v') \in E} &amp; \text{ if } v \in  V_\mathrm{Adam},
 \end{cases}
 \end{split}\]</div>
-<p>such that <span class="math notranslate nohighlight">\(val^ \mathcal{G}\)</span> is the greatest fixed point of <span class="math notranslate nohighlight">\(\mathbb{O}\)</span>.
-The algorithm would then simply use <a class="reference internal" href="../1_Introduction/fixed_points.html#1-thm:kleene">Theorem 26</a> to compute <span class="math notranslate nohighlight">\(val^ \mathcal{G}\)</span> by iterating the operator <span class="math notranslate nohighlight">\(\mathbb{O}\)</span>.</p>
+<p>such that <span class="math notranslate nohighlight">\(\textrm{val}^ \mathcal{G}\)</span> is the greatest fixed point of <span class="math notranslate nohighlight">\(\mathbb{O}\)</span>.
+The algorithm would then simply use <a class="reference internal" href="../1_Introduction/fixed_points.html#1-thm:kleene">Theorem 26</a> to compute <span class="math notranslate nohighlight">\(\textrm{val}^ \mathcal{G}\)</span> by iterating the operator <span class="math notranslate nohighlight">\(\mathbb{O}\)</span>.</p>
 <p>Let us look at this question using the notion of progress measures, which are post-fixed points of <span class="math notranslate nohighlight">\(\mathbb{O}\)</span>,
 meaning <span class="math notranslate nohighlight">\(\mu\)</span> such that <span class="math notranslate nohighlight">\(\mu \le  \mathbb{O}(\mu)\)</span>.
 Since the greatest fixed point of <span class="math notranslate nohighlight">\(\mathbb{O}\)</span> is also its greatest post-fixed point, an equivalent formulation of the characterisation principle above reads: for all vertices <span class="math notranslate nohighlight">\(v\)</span> we have that Eve wins from <span class="math notranslate nohighlight">\(v\)</span> if and only if there exists a progress measure <span class="math notranslate nohighlight">\(\mu\)</span> such that <span class="math notranslate nohighlight">\(\mu(v) \neq \bot\)</span>.</p>
@@ -1165,10 +1165,10 @@ Hence checking whether a vertex <span class="math notranslate nohighlight">\(v\)
 and checking whether <span class="math notranslate nohighlight">\(\mu(v) \vartriangleleft_{ \textsf{col}(v)} \mu(v')\)</span>.
 Let us write <span class="math notranslate nohighlight">\(\Delta\)</span> for the complexity of checking whether <span class="math notranslate nohighlight">\(\mu(v) \vartriangleleft_{ \textsf{col}(v)} \mu(v')\)</span>.
 Hence checking whether <span class="math notranslate nohighlight">\(v\)</span> is neglected costs
-<span class="math notranslate nohighlight">\(O(|  In^{-1}(v)| \cdot \Delta)\)</span>, where <span class="math notranslate nohighlight">\(|  In^{-1}(v)|\)</span> is the number of outgoing edges of <span class="math notranslate nohighlight">\(v\)</span>.</p>
+<span class="math notranslate nohighlight">\(O(|  \textrm{In}^{-1}(v)| \cdot \Delta)\)</span>, where <span class="math notranslate nohighlight">\(|  \textrm{In}^{-1}(v)|\)</span> is the number of outgoing edges of <span class="math notranslate nohighlight">\(v\)</span>.</p>
 <p>A naive implementation of <a class="reference internal" href="#algo-value-iteration"><span class="std std-numref">Fig. 32</span></a> would in each repeat loop go through every vertex <span class="math notranslate nohighlight">\(v\)</span>
 to check whether it is neglected.
-This would incur a linear cost: <span class="math notranslate nohighlight">\(\sum_{v \in V} O(|  In^{-1}(v)| \cdot \Delta) = O(m \cdot \Delta)\)</span>.
+This would incur a linear cost: <span class="math notranslate nohighlight">\(\sum_{v \in V} O(|  \textrm{In}^{-1}(v)| \cdot \Delta) = O(m \cdot \Delta)\)</span>.
 Thus the overall complexity would be</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1212,7 +1212,7 @@ but it also has implications on the complexity.
 Indeed one iteration of the repeat loop over some vertex <span class="math notranslate nohighlight">\(v\)</span> involves</p>
 <div class="math notranslate nohighlight">
 \[
-O\left( (|  In^{-1}(v)| + |  Out^{-1}(v)|) \cdot \Delta \right)
+O\left( (|  \textrm{In}^{-1}(v)| + |  \textrm{Out}^{-1}(v)|) \cdot \Delta \right)
 \]</div>
 <p>operations,
 the first term corresponds to updating <span class="math notranslate nohighlight">\(\mu(v)\)</span> and <span class="math notranslate nohighlight">\(\text{number}\)</span>-<span class="math notranslate nohighlight">\(\text{neglected}\)</span>-<span class="math notranslate nohighlight">\(\text{edges}(v)\)</span>,
@@ -1222,7 +1222,7 @@ Thus the overall complexity is</p>
 <div class="math notranslate nohighlight">
 \[
 O\left( 
-\sum_{v \in V} (|  In^{-1}(v)| + |  Out^{-1}(v)|) \cdot \Delta \cdot |T|
+\sum_{v \in V} (|  \textrm{In}^{-1}(v)| + |  \textrm{Out}^{-1}(v)|) \cdot \Delta \cdot |T|
 \right) 
 = O(m \cdot \Delta \cdot |T|).
 \]</div>
@@ -1314,7 +1314,7 @@ O\left(nm \log(n) \log(d) \cdot  \binom{\lceil \log(n) \rceil + d/2 - 1}{\lceil 
     <div class="container">
       <p>
         
-          By a set of authors coordinated by Nathana&euml;l Fijalkow<br/>
+          By a set of authors<br/>
         
             &copy; Copyright 2021.<br/>
       </p>

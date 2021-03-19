@@ -756,7 +756,7 @@ In the setting of MDPs it is technically convenient to encode regular objectives
 <p>The way in which a play is generated in an MDP is similar to games, but now encompasses a certain degree of randomness. There is a single player, say Eve, who controls all the vertices. Eve’s interaction with the world described by an MDP is probabilistic. One reason is the stochasticity of the transition function, the other is the fact that in MDP settings, it is usually permitted for Eve to use randomised strategies. Formally, a randomised strategy is a function <span class="math notranslate nohighlight">\(\sigma : E^* \to  \mathcal{D}(A)\)</span>, which to each finite play assigns a probability distribution over actions.</p>
 <p>We typically shorten <span class="math notranslate nohighlight">\(\sigma( \pi)(a)\)</span> to <span class="math notranslate nohighlight">\(\sigma(a\mid  \pi)\)</span>.</p>
 <p>In this section, we will refer to randomised strategies simply as strategies. The strategies known from the game setting will be called  deterministic strategies. Formally, a deterministic strategy can be viewed as a special type of a randomised strategy which always selects a Dirac distribution over the edges. We shorten memoryless randomised/deterministic to MR and MD, respectively.</p>
-<p>Now a play in an MDP is produced as follows: in each step, when the finite play produced so far (i.e. the history of the game token’s movement) is <span class="math notranslate nohighlight">\(\pi\)</span>, Eve chooses an action <span class="math notranslate nohighlight">\(a\)</span> randomly according to the distribution <span class="math notranslate nohighlight">\(\sigma( \pi)\)</span>. Then, an edge outgoing from <span class="math notranslate nohighlight">\(last( \pi)\)</span> is chosen randomly according to <span class="math notranslate nohighlight">\(\Delta( last( \pi),a)\)</span> and the token is pushed along the selected edge. As shown below, this intuitive process can be formalized by constructing a special probability space whose sample space consists of infinite plays in the MDP.</p>
+<p>Now a play in an MDP is produced as follows: in each step, when the finite play produced so far (i.e. the history of the game token’s movement) is <span class="math notranslate nohighlight">\(\pi\)</span>, Eve chooses an action <span class="math notranslate nohighlight">\(a\)</span> randomly according to the distribution <span class="math notranslate nohighlight">\(\sigma( \pi)\)</span>. Then, an edge outgoing from <span class="math notranslate nohighlight">\(\textrm{last}( \pi)\)</span> is chosen randomly according to <span class="math notranslate nohighlight">\(\Delta( \textrm{last}( \pi),a)\)</span> and the token is pushed along the selected edge. As shown below, this intuitive process can be formalized by constructing a special probability space whose sample space consists of infinite plays in the MDP.</p>
 <blockquote>
 <div><p><strong>Formal semantics of MDPs</strong></p>
 </div></blockquote>
@@ -792,10 +792,10 @@ proceeds as follows: for each finite play <span class="math notranslate nohighli
 </ul>
 <div class="math notranslate nohighlight">
 \[p( \pi) =  p( \pi_{&lt; k})\cdot \Big(\sum_{a \in  A} 
-\sigma(a\mid  \pi_{&lt; k})\cdot  \Delta( last( \pi)\mid 
- last( \pi_{&lt; k}),a) 
+\sigma(a\mid  \pi_{&lt; k})\cdot  \Delta( \textrm{last}( \pi)\mid 
+ \textrm{last}( \pi_{&lt; k}),a) 
 \Big), \]</div>
-<p>where we use the convention that <span class="math notranslate nohighlight">\(last( \pi_{&lt; 0})= v_0\)</span>;</p>
+<p>where we use the convention that <span class="math notranslate nohighlight">\(\textrm{last}( \pi_{&lt; 0})= v_0\)</span>;</p>
 <ul class="simple">
 <li><p>for all other <span class="math notranslate nohighlight">\(\pi\)</span> we have <span class="math notranslate nohighlight">\(p( \pi)=0\)</span>.</p></li>
 </ul>
@@ -864,9 +864,9 @@ of
 </div></blockquote>
 <p>Let us fix an MDP <span class="math notranslate nohighlight">\(\mathcal{M}\)</span> and an objective given by a random variable
 <span class="math notranslate nohighlight">\(f\)</span>. The value of a vertex <span class="math notranslate nohighlight">\(v\in V\)</span> is the number
-<span class="math notranslate nohighlight">\(val(v)=\sup_{\sigma}  \textsf{Payoff}_f(v,\sigma)\)</span>. We let <span class="math notranslate nohighlight">\(val( \mathcal{M})\)</span> denote the <span class="math notranslate nohighlight">\(| V|\)</span>-dimensional vector whose component
-indexed by <span class="math notranslate nohighlight">\(v\)</span> equals <span class="math notranslate nohighlight">\(val(v)\)</span>.</p>
-<p>We say that a strategy <span class="math notranslate nohighlight">\(\sigma\)</span> is <span class="math notranslate nohighlight">\(\varepsilon\)</span>-optimal in <span class="math notranslate nohighlight">\(v\)</span>, for some <span class="math notranslate nohighlight">\(\varepsilon\geq 0\)</span>, if <span class="math notranslate nohighlight">\(\textsf{Payoff}_f(v,\sigma) \geq  val(v) -  \varepsilon\)</span>. A <span class="math notranslate nohighlight">\(0\)</span>-optimal strategy is simply called optimal.</p>
+<span class="math notranslate nohighlight">\(\textrm{val}(v)=\sup_{\sigma}  \textsf{Payoff}_f(v,\sigma)\)</span>. We let <span class="math notranslate nohighlight">\(\textrm{val}( \mathcal{M})\)</span> denote the <span class="math notranslate nohighlight">\(| V|\)</span>-dimensional vector whose component
+indexed by <span class="math notranslate nohighlight">\(v\)</span> equals <span class="math notranslate nohighlight">\(\textrm{val}(v)\)</span>.</p>
+<p>We say that a strategy <span class="math notranslate nohighlight">\(\sigma\)</span> is <span class="math notranslate nohighlight">\(\varepsilon\)</span>-optimal in <span class="math notranslate nohighlight">\(v\)</span>, for some <span class="math notranslate nohighlight">\(\varepsilon\geq 0\)</span>, if <span class="math notranslate nohighlight">\(\textsf{Payoff}_f(v,\sigma) \geq  \textrm{val}(v) -  \varepsilon\)</span>. A <span class="math notranslate nohighlight">\(0\)</span>-optimal strategy is simply called optimal.</p>
 <p>For qualitative objectives, there are additional modes of objective satisfaction. Given such an objective <span class="math notranslate nohighlight">\(\Omega\)</span>, we say that a strategy <span class="math notranslate nohighlight">\(\sigma\)</span> is almost-surely winning from <span class="math notranslate nohighlight">\(v\)</span> if <span class="math notranslate nohighlight">\(\mathbb{E}^{\sigma}_{ \mathcal{M},v}[ \mathbf{1}_{ \Omega}]=1\)</span>, i.e. if the run produced by <span class="math notranslate nohighlight">\(\sigma\)</span> falls into <span class="math notranslate nohighlight">\(\Omega\)</span> with probability <span class="math notranslate nohighlight">\(1\)</span>. We also say that <span class="math notranslate nohighlight">\(\sigma\)</span> is positively winning from <span class="math notranslate nohighlight">\( v \)</span> if <span class="math notranslate nohighlight">\(\mathbb{E}^{\sigma}_{ \mathcal{M},v}[ \mathbf{1}_{ \Omega}]&gt;0\)</span>. For strategies that are winning in the non-stochastic game sense, i.e. that <strong>cannot</strong> produce a run not belonging to <span class="math notranslate nohighlight">\(\Omega\)</span>, are usually called surely winning to distinguish them from the above concepts. We denote by <span class="math notranslate nohighlight">\(W_{&gt;0}( \mathcal{M}, \Omega)\)</span> and <span class="math notranslate nohighlight">\(W_{=1}( \mathcal{M}, \Omega)\)</span> the sets of all vertices of <span class="math notranslate nohighlight">\(\mathcal{M}\)</span> from which there exists a positively or almost-surely winning strategy for the objective <span class="math notranslate nohighlight">\(\Omega\)</span>, respectively.</p>
 <p>The problems pertaining to the existence of almost-surely or positively winning strategy are often called <strong>qualitative problems</strong> in the MDP literature, while the notion <strong>quantitative problems</strong> covers the general notion of optimizing the expectation of some random variable. We do not use such a nomenclature here so as to avoid confusion with qualitative vs. quantitative objectives as defined in Chapter <a class="reference internal" href="../1_Introduction/index.html#chap-introduction"><span class="std std-ref">Introduction</span></a>. Instead, we will refer directly to, e.g. almost-sure reachability while using the term optimal reachability to refer to the expectation-maximization problem.</p>
 </div>
@@ -907,7 +907,7 @@ indexed by <span class="math notranslate nohighlight">\(v\)</span> equals <span 
     <div class="container">
       <p>
         
-          By a set of authors coordinated by Nathana&euml;l Fijalkow<br/>
+          By a set of authors<br/>
         
             &copy; Copyright 2021.<br/>
       </p>

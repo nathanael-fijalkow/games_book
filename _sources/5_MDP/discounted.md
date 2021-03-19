@@ -40,7 +40,7 @@ $)
 ## Optimal values and memoryless optimality
 
  In this subsection we give a 
-characterization of the value vector $val( \mathcal{M})$ and prove that there always exists a 
+characterization of the value vector $\textrm{val}( \mathcal{M})$ and prove that there always exists a 
 memoryless deterministic strategy that is optimal in every vertex. Our 
 exposition follows (in a condensed form) the one in {cite}`Puterman:2005`, the techniques 
 being somewhat similar to the ones in the previous chapter.
@@ -77,7 +77,7 @@ the one for games). The second part follows from the Banach fixed point theorem.
 
 ````
 
-We aim to prove that $val( \mathcal{M})$ is the unique fixed point $\vec{x}^*$ of 
+We aim to prove that $\textrm{val}( \mathcal{M})$ is the unique fixed point $\vec{x}^*$ of 
 $\mathcal{D}$. We start with an auxiliary definition.
 
 ````{prf:definition} NEEDS TITLE 5-def:disc-safe-act
@@ -184,13 +184,13 @@ $$
 
 ````
 
-The previous lemma is used to prove the required upper bound on $val(v)$.
+The previous lemma is used to prove the required upper bound on $\textrm{val}(v)$.
 
 ````{prf:lemma} NEEDS TITLE 5-lem:disc-val-upper
 :label: 5-lem:disc-val-upper
 
 For each vertex $v$ it holds 
-$val(v)\leq \vec{x}^*_v$, where $\vec{x}^*$ is the 
+$\textrm{val}(v)\leq \vec{x}^*_v$, where $\vec{x}^*$ is the 
 unique fixed point of $\mathcal{D}$.
 
 ````
@@ -209,7 +209,7 @@ Hence,
 
 $$
 
- val(v) &= \sup_{\sigma} \mathbb{E}^\sigma_v[ \mathtt{DiscountedPayoff}] \nonumber\\
+ \textrm{val}(v) &= \sup_{\sigma} \mathbb{E}^\sigma_v[ \mathtt{DiscountedPayoff}] \nonumber\\
 &= \sup_{\sigma}\lim_{k\rightarrow \infty} \mathbb{E}^\sigma_v[  \mathtt{DiscountedPayoff}^{\;(k)}]
 
 $$ (5-eq:disc-safe-act)
@@ -231,7 +231,7 @@ The following theorem summarizes the results.
 ````{prf:theorem} NEEDS TITLE 5-thm:disc-val-char-mem
 :label: 5-thm:disc-val-char-mem
 
-The vector of values $val( \mathcal{M})$ in a discounted sum MDP $\mathcal{M}$ is the 
+The vector of values $\textrm{val}( \mathcal{M})$ in a discounted sum MDP $\mathcal{M}$ is the 
 unique fixed point $\vec{x}^*$ of the operator $\mathcal{D}$. Moreover, there 
 exists a 
 memoryless deterministic strategy that is optimal in every vertex.
@@ -241,7 +241,7 @@ memoryless deterministic strategy that is optimal in every vertex.
 ````{admonition} Proof
 :class: dropdown tip
 
-The characterization of $val( \mathcal{M})$ follows directly from 
+The characterization of $\textrm{val}( \mathcal{M})$ follows directly from 
 Lemmas {prf:ref}`5-lem:disc-val-lower` and {prf:ref}`5-lem:disc-val-upper`. The MD 
 optimality follows from {prf:ref}`5-lem:disc-val-lower`.
 
@@ -254,16 +254,16 @@ values and optimal strategies in discounted-payoff MDPs.
 
 The value iteration algorithm works in the same way as in the case of 
 discounted-payoff games: we simply iterate the operator $\mathcal{D}$ on the 
-initial argument $\vec{0}$. We know that $val( \mathcal{M})=\lim_{k\rightarrow 
+initial argument $\vec{0}$. We know that $\textrm{val}( \mathcal{M})=\lim_{k\rightarrow 
 \infty} \mathcal{D}^k(\vec{0})$, and hence, iterating $\mathcal{D}$ yields an 
-approximation of $val( \mathcal{M})$. The iteration might not reached the fixed 
-point (i.e. $val( \mathcal{M})$) in a finite number of steps, but we can provide 
+approximation of $\textrm{val}( \mathcal{M})$. The iteration might not reached the fixed 
+point (i.e. $\textrm{val}( \mathcal{M})$) in a finite number of steps, but we can provide 
 simple bounds on the precision of the approximation.
 
 ````{prf:lemma} NEEDS TITLE 5-lem:disc-val-it-convergence
 :label: 5-lem:disc-val-it-convergence
 
-For each $k\in  \mathbb{N}$, $|| val( \mathcal{M})- \mathcal{D}^k(\vec{0}) ||_{\infty} \leq 
+For each $k\in  \mathbb{N}$, $|| \textrm{val}( \mathcal{M})- \mathcal{D}^k(\vec{0}) ||_{\infty} \leq 
 \lambda^k \cdot  \max_{ c}$. (Recall that $\max_{ c}=\max_{e\in 
  E}| c(e)|$).
 
@@ -307,11 +307,11 @@ let $\mathcal{D}_{\sigma}$ be the corresponding operator. We have that
 
 $$
 
-|| val( \mathcal{M}) -  \vec{x}^{\sigma} ||_{\infty} &= || val( \mathcal{M}) 
+|| \textrm{val}( \mathcal{M}) -  \vec{x}^{\sigma} ||_{\infty} &= || \textrm{val}( \mathcal{M}) 
 - \mathcal{D}^{k( \varepsilon)}(\vec{0}) + \mathcal{D}^{k( \varepsilon)}(\vec{0}) -  \vec{x}^{\sigma} 
 ||_{\infty} \nonumber
 \\
-&\leq || val( \mathcal{M}) - \mathcal{D}^{k( \varepsilon)}(\vec{0}) 
+&\leq || \textrm{val}( \mathcal{M}) - \mathcal{D}^{k( \varepsilon)}(\vec{0}) 
 ||_{\infty} + ||  \mathcal{D}^{k( \varepsilon)}(\vec{0}) -  \vec{x}^{\sigma}
 ||_{\infty}. 
 
@@ -384,21 +384,21 @@ vertex.
 
  Let $\sigma^*$ be any MD optimal strategy (it is guaranteed 
 to exist by {prf:ref}`5-thm:disc-val-char-mem`). By the same theorem, we have that 
-$val( \mathcal{M})= \mathcal{D}^{\sigma}( val( \mathcal{M}))$. By the definition of 
-$\mathcal{D}^{\sigma}$, we can write the above equation as $val( \mathcal{M})= 
-(1-\lambda)\cdot \vec{c}+\lambda \cdot P\cdot  val( \mathcal{M})$, where $\vec{c}$ is 
+$\textrm{val}( \mathcal{M})= \mathcal{D}^{\sigma}( \textrm{val}( \mathcal{M}))$. By the definition of 
+$\mathcal{D}^{\sigma}$, we can write the above equation as $\textrm{val}( \mathcal{M})= 
+(1-\lambda)\cdot \vec{c}+\lambda \cdot P\cdot  \textrm{val}( \mathcal{M})$, where $\vec{c}$ is 
 a vector whose each 
 component 
 is a 
 sum of several terms, each term being a product of an edge colour and of a 
 transition probability; and $P$ is a matrix containing 
 transition 
-probabilities. Multiplying the equation by $d^3$ yields $d^3 val( \mathcal{M})= 
-d^3(1-\lambda)\cdot \vec{c}+d^3\lambda \cdot P\cdot  val( \mathcal{M})$. Since this equation has a unique fixed point (due to 
+probabilities. Multiplying the equation by $d^3$ yields $d^3 \textrm{val}( \mathcal{M})= 
+d^3(1-\lambda)\cdot \vec{c}+d^3\lambda \cdot P\cdot  \textrm{val}( \mathcal{M})$. Since this equation has a unique fixed point (due to 
 $\mathcal{D}^\sigma$ being a contraction), the matrix $A = d^3(I - \lambda P)$ (where $ I $ is the unit matrix) is 
-regular, and moreover, composed of integers (ue to the choice of $ d $). By Cramer's rule, each entry of $val( \mathcal{M})$ is equal to 
+regular, and moreover, composed of integers (ue to the choice of $ d $). By Cramer's rule, each entry of $\textrm{val}( \mathcal{M})$ is equal to 
 $\det(B)/\det(A)$, where $B$ is a matrix obtained by replacing some column of 
-$A$ with $d^3(1-\lambda)\vec{c}$ (which is again an integer vector, due to the multiplication by $ d^3 $). Hence, each entry of $val( \mathcal{M})$ is a rational number with denominator $\det(A)$. Hadamard's inequality {cite}`Garling:07` implies $|\det(A)|\leq d^{3| V|}{| V|}^{\frac{| V|}{2}}$.
+$A$ with $d^3(1-\lambda)\vec{c}$ (which is again an integer vector, due to the multiplication by $ d^3 $). Hence, each entry of $\textrm{val}( \mathcal{M})$ is a rational number with denominator $\det(A)$. Hadamard's inequality {cite}`Garling:07` implies $|\det(A)|\leq d^{3| V|}{| V|}^{\frac{| V|}{2}}$.
 
 Now let $\sigma$ be any $\mathcal{D}^{k( \varepsilon^*)}(\vec{0})$-safe MD strategy. By {prf:ref}`5-lem:disc-val-it-eps-strategies`, $\sigma$ is $\varepsilon^*$-optimal. We prove that all actions used by $\sigma$ are $\vec{x}^*$-safe, which means that $\sigma$ is optimal by {prf:ref}`5-lem:disc-val-lower`. Assume that in some vertex $v$ the strategy $\sigma$ uses action $a$ that is not $\vec{x}^*$-safe. Denote $\vec{y}= \mathcal{D}_\sigma(\vec{x}^*)$. We have $ |\vec{y}_v - \vec{x}^*_v| > 0 $, since otherwise $a$ would be $\vec{x}^*$-safe. But then we can obtain a lower bound on the difference by investigating the bitsize of the numbers involved:
 
@@ -451,29 +451,11 @@ The number $1/ \varepsilon^*$, where $\varepsilon^*$ is from {prf:ref}`5-lem:dis
 
 The strategy (or policy) improvement (also called strategy/policy iteration in the literature) for MDPs works similarly as for games, see {numref}`5-algo:disc-strategy-improvement`. In the algorithm, we use $\mathcal{D}_{a,v}(\vec{x})$ as a shortcut for $ \sum_{u \in  V} \Delta(u\mid v,a)\left((1-\lambda)\cdot c(v,u) + \lambda\cdot \vec{x}_u \right)$
 
-\begin{algorithm}
-\KwData{A discounted-payoff MDP $  \mathcal{M} $}
-
-$i \leftarrow 0$\;
-$ \sigma_i \leftarrow \text{arbitrary MD strategy} $\;
-\Repeat{$ \sigma_{i} = \sigma_{i-1} $}{
-compute $ \vec{x}^{\sigma_i} = \left( \mathbb{E}^{\sigma_i}_v[ \mathtt{DiscountedPayoff}]\right)_{v\in  V} $ \tcp*{Using {prf:ref}`5-lem:disc-val-sigma`}
-\ForEach{$ v \in  V $}{
-$ \mathit{Improve}(v) \leftarrow \sigma_{i}(v) $\;
-\ForEach{$ a \in  A $}{
-\lIf{$\mathcal{D}_{a,v}(\vec{x}^{\sigma_i}) > \mathcal{D}_{a,\mathit{Improve}(v)}(\vec{x}^{\sigma_i})$}{
-$\mathit{Improve}(v) \leftarrow a$
-}
-}
-$\sigma_{i+1}(v) \leftarrow \mathit{Improve}(v)$
-}
-$ i \leftarrow i+1 $
-}
-\Return{$ \sigma_i $}
-
-\caption{An algorithm computing an optimal MD strategy in a discounted MDP}
-\label{5-algo:disc-strategy-improvement}
-\end{algorithm}
+```{figure} ./../FigAndAlgos/5-algo:disc-strategy-improvement.png
+:name: 5-algo:disc-strategy-improvement
+:align: center
+An algorithm computing an optimal MD strategy in a discounted MDP
+```
 
 ````{prf:theorem} NEEDS TITLE 5-thm:disc-strat-it
 :label: 5-thm:disc-strat-it
@@ -515,14 +497,14 @@ The linear program $\mathcal{L}_{\mathit{disc}}$ with variables $x_v$, $v\in  V$
 :label: 5-lem:disc-lp
 
 The linear program $\mathcal{L}_{\mathit{disc}}$ has a unique optimal solution 
-$\bar{\vec{x}}$ that satisfies $\bar{\vec{x}} =  val( \mathcal{M})$.
+$\bar{\vec{x}}$ that satisfies $\bar{\vec{x}} =  \textrm{val}( \mathcal{M})$.
 
 ````
 
 ````{admonition} Proof
 :class: dropdown tip
 
-Let $\vec{x}^* =  val( \mathcal{M})$ be the unique fixed point of $\mathcal{D}$. Clearly 
+Let $\vec{x}^* =  \textrm{val}( \mathcal{M})$ be the unique fixed point of $\mathcal{D}$. Clearly 
 setting $x_v = \vec{x}^*_v$ yields a feasible solution of $\mathcal{L}_{\mathit{disc}}$. 
 We show 
 that $\vec{x}^*$ is actually an optimal solution, by proving that for each 
@@ -577,7 +559,7 @@ even for a fixed discount factor.
 :class: dropdown tip
 (1.)
 The first part comes directly from {prf:ref}`5-lem:disc-lp`. Once the optimal value 
-vector $val( \mathcal{M})$ is computed, we can choose any $val( \mathcal{M})$-safe MD 
+vector $\textrm{val}( \mathcal{M})$ is computed, we can choose any $\textrm{val}( \mathcal{M})$-safe MD 
 strategy as the optimal one 
 ({prf:ref}`5-lem:disc-val-lower`).
 

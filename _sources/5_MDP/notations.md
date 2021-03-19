@@ -72,7 +72,7 @@ In the setting of MDPs it is technically convenient to encode regular objectives
 
 In this section, we will refer to randomised strategies simply as strategies. The strategies known from the game setting will be called  deterministic strategies. Formally, a deterministic strategy can be viewed as a special type of a randomised strategy which always selects a Dirac distribution over the edges. We shorten memoryless randomised/deterministic to MR and MD, respectively.
 
-Now a play in an MDP is produced as follows: in each step, when the finite play produced so far (i.e. the history of the game token's movement) is $\pi$, Eve chooses an action $a$ randomly according to the distribution $\sigma( \pi)$. Then, an edge outgoing from $last( \pi)$ is chosen randomly according to $\Delta( last( \pi),a)$ and the token is pushed along the selected edge. As shown below, this intuitive process can be formalized by constructing a special probability space whose sample space consists of infinite plays in the MDP.
+Now a play in an MDP is produced as follows: in each step, when the finite play produced so far (i.e. the history of the game token's movement) is $\pi$, Eve chooses an action $a$ randomly according to the distribution $\sigma( \pi)$. Then, an edge outgoing from $\textrm{last}( \pi)$ is chosen randomly according to $\Delta( \textrm{last}( \pi),a)$ and the token is pushed along the selected edge. As shown below, this intuitive process can be formalized by constructing a special probability space whose sample space consists of infinite plays in the MDP.
 
 > **Formal semantics of MDPs**
 
@@ -107,11 +107,11 @@ $p( \pi)$ such that
 $v_0$ we put
 
 $$p( \pi) =  p( \pi_{< k})\cdot \Big(\sum_{a \in  A} 
-\sigma(a\mid  \pi_{< k})\cdot  \Delta( last( \pi)\mid 
- last( \pi_{< k}),a) 
+\sigma(a\mid  \pi_{< k})\cdot  \Delta( \textrm{last}( \pi)\mid 
+ \textrm{last}( \pi_{< k}),a) 
 \Big), $$
 
-where we use the convention that $last( \pi_{< 0})= v_0$;
+where we use the convention that $\textrm{last}( \pi_{< 0})= v_0$;
 *  for all other $\pi$ we have $p( \pi)=0$.
 
 Now using an appropriate measure-extension theorem
@@ -186,10 +186,10 @@ Depending on the concrete quantitative objective and on the shape of $\sigma$, t
 
 Let us fix an MDP $\mathcal{M}$ and an objective given by a random variable 
 $f$. The value of a vertex $v\in V$ is the number 
-$val(v)=\sup_{\sigma}  \textsf{Payoff}_f(v,\sigma)$. We let $val( \mathcal{M})$ denote the $| V|$-dimensional vector whose component 
-indexed by $v$ equals $val(v)$.
+$\textrm{val}(v)=\sup_{\sigma}  \textsf{Payoff}_f(v,\sigma)$. We let $\textrm{val}( \mathcal{M})$ denote the $| V|$-dimensional vector whose component 
+indexed by $v$ equals $\textrm{val}(v)$.
 
-We say that a strategy $\sigma$ is $\varepsilon$-optimal in $v$, for some $\varepsilon\geq 0$, if $\textsf{Payoff}_f(v,\sigma) \geq  val(v) -  \varepsilon$. A $0$-optimal strategy is simply called optimal. 
+We say that a strategy $\sigma$ is $\varepsilon$-optimal in $v$, for some $\varepsilon\geq 0$, if $\textsf{Payoff}_f(v,\sigma) \geq  \textrm{val}(v) -  \varepsilon$. A $0$-optimal strategy is simply called optimal. 
 
 For qualitative objectives, there are additional modes of objective satisfaction. Given such an objective $\Omega$, we say that a strategy $\sigma$ is almost-surely winning from $v$ if $\mathbb{E}^{\sigma}_{ \mathcal{M},v}[ \mathbf{1}_{ \Omega}]=1$, i.e. if the run produced by $\sigma$ falls into $\Omega$ with probability $1$. We also say that $\sigma$ is positively winning from $ v $ if $\mathbb{E}^{\sigma}_{ \mathcal{M},v}[ \mathbf{1}_{ \Omega}]>0$. For strategies that are winning in the non-stochastic game sense, i.e. that **cannot** produce a run not belonging to $\Omega$, are usually called surely winning to distinguish them from the above concepts. We denote by $W_{>0}( \mathcal{M}, \Omega)$ and $W_{=1}( \mathcal{M}, \Omega)$ the sets of all vertices of $\mathcal{M}$ from which there exists a positively or almost-surely winning strategy for the objective $\Omega$, respectively.
 

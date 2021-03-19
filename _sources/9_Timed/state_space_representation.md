@@ -41,79 +41,19 @@ $$
 
 where $v(x_0) = 0$.
 
-````{prf:example} NEEDS TITLE AND LABEL 
-  Consider the clock set $\mathcal{C}=\{x_1,x_2\}$
-  and the zone $Z$ defined by 
-  $x_1\leq 1 \land x_1-x_2 \leq 0 \land x_2\leq 3\land x_2-x_1 \leq 2$, which can be
-  written as the following DBM:
-
-$$
-    M=\begin{pmatrix}
-      (\leq,0) &(\leq,0) &(\leq,0)\\
-      (\leq,1) &(\leq,0) &(\leq,0)\\
-      (\leq,3) &(\leq,2) &(\leq,0)
-    \end{pmatrix}
-    \qquad
-  \tikz[scale=.45]{ 
-    \path[use as bounding box] (-1,1.2) -- (2,4);
-    \begin{scope}
-      \draw[latex'-latex'] (3.5,0) node[right] {$x_1$}
-        -| (0,3.8) node[left] {$x_2$};
-      \begin{scope}
-        \path[clip] (0,0) -- (3.5,0) [rounded corners=12mm]
-          -- (3.5,3.9) [rounded corners=0mm] -| (0,0);
-        \draw[dgrey,fillarea] (0,0) -- (1,1) |- (0,3) -- cycle;
-        \begin{scope}[opacity=.3]
-          \foreach \x in {-4,...,4}
-                 {\draw (\x,0) -- +(9,9);
-                   \draw (0,\x) -- +(9,0);
-                   \draw (\x,0) -- +(0,9);}
-        \end{scope}
-        
-      \end{scope}
-    \end{scope}
-
-    }
-  $$
-
-  For instance, $M[2,0]=(\leq, 3)$ represents the
-  constraint $x_2-x_0\leq 3$, i.e., $x_2\leq 3$.
-
-  The diagram to the right of the figure represents the set $[M]$.
+````{prf:example} An example of a DBM]
+:label: 9-ex:DBM
 
   Consider the clock set $\mathcal{C}=\{x_1,x_2\}$
   and the zone $Z$ defined by 
   $x_1\leq 1 \land x_1-x_2 \leq 0 \land x_2\leq 3\land x_2-x_1 \leq 2$, which can be
   written as the following DBM:
-
-$$
-    M=\begin{pmatrix}
-      (\leq,0) &(\leq,0) &(\leq,0)\\
-      (\leq,1) &(\leq,0) &(\leq,0)\\
-      (\leq,3) &(\leq,2) &(\leq,0)
-    \end{pmatrix}
-    \qquad
-  \tikz[scale=.45]{ 
-    \path[use as bounding box] (-1,1.2) -- (2,4);
-    \begin{scope}
-      \draw[latex'-latex'] (3.5,0) node[right] {$x_1$}
-        -| (0,3.8) node[left] {$x_2$};
-      \begin{scope}
-        \path[clip] (0,0) -- (3.5,0) [rounded corners=12mm]
-          -- (3.5,3.9) [rounded corners=0mm] -| (0,0);
-        \draw[dgrey,fillarea] (0,0) -- (1,1) |- (0,3) -- cycle;
-        \begin{scope}[opacity=.3]
-          \foreach \x in {-4,...,4}
-                 {\draw (\x,0) -- +(9,9);
-                   \draw (0,\x) -- +(9,0);
-                   \draw (\x,0) -- +(0,9);}
-        \end{scope}
-        
-      \end{scope}
-    \end{scope}
-
-    }
-  $$
+  
+```{figure} ./../FigAndAlgos/9-fig:example_dbm.png
+:name: 9-fig:example_dbm
+:align: center
+Example of a DBM
+```
 
   For instance, $M[2,0]=(\leq, 3)$ represents the
   constraint $x_2-x_0\leq 3$, i.e., $x_2\leq 3$.
@@ -126,24 +66,30 @@ We now define elementary operations on DBMs which are used to explore
 the state space of timed games. We start by giving set-theoretic
 definitions and then comment on their computation with DBMs.
 
-Let $\sf Post_{\geq 0}(Z)$ denote the zone describing the
-**time-successors** of $Z$, and $\sf Pre_{\geq 0}(Z)$ the
+Let $\mathsf{Post}_{\geq 0}(Z)$ denote the zone describing the
+**time-successors** of $Z$, and $\mathsf{Pre}_{\geq 0}(Z)$ the
 **time-predecessors** of $Z$. Formally,
-\begin{xalignat*}1
-     \sf Post_{\geq 0}(Z)&= \{v \in  \mathbb{R}_{\geq 0}^{ \mathcal{C}}
+
+$$
+
+     \mathsf{Post}_{\geq 0}(Z)&= \{v \in  \mathbb{R}_{\geq 0}^{ \mathcal{C}}
     \mid \exists t\geq 0.\  v-t \in Z\}
     \\
-     \sf Pre_{\geq 0}(Z) &=
+     \mathsf{Pre}_{\geq 0}(Z) &=
     \{v \in  \mathbb{R}_{\geq 0}^{ \mathcal{C}} \mid \exists t \geq 0.\ v + t \in Z\}.
-\end{xalignat*}
+
+$$
 
 Given $R\subseteq \mathcal{C}$, we also define
-\begin{xalignat*}1
+
+$$
+
    \mathsf{Reset}_R(Z) &= \{v \in  \mathbb{R}_{\geq 0}^{ \mathcal{C}} \mid \exists v' \in Z.\
   v=v'[R\leftarrow 0]\} \\
-   \sf Unreset_R(Z) &= \{ v \in  \mathbb{R}_{\geq 0}^{ \mathcal{C}} \mid \exists v' \in Z.\
+   \mathsf{Unreset}_R(Z) &= \{ v \in  \mathbb{R}_{\geq 0}^{ \mathcal{C}} \mid \exists v' \in Z.\
   v' = v[R \leftarrow 0]\}.
-\end{xalignat*}
+
+$$
 
 These operations, together with intersection, suffice to describe
 one-step successors and predecessors by an edge of a timed automaton.
@@ -152,14 +98,14 @@ set $S \subseteq  \mathbb{R}_{\geq 0}^ \mathcal{C}$, the set of states that are 
 after letting time elapse and taking edge $e$ can be obtained as
 
 $$
-   \sf Post_e(S) =  \mathsf{Reset}_R( \sf Post_{\geq 0}(S)\cap G),
+   \mathsf{Post}_e(S) =  \mathsf{Reset}_R( \mathsf{Post}_{\geq 0}(S)\cap G),
 $$
 
 where $G$ denotes the zone corresponding to the guard $g$.
 Similarly, we can compute the predecessors of $S$ by edge $e$ as
 
 $$
- \sf Pre_e(S) =  \sf Pre_{\geq 0}(G \cap  \sf Unreset_R(S)).
+ \mathsf{Pre}_e(S) =  \mathsf{Pre}_{\geq 0}(G \cap  \mathsf{Unreset}_R(S)).
 
 $$
 
@@ -196,7 +142,7 @@ Observe that a DBM always describes a convex subset
 of $\mathbb{R}_{\geq 0}^ \mathcal{C}$ since it is a conjunction of convex clock
 constraints. However, the set of winning states is in general
 non-convex in timed games. The simple arena
-of {numref}`9-fig:non-convex` provides an example: if  Eve's objective
+of {numref}`9-fig:non-convex` provides an example: if Eve's objective
 is to reach $\ell_1$, then it should just avoid the configurations
 satisfying $1\leq x_1,x_2\leq 2$. But this set of predecessors is then
 non-convex as shown in {numref}`9-fig:non-convex`.
@@ -208,7 +154,7 @@ We thus have to work with unions of zones, also called
 :name: 9-fig:non-convex
 :align: center
 Winning configurations (in $\ell$)
-    for  Eve to ensure reaching $\ell_1$.
+    for Eve to ensure reaching $\ell_1$.
 
 ```
 
@@ -240,7 +186,7 @@ predecessor and successor operations are replaced by their zone-based
 counterparts.
 
 As for finite games, we are interested in computing a fixpoint to
-determine whether a given configuration is winning for  Eve. We start
+determine whether a given configuration is winning for Eve. We start
 by introducing the zone-based counterparts of the controllable predecessors operator
 which
 is the main tool in the algorithms.

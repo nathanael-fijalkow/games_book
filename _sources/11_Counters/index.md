@@ -36,7 +36,8 @@
 \providecommand{\col}{\mathfrak c}
 \providecommand{
 }{}
-\providecommand{\medskip}{}
+\providecommand{
+}{}
 \providecommand{\ensuremath}{}
 \providecommand{\raisebox}[1]{}
 \providecommand{\scalebox}[1]{}
@@ -82,7 +83,7 @@ makes them a much better candidate for studying the associated games.
 
 In this chapter, we focus on vector games, that is, on games defined
 on arenas defined by vector addition systems with states with a
-partition of states controlled by  Eve\ and  Adam.  As we are going to
+partition of states controlled by Eve and Adam.  As we are going to
 see in Section {ref}`11-sec:counters`, those games turn out to be undecidable
 already for quite restricted objectives and just two counters.  We
 then investigate two restricted classes of vector games.
@@ -96,11 +97,11 @@ then investigate two restricted classes of vector games.
   this chapter.  By suitably restricting both
 
   the systems, with an
-  **asymmetry** condition that forbids  Adam\ to manipulate the
+  **asymmetry** condition that forbids Adam to manipulate the
   counters, and
   
-  the objective, with a **monotonicity@monotonic objective**
-    condition that ensures that  Eve's winning region is "upwards
+  the objective, with a **monotonicity**
+    condition that ensures that Eve\'s winning region is "upwards
     closed"---meaning that larger counter values make it easier for
     her to win---,
   

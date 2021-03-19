@@ -82,9 +82,9 @@ rectangular set. Let \(\sigma,\sigma' \in S_i\). Strategy \(\sigma\)
 written \(\sigma_i \ge_S \sigma'_i\), if from all vertices \(v_0\):
 
 $$
-  \forall \sigma_{-i} \in S_{-i}, \payoff_i(  Out(v_0,\sigma'_i,\sigma_{-i}))
+  \forall \sigma_{-i} \in S_{-i}, \payoff_i(  \textrm{Out}(v_0,\sigma'_i,\sigma_{-i}))
   \ge
-  \payoff_i(  Out(v_0, \sigma_i, \sigma_{-i})).
+  \payoff_i(  \textrm{Out}(v_0, \sigma_i, \sigma_{-i})).
 $$
 
 Strategy \(\sigma_i\) **weakly dominates** strategy \(\sigma'_i\)
@@ -109,7 +109,7 @@ the best the player can achieve with the help of other players, given the strate
 \(\sigma_i\) for a history \(h\) with respect to a rectangular set of
 strategies \(S\), is
 
-*    \(\pes_i(S,h,\sigma_i) = \inf_{\sigma_{-i} \in S_{-i}} \payoff_{i}(h \cdot   Out( last(h), \sigma_i,\sigma_{-i})).\)
+*    \(\pes_i(S,h,\sigma_i) = \inf_{\sigma_{-i} \in S_{-i}} \payoff_{i}(h \cdot   \textrm{Out}( \textrm{last}(h), \sigma_i,\sigma_{-i})).\)
 
 The **pessimistic value of a history** \(h\) for \(A_i\) with respect
 to a rectangular set of strategies \(S\) is given by:
@@ -119,7 +119,7 @@ to a rectangular set of strategies \(S\) is given by:
 The **optimistic value** of a strategy \(\sigma_i\) for a history
 \(h\) with respect to a rectangular set of strategies \(S\) is given by:
 
-*    \(\opt_i(S,h,\sigma_i) = \sup_{\sigma_{-i} \in S_{-i}} \payoff_i (h_{\le |h|-2} \cdot   Out( last(h), \sigma_i,\sigma_{-i})).\)
+*    \(\opt_i(S,h,\sigma_i) = \sup_{\sigma_{-i} \in S_{-i}} \payoff_i (h_{\le |h|-2} \cdot   \textrm{Out}( \textrm{last}(h), \sigma_i,\sigma_{-i})).\)
 
 The **optimistic value** of a history \(h\) for \(A_{i}\) with
 respect to a rectangular set of strategies \(S\) is given by:
@@ -134,34 +134,14 @@ and omit $S$ in the above notations.
 (simple-safety-games)=
 ## Simple Safety games
 
-\begin{figure}
-\begin{center}  
-\begin{tikzpicture}
-\draw (0,0) node[draw, inner sep=2pt, circle] (I) {$v_0$};
-\draw (I.-90) node[below] {};
-\draw (4,1) node[draw, circle, inner sep=2pt] (C1) {$v_1$};
-\draw (C1.-100) node[below] {};
-\draw (4,-1) node[draw, circle, inner sep=2pt, circle] (C2) {$v_2$};
-
-\draw (8, 1) node[draw, circle, inner sep=2pt] (S1) {$v_3$};
-\draw (S1.-90) node[below] {$-1, -1, 0$};
-\draw (8,-1) node[draw, circle, inner sep=2pt] (S2) {$v_4$};
-\draw (S2.-90) node[below] {$-1, 0, -1$};
-\draw[-latex'] (-1, 0) -- (I);
-\draw[-latex'] (I) -- node[above]{$(*,a,*)$} (C1);
-\draw[-latex'] (I) -- node[below]{$(*,b,*)$} (C2);
-\draw[-latex'] (C1) --node[left]{$(a,*,*)$} (C2);
-\draw[-latex'] (C1) -- node[above]{$(b,*,*)$} (S1);
-\draw[-latex'] (C2) -- node[above]{$(*,*,a)$} (S2);
-\draw[-latex', rounded corners] (C2) -- +(1,1) -- node[right]{$(*,*,b)$}(C1);
-\end{tikzpicture}
-\caption{Example of a three-player turn-based simple safety game.
+```{figure} ./../FigAndAlgos/13-fig:simple-safety.png
+:name: 13-fig:simple-safety
+:align: center
+Example of a three-player turn-based simple safety game.
 
 Numbers below states describe the safety objective, for instance $-1, -1, 0$ is losing for player 1 and 2.
-}
-\label{13-fig:simple-safety}
-\end{center}
-\end{figure}
+
+```
 
 Simple safety games, are safety games in which there are no transitions
 from losing vertices to non-losing ones. Restricting to this particular
@@ -174,7 +154,7 @@ players.
 
 For simple safety games, the pessimistic and optimistic values do not depend
 on the full history but only on the last state: for all histories
-\(\pes_i(h) = \pes_i( last(h))\) and \(\opt_i(h) = \opt_i( last(h))\).
+\(\pes_i(h) = \pes_i( \textrm{last}(h))\) and \(\opt_i(h) = \opt_i( \textrm{last}(h))\).
 
 Note that in safety games (and any qualitative games) values can be only
 1 (for winning) and 0 (for losing) and since the pessimistic value is
@@ -249,7 +229,7 @@ in \(D_i\).
 :class: dropdown tip
  We show that if \(A_i\) plays an admissible strategy
 \(\sigma_i\) then the value cannot decrease on a transition controled by
-\(A_i\). Let \(\rho \in   Out(\sigma_i,\sigma_{-i})\), and \(k\) an index
+\(A_i\). Let \(\rho \in   \textrm{Out}(\sigma_i,\sigma_{-i})\), and \(k\) an index
 such that \(\rho_k \in V_i\). Let \((v, v') = \sigma_i(\rho_{\le k})\):
 
 *    If \(\pes_i(\rho_k)=1\), then \(\sigma_i\) has to be winning against
@@ -257,7 +237,7 @@ such that \(\rho_k \in V_i\). Let \((v, v') = \sigma_i(\rho_{\le k})\):
   weakly dominated by such a strategy. Since there is no such strategy
   from a state with value \(\pes_i \leq 0\), we must have \(\pes_i(v')=1\).
 *    If \(\opt_i(\rho_k) = 1\), then, by definition, there is a profile \(\sigma'\) such that
-  \(\rho = \payoff(  Out(v, \sigma')) = 1\).
+  \(\rho = \payoff(  \textrm{Out}(v, \sigma')) = 1\).
   Assume that $\opt_i(v')=0$. Then $\sigma_i$ is dominated by the strategy
   $\sigma_i''$ obtained from $\sigma_i$ by making it switch to $\sigma'$ at $v$.
   In fact, $\sigma_i$ is losing against all strategies of $-i$, while $\sigma_i''$
@@ -271,9 +251,9 @@ player \(A_i\) and assume \(\sigma_i' >_S \sigma_i\). We will prove
 
 Let us fix some objects before developing the proof. There is a vertex
 \(v\) and strategy profile \(\sigma_{-i} \in S_{-i}\) such that
-\(\payoff(  Out(v,\sigma_i',\sigma_{-i}))=1 \wedge \payoff(  Out(v,\sigma_i,\sigma_{-i})=0\).
-Let \(\rho =   Out(v,\sigma_i,\sigma_{-i})\) and
-\(\rho' =   Out(v,\sigma_i',\sigma_{-i})\). Consider the first position
+\(\payoff(  \textrm{Out}(v,\sigma_i',\sigma_{-i}))=1 \wedge \payoff(  \textrm{Out}(v,\sigma_i,\sigma_{-i})=0\).
+Let \(\rho =   \textrm{Out}(v,\sigma_i,\sigma_{-i})\) and
+\(\rho' =   \textrm{Out}(v,\sigma_i',\sigma_{-i})\). Consider the first position
 where these runs differ: write \(\rho = w \cdot s' \cdot s_2 \cdot w'\)
 and \(\rho' = w \cdot s' \cdot s_1 \cdot w''\).
 
@@ -282,9 +262,9 @@ The following are simple facts that can be seen easily:
 *    \(s' \in V_i\), because the strategy of the other players
   are identical in the two runs.
 *    \(\opt_i(s_1) = 1\) because
-  \(\payoff(  Out(v,\sigma_i',\sigma_{-i}))=1\)
+  \(\payoff(  \textrm{Out}(v,\sigma_i',\sigma_{-i}))=1\)
 *    \(\pes_i(s_2) = 0\) because
-  \(\payoff(  Out(v,\sigma_i,\sigma_{-i}))=0\)
+  \(\payoff(  \textrm{Out}(v,\sigma_i,\sigma_{-i}))=0\)
 
 If \(\opt_i(s_2) = 0\) or \(\pes_i(s_1) = 1\) then
 \(s' \rightarrow s_2 \in D_i\) so \(\sigma_i\) takes a transition of
@@ -296,7 +276,7 @@ a strategy for $-i$ against which $\sigma_i$ wins and $\sigma_i'$ loses,
 which contradicts the hypothesis that $\sigma_i'$ weakly dominates $\sigma_i$.
 
 We first construct a profile \(\sigma_{-i}^2 \in S_{-i}\) such that
-\(\payoff(  Out(s_2,\sigma_i,\sigma_{-i}^2))=1\).
+\(\payoff(  \textrm{Out}(s_2,\sigma_i,\sigma_{-i}^2))=1\).
 
 Strategy \(\sigma_{-i}^2\in S_{-i}\) never decreases
 the optimistic value from \(1\) to \(0\) since the optimistic value is nonincreasing.
@@ -327,7 +307,7 @@ Formally, given a history \(h\), \(\sigma_{-i}'(h) =\)
 *    \(\sigma_{-i}(h)\) otherwise
 
 Clearly we have
-\(\payoff_i(  Out_s(\sigma_i,\sigma_{-i}'))= 1 \wedge \payoff_i(  Out_s(\sigma_i',\sigma_{-i}')) = 0\),
+\(\payoff_i(  \textrm{Out}_s(\sigma_i,\sigma_{-i}'))= 1 \wedge \payoff_i(  \textrm{Out}_s(\sigma_i',\sigma_{-i}')) = 0\),
 which contradicts \(\sigma_i' \ge_S \sigma_i\).
 
 ````
@@ -338,33 +318,16 @@ which contradicts \(\sigma_i' \ge_S \sigma_i\).
 The caracterization given for simple safety game is not enough for
 parity objectives, as we will see in the following example.
 
-\begin{figure}
-  \begin{center}
-    \begin{tikzpicture}
-      \draw (0,0) node[draw, circle, inner sep=4pt] (I) {$v_0$};
-      \draw (I.-90) node[below] {};
-      \draw (4,0) node[draw, inner sep=4pt, circle] (C1) {$v_1$};
-      \draw (C1.-100) node[below] {};
-      \draw (8,0) node[draw, circle, inner sep=4pt] (C2) {$\Omega_1$};
-      \draw (I.-90) node[below] {$1$};
-      \draw (C1.-90) node[below] {$1$};
-      \draw (C2.-90) node[below] {$2$};
-      \draw[-latex'] (-1, 0) -- (I);
-      \draw[-latex'] (I) -- node[above]{$(a,*)$} (C1);
-      \draw[-latex'] (I) ..controls +(1,2) and +(-1,2)  .. node[above]{$(b,*)$}  (I);
-      \draw[-latex'] (C1) -- node[above]{$(*,a)$}(C2);
-      \draw[-latex'] (C1) .. controls +(-2, -2) ..  node[above]{$(*,b)$} (I);
-      \draw[-latex', rounded corners] (C2)..controls +(1,2) and +(-1,2) .. node[above]{$(a,*)$}(C2);
-    \end{tikzpicture}
-    \caption{Parity game where the objective for player 1 is to visit
+```{figure} ./../FigAndAlgos/13-fig:adm-parity.png
+:name: 13-fig:adm-parity
+:align: center
+Parity game where the objective for player 1 is to visit
       $\Omega_1$ infinitely often. Player 1 controls square vertices and player 2
-      round vertices.}
-    \label{fig:adm-parity}
-  \end{center}
-\end{figure}
+      round vertices.
+```
 
 ````{prf:example} NEEDS TITLE AND LABEL 
-  Consider the example in figure {prf:ref}`fig:adm-parity`.
+  Consider the example in {numref}`13-fig:adm-parity`.
   In this example, although the strategy that always stays in $v_0$
   does not decrease the value of player 1, it is dominated because
   it has no chance of winning.
@@ -372,7 +335,7 @@ parity objectives, as we will see in the following example.
   being helped by player 2 and actualy reaching $\Omega_1$ it therefore
   dominates the first strategy.
 
-  Consider the example in figure {prf:ref}`fig:adm-parity`.
+  Consider the example in {numref}`13-fig:adm-parity`.
   In this example, although the strategy that always stays in $v_0$
   does not decrease the value of player 1, it is dominated because
   it has no chance of winning.
@@ -414,13 +377,13 @@ More precisely, we have the following property whose proof is omitted.
 ````{prf:lemma} NEEDS TITLE AND LABEL 
 Let \(v\in V\), \(P_i\in \Agt\) and \(\rho\) a play be
 such that \(\exists^\infty k. \opt_{i}(\rho_k) = 1\). There exists
-\(\sigma_i\) admissible such that \(\rho \in   Out(v, \sigma_i)\) if, and
+\(\sigma_i\) admissible such that \(\rho \in   \textrm{Out}(v, \sigma_i)\) if, and
 only if, \(\payoff_i(\rho) = 1\) or
 \(\exists^\infty k. \rho_k \in H_i\).
 
 Let \(v\in V\), \(P_i\in \Agt\) and \(\rho\) a play be
 such that \(\exists^\infty k. \opt_{i}(\rho_k) = 1\). There exists
-\(\sigma_i\) admissible such that \(\rho \in   Out(v, \sigma_i)\) if, and
+\(\sigma_i\) admissible such that \(\rho \in   \textrm{Out}(v, \sigma_i)\) if, and
 only if, \(\payoff_i(\rho) = 1\) or
 \(\exists^\infty k. \rho_k \in H_i\).
 

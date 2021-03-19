@@ -791,7 +791,7 @@ D &amp; 0 , 4 &amp; 0, 0\
 \end{table}</p>
 <p>Let us formalize this notion.</p>
 <div class="proof definition admonition" id="definition-0">
-<p class="admonition-title"><span class="caption-number">Definition 397 </span> (NEEDS LABEL Dominance)</p>
+<p class="admonition-title"><span class="caption-number">Definition 398 </span> (NEEDS LABEL Dominance)</p>
 <div class="definition-content section" id="proof-content">
 <p>Let (S \subseteq \mathcal{S}^{\Agt}) be a set of the form
 (S = S_1 \times S_2 \times \cdots \times S_n) which we will call a
@@ -800,9 +800,9 @@ rectangular set. Let (\sigma,\sigma’ \in S_i). Strategy (\sigma)
 written (\sigma_i \ge_S \sigma’_i), if from all vertices (v_0):</p>
 <div class="math notranslate nohighlight">
 \[
-  \forall \sigma_{-i} \in S_{-i}, \payoff_i(  Out(v_0,\sigma'_i,\sigma_{-i}))
+  \forall \sigma_{-i} \in S_{-i}, \payoff_i(  \textrm{Out}(v_0,\sigma'_i,\sigma_{-i}))
   \ge
-  \payoff_i(  Out(v_0, \sigma_i, \sigma_{-i})).
+  \payoff_i(  \textrm{Out}(v_0, \sigma_i, \sigma_{-i})).
 \]</div>
 <p>Strategy (\sigma_i) <strong>weakly dominates</strong> strategy (\sigma’_i)
 in (S), written (\sigma &gt;_S \sigma’), if
@@ -818,13 +818,13 @@ maximum payoff that a player can ensure in the worst case within the strategy se
 The optimistic value is
 the best the player can achieve with the help of other players, given the strategy set <span class="math notranslate nohighlight">\(S\)</span>.</p>
 <div class="proof definition admonition" id="definition-1">
-<p class="admonition-title"><span class="caption-number">Definition 398 </span> (NEEDS LABEL Values)</p>
+<p class="admonition-title"><span class="caption-number">Definition 399 </span> (NEEDS LABEL Values)</p>
 <div class="definition-content section" id="proof-content">
 <p>The <strong>pessimistic value</strong> of a strategy
 (\sigma_i) for a history (h) with respect to a rectangular set of
 strategies (S), is</p>
 <ul class="simple">
-<li><p>(\pes_i(S,h,\sigma_i) = \inf_{\sigma_{-i} \in S_{-i}} \payoff_{i}(h \cdot   Out( last(h), \sigma_i,\sigma_{-i})).)</p></li>
+<li><p>(\pes_i(S,h,\sigma_i) = \inf_{\sigma_{-i} \in S_{-i}} \payoff_{i}(h \cdot   \textrm{Out}( \textrm{last}(h), \sigma_i,\sigma_{-i})).)</p></li>
 </ul>
 <p>The <strong>pessimistic value of a history</strong> (h) for (A_i) with respect
 to a rectangular set of strategies (S) is given by:</p>
@@ -834,7 +834,7 @@ to a rectangular set of strategies (S) is given by:</p>
 <p>The <strong>optimistic value</strong> of a strategy (\sigma_i) for a history
 (h) with respect to a rectangular set of strategies (S) is given by:</p>
 <ul class="simple">
-<li><p>(\opt_i(S,h,\sigma_i) = \sup_{\sigma_{-i} \in S_{-i}} \payoff_i (h_{\le |h|-2} \cdot   Out( last(h), \sigma_i,\sigma_{-i})).)</p></li>
+<li><p>(\opt_i(S,h,\sigma_i) = \sup_{\sigma_{-i} \in S_{-i}} \payoff_i (h_{\le |h|-2} \cdot   \textrm{Out}( \textrm{last}(h), \sigma_i,\sigma_{-i})).)</p></li>
 </ul>
 <p>The <strong>optimistic value</strong> of a history (h) for (A_{i}) with
 respect to a rectangular set of strategies (S) is given by:</p>
@@ -847,32 +847,13 @@ and omit <span class="math notranslate nohighlight">\(S\)</span> in the above no
 </div>
 <div class="section" id="simple-safety-games">
 <span id="id1"></span><h2>Simple Safety games<a class="headerlink" href="#simple-safety-games" title="Permalink to this headline">¶</a></h2>
-<p>\begin{figure}
-\begin{center}<br />
-\begin{tikzpicture}
-\draw (0,0) node[draw, inner sep=2pt, circle] (I) {<span class="math notranslate nohighlight">\(v_0\)</span>};
-\draw (I.-90) node[below] {};
-\draw (4,1) node[draw, circle, inner sep=2pt] (C1) {<span class="math notranslate nohighlight">\(v_1\)</span>};
-\draw (C1.-100) node[below] {};
-\draw (4,-1) node[draw, circle, inner sep=2pt, circle] (C2) {<span class="math notranslate nohighlight">\(v_2\)</span>};</p>
-<p>\draw (8, 1) node[draw, circle, inner sep=2pt] (S1) {<span class="math notranslate nohighlight">\(v_3\)</span>};
-\draw (S1.-90) node[below] {<span class="math notranslate nohighlight">\(-1, -1, 0\)</span>};
-\draw (8,-1) node[draw, circle, inner sep=2pt] (S2) {<span class="math notranslate nohighlight">\(v_4\)</span>};
-\draw (S2.-90) node[below] {<span class="math notranslate nohighlight">\(-1, 0, -1\)</span>};
-\draw[-latex’] (-1, 0) – (I);
-\draw[-latex’] (I) – node[above]{<span class="math notranslate nohighlight">\((*,a,*)\)</span>} (C1);
-\draw[-latex’] (I) – node[below]{<span class="math notranslate nohighlight">\((*,b,*)\)</span>} (C2);
-\draw[-latex’] (C1) –node[left]{<span class="math notranslate nohighlight">\((a,*,*)\)</span>} (C2);
-\draw[-latex’] (C1) – node[above]{<span class="math notranslate nohighlight">\((b,*,*)\)</span>} (S1);
-\draw[-latex’] (C2) – node[above]{<span class="math notranslate nohighlight">\((*,*,a)\)</span>} (S2);
-\draw[-latex’, rounded corners] (C2) – +(1,1) – node[right]{<span class="math notranslate nohighlight">\((*,*,b)\)</span>}(C1);
-\end{tikzpicture}
-\caption{Example of a three-player turn-based simple safety game.</p>
-<p>Numbers below states describe the safety objective, for instance <span class="math notranslate nohighlight">\(-1, -1, 0\)</span> is losing for player 1 and 2.
-}
-\label{13-fig:simple-safety}
-\end{center}
-\end{figure}</p>
+<div class="figure align-center" id="fig-simple-safety">
+<img alt="../_images/13-fig:simple-safety.png" src="../_images/13-fig:simple-safety.png" />
+<p class="caption"><span class="caption-number">Fig. 109 </span><span class="caption-text">Example of a three-player turn-based simple safety game.</span><a class="headerlink" href="#fig-simple-safety" title="Permalink to this image">¶</a></p>
+<div class="legend">
+<p>Numbers below states describe the safety objective, for instance <span class="math notranslate nohighlight">\(-1, -1, 0\)</span> is losing for player 1 and 2.</p>
+</div>
+</div>
 <p>Simple safety games, are safety games in which there are no transitions
 from losing vertices to non-losing ones. Restricting to this particular
 class of game makes the problem simpler because the objective becomes
@@ -883,7 +864,7 @@ state. Note that this translation can be exponential in the number of
 players.</p>
 <p>For simple safety games, the pessimistic and optimistic values do not depend
 on the full history but only on the last state: for all histories
-(\pes_i(h) = \pes_i( last(h))) and (\opt_i(h) = \opt_i( last(h))).</p>
+(\pes_i(h) = \pes_i( \textrm{last}(h))) and (\opt_i(h) = \opt_i( \textrm{last}(h))).</p>
 <p>Note that in safety games (and any qualitative games) values can be only
 1 (for winning) and 0 (for losing) and since the pessimistic value is
 always less than the optimistic one, the pair ((\pes_i, \opt_i)) can
@@ -892,9 +873,9 @@ only take three values: ((0, 0)), ((0, 1)) and ((1, 1)).</p>
 In fact, the characterization of admissible strategies we give below will be based on this
 simple observation.</p>
 <div class="proof example admonition" id="example-2">
-<p class="admonition-title"><span class="caption-number">Example 399 </span> (NEEDS TITLE AND LABEL)</p>
+<p class="admonition-title"><span class="caption-number">Example 400 </span> (NEEDS TITLE AND LABEL)</p>
 <div class="example-content section" id="proof-content">
-<p>An example of a simple safety game is given in <code class="xref std std-numref docutils literal notranslate"><span class="pre">13-fig:simple-safety</span></code>.
+<p>An example of a simple safety game is given in <a class="reference internal" href="#fig-simple-safety"><span class="std std-numref">Fig. 109</span></a>.
 In this game, player 1 controls <span class="math notranslate nohighlight">\(v_1\)</span> where its optimistic
 value is <span class="math notranslate nohighlight">\(0\)</span>, as it is possible that the outcome will never reach
 <span class="math notranslate nohighlight">\(v_3\)</span> or <span class="math notranslate nohighlight">\(v_4\)</span>.
@@ -910,7 +891,7 @@ the only non-dominated strategy.
 For player 2, from state <span class="math notranslate nohighlight">\(v_0\)</span>, both choices lead to a state with values
 <span class="math notranslate nohighlight">\((-1, 0)\)</span> so no choice is particularly better and both strategies are
 non-dominated.</p>
-<p>An example of a simple safety game is given in <code class="xref std std-numref docutils literal notranslate"><span class="pre">13-fig:simple-safety</span></code>.
+<p>An example of a simple safety game is given in <a class="reference internal" href="#fig-simple-safety"><span class="std std-numref">Fig. 109</span></a>.
 In this game, player 1 controls <span class="math notranslate nohighlight">\(v_1\)</span> where its optimistic
 value is <span class="math notranslate nohighlight">\(0\)</span>, as it is possible that the outcome will never reach
 <span class="math notranslate nohighlight">\(v_3\)</span> or <span class="math notranslate nohighlight">\(v_4\)</span>.
@@ -928,7 +909,7 @@ For player 2, from state <span class="math notranslate nohighlight">\(v_0\)</spa
 non-dominated.</p>
 </div>
 </div><div class="proof definition admonition" id="definition-3">
-<p class="admonition-title"><span class="caption-number">Definition 400 </span> (NEEDS TITLE AND LABEL  Let (D_i) be the set of edges)</p>
+<p class="admonition-title"><span class="caption-number">Definition 401 </span> (NEEDS TITLE AND LABEL  Let (D_i) be the set of edges)</p>
 <div class="definition-content section" id="proof-content">
 <p>((v,v’) \in E) such that (v \in V_i)</p>
 <p>(\pes_i(v) &gt; \pes_i(v’)) or (\opt_i(v) &gt; \opt_i(v’)). These
@@ -939,7 +920,7 @@ are called <strong>dominated edges</strong>.</p>
 are called <strong>dominated edges</strong>.</p>
 </div>
 </div><div class="proof theorem admonition" id="13-thm:adm">
-<p class="admonition-title"><span class="caption-number">Theorem 401 </span> (Characterisation of Admissible Strategies)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 402 </span> (Characterisation of Admissible Strategies)</p>
 <div class="theorem-content section" id="proof-content">
 <p>Admissible
 strategies for player (A_i) are the strategies that never take actions
@@ -949,7 +930,7 @@ in (D_i).</p>
 <p class="admonition-title">Proof</p>
 <p>We show that if (A_i) plays an admissible strategy
 (\sigma_i) then the value cannot decrease on a transition controled by
-(A_i). Let (\rho \in   Out(\sigma_i,\sigma_{-i})), and (k) an index
+(A_i). Let (\rho \in   \textrm{Out}(\sigma_i,\sigma_{-i})), and (k) an index
 such that (\rho_k \in V_i). Let ((v, v’) = \sigma_i(\rho_{\le k})):</p>
 <ul class="simple">
 <li><p>If (\pes_i(\rho_k)=1), then (\sigma_i) has to be winning against
@@ -957,7 +938,7 @@ all strategies (\sigma_{-i}) of (A_{-i}), otherwise it would be
 weakly dominated by such a strategy. Since there is no such strategy
 from a state with value (\pes_i \leq 0), we must have (\pes_i(v’)=1).</p></li>
 <li><p>If (\opt_i(\rho_k) = 1), then, by definition, there is a profile (\sigma’) such that
-(\rho = \payoff(  Out(v, \sigma’)) = 1).
+(\rho = \payoff(  \textrm{Out}(v, \sigma’)) = 1).
 Assume that <span class="math notranslate nohighlight">\(\opt_i(v')=0\)</span>. Then <span class="math notranslate nohighlight">\(\sigma_i\)</span> is dominated by the strategy
 <span class="math notranslate nohighlight">\(\sigma_i''\)</span> obtained from <span class="math notranslate nohighlight">\(\sigma_i\)</span> by making it switch to <span class="math notranslate nohighlight">\(\sigma'\)</span> at <span class="math notranslate nohighlight">\(v\)</span>.
 In fact, <span class="math notranslate nohighlight">\(\sigma_i\)</span> is losing against all strategies of <span class="math notranslate nohighlight">\(-i\)</span>, while <span class="math notranslate nohighlight">\(\sigma_i''\)</span>
@@ -969,9 +950,9 @@ player (A_i) and assume (\sigma_i’ &gt;_S \sigma_i). We will prove
 (\sigma_i) takes a transition in (D_i) at some point.</p>
 <p>Let us fix some objects before developing the proof. There is a vertex
 (v) and strategy profile (\sigma_{-i} \in S_{-i}) such that
-(\payoff(  Out(v,\sigma_i’,\sigma_{-i}))=1 \wedge \payoff(  Out(v,\sigma_i,\sigma_{-i})=0).
-Let (\rho =   Out(v,\sigma_i,\sigma_{-i})) and
-(\rho’ =   Out(v,\sigma_i’,\sigma_{-i})). Consider the first position
+(\payoff(  \textrm{Out}(v,\sigma_i’,\sigma_{-i}))=1 \wedge \payoff(  \textrm{Out}(v,\sigma_i,\sigma_{-i})=0).
+Let (\rho =   \textrm{Out}(v,\sigma_i,\sigma_{-i})) and
+(\rho’ =   \textrm{Out}(v,\sigma_i’,\sigma_{-i})). Consider the first position
 where these runs differ: write (\rho = w \cdot s’ \cdot s_2 \cdot w’)
 and (\rho’ = w \cdot s’ \cdot s_1 \cdot w’’).</p>
 <p>The following are simple facts that can be seen easily:</p>
@@ -979,9 +960,9 @@ and (\rho’ = w \cdot s’ \cdot s_1 \cdot w’’).</p>
 <li><p>(s’ \in V_i), because the strategy of the other players
 are identical in the two runs.</p></li>
 <li><p>(\opt_i(s_1) = 1) because
-(\payoff(  Out(v,\sigma_i’,\sigma_{-i}))=1)</p></li>
+(\payoff(  \textrm{Out}(v,\sigma_i’,\sigma_{-i}))=1)</p></li>
 <li><p>(\pes_i(s_2) = 0) because
-(\payoff(  Out(v,\sigma_i,\sigma_{-i}))=0)</p></li>
+(\payoff(  \textrm{Out}(v,\sigma_i,\sigma_{-i}))=0)</p></li>
 </ul>
 <p>If (\opt_i(s_2) = 0) or (\pes_i(s_1) = 1) then
 (s’ \rightarrow s_2 \in D_i) so (\sigma_i) takes a transition of
@@ -992,7 +973,7 @@ We will show that there is
 a strategy for <span class="math notranslate nohighlight">\(-i\)</span> against which <span class="math notranslate nohighlight">\(\sigma_i\)</span> wins and <span class="math notranslate nohighlight">\(\sigma_i'\)</span> loses,
 which contradicts the hypothesis that <span class="math notranslate nohighlight">\(\sigma_i'\)</span> weakly dominates <span class="math notranslate nohighlight">\(\sigma_i\)</span>.</p>
 <p>We first construct a profile (\sigma_{-i}^2 \in S_{-i}) such that
-(\payoff(  Out(s_2,\sigma_i,\sigma_{-i}^2))=1).</p>
+(\payoff(  \textrm{Out}(s_2,\sigma_i,\sigma_{-i}^2))=1).</p>
 <p>Strategy (\sigma_{-i}^2\in S_{-i}) never decreases
 the optimistic value from (1) to (0) since the optimistic value is nonincreasing.
 By assumption, (\sigma_i)
@@ -1020,7 +1001,7 @@ Formally, given a history (h), (\sigma_{-i}’(h) =)</p>
 <li><p>(\sigma_{-i}(h)) otherwise</p></li>
 </ul>
 <p>Clearly we have
-(\payoff_i(  Out_s(\sigma_i,\sigma_{-i}’))= 1 \wedge \payoff_i(  Out_s(\sigma_i’,\sigma_{-i}’)) = 0),
+(\payoff_i(  \textrm{Out}<em>s(\sigma_i,\sigma</em>{-i}’))= 1 \wedge \payoff_i(  \textrm{Out}<em>s(\sigma_i’,\sigma</em>{-i}’)) = 0),
 which contradicts (\sigma_i’ \ge_S \sigma_i).</p>
 </div>
 </div>
@@ -1028,41 +1009,23 @@ which contradicts (\sigma_i’ \ge_S \sigma_i).</p>
 <span id="id2"></span><h2>Parity games<a class="headerlink" href="#parity-games" title="Permalink to this headline">¶</a></h2>
 <p>The caracterization given for simple safety game is not enough for
 parity objectives, as we will see in the following example.</p>
-<p>\begin{figure}
-\begin{center}
-\begin{tikzpicture}
-\draw (0,0) node[draw, circle, inner sep=4pt] (I) {<span class="math notranslate nohighlight">\(v_0\)</span>};
-\draw (I.-90) node[below] {};
-\draw (4,0) node[draw, inner sep=4pt, circle] (C1) {<span class="math notranslate nohighlight">\(v_1\)</span>};
-\draw (C1.-100) node[below] {};
-\draw (8,0) node[draw, circle, inner sep=4pt] (C2) {<span class="math notranslate nohighlight">\(\Omega_1\)</span>};
-\draw (I.-90) node[below] {<span class="math notranslate nohighlight">\(1\)</span>};
-\draw (C1.-90) node[below] {<span class="math notranslate nohighlight">\(1\)</span>};
-\draw (C2.-90) node[below] {<span class="math notranslate nohighlight">\(2\)</span>};
-\draw[-latex’] (-1, 0) – (I);
-\draw[-latex’] (I) – node[above]{<span class="math notranslate nohighlight">\((a,*)\)</span>} (C1);
-\draw[-latex’] (I) ..controls +(1,2) and +(-1,2)  .. node[above]{<span class="math notranslate nohighlight">\((b,*)\)</span>}  (I);
-\draw[-latex’] (C1) – node[above]{<span class="math notranslate nohighlight">\((*,a)\)</span>}(C2);
-\draw[-latex’] (C1) .. controls +(-2, -2) ..  node[above]{<span class="math notranslate nohighlight">\((*,b)\)</span>} (I);
-\draw[-latex’, rounded corners] (C2)..controls +(1,2) and +(-1,2) .. node[above]{<span class="math notranslate nohighlight">\((a,*)\)</span>}(C2);
-\end{tikzpicture}
-\caption{Parity game where the objective for player 1 is to visit
+<div class="figure align-center" id="fig-adm-parity">
+<img alt="../_images/13-fig:adm-parity.png" src="../_images/13-fig:adm-parity.png" />
+<p class="caption"><span class="caption-number">Fig. 110 </span><span class="caption-text">Parity game where the objective for player 1 is to visit
 <span class="math notranslate nohighlight">\(\Omega_1\)</span> infinitely often. Player 1 controls square vertices and player 2
-round vertices.}
-\label{fig:adm-parity}
-\end{center}
-\end{figure}</p>
+round vertices.</span><a class="headerlink" href="#fig-adm-parity" title="Permalink to this image">¶</a></p>
+</div>
 <div class="proof example admonition" id="example-5">
-<p class="admonition-title"><span class="caption-number">Example 402 </span> (NEEDS TITLE AND LABEL)</p>
+<p class="admonition-title"><span class="caption-number">Example 403 </span> (NEEDS TITLE AND LABEL)</p>
 <div class="example-content section" id="proof-content">
-<p>Consider the example in figure <code class="xref prf prf-ref docutils literal notranslate"><span class="pre">fig:adm-parity</span></code>.
+<p>Consider the example in <a class="reference internal" href="#fig-adm-parity"><span class="std std-numref">Fig. 110</span></a>.
 In this example, although the strategy that always stays in <span class="math notranslate nohighlight">\(v_0\)</span>
 does not decrease the value of player 1, it is dominated because
 it has no chance of winning.
 By contrast the strategy that always go to <span class="math notranslate nohighlight">\(v_1\)</span> has a chance of
 being helped by player 2 and actualy reaching <span class="math notranslate nohighlight">\(\Omega_1\)</span> it therefore
 dominates the first strategy.</p>
-<p>Consider the example in figure <code class="xref prf prf-ref docutils literal notranslate"><span class="pre">fig:adm-parity</span></code>.
+<p>Consider the example in <a class="reference internal" href="#fig-adm-parity"><span class="std std-numref">Fig. 110</span></a>.
 In this example, although the strategy that always stays in <span class="math notranslate nohighlight">\(v_0\)</span>
 does not decrease the value of player 1, it is dominated because
 it has no chance of winning.
@@ -1097,16 +1060,16 @@ are those that visit infinitely often help states. In fact, letting other player
 means that the player is allowing the possibility of them helping to achieve the objective.
 More precisely, we have the following property whose proof is omitted.</p>
 <div class="proof lemma admonition" id="lemma-6">
-<p class="admonition-title"><span class="caption-number">Lemma 403 </span> (NEEDS TITLE AND LABEL)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 404 </span> (NEEDS TITLE AND LABEL)</p>
 <div class="lemma-content section" id="proof-content">
 <p>Let (v\in V), (P_i\in \Agt) and (\rho) a play be
 such that (\exists^\infty k. \opt_{i}(\rho_k) = 1). There exists
-(\sigma_i) admissible such that (\rho \in   Out(v, \sigma_i)) if, and
+(\sigma_i) admissible such that (\rho \in   \textrm{Out}(v, \sigma_i)) if, and
 only if, (\payoff_i(\rho) = 1) or
 (\exists^\infty k. \rho_k \in H_i).</p>
 <p>Let (v\in V), (P_i\in \Agt) and (\rho) a play be
 such that (\exists^\infty k. \opt_{i}(\rho_k) = 1). There exists
-(\sigma_i) admissible such that (\rho \in   Out(v, \sigma_i)) if, and
+(\sigma_i) admissible such that (\rho \in   \textrm{Out}(v, \sigma_i)) if, and
 only if, (\payoff_i(\rho) = 1) or
 (\exists^\infty k. \rho_k \in H_i).</p>
 </div>
@@ -1122,7 +1085,7 @@ In more complex games, this reasoning can be repeated and take several steps bef
 This repeated process is called <strong>iterated elimination of dominated strategies</strong>.</p>
 <p>We now define this process formally.</p>
 <div class="proof definition admonition" id="definition-7">
-<p class="admonition-title"><span class="caption-number">Definition 404 </span> (NEEDS LABEL Iterated elimination)</p>
+<p class="admonition-title"><span class="caption-number">Definition 405 </span> (NEEDS LABEL Iterated elimination)</p>
 <div class="definition-content section" id="proof-content">
 <p>The <strong>sequence of iterative elimination</strong> is a sequence of rectangular strategy sets defined as follows.
 <span class="math notranslate nohighlight">\(S^0 = (S_i^0)_{P_i \in \Agt}\)</span> is the set of all strategies.
@@ -1135,13 +1098,13 @@ In step 2, we again compute strategies that are dominated by only
 considering <span class="math notranslate nohighlight">\(1\)</span>-admissible strategies for all players, and repeat.
 Strategies that survive all step of elimination are said <strong>iteratively admissible</strong>.</p>
 <div class="proof theorem admonition" id="theorem-8">
-<p class="admonition-title"><span class="caption-number">Theorem 405 </span> (NEEDS TITLE AND LABEL)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 406 </span> (NEEDS TITLE AND LABEL)</p>
 <div class="theorem-content section" id="proof-content">
 <p>In parity games, the sequence of iterative elimination converges, and it reaches a non-empty fixpoint.</p>
 <p>In parity games, the sequence of iterative elimination converges, and it reaches a non-empty fixpoint.</p>
 </div>
 </div><p>We prove this result only for simple safety games since the case of parity conditions is too complex for the scope of this book.</p>
-<p>Intuitively, given a game <span class="math notranslate nohighlight">\(G\)</span>, <a class="reference internal" href="#13-thm:adm">Theorem 401</a> tells us that any strategy for player <span class="math notranslate nohighlight">\(P_i\)</span> that avoids using edges <span class="math notranslate nohighlight">\(D_i\)</span> is admissible. So if we remove all edges <span class="math notranslate nohighlight">\(\cup_{P_i \in \Agt} D_i\)</span> from the
+<p>Intuitively, given a game <span class="math notranslate nohighlight">\(G\)</span>, <a class="reference internal" href="#13-thm:adm">Theorem 402</a> tells us that any strategy for player <span class="math notranslate nohighlight">\(P_i\)</span> that avoids using edges <span class="math notranslate nohighlight">\(D_i\)</span> is admissible. So if we remove all edges <span class="math notranslate nohighlight">\(\cup_{P_i \in \Agt} D_i\)</span> from the
 game to obtain a new game called <span class="math notranslate nohighlight">\(G_1\)</span>, then all strategies of <span class="math notranslate nohighlight">\(G_1\)</span> (for all players) are admissible in <span class="math notranslate nohighlight">\(G\)</span>, and conversely.
 We can then repeat this process to <span class="math notranslate nohighlight">\(G_1\)</span>: we construct <span class="math notranslate nohighlight">\(G_2\)</span> by eliminating all dominated edges
 in <span class="math notranslate nohighlight">\(G_1\)</span>, and get that admissible strategies in <span class="math notranslate nohighlight">\(G_1\)</span> are exactly all strategies of <span class="math notranslate nohighlight">\(G_2\)</span>,
@@ -1194,7 +1157,7 @@ Last, for a vertex <span class="math notranslate nohighlight">\(v \in V_i\)</spa
     <div class="container">
       <p>
         
-          By a set of authors coordinated by Nathana&euml;l Fijalkow<br/>
+          By a set of authors<br/>
         
             &copy; Copyright 2021.<br/>
       </p>

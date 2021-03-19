@@ -73,12 +73,12 @@ McNaughton Zielonka algorithm.
 The characterisation result showing how Zielonka tree captures the exact memory requirements of Muller objectives is due to 
 Dziembowski, Jurdzi&#324;ski, and Walukiewicz {cite}`Dziembowski&Jurdzinski&Walukiewicz:1997`.
 
-The $NP$-completeness stated in {prf:ref}`2-thm:Rabin_complexity` for solving Rabin games is due to Emerson and Jutla {cite}`Emerson&Jutla:1988`.
+The $\textrm{NP}$-completeness stated in {prf:ref}`2-thm:Rabin_complexity` for solving Rabin games is due to Emerson and Jutla {cite}`Emerson&Jutla:1988`.
 The study of the complexity of solving Muller games is due to Dawar and Hunter {cite}`Hunter&Dawar:2005`.
-The $PSPACE$-completeness results stated in {prf:ref}`2-thm:complexity_Muller` and {prf:ref}`2-thm:Muller_games_DAG` only concern two representations for Muller objectives. There are several others, which are not equally succinct.
-For all representations but one the $PSPACE$-completeness result holds; the only exception is the explicit representation
+The $\textrm{PSPACE}$-completeness results stated in {prf:ref}`2-thm:complexity_Muller` and {prf:ref}`2-thm:Muller_games_DAG` only concern two representations for Muller objectives. There are several others, which are not equally succinct.
+For all representations but one the $\textrm{PSPACE}$-completeness result holds; the only exception is the explicit representation
 where the condition is specified by listing all sets of vertices in $\mathcal{F}$.
-Surprisingly, solving Muller games with the explicit representation is in $PTIME$ as shown by Horn {cite}`Horn:2008`.
+Surprisingly, solving Muller games with the explicit representation is in $\textrm{PTIME}$ as shown by Horn {cite}`Horn:2008`.
 
 Our proof of positionality for Rabin objectives for {prf:ref}`2-thm:Rabin_positional_determinacy` 
 and its extension to submixing objectives {prf:ref}`2-thm:submixing_positional` 

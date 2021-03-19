@@ -29,7 +29,8 @@
 \providecommand{\col}{\mathfrak c}
 \providecommand{
 }{}
-\providecommand{\medskip}{}
+\providecommand{
+}{}
 \providecommand{\ensuremath}{}
 \providecommand{\raisebox}[1]{}
 \providecommand{\scalebox}[1]{}
@@ -45,7 +46,7 @@ i.e., that would make some counter go negative, are simply inhibited.
 In models of real-world systems monitoring resources like a gas
 tank or a battery, a depleted resource would be considered as a system
 failure.  In the energy games of Section {ref}`11-sec:energy`, those situations
-are accordingly considered as winning for  Adam.  Moreover, if we are
+are accordingly considered as winning for Adam.  Moreover, if we are
 modelling systems with a bounded capacity for storing resources, a
 counter exceeding some bound might also be considered as a failure,
 which will be considered with bounding games in Section {ref}`11-sec:bounding`.
@@ -61,14 +62,14 @@ Section {ref}`12-sec:MPEG` of Chapter {ref}`12-chap:multiobjective`.
 ## Energy Semantics
 
 Energy games model systems where the depletion of a resource
-allows  Adam\ to win.  This is captured by an energy semantics
-$\mathcal{A}_\+E(\?V)  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=}(V,E_\+E, V_\mathrm{Eve}, V_\mathrm{Adam})$ associated with a "vector
+allows Adam to win.  This is captured by an energy semantics
+$\mathcal{A}_\+E(\?V)  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=}(V,E_\+E, V_\mathrm{Eve}, V_\mathrm{Adam})$ associated with a "vector
 system" $\?V$: we let as before
-$V  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=}( \?L\times\+N^ k)\uplus\{ \bot\}$, but define instead
+$V  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=}( \?L\times\+N^ k)\uplus\{ \bot\}$, but define instead
 
 $$
 
-  E_\+E&  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=} \{( \ell(\vec v),  \ell'(\vec v+\vec u)\mid
+  E_\+E&  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=} \{( \ell(\vec v),  \ell'(\vec v+\vec u)\mid
           \ell\step{\vec u} \ell'\in A\text{
       and }\vec v+\vec u\geq\vec 0\}\\
     &\:\cup\:\{( \ell(\vec v), \bot)\mid\forall \ell\step{\vec
@@ -87,7 +88,7 @@ component lead to the sink instead of being inhibited.
   system depicted in {numref}`11-fig:mwg` on \cpageref{11-fig:mwg}.  Observe that,
   by contrast with the natural semantics of the same system depicted
   in {numref}`11-fig:sem`, all the configurations $\ell'(0,n)$ controlled
-  by  Adam\ can now move to the sink.
+  by Adam can now move to the sink.
 
 ````
 
@@ -97,8 +98,7 @@ component lead to the sink instead of being inhibited.
 The energy semantics of the
     vector system of {numref}`11-fig:mwg`: a circle (resp.\
     a square) at position $(i,j)$ of the grid denotes a configuration
-    $\ell(i,j)$ (resp.\ $\ell'(i,j)$) controlled by  Eve\ (resp.\
-     Adam).
+    $\ell(i,j)$ (resp.\ $\ell'(i,j)$) controlled by Eve (resp. Adam).
 ```
 
 Given a colouring $\textsf{col}{:}\,E\to C$ and an objective $\Omega$, we
@@ -113,10 +113,10 @@ existential initial credit variants are defined similarly.
 :label: 11-ex:cov-nrg
 
   Consider the target configuration $\ell(2,2)$ in
-  {numref}`11-fig:mwg,11-fig:nrg`.   Eve's winning region in the
+  {numref}`11-fig:mwg,11-fig:nrg`.  Eve\'s winning region in the
   configuration reachability energy game is
   $W_\mathrm{Eve}=\{ \ell(n+2,n+2)\mid n\in\+N\}$, displayed on the left in
-  {numref}`11-fig:cov-nrg`.  In the coverability energy game,  Eve's
+  {numref}`11-fig:cov-nrg`.  In the coverability energy game, Eve\'s
   winning region is
   $W_\mathrm{Eve}=\{ \ell(m+2,n+2), \ell'(m+3,n+2)\mid m,n\in\+N\}$ displayed on
   the right in {numref}`11-fig:cov-nrg`.
@@ -126,7 +126,7 @@ existential initial credit variants are defined similarly.
 ```{figure} ./../FigAndAlgos/11-fig:cov-nrg.png
 :name: 11-fig:cov-nrg
 :align: center
-The winning regions of  Eve\ in the
+The winning regions of Eve in the
     configuration reachability energy game (left) and the
     coverability energy game
     (right) on the graphs of {numref}`11-fig:mwg,11-fig:nrg` with target
@@ -145,7 +145,7 @@ correspondence is quite general.
 
   Energy games and asymmetric vector games are
   \logspace-equivalent for configuration reachability,
-  coverability, non-termination, and parity@parity vector games,
+  coverability, non-termination, and parity,
   both with given and with existential initial credit.
 
 ````
@@ -155,33 +155,33 @@ correspondence is quite general.
 
   Let us first reduce asymmetric vector games to energy games.
   Given $\?V$, $\textsf{col}$, and $\Omega$ where $\?V$ is asymmetric and
-  $Eve$ loses if the play ever visits the sink $\bot$, we see that
-  $Eve$ wins $(\natural(\?V), \textsf{col},\Omega)$ from some $v\in V$ if and
+  $\textrm{Eve}$ loses if the play ever visits the sink $\bot$, we see that
+  $\textrm{Eve}$ wins $(\natural(\?V), \textsf{col},\Omega)$ from some $v\in V$ if and
   only if she wins $(  \mathcal{A}_\+E(\?V), \textsf{col},\Omega)$ from $v$.  Of course,
   this might not be true if $\?V$ is not asymmetric, as seen for
   instance in {prf:ref}`11-ex:cov` and {prf:ref}`11-ex:cov-nrg`.
 
-  \medskip Conversely, let us reduce energy games to "asymmetric
+ Conversely, let us reduce energy games to "asymmetric
   vector games".  Consider
   $\?V=( \?L, A, \?L_\mathrm{Eve}, \?L_\mathrm{Adam}, k)$, a colouring $\textsf{col}$
   defined from a vertex colouring $\mathrm{vcol}$ by
-  $\textsf{col}(e)  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=} \mathrm{vcol}( In(e))$, and an objective $\Omega$, where
-  $\mathrm{vcol}$ and $\Omega$ are such that $Eve$ loses if the play ever
+  $\textsf{col}(e)  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=} \mathrm{vcol}( \textrm{In}(e))$, and an objective $\Omega$, where
+  $\mathrm{vcol}$ and $\Omega$ are such that $\textrm{Eve}$ loses if the play ever
   visits the sink $\bot$ and such that, for all $\pi\in C^\ast$,
   $p\in C$, and $\pi'\in C^\omega$, $\pi p\pi'\in\Omega$ if and only
   if $\pi pp\pi'\in\Omega$ (we shall call $\Omega$
   **stutter-invariant**, and the objectives in the statement are
   indeed stutter-invariant).  We construct an "asymmetric vector
   system"
-  $\?V'  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=}( \?L\uplus \?L_A, A', \?L_\mathrm{Eve}\uplus \?L_A, \?L_\mathrm{Adam}, k)$
-  where we add the following locations controlled by  Eve:
+  $\?V'  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=}( \?L\uplus \?L_A, A', \?L_\mathrm{Eve}\uplus \?L_A, \?L_\mathrm{Adam}, k)$
+  where we add the following locations controlled by Eve:
     
 $$
 
-       \?L_A&  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=}\{ \ell_a\mid a=( \ell\step{\vec
+       \?L_A&  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=}\{ \ell_a\mid a=( \ell\step{\vec
                  u} \ell')\in A\text{ and } \ell\in \?L_\mathrm{Adam}\}\;.
       \intertext{We also modify the set of actions:}
-       A'&  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=}\{ \ell\step{\vec u} \ell'\mid  \ell\step{\vec
+       A'&  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=}\{ \ell\step{\vec u} \ell'\mid  \ell\step{\vec
              u} \ell'\in A\text{ and } \ell\in \?L_\mathrm{Eve}\}\\
       &\:\cup\:\{ \ell\step{\vec 0} \ell_a,\; \ell_a\step{\vec u} \ell'\mid a=( \ell\step{\vec u} \ell')\in A\text{ and } \ell\in \?L_\mathrm{Adam}\}\;.
     
@@ -189,20 +189,20 @@ $$
 
     {numref}`11-fig:avg` presents the result of this reduction on the
     system of {numref}`11-fig:mwg`.  We define a vertex colouring
-    $\mathrm{vcol}'$ of $\mathcal{A}_\+N(\?V')$ with $\mathrm{vcol}'(v)  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=} \mathrm{vcol}(v)$ for
+    $\mathrm{vcol}'$ of $\mathcal{A}_\+N(\?V')$ with $\mathrm{vcol}'(v)  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=} \mathrm{vcol}(v)$ for
     all $v\in  \?L\times\+N^ k\uplus\{ \bot\}$ and
-    $\mathrm{vcol}'( \ell_a(\vec v))  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=} \mathrm{vcol}( \ell(\vec v))$ if
+    $\mathrm{vcol}'( \ell_a(\vec v))  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=} \mathrm{vcol}( \ell(\vec v))$ if
     $a=( \ell\step{\vec u} \ell')\in A$.  Then, for all vertices
-    $v\in V$,  Eve\ wins from $v$ in the energy game
+    $v\in V$, Eve wins from $v$ in the energy game
     $(  \mathcal{A}_\+E(\?V), \textsf{col},\Omega)$ if and only if she wins from $v$ in
     the vector game $(\natural(\?V'), \textsf{col}',\Omega)$.  The crux of
     the argument is that, in a configuration $\ell(\vec v)$ where
     $\ell\in \?L_\mathrm{Adam}$, if $a=( \ell\step{\vec u} \ell')\in A$ is an
     action with $\vec v+\vec u\not\geq\vec 0$, in the "energy
-    semantics,  Adam\ can force the play into the sink" by
+    semantics, Adam can force the play into the sink" by
     playing $a$; the same occurs in $\?V'$ with the "natural
-    semantics", as  Adam\ can now choose to play
-    $\ell\step{\vec 0} \ell_a$ where  Eve\ has only
+    semantics", as Adam can now choose to play
+    $\ell\step{\vec 0} \ell_a$ where Eve has only
     $\ell_a\step{\vec u} \ell'$ at her disposal, which leads to the
     sink.\todoquestion{Is that clear?}
 
@@ -215,7 +215,7 @@ Chapter {ref}`12-chap:multiobjective`.% We shall see the
 (11-sec:bounding)=
 ## Bounded Semantics
 
-While  Adam\ wins immediately in an energy game if a resource gets
+While Adam wins immediately in an energy game if a resource gets
 depleted, he also wins in a bounding game if a resource reaches a
 certain bound $B$.  
 This is
@@ -226,8 +226,8 @@ $\mathcal{A}_B(\?V)=(V^B,E^B, V_\mathrm{Eve}^B, V_\mathrm{Adam}^B)$ of a vector 
 
 $$
 
-  V^B&  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=}\{ \ell(\vec v)\mid \ell\in \?L\text{ and }\|\vec v\|<B\}\;,\\
-  E^B&  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=} \{( \ell(\vec v), \ell'(\vec v+\vec u))\mid \ell\step{\vec
+  V^B&  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=}\{ \ell(\vec v)\mid \ell\in \?L\text{ and }\|\vec v\|<B\}\;,\\
+  E^B&  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=} \{( \ell(\vec v), \ell'(\vec v+\vec u))\mid \ell\step{\vec
        u} \ell'\in A,\vec v+\vec u\geq\vec 0,\text{ and }\|\vec
        v+\vec u\|<B\}\\
      &\:\cup\:\{( \ell(\vec v), \bot)\mid\forall \ell\step{\vec
@@ -237,8 +237,8 @@ $$
 
 $$
 
-As usual, $V_\mathrm{Eve}^B  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=} V^B\cap \?L_\mathrm{Eve}\times\+N^ k$ and
-$V_\mathrm{Adam}^B  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=} V^B\cap \?L_\mathrm{Adam}\times\+N^ k$.  Any edge from the
+As usual, $V_\mathrm{Eve}^B  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=} V^B\cap \?L_\mathrm{Eve}\times\+N^ k$ and
+$V_\mathrm{Adam}^B  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=} V^B\cap \?L_\mathrm{Adam}\times\+N^ k$.  Any edge from the
 energy semantics that would bring to a configuration $\ell(\vec v)$
 with $\vec v(i)\geq B$ for some $1\leq i\leq k$ leads instead to the
 sink.  All the configurations in this arena have norm less than $B$,
@@ -254,16 +254,16 @@ existentially in the question.
 {\label{11-pb:bounding} A vector system
   $\?V=( \?L, A, \?L_\mathrm{Eve}, \?L_\mathrm{Adam}, k)$, an initial location
   $\ell_0\in \?L$, and an initial credit $\vec v_0\in\+N^ k$.}%
-  {Does there exist $B\in\+N$ such that  Eve\ has a strategy to avoid the
+  {Does there exist $B\in\+N$ such that Eve has a strategy to avoid the
   sink $\bot$ from $\ell_0(\vec v_0)$ in the "bounded
   semantics"?  That is, does there exist $B\in\+N$ such that she wins
   the bounding game $(  \mathcal{A}_B(\?V), \textsf{col}, \mathtt{Safe})$ from
-  $\ell_0(\vec v_0)$, where $\textsf{col}(e)  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=} Lose$ if and only if $In(e)= \bot$?}
+  $\ell_0(\vec v_0)$, where $\textsf{col}(e)  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=} \textrm{Lose}$ if and only if $\textrm{In}(e)= \bot$?}
 
 ````{prf:lemma} NEEDS TITLE 11-lem:parity2bounding
 :label: 11-lem:parity2bounding
 
-  There is a \logspace\ reduction from parity@parity vector games
+  There is a \logspace\ reduction from parity
   asymmetric vector games to bounding games, both with given
   and with existential initial credit.
 
@@ -276,7 +276,7 @@ existentially in the question.
   $\?V=( \?L, A, \?L_\mathrm{Eve}, \?L_\mathrm{Adam}, k)$, a location colouring
   $\mathrm{lcol}{:}\, \?L\to\{1,\dots,2d\}$, and an initial location
   $\ell_0\in \?L$, we construct a vector system $\?V'$ of dimension
-  $k'  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=} k+d$ as described in {numref}`11-fig:bounding`, where the
+  $k'  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=} k+d$ as described in {numref}`11-fig:bounding`, where the
   priorities in $\?V$ for $p\in\{1,\dots,d\}$ are indicated above the
   corresponding locations.
 
@@ -287,7 +287,7 @@ Schema of the reduction to
       bounding games in the proof of {prf:ref}`11-lem:parity2bounding`.
 ```
   
-  If  Eve\ wins the bounding game played over $\?V'$ from some
+  If Eve wins the bounding game played over $\?V'$ from some
   configuration $\ell_0(\vec v_0)$, then she also wins the "parity
   vector game" played over $\?V$ from the configuration $\ell_0(\vec
   v'_0)$ where $\vec v'_0$ is the projection of $\vec v_0$
@@ -299,23 +299,22 @@ Schema of the reduction to
   e_{ k+p}$ would be played infinitely often but the increment $\vec
   e_{ k+p}$ only finitely often.\todoquestion{Should I provide more details?}
 
-  \medskip
-  Conversely, consider the parity@parity vector game game $\mathcal{G}$ played over
+  Conversely, consider the parity game $\mathcal{G}$ played over
   $\natural(\?V)$ with the colouring defined by $\mathrm{lcol}$.  Then the
   Pareto limit of the game is finite, thus there exists a natural
   number
   
 $$
 
-    B_0  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=} 1+\max_{ \ell_0(\vec v_0)\in\mathsf{Pareto}(\?G)}\|\vec
+    B_0  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=} 1+\max_{ \ell_0(\vec v_0)\in\mathsf{Pareto}(\?G)}\|\vec
   v_0\|
   
 $$ (11-eq:b0)
  bounding the norms of the minimal winning configurations.
   For a vector $\vec v$ in $\+N^ k$, let us write $\capp[B_0]v$ for
   the vector `capped' at $B$: for all $1\leq i\leq k$,
-  $\capp[B_0]v(i)  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=}\vec v(i)$ if $\vec v(i)<B_0$ and
-  $\capp[B_0]v  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=} B_0$ if $\vec v(i)\geq B_0$.
+  $\capp[B_0]v(i)  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=}\vec v(i)$ if $\vec v(i)<B_0$ and
+  $\capp[B_0]v  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=} B_0$ if $\vec v(i)\geq B_0$.
 
   Consider now some configuration $\ell_0(\vec
   v_0)\in\mathsf{Pareto}( \mathcal{G})$.  As seen in {prf:ref}`11-lem:finmem`,
@@ -329,7 +328,7 @@ $$ (11-eq:b0)
   
 $$
 
-   B  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=} B_0+(\| A\|+1)\cdot \max_{ \ell_0(\vec
+   B  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=} B_0+(\| A\|+1)\cdot \max_{ \ell_0(\vec
   v_0)\in\mathsf{Pareto}(\?G)}H( \ell_0(\vec v_0))\;.
   
 $$ (11-eq:b)
@@ -340,9 +339,9 @@ $$ (11-eq:b)
   a self-covering tree has height at least one.
 
   Consider the non-termination game
-  $\mathcal{G}_B  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=}(  \mathcal{A}_B(\?V'), \textsf{col}', \mathtt{Safe})$ played over the
-  bounded semantics defined by $B$, where $\textsf{col}'(e)= Lose$ if and
-  only if $In(e)= \bot$.  Let $\vec b  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=}\sum_{1\leq p\leq
+  $\mathcal{G}_B  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=}(  \mathcal{A}_B(\?V'), \textsf{col}', \mathtt{Safe})$ played over the
+  bounded semantics defined by $B$, where $\textsf{col}'(e)= \textrm{Lose}$ if and
+  only if $\textrm{In}(e)= \bot$.  Let $\vec b  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=}\sum_{1\leq p\leq
   d}(B-1)\cdot\vec e_{ k+p}$.
   {\renewcommand{\qedsymbol}{}
   \begin{claim}\label{11-cl:parity2bounding} If $\ell_0(\vec
@@ -357,16 +356,16 @@ $$ (11-eq:b)
   self-covering tree of height $H( \ell_0(\vec v_0))$ associated
   to $\ell_0(\vec v_0)$, and the strategy $\sigma'$ defined by the
   memory structure from the
-  proof of {prf:ref}`11-lem:finmem`.  This is a winning strategy for  Eve\ 
+  proof of {prf:ref}`11-lem:finmem`.  This is a winning strategy for Eve 
   in $\mathcal{G}$ starting from $\ell_0(\vec v_0)$, and
   by {prf:ref}`11-lem:mono`, it is also winning
   from $\ell_0(\capp[B_0]v)$.
     
-  Here is how  Eve\ wins $\mathcal{G}_B$ from $\ell_0(\capp[B_0]v+\vec b)$.
+  Here is how Eve wins $\mathcal{G}_B$ from $\ell_0(\capp[B_0]v+\vec b)$.
   She essentially follows the strategy $\sigma'$, with two
   modifications.  First, whenever $\sigma'$ goes to a return node
   $\ell(\vec v)$ instead of a leaf $\ell(\vec v')$---thus $\vec
-  v\leq\vec v'$---, the next time  Eve\ has the control, she uses the
+  v\leq\vec v'$---, the next time Eve has the control, she uses the
   self loops to decrement the current configuration by $\vec v'-\vec
   v$.  This ensures that any play consistent with the modified
   strategy remains between zero and $B-1$ on the components
@@ -375,7 +374,7 @@ $$ (11-eq:b)
   asymmetric.)
 
   Second, whenever a play in $\mathcal{G}$ visits a location with even
-  parity $2p$ for some $p$ in $\{1,\dots,d\}$,  Eve\ has the opportunity
+  parity $2p$ for some $p$ in $\{1,\dots,d\}$, Eve has the opportunity
   to increase the coordinates in $\{ k+1,\dots, k+p\}$ in $\mathcal{G}_B$.
   She does so and increments until all these components reach $B-1$.
   This ensures that any play consistent with the modified strategy
@@ -397,13 +396,13 @@ A simple example is provided by the coverability asymmetric
 vector games with existential initial credit arising from
 {prf:ref}`11-rk:cov2parity`, i.e., where the objective is to reach some
 location $\ell_f$.  Indeed, it is rather straightforward that there
-exists a suitable initial credit such that  Eve\ wins the game if and
+exists a suitable initial credit such that Eve wins the game if and
 only if she wins the finite reachability game played over the
 underlying directed graph over $\?L$ where we ignore the counters.
 Thus, for an initial location $\ell_0$, $B_0=| \?L|\cdot\| A\|+1$
 bounds the norm of the necessary initial credit, while a simple path
 may visit at most $| \?L|$ locations, thus
-$B=B_0+| \?L|\cdot\| A\|$ suffices for  Eve\ to win the constructed
+$B=B_0+| \?L|\cdot\| A\|$ suffices for Eve to win the constructed
 bounding game.
 
 In the general case of bounding games with "existential initial
@@ -416,7 +415,7 @@ for details.
 ````{prf:theorem} Bounds on bounding
 :label: 11-th:bounding
 
-  If  Eve\ wins a bounding game with existential initial credit
+  If Eve wins a bounding game with existential initial credit
   defined by a "vector
   system" $\?V=( \?L, A, \?L_\mathrm{Eve}, \?L_\mathrm{Adam}, k)$, then an
   initial credit $\vec v_0$ with $\|\vec
