@@ -10,7 +10,7 @@
 
 ```{math}
 
-\def\payoff{\ensuremath{f}}
+\def\payoff{f}
 
 \def\Act{A}
 \def\Agt{\mathcal{P}}
@@ -22,7 +22,7 @@
 \def\opt{\textsf{opt}}
 \def\proj{\textsf{proj}}
 \def\devg{\textsf{DevGame}}
-\def\Coalition{\ensuremath{\mathcal{C}}}
+\def\Coalition{\mathcal{C}}
 
 \renewcommand{\Game}{\game}
 
@@ -72,7 +72,7 @@ We will see the formal definition of a Nash equilibrium in the next
 section. Let us first consider the following example.
 
 The following Hawk-Dove game was first presented by the biologists Smith
-and Price, and shown in Table \cref\{13-tab:hawk-dove}.
+and Price, and shown in Table {prf:ref}`13-tab:hawk-dove`.
 Here, two animals are fighting for ressources and can choose to
 either act as a hawk or as a dove.
 If both player choose hawk they will have to fight for resources, and
@@ -96,7 +96,7 @@ which may require randomized strategies.
 
 ```{margin}
 normal-form games are also called matrix games, and some
-specific form was defined in \Cref{chap:concurrent}.
+specific form was defined in {prf:ref}`chap:concurrent`.
 ```
 
  This result

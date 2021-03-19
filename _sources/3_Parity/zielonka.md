@@ -27,7 +27,7 @@ We refer to {numref}`3-algo:zielonka_even` for an equivalent presentation of thi
 where we make explicit all recursive calls involving the maximal priority $d$.
 The benefit of doing this is to make the following observation:
 during the $i$th recursive call for $d$, the algorithm removes from the game $\Game$ the subset 
-$X_i =  \textrm{Attr}_\mathrm{Adam}^{\Game}(  W_\mathrm{Adam}(\Game_i) )$. 
+$X_i =  Attr_\mathrm{Adam}^{\Game}(  W_\mathrm{Adam}(\Game_i) )$. 
 Note that $X_i$ is a trap for Eve in $\Game$ and a subset of the winning region of Adam in $\Game$:
 we say that $X_i$ is a dominion for Eve.
 More generally, given a game $\Game$, a set $X$ of vertices is a dominion for Eve if
@@ -57,9 +57,9 @@ We need three simple facts about traps.
 :label: 3-fact:traps
 
 *  Let $S$ be a trap for Eve in the game $\Game$ and $X$ a set of vertices, 
-then $S \setminus  \textrm{Attr}_\mathrm{Eve}(X)$ is a trapfor Eve in the subgame of $\Game$ induced by $V \setminus  \textrm{Attr}_\mathrm{Eve}(X)$.
+then $S \setminus  Attr_\mathrm{Eve}(X)$ is a trapfor Eve in the subgame of $\Game$ induced by $V \setminus  Attr_\mathrm{Eve}(X)$.
 *  Let $S$ be a trap for Eve in the game $\Game$ and $X$ a set of vertices such that $S \cap X = \emptyset$, 
-then $S \subseteq V \setminus  \textrm{Attr}_\mathrm{Adam}(X)$ and $S$ is a trap for Eve in the subgame of $\Game$ induced by $V \setminus  \textrm{Attr}_\mathrm{Adam}(X)$.
+then $S \subseteq V \setminus  Attr_\mathrm{Adam}(X)$ and $S$ is a trap for Eve in the subgame of $\Game$ induced by $V \setminus  Attr_\mathrm{Adam}(X)$.
 *  Let $S$ be a trap for Eve in the game $\Game$ and $Z$ a trap for Eve in the subgame of $\Game$ induced by $S$,
 then $Z$ is a trap for Eve in $\Game$.
 
@@ -76,7 +76,7 @@ The following lemma implies the correctness of the algorithm.
 ````
 
 Indeed, $W_\mathrm{Eve}(\Game)$ and $W_\mathrm{Adam}(\Game)$ are dominions for Eve and Adam in $\Game$, 
-so  {prf:ref}`3-lem:correctness_quasipoly_zielonka` implies that $\textsl{SolveE}(\Game,n,n) =  W_\mathrm{Eve}(\Game)$.
+so {prf:ref}`3-lem:correctness_quasipoly_zielonka` implies that $\textsl{SolveE}(\Game,n,n) =  W_\mathrm{Eve}(\Game)$.
 
 ````{admonition} Proof
 :class: dropdown tip
@@ -107,14 +107,14 @@ $S \subseteq V_i$.
 
 For $i = 0$ this is by definition.
 We now assume that $S \subseteq V_i$.
-Recall that $\Game_i$ is the subgame of $\H_i$ induced by $V_i \setminus  \textrm{Attr}_\mathrm{Eve}^{\H_i}(d)$.
-It follows from the first item of \cref{3-fact:traps} that $S \setminus  \textrm{Attr}_\mathrm{Eve}^{\H_i}(d)$
+Recall that $\Game_i$ is the subgame of $\H_i$ induced by $V_i \setminus  Attr_\mathrm{Eve}^{\H_i}(d)$.
+It follows from the first item of {prf:ref}`3-fact:traps` that $S \setminus  Attr_\mathrm{Eve}^{\H_i}(d)$
 is a dominion for Eve in $\Game_i$.
-Since $S \setminus  \textrm{Attr}_\mathrm{Eve}^{\H_i}(d)$ has size at most $s_{ \mathrm{Eve}}$, 
+Since $S \setminus  Attr_\mathrm{Eve}^{\H_i}(d)$ has size at most $s_{ \mathrm{Eve}}$, 
 the second item of the external induction hypothesis implies that 
-$S \setminus  \textrm{Attr}_\mathrm{Eve}^{\Game_i}(d)$ has an empty intersection with $X_i = \textsl{SolveA}(\Game_i,s_{ \mathrm{Eve}},s_{ \mathrm{Adam}})$,
+$S \setminus  Attr_\mathrm{Eve}^{\Game_i}(d)$ has an empty intersection with $X_i = \textsl{SolveA}(\Game_i,s_{ \mathrm{Eve}},s_{ \mathrm{Adam}})$,
 implying that $S \cap X_i = \emptyset$.
-It follows from the second item of \cref{3-fact:traps} that $S \subseteq V_i \setminus  \textrm{Attr}_\mathrm{Adam}^{\H_i}(X_i) = V_{i+1}$.
+It follows from the second item of {prf:ref}`3-fact:traps` that $S \subseteq V_i \setminus  Attr_\mathrm{Adam}^{\H_i}(X_i) = V_{i+1}$.
 This finishes the internal induction, and implies the first item.
 
 We now prove the second item.
@@ -127,9 +127,9 @@ We first show by internal induction on $i$ that
 $S_i$ is a dominion for Adam in $\H_i$.
 For $i = 0$ this is by definition.
 We now assume that $S_i$ is a dominion for Adam in $\H_i$.
-Recall that $\H_{i+1}$ is the subgame of $\H_i$ induced by $V_{i+1} = V_i \setminus  \textrm{Attr}_\mathrm{Adam}^{\H_i}(X_i)$.
-It follows from the first item of \cref{3-fact:traps} applied to $S_i$ (swapping the roles of Eve and Adam) 
-that $S_i \setminus  \textrm{Attr}_\mathrm{Adam}^{\H_i}(X_i) = S_{i+1}$ is a dominion for Adam in $\H_{i+1}$.
+Recall that $\H_{i+1}$ is the subgame of $\H_i$ induced by $V_{i+1} = V_i \setminus  Attr_\mathrm{Adam}^{\H_i}(X_i)$.
+It follows from the first item of {prf:ref}`3-fact:traps` applied to $S_i$ (swapping the roles of Eve and Adam) 
+that $S_i \setminus  Attr_\mathrm{Adam}^{\H_i}(X_i) = S_{i+1}$ is a dominion for Adam in $\H_{i+1}$.
 This finishes the internal induction.
 
 We showed that $S_i$ is a dominion for Adam in $\H_i$ for each $i$.
@@ -152,9 +152,9 @@ Playing $\sigma$ against $\tau$ yields a contradiction, since $\sigma$ ensures $
 That $Z_i$ is a subset of the winning region of Adam in $\Game_i$ is clear.
 To see that $Z_i$ is a trap for Eve in $\Game_i$, we first note that since $S_i$ is a trap for Eve in $\H_i$
 and $Z_i$ is a trap for Eve in $\H'_i$, the subgame of $\H_i$ induced by $S_i$, 
-then $Z_i$ is a trap in $\H_i$ by the third item of \cref{3-fact:traps}.
-Now, since $Z_i$ has an empty intersection with $d$, by the second item of \cref{3-fact:traps} 
-this implies that $Z_i$ is a trap for Eve in the subgame of $\H_i$ induced by $V_i \setminus  \textrm{Attr}_\mathrm{Eve}^{\H_i}(d)$,
+then $Z_i$ is a trap in $\H_i$ by the third item of {prf:ref}`3-fact:traps`.
+Now, since $Z_i$ has an empty intersection with $d$, by the second item of {prf:ref}`3-fact:traps` 
+this implies that $Z_i$ is a trap for Eve in the subgame of $\H_i$ induced by $V_i \setminus  Attr_\mathrm{Eve}^{\H_i}(d)$,
 which is exactly $\Game_i$.
 
 We are now fully equipped to prove that $S_{i_{\infty}} = \emptyset$.
@@ -171,7 +171,7 @@ We apply the external inductive hypothesis to the dominion $Z_{i_{\ell}}$ for Ad
 for the parameter $\lfloor s_{ \mathrm{Adam}} / 2 \rfloor$: if $|Z_{i_{\ell}}| \le \lfloor s_{ \mathrm{Adam}} / 2 \rfloor$, then
 $Z_{i_{\ell}} \subseteq \textsl{SolveA}(\Game_{i_{\ell}},s_{ \mathrm{Eve}},\lfloor s_{ \mathrm{Adam}} / 2 \rfloor)$,
 implying that $Z_{i_{\ell}}$ is empty, which by the first property above implies that $S_{i_{\ell}}$ is empty,
-thus $S_{i_{\infty}}$ as well, proving the second item of  {prf:ref}`3-lem:correctness_quasipoly_zielonka`.
+thus $S_{i_{\infty}}$ as well, proving the second item of {prf:ref}`3-lem:correctness_quasipoly_zielonka`.
 Excluding this case, we then analyse the situation where 
 $|Z_{i_{\ell}}| > \lfloor s_{ \mathrm{Adam}} / 2 \rfloor$. 
 
@@ -183,7 +183,7 @@ so $Z_{i_\ell} \subseteq X_{i_\ell}$.
 Since $Z_{i_\ell}$ is non-empty, so is $X_{i_\ell}$: the search for a large dominion was successful, and in particular
 $i$ is incremented at this stage, implying that $i_\ell < i_\infty$.
 
-Consider $S_{i_\ell + 1} = S_{i_\ell} \setminus  \textrm{Attr}_\mathrm{Adam}^{\H_{i_\ell}}(X_{i_\ell})$.
+Consider $S_{i_\ell + 1} = S_{i_\ell} \setminus  Attr_\mathrm{Adam}^{\H_{i_\ell}}(X_{i_\ell})$.
 In particular $S_{i_\ell + 1} \subseteq S_{i_\ell} \setminus X_{i_\ell} \subseteq S_{i_\ell} \setminus Z_{i_\ell}$, so
 
 $$
@@ -202,7 +202,7 @@ $Z_{i_{\infty}} \subseteq \textsl{SolveA}(\Game_{i_{\infty}},s_{ \mathrm{Eve}},\
 The premise holds because $|S_{i_\ell + 1}| \le \lfloor s_{ \mathrm{Adam}} / 2 \rfloor$, the sequence $(S_i)_i$ is non-increasing, 
 $i_\ell < i_\infty$, and $Z_{i_{\infty}} \subseteq S_{i_\infty}$.
 Hence $Z_{i_\infty}$ is empty. Thanks to the first property above for $Z_i$, this implies that $S_{i_\infty}$ is empty.
-This finishes the proof of the second item of  {prf:ref}`3-lem:correctness_quasipoly_zielonka`.
+This finishes the proof of the second item of {prf:ref}`3-lem:correctness_quasipoly_zielonka`.
 
 ````
 

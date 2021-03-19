@@ -759,7 +759,7 @@ We say that <span class="math notranslate nohighlight">\(\mathcal{F}\)</span> is
 Let us define Streett objectives as the subclass of Muller objectives given by <span class="math notranslate nohighlight">\(\mathcal{F}\)</span> closed under union.
 The following purely combinatorial lemma gives a nice characterisation of these objectives.</p>
 <div class="proof lemma admonition" id="2-lem:characterisation_Streett">
-<p class="admonition-title"><span class="caption-number">Lemma 42 </span> (Characterisation of Streett among Muller objectives)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 50 </span> (Characterisation of Streett among Muller objectives)</p>
 <div class="lemma-content section" id="proof-content">
 <p>A collection <span class="math notranslate nohighlight">\(\mathcal{F} \subseteq 2^C\)</span> is closed under union if and only if there exists a set of pairs <span class="math notranslate nohighlight">\((R_i,G_i)_{i \in [1,d]}\)</span>
 with <span class="math notranslate nohighlight">\(R_i,G_i \subseteq C\)</span> such that <span class="math notranslate nohighlight">\(X \in  \mathcal{F}\)</span> is equivalent to for all <span class="math notranslate nohighlight">\(i \in [1,d]\)</span>,
@@ -795,12 +795,12 @@ with this terminology the Streett objective requires that every request made inf
 <div class="section" id="mcnaughton-algorithm-an-exponential-time-algorithm-for-muller-games">
 <h2>McNaughton algorithm: an exponential time algorithm for Muller games<a class="headerlink" href="#mcnaughton-algorithm-an-exponential-time-algorithm-for-muller-games" title="Permalink to this headline">¶</a></h2>
 <div class="proof theorem admonition" id="2-thm:muller">
-<p class="admonition-title"><span class="caption-number">Theorem 43 </span> (Finite memory determinacy and complexity for Muller games)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 51 </span> (Finite memory determinacy and complexity for Muller games)</p>
 <div class="theorem-content section" id="proof-content">
 <p>Muller objectives are determined with finite memory strategies of size <span class="math notranslate nohighlight">\(d!\)</span>.</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
-<p>See \cref{2-rmk:finite_infinite} for the case of infinite games.</p>
+<p>See <code class="xref prf prf-ref docutils literal notranslate"><span class="pre">2-rmk:finite_infinite</span></code> for the case of infinite games.</p>
 </div>
 <p>There exists an algorithm for computing the winning regions of Muller games in exponential time,
 and more specifically of complexity <span class="math notranslate nohighlight">\(O(m d (dn)^d)\)</span>, and in polynomial space, and more specifically <span class="math notranslate nohighlight">\(O(dm)\)</span>.</p>
@@ -810,45 +810,45 @@ indeed, the Muller objective extends the parity objective, and specialising the 
 yields the algorithm we presented above.</p>
 <p>The following lemma induces the recursive algorithm for computing the winning regions of Muller games.</p>
 <div class="proof lemma admonition" id="2-lem:Muller_even">
-<p class="admonition-title"><span class="caption-number">Lemma 44 </span> (Fixed point characterisation of the winning regions for Muller games)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 52 </span> (Fixed point characterisation of the winning regions for Muller games)</p>
 <div class="lemma-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\Game\)</span> be a Muller game such that <span class="math notranslate nohighlight">\(C \in  \mathcal{F}\)</span>.
-For each <span class="math notranslate nohighlight">\(c \in C\)</span>, let <span class="math notranslate nohighlight">\(\Game_c\)</span> be the subgame of <span class="math notranslate nohighlight">\(\Game\)</span> induced by <span class="math notranslate nohighlight">\(V \setminus  \textrm{Attr}_\mathrm{Eve}(c)\)</span>.</p>
+For each <span class="math notranslate nohighlight">\(c \in C\)</span>, let <span class="math notranslate nohighlight">\(\Game_c\)</span> be the subgame of <span class="math notranslate nohighlight">\(\Game\)</span> induced by <span class="math notranslate nohighlight">\(V \setminus  Attr_\mathrm{Eve}(c)\)</span>.</p>
 <ul class="simple">
 <li><p>If for all <span class="math notranslate nohighlight">\(c \in C\)</span>, we have <span class="math notranslate nohighlight">\(W_\mathrm{Adam}(\Game_c) = \emptyset\)</span>, then <span class="math notranslate nohighlight">\(W_\mathrm{Eve}(\Game) = V\)</span>.</p></li>
 <li><p>If there exists <span class="math notranslate nohighlight">\(c \in C\)</span> such that <span class="math notranslate nohighlight">\(W_\mathrm{Adam}(\Game_c) \neq \emptyset\)</span>,
-let <span class="math notranslate nohighlight">\(\Game'\)</span> be the subgame of <span class="math notranslate nohighlight">\(\Game\)</span> induced by <span class="math notranslate nohighlight">\(V \setminus  \textrm{Attr}_\mathrm{Adam}(  W_\mathrm{Adam}(\Game_c) )\)</span>,
+let <span class="math notranslate nohighlight">\(\Game'\)</span> be the subgame of <span class="math notranslate nohighlight">\(\Game\)</span> induced by <span class="math notranslate nohighlight">\(V \setminus  Attr_\mathrm{Adam}(  W_\mathrm{Adam}(\Game_c) )\)</span>,
 then <span class="math notranslate nohighlight">\(W_\mathrm{Eve}(\Game) =  W_\mathrm{Eve}(\Game')\)</span>.</p></li>
 </ul>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
 <p>We prove the first item.</p>
-<p>For each <span class="math notranslate nohighlight">\(c \in C\)</span>, let <span class="math notranslate nohighlight">\(\sigma_c\)</span> be an attractor strategy ensuring to reach <span class="math notranslate nohighlight">\(c\)</span> from <span class="math notranslate nohighlight">\(\textrm{Attr}_\mathrm{Eve}(c)\)</span>,
-and consider a winning strategy for Eve from <span class="math notranslate nohighlight">\(V \setminus  \textrm{Attr}_\mathrm{Eve}(c)\)</span> in <span class="math notranslate nohighlight">\(\Game_c\)</span>, it induces a strategy <span class="math notranslate nohighlight">\(\sigma'_c\)</span> in <span class="math notranslate nohighlight">\(\Game\)</span>.
+<p>For each <span class="math notranslate nohighlight">\(c \in C\)</span>, let <span class="math notranslate nohighlight">\(\sigma_c\)</span> be an attractor strategy ensuring to reach <span class="math notranslate nohighlight">\(c\)</span> from <span class="math notranslate nohighlight">\(Attr_\mathrm{Eve}(c)\)</span>,
+and consider a winning strategy for Eve from <span class="math notranslate nohighlight">\(V \setminus  Attr_\mathrm{Eve}(c)\)</span> in <span class="math notranslate nohighlight">\(\Game_c\)</span>, it induces a strategy <span class="math notranslate nohighlight">\(\sigma'_c\)</span> in <span class="math notranslate nohighlight">\(\Game\)</span>.
 We construct a strategy <span class="math notranslate nohighlight">\(\sigma\)</span> in <span class="math notranslate nohighlight">\(\Game\)</span> which will simulate the strategies above in turn; to do so it uses <span class="math notranslate nohighlight">\(C\)</span> as top-level memory states.
 (We note that the strategies <span class="math notranslate nohighlight">\(\sigma'_c\)</span> may use memory as well, so <span class="math notranslate nohighlight">\(\sigma\)</span> may actually use more memory than just <span class="math notranslate nohighlight">\(C\)</span>.)
-The strategy <span class="math notranslate nohighlight">\(\sigma\)</span> with memory <span class="math notranslate nohighlight">\(c\)</span> simulates <span class="math notranslate nohighlight">\(\sigma_c\)</span> from <span class="math notranslate nohighlight">\(\textrm{Attr}_\mathrm{Eve}(c)\)</span> and <span class="math notranslate nohighlight">\(\sigma'_c\)</span> from <span class="math notranslate nohighlight">\(V \setminus  \textrm{Attr}_\mathrm{Eve}(c)\)</span>,
+The strategy <span class="math notranslate nohighlight">\(\sigma\)</span> with memory <span class="math notranslate nohighlight">\(c\)</span> simulates <span class="math notranslate nohighlight">\(\sigma_c\)</span> from <span class="math notranslate nohighlight">\(Attr_\mathrm{Eve}(c)\)</span> and <span class="math notranslate nohighlight">\(\sigma'_c\)</span> from <span class="math notranslate nohighlight">\(V \setminus  Attr_\mathrm{Eve}(c)\)</span>,
 and if it ever reaches <span class="math notranslate nohighlight">\(c\)</span> it updates its memory state to <span class="math notranslate nohighlight">\(c + 1\)</span> and <span class="math notranslate nohighlight">\(1\)</span> if <span class="math notranslate nohighlight">\(c = d\)</span>.
 Any play consistent with <span class="math notranslate nohighlight">\(\sigma\)</span> either updates its memory state infinitely many times,
-or eventually remains in <span class="math notranslate nohighlight">\(V \setminus  \textrm{Attr}_\mathrm{Eve}(c)\)</span> and is eventually consistent with <span class="math notranslate nohighlight">\(\sigma'_c\)</span>.
+or eventually remains in <span class="math notranslate nohighlight">\(V \setminus  Attr_\mathrm{Eve}(c)\)</span> and is eventually consistent with <span class="math notranslate nohighlight">\(\sigma'_c\)</span>.
 In the first case it sees each colour infinitely many times, and since <span class="math notranslate nohighlight">\(C \in  \mathcal{F}\)</span> the play satisfies <span class="math notranslate nohighlight">\(\mathtt{Muller}( \mathcal{F})\)</span>,
 and in the other case since <span class="math notranslate nohighlight">\(\sigma'_c\)</span> is winning the play satisfies <span class="math notranslate nohighlight">\(\mathtt{Muller}( \mathcal{F})\)</span>.
 Thus <span class="math notranslate nohighlight">\(\sigma\)</span> is winning from <span class="math notranslate nohighlight">\(V\)</span>.</p>
 <p>We now look at the second item.</p>
-<p>Let <span class="math notranslate nohighlight">\(\tau_a\)</span> denote an attractor strategy from <span class="math notranslate nohighlight">\(\textrm{Attr}_\mathrm{Adam}( W_\mathrm{Adam}(\Game_c)) \setminus  W_\mathrm{Adam}(\Game_c)\)</span>.
+<p>Let <span class="math notranslate nohighlight">\(\tau_a\)</span> denote an attractor strategy from <span class="math notranslate nohighlight">\(Attr_\mathrm{Adam}( W_\mathrm{Adam}(\Game_c)) \setminus  W_\mathrm{Adam}(\Game_c)\)</span>.
 Consider a winning strategy for Adam from <span class="math notranslate nohighlight">\(W_\mathrm{Adam}(\Game_c)\)</span> in <span class="math notranslate nohighlight">\(\Game_c\)</span>, it induces a strategy <span class="math notranslate nohighlight">\(\tau_c\)</span> in <span class="math notranslate nohighlight">\(\Game\)</span>.
-Since <span class="math notranslate nohighlight">\(V \setminus  \textrm{Attr}_\mathrm{Eve}(c)\)</span> is a trap for Eve, this implies that <span class="math notranslate nohighlight">\(\tau_c\)</span> is a winning strategy in <span class="math notranslate nohighlight">\(\Game\)</span>.
+Since <span class="math notranslate nohighlight">\(V \setminus  Attr_\mathrm{Eve}(c)\)</span> is a trap for Eve, this implies that <span class="math notranslate nohighlight">\(\tau_c\)</span> is a winning strategy in <span class="math notranslate nohighlight">\(\Game\)</span>.
 Consider now a winning strategy in the game <span class="math notranslate nohighlight">\(\Game'\)</span> from <span class="math notranslate nohighlight">\(W_\mathrm{Adam}(\Game')\)</span>, it induces a strategy <span class="math notranslate nohighlight">\(\tau'\)</span> in <span class="math notranslate nohighlight">\(\Game\)</span>.
-The set <span class="math notranslate nohighlight">\(V \setminus  \textrm{Attr}_\mathrm{Adam}(  W_\mathrm{Adam}(\Game_c) )\)</span> may not be a trap for Eve, so we cannot conclude that <span class="math notranslate nohighlight">\(\tau'\)</span> is a winning strategy in <span class="math notranslate nohighlight">\(\Game\)</span>,
+The set <span class="math notranslate nohighlight">\(V \setminus  Attr_\mathrm{Adam}(  W_\mathrm{Adam}(\Game_c) )\)</span> may not be a trap for Eve, so we cannot conclude that <span class="math notranslate nohighlight">\(\tau'\)</span> is a winning strategy in <span class="math notranslate nohighlight">\(\Game\)</span>,
 and it indeed may not be.
-We construct a strategy <span class="math notranslate nohighlight">\(\tau\)</span> in <span class="math notranslate nohighlight">\(\Game\)</span> as the (disjoint) union of the strategy <span class="math notranslate nohighlight">\(\tau_a\)</span> on <span class="math notranslate nohighlight">\(\textrm{Attr}_\mathrm{Adam}( W_\mathrm{Adam}(\Game_c)) \setminus  W_\mathrm{Adam}(\Game_c)\)</span>,
+We construct a strategy <span class="math notranslate nohighlight">\(\tau\)</span> in <span class="math notranslate nohighlight">\(\Game\)</span> as the (disjoint) union of the strategy <span class="math notranslate nohighlight">\(\tau_a\)</span> on <span class="math notranslate nohighlight">\(Attr_\mathrm{Adam}( W_\mathrm{Adam}(\Game_c)) \setminus  W_\mathrm{Adam}(\Game_c)\)</span>,
 the strategy <span class="math notranslate nohighlight">\(\tau_c\)</span> on <span class="math notranslate nohighlight">\(W_\mathrm{Adam}(\Game_c)\)</span> and the strategy <span class="math notranslate nohighlight">\(\tau'\)</span> on <span class="math notranslate nohighlight">\(W_\mathrm{Adam}(\Game')\)</span>.
-We argue that <span class="math notranslate nohighlight">\(\tau\)</span> is winning from <span class="math notranslate nohighlight">\(\textrm{Attr}_\mathrm{Adam}(  W_\mathrm{Adam}(\Game_c) ) \cup  W_\mathrm{Adam}(\Game')\)</span> in <span class="math notranslate nohighlight">\(\Game\)</span>.
+We argue that <span class="math notranslate nohighlight">\(\tau\)</span> is winning from <span class="math notranslate nohighlight">\(Attr_\mathrm{Adam}(  W_\mathrm{Adam}(\Game_c) ) \cup  W_\mathrm{Adam}(\Game')\)</span> in <span class="math notranslate nohighlight">\(\Game\)</span>.
 Indeed, any play consistent with this strategy in <span class="math notranslate nohighlight">\(\Game\)</span> either stays forever in <span class="math notranslate nohighlight">\(W_\mathrm{Adam}(\Game')\)</span> hence is consistent with <span class="math notranslate nohighlight">\(\tau'\)</span>
-or enters <span class="math notranslate nohighlight">\(\textrm{Attr}_\mathrm{Adam}(  W_\mathrm{Adam}(\Game_c) )\)</span>, so it is eventually consistent with <span class="math notranslate nohighlight">\(\tau_c\)</span>.
+or enters <span class="math notranslate nohighlight">\(Attr_\mathrm{Adam}(  W_\mathrm{Adam}(\Game_c) )\)</span>, so it is eventually consistent with <span class="math notranslate nohighlight">\(\tau_c\)</span>.
 In both cases this implies that the play is winning.
-Thus we have proved that <span class="math notranslate nohighlight">\(\textrm{Attr}_\mathrm{Adam}(  W_\mathrm{Adam}(\Game_c) ) \cup  W_\mathrm{Adam}(\Game') \subseteq  W_\mathrm{Adam}(\Game)\)</span>.</p>
+Thus we have proved that <span class="math notranslate nohighlight">\(Attr_\mathrm{Adam}(  W_\mathrm{Adam}(\Game_c) ) \cup  W_\mathrm{Adam}(\Game') \subseteq  W_\mathrm{Adam}(\Game)\)</span>.</p>
 <p>We now show that <span class="math notranslate nohighlight">\(W_\mathrm{Eve}(\Game') \subseteq  W_\mathrm{Eve}(\Game)\)</span>, which implies the converse inclusion.
 Consider a winning strategy from <span class="math notranslate nohighlight">\(W_\mathrm{Eve}(\Game')\)</span> in <span class="math notranslate nohighlight">\(\Game'\)</span>, it induces a strategy <span class="math notranslate nohighlight">\(\sigma\)</span> in <span class="math notranslate nohighlight">\(\Game\)</span>.
 Since <span class="math notranslate nohighlight">\(\Game'\)</span> is a trap for Adam, any play consistent with <span class="math notranslate nohighlight">\(\sigma\)</span> stays forever in <span class="math notranslate nohighlight">\(W_\mathrm{Eve}(\Game')\)</span>,
@@ -857,14 +857,14 @@ implying that <span class="math notranslate nohighlight">\(\sigma\)</span> is wi
 <p>To get the full algorithm we need the analogous lemma for the case where <span class="math notranslate nohighlight">\(C \notin  \mathcal{F}\)</span>.
 We do not prove it as it is the exact dual of the previous lemma, and the proof is the same swapping the two players.</p>
 <div class="proof lemma admonition" id="2-lem:Muller_odd">
-<p class="admonition-title"><span class="caption-number">Lemma 45 </span> (Dual fixed point characterisation of the winning regions for Muller games)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 53 </span> (Dual fixed point characterisation of the winning regions for Muller games)</p>
 <div class="lemma-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\Game\)</span> be a Muller game such that <span class="math notranslate nohighlight">\(C \notin  \mathcal{F}\)</span>.
-For each <span class="math notranslate nohighlight">\(c \in C\)</span>, let <span class="math notranslate nohighlight">\(\Game_c\)</span> be the subgame of <span class="math notranslate nohighlight">\(\Game\)</span> induced by <span class="math notranslate nohighlight">\(V \setminus  \textrm{Attr}_\mathrm{Adam}(c)\)</span>.</p>
+For each <span class="math notranslate nohighlight">\(c \in C\)</span>, let <span class="math notranslate nohighlight">\(\Game_c\)</span> be the subgame of <span class="math notranslate nohighlight">\(\Game\)</span> induced by <span class="math notranslate nohighlight">\(V \setminus  Attr_\mathrm{Adam}(c)\)</span>.</p>
 <ul class="simple">
 <li><p>If for all <span class="math notranslate nohighlight">\(c \in C\)</span>, we have <span class="math notranslate nohighlight">\(W_\mathrm{Eve}(\Game_c) = \emptyset\)</span>, then <span class="math notranslate nohighlight">\(W_\mathrm{Adam}(\Game) = V\)</span>.</p></li>
 <li><p>If there exists <span class="math notranslate nohighlight">\(c \in C\)</span> such that <span class="math notranslate nohighlight">\(W_\mathrm{Eve}(\Game_c) \neq \emptyset\)</span>,
-let <span class="math notranslate nohighlight">\(\Game'\)</span> be the subgame of <span class="math notranslate nohighlight">\(\Game\)</span> induced by <span class="math notranslate nohighlight">\(V \setminus  \textrm{Attr}_\mathrm{Eve}(  W_\mathrm{Eve}(\Game_c) )\)</span>,
+let <span class="math notranslate nohighlight">\(\Game'\)</span> be the subgame of <span class="math notranslate nohighlight">\(\Game\)</span> induced by <span class="math notranslate nohighlight">\(V \setminus  Attr_\mathrm{Eve}(  W_\mathrm{Eve}(\Game_c) )\)</span>,
 then <span class="math notranslate nohighlight">\(W_\mathrm{Adam}(\Game) =  W_\mathrm{Adam}(\Game')\)</span>.</p></li>
 </ul>
 </div>
@@ -885,7 +885,7 @@ We obtain <span class="math notranslate nohighlight">\(f(n,d) \le d n \cdot f(n,
 so <span class="math notranslate nohighlight">\(f(n,d) \le (d+1)n (1 + dn + (dn)^2 + \dots + (dn)^{d-2}) = O((dn)^d)\)</span>.
 In each recursive call we perform <span class="math notranslate nohighlight">\(d+1\)</span> attractor computations so the number of operations in one recursive call is <span class="math notranslate nohighlight">\(O(dm)\)</span>.
 Thus the overall time complexity is <span class="math notranslate nohighlight">\(O(m d (dn)^d)\)</span>.</p>
-<p>The proofs of  <a class="reference internal" href="#2-lem:Muller_even">Lemma 44</a> and  <a class="reference internal" href="#2-lem:Muller_odd">Lemma 45</a> also imply that Muller games are determined with finite memory of size <span class="math notranslate nohighlight">\(d!\)</span>.
+<p>The proofs of <a class="reference internal" href="#2-lem:Muller_even">Lemma 52</a> and <a class="reference internal" href="#2-lem:Muller_odd">Lemma 53</a> also imply that Muller games are determined with finite memory of size <span class="math notranslate nohighlight">\(d!\)</span>.
 We do not make it more precise here because an improved analysis of the memory requirements will be conducted in Section <a class="reference internal" href="zielonka.html#sec-zielonka"><span class="std std-ref">Zielonka tree</span></a>
 using a variant of this algorithm.</p>
 <div class="figure align-center" id="algo-mcnaughton">
@@ -896,13 +896,13 @@ using a variant of this algorithm.</p>
 <div class="section" id="positional-determinacy-for-rabin-games">
 <h2>Positional determinacy for Rabin games<a class="headerlink" href="#positional-determinacy-for-rabin-games" title="Permalink to this headline">¶</a></h2>
 <div class="proof theorem admonition" id="2-thm:Rabin_positional_determinacy">
-<p class="admonition-title"><span class="caption-number">Theorem 46 </span> (Positional determinacy for Rabin games)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 54 </span> (Positional determinacy for Rabin games)</p>
 <div class="theorem-content section" id="proof-content">
 <p>Rabin games are uniformly positionally determined.</p>
 </div>
-</div><p><a class="reference internal" href="#2-thm:Rabin_positional_determinacy">Theorem 46</a> holds for infinite games.
+</div><p><a class="reference internal" href="#2-thm:Rabin_positional_determinacy">Theorem 54</a> holds for infinite games.
 However the proof we give here only applies to finite games and does not easily extend to infinite ones.
-A different approach is required to obtain the positionality result for infinite games, see  <a class="reference internal" href="zielonka.html#2-thm:characterisation_Zielonka_tree">Theorem 56</a>.</p>
+A different approach is required to obtain the positionality result for infinite games, see <a class="reference internal" href="zielonka.html#2-thm:characterisation_Zielonka_tree">Theorem 64</a>.</p>
 <div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
 <p>We proceed by induction over the following quantity: total outdegree of vertices controlled by Eve minus number of vertices controller by Eve.
@@ -946,7 +946,7 @@ let <span class="math notranslate nohighlight">\((\rho_1^\ell)_{\ell \in  \mathb
 Since <span class="math notranslate nohighlight">\(\mathtt{Inf}(\rho_1 \Join \rho_2) =  \mathtt{Inf}(\rho_1) \cup  \mathtt{Inf}(\rho_2)\)</span>, this implies that <span class="math notranslate nohighlight">\(\rho_1 \Join \rho_2\)</span> does not satisfy <span class="math notranslate nohighlight">\(\mathtt{Rabin}\)</span>.</p>
 <p>This directly yields a contradiction: neither <span class="math notranslate nohighlight">\(\pi_1\)</span> nor <span class="math notranslate nohighlight">\(\pi_2\)</span> satisfy <span class="math notranslate nohighlight">\(\mathtt{Rabin}\)</span>, yet their shuffle <span class="math notranslate nohighlight">\(\pi\)</span> does.</p>
 </div>
-<p>The proof of  <a class="reference internal" href="#2-thm:Rabin_positional_determinacy">Theorem 46</a> yields a stronger result: every prefix independent submixing objective is positionally determined over finite arenas, where the submixing property is defined as follows for the objective <span class="math notranslate nohighlight">\(\Omega\)</span>:</p>
+<p>The proof of <a class="reference internal" href="#2-thm:Rabin_positional_determinacy">Theorem 54</a> yields a stronger result: every prefix independent submixing objective is positionally determined over finite arenas, where the submixing property is defined as follows for the objective <span class="math notranslate nohighlight">\(\Omega\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{array}{lccccccccccc}
@@ -956,7 +956,7 @@ Since <span class="math notranslate nohighlight">\(\mathtt{Inf}(\rho_1 \Join \rh
 \end{array}
 \end{split}\]</div>
 <div class="proof theorem admonition" id="2-thm:submixing_positional">
-<p class="admonition-title"><span class="caption-number">Theorem 47 </span> (Submixing property implies uniform positional determinacy)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 55 </span> (Submixing property implies uniform positional determinacy)</p>
 <div class="theorem-content section" id="proof-content">
 <p>Every prefix independent submixing objective is uniformly positionally determined over finite arenas.</p>
 </div>
@@ -964,11 +964,11 @@ Since <span class="math notranslate nohighlight">\(\mathtt{Inf}(\rho_1 \Join \rh
 <div class="section" id="the-complexity-of-solving-rabin-games">
 <h2>The complexity of solving Rabin games<a class="headerlink" href="#the-complexity-of-solving-rabin-games" title="Permalink to this headline">¶</a></h2>
 <div class="proof theorem admonition" id="2-thm:Rabin_complexity">
-<p class="admonition-title"><span class="caption-number">Theorem 48 </span> (Complexity of solving Rabin games)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 56 </span> (Complexity of solving Rabin games)</p>
 <div class="theorem-content section" id="proof-content">
-<p>Solving Rabin games is <span class="math notranslate nohighlight">\(\textrm{NP}\)</span>-complete.</p>
+<p>Solving Rabin games is <span class="math notranslate nohighlight">\(NP\)</span>-complete.</p>
 </div>
-</div><p>In order to simplify the reduction for proving  <a class="reference internal" href="#2-thm:Rabin_complexity">Theorem 48</a> let us make some remarks about colouring functions.
+</div><p>In order to simplify the reduction for proving <a class="reference internal" href="#2-thm:Rabin_complexity">Theorem 56</a> let us make some remarks about colouring functions.
 We defined colouring functions as <span class="math notranslate nohighlight">\(\textsf{col} : V \to C\)</span>, meaning that we label vertices.
 Let us discuss here three more general definitions and how to reduce them to the vertex colouring functions
 in the case of Rabin games.</p>
@@ -1001,8 +1001,8 @@ We note that they are not general reductions in the sense that they use properti
 In the reduction below we use these more general definitions to simplify the presentation.</p>
 <div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
-<p>The proof that solving Rabin games is in <span class="math notranslate nohighlight">\(\textrm{NP}\)</span> follows the same lines as for solving parity games: the algorithm guesses a positional strategy and checks whether it is indeed winning. This requires proving that solving Rabin games where Adam control all vertices can be done in polynomial time, which is indeed true and easy to see so we will not elaborate further on this.</p>
-<p>To prove the <span class="math notranslate nohighlight">\(\textrm{NP}\)</span>-hardness we reduce the satisfiability problem for boolean formulas in conjunctive normal form (<span class="math notranslate nohighlight">\(\SAT\)</span>) to solving Rabin games.</p>
+<p>The proof that solving Rabin games is in <span class="math notranslate nohighlight">\(NP\)</span> follows the same lines as for solving parity games: the algorithm guesses a positional strategy and checks whether it is indeed winning. This requires proving that solving Rabin games where Adam control all vertices can be done in polynomial time, which is indeed true and easy to see so we will not elaborate further on this.</p>
+<p>To prove the <span class="math notranslate nohighlight">\(NP\)</span>-hardness we reduce the satisfiability problem for boolean formulas in conjunctive normal form (<span class="math notranslate nohighlight">\(\SAT\)</span>) to solving Rabin games.</p>
 <p>Let <span class="math notranslate nohighlight">\(\Phi\)</span> be a formula in conjunctive normal form with <span class="math notranslate nohighlight">\(n\)</span> variables <span class="math notranslate nohighlight">\(x_1 \ldots x_n\)</span> and <span class="math notranslate nohighlight">\(m\)</span> clauses <span class="math notranslate nohighlight">\(C_1 \dots C_m\)</span>, where each <span class="math notranslate nohighlight">\(C_j\)</span> is of the form <span class="math notranslate nohighlight">\(\ell_{j_1} \vee \ell_{j_2} \vee \ell_{j_3}\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1028,7 +1028,7 @@ Indeed, some clause is chosen infinitely many times, so the corresponding litera
 Since all the literals chosen by Eve satisfy the same assignment <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> she does not choose both a literal and its negation, so she never chooses <span class="math notranslate nohighlight">\(\bar{\ell}\)</span>.
 It follows that <span class="math notranslate nohighlight">\(\sigma\)</span> is a winning strategy for Eve.</p>
 <p>Conversely, let us assume that Eve has a winning strategy.
-Thanks to  <a class="reference internal" href="#2-thm:Rabin_positional_determinacy">Theorem 46</a> she has a positional winning strategy <span class="math notranslate nohighlight">\(\sigma\)</span>.
+Thanks to <a class="reference internal" href="#2-thm:Rabin_positional_determinacy">Theorem 54</a> she has a positional winning strategy <span class="math notranslate nohighlight">\(\sigma\)</span>.
 We argue that <span class="math notranslate nohighlight">\(\sigma\)</span> cannot choose some literal <span class="math notranslate nohighlight">\(\ell\)</span> in some clause <span class="math notranslate nohighlight">\(C\)</span> and the literal <span class="math notranslate nohighlight">\(\bar{\ell}\)</span> in another clause <span class="math notranslate nohighlight">\(C'\)</span>.
 If this would be the case, consider the strategy of Adam alternating between the two clauses <span class="math notranslate nohighlight">\(C\)</span> and <span class="math notranslate nohighlight">\(C'\)</span> and play it against <span class="math notranslate nohighlight">\(\sigma\)</span>:
 both <span class="math notranslate nohighlight">\(\ell\)</span> and <span class="math notranslate nohighlight">\(\bar{\ell}\)</span> are chosen infinitely many times, and no other literals.
@@ -1044,17 +1044,17 @@ implying that this play does not satisfy <span class="math notranslate nohighlig
 <div class="section" id="the-complexity-of-solving-muller-games">
 <h2>The complexity of solving Muller games<a class="headerlink" href="#the-complexity-of-solving-muller-games" title="Permalink to this headline">¶</a></h2>
 <div class="proof theorem admonition" id="2-thm:complexity_Muller">
-<p class="admonition-title"><span class="caption-number">Theorem 49 </span> (Complexity of solving Muller games)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 57 </span> (Complexity of solving Muller games)</p>
 <div class="theorem-content section" id="proof-content">
-<p>Solving Muller games is <span class="math notranslate nohighlight">\(\textrm{PSPACE}\)</span>-complete.</p>
+<p>Solving Muller games is <span class="math notranslate nohighlight">\(PSPACE\)</span>-complete.</p>
 </div>
 </div><p>As for the previous reduction, in the Muller game constructed in the reduction below we label edges rather than vertices,
 and some edges have more than one colour.
 As for Rabin games this can be reduced to the original definition of colouring functions (labelling vertices with exactly one colour each) with a polynomial increase in size.</p>
 <div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
-<p>The <span class="math notranslate nohighlight">\(\textrm{PSPACE}\)</span> algorithm was constructed in  <a class="reference internal" href="#2-thm:muller">Theorem 43</a>.</p>
-<p>To prove the <span class="math notranslate nohighlight">\(\textrm{PSPACE}\)</span>-hardness we reduce the evaluation of quantified boolean formulas in disjunctive normal form (<span class="math notranslate nohighlight">\(\QBF\)</span>) to solving Muller games.</p>
+<p>The <span class="math notranslate nohighlight">\(PSPACE\)</span> algorithm was constructed in <a class="reference internal" href="#2-thm:muller">Theorem 51</a>.</p>
+<p>To prove the <span class="math notranslate nohighlight">\(PSPACE\)</span>-hardness we reduce the evaluation of quantified boolean formulas in disjunctive normal form (<span class="math notranslate nohighlight">\(\QBF\)</span>) to solving Muller games.</p>
 <p>Let <span class="math notranslate nohighlight">\(\Psi\)</span> be a quantified boolean formula in disjunctive normal form with <span class="math notranslate nohighlight">\(n\)</span> variables <span class="math notranslate nohighlight">\(x_1 \ldots x_n\)</span> and <span class="math notranslate nohighlight">\(m\)</span> clauses <span class="math notranslate nohighlight">\(C_1 \dots C_m\)</span>, where each <span class="math notranslate nohighlight">\(C_j\)</span> is of the form <span class="math notranslate nohighlight">\(\ell_{j_1} \wedge \ell_{j_2} \wedge \ell_{j_3}\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[

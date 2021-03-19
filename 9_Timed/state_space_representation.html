@@ -705,54 +705,26 @@
   <div class="section" id="state-space-representation">
 <span id="sec-state-space-representation"></span><h1>State-Space Representation<a class="headerlink" href="#state-space-representation" title="Permalink to this headline">¶</a></h1>
 <div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}\usepackage{amsmath}
-  
-\newcommand*\Realnn{\mathbb{R}_{\geq 0}}
-\newcommand*\Clocks{\mathcal{C}}
-\newcommand*\TA{\ensuremath{\mathcal{A}}}
-\newcommand*\Locs{\mathcal{L}}
-\newcommand*\Clocksz{\mathcal{C}_0}
-\newcommand*\calQ{\mathcal{Q}}
-\newcommand*\state{\mathsf{state}}
-\newcommand*\trans{\mathsf{trans}}
-\newcommand*\post{\mathsf{post}}
-\newcommand*\step{\mathsf{step}}\\\newcommand*\postta{\ensuremath{\textrm{\sf Post}}}
-\newcommand*\preta{\ensuremath{\textrm{\sf Pre}}}
-\newcommand*\unreset{\ensuremath{\textrm{\sf Unreset}}}
-\newcommand*\posttime{\ensuremath{\textrm{\sf Post}_{\geq 0}}}
-\newcommand*\pretime{\ensuremath{\textrm{\sf Pre}_{\geq 0}}} 
-\newcommand*\reset{\mathsf{Reset}}\\\def\predc{\textrm{\sf Pred}_c}
-\def\predt{\textrm{\sf Pred}_{\geq 0}} 
-\def\predu{\textrm{\sf Pred}_u}\\\def\calP{\mathcal P}
-\def\calC{\mathcal C}
-\def\calT{\mathcal T}
-\def\Dep{\textsf{Dep}}
-\def\Wait{\textsf{Wait}}
-\def\Passed{\textsf{Passed}}
-\def\Act{\textsf{Act}}\\\def\EA{E_{\Adam}}
-\def\EE{E_{\Eve}}\\\newcommand\zone[1]{\ensuremath{\left\llbracket#1\right\rrbracket}}\\\def\NM#1{\textcolor{green!50!black}{\checkmark}\marginpar{\color{green!50!black}NM: #1}} 
-\long\def\NMlong#1{\medskip\par{\color{green!50!black}NM: #1}\medskip\par}
-\def\OS#1{\textcolor{blue!50!black}{\checkmark}\marginpar{\color{blue!50!black}OS: #1}} 
-\long\def\OSlong#1{\medskip\par{\color{blue!50!black}OS: #1}\medskip\par}\\\renewcommand{\Game}{\game}
-\end{aligned}\end{align} \]</div>
+\[\renewcommand{\Game}{\game}
+\]</div>
 <p>We introduce a data structure to represent sets of clock
 valuations and manipulate them efficiently in order to compute
 successors and predecessors in a given timed game. This will allow us
 to use a fixpoint characterization of the winning states analogous to
-that in finite games as in \cref{chap:regular}.</p>
-<p>A <strong>zone</strong> is any subset of <span class="math notranslate nohighlight">\(\Realnn^\Clocks\)</span> that can be defined
+that in finite games as in Chapter <a class="reference internal" href="../2_Regular/index.html#chap-regular"><span class="std std-ref">Regular Games</span></a>.</p>
+<p>A <strong>zone</strong> is any subset of <span class="math notranslate nohighlight">\(\mathbb{R}_{\geq 0}^ \mathcal{C}\)</span> that can be defined
 using a clock constraint (hence a zone is convex).  We will see that
 sets of states that appear when exploring the state space of a timed
 game can be represented using zones.  We use the
 <strong>difference-bound matrices</strong> to represent zones:
 this is one of the main data structures used in timed-automata
-verification <span id="id1">[<a class="reference internal" href="references.html#id136"><span>Dil90</span></a>,<a class="reference internal" href="references.html#id158"><span>BM83</span></a>]</span>. The idea is to store, in a matrix,
+verification <span id="id1">[<a class="reference internal" href="references.html#id137"><span>Dil90</span></a>,<a class="reference internal" href="references.html#id159"><span>BM83</span></a>]</span>. The idea is to store, in a matrix,
 upper bounds on clocks and on differences of pairs of clocks.</p>
 <p>Formally, given a clock
-set <span class="math notranslate nohighlight">\(\Clocks=\{x_1,\ldots,x_m\}\)</span>, we define <span class="math notranslate nohighlight">\(\Clocksz = \Clocks \cup \{x_0\}\)</span>
+set <span class="math notranslate nohighlight">\(\mathcal{C}=\{x_1,\ldots,x_m\}\)</span>, we define <span class="math notranslate nohighlight">\(\mathcal{C}_0 =  \mathcal{C} \cup \{x_0\}\)</span>
 where <span class="math notranslate nohighlight">\(x_0\)</span> is seen as a
 special clock which is always <span class="math notranslate nohighlight">\(0\)</span>.</p>
-<p>A difference-bound matrix (DBM) is a <span class="math notranslate nohighlight">\(|\Clocksz|\times |\Clocksz|\)</span>
+<p>A difference-bound matrix (DBM) is a <span class="math notranslate nohighlight">\(| \mathcal{C}_0|\times | \mathcal{C}_0|\)</span>
 matrix with coefficients in <span class="math notranslate nohighlight">\(\{\mathord\leq,\mathord&lt;\} \times
 \mathbb{Z}\)</span>.  For any DBM <span class="math notranslate nohighlight">\(M\)</span>, the <span class="math notranslate nohighlight">\((i,j)\)</span>-component of the matrix <span class="math notranslate nohighlight">\(M\)</span>
 will be written <span class="math notranslate nohighlight">\((\prec^M_{i,j}, M_{i,j})\)</span> where <span class="math notranslate nohighlight">\(\prec^M_{i,j}\)</span> is
@@ -760,14 +732,14 @@ the inequality in <span class="math notranslate nohighlight">\(\{\mathord\leq,\m
 integer coefficient. A DBM <span class="math notranslate nohighlight">\(M\)</span> defines the zone</p>
 <div class="math notranslate nohighlight">
 \[
-  [M] = \Bigl\{v\in \Realnn^{\Clocks}\Bigm|
-  \bigwedge_{0\leq i,j \leq |\Clocksz|} v(x_i)-v(x_j) \prec^M_{i,j} M_{i,j}\Bigr\},
+  [M] = \Bigl\{v\in  \mathbb{R}_{\geq 0}^{ \mathcal{C}}\Bigm|
+  \bigwedge_{0\leq i,j \leq | \mathcal{C}_0|} v(x_i)-v(x_j) \prec^M_{i,j} M_{i,j}\Bigr\},
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(v(x_0) = 0\)</span>.</p>
 <div class="proof example admonition" id="example-0">
-<p class="admonition-title"><span class="caption-number">Example 264 </span> (NEEDS TITLE AND LABEL)</p>
+<p class="admonition-title"><span class="caption-number">Example 275 </span> (NEEDS TITLE AND LABEL)</p>
 <div class="example-content section" id="proof-content">
-<p>Consider the clock set <span class="math notranslate nohighlight">\(\Clocks=\{x_1,x_2\}\)</span>
+<p>Consider the clock set <span class="math notranslate nohighlight">\(\mathcal{C}=\{x_1,x_2\}\)</span>
 and the zone <span class="math notranslate nohighlight">\(Z\)</span> defined by
 <span class="math notranslate nohighlight">\(x_1\leq 1 \land x_1-x_2 \leq 0 \land x_2\leq 3\land x_2-x_1 \leq 2\)</span>, which can be
 written as the following DBM:</p>
@@ -801,7 +773,7 @@ written as the following DBM:</p>
 <p>For instance, <span class="math notranslate nohighlight">\(M[2,0]=(\leq, 3)\)</span> represents the
 constraint <span class="math notranslate nohighlight">\(x_2-x_0\leq 3\)</span>, i.e., <span class="math notranslate nohighlight">\(x_2\leq 3\)</span>.</p>
 <p>The diagram to the right of the figure represents the set <span class="math notranslate nohighlight">\([M]\)</span>.</p>
-<p>Consider the clock set <span class="math notranslate nohighlight">\(\Clocks=\{x_1,x_2\}\)</span>
+<p>Consider the clock set <span class="math notranslate nohighlight">\(\mathcal{C}=\{x_1,x_2\}\)</span>
 and the zone <span class="math notranslate nohighlight">\(Z\)</span> defined by
 <span class="math notranslate nohighlight">\(x_1\leq 1 \land x_1-x_2 \leq 0 \land x_2\leq 3\land x_2-x_1 \leq 2\)</span>, which can be
 written as the following DBM:</p>
@@ -839,45 +811,45 @@ constraint <span class="math notranslate nohighlight">\(x_2-x_0\leq 3\)</span>, 
 </div><p>We now define elementary operations on DBMs which are used to explore
 the state space of timed games. We start by giving set-theoretic
 definitions and then comment on their computation with DBMs.</p>
-<p>Let <span class="math notranslate nohighlight">\(\posttime(Z)\)</span> denote the zone describing the
-<strong>time-successors</strong> of <span class="math notranslate nohighlight">\(Z\)</span>, and <span class="math notranslate nohighlight">\(\pretime(Z)\)</span> the
+<p>Let <span class="math notranslate nohighlight">\(\sf Post_{\geq 0}(Z)\)</span> denote the zone describing the
+<strong>time-successors</strong> of <span class="math notranslate nohighlight">\(Z\)</span>, and <span class="math notranslate nohighlight">\(\sf Pre_{\geq 0}(Z)\)</span> the
 <strong>time-predecessors</strong> of <span class="math notranslate nohighlight">\(Z\)</span>. Formally,
 \begin{xalignat*}1
-\posttime(Z)&amp;= {v \in \Realnn^{\Clocks}
+\sf Post_{\geq 0}(Z)&amp;= {v \in  \mathbb{R}<em>{\geq 0}^{ \mathcal{C}}
 \mid \exists t\geq 0.\  v-t \in Z}
 \
-\pretime(Z) &amp;=
-{v \in \Realnn^{\Clocks} \mid \exists t \geq 0.\ v + t \in Z}.
+\sf Pre</em>{\geq 0}(Z) &amp;=
+{v \in  \mathbb{R}_{\geq 0}^{ \mathcal{C}} \mid \exists t \geq 0.\ v + t \in Z}.
 \end{xalignat*}</p>
-<p>Given <span class="math notranslate nohighlight">\(R\subseteq\Clocks\)</span>, we also define
+<p>Given <span class="math notranslate nohighlight">\(R\subseteq \mathcal{C}\)</span>, we also define
 \begin{xalignat*}1
-\reset_R(Z) &amp;= {v \in \Realnn^{\Clocks} \mid \exists v’ \in Z.<br />
+\mathsf{Reset}<em>R(Z) &amp;= {v \in  \mathbb{R}</em>{\geq 0}^{ \mathcal{C}} \mid \exists v’ \in Z.<br />
 v=v’[R\leftarrow 0]} \
-\unreset_R(Z) &amp;= { v \in \Realnn^{\Clocks} \mid \exists v’ \in Z.<br />
+\sf Unreset_R(Z) &amp;= { v \in  \mathbb{R}_{\geq 0}^{ \mathcal{C}} \mid \exists v’ \in Z.<br />
 v’ = v[R \leftarrow 0]}.
 \end{xalignat*}</p>
 <p>These operations, together with intersection, suffice to describe
 one-step successors and predecessors by an edge of a timed automaton.
 For instance, given edge <span class="math notranslate nohighlight">\(e=(\ell,g,R,\ell')\)</span> and
-set <span class="math notranslate nohighlight">\(S \subseteq \Realnn^\Clocks\)</span>, the set of states that are reached
+set <span class="math notranslate nohighlight">\(S \subseteq  \mathbb{R}_{\geq 0}^ \mathcal{C}\)</span>, the set of states that are reached
 after letting time elapse and taking edge <span class="math notranslate nohighlight">\(e\)</span> can be obtained as</p>
 <div class="math notranslate nohighlight">
 \[
-  \postta_e(S) = \reset_R(\posttime(S)\cap G),
+   \sf Post_e(S) =  \mathsf{Reset}_R( \sf Post_{\geq 0}(S)\cap G),
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(G\)</span> denotes the zone corresponding to the guard <span class="math notranslate nohighlight">\(g\)</span>.
 Similarly, we can compute the predecessors of <span class="math notranslate nohighlight">\(S\)</span> by edge <span class="math notranslate nohighlight">\(e\)</span> as</p>
 <div class="math notranslate nohighlight">
 \[
-\preta_e(S) = \pretime(G \cap \unreset_R(S)).\]</div>
-<p>We illustrate these constructions on <a class="reference internal" href="#fig-opzones"><span class="std std-numref">Fig. 59</span></a>.</p>
+ \sf Pre_e(S) =  \sf Pre_{\geq 0}(G \cap  \sf Unreset_R(S)).\]</div>
+<p>We illustrate these constructions on <a class="reference internal" href="#fig-opzones"><span class="std std-numref">Fig. 65</span></a>.</p>
 <div class="figure align-center" id="fig-opzones">
 <img alt="9_Timed/./../FigAndAlgos/9-fig:opzones.png" src="9_Timed/./../FigAndAlgos/9-fig:opzones.png" />
-<p class="caption"><span class="caption-number">Fig. 59 </span><span class="caption-text">Operations on zones</span><a class="headerlink" href="#fig-opzones" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 65 </span><span class="caption-text">Operations on zones</span><a class="headerlink" href="#fig-opzones" title="Permalink to this image">¶</a></p>
 </div>
 <p>It is not hard to prove that the above operations preserve zones: if <span class="math notranslate nohighlight">\(S\)</span> is a
 zone, then so is the result of any of these operations. Moreover, each
-single operation can be computed in time <span class="math notranslate nohighlight">\(O(|\Clocks|^3)\)</span> using the
+single operation can be computed in time <span class="math notranslate nohighlight">\(O(| \mathcal{C}|^3)\)</span> using the
 DBM representation. The underlying algorithms often modify some
 elements of the matrix and run an all-pairs shortest path algorithm,
 namely the Floyd-Roy-Warshall algorithm, on a graph whose adjacency
@@ -885,34 +857,34 @@ matrix is the given DBM.  Computing the shortest paths renders the DBM
 <strong>canonical</strong>; in fact, this allows one to compute the tightest
 constraints on all differences of clock pairs, and this can be shown
 to yield a unique representation of a given zone.</p>
-<p>Let us call the above operations <strong>basic operations</strong> on DBMs <span id="id2">[<a class="reference internal" href="references.html#id162"><span>BY04</span></a>]</span>.</p>
+<p>Let us call the above operations <strong>basic operations</strong> on DBMs <span id="id2">[<a class="reference internal" href="references.html#id163"><span>BY04</span></a>]</span>.</p>
 <div class="proof theorem admonition" id="9-thm:complexity_basic_operations_DBMs">
-<p class="admonition-title"><span class="caption-number">Theorem 265 </span> (Complexity of basic operations on DBMs)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 276 </span> (Complexity of basic operations on DBMs)</p>
 <div class="theorem-content section" id="proof-content">
 <p>Given a DBM of size <span class="math notranslate nohighlight">\(n\times n\)</span>, any basic operation yields a DBM
 and can be computed in time <span class="math notranslate nohighlight">\(O(n^3)\)</span>.</p>
 </div>
 </div><p>Observe that a DBM always describes a convex subset
-of <span class="math notranslate nohighlight">\(\Realnn^\Clocks\)</span> since it is a conjunction of convex clock
+of <span class="math notranslate nohighlight">\(\mathbb{R}_{\geq 0}^ \mathcal{C}\)</span> since it is a conjunction of convex clock
 constraints. However, the set of winning states is in general
 non-convex in timed games. The simple arena
-of <a class="reference internal" href="#fig-non-convex"><span class="std std-numref">Fig. 60</span></a> provides an example: if  \textrm{Eve}’s objective
+of <a class="reference internal" href="#fig-non-convex"><span class="std std-numref">Fig. 66</span></a> provides an example: if  Eve’s objective
 is to reach <span class="math notranslate nohighlight">\(\ell_1\)</span>, then it should just avoid the configurations
 satisfying <span class="math notranslate nohighlight">\(1\leq x_1,x_2\leq 2\)</span>. But this set of predecessors is then
-non-convex as shown in <a class="reference internal" href="#fig-non-convex"><span class="std std-numref">Fig. 60</span></a>.</p>
+non-convex as shown in <a class="reference internal" href="#fig-non-convex"><span class="std std-numref">Fig. 66</span></a>.</p>
 <p>We thus have to work with unions of zones, also called
 <strong>federations</strong> of zones, or <strong>federations</strong> for short.</p>
 <div class="figure align-center" id="fig-non-convex">
 <img alt="../_images/9-fig:non-convex.png" src="../_images/9-fig:non-convex.png" />
-<p class="caption"><span class="caption-number">Fig. 60 </span><span class="caption-text">Winning configurations (in <span class="math notranslate nohighlight">\(\ell\)</span>)
-for  \textrm{Eve} to ensure reaching <span class="math notranslate nohighlight">\(\ell_1\)</span>.</span><a class="headerlink" href="#fig-non-convex" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 66 </span><span class="caption-text">Winning configurations (in <span class="math notranslate nohighlight">\(\ell\)</span>)
+for  Eve to ensure reaching <span class="math notranslate nohighlight">\(\ell_1\)</span>.</span><a class="headerlink" href="#fig-non-convex" title="Permalink to this image">¶</a></p>
 </div>
 <p>One particular operation that we need is complementation.
 The complement of a convex set is of course not convex in general, but
 we can still compute, in polynomial time, the complement of a DBM <span class="math notranslate nohighlight">\(M\)</span>,
 written <span class="math notranslate nohighlight">\(M^c\)</span>, as a federation of DBMs.</p>
 <div class="proof theorem admonition" id="9-thm:complement_DBM">
-<p class="admonition-title"><span class="caption-number">Theorem 266 </span> (Complement of DBMs)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 277 </span> (Complement of DBMs)</p>
 <div class="theorem-content section" id="proof-content">
 <p>The complement of a DBM of size <span class="math notranslate nohighlight">\(n\times n\)</span> can be computed as a
 federation of at most <span class="math notranslate nohighlight">\(n(n-1)\)</span> DBMs.</p>
@@ -930,7 +902,7 @@ but we explore the set of zones instead of the set of vertices, and
 predecessor and successor operations are replaced by their zone-based
 counterparts.</p>
 <p>As for finite games, we are interested in computing a fixpoint to
-determine whether a given configuration is winning for  \textrm{Eve}. We start
+determine whether a given configuration is winning for  Eve. We start
 by introducing the zone-based counterparts of the controllable predecessors operator
 which
 is the main tool in the algorithms.</p>

@@ -124,7 +124,7 @@ which together with the fact that $W$ reduces to $W'$ implies that $\sigma'$ is 
 
 ````
 
-To obtain  {prf:ref}`1-lem:automata_reduction` as a corollary of  {prf:ref}`1-lem:memory_structure_reduction`
+To obtain {prf:ref}`1-lem:automata_reduction` as a corollary of {prf:ref}`1-lem:memory_structure_reduction`
 we observe that a reduction between objectives using an automaton induces a reduction between the induced conditions using a memory structure.
 Formally, let us assume that $\Omega$ reduces to $\Omega'$, 
 and let $\mathbf{A} = (Q, q_0, \delta, \Omega'[ \textsf{col}_\mathbf{A}])$ such that $L( \mathbf{A}) = \Omega$.
@@ -138,5 +138,5 @@ We note that $\Omega[ \textsf{col}]$ reduces to $\Omega'[ \textsf{col}']$: for a
 $\pi \in \Omega[ \textsf{col}]$ if and only if $\pi' \in \Omega'[ \textsf{col}']$: this is a reformulation of the fact that $L( \mathbf{A}) = \Omega$.
 
 We construct the game $\Game' = (  \mathcal{A} \times   \mathcal{M}, \Omega'[ \textsf{col}'])$.
-Thanks to  {prf:ref}`1-lem:memory_structure_reduction` the two games have the same winner and a strategy in the latter induce a strategy in the former
-by composing with the memory structure $\mathcal{M}$, implying  {prf:ref}`1-lem:automata_reduction`.
+Thanks to {prf:ref}`1-lem:memory_structure_reduction` the two games have the same winner and a strategy in the latter induce a strategy in the former
+by composing with the memory structure $\mathcal{M}$, implying {prf:ref}`1-lem:automata_reduction`.

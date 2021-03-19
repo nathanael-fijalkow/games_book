@@ -48,12 +48,12 @@ called `reachability' and was first shown decidable by
 in {cite}`Kosaraju:1982,Lambert:1992,Leroux:2011`) and recently shown
 to be of non-elementary complexity {cite}`Czerwinski&Lasota&Lazic&Leroux&Mazowiecki:2019`.  Coverability and
 non-termination are considerably easier, as they are
- \textrm{EXPSPACE}-complete {cite}`Lipton:1976,Rackoff:1978` and so is
+ EXPSPACE-complete {cite}`Lipton:1976,Rackoff:1978` and so is
 parity@parity vector game {cite}`Habermehl:1997`.  With "existential
 initial credit, the problems are markedly simpler: configuration
-reachability becomes  \textrm{EXPSPACE}-complete, while coverability" is in
- \textrm{NL}\ and non-termination and parity can be solved in polynomial
-time by  {prf:ref}`11-thm:zcycle` using linear programming
+reachability becomes  EXPSPACE-complete, while coverability" is in
+ NL\ and non-termination and parity can be solved in polynomial
+time by {prf:ref}`11-thm:zcycle` using linear programming
 techniques {cite}`Kosaraju&Sullivan:1988`.
 
 > **Undecidability of Vector Games**
@@ -70,13 +70,13 @@ of \citet{Niskanen&Potapov&Reichert:2016}.
 
 One-dimensional vector systems are often called **one-counter
 nets** in the literature, by contrast with **one-counter automata**
-where zero tests are allowed.  The  \textrm{EXPSPACE}-completeness of "succinct
+where zero tests are allowed.  The  EXPSPACE-completeness of "succinct
 one-counter games was shown by \citem[Hunter]{Hunter:2015}.  Countdown games"
 were originally defined with given initial credit and a "zero
 reachability" objective, and shown
- \textrm{EXP}-complete in {cite}`Jurdzinski&Laroussinie&Sproston:2008`; see also
+ EXP-complete in {cite}`Jurdzinski&Laroussinie&Sproston:2008`; see also
 \citet{Kiefer:2013} for a variant called hit-or-run games.  The
-hardness proofs for \cref{11-th:countdown-given,11-th:countdown-exist} are
+hardness proofs for {prf:ref}`11-th:countdown-given` and {prf:ref}`11-th:countdown-exist` are
 adapted from \citet{Jancar&Osicka&Sawa:2018}, where countdown games
 with existential initial credit were first introduced.
 
@@ -109,7 +109,7 @@ well-structured systems of
 \citet{Finkel&Schnoebelen:2001}, and was undertaken
 in {cite}`Abdulla&Bouajjani&dOrso:2003,Raskin&Samuelides&VanBegin:2005`.
 The decidability of coverability and non-termination through wqo
-arguments like those of \cref{11-fact:pareto-cov} was shown
+arguments like those of {prf:ref}`11-fact:pareto-cov` was shown
 by \citem[Raskin et al.]{Raskin&Samuelides&VanBegin:2005}.  More
 advanced wqo techniques were needed for the first decidability proof
 of parity@parity vector game in {cite}`Abdulla&al:2013`.  See
@@ -117,8 +117,8 @@ also {cite}`Schmitz&Schnoebelen:2012` for more on the algorithmic uses of
 wqos.
 
 By analysing the attractor computation of Section {ref}`11-sec:attr`, one can
-show that {numref}`11-algo:cov` works in  \textrm{kEXP}[2], thus matching the
-optimal upper bound from \cref{11-th:avag-easy}: this can be done using
+show that {numref}`11-algo:cov` works in  kEXP[2], thus matching the
+optimal upper bound from {prf:ref}`11-th:avag-easy`: this can be done using
 the Rackoff-style argument of \citet{Courtois&Schmitz:2014} and the
 analysis of \citet{Bozzelli&Ganty:2011}, or by a direct analysis of the
 attractor computation algorithm {cite}`Lazic&Schmitz:2019`.
@@ -128,13 +128,17 @@ attractor computation algorithm {cite}`Lazic&Schmitz:2019`.
  An alternative take on energy games is to see a vector system
 $\?V=( \?L, A, \?L_\mathrm{Eve}, \?L_\mathrm{Adam}, k)$ as a finite arena with
 edges $\ell\step{\vec u} \ell'$ coloured by $\vec u$, thus with set of
-colours $C  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=}\+Z^ k$.  For an initial credit $\vec v_0\in\+N^ k$
+colours $C  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=}\+Z^ k$.  For an initial credit $\vec v_0\in\+N^ k$
 and $1\leq i\leq k$, the associated energy objective is then
 defined as\todoquestion{is that the right place for this?}
-```{math}\n
-  \mathsf{Energy}_{\vec v_0}(i)  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=}\left\{\pi\in E^\omega\;\middle|\;\forall
+
+$$
+
+  \mathsf{Energy}_{\vec v_0}(i)  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=}\left\{\pi\in E^\omega\;\middle|\;\forall
   n\in\+N\mathbin.\left(\vec v_0(i)+\sum_{0\leq j\leq n}c(\pi)(i)\right)\geq 0\right\}\;,
-\\n```%\todo{we should decide: is $\Omega\subseteq C^\omega$,
+
+$$
+%\todo{we should decide: is $\Omega\subseteq C^\omega$,
 
 that is, $\pi$ is winning if the successive sums of weights on
 coordinate $i$ are always non-negative.
@@ -161,74 +165,74 @@ will be discussed in Chapter {ref}`12-chap:multiobjective`.
 
 > **Complexity**
 
- \Cref{11-tbl:cmplx} summarises the complexity
+ {prf:ref}`11-tbl:cmplx` summarises the complexity
 results for asymmetric vector games.  For the upper bounds with
 existential initial credit of Section {ref}`11-sec:up-exist`, the existence
-of counterless winning strategies for  \textrm{Adam}\ was originally shown by
+of counterless winning strategies for  Adam\ was originally shown by
 \citem[Br\'azdil et al.]{Brazdil&Jancar&Kucera:2010} in the case of
-non-termination games; the proof of  {prf:ref}`11-lem:counterless` is a
+non-termination games; the proof of {prf:ref}`11-lem:counterless` is a
 straightforward adaptation using
 ideas from {cite}`Chatterjee&Doyen:2012` to handle "parities@parity
 vector game.  An alternative proof through bounding games" is
 presented in {cite}`Colcombet&Jurdzinski&Lazic&Schmitz:2017`.
 
-The  \textrm{coNP}\ upper of \cref{11-th:exist-easy} was shown soon after
+The  coNP\ upper of {prf:ref}`11-th:exist-easy` was shown soon after
 Br\'azdil et al.'s work by
 \citem[Chatterjee et al.]{Chatterjee&Doyen&Henzinger&Raskin:2010} in
 the case of non-termination games.  The extension of
-\cref{11-th:exist-easy} to parity@parity vector game was shown
+{prf:ref}`11-th:exist-easy` to parity@parity vector game was shown
 by {cite}`Chatterjee&Randour&Raskin:2014` by a reduction from
 parity@parity vector games to non-termination games somewhat
-reminiscent of \cref{?}.  The proof of
-\cref{11-th:exist-easy} takes a slightly different approach using
- {prf:ref}`11-lem:zcycle` for finding non-negative cycles, which is a
+reminiscent of {prf:ref}`?`.  The proof of
+{prf:ref}`11-th:exist-easy` takes a slightly different approach using
+{prf:ref}`11-lem:zcycle` for finding non-negative cycles, which is a
 trivial adaptation of a result by \citem[Kosaraju and
 Sullivan]{Kosaraju&Sullivan:1988}.  The pseudo-polynomial bound
-of \cref{11-cor:exist-pseudop} is taken
+of {prf:ref}`11-cor:exist-pseudop` is taken
 from {cite}`Colcombet&Jurdzinski&Lazic&Schmitz:2017`.
 
 For the upper bounds with given initial credit of
-Section {ref}`11-sec:up-given`, regarding coverability, the  \textrm{kEXP}[2] upper
-bound of \cref{11-th:avag-easy} was first shown by \citem[Courtois and
+Section {ref}`11-sec:up-given`, regarding coverability, the  kEXP[2] upper
+bound of {prf:ref}`11-th:avag-easy` was first shown by \citem[Courtois and
 Schmitz]{Courtois&Schmitz:2014} by adapting Rackoff's technique for
 vector addition systems with states {cite}`Rackoff:1978`.  Regarding
 non-termination, the first complexity upper bounds were shown
 by \citem[Br\'azdil et al.]{Brazdil&Jancar&Kucera:2010} and were
-in  \textrm{kEXP}, thus non-elementary in the size of the input.  Very
+in  kEXP, thus non-elementary in the size of the input.  Very
 roughly, \todo{This is a leftover from a previous write-up}
 their argument went as follows: one can extract a pseudo-polynomial
 existential Pareto bound $B$ in the one-player case from the proof
-of  {prf:ref}`11-thm:zcycle`, from which the proof of  {prf:ref}`11-lem:counterless`
+of {prf:ref}`11-thm:zcycle`, from which the proof of {prf:ref}`11-lem:counterless`
 yields a $2^{| A|}(B+| \?L|)$ existential Pareto bound in the
-two-player case, and finally by arguments similar to \cref{?} a tower
+two-player case, and finally by arguments similar to {prf:ref}`?` a tower
 of $k$ exponentials on the given initial credit problem.  The
 two-dimensional case with a unary encoding was shown a bit later to be
 in \P\ by \citem[Chaloupka]{Chaloupka:2013}.  Finally, a
-matching  \textrm{kEXP}[2] upper bound (and pseudo-polynomial in any fixed
+matching  kEXP[2] upper bound (and pseudo-polynomial in any fixed
 dimension) was obtained by \citem[Jurdzi\'nski et
 al.]{Jurdzinski&Lazic&Schmitz:2015}.  Regarding "parity@parity vector
 game", \citem[Jan\v{c}ar]{Jancar:2015} showed how to obtain
 non-elementary upper bounds by reducing to the case
-of \citet{Brazdil&Jancar&Kucera:2010}, before a tight  \textrm{kEXP}[2] upper
+of \citet{Brazdil&Jancar&Kucera:2010}, before a tight  kEXP[2] upper
 bound (and pseudo-polynomial in fixed dimension with a fixed number of
 priorities) was shown
 in {cite}`Colcombet&Jurdzinski&Lazic&Schmitz:2017`.
 
-The  \textrm{coNP}\ hardness with existential initial credit in
-\cref{11-th:exist-hard} originates from
-\citet{Chatterjee&Doyen&Henzinger&Raskin:2010}.  The  \textrm{kEXP}[2]-hardness
+The  coNP\ hardness with existential initial credit in
+{prf:ref}`11-th:exist-hard` originates from
+\citet{Chatterjee&Doyen&Henzinger&Raskin:2010}.  The  kEXP[2]-hardness
 of both coverability and non-termination games with "given initial
-credit" from \cref{11-th:avag-hard} was shown
+credit" from {prf:ref}`11-th:avag-hard` was shown
 in {cite}`Courtois&Schmitz:2014` by adapting Lipton's construction for
 vector addition systems with states {cite}`Lipton:1976`; similar
 proofs can be found for instance
 in {cite}`Demri&Jurdzinski&Lachish&Lazic:2012,Berard&Haddad&Sassolas&Sznajder:2012`.
-The hardness for  \textrm{EXP}-hardness in dimension two was first shown by
+The hardness for  EXP-hardness in dimension two was first shown by
 {cite}`Fahrenberg&Juhl&Larsen&Srba:2011`; the direct proof in
-\cref{11-th:avag-two} by a reduction from countdown games was suggested
+{prf:ref}`11-th:avag-two` by a reduction from countdown games was suggested
 by \citet{Mazowiecki&Perez:2017}.
 
-The $\textrm{NP}\cap \textrm{coNP}$ upper bounds in dimension one from
+The $NP\cap coNP$ upper bounds in dimension one from
 Section {ref}`11-sec:mono-dim1` are due to \citem[Bouyer et
 al.]{Bouyer&Fahrenberg&Larsen&Markey&Srba:2008} for "given
 initial credit" and \citem[Chatterjee

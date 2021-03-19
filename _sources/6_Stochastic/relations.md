@@ -21,29 +21,18 @@ with reachability objectives.
 
 \nat{reference: ZP-tcs96}
 
-````{prf:proposition} NEEDS TITLE AND LABEL 
-  \label{prop:dg2ssg}
+````{prf:proposition} NEEDS TITLE prop:dg2ssg
+:label: prop:dg2ssg
+
   For any arena $\mathcal{A}$ with weights in $[0,1]$ and $\lambda$ a
   discount factor, one can construct a stochastic arena $\mathcal{A}'$ with
-  $\textrm{Win} \subseteq  V'$ and an injection
+  $Win \subseteq  V'$ and an injection
   $\iota :  V \to  V'$ such that
   $\forall v \in  V$
 
 $$
-    \mathsf{value}(v, \mathcal{A},\textrm{discount}(\lambda)) =
-    \mathsf{value}(\iota(v), \mathcal{A}', \mathtt{Reach}( \textrm{Win})) \enspace.
-  $$
-
-  \label{prop:dg2ssg}
-  For any arena $\mathcal{A}$ with weights in $[0,1]$ and $\lambda$ a
-  discount factor, one can construct a stochastic arena $\mathcal{A}'$ with
-  $\textrm{Win} \subseteq  V'$ and an injection
-  $\iota :  V \to  V'$ such that
-  $\forall v \in  V$
-
-$$
-    \mathsf{value}(v, \mathcal{A},\textrm{discount}(\lambda)) =
-    \mathsf{value}(\iota(v), \mathcal{A}', \mathtt{Reach}( \textrm{Win})) \enspace.
+    \mathsf{value}(v, \mathcal{A},discount(\lambda)) =
+    \mathsf{value}(\iota(v), \mathcal{A}', \mathtt{Reach}( Win)) \enspace.
   $$
 
 ````
@@ -58,7 +47,7 @@ $$
   a transition from $v$ to a random vertex $v_e$, and the distribution
   $\delta(v_e)$ assigns probability $\lambda$ to $v'$,
   $(1{-}\lambda) \mathbf{w}$ to $\smiley$ and $(1{-}\lambda)(1{-} \mathbf{w})$
-  to $\frownie$. The set $\textrm{Win}$ of target vertices in $\mathcal{A}'$
+  to $\frownie$. The set $Win$ of target vertices in $\mathcal{A}'$
   consists of $\{smiley\}$. To complete the reduction, we let $\iota$
   be the identity function on vertices of $\mathcal{A}$.
 
@@ -67,13 +56,13 @@ $$
 
   To establish that this transformation preserves the values,
   **i.e.**\ that for every $v \in  V$,
-  $\mathsf{value}(v, \mathcal{A},\textrm{discount}(\lambda)) =
-  \mathsf{value}(v, \mathcal{A}', \mathtt{Reach}( \textrm{Win}))$, we prove that these
+  $\mathsf{value}(v, \mathcal{A},discount(\lambda)) =
+  \mathsf{value}(v, \mathcal{A}', \mathtt{Reach}( Win))$, we prove that these
   values are solutions to the same system of equations.
 
   In the sequel, we write $\mathsf{value}_{ \mathcal{A}'}(v)$ as a shortcut
-  for $\mathsf{value}(v, \mathcal{A}', \mathtt{Reach}( \textrm{Win}))$.
-  By \Cref{th:determinacy}, the values in the stochastic simple game
+  for $\mathsf{value}(v, \mathcal{A}', \mathtt{Reach}( Win))$.
+  By {prf:ref}`th:determinacy`, the values in the stochastic simple game
   $\mathcal{A}'$ are solutions to the system of Bellman equations. The sink
   vertices have trivial values, $\mathsf{value}_{ \mathcal{A}'}(\smiley) =1$
   and $\mathsf{value}_{ \mathcal{A}'}(\frownie) =0$.  For every non-random
@@ -111,24 +100,24 @@ $$
     We thus observe that the values in $\mathcal{A}'$, after elimination of
     values for intermediate random vertices, satisfy the equations of
     values in the discounted game (see the proof
-    of  {prf:ref}`4-thm:discounted` in \Cref{chap:4_Payoffs}). Since
+    of {prf:ref}`4-thm:discounted` in {prf:ref}`chap:4_Payoffs`). Since
     this system of equations has a unique solution, we deduce the
     desired equality:
     $\mathsf{value}_{ \mathcal{A}'}(v) =
-    \mathsf{value}(v, \mathcal{A},\textrm{discount}(\lambda))$.
+    \mathsf{value}(v, \mathcal{A},discount(\lambda))$.
     
     \qed
   
 ````
 
-  Remark that \Cref{prop:dg2ssg} trivially extends to
+  Remark that {prf:ref}`prop:dg2ssg` trivially extends to
   discounted stochastic games: from a discounted stochastic game, one
   can build a stochastic reachability game that preserves the values.
 
 ## From stochastic mean-payoff to stochastic discounted
 
 As a simple generalisation of the non-stochastic case (see
- {prf:ref}`4-thm:MP2discounted` \nat{add label to Theorem 4.9}), one can
+{prf:ref}`4-thm:MP2discounted` \nat{add label to Theorem 4.9}), one can
 also provide a reduction from mean-payoff objectives to discounted
 payoff objectives, for what concerns stochastic arenas. More
 precisely:
@@ -161,21 +150,21 @@ precisely:
   For every stochastic arena $\mathcal{A}$ with priorities in $[0,d]$, one
   can construct a weight function from $V$ to $\mathbb{Z}$
   such that $\forall v \in  V$, if
-  $ \mathsf{value}(v, \mathcal{A},\textrm{parity}) \notin \{0,1\}$, then
+  $ \mathsf{value}(v, \mathcal{A},parity) \notin \{0,1\}$, then
 
 $$
-    \mathsf{value}(v, \mathcal{A},\textrm{parity}) =
-    \frac 1 2 (\mathsf{value}(v, \mathcal{A},\textrm{mean\_payoff})  {+} 1) \enspace.
+    \mathsf{value}(v, \mathcal{A},parity) =
+    \frac 1 2 (\mathsf{value}(v, \mathcal{A},mean\_payoff)  {+} 1) \enspace.
   $$
 
   For every stochastic arena $\mathcal{A}$ with priorities in $[0,d]$, one
   can construct a weight function from $V$ to $\mathbb{Z}$
   such that $\forall v \in  V$, if
-  $ \mathsf{value}(v, \mathcal{A},\textrm{parity}) \notin \{0,1\}$, then
+  $ \mathsf{value}(v, \mathcal{A},parity) \notin \{0,1\}$, then
 
 $$
-    \mathsf{value}(v, \mathcal{A},\textrm{parity}) =
-    \frac 1 2 (\mathsf{value}(v, \mathcal{A},\textrm{mean\_payoff})  {+} 1) \enspace.
+    \mathsf{value}(v, \mathcal{A},parity) =
+    \frac 1 2 (\mathsf{value}(v, \mathcal{A},mean\_payoff)  {+} 1) \enspace.
   $$
 
 ````
@@ -188,43 +177,43 @@ $$
   
   \nat{ref for this ? Florian}
   Let us
-  write $W_\textrm{Eve}$ and $W_\textrm{Adam}$ for these sets, respectively. We let
+  write $W_Eve$ and $W_Adam$ for these sets, respectively. We let
   $p_{\min}$ be the minimal probability that appears in the arena
   $\mathcal{A}$, and $n$ be the number of vertices.
   
-  We define the following weight function: for every $v \in W_\textrm{Eve}$,
+  We define the following weight function: for every $v \in W_Eve$,
   to every edge $(v,k,v')$ in the parity game, we associate the weight
-  $1$; for every $v \in W_\textrm{Adam}$, to every edge $(v,k,v')$, we associate
+  $1$; for every $v \in W_Adam$, to every edge $(v,k,v')$, we associate
   the weight $-1$; most importantly, for every
-  $v \notin W_\textrm{Eve} \cup W_\textrm{Adam}$, to every edge $(v,k,v')$, we associate the
+  $v \notin W_Eve \cup W_Adam$, to every edge $(v,k,v')$, we associate the
   weight $(-1)^k (2n)^k p_{\min}^{-nk}$.
 
   Let us prove that the above weight function satisfies
 
 $$
-    \forall v \in  V \setminus (W_\textrm{Eve} \cup W_\textrm{Adam}),\ 
-    \mathsf{value}(v, \mathcal{A},\textrm{parity}) = \frac 1 2
-    (\mathsf{value}(v, \mathcal{A},\textrm{mean\_payoff}) {+} 1)\enspace.
+    \forall v \in  V \setminus (W_Eve \cup W_Adam),\ 
+    \mathsf{value}(v, \mathcal{A},parity) = \frac 1 2
+    (\mathsf{value}(v, \mathcal{A},mean\_payoff) {+} 1)\enspace.
   $$
 
   To do so, we prove both inequalities.
 
-  \fbox{here we assume sinks for $W_\textrm{Eve}$ and $W_\textrm{Adam}$, with
+  \fbox{here we assume sinks for $W_Eve$ and $W_Adam$, with
     appropriate priorities}
 
 ````{prf:lemma} NEEDS TITLE AND LABEL  Let $v \in  V$. Let $\sigma$ be a pure
     positional optimal strategy for Eve in the parity game
-    $( \mathcal{A},\textrm{parity})$. For every positional strategy $\tau$
+    $( \mathcal{A},parity)$. For every positional strategy $\tau$
     of Adam
-    $\mathbb{P}_{\sigma,\tau}^v( \mathtt{Reach}(W_\textrm{Adam})) \leq 1 -
-    \mathsf{value}(v, \mathcal{A},\textrm{parity})$.
+    $\mathbb{P}_{\sigma,\tau}^v( \mathtt{Reach}(W_Adam)) \leq 1 -
+    \mathsf{value}(v, \mathcal{A},parity)$.
      
  Let $v \in  V$. Let $\sigma$ be a pure
     positional optimal strategy for Eve in the parity game
-    $( \mathcal{A},\textrm{parity})$. For every positional strategy $\tau$
+    $( \mathcal{A},parity)$. For every positional strategy $\tau$
     of Adam
-    $\mathbb{P}_{\sigma,\tau}^v( \mathtt{Reach}(W_\textrm{Adam})) \leq 1 -
-    \mathsf{value}(v, \mathcal{A},\textrm{parity})$.
+    $\mathbb{P}_{\sigma,\tau}^v( \mathtt{Reach}(W_Adam)) \leq 1 -
+    \mathsf{value}(v, \mathcal{A},parity)$.
     
 ````
 
@@ -232,25 +221,25 @@ $$
 
 ````{prf:lemma} NEEDS TITLE AND LABEL 
       Let $\sigma$ be a pure positional optimal strategy for Eve in
-      the parity game $( \mathcal{A},\textrm{parity})$. For every positional
+      the parity game $( \mathcal{A},parity)$. For every positional
       strategy $\tau$ of Adam, for every BSCC $C$ induced by
-      $(\sigma,\tau)$ different from $W_\textrm{Adam}$ and $W_\textrm{Eve}$,
-      $\mathbb{P}_{\sigma,\tau}^C(\textrm{parity}) >0$.
+      $(\sigma,\tau)$ different from $W_Adam$ and $W_Eve$,
+      $\mathbb{P}_{\sigma,\tau}^C(parity) >0$.
 
       Let $\sigma$ be a pure positional optimal strategy for Eve in
-      the parity game $( \mathcal{A},\textrm{parity})$. For every positional
+      the parity game $( \mathcal{A},parity)$. For every positional
       strategy $\tau$ of Adam, for every BSCC $C$ induced by
-      $(\sigma,\tau)$ different from $W_\textrm{Adam}$ and $W_\textrm{Eve}$,
-      $\mathbb{P}_{\sigma,\tau}^C(\textrm{parity}) >0$.
+      $(\sigma,\tau)$ different from $W_Adam$ and $W_Eve$,
+      $\mathbb{P}_{\sigma,\tau}^C(parity) >0$.
     
 ````
 
     \begin{proof}
-      Indeed, $\mathsf{value}(C, \mathcal{A},\textrm{parity}) \in (0,1)$ by
+      Indeed, $\mathsf{value}(C, \mathcal{A},parity) \in (0,1)$ by
       definition. Since $\sigma$ is optimal, for $v \in C$,
-      $\mathbb{P}_{\sigma,\tau}^v(\textrm{parity}) \geq
-      \mathsf{value}(v, \mathcal{A},\textrm{parity}) >0$ (and even
-      $\mathbb{P}_{\sigma,\tau}^v(\textrm{parity})=1$).
+      $\mathbb{P}_{\sigma,\tau}^v(parity) \geq
+      \mathsf{value}(v, \mathcal{A},parity) >0$ (and even
+      $\mathbb{P}_{\sigma,\tau}^v(parity)=1$).
     
 ````
 
@@ -259,16 +248,16 @@ $$
     starting from $C$ and playing $(\sigma,\tau)$.
 
     Corollary: under $(\sigma,\tau)$ with $\sigma$ optimal for parity,
-    apart from the $W_\textrm{Adam}$ BSCC, all BSCC are good for  \textrm{Eve}.
+    apart from the $W_Adam$ BSCC, all BSCC are good for  Eve.
 
 ````{prf:lemma} NEEDS TITLE AND LABEL 
       Let $\sigma$ be a pure positional optimal strategy for Eve in
-      the parity game $( \mathcal{A},\textrm{parity})$. For every positional
+      the parity game $( \mathcal{A},parity)$. For every positional
       strategy $\tau$ of Adam, for every good BSCC $C$ induced by
       $(\sigma,\tau)$, $\mathtt{MeanPayoff}_{\sigma,\tau}^C( \mathcal{A}) \geq 1$.
 
       Let $\sigma$ be a pure positional optimal strategy for Eve in
-      the parity game $( \mathcal{A},\textrm{parity})$. For every positional
+      the parity game $( \mathcal{A},parity)$. For every positional
       strategy $\tau$ of Adam, for every good BSCC $C$ induced by
       $(\sigma,\tau)$, $\mathtt{MeanPayoff}_{\sigma,\tau}^C( \mathcal{A}) \geq 1$.
     
@@ -277,8 +266,8 @@ $$
 ````{admonition} Proof
 :class: dropdown tip
 
-      The case $C = W_\textrm{Eve}$ is trivial. We assume
-      $C \cap W_\textrm{Eve} = \emptyset$ in the sequel.
+      The case $C = W_Eve$ is trivial. We assume
+      $C \cap W_Eve = \emptyset$ in the sequel.
       
       Let $v$ be a vertex with maximal parity $d_C$ (hence even and
       non-zero) in $C$. Starting from $C$ and under $(\sigma,\tau)$,
@@ -302,18 +291,18 @@ $$
 ````
 
     \begin{eqnarray*}
-       \mathtt{MeanPayoff}_{\sigma,\tau}^{v} & \geq & -  \mathbb{P}_{\sigma,\tau}^v( \mathtt{Reach}(W_\textrm{Adam})) + \sum_{C \textrm{ Good BSCC}}  \mathbb{P}_{\sigma,\tau}^v( \mathtt{Reach}(C))\\
-                                    & \geq & -1 + \mathsf{value}(v, \mathcal{A},\textrm{parity}) +  \mathbb{P}_{\sigma,\tau}^v( \mathtt{Parity})\\
-                                    & \geq & -1 + \mathsf{value}(v, \mathcal{A},\textrm{parity}) + \inf_{\tau'}  \mathbb{P}_{\sigma,\tau'}^v( \mathtt{Parity})\\
-                                    & \geq & -1 + \mathsf{value}(v, \mathcal{A},\textrm{parity}) + \mathsf{value}(v, \mathcal{A},\textrm{parity})\\
-                                    &  \geq & -1 + 2  \mathsf{value}(v, \mathcal{A},\textrm{parity}) \enspace.
+       \mathtt{MeanPayoff}_{\sigma,\tau}^{v} & \geq & -  \mathbb{P}_{\sigma,\tau}^v( \mathtt{Reach}(W_Adam)) + \sum_{C  Good BSCC}  \mathbb{P}_{\sigma,\tau}^v( \mathtt{Reach}(C))\\
+                                    & \geq & -1 + \mathsf{value}(v, \mathcal{A},parity) +  \mathbb{P}_{\sigma,\tau}^v( \mathtt{Parity})\\
+                                    & \geq & -1 + \mathsf{value}(v, \mathcal{A},parity) + \inf_{\tau'}  \mathbb{P}_{\sigma,\tau'}^v( \mathtt{Parity})\\
+                                    & \geq & -1 + \mathsf{value}(v, \mathcal{A},parity) + \mathsf{value}(v, \mathcal{A},parity)\\
+                                    &  \geq & -1 + 2  \mathsf{value}(v, \mathcal{A},parity) \enspace.
     \end{eqnarray*}
 
     Assume again that $\sigma$ is positional optimal for the parity
-    objective, and fix $\tau$ an optimal counterstrategy for  \textrm{Adam} in
+    objective, and fix $\tau$ an optimal counterstrategy for  Adam in
     $( \mathcal{A}, \mathtt{MeanPayoff})$. We deduce:
     \begin{eqnarray*}
-      -1 + 2 \mathsf{value}(v, \mathcal{A},\textrm{parity}) & \leq & 
+      -1 + 2 \mathsf{value}(v, \mathcal{A},parity) & \leq & 
                                                                 \mathtt{MeanPayoff}_{\sigma,\tau}^{v}\\
                                                       & = & \inf_{\tau'}
                                                              \mathtt{MeanPayoff}_{\sigma,\tau'}^{v}\\
@@ -327,8 +316,8 @@ $$
     This proves the first inequality.
 
     The reverse inequality, can be proved by swapping the roles of
-    $\textrm{Eve}$ and $\textrm{Adam}$ everywhere.
+    $Eve$ and $Adam$ everywhere.
 \end{proof}
 
-Figure \cref\{6-fig:reductions} summarizes the relations between classes
+Figure {numref}`6-fig:reductions` summarizes the relations between classes
 of stochastic games.

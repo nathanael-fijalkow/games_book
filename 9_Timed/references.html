@@ -705,58 +705,30 @@
   <div class="section" id="bibliographic-references">
 <span id="sec-references"></span><h1>Bibliographic references<a class="headerlink" href="#bibliographic-references" title="Permalink to this headline">¶</a></h1>
 <div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}\usepackage{amsmath}
-  
-\newcommand*\Realnn{\mathbb{R}_{\geq 0}}
-\newcommand*\Clocks{\mathcal{C}}
-\newcommand*\TA{\ensuremath{\mathcal{A}}}
-\newcommand*\Locs{\mathcal{L}}
-\newcommand*\Clocksz{\mathcal{C}_0}
-\newcommand*\calQ{\mathcal{Q}}
-\newcommand*\state{\mathsf{state}}
-\newcommand*\trans{\mathsf{trans}}
-\newcommand*\post{\mathsf{post}}
-\newcommand*\step{\mathsf{step}}\\\newcommand*\postta{\ensuremath{\textrm{\sf Post}}}
-\newcommand*\preta{\ensuremath{\textrm{\sf Pre}}}
-\newcommand*\unreset{\ensuremath{\textrm{\sf Unreset}}}
-\newcommand*\posttime{\ensuremath{\textrm{\sf Post}_{\geq 0}}}
-\newcommand*\pretime{\ensuremath{\textrm{\sf Pre}_{\geq 0}}} 
-\newcommand*\reset{\mathsf{Reset}}\\\def\predc{\textrm{\sf Pred}_c}
-\def\predt{\textrm{\sf Pred}_{\geq 0}} 
-\def\predu{\textrm{\sf Pred}_u}\\\def\calP{\mathcal P}
-\def\calC{\mathcal C}
-\def\calT{\mathcal T}
-\def\Dep{\textsf{Dep}}
-\def\Wait{\textsf{Wait}}
-\def\Passed{\textsf{Passed}}
-\def\Act{\textsf{Act}}\\\def\EA{E_{\Adam}}
-\def\EE{E_{\Eve}}\\\newcommand\zone[1]{\ensuremath{\left\llbracket#1\right\rrbracket}}\\\def\NM#1{\textcolor{green!50!black}{\checkmark}\marginpar{\color{green!50!black}NM: #1}} 
-\long\def\NMlong#1{\medskip\par{\color{green!50!black}NM: #1}\medskip\par}
-\def\OS#1{\textcolor{blue!50!black}{\checkmark}\marginpar{\color{blue!50!black}OS: #1}} 
-\long\def\OSlong#1{\medskip\par{\color{blue!50!black}OS: #1}\medskip\par}\\\renewcommand{\Game}{\game}
-\end{aligned}\end{align} \]</div>
-<p>Timed games were first introduced by Asarin, Maler, Pnueli and Sifakis <span id="id1">[<a class="reference internal" href="#id154"><span>MPS95</span></a>,<span>AMPS98</span>]</span>, in a
+\[\renewcommand{\Game}{\game}
+\]</div>
+<p>Timed games were first introduced by Asarin, Maler, Pnueli and Sifakis <span id="id1">[<a class="reference internal" href="#id155"><span>MPS95</span></a>,<span>AMPS98</span>]</span>, in a
 slightly different form.  Our presentation is based on the algorithms
-proposed by Liu and Smolka <span id="id2">[<a class="reference internal" href="#id160"><span>LS98</span></a>]</span>, and extended to timed games by
+proposed by Liu and Smolka <span id="id2">[<a class="reference internal" href="#id161"><span>LS98</span></a>]</span>, and extended to timed games by
 Cassez, David, Fleury, Larsen and Lime <span id="id3">[<span>CDFLL05</span>]</span>;
 its main advantage is that it runs <strong>on-the-fly</strong>, building (part
 of) the arena while exploring it, and terminating as soon as a winning
 strategy is found.  A first on-the-fly algorithm was proposed by Tripakis and Altisen
-in <span id="id4">[<a class="reference internal" href="#id138"><span>TA99</span></a>]</span>, but it was not fully on-the-fly as it would run on a
+in <span id="id4">[<a class="reference internal" href="#id139"><span>TA99</span></a>]</span>, but it was not fully on-the-fly as it would run on a
 quotient graph of the timed arena, which involves an expensive
 preprocessing step.</p>
 <p>Timed games—and already timed automata—may exhibit unrealistic
 behaviours, such as finite-duration executions containing infinitely
 many transitions (often referred to as <strong>Zeno</strong> behaviours).
-In our semantics,  \textrm{Adam} may always prevent  \textrm{Eve} from playing her move
+In our semantics,  Adam may always prevent  Eve from playing her move
 by choosing a shorter delay than hers, even if it means selecting a convergent
-sequence of delays. <a class="reference internal" href="#fig-exzeno"><span class="std std-numref">Fig. 63</span></a> displays a simple example of
-such a situation: in that game,  \textrm{Adam} may prevent  \textrm{Eve} from reaching her
+sequence of delays. <a class="reference internal" href="#fig-exzeno"><span class="std std-numref">Fig. 69</span></a> displays a simple example of
+such a situation: in that game,  Adam may prevent  Eve from reaching her
 winning state <span class="math notranslate nohighlight">\(q_1\)</span> by always selecting a delay shorter than the delay
-proposed by  \textrm{Eve}.</p>
+proposed by  Eve.</p>
 <div class="figure align-center" id="fig-exzeno">
 <img alt="../_images/9-fig:exzeno.png" src="../_images/9-fig:exzeno.png" />
-<p class="caption"><span class="caption-number">Fig. 63 </span><span class="caption-text">A timed game where  \textrm{Adam} may prevent  \textrm{Eve} from reaching <span class="math notranslate nohighlight">\(q_1\)</span></span><a class="headerlink" href="#fig-exzeno" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 69 </span><span class="caption-text">A timed game where  Adam may prevent  Eve from reaching <span class="math notranslate nohighlight">\(q_1\)</span></span><a class="headerlink" href="#fig-exzeno" title="Permalink to this image">¶</a></p>
 </div>
 <p>An alternative semantics of timed games was proposed by de Alfaro,
 Faella, Henzinger, Majumdar, and Stoelinga <span id="id5">[<span>AFHMS03</span>]</span> to
@@ -764,26 +736,26 @@ circumvent this problem: it consists in <strong>blaming</strong> at each round
 the player playing the shortest delay, and declaring any player losing
 (even if she reaches her goal) in case the infinite sequence of delays
 converges and that player received infinitely many blames.  For such a
-semantics,  \textrm{Eve} has a winning strategy in the game
-of <a class="reference internal" href="#fig-exzeno"><span class="std std-numref">Fig. 63</span></a>, which consists in proposing a converging
+semantics,  Eve has a winning strategy in the game
+of <a class="reference internal" href="#fig-exzeno"><span class="std std-numref">Fig. 69</span></a>, which consists in proposing a converging
 sequence of delays, until her action is applied; such a strategy
 requires infinite memory, but strategies with randomized delays can
-circumvent this <span id="id6">[<a class="reference internal" href="#id161"><span>CHP08</span></a>]</span>. Other approaches to avoid
+circumvent this <span id="id6">[<a class="reference internal" href="#id162"><span>CHP08</span></a>]</span>. Other approaches to avoid
 arbitrary-precision strategies have been explored
-in <span id="id7">[<span>BMS15</span><a class="reference internal" href="#id141"><span>BFM15</span></a>,<span>LLTW14</span><span>ORS14</span>]</span>.</p>
+in <span id="id7">[<span>BMS15</span><a class="reference internal" href="#id142"><span>BFM15</span></a>,<span>LLTW14</span><span>ORS14</span>]</span>.</p>
 <p>Timed games have been extended with weights, in order to model other
 quantities besides time (e.g. energy consumption). This is somewhat
 similar to the finite-state games extended with payoffs
-of \cref{chap:payoffs}; in the timed setting however, besides evolving
+of <code class="xref prf prf-ref docutils literal notranslate"><span class="pre">chap:payoffs</span></code>; in the timed setting however, besides evolving
 along transitions in the game, the payoff is also modified when timed
 elapses, and the change is proportional to the time spent. As proven
 in <span id="id8">[<span>BBR05</span><span>BBM06</span>]</span>, optimal reachability (a.k.a. the shortest-path
 problem) is undecidable in that setting, but arbitrary-precise
 approximation of the optimal cost can be computed <span id="id9">[<span>BJM15</span>]</span>.</p>
 <p>Timed games with partial observability have been investigated
-in <span id="id10">[<span>BDMP03</span>]</span>: in that setting,  \textrm{Eve} only has partial observation
+in <span id="id10">[<span>BDMP03</span>]</span>: in that setting,  Eve only has partial observation
 of the state and clock valuation of the arena; she also owns a finite
-set of clocks she can use to measure other delays. Whether  \textrm{Eve} has a
+set of clocks she can use to measure other delays. Whether  Eve has a
 winning strategy in such a setting has been proved decidable if the
 set of clocks and their precision are fixed; it is undecidable if they
 are not fixed.</p>
@@ -793,7 +765,7 @@ observation changes. The on-the-fly algorithm presented in this
 chapter can be adapted to that setting <span id="id12">[<span>CDLLR07</span>]</span>.</p>
 <p>The algorithm we presented in this chapter is implemented in the tool
 Uppaal TiGa <span id="id13">[<span>BCD+07</span>]</span>. Uppaal TiGa has been applied on various
-cases <span id="id14">[<span>CJLRR09</span><a class="reference internal" href="#id137"><span>Sorensen14</span></a>]</span>, and combined with
+cases <span id="id14">[<span>CJLRR09</span><a class="reference internal" href="#id138"><span>Sorensen14</span></a>]</span>, and combined with
 reinforcement-learning techniques to efficiently synthesise, optimise
 and evaluate strategies for stochastic timed games <span id="id15">[<span>DJLMT15</span>]</span>.</p>
 <p>Another approach, relying on
@@ -804,31 +776,31 @@ provides approximations on the winning set, which are used to refine
 the abstractions and accelerate their analyses. This approach is
 implemented in the tool Synthia <span id="id17">[<span>PEM11</span>]</span>.</p>
 <p id="id18"><dl class="citation">
-<dt class="label" id="id136"><span class="brackets">Dil90</span></dt>
+<dt class="label" id="id137"><span class="brackets">Dil90</span></dt>
 <dd><p>David L. Dill. Timing assumptions and verification of finite-state concurrent systems. In Joseph Sifakis, editor, <em>Proceedings of the International Workshop on Automatic Verification Methods for Finite State Systems, AVMFSS'</em>, volume 407 of LNCS, 197–212. Springer-Verlag, 1990.</p>
 </dd>
-<dt class="label" id="id158"><span class="brackets">BM83</span></dt>
+<dt class="label" id="id159"><span class="brackets">BM83</span></dt>
 <dd><p>Bernard Berthomieu and Miguel Menasche. An enumerative approach for analyzing time Petri nets. In R. E. A. Mason, editor, <em>Information Processing 83 – Proceedings of the 9th IFIP World Computer Congress (WCC'83)</em>, 41–46. North-Holland/IFIP, September 1983.</p>
 </dd>
-<dt class="label" id="id162"><span class="brackets">BY04</span></dt>
+<dt class="label" id="id163"><span class="brackets">BY04</span></dt>
 <dd><p>Johan Bengtsson and Wang Yi. Timed automata: semantics, algorithms and tools. In Jörg Desel, Wolfgang Reisig, and Grzegorz Rozenberg, editors, <em>Lectures on Concurrency and Petri Nets</em>, volume 2098 of Lecture Notes in Computer Science, pages 87–124. Springer-Verlag, 2004. <a class="reference external" href="https://doi.org/10.1007/b98282">doi:10.1007/b98282</a>.</p>
 </dd>
-<dt class="label" id="id160"><span class="brackets"><a class="fn-backref" href="#id2">LS98</a></span></dt>
+<dt class="label" id="id161"><span class="brackets"><a class="fn-backref" href="#id2">LS98</a></span></dt>
 <dd><p>Xinxin Liu and Scott A. Smolka. Simple linear-time algorithms for minimal fixed points. In Kim Guldstrand Larsen, Sven Skyum, and Glynn Winskel, editors, <em>Proceedings of the 25th International Colloquium on Automata, Languages and Programming (ICALP'98)</em>, volume 1443 of Lecture Notes in Computer Science, 53–66. Springer-Verlag, July 1998.</p>
 </dd>
-<dt class="label" id="id154"><span class="brackets"><a class="fn-backref" href="#id1">MPS95</a></span></dt>
+<dt class="label" id="id155"><span class="brackets"><a class="fn-backref" href="#id1">MPS95</a></span></dt>
 <dd><p>Oded Maler, Amir Pnueli, and Joseph Sifakis. On the synthesis of discrete controllers for timed systems (an extended abstract). In Ernst W. Mayr and Claude Puech, editors, <em>Proceedings of the 12th Symposium on Theoretical Aspects of Computer Science (STACS'95)</em>, volume 900 of Lecture Notes in Computer Science, 229–242. Springer-Verlag, March 1995.</p>
 </dd>
-<dt class="label" id="id138"><span class="brackets"><a class="fn-backref" href="#id4">TA99</a></span></dt>
+<dt class="label" id="id139"><span class="brackets"><a class="fn-backref" href="#id4">TA99</a></span></dt>
 <dd><p>Stavros Tripakis and Karine Altisen. On-the-fly controller synthesis for discrete and dense-time systems. In Jeannette M. Wing, Jim Woodcock, and Jim Davies, editors, <em>Proceedings of the World Congress on Formal Methods (FM'99)</em>, volume 1708 of Lecture Notes in Computer Science, 233–252. Springer-Verlag, September 1999.</p>
 </dd>
-<dt class="label" id="id161"><span class="brackets"><a class="fn-backref" href="#id6">CHP08</a></span></dt>
+<dt class="label" id="id162"><span class="brackets"><a class="fn-backref" href="#id6">CHP08</a></span></dt>
 <dd><p>Krishnendu Chatterjee, Thomas A. Henzinger, and Vinayak S. Prabhu. Trading infinite memory for uniform randomness in timed games. In <em>Proceedings of the International Workshop on Hybrid Systems: Computation and Control, HSCC'08</em>, volume 4981 of Lecture Notes in Computer Science, 87–100. Springer-Verlag, 2008. <a class="reference external" href="https://doi.org/10.1007/978-3-540-78929-1_7">doi:10.1007/978-3-540-78929-1_7</a>.</p>
 </dd>
-<dt class="label" id="id141"><span class="brackets"><a class="fn-backref" href="#id7">BFM15</a></span></dt>
+<dt class="label" id="id142"><span class="brackets"><a class="fn-backref" href="#id7">BFM15</a></span></dt>
 <dd><p>Patricia Bouyer, Erwin Fang, and Nicolas Markey. Permissive strategies in timed automata and games. In Gudmund Grov and Andrew Ireland, editors, <em>Proceedings of the 15th International Workshop on Automated Verification of Critical Systems (AVOCS'15)</em>, volume 72 of Electronic Communications of the EASST. European Association of Software Science and Technology, September 2015.</p>
 </dd>
-<dt class="label" id="id137"><span class="brackets"><a class="fn-backref" href="#id14">Sorensen14</a></span></dt>
+<dt class="label" id="id138"><span class="brackets"><a class="fn-backref" href="#id14">Sorensen14</a></span></dt>
 <dd><p>Mathias Grund Sørensen. Controller synthesis for home automation. Master's thesis, Computer Science Department, Aalborg University, Denmark, 2014.</p>
 </dd>
 </dl>

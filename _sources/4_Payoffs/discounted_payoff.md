@@ -85,8 +85,8 @@ $F\colon  \mathbb{R}^V\to  \mathbb{R}^V$ that maps every vector $\vec x=(x_v)_{v
 to a new vector $(y_v)_{v\in V}$ corresponding to the best that both
 players can hope for in one transition if they are rewarded by vector
 $\vec x$ afterwards: for all $v\in V$, we thus let
-```{math}
-:label: 4-eq:F-contraction
+
+$$
 y_v =
   \begin{cases}
     \max_{(v,v')\in E} [(1-\lambda) c(v,v') + \lambda x_{v'}] &
@@ -95,7 +95,7 @@ y_v =
     \text{ if } v\in  V_\mathrm{Adam}\\
   \end{cases}
 
-```
+$$ (4-eq:F-contraction)
 
 ````{prf:theorem} Positional determinacy
 :label: 4-thm:discounted
@@ -139,10 +139,10 @@ y_v =
   symmetrical argument for Adam allows one to obtain that, for all
   $v\in V$, 
 
-$$\textrm{val}_\mathrm{Adam}(v)\leq x^*_v \leq  \textrm{val}_\mathrm{Eve}(v)\,.$$
+$$val_\mathrm{Adam}(v)\leq x^*_v \leq  val_\mathrm{Eve}(v)\,.$$
 
  Since we
-  always have $\textrm{val}_\mathrm{Eve}(v)\leq  \textrm{val}_\mathrm{Adam}(v)$, we finally obtain that the
+  always have $val_\mathrm{Eve}(v)\leq  val_\mathrm{Adam}(v)$, we finally obtain that the
   game is determined, and that $x^*$ is equal to the optimal value
   vector. Moreover, the two above positional strategies for Eve and
   Adam are optimal.
@@ -152,21 +152,21 @@ $$\textrm{val}_\mathrm{Adam}(v)\leq x^*_v \leq  \textrm{val}_\mathrm{Eve}(v)\,.$
 As for mean payoff (or parity) games, the existence of positional
 optimal (or winning) strategies for both players, and the ability to
 solve in polynomial time the one-player version of these games, allows
-us to obtain easily an $\textrm{NP}\cap \textrm{coNP}$ complexity to solve
+us to obtain easily an $NP\cap coNP$ complexity to solve
 discounted payoff games in the case of integer costs and a rational
 discount factor. The use of the above contracting operator even
 ensures that the Turing machines guessing and checking the optimal
 strategies may indeed be designed as unambiguous (instead of just
-non-deterministic). Calling $\textrm{UP}$ the class of problems that can be
+non-deterministic). Calling $UP$ the class of problems that can be
 solved by an unambiguous Turing machine running in polynomial time,
-and $\textrm{coUP}$ the class of problems whose complement are in $\textrm{UP}$, we
+and $coUP$ the class of problems whose complement are in $UP$, we
 then obtain the theorem:
 
 ````{prf:theorem} Complexity
 :label: 4-thm:disc-up
 
   Discounted payoff games with integer costs and rational discount
-  factor $\lambda$ can be solved in $\textrm{UP}\cap \textrm{coUP}$.
+  factor $\lambda$ can be solved in $UP\cap coUP$.
 
 ````
 
@@ -196,12 +196,13 @@ $$\vec x = (1-\lambda) \vec c + \lambda Q \vec x\,.$$
 
  Letting
   $\lambda = a/b$ the rational discount factor, the above equation
-  rewrites into ```{math}
-:label: 4-eq:1
+  rewrites into 
+$$
  A\vec x = (b-a)\vec
   c
  
-``` with $A= b I- a Q$ ($I$ being the
+$$ (4-eq:1)
+ with $A= b I- a Q$ ($I$ being the
   identity matrix). Therefore, $A$ is a matrix that has at most two
   non-zero elements in each row: each of these non-zero elements can
   be written using at most $N=\max(\log_2 a,\log_2 b)$ bits (therefore
@@ -215,7 +216,7 @@ $$\vec x = (1-\lambda) \vec c + \lambda Q \vec x\,.$$
   polynomial of bits with respect to the size of the costs in the
   arena and $N$.
 
-  The $\textrm{coUP}$ membership follows, as in  {prf:ref}`4-thm:MP-NPcoNP`, from a
+  The $coUP$ membership follows, as in {prf:ref}`4-thm:MP-NPcoNP`, from a
   dual reasoning for Adam, using the above determinacy result for
   discounted payoff games. 
 
@@ -286,21 +287,21 @@ no more switching is applicable is indeed a global optimum for Eve,
 meaning that we have computed a (positional) optimal strategy for her.
 
 To describe the switching policy used to solve discounted payoff
-games, consider a strategy $\sigma$ of Eve, and let $\textrm{val}^\sigma(v)$
+games, consider a strategy $\sigma$ of Eve, and let $val^\sigma(v)$
 be the best possible value Adam can get against $\sigma$, when the
 play starts from vertex $v$:
 
-$$\textrm{val}^\sigma(v) = \inf_\tau
+$$val^\sigma(v) = \inf_\tau
    \mathtt{DiscountedPayoff}_\lambda(v,\sigma,\tau).$$
 
  Two strategies $\sigma$
 and $\sigma'$ are compared with respect to the vectors
-$\vec x= \textrm{val}^\sigma$ and $\vec{x'}= \textrm{val}^{\sigma'}$: we denote by
+$\vec x= val^\sigma$ and $\vec{x'}= val^{\sigma'}$: we denote by
 $\vec x\leq \vec{x'}$ the fact that $x_v\leq x'_v$ for all vertices
-$v\in V$. Computing the vector $\textrm{val}^\sigma$ amounts to solving a
+$v\in V$. Computing the vector $val^\sigma$ amounts to solving a
 one-player discounted payoff game where Eve's vertices are now
 constrained to follow $\sigma$, and thus can be replaced by Adam's
-vertices. By  {prf:ref}`4-thm:discounted`, the solution of such a
+vertices. By {prf:ref}`4-thm:discounted`, the solution of such a
 one-player game is still the unique fixed point of the contraction
 mapping $F_\sigma$ defined for all $\vec x\in  \mathbb{R}^V$ and $v\in V$ by
 
@@ -330,7 +331,7 @@ $$F_\sigma(\vec x)_v = \min_{(v,v')\in E}[(1-\lambda)c(v,v')+\lambda x_{v'}].$$
   \lambda^nx_{v_n}$. Letting $n$ go to $+\infty$, we get that
   $x_v\leq  \mathtt{DiscountedPayoff}_\lambda( \pi)$. Since this holds for all
   strategies of Adam, and $\vec{x^*}$ is the optimal value vector of the
-  game by  {prf:ref}`4-thm:discounted`, we obtain $x_v\leq x^*_v$.
+  game by {prf:ref}`4-thm:discounted`, we obtain $x_v\leq x^*_v$.
 
   Therefore, it follows that $x^*$ is the unique solution of the
   linear program
@@ -346,7 +347,7 @@ $$
 
 ````
 
-On top of computing the value $\textrm{val}^\sigma$ of a strategy $\sigma$
+On top of computing the value $val^\sigma$ of a strategy $\sigma$
 of Eve, we also compute the best response of Adam, that is the best
 (positional) strategy $\tau$ he must play to achieve the lowest payoff
 possible for Eve.
@@ -407,15 +408,15 @@ vertex $2$.
 We now come back to the general case by describing more precisely the
 algorithm in {numref}`4-algo:DP-strategy-improvement`, and prove its
 correctness.  For a particular strategy $\sigma$ for Eve, once
-$\textrm{val}^\sigma$ computed, we can check whether
-$F( \textrm{val}^\sigma)= \textrm{val}^\sigma$ (with $F$ the more general operator
+$val^\sigma$ computed, we can check whether
+$F( val^\sigma)= val^\sigma$ (with $F$ the more general operator
 defined in {eq}`4-eq:F-contraction`). If it is the case, then we
 know that the optimal value vector of the game is indeed
-$\textrm{val}^\sigma$: thus, $\sigma$ is a positional optimal strategy for
+$val^\sigma$: thus, $\sigma$ is a positional optimal strategy for
 Eve, and the best response of Adam is a positional optimal strategy
-for him. In case $F( \textrm{val}^\sigma)\neq \textrm{val}^\sigma$, we consider for
+for him. In case $F( val^\sigma)\neq val^\sigma$, we consider for
 every vertex $v\in  V_\mathrm{Eve}$, the decision $v'$ such that
-$F( \textrm{val}^\sigma)_v=(1-\lambda)c(v,v')+\lambda  \textrm{val}^\sigma(v')$. We
+$F( val^\sigma)_v=(1-\lambda)c(v,v')+\lambda  val^\sigma(v')$. We
 gather all these decisions in a new strategy $\sigma'$ for Eve (only
 modifying $\sigma$ over vertices for which it allows for a strictly
 better value, to ensure the termination of the algorithm).
@@ -438,16 +439,16 @@ The strategy improvement algorithm for discounted payoff games.
 :class: dropdown tip
 
   When the algorithm returns a strategy $\sigma$, it fulfils
-  $F( \textrm{val}^\sigma)\neq  \textrm{val}^\sigma$, and thus,
-  by  {prf:ref}`4-thm:disc-up`, $\textrm{val}^\sigma$ is the value of the game,
+  $F( val^\sigma)\neq  val^\sigma$, and thus,
+  by {prf:ref}`4-thm:disc-up`, $val^\sigma$ is the value of the game,
   and $\sigma$ an optimal strategy of Eve.
 
   We thus only have to prove the termination of the algorithm, as well
   as its complexity. Consider the positional strategy $\sigma$ in the
   beginning of an iteration such that
-  $F( \textrm{val}^\sigma)\neq  \textrm{val}^\sigma$, as well as the strategy
+  $F( val^\sigma)\neq  val^\sigma$, as well as the strategy
   $\sigma'$ updated at the end of the same iteration. We see why
-  $\textrm{val}^\sigma\leq  \textrm{val}^{\sigma'}$, with a strict inequality for
+  $val^\sigma\leq  val^{\sigma'}$, with a strict inequality for
   at least one of the coefficients. If it is correct, then it shows
   that the **while** loop terminates after a finite number of
   iterations, since there are only a finite number of positional
@@ -456,23 +457,23 @@ The strategy improvement algorithm for discounted payoff games.
   since it may have to go through all (or at least a large fraction
   of) the positional strategies.
 
-  We thus prove that $\textrm{val}^\sigma\leq  \textrm{val}^{\sigma'}$. Consider
+  We thus prove that $val^\sigma\leq  val^{\sigma'}$. Consider
   for that the two best responses of Adam, $\tau$ and $\tau'$
-  respectively. As in the proof of  {prf:ref}`4-thm:disc-up`, letting $Q$,
+  respectively. As in the proof of {prf:ref}`4-thm:disc-up`, letting $Q$,
   $\vec c$, $Q'$, and $\vec {c'}$ the respective matrices and cost
   vectors described by the profiles of strategies $(\sigma,\tau)$ and
   $(\sigma',\tau')$, we have
 
-$$\textrm{val}^\sigma = (1-\lambda) \vec c + \lambda Q  \textrm{val}^\sigma \qquad
-    \text{ and } \qquad  \textrm{val}^{\sigma'} = (1-\lambda) \vec {c'} +
-    \lambda Q'  \textrm{val}^{\sigma'}\,.$$
+$$val^\sigma = (1-\lambda) \vec c + \lambda Q  val^\sigma \qquad
+    \text{ and } \qquad  val^{\sigma'} = (1-\lambda) \vec {c'} +
+    \lambda Q'  val^{\sigma'}\,.$$
 
   Therefore, by adding and subtracting $\lambda Q'
-   \textrm{val}^\sigma$ we obtain:
+   val^\sigma$ we obtain:
 
-$$\textrm{val}^{\sigma'}- \textrm{val}^\sigma=\lambda Q'
-    ( \textrm{val}^{\sigma'}- \textrm{val}^{\sigma}) + \underbrace{\lambda
-      (Q'-Q) \textrm{val}^\sigma + (1-\lambda)(\vec{c'}-\vec c)}_{=\vec
+$$val^{\sigma'}- val^\sigma=\lambda Q'
+    ( val^{\sigma'}- val^{\sigma}) + \underbrace{\lambda
+      (Q'-Q) val^\sigma + (1-\lambda)(\vec{c'}-\vec c)}_{=\vec
       \delta}\,.$$
 
  Since $Q'$ is a positive matrix with coefficients in
@@ -481,13 +482,13 @@ $$\textrm{val}^{\sigma'}- \textrm{val}^\sigma=\lambda Q'
   $\sum_{i=0}^\infty \lambda^i Q'^i$. In particular, the inverse
   $(I-\lambda Q')^{-1}$ has only non negative coefficients, and its
   diagonal coefficients are positive. Therefore, to show that
-  $\textrm{val}^{\sigma'}- \textrm{val}^\sigma=(I-\lambda Q')^{-1} \vec\delta$ is
+  $val^{\sigma'}- val^\sigma=(I-\lambda Q')^{-1} \vec\delta$ is
   non-negative with at least one positive coefficient, it suffices to
   show that $\vec\delta$ is non-negative with at least one positive
   coefficient. Consider thus $v\in V$:
   
   *  If $v\in  V_\mathrm{Eve}$, we have
-    $\delta_v=\lambda( \textrm{val}^{\sigma}(v'_1)- \textrm{val}^\sigma(v_1)) +
+    $\delta_v=\lambda( val^{\sigma}(v'_1)- val^\sigma(v_1)) +
     (1-\lambda)(c(v,v'_1)-c(v,v_1))$, with
     $\sigma(v)=(v,v_1)$ and $\sigma'(v)=(v,v'_1)$. If $v_1=v'_1$, then
     $\delta_v=0$. Otherwise, since $\sigma'$ is obtained by switching
@@ -518,17 +519,17 @@ of {eq}`4-eq:F-contraction` is to compute the sequence
 $\big(F^n(\vec 0)\big)_{n\in  \mathbb{N}}$ that converges towards the value
 vector. However, the sequence is not stationary in general, and thus,
 to obtain an exact value we find a index $K$ for which $F^K(\vec 0)$
-is close to $\textrm{val}$, as well as a rounding procedure to get the exact
-value $\textrm{val}$ from its approximation $F^K(\vec 0)$. It is mainly
-based on the following technical lemma stating that $\textrm{val}(v)$ is a
+is close to $val$, as well as a rounding procedure to get the exact
+value $val$ from its approximation $F^K(\vec 0)$. It is mainly
+based on the following technical lemma stating that $val(v)$ is a
 rational number with a denominator that we can bound, in a similar
-manner as for \cref{4-cor:rational-MP} in the mean payoff setting:
+manner as for {prf:ref}`4-cor:rational-MP` in the mean payoff setting:
 
 ````{prf:lemma} Upper bound on rational values in mean payoff games
 :label: 4-lem:rational-discounted
 
   If the arena has integer costs and $\lambda=\frac a b\in (0,1)$,
-  then for all vertices $v\in V$, $D\times  \textrm{val}(v)\in  \mathbb{Z}$, with
+  then for all vertices $v\in V$, $D\times  val(v)\in  \mathbb{Z}$, with
   $D= b^{n-1}\prod_{j=1}^{n}(b^j-a^j)$.
 
 ````
@@ -537,18 +538,19 @@ manner as for \cref{4-cor:rational-MP} in the mean payoff setting:
 :class: dropdown tip
 
   By picking any two optimal positional strategies for Eve and Adam
-  (by  {prf:ref}`4-thm:discounted`), we obtain a play $\pi$ starting in
+  (by {prf:ref}`4-thm:discounted`), we obtain a play $\pi$ starting in
   vertex $v\in V$ that has a discounted payoff
-  $\mathtt{DiscountedPayoff}(\pi) =  \textrm{val}(v)$. Since both strategies are
+  $\mathtt{DiscountedPayoff}(\pi) =  val(v)$. Since both strategies are
   positional, the play $\pi$ is a lasso: thus, the sequence of costs
   encountered through the play is of the form
   $w_0,w_1,\ldots,w_{k-1},(w_{k},\ldots,w_\ell)^\omega$, with
   $0\leq k\leq\ell< n$ and $w_i\in  \mathbb{Z}$. We can thus compute the
   optimal value exactly:\todo{Ça ne passe pas dans la version
   html... pourquoi ?}
-  ```{math}
+  
+$$
 
-     \textrm{val}(v) &= (1-\lambda) \left[\sum_{i=0}^{k-1} \lambda^i w_i +
+     val(v) &= (1-\lambda) \left[\sum_{i=0}^{k-1} \lambda^i w_i +
                \lambda^{k}\sum_{m=0}^\infty
                \lambda^{(\ell-k+1)m}\sum_{i=0}^{\ell-k}
                \lambda^iw_{k+i}\right]\\
@@ -563,15 +565,16 @@ manner as for \cref{4-cor:rational-MP} in the mean payoff setting:
              &= \frac{N}{b^{n-1}\prod_{j=1}^{n}(b^j-a^j)} \qquad \text{(with
                $N\in  \mathbb{Z}$)} 
   
-```
-  which proves that $\textrm{val}(v)\times D = N\in  \mathbb{Z}$.
+$$
+
+  which proves that $val(v)\times D = N\in  \mathbb{Z}$.
 
 ````
 
-Therefore, $\textrm{val}(v)$ is a rational number with a denominator bounded
+Therefore, $val(v)$ is a rational number with a denominator bounded
 by $D$. In particular, if we have an approximation $\eta$ of
-$\textrm{val}(v)$ such that $| \textrm{val}(v)-\eta|<\frac 1 {2D}$, we get that
-$\textrm{val}(v) = \frac{\lfloor D\eta+1/2\rfloor}D$. Using the fact that
+$val(v)$ such that $| val(v)-\eta|<\frac 1 {2D}$, we get that
+$val(v) = \frac{\lfloor D\eta+1/2\rfloor}D$. Using the fact that
 operator $F$ is contracting, we can find an index $K$ after which this
 rounding leads to the correct optimal value vector. In the following,
 we let again $W = \max_{(v,c,v')\in E} |c|$ the maximal weight on edges of the arena, in
@@ -583,7 +586,7 @@ absolute values.
   Let $K\in  \mathbb{N}$ at most
   $\frac{1}{-\log_2\lambda} \left(\frac{n(n+3)}{2}\log_2b +
     \log_2 W+2\right)$. Then,
-  $\|F^K(\vec 0)- \textrm{val}\|_\infty < \frac 1 {2D}$.
+  $\|F^K(\vec 0)- val\|_\infty < \frac 1 {2D}$.
 
 ````
 
@@ -596,10 +599,10 @@ absolute values.
   \log_{1/\lambda}(4DW)$. This implies that
   $\lambda^KW\leq \frac{1}{4D}< \frac 1 {2D}$. But $F$ is
   $\lambda$-contracting, so that
-  $\|F^K(\vec 0)- \textrm{val}\|_\infty\leq
-  \lambda^K\| \textrm{val}\|_\infty$. Since $\textrm{val}(v)$ is the discounted sum
+  $\|F^K(\vec 0)- val\|_\infty\leq
+  \lambda^K\| val\|_\infty$. Since $val(v)$ is the discounted sum
   of weights all bounded in absolute value by $W$, we also know that
-  $\| \textrm{val}\|_\infty\leq W$ which allows us to conclude.
+  $\| val\|_\infty\leq W$ which allows us to conclude.
 
 ````
 
@@ -629,7 +632,7 @@ The value iteration algorithm for discounted payoff games.
 :class: dropdown tip
 
   The correctness of the algorithm follows
-  from  {prf:ref}`4-lem:number-steps-VI-discounted`.  This algorithm runs
+  from {prf:ref}`4-lem:number-steps-VI-discounted`.  This algorithm runs
   in pseudopolynomial time (and not polynomial-time) because of the
   dependence in the discount factor $\lambda$. Indeed, consider that
   $\lambda = 1-\frac 1 b$, with $b\in  \mathbb{N}\setminus \{0\}$. Then, we may
@@ -666,13 +669,13 @@ mean payoff game by a binary search, this other algorithm (indeed the
 oldest one) is more direct even if it does not obtain a better
 complexity.
 
-Recall that \cref{4-cor:rational-MP} states that, in an arena where
-costs are integers, the mean payoff value $\textrm{val}(v)$ is a rational
+Recall that {prf:ref}`4-cor:rational-MP` states that, in an arena where
+costs are integers, the mean payoff value $val(v)$ is a rational
 number with denominator in $\{1,\ldots,n\}$. The minimal distance
 between two rational numbers $\frac \alpha k$ and $\frac{\alpha'}{k'}$
 with $k,k'\in \{1,\ldots,n\}$ is
 $\frac 1{n-1}-\frac 1{n}=\frac{1}{n(n-1)}$. Thus, a
-$\frac{1}{2n(n-1)}$ approximation $\beta$ of $\textrm{val}(v)$ is enough
+$\frac{1}{2n(n-1)}$ approximation $\beta$ of $val(v)$ is enough
 to apply a rounding procedure finding the only rational
 $\frac \alpha k$ with $k\in \{1,\ldots,n\}$ in interval
 $[\beta-\frac{1}{2n(n-1)}, \beta+\frac{1}{2n(n-1)}]$. By
@@ -684,11 +687,11 @@ approximation:
 :label: 4-thm:MP-Zwick-Paterson
 
   Let $\mathcal{A}$ be an arena with integer costs. Let
-  $\lambda\in(0,1)$. We let $\textrm{val}(v)$ be the value of vertex $v$ in
-  the mean payoff game on $\mathcal{A}$, and $\textrm{val}_\lambda(v)$ be the
+  $\lambda\in(0,1)$. We let $val(v)$ be the value of vertex $v$ in
+  the mean payoff game on $\mathcal{A}$, and $val_\lambda(v)$ be the
   value of vertex $v$ in the discounted payoff game on $\mathcal{A}$, with
   $\lambda$ as discount factor. Then
-  $\| \textrm{val}- \textrm{val}_\lambda\|_\infty\leq 2n(1-\lambda)W$.
+  $\| val- val_\lambda\|_\infty\leq 2n(1-\lambda)W$.
 
 ````
 
@@ -696,28 +699,28 @@ approximation:
 :class: dropdown tip
 
   Let $v\in V$. We prove the inequality
-  $\textrm{val}_\lambda(v)- \textrm{val}(v)\geq -2n(1-\lambda)W$ by reasoning on
+  $val_\lambda(v)- val(v)\geq -2n(1-\lambda)W$ by reasoning on
   Eve's strategies: a similar reasoning on Adam's strategies allows
   one to obtain the other inequality
-  $\textrm{val}_\lambda(v)- \textrm{val}(v)\leq 2n(1-\lambda)W$.
+  $val_\lambda(v)- val(v)\leq 2n(1-\lambda)W$.
 
-  By  {prf:ref}`4-thm:mean_payoff_positional`, we may select positional optimal
+  By {prf:ref}`4-thm:mean_payoff_positional`, we may select positional optimal
   strategies for Eve and Adam in the mean payoff game, denoted by
   $\sigma^*$ and $\tau^*$ respectively. As we have already seen, the play
   $\pi$ starting in $v$ following $\sigma^*$ and $\tau^*$ is then a
   lasso, with a sequence of costs encountered of the form
   $w_0,w_1,\ldots,w_{k-1},(w_k,\ldots,w_\ell)^\omega$ with
   $0\leq k\leq \ell<n$. Then,
-  $\textrm{val}(v)=\frac 1 {\ell-k+1}\sum_{i=k}^\ell w_i$. By choosing the
+  $val(v)=\frac 1 {\ell-k+1}\sum_{i=k}^\ell w_i$. By choosing the
   same strategy $\sigma$ for Eve in the discounted payoff game, we
   know that Eve's value is at least
   $\mathtt{DiscountedPayoff}_\lambda( \pi)$: therefore, by the determinacy
-  result of  {prf:ref}`4-thm:discounted`,
-  $\textrm{val}_\lambda(v)\geq  \mathtt{DiscountedPayoff}_\lambda( \pi)$. We now
+  result of {prf:ref}`4-thm:discounted`,
+  $val_\lambda(v)\geq  \mathtt{DiscountedPayoff}_\lambda( \pi)$. We now
   compute precisely $\mathtt{DiscountedPayoff}_\lambda( \pi)$:\todo{Ne
   fonctionne pas en HTML}
-  ```{math}
-:label: 4-eq:1
+  
+$$
 
      \mathtt{DiscountedPayoff}_\lambda( \pi)
     &=
@@ -731,7 +734,8 @@ approximation:
       \sum_{i=0}^{\ell-k}\lambda^iw_{k+i} \tag*{
 }
   
-```
+$$ (4-eq:1)
+
   By shifting all weights by $W$, we can rewrite the remaining
   sum as:
 
@@ -741,7 +745,8 @@ $$\sum_{i=0}^{\ell-k}\lambda^iw_{k+i} =
 
   By using the fact that $w_{k+i}+W$ is non-negative and
   $\lambda^i\geq \lambda^{\ell-k}$, we obtain
-  ```{math}
+  
+$$
 
     \sum_{i=0}^{\ell-k}\lambda^iw_{k+i}
     &\geq \lambda^{\ell-k}
@@ -751,28 +756,29 @@ $$\sum_{i=0}^{\ell-k}\lambda^iw_{k+i} =
       \sum_{i=0}^{\ell-k}w_{k+i} + (\ell-k+1)\lambda^{\ell-k}W
       -W \frac{1-\lambda^{\ell-k+1}}{1-\lambda}
   
-```
-  Therefore, since $\textrm{val}(v)=\frac 1 {\ell-k+1}\sum_{i=k}^\ell w_i$,
+$$
+
+  Therefore, since $val(v)=\frac 1 {\ell-k+1}\sum_{i=k}^\ell w_i$,
   we obtain
 
 $$\sum_{i=0}^{\ell-k}\lambda^iw_{k+i}\geq
-    \lambda^{\ell-k}(\ell-k+1)( \textrm{val}(v)+W)-
+    \lambda^{\ell-k}(\ell-k+1)( val(v)+W)-
     W\frac{1-\lambda^{\ell-k+1}}{1-\lambda} \,.$$
 
   Simplifying {eq}`4-eq:1` gives:
 
 $$\mathtt{DiscountedPayoff}_\lambda( \pi)
     \geq -W+ \frac{(1-\lambda)(\ell-k+1)}{1-\lambda^{\ell-k+1}}
-    \lambda^\ell ( \textrm{val}(v) + W)$$
+    \lambda^\ell ( val(v) + W)$$
 
  Since
   $\frac {1-\lambda^{\ell-k+1}}{1-\lambda} =
-  \sum_{i=0}^{\ell-k}\lambda^i < \ell-k+1$, and $\textrm{val}(v) + W\geq 0$
+  \sum_{i=0}^{\ell-k}\lambda^i < \ell-k+1$, and $val(v) + W\geq 0$
   (the mean payoff is an average of costs of the arena, so it is in
   the interval $[-W,W]$), we have
 
 $$\mathtt{DiscountedPayoff}_\lambda( \pi)
-    \geq -W + \lambda^\ell ( \textrm{val}(v) + W)$$
+    \geq -W + \lambda^\ell ( val(v) + W)$$
 
  Finally, notice that
   $\ell\leq n$, so that
@@ -780,17 +786,19 @@ $$\mathtt{DiscountedPayoff}_\lambda( \pi)
   that
   $\frac{1-\lambda^{n}}{1-\lambda} = \sum_{i=0}^{n-1}\lambda^i <
   n$. Therefore,
-  ```{math}
+  
+$$
 
      \mathtt{DiscountedPayoff}_\lambda( \pi)
-    &\geq -W + (1-n(1-\lambda)) ( \textrm{val}(v) + W)\\
-    &= -n(1-\lambda)(W+ \textrm{val}(v)) +  \textrm{val}(v)\\
-    &\geq -2n(1-\lambda)W +  \textrm{val}(v)
+    &\geq -W + (1-n(1-\lambda)) ( val(v) + W)\\
+    &= -n(1-\lambda)(W+ val(v)) +  val(v)\\
+    &\geq -2n(1-\lambda)W +  val(v)
   
-```
-  by using again $\textrm{val}(v)\leq W$. We obtain
+$$
 
-$$\textrm{val}_\lambda(v)- \textrm{val}(v)\geq -2n(1-\lambda)W$$
+  by using again $val(v)\leq W$. We obtain
+
+$$val_\lambda(v)- val(v)\geq -2n(1-\lambda)W$$
 
   as wanted, which allows us to conclude. 
 
@@ -826,7 +834,7 @@ before:
 
   Deciding the winner (with respect to a threshold) for mean payoff
   games, and deciding the winner for parity games, can be done in
-  $\textrm{UP}\cap \textrm{coUP}$.
+  $UP\cap coUP$.
 
 ````
 
@@ -834,9 +842,9 @@ before:
 :class: dropdown tip
 
   The previous polynomial-time reduction from mean payoff to
-  discounted payoff games allows to lift the $\textrm{UP}\cap \textrm{coUP}$ complexity
-  of  {prf:ref}`4-thm:disc-up`. Moreover, the polynomial-time reduction
-  of  {prf:ref}`4-thm:parity2MP` allows one to obtain the same complexity for
+  discounted payoff games allows to lift the $UP\cap coUP$ complexity
+  of {prf:ref}`4-thm:disc-up`. Moreover, the polynomial-time reduction
+  of {prf:ref}`4-thm:parity2MP` allows one to obtain the same complexity for
   parity games. 
 
 ````

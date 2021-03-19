@@ -707,12 +707,12 @@
 <div class="math notranslate nohighlight">
 \[\renewcommand{\Game}{\game}
 \]</div>
-<p>Recall that the objective <span class="math notranslate nohighlight">\(\mathtt{Reach}\)</span> requires that the colour <span class="math notranslate nohighlight">\(\textrm{Win}\)</span> appears at least once and
-<span class="math notranslate nohighlight">\(\mathtt{Safe}\)</span> requires the the colour <span class="math notranslate nohighlight">\(\textrm{Lose}\)</span> never appears.
-We identify the colour <span class="math notranslate nohighlight">\(\textrm{Win}\)</span> with <span class="math notranslate nohighlight">\(\textsf{col}^{-1}( \textrm{Win})\)</span> the set of vertices labelled <span class="math notranslate nohighlight">\(\textrm{Win}\)</span>,
-so we write <span class="math notranslate nohighlight">\(v \in  \textrm{Win}\)</span> when <span class="math notranslate nohighlight">\(\textsf{col}(v) =  \textrm{Win}\)</span>, and similarly for <span class="math notranslate nohighlight">\(\textrm{Lose}\)</span>.</p>
+<p>Recall that the objective <span class="math notranslate nohighlight">\(\mathtt{Reach}\)</span> requires that the colour <span class="math notranslate nohighlight">\(Win\)</span> appears at least once and
+<span class="math notranslate nohighlight">\(\mathtt{Safe}\)</span> requires the the colour <span class="math notranslate nohighlight">\(Lose\)</span> never appears.
+We identify the colour <span class="math notranslate nohighlight">\(Win\)</span> with <span class="math notranslate nohighlight">\(\textsf{col}^{-1}( Win)\)</span> the set of vertices labelled <span class="math notranslate nohighlight">\(Win\)</span>,
+so we write <span class="math notranslate nohighlight">\(v \in  Win\)</span> when <span class="math notranslate nohighlight">\(\textsf{col}(v) =  Win\)</span>, and similarly for <span class="math notranslate nohighlight">\(Lose\)</span>.</p>
 <div class="proof theorem admonition" id="2-thm:reachability">
-<p class="admonition-title"><span class="caption-number">Theorem 33 </span> (Positional determinacy and complexity of reachability games)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 39 </span> (Positional determinacy and complexity of reachability games)</p>
 <div class="theorem-content section" id="proof-content">
 <p>Reachability objectives are uniformly positionally determined for both players.
 There exists an algorithm for computing the winning regions of reachability games in linear time and space.
@@ -725,90 +725,90 @@ We refer to Section <a class="reference internal" href="../1_Introduction/comput
 The complexity would be slightly different in the Turing model: an additional <span class="math notranslate nohighlight">\(\log(m)\)</span> factor would be incurred for manipulating numbers of order <span class="math notranslate nohighlight">\(m\)</span>, which the unit cost RAM model allows us to conveniently hide.</p>
 <p>In the litterature the complexity <span class="math notranslate nohighlight">\(O(n + m)\)</span> is often reported for solving reachability games.
 Since we make the assumption that every vertex has an outgoing edge this implies that <span class="math notranslate nohighlight">\(n \le m\)</span>, so <span class="math notranslate nohighlight">\(O(n + m) = O(m)\)</span>.</p>
-<p>Towards proving  <a class="reference internal" href="#2-thm:reachability">Theorem 33</a> let us introduce some notations.
+<p>Towards proving <a class="reference internal" href="#2-thm:reachability">Theorem 39</a> let us introduce some notations.
 Let us consider a reachability game <span class="math notranslate nohighlight">\(\Game = ( \mathcal{A},  \mathtt{Reach}[ \textsf{col}])\)</span>.
-For a subset <span class="math notranslate nohighlight">\(F \subseteq V\)</span>, we let <span class="math notranslate nohighlight">\(\textrm{Pre}_\mathrm{Eve}(F) \subseteq V\)</span> the set of vertices from which Eve can ensure
+For a subset <span class="math notranslate nohighlight">\(F \subseteq V\)</span>, we let <span class="math notranslate nohighlight">\(Pre_\mathrm{Eve}(F) \subseteq V\)</span> the set of vertices from which Eve can ensure
 that the next vertex is in <span class="math notranslate nohighlight">\(F\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{array}{lll}
- \textrm{Pre}_\mathrm{Eve}(F) &amp; = &amp;  \left\{ v \in V_E : \exists (v,v') \in E,\ v' \in F \right\} \\
+ Pre_\mathrm{Eve}(F) &amp; = &amp;  \left\{ v \in V_E : \exists (v,v') \in E,\ v' \in F \right\} \\
         &amp; \cup &amp;  \left\{ v \in V_A : \forall (v,v') \in E,\ v' \in F \right\}.
 \end{array}
 \end{split}\]</div>
 <p>Let us define the following operator on subsets of vertices:</p>
 <div class="math notranslate nohighlight">
 \[
-X \mapsto  \textrm{Win} \cup  \textrm{Pre}_\mathrm{Eve}(X).
+X \mapsto  Win \cup  Pre_\mathrm{Eve}(X).
 \]</div>
 <p>We note that this operator is monotonic when equipping the powerset of vertices with the inclusion preorder:
-if <span class="math notranslate nohighlight">\(F \subseteq F'\)</span> then <span class="math notranslate nohighlight">\(\textrm{Pre}_\mathrm{Eve}(F) \subseteq  \textrm{Pre}_\mathrm{Eve}(F')\)</span>.
-Hence  <a class="reference internal" href="../1_Introduction/fixed_points.html#1-thm:kleene">Theorem 24</a> applies: this operator has a least fixed point
-which we call the attractor of <span class="math notranslate nohighlight">\(\textrm{Win}\)</span> for Eve and write <span class="math notranslate nohighlight">\(\textrm{Attr}_\mathrm{Eve}( \textrm{Win})\)</span>,
-and it is computed by the following sequence: we let <span class="math notranslate nohighlight">\(\textrm{Attr}_\mathrm{Eve}^0( \textrm{Win}) =  \textrm{Win}\)</span> and</p>
+if <span class="math notranslate nohighlight">\(F \subseteq F'\)</span> then <span class="math notranslate nohighlight">\(Pre_\mathrm{Eve}(F) \subseteq  Pre_\mathrm{Eve}(F')\)</span>.
+Hence <a class="reference internal" href="../1_Introduction/fixed_points.html#1-thm:kleene">Theorem 26</a> applies: this operator has a least fixed point
+which we call the attractor of <span class="math notranslate nohighlight">\(Win\)</span> for Eve and write <span class="math notranslate nohighlight">\(Attr_\mathrm{Eve}( Win)\)</span>,
+and it is computed by the following sequence: we let <span class="math notranslate nohighlight">\(Attr_\mathrm{Eve}^0( Win) =  Win\)</span> and</p>
 <div class="math notranslate nohighlight">
 \[ \begin{align}\begin{aligned}
- \textrm{Attr}_\mathrm{Eve}^{k+1}( \textrm{Win}) =  \textrm{Attr}_\mathrm{Eve}^{k}( \textrm{Win})\ \cup\  \textrm{Pre}_\mathrm{Eve}( \textrm{Attr}_\mathrm{Eve}^{k}( \textrm{Win})).\\```{margin}
+ Attr_\mathrm{Eve}^{k+1}( Win) =  Attr_\mathrm{Eve}^{k}( Win)\ \cup\  Pre_\mathrm{Eve}( Attr_\mathrm{Eve}^{k}( Win)).\\```{margin}
 For technical convenience we shift the sequence by one, ignoring the first term which is the empty set
 ```\end{aligned}\end{align} \]</div>
-<p>This constructs a sequence <span class="math notranslate nohighlight">\(( \textrm{Attr}_\mathrm{Eve}^{k}( \textrm{Win}))_{k \in  \mathbb{N}}\)</span> of non-decreasing subsets of <span class="math notranslate nohighlight">\(V\)</span>.
+<p>This constructs a sequence <span class="math notranslate nohighlight">\(( Attr_\mathrm{Eve}^{k}( Win))_{k \in  \mathbb{N}}\)</span> of non-decreasing subsets of <span class="math notranslate nohighlight">\(V\)</span>.
 If the game is finite and <span class="math notranslate nohighlight">\(n\)</span> is the number of vertices,
-the sequence stabilises after at most <span class="math notranslate nohighlight">\(n-1\)</span> steps, <strong>i.e.</strong> <span class="math notranslate nohighlight">\(\textrm{Attr}_\mathrm{Eve}^{n-1}( \textrm{Win}) =  \textrm{Attr}_\mathrm{Eve}^{n}( \textrm{Win}) =  \textrm{Attr}_\mathrm{Eve}( \textrm{Win})\)</span>.</p>
-<p>Let us drop the finiteness assumption: if the game is infinite but has finite outdegree, meaning that for any vertex there is a finite number of outgoing edges, then the operator above preserves suprema so thanks to  <a class="reference internal" href="../1_Introduction/fixed_points.html#1-thm:kleene">Theorem 24</a>
-we have <span class="math notranslate nohighlight">\(\textrm{Attr}_\mathrm{Eve}( \textrm{Win}) = \bigcup_{k \in  \mathbb{N}}  \textrm{Attr}_\mathrm{Eve}^k( \textrm{Win})\)</span>.
+the sequence stabilises after at most <span class="math notranslate nohighlight">\(n-1\)</span> steps, <strong>i.e.</strong> <span class="math notranslate nohighlight">\(Attr_\mathrm{Eve}^{n-1}( Win) =  Attr_\mathrm{Eve}^{n}( Win) =  Attr_\mathrm{Eve}( Win)\)</span>.</p>
+<p>Let us drop the finiteness assumption: if the game is infinite but has finite outdegree, meaning that for any vertex there is a finite number of outgoing edges, then the operator above preserves suprema so thanks to <a class="reference internal" href="../1_Introduction/fixed_points.html#1-thm:kleene">Theorem 26</a>
+we have <span class="math notranslate nohighlight">\(Attr_\mathrm{Eve}( Win) = \bigcup_{k \in  \mathbb{N}}  Attr_\mathrm{Eve}^k( Win)\)</span>.
 In full generality the operator does not preserve suprema and the use of ordinals is necessary:
-we define the sequence <span class="math notranslate nohighlight">\(( \textrm{Attr}_\mathrm{Eve}^{\alpha}( \textrm{Win}))\)</span> indexed by ordinals up to the cardinal of <span class="math notranslate nohighlight">\(\Game\)</span>,
-the case of a limit ordinal <span class="math notranslate nohighlight">\(\alpha\)</span> being <span class="math notranslate nohighlight">\(\textrm{Attr}_\mathrm{Eve}^{\alpha}( \textrm{Win}) = \bigcup_{\beta &lt; \alpha}  \textrm{Attr}_\mathrm{Eve}^{\beta}( \textrm{Win})\)</span>.
-We then show that <span class="math notranslate nohighlight">\(\textrm{Attr}_\mathrm{Eve}( \textrm{Win})\)</span> is the union of all elements in this sequence.</p>
-<p>We do not elaborate further this most general case but note that the overhead is mostly technical, the proof below of  <a class="reference internal" href="#2-lem:reachability">Lemma 34</a> can be adapted with little changes using a transfinite induction.</p>
-<p>The following lemma shows how the attractor yields a solution to reachability games and directly implies  <a class="reference internal" href="#2-thm:reachability">Theorem 33</a>.</p>
+we define the sequence <span class="math notranslate nohighlight">\(( Attr_\mathrm{Eve}^{\alpha}( Win))\)</span> indexed by ordinals up to the cardinal of <span class="math notranslate nohighlight">\(\Game\)</span>,
+the case of a limit ordinal <span class="math notranslate nohighlight">\(\alpha\)</span> being <span class="math notranslate nohighlight">\(Attr_\mathrm{Eve}^{\alpha}( Win) = \bigcup_{\beta &lt; \alpha}  Attr_\mathrm{Eve}^{\beta}( Win)\)</span>.
+We then show that <span class="math notranslate nohighlight">\(Attr_\mathrm{Eve}( Win)\)</span> is the union of all elements in this sequence.</p>
+<p>We do not elaborate further this most general case but note that the overhead is mostly technical, the proof below of <a class="reference internal" href="#2-lem:reachability">Lemma 40</a> can be adapted with little changes using a transfinite induction.</p>
+<p>The following lemma shows how the attractor yields a solution to reachability games and directly implies <a class="reference internal" href="#2-thm:reachability">Theorem 39</a>.</p>
 <div class="proof lemma admonition" id="2-lem:reachability">
-<p class="admonition-title"><span class="caption-number">Lemma 34 </span> (Characterisation of the winning region of reachability games using attractors)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 40 </span> (Characterisation of the winning region of reachability games using attractors)</p>
 <div class="lemma-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\mathcal{G}\)</span> a reachability game.
-Then <span class="math notranslate nohighlight">\(W_\mathrm{Eve}( \mathcal{G}) =  \textrm{Attr}_\mathrm{Eve}( \textrm{Win})\)</span>, and:</p>
+Then <span class="math notranslate nohighlight">\(W_\mathrm{Eve}( \mathcal{G}) =  Attr_\mathrm{Eve}( Win)\)</span>, and:</p>
 <ul class="simple">
-<li><p>there exists a uniform positional strategy <span class="math notranslate nohighlight">\(\sigma\)</span> for Eve called the attractor strategy defined on <span class="math notranslate nohighlight">\(\textrm{Attr}_\mathrm{Eve}( \textrm{Win}) \setminus  \textrm{Win}\)</span>
-which ensures <span class="math notranslate nohighlight">\(\mathtt{Reach}[ \textrm{Win}]\)</span> from any vertex in <span class="math notranslate nohighlight">\(\textrm{Attr}_\mathrm{Eve}( \textrm{Win})\)</span>,
-with the property that for any <span class="math notranslate nohighlight">\(k \in  \mathbb{N}\)</span> all plays consistent with <span class="math notranslate nohighlight">\(\sigma\)</span> from <span class="math notranslate nohighlight">\(\textrm{Attr}_\mathrm{Eve}^{k}( \textrm{Win})\)</span> reach <span class="math notranslate nohighlight">\(\textrm{Win}\)</span> within <span class="math notranslate nohighlight">\(k\)</span> steps
-and remain in <span class="math notranslate nohighlight">\(\textrm{Attr}_\mathrm{Eve}( \textrm{Win})\)</span> until doing so;</p></li>
-<li><p>there exists a uniform positional strategy <span class="math notranslate nohighlight">\(\tau\)</span> for Adam called the counter-attractor strategy defined on <span class="math notranslate nohighlight">\(V \setminus  \textrm{Attr}_\mathrm{Eve}( \textrm{Win})\)</span>
-which ensures <span class="math notranslate nohighlight">\(\mathtt{Safe}[ \textrm{Win}]\)</span> from any vertex in <span class="math notranslate nohighlight">\(V \setminus  \textrm{Attr}_\mathrm{Eve}( \textrm{Win})\)</span>,
-with the property that all plays consistent with <span class="math notranslate nohighlight">\(\tau\)</span> remain in <span class="math notranslate nohighlight">\(V \setminus  \textrm{Attr}_\mathrm{Eve}( \textrm{Win})\)</span>.</p></li>
+<li><p>there exists a uniform positional strategy <span class="math notranslate nohighlight">\(\sigma\)</span> for Eve called the attractor strategy defined on <span class="math notranslate nohighlight">\(Attr_\mathrm{Eve}( Win) \setminus  Win\)</span>
+which ensures <span class="math notranslate nohighlight">\(\mathtt{Reach}[ Win]\)</span> from any vertex in <span class="math notranslate nohighlight">\(Attr_\mathrm{Eve}( Win)\)</span>,
+with the property that for any <span class="math notranslate nohighlight">\(k \in  \mathbb{N}\)</span> all plays consistent with <span class="math notranslate nohighlight">\(\sigma\)</span> from <span class="math notranslate nohighlight">\(Attr_\mathrm{Eve}^{k}( Win)\)</span> reach <span class="math notranslate nohighlight">\(Win\)</span> within <span class="math notranslate nohighlight">\(k\)</span> steps
+and remain in <span class="math notranslate nohighlight">\(Attr_\mathrm{Eve}( Win)\)</span> until doing so;</p></li>
+<li><p>there exists a uniform positional strategy <span class="math notranslate nohighlight">\(\tau\)</span> for Adam called the counter-attractor strategy defined on <span class="math notranslate nohighlight">\(V \setminus  Attr_\mathrm{Eve}( Win)\)</span>
+which ensures <span class="math notranslate nohighlight">\(\mathtt{Safe}[ Win]\)</span> from any vertex in <span class="math notranslate nohighlight">\(V \setminus  Attr_\mathrm{Eve}( Win)\)</span>,
+with the property that all plays consistent with <span class="math notranslate nohighlight">\(\tau\)</span> remain in <span class="math notranslate nohighlight">\(V \setminus  Attr_\mathrm{Eve}( Win)\)</span>.</p></li>
 </ul>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
-<p>We first show that <span class="math notranslate nohighlight">\(\textrm{Attr}_\mathrm{Eve}( \textrm{Win}) \subseteq  W_\mathrm{Eve}( \mathcal{G})\)</span>.
-For <span class="math notranslate nohighlight">\(v \in  \textrm{Attr}_\mathrm{Eve}( \textrm{Win})\)</span>, the rank of <span class="math notranslate nohighlight">\(v\)</span> is the smallest <span class="math notranslate nohighlight">\(k \in  \mathbb{N}\)</span> such that <span class="math notranslate nohighlight">\(v \in  \textrm{Attr}_\mathrm{Eve}^{k}( \textrm{Win})\)</span>.
+<p>We first show that <span class="math notranslate nohighlight">\(Attr_\mathrm{Eve}( Win) \subseteq  W_\mathrm{Eve}( \mathcal{G})\)</span>.
+For <span class="math notranslate nohighlight">\(v \in  Attr_\mathrm{Eve}( Win)\)</span>, the rank of <span class="math notranslate nohighlight">\(v\)</span> is the smallest <span class="math notranslate nohighlight">\(k \in  \mathbb{N}\)</span> such that <span class="math notranslate nohighlight">\(v \in  Attr_\mathrm{Eve}^{k}( Win)\)</span>.
 We use the rank to define a positional strategy <span class="math notranslate nohighlight">\(\sigma\)</span> for Eve.
-Let <span class="math notranslate nohighlight">\(v \in  V_\mathrm{Eve}\)</span> of rank <span class="math notranslate nohighlight">\(k+1\)</span>, then <span class="math notranslate nohighlight">\(v \in  \textrm{Pre}_\mathrm{Eve}( \textrm{Attr}_\mathrm{Eve}^{k}( \textrm{Win}))\)</span>,
-so there exists <span class="math notranslate nohighlight">\((v,v') \in E\)</span> such that <span class="math notranslate nohighlight">\(v' \in  \textrm{Attr}_\mathrm{Eve}^{k}( \textrm{Win})\)</span>,
+Let <span class="math notranslate nohighlight">\(v \in  V_\mathrm{Eve}\)</span> of rank <span class="math notranslate nohighlight">\(k+1\)</span>, then <span class="math notranslate nohighlight">\(v \in  Pre_\mathrm{Eve}( Attr_\mathrm{Eve}^{k}( Win))\)</span>,
+so there exists <span class="math notranslate nohighlight">\((v,v') \in E\)</span> such that <span class="math notranslate nohighlight">\(v' \in  Attr_\mathrm{Eve}^{k}( Win)\)</span>,
 define <span class="math notranslate nohighlight">\(\sigma(v) = (v,v')\)</span>.</p>
-<p>We argue that <span class="math notranslate nohighlight">\(\sigma\)</span> ensures <span class="math notranslate nohighlight">\(\mathtt{Reach}[ \textrm{Win}]\)</span>.
+<p>We argue that <span class="math notranslate nohighlight">\(\sigma\)</span> ensures <span class="math notranslate nohighlight">\(\mathtt{Reach}[ Win]\)</span>.
 By construction in any play consistent with <span class="math notranslate nohighlight">\(\sigma\)</span> the rank is either <span class="math notranslate nohighlight">\(0\)</span> or decreases by at least one
 at each step.
-Since <span class="math notranslate nohighlight">\(\textrm{Win}\)</span> is the set of vertices of rank <span class="math notranslate nohighlight">\(0\)</span>, any play consistent with <span class="math notranslate nohighlight">\(\sigma\)</span> from <span class="math notranslate nohighlight">\(\textrm{Attr}_\mathrm{Eve}( \textrm{Win})\)</span> reaches <span class="math notranslate nohighlight">\(\textrm{Win}\)</span>.</p>
-<p>We now show that <span class="math notranslate nohighlight">\(W_\mathrm{Eve}( \mathcal{G}) \subseteq  \textrm{Attr}_\mathrm{Eve}( \textrm{Win})\)</span>.
+Since <span class="math notranslate nohighlight">\(Win\)</span> is the set of vertices of rank <span class="math notranslate nohighlight">\(0\)</span>, any play consistent with <span class="math notranslate nohighlight">\(\sigma\)</span> from <span class="math notranslate nohighlight">\(Attr_\mathrm{Eve}( Win)\)</span> reaches <span class="math notranslate nohighlight">\(Win\)</span>.</p>
+<p>We now show that <span class="math notranslate nohighlight">\(W_\mathrm{Eve}( \mathcal{G}) \subseteq  Attr_\mathrm{Eve}( Win)\)</span>.
 For this we actually show</p>
 <div class="math notranslate nohighlight">
 \[
-V \setminus  \textrm{Attr}_\mathrm{Eve}( \textrm{Win}) \subseteq  W_\mathrm{Adam}( \mathcal{G}).
+V \setminus  Attr_\mathrm{Eve}( Win) \subseteq  W_\mathrm{Adam}( \mathcal{G}).
 \]</div>
 <p>Indeed, <span class="math notranslate nohighlight">\(W_\mathrm{Adam}( \mathcal{G}) \subseteq V \setminus  W_\mathrm{Eve}( \mathcal{G})\)</span>, because Eve and Adam cannot have a winning strategy from the same vertex.
 This property is clear and holds for any game, it should not be confused with determinacy.</p>
-<p>We define a positional strategy <span class="math notranslate nohighlight">\(\tau\)</span> for Adam from <span class="math notranslate nohighlight">\(V \setminus  \textrm{Attr}_\mathrm{Eve}( \textrm{Win})\)</span>.
-Let <span class="math notranslate nohighlight">\(v \in  V_\mathrm{Adam}\)</span> in <span class="math notranslate nohighlight">\(V \setminus  \textrm{Attr}_\mathrm{Eve}( \textrm{Win})\)</span>, there exists <span class="math notranslate nohighlight">\((v,v') \in E\)</span> such that <span class="math notranslate nohighlight">\(v' \in V \setminus  \textrm{Attr}_\mathrm{Eve}( \textrm{Win})\)</span>,
+<p>We define a positional strategy <span class="math notranslate nohighlight">\(\tau\)</span> for Adam from <span class="math notranslate nohighlight">\(V \setminus  Attr_\mathrm{Eve}( Win)\)</span>.
+Let <span class="math notranslate nohighlight">\(v \in  V_\mathrm{Adam}\)</span> in <span class="math notranslate nohighlight">\(V \setminus  Attr_\mathrm{Eve}( Win)\)</span>, there exists <span class="math notranslate nohighlight">\((v,v') \in E\)</span> such that <span class="math notranslate nohighlight">\(v' \in V \setminus  Attr_\mathrm{Eve}( Win)\)</span>,
 define <span class="math notranslate nohighlight">\(\tau(v) = (v,v')\)</span>.
-Similarly, if <span class="math notranslate nohighlight">\(v \in  V_\mathrm{Eve}\)</span> then for all <span class="math notranslate nohighlight">\((v,v') \in E\)</span> we have <span class="math notranslate nohighlight">\(v' \in V \setminus  \textrm{Attr}_\mathrm{Eve}( \textrm{Win})\)</span>.
-It follows that any play consistent with <span class="math notranslate nohighlight">\(\tau\)</span> remain in <span class="math notranslate nohighlight">\(V \setminus  \textrm{Attr}_\mathrm{Eve}( \textrm{Win})\)</span> and in particular
-never reaches <span class="math notranslate nohighlight">\(\textrm{Win}\)</span>,
-in other words <span class="math notranslate nohighlight">\(\tau\)</span> ensures <span class="math notranslate nohighlight">\(\mathtt{Safe}[ \textrm{Win}]\)</span> from <span class="math notranslate nohighlight">\(V \setminus  \textrm{Attr}_\mathrm{Eve}( \textrm{Win})\)</span>.</p>
+Similarly, if <span class="math notranslate nohighlight">\(v \in  V_\mathrm{Eve}\)</span> then for all <span class="math notranslate nohighlight">\((v,v') \in E\)</span> we have <span class="math notranslate nohighlight">\(v' \in V \setminus  Attr_\mathrm{Eve}( Win)\)</span>.
+It follows that any play consistent with <span class="math notranslate nohighlight">\(\tau\)</span> remain in <span class="math notranslate nohighlight">\(V \setminus  Attr_\mathrm{Eve}( Win)\)</span> and in particular
+never reaches <span class="math notranslate nohighlight">\(Win\)</span>,
+in other words <span class="math notranslate nohighlight">\(\tau\)</span> ensures <span class="math notranslate nohighlight">\(\mathtt{Safe}[ Win]\)</span> from <span class="math notranslate nohighlight">\(V \setminus  Attr_\mathrm{Eve}( Win)\)</span>.</p>
 </div>
 <p><a class="reference internal" href="#algo-reachability"><span class="std std-numref">Fig. 8</span></a> is an efficient implementation of the attractor computation.
-Let us emphasise that it does not compute the sequence <span class="math notranslate nohighlight">\(( \textrm{Attr}_\mathrm{Eve}^k( \textrm{Win}))_{k \in  \mathbb{N}}\)</span> as suggested in  <a class="reference internal" href="#2-lem:reachability">Lemma 34</a>.
+Let us emphasise that it does not compute the sequence <span class="math notranslate nohighlight">\(( Attr_\mathrm{Eve}^k( Win))_{k \in  \mathbb{N}}\)</span> as suggested in <a class="reference internal" href="#2-lem:reachability">Lemma 40</a>.
 In Section <a class="reference internal" href="../4_Payoffs/shortest_path.html#sec-shortest-path"><span class="std std-ref">Shortest path games</span></a> we will generalise this algorithm to a quantitative setting
-and construct an algorithm which does compute (as a special case) the sequence <span class="math notranslate nohighlight">\(( \textrm{Attr}_\mathrm{Eve}^k( \textrm{Win}))_{k \in  \mathbb{N}}\)</span>,
+and construct an algorithm which does compute (as a special case) the sequence <span class="math notranslate nohighlight">\(( Attr_\mathrm{Eve}^k( Win))_{k \in  \mathbb{N}}\)</span>,
 however with a higher complexity.</p>
 <p>We introduce some terminology for analysing the algorithm.
 The algorithm uses the set variable <span class="math notranslate nohighlight">\(A\)</span> for the current attractor.
@@ -832,32 +832,35 @@ so this does not affect the reasoning below.}.
 The invariant of the algorithm satisfied before each iteration of the repeat loop is the following:</p>
 <div class="math notranslate nohighlight">
 \[
-S \subseteq A \text{ and }  \textrm{Attr}_\mathrm{Eve}^ \mathcal{G}( \textrm{Win}) = A \cup  \textrm{Attr}_\mathrm{Eve}^{ \mathcal{G}_t}(S).
+S \subseteq A \text{ and }  Attr_\mathrm{Eve}^ \mathcal{G}( Win) = A \cup  Attr_\mathrm{Eve}^{ \mathcal{G}_t}(S).
 \]</div>
-<p>The invariant is satisfied initially because <span class="math notranslate nohighlight">\(A = S =  \textrm{Win}\)</span> and <span class="math notranslate nohighlight">\(\Game_t = \Game\)</span>.
+<p>The invariant is satisfied initially because <span class="math notranslate nohighlight">\(A = S =  Win\)</span> and <span class="math notranslate nohighlight">\(\Game_t = \Game\)</span>.
 To show that it is preserved by one iteration of the repeat loop, let us assume that we choose and remove <span class="math notranslate nohighlight">\(v'\)</span> from <span class="math notranslate nohighlight">\(S\)</span>.
 Let us write <span class="math notranslate nohighlight">\(\mathcal{G}_{\text{before}}\)</span> for the game before considering <span class="math notranslate nohighlight">\(v'\)</span>, and <span class="math notranslate nohighlight">\(\mathcal{G}_{\text{after}}\)</span> for the game after considering <span class="math notranslate nohighlight">\(v'\)</span>:
 all incoming edges to <span class="math notranslate nohighlight">\(v'\)</span> have been removed in <span class="math notranslate nohighlight">\(\mathcal{G}_{\text{after}}\)</span>.
-The set <span class="math notranslate nohighlight">\(A\)</span> is replaced by <span class="math notranslate nohighlight">\(A' = A \cup  \textrm{Pre}^{ \mathcal{G}_{\text{before}}}(v')\)</span>, and the set <span class="math notranslate nohighlight">\(S\)</span> by
-<span class="math notranslate nohighlight">\(S' = (S \cup  \textrm{Pre}^{ \mathcal{G}_{\text{before}}}(v')) \setminus  \left\{ v' \right\}\)</span>,
-so we need to show that <span class="math notranslate nohighlight">\(A' \cup  \textrm{Attr}_\mathrm{Eve}^{ \mathcal{G}_{\text{after}}}(S') = A \cup  \textrm{Attr}_\mathrm{Eve}^{ \mathcal{G}_{\text{before}}}(S)\)</span>.
+The set <span class="math notranslate nohighlight">\(A\)</span> is replaced by <span class="math notranslate nohighlight">\(A' = A \cup  Pre^{ \mathcal{G}_{\text{before}}}(v')\)</span>, and the set <span class="math notranslate nohighlight">\(S\)</span> by
+<span class="math notranslate nohighlight">\(S' = (S \cup  Pre^{ \mathcal{G}_{\text{before}}}(v')) \setminus  \left\{ v' \right\}\)</span>,
+so we need to show that <span class="math notranslate nohighlight">\(A' \cup  Attr_\mathrm{Eve}^{ \mathcal{G}_{\text{after}}}(S') = A \cup  Attr_\mathrm{Eve}^{ \mathcal{G}_{\text{before}}}(S)\)</span>.
 Both inclusions are easily obtained using a case analysis.</p>
-<p>The invariant implies the correctness of the algorithm: when <span class="math notranslate nohighlight">\(S\)</span> is empty we obtain that <span class="math notranslate nohighlight">\(A =  \textrm{Attr}_\mathrm{Eve}( \textrm{Win})\)</span>.</p>
-<div class="admonition-remark admonition">
-<p class="admonition-title">Remark</p>
+<p>The invariant implies the correctness of the algorithm: when <span class="math notranslate nohighlight">\(S\)</span> is empty we obtain that <span class="math notranslate nohighlight">\(A =  Attr_\mathrm{Eve}( Win)\)</span>.</p>
+<div class="proof remark admonition" id="remark-2">
+<p class="admonition-title"><span class="caption-number">Remark 41 </span> (NEEDS TITLE AND LABEL)</p>
+<div class="remark-content section" id="proof-content">
+<p>We note that in the complexity analysis the cost of manipulating (and in particular decrementing) the counters for the number of edges is constant, which holds in the unit cost RAM model of computation.
+The same algorithm analysed in the Turing model of computation would have an additional <span class="math notranslate nohighlight">\(O(\log(n))\)</span> multiplicative factor in the time complexity to take this into account.</p>
 <p>We note that in the complexity analysis the cost of manipulating (and in particular decrementing) the counters for the number of edges is constant, which holds in the unit cost RAM model of computation.
 The same algorithm analysed in the Turing model of computation would have an additional <span class="math notranslate nohighlight">\(O(\log(n))\)</span> multiplicative factor in the time complexity to take this into account.</p>
 </div>
-<div class="figure align-center" id="algo-reachability">
+</div><div class="figure align-center" id="algo-reachability">
 <img alt="../_images/2-algo:reachability.png" src="../_images/2-algo:reachability.png" />
 <p class="caption"><span class="caption-number">Fig. 8 </span><span class="caption-text">The linear time algorithm for reachability games.</span><a class="headerlink" href="#algo-reachability" title="Permalink to this image">¶</a></p>
 </div>
 <p>The notion of attractors induces a common way of constructing traps as stated in the following very useful lemma.</p>
 <div class="proof lemma admonition" id="2-lem:attractors_trap">
-<p class="admonition-title"><span class="caption-number">Lemma 35 </span> (Attractors induce traps)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 42 </span> (Attractors induce traps)</p>
 <div class="lemma-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\Game\)</span> a game and <span class="math notranslate nohighlight">\(F \subseteq V\)</span> a subset of edges.
-Then <span class="math notranslate nohighlight">\(V \setminus  \textrm{Attr}_\mathrm{Eve}(F)\)</span> is a trap for Eve and symmetrically <span class="math notranslate nohighlight">\(V \setminus  \textrm{Attr}_\mathrm{Adam}(F)\)</span> is a trap for Adam.</p>
+Then <span class="math notranslate nohighlight">\(V \setminus  Attr_\mathrm{Eve}(F)\)</span> is a trap for Eve and symmetrically <span class="math notranslate nohighlight">\(V \setminus  Attr_\mathrm{Adam}(F)\)</span> is a trap for Adam.</p>
 </div>
 </div></div>
 

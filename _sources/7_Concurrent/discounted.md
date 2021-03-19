@@ -171,7 +171,7 @@ We will use the sum-of-square-roots problem to give an informal hardness argumen
 
 Consider the following game $G$:
 There are three vertices, $\{0,1,s\}$ where $0$ and $1$ are absorbing, with color 0 and 1 respectively.
-The vertex $s$ is such that (1) $c(s,i,j)=0$, (2) $\Delta(s,i,i)=1$ (for $i\in \{1,2\}$), (3) $\Delta(s,2,1)=0$ and (4) $\Delta(s,1,i)$ is the uniform distribution over $s$ and $0$. The game is illustrated in Figure \cref\{7-fig:sqroot}.
+The vertex $s$ is such that (1) $c(s,i,j)=0$, (2) $\Delta(s,i,i)=1$ (for $i\in \{1,2\}$), (3) $\Delta(s,2,1)=0$ and (4) $\Delta(s,1,i)$ is the uniform distribution over $s$ and $0$. The game is illustrated in Figure {numref}`7-fig:sqroot`.
 
 Consider an optimal stationary strategy in $G$ for Eve. Let $p$ be the probability with which she plays the first action. If Adam knows that Eve will follow this strategy, the game devolves into a MDP. We know from that for such there exists optimal positional strategies and thus Adam is either going to play the left or right column always. Clearly, $0<p<1$ because $p=0$ or 1 means that either playing the left or right column with probability 1 would ensure that no positive reward ever happens.
 
@@ -184,22 +184,24 @@ Concurrent discounted game with value $v_s=-2+\sqrt{4+2(1-\gamma)}$
 Let $v_0=0,v_1=1,v_s$ be the values of the three vertices. If he plays the left column, the outcome is $p(1-\gamma)$.
 If he plays the right column, the outcome is $p/2(1-\gamma)v_s+(1-p)(1-\gamma)$. Observe that the former is increasing in $p$ and the latter is decreasing (since clearly, $0<(1-\gamma)v_s<v_s$). Also, both are continues. Thus, the optimum is for $p(1-\gamma)$ to be equal to $p/2(1-\gamma)v_s+(1-p)(1-\gamma)$ and both equal to $v_s$.
 We will first isolate $v_s$ in $v_s=p/2(1-\gamma)v_s+(1-p)(1-\gamma)$.
-```{math}
+
+$$
 
 v_s&=p/2(1-\gamma)v_s+(1-p)(1-\gamma)\Rightarrow (1-p/2(1-\gamma))v_s=(1-p)(1-\gamma)\Rightarrow \\
 v_s&=\frac{(1-p)(1-\gamma)}{1-p/2(1-\gamma)}\enspace .
 
-```
+$$
 
 Note that $p,\gamma<1$ thus, $1-p/2(1-\gamma)\neq 0$.
 We then have the equality 
-```{math}
+
+$$
 
 \frac{(1-p)(1-\gamma)}{1-p/2(1-\gamma)}&=p(1-\gamma)\Rightarrow\\(1-p)(1-\gamma)&=p(1-\gamma)(1-p/2(1-\gamma))\Rightarrow\\
 0&=\frac{1-\gamma}{2} p^2+2p-1\Rightarrow \\
 p&=\frac{-2\pm\sqrt{4+2(1-\gamma)}}{1-\gamma} \enspace .
 
-```
+$$
 
 We see that $\frac{-2-\sqrt{4+2(1-\gamma)}}{1-\gamma}<0$. Thus, $p=\frac{-2+\sqrt{4+2(1-\gamma)}}{1-\gamma}$.
 Also, 
@@ -233,7 +235,7 @@ Consider the following game $G'$:
 There are three vertices, $\{0,1,s\}$ where $0$ and $1$ are absorbing, with color 0 and 1 respectively.
 The vertex $s$ is such that (1)
 $c(s,i,j)=0$ for all $i,j$, (2) $\Delta(s,i,j)=s$ for $i+1=j$ (i.e. for $(i,j)\in \{(1,2),(2,3)\}$), (3) $\Delta(s,i,j)=0$ for $i+j=4$ (i.e. the other diagonal, $(i,j)\in \{(3,1),(2,2),(1,3)\}$) and (4) $\Delta(s,i,j)=1$ otherwise (i.e. for $(i,j)\in \{(1,1),(2,1),(3,2),(3,3)\}$).
- The game is illustrated in Figure \cref\{7-fig:sqroot2}.
+ The game is illustrated in Figure {numref}`7-fig:sqroot2`.
  
 We will argue that the value of $G'$ is equal to that of $G$.
  We clearly have that the value of $s$ is in $(0,1)$.
@@ -290,7 +292,7 @@ $$
  we get absorbed in 1 after a reward of 0.
 But this is in particular the case if the players play optimally and thus, the value is the same in the two games.
 
-Before, in Corollary \cref\{cor:long}, we argued that the patience of $\epsilon$-optimal stationary strategies was $q=\frac{m\log(\epsilon/2)}{\log(1-\gamma)\epsilon}$.
+Before, in Corollary {prf:ref}`cor:long`, we argued that the patience of $\epsilon$-optimal stationary strategies was $q=\frac{m\log(\epsilon/2)}{\log(1-\gamma)\epsilon}$.
 Giving a similar exponential bound for the optimal stationary strategies is harder than solving the sum-of-square-roots problem, as we will argue next.
 Assume that we had an exponential bound for optimal stationary strategies.
 
@@ -303,13 +305,13 @@ Concurrent discounted game that implies that if there is an exponential lower bo
 Consider an arbitrary yes-instance of the sum-of-square-roots problem, giving a vertex $s^*$. Reduce each reward by $a$ and in the new game let $s^*_a$ be the vertex corresponding to $s^*$. 
 We will now create a game that uses the previous game as a sub-game.
 The game has 1 additional vertex $s'$, which is a 2x2-matrix, such that $c(s',i,j)=0$ and $\Delta(s,1,1)=1$ and $\Delta(s,2,2)=s^*$ and $\Delta(s,i,j)=0$ for $i\neq j$.
-There is an illustration in Figure \cref\{7-fig:exact-hard}, using the vertex $s^*$ as above. 
+There is an illustration in Figure {numref}`7-fig:exact-hard`, using the vertex $s^*$ as above. 
 Using an argument like above, we see that the probability $p$ to play the top action in the vertex $s'$ is such that $p(1-\gamma)=(1-p)(1-\gamma)x$, where $x$ is the value of $s^*$. Thus, $x=\frac{p}{1-p}$. If $p$ only needs to be exponential small, then $x$ is exponentially small as well. This is true for any yes-instance of the sum-of-square-roots problem and thus, we only need polynomially many digits to decide the problem. We can find polynomially many digits of $\sqrt{b_i}$ for each $i$ in polynomial time. We get the following lemma.
 
 ````{prf:lemma} NEEDS TITLE AND LABEL 
-Giving an exponential lower-bound on patience for optimal stationary strategies in concurrent discounted games implies that the sum-of-square-roots problem is in $\textrm{PTIME}$
+Giving an exponential lower-bound on patience for optimal stationary strategies in concurrent discounted games implies that the sum-of-square-roots problem is in $PTIME$
 
-Giving an exponential lower-bound on patience for optimal stationary strategies in concurrent discounted games implies that the sum-of-square-roots problem is in $\textrm{PTIME}$
+Giving an exponential lower-bound on patience for optimal stationary strategies in concurrent discounted games implies that the sum-of-square-roots problem is in $PTIME$
 
 ````
 

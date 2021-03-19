@@ -10,7 +10,7 @@
 A matrix game is a game defined from a $(R\times C)$-matrix $M$  of numbers for some $R,C$.
 The game is played as follows: Eve picks a row $r$ and Adam picks a column $c$ simulations like in rock-paper-scissors. Adam then pays Eve $M[r,c]$, i.e. the content of the entry defined by being in row $r$ and column $c$.
 A strategy in such a game for Eve (resp. Adam) consists of a distribution over the rows (resp. columns). 
-There is an illustration of rock-paper-scissors as a matrix game in Figure \cref\{7-fig:rps}.
+There is an illustration of rock-paper-scissors as a matrix game in Figure {numref}`7-fig:rps`.
 
 ```{figure} ./../FigAndAlgos/7-fig:rps.png
 :name: 7-fig:rps
@@ -39,10 +39,10 @@ The third bullet can be viewed as getting a reward before playing the game, and 
 The last bullet can be seen from that each pair of strategies must give a higher reward if the entries of the matrix is higher.
 This is especially true if you consider the optimal strategy for Eve in $M$ together with an arbitrary strategy for Adam, which then shows that the value is higher.
 
-Given a matrix $M$, we will by $\textrm{val}[M]$ denote the value of the matrix game $M$. 
+Given a matrix $M$, we will by $val[M]$ denote the value of the matrix game $M$. 
 
-Perhaps interestingly, an illustration of a matrix $M$ can be viewed as a game arena $\mathcal{A}$ (for concurrent games) with only one non-absorbing vertex. In each type of games considered in this section (apart from concurrent reachability games, where no game can be illustrated as a matrix with non-star entries different from 0), the value of the game with that arena matches $\textrm{val}[M]$ and the optimal strategies for each player is to play an optimal strategy from $M$ in each round. One can also consider a game arena $\mathcal{A}^*$ with an illustration similar to $M$, but where there is a star in each entry (and $c(v,i,j)=0$ for the unique non-absorbing state $v$ and any pair of actions $i,j$).
-Again, the value is $\textrm{val}[M]$ (except for the case of discounted objectives, where the value is $(1-\delta) \textrm{val}[M]$) and the optimal strategies for each player is again to play an optimal strategy from $M$. 
+Perhaps interestingly, an illustration of a matrix $M$ can be viewed as a game arena $\mathcal{A}$ (for concurrent games) with only one non-absorbing vertex. In each type of games considered in this section (apart from concurrent reachability games, where no game can be illustrated as a matrix with non-star entries different from 0), the value of the game with that arena matches $val[M]$ and the optimal strategies for each player is to play an optimal strategy from $M$ in each round. One can also consider a game arena $\mathcal{A}^*$ with an illustration similar to $M$, but where there is a star in each entry (and $c(v,i,j)=0$ for the unique non-absorbing state $v$ and any pair of actions $i,j$).
+Again, the value is $val[M]$ (except for the case of discounted objectives, where the value is $(1-\delta) val[M]$) and the optimal strategies for each player is again to play an optimal strategy from $M$. 
 
-One could easily be lead to believe that in games (called repeated games with absorbing states) that can be illustrated as a single matrix $M$ with some entries stared and others not, the value would be similar to $\textrm{val}[M]$ and the optimal strategy would again be to play the optimal strategy from $M$. 
+One could easily be lead to believe that in games (called repeated games with absorbing states) that can be illustrated as a single matrix $M$ with some entries stared and others not, the value would be similar to $val[M]$ and the optimal strategy would again be to play the optimal strategy from $M$. 
 However, this is very much not true and indeed, many of the games in this chapter, illustrating how complex concurrent games can be, are repeated games with absorbing states! In particular repeated games with absorbing states may (1) have irrational values and probabilities in optimal strategies (with any objective), (2) have no optimal strategies (for reachability and mean-payoff objectives) and (3) have no $\epsilon$-optimal finite-memory or $\epsilon$-optimal Markov strategies (for mean-payoff objectives)!

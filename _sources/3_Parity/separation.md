@@ -16,7 +16,7 @@ Section {ref}`1-sec:reductions` constructs reductions between objectives using a
 in the case at hand parity reduces to safety if there exists a deterministic automaton $\mathbf{A}$ over the alphabet $[1,d]$
 with acceptance objective $\mathtt{Safe}$ and defining $\mathtt{Parity}([1,d])$,
 meaning $L( \mathbf{A}) =  \mathtt{Parity}([1,d])$.
-With such an automaton in hand  {prf:ref}`1-lem:automata_reduction` implies the following reduction:
+With such an automaton in hand {prf:ref}`1-lem:automata_reduction` implies the following reduction:
 from a parity game $\mathcal{G}$ construct the safety game $\mathcal{G} \times  \mathbf{A}$ satisfying that
 Eve has a winning strategy in $\Game$ from $v_0$ if and only if she has a winning strategy in $\Game \times  \mathbf{A}$ from $(v_0,q_0)$.
 
@@ -36,8 +36,8 @@ $$
  \mathbf{A} = (Q,q_0,\delta : Q \times [1,d] \to Q, \mathtt{Safe}[ \textsf{col}_\mathbf{A}]),
 $$
 
-where $\textsf{col}_\mathbf{A} : Q \times [1,d] \to  \left\{  \textrm{Win \right\}, \textrm{Lose}}$.
-A word $w \in [1,d]^\omega$ is accepted if the run $\rho$ over $w$ only contains transitions in $\textrm{Win}$.
+where $\textsf{col}_\mathbf{A} : Q \times [1,d] \to  \left\{  Win, Lose \right\}$.
+A word $w \in [1,d]^\omega$ is accepted if the run $\rho$ over $w$ only contains transitions in $Win$.
 We use the following simplifying convention for safety automata: we distinguish a special rejecting state $\bot$
 and assume that all transitions are accepting except the ones leading to $\bot$. 
 Said differently, a word $w$ is accepted if and only if it the run over $w$ does not contain the state $\bot$.
@@ -130,7 +130,7 @@ We first define the graph $G \times Q$ whose set of vertices is $V \times Q$ and
 for every edge $(v,v') \in E$ and state $q \in Q$ there is an edge from $(v,q)$ to $(v',\delta(q, \textsf{col}(u)))$.
 The arena is $\mathcal{A} \times  \mathbf{A} = (G \times Q,  V_\mathrm{Eve} \times Q,  V_\mathrm{Adam} \times Q)$.
 Using the convention for safety automata that the rejecting transitions are precisely those leading to the rejecting state $\bot$,
-the colouring function is defined by $\textsf{col}'(v,q) =  \textrm{Win}$ if $q \neq \bot$, and $\textrm{Lose}$ otherwise.
+the colouring function is defined by $\textsf{col}'(v,q) =  Win$ if $q \neq \bot$, and $Lose$ otherwise.
 
 ````{prf:observation} Reduction to safety games using separating automata
 :label: 3-fact:reduction
@@ -152,9 +152,9 @@ There exists an algorithm for solving parity games of complexity $O(m \cdot | \m
 :class: dropdown tip
 
 Let $\Game$ a parity game with $n$ vertices and priorities in $[1,d]$.
-Thanks to  {prf:ref}`3-lem:separating_automata` and \cref{3-fact:reduction}, solving $\Game$
+Thanks to {prf:ref}`3-lem:separating_automata` and {prf:ref}`3-fact:reduction`, solving $\Game$
 is equivalent to solving the safety game $\Game \times  \mathbf{A}$.
-Thanks to  {prf:ref}`2-thm:reachability` solving safety games can be done in time linear in the number of edges.
+Thanks to {prf:ref}`2-thm:reachability` solving safety games can be done in time linear in the number of edges.
 This yields an algorithm for solving parity games whose running time is $O(m \cdot | \mathbf{A}|)$.
 
 ````
@@ -305,26 +305,34 @@ The update rule consists of two steps, which occur one after the other.
 such that $b_j$ is even for all $j \le i$. If $b_i =  \mathtt{-}$, or $b_i < p$,
 then we create a new record $b'_k$, $b'_{k-1}$, \dots, $b'_0$ by
 setting:
-```{math}\n
+
+$$
+
 b'_j = \begin{cases}
 b_j & \text{if $j > i$,} \\
 p & \text{if $j = i$,} \\
  \mathtt{-} & \text{if $j < i$.} 
 \end{cases}
-\\n```
+
+$$
+
 If there is no index $i$ that satisfies the conditions, then we do not modify
 the record.
 
 *  **Step 2.** In step 2, we take the output of step 1, and we find the
 largest index $i$ such that $p > b_i$ and we create a new record $b'_k$,
 $b'_{k-1}$, \dots, $b'_0$ by setting:
-```{math}\n
+
+$$
+
 b'_j = \begin{cases}
 b_j & \text{if $j > i$,} \\
 p & \text{if $j = i$,} \\
  \mathtt{-} & \text{if $j < i$.} 
 \end{cases}
-\\n```
+
+$$
+
 Again, if there is no such index $i$, then the record is not modified.
 
 ```{figure} ./../FigAndAlgos/3-fig:ds1.png
@@ -466,7 +474,7 @@ $b_k = p \ne  \mathtt{-}$, if we have not done so already.
 ````
 
 Hence, if Eve wins the parity game, then she has a strategy to eventually ensure
-that $b_k \ne  \mathtt{-}$. Combining the two lemmas above, with  {prf:ref}`3-lem:isequencewin` gives the following corollary.
+that $b_k \ne  \mathtt{-}$. Combining the two lemmas above, with {prf:ref}`3-lem:isequencewin` gives the following corollary.
 
 ````{prf:corollary} Correctness of the reduction for the separating automaton
 :label: 3-cor:correctness_reduction_separating_automaton

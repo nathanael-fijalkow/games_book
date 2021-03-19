@@ -733,7 +733,7 @@ Section <a class="reference internal" href="../1_Introduction/reductions.html#se
 in the case at hand parity reduces to safety if there exists a deterministic automaton <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> over the alphabet <span class="math notranslate nohighlight">\([1,d]\)</span>
 with acceptance objective <span class="math notranslate nohighlight">\(\mathtt{Safe}\)</span> and defining <span class="math notranslate nohighlight">\(\mathtt{Parity}([1,d])\)</span>,
 meaning <span class="math notranslate nohighlight">\(L( \mathbf{A}) =  \mathtt{Parity}([1,d])\)</span>.
-With such an automaton in hand  <a class="reference internal" href="../1_Introduction/reductions.html#1-lem:automata_reduction">Lemma 18</a> implies the following reduction:
+With such an automaton in hand <a class="reference internal" href="../1_Introduction/reductions.html#1-lem:automata_reduction">Lemma 20</a> implies the following reduction:
 from a parity game <span class="math notranslate nohighlight">\(\mathcal{G}\)</span> construct the safety game <span class="math notranslate nohighlight">\(\mathcal{G} \times  \mathbf{A}\)</span> satisfying that
 Eve has a winning strategy in <span class="math notranslate nohighlight">\(\Game\)</span> from <span class="math notranslate nohighlight">\(v_0\)</span> if and only if she has a winning strategy in <span class="math notranslate nohighlight">\(\Game \times  \mathbf{A}\)</span> from <span class="math notranslate nohighlight">\((v_0,q_0)\)</span>.</p>
 <p>Unfortunately, it can be shown (using a topological argument) that there is no such automaton.
@@ -750,8 +750,8 @@ but only for parity games with <span class="math notranslate nohighlight">\(n\)<
 \[
  \mathbf{A} = (Q,q_0,\delta : Q \times [1,d] \to Q, \mathtt{Safe}[ \textsf{col}_\mathbf{A}]),
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(\textsf{col}_\mathbf{A} : Q \times [1,d] \to  \left\{  \textrm{Win \right\}, \textrm{Lose}}\)</span>.
-A word <span class="math notranslate nohighlight">\(w \in [1,d]^\omega\)</span> is accepted if the run <span class="math notranslate nohighlight">\(\rho\)</span> over <span class="math notranslate nohighlight">\(w\)</span> only contains transitions in <span class="math notranslate nohighlight">\(\textrm{Win}\)</span>.
+<p>where <span class="math notranslate nohighlight">\(\textsf{col}_\mathbf{A} : Q \times [1,d] \to  \left\{  Win, Lose \right\}\)</span>.
+A word <span class="math notranslate nohighlight">\(w \in [1,d]^\omega\)</span> is accepted if the run <span class="math notranslate nohighlight">\(\rho\)</span> over <span class="math notranslate nohighlight">\(w\)</span> only contains transitions in <span class="math notranslate nohighlight">\(Win\)</span>.
 We use the following simplifying convention for safety automata: we distinguish a special rejecting state <span class="math notranslate nohighlight">\(\bot\)</span>
 and assume that all transitions are accepting except the ones leading to <span class="math notranslate nohighlight">\(\bot\)</span>.
 Said differently, a word <span class="math notranslate nohighlight">\(w\)</span> is accepted if and only if it the run over <span class="math notranslate nohighlight">\(w\)</span> does not contain the state <span class="math notranslate nohighlight">\(\bot\)</span>.
@@ -766,7 +766,7 @@ and that a strategy <span class="math notranslate nohighlight">\(\sigma\)</span>
 <p>We say that an automaton reads, accepts, or rejects a path <span class="math notranslate nohighlight">\(\pi\)</span> in a parity graph,
 which is an abuse because what the automaton reads is the induced sequence of colours <span class="math notranslate nohighlight">\(\textsf{col}(\pi)\)</span>.</p>
 <div class="proof definition admonition" id="3-def:separating_automata">
-<p class="admonition-title"><span class="caption-number">Definition 71 </span> (Separating automata)</p>
+<p class="admonition-title"><span class="caption-number">Definition 80 </span> (Separating automata)</p>
 <div class="definition-content section" id="proof-content">
 <p>An automaton <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is <span class="math notranslate nohighlight">\((n,d)\)</span>-<strong>separating</strong> if the two following properties hold.</p>
 <ul class="simple">
@@ -793,7 +793,7 @@ as <span class="math notranslate nohighlight">\(\mathtt{Parity}_{\mid n} \subset
 </div>
 <p>The following lemma shows the definition of separating automata in action.</p>
 <div class="proof lemma admonition" id="3-lem:separating_automata">
-<p class="admonition-title"><span class="caption-number">Lemma 72 </span> (Game equivalence using separating automata)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 81 </span> (Game equivalence using separating automata)</p>
 <div class="lemma-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> an <span class="math notranslate nohighlight">\((n,d)\)</span>-separating automaton.
 Then for all parity games <span class="math notranslate nohighlight">\(\mathcal{G} = ( \mathcal{A}, \mathtt{Parity}[ \textsf{col}])\)</span> with <span class="math notranslate nohighlight">\(n\)</span> vertices and priorities in <span class="math notranslate nohighlight">\([1,d]\)</span>,
@@ -827,15 +827,15 @@ We first define the graph <span class="math notranslate nohighlight">\(G \times 
 for every edge <span class="math notranslate nohighlight">\((v,v') \in E\)</span> and state <span class="math notranslate nohighlight">\(q \in Q\)</span> there is an edge from <span class="math notranslate nohighlight">\((v,q)\)</span> to <span class="math notranslate nohighlight">\((v',\delta(q, \textsf{col}(u)))\)</span>.
 The arena is <span class="math notranslate nohighlight">\(\mathcal{A} \times  \mathbf{A} = (G \times Q,  V_\mathrm{Eve} \times Q,  V_\mathrm{Adam} \times Q)\)</span>.
 Using the convention for safety automata that the rejecting transitions are precisely those leading to the rejecting state <span class="math notranslate nohighlight">\(\bot\)</span>,
-the colouring function is defined by <span class="math notranslate nohighlight">\(\textsf{col}'(v,q) =  \textrm{Win}\)</span> if <span class="math notranslate nohighlight">\(q \neq \bot\)</span>, and <span class="math notranslate nohighlight">\(\textrm{Lose}\)</span> otherwise.</p>
+the colouring function is defined by <span class="math notranslate nohighlight">\(\textsf{col}'(v,q) =  Win\)</span> if <span class="math notranslate nohighlight">\(q \neq \bot\)</span>, and <span class="math notranslate nohighlight">\(Lose\)</span> otherwise.</p>
 <div class="proof observation admonition" id="3-fact:reduction">
-<p class="admonition-title"><span class="caption-number">Observation 73 </span> (Reduction to safety games using separating automata)</p>
+<p class="admonition-title"><span class="caption-number">Observation 82 </span> (Reduction to safety games using separating automata)</p>
 <div class="observation-content section" id="proof-content">
 <p>Eve has a winning strategy in <span class="math notranslate nohighlight">\(\mathcal{G}\)</span> from <span class="math notranslate nohighlight">\(v_0\)</span> if and only if
 she has a winning strategy in <span class="math notranslate nohighlight">\(\Game \times  \mathbf{A}\)</span> from <span class="math notranslate nohighlight">\((v_0,q_0)\)</span>.</p>
 </div>
 </div><div class="proof theorem admonition" id="3-thm:algorithm_separating_automata">
-<p class="admonition-title"><span class="caption-number">Theorem 74 </span> (Algorithm using separating automata)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 83 </span> (Algorithm using separating automata)</p>
 <div class="theorem-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> an <span class="math notranslate nohighlight">\((n,d)\)</span>-separating automaton.
 There exists an algorithm for solving parity games of complexity <span class="math notranslate nohighlight">\(O(m \cdot | \mathbf{A}|)\)</span>.</p>
@@ -843,9 +843,9 @@ There exists an algorithm for solving parity games of complexity <span class="ma
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
 <p>Let <span class="math notranslate nohighlight">\(\Game\)</span> a parity game with <span class="math notranslate nohighlight">\(n\)</span> vertices and priorities in <span class="math notranslate nohighlight">\([1,d]\)</span>.
-Thanks to  <a class="reference internal" href="#3-lem:separating_automata">Lemma 72</a> and \cref{3-fact:reduction}, solving <span class="math notranslate nohighlight">\(\Game\)</span>
+Thanks to <a class="reference internal" href="#3-lem:separating_automata">Lemma 81</a> and <a class="reference internal" href="#3-fact:reduction">Observation 82</a>, solving <span class="math notranslate nohighlight">\(\Game\)</span>
 is equivalent to solving the safety game <span class="math notranslate nohighlight">\(\Game \times  \mathbf{A}\)</span>.
-Thanks to  <a class="reference internal" href="../2_Regular/attractors.html#2-thm:reachability">Theorem 33</a> solving safety games can be done in time linear in the number of edges.
+Thanks to <a class="reference internal" href="../2_Regular/attractors.html#2-thm:reachability">Theorem 39</a> solving safety games can be done in time linear in the number of edges.
 This yields an algorithm for solving parity games whose running time is <span class="math notranslate nohighlight">\(O(m \cdot | \mathbf{A}|)\)</span>.</p>
 </div>
 <p>In the remainder of this section we give a construction for a quasipolynomial <span class="math notranslate nohighlight">\((n,d)\)</span>-separating automaton.</p>
@@ -853,7 +853,7 @@ This yields an algorithm for solving parity games whose running time is <span cl
 <div class="section" id="the-original-separating-automaton">
 <h2>The original separating automaton<a class="headerlink" href="#the-original-separating-automaton" title="Permalink to this headline">¶</a></h2>
 <div class="proof theorem admonition" id="3-thm:original_separating_automaton">
-<p class="admonition-title"><span class="caption-number">Theorem 75 </span> (The original separating automaton)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 84 </span> (The original separating automaton)</p>
 <div class="theorem-content section" id="proof-content">
 <p>There exists an <span class="math notranslate nohighlight">\((n,d)\)</span>-separating automaton of size <span class="math notranslate nohighlight">\(n^{O(\log d)}\)</span>,
 inducing an algorithm for solving parity games of complexity <span class="math notranslate nohighlight">\(n^{O(\log d)}\)</span>.</p>
@@ -897,7 +897,7 @@ priorities that come after it.</p>
 <p>The relationship between <span class="math notranslate nohighlight">\(i\)</span>-sequences and parity games is explained by the
 following lemma.</p>
 <div class="proof lemma admonition" id="3-lem:isequencewin">
-<p class="admonition-title"><span class="caption-number">Lemma 76 </span> (Completeness for the separating automaton)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 85 </span> (Completeness for the separating automaton)</p>
 <div class="lemma-content section" id="proof-content">
 <p>Suppose that Adam and Eve play positional strategies in the parity game,
 and let <span class="math notranslate nohighlight">\(\pi\)</span> the resulting play.</p>
@@ -981,41 +981,38 @@ such that <span class="math notranslate nohighlight">\(b_j\)</span> is even for 
 then we create a new record <span class="math notranslate nohighlight">\(b'_k\)</span>, <span class="math notranslate nohighlight">\(b'_{k-1}\)</span>, \dots, <span class="math notranslate nohighlight">\(b'_0\)</span> by
 setting:</p></li>
 </ul>
-<div class="highlight-{math}\n notranslate"><div class="highlight"><pre><span></span>b&#39;_j = \begin{cases}
+<div class="math notranslate nohighlight">
+\[\begin{split}b'_j = \begin{cases}
 b_j &amp; \text{if $j &gt; i$,} \\
 p &amp; \text{if $j = i$,} \\
  \mathtt{-} &amp; \text{if $j &lt; i$.} 
-\end{cases}
-\\n```
-If there is no index $i$ that satisfies the conditions, then we do not modify
-the record.
-
-*  **Step 2.** In step 2, we take the output of step 1, and we find the
-largest index $i$ such that $p &gt; b_i$ and we create a new record $b&#39;_k$,
-$b&#39;_{k-1}$, \dots, $b&#39;_0$ by setting:
-```{math}\n
-b&#39;_j = \begin{cases}
+\end{cases}\end{split}\]</div>
+<p>If there is no index <span class="math notranslate nohighlight">\(i\)</span> that satisfies the conditions, then we do not modify
+the record.</p>
+<ul class="simple">
+<li><p><strong>Step 2.</strong> In step 2, we take the output of step 1, and we find the
+largest index <span class="math notranslate nohighlight">\(i\)</span> such that <span class="math notranslate nohighlight">\(p &gt; b_i\)</span> and we create a new record <span class="math notranslate nohighlight">\(b'_k\)</span>,
+<span class="math notranslate nohighlight">\(b'_{k-1}\)</span>, \dots, <span class="math notranslate nohighlight">\(b'_0\)</span> by setting:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}b'_j = \begin{cases}
 b_j &amp; \text{if $j &gt; i$,} \\
 p &amp; \text{if $j = i$,} \\
  \mathtt{-} &amp; \text{if $j &lt; i$.} 
-\end{cases}
-\\n```
-Again, if there is no such index $i$, then the record is not modified.
-
-```{figure} ./../FigAndAlgos/3-fig:ds1.png
-:name: 3-fig:ds1
-:align: center
-An example of a Step 1 update applied to the sequence and record from {numref}`3-fig:ds`
-</pre></div>
+\end{cases}\end{split}\]</div>
+<p>Again, if there is no such index <span class="math notranslate nohighlight">\(i\)</span>, then the record is not modified.</p>
+<div class="figure align-center" id="fig-ds1">
+<img alt="../_images/3-fig:ds1.png" src="../_images/3-fig:ds1.png" />
+<p class="caption"><span class="caption-number">Fig. 26 </span><span class="caption-text">An example of a Step 1 update applied to the sequence and record from <a class="reference internal" href="#fig-ds"><span class="std std-numref">Fig. 25</span></a></span><a class="headerlink" href="#fig-ds1" title="Permalink to this image">¶</a></p>
 </div>
 <p>Intuitively, Step 1 attempts to combine the <span class="math notranslate nohighlight">\(i\)</span>-sequences in the existing record
 into a longer <span class="math notranslate nohighlight">\(i\)</span>-sequence. Suppose that we have read the sequence shown in <a class="reference internal" href="#fig-ds"><span class="std std-numref">Fig. 25</span></a>,
 that we have compute the record <span class="math notranslate nohighlight">\(\mathtt{-} 8 4 2\)</span>, and that the next priority in the sequence is <span class="math notranslate nohighlight">\(4\)</span>.
-<code class="xref std std-numref docutils literal notranslate"><span class="pre">3-fig:ds1</span></code> shows the result of applying Step 1 to this situation.
+<a class="reference internal" href="#fig-ds1"><span class="std std-numref">Fig. 26</span></a> shows the result of applying Step 1 to this situation.
 Observe that <span class="math notranslate nohighlight">\(3\)</span> is the largest index <span class="math notranslate nohighlight">\(i\)</span> such that for all <span class="math notranslate nohighlight">\(j &lt; i\)</span> we have that
 <span class="math notranslate nohighlight">\(b_j\)</span> is even, so Step 1 will output the record <span class="math notranslate nohighlight">\(4  \mathtt{-}  \mathtt{-}  \mathtt{-}\)</span>.</p>
 <p>So in this circumstance, Step 1 claims that we have now seen a <span class="math notranslate nohighlight">\(3\)</span>-sequence.
-<code class="xref std std-numref docutils literal notranslate"><span class="pre">3-fig:ds1</span></code> shows why this is correct: the <span class="math notranslate nohighlight">\(0\)</span>-sequence of <span class="math notranslate nohighlight">\(b_0\)</span>, the
+<a class="reference internal" href="#fig-ds1"><span class="std std-numref">Fig. 26</span></a> shows why this is correct: the <span class="math notranslate nohighlight">\(0\)</span>-sequence of <span class="math notranslate nohighlight">\(b_0\)</span>, the
 <span class="math notranslate nohighlight">\(1\)</span>-sequence of <span class="math notranslate nohighlight">\(b_1\)</span>, and the <span class="math notranslate nohighlight">\(2\)</span>-sequence of <span class="math notranslate nohighlight">\(b_2\)</span> can be merged together,
 along with the new priority, to create a <span class="math notranslate nohighlight">\(3\)</span>-sequence. Observe that inner
 domination in this new <span class="math notranslate nohighlight">\(3\)</span>-sequence is satisfied due to the outer domination
@@ -1026,10 +1023,10 @@ at priority <span class="math notranslate nohighlight">\(2\)</span>, and we know
 follow it.</p>
 <div class="figure align-center" id="fig-ds2">
 <img alt="../_images/3-fig:ds2.png" src="../_images/3-fig:ds2.png" />
-<p class="caption"><span class="caption-number">Fig. 26 </span><span class="caption-text">An example of a Step 2 update applied to the sequence and record from <a class="reference internal" href="#fig-ds"><span class="std std-numref">Fig. 25</span></a></span><a class="headerlink" href="#fig-ds2" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 27 </span><span class="caption-text">An example of a Step 2 update applied to the sequence and record from <a class="reference internal" href="#fig-ds"><span class="std std-numref">Fig. 25</span></a></span><a class="headerlink" href="#fig-ds2" title="Permalink to this image">¶</a></p>
 </div>
 <p>Step 2 ensures that the outer domination property holds.
-In <a class="reference internal" href="#fig-ds2"><span class="std std-numref">Fig. 26</span></a>, we show the result of applying Step 2 to the record
+In <a class="reference internal" href="#fig-ds2"><span class="std std-numref">Fig. 27</span></a>, we show the result of applying Step 2 to the record
 <span class="math notranslate nohighlight">\(\mathtt{-} 8 4 2\)</span> that corresponds to the sequence shown in <a class="reference internal" href="#fig-ds"><span class="std std-numref">Fig. 25</span></a>,
 when the next priority in the sequence is <span class="math notranslate nohighlight">\(9\)</span>. Observe that since <span class="math notranslate nohighlight">\(9 &gt; 8\)</span>, the
 outer domination property for the <span class="math notranslate nohighlight">\(2\)</span>-sequence ending at <span class="math notranslate nohighlight">\(8\)</span> now fails to hold,
@@ -1047,7 +1044,7 @@ priority at a time, using the update rule that we have described.</p>
 to decide the winner of a parity game. The following lemma states that a record
 will never falsely claim that an <span class="math notranslate nohighlight">\(i\)</span>-sequence has occurred.</p>
 <div class="proof lemma admonition" id="3-lem:correctness_separating_automata">
-<p class="admonition-title"><span class="caption-number">Lemma 77 </span> (Correctness for the separating automaton)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 86 </span> (Correctness for the separating automaton)</p>
 <div class="lemma-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(b_k, b_{k-1}, \dots, b_0\)</span> the record for a sequence of priorities <span class="math notranslate nohighlight">\(\pi\)</span>.
 If <span class="math notranslate nohighlight">\(b_i \ne  \mathtt{-}\)</span>, then <span class="math notranslate nohighlight">\(\pi\)</span> contains an <span class="math notranslate nohighlight">\(i\)</span>-sequence.</p>
@@ -1079,7 +1076,7 @@ the new priority, to create an <span class="math notranslate nohighlight">\(i\)<
 exactly the same point as the sequence corresponding to <span class="math notranslate nohighlight">\(b_{i-1}\)</span>, and so the
 order property still holds.</p></li>
 <li><p>For Step 2 updates, we only need to argue that the value of <span class="math notranslate nohighlight">\(b'_i\)</span>
-correspond to an <span class="math notranslate nohighlight">\(i\)</span> sequence. This can be constructed as we showed in <a class="reference internal" href="#fig-ds2"><span class="std std-numref">Fig. 26</span></a>:
+correspond to an <span class="math notranslate nohighlight">\(i\)</span> sequence. This can be constructed as we showed in <a class="reference internal" href="#fig-ds2"><span class="std std-numref">Fig. 27</span></a>:
 take the <span class="math notranslate nohighlight">\(i\)</span>-sequence that corresponds to <span class="math notranslate nohighlight">\(b_i\)</span>, and
 replace the final priority with the new priority. Observe that the final
 priority of an <span class="math notranslate nohighlight">\(i\)</span>-sequence is permitted to be odd, and so this new sequence
@@ -1096,7 +1093,7 @@ However, the proof is somewhat tedious, and this statement is actually stronger
 than what we need. To argue that the record can determine the winner of a parity
 game, the following weaker lemma suffices.</p>
 <div class="proof lemma admonition" id="3-lem:weaker_correctness_separating_automaton">
-<p class="admonition-title"><span class="caption-number">Lemma 78 </span> (Weaker correctness for the separating automaton)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 87 </span> (Weaker correctness for the separating automaton)</p>
 <div class="lemma-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\pi\)</span> an infinite play that is winning for Eve. For all <span class="math notranslate nohighlight">\(k\)</span>, there exists
 a prefix of <span class="math notranslate nohighlight">\(\pi\)</span> such that <span class="math notranslate nohighlight">\(b_k \ne  \mathtt{-}\)</span>.</p>
@@ -1120,9 +1117,9 @@ priority is <span class="math notranslate nohighlight">\(p\)</span>. Thus, after
 <span class="math notranslate nohighlight">\(b_k = p \ne  \mathtt{-}\)</span>, if we have not done so already.</p>
 </div>
 <p>Hence, if Eve wins the parity game, then she has a strategy to eventually ensure
-that <span class="math notranslate nohighlight">\(b_k \ne  \mathtt{-}\)</span>. Combining the two lemmas above, with  <a class="reference internal" href="#3-lem:isequencewin">Lemma 76</a> gives the following corollary.</p>
+that <span class="math notranslate nohighlight">\(b_k \ne  \mathtt{-}\)</span>. Combining the two lemmas above, with <a class="reference internal" href="#3-lem:isequencewin">Lemma 85</a> gives the following corollary.</p>
 <div class="proof corollary admonition" id="3-cor:correctness_reduction_separating_automaton">
-<p class="admonition-title"><span class="caption-number">Corollary 79 </span> (Correctness of the reduction for the separating automaton)</p>
+<p class="admonition-title"><span class="caption-number">Corollary 88 </span> (Correctness of the reduction for the separating automaton)</p>
 <div class="corollary-content section" id="proof-content">
 <p>Suppose that we monitor the play of a parity game with a record <span class="math notranslate nohighlight">\(b_{\lceil \log
 n \rceil}, \dots, b_0\)</span>. Eve has a strategy that ensures <span class="math notranslate nohighlight">\(b_{\lceil \log n

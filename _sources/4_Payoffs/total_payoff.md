@@ -40,7 +40,7 @@ to survive the game. Total payoff is therefore also closely related to
 (again computed with partial sums) while keeping at all time the
 energy level above $0$. However, no trivial reduction exist to encode
 total payoff games into energy games (that will be solved
-in \cref{chap:counters})
+in {prf:ref}`chap:counters`)
 
 It should not be surprising that total payoff games are determined
 but, contrary to shortest path games, positional strategies are now
@@ -111,7 +111,7 @@ in the arena allows one to get the following strong result {cite}`Gimbert&Zielon
 
 ````
 
-In particular, it gives $\textrm{NP}\cap \textrm{coNP}$ complexity to solve
+In particular, it gives $NP\cap coNP$ complexity to solve
 total payoff games, since one-player total payoff games can be solved
 in polynomial time using Floyd-Warshall algorithm to compute all-pairs
 shortest path in a weighted graph. Obtaining a deterministic algorithm

@@ -79,8 +79,8 @@ Thus $\rho$ is accepted by $\mathrm{LAR}_\mathcal{F}$ if and only if $\mathtt{In
 
 ## The Zielonka tree
 
- {prf:ref}`2-thm:LAR` implies a reduction from Muller games to parity games as explained in Section {ref}`1-sec:reductions`.
-However this does not improve over the results we already obtained for Muller games in  {prf:ref}`2-thm:muller`,
+{prf:ref}`2-thm:LAR` implies a reduction from Muller games to parity games as explained in Section {ref}`1-sec:reductions`.
+However this does not improve over the results we already obtained for Muller games in {prf:ref}`2-thm:muller`,
 neither algorithmically nor for the memory requirements.
 One weakness of the LAR construction is that its size depends only on the number of colours, and not on the properties of $\mathcal{F}$.
 The Zielonka tree is an improved take on the LAR.
@@ -112,7 +112,7 @@ Also, not all branches have the same length.
 :align: center
 The Muller tree for $\mathtt{Muller}( \mathcal{F})$. By convention nodes labelled by a set in $\mathcal{F}$ are represented by a circle
 and the others by a square.
-The numbers on the right hand side and the dashed nodes (describing a branch) are both used in the proof of  {prf:ref}`2-thm:reduction_parity_Zielonka_tree`.
+The numbers on the right hand side and the dashed nodes (describing a branch) are both used in the proof of {prf:ref}`2-thm:reduction_parity_Zielonka_tree`.
 ```
 
 The first use of the Zielonka tree is to induce an improved reduction from Muller to parity objectives.
@@ -185,34 +185,34 @@ thus $\rho$ is accepted by $\mathrm{Zielonka}_\mathcal{F}$ if and only if $\math
 
 ````
 
-Since  {prf:ref}`2-thm:reduction_parity_Zielonka_tree` is a reduction from Muller to parity objectives,
+Since {prf:ref}`2-thm:reduction_parity_Zielonka_tree` is a reduction from Muller to parity objectives,
 it implies a reduction from Muller games to parity games as explained in Section {ref}`1-sec:reductions`,
-improving over  {prf:ref}`2-thm:LAR`. 
-Since solving parity games is in $\textrm{NP} \cap  \textrm{coNP}$,
-if we represent the Muller condition by a Zielonka tree then the automaton constructed in  {prf:ref}`2-thm:reduction_parity_Zielonka_tree`
+improving over {prf:ref}`2-thm:LAR`. 
+Since solving parity games is in $NP \cap  coNP$,
+if we represent the Muller condition by a Zielonka tree then the automaton constructed in {prf:ref}`2-thm:reduction_parity_Zielonka_tree`
 is of polynomial size, implying the following result.
 
 ````{prf:theorem} Complexity of solving Muller games represented by the Zielonka tree
 :label: 2-thm:complexity_Muller_games_representation_Zielonka_tree
 
-Solving Muller games where the condition is represented by a Zielonka tree is in $\textrm{NP} \cap  \textrm{coNP}$.
+Solving Muller games where the condition is represented by a Zielonka tree is in $NP \cap  coNP$.
 
 ````
 
 As observed above different nodes of the Zielonka tree may be labelled by the same set of colours.
 Hence it is tempting to represent a Muller condition not with its Zielonka tree but rather with the Zielonka DAG (Directed Acyclic Graph)
 where nodes labelled by the same set of colours are identified.
-However with this representation solving Muller games is again $\textrm{PSPACE}$-complete:
+However with this representation solving Muller games is again $PSPACE$-complete:
 
 ````{prf:theorem} Complexity of solving Muller games represented by the Zielonka DAG
 :label: 2-thm:Muller_games_DAG
 
-Solving Muller games where the condition is represented by a Zielonka DAG is $\textrm{PSPACE}$-complete.
+Solving Muller games where the condition is represented by a Zielonka DAG is $PSPACE$-complete.
 
 ````
 
-The algorithm presented in  {prf:ref}`2-thm:muller` runs in polynomial space for this representation.
-To obtain the $\textrm{PSPACE}$-hardness we observe that in the reduction from QBF constructed in  {prf:ref}`2-thm:complexity_Muller`,
+The algorithm presented in {prf:ref}`2-thm:muller` runs in polynomial space for this representation.
+To obtain the $PSPACE$-hardness we observe that in the reduction from QBF constructed in {prf:ref}`2-thm:complexity_Muller`,
 the Muller objective is of polynomial size when represented by a Zielonka DAG (but of exponential size when represented by a Zielonka tree).
 
 ## The exact memory requirements
@@ -271,12 +271,12 @@ but no positional winning strategy.
 
 We will not construct the lower bound, meaning the game where Eve needs $m_\mathcal{F}$ memory states to win.
 However, we will now prove the upper bound.
-To this end we revisit the recursive algorithm presented in  {prf:ref}`2-lem:Muller_even` and  {prf:ref}`2-lem:Muller_odd`.
+To this end we revisit the recursive algorithm presented in {prf:ref}`2-lem:Muller_even` and {prf:ref}`2-lem:Muller_odd`.
 This algorithm was removing colours one by one and rely on the recursive solutions.
 We show that we can adapt the algorithm to follow instead the structure of the Zielonka tree: 
 for solving a Muller game, it is enough to recursively solve the induced Muller games
 corresponding to the children of the root of the Zielonka tree.
-The following lemma is an improved variant of  {prf:ref}`2-lem:Muller_even`.
+The following lemma is an improved variant of {prf:ref}`2-lem:Muller_even`.
 
 ````{prf:lemma} Fixed point characterisation of the winning regions for Muller games using the Zielonka tree
 :label: 2-lem:McNaughton_Zielonka_even
@@ -284,12 +284,12 @@ The following lemma is an improved variant of  {prf:ref}`2-lem:Muller_even`.
 Let $\Game$ be a Muller game with objective $\mathtt{Muller}( \mathcal{F})$ such that $C \in  \mathcal{F}$.
 Let $C_1, \dots, C_k$ be the maximal subsets of $C$ such that $C_i \notin  \mathcal{F}$.
 We let $\mathcal{F}_1,\dots, \mathcal{F}_k$ be the corresponding induced Muller objectives,
-and define $\Game_i$ be the subgame of $\Game$ induced by $V \setminus  \textrm{Attr}_\mathrm{Eve}(C \setminus C_i)$
+and define $\Game_i$ be the subgame of $\Game$ induced by $V \setminus  Attr_\mathrm{Eve}(C \setminus C_i)$
 with objective $\mathtt{Muller}( \mathcal{F}_i)$.
 
 *  If for all $i \in [1,k]$, we have $W_\mathrm{Adam}(\Game_i) = \emptyset$, then $W_\mathrm{Eve}(\Game) = V$.
 *  If there exists $i \in [1,k]$ such that $W_\mathrm{Adam}(\Game_i) \neq \emptyset$,
-let $\Game'$ be the subgame of $\Game$ induced by $V \setminus  \textrm{Attr}_\mathrm{Adam}(  W_\mathrm{Adam}(\Game_i) )$,
+let $\Game'$ be the subgame of $\Game$ induced by $V \setminus  Attr_\mathrm{Adam}(  W_\mathrm{Adam}(\Game_i) )$,
 then $W_\mathrm{Eve}(\Game) =  W_\mathrm{Eve}(\Game')$.
 
 ````
@@ -306,14 +306,14 @@ $$
 
 We prove the first item.
 
-For each $i \in [1,k]$, let $\sigma_i$ be an attractor strategy ensuring to reach $C_i$ from $\textrm{Attr}_\mathrm{Eve}(C_i)$,
-and consider a winning strategy for Eve from $V \setminus  \textrm{Attr}_\mathrm{Eve}(C_i)$ in $\Game_i$, it induces a strategy $\sigma'_i$ in $\Game$.
+For each $i \in [1,k]$, let $\sigma_i$ be an attractor strategy ensuring to reach $C_i$ from $Attr_\mathrm{Eve}(C_i)$,
+and consider a winning strategy for Eve from $V \setminus  Attr_\mathrm{Eve}(C_i)$ in $\Game_i$, it induces a strategy $\sigma'_i$ in $\Game$.
 We construct a strategy $\sigma$ in $\Game$ which will simulate the strategies above in turn; to do so it uses $[1,k]$ as top-level memory states.
 (We will look at more closely at the memory structure at the end of the proof.)
-The strategy $\sigma$ with memory $i$ simulates $\sigma_i$ from $\textrm{Attr}_\mathrm{Eve}(C_i)$ and $\sigma'_i$ from $V \setminus  \textrm{Attr}_\mathrm{Eve}(C_i)$,
+The strategy $\sigma$ with memory $i$ simulates $\sigma_i$ from $Attr_\mathrm{Eve}(C_i)$ and $\sigma'_i$ from $V \setminus  Attr_\mathrm{Eve}(C_i)$,
 and if it ever reaches a vertex in $C_i$ it updates its memory state to $i + 1$ and $1$ if $i = k$.
 Any play consistent with $\sigma$ either updates its memory state infinitely many times, 
-or eventually remains in $V \setminus  \textrm{Attr}_\mathrm{Eve}(C_i)$ and is eventually consistent with $\sigma'_i$.
+or eventually remains in $V \setminus  Attr_\mathrm{Eve}(C_i)$ and is eventually consistent with $\sigma'_i$.
 In the first case it sees a colour from each $C_i$ infinitely many times, so by definition of the $C_i$'s and since $C \in  \mathcal{F}$ 
 the play satisfies $\mathtt{Muller}( \mathcal{F})$, 
 and in the other case since $\sigma'_i$ is winning the play satisfies $\mathtt{Muller}( \mathcal{F})$.
@@ -327,18 +327,18 @@ corresponding to the definition of $m_\mathcal{F}$.
 We now look at the second item.
 
 Consider a winning strategy for Adam from $W_\mathrm{Adam}(\Game_i)$ in $\Game_i$, it induces a strategy $\tau_i$ in $\Game$.
-Since $V \setminus  \textrm{Attr}_\mathrm{Eve}(C_i)$ is a trap for Eve, this implies that $\tau_i$ is a winning strategy in $\Game$.
-Let $\tau_a$ denote an attractor strategy from $\textrm{Attr}_\mathrm{Adam}( W_\mathrm{Adam}(\Game_i)) \setminus  W_\mathrm{Adam}(\Game_i)$.
+Since $V \setminus  Attr_\mathrm{Eve}(C_i)$ is a trap for Eve, this implies that $\tau_i$ is a winning strategy in $\Game$.
+Let $\tau_a$ denote an attractor strategy from $Attr_\mathrm{Adam}( W_\mathrm{Adam}(\Game_i)) \setminus  W_\mathrm{Adam}(\Game_i)$.
 Consider now a winning strategy in the game $\Game'$ from $W_\mathrm{Adam}(\Game')$, it induces a strategy $\tau'$ in $\Game$.
-The set $V \setminus  \textrm{Attr}_\mathrm{Adam}(  W_\mathrm{Adam}(\Game_i) )$ may not be a trap for Eve, so we cannot conclude that $\tau'$ is a winning strategy in $\Game$,
+The set $V \setminus  Attr_\mathrm{Adam}(  W_\mathrm{Adam}(\Game_i) )$ may not be a trap for Eve, so we cannot conclude that $\tau'$ is a winning strategy in $\Game$,
 and it indeed may not be.
-We construct a strategy $\tau$ in $\Game$ as the (disjoint) union of the strategy $\tau_a$ on $\textrm{Attr}_\mathrm{Adam}( W_\mathrm{Adam}(\Game_i)) \setminus  W_\mathrm{Adam}(\Game_i)$,
+We construct a strategy $\tau$ in $\Game$ as the (disjoint) union of the strategy $\tau_a$ on $Attr_\mathrm{Adam}( W_\mathrm{Adam}(\Game_i)) \setminus  W_\mathrm{Adam}(\Game_i)$,
 the strategy $\tau_i$ on $W_\mathrm{Adam}(\Game_i)$ and the strategy $\tau'$ on $W_\mathrm{Adam}(\Game')$.
-We argue that $\tau$ is winning from $\textrm{Attr}_\mathrm{Adam}(  W_\mathrm{Adam}(\Game_i) ) \cup  W_\mathrm{Adam}(\Game')$ in $\Game$.
+We argue that $\tau$ is winning from $Attr_\mathrm{Adam}(  W_\mathrm{Adam}(\Game_i) ) \cup  W_\mathrm{Adam}(\Game')$ in $\Game$.
 Indeed, any play consistent with this strategy in $\Game$ either stays forever in $W_\mathrm{Adam}(\Game')$ hence is consistent with $\tau'$
-or enters $\textrm{Attr}_\mathrm{Adam}(  W_\mathrm{Adam}(\Game_i) )$, so it is eventually consistent with $\tau_i$.
+or enters $Attr_\mathrm{Adam}(  W_\mathrm{Adam}(\Game_i) )$, so it is eventually consistent with $\tau_i$.
 In both cases this implies that the play is winning.
-Thus we have proved that $\textrm{Attr}_\mathrm{Adam}(  W_\mathrm{Adam}(\Game_c) ) \cup  W_\mathrm{Adam}(\Game') \subseteq  W_\mathrm{Adam}(\Game)$.
+Thus we have proved that $Attr_\mathrm{Adam}(  W_\mathrm{Adam}(\Game_c) ) \cup  W_\mathrm{Adam}(\Game') \subseteq  W_\mathrm{Adam}(\Game)$.
 
 We now show that $W_\mathrm{Eve}(\Game') \subseteq  W_\mathrm{Eve}(\Game)$, which implies the converse inclusion.
 Consider a winning strategy from $W_\mathrm{Eve}(\Game')$ in $\Game'$, it induces a strategy $\sigma$ in $\Game$.
@@ -360,24 +360,24 @@ The corresponding lemma when $C \notin  \mathcal{F}$ is stated below, its proof 
 Let $\Game$ be a Muller game such that $C \notin  \mathcal{F}$.
 Let $C_1, \dots, C_k$ be the maximal subsets of $C$ such that $C_i \in  \mathcal{F}$.
 We let $\mathcal{F}_1,\dots, \mathcal{F}_k$ be the corresponding induced Muller objectives,
-and define $\Game_i$ be the subgame of $\Game$ induced by $V \setminus  \textrm{Attr}_\mathrm{Adam}(C \setminus C_i)$ with objective $\mathtt{Muller}( \mathcal{F}_i)$.
+and define $\Game_i$ be the subgame of $\Game$ induced by $V \setminus  Attr_\mathrm{Adam}(C \setminus C_i)$ with objective $\mathtt{Muller}( \mathcal{F}_i)$.
 
 *  If for all $i \in [1,k]$, we have $W_\mathrm{Eve}(\Game_i) = \emptyset$, then $W_\mathrm{Adam}(\Game) = V$.
 *  If there exists $i \in [1,k]$ such that $W_\mathrm{Eve}(\Game_i) \neq \emptyset$,
-let $\Game'$ be the subgame of $\Game$ induced by $V \setminus  \textrm{Attr}_\mathrm{Eve}(  W_\mathrm{Eve}(\Game_i) )$,
+let $\Game'$ be the subgame of $\Game$ induced by $V \setminus  Attr_\mathrm{Eve}(  W_\mathrm{Eve}(\Game_i) )$,
 then $W_\mathrm{Adam}(\Game) =  W_\mathrm{Adam}(\Game')$.
 
 ````
 
 ## Revisiting Streett, Rabin, and parity objectives
 
-Let us look at the Streett, Rabin, and parity objectives under the new light shed by  {prf:ref}`2-thm:characterisation_Zielonka_tree`.
+Let us look at the Streett, Rabin, and parity objectives under the new light shed by {prf:ref}`2-thm:characterisation_Zielonka_tree`.
 It is instructive to look at the Zielonka tree of a Rabin objective, illustrated in {numref}`2-fig:Zielonka_tree_Rabin`.
 It has a simple recursive structure: the Zielonka tree of the Rabin objective for $d$ pairs contains $d$ copies
 of the Zielonka tree of the Rabin objective for $d-1$ pairs.
-Naturally, this implies that $m_{ \mathtt{Rabin}} = 1$, so  {prf:ref}`2-thm:characterisation_Zielonka_tree` induces the positional determinacy result
-stated in  {prf:ref}`2-thm:Rabin_positional_determinacy`.
-Note that the two proofs are very different: the proof of  {prf:ref}`2-thm:characterisation_Zielonka_tree` is by induction over the Zielonka tree and can be extended to infinite games, while the proof of  {prf:ref}`2-thm:submixing_positional` applies only to finite games but gives a general sufficient condition for positionality.
+Naturally, this implies that $m_{ \mathtt{Rabin}} = 1$, so {prf:ref}`2-thm:characterisation_Zielonka_tree` induces the positional determinacy result
+stated in {prf:ref}`2-thm:Rabin_positional_determinacy`.
+Note that the two proofs are very different: the proof of {prf:ref}`2-thm:characterisation_Zielonka_tree` is by induction over the Zielonka tree and can be extended to infinite games, while the proof of {prf:ref}`2-thm:submixing_positional` applies only to finite games but gives a general sufficient condition for positionality.
 
 ```{figure} ./../FigAndAlgos/2-fig:Zielonka_tree_Rabin.png
 :name: 2-fig:Zielonka_tree_Rabin
@@ -403,7 +403,7 @@ This theorem gives a characterisation of Rabin and parity objectives: they form 
 ````{admonition} Proof
 :class: dropdown tip
 
-Thanks to  {prf:ref}`2-thm:characterisation_Zielonka_tree` the objective $\mathtt{Muller}( \mathcal{F})$ is positionally determined if and only if $m_\mathcal{F} = 1$, which is equivalent to saying that all nodes labelled $S \in  \mathcal{F}$ in the Zielonka tree of $\mathcal{F}$ have at most one child. Indeed, for such nodes the number $m$ is obtained as the sum of the numbers for the children, so there can be at most one, and conversely if this is the case then $m_\mathcal{F} = 1$.
+Thanks to {prf:ref}`2-thm:characterisation_Zielonka_tree` the objective $\mathtt{Muller}( \mathcal{F})$ is positionally determined if and only if $m_\mathcal{F} = 1$, which is equivalent to saying that all nodes labelled $S \in  \mathcal{F}$ in the Zielonka tree of $\mathcal{F}$ have at most one child. Indeed, for such nodes the number $m$ is obtained as the sum of the numbers for the children, so there can be at most one, and conversely if this is the case then $m_\mathcal{F} = 1$.
 This characterisation of the Zielonka tree is equivalent to the complement of $\mathcal{F}$ being closed under union:
 
 *  Assume that the complement of $\mathcal{F}$ is closed under union and let $S \in  \mathcal{F}$ be a node in the Zielonka tree of $\mathcal{F}$.

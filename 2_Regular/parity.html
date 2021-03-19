@@ -713,34 +713,34 @@
  \mathtt{Parity} =  \left\{ \rho \in [1,d]^\omega \mid \text{ the largest priority appearing infinitely often in  \right\} \rho \text{ is even}}.
 \]</div>
 <div class="proof theorem admonition" id="2-thm:parity">
-<p class="admonition-title"><span class="caption-number">Theorem 39 </span> (Positional determinacy and complexity of parity games)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 47 </span> (Positional determinacy and complexity of parity games)</p>
 <div class="theorem-content section" id="proof-content">
 <p>Parity objectives are uniformly positionally determined for both players.</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
-<p>See \cref{2-rmk:finite_infinite} for the case of infinite games.</p>
+<p>See <code class="xref prf prf-ref docutils literal notranslate"><span class="pre">2-rmk:finite_infinite</span></code> for the case of infinite games.</p>
 </div>
 <p>There exists an algorithm for computing the winning regions of parity games in exponential time,
 and more precisely of complexity <span class="math notranslate nohighlight">\(O(m n^d)\)</span>.
 The space complexity of <span class="math notranslate nohighlight">\(O(nd)\)</span>.</p>
-<p>Furthermore, solving parity games is in <span class="math notranslate nohighlight">\(\textrm{NP} \cap  \textrm{coNP}\)</span>.</p>
+<p>Furthermore, solving parity games is in <span class="math notranslate nohighlight">\(NP \cap  coNP\)</span>.</p>
 </div>
-</div><p>To prove  <a class="reference internal" href="#2-thm:parity">Theorem 39</a> we first construct a recursive algorithm for computing the winning regions of parity games.
+</div><p>To prove <a class="reference internal" href="#2-thm:parity">Theorem 47</a> we first construct a recursive algorithm for computing the winning regions of parity games.
 The algorithm is often called Zielonka’s algorithm, or more accurately McNaughton Zielonka’s algorithm.
 We refer to the reference section Section <a class="reference internal" href="references.html#sec-references"><span class="std std-ref">Bibliographic references</span></a> for a discussion on this nomenclature.
 We will see that the positionaly determinacy result for both players will be a consequence of the analysis of the algorithm.
-The <span class="math notranslate nohighlight">\(\textrm{NP} \cap  \textrm{coNP}\)</span> complexity bounds will be discussed at the end of this section.</p>
+The <span class="math notranslate nohighlight">\(NP \cap  coNP\)</span> complexity bounds will be discussed at the end of this section.</p>
 <p>The following lemma induces (half of) the recursive algorithm.
 Identifying a colour and its set of vertices we write <span class="math notranslate nohighlight">\(d\)</span> for the set of vertices of priority <span class="math notranslate nohighlight">\(d\)</span>.</p>
 <div class="proof lemma admonition" id="2-lem:zielonka_even">
-<p class="admonition-title"><span class="caption-number">Lemma 40 </span> (Fixed point characterisation of the winning regions for parity games)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 48 </span> (Fixed point characterisation of the winning regions for parity games)</p>
 <div class="lemma-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\Game\)</span> be a parity game with priorities in <span class="math notranslate nohighlight">\([1,d]\)</span>, and <span class="math notranslate nohighlight">\(d\)</span> even.
-Let <span class="math notranslate nohighlight">\(\Game'\)</span> be the subgame of <span class="math notranslate nohighlight">\(\Game\)</span> induced by <span class="math notranslate nohighlight">\(V \setminus  \textrm{Attr}_\mathrm{Eve}(d)\)</span>.</p>
+Let <span class="math notranslate nohighlight">\(\Game'\)</span> be the subgame of <span class="math notranslate nohighlight">\(\Game\)</span> induced by <span class="math notranslate nohighlight">\(V \setminus  Attr_\mathrm{Eve}(d)\)</span>.</p>
 <ul class="simple">
 <li><p>If <span class="math notranslate nohighlight">\(W_\mathrm{Adam}(\Game') = \emptyset\)</span>, then <span class="math notranslate nohighlight">\(W_\mathrm{Eve}(\Game) = V\)</span>.</p></li>
 <li><p>If <span class="math notranslate nohighlight">\(W_\mathrm{Adam}(\Game') \neq \emptyset\)</span>,
-let <span class="math notranslate nohighlight">\(\Game''\)</span> be the subgame of <span class="math notranslate nohighlight">\(\Game\)</span> induced by <span class="math notranslate nohighlight">\(V \setminus  \textrm{Attr}_\mathrm{Adam}(  W_\mathrm{Adam}(\Game') )\)</span>,
+let <span class="math notranslate nohighlight">\(\Game''\)</span> be the subgame of <span class="math notranslate nohighlight">\(\Game\)</span> induced by <span class="math notranslate nohighlight">\(V \setminus  Attr_\mathrm{Adam}(  W_\mathrm{Adam}(\Game') )\)</span>,
 then <span class="math notranslate nohighlight">\(W_\mathrm{Eve}(\Game) =  W_\mathrm{Eve}(\Game'')\)</span>.</p></li>
 </ul>
 </div>
@@ -749,29 +749,29 @@ and that if <span class="math notranslate nohighlight">\(W_\mathrm{Adam}(\Game')
 <div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
 <p>We prove the first item.</p>
-<p>Let <span class="math notranslate nohighlight">\(\sigma_d\)</span> be an attractor strategy ensuring to reach <span class="math notranslate nohighlight">\(d\)</span> from <span class="math notranslate nohighlight">\(\textrm{Attr}_\mathrm{Eve}(d)\)</span>.
-Consider a winning strategy for Eve from <span class="math notranslate nohighlight">\(V \setminus  \textrm{Attr}_\mathrm{Eve}(d)\)</span> in <span class="math notranslate nohighlight">\(\Game'\)</span>, it induces a strategy <span class="math notranslate nohighlight">\(\sigma'\)</span> in <span class="math notranslate nohighlight">\(\Game\)</span>.
-We construct a strategy <span class="math notranslate nohighlight">\(\sigma\)</span> in <span class="math notranslate nohighlight">\(\Game\)</span> as the disjoint union of <span class="math notranslate nohighlight">\(\sigma_d\)</span> on <span class="math notranslate nohighlight">\(\textrm{Attr}_\mathrm{Eve}(d)\)</span> and of <span class="math notranslate nohighlight">\(\sigma'\)</span> on <span class="math notranslate nohighlight">\(V \setminus  \textrm{Attr}_\mathrm{Eve}(d)\)</span>.
-Any play consistent with <span class="math notranslate nohighlight">\(\sigma\)</span> either enters <span class="math notranslate nohighlight">\(\textrm{Attr}_\mathrm{Eve}(d)\)</span> infinitely many times,
-or eventually remains in <span class="math notranslate nohighlight">\(V \setminus  \textrm{Attr}_\mathrm{Eve}(d)\)</span> and is eventually consistent with <span class="math notranslate nohighlight">\(\sigma'\)</span>.
+<p>Let <span class="math notranslate nohighlight">\(\sigma_d\)</span> be an attractor strategy ensuring to reach <span class="math notranslate nohighlight">\(d\)</span> from <span class="math notranslate nohighlight">\(Attr_\mathrm{Eve}(d)\)</span>.
+Consider a winning strategy for Eve from <span class="math notranslate nohighlight">\(V \setminus  Attr_\mathrm{Eve}(d)\)</span> in <span class="math notranslate nohighlight">\(\Game'\)</span>, it induces a strategy <span class="math notranslate nohighlight">\(\sigma'\)</span> in <span class="math notranslate nohighlight">\(\Game\)</span>.
+We construct a strategy <span class="math notranslate nohighlight">\(\sigma\)</span> in <span class="math notranslate nohighlight">\(\Game\)</span> as the disjoint union of <span class="math notranslate nohighlight">\(\sigma_d\)</span> on <span class="math notranslate nohighlight">\(Attr_\mathrm{Eve}(d)\)</span> and of <span class="math notranslate nohighlight">\(\sigma'\)</span> on <span class="math notranslate nohighlight">\(V \setminus  Attr_\mathrm{Eve}(d)\)</span>.
+Any play consistent with <span class="math notranslate nohighlight">\(\sigma\)</span> either enters <span class="math notranslate nohighlight">\(Attr_\mathrm{Eve}(d)\)</span> infinitely many times,
+or eventually remains in <span class="math notranslate nohighlight">\(V \setminus  Attr_\mathrm{Eve}(d)\)</span> and is eventually consistent with <span class="math notranslate nohighlight">\(\sigma'\)</span>.
 In the first case it sees infinitely many times <span class="math notranslate nohighlight">\(d\)</span>, which is even and maximal, hence satisfies <span class="math notranslate nohighlight">\(\mathtt{Parity}\)</span>,
 and in the other case since <span class="math notranslate nohighlight">\(\sigma'\)</span> is winning the play satisfies <span class="math notranslate nohighlight">\(\mathtt{Parity}\)</span>.
 Thus <span class="math notranslate nohighlight">\(\sigma\)</span> is winning from <span class="math notranslate nohighlight">\(V\)</span>.</p>
 <p>We now look at the second item.</p>
 <p>Let <span class="math notranslate nohighlight">\(\tau_a\)</span> denote an attractor strategy
-from <span class="math notranslate nohighlight">\(\textrm{Attr}_\mathrm{Adam}( W_\mathrm{Adam}(\Game')) \setminus  W_\mathrm{Adam}(\Game')\)</span>.
+from <span class="math notranslate nohighlight">\(Attr_\mathrm{Adam}( W_\mathrm{Adam}(\Game')) \setminus  W_\mathrm{Adam}(\Game')\)</span>.
 Consider a winning strategy for Adam from <span class="math notranslate nohighlight">\(W_\mathrm{Adam}(\Game')\)</span> in <span class="math notranslate nohighlight">\(\Game'\)</span>, it induces a strategy <span class="math notranslate nohighlight">\(\tau'\)</span> in <span class="math notranslate nohighlight">\(\Game\)</span>.
-Since <span class="math notranslate nohighlight">\(V \setminus  \textrm{Attr}_\mathrm{Eve}(d)\)</span> is a trap for Eve, this implies that <span class="math notranslate nohighlight">\(\tau'\)</span> is a winning strategy in <span class="math notranslate nohighlight">\(\Game\)</span>.
+Since <span class="math notranslate nohighlight">\(V \setminus  Attr_\mathrm{Eve}(d)\)</span> is a trap for Eve, this implies that <span class="math notranslate nohighlight">\(\tau'\)</span> is a winning strategy in <span class="math notranslate nohighlight">\(\Game\)</span>.
 Consider now a winning strategy in the game <span class="math notranslate nohighlight">\(\Game''\)</span> from <span class="math notranslate nohighlight">\(W_\mathrm{Adam}(\Game'')\)</span>, it induces a strategy <span class="math notranslate nohighlight">\(\tau''\)</span> in <span class="math notranslate nohighlight">\(\Game\)</span>.
-The set <span class="math notranslate nohighlight">\(V \setminus  \textrm{Attr}_\mathrm{Adam}(  W_\mathrm{Adam}(\Game') )\)</span> may not be a trap for Eve, so we cannot conclude that <span class="math notranslate nohighlight">\(\tau''\)</span> is a winning strategy in <span class="math notranslate nohighlight">\(\Game\)</span>,
+The set <span class="math notranslate nohighlight">\(V \setminus  Attr_\mathrm{Adam}(  W_\mathrm{Adam}(\Game') )\)</span> may not be a trap for Eve, so we cannot conclude that <span class="math notranslate nohighlight">\(\tau''\)</span> is a winning strategy in <span class="math notranslate nohighlight">\(\Game\)</span>,
 and it indeed may not be.
-We construct a strategy <span class="math notranslate nohighlight">\(\tau\)</span> in <span class="math notranslate nohighlight">\(\Game\)</span> as the (disjoint) union of the strategy <span class="math notranslate nohighlight">\(\tau_a\)</span> on <span class="math notranslate nohighlight">\(\textrm{Attr}_\mathrm{Adam}( W_\mathrm{Adam}(\Game')) \setminus  W_\mathrm{Adam}(\Game')\)</span>,
+We construct a strategy <span class="math notranslate nohighlight">\(\tau\)</span> in <span class="math notranslate nohighlight">\(\Game\)</span> as the (disjoint) union of the strategy <span class="math notranslate nohighlight">\(\tau_a\)</span> on <span class="math notranslate nohighlight">\(Attr_\mathrm{Adam}( W_\mathrm{Adam}(\Game')) \setminus  W_\mathrm{Adam}(\Game')\)</span>,
 the strategy <span class="math notranslate nohighlight">\(\tau'\)</span> on <span class="math notranslate nohighlight">\(W_\mathrm{Adam}(\Game')\)</span> and the strategy <span class="math notranslate nohighlight">\(\tau''\)</span> on <span class="math notranslate nohighlight">\(W_\mathrm{Adam}(\Game'')\)</span>.
-We argue that <span class="math notranslate nohighlight">\(\tau\)</span> is winning from <span class="math notranslate nohighlight">\(\textrm{Attr}_\mathrm{Adam}(  W_\mathrm{Adam}(\Game') ) \cup  W_\mathrm{Adam}(\Game'')\)</span> in <span class="math notranslate nohighlight">\(\Game\)</span>.
+We argue that <span class="math notranslate nohighlight">\(\tau\)</span> is winning from <span class="math notranslate nohighlight">\(Attr_\mathrm{Adam}(  W_\mathrm{Adam}(\Game') ) \cup  W_\mathrm{Adam}(\Game'')\)</span> in <span class="math notranslate nohighlight">\(\Game\)</span>.
 Indeed, any play consistent with this strategy in <span class="math notranslate nohighlight">\(\Game\)</span> either stays forever in <span class="math notranslate nohighlight">\(W_\mathrm{Adam}(\Game'')\)</span> hence is consistent with <span class="math notranslate nohighlight">\(\tau''\)</span>
-or enters <span class="math notranslate nohighlight">\(\textrm{Attr}_\mathrm{Adam}(  W_\mathrm{Adam}(\Game') )\)</span>, hence is eventually consistent with <span class="math notranslate nohighlight">\(\tau'\)</span>.
+or enters <span class="math notranslate nohighlight">\(Attr_\mathrm{Adam}(  W_\mathrm{Adam}(\Game') )\)</span>, hence is eventually consistent with <span class="math notranslate nohighlight">\(\tau'\)</span>.
 In both cases this implies that the play is winning.
-Thus we have proved that <span class="math notranslate nohighlight">\(\textrm{Attr}_\mathrm{Adam}(  W_\mathrm{Adam}(\Game') ) \cup  W_\mathrm{Adam}(\Game'') \subseteq  W_\mathrm{Adam}(\Game)\)</span>.</p>
+Thus we have proved that <span class="math notranslate nohighlight">\(Attr_\mathrm{Adam}(  W_\mathrm{Adam}(\Game') ) \cup  W_\mathrm{Adam}(\Game'') \subseteq  W_\mathrm{Adam}(\Game)\)</span>.</p>
 <p>We now show that <span class="math notranslate nohighlight">\(W_\mathrm{Eve}(\Game'') \subseteq  W_\mathrm{Eve}(\Game)\)</span>, which implies the converse inclusion.
 Consider a winning strategy from <span class="math notranslate nohighlight">\(W_\mathrm{Eve}(\Game'')\)</span> in <span class="math notranslate nohighlight">\(\Game''\)</span>, it induces a strategy <span class="math notranslate nohighlight">\(\sigma\)</span> in <span class="math notranslate nohighlight">\(\Game\)</span>.
 Since <span class="math notranslate nohighlight">\(\Game''\)</span> is a trap for Adam, any play consistent with <span class="math notranslate nohighlight">\(\sigma\)</span> stays forever in <span class="math notranslate nohighlight">\(W_\mathrm{Eve}(\Game'')\)</span>,
@@ -780,18 +780,18 @@ implying that <span class="math notranslate nohighlight">\(\sigma\)</span> is wi
 <p>To get the full algorithm we need the analogous lemma for the case where the maximal priority is odd.
 We do not prove the following lemma as it is the exact dual of the previous lemma, and the proof is the same swapping the two players.</p>
 <div class="proof lemma admonition" id="2-lem:zielonka_odd">
-<p class="admonition-title"><span class="caption-number">Lemma 41 </span> (Dual fixed point characterisation of the winning regions for parity games)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 49 </span> (Dual fixed point characterisation of the winning regions for parity games)</p>
 <div class="lemma-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\Game\)</span> be a parity game with priorities in <span class="math notranslate nohighlight">\([1,d]\)</span>, and <span class="math notranslate nohighlight">\(d\)</span> odd.
-Let <span class="math notranslate nohighlight">\(\Game'\)</span> be the subgame of <span class="math notranslate nohighlight">\(\Game\)</span> induced by <span class="math notranslate nohighlight">\(V \setminus  \textrm{Attr}_\mathrm{Adam}(d)\)</span>.</p>
+Let <span class="math notranslate nohighlight">\(\Game'\)</span> be the subgame of <span class="math notranslate nohighlight">\(\Game\)</span> induced by <span class="math notranslate nohighlight">\(V \setminus  Attr_\mathrm{Adam}(d)\)</span>.</p>
 <ul class="simple">
 <li><p>If <span class="math notranslate nohighlight">\(W_\mathrm{Eve}(\Game') = \emptyset\)</span>, then <span class="math notranslate nohighlight">\(W_\mathrm{Adam}(\Game) = V\)</span>.</p></li>
-<li><p>If <span class="math notranslate nohighlight">\(W_\mathrm{Eve}(\Game') \neq \emptyset\)</span>, let <span class="math notranslate nohighlight">\(\Game''\)</span> be the subgame of <span class="math notranslate nohighlight">\(\Game\)</span> induced by <span class="math notranslate nohighlight">\(V \setminus  \textrm{Attr}_\mathrm{Eve}(  W_\mathrm{Eve}(\Game') )\)</span>,
+<li><p>If <span class="math notranslate nohighlight">\(W_\mathrm{Eve}(\Game') \neq \emptyset\)</span>, let <span class="math notranslate nohighlight">\(\Game''\)</span> be the subgame of <span class="math notranslate nohighlight">\(\Game\)</span> induced by <span class="math notranslate nohighlight">\(V \setminus  Attr_\mathrm{Eve}(  W_\mathrm{Eve}(\Game') )\)</span>,
 then <span class="math notranslate nohighlight">\(W_\mathrm{Adam}(\Game) =  W_\mathrm{Adam}(\Game'')\)</span>.</p></li>
 </ul>
 </div>
 </div><p>The algorithm is presented in pseudocode in <a class="reference internal" href="#algo-zielonka"><span class="std std-numref">Fig. 11</span></a>.</p>
-<p>The proofs of  <a class="reference internal" href="#2-lem:zielonka_even">Lemma 40</a> and  <a class="reference internal" href="#2-lem:zielonka_odd">Lemma 41</a> also imply that parity games are positionally determined for both players.
+<p>The proofs of <a class="reference internal" href="#2-lem:zielonka_even">Lemma 48</a> and <a class="reference internal" href="#2-lem:zielonka_odd">Lemma 49</a> also imply that parity games are positionally determined for both players.
 Indeed, winning strategies are defined as disjoint unions of strategies constructed inductively.</p>
 <p>We now perform a complexity analysis.
 We write <span class="math notranslate nohighlight">\(f(n,d)\)</span> for the number of recursive calls performed by the algorithm on parity games with <span class="math notranslate nohighlight">\(n\)</span> vertices and priorities in <span class="math notranslate nohighlight">\([1,d]\)</span>.
@@ -807,13 +807,13 @@ so <span class="math notranslate nohighlight">\(f(n,d) \le 2(n + n^2 + \dots + n
 In each recursive call we perform two attractor computations so the number of operations
 in one recursive call is <span class="math notranslate nohighlight">\(O(m)\)</span>.
 Thus the overall time complexity is <span class="math notranslate nohighlight">\(O(m n^d)\)</span>.</p>
-<p>We finish the proof of  <a class="reference internal" href="#2-thm:parity">Theorem 39</a> by sketching the argument that solving parity games is in <span class="math notranslate nohighlight">\(\textrm{NP} \cap  \textrm{coNP}\)</span>.
+<p>We finish the proof of <a class="reference internal" href="#2-thm:parity">Theorem 47</a> by sketching the argument that solving parity games is in <span class="math notranslate nohighlight">\(NP \cap  coNP\)</span>.
 The first observation is that computing the winning regions of the one player variants of parity games can be done in polynomial time
 through a simple graph analysis that we do not detail here.
-The <span class="math notranslate nohighlight">\(\textrm{NP}\)</span> and <span class="math notranslate nohighlight">\(\textrm{coNP}\)</span> algorithms are the following: guess a winning positional strategy,
+The <span class="math notranslate nohighlight">\(NP\)</span> and <span class="math notranslate nohighlight">\(coNP\)</span> algorithms are the following: guess a winning positional strategy,
 and check whether it is winning by computing the winning regions of the one player game induced by the strategy.
-Guessing a strategy for Eve is a witness that the answer is yes so it yields an <span class="math notranslate nohighlight">\(\textrm{NP}\)</span> algorithm,
-and guessing a strategy for Adam yields a <span class="math notranslate nohighlight">\(\textrm{coNP}\)</span> algorithm.</p>
+Guessing a strategy for Eve is a witness that the answer is yes so it yields an <span class="math notranslate nohighlight">\(NP\)</span> algorithm,
+and guessing a strategy for Adam yields a <span class="math notranslate nohighlight">\(coNP\)</span> algorithm.</p>
 <p>Chapter <a class="reference internal" href="../3_Parity/index.html#chap-parity"><span class="std std-ref">Parity Games</span></a> is devoted to the study of advanced algorithms for parity games.</p>
 <div class="figure align-center" id="algo-zielonka">
 <img alt="../_images/2-algo:zielonka.png" src="../_images/2-algo:zielonka.png" />

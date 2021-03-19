@@ -15,7 +15,7 @@ We will first, however, show that finding the value of a concurrent mean-payoff 
 :label: lemm:class_meanpayoff
 
 Concurrent mean-payoff games are determined and the value is the limit of the value of the corresponding time-limited game as well as the limit of the corresponding discounted game, for the discount factor going to 0 from above.
-There is an polynomial time algorithm, ala Lemma \cref\{lem:val1}, for finding the set of vertices where a finite memory strategy suffice to ensure $1-\epsilon$ (recall that all rewards are in $\{0,1\}$).
+There is an polynomial time algorithm, ala Lemma {prf:ref}`lem:val1`, for finding the set of vertices where a finite memory strategy suffice to ensure $1-\epsilon$ (recall that all rewards are in $\{0,1\}$).
 For any fixed number $n$, there is a polynomial time algorithm for approximating the value in a concurrent mean-payoff game with $n$ vertices (i.e. the running time is polynomial in the number of actions)
 
 ````
@@ -80,7 +80,7 @@ The game is called the big match and is defined as follows:
 There are 3 vertices, $\{0,s,1\}$, where the vertices in $\{0,1\}$ are absorbing, and with value equal to their name.
 The last vertex $s$ has a 2x2-matrix and for all $i,j$ for $i\neq j$, we have that 
 $c(s,1,1)=1$, and for $i\neq 1\neq j$ we have that $c(s,1,1)=0$.
-Also,  $\Delta(s,1,i)=s$ for each $i$, $\Delta(s,2,1)=0$ and $\Delta(s,2,2)=1$. There is an illustration in Figure \cref\{7-fig:bm}.
+Also,  $\Delta(s,1,i)=s$ for each $i$, $\Delta(s,2,1)=0$ and $\Delta(s,2,2)=1$. There is an illustration in Figure {numref}`7-fig:bm`.
 The value of the Big Match is $1/2$.
 
 ```{figure} ./../FigAndAlgos/7-fig:bm.png

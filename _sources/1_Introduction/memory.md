@@ -8,7 +8,7 @@
 ```
 
 A strategy can be a very complicated object, in particular it is infinite.
-Indeed, it is a function $\sigma :  \textrm{Paths} \to E$,
+Indeed, it is a function $\sigma :  Paths \to E$,
 which means that in order to choose the next move the strategy considers everything played so far: 
 the strategy depends upon the whole play.
 
@@ -27,7 +27,7 @@ $$
 \sigma : V \to E.
 $$
 
-A positional strategy induces a strategy by $\widehat{\sigma}(\pi) = \sigma( \textrm{last}(\pi))$.
+A positional strategy induces a strategy by $\widehat{\sigma}(\pi) = \sigma( last(\pi))$.
 
 For reasoning about positional strategies it is useful to define the following notion.
 Let $\Game$ be a game and $\sigma$ a positional strategy, we define $\Game[\sigma]$ the graph with condition $W$ induced by $\sigma$ on $\Game$.
@@ -101,7 +101,7 @@ The example of a parity game given in {numref}`1-fig:parity_game_example` with a
 We say that a quantitative objective $\Phi$ is positionally determined if 
 for every game $\mathcal{G}$ with objective $\Phi$ and every vertex $v$,
 there exists a positional optimal strategy from $v$.
-Let us state the quantitative counterpart of  {prf:ref}`1-lem:constructing_winning_strategy`.
+Let us state the quantitative counterpart of {prf:ref}`1-lem:constructing_winning_strategy`.
 The proof is the same.
 
 ````{prf:lemma} Binary search for constructive winning strategies, quantitative case
@@ -135,7 +135,7 @@ If an objective is positionally determined and prefix independent then it is uni
 
 Let us consider a game $\mathcal{G}$ with qualitative objective $\Omega$ (the argument is exactly the same for quantitative objectives so we will not repeat it).
 For each $v \in  W_\mathrm{Eve}( \mathcal{G})$ let $\sigma_v$ be a positional winning strategy.
-Thanks to \cref{1-fact:winning_prefix_independent_qualitative}
+Thanks to {prf:ref}`1-fact:winning_prefix_independent_qualitative`
 the strategy $\sigma_v$ is winning from all vertices reachable by a play consistent with $\sigma_v$ starting from $v$.
 Without loss of generality let us assume that $\sigma_v$ is only defined on these vertices.
 
@@ -176,7 +176,7 @@ $$
 \sigma :  V_\mathrm{Eve} \times M \to E.
 $$
 
-It induces a strategy $\widehat{\sigma}$ via $\widehat{\sigma}(\pi) = \sigma( \textrm{last}(\pi), \delta^*(\pi))$.
+It induces a strategy $\widehat{\sigma}$ via $\widehat{\sigma}(\pi) = \sigma( last(\pi), \delta^*(\pi))$.
 A common abuse of notations is to write $\sigma$ for $\widehat{\sigma}$.
 
 We note that positional strategies correspond to strategies using the trivial memory structure consisting of only one state.

@@ -73,15 +73,15 @@ McNaughton Zielonka algorithm.
 The characterisation result showing how Zielonka tree captures the exact memory requirements of Muller objectives is due to 
 Dziembowski, Jurdzi&#324;ski, and Walukiewicz {cite}`Dziembowski&Jurdzinski&Walukiewicz:1997`.
 
-The $\textrm{NP}$-completeness stated in  {prf:ref}`2-thm:Rabin_complexity` for solving Rabin games is due to Emerson and Jutla {cite}`Emerson&Jutla:1988`.
+The $NP$-completeness stated in {prf:ref}`2-thm:Rabin_complexity` for solving Rabin games is due to Emerson and Jutla {cite}`Emerson&Jutla:1988`.
 The study of the complexity of solving Muller games is due to Dawar and Hunter {cite}`Hunter&Dawar:2005`.
-The $\textrm{PSPACE}$-completeness results stated in  {prf:ref}`2-thm:complexity_Muller,2-thm:Muller_games_DAG` only concern two representations for Muller objectives. There are several others, which are not equally succinct.
-For all representations but one the $\textrm{PSPACE}$-completeness result holds; the only exception is the explicit representation
+The $PSPACE$-completeness results stated in {prf:ref}`2-thm:complexity_Muller` and {prf:ref}`2-thm:Muller_games_DAG` only concern two representations for Muller objectives. There are several others, which are not equally succinct.
+For all representations but one the $PSPACE$-completeness result holds; the only exception is the explicit representation
 where the condition is specified by listing all sets of vertices in $\mathcal{F}$.
-Surprisingly, solving Muller games with the explicit representation is in $\textrm{PTIME}$ as shown by Horn {cite}`Horn:2008`.
+Surprisingly, solving Muller games with the explicit representation is in $PTIME$ as shown by Horn {cite}`Horn:2008`.
 
-Our proof of positionality for Rabin objectives for  {prf:ref}`2-thm:Rabin_positional_determinacy` 
-and its extension to submixing objectives  {prf:ref}`2-thm:submixing_positional` 
+Our proof of positionality for Rabin objectives for {prf:ref}`2-thm:Rabin_positional_determinacy` 
+and its extension to submixing objectives {prf:ref}`2-thm:submixing_positional` 
 is inspired by the fairly mixing property of Gimbert and Zielonka {cite}`Gimbert&Zielonka:2004`
 and the concave property of Kopczy&#324;ski {cite}`Kopczynski:2006,Kopczynski:2008`.
 Gimbert and Zielonka {cite}`Gimbert&Zielonka:2005` further refined the submixing property to give a characterisation of objectives which are positionally determined for both players over finite games (they work in the more general framework of preference relations, which includes both qualitative and quantitative objectives).

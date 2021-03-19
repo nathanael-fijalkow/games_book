@@ -708,7 +708,7 @@
 \[ \begin{align}\begin{aligned}\renewcommand{\H}{\mathcal{H}}\\\renewcommand{\Game}{\game}
 \end{aligned}\end{align} \]</div>
 <div class="proof theorem admonition" id="3-thm:strategy_improvement">
-<p class="admonition-title"><span class="caption-number">Theorem 60 </span> (NEEDS TITLE 3-thm:strategy_improvement)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 69 </span> (NEEDS TITLE 3-thm:strategy_improvement)</p>
 <div class="theorem-content section" id="proof-content">
 <p>There exists a strategy improvement algorithm for solving parity games in exponential time.</p>
 </div>
@@ -734,7 +734,7 @@ equivalently all infinite paths in <span class="math notranslate nohighlight">\(
 <p>We say that a cycle is even if the maximal priority along the cycle is even, and it is odd otherwise.
 Respecting parity is characterised using cycles:</p>
 <div class="proof observation admonition" id="observation-1">
-<p class="admonition-title"><span class="caption-number">Observation 61 </span> (NEEDS TITLE AND LABEL)</p>
+<p class="admonition-title"><span class="caption-number">Observation 70 </span> (NEEDS TITLE AND LABEL)</p>
 <div class="observation-content section" id="proof-content">
 <p>A strategy <span class="math notranslate nohighlight">\(\sigma\)</span> respects parity if and only if all cycles in <span class="math notranslate nohighlight">\(\Game[\sigma]\)</span> are even.</p>
 <p>A strategy <span class="math notranslate nohighlight">\(\sigma\)</span> respects parity if and only if all cycles in <span class="math notranslate nohighlight">\(\Game[\sigma]\)</span> are even.</p>
@@ -744,10 +744,10 @@ Respecting parity is characterised using cycles:</p>
 <div><p><strong>Evaluating a strategy.</strong></p>
 </div></blockquote>
 <p>The first question is: given a strategy <span class="math notranslate nohighlight">\(\sigma\)</span>, how to evaluate it (in order to later improve it)?
-As explained in Section <a class="reference internal" href="../1_Introduction/strategy_improvement.html#sec-strategy-improvement"><span class="std std-ref">Strategy improvement algorithms</span></a> towards this goal we define a value function <span class="math notranslate nohighlight">\(\textrm{val}^{\sigma} : V \to Y\)</span>.</p>
-<p>We let <span class="math notranslate nohighlight">\(\textrm{val}^{\sigma}(v) = \min_\tau   \textrm{val}( \pi_{\sigma,\tau}^v)\)</span> where <span class="math notranslate nohighlight">\(\tau\)</span> ranges over (general) strategies for Adam, so we first need to define the value of the play <span class="math notranslate nohighlight">\(\pi =  \pi_{\sigma,\tau}^v\)</span>.
-If <span class="math notranslate nohighlight">\(\pi\)</span> is stopped, then <span class="math notranslate nohighlight">\(\textrm{val}( \pi)\)</span> is the tuple <span class="math notranslate nohighlight">\((p_1, p_2, \dots, p_d)\)</span> where <span class="math notranslate nohighlight">\(p_i\)</span> is the number of times that priority <span class="math notranslate nohighlight">\(p\)</span> appears on the play.
-Otherwise <span class="math notranslate nohighlight">\(\textrm{val}( \pi)\)</span> is <span class="math notranslate nohighlight">\(\top\)</span> if <span class="math notranslate nohighlight">\(\pi\)</span> satisfies parity, and <span class="math notranslate nohighlight">\(\bot\)</span> if <span class="math notranslate nohighlight">\(\pi\)</span> does not satisfy parity.
+As explained in Section <a class="reference internal" href="../1_Introduction/strategy_improvement.html#sec-strategy-improvement"><span class="std std-ref">Strategy improvement algorithms</span></a> towards this goal we define a value function <span class="math notranslate nohighlight">\(val^{\sigma} : V \to Y\)</span>.</p>
+<p>We let <span class="math notranslate nohighlight">\(val^{\sigma}(v) = \min_\tau   val( \pi_{\sigma,\tau}^v)\)</span> where <span class="math notranslate nohighlight">\(\tau\)</span> ranges over (general) strategies for Adam, so we first need to define the value of the play <span class="math notranslate nohighlight">\(\pi =  \pi_{\sigma,\tau}^v\)</span>.
+If <span class="math notranslate nohighlight">\(\pi\)</span> is stopped, then <span class="math notranslate nohighlight">\(val( \pi)\)</span> is the tuple <span class="math notranslate nohighlight">\((p_1, p_2, \dots, p_d)\)</span> where <span class="math notranslate nohighlight">\(p_i\)</span> is the number of times that priority <span class="math notranslate nohighlight">\(p\)</span> appears on the play.
+Otherwise <span class="math notranslate nohighlight">\(val( \pi)\)</span> is <span class="math notranslate nohighlight">\(\top\)</span> if <span class="math notranslate nohighlight">\(\pi\)</span> satisfies parity, and <span class="math notranslate nohighlight">\(\bot\)</span> if <span class="math notranslate nohighlight">\(\pi\)</span> does not satisfy parity.
 So the value of a play is either <span class="math notranslate nohighlight">\(\top\)</span>, <span class="math notranslate nohighlight">\(\bot\)</span>, or a multiset of priorities;
 we let <span class="math notranslate nohighlight">\(Y\)</span> denote the (infinite) set consisting of these elements.</p>
 <p>We define a total order <span class="math notranslate nohighlight">\(\le\)</span> on <span class="math notranslate nohighlight">\(Y\)</span> making it a complete lattice.
@@ -795,23 +795,23 @@ We then define an operator <span class="math notranslate nohighlight">\(\mathbb{
 \end{split}\]</div>
 <p>Since <span class="math notranslate nohighlight">\(\delta\)</span> is monotonic so is <span class="math notranslate nohighlight">\(\mathbb{O}\)</span>.</p>
 <div class="proof observation admonition" id="observation-2">
-<p class="admonition-title"><span class="caption-number">Observation 62 </span> (NEEDS TITLE AND LABEL)</p>
+<p class="admonition-title"><span class="caption-number">Observation 71 </span> (NEEDS TITLE AND LABEL)</p>
 <div class="observation-content section" id="proof-content">
-<p>The function <span class="math notranslate nohighlight">\(\textrm{val}^\sigma\)</span> is a fixed point of <span class="math notranslate nohighlight">\(\mathbb{O}\)</span> in <span class="math notranslate nohighlight">\(F^\sigma_V\)</span>.</p>
-<p>The function <span class="math notranslate nohighlight">\(\textrm{val}^\sigma\)</span> is a fixed point of <span class="math notranslate nohighlight">\(\mathbb{O}\)</span> in <span class="math notranslate nohighlight">\(F^\sigma_V\)</span>.</p>
+<p>The function <span class="math notranslate nohighlight">\(val^\sigma\)</span> is a fixed point of <span class="math notranslate nohighlight">\(\mathbb{O}\)</span> in <span class="math notranslate nohighlight">\(F^\sigma_V\)</span>.</p>
+<p>The function <span class="math notranslate nohighlight">\(val^\sigma\)</span> is a fixed point of <span class="math notranslate nohighlight">\(\mathbb{O}\)</span> in <span class="math notranslate nohighlight">\(F^\sigma_V\)</span>.</p>
 </div>
-</div><p>Unfortunately, <span class="math notranslate nohighlight">\(\textrm{val}^{\sigma}\)</span> is not in general the greatest fixed point of <span class="math notranslate nohighlight">\(\mathbb{O}\)</span> in <span class="math notranslate nohighlight">\(F^\sigma_V\)</span>;
+</div><p>Unfortunately, <span class="math notranslate nohighlight">\(val^{\sigma}\)</span> is not in general the greatest fixed point of <span class="math notranslate nohighlight">\(\mathbb{O}\)</span> in <span class="math notranslate nohighlight">\(F^\sigma_V\)</span>;
 let us analyse this in more details.
 Let <span class="math notranslate nohighlight">\(\mu\)</span> a fixed point of <span class="math notranslate nohighlight">\(\mathbb{O}\)</span> in <span class="math notranslate nohighlight">\(F^\sigma_V\)</span>, there are two cases.
-For a vertex <span class="math notranslate nohighlight">\(v\)</span> such that there exists a stopped play <span class="math notranslate nohighlight">\(\pi\)</span> starting from <span class="math notranslate nohighlight">\(v\)</span>, we have <span class="math notranslate nohighlight">\(\mu(v) \le   \textrm{val}(\pi)\)</span>, and more generally
-<span class="math notranslate nohighlight">\(\mu(v) \le \inf_{\pi}   \textrm{val}(\pi)\)</span> where <span class="math notranslate nohighlight">\(\pi\)</span> ranges over all stopped plays starting from <span class="math notranslate nohighlight">\(v\)</span>.
+For a vertex <span class="math notranslate nohighlight">\(v\)</span> such that there exists a stopped play <span class="math notranslate nohighlight">\(\pi\)</span> starting from <span class="math notranslate nohighlight">\(v\)</span>, we have <span class="math notranslate nohighlight">\(\mu(v) \le   val(\pi)\)</span>, and more generally
+<span class="math notranslate nohighlight">\(\mu(v) \le \inf_{\pi}   val(\pi)\)</span> where <span class="math notranslate nohighlight">\(\pi\)</span> ranges over all stopped plays starting from <span class="math notranslate nohighlight">\(v\)</span>.
 The problem is for a vertex <span class="math notranslate nohighlight">\(v\)</span> such that no plays starting from <span class="math notranslate nohighlight">\(v\)</span> are stopped:
 we can have either <span class="math notranslate nohighlight">\(\mu(v) = \top\)</span> or <span class="math notranslate nohighlight">\(\mu(v) = \bot\)</span>, irrespective of whether the play satisfies parity or not.
 From this discussion we obtain the following result.</p>
 <div class="proof lemma admonition" id="3-lem:greatest_fixed_point">
-<p class="admonition-title"><span class="caption-number">Lemma 63 </span> (NEEDS TITLE 3-lem:greatest_fixed_point)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 72 </span> (NEEDS TITLE 3-lem:greatest_fixed_point)</p>
 <div class="lemma-content section" id="proof-content">
-<p>If <span class="math notranslate nohighlight">\(\sigma\)</span> respects parity, then <span class="math notranslate nohighlight">\(\textrm{val}^{\sigma}\)</span> is the greatest fixed point of <span class="math notranslate nohighlight">\(\mathbb{O}\)</span> in <span class="math notranslate nohighlight">\(F^\sigma_V\)</span>.</p>
+<p>If <span class="math notranslate nohighlight">\(\sigma\)</span> respects parity, then <span class="math notranslate nohighlight">\(val^{\sigma}\)</span> is the greatest fixed point of <span class="math notranslate nohighlight">\(\mathbb{O}\)</span> in <span class="math notranslate nohighlight">\(F^\sigma_V\)</span>.</p>
 </div>
 </div><blockquote>
 <div><p><strong>Improving a strategy.</strong></p>
@@ -820,12 +820,12 @@ From this discussion we obtain the following result.</p>
 Let <span class="math notranslate nohighlight">\(\sigma\)</span> a strategy. We say that an edge <span class="math notranslate nohighlight">\(e = (v,v')\)</span> is switchable if</p>
 <div class="math notranslate nohighlight">
 \[
-\delta(  \textrm{val}^{\sigma}(v'), \textsf{col}(v)) &gt; \delta(  \textrm{val}^{\sigma}(u), \textsf{col}(v)) \text{ where } \sigma(v) = (v,u).
+\delta(  val^{\sigma}(v'), \textsf{col}(v)) &gt; \delta(  val^{\sigma}(u), \textsf{col}(v)) \text{ where } \sigma(v) = (v,u).
 \]</div>
-<p>Intuitively: according to <span class="math notranslate nohighlight">\(\textrm{val}^{\sigma}\)</span>, playing <span class="math notranslate nohighlight">\(e\)</span> is better than playing <span class="math notranslate nohighlight">\(\sigma(v)\)</span>.</p>
+<p>Intuitively: according to <span class="math notranslate nohighlight">\(val^{\sigma}\)</span>, playing <span class="math notranslate nohighlight">\(e\)</span> is better than playing <span class="math notranslate nohighlight">\(\sigma(v)\)</span>.</p>
 <p>Given a strategy <span class="math notranslate nohighlight">\(\sigma\)</span> and an edge <span class="math notranslate nohighlight">\(e = (v,v')\)</span> we use <span class="math notranslate nohighlight">\(\sigma[v \to e]\)</span> to denote the strategy playing <span class="math notranslate nohighlight">\(e\)</span> from <span class="math notranslate nohighlight">\(v\)</span>
 and follow <span class="math notranslate nohighlight">\(\sigma\)</span> from all other vertices.
-Let us write <span class="math notranslate nohighlight">\(\sigma \le \sigma'\)</span> if for all vertices <span class="math notranslate nohighlight">\(v\)</span> we have <span class="math notranslate nohighlight">\(\textrm{val}^{\sigma}(v) \le   \textrm{val}^{\sigma'}(v)\)</span>,
+Let us write <span class="math notranslate nohighlight">\(\sigma \le \sigma'\)</span> if for all vertices <span class="math notranslate nohighlight">\(v\)</span> we have <span class="math notranslate nohighlight">\(val^{\sigma}(v) \le   val^{\sigma'}(v)\)</span>,
 and <span class="math notranslate nohighlight">\(\sigma &lt; \sigma'\)</span> if additionally <span class="math notranslate nohighlight">\(\neg (\sigma' \le \sigma)\)</span>.</p>
 <blockquote>
 <div><p><strong>The algorithm.</strong></p>
@@ -845,7 +845,7 @@ After this preprocessing <span class="math notranslate nohighlight">\(\sigma_0\)
 </div></blockquote>
 <p>We start by stating a very simple property of <span class="math notranslate nohighlight">\(\delta\)</span>, which is key in the arguments below.</p>
 <div class="proof observation admonition" id="observation-4">
-<p class="admonition-title"><span class="caption-number">Observation 64 </span> (NEEDS TITLE AND LABEL)</p>
+<p class="admonition-title"><span class="caption-number">Observation 73 </span> (NEEDS TITLE AND LABEL)</p>
 <div class="observation-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(t \in Y\)</span> and <span class="math notranslate nohighlight">\(p_1,\dots,p_k \in [1,d]\)</span> such that <span class="math notranslate nohighlight">\(t\)</span> and <span class="math notranslate nohighlight">\(\delta(t,p_1 \dots p_k)\)</span> are neither <span class="math notranslate nohighlight">\(\top\)</span> nor <span class="math notranslate nohighlight">\(\bot\)</span>.
 Then <span class="math notranslate nohighlight">\(t \le \delta(t,p_1 \dots p_k)\)</span> if and only if <span class="math notranslate nohighlight">\(\max  \left\{ p_1,\dots,p_k \right\}\)</span> is even.</p>
@@ -854,7 +854,7 @@ Then <span class="math notranslate nohighlight">\(t \le \delta(t,p_1 \dots p_k)\
 </div>
 </div><p>The following lemma states the two important properties of <span class="math notranslate nohighlight">\((Y,\le)\)</span> and <span class="math notranslate nohighlight">\(\delta\)</span>.</p>
 <div class="proof lemma admonition" id="3-lem:key_property">
-<p class="admonition-title"><span class="caption-number">Lemma 65 </span> (NEEDS TITLE 3-lem:key_property)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 74 </span> (NEEDS TITLE 3-lem:key_property)</p>
 <div class="lemma-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(G\)</span> a parity graph (with no stopping option).</p>
 <ul class="simple">
@@ -877,15 +877,15 @@ Let us consider a cycle in <span class="math notranslate nohighlight">\(G\)</spa
 \]</div>
 <p>For all <span class="math notranslate nohighlight">\(i \in [0,k-1]\)</span> we have <span class="math notranslate nohighlight">\(\mu(v_i) \le \delta(\mu(v_{i+1 \mod k}), \textsf{col}(v_i))\)</span>.
 By monotonicity of <span class="math notranslate nohighlight">\(\delta\)</span> this implies <span class="math notranslate nohighlight">\(\mu(v_1) \le \delta(\mu(v_1), \textsf{col}(v_{k-1}) \cdots  \textsf{col}(v_0))\)</span>.
-Thanks to  <a class="reference internal" href="#3-lem:key_property">Lemma 65</a> this implies that the maximum priority in <span class="math notranslate nohighlight">\(\left\{  \textsf{col \right\}(v_0),\dots, \textsf{col}(v_{k-1})}\)</span> is even.</p>
+Thanks to <a class="reference internal" href="#3-lem:key_property">Lemma 74</a> this implies that the maximum priority in <span class="math notranslate nohighlight">\(\left\{  \textsf{col \right\}(v_0),\dots, \textsf{col}(v_{k-1})}\)</span> is even.</p>
 </div>
 <p>Let <span class="math notranslate nohighlight">\(\sigma\)</span> a strategy respecting parity.
 A progress measure for <span class="math notranslate nohighlight">\(\Game[\sigma]\)</span> is a post-fixed point of <span class="math notranslate nohighlight">\(\mathbb{O}\)</span> in <span class="math notranslate nohighlight">\(F^\sigma_V\)</span>:
 it is a function <span class="math notranslate nohighlight">\(\mu : V \to Y\)</span> such that <span class="math notranslate nohighlight">\(\mu(v) = \emptyset\)</span> if <span class="math notranslate nohighlight">\(\sigma(v) =  \mathtt{-}\)</span> and <span class="math notranslate nohighlight">\(\mu \le  \mathbb{O}(\mu)\)</span>,
 which means that <span class="math notranslate nohighlight">\(\mu(v) \le \min  \left\{  \delta(\mu(v'), \textsf{col \right\}(v)) : (v,v') \in E}\)</span>.</p>
-<p>We now rely on  <a class="reference internal" href="#3-lem:greatest_fixed_point">Lemma 63</a> and  <a class="reference internal" href="#3-lem:key_property">Lemma 65</a> to prove the two principles: progress and optimality.</p>
+<p>We now rely on <a class="reference internal" href="#3-lem:greatest_fixed_point">Lemma 72</a> and <a class="reference internal" href="#3-lem:key_property">Lemma 74</a> to prove the two principles: progress and optimality.</p>
 <div class="proof lemma admonition" id="lemma-6">
-<p class="admonition-title"><span class="caption-number">Lemma 66 </span> (NEEDS LABEL Progress)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 75 </span> (NEEDS LABEL Progress)</p>
 <div class="lemma-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\sigma\)</span> a strategy respecting parity and <span class="math notranslate nohighlight">\(e = (v,v')\)</span> a switchable edge.
 We let <span class="math notranslate nohighlight">\(\sigma'\)</span> denote <span class="math notranslate nohighlight">\(\sigma[v \to e]\)</span>.
@@ -897,36 +897,36 @@ Then <span class="math notranslate nohighlight">\(\sigma'\)</span> respects pari
 The fact that <span class="math notranslate nohighlight">\(e = (v,v')\)</span> is switchable reads</p>
 <div class="math notranslate nohighlight">
 \[
-\delta(  \textrm{val}^\sigma(v'), \textsf{col}(v)) &gt; \delta(  \textrm{val}^\sigma(u), \textsf{col}(v)),
+\delta(  val^\sigma(v'), \textsf{col}(v)) &gt; \delta(  val^\sigma(u), \textsf{col}(v)),
 \]</div>
-<p>and by definition of <span class="math notranslate nohighlight">\(\textrm{val}^\sigma\)</span> we have <span class="math notranslate nohighlight">\(\textrm{val}^\sigma(v) = \delta(  \textrm{val}^\sigma(u), \textsf{col}(v))\)</span>,
-which implies <span class="math notranslate nohighlight">\(\textrm{val}^\sigma(v) &lt; \delta(  \textrm{val}^\sigma(v'), \textsf{col}(v))\)</span>, and in particular <span class="math notranslate nohighlight">\(\textrm{val}^\sigma(v) \neq \top\)</span>.</p>
+<p>and by definition of <span class="math notranslate nohighlight">\(val^\sigma\)</span> we have <span class="math notranslate nohighlight">\(val^\sigma(v) = \delta(  val^\sigma(u), \textsf{col}(v))\)</span>,
+which implies <span class="math notranslate nohighlight">\(val^\sigma(v) &lt; \delta(  val^\sigma(v'), \textsf{col}(v))\)</span>, and in particular <span class="math notranslate nohighlight">\(val^\sigma(v) \neq \top\)</span>.</p>
 <p>Let us consider the parity graph <span class="math notranslate nohighlight">\(\Game[\sigma']\)</span> and note that for all edges <span class="math notranslate nohighlight">\(e' = (s,t)\)</span>
-we have <span class="math notranslate nohighlight">\(\textrm{val}^\sigma(s) \le \delta(  \textrm{val}^\sigma(t), \textsf{col}(s))\)</span>:
-indeed either <span class="math notranslate nohighlight">\(e'\)</span> is an edge in <span class="math notranslate nohighlight">\(\Game[\sigma]\)</span> and this is by definition of <span class="math notranslate nohighlight">\(\textrm{val}^\sigma\)</span>,
+we have <span class="math notranslate nohighlight">\(val^\sigma(s) \le \delta(  val^\sigma(t), \textsf{col}(s))\)</span>:
+indeed either <span class="math notranslate nohighlight">\(e'\)</span> is an edge in <span class="math notranslate nohighlight">\(\Game[\sigma]\)</span> and this is by definition of <span class="math notranslate nohighlight">\(val^\sigma\)</span>,
 or <span class="math notranslate nohighlight">\(e' = e\)</span> and the inequality was proved just above.</p>
-<p>Since <span class="math notranslate nohighlight">\(\sigma\)</span> respects parity <span class="math notranslate nohighlight">\(\textrm{val}^\sigma\)</span> does not take the value <span class="math notranslate nohighlight">\(\bot\)</span>.
-But we cannot apply (the first item of)  <a class="reference internal" href="#3-lem:key_property">Lemma 65</a> yet because <span class="math notranslate nohighlight">\(\textrm{val}^\sigma\)</span> may have value <span class="math notranslate nohighlight">\(\top\)</span>.
-However by definition of <span class="math notranslate nohighlight">\(\textrm{val}^\sigma\)</span> for all vertices <span class="math notranslate nohighlight">\(s\)</span> such that <span class="math notranslate nohighlight">\(\textrm{val}^\sigma(s) = \top\)</span> all paths from <span class="math notranslate nohighlight">\(s\)</span> satisfy parity,
+<p>Since <span class="math notranslate nohighlight">\(\sigma\)</span> respects parity <span class="math notranslate nohighlight">\(val^\sigma\)</span> does not take the value <span class="math notranslate nohighlight">\(\bot\)</span>.
+But we cannot apply (the first item of) <a class="reference internal" href="#3-lem:key_property">Lemma 74</a> yet because <span class="math notranslate nohighlight">\(val^\sigma\)</span> may have value <span class="math notranslate nohighlight">\(\top\)</span>.
+However by definition of <span class="math notranslate nohighlight">\(val^\sigma\)</span> for all vertices <span class="math notranslate nohighlight">\(s\)</span> such that <span class="math notranslate nohighlight">\(val^\sigma(s) = \top\)</span> all paths from <span class="math notranslate nohighlight">\(s\)</span> satisfy parity,
 so it is enough to consider the parity graph obtained from <span class="math notranslate nohighlight">\(\Game[\sigma']\)</span> by removing all such vertices.
-The first item of  <a class="reference internal" href="#3-lem:key_property">Lemma 65</a> implies that it satisfies parity, hence <span class="math notranslate nohighlight">\(\Game[\sigma']\)</span> as well.</p>
-<p>At this point we know that <span class="math notranslate nohighlight">\(\sigma'\)</span> respects parity, which thanks to  <a class="reference internal" href="#3-lem:greatest_fixed_point">Lemma 63</a>
-implies that <span class="math notranslate nohighlight">\(\textrm{val}^{\sigma'}\)</span> is the greatest fixed point of <span class="math notranslate nohighlight">\(\mathbb{O}\)</span> in <span class="math notranslate nohighlight">\(F^{\sigma'}_V\)</span>.</p>
-<p>We now argue that <span class="math notranslate nohighlight">\(\textrm{val}^\sigma\)</span> is a progress measure for <span class="math notranslate nohighlight">\(\mathcal{G}[\sigma']\)</span>.
+The first item of <a class="reference internal" href="#3-lem:key_property">Lemma 74</a> implies that it satisfies parity, hence <span class="math notranslate nohighlight">\(\Game[\sigma']\)</span> as well.</p>
+<p>At this point we know that <span class="math notranslate nohighlight">\(\sigma'\)</span> respects parity, which thanks to <a class="reference internal" href="#3-lem:greatest_fixed_point">Lemma 72</a>
+implies that <span class="math notranslate nohighlight">\(val^{\sigma'}\)</span> is the greatest fixed point of <span class="math notranslate nohighlight">\(\mathbb{O}\)</span> in <span class="math notranslate nohighlight">\(F^{\sigma'}_V\)</span>.</p>
+<p>We now argue that <span class="math notranslate nohighlight">\(val^\sigma\)</span> is a progress measure for <span class="math notranslate nohighlight">\(\mathcal{G}[\sigma']\)</span>.
 For all vertices but <span class="math notranslate nohighlight">\(v\)</span> this is clear because the outgoing edges are the same in <span class="math notranslate nohighlight">\(\mathcal{G}[\sigma]\)</span> and in <span class="math notranslate nohighlight">\(\mathcal{G}[\sigma']\)</span>.
-For <span class="math notranslate nohighlight">\(v\)</span> as argued above we have <span class="math notranslate nohighlight">\(\textrm{val}^\sigma(v) &lt; \delta(  \textrm{val}^\sigma(v'), \textsf{col}(v))\)</span>.
-It follows that <span class="math notranslate nohighlight">\(\textrm{val}^\sigma\)</span> is indeed a progress measure for <span class="math notranslate nohighlight">\(\mathcal{G}[\sigma']\)</span>.
-Since <span class="math notranslate nohighlight">\(\textrm{val}^{\sigma'}\)</span> is the greatest fixed point of <span class="math notranslate nohighlight">\(\mathbb{O}\)</span> in <span class="math notranslate nohighlight">\(F^{\sigma'}_V\)</span>, this implies that
-<span class="math notranslate nohighlight">\(\textrm{val}^{\sigma} \le   \textrm{val}^{\sigma'}\)</span>.</p>
-<p>We now show that <span class="math notranslate nohighlight">\(\textrm{val}^{\sigma} &lt;   \textrm{val}^{\sigma'}\)</span>.
-Using <span class="math notranslate nohighlight">\(\textrm{val}^{\sigma}(v') \le   \textrm{val}^{\sigma'}(v')\)</span> and the monotonicity of <span class="math notranslate nohighlight">\(\delta\)</span> we obtain that
-<span class="math notranslate nohighlight">\(\delta(  \textrm{val}^\sigma(v'), \textsf{col}(v)) \le \delta(  \textrm{val}^{\sigma'}(v'), \textsf{col}(v))\)</span>.
-By definition of <span class="math notranslate nohighlight">\(\textrm{val}^{\sigma'}\)</span> we have <span class="math notranslate nohighlight">\(\textrm{val}^{\sigma'}(v) = \delta(  \textrm{val}^{\sigma'}(v'), \textsf{col}(v))\)</span>
-and together with <span class="math notranslate nohighlight">\(\textrm{val}^\sigma(v) &lt; \delta(  \textrm{val}^\sigma(v'), \textsf{col}(v))\)</span> this implies that
-<span class="math notranslate nohighlight">\(\textrm{val}^\sigma(v) &lt;   \textrm{val}^{\sigma'}(v)\)</span>.</p>
+For <span class="math notranslate nohighlight">\(v\)</span> as argued above we have <span class="math notranslate nohighlight">\(val^\sigma(v) &lt; \delta(  val^\sigma(v'), \textsf{col}(v))\)</span>.
+It follows that <span class="math notranslate nohighlight">\(val^\sigma\)</span> is indeed a progress measure for <span class="math notranslate nohighlight">\(\mathcal{G}[\sigma']\)</span>.
+Since <span class="math notranslate nohighlight">\(val^{\sigma'}\)</span> is the greatest fixed point of <span class="math notranslate nohighlight">\(\mathbb{O}\)</span> in <span class="math notranslate nohighlight">\(F^{\sigma'}_V\)</span>, this implies that
+<span class="math notranslate nohighlight">\(val^{\sigma} \le   val^{\sigma'}\)</span>.</p>
+<p>We now show that <span class="math notranslate nohighlight">\(val^{\sigma} &lt;   val^{\sigma'}\)</span>.
+Using <span class="math notranslate nohighlight">\(val^{\sigma}(v') \le   val^{\sigma'}(v')\)</span> and the monotonicity of <span class="math notranslate nohighlight">\(\delta\)</span> we obtain that
+<span class="math notranslate nohighlight">\(\delta(  val^\sigma(v'), \textsf{col}(v)) \le \delta(  val^{\sigma'}(v'), \textsf{col}(v))\)</span>.
+By definition of <span class="math notranslate nohighlight">\(val^{\sigma'}\)</span> we have <span class="math notranslate nohighlight">\(val^{\sigma'}(v) = \delta(  val^{\sigma'}(v'), \textsf{col}(v))\)</span>
+and together with <span class="math notranslate nohighlight">\(val^\sigma(v) &lt; \delta(  val^\sigma(v'), \textsf{col}(v))\)</span> this implies that
+<span class="math notranslate nohighlight">\(val^\sigma(v) &lt;   val^{\sigma'}(v)\)</span>.</p>
 </div>
 <div class="proof lemma admonition" id="lemma-7">
-<p class="admonition-title"><span class="caption-number">Lemma 67 </span> (NEEDS LABEL Optimality)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 76 </span> (NEEDS LABEL Optimality)</p>
 <div class="lemma-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\sigma\)</span> a strategy respecting parity that has no switchable edges, then
 <span class="math notranslate nohighlight">\(\sigma\)</span> is winning from all vertices of <span class="math notranslate nohighlight">\(W_\mathrm{Eve}(\Game)\)</span>.</p>
@@ -934,34 +934,34 @@ and together with <span class="math notranslate nohighlight">\(\textrm{val}^\sig
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
 <p>The fact that <span class="math notranslate nohighlight">\(\sigma\)</span> respects parity means that it is a winning strategy
-from all vertices <span class="math notranslate nohighlight">\(v\)</span> such that <span class="math notranslate nohighlight">\(\textrm{val}^\sigma(v) = \top\)</span>.
-It also implies that for all vertices <span class="math notranslate nohighlight">\(v\)</span> we have <span class="math notranslate nohighlight">\(\textrm{val}^{\sigma}(v) \neq \bot\)</span>.
-We now prove that Adam has a winning strategy from all vertices <span class="math notranslate nohighlight">\(v\)</span> such that <span class="math notranslate nohighlight">\(\textrm{val}^{\sigma}(v) \neq \top\)</span>.
+from all vertices <span class="math notranslate nohighlight">\(v\)</span> such that <span class="math notranslate nohighlight">\(val^\sigma(v) = \top\)</span>.
+It also implies that for all vertices <span class="math notranslate nohighlight">\(v\)</span> we have <span class="math notranslate nohighlight">\(val^{\sigma}(v) \neq \bot\)</span>.
+We now prove that Adam has a winning strategy from all vertices <span class="math notranslate nohighlight">\(v\)</span> such that <span class="math notranslate nohighlight">\(val^{\sigma}(v) \neq \top\)</span>.
 We construct a strategy of Adam by</p>
 <div class="math notranslate nohighlight">
 \[
-\forall v \in  V_\mathrm{Adam},\ \tau(v) =  \textrm{argmin}  \left\{  \delta(  \textrm{val}^{\sigma \right\}(u), \textsf{col}(v)) : (v,u) \in E }.
+\forall v \in  V_\mathrm{Adam},\ \tau(v) =  argmin  \left\{  \delta(  val^{\sigma \right\}(u), \textsf{col}(v)) : (v,u) \in E }.
 \]</div>
-<p>We argue that <span class="math notranslate nohighlight">\(\tau\)</span> ensures the complement of parity from all vertices <span class="math notranslate nohighlight">\(v\)</span> such that <span class="math notranslate nohighlight">\(\textrm{val}^{\sigma}(v) \neq \top\)</span>.
+<p>We argue that <span class="math notranslate nohighlight">\(\tau\)</span> ensures the complement of parity from all vertices <span class="math notranslate nohighlight">\(v\)</span> such that <span class="math notranslate nohighlight">\(val^{\sigma}(v) \neq \top\)</span>.
 Let us consider <span class="math notranslate nohighlight">\(\Game[\tau]\)</span> the parity graph obtained from <span class="math notranslate nohighlight">\(\Game\)</span> by restricting the outgoing edges from <span class="math notranslate nohighlight">\(V_\mathrm{Adam}\)</span>
 to those prescribed by <span class="math notranslate nohighlight">\(\tau\)</span>.
 We argue that for all edges <span class="math notranslate nohighlight">\((v,,v')\)</span> in <span class="math notranslate nohighlight">\(\mathcal{G}[\tau]\)</span>, we have
-<span class="math notranslate nohighlight">\(\textrm{val}^{\sigma}(v) \ge \delta(  \textrm{val}^{\sigma}(v'), \textsf{col}(v))\)</span>.
-Once this is proved we conclude using the second item of  <a class="reference internal" href="#3-lem:key_property">Lemma 65</a> implying that <span class="math notranslate nohighlight">\(\Game[\tau]\)</span> satisfies the complement of parity.</p>
+<span class="math notranslate nohighlight">\(val^{\sigma}(v) \ge \delta(  val^{\sigma}(v'), \textsf{col}(v))\)</span>.
+Once this is proved we conclude using the second item of <a class="reference internal" href="#3-lem:key_property">Lemma 74</a> implying that <span class="math notranslate nohighlight">\(\Game[\tau]\)</span> satisfies the complement of parity.</p>
 <p>The first case is when <span class="math notranslate nohighlight">\(v \in  V_\mathrm{Eve}\)</span>.
 Let <span class="math notranslate nohighlight">\(\sigma(v) = (v,u)\)</span>.
 Since the edge <span class="math notranslate nohighlight">\(e = (v,v')\)</span> is not switchable we have
-<span class="math notranslate nohighlight">\(\delta(  \textrm{val}^{\sigma}(v'), \textsf{col}(v)) \le \delta(  \textrm{val}^{\sigma}(u), \textsf{col}(v))\)</span>.
-By definition of <span class="math notranslate nohighlight">\(\textrm{val}^\sigma\)</span> we have <span class="math notranslate nohighlight">\(\textrm{val}^\sigma(v) = \delta(  \textrm{val}^{\sigma}(u), \textsf{col}(v))\)</span>,
+<span class="math notranslate nohighlight">\(\delta(  val^{\sigma}(v'), \textsf{col}(v)) \le \delta(  val^{\sigma}(u), \textsf{col}(v))\)</span>.
+By definition of <span class="math notranslate nohighlight">\(val^\sigma\)</span> we have <span class="math notranslate nohighlight">\(val^\sigma(v) = \delta(  val^{\sigma}(u), \textsf{col}(v))\)</span>,
 implying the desired inequality.</p>
 <p>The second case is when <span class="math notranslate nohighlight">\(v \in  V_\mathrm{Adam}\)</span>, it holds by definition of <span class="math notranslate nohighlight">\(\tau\)</span>.</p>
 </div>
 <blockquote>
 <div><p><strong>Complexity analysis.</strong></p>
 </div></blockquote>
-<p>The computation of <span class="math notranslate nohighlight">\(\textrm{val}^\sigma\)</span> for a strategy <span class="math notranslate nohighlight">\(\sigma\)</span> can be seen to be a shortest path problem where distances are measured using the operator <span class="math notranslate nohighlight">\(\le\)</span>.
+<p>The computation of <span class="math notranslate nohighlight">\(val^\sigma\)</span> for a strategy <span class="math notranslate nohighlight">\(\sigma\)</span> can be seen to be a shortest path problem where distances are measured using the operator <span class="math notranslate nohighlight">\(\le\)</span>.
 Thus, any algorithm for the shortest path problem can be applied, such as the Bellman-Ford algorithm.
-In particular computing <span class="math notranslate nohighlight">\(\textrm{val}^\sigma\)</span> can be done in polynomial time, and even more efficiently through a refined analysis.</p>
+In particular computing <span class="math notranslate nohighlight">\(val^\sigma\)</span> can be done in polynomial time, and even more efficiently through a refined analysis.</p>
 <p>An aspect of the algorithm we did not develop is choosing the switchable edge.
 It is possible to switch not only one edge but a set of switchable edges at each iteration, making this question worse:
 which subset of the switchable edges should be chosen?

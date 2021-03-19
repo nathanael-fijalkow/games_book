@@ -27,11 +27,11 @@ We rely on the high-level presentation of value iteration algorithms given in Se
 Let $\mathcal{G} = ( \mathcal{A}, \mathtt{Parity}[ \textsf{col}])$ a parity game with $n$ vertices and priorities in $[1,d]$,
 and without loss of generality $d$ is even.
 
-The first step is to define a notion of value function $\textrm{val}^ \mathcal{G} : V \to Y$ with $(Y,\le)$ a lattice satisfying the characterisation principle:
-for all vertices $v$ we have that Eve wins from $v$ if and only if $\textrm{val}^ \mathcal{G}(v) \neq \bot$, where $\bot$ is the least element in $Y$.
-The goal of the algorithm is to compute $\textrm{val}^ \mathcal{G}$, from which we then easily obtain the winning region thanks to the characterisation principle.
+The first step is to define a notion of value function $val^ \mathcal{G} : V \to Y$ with $(Y,\le)$ a lattice satisfying the characterisation principle:
+for all vertices $v$ we have that Eve wins from $v$ if and only if $val^ \mathcal{G}(v) \neq \bot$, where $\bot$ is the least element in $Y$.
+The goal of the algorithm is to compute $val^ \mathcal{G}$, from which we then easily obtain the winning region thanks to the characterisation principle.
 
-To set the machinery of value iteration algorithms in motion we can either construct $\textrm{val}^ \mathcal{G}$ as the unique fixed point of a contracting operator using Banach's fixed point theorem or the greatest fixed point of a monotonic operator using Kleene's fixed point theorem.
+To set the machinery of value iteration algorithms in motion we can either construct $val^ \mathcal{G}$ as the unique fixed point of a contracting operator using Banach's fixed point theorem or the greatest fixed point of a monotonic operator using Kleene's fixed point theorem.
 
 Let us here follow the second approach. 
 We let $F_V$ be the lattice of functions $V \to Y$ equipped with the componentwise order induced by $Y$.
@@ -45,8 +45,8 @@ $$
 \end{cases}
 $$
 
-such that $\textrm{val}^ \mathcal{G}$ is the greatest fixed point of $\mathbb{O}$.
-The algorithm would then simply use  {prf:ref}`1-thm:kleene` to compute $\textrm{val}^ \mathcal{G}$ by iterating the operator $\mathbb{O}$.
+such that $val^ \mathcal{G}$ is the greatest fixed point of $\mathbb{O}$.
+The algorithm would then simply use {prf:ref}`1-thm:kleene` to compute $val^ \mathcal{G}$ by iterating the operator $\mathbb{O}$.
 
 Let us look at this question using the notion of progress measures, which are post-fixed points of $\mathbb{O}$,
 meaning $\mu$ such that $\mu \le  \mathbb{O}(\mu)$. 
@@ -293,7 +293,7 @@ Then Eve wins from $v$ if and only if there exists a tree $t$ and a progress mea
 
 ````
 
-In order to prove  {prf:ref}`3-thm:progress_measure`, we first consider the case of parity graphs.
+In order to prove {prf:ref}`3-thm:progress_measure`, we first consider the case of parity graphs.
 A progress measure in a parity graph is a function $\mu : V \to Y_t$ such that 
 for all edges $(v,v') \in E$ we have $\mu(v) \vartriangleleft_{ \textsf{col}(v)} \mu(v')$.
 
@@ -330,7 +330,7 @@ $$
 \vartriangleleft_{ \textsf{col}(v_{k-1})} \mu(v_k) \vartriangleleft_{ \textsf{col}(v_k)} \mu(v_1).
 $$
 
-The second item of  {prf:ref}`3-lem:properties_tree` implies that $\mu(v_1) \vartriangleleft_{ \textsf{col}(v_1)} \mu(v_1)$, 
+The second item of {prf:ref}`3-lem:properties_tree` implies that $\mu(v_1) \vartriangleleft_{ \textsf{col}(v_1)} \mu(v_1)$, 
 which contradicts the third item since $\vartriangleleft_{ \textsf{col}(v_1)}$ is non-reflexive given that $\textsf{col}(v_1)$ is odd.
 
 Let us now prove the converse implication.
@@ -386,13 +386,13 @@ and in the second case because $\mu(v) = \bot$.
 
 ````
 
-We can now prove  {prf:ref}`3-thm:progress_measure`.
+We can now prove {prf:ref}`3-thm:progress_measure`.
 
 ````{admonition} Proof
 :class: dropdown tip
 
 Assume that Eve wins from $v$ and let $\sigma$ be a positional strategy.
-The parity graph $\Game[\sigma]$ satisfies parity from $v$, so thanks to  {prf:ref}`3-lem:progress_measure`
+The parity graph $\Game[\sigma]$ satisfies parity from $v$, so thanks to {prf:ref}`3-lem:progress_measure`
 there exists a tree $t$ and a function $\mu : V \to Y_t$ such that $\mu(v) \neq \bot$
 and for all edges $(v,v') \in E$ we have $\mu(v) \vartriangleleft_{ \textsf{col}(v)} \mu(v')$.
 We remark that $\mu : V \to Y_t$ is actually a progress measure: the condition for $v \in  V_\mathrm{Eve}$ is ensured by the edge $\sigma(v)$,
@@ -401,11 +401,11 @@ and the condition for $v \in  V_\mathrm{Adam}$ by assumption on $\mu$.
 Conversely, assume that there exists a tree $t$ and a progress measure $\mu : V \to Y_t$.
 It induces a positional strategy defined by $\sigma(v) = (v,v')$ such that $\mu(v) \vartriangleleft_{ \textsf{col}(v)} \mu(v')$.
 We argue that $\sigma$ is a winning strategy from any vertex $v$ such that $\mu(v) \neq \bot$.
-This is a consequence of  {prf:ref}`3-lem:progress_measure` for the parity graph $\Game[\sigma]$.
+This is a consequence of {prf:ref}`3-lem:progress_measure` for the parity graph $\Game[\sigma]$.
 
 ````
 
- {prf:ref}`3-thm:progress_measure` is very close to the characterisation principle we are after,
+{prf:ref}`3-thm:progress_measure` is very close to the characterisation principle we are after,
 the only difference being that the lattice $(Y_t,\le)$ depends on an existentially quantified tree $t$.
 This is where we use universal trees:
 
@@ -421,14 +421,14 @@ Then Eve wins from $v$ if and only if there exists a progress measure $\mu : V \
 ````{admonition} Proof
 :class: dropdown tip
 
-Assume that Eve wins from $v$, thanks to  {prf:ref}`3-thm:progress_measure` there exists a tree $t$ and a progress measure $\mu : V \to Y_t$ 
+Assume that Eve wins from $v$, thanks to {prf:ref}`3-thm:progress_measure` there exists a tree $t$ and a progress measure $\mu : V \to Y_t$ 
 such that $\mu(v) \neq \bot$.
 Since $T$ is $(n,d/2)$-universal and $t$ has at most $n$ branches, $t$ embeds into $T$,
-which thanks to \cref{3-fact:embedding} implies that there exists $\mu' : B_t \to B_T$ respecting the relations $\vartriangleleft$.
+which thanks to {prf:ref}`3-fact:embedding` implies that there exists $\mu' : B_t \to B_T$ respecting the relations $\vartriangleleft$.
 We extend it to $\mu' : Y_t \to Y_T$ by $\mu'(\bot) = \bot$.
 Then the composition $\mu' \circ \mu : V \to Y_T$ is a progress measure such that $(\mu' \circ \mu)(v) \neq \bot$. 
 
-The converse implication is a direct consequence of  {prf:ref}`3-thm:progress_measure`.
+The converse implication is a direct consequence of {prf:ref}`3-thm:progress_measure`.
 
 ````
 
@@ -441,7 +441,7 @@ It induces both a lattice $(Y_T,\le)$ and a monotonic function $\delta_T : Y_T \
 which in turn induces a monotonic operator $\mathbb{O}_T : F_V \to F_V$.
 Since $T$ is fixed we do not specify the subscript $T$ for all these objects.
 
-The last step is to construct an algorithm returning the maximal progress measure relying on Kleene's fixed point theorem (stated as  {prf:ref}`1-thm:kleene`).
+The last step is to construct an algorithm returning the maximal progress measure relying on Kleene's fixed point theorem (stated as {prf:ref}`1-thm:kleene`).
 The generic algorithm is explained in Section {ref}`1-sec:value_iteration`, let us instantiate it here.
 
 For the complexity analysis it is useful to decompose $\mathbb{O}$ into a set of operators:
@@ -483,7 +483,7 @@ the value iteration algorithm over the tree $T$ returns the maximal progress mea
 
 ````
 
-Thanks to \cref{3-cor:progress_measure}, the maximal progress measure yields a solution for parity games:
+Thanks to {prf:ref}`3-cor:progress_measure`, the maximal progress measure yields a solution for parity games:
 Eve wins from $v$ if and only if $\mu(v) \neq \bot$.
 
 ## Complexity analysis
@@ -502,11 +502,11 @@ Hence checking whether a vertex $v$ is neglected requires considering all of its
 and checking whether $\mu(v) \vartriangleleft_{ \textsf{col}(v)} \mu(v')$.
 Let us write $\Delta$ for the complexity of checking whether $\mu(v) \vartriangleleft_{ \textsf{col}(v)} \mu(v')$.
 Hence checking whether $v$ is neglected costs 
-$O(|  \textrm{In}^{-1}(v)| \cdot \Delta)$, where $|  \textrm{In}^{-1}(v)|$ is the number of outgoing edges of $v$.
+$O(|  In^{-1}(v)| \cdot \Delta)$, where $|  In^{-1}(v)|$ is the number of outgoing edges of $v$.
 
 A naive implementation of {numref}`3-algo:value_iteration` would in each repeat loop go through every vertex $v$ 
 to check whether it is neglected.
-This would incur a linear cost: $\sum_{v \in V} O(|  \textrm{In}^{-1}(v)| \cdot \Delta) = O(m \cdot \Delta)$.
+This would incur a linear cost: $\sum_{v \in V} O(|  In^{-1}(v)| \cdot \Delta) = O(m \cdot \Delta)$.
 Thus the overall complexity would be
 
 $$
@@ -514,11 +514,11 @@ O((m \cdot \Delta) \cdot (n \cdot |T|)) = O(nm \cdot \Delta \cdot |T|).
 $$
 
 Typically $\Delta$ is small (we will see that for a well chosen universal tree $T$ it is polylogarithmic in $n$ and $d$),
-and $T$ is the dominating factor (quasipolynomial in $n$ and $d$ thanks to  {prf:ref}`3-thm:universal_tree`).
+and $T$ is the dominating factor (quasipolynomial in $n$ and $d$ thanks to {prf:ref}`3-thm:universal_tree`).
 
 We first explain that using a better data structure we can maintain the list of vertices $v$ such that $\neg (\mu \le  \mathbb{O}_v(\mu))$,
 saving a linear factor in the complexity.
-We then discuss the cost $\Delta$ by choosing an appropriate encoding of the quasipolynomial universal tree constructed in  {prf:ref}`3-thm:universal_tree`.
+We then discuss the cost $\Delta$ by choosing an appropriate encoding of the quasipolynomial universal tree constructed in {prf:ref}`3-thm:universal_tree`.
 
 ## Data structure
 
@@ -555,7 +555,7 @@ but it also has implications on the complexity.
 Indeed one iteration of the repeat loop over some vertex $v$ involves
 
 $$
-O\left( (|  \textrm{In}^{-1}(v)| + |  \textrm{Out}^{-1}(v)|) \cdot \Delta \right)
+O\left( (|  In^{-1}(v)| + |  Out^{-1}(v)|) \cdot \Delta \right)
 $$
 
 operations,
@@ -566,7 +566,7 @@ Thus the overall complexity is
 
 $$
 O\left( 
-\sum_{v \in V} (|  \textrm{In}^{-1}(v)| + |  \textrm{Out}^{-1}(v)|) \cdot \Delta \cdot |T|
+\sum_{v \in V} (|  In^{-1}(v)| + |  Out^{-1}(v)|) \cdot \Delta \cdot |T|
 \right) 
 = O(m \cdot \Delta \cdot |T|).
 $$
@@ -579,7 +579,7 @@ The value iteration algorithm with explicit data structure.
 
 ## Encoding branches
 
-Let us fix $T$ to be the quasipolynomial universal tree constructed in  {prf:ref}`3-thm:universal_tree`.
+Let us fix $T$ to be the quasipolynomial universal tree constructed in {prf:ref}`3-thm:universal_tree`.
 
 In our definition of trees we say that a tree is an ordered list of subtrees $[t_1,\dots,t_k]$,
 so we use $[1,k]$ with the natural order for ordering the subtrees.
@@ -629,4 +629,4 @@ $$
 O\left(nm \log(n) \log(d) \cdot  \binom{\lceil \log(n) \rceil + d/2 - 1}{\lceil \log(n) \rceil} \right),
 $$
 
-as stated in  {prf:ref}`3-thm:value_iteration_quasipoly`.
+as stated in {prf:ref}`3-thm:value_iteration_quasipoly`.
