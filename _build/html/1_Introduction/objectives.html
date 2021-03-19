@@ -750,7 +750,7 @@
 \]</div>
 <p>We present in this section the main objectives and their representations.
 An objective may depend upon a set of parameters which are sometimes omitted when clear from the context.</p>
-<p>Let us recall how we define classes of conditions: we first define an objective, for instance <span class="math notranslate nohighlight">\(\mathtt{Safe} \subseteq  \left\{  Win, Lose \right\}^\omega\)</span>.
+<p>Let us recall how we define classes of conditions: we first define an objective, for instance <span class="math notranslate nohighlight">\(\mathtt{Safe} \subseteq  \left\{  \textrm{Win \right\}, \textrm{Lose}}^\omega\)</span>.
 For an arena and a colouring function <span class="math notranslate nohighlight">\(\textsf{col}\)</span> defined over this arena this induces the safety condition <span class="math notranslate nohighlight">\(\mathtt{Safe}[ \textsf{col}]\)</span>.
 Given an arena and a condition <span class="math notranslate nohighlight">\(W\)</span> over this arena we say that <span class="math notranslate nohighlight">\(W\)</span> is <strong>a</strong> safety condition if
 there exists <span class="math notranslate nohighlight">\(\textsf{col}\)</span> such that <span class="math notranslate nohighlight">\(W =  \mathtt{Safe}[ \textsf{col}]\)</span>.
@@ -758,38 +758,38 @@ The same terminology is used for all other objectives.</p>
 <div class="section" id="prefix-dependent-qualitative-objectives-safety-and-reachability">
 <h2>Prefix dependent qualitative objectives: safety and reachability<a class="headerlink" href="#prefix-dependent-qualitative-objectives-safety-and-reachability" title="Permalink to this headline">¶</a></h2>
 <p>The safety objective is the simplest qualitative objective:
-the set of colours is <span class="math notranslate nohighlight">\(\left\{  Win, Lose \right\}\)</span>,
-and safety requires that the colour <span class="math notranslate nohighlight">\(Lose\)</span> is never seen.
+the set of colours is <span class="math notranslate nohighlight">\(\left\{  \textrm{Win \right\}, \textrm{Lose}}\)</span>,
+and safety requires that the colour <span class="math notranslate nohighlight">\(\textrm{Lose}\)</span> is never seen.
 Formally:</p>
 <div class="math notranslate nohighlight">
 \[
- \mathtt{Safe} =  \left\{ \rho \in  \left\{  Win, Lose \right\ \right\}^\omega : \forall i, \rho_i \neq  Lose}.
+ \mathtt{Safe} =  \left\{ \rho \in  \left\{  \textrm{Win \right\ \right\}, \textrm{Lose}}^\omega : \forall i, \rho_i \neq  \textrm{Lose}}.
 \]</div>
 <p>In the example represented in <a class="reference internal" href="#fig-safety-game-example"><span class="std std-numref">Fig. 2</span></a>,
-a play is winning if if it never visits the vertex labelled <span class="math notranslate nohighlight">\(Lose\)</span>.
+a play is winning if if it never visits the vertex labelled <span class="math notranslate nohighlight">\(\textrm{Lose}\)</span>.
 Eve wins from the four vertices on the left and loses from all the others, which is represented by the two dotted areas.</p>
 <div class="figure align-center" id="fig-safety-game-example">
 <img alt="../_images/1-fig:safety_game_example.png" src="../_images/1-fig:safety_game_example.png" />
 <p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text">An example of a safety game.
-The vertex on the bottom right is labelled <span class="math notranslate nohighlight">\(Lose\)</span>, all the others are implicitly labelled <span class="math notranslate nohighlight">\(Win\)</span>;
-the condition of Eve is to avoid the vertex labelled <span class="math notranslate nohighlight">\(Lose\)</span>.
+The vertex on the bottom right is labelled <span class="math notranslate nohighlight">\(\textrm{Lose}\)</span>, all the others are implicitly labelled <span class="math notranslate nohighlight">\(\textrm{Win}\)</span>;
+the condition of Eve is to avoid the vertex labelled <span class="math notranslate nohighlight">\(\textrm{Lose}\)</span>.
 The two dotted areas represent the winning regions of each player.</span><a class="headerlink" href="#fig-safety-game-example" title="Permalink to this image">¶</a></p>
 </div>
 <p>The dual of the safety objective is the reachability objective:
-the set of colours is <span class="math notranslate nohighlight">\(\left\{  Win, Lose \right\}\)</span>,
-and reachability requires that the colour <span class="math notranslate nohighlight">\(Win\)</span> is seen at least once.
+the set of colours is <span class="math notranslate nohighlight">\(\left\{  \textrm{Win \right\}, \textrm{Lose}}\)</span>,
+and reachability requires that the colour <span class="math notranslate nohighlight">\(\textrm{Win}\)</span> is seen at least once.
 Formally:</p>
 <div class="math notranslate nohighlight">
 \[
- \mathtt{Reach} =  \left\{ \rho \in  \left\{  Win, Lose \right\ \right\}^\omega : \exists i, \rho_i =  Win}.
+ \mathtt{Reach} =  \left\{ \rho \in  \left\{  \textrm{Win \right\ \right\}, \textrm{Lose}}^\omega : \exists i, \rho_i =  \textrm{Win}}.
 \]</div>
 <p>Safety and reachability conditions are dual:</p>
 <div class="math notranslate nohighlight">
 \[
- Paths_\omega \setminus  \mathtt{Safe}[ \textsf{col}] =  \mathtt{Reach}[\overline{ \textsf{col}}] \quad ; \quad
- Paths_\omega \setminus  \mathtt{Reach}[ \textsf{col}] =  \mathtt{Safe}[\overline{ \textsf{col}}].
+ \textrm{Paths}_\omega \setminus  \mathtt{Safe}[ \textsf{col}] =  \mathtt{Reach}[\overline{ \textsf{col}}] \quad ; \quad
+ \textrm{Paths}_\omega \setminus  \mathtt{Reach}[ \textsf{col}] =  \mathtt{Safe}[\overline{ \textsf{col}}].
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(\overline{ \textsf{col}}\)</span> swaps <span class="math notranslate nohighlight">\(Win\)</span> and <span class="math notranslate nohighlight">\(Lose\)</span> in <span class="math notranslate nohighlight">\(\textsf{col}\)</span>.
+<p>where <span class="math notranslate nohighlight">\(\overline{ \textsf{col}}\)</span> swaps <span class="math notranslate nohighlight">\(\textrm{Win}\)</span> and <span class="math notranslate nohighlight">\(\textrm{Lose}\)</span> in <span class="math notranslate nohighlight">\(\textsf{col}\)</span>.
 Consequently, if the condition for Eve is a safety condition, then the condition for Adam is a reachability condition, and conversely.</p>
 </div>
 <div class="section" id="prefix-independent-qualitative-objectives-buchi-cobuchi-and-parity">
@@ -813,8 +813,8 @@ Formally:</p>
 <p>Büchi and CoBüchi conditions are dual:</p>
 <div class="math notranslate nohighlight">
 \[
- Paths_\omega \setminus  \mathtt{Buchi}[ \textsf{col}] =  \mathtt{CoBuchi}[ \textsf{col} + 1] \quad ; \quad
- Paths_\omega \setminus  \mathtt{CoBuchi}[ \textsf{col}] =  \mathtt{Buchi}[ \textsf{col} - 1].
+ \textrm{Paths}_\omega \setminus  \mathtt{Buchi}[ \textsf{col}] =  \mathtt{CoBuchi}[ \textsf{col} + 1] \quad ; \quad
+ \textrm{Paths}_\omega \setminus  \mathtt{CoBuchi}[ \textsf{col}] =  \mathtt{Buchi}[ \textsf{col} - 1].
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(\textsf{col} + 1\)</span> adds one to <span class="math notranslate nohighlight">\(\textsf{col}\)</span> (since <span class="math notranslate nohighlight">\(\textsf{col}\)</span> maps vertices to <span class="math notranslate nohighlight">\(\left\{ 1,2 \right\}\)</span>, <span class="math notranslate nohighlight">\(\textsf{col} + 1\)</span> maps vertices to <span class="math notranslate nohighlight">\(\left\{ 2,3 \right\}\)</span>),
 and similarly for <span class="math notranslate nohighlight">\(\textsf{col} - 1\)</span>.
@@ -845,7 +845,7 @@ First, Büchi and CoBüchi objectives are parity objectives for the set of colou
 Second, the parity conditions are self dual:</p>
 <div class="math notranslate nohighlight">
 \[
- Paths_\omega \setminus  \mathtt{Parity}([i,j])[ \textsf{col}] =  \mathtt{Parity}([i+1,j+1])[ \textsf{col} + 1],
+ \textrm{Paths}_\omega \setminus  \mathtt{Parity}([i,j])[ \textsf{col}] =  \mathtt{Parity}([i+1,j+1])[ \textsf{col} + 1],
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(\textsf{col} + 1\)</span> adds one to <span class="math notranslate nohighlight">\(\textsf{col}\)</span>.
 Hence if the condition for Eve is a parity condition, then the condition for Adam is also a parity condition.</p>
@@ -863,7 +863,7 @@ The two dotted areas represent the winning regions of each player.</span><a clas
 We extend this notation to sets of vertices and colours as follows.</p>
 <ul class="simple">
 <li><p>A set of vertices <span class="math notranslate nohighlight">\(F \subseteq V\)</span> induces the colouring function <span class="math notranslate nohighlight">\(\textsf{col}_F\)</span> defined by
-<span class="math notranslate nohighlight">\(\textsf{col}_F(v) =  Win\)</span> if <span class="math notranslate nohighlight">\(v \in F\)</span> and <span class="math notranslate nohighlight">\(\textsf{col}_F(v) =  Lose\)</span> otherwise.
+<span class="math notranslate nohighlight">\(\textsf{col}_F(v) =  \textrm{Win}\)</span> if <span class="math notranslate nohighlight">\(v \in F\)</span> and <span class="math notranslate nohighlight">\(\textsf{col}_F(v) =  \textrm{Lose}\)</span> otherwise.
 For <span class="math notranslate nohighlight">\(F \subseteq V\)</span> we define <span class="math notranslate nohighlight">\(\mathtt{Safe}[F]\)</span> as <span class="math notranslate nohighlight">\(\mathtt{Safe}[ \textsf{col}_F]\)</span>: it requires that no vertex from <span class="math notranslate nohighlight">\(F\)</span> is ever visited.</p></li>
 <li><p>A colour <span class="math notranslate nohighlight">\(c \in C\)</span> induces the set of vertices <span class="math notranslate nohighlight">\(\textsf{col}^{-1}(c)\)</span> labelled by <span class="math notranslate nohighlight">\(c\)</span>.
 The condition <span class="math notranslate nohighlight">\(\mathtt{Safe}[c]\)</span> requires that the colour <span class="math notranslate nohighlight">\(c\)</span> is never visited.</p></li>
@@ -872,9 +872,9 @@ The condition <span class="math notranslate nohighlight">\(\mathtt{Safe}[c]\)</s
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{array}{ccccc}
- \mathtt{Reach}[F] &amp; = &amp;  \mathtt{Reach}[ \textsf{col}_F] &amp; = &amp;  \left\{  \pi \in  Paths_\omega : \exists i,   In( \pi_i) \in F \right\}, \\
- \mathtt{Buchi}[F] &amp; = &amp;  \mathtt{Buchi}[ \textsf{col}_F] &amp; = &amp;  \left\{  \pi \in  Paths_\omega : \forall j, \exists i \ge j,   In( \pi_i) \in F \right\}, \\
- \mathtt{CoBuchi}[F] &amp; = &amp;  \mathtt{CoBuchi}[ \textsf{col}_F] &amp; = &amp;  \left\{  \pi \in  Paths_\omega : \exists j, \forall i \ge j,   In( \pi_i) \notin F \right\},
+ \mathtt{Reach}[F] &amp; = &amp;  \mathtt{Reach}[ \textsf{col}_F] &amp; = &amp;  \left\{  \pi \in  \textrm{Paths \right\}_\omega : \exists i,   \textrm{In}( \pi_i) \in F}, \\
+ \mathtt{Buchi}[F] &amp; = &amp;  \mathtt{Buchi}[ \textsf{col}_F] &amp; = &amp;  \left\{  \pi \in  \textrm{Paths \right\}_\omega : \forall j, \exists i \ge j,   \textrm{In}( \pi_i) \in F}, \\
+ \mathtt{CoBuchi}[F] &amp; = &amp;  \mathtt{CoBuchi}[ \textsf{col}_F] &amp; = &amp;  \left\{  \pi \in  \textrm{Paths \right\}_\omega : \exists j, \forall i \ge j,   \textrm{In}( \pi_i) \notin F},
 \end{array}
 \end{split}\]</div>
 <p>similarly extended to colours.</p>
@@ -975,7 +975,7 @@ hence the choice for the machine word size <span class="math notranslate nohighl
     <div class="container">
       <p>
         
-          By a set of authors coordinated by Nathana&euml;l Fijalkow<br/>
+          By a set of authors<br/>
         
             &copy; Copyright 2021.<br/>
       </p>

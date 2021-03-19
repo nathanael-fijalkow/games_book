@@ -18,7 +18,7 @@ This chapter has been the occasion to start revealing a ladder of
 reductions going up from parity games to discounted payoff games,
 going through mean payoff games: it shows that parity games are the
 simplest fragment of games from a computational perspective, in
-$UP\cap  coUP$. In Chapter {ref}`6-chap:stochastic`, the last reduction from
+$\textrm{UP}\cap  \textrm{coUP}$. In Chapter {ref}`6-chap:stochastic`, the last reduction from
 discounted payoff games to simple stochastic games will complete the
 computational landscape.
 

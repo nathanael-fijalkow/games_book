@@ -11,9 +11,9 @@ games" (see \cref{11-sec:resource}).
 \paragraph{Asymmetric Games} A "vector system"
 $\?V=(\Loc,\Act,\Loc_\mEve,\Loc_\mAdam,\dd)$ is
 ""asymmetric""\index{asymmetry|see{vector system}} if, for all
-locations $\loc\in\Loc_\mAdam$ controlled by \Adam\ and all actions
+locations $\loc\in\Loc_\mAdam$ controlled by Adam and all actions
 $(\loc\step{\vec u}\loc')\in\Act$ originating from those,
-$\vec u=\vec 0$ the "zero vector".  In other words, \Adam\ may only
+$\vec u=\vec 0$ the "zero vector".  In other words, Adam may only
 change the current location, and cannot interact directly with the
 counters.
 
@@ -22,11 +22,11 @@ counters.
   \Cref{11-fig:avg} presents an "asymmetric vector system" of
   dimension two with locations partitioned as $\Loc_\mEve=\{\loc,\loc_{2,1},\loc_{\text-1,0}\}$ and $\Loc_\mAdam=\{\loc'\}$% , and actions
   %  $\{\loc\step{-1,-1}\loc,\loc\step{-1,0}\loc',\loc'\step{-1,0}\loc,\loc'\step{2,1}\loc\}$
-  .  We omit the labels on the actions originating from \Adam's
+  .  We omit the labels on the actions originating from Adam\'s
   locations, since those are necessarily the "zero vector".  It is
   worth observing that this "vector system" behaves quite differently
   from the one of \cref{11-ex:mwg} on \cpageref{11-ex:mwg}: for
-  instance, in $\loc'(0,1)$, \Adam\ can now ensure that the "sink" will
+  instance, in $\loc'(0,1)$, Adam can now ensure that the "sink" will
   be reached by playing the action $\loc'\step{0,0}\loc_{\text-1,0}$,
   whereas in \cref{11-ex:mwg}, the action $\loc'\step{-1,0}\loc$
   was just inhibited by the "natural semantics".
@@ -71,7 +71,7 @@ In spite of the restriction to "asymmetric" "vector systems",
   an "asymmetric vector system"
   $\?V\eqdef(\Loc\uplus\Loc_{\eqby?0}\uplus\Loc_{\dd},\Act',\Loc\uplus\Loc'_{\eqby?0},\Loc_{\eqby?0},\dd)$
   where all the original locations and $\Loc_{\dd}$ are
-  controlled by~\Eve\ and $\Loc_{\eqby?0}$ is controlled by~\Adam.
+  controlled by~Eve and $\Loc_{\eqby?0}$ is controlled by Adam.
 
   \begin{figure}[htbp]
     \centering
@@ -127,41 +127,41 @@ In spite of the restriction to "asymmetric" "vector systems",
   We use $\loc_0(\vec 0)$ as initial configuration and
   $\loc_\mathtt{halt}(\vec 0)$ as target configuration for the
   constructed "configuration reachability" instance.  Here is the crux
-  of the argument why \Eve\ has a winning strategy to reach
+  of the argument why Eve has a winning strategy to reach
   $\loc_\mathtt{halt}(\vec 0)$ from $\loc_0(\vec 0)$ if and only if
   the "Minsky machine@deterministic Minsky machine" halts, i.e., if
   and only if the "Minsky machine@deterministic Minsky machine"
   reaches $\loc_\mathtt{halt}(\vec 0)$.
   %
   Consider any configuration $\loc(\vec v)$.  If
-  $(\loc\step{\vec e_i}\loc')\in\Act$, \Eve\ has no choice but to apply
+  $(\loc\step{\vec e_i}\loc')\in\Act$, Eve has no choice but to apply
   $\loc\step{\vec e_i}\loc'$ and go to the configuration
   $\loc'(\vec v+\vec e_i)$ also reached in one step in~$\?M$.  If
   $\{\loc\step{i\eqby?0}\loc',\loc\step{-\vec e_i}\loc''\}\in\Act$ and
-  $\vec v(i)=0$, due to the "natural semantics", \Eve\ cannot use the
+  $\vec v(i)=0$, due to the "natural semantics", Eve cannot use the
   action $\loc\step{-\vec e_i}\loc''$, thus she must use
-  $\loc\step{\vec 0}\loc'_{i\eqby?0}$.  Then, either \Adam\ plays
-  $\loc'_{i\eqby?0}\!\!\step{\vec 0}\loc'$ and \Eve\ regains the
+  $\loc\step{\vec 0}\loc'_{i\eqby?0}$.  Then, either Adam plays
+  $\loc'_{i\eqby?0}\!\!\step{\vec 0}\loc'$ and Eve regains the
   control in $\loc'(\vec v)$, which was also the configuration reached
-  in one step in~$\?M$, or \Adam\ plays
-  $\loc'_{i\eqby?0}\!\!\step{\vec 0}\loc_{i}$ and \Eve\ 
+  in one step in~$\?M$, or Adam plays
+  $\loc'_{i\eqby?0}\!\!\step{\vec 0}\loc_{i}$ and Eve 
   regains the control in $\loc_{i}(\vec v)$ with
   $\vec v(i)=0$.  Using the actions
   $\loc_{i}\!\step{-\vec e_j}\loc_{i}$ for
-  $j\neq i$, \Eve\ can then reach $\loc_{i}(\vec 0)$ and move
+  $j\neq i$, Eve can then reach $\loc_{i}(\vec 0)$ and move
   to $\loc_\mathtt{halt}(\vec 0)$.  Finally, if
   $\{\loc\step{i\eqby?0}\loc',\loc\step{-\vec e_i}\loc''\}\in\Act$ and
-  $\vec v(i)>0$, \Eve\ can choose: if she uses
+  $\vec v(i)>0$, Eve can choose: if she uses
   $\loc\step{-\vec e_i}\loc''$, she ends in the configuration
   $\loc''(\vec v-\vec e_i)$ also reached in one step in~$\?M$.  In
   fact, she should not use $\loc\step{\vec 0}\loc'_{i\eqby?0}$,
-  because \Adam\ would then have the opportunity to apply
+  because Adam would then have the opportunity to apply
   $\loc'_{i\eqby?0}\!\!\step{\vec 0}\loc_{i}$, and in
   $\loc_{i}(\vec v)$ with $\vec v(i)>0$, there is no way to
   reach a configuration with an empty $i$th component, let alone to
-  reach $\loc_\mathtt{halt}(\vec 0)$.  Thus, if $\?M$ halts, then \Eve\ 
+  reach $\loc_\mathtt{halt}(\vec 0)$.  Thus, if $\?M$ halts, then Eve 
   has a winning strategy that mimics the unique "play"
-  of~$\?M$, and conversely, if \Eve\ wins, then necessarily she had to
+  of~$\?M$, and conversely, if Eve wins, then necessarily she had to
   follow the "play" of~$\?M$ and thus the machine halts.
 
   \medskip Finally, regarding the "existential initial credit"
@@ -202,10 +202,10 @@ tight.
     \Loc_\mAdam&\eqdef\{\loc_{(\gamma_1,\gamma_2,\gamma_3)}\mid\gamma_1,\gamma_2,\gamma_3\in\Gamma'\}\;.
   \end{align*}
   The intention behind the locations $\loc_{=j}\in\Loc_\mEve$ is
-  that \Eve\ can reach~$\smiley(0)$ from a configuration $\loc_{=j}(c)$ if
+  that Eve can reach~$\smiley(0)$ from a configuration $\loc_{=j}(c)$ if
   and only if $c=j$; we define accordingly~$\Act$ with the
   action $\loc_{=j}\step{-j}\smiley$.
-  Similarly, \Eve\ should be able to reach~$\smiley(0)$ from
+  Similarly, Eve should be able to reach~$\smiley(0)$ from
   $\loc_{1\leq?\leq m_d+1}(c)$ for $0\leq d\leq p(n)$ if and only if
   $1\leq c\leq m_d+1$,
   which is implemented by the following actions: if $b_{d+1}=1$, then
@@ -227,7 +227,7 @@ tight.
 
   The remainder of the reduction is now very similar to the reduction shown
   in \cref{11-th:countdown-given}.
-  Regarding initialisation, \Eve\ can choose her initial position,
+  Regarding initialisation, Eve can choose her initial position,
   which we implement by the actions
   \begin{align*}
     \loc_0 &\step{-1} \loc_0 & \loc_0 &\step{-1}\loc_{(q_\mathrm{final},a)}&&\text{for $a\in\Gamma$}\;.
@@ -237,7 +237,7 @@ tight.
   $\gamma_1,\gamma_2,\gamma_3\vdash\gamma$}\;,\\ \loc_{(\gamma_1,\gamma_2,\gamma_3)}&\step{0}\loc^k_{\gamma_k}&\loc^k_{\gamma_k}&\step{-k}\loc_{\gamma_k}&&\text{for
   $k\in\{1,2,3\}$}\;.
   \intertext{We handle the endmarker positions via the following
-  actions, where \Eve\ proceeds along the left edge
+  actions, where Eve proceeds along the left edge
   of \cref{11-fig:exp} until she reaches the initial left endmarker:}
    \loc_\emkl&\step{-m-2}\loc_\emkl\;,& \loc_\emkl&\step{-1}\loc_{=1}\;,& \loc_\emkr&\step{-m-1}\loc_\emkl\;.
   \intertext{For the positions inside the input word $w=a_1\cdots
@@ -252,7 +252,7 @@ tight.
   \end{align*}
 
   Regarding the "given initial credit" variant, we add a new location
-  $\loc'_0$ controlled by \Eve\ and let her choose her initial credit
+  $\loc'_0$ controlled by Eve and let her choose her initial credit
   when starting from $\loc'_0(0)$ by using the new actions
   $\loc'_0\step{1}\loc'_0$ and $\loc'_0\step{0}\loc_0$.
 \end{proof}
@@ -316,7 +316,7 @@ is "monotonic".
 
 \begin{lemma}[Simulation]
 \label{11-lem:mono}
-  In a "monotonic" "asymmetric vector game", if \Eve\ wins from a
+  In a "monotonic" "asymmetric vector game", if Eve wins from a
   vertex~$v_0$, then she also wins from~$v'_0$ for all $v'_0\geq
   v_0$.
 \end{lemma}
@@ -324,7 +324,7 @@ is "monotonic".
   It suffices for this to check that, for all $v_1\leq v_2$ in $V$,
   \begin{description}
   \item[(colours)] $\vcol(v_1)=\vcol(v_2)$ since $\vcol$ is "monotonic";
-  \item[(zig \Eve)] if $v_1,v_2\in V_\mEve$, $a\in\Act$, and
+  \item[(zig Eve)] if $v_1,v_2\in V_\mEve$, $a\in\Act$, and
     $\dest(v_1,a)=v'_1\neq\sink$ is defined, then
     $v'_2\eqdef\dest(v_2,a)$ is such that $v'_2\geq v'_1$: indeed,
     $v'_1\neq\sink$ entails that $v_1$ is a configuration
@@ -332,7 +332,7 @@ is "monotonic".
     $a=(\loc\step{\vec u}\loc')\in\Act$, but then $v_2=\loc(\vec v_2)$
     for some $\vec v_2\geq\vec v_1$ and
     $v'_2=\loc'(\vec v_2+\vec u)\geq v'_1$;
-  \item[(zig \Adam)] if $v_1,v_2\in V_\mAdam$, $a\in\Act$, and
+  \item[(zig Adam)] if $v_1,v_2\in V_\mAdam$, $a\in\Act$, and
     $\dest(v_2,a)=v'_2$ is defined, then
     $v'_1\eqdef\dest(v_1,a)\leq v'_2$: indeed, either $v'_2=\sink$ and
     then $v'_1=\sink$, or $v'_2\neq\sink$, thus
@@ -342,7 +342,7 @@ is "monotonic".
     $\vec v_1\leq\vec v_2$ and thus $v'_1=\loc'(\vec v_1)\leq v'_2$.
   \end{description}
   The above conditions show that, if $\sigma{:}\,E^\ast\to\Act$ is a
-  strategy of \Eve\ that wins from~$v_0$, then by
+  strategy of Eve that wins from~$v_0$, then by
   ""simulating""~$\sigma$ starting from~$v'_0$---i.e., by applying the
   same actions when given a pointwise larger or equal history---she
   will also win.\todoquestion{Is that clear?}
@@ -413,8 +413,8 @@ v_0$.
   configuration $\loc(2,2)$, the "Pareto limit" is
   $\mathsf{Pareto}=\{\loc(2,2),\loc'(3,2),\loc_{2,1}(0,1),\loc_{\text-1,0}(3,2)\}$,
   while for the "non-termination game", $\mathsf{Pareto}=\emptyset$:
-  \Eve\ loses from all the vertices.  Observe that this is consistent
-  with \Eve's "winning region" in the "coverability" "energy game"
+  Eve loses from all the vertices.  Observe that this is consistent
+  with Eve\'s "winning region" in the "coverability" "energy game"
   shown in \cref{11-fig:cov-nrg}.
 \end{example}
 
@@ -424,11 +424,11 @@ v_0$.
 % $\mathsf{Pareto}=\{\loc_1(\vec v_1),\dots,\loc_n(\vec v_n)\}$.  Since
 % this "Pareto limit" is finite, there exists a number
 % $\mathsf{ParetoBound}\eqdef\max_{\loc(\vec v)\in\mathsf{Pareto}}\|\vec
-% v\|$ bounding the necessary "given initial credit" for \Eve\ to win the
+% v\|$ bounding the necessary "given initial credit" for Eve to win the
 % game from any initial location.  Another bound of interest is
 % $\mathsf{ExistentialParetoBound}\eqdef\max_{\loc\in\Loc}\min_{\loc(\vec
 % v)\in\mathsf{Pareto}}\|\vec v\|$, which bounds the "existential
-% initial credit" necessary for \Eve\ to win the game from any initial
+% initial credit" necessary for Eve to win the game from any initial
 % location.  Note that
 % $\mathsf{ParetoBound}\geq \mathsf{ExistentialParetoBound}$ and that
 % the two values always coincide in dimension $\dd=1$.  We call a number
@@ -460,7 +460,7 @@ v_0$.
   \end{figure}
   For the "coverability game" with target
   configuration~$\loc_f(\vec 0)$, if $\loc_0$ is the initial location
-  and we are "given initial credit" $m\cdot\vec e_1$, \Eve\ wins if and
+  and we are "given initial credit" $m\cdot\vec e_1$, Eve wins if and
   only if $m\geq 2^{2^n}$, but with "existential initial credit" she
   can start from $\loc_0(\vec e_2)$ instead.  We have indeed
   $\mathsf{Pareto}\cap(\{\loc_0,\loc_1,\loc_f\}\times\+N^\dd)=\{\loc_0(\vec
@@ -473,13 +473,13 @@ v_0$.
 
 
 \paragraph{Finite Memory} 
-Besides having a finitely represented "winning region", \Eve\ also has
+Besides having a finitely represented "winning region", Eve also has
 finite memory strategies in "asymmetric vector games" with "parity"
 objectives; the following argument is straightforward to adapt to
 the other regular objectives from \cref{2-chap:regular}.
 \begin{lemma}[Finite memory suffices in parity asymmetric vector games]
 \label{11-lem:finmem}
-  If \Eve\ has a "strategy" winning from some vertex~$v_0$ in a
+  If Eve has a "strategy" winning from some vertex~$v_0$ in a
   "parity@parity vector game" "asymmetric vector game", then she has a
   "finite-memory" one.
 \end{lemma}
@@ -493,7 +493,7 @@ the other regular objectives from \cref{2-chap:regular}.
   $v_{n_0}\leq v_{n_1}\leq\cdots$.  There exists $i<j$ such
   that~$p=\max_{n_i\leq n<n_j}\vcol(v_n)$ is the maximal priority
   occurring in some interval $v_{n_i},v_{n_{i+1}},\dots,v_{n_{j-1}}$.
-  Then \Eve\ can play in~$v_{n_j}$ as if she were in~$v_{n_i}$, in
+  Then Eve can play in~$v_{n_j}$ as if she were in~$v_{n_i}$, in
   $v_{n_j+1}$ as if she were in $v_{n_i+1}$ and so on, and we prune
   the tree at index~$n_j$ along this branch so that $v_{n_j}$ is a
   leaf, and we call~$v_{n_i}$ the ""return node"" of that leaf.  We
@@ -574,10 +574,10 @@ the other regular objectives from \cref{2-chap:regular}.
   \end{figure}
 
   For the "parity@parity vector game" game with location colouring
-  $\lcol(\loc_0)\eqdef 2$ and $\lcol(\loc_1)\eqdef 1$, note that \Eve\ 
+  $\lcol(\loc_0)\eqdef 2$ and $\lcol(\loc_1)\eqdef 1$, note that Eve 
   must visit $\loc_0$ infinitely often in order to fulfil the parity
   requirements.  Starting from the initial
-  configuration~$\loc_0(\vec 0)$, any winning play of \Eve\ begins
+  configuration~$\loc_0(\vec 0)$, any winning play of Eve begins
   by \begin{equation*} \loc_0(\vec 0)\step{0}\loc_1(\vec 0)\step{\vec
       e_1}\loc_1(\vec e_1)\step{\vec e_1}\cdots\step{\vec
       e_1}\loc_1(m\cdot\vec

@@ -13,23 +13,23 @@ We assume that the games we consider in this section are positionally determined
 
 Let us consider a game $\mathcal{G}$ and set as a goal to construct an optimal strategy for Eve.
 As for value iteration algorithms we work with a value function: 
-the key idea behind strategy improvement is to use $val^{\sigma}$ to improve the strategy $\sigma$ 
+the key idea behind strategy improvement is to use $\textrm{val}^{\sigma}$ to improve the strategy $\sigma$ 
 by **switching** an edge, which is an operation that creates a new strategy.
 This involves defining the notion of **switchable edge**:
 the edge $(v,u)$ is switchable if
 
 $$
-\delta(  val^{\sigma}(u), \textsf{col}(v)) > \delta(  val^{\sigma}(v'), \textsf{col}(v)) \text{ where } \sigma(v) = (v,v').
+\delta(  \textrm{val}^{\sigma}(u), \textsf{col}(v)) > \delta(  \textrm{val}^{\sigma}(v'), \textsf{col}(v)) \text{ where } \sigma(v) = (v,v').
 $$
 
-Intuitively: according to $val^{\sigma}$, playing $(v,u)$ is better than playing $\sigma(v)$.
+Intuitively: according to $\textrm{val}^{\sigma}$, playing $(v,u)$ is better than playing $\sigma(v)$.
 
 Given a strategy $\sigma$ and an edge $e = (v,u)$ we use $\sigma[v \to e]$ to denote the strategy playing $e$ from $v$ and all other vertices follow $\sigma$.
-Let us write $\sigma \le \sigma'$ if for all vertices $v$ we have $val^{\sigma}(v) \le   val^{\sigma'}(v)$,
+Let us write $\sigma \le \sigma'$ if for all vertices $v$ we have $\textrm{val}^{\sigma}(v) \le   \textrm{val}^{\sigma'}(v)$,
 and $\sigma < \sigma'$ if additionally $\neg (\sigma' \le \sigma)$.
 
 The difficulty is that $e = (v,u)$ being switchable does not mean that it is a better move than $\sigma(v)$ in any context,
-but only according to the value function $val^{\sigma}$, so it is not clear that $\sigma[v \to e]$ is better than $\sigma$.
+but only according to the value function $\textrm{val}^{\sigma}$, so it is not clear that $\sigma[v \to e]$ is better than $\sigma$.
 Strategy improvement algorithms depend on the following two principles.
 
 ````{prf:property} Progress
@@ -48,7 +48,7 @@ Let $\sigma$ be a strategy that has no switchable edges, then $\sigma$ is optima
 ````
 
 The algorithm is the following: start at an initial strategy $\sigma_0$. 
-In each round $i$ compute $val^{\sigma_i}$ and look for a switchable edge.
+In each round $i$ compute $\textrm{val}^{\sigma_i}$ and look for a switchable edge.
 If there exists a switchable edge $e_i = (v_i,v'_i)$, let $\sigma_{i+1} = \sigma_i[v_i \to e_i]$ and iterate to the next round.
 Otherwise, return the optimal strategy $\sigma_i$.
 

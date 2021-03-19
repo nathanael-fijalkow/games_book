@@ -32,11 +32,13 @@ integer coefficient. A~DBM~$M$ defines the zone
 \]
 where $v(x_0) = 0$.
 
-\begin{example}
+\begin{example}[An example of a DBM]]
+\label{9-ex:DBM}
   Consider the clock set $\Clocks=\{x_1,x_2\}$
   and the zone $Z$ defined by 
   $x_1\leq 1 \land x_1-x_2 \leq 0 \land x_2\leq 3\land x_2-x_1 \leq 2$, which can be
   written as the following DBM:
+  \begin{figure}
   \[
     M=\begin{pmatrix}
       (\leq,0) &(\leq,0) &(\leq,0)\\
@@ -81,6 +83,9 @@ where $v(x_0) = 0$.
     %% \end{scope}
     }
   \]
+  \caption{Example of a DBM}
+  \label{9-fig:example_dbm}
+  \end{figure}
 %Note for instance that the coefficient~$3$ on the third row and
 %  first column
   For instance, $M[2,0]=(\leq, 3)$ represents the
@@ -98,7 +103,8 @@ definitions and then comment on their computation with~DBMs.
 Let $\posttime(Z)$ denote the zone describing the
 \emph{time-successors} of~$Z$, and~$\pretime(Z)$ the
 \emph{time-predecessors} of~$Z$. Formally,
-\begin{xalignat*}1
+\begin{xalignat*}
+%\begin{xalignat*}1
     \posttime(Z)&= \{v \in \Realnn^{\Clocks}
     \mid \exists t\geq 0.\  v-t \in Z\}
     \\
@@ -107,7 +113,8 @@ Let $\posttime(Z)$ denote the zone describing the
 \end{xalignat*}
 
 Given~$R\subseteq\Clocks$, we also define
-\begin{xalignat*}1
+\begin{xalignat*}
+%\begin{xalignat*}1
   \reset_R(Z) &= \{v \in \Realnn^{\Clocks} \mid \exists v' \in Z.\
   v=v'[R\leftarrow 0]\} \\
   \unreset_R(Z) &= \{ v \in \Realnn^{\Clocks} \mid \exists v' \in Z.\
@@ -272,7 +279,7 @@ Observe that a DBM always describes a convex subset
 of~$\Realnn^\Clocks$ since it is a conjunction of convex clock
 constraints. However, the set of winning states is in general
 non-convex in timed games. The~simple arena
-of~\cref{9-fig:non-convex} provides an example: if~\Eve's objective
+of~\cref{9-fig:non-convex} provides an example: if Eve's objective
 is to reach~$\ell_1$, then it should just avoid the configurations
 satisfying~$1\leq x_1,x_2\leq 2$. But this set of predecessors is then
 non-convex as shown in~\cref{9-fig:non-convex}.
@@ -347,7 +354,7 @@ We~thus have to work with unions of zones, also called
 %%     \end{scope}
   \end{tikzpicture}
   \caption{Winning configurations (in~$\ell$)
-    for~\Eve to ensure reaching~$\ell_1$.
+    for Eve to ensure reaching~$\ell_1$.
 % in one step is non-convex and shown on the right.
   }
   \label{9-fig:non-convex}
@@ -382,7 +389,7 @@ predecessor and successor operations are replaced by their zone-based
 counterparts.
 
 As for finite games, we are interested in computing a fixpoint to
-determine whether a given configuration is winning for~\Eve. We~start
+determine whether a given configuration is winning for Eve. We~start
 by introducing the zone-based counterparts of the controllable predecessors operator
 which
 is the main tool in the algorithms.

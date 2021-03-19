@@ -123,7 +123,6 @@ sciences to explain public choices made by parties.
   \end{center}
 \end{table}
 
-\medskip
 In this chapter, we will first study the computation of Nash
 equilibria in multiplayer concurrent games with $\omega$-regular
 

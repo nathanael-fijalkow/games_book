@@ -8,7 +8,7 @@
 ```
 
 A strategy can be a very complicated object, in particular it is infinite.
-Indeed, it is a function $\sigma :  Paths \to E$,
+Indeed, it is a function $\sigma :  \textrm{Paths} \to E$,
 which means that in order to choose the next move the strategy considers everything played so far: 
 the strategy depends upon the whole play.
 
@@ -27,7 +27,7 @@ $$
 \sigma : V \to E.
 $$
 
-A positional strategy induces a strategy by $\widehat{\sigma}(\pi) = \sigma( last(\pi))$.
+A positional strategy induces a strategy by $\widehat{\sigma}(\pi) = \sigma( \textrm{last}(\pi))$.
 
 For reasoning about positional strategies it is useful to define the following notion.
 Let $\Game$ be a game and $\sigma$ a positional strategy, we define $\Game[\sigma]$ the graph with condition $W$ induced by $\sigma$ on $\Game$.
@@ -176,7 +176,7 @@ $$
 \sigma :  V_\mathrm{Eve} \times M \to E.
 $$
 
-It induces a strategy $\widehat{\sigma}$ via $\widehat{\sigma}(\pi) = \sigma( last(\pi), \delta^*(\pi))$.
+It induces a strategy $\widehat{\sigma}$ via $\widehat{\sigma}(\pi) = \sigma( \textrm{last}(\pi), \delta^*(\pi))$.
 A common abuse of notations is to write $\sigma$ for $\widehat{\sigma}$.
 
 We note that positional strategies correspond to strategies using the trivial memory structure consisting of only one state.

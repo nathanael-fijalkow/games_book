@@ -3,24 +3,6 @@
 
 ```{math}
 
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
 % Generic probability measure, also prob. measure operator
 
 \renewcommand{\Game}{\game}

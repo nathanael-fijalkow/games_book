@@ -44,12 +44,12 @@ Finally, we let $\mathcal{G}(R)$ denote the game $( \mathcal{A},\Omega(R))$.
 
 \acchanged{Remark that contrarily to the rest of the objectives considered in this chapter, $\Omega(R)$ does depend on the sequences of vertices visited by the play and not only on their colour. It would have been possible by a slight modification of the arena to only express the objective on their colours. However, our choice simplifies the presentation of the reduced games.}
 
-For any state $q\in Q$ and any stack letter $\gamma\in\Gamma$, we denote by $\mathcal{R}(q,\gamma)$ the set of subsets $R\subseteq Q$ for which  Eve wins in $\mathcal{G}(R)$ from $(q,\bot\gamma)$:
+For any state $q\in Q$ and any stack letter $\gamma\in\Gamma$, we denote by $\mathcal{R}(q,\gamma)$ the set of subsets $R\subseteq Q$ for which  \textrm{Eve} wins in $\mathcal{G}(R)$ from $(q,\bot\gamma)$:
 
 $$
 
 \mathcal{R}(q,\gamma)=\{
-R\subseteq Q\mid (q,\bot\gamma) \text{ is winning for  Eve in }  \mathcal{G}(R)
+R\subseteq Q\mid (q,\bot\gamma) \text{ is winning for  \textrm{Eve} in }  \mathcal{G}(R)
 \}
 
 $$
@@ -61,42 +61,42 @@ An objective $\Omega\subseteq C^\omega$ is **prefix independent** if the followi
 ````{prf:remark} NEEDS TITLE 10-rem:stay-staying-alive
 :label: 10-rem:stay-staying-alive
 
-For a prefix independent objective, a play respecting a winning strategy for $Eve$ that starts in  Eve's winning region always stay in this region. Obviously this is no longer true if the objective is not prefix independent. For instance in a reachability game, a play following a winning strategy for $Eve$ can leave the winning region of  Eve once the target has been reached. 
+For a prefix independent objective, a play respecting a winning strategy for $\textrm{Eve}$ that starts in  \textrm{Eve}'s winning region always stay in this region. Obviously this is no longer true if the objective is not prefix independent. For instance in a reachability game, a play following a winning strategy for $\textrm{Eve}$ can leave the winning region of  \textrm{Eve} once the target has been reached. 
 
 ````
 
-This simple property allows to use profiles to give an inductive characterization of the winning region for  Eve when the objectif is prefix independent.
+This simple property allows to use profiles to give an inductive characterization of the winning region for  \textrm{Eve} when the objectif is prefix independent.
 
 ````{prf:proposition} NEEDS TITLE 10-prop:returning
 :label: 10-prop:returning
  Assume that $\Omega\subseteq C^\omega$ is prefix independent. 
-Let $s\in \Gamma^*$, $q\in Q$ and $\gamma\in\Gamma$. Then  Eve has a winning strategy in $\mathcal{G}$ from $(q,\bot s\gamma)$ if and only if there exists some $R\in\mathcal{R}(q,\gamma)$ such that $(r,\bot s)$ is winning for  Eve in $\mathcal{G}$ for every $r\in R$.
+Let $s\in \Gamma^*$, $q\in Q$ and $\gamma\in\Gamma$. Then  \textrm{Eve} has a winning strategy in $\mathcal{G}$ from $(q,\bot s\gamma)$ if and only if there exists some $R\in\mathcal{R}(q,\gamma)$ such that $(r,\bot s)$ is winning for  \textrm{Eve} in $\mathcal{G}$ for every $r\in R$.
 
 ````
 
 ````{admonition} Proof
 :class: dropdown tip
 
-Assume  Eve has a winning strategy $\sigma$ from $(q,\bot s\gamma)$ in $\mathcal{G}$. Consider the set $\Pi_\sigma$ of all plays in $\mathcal{G}$ that starts from $(q,\bot s\gamma)$ and where  Eve respects $\sigma$. Define $R$ to be the (possibly empty) set that consists of all $r\in Q$ such that there is a play in $\Pi_\sigma$ of the form $v_0\cdots v_k (r,\bot s) v_{k+1}\cdots$ where each $v_i$ for $0\leq i\leq k$ is of the form $(p_i,\bot s t_i)$ for some non-empty $t_i$. In other words, $R$ consists of all states that can be reached on popping $\gamma$ for the first time in a play where  Eve respects $\sigma$. As seen in {prf:ref}`10-rem:stay-staying-alive`,  Eve is winning from $(r,\bot s)$ for all $r \in R$. It remains to show that $R\in\mathcal{R}(q,\gamma)$.
+Assume  \textrm{Eve} has a winning strategy $\sigma$ from $(q,\bot s\gamma)$ in $\mathcal{G}$. Consider the set $\Pi_\sigma$ of all plays in $\mathcal{G}$ that starts from $(q,\bot s\gamma)$ and where  \textrm{Eve} respects $\sigma$. Define $R$ to be the (possibly empty) set that consists of all $r\in Q$ such that there is a play in $\Pi_\sigma$ of the form $v_0\cdots v_k (r,\bot s) v_{k+1}\cdots$ where each $v_i$ for $0\leq i\leq k$ is of the form $(p_i,\bot s t_i)$ for some non-empty $t_i$. In other words, $R$ consists of all states that can be reached on popping $\gamma$ for the first time in a play where  \textrm{Eve} respects $\sigma$. As seen in {prf:ref}`10-rem:stay-staying-alive`,  \textrm{Eve} is winning from $(r,\bot s)$ for all $r \in R$. It remains to show that $R\in\mathcal{R}(q,\gamma)$.
 
-To this end, define a (partial) function $\xi$ as $\xi((p,\bot s t))=(p,\bot t)$ for every $p\in Q$ and set $\xi^{-1}((p,\bot t))=(p,\bot s t)$. Then $\xi^{-1}$ is extended as a morphism over $V^*$.  Now a winning strategy for  Eve in $\mathcal{G}(R)$ is defined as follows:
+To this end, define a (partial) function $\xi$ as $\xi((p,\bot s t))=(p,\bot t)$ for every $p\in Q$ and set $\xi^{-1}((p,\bot t))=(p,\bot s t)$. Then $\xi^{-1}$ is extended as a morphism over $V^*$.  Now a winning strategy for  \textrm{Eve} in $\mathcal{G}(R)$ is defined as follows:
 
 *  if some empty stack configuration has already been visited play any valid move, 
 *  otherwise go to $\xi(\sigma(\xi^{-1}(\pi))$, where $\pi$ is the current play.
 
-By definition of $\Pi_\sigma$ and $R$, it easily follows that the previous strategy is winning for  Eve in $\mathcal{G}(R)$, and therefore $R\in\mathcal{R}(p,\gamma)$.
+By definition of $\Pi_\sigma$ and $R$, it easily follows that the previous strategy is winning for  \textrm{Eve} in $\mathcal{G}(R)$, and therefore $R\in\mathcal{R}(p,\gamma)$.
 
-Conversely, let us assume that there is some $R\in\mathcal{R}(q,\gamma)$ such that $(r,\bot s)$ is winning for  Eve in $\mathcal{G}$ for every $r\in R$. For every $r\in R$, let us denote by $\sigma_r$ a winning strategy for  Eve from $(r,\bot s)$ in $\mathcal{G}$. Let $\sigma_R$ be a winning strategy for  Eve in $\mathcal{G}(R)$ from $(q,\bot\gamma)$. Let us define $\xi$ and $\xi^{-1}$ as in the direct implication and extend them as (partial) morphism over $V^*$. Define the following strategy $\sigma$ for  Eve in $\mathcal{G}$ for plays starting from $(q,\bot s\gamma)$. For any such play $\pi$, 
+Conversely, let us assume that there is some $R\in\mathcal{R}(q,\gamma)$ such that $(r,\bot s)$ is winning for  \textrm{Eve} in $\mathcal{G}$ for every $r\in R$. For every $r\in R$, let us denote by $\sigma_r$ a winning strategy for  \textrm{Eve} from $(r,\bot s)$ in $\mathcal{G}$. Let $\sigma_R$ be a winning strategy for  \textrm{Eve} in $\mathcal{G}(R)$ from $(q,\bot\gamma)$. Let us define $\xi$ and $\xi^{-1}$ as in the direct implication and extend them as (partial) morphism over $V^*$. Define the following strategy $\sigma$ for  \textrm{Eve} in $\mathcal{G}$ for plays starting from $(q,\bot s\gamma)$. For any such play $\pi$, 
 
 *  if $\pi$ does not contain a configuration of the form $(p,\bot s)$ then we take $\sigma(\pi)=\xi^{-1}(\sigma_R(\xi(\pi)))$;
 *  otherwise let $\pi = \pi'\cdot(r,\bot s)\cdot \pi''$ where $\pi'$ does not contain any configuration of the form $(p,\bot s)$. If $r$ does not belong to $R$, $\sigma$ is undefined. Note that this situation will never be encountered in a play respecting $\sigma$ as $\sigma_R$ ensures that $r \in R$. If $r \in R$, one finally sets $\sigma(\pi)=\sigma_r((r,\bot s)\pi'')$.
  
-The strategy $\sigma$ is a winning strategy for  Eve in $\mathcal{G}$ from $(q,\bot s\gamma)$. To see this, consider a play $\pi$ starting from $(p,\bot s \gamma)$ and respecting $\sigma$.
+The strategy $\sigma$ is a winning strategy for  \textrm{Eve} in $\mathcal{G}$ from $(q,\bot s\gamma)$. To see this, consider a play $\pi$ starting from $(p,\bot s \gamma)$ and respecting $\sigma$.
 
- If the play $\pi$ does not contain configurations of the form $(r,\bot s)$ for some $r \in Q$, then the play $\xi(\pi)$ starting in $(p,\bot \gamma)$ respects $\sigma_R$ and is won by $Eve$.
-As $\xi(\pi)$ does not contain configurations with an empty stack, it must be the case that $\xi(\pi) \in \Omega$. As $\Omega$ only depends on the colours of the states, it is also the case that $\pi \in \Omega$ and hence, $\pi$ is winning for $Eve$. 
+ If the play $\pi$ does not contain configurations of the form $(r,\bot s)$ for some $r \in Q$, then the play $\xi(\pi)$ starting in $(p,\bot \gamma)$ respects $\sigma_R$ and is won by $\textrm{Eve}$.
+As $\xi(\pi)$ does not contain configurations with an empty stack, it must be the case that $\xi(\pi) \in \Omega$. As $\Omega$ only depends on the colours of the states, it is also the case that $\pi \in \Omega$ and hence, $\pi$ is winning for $\textrm{Eve}$. 
 
-If the play $\pi$ can be decomposed as $\pi' (r,\bot s) \pi''$ where $\pi'$ does not contain any configuration with the stack $\bot s$, the play $\xi(\pi' (r,\bot s))$ respects $\sigma_R$ in $\mathcal{G}(R)$. As $\sigma_R$ is winning, it follows that $r \in R$. By definition of $\sigma$, $(r,\bot s)\pi''$ respects $\sigma_r$ which being winning for  Eve implies that $(r,\bot s) \pi'' \in \Omega$. As $\Omega$ is prefix independent, it follows that $\pi \in \Omega$.
+If the play $\pi$ can be decomposed as $\pi' (r,\bot s) \pi''$ where $\pi'$ does not contain any configuration with the stack $\bot s$, the play $\xi(\pi' (r,\bot s))$ respects $\sigma_R$ in $\mathcal{G}(R)$. As $\sigma_R$ is winning, it follows that $r \in R$. By definition of $\sigma$, $(r,\bot s)\pi''$ respects $\sigma_r$ which being winning for  \textrm{Eve} implies that $(r,\bot s) \pi'' \in \Omega$. As $\Omega$ is prefix independent, it follows that $\pi \in \Omega$.
 
 ````
 
@@ -133,13 +133,13 @@ By a slight abuse, we can think of the $|Q|$ automata in {prf:ref}`10-thm:regula
 Note that the characterisation in {prf:ref}`10-thm:regularity-wr` is **a priori** not effective. Indeed, to construct automata for the languages $L_q$ one needs to be able to compute all the $(q,\gamma)$-profiles $\mathcal{R}(q,\gamma)$ of $\mathcal{G}$ and compute
 the winner from configurations of the form $(q,\bot)$. 
 
-\newcommand{ \Omega_{pal}}{\Omega_{pal}} 
+\newcommand{ \Omega_{\textrm{pal}}}{\Omega_{\textrm{pal}}} 
 Consider, for instance, the objective over the set of the colours $C=\{0,1,\#,\$\}$
 
 $$
 \begin{array}{l}
- \Omega_{pal} = \{ w \in C^\omega \mid w \;contains infinitely many factors of the form\\
-\quad\quad\quad\quad\quad\quad\quad\;\;$\#u\$\tilde{u}\#$ with $u \in \{0,1\}^*$ \} \\
+ \Omega_{\textrm{pal}} = \{ w \in C^\omega \mid w \;\textrm{contains infinitely many factors of the form}\\
+\quad\quad\quad\quad\quad\quad\quad\;\;\textrm{$\#u\$\tilde{u}\#$ with $u \in \{0,1\}^*$} \} \\
 \end{array}
 $$
 
@@ -156,9 +156,9 @@ $$
 
  symbols or if the symbol read does not correspond to the top of the stack, the automaton enters a non-final state is in which it waits for the next $\#$-symbol.
 
-For games with finite arenas and the $\Omega_{pal}$ objective,  deciding the winner reduces to deciding the winner in a  pushdown game with the Büchi objective which is decidable as we will prove later in this chapter. The pushdown game is essentially a synchronized product between the finite arena and the $\omega$-pushdown automaton described previously.
+For games with finite arenas and the $\Omega_{\textrm{pal}}$ objective,  deciding the winner reduces to deciding the winner in a  pushdown game with the Büchi objective which is decidable as we will prove later in this chapter. The pushdown game is essentially a synchronized product between the finite arena and the $\omega$-pushdown automaton described previously.
 
-However the problem of deciding the winner in a pushdown game with the $\Omega_{pal}$ objective is undecidable even if all vertices belong to  Eve. The undecidability is proved by a reduction from  Post correspondance problem (PCP) which is a well-known to be undecidable. Recall that an instance of PCP is a finite sequence $(r_1,\ell_1),\ldots,(r_n,\ell_n)$ of pairs of words over $\{0,1\}$. Such an instance is said to admit a solution if there exists a sequence of indices $i_1\cdots i_k \in [1,n]^*$ such that:
+However the problem of deciding the winner in a pushdown game with the $\Omega_{\textrm{pal}}$ objective is undecidable even if all vertices belong to  \textrm{Eve}. The undecidability is proved by a reduction from  Post correspondance problem (PCP) which is a well-known to be undecidable. Recall that an instance of PCP is a finite sequence $(r_1,\ell_1),\ldots,(r_n,\ell_n)$ of pairs of words over $\{0,1\}$. Such an instance is said to admit a solution if there exists a sequence of indices $i_1\cdots i_k \in [1,n]^*$ such that:
 
 $$
  r_{i_1} r_{i_2} \cdots r_{i_k} = \ell_{i_1} \ell_{i_2} \cdots \ell_{i_k}.
@@ -166,28 +166,28 @@ $$
 
 The PCP problem is, given an instance, to decide if it admits a solution.
  
-For an instance $I=(\ell_1,r_1),\ldots,(\ell_n,r_n)$ of PCP, we construct a pushdown game $G_I$  with the objective $\Omega_{pal}$ such that  Eve wins $G_I$ from $(p_\star,\bot)$ if and only if $I$ admits a solution. In this game,  Eve plays alone and the play is decomposed in two phases that will repeat:
+For an instance $I=(\ell_1,r_1),\ldots,(\ell_n,r_n)$ of PCP, we construct a pushdown game $G_I$  with the objective $\Omega_{\textrm{pal}}$ such that  \textrm{Eve} wins $G_I$ from $(p_\star,\bot)$ if and only if $I$ admits a solution. In this game,  \textrm{Eve} plays alone and the play is decomposed in two phases that will repeat:
 
-*  in phase 1,  Eve can push any indice $i$ in $[1,n]$while producing the sequence of colors $r_i$. As soon as at least one index has been pushed, she can also choose to move to the sequence phase while producing the colour $\
+*  in phase 1,  \textrm{Eve} can push any indice $i$ in $[1,n]$while producing the sequence of colors $r_i$. As soon as at least one index has been pushed, she can also choose to move to the sequence phase while producing the colour $\
 
 $$
 
 .
-*  in phase 2,  Eve must (until the bottom of stack symbol is reached) pop the top most element of the stack $i$ while producing the sequence of colours $\tilde{\ell_i}$. When the bottom of stack symbol is encountered,  Eve goes back to the first phase while producing the colour $\#$.
+*  in phase 2,  \textrm{Eve} must (until the bottom of stack symbol is reached) pop the top most element of the stack $i$ while producing the sequence of colours $\tilde{\ell_i}$. When the bottom of stack symbol is encountered,  \textrm{Eve} goes back to the first phase while producing the colour $\#$.
 
-If $I$ has a solution $i_1 \cdots i_k$ then the strategy in which  Eve always pushes this sequence in phase 1 is winning for her. As $i_1 \cdots i_k$ is a solution of $I$,
-we have $u=r_{i_1}\cdot r_{i_k}=\ell_{i_1}\cdots\ell_{i_k} $ and by construction of the game, the sequence of colors associated with the play is $(u\$\tilde{u})^\omega \in  \Omega_{pal}$. Conversely if  Eve has a winning strategy from $(q_\star,\bot)$ then the sequence of colours associated with the winning play belongs to $\Omega_{pal}$. In particular, it must contain a factor of the form $\#u\$\tilde{u}\#$. By construction of the game the sequence of indices $i_1 \cdots i_k$ pushed while producing $u$ is a solution of $I$.
+If $I$ has a solution $i_1 \cdots i_k$ then the strategy in which  \textrm{Eve} always pushes this sequence in phase 1 is winning for her. As $i_1 \cdots i_k$ is a solution of $I$,
+we have $u=r_{i_1}\cdot r_{i_k}=\ell_{i_1}\cdots\ell_{i_k} $ and by construction of the game, the sequence of colors associated with the play is $(u\$\tilde{u})^\omega \in  \Omega_{\textrm{pal}}$. Conversely if  \textrm{Eve} has a winning strategy from $(q_\star,\bot)$ then the sequence of colours associated with the winning play belongs to $\Omega_{\textrm{pal}}$. In particular, it must contain a factor of the form $\#u\$\tilde{u}\#$. By construction of the game the sequence of indices $i_1 \cdots i_k$ pushed while producing $u$ is a solution of $I$.
 
 Note that the characterisation in {prf:ref}`10-thm:regularity-wr` is **a priori** not effective. Indeed, to construct automata for the languages $L_q$ one needs to be able to compute all the $(q,\gamma)$-profiles $\mathcal{R}(q,\gamma)$ of $\mathcal{G}$ and compute
 the winner from configurations of the form $(q,\bot)$. 
 
-\newcommand{ \Omega_{pal}}{\Omega_{pal}} 
+\newcommand{ \Omega_{\textrm{pal}}}{\Omega_{\textrm{pal}}} 
 Consider, for instance, the objective over the set of the colours $C=\{0,1,\#,\$\}$
 
 $$
 \begin{array}{l}
- \Omega_{pal} = \{ w \in C^\omega \mid w \;contains infinitely many factors of the form\\
-\quad\quad\quad\quad\quad\quad\quad\;\;$\#u\$\tilde{u}\#$ with $u \in \{0,1\}^*$ \} \\
+ \Omega_{\textrm{pal}} = \{ w \in C^\omega \mid w \;\textrm{contains infinitely many factors of the form}\\
+\quad\quad\quad\quad\quad\quad\quad\;\;\textrm{$\#u\$\tilde{u}\#$ with $u \in \{0,1\}^*$} \} \\
 \end{array}
 $$
 
@@ -204,9 +204,9 @@ $$
 
  symbols or if the symbol read does not correspond to the top of the stack, the automaton enters a non-final state is in which it waits for the next $\#$-symbol.
 
-For games with finite arenas and the $\Omega_{pal}$ objective,  deciding the winner reduces to deciding the winner in a  pushdown game with the Büchi objective which is decidable as we will prove later in this chapter. The pushdown game is essentially a synchronized product between the finite arena and the $\omega$-pushdown automaton described previously.
+For games with finite arenas and the $\Omega_{\textrm{pal}}$ objective,  deciding the winner reduces to deciding the winner in a  pushdown game with the Büchi objective which is decidable as we will prove later in this chapter. The pushdown game is essentially a synchronized product between the finite arena and the $\omega$-pushdown automaton described previously.
 
-However the problem of deciding the winner in a pushdown game with the $\Omega_{pal}$ objective is undecidable even if all vertices belong to  Eve. The undecidability is proved by a reduction from  Post correspondance problem (PCP) which is a well-known to be undecidable. Recall that an instance of PCP is a finite sequence $(r_1,\ell_1),\ldots,(r_n,\ell_n)$ of pairs of words over $\{0,1\}$. Such an instance is said to admit a solution if there exists a sequence of indices $i_1\cdots i_k \in [1,n]^*$ such that:
+However the problem of deciding the winner in a pushdown game with the $\Omega_{\textrm{pal}}$ objective is undecidable even if all vertices belong to  \textrm{Eve}. The undecidability is proved by a reduction from  Post correspondance problem (PCP) which is a well-known to be undecidable. Recall that an instance of PCP is a finite sequence $(r_1,\ell_1),\ldots,(r_n,\ell_n)$ of pairs of words over $\{0,1\}$. Such an instance is said to admit a solution if there exists a sequence of indices $i_1\cdots i_k \in [1,n]^*$ such that:
 
 $$
  r_{i_1} r_{i_2} \cdots r_{i_k} = \ell_{i_1} \ell_{i_2} \cdots \ell_{i_k}.
@@ -214,17 +214,17 @@ $$
 
 The PCP problem is, given an instance, to decide if it admits a solution.
  
-For an instance $I=(\ell_1,r_1),\ldots,(\ell_n,r_n)$ of PCP, we construct a pushdown game $G_I$  with the objective $\Omega_{pal}$ such that  Eve wins $G_I$ from $(p_\star,\bot)$ if and only if $I$ admits a solution. In this game,  Eve plays alone and the play is decomposed in two phases that will repeat:
+For an instance $I=(\ell_1,r_1),\ldots,(\ell_n,r_n)$ of PCP, we construct a pushdown game $G_I$  with the objective $\Omega_{\textrm{pal}}$ such that  \textrm{Eve} wins $G_I$ from $(p_\star,\bot)$ if and only if $I$ admits a solution. In this game,  \textrm{Eve} plays alone and the play is decomposed in two phases that will repeat:
 
-*  in phase 1,  Eve can push any indice $i$ in $[1,n]$while producing the sequence of colors $r_i$. As soon as at least one index has been pushed, she can also choose to move to the sequence phase while producing the colour $\
+*  in phase 1,  \textrm{Eve} can push any indice $i$ in $[1,n]$while producing the sequence of colors $r_i$. As soon as at least one index has been pushed, she can also choose to move to the sequence phase while producing the colour $\
 
 $$
 
 .
-*  in phase 2,  Eve must (until the bottom of stack symbol is reached) pop the top most element of the stack $i$ while producing the sequence of colours $\tilde{\ell_i}$. When the bottom of stack symbol is encountered,  Eve goes back to the first phase while producing the colour $\#$.
+*  in phase 2,  \textrm{Eve} must (until the bottom of stack symbol is reached) pop the top most element of the stack $i$ while producing the sequence of colours $\tilde{\ell_i}$. When the bottom of stack symbol is encountered,  \textrm{Eve} goes back to the first phase while producing the colour $\#$.
 
-If $I$ has a solution $i_1 \cdots i_k$ then the strategy in which  Eve always pushes this sequence in phase 1 is winning for her. As $i_1 \cdots i_k$ is a solution of $I$,
-we have $u=r_{i_1}\cdot r_{i_k}=\ell_{i_1}\cdots\ell_{i_k} $ and by construction of the game, the sequence of colors associated with the play is $(u\$\tilde{u})^\omega \in  \Omega_{pal}$. Conversely if  Eve has a winning strategy from $(q_\star,\bot)$ then the sequence of colours associated with the winning play belongs to $\Omega_{pal}$. In particular, it must contain a factor of the form $\#u\$\tilde{u}\#$. By construction of the game the sequence of indices $i_1 \cdots i_k$ pushed while producing $u$ is a solution of $I$.
+If $I$ has a solution $i_1 \cdots i_k$ then the strategy in which  \textrm{Eve} always pushes this sequence in phase 1 is winning for her. As $i_1 \cdots i_k$ is a solution of $I$,
+we have $u=r_{i_1}\cdot r_{i_k}=\ell_{i_1}\cdots\ell_{i_k} $ and by construction of the game, the sequence of colors associated with the play is $(u\$\tilde{u})^\omega \in  \Omega_{\textrm{pal}}$. Conversely if  \textrm{Eve} has a winning strategy from $(q_\star,\bot)$ then the sequence of colours associated with the winning play belongs to $\Omega_{\textrm{pal}}$. In particular, it must contain a factor of the form $\#u\$\tilde{u}\#$. By construction of the game the sequence of indices $i_1 \cdots i_k$ pushed while producing $u$ is a solution of $I$.
 
 ````
 
@@ -261,9 +261,9 @@ More precisely, $\mathrm{Profs}$ is the smallest subset of $Q\times \Gamma \time
 Using this characterization, the set $\mathrm{Profs}$ can be computed using the standard method for computing small-fixed point of a monotonic function by computing the sequence of approximants $\mathrm{Profs}_0 = \emptyset \subseteq  \mathrm{Profs}_1 \subseteq  \mathrm{Profs}_2 \cdots$ until it stabilizes. More precisely, for all $i \geq 0$, $\mathrm{Profs}_{i+1}$ is obtained by adding to $\mathrm{Profs}_{i}$ all the tuples that can be inferred using the properties $(1)$, $(2)$ and $(3)$ above applied to $\mathrm{Profs}_i$. As at most $|Q|\cdot |\Gamma|\cdot 2^{|Q|}$ tuples can be added, the sequence must stabilize in at most $|Q| \cdot |\Gamma| \cdot 2^{|Q|}$ steps. As the computation of $\mathrm{Profs}_{i+1}$ from $\mathrm{Profs}_i$ can be performed in polynomial time, the profils in a reachability pushdown game can be computed in time  $p(|Q| \cdot |\Gamma| \cdot 2^{|Q|})$ for some polynomial $p$.
 
 ````{prf:remark} NEEDS TITLE AND LABEL 
-In the case where  Eve plays alone (i.e., $Q=Q_\mathrm{Eve}$), there is only on play respecting a fixed strategy for  Eve and as a result, one only need to compute profils of the form $(p,\gamma,R)$ with $|R|\leq 1$. In this setting, the fixed-point characterization yields a polynomial time algorithm to compute the set of profiles.
+In the case where  \textrm{Eve} plays alone (i.e., $Q=Q_\mathrm{Eve}$), there is only on play respecting a fixed strategy for  \textrm{Eve} and as a result, one only need to compute profils of the form $(p,\gamma,R)$ with $|R|\leq 1$. In this setting, the fixed-point characterization yields a polynomial time algorithm to compute the set of profiles.
 
-In the case where  Eve plays alone (i.e., $Q=Q_\mathrm{Eve}$), there is only on play respecting a fixed strategy for  Eve and as a result, one only need to compute profils of the form $(p,\gamma,R)$ with $|R|\leq 1$. In this setting, the fixed-point characterization yields a polynomial time algorithm to compute the set of profiles.
+In the case where  \textrm{Eve} plays alone (i.e., $Q=Q_\mathrm{Eve}$), there is only on play respecting a fixed strategy for  \textrm{Eve} and as a result, one only need to compute profils of the form $(p,\gamma,R)$ with $|R|\leq 1$. In this setting, the fixed-point characterization yields a polynomial time algorithm to compute the set of profiles.
 
 ````
 

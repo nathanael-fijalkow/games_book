@@ -1,8 +1,8 @@
 We present the controllable-predecessor operator which, given sets of
-states $X$ and~$Y$, returns the set of states from which \Eve can
-reach~$X$ in one step, while avoiding states of~$Y$ during \Eve's
-delay. Intuitively, the states in~$Y$ are the states from which \Adam
-may force an action leading outside of~$X$, which \Eve would better avoid.
+states $X$ and~$Y$, returns the set of states from which Eve can
+reach~$X$ in one step, while avoiding states of~$Y$ during Eve's
+delay. Intuitively, the states in~$Y$ are the states from which Adam
+may force an action leading outside of~$X$, which Eve would better avoid.
 
 %\OS{This operations make sense with the concurrent semantics...}
 Recall that $\vertices = \Locs \times \Realnn^\Clocks$.
@@ -40,12 +40,12 @@ Our controllable-predecessor operator is then defined as
 %\NM{!!! Cette approche necessite la semantique ``jeux concurrents''.
 %  Reecrire avec jeux concurrents + ajouter remarque ``jeux a tours''}
 %\NM{$\calQ$ undefined}
-Intuitively, the states in~$\pi(X)$ are those from which \Eve~can wait
+Intuitively, the states in~$\pi(X)$ are those from which Eve~can wait
 until she
 can take a controllable transition to~reach~$X$, and so that
 %any uncontrollable transition that might happen while waiting remains
 %inside~$X$.
-no transitions that \Adam could take while \Eve is waiting may lead
+no transitions that Adam could take while Eve is waiting may lead
 outside of~$X$.
 
 \begin{lemma}\label{9-lem:pimonotonic}
@@ -54,13 +54,14 @@ outside of~$X$.
   $\pi(X) \subseteq \pi(Y)$.  %\NM{useful later}
 \end{lemma}
 
-\begin{example}
+\begin{example}[Example for the controllable predecessor operator]
+\label{9-ex:controllable_predecessor_operator}
 Consider the timed game to the left of
-\cref{9-fig:contpred}. In~that game, \Eve can reach her target when
+\cref{9-fig:contpred}. In~that game, Eve can reach her target when
 clock~$x_2$ reaches value~$3$ while~$x_1$ is in~$[1;4]$. However,
-\Adam can take the game to a bad state when simultaneously
+Adam can take the game to a bad state when simultaneously
 $x_1\in[1;2]$ and $x_2\leq 2$. The~diagram to the right of
-\cref{9-fig:contpred} shows the set of winning valuations for~\Eve:
+\cref{9-fig:contpred} shows the set of winning valuations for Eve:
 it~is computed as $\predt(X,Y)$ where $X=\predc(\{W\}\times\Realnn)$
 and $Y=\predu(\{\ell_0,\ell_1\}\times\Realnn)$.
 
@@ -116,11 +117,11 @@ and $Y=\predu(\{\ell_0,\ell_1\}\times\Realnn)$.
 % \end{proof}
 
 % The following theorem is the fixpoint characterization of the winning states
-% for~$\Eve$. It is the timed automata analogue to Theorem ....
+% for Eve. It is the timed automata analogue to Theorem ....
 % \begin{theorem}
 %   \label{9-thm:fp}
 %   Given a timed game~$(\calT,\Omega)$ with a reachability objective~$\Omega$,
-%   a configuration~$q$ is winning for~$\Eve$ if, and only if
+%   a configuration~$q$ is winning for Eve if, and only if
 %   there exists~$X \subseteq \mathbb{R}_{\geq 0}^\Clocks$ such that
 %   $q \in X$ and~$X = \pi(X)$.
 %   \NM{Il faut prendre le plus petit pt fixe (sinon $X=\Locs\times\Realnn^{\Clocks}$ convient)}
@@ -128,16 +129,17 @@ and $Y=\predu(\{\ell_0,\ell_1\}\times\Realnn)$.
 
 
 
-\begin{remark}
-  When considering zero-sum objectives (which we do in this chapter),
-a~turn-based arena can be built to decide whether \Eve has a winning
+\begin{remark}[Reduction for zero-sum objectives]
+\label{9-rmk:reduction_zero_sum}
+When considering zero-sum objectives (which we do in this chapter),
+a~turn-based arena can be built to decide whether Eve has a winning
 strategy (and~possibly construct~one).  Intuitively, the turn-based
-arena is obtained by letting \Eve first pick a pair~$(d,e)$ with~$e
-\in \EE$, and then letting \Adam either respect this choice (i.e.,
-play a larger delay) or preempt \Eve's action by choosing $(d',e')$
+arena is obtained by letting Eve first pick a pair~$(d,e)$ with~$e
+\in \EE$, and then letting Adam either respect this choice (i.e.,
+play a larger delay) or preempt Eve's action by choosing $(d',e')$
 with~$d' \leq d$ and~$e' \in \EA$.
-\Eve has a winning strategy in this turn-based arena if, and only if she has one in the original game.
-However, this does not apply to \Adam; if he has a winning strategy, this only means that \Eve
+Eve has a winning strategy in this turn-based arena if, and only if she has one in the original game.
+However, this does not apply to Adam; if he has a winning strategy, this only means that Eve
 does not have a winning strategy in the original game.
 
 %\paragraph{Turn-Based Game Semantics}
@@ -155,16 +157,16 @@ From a configuration~$((\ell,\nu),(d,e))\in\VA$, several cases may
 occur:
 %\todo{OS: Rephrased. Please check}
 \begin{itemize}
-\item if \Adam has no available action from~$(\ell,\nu)$, or if he can
+\item if Adam has no available action from~$(\ell,\nu)$, or if he can
   only play actions~$(d',e')$ with $d'>d$, then the only transition
   from~$((\ell,\nu),(d,e))$ goes to $\step((\ell,\nu),(d,e))$;
-\item Otherwise, for all actions~$(d',e')$ for \Adam satisfying $d'\leq d$,
+\item Otherwise, for all actions~$(d',e')$ for Adam satisfying $d'\leq d$,
   there is a transition from~$((\ell,\nu),(d,e))$
   to $\step((\ell,\nu),(d',e'))$.
-  Moreover, if \Adam has an available action~$(d',e')$ with~$d'\geq d$,
+  Moreover, if Adam has an available action~$(d',e')$ with~$d'\geq d$,
   then there is also a transition
   from~$((\ell,\nu),(d,e))$ to $\step((\ell,\nu),(d,e))$.
-% \item if \Adam can play an action~$(d',e')$ with $d'\leq d$, then
+% \item if Adam can play an action~$(d',e')$ with $d'\leq d$, then
 %   there is a transition from~$((\ell,\nu),(d,e))$
 %   to $\step((\ell,\nu),(d',e'))$.
 \end{itemize}
@@ -175,7 +177,7 @@ occur:
 %\]
 From a configuration~$((\ell,\nu),\bot)$, there is a transition
 to~$\step((\ell,\nu),(d',e'))$ for each available action~$(d',e')$
-of~\Adam.
+of Adam.
 The coloring function is defined as~$c''((\ell,\nu)) = c(\ell)$
 and~$c''((\ell,\nu),(d,e)) = c(\ell)$.
 %The function~$\Delta$ is defined so that it induces a bijection between actions

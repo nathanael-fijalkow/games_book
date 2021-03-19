@@ -7,10 +7,10 @@
 
 ```
 
-Recall that the objective $\mathtt{Reach}$ requires that the colour $Win$ appears at least once and 
-$\mathtt{Safe}$ requires the the colour $Lose$ never appears.
-We identify the colour $Win$ with $\textsf{col}^{-1}( Win)$ the set of vertices labelled $Win$,
-so we write $v \in  Win$ when $\textsf{col}(v) =  Win$, and similarly for $Lose$.
+Recall that the objective $\mathtt{Reach}$ requires that the colour $\textrm{Win}$ appears at least once and 
+$\mathtt{Safe}$ requires the the colour $\textrm{Lose}$ never appears.
+We identify the colour $\textrm{Win}$ with $\textsf{col}^{-1}( \textrm{Win})$ the set of vertices labelled $\textrm{Win}$,
+so we write $v \in  \textrm{Win}$ when $\textsf{col}(v) =  \textrm{Win}$, and similarly for $\textrm{Lose}$.
 
 ````{prf:theorem} Positional determinacy and complexity of reachability games
 :label: 2-thm:reachability
@@ -33,12 +33,12 @@ Since we make the assumption that every vertex has an outgoing edge this implies
 
 Towards proving {prf:ref}`2-thm:reachability` let us introduce some notations.
 Let us consider a reachability game $\Game = ( \mathcal{A},  \mathtt{Reach}[ \textsf{col}])$.
-For a subset $F \subseteq V$, we let $Pre_\mathrm{Eve}(F) \subseteq V$ the set of vertices from which Eve can ensure 
+For a subset $F \subseteq V$, we let $\textrm{Pre}_\mathrm{Eve}(F) \subseteq V$ the set of vertices from which Eve can ensure 
 that the next vertex is in $F$:
 
 $$
 \begin{array}{lll}
- Pre_\mathrm{Eve}(F) & = &  \left\{ v \in V_E : \exists (v,v') \in E,\ v' \in F \right\} \\
+ \textrm{Pre}_\mathrm{Eve}(F) & = &  \left\{ v \in V_E : \exists (v,v') \in E,\ v' \in F \right\} \\
         & \cup &  \left\{ v \in V_A : \forall (v,v') \in E,\ v' \in F \right\}.
 \end{array}
 $$
@@ -46,17 +46,17 @@ $$
 Let us define the following operator on subsets of vertices:
 
 $$
-X \mapsto  Win \cup  Pre_\mathrm{Eve}(X).
+X \mapsto  \textrm{Win} \cup  \textrm{Pre}_\mathrm{Eve}(X).
 $$
 
 We note that this operator is monotonic when equipping the powerset of vertices with the inclusion preorder:
-if $F \subseteq F'$ then $Pre_\mathrm{Eve}(F) \subseteq  Pre_\mathrm{Eve}(F')$.
+if $F \subseteq F'$ then $\textrm{Pre}_\mathrm{Eve}(F) \subseteq  \textrm{Pre}_\mathrm{Eve}(F')$.
 Hence {prf:ref}`1-thm:kleene` applies: this operator has a least fixed point 
-which we call the attractor of $Win$ for Eve and write $Attr_\mathrm{Eve}( Win)$,
-and it is computed by the following sequence: we let $Attr_\mathrm{Eve}^0( Win) =  Win$ and
+which we call the attractor of $\textrm{Win}$ for Eve and write $\textrm{Attr}_\mathrm{Eve}( \textrm{Win})$,
+and it is computed by the following sequence: we let $\textrm{Attr}_\mathrm{Eve}^0( \textrm{Win}) =  \textrm{Win}$ and
 
 $$
- Attr_\mathrm{Eve}^{k+1}( Win) =  Attr_\mathrm{Eve}^{k}( Win)\ \cup\  Pre_\mathrm{Eve}( Attr_\mathrm{Eve}^{k}( Win)).
+ \textrm{Attr}_\mathrm{Eve}^{k+1}( \textrm{Win}) =  \textrm{Attr}_\mathrm{Eve}^{k}( \textrm{Win})\ \cup\  \textrm{Pre}_\mathrm{Eve}( \textrm{Attr}_\mathrm{Eve}^{k}( \textrm{Win})).
 
 ```{margin}
 For technical convenience we shift the sequence by one, ignoring the first term which is the empty set
@@ -64,16 +64,16 @@ For technical convenience we shift the sequence by one, ignoring the first term 
 
 $$
 
-This constructs a sequence $( Attr_\mathrm{Eve}^{k}( Win))_{k \in  \mathbb{N}}$ of non-decreasing subsets of $V$.
+This constructs a sequence $( \textrm{Attr}_\mathrm{Eve}^{k}( \textrm{Win}))_{k \in  \mathbb{N}}$ of non-decreasing subsets of $V$.
 If the game is finite and $n$ is the number of vertices, 
-the sequence stabilises after at most $n-1$ steps, **i.e.** $Attr_\mathrm{Eve}^{n-1}( Win) =  Attr_\mathrm{Eve}^{n}( Win) =  Attr_\mathrm{Eve}( Win)$.
+the sequence stabilises after at most $n-1$ steps, **i.e.** $\textrm{Attr}_\mathrm{Eve}^{n-1}( \textrm{Win}) =  \textrm{Attr}_\mathrm{Eve}^{n}( \textrm{Win}) =  \textrm{Attr}_\mathrm{Eve}( \textrm{Win})$.
 
 Let us drop the finiteness assumption: if the game is infinite but has finite outdegree, meaning that for any vertex there is a finite number of outgoing edges, then the operator above preserves suprema so thanks to {prf:ref}`1-thm:kleene` 
-we have $Attr_\mathrm{Eve}( Win) = \bigcup_{k \in  \mathbb{N}}  Attr_\mathrm{Eve}^k( Win)$.
+we have $\textrm{Attr}_\mathrm{Eve}( \textrm{Win}) = \bigcup_{k \in  \mathbb{N}}  \textrm{Attr}_\mathrm{Eve}^k( \textrm{Win})$.
 In full generality the operator does not preserve suprema and the use of ordinals is necessary:
-we define the sequence $( Attr_\mathrm{Eve}^{\alpha}( Win))$ indexed by ordinals up to the cardinal of $\Game$,
-the case of a limit ordinal $\alpha$ being $Attr_\mathrm{Eve}^{\alpha}( Win) = \bigcup_{\beta < \alpha}  Attr_\mathrm{Eve}^{\beta}( Win)$.
-We then show that $Attr_\mathrm{Eve}( Win)$ is the union of all elements in this sequence.
+we define the sequence $( \textrm{Attr}_\mathrm{Eve}^{\alpha}( \textrm{Win}))$ indexed by ordinals up to the cardinal of $\Game$,
+the case of a limit ordinal $\alpha$ being $\textrm{Attr}_\mathrm{Eve}^{\alpha}( \textrm{Win}) = \bigcup_{\beta < \alpha}  \textrm{Attr}_\mathrm{Eve}^{\beta}( \textrm{Win})$.
+We then show that $\textrm{Attr}_\mathrm{Eve}( \textrm{Win})$ is the union of all elements in this sequence.
 
 We do not elaborate further this most general case but note that the overhead is mostly technical, the proof below of {prf:ref}`2-lem:reachability` can be adapted with little changes using a transfinite induction.
 
@@ -83,57 +83,57 @@ The following lemma shows how the attractor yields a solution to reachability ga
 :label: 2-lem:reachability
 
 Let $\mathcal{G}$ a reachability game.
-Then $W_\mathrm{Eve}( \mathcal{G}) =  Attr_\mathrm{Eve}( Win)$, and:
+Then $W_\mathrm{Eve}( \mathcal{G}) =  \textrm{Attr}_\mathrm{Eve}( \textrm{Win})$, and:
 
-*  there exists a uniform positional strategy $\sigma$ for Eve called the attractor strategy defined on $Attr_\mathrm{Eve}( Win) \setminus  Win$
-which ensures $\mathtt{Reach}[ Win]$ from any vertex in $Attr_\mathrm{Eve}( Win)$, 
-with the property that for any $k \in  \mathbb{N}$ all plays consistent with $\sigma$ from $Attr_\mathrm{Eve}^{k}( Win)$ reach $Win$ within $k$ steps 
-and remain in $Attr_\mathrm{Eve}( Win)$ until doing so;
-*  there exists a uniform positional strategy $\tau$ for Adam called the counter-attractor strategy defined on $V \setminus  Attr_\mathrm{Eve}( Win)$
-which ensures $\mathtt{Safe}[ Win]$ from any vertex in $V \setminus  Attr_\mathrm{Eve}( Win)$,
-with the property that all plays consistent with $\tau$ remain in $V \setminus  Attr_\mathrm{Eve}( Win)$.
+*  there exists a uniform positional strategy $\sigma$ for Eve called the attractor strategy defined on $\textrm{Attr}_\mathrm{Eve}( \textrm{Win}) \setminus  \textrm{Win}$
+which ensures $\mathtt{Reach}[ \textrm{Win}]$ from any vertex in $\textrm{Attr}_\mathrm{Eve}( \textrm{Win})$, 
+with the property that for any $k \in  \mathbb{N}$ all plays consistent with $\sigma$ from $\textrm{Attr}_\mathrm{Eve}^{k}( \textrm{Win})$ reach $\textrm{Win}$ within $k$ steps 
+and remain in $\textrm{Attr}_\mathrm{Eve}( \textrm{Win})$ until doing so;
+*  there exists a uniform positional strategy $\tau$ for Adam called the counter-attractor strategy defined on $V \setminus  \textrm{Attr}_\mathrm{Eve}( \textrm{Win})$
+which ensures $\mathtt{Safe}[ \textrm{Win}]$ from any vertex in $V \setminus  \textrm{Attr}_\mathrm{Eve}( \textrm{Win})$,
+with the property that all plays consistent with $\tau$ remain in $V \setminus  \textrm{Attr}_\mathrm{Eve}( \textrm{Win})$.
 
 ````
 
 ````{admonition} Proof
 :class: dropdown tip
 
-We first show that $Attr_\mathrm{Eve}( Win) \subseteq  W_\mathrm{Eve}( \mathcal{G})$. 
-For $v \in  Attr_\mathrm{Eve}( Win)$, the rank of $v$ is the smallest $k \in  \mathbb{N}$ such that $v \in  Attr_\mathrm{Eve}^{k}( Win)$. 
+We first show that $\textrm{Attr}_\mathrm{Eve}( \textrm{Win}) \subseteq  W_\mathrm{Eve}( \mathcal{G})$. 
+For $v \in  \textrm{Attr}_\mathrm{Eve}( \textrm{Win})$, the rank of $v$ is the smallest $k \in  \mathbb{N}$ such that $v \in  \textrm{Attr}_\mathrm{Eve}^{k}( \textrm{Win})$. 
 We use the rank to define a positional strategy $\sigma$ for Eve.
-Let $v \in  V_\mathrm{Eve}$ of rank $k+1$, then $v \in  Pre_\mathrm{Eve}( Attr_\mathrm{Eve}^{k}( Win))$, 
-so there exists $(v,v') \in E$ such that $v' \in  Attr_\mathrm{Eve}^{k}( Win)$, 
+Let $v \in  V_\mathrm{Eve}$ of rank $k+1$, then $v \in  \textrm{Pre}_\mathrm{Eve}( \textrm{Attr}_\mathrm{Eve}^{k}( \textrm{Win}))$, 
+so there exists $(v,v') \in E$ such that $v' \in  \textrm{Attr}_\mathrm{Eve}^{k}( \textrm{Win})$, 
 define $\sigma(v) = (v,v')$.
 
-We argue that $\sigma$ ensures $\mathtt{Reach}[ Win]$.
+We argue that $\sigma$ ensures $\mathtt{Reach}[ \textrm{Win}]$.
 By construction in any play consistent with $\sigma$ the rank is either $0$ or decreases by at least one
 at each step.
-Since $Win$ is the set of vertices of rank $0$, any play consistent with $\sigma$ from $Attr_\mathrm{Eve}( Win)$ reaches $Win$.
+Since $\textrm{Win}$ is the set of vertices of rank $0$, any play consistent with $\sigma$ from $\textrm{Attr}_\mathrm{Eve}( \textrm{Win})$ reaches $\textrm{Win}$.
 
-We now show that $W_\mathrm{Eve}( \mathcal{G}) \subseteq  Attr_\mathrm{Eve}( Win)$.
+We now show that $W_\mathrm{Eve}( \mathcal{G}) \subseteq  \textrm{Attr}_\mathrm{Eve}( \textrm{Win})$.
 For this we actually show
 
 $$
-V \setminus  Attr_\mathrm{Eve}( Win) \subseteq  W_\mathrm{Adam}( \mathcal{G}).
+V \setminus  \textrm{Attr}_\mathrm{Eve}( \textrm{Win}) \subseteq  W_\mathrm{Adam}( \mathcal{G}).
 $$
 
 Indeed, $W_\mathrm{Adam}( \mathcal{G}) \subseteq V \setminus  W_\mathrm{Eve}( \mathcal{G})$, because Eve and Adam cannot have a winning strategy from the same vertex.
 This property is clear and holds for any game, it should not be confused with determinacy.
 
-We define a positional strategy $\tau$ for Adam from $V \setminus  Attr_\mathrm{Eve}( Win)$.
-Let $v \in  V_\mathrm{Adam}$ in $V \setminus  Attr_\mathrm{Eve}( Win)$, there exists $(v,v') \in E$ such that $v' \in V \setminus  Attr_\mathrm{Eve}( Win)$, 
+We define a positional strategy $\tau$ for Adam from $V \setminus  \textrm{Attr}_\mathrm{Eve}( \textrm{Win})$.
+Let $v \in  V_\mathrm{Adam}$ in $V \setminus  \textrm{Attr}_\mathrm{Eve}( \textrm{Win})$, there exists $(v,v') \in E$ such that $v' \in V \setminus  \textrm{Attr}_\mathrm{Eve}( \textrm{Win})$, 
 define $\tau(v) = (v,v')$.
-Similarly, if $v \in  V_\mathrm{Eve}$ then for all $(v,v') \in E$ we have $v' \in V \setminus  Attr_\mathrm{Eve}( Win)$.
-It follows that any play consistent with $\tau$ remain in $V \setminus  Attr_\mathrm{Eve}( Win)$ and in particular
-never reaches $Win$,
-in other words $\tau$ ensures $\mathtt{Safe}[ Win]$ from $V \setminus  Attr_\mathrm{Eve}( Win)$.
+Similarly, if $v \in  V_\mathrm{Eve}$ then for all $(v,v') \in E$ we have $v' \in V \setminus  \textrm{Attr}_\mathrm{Eve}( \textrm{Win})$.
+It follows that any play consistent with $\tau$ remain in $V \setminus  \textrm{Attr}_\mathrm{Eve}( \textrm{Win})$ and in particular
+never reaches $\textrm{Win}$,
+in other words $\tau$ ensures $\mathtt{Safe}[ \textrm{Win}]$ from $V \setminus  \textrm{Attr}_\mathrm{Eve}( \textrm{Win})$.
 
 ````
 
 {numref}`2-algo:reachability` is an efficient implementation of the attractor computation.
-Let us emphasise that it does not compute the sequence $( Attr_\mathrm{Eve}^k( Win))_{k \in  \mathbb{N}}$ as suggested in {prf:ref}`2-lem:reachability`.
+Let us emphasise that it does not compute the sequence $( \textrm{Attr}_\mathrm{Eve}^k( \textrm{Win}))_{k \in  \mathbb{N}}$ as suggested in {prf:ref}`2-lem:reachability`.
 In Section {ref}`4-sec:shortest_path` we will generalise this algorithm to a quantitative setting 
-and construct an algorithm which does compute (as a special case) the sequence $( Attr_\mathrm{Eve}^k( Win))_{k \in  \mathbb{N}}$,
+and construct an algorithm which does compute (as a special case) the sequence $( \textrm{Attr}_\mathrm{Eve}^k( \textrm{Win}))_{k \in  \mathbb{N}}$,
 however with a higher complexity.
 
 We introduce some terminology for analysing the algorithm.
@@ -161,19 +161,19 @@ so this does not affect the reasoning below.}.
 The invariant of the algorithm satisfied before each iteration of the repeat loop is the following:
 
 $$
-S \subseteq A \text{ and }  Attr_\mathrm{Eve}^ \mathcal{G}( Win) = A \cup  Attr_\mathrm{Eve}^{ \mathcal{G}_t}(S).
+S \subseteq A \text{ and }  \textrm{Attr}_\mathrm{Eve}^ \mathcal{G}( \textrm{Win}) = A \cup  \textrm{Attr}_\mathrm{Eve}^{ \mathcal{G}_t}(S).
 $$
 
-The invariant is satisfied initially because $A = S =  Win$ and $\Game_t = \Game$.
+The invariant is satisfied initially because $A = S =  \textrm{Win}$ and $\Game_t = \Game$.
 To show that it is preserved by one iteration of the repeat loop, let us assume that we choose and remove $v'$ from $S$.
 Let us write $\mathcal{G}_{\text{before}}$ for the game before considering $v'$, and $\mathcal{G}_{\text{after}}$ for the game after considering $v'$:
 all incoming edges to $v'$ have been removed in $\mathcal{G}_{\text{after}}$.
-The set $A$ is replaced by $A' = A \cup  Pre^{ \mathcal{G}_{\text{before}}}(v')$, and the set $S$ by 
-$S' = (S \cup  Pre^{ \mathcal{G}_{\text{before}}}(v')) \setminus  \left\{ v' \right\}$,
-so we need to show that $A' \cup  Attr_\mathrm{Eve}^{ \mathcal{G}_{\text{after}}}(S') = A \cup  Attr_\mathrm{Eve}^{ \mathcal{G}_{\text{before}}}(S)$.
+The set $A$ is replaced by $A' = A \cup  \textrm{Pre}^{ \mathcal{G}_{\text{before}}}(v')$, and the set $S$ by 
+$S' = (S \cup  \textrm{Pre}^{ \mathcal{G}_{\text{before}}}(v')) \setminus  \left\{ v' \right\}$,
+so we need to show that $A' \cup  \textrm{Attr}_\mathrm{Eve}^{ \mathcal{G}_{\text{after}}}(S') = A \cup  \textrm{Attr}_\mathrm{Eve}^{ \mathcal{G}_{\text{before}}}(S)$.
 Both inclusions are easily obtained using a case analysis.
 
-The invariant implies the correctness of the algorithm: when $S$ is empty we obtain that $A =  Attr_\mathrm{Eve}( Win)$.
+The invariant implies the correctness of the algorithm: when $S$ is empty we obtain that $A =  \textrm{Attr}_\mathrm{Eve}( \textrm{Win})$.
 
 ````{prf:remark} NEEDS TITLE AND LABEL 
 We note that in the complexity analysis the cost of manipulating (and in particular decrementing) the counters for the number of edges is constant, which holds in the unit cost RAM model of computation.
@@ -196,7 +196,7 @@ The notion of attractors induces a common way of constructing traps as stated in
 :label: 2-lem:attractors_trap
 
 Let $\Game$ a game and $F \subseteq V$ a subset of edges.
-Then $V \setminus  Attr_\mathrm{Eve}(F)$ is a trap for Eve and symmetrically $V \setminus  Attr_\mathrm{Adam}(F)$ is a trap for Adam.
+Then $V \setminus  \textrm{Attr}_\mathrm{Eve}(F)$ is a trap for Eve and symmetrically $V \setminus  \textrm{Attr}_\mathrm{Adam}(F)$ is a trap for Adam.
 
 ````
 

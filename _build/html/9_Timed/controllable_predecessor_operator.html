@@ -708,39 +708,39 @@
 \[\renewcommand{\Game}{\game}
 \]</div>
 <p>We present the controllable-predecessor operator which, given sets of
-states <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span>, returns the set of states from which  Eve can
-reach <span class="math notranslate nohighlight">\(X\)</span> in one step, while avoiding states of <span class="math notranslate nohighlight">\(Y\)</span> during  Eve’s
-delay. Intuitively, the states in <span class="math notranslate nohighlight">\(Y\)</span> are the states from which  Adam
-may force an action leading outside of <span class="math notranslate nohighlight">\(X\)</span>, which  Eve would better avoid.</p>
+states <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span>, returns the set of states from which Eve can
+reach <span class="math notranslate nohighlight">\(X\)</span> in one step, while avoiding states of <span class="math notranslate nohighlight">\(Y\)</span> during Eve’s
+delay. Intuitively, the states in <span class="math notranslate nohighlight">\(Y\)</span> are the states from which Adam
+may force an action leading outside of <span class="math notranslate nohighlight">\(X\)</span>, which Eve would better avoid.</p>
 <p>Recall that <span class="math notranslate nohighlight">\(V =  \mathcal{L} \times  \mathbb{R}_{\geq 0}^ \mathcal{C}\)</span>.
 The set of <strong>safe time-predecessors</strong> to reach <span class="math notranslate nohighlight">\(X \subseteq  V\)</span> while
 avoiding <span class="math notranslate nohighlight">\(Y \subseteq  V\)</span></p>
 <p>is defined as follows:</p>
 <p>\begin{multline*}
-\sf Pred_{\geq 0}(X,Y) = {(\ell,\nu) \in  V \mid \exists d\geq
+\mathsf{Pred}_{\geq 0}(X,Y) = {(\ell,\nu) \in  V \mid \exists d\geq
 0.\ (\ell,\nu+d) \in X \wedge{} \
 \forall d’ \in[0,d).\ (\ell,\nu+d’) \not  \in Y}.
 \end{multline*}</p>
-<p>In words, from any configuration of <span class="math notranslate nohighlight">\(\sf Pred_{\geq 0}(X,Y)\)</span>,
+<p>In words, from any configuration of <span class="math notranslate nohighlight">\(\mathsf{Pred}_{\geq 0}(X,Y)\)</span>,
 the set <span class="math notranslate nohighlight">\(X\)</span> can be reached by
 delaying while never crossing any configuration of <span class="math notranslate nohighlight">\(Y\)</span> on the way.
 For any <span class="math notranslate nohighlight">\(X \subseteq  V\)</span>, let us denote</p>
 <div class="math notranslate nohighlight">
 \[
-   \sf Pred_c(X) = \{ (\ell,\nu) \in  V \mid \exists e \in  E_{ Eve}(\ell).\ 
+   \mathsf{Pred}_c(X) = \{ (\ell,\nu) \in  V \mid \exists e \in  E_{ \textrm{Eve}}(\ell).\ 
 \exists (\ell',\nu') \in X.\ (\ell,\nu) \xrightarrow{e} (\ell',\nu')\}.
 \]</div>
-<p>This is the set of immediate predecessors of <span class="math notranslate nohighlight">\(X\)</span> by edges in <span class="math notranslate nohighlight">\(E_{ Eve}\)</span>.
-Symmetrically, we define <span class="math notranslate nohighlight">\(\sf Pred_u(X)\)</span> using <span class="math notranslate nohighlight">\(E_{ Adam}\)</span> instead of <span class="math notranslate nohighlight">\(E_{ Eve}\)</span>.
+<p>This is the set of immediate predecessors of <span class="math notranslate nohighlight">\(X\)</span> by edges in <span class="math notranslate nohighlight">\(E_{ \textrm{Eve}}\)</span>.
+Symmetrically, we define <span class="math notranslate nohighlight">\(\mathsf{Pred}_u(X)\)</span> using <span class="math notranslate nohighlight">\(E_{ \textrm{Adam}}\)</span> instead of <span class="math notranslate nohighlight">\(E_{ \textrm{Eve}}\)</span>.
 Our controllable-predecessor operator is then defined as</p>
 <div class="math notranslate nohighlight">
 \[
-  \pi(X) =  \sf Pred_{\geq 0}(X\cup  \sf Pred_c(X),  \sf Pred_u( V \setminus X)).
+  \pi(X) =  \mathsf{Pred}_{\geq 0}(X\cup  \mathsf{Pred}_c(X),  \mathsf{Pred}_u( V \setminus X)).
 \]</div>
-<p>Intuitively, the states in <span class="math notranslate nohighlight">\(\pi(X)\)</span> are those from which  Eve can wait
+<p>Intuitively, the states in <span class="math notranslate nohighlight">\(\pi(X)\)</span> are those from which Eve can wait
 until she
 can take a controllable transition to reach <span class="math notranslate nohighlight">\(X\)</span>, and so that</p>
-<p>no transitions that  Adam could take while  Eve is waiting may lead
+<p>no transitions that Adam could take while Eve is waiting may lead
 outside of <span class="math notranslate nohighlight">\(X\)</span>.</p>
 <div class="proof lemma admonition" id="9-lem:pimonotonic">
 <p class="admonition-title"><span class="caption-number">Lemma 278 </span> (NEEDS TITLE 9-lem:pimonotonic)</p>
@@ -749,105 +749,58 @@ outside of <span class="math notranslate nohighlight">\(X\)</span>.</p>
 order-preserving: if <span class="math notranslate nohighlight">\(X\subseteq Y\)</span>, then
 <span class="math notranslate nohighlight">\(\pi(X) \subseteq \pi(Y)\)</span>.</p>
 </div>
-</div><div class="proof example admonition" id="example-1">
-<p class="admonition-title"><span class="caption-number">Example 279 </span> (NEEDS TITLE AND LABEL)</p>
+</div><div class="proof example admonition" id="9-ex:controllable_predecessor_operator">
+<p class="admonition-title"><span class="caption-number">Example 279 </span> (Example for the controllable predecessor operator)</p>
 <div class="example-content section" id="proof-content">
 <p>Consider the timed game to the left of
-<code class="xref std std-numref docutils literal notranslate"><span class="pre">9-fig:contpred</span></code>. In that game,  Eve can reach her target when
+<a class="reference internal" href="#fig-contpred"><span class="std std-numref">Fig. 69</span></a>. In that game, Eve can reach her target when
 clock <span class="math notranslate nohighlight">\(x_2\)</span> reaches value <span class="math notranslate nohighlight">\(3\)</span> while <span class="math notranslate nohighlight">\(x_1\)</span> is in <span class="math notranslate nohighlight">\([1;4]\)</span>. However,
 Adam can take the game to a bad state when simultaneously
 <span class="math notranslate nohighlight">\(x_1\in[1;2]\)</span> and <span class="math notranslate nohighlight">\(x_2\leq 2\)</span>. The diagram to the right of
-<code class="xref std std-numref docutils literal notranslate"><span class="pre">9-fig:contpred</span></code> shows the set of winning valuations for  Eve:
-it is computed as <span class="math notranslate nohighlight">\(\sf Pred_{\geq 0}(X,Y)\)</span> where <span class="math notranslate nohighlight">\(X= \sf Pred_c(\{W\}\times \mathbb{R}_{\geq 0})\)</span>
-and <span class="math notranslate nohighlight">\(Y= \sf Pred_u(\{\ell_0,\ell_1\}\times \mathbb{R}_{\geq 0})\)</span>.</p>
+<a class="reference internal" href="#fig-contpred"><span class="std std-numref">Fig. 69</span></a> shows the set of winning valuations for Eve:
+it is computed as <span class="math notranslate nohighlight">\(\mathsf{Pred}_{\geq 0}(X,Y)\)</span> where <span class="math notranslate nohighlight">\(X= \mathsf{Pred}_c(\{W\}\times \mathbb{R}_{\geq 0})\)</span>
+and <span class="math notranslate nohighlight">\(Y= \mathsf{Pred}_u(\{\ell_0,\ell_1\}\times \mathbb{R}_{\geq 0})\)</span>.</p>
 <div class="figure align-center" id="fig-contpred">
 <img alt="9_Timed/./../FigAndAlgos/9-fig:contpred.png" src="9_Timed/./../FigAndAlgos/9-fig:contpred.png" />
-<p class="caption"><span class="caption-number">Fig. 67 </span><span class="caption-text">Controllable predecessors</span><a class="headerlink" href="#fig-contpred" title="Permalink to this image">¶</a></p>
-</div>
-<p>Consider the timed game to the left of
-<code class="xref std std-numref docutils literal notranslate"><span class="pre">9-fig:contpred</span></code>. In that game,  Eve can reach her target when
-clock <span class="math notranslate nohighlight">\(x_2\)</span> reaches value <span class="math notranslate nohighlight">\(3\)</span> while <span class="math notranslate nohighlight">\(x_1\)</span> is in <span class="math notranslate nohighlight">\([1;4]\)</span>. However,
-Adam can take the game to a bad state when simultaneously
-<span class="math notranslate nohighlight">\(x_1\in[1;2]\)</span> and <span class="math notranslate nohighlight">\(x_2\leq 2\)</span>. The diagram to the right of
-<code class="xref std std-numref docutils literal notranslate"><span class="pre">9-fig:contpred</span></code> shows the set of winning valuations for  Eve:
-it is computed as <span class="math notranslate nohighlight">\(\sf Pred_{\geq 0}(X,Y)\)</span> where <span class="math notranslate nohighlight">\(X= \sf Pred_c(\{W\}\times \mathbb{R}_{\geq 0})\)</span>
-and <span class="math notranslate nohighlight">\(Y= \sf Pred_u(\{\ell_0,\ell_1\}\times \mathbb{R}_{\geq 0})\)</span>.</p>
-<div class="figure align-center" id="id1">
-<img alt="9_Timed/./../FigAndAlgos/9-fig:contpred.png" src="9_Timed/./../FigAndAlgos/9-fig:contpred.png" />
-<p class="caption"><span class="caption-number">Fig. 68 </span><span class="caption-text">Controllable predecessors</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 69 </span><span class="caption-text">Controllable predecessors</span><a class="headerlink" href="#fig-contpred" title="Permalink to this image">¶</a></p>
 </div>
 </div>
-</div><div class="proof remark admonition" id="remark-2">
-<p class="admonition-title"><span class="caption-number">Remark 280 </span> (NEEDS TITLE AND LABEL)</p>
+</div><div class="proof remark admonition" id="9-rmk:reduction_zero_sum">
+<p class="admonition-title"><span class="caption-number">Remark 280 </span> (Reduction for zero-sum objectives)</p>
 <div class="remark-content section" id="proof-content">
 <p>When considering zero-sum objectives (which we do in this chapter),
-a turn-based arena can be built to decide whether  Eve has a winning
+a turn-based arena can be built to decide whether Eve has a winning
 strategy (and possibly construct one).  Intuitively, the turn-based
-arena is obtained by letting  Eve first pick a pair <span class="math notranslate nohighlight">\((d,e)\)</span> with <span class="math notranslate nohighlight">\(e
-\in  E_{ Eve}\)</span>, and then letting  Adam either respect this choice (i.e.,
-play a larger delay) or preempt  Eve’s action by choosing <span class="math notranslate nohighlight">\((d',e')\)</span>
-with <span class="math notranslate nohighlight">\(d' \leq d\)</span> and <span class="math notranslate nohighlight">\(e' \in  E_{ Adam}\)</span>.
+arena is obtained by letting Eve first pick a pair <span class="math notranslate nohighlight">\((d,e)\)</span> with <span class="math notranslate nohighlight">\(e
+\in  E_{ \textrm{Eve}}\)</span>, and then letting Adam either respect this choice (i.e.,
+play a larger delay) or preempt Eve’s action by choosing <span class="math notranslate nohighlight">\((d',e')\)</span>
+with <span class="math notranslate nohighlight">\(d' \leq d\)</span> and <span class="math notranslate nohighlight">\(e' \in  E_{ \textrm{Adam}}\)</span>.
 Eve has a winning strategy in this turn-based arena if, and only if she has one in the original game.
-However, this does not apply to  Adam; if he has a winning strategy, this only means that  Eve
+However, this does not apply to Adam; if he has a winning strategy, this only means that Eve
 does not have a winning strategy in the original game.</p>
-<p>Given <span class="math notranslate nohighlight">\(\mathcal T = ( \mathcal{L},  \mathcal{C}, E_{ Eve}, E_{ Adam}, c)\)</span>, we define the arena <span class="math notranslate nohighlight">\(\mathcal{A}
+<p>Given <span class="math notranslate nohighlight">\(\mathcal{T} = ( \mathcal{L},  \mathcal{C}, E_{ \textrm{Eve}}, E_{ \textrm{Adam}}, c)\)</span>, we define the arena <span class="math notranslate nohighlight">\(\mathcal{A}
 = ( V, V_\mathrm{Eve}, V_\mathrm{Adam},E, c'')\)</span>
 with objective <span class="math notranslate nohighlight">\(\Omega\)</span>, where <span class="math notranslate nohighlight">\(V_\mathrm{Eve} =  \mathcal{L}\times  \mathbb{R}_{\geq 0}^ \mathcal{C}\)</span> and
-<span class="math notranslate nohighlight">\(V_\mathrm{Adam}= \mathcal{L}\times \mathbb{R}_{\geq 0}^ \mathcal{C}\times( \mathbb{R}_{\geq 0} \times  E_{ Eve}
+<span class="math notranslate nohighlight">\(V_\mathrm{Adam}= \mathcal{L}\times \mathbb{R}_{\geq 0}^ \mathcal{C}\times( \mathbb{R}_{\geq 0} \times  E_{ \textrm{Eve}}
 \cup\{\bot\})\)</span>.  The set of successors of configuration <span class="math notranslate nohighlight">\((\ell,\nu)
 \in  V_\mathrm{Eve}\)</span> is the set <span class="math notranslate nohighlight">\(\{(\ell,\nu,a)\mid a \text{ available at
 }(\ell,\nu)\}\)</span>.</p>
 <p>From a configuration <span class="math notranslate nohighlight">\(((\ell,\nu),(d,e))\in V_\mathrm{Adam}\)</span>, several cases may
 occur:</p>
 <ul class="simple">
-<li><p>if  Adam has no available action from <span class="math notranslate nohighlight">\((\ell,\nu)\)</span>, or if he can
+<li><p>if Adam has no available action from <span class="math notranslate nohighlight">\((\ell,\nu)\)</span>, or if he can
 only play actions <span class="math notranslate nohighlight">\((d',e')\)</span> with <span class="math notranslate nohighlight">\(d'&gt;d\)</span>, then the only transition
 from <span class="math notranslate nohighlight">\(((\ell,\nu),(d,e))\)</span> goes to <span class="math notranslate nohighlight">\(\mathsf{step}((\ell,\nu),(d,e))\)</span>;</p></li>
-<li><p>Otherwise, for all actions <span class="math notranslate nohighlight">\((d',e')\)</span> for  Adam satisfying <span class="math notranslate nohighlight">\(d'\leq d\)</span>,
+<li><p>Otherwise, for all actions <span class="math notranslate nohighlight">\((d',e')\)</span> for Adam satisfying <span class="math notranslate nohighlight">\(d'\leq d\)</span>,
 there is a transition from <span class="math notranslate nohighlight">\(((\ell,\nu),(d,e))\)</span>
 to <span class="math notranslate nohighlight">\(\mathsf{step}((\ell,\nu),(d',e'))\)</span>.
-Moreover, if  Adam has an available action <span class="math notranslate nohighlight">\((d',e')\)</span> with <span class="math notranslate nohighlight">\(d'\geq d\)</span>,
+Moreover, if Adam has an available action <span class="math notranslate nohighlight">\((d',e')\)</span> with <span class="math notranslate nohighlight">\(d'\geq d\)</span>,
 then there is also a transition
 from <span class="math notranslate nohighlight">\(((\ell,\nu),(d,e))\)</span> to <span class="math notranslate nohighlight">\(\mathsf{step}((\ell,\nu),(d,e))\)</span>.</p></li>
 </ul>
 <p>From a configuration <span class="math notranslate nohighlight">\(((\ell,\nu),\bot)\)</span>, there is a transition
 to <span class="math notranslate nohighlight">\(\mathsf{step}((\ell,\nu),(d',e'))\)</span> for each available action <span class="math notranslate nohighlight">\((d',e')\)</span>
-of  Adam.
-The coloring function is defined as <span class="math notranslate nohighlight">\(c''((\ell,\nu)) = c(\ell)\)</span>
-and <span class="math notranslate nohighlight">\(c''((\ell,\nu),(d,e)) = c(\ell)\)</span>.</p>
-<p>When considering zero-sum objectives (which we do in this chapter),
-a turn-based arena can be built to decide whether  Eve has a winning
-strategy (and possibly construct one).  Intuitively, the turn-based
-arena is obtained by letting  Eve first pick a pair <span class="math notranslate nohighlight">\((d,e)\)</span> with <span class="math notranslate nohighlight">\(e
-\in  E_{ Eve}\)</span>, and then letting  Adam either respect this choice (i.e.,
-play a larger delay) or preempt  Eve’s action by choosing <span class="math notranslate nohighlight">\((d',e')\)</span>
-with <span class="math notranslate nohighlight">\(d' \leq d\)</span> and <span class="math notranslate nohighlight">\(e' \in  E_{ Adam}\)</span>.
-Eve has a winning strategy in this turn-based arena if, and only if she has one in the original game.
-However, this does not apply to  Adam; if he has a winning strategy, this only means that  Eve
-does not have a winning strategy in the original game.</p>
-<p>Given <span class="math notranslate nohighlight">\(\mathcal T = ( \mathcal{L},  \mathcal{C}, E_{ Eve}, E_{ Adam}, c)\)</span>, we define the arena <span class="math notranslate nohighlight">\(\mathcal{A}
-= ( V, V_\mathrm{Eve}, V_\mathrm{Adam},E, c'')\)</span>
-with objective <span class="math notranslate nohighlight">\(\Omega\)</span>, where <span class="math notranslate nohighlight">\(V_\mathrm{Eve} =  \mathcal{L}\times  \mathbb{R}_{\geq 0}^ \mathcal{C}\)</span> and
-<span class="math notranslate nohighlight">\(V_\mathrm{Adam}= \mathcal{L}\times \mathbb{R}_{\geq 0}^ \mathcal{C}\times( \mathbb{R}_{\geq 0} \times  E_{ Eve}
-\cup\{\bot\})\)</span>.  The set of successors of configuration <span class="math notranslate nohighlight">\((\ell,\nu)
-\in  V_\mathrm{Eve}\)</span> is the set <span class="math notranslate nohighlight">\(\{(\ell,\nu,a)\mid a \text{ available at
-}(\ell,\nu)\}\)</span>.</p>
-<p>From a configuration <span class="math notranslate nohighlight">\(((\ell,\nu),(d,e))\in V_\mathrm{Adam}\)</span>, several cases may
-occur:</p>
-<ul class="simple">
-<li><p>if  Adam has no available action from <span class="math notranslate nohighlight">\((\ell,\nu)\)</span>, or if he can
-only play actions <span class="math notranslate nohighlight">\((d',e')\)</span> with <span class="math notranslate nohighlight">\(d'&gt;d\)</span>, then the only transition
-from <span class="math notranslate nohighlight">\(((\ell,\nu),(d,e))\)</span> goes to <span class="math notranslate nohighlight">\(\mathsf{step}((\ell,\nu),(d,e))\)</span>;</p></li>
-<li><p>Otherwise, for all actions <span class="math notranslate nohighlight">\((d',e')\)</span> for  Adam satisfying <span class="math notranslate nohighlight">\(d'\leq d\)</span>,
-there is a transition from <span class="math notranslate nohighlight">\(((\ell,\nu),(d,e))\)</span>
-to <span class="math notranslate nohighlight">\(\mathsf{step}((\ell,\nu),(d',e'))\)</span>.
-Moreover, if  Adam has an available action <span class="math notranslate nohighlight">\((d',e')\)</span> with <span class="math notranslate nohighlight">\(d'\geq d\)</span>,
-then there is also a transition
-from <span class="math notranslate nohighlight">\(((\ell,\nu),(d,e))\)</span> to <span class="math notranslate nohighlight">\(\mathsf{step}((\ell,\nu),(d,e))\)</span>.</p></li>
-</ul>
-<p>From a configuration <span class="math notranslate nohighlight">\(((\ell,\nu),\bot)\)</span>, there is a transition
-to <span class="math notranslate nohighlight">\(\mathsf{step}((\ell,\nu),(d',e'))\)</span> for each available action <span class="math notranslate nohighlight">\((d',e')\)</span>
-of  Adam.
+of Adam.
 The coloring function is defined as <span class="math notranslate nohighlight">\(c''((\ell,\nu)) = c(\ell)\)</span>
 and <span class="math notranslate nohighlight">\(c''((\ell,\nu),(d,e)) = c(\ell)\)</span>.</p>
 </div>
@@ -889,7 +842,7 @@ and <span class="math notranslate nohighlight">\(c''((\ell,\nu),(d,e)) = c(\ell)
     <div class="container">
       <p>
         
-          By a set of authors coordinated by Nathana&euml;l Fijalkow<br/>
+          By a set of authors<br/>
         
             &copy; Copyright 2021.<br/>
       </p>

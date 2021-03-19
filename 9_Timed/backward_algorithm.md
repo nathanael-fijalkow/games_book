@@ -10,7 +10,7 @@
 Given the DBM data structure we presented,
 a backward fixpoint algorithm follows for computing the winning configurations in a timed game:
 
-````{prf:theorem} NEEDS TITLE 9-thm:timed-control
+````{prf:theorem} Correctness of the backward algorithm
 :label: 9-thm:timed-control
 
    For any timed game $\mathcal{A}$ and target set $G \subseteq  V_\mathrm{Eve}$, 
@@ -22,7 +22,6 @@ a backward fixpoint algorithm follows for computing the winning configurations i
 
 ````{admonition} Proof
 :class: dropdown tip
-[Sketch]
 
   We briefly explain why the fixpoint computation terminates and refer
   to {cite}`AMPS98,CDFLL05` for more details.  The proof relies on the notion of
@@ -52,9 +51,9 @@ a backward fixpoint algorithm follows for computing the winning configurations i
   and can be proved easily by induction on $k$.
   One can also show that for all configurations outside of $\pi^k(G)$,
   there is no strategy that is winning within $k$ steps. This follows since
-  the definition of $\pi(\cdot)$ gives the actions to be played by  Adam to
-  prevent  Eve from winning.
-  Note that this does not necessarily yield a winning strategy for  Adam,
+  the definition of $\pi(\cdot)$ gives the actions to be played by Adam to
+  prevent Eve from winning.
+  Note that this does not necessarily yield a winning strategy for Adam,
   since the game is not determined.
 
 ````

@@ -156,11 +156,11 @@ Let $\mathcal{G} = ( \mathcal{A}, \mathtt{MeanPayoff}^+[ \textsf{col}])$ a limit
 The outline of the proof is as follows.
 
 1.  We define the condition $\mathrm{FirstCycle}\xspace$ and $\mathcal{G}_{\text{FC}} = ( \mathcal{A}, \mathrm{FirstCycle}\xspace)$,
-and show that $val^{ \mathcal{G}} =   val^{ \mathcal{G}_{\text{FC}}}$ 
+and show that $\textrm{val}^{ \mathcal{G}} =   \textrm{val}^{ \mathcal{G}_{\text{FC}}}$ 
 and that if $\mathcal{G}_{\text{FC}}$ is positionally determined for both players then $\mathcal{G}$ is positionally determined for both players.
 2.  We define the condition $\mathrm{FirstCycleReset}\xspace_v$ (parameterised by a vertex $v$) 
 and $\mathcal{G}_{\text{FCR}(v)} = ( \mathcal{A}, \mathrm{FirstCycleReset}\xspace_v)$,
-and show that $val^{ \mathcal{G}} =   val^{ \mathcal{G}_{\text{FCR}(v)}}$.
+and show that $\textrm{val}^{ \mathcal{G}} =   \textrm{val}^{ \mathcal{G}_{\text{FCR}(v)}}$.
 3.  We show that $\mathcal{G}_{\text{FC}}$ is positionally determined for both players.
 
 **Step 1.**
@@ -176,17 +176,17 @@ Let us define $\mathcal{G}_{\text{FC}} = ( \mathcal{A}, \mathrm{FirstCycle}\xspa
 We make two claims:
 
 *  let $\sigma_{\text{FC}}$ a strategy in $\mathcal{G}_{\text{FC}}$, it induces a strategy $\sigma$ in $\mathcal{G}$ 
-such that $val^{\sigma_{\text{FC}}} \le   val^{\sigma}$, and $\sigma$ is positional if $\sigma_{\text{FC}}$ is, and
+such that $\textrm{val}^{\sigma_{\text{FC}}} \le   \textrm{val}^{\sigma}$, and $\sigma$ is positional if $\sigma_{\text{FC}}$ is, and
 *  let $\tau_{\text{FC}}$ a strategy in $\mathcal{G}_{\text{FC}}$, it induces a strategy $\tau$ in $\mathcal{G}$
-such that $val^{\tau_{\text{FC}}} \ge   val^{\tau}$, and $\tau$ is positional if $\tau_{\text{FC}}$ is.
+such that $\textrm{val}^{\tau_{\text{FC}}} \ge   \textrm{val}^{\tau}$, and $\tau$ is positional if $\tau_{\text{FC}}$ is.
 
 Let us prove the first claim.
 We let $\sigma(\pi) = \sigma_{\text{FC}}(\widehat{\pi})$:
 by definition if $\pi$ is a play consistent with $\sigma$ then $\widehat{\pi}$ is a play consistent with $\sigma_{\text{FC}}$.
 Note that indeed if $\sigma_{\text{FC}}$ is positional then so is $\sigma$.
-We show that $val^{\sigma_{\text{FC}}} \le   val^{\sigma}$.
+We show that $\textrm{val}^{\sigma_{\text{FC}}} \le   \textrm{val}^{\sigma}$.
 
-Let $\pi$ be a play consistent with $\sigma$ from $v_0$ and $x =   val^{\sigma_{\text{FC}}}(v_0)$.
+Let $\pi$ be a play consistent with $\sigma$ from $v_0$ and $x =   \textrm{val}^{\sigma_{\text{FC}}}(v_0)$.
 We first argue that all cycles in $\mathrm{Cycles}\xspace(\pi)$ have an arithmetic mean greater than or equal to $x$.
 Indeed consider a cycle $c$ in $\mathrm{Cycles}\xspace(\pi)$ and let $\pi'$ the prefix of $\pi$
 ending with the cycle $c$.
@@ -219,8 +219,8 @@ $\mathtt{MeanPayoff}^+(\pi) = \limsup_k  \mathrm{Mean}\xspace(\pi_{< k}) \ge x$.
 We turn to the second claim.
 The construction is identical for Adam:
 we let $\tau(\pi) = \tau_{\text{FC}}(\widehat{\pi})$.
-We show that $val^{\tau_{\text{FC}}} \ge   val^{\tau}$ following the same arguments.
-Let $\pi$ be a play consistent with $\tau$ from $v_0$ and $x =   val^{\tau_{\text{FC}}}(v_0)$.
+We show that $\textrm{val}^{\tau_{\text{FC}}} \ge   \textrm{val}^{\tau}$ following the same arguments.
+Let $\pi$ be a play consistent with $\tau$ from $v_0$ and $x =   \textrm{val}^{\tau_{\text{FC}}}(v_0)$.
 
 To conclude that $\mathtt{MeanPayoff}^+(\pi) \le x$ we show the following property:
 
@@ -231,7 +231,7 @@ $$ (4-eq:cycle_negative)
 
 This follows as above from the linearity of the arithmetic mean and the cycle decomposition.
 
-Let us now prove that $val^{ \mathcal{G}} =   val^{ \mathcal{G}_{\text{FC}}}$ using the two claims.
+Let us now prove that $\textrm{val}^{ \mathcal{G}} =   \textrm{val}^{ \mathcal{G}_{\text{FC}}}$ using the two claims.
 We first need to establish that $\mathcal{G}_{\text{FC}}$ is determined: 
 one argument is that $\mathrm{FirstCycle}\xspace$ is a Borel condition, 
 hence determinacy follows from the general Borel determinacy result ({prf:ref}`1-thm:borel_determinacy`),
@@ -243,14 +243,14 @@ It follows from the two claims that
 
 $$
 \begin{array}{llll}
-  val^{ \mathcal{G}_{\text{FC}}} 
-& = \sup_{\sigma_{\text{FC}}}   val^{\sigma_{\text{FC}}} 
-& \le \sup_{\sigma}   val^{\sigma}
-& =   val^{ \mathcal{G}} \\
-  val^{ \mathcal{G}_{\text{FC}}}
-& = \inf_{\tau_{\text{FC}}}   val^{\tau_{\text{FC}} }
-& \ge \inf_{\tau}   val^{\tau}
-& =   val^{ \mathcal{G}},
+  \textrm{val}^{ \mathcal{G}_{\text{FC}}} 
+& = \sup_{\sigma_{\text{FC}}}   \textrm{val}^{\sigma_{\text{FC}}} 
+& \le \sup_{\sigma}   \textrm{val}^{\sigma}
+& =   \textrm{val}^{ \mathcal{G}} \\
+  \textrm{val}^{ \mathcal{G}_{\text{FC}}}
+& = \inf_{\tau_{\text{FC}}}   \textrm{val}^{\tau_{\text{FC}} }
+& \ge \inf_{\tau}   \textrm{val}^{\tau}
+& =   \textrm{val}^{ \mathcal{G}},
 \end{array}
 $$
 
@@ -258,7 +258,7 @@ where in both lines:
 the first equalities is by determinacy of $\mathcal{G}_{\text{FC}}$,
 the inequalities thanks to the two claims,
 and the last equalities by determinacy of $\mathcal{G}$.
-The two obtained inequalities imply that $val^{ \mathcal{G}} =   val^{ \mathcal{G}_{\text{FC}}}$,
+The two obtained inequalities imply that $\textrm{val}^{ \mathcal{G}} =   \textrm{val}^{ \mathcal{G}_{\text{FC}}}$,
 and positional optimal strategies for either player in $\mathcal{G}_{\text{FC}}$ 
 induce positional optimal strategies in $\mathcal{G}$.
 
@@ -269,7 +269,7 @@ $$
  \mathrm{FirstCycleReset}\xspace_v(\pi) = 
 \begin{cases}
  \mathrm{FirstCycle}\xspace(\pi) & \text{ if } \pi \text{ does not visit } v \text{ before }  \mathrm{FC}\xspace(\pi), \\
- \mathrm{FirstCycle}\xspace(\pi_{\ge k}) & \text{ for } k \text{ the first index such that }   In(\pi_k) = v.
+ \mathrm{FirstCycle}\xspace(\pi_{\ge k}) & \text{ for } k \text{ the first index such that }   \textrm{In}(\pi_k) = v.
 \end{cases}
 $$
 
@@ -283,9 +283,9 @@ Let us define $\mathcal{G}_{\text{FCR}(v)} = ( \mathcal{A}, \mathrm{FirstCycleRe
 We make two claims:
 
 *  let $\sigma_{\text{FCR}(v)}$ an optimal strategy in $\mathcal{G}_{\text{FCR}(v)}$, it induces a strategy $\sigma$ in $\mathcal{G}$ 
-such that $val^{\sigma_{\text{FCR}(v)}} \le   val^{\sigma}$, and 
+such that $\textrm{val}^{\sigma_{\text{FCR}(v)}} \le   \textrm{val}^{\sigma}$, and 
 *  let $\tau_{\text{FCR}(v)}$ an optimal strategy in $\mathcal{G}_{\text{FCR}(v)}$, it induces a strategy $\tau$ in $\mathcal{G}$
-such that $val^{\tau_{\text{FCR}(v)}} \ge   val^{\tau}$.
+such that $\textrm{val}^{\tau_{\text{FCR}(v)}} \ge   \textrm{val}^{\tau}$.
 
 Let us prove the first claim.
 We let
@@ -294,27 +294,27 @@ $$
 \sigma(\pi) = 
 \begin{cases}
 \sigma_{\text{FCR}(v)}(\widehat{\pi}) & \text{if } \pi \text{ does not contain } v, \\
-\sigma_{\text{FCR}(v)}(\widehat{\pi_{\ge k}}) & \text{for } k \text{ the first index such that }   In(\pi_k) = v.
+\sigma_{\text{FCR}(v)}(\widehat{\pi_{\ge k}}) & \text{for } k \text{ the first index such that }   \textrm{In}(\pi_k) = v.
 \end{cases}
 $$
 
-We show that $val^{\sigma_{\text{FCR}(v)}} \le   val^{\sigma}$.
-Let $\pi$ a play consistent with $\sigma$ from $v_0$ and $x =   val^{\sigma_{\text{FCR}(v)}}(v_0)$.
+We show that $\textrm{val}^{\sigma_{\text{FCR}(v)}} \le   \textrm{val}^{\sigma}$.
+Let $\pi$ a play consistent with $\sigma$ from $v_0$ and $x =   \textrm{val}^{\sigma_{\text{FCR}(v)}}(v_0)$.
 There are two cases.
 
 Either $\pi$ does not contain $v$, and then as in the first step 
 this implies that all cycles in $\pi$ have an arithmetic mean greater than or equal to $x$,
 and we conclude as in the first step that $\mathrm{FirstCycleReset}\xspace_v(\pi) \ge x$.
 
-Or $\pi$ contains $v$. We first argue that $x =   val^{\sigma_{\text{FCR}(v)}}(v_0) \le   val^{\sigma_{\text{FCR}(v)}}(v)$.
+Or $\pi$ contains $v$. We first argue that $x =   \textrm{val}^{\sigma_{\text{FCR}(v)}}(v_0) \le   \textrm{val}^{\sigma_{\text{FCR}(v)}}(v)$.
 Indeed, let $\pi_0$ be a play without cycles from $v_0$ to $v$ consistent with $\sigma_{\text{FCR}(v)}$,
 we let $\sigma'(\pi) = \sigma_{\text{FCR}(v)}(\pi_0 \pi)$.
-Then $val^{\sigma_{\text{FCR}(v)}}(v_0) \le   val^{\sigma'}(v) \le   val^{\sigma_{\text{FCR}(v)}}(v)$,
+Then $\textrm{val}^{\sigma_{\text{FCR}(v)}}(v_0) \le   \textrm{val}^{\sigma'}(v) \le   \textrm{val}^{\sigma_{\text{FCR}(v)}}(v)$,
 the first inequality is because a play $\pi$ consistent with $\sigma'$ from $v$ 
 correspond to the play $\pi_0 \pi$ consistent with $\sigma_{\text{FCR}(v)}$ from $v_0$,
 and the second inequality by optimality of $\sigma_{\text{FCR}(v)}$.
 
-Let $y =   val^{\sigma_{\text{FCR}(v)}}(v)$, the inequality above reads $x \le y$.
+Let $y =   \textrm{val}^{\sigma_{\text{FCR}(v)}}(v)$, the inequality above reads $x \le y$.
 Let $\pi'$ the suffix of $\pi$ starting from the first occurrence of $v$,
 then $\pi'$ is consistent with $\sigma_{\text{FCR}(v)}$ from $v$,
 so as in the first step this implies that all cycles in $\pi'$ have an arithmetic mean greater than or equal to $y$.
@@ -322,7 +322,7 @@ We conclude as in the first step that $\mathtt{MeanPayoff}^+(\pi') \ge y \ge x$,
 The last but important argument is that $\mathtt{MeanPayoff}^+$ is prefix independent,
 implying that $\mathtt{MeanPayoff}^+(\pi) \ge x$.
 
-We prove that $val^{ \mathcal{G}} =   val^{ \mathcal{G}_{\text{FCR}(v)}}$ using the two claims
+We prove that $\textrm{val}^{ \mathcal{G}} =   \textrm{val}^{ \mathcal{G}_{\text{FCR}(v)}}$ using the two claims
 following the same arguments as in the first step.
 In particular we need to establish that $\mathcal{G}_{\text{FCR}(v)}$ is determined,
 and again it either follows from the general Borel determinacy result ({prf:ref}`1-thm:borel_determinacy`)
@@ -345,30 +345,30 @@ $$
 \sigma'(\pi) = 
 \begin{cases}
 \sigma(\pi) & \text{if } \pi \text{ does not contain } v, \\
-\sigma(\pi_{\ge k}) & \text{for } k \text{ the last index such that }   In(\pi_k) = v.
+\sigma(\pi_{\ge k}) & \text{for } k \text{ the last index such that }   \textrm{In}(\pi_k) = v.
 \end{cases}
 $$
 
 Note that indeed $\sigma'$ uses only one outgoing edge of $v$.
-We show that $val^{ \mathcal{G}_{\text{FCR}(v)},\sigma}(v_0) \le   val^{ \mathcal{G}_{\text{FCR}(v)},\sigma'}(v_0)$,
+We show that $\textrm{val}^{ \mathcal{G}_{\text{FCR}(v)},\sigma}(v_0) \le   \textrm{val}^{ \mathcal{G}_{\text{FCR}(v)},\sigma'}(v_0)$,
 implying that $\sigma'$ is optimal in $\mathcal{G}_{\text{FCR}(v)}$ and the inequality is an equality.
 
 Let $\pi$ be a play consistent with $\sigma'$ from $v_0$.
-If it does not contain $v$ it is consistent with $\sigma$, so $\mathrm{FirstCycleReset}\xspace_v(\pi) \ge   val^{ \mathcal{G}_{\text{FCR}(v)},\sigma}(v_0)$.
+If it does not contain $v$ it is consistent with $\sigma$, so $\mathrm{FirstCycleReset}\xspace_v(\pi) \ge   \textrm{val}^{ \mathcal{G}_{\text{FCR}(v)},\sigma}(v_0)$.
 If it contains $v$, let $\pi'$ the suffix of $\pi$ starting from the first occurrence of $v$,
 then $\mathrm{FirstCycleReset}\xspace_v(\pi) =  \mathrm{FirstCycle}\xspace(\pi')$.
-Since $\pi'$ is consistent with $\sigma$ (until a cycle is formed) we have $\mathrm{FirstCycle}\xspace(\pi') \ge   val^{ \mathcal{G}_{\text{FCR}(v)},\sigma}(v_0)$,
-implying that $\mathrm{FirstCycleReset}\xspace_v(\pi) \ge   val^{ \mathcal{G}_{\text{FCR}(v)},\sigma}(v_0)$.
-We conclude: $val^{ \mathcal{G}_{\text{FCR}(v)},\sigma'}(v_0) \le   val^{ \mathcal{G}_{\text{FCR}(v)},\sigma}(v_0)$.
+Since $\pi'$ is consistent with $\sigma$ (until a cycle is formed) we have $\mathrm{FirstCycle}\xspace(\pi') \ge   \textrm{val}^{ \mathcal{G}_{\text{FCR}(v)},\sigma}(v_0)$,
+implying that $\mathrm{FirstCycleReset}\xspace_v(\pi) \ge   \textrm{val}^{ \mathcal{G}_{\text{FCR}(v)},\sigma}(v_0)$.
+We conclude: $\textrm{val}^{ \mathcal{G}_{\text{FCR}(v)},\sigma'}(v_0) \le   \textrm{val}^{ \mathcal{G}_{\text{FCR}(v)},\sigma}(v_0)$.
 
 Let $\mathcal{B}$ the arena obtained from $\mathcal{A}$ by removing all outgoing edges of $v$ not used by $\sigma'$.
 Let $\mathcal{G}'_{\text{FCR}(v)} = (\mathcal{B},  \mathrm{FirstCycleReset}\xspace_v)$ and $\mathcal{G}'_{\text{FC}} = (\mathcal{B},  \mathrm{FirstCycle}\xspace)$.
-By definition we have $val^{ \mathcal{G}_{\text{FCR}(v)},\sigma'} =   val^{ \mathcal{G}'_{\text{FCR}(v)},\sigma'} =   val^{ \mathcal{G}'_{\text{FCR}(v)}}$.
-In the previous step we proved that $val^{ \mathcal{G}'_{\text{FC}}} =   val^{ \mathcal{G}'_{\text{FCR}(v)}}$,
-so $val^{ \mathcal{G}'_{\text{FC}}} =   val^{ \mathcal{G}_{\text{FC}}}$.
+By definition we have $\textrm{val}^{ \mathcal{G}_{\text{FCR}(v)},\sigma'} =   \textrm{val}^{ \mathcal{G}'_{\text{FCR}(v)},\sigma'} =   \textrm{val}^{ \mathcal{G}'_{\text{FCR}(v)}}$.
+In the previous step we proved that $\textrm{val}^{ \mathcal{G}'_{\text{FC}}} =   \textrm{val}^{ \mathcal{G}'_{\text{FCR}(v)}}$,
+so $\textrm{val}^{ \mathcal{G}'_{\text{FC}}} =   \textrm{val}^{ \mathcal{G}_{\text{FC}}}$.
 The arena $\mathcal{B}$ contains one less vertex of Eve with more than one outgoing edge,
 so the induction hypothesis applies and implies that there exists an optimal strategy in $\mathcal{G}'_{\text{FC}}$,
-which is also optimal in $\mathcal{G}_{\text{FC}}$ thanks to the equality $val^{ \mathcal{G}'_{\text{FC}}} =   val^{ \mathcal{G}_{\text{FC}}}$.
+which is also optimal in $\mathcal{G}_{\text{FC}}$ thanks to the equality $\textrm{val}^{ \mathcal{G}'_{\text{FC}}} =   \textrm{val}^{ \mathcal{G}_{\text{FC}}}$.
 
 ````
 
@@ -412,14 +412,14 @@ implying the positionality of games with objective $\Phi$.
 *  Limit superior and limit inferior mean payoff games are equivalent:
 for every arena $\mathcal{A}$ and colouring function $\textsf{col} : E \to  \mathbb{Z}$,
 let $\mathcal{G}_{+} = ( \mathcal{A}, \mathtt{MeanPayoff}^+[ \textsf{col}])$ and $\mathcal{G}_{-} = ( \mathcal{A}, \mathtt{MeanPayoff}^-[ \textsf{col}])$,
-then $val^{ \mathcal{G}_+} =   val^{ \mathcal{G}_-}$.
+then $\textrm{val}^{ \mathcal{G}_+} =   \textrm{val}^{ \mathcal{G}_-}$.
 This implies that a positional strategy is optimal in $\mathcal{G}_+$ if and only if it is optimal in $\mathcal{G}_-$.
 
 Since they are equivalent we speak of mean payoff games without specifying whether the objective is $\mathtt{MeanPayoff}^+$ or $\mathtt{MeanPayoff}^-$,
 and write $\mathtt{MeanPayoff}$ instead.
 
 *  For all mean payoff games $\mathcal{G}$ and vertices $v$, 
-the value $val^ \mathcal{G}(v)$ is a rational number of the form $\frac{a}{n}$ with $a \in [-nW,nW]$,
+the value $\textrm{val}^ \mathcal{G}(v)$ is a rational number of the form $\frac{a}{n}$ with $a \in [-nW,nW]$,
 where $W$ is the largest weight appearing in $\Game$ in absolute value.
 
 ````
@@ -429,8 +429,8 @@ where $W$ is the largest weight appearing in $\Game$ in absolute value.
 
 Thanks to {prf:ref}`4-thm:mean_payoff_positional`, there exist $\sigma_+$ and $\tau_+$ optimal positional strategies in $\mathcal{G}_+$
 and $\sigma_-$ and $\tau_-$ optimal positional strategies in $\mathcal{G}_-$ (for the latter by duality).
-By definition $val^{ \mathcal{G}_+}(v) =  \mathtt{MeanPayoff}^+(\pi^v_{\sigma_+,\tau_+})$ and $val^{ \mathcal{G}_-}(v) =  \mathtt{MeanPayoff}^-(\pi^v_{\sigma_-,\tau_-})$.
-Since $\mathtt{MeanPayoff}^- \le  \mathtt{MeanPayoff}^+$ we already have $val^{ \mathcal{G}_-} \le   val^{ \mathcal{G}_+}$.
+By definition $\textrm{val}^{ \mathcal{G}_+}(v) =  \mathtt{MeanPayoff}^+(\pi^v_{\sigma_+,\tau_+})$ and $\textrm{val}^{ \mathcal{G}_-}(v) =  \mathtt{MeanPayoff}^-(\pi^v_{\sigma_-,\tau_-})$.
+Since $\mathtt{MeanPayoff}^- \le  \mathtt{MeanPayoff}^+$ we already have $\textrm{val}^{ \mathcal{G}_-} \le   \textrm{val}^{ \mathcal{G}_+}$.
 
 For two positional strategies $\sigma$ and $\tau$, the play $\pi^v_{\sigma,\tau}$ is a lasso, meaning of the form $\pi c^\omega$
 with $\pi$ a simple path and $c$ a simple cycle, 
@@ -446,24 +446,24 @@ $$
 $$
 
 where the first inequality is by optimality of $\tau_-$ and the second inequality by optimality of $\sigma_-$.
-Hence $val^{ \mathcal{G}_+} \le   val^{ \mathcal{G}_-}$, and finally $val^{ \mathcal{G}_+} =   val^{ \mathcal{G}_-}$.
+Hence $\textrm{val}^{ \mathcal{G}_+} \le   \textrm{val}^{ \mathcal{G}_-}$, and finally $\textrm{val}^{ \mathcal{G}_+} =   \textrm{val}^{ \mathcal{G}_-}$.
 
-For the second item, recall that $val^ \mathcal{G}(v) =  \mathtt{MeanPayoff}(\pi^v_{\sigma,\tau})$
+For the second item, recall that $\textrm{val}^ \mathcal{G}(v) =  \mathtt{MeanPayoff}(\pi^v_{\sigma,\tau})$
 with $\sigma$ and $\tau$ optimal positional strategies.
 Let us write $\pi^v_{\sigma,\tau} = \pi c^\omega$ with $\pi$ a simple path and $c$ a simple cycle, 
 then by prefix independence $\mathtt{MeanPayoff}(\pi^v_{\sigma,\tau}) =  \mathrm{Mean}\xspace(c)$,
-thus $val^ \mathcal{G}(v)$ is the mean of at most $n$ weights from $\mathcal{G}$.
+thus $\textrm{val}^ \mathcal{G}(v)$ is the mean of at most $n$ weights from $\mathcal{G}$.
 
 ````
 
-## \texorpdfstring{Solving mean payoff games in $NP\cap coNP$}{Solving mean payoff games in NP and coNP}
+## \texorpdfstring{Solving mean payoff games in $\textrm{NP}\cap \textrm{coNP}$}{Solving mean payoff games in NP and coNP}
 
 The positional determinacy of mean payoff games easily gives an upper bound on the complexity of **solving** these games.
 
 ````{prf:theorem} Complexity of mean payoff
 :label: 4-thm:MP-NPcoNP
 
-Solving mean payoff games is in $NP\cap coNP$.
+Solving mean payoff games is in $\textrm{NP}\cap \textrm{coNP}$.
 
 ````
 
@@ -475,12 +475,12 @@ Indeed, they correspond to the minimum cycle mean problem in a weighted graph,
 which can be solved in polynomial time by a dynamic programming algorithm.
 The second ingredient is the positional determinacy result proved in {prf:ref}`4-thm:mean_payoff_positional`.
 
-Let us show the $NP$ membership. 
+Let us show the $\textrm{NP}$ membership. 
 Consider a mean payoff game $\Game$, a vertex $v$ and a threshold $x \in   \mathbb{Q} \cup  \left\{ \pm \infty \right\}$.
 Thanks to {prf:ref}`4-thm:mean_payoff_positional`, we know that there exist an optimal positional strategy for Eve.
 With a non-deterministic Turing machine, we may guess a positional strategy for Eve, and check that it ensures $x$ in $\Game$ from $v$. 
 
-Let us now show the $coNP$ membership. 
+Let us now show the $\textrm{coNP}$ membership. 
 By determinacy of mean payoff games, whether Eve **cannot** ensure $x$ in $\Game$ from $v$ 
 is equivalent to whether Adam can ensure $x$ in $\Game$ from $v$.
 Again thanks to {prf:ref}`4-thm:mean_payoff_positional`, we know that there exist an optimal positional strategy for Adam.
@@ -538,7 +538,7 @@ We note that we did not construct a reduction between objectives as defined in S
 indeed it is not true that $\mathtt{Parity}$ reduces to $\mathtt{MeanPayoff}_{\ge 0}$, the reduction depends on the number $n$ of vertices.
 
 As a corollary of {prf:ref}`4-thm:MP-NPcoNP`, this polynomial reduction gives an alternative proof of the fact
-that solving parity games is in $NP \cap  coNP$.
+that solving parity games is in $\textrm{NP} \cap  \textrm{coNP}$.
 
 ## A strategy improvement algorithm
 
@@ -586,11 +586,11 @@ The algorithm will only manipulate strategies respecting mean payoff.
 > **Evaluating a strategy.**
 
 The first question is: given a strategy $\sigma$, how to evaluate it (in order to later improve it)?
-As explained in Section {ref}`1-sec:strategy_improvement` towards this goal we define a value function $val^{\sigma} : V \to Y$.
+As explained in Section {ref}`1-sec:strategy_improvement` towards this goal we define a value function $\textrm{val}^{\sigma} : V \to Y$.
 
-We let $val^{\sigma}(v) = \min_\tau   val( \pi_{\sigma,\tau}^v)$ where $\tau$ ranges over (general) strategies for Adam, so we first need to define the value of the play $\pi =  \pi_{\sigma,\tau}^v$.
-If $\pi$ is stopped, then $val( \pi)$ is the sum of the weights in $\pi$.
-Otherwise $val( \pi)$ is $\top$ if $\pi$ satisfies mean payoff, and $\bot$ if $\pi$ does not satisfy mean payoff.
+We let $\textrm{val}^{\sigma}(v) = \min_\tau   \textrm{val}( \pi_{\sigma,\tau}^v)$ where $\tau$ ranges over (general) strategies for Adam, so we first need to define the value of the play $\pi =  \pi_{\sigma,\tau}^v$.
+If $\pi$ is stopped, then $\textrm{val}( \pi)$ is the sum of the weights in $\pi$.
+Otherwise $\textrm{val}( \pi)$ is $\top$ if $\pi$ satisfies mean payoff, and $\bot$ if $\pi$ does not satisfy mean payoff.
 So the value of a play is either $\top$, $\bot$, or an integer;
 we let $Y =   \mathbb{Z} \cup  \left\{ \pm \infty \right\}$ and equip it with the natural order $\le$.
 
@@ -628,15 +628,15 @@ Since $\delta$ is monotonic so is $\mathbb{O}$.
 
 ````{prf:observation} NEEDS LABEL Fixed point
 \label{4-fact:fixed-point]
-The function $val^\sigma$ is a fixed point of $\mathbb{O}$ in $F^\sigma_V$.
+The function $\textrm{val}^\sigma$ is a fixed point of $\mathbb{O}$ in $F^\sigma_V$.
 
 ````
 
-Unfortunately, $val^{\sigma}$ is not in general the greatest fixed point of $\mathbb{O}$ in $F^\sigma_V$;
+Unfortunately, $\textrm{val}^{\sigma}$ is not in general the greatest fixed point of $\mathbb{O}$ in $F^\sigma_V$;
 let us analyse this in more details.
 Let $\mu$ a fixed point of $\mathbb{O}$ in $F^\sigma_V$, there are two cases. 
-For a vertex $v$ such that there exists a stopped play $\pi$ starting from $v$, we have $\mu(v) \le   val(\pi)$, and more generally
-$\mu(v) \le \inf_{\pi}   val(\pi)$ where $\pi$ ranges over all stopped plays starting from $v$.
+For a vertex $v$ such that there exists a stopped play $\pi$ starting from $v$, we have $\mu(v) \le   \textrm{val}(\pi)$, and more generally
+$\mu(v) \le \inf_{\pi}   \textrm{val}(\pi)$ where $\pi$ ranges over all stopped plays starting from $v$.
 The problem is for a vertex $v$ such that no plays starting from $v$ are stopped: 
 we can have either $\mu(v) = \top$ or $\mu(v) = \bot$, irrespective of whether the play satisfies mean payoff or not.
 From this discussion we obtain the following result.
@@ -644,7 +644,7 @@ From this discussion we obtain the following result.
 ````{prf:lemma} Greatest fixed point
 :label: 4-lem:greatest_fixed_point
 
-If $\sigma$ respects mean payoff, then $val^{\sigma}$ is the greatest fixed point of $\mathbb{O}$ in $F^\sigma_V$.
+If $\sigma$ respects mean payoff, then $\textrm{val}^{\sigma}$ is the greatest fixed point of $\mathbb{O}$ in $F^\sigma_V$.
 
 ````
 
@@ -654,14 +654,14 @@ We reach the last item in the construction of the algorithm: the notion of switc
 Let $\sigma$ a strategy. We say that an edge $e = (v,v')$ is switchable if
 
 $$
-\delta(  val^{\sigma}(v'), \textsf{col}(v)) > \delta(  val^{\sigma}(u), \textsf{col}(v)) \text{ where } \sigma(v) = (v,u).
+\delta(  \textrm{val}^{\sigma}(v'), \textsf{col}(v)) > \delta(  \textrm{val}^{\sigma}(u), \textsf{col}(v)) \text{ where } \sigma(v) = (v,u).
 $$
 
-Intuitively: according to $val^{\sigma}$, playing $e$ is better than playing $\sigma(v)$.
+Intuitively: according to $\textrm{val}^{\sigma}$, playing $e$ is better than playing $\sigma(v)$.
 
 Given a strategy $\sigma$ and an edge $e = (v,v')$ we use $\sigma[v \to e]$ to denote the strategy playing $e$ from $v$ 
 and follow $\sigma$ from all other vertices.
-Let us write $\sigma \le \sigma'$ if for all vertices $v$ we have $val^{\sigma}(v) \le   val^{\sigma'}(v)$,
+Let us write $\sigma \le \sigma'$ if for all vertices $v$ we have $\textrm{val}^{\sigma}(v) \le   \textrm{val}^{\sigma'}(v)$,
 and $\sigma < \sigma'$ if additionally $\neg (\sigma' \le \sigma)$.
 
 > **The algorithm.**
@@ -748,39 +748,39 @@ We first argue that $\sigma'$ respects mean payoff.
 The fact that $e = (v,v')$ is switchable reads
 
 $$
-\delta(  val^\sigma(v'), \textsf{col}(v)) > \delta(  val^\sigma(u), \textsf{col}(v)),
+\delta(  \textrm{val}^\sigma(v'), \textsf{col}(v)) > \delta(  \textrm{val}^\sigma(u), \textsf{col}(v)),
 $$
 
-and by definition of $val^\sigma$ we have $val^\sigma(v) = \delta(  val^\sigma(u), \textsf{col}(v))$,
-which implies $val^\sigma(v) < \delta(  val^\sigma(v'), \textsf{col}(v))$, and in particular $val^\sigma(v) \neq \top$.
+and by definition of $\textrm{val}^\sigma$ we have $\textrm{val}^\sigma(v) = \delta(  \textrm{val}^\sigma(u), \textsf{col}(v))$,
+which implies $\textrm{val}^\sigma(v) < \delta(  \textrm{val}^\sigma(v'), \textsf{col}(v))$, and in particular $\textrm{val}^\sigma(v) \neq \top$.
 
 Let us consider the mean payoff graph $\Game[\sigma']$ and note that for all edges $e' = (s,t)$ 
-we have $val^\sigma(s) \le \delta(  val^\sigma(t), \textsf{col}(s))$:
-indeed either $e'$ is an edge in $\Game[\sigma]$ and this is by definition of $val^\sigma$,
+we have $\textrm{val}^\sigma(s) \le \delta(  \textrm{val}^\sigma(t), \textsf{col}(s))$:
+indeed either $e'$ is an edge in $\Game[\sigma]$ and this is by definition of $\textrm{val}^\sigma$,
 or $e' = e$ and the inequality was proved just above.
 
-Since $\sigma$ respects mean payoff $val^\sigma$ does not take the value $\bot$.
-But we cannot apply (the first item of) {prf:ref}`4-lem:key_property` yet because $val^\sigma$ may have value $\top$.
-However by definition of $val^\sigma$ for all vertices $s$ such that $val^\sigma(s) = \top$ all paths from $s$ satisfy mean payoff,
+Since $\sigma$ respects mean payoff $\textrm{val}^\sigma$ does not take the value $\bot$.
+But we cannot apply (the first item of) {prf:ref}`4-lem:key_property` yet because $\textrm{val}^\sigma$ may have value $\top$.
+However by definition of $\textrm{val}^\sigma$ for all vertices $s$ such that $\textrm{val}^\sigma(s) = \top$ all paths from $s$ satisfy mean payoff,
 so it is enough to consider the mean payoff graph obtained from $\Game[\sigma']$ by removing all such vertices.
 The first item of {prf:ref}`4-lem:key_property` implies that it satisfies mean payoff, hence $\Game[\sigma']$ as well.
 
 At this point we know that $\sigma'$ respects mean payoff, which thanks to {prf:ref}`4-lem:greatest_fixed_point`
-implies that $val^{\sigma'}$ is the greatest fixed point of $\mathbb{O}$ in $F^{\sigma'}_V$.
+implies that $\textrm{val}^{\sigma'}$ is the greatest fixed point of $\mathbb{O}$ in $F^{\sigma'}_V$.
 
-We now argue that $val^\sigma$ is a progress measure for $\mathcal{G}[\sigma']$.
+We now argue that $\textrm{val}^\sigma$ is a progress measure for $\mathcal{G}[\sigma']$.
 For all vertices but $v$ this is clear because the outgoing edges are the same in $\mathcal{G}[\sigma]$ and in $\mathcal{G}[\sigma']$.
-For $v$ as argued above we have $val^\sigma(v) < \delta(  val^\sigma(v'), \textsf{col}(v))$.
-It follows that $val^\sigma$ is indeed a progress measure for $\mathcal{G}[\sigma']$.
-Since $val^{\sigma'}$ is the greatest fixed point of $\mathbb{O}$ in $F^{\sigma'}_V$, this implies that 
-$val^{\sigma} \le   val^{\sigma'}$.
+For $v$ as argued above we have $\textrm{val}^\sigma(v) < \delta(  \textrm{val}^\sigma(v'), \textsf{col}(v))$.
+It follows that $\textrm{val}^\sigma$ is indeed a progress measure for $\mathcal{G}[\sigma']$.
+Since $\textrm{val}^{\sigma'}$ is the greatest fixed point of $\mathbb{O}$ in $F^{\sigma'}_V$, this implies that 
+$\textrm{val}^{\sigma} \le   \textrm{val}^{\sigma'}$.
 
-We now show that $val^{\sigma} <   val^{\sigma'}$. 
-Using $val^{\sigma}(v') \le   val^{\sigma'}(v')$ and the monotonicity of $\delta$ we obtain that
-$\delta(  val^\sigma(v'), \textsf{col}(v)) \le \delta(  val^{\sigma'}(v'), \textsf{col}(v))$.
-By definition of $val^{\sigma'}$ we have $val^{\sigma'}(v) = \delta(  val^{\sigma'}(v'), \textsf{col}(v))$
-and together with $val^\sigma(v) < \delta(  val^\sigma(v'), \textsf{col}(v))$ this implies that
-$val^\sigma(v) <   val^{\sigma'}(v)$.
+We now show that $\textrm{val}^{\sigma} <   \textrm{val}^{\sigma'}$. 
+Using $\textrm{val}^{\sigma}(v') \le   \textrm{val}^{\sigma'}(v')$ and the monotonicity of $\delta$ we obtain that
+$\delta(  \textrm{val}^\sigma(v'), \textsf{col}(v)) \le \delta(  \textrm{val}^{\sigma'}(v'), \textsf{col}(v))$.
+By definition of $\textrm{val}^{\sigma'}$ we have $\textrm{val}^{\sigma'}(v) = \delta(  \textrm{val}^{\sigma'}(v'), \textsf{col}(v))$
+and together with $\textrm{val}^\sigma(v) < \delta(  \textrm{val}^\sigma(v'), \textsf{col}(v))$ this implies that
+$\textrm{val}^\sigma(v) <   \textrm{val}^{\sigma'}(v)$.
 
 ````
 
@@ -796,27 +796,27 @@ $\sigma$ is winning from all vertices of $W_\mathrm{Eve}(\Game)$.
 :class: dropdown tip
 
 The fact that $\sigma$ respects mean payoff means that it is a winning strategy
-from all vertices $v$ such that $val^\sigma(v) = \top$.
-It also implies that for all vertices $v$ we have $val^{\sigma}(v) \neq \bot$.
-We now prove that Adam has a winning strategy from all vertices $v$ such that $val^{\sigma}(v) \neq \top$.
+from all vertices $v$ such that $\textrm{val}^\sigma(v) = \top$.
+It also implies that for all vertices $v$ we have $\textrm{val}^{\sigma}(v) \neq \bot$.
+We now prove that Adam has a winning strategy from all vertices $v$ such that $\textrm{val}^{\sigma}(v) \neq \top$.
 We construct a strategy of Adam by
 
 $$
-\forall v \in  V_\mathrm{Adam},\ \tau(v) =  argmin  \left\{  \delta(  val^{\sigma \right\}(u), \textsf{col}(v)) : (v,u) \in E }.
+\forall v \in  V_\mathrm{Adam},\ \tau(v) =  \textrm{argmin}  \left\{  \delta(  \textrm{val}^{\sigma \right\}(u), \textsf{col}(v)) : (v,u) \in E }.
 $$
 
-We argue that $\tau$ ensures the complement of mean payoff from all vertices $v$ such that $val^{\sigma}(v) \neq \top$.
+We argue that $\tau$ ensures the complement of mean payoff from all vertices $v$ such that $\textrm{val}^{\sigma}(v) \neq \top$.
 Let us consider $\Game[\tau]$ the mean payoff graph obtained from $\Game$ by restricting the outgoing edges from $V_\mathrm{Adam}$
 to those prescribed by $\tau$.
 We argue that for all edges $(v,,v')$ in $\mathcal{G}[\tau]$, we have 
-$val^{\sigma}(v) \ge \delta(  val^{\sigma}(v'), \textsf{col}(v))$.
+$\textrm{val}^{\sigma}(v) \ge \delta(  \textrm{val}^{\sigma}(v'), \textsf{col}(v))$.
 Once this is proved we conclude using the second item of {prf:ref}`4-lem:key_property` implying that $\Game[\tau]$ satisfies the complement of mean payoff.
 
 The first case is when $v \in  V_\mathrm{Eve}$. 
 Let $\sigma(v) = (v,u)$.
 Since the edge $e = (v,v')$ is not switchable we have 
-$\delta(  val^{\sigma}(v'), \textsf{col}(v)) \le \delta(  val^{\sigma}(u), \textsf{col}(v))$.
-By definition of $val^\sigma$ we have $val^\sigma(v) = \delta(  val^{\sigma}(u), \textsf{col}(v))$,
+$\delta(  \textrm{val}^{\sigma}(v'), \textsf{col}(v)) \le \delta(  \textrm{val}^{\sigma}(u), \textsf{col}(v))$.
+By definition of $\textrm{val}^\sigma$ we have $\textrm{val}^\sigma(v) = \delta(  \textrm{val}^{\sigma}(u), \textsf{col}(v))$,
 implying the desired inequality.
 
 The second case is when $v \in  V_\mathrm{Adam}$, it holds by definition of $\tau$.
@@ -826,9 +826,9 @@ The second case is when $v \in  V_\mathrm{Adam}$, it holds by definition of $\ta
 > **Complexity analysis.**
 
 \mynote{WORK HERE}
-The computation of $val^\sigma$ for a strategy $\sigma$ can be seen to be a shortest path problem where distances are measured using the operator $\le$. 
+The computation of $\textrm{val}^\sigma$ for a strategy $\sigma$ can be seen to be a shortest path problem where distances are measured using the operator $\le$. 
 Thus, any algorithm for the shortest path problem can be applied, such as the Bellman-Ford algorithm.
-In particular computing $val^\sigma$ can be done in polynomial time, and even more efficiently through a refined analysis.
+In particular computing $\textrm{val}^\sigma$ can be done in polynomial time, and even more efficiently through a refined analysis.
 
 An aspect of the algorithm we did not develop is choosing the switchable edge.
 It is possible to switch not only one edge but a set of switchable edges at each iteration, making this question worse: 
@@ -873,7 +873,7 @@ Bellman-Ford algorithm by a more clever computation.
 Now that we know how to decide if Eve has a strategy to ensure a
 positive value, we can even use this procedure to compute the values
 of the game in case of an arena with only integral
-costs. By {prf:ref}`4-cor:rational-MP`, we know that the value $val(v)$
+costs. By {prf:ref}`4-cor:rational-MP`, we know that the value $\textrm{val}(v)$
 of all vertices $v$ is a rational number with denominator in
 $\{1,\ldots,n\}$. Moreover, since it is the average value of the
 weight of a cycle, it lies in the interval $[-W,W]$. A binary search
@@ -996,11 +996,11 @@ discrepancies, until it is no longer possible, thus reaching a
 progress measure, and even the greatest one, which, by the previous
 theorem, gives the winning vertices for Eve.
 
-The update is performed with an operator $Lift$ mapping each function
-$\mu\colon V\to  \overline \mathbb{R}$ to a new function $Lift(\mu)\colon V\to  \overline \mathbb{R}$
+The update is performed with an operator $\textrm{Lift}$ mapping each function
+$\mu\colon V\to  \overline \mathbb{R}$ to a new function $\textrm{Lift}(\mu)\colon V\to  \overline \mathbb{R}$
 defined for all vertices $v\in V$ by
 
-$$Lift(\mu)(v) =
+$$\textrm{Lift}(\mu)(v) =
   \begin{cases}
      \mathop{\downarrow_{-(n-1)W}}\min\big(0,\max_{(v,c,v')\in E} (\mu(v')+c)\big) & \text{if } v\in
      V_\mathrm{Eve}\\
@@ -1018,12 +1018,12 @@ simple, is given in {numref}`4-algo:value_iteration_MP`.
 The value iteration algorithm.
 ```
 
-The co-domain of $Lift$ are functions
+The co-domain of $\textrm{Lift}$ are functions
 $V\to \{-\infty,-nW+1,-nW+2,\ldots,0\}$, i.e. a finite set of
-functions. Therefore, $Lift$ is a Scott-continuous mapping over which
+functions. Therefore, $\textrm{Lift}$ is a Scott-continuous mapping over which
 we can apply Kleene's fixed-point theorem, ensuring that the sequence
-$( Lift^i(\mu_0))_{i\geq 0}$ converges towards the greatest fixed
-point $\mu^*$ of $Lift$. By the fact that $\mu^*= Lift(\mu^*)$, we
+$( \textrm{Lift}^i(\mu_0))_{i\geq 0}$ converges towards the greatest fixed
+point $\mu^*$ of $\textrm{Lift}$. By the fact that $\mu^*= \textrm{Lift}(\mu^*)$, we
 can deduce that $\mu^*$ is a progress measure. We can indeed show that
 this is the greatest progress measure of the game. The main ingredient
 is that the use of the widening operator $\mathop{\downarrow_{-nW}}$ is

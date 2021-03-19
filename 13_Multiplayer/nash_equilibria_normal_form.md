@@ -189,7 +189,7 @@ For a history $\pi$, we write \(\pi_i\) the $i$-th vertex of $\pi$, starting fro
 \(\pi = \pi_0 \cdot \move_0(\pi \cdot \pi_1 \cdots \move_{n-1}(\pi)\cdot \pi_n\), and
 with this notation $\move_i(\pi)_P$ is the $i$-th action of player $P$ in $h$.
 The length $|\pi|$ of such a history is $n + 1$. We write
-$last(\pi)$ the last vertex of h, i.e. \(\pi_{|\pi|-1}\).
+$\textrm{last}(\pi)$ the last vertex of h, i.e. \(\pi_{|\pi|-1}\).
 A play \(\rho\) is an
 infinite sequence of vertices and moves, i.e. an element of
 \((V \cdot \Act^{\Agt})^\omega\).
@@ -216,11 +216,11 @@ infinite sequence of vertices and moves, i.e. an element of
   \(\Delta(\pi_k, \move_k(\pi)) = \pi_{k+1}\). A play \(\rho\) is compatible with
   the strategy \(\sigma_\Coalition\) if all its prefixes are. We write
   
-  \(  Out_{\mathcal{A}}(v_0, \sigma_\Coalition)\) for the set of plays in \(\mathcal{A}\) that
+  \(  \textrm{Out}_{\mathcal{A}}(v_0, \sigma_\Coalition)\) for the set of plays in \(\mathcal{A}\) that
   are compatible with strategy \(\sigma_\Coalition\) and have initial vertex
-  \(v_0\). Let \(  Out_{\mathcal{A}}(\sigma_\Coalition)\) denote the union
-  of \(  Out_{\mathcal{A}}(v_0, \sigma_\Coalition)\) for all $v_0$,
-  and \(  Out_{\mathcal{A}}(v_0)\) the union of all \(  Out_{\mathcal{A}}(v_0, \sigma_\Coalition)\).
+  \(v_0\). Let \(  \textrm{Out}_{\mathcal{A}}(\sigma_\Coalition)\) denote the union
+  of \(  \textrm{Out}_{\mathcal{A}}(v_0, \sigma_\Coalition)\) for all $v_0$,
+  and \(  \textrm{Out}_{\mathcal{A}}(v_0)\) the union of all \(  \textrm{Out}_{\mathcal{A}}(v_0, \sigma_\Coalition)\).
   The subscript $\mathcal{A}$ can be omitted if it is clear from the context.
   These paths are called **outcomes** of \(\sigma_\Coalition\) from
   \(v_0\).
@@ -243,7 +243,7 @@ the outcome from a given state is unique.
   
 $$
 
-      Out(v_0, \sigma_{\{P_1, P_2, P_3\}})   = &   v_0 \cdot (a, a, b) \cdot v_2 \cdot (a, b, b)
+      \textrm{Out}(v_0, \sigma_{\{P_1, P_2, P_3\}})   = &   v_0 \cdot (a, a, b) \cdot v_2 \cdot (a, b, b)
                                                 \cdot v_4 \cdot (a, b, b) \cdot\\
                                               & \left(v_0 \cdot (a, b, b)
                                                 \cdot v_1 \cdot (a, b, b)
@@ -262,7 +262,7 @@ $$
   
 $$
 
-      Out(v_0, \sigma_{\{P_1, P_2, P_3\}})   = &   v_0 \cdot (a, a, b) \cdot v_2 \cdot (a, b, b)
+      \textrm{Out}(v_0, \sigma_{\{P_1, P_2, P_3\}})   = &   v_0 \cdot (a, a, b) \cdot v_2 \cdot (a, b, b)
                                                 \cdot v_4 \cdot (a, b, b) \cdot\\
                                               & \left(v_0 \cdot (a, b, b)
                                                 \cdot v_1 \cdot (a, b, b)
@@ -304,7 +304,7 @@ satisfied.
 **QUESTION**: 
   \parbox[t]{0.75\textwidth}{is there
 a Nash equilibrium $\sigma_{\Agt}$ such that for all
-$P \in \Agt, \payoff_P(  Out({v_0,\sigma_{\Agt}})) \ge b_P$?}
+$P \in \Agt, \payoff_P(  \textrm{Out}({v_0,\sigma_{\Agt}})) \ge b_P$?}
 
 ```
 \todo{OS: I don't know how to fix this alignment issue}
@@ -353,7 +353,7 @@ changed their strategies from \(\sigma_{\Agt}\) in order to generate
 
 Given a play \(\rho\), strategy profile $\sigma_\Agt$, a coalition \(\Coalition\)
 contains \(\Dev(\rho)\), if and only if, there exists a strategy
-\(\sigma'_\Coalition\) such that \(  Out(\rho_1, \sigma_{-\Coalition}, \sigma'_\Coalition) = \rho\).
+\(\sigma'_\Coalition\) such that \(  \textrm{Out}(\rho_1, \sigma_{-\Coalition}, \sigma'_\Coalition) = \rho\).
 
 ````
 
@@ -458,44 +458,20 @@ a possibly different one \(a'_{\Agt}\). The next vertex is
 
 ````{prf:example} NEEDS TITLE AND LABEL 
   An example of a partial construction of the deviator game for the
-  example of {numref}`13-fig:example1`, is given in figure {numref}`13-fig:ex-dev`.
+  example of {numref}`13-fig:example1`, is given in {numref}`13-fig:ex-dev`.
   We cannot represent the full construction here, as there are 40 vertices.
 
   An example of a partial construction of the deviator game for the
-  example of {numref}`13-fig:example1`, is given in figure {numref}`13-fig:ex-dev`.
+  example of {numref}`13-fig:example1`, is given in {numref}`13-fig:ex-dev`.
   We cannot represent the full construction here, as there are 40 vertices.
 
 ````
 
-\begin{figure}
-  \begin{center}
-    \begin{tikzpicture}
-      \draw (0,0) node[draw, inner sep=7pt] (I) {$v_0, \varnothing$};
-      \draw (80:4) node[draw, inner sep=7pt] (S10) {$v_1, \varnothing$};
-      \draw (62:4.5) node[draw, inner sep=7pt] (S11) {$v_1, \{P_1\}$};
-      \draw (44:5) node[draw, inner sep=7pt] (S12) {$v_1, \{P_2\}$};
-      \draw (26:6) node[draw, inner sep=7pt] (S13) {$v_1, \{P_3\}$};
-      \draw (8:7) node[draw, inner sep=7pt] (S14) {$v_1, \{P_1, P_2\}$};
-      \draw (-8:6) node[draw, inner sep=7pt] (S15) {$v_1, \{P_1, P_3\}$};
-      \draw (-26:5) node[draw, inner sep=7pt] (S16) {$v_1, \{P_2, p_3\}$};
-      \draw (-44:4.5) node[draw, inner sep=7pt] (S17) {$v_1, \{P_1, P_2, P_3\}$};
-      \draw (-76:4) node[draw, inner sep=7pt] (C2) {$v_2, \varnothing$};
-      \draw (-88:4) node[below] {$\dots$};
-      \draw[-latex'] (-1, 0) -- (I);
-      \draw[-latex'] (I) -- node[sloped, text width=1cm]{$(a, b, a), (a, b, a)$  \\ $(b, a, a), (b, a, a)$} (S10);
-      \draw[-latex'] (I) -- node[sloped, text width=1cm]{$(a, a, a), (b, a, a)$ \\ $(a, b, a), (b, a, b)$} (S11);
-      \draw[-latex'] (I) -- node[sloped, text width=1cm]{$(a, a, a), (a, b, a)$ \\ $(b, b, a), (b, a, a)$} (S12);
-      \draw[-latex'] (I) -- node[sloped, text width=1cm]{$(a, b, a), (a, b, b)$ \\ $(b, a, a), (b, a, b)$} (S13);
-      \draw[-latex'] (I) -- node[sloped, text width=1cm]{$(a, b, a), (b, a, a)$ \\ $(b, a, a), (a, b, a)$} (S14);
-      \draw[-latex'] (I) -- node[sloped, text width=1cm]{$(a, a, a), (b, a, b)$ \\ $(b, b, a), (a, b, b)$} (S15);
-      \draw[-latex'] (I) -- node[sloped, text width=1cm]{$(a, a, a), (a, b, b)$ \\ $(b, b, a), (b, a, b)$} (S16);
-      \draw[-latex'] (I) -- node[sloped, text width=1cm]{$(a, b, a), (b, a, b)$ \\ $(b, a, a), (a, b, b)$} (S17);
-      \draw[-latex'] (I) -- node[sloped, text width=1cm]{$(a, a, a), (a, a, a)$ \\ $(b, b, b), (b, b, b)$} (C2);
-    \end{tikzpicture}
-    \caption{Example a deviator game construction.}
-    \label{13-fig:ex-dev}
-  \end{center}
-\end{figure}
+```{figure} ./../FigAndAlgos/13-fig:ex-dev.png
+:name: 13-fig:ex-dev
+:align: center
+Example a deviator game construction.
+```
 
 We define projections \(\proj_{V}\) and \(\proj_{\Dev}\) from \(V'\) to
 
@@ -503,17 +479,17 @@ We define projections \(\proj_{V}\) and \(\proj_{\Dev}\) from \(V'\) to
 \(\proj_{\Act}\) from \(Act^{\Agt} \times Act^{\Agt}\) to \(Act^{\Agt}\) which
 maps to the second component of the product, that is, Adam's action.
 
-For a history or play \(\rho\), define \(\pi_{  Out}(\rho)\) as the play
+For a history or play \(\rho\), define \(\pi_{  \textrm{Out}}(\rho)\) as the play
 \(\rho'\) for which, \(\rho'_i = \proj_V(\rho_i)\) and
 \(\move_i(\rho') = \proj_{\Act}(\move_i(\rho))\) for all $i$. This is thus the play
 induced by Adam's actions.
-Let us also denote $\Dev(\rho) = \proj_{\Dev}( last(\rho))$.
+Let us also denote $\Dev(\rho) = \proj_{\Dev}( \textrm{last}(\rho))$.
 
 We can associate a strategy of Eve to each strategy profile
 \(\sigma_{\Agt}\) such that she chooses the moves prescribed by
 \(\sigma_{\Agt}\) at each history of \(\devg(\mathcal{G})\). Formally, we write
 \(\kappa(\sigma_{\Agt})\) for the strategy defined by
-\(\kappa(\sigma_{\Agt})(\pi) = \sigma_{\Agt}(\proj_{  Out}(\pi))\) for all histories $\pi$.
+\(\kappa(\sigma_{\Agt})(\pi) = \sigma_{\Agt}(\proj_{  \textrm{Out}}(\pi))\) for all histories $\pi$.
 
 The following lemma states the correctness of the construction of the
 deviator game \(\devg(\mathcal{G})\), in the sense that it records the set of
@@ -527,12 +503,12 @@ strategy profile suggested by Eve.
   strategy profile, and \(\sigma_{\exists} = \kappa(\sigma_{\Agt})\) the
   associated strategy in the deviator game.
 
-  1.      If \(\rho \in   Out_{\devg(\mathcal{G})}((v,\emptyset),\sigma_\exists)\), then
-    \(\Dev(\proj_{  Out}(\rho), \sigma_{\Agt} ) = \Dev(\rho)\).
-  2.      If \(\rho \in   Out_G(v)\) and for all index \(i\),
+  1.      If \(\rho \in   \textrm{Out}_{\devg(\mathcal{G})}((v,\emptyset),\sigma_\exists)\), then
+    \(\Dev(\proj_{  \textrm{Out}}(\rho), \sigma_{\Agt} ) = \Dev(\rho)\).
+  2.      If \(\rho \in   \textrm{Out}_G(v)\) and for all index \(i\),
     \(\rho'_i = (\rho_i , \Dev(\rho_{\le i} , \sigma_{\Agt}))\) and
     \(\move_i(\rho') = (\sigma_{\Agt} (\rho_{\le i} ), \move_i(\rho))\), then
-    \(\rho' \in   Out_{\devg(\mathcal{G})}((v,\emptyset), \sigma_\exists)\).
+    \(\rho' \in   \textrm{Out}_{\devg(\mathcal{G})}((v,\emptyset), \sigma_\exists)\).
 
 ````
 
@@ -540,21 +516,21 @@ strategy profile suggested by Eve.
 :class: dropdown tip
 
   We prove that for all $i$,
-  \(\Dev(\proj_{  Out}(\rho_{\le i} , \sigma_{\Agt}) = \proj_{\Dev} (\rho_{\le i} )\),
+  \(\Dev(\proj_{  \textrm{Out}}(\rho_{\le i} , \sigma_{\Agt}) = \proj_{\Dev} (\rho_{\le i} )\),
 which implies the property. The property holds for i = 0, since
 initially both sets are empty. Assume now that it holds for \(i \ge 0\).
 Then:
 
 $$
 
-  \Dev(\proj_{  Out}(\rho_{\le i+1}) , \sigma_{\Agt} ) = & \Dev(\proj_{  Out}(\rho_{\le i}), \sigma_{\Agt} ) \cup \Dev(\sigma_{\Agt} (\proj_{  Out}(\rho_{\le i})), \proj_{\Act} (\move_{i+1} (\rho))) \\
+  \Dev(\proj_{  \textrm{Out}}(\rho_{\le i+1}) , \sigma_{\Agt} ) = & \Dev(\proj_{  \textrm{Out}}(\rho_{\le i}), \sigma_{\Agt} ) \cup \Dev(\sigma_{\Agt} (\proj_{  \textrm{Out}}(\rho_{\le i})), \proj_{\Act} (\move_{i+1} (\rho))) \\
   & \text{(by definition of deviators)}\\
-  =& \Dev (\rho_{\le i} ) \cup \Dev(\sigma_{\Agt} (\proj_{  Out} (\rho_{\le i}), \proj_{\Act} (\move_{i+1} (\rho))) \\
+  =& \Dev (\rho_{\le i} ) \cup \Dev(\sigma_{\Agt} (\proj_{  \textrm{Out}} (\rho_{\le i}), \proj_{\Act} (\move_{i+1} (\rho))) \\
   & \text{(by induction hypothesis)} \\
   = & \Dev (\rho_{\le i} ) \cup \Dev(\sigma_\exists (\rho_{\le i} ), \proj_{\Act} (\move_{i+1}(\rho))) \\
   & \text{(by definition of \(\sigma_\exists\) )}\\
   = & \Dev (\rho_{\le i} ) \cup \Dev(\move_{i+1}(\rho)) \\
-  & \text{(by assumption \(\rho \in   Out_{\devg(\mathcal{G})} ((v,\emptyset), \sigma_\exists)\))}\\
+  & \text{(by assumption \(\rho \in   \textrm{Out}_{\devg(\mathcal{G})} ((v,\emptyset), \sigma_\exists)\))}\\
   = & \Dev(\rho_{\le i+1} ) \\
   & \text{(by construction of \(\devg(\mathcal{G})\))} \\
 
@@ -593,7 +569,7 @@ their strategies.
 Consider the following objective in \(\devg(\mathcal{G})\):
 
 $$
-  \Omega(\Coalition, P, b) = \{\rho \in   Out_{\devg(\mathcal{G})} \mid \Dev(\rho) \subseteq \Coalition \Rightarrow \payoff_P(\proj_{  Out}(\rho)) \le b\}.
+  \Omega(\Coalition, P, b) = \{\rho \in   \textrm{Out}_{\devg(\mathcal{G})} \mid \Dev(\rho) \subseteq \Coalition \Rightarrow \payoff_P(\proj_{  \textrm{Out}}(\rho)) \le b\}.
 $$
 
 Intuitively, this says that if only players
@@ -609,7 +585,7 @@ $P$ against coalition \(\Coalition\) corresponds to a winning strategy for
   Let \(\Coalition \subseteq \Agt\) be a coalition,
   \(\sigma_{\Agt}\) be a strategy profile, \(b \in \mathbb{R}\) a bound,
   and \(P\) a player. For all strategies \(\sigma'_\Coalition\), vertex $v_0$,
-  and coalition \Coalition, \(\payoff_P(  Out_{\devg(\mathcal{G})}(v_0, \sigma_{-\Coalition}, \sigma'_\Coalition)) \le b\) if, and
+  and coalition \Coalition, \(\payoff_P(  \textrm{Out}_{\devg(\mathcal{G})}(v_0, \sigma_{-\Coalition}, \sigma'_\Coalition)) \le b\) if, and
   only if, \(\kappa(\sigma_{\Agt})\) is winning in \(\devg(\mathcal{G})\) for objective
   \(\Omega(\Coalition, P, b)\).
 
@@ -659,7 +635,7 @@ deviators.
 :label: 13-thm:dev-nash
 
   Let \(\mathcal{G} = (\mathcal{A}, (\payoff_P)_{P \in \Agt})\) be a game, \(\sigma_{\Agt}\) a strategy
-  profile in \(\mathcal{G}\), vertex $v_0$, and \(F = (\payoff_P(  Out_{\mathcal{A}}(v_0,\sigma_{\Agt})))_{P\in \Agt}\)
+  profile in \(\mathcal{G}\), vertex $v_0$, and \(F = (\payoff_P(  \textrm{Out}_{\mathcal{A}}(v_0,\sigma_{\Agt})))_{P\in \Agt}\)
   the payoff
   profile of \(\sigma_{\Agt}\) from $v_0$. The strategy profile \(\sigma_{\Agt}\) is a
   Nash equilibrium if, and only if, strategy \(\kappa(\sigma_{\Agt})\) is
@@ -667,7 +643,7 @@ deviators.
 
 $$N(F) = \{\rho \mid |\Dev(\rho)| \ne 1\}
     \cup \bigcup_{P\in \Agt} \{\rho \mid \Dev(\rho) = \{P\}
-    \land \payoff_P(\proj_{  Out}(\rho)) \le F_P\}.$$
+    \land \payoff_P(\proj_{  \textrm{Out}}(\rho)) \le F_P\}.$$
 
 ````
 
@@ -691,7 +667,7 @@ $$N(F) = \{\rho \mid |\Dev(\rho)| \ne 1\}
 *    If \(|\Dev(\rho)| \ne 1\), then \(\rho\) is in \(N(F)\) by
   definition.
 *    If \(|\Dev(\rho)| = 1\), then for \(\{P\} = \Dev(\rho)\),
-  \(\payoff_P(\proj_{  Out}(\rho)) \leq F_P\) because
+  \(\payoff_P(\proj_{  \textrm{Out}}(\rho)) \leq F_P\) because
   \(\kappa(\sigma_{\Agt})\) is winning for
   \(\Omega(\Dev(\rho), P, F_P)\). Therefore \(\rho\) is
   in \(N(F)\).
@@ -708,7 +684,7 @@ Assume that
 \(\rho \in N(F)\). We show that \(\rho\) belongs to
 \(\Omega(\{P\}, P, F_P)\):
 
-*    If \(\Dev(\rho) = \varnothing\) then \(\rho =   Out(v_0, \sigma_{\Agt})\) and
+*    If \(\Dev(\rho) = \varnothing\) then \(\rho =   \textrm{Out}(v_0, \sigma_{\Agt})\) and
   \(\payoff_P(\rho) = F_P\), so \(\rho\) is in
   \(\Omega(\{P\},P, F_P)\)
 *    If \(\Dev(\rho) \not\subseteq \{ P \}\), then
@@ -740,9 +716,9 @@ we can deduce from the previous theorem an algorithm that
 constructs a Nash equilibrium if there exists one. We construct the
 deviator game and note that we can reduce the number of vertices as
 follows: since  \(\Dev(\rho_{\le k})\) is nondecreasing,
-we know that  Eve wins whenever this set has at least two elements.
+we know that  \textrm{Eve} wins whenever this set has at least two elements.
 In the construction, states with at least two deviators can be replaced by a
-sink vertex that is winning for  Eve. This means that the constructed
+sink vertex that is winning for  \textrm{Eve}. This means that the constructed
 game has at most \(n \times (|\Agt| + 1) + 1\) states.
 
 The objective can be expressed as a Parity condition in the following
@@ -757,7 +733,7 @@ Notice that the colouring function $c'$ inverts the parity
 in the case where there is a single deviator who is losing in the
 prescribed strategy profile (that is, $F_P=0$). In fact,
 when $F_P=1$, the player cannot obtain more since they are already winning
-so the colour is set to $2\cdot \max_v c_P(v) $ which is winning for  Eve.
+so the colour is set to $2\cdot \max_v c_P(v) $ which is winning for  \textrm{Eve}.
 
 ````{prf:lemma} NEEDS TITLE AND LABEL 
   We have \(\maxinf(c'(\rho_i)) \in 2 \mathbb{N}\) if, and
@@ -809,12 +785,10 @@ equilibrium with a given payoff.
 ````
 
 (13-subsection:extensions-of-nash-equilibria)=
-## Extensions of Nash
-Equilibria
+## Extensions of Nash Equilibria
 
 (13-subsection:subgame-perfect-equilibria)=
-### Subgame Perfect
-Equilibria
+### Subgame Perfect Equilibria
 
 Nash equilibria present the disadvantage that once a player has deviated,
 the others will try to punish him, forgetting everything about their own
@@ -867,35 +841,13 @@ reachability objectives.
 
 ````
 
-\begin{figure}
-\begin{center}  
-\begin{tikzpicture}
-  \draw (0,0) node[draw, inner sep=7pt] (V0) {$v_0$};
-  \draw (3,1) node[draw, inner sep=7pt] (V1) {$v_1$};
-  \draw (3,-1) node[draw, inner sep=7pt] (V2) {$v_2$};
-  \draw (6,2) node[draw, inner sep=7pt] (V3) {$\Omega_1$};
-  \draw (6,0.6) node[draw, inner sep=7pt] (V4) {$\Omega_2$};
-  \draw (6,-0.6) node[draw, inner sep=7pt] (V5) {$\Omega_1, \Omega_2$};
-  \draw (6,-2) node[draw, inner sep=7pt] (V6) {$\varnothing$};
-
-  \draw[-latex'] (-1, 0) -- (V0);
-  \draw[-latex'] (V0) -- node[sloped, text width=1cm, above]{$(\ast, a)$} (V1);
-  \draw[-latex'] (V0) -- node[sloped, text width=1cm, above]{$(\ast, b)$} (V2);
-  \draw[-latex'] (V1) -- node[sloped, text width=1cm, above]{$(a, \ast)$} (V3);
-  \draw[-latex'] (V1) -- node[sloped, text width=1cm, above]{$(b, \ast)$} (V4);
-  \draw[-latex'] (V2) -- node[sloped, text width=1cm, above]{$(a, \ast)$} (V5);
-  \draw[-latex'] (V2) -- node[sloped, text width=1cm, above]{$(b, \ast)$} (V6);
-  \draw[-latex'] (V3) .. controls +(2,1) and +(2,-1) .. (V3);
-  \draw[-latex'] (V4) .. controls +(2,1) and +(2,-1) .. (V4);
-  \draw[-latex'] (V5) .. controls +(2,1) and +(2,-1) .. (V5);
-  \draw[-latex'] (V6) .. controls +(2,1) and +(2,-1) .. (V6);
-\end{tikzpicture}
-\caption{Two-player game with reachability objectives. The goal of
+```{figure} ./../FigAndAlgos/13-fig:ex-subgame.png
+:name: 13-fig:ex-subgame
+:align: center
+Two-player game with reachability objectives. The goal of
   player 1 is to reach a state labeled with $\Omega_1$ and that of
-  player 2 is to reach a state labeled with $\Omega_2$. }
-\label{13-fig:ex-subgame}
-\end{center}
-\end{figure}
+  player 2 is to reach a state labeled with $\Omega_2$. 
+```
 
 (13-subsec:robust-equilibria)=
 ### Robust equilibria
@@ -938,28 +890,28 @@ strategy profile \(\sigma_{\Agt}\), and parameters \(k\), \(t\), we have
 *    The strategy profile \(\sigma_{\Agt}\) is \(k\)-resilient if, and only
   if, strategy \(\kappa(\sigma_{\Agt})\) is winning in \(\devg(\mathcal{A})\) for the
   **resilience objective** \(\mathcal{R}(k,F)\) where
-  \(F = (\payoff_P(  Out_{\mathcal{A}}(v_0, \sigma_{\Agt})))_{P \in \Agt}\) is the payoff profile of
+  \(F = (\payoff_P(  \textrm{Out}_{\mathcal{A}}(v_0, \sigma_{\Agt})))_{P \in \Agt}\) is the payoff profile of
   \(\sigma_{\Agt}\) and \(\mathcal{R}(k,F)\) is defined by:
 
 $$
     \begin{array}{ll}
-      \mathcal{R}(k,F) = & \{ \rho \in   Out_{\devg(\mathcal{A})}\mid   |\Dev(\rho)| > k \} \\
+      \mathcal{R}(k,F) = & \{ \rho \in   \textrm{Out}_{\devg(\mathcal{A})}\mid   |\Dev(\rho)| > k \} \\
                           &\cup
-                            \{ \rho  \in   Out_{\devg(\mathcal{A})} \mid   |\Dev(\rho)| = k \land \forall P \in \Dev(\rho).\ \payoff_{P}(\proj_{  Out}(\rho)) \le F_P\} \\
-                          & \cup \{ \rho  \in   Out_{\devg(\mathcal{A})}\mid   |\Dev(\rho)| < k \land \forall P \in \Agt.\ \payoff_{P}(\proj_{  Out}(\rho)) \le F_P\}.
+                            \{ \rho  \in   \textrm{Out}_{\devg(\mathcal{A})} \mid   |\Dev(\rho)| = k \land \forall P \in \Dev(\rho).\ \payoff_{P}(\proj_{  \textrm{Out}}(\rho)) \le F_P\} \\
+                          & \cup \{ \rho  \in   \textrm{Out}_{\devg(\mathcal{A})}\mid   |\Dev(\rho)| < k \land \forall P \in \Agt.\ \payoff_{P}(\proj_{  \textrm{Out}}(\rho)) \le F_P\}.
     \end{array}
   $$
 
 *    The strategy profile \(\sigma_{\Agt}\) is \(t\)-immune if, and only if,
   strategy \(\kappa(\sigma_{\Agt})\) is winning for the **immunity
   objective** \(\mathcal{I}(t,F)\) where
-  \(F = (\payoff(  Out_{\mathcal{A}}(v_0, \sigma_{\Agt})))_{P \in \Agt}\) is the payoff profile of
+  \(F = (\payoff(  \textrm{Out}_{\mathcal{A}}(v_0, \sigma_{\Agt})))_{P \in \Agt}\) is the payoff profile of
   \(\sigma_{\Agt}\) and \(\mathcal{I}(t,F)\) is defined by:
 
 $$
     \begin{array}{ll}
-    \mathcal{I}(t,F) = & \{ \rho  \in   Out_{\devg(\mathcal{A})} \mid |\Dev(\rho)| > t \}  \\
-      & \cup \{ \rho  \in   Out_{\devg(\mathcal{A})} \mid   \forall P \in \Agt \setminus \Dev(\rho).\  F_P \le \payoff_{P}(\proj_{  Out}(\rho)) \}.
+    \mathcal{I}(t,F) = & \{ \rho  \in   \textrm{Out}_{\devg(\mathcal{A})} \mid |\Dev(\rho)| > t \}  \\
+      & \cup \{ \rho  \in   \textrm{Out}_{\devg(\mathcal{A})} \mid   \forall P \in \Agt \setminus \Dev(\rho).\  F_P \le \payoff_{P}(\proj_{  \textrm{Out}}(\rho)) \}.
     \end{array}
   $$
 
@@ -972,7 +924,7 @@ $$
         $$
 
  where
-        \(F = (\payoff_P(  Out_{\mathcal{A}}(v_0, \sigma_{\Agt})))_{P \in \Agt}\) is the payoff profile of
+        \(F = (\payoff_P(  \textrm{Out}_{\mathcal{A}}(v_0, \sigma_{\Agt})))_{P \in \Agt}\) is the payoff profile of
         \(\sigma_{\Agt}\).
 
 We omit the proof and encourage the reader to do it by themselves.
@@ -1014,7 +966,7 @@ case of deviation, we know that the deviator belongs to the set of suspects alth
 we cannot know which one has deviated for sure so Eve must ensure this for all suspects.
 
 ````{prf:example} NEEDS TITLE AND LABEL 
-  Consider the example of figure {prf:ref}`fig:hidden`.
+  Consider the example of {numref}`13-fig:hidden`.
   If actions were visible there would be an equilibrium ending in the
   state labeled with $\Omega_3$: player 3 simply has to punish the player
   who would deviate from this path.
@@ -1024,7 +976,7 @@ we cannot know which one has deviated for sure so Eve must ensure this for all s
   Since Player 3 cannot punish both players at the same time, there is no
   Nash equilibrium ending satisfying $\Omega_3$.
 
-  Consider the example of figure {prf:ref}`fig:hidden`.
+  Consider the example of {numref}`13-fig:hidden`.
   If actions were visible there would be an equilibrium ending in the
   state labeled with $\Omega_3$: player 3 simply has to punish the player
   who would deviate from this path.
@@ -1036,31 +988,9 @@ we cannot know which one has deviated for sure so Eve must ensure this for all s
 
 ````
 
-\begin{figure}
-\begin{center}
-\begin{tikzpicture}
-  \draw (0,0) node[draw, inner sep=7pt] (V0) {$v_0$};
-  \draw (3,1) node[draw, inner sep=7pt] (V1) {$v_1$};
-  \draw (3,-1) node[draw, inner sep=7pt] (V2) {$v_2$};
-  \draw (6,2) node[draw, inner sep=7pt] (V3) {$\Omega_1$};
-  \draw (6,0.6) node[draw, inner sep=7pt] (V4) {$\Omega_2$};
-  \draw (6,-0.6) node[draw, inner sep=7pt] (V5) {$\Omega_3$};
-  \draw (6,-2) node[draw, inner sep=7pt] (V6) {$\varnothing$};
-
-  \draw[-latex'] (-1, 0) -- (V0);
-  \draw[-latex'] (V0) -- node[sloped, text width=1cm]{$(a, a, \ast)$\\$(b, b, \ast)$} (V1);
-  \draw[-latex'] (V0) -- node[sloped, text width=1cm]{$(a, b, \ast)$ \\ $(b, a, \ast)$} (V2);
-  \draw[-latex'] (V1) -- node[sloped, text width=1cm, above]{$(\ast, \ast, a)$} (V3);
-  \draw[-latex'] (V1) -- node[sloped, text width=1cm, above]{$(\ast, \ast, b)$} (V4);
-  \draw[-latex'] (V2) -- node[sloped, text width=1cm, above]{$(\ast, \ast, a)$} (V5);
-  \draw[-latex'] (V2) -- node[sloped, text width=1cm, above]{$(\ast, \ast, b)$} (V6);
-  \draw[-latex'] (V3) .. controls +(2,1) and +(2,-1) .. (V3);
-  \draw[-latex'] (V4) .. controls +(2,1) and +(2,-1) .. (V4);
-  \draw[-latex'] (V5) .. controls +(2,1) and +(2,-1) .. (V5);
-  \draw[-latex'] (V6) .. controls +(2,1) and +(2,-1) .. (V6);
-k\end{tikzpicture}
-\caption{Three-player game with hidden actions. The goal of
-  player $i$ is to reach a state labeled with $\Omega_i$.}
-\label{fig:hidden}
-\end{center}
-\end{figure}
+```{figure} ./../FigAndAlgos/13-fig:hidden.png
+:name: 13-fig:hidden
+:align: center
+Three-player game with hidden actions. The goal of
+  player $i$ is to reach a state labeled with $\Omega_i$.
+```

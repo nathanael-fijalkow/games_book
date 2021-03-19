@@ -104,7 +104,7 @@ Hence, we can extract from $S$ a set $Q$ inducing a strongly-connected sub-chain
  In a strongly connected Markov chain (with a finite set of vertices $V$) there exists a unique invariant distribution $\vec{z}$. Moreover, for every vector $\vec{h}\in  \mathbb{R}^{ V}$ the following equation holds with probability 1:
 
 $$
-\lim_{n \rightarrow \infty} \frac{1}{n} \sum_{i=0}^{n-1}\vec{h}_{ In(\pi_i)} = \sum_{v\in V}  \vec{z}_v\cdot \vec{h}_v.
+\lim_{n \rightarrow \infty} \frac{1}{n} \sum_{i=0}^{n-1}\vec{h}_{ \textrm{In}(\pi_i)} = \sum_{v\in V}  \vec{z}_v\cdot \vec{h}_v.
 $$
 
 (In particular, the limit is well-defined with probability 1).
@@ -129,7 +129,7 @@ To prove feasibility, note that setting $\vec{w}_{(v,a)}=0$ for each $v\in  V\se
 
 To prove optimality, assume that the objective value of $\vec{w}$ is smaller than $r^*$. Then we can mirror the construction from the previous paragraph and produce a feasible solution ${\hat{\vec{w}}_{(v,a)}}$ whose $(Q\times A)$-indexed components are zero and the rest are normalized components of $\bar{\vec{x}}$. Then $r^*$ is a convex combination of the objective values of $\vec{w}$ and $\hat{\vec{w}}$, so $\hat{\vec{w}}$ must have a strictly larger value than $r^*$, a contradiction with the latter's optimality.
 
-We now plug $ \vec{w} $ into the ergodic theorem as follows: As in {prf:ref}`5-lem:mc-rec`, it easy to prove that setting $\vec{z}_v=\sum_{a\in A}\vec{w}_{(v,a)}$ yields an invariant distribution. Now put $\vec{h}_v=\sum_{a\in A}\sigma(a\mid v)\cdot  c(v,a)$ ($ =  \sum_{w \in  V}  P_{v,w}\cdot  c(v,w)$). From the Ergodic theorem we get that $\lim_{n \rightarrow \infty} \frac{1}{n} \sum_{i=0}^{n-1}\vec{h}_{ In(\pi_i)}$ almost-surely exists and equals 
+We now plug $ \vec{w} $ into the ergodic theorem as follows: As in {prf:ref}`5-lem:mc-rec`, it easy to prove that setting $\vec{z}_v=\sum_{a\in A}\vec{w}_{(v,a)}$ yields an invariant distribution. Now put $\vec{h}_v=\sum_{a\in A}\sigma(a\mid v)\cdot  c(v,a)$ ($ =  \sum_{w \in  V}  P_{v,w}\cdot  c(v,w)$). From the Ergodic theorem we get that $\lim_{n \rightarrow \infty} \frac{1}{n} \sum_{i=0}^{n-1}\vec{h}_{ \textrm{In}(\pi_i)}$ almost-surely exists and equals 
 
 $$
 
@@ -140,11 +140,11 @@ $$
 $$ (5-eq:mc-opt-limit)
 
 It remains to take a step from the left-hand side of {eq}`5-eq:ergodic-use` towards the mean payoff. To this end, we construct a new Markov chain $\mathcal{M}_Q'$ from $\mathcal{M}_Q$ by splitting every edge $(u,v)$ with a new dummy vertex $d_{u,v}$ (i.e., $d_{u,v}$ has one edge incoming from $u$ with probability $P_{u,v}$ and one edge outgoing to $v$ with probability $1$). In $\mathcal{M}_Q'$ we define a vector $\vec{h}'$ s.t. for each vertex $d_{u,v}$ the vector $ \vec{h}' $ has the $ d_{u,v} $-component equal to $c(u,v)$, while the components corresponding to the original vertices are zero. It is easy to check that $\mathcal{M}_Q'$  is strongly connected and that it has an invariant distribution $\vec{z}'$ defined by $\vec{z}'_v= \vec{z}_v/2$ for $v$ in $Q$ and $\vec{z}'_{d_{u,v}}=\frac{ \vec{z}_u\cdot P_{u,v}}{2}$ for $(u,v)$ an edge of $\mathcal{M}_Q$.
-Also, by easy induction, for each play $\pi$ of length $n$ in $\mathcal{M}_Q$ it holds $\frac{1}{n}\sum_{i=0}^{n-1} c( \pi_i) = \frac{1}{n}\sum_{i=0}^{2n-1}\vec{h}'_{ In( \pi_i')}$, where $\pi'$ is the unique play in $\mathcal{M}_Q'$ obtained from $\pi$ by splitting edges with appropriate dummy vertices. Hence, 
+Also, by easy induction, for each play $\pi$ of length $n$ in $\mathcal{M}_Q$ it holds $\frac{1}{n}\sum_{i=0}^{n-1} c( \pi_i) = \frac{1}{n}\sum_{i=0}^{2n-1}\vec{h}'_{ \textrm{In}( \pi_i')}$, where $\pi'$ is the unique play in $\mathcal{M}_Q'$ obtained from $\pi$ by splitting edges with appropriate dummy vertices. Hence, 
 
 $$
 
-\lim_{n\rightarrow \infty}\frac{1}{n}\sum_{i=0}^{n-1} c( \pi_i) = 2\cdot \lim_{n\rightarrow \infty}\frac{1}{n}\sum_{i=0}^{n-1}\vec{h}'_{ In( \pi_i')},
+\lim_{n\rightarrow \infty}\frac{1}{n}\sum_{i=0}^{n-1} c( \pi_i) = 2\cdot \lim_{n\rightarrow \infty}\frac{1}{n}\sum_{i=0}^{n-1}\vec{h}'_{ \textrm{In}( \pi_i')},
 $$ (5-eq:mc-opt-limit)
  provided that both limits exist. By the ergodic theorem  applied to $\mathcal{M}_Q'$, we have that the RHS  limit in {eq}`5-eq:mc-opt-limit` is defined with probability 1 and equal to
 
@@ -154,7 +154,7 @@ $$
 
 $$
 
-the last equality being shown above. Plugging this into {eq}`5-eq:mc-opt-limit` yields that if a limit on the LHS (i.e., the mean payoff of a play) is well-defined with probability 1, then it is equal to $r^*$ also with probability 1. But if there was a set $L$ of positive probability in $\mathcal{M}_Q$ with $\lim_{n \rightarrow \infty}\frac{1}{n}\sum_{i=0}^{n-1} c( \pi_i)$ undefined for each $\pi\in L$, by splitting the plays in $L$ we would obtain a positive-probability set of plays in $\mathcal{M}_Q'$ in which $\lim_{n \rightarrow \infty}\frac{1}{n}\sum_{i=0}^{n-1}\vec{h}'_{ In( \pi_i')}$ is also undefined, a contradiction with the ergodic theorem.
+the last equality being shown above. Plugging this into {eq}`5-eq:mc-opt-limit` yields that if a limit on the LHS (i.e., the mean payoff of a play) is well-defined with probability 1, then it is equal to $r^*$ also with probability 1. But if there was a set $L$ of positive probability in $\mathcal{M}_Q$ with $\lim_{n \rightarrow \infty}\frac{1}{n}\sum_{i=0}^{n-1} c( \pi_i)$ undefined for each $\pi\in L$, by splitting the plays in $L$ we would obtain a positive-probability set of plays in $\mathcal{M}_Q'$ in which $\lim_{n \rightarrow \infty}\frac{1}{n}\sum_{i=0}^{n-1}\vec{h}'_{ \textrm{In}( \pi_i')}$ is also undefined, a contradiction with the ergodic theorem.
 
 ````
 
@@ -268,7 +268,7 @@ If a linear program in a standard form has an optimal solution, then it has also
 
 ````{admonition} Proof
 :class: dropdown tip
-[Sketch]
+
 The existence of a basic optimal solution is a well-known linear programming fact, e.g. the standard simplex algorithm works by traversing the set of basic feasible solutions until it finds an optimal one {cite}`Matousek:2007`. For computing an optimal basic solution, we can use one of the polynomial-time interior-point methods for linear programming, such as the path-following method {cite}`Karmarkar:1984,Gonzaga:1992`. While these methods work by traversing the interior of the polyhedron of feasible solutions, they converge, in polynomial time, to a point that is closer to the optimal basic solution than to all the other basic solutions. By a process called **purification,** such a point can be then converted to the closest basic solution, i.e. to the optimal one {cite}`Gonzaga:1992`.
 
 ````

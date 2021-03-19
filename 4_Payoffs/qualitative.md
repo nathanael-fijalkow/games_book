@@ -19,10 +19,10 @@ $$
  \mathtt{Sup}(\rho) = \sup_i \rho_i.
 $$
 
-This extends the qualitative objective $\mathtt{Reach}[ Win]$ in the following sense: 
-the objective $\mathtt{Reach}[ Win]$ corresponds to the quantitative objective $\mathtt{Sup}$ using two weights: $0$ for $Lose$ and $1$ for $Win$.
-The outcome of a sequence is $1$ if and only if the sequence contains $Win$.
-It refines $\mathtt{Reach}[ Win]$ by specifying (numerical) preferences.
+This extends the qualitative objective $\mathtt{Reach}[ \textrm{Win}]$ in the following sense: 
+the objective $\mathtt{Reach}[ \textrm{Win}]$ corresponds to the quantitative objective $\mathtt{Sup}$ using two weights: $0$ for $\textrm{Lose}$ and $1$ for $\textrm{Win}$.
+The outcome of a sequence is $1$ if and only if the sequence contains $\textrm{Win}$.
+It refines $\mathtt{Reach}[ \textrm{Win}]$ by specifying (numerical) preferences.
 
 The dual objective is to consider the smallest weight:
 
@@ -30,9 +30,9 @@ $$
  \mathtt{Inf}(\rho) = \inf_i \rho_i.
 $$
 
-The qualitative objective $\mathtt{Safe}[ Win]$ corresponds to the quantitative objective $\mathtt{Inf}$
-using two weights: $0$ for $Win$ and $1$ for $Lose$.
-The outcome of a sequence is $0$ if and only if the sequence does not contain $Lose$.
+The qualitative objective $\mathtt{Safe}[ \textrm{Win}]$ corresponds to the quantitative objective $\mathtt{Inf}$
+using two weights: $0$ for $\textrm{Win}$ and $1$ for $\textrm{Lose}$.
+The outcome of a sequence is $0$ if and only if the sequence does not contain $\textrm{Lose}$.
 
 Similarly the following quantitative objectives refine $\mathtt{Buchi}$ and $\mathtt{CoBuchi}$:
 
@@ -60,8 +60,8 @@ and for all algorithms the space complexity is $O(m)$.
 
 We sketch the algorithm for the objective $\mathtt{Sup}$, the other cases are similar.
 Let $c_1 < \dots < c_k$ be the ordered enumeration of all weights in the game.
-The set of vertices of value $c_k$ is $Attr_\mathrm{Eve}(c_k)$, which can be computed in linear time.
-We then construct the subgame $\Game'$ of $\Game$ induced by $V \setminus  Attr_\mathrm{Eve}(c_k)$,
+The set of vertices of value $c_k$ is $\textrm{Attr}_\mathrm{Eve}(c_k)$, which can be computed in linear time.
+We then construct the subgame $\Game'$ of $\Game$ induced by $V \setminus  \textrm{Attr}_\mathrm{Eve}(c_k)$,
 and continue recursively: $\Game'$ has one less weight.
 
 A naive complexity analysis yields a time complexity $O(km)$, but it is easily refined to $O(m)$ 

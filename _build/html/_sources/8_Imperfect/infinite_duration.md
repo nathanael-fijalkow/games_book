@@ -225,12 +225,6 @@ everything, Adam is blind (he only observes his own actions),
 and Eve's objective is to visit only finitely many times the ${\large \frownie}$-state. The initial state is $\large{\frownie}$. The set of actions is $\{a,b,c,d\}$.
 All transitions are deterministic.%$t$.
 
-```{figure} ./../FigAndAlgos/chap9fig4.png
-:name: chap9fig4
-:align: center
-Co-B&uuml;chi games are not qualitatively determined.
-```
-
 On one hand, no strategy $\Sigma$
 is almost-surely winning for Eve
 for her co-B&uuml;chi objective.
@@ -311,7 +305,7 @@ almost-surely winning for Eve is
 \EXPTIME-complete.
 In safety games
 Eve is perfectly
-informed {about the state}, the decision problem is in  PTIME.
+informed {about the state}, the decision problem is in  \textrm{PTIME}.
 
 ````
 
@@ -352,8 +346,8 @@ $\mathcal{B}_{\text{Eve}}^n$ the random variable defined by}
 
 $$
 
-&{ \mathcal{B}_{\text{Eve}}^{0} =  supp(\delta)}\\
-&{ \mathcal{B}_{\text{Eve}}^{n+1} = \mathcal{B}_{\text{Eve}}( supp(\delta),C_1,\ldots,C_{n+1})
+&{ \mathcal{B}_{\text{Eve}}^{0} =  \textrm{supp}(\delta)}\\
+&{ \mathcal{B}_{\text{Eve}}^{n+1} = \mathcal{B}_{\text{Eve}}( \textrm{supp}(\delta),C_1,\ldots,C_{n+1})
 =  \mathcal{B}_{\text{Eve}}( \mathcal{B}_{\text{Eve}}^n,C_{n+1})
 \enspace.}
 
@@ -577,7 +571,7 @@ In a B&uuml;chi game
 with observable actions,
 let $\delta\in\Delta(K)$ be an initial distribution which is not positively 
 winning for Adam,
-i.e. $supp(\delta)\not\in  \mathcal{L}_{\text{Adam},>0}$.
+i.e. $\textrm{supp}(\delta)\not\in  \mathcal{L}_{\text{Adam},>0}$.
 Then for every strategy $\tau$ of Adam
 
 $$
@@ -591,7 +585,7 @@ In a B&uuml;chi game
 with observable actions,
 let $\delta\in\Delta(K)$ be an initial distribution which is not positively 
 winning for Adam,
-i.e. $supp(\delta)\not\in  \mathcal{L}_{\text{Adam},>0}$.
+i.e. $\textrm{supp}(\delta)\not\in  \mathcal{L}_{\text{Adam},>0}$.
 Then for every strategy $\tau$ of Adam
 
 $$
@@ -641,8 +635,6 @@ of Eve is $\mathcal{B}_{\text{Eve}}(L,s_a)$. Thus whatever action Eve chooses,
 she might lose with positive probability.
 
 ````
-
-\medskip 
 
 The notion of maximal strategy being defined,
 we can complete the proof of {prf:ref}`8-thm:qualitative_determinacy`.
@@ -728,7 +720,7 @@ $$
 $$
 
 where the first implication holds because, by definition of $\sigma_{ \textsf{max}}$ and $E$,
-for every $s_1\cdots s_n\in CS^*,  supp(\sigma(s_1\cdots s_n))\subseteq  supp(\sigma_{ \textsf{max}}(s_1\cdots s_n))$
+for every $s_1\cdots s_n\in CS^*,  \textrm{supp}(\sigma(s_1\cdots s_n))\subseteq  \textrm{supp}(\sigma_{ \textsf{max}}(s_1\cdots s_n))$
 
 while the second implication is from {eq}`8-eq:winsafe`.
 Thus $\probimp{\sigma,\tau}{\delta_L}{ {\tt Safety}}= 1$ and we get
@@ -773,8 +765,6 @@ $\probimp{\sigma,\tau'}{\delta_L}{ {\tt CoBuchi} } >0 $
 thus $\tau'$ is positively winning from $L$.
 This contradicts the
 hypothesis $L\in   \mathcal{L}_{\text{Eve},=1}$. As a consequence we get {eq}`8-eq:LLpasM` by contradiction.
-
-\medskip
 
 Using {eq}`8-eq:LLpasM`, we apply {prf:ref}`8-lem:borelcantelli` to the collection 
 $\overline{  \mathcal{L}_{\text{Adam},>0}}$ and the strategy $\sigma_{ \textsf{max}}$.
@@ -829,7 +819,7 @@ are almost-surely or positively winning for various objectives.
 ````{prf:theorem} Deciding positive winning in reachability games
 :label: theo:qdec1
  
-In a reachability game each initial distribution $\delta$ is either positively winning for player $1$ or surely winning for player $2$, and this depends only on $supp(\delta)\subseteq  V$.
+In a reachability game each initial distribution $\delta$ is either positively winning for player $1$ or surely winning for player $2$, and this depends only on $\textrm{supp}(\delta)\subseteq  V$.
 
   The corresponding partition of $\mathcal{P}( V)$ is computable in
   time $\mathcal{O}\left(|G| \cdot 2^{| V|}\right)$, where $|G| $ denotes
@@ -976,7 +966,7 @@ It uses the algorithm for reachability games as a sub-procedure.
  In a B&uuml;chi game each initial distribution
   $\delta$ is either almost-surely winning for player $1$ or
   positively winning for player $2$, and this depends only on
-  $supp(\delta)\subseteq  V$.
+  $\textrm{supp}(\delta)\subseteq  V$.
 
 The corresponding partition of $\mathcal{P}( V)$ is computable in
 time $\mathcal{O}\left(2^{2^{|G|}}\right)$, where $|G|$ denotes the size of the description of the game,
@@ -1044,10 +1034,10 @@ initial supports from which:
 \begin{multline}
 \label{eq-dag}
 \tag{$\dag$}
-player $1$ has a strategy
-  which win positively the reachability game\\
-and also ensures at the same time
-  her belief to stay in   \mathcal{L}_\infty .
+\textrm{player $1$ has a strategy
+  which win positively the reachability game}\\
+\textrm{and also ensures at the same time
+  her belief to stay in }  \mathcal{L}_\infty .
 \end{multline}
 
 Property {prf:ref}`eq-dag` can be reformulated as a reachability

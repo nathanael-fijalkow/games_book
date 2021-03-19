@@ -65,7 +65,7 @@ $$
  \inf_\tau \sup_\sigma \mathbb{E}_{ \delta_0}^{\sigma,\tau}\enspace.
 $$
 
-This value is denoted $val( \delta_0)$
+This value is denoted $\textrm{val}( \delta_0)$
 and is computable .
 
 ```{margin}
@@ -278,11 +278,11 @@ We proceed with the proof of {prf:ref}`8-thm:finiteimperfecthaveval`.
 According to {prf:ref}`8-lem:mat`,
 the normal form has a value and optimal strategies
 for each player. 
-Denote $val_N$ the value
+Denote $\textrm{val}_N$ the value
 and $\Sigma^\sharp$ and $T^\sharp$ the optimal strategies.
 Let $\sigma^\sharp=\Phi'(\Sigma^\sharp)$.
 Then $\sigma^\sharp$ ensures a payoff
-of at least $val_N$ in the imperfect information game,
+of at least $\textrm{val}_N$ in the imperfect information game,
 because for every strategy $\tau$,
 
 $$
@@ -292,16 +292,16 @@ $$
 =
 \sum_{\sigma',\tau' \in  \text{Strat}_d}\Sigma^\sharp(\sigma') \Phi(\tau)(\tau')
 \mathbb{E}_{ \delta_0}^{\sigma',\tau'}
-\geq   val_N\enspace,
+\geq   \textrm{val}_N\enspace,
 $$
 
 where the first equalities are applications of {prf:ref}`8-lem:impinffinite`
 and the inequality is by optimality of $\Sigma^\sharp$.
 Symmetrically, 
 $\tau^\sharp=\Phi'(T^\sharp)$ guarantees 
-$\forall \sigma,\mathbb{E}_{ \delta_0}^{\sigma,\tau^\sharp}\leq  val_N$. 
+$\forall \sigma,\mathbb{E}_{ \delta_0}^{\sigma,\tau^\sharp}\leq  \textrm{val}_N$. 
 Thus the value of the game with finite duration
-is $val_N$ and $\sigma^\sharp$
+is $\textrm{val}_N$ and $\sigma^\sharp$
 and $\tau^\sharp$ are optimal.\qed
 
 (8-subsec:reduction_linear_programming)=
@@ -403,7 +403,7 @@ $$
 
 We show that the following linear program with variables
   $(p_r)_{r \in R_E}$, $(v_r)_{r\in R_A}$
-  has an optimal solution which equals to $val( \delta_0)$.
+  has an optimal solution which equals to $\textrm{val}( \delta_0)$.
  For every sequences of signals $r \in R_A$
  we denote $T_A(r)$ the (possibly empty)
  set of terminal plays whose sequence of signals for Adam is $r$.
@@ -434,7 +434,7 @@ that the optimal solution of the LP
 is
 
 $$
-  val( \delta_0) = \sup_\sigma \min\limits_{\tau\text{ deterministic}} \mathbb{E}_{ \delta_0}^{\sigma,\tau}\enspace.
+  \textrm{val}( \delta_0) = \sup_\sigma \min\limits_{\tau\text{ deterministic}} \mathbb{E}_{ \delta_0}^{\sigma,\tau}\enspace.
 $$
 
 The reason is that in a matrix game,

@@ -3,24 +3,6 @@
 
 ```{math}
 
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
 % Generic probability measure, also prob. measure operator
 
 \renewcommand{\Game}{\game}
@@ -33,7 +15,7 @@ In this section, we turn to two other objectives deeply studied in {prf:ref}`cha
 
 We start with total-payoff games. As for the mean-payoff, we explicitly consider the two variants, $\mathtt{TotalPayoff}^+$ and $\mathtt{TotalPayoff}^-$, for the lim-sup and lim-inf definitions respectively. While {prf:ref}`chap:payoffs` was written using the lim-sup variant, all results are identical for the lim-inf one in one-dimension games {cite}`Gawlitza&Seidl:2009`.
 
-Recall that one-dimension total-payoff games are memoryless determined and solving them is in $NP \cap  coNP$ (even in $UP \cap  coUP$ {cite}`Gawlitza&Seidl:2009`)\todo{Could be moved in {prf:ref}`chap:payoffs`}. Furthermore, {prf:ref}`chap:payoffs` taught us that total-payoff can be seen as a **refinement** of mean-payoff, as it permits to reason about low (using the lim-inf variant) and high (using the lim-sup one) points of partial sums along a play when the mean-payoff is zero. We formalize this relationship in the next lemma, and study what happens in multiple dimensions.
+Recall that one-dimension total-payoff games are memoryless determined and solving them is in $\textrm{NP} \cap  \textrm{coNP}$ (even in $\textrm{UP} \cap  \textrm{coUP}$ {cite}`Gawlitza&Seidl:2009`)\todo{Could be moved in {prf:ref}`chap:payoffs`}. Furthermore, {prf:ref}`chap:payoffs` taught us that total-payoff can be seen as a **refinement** of mean-payoff, as it permits to reason about low (using the lim-inf variant) and high (using the lim-sup one) points of partial sums along a play when the mean-payoff is zero. We formalize this relationship in the next lemma, and study what happens in multiple dimensions.
 
 ````{prf:lemma} NEEDS TITLE 12-lem:MPTP
 :label: 12-lem:MPTP
@@ -73,7 +55,7 @@ All other implications are deduced false as they would otherwise contradict the 
 
 ````
 
-We see that the relationship between mean-payoff and total-payoff games breaks in multiple dimensions. Nonetheless, one may still hope for good properties for the latter, as one-dimension total-payoff games are in $NP \cap  coNP$ ({prf:ref}`chap:payoffs`). \todo{I need label for Subsect. 4.4.3.} This hope, however, will not last long.
+We see that the relationship between mean-payoff and total-payoff games breaks in multiple dimensions. Nonetheless, one may still hope for good properties for the latter, as one-dimension total-payoff games are in $\textrm{NP} \cap  \textrm{coNP}$ ({prf:ref}`chap:payoffs`). \todo{I need label for Subsect. 4.4.3.} This hope, however, will not last long.
 
 ## Undecidability
 

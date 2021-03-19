@@ -25,7 +25,6 @@ fixpoints~\cite{LS98}.
 
 
 \subsection*{A Forward Algorithm for Finite-State Games}
-%Give the full proof.
 
 The original algorithm of Liu and Smolka is expressed in terms of
 \emph{(pre-)fixpoints} in \emph{dependency graphs}: a~dependency graph
@@ -35,13 +34,8 @@ states with sets of states.
 For any order-preserving 
 function~$f\colon 2^V\to2^V$
 (\emph{order-preserving} meaning non-decreasing for the $\subseteq$-relation),
-%\todo{Define order-preserving}
-a~\emph{pre-fixpoint} is a set~$X\subseteq V$ for which $f(X)\subseteq
-X$; it~is a \emph{fixpoint} if $f(X)=X$. By~Knaster-Tarski theorem, such
-functions always admit a least pre-fixpoint which is also the least fixpoint.
-% Observe that the least
-%pre-fixpoint and the least fixpoint coincide.
-%
+a~\emph{pre-fixpoint} is a set~$X\subseteq V$ for which $f(X)\subseteq X$; 
+it~is a \emph{fixpoint} if $f(X)=X$. By~Knaster-Tarski theorem, such functions always admit a least pre-fixpoint which is also the least fixpoint.
 
 Fix a dependency graph~$G=(V,E)$. 
 For~$W\subseteq V$,
@@ -78,13 +72,13 @@ states from which Eve can force a visit to~$X$ in one step.
 We~then~have:
 \begin{proposition}\label{9-prop:fixp-game}
 The least fixpoint of~$f_{\Win}$ in~$G$ corresponds to the set~$W$ of
-winning states for~\Eve in~$\calC$.
+winning states for Eve in~$\calC$.
 \end{proposition}
 
 \begin{proof}
-  The winning states of~\Eve form a pre-fixpoint of~$f_{\Win}$
-  containing~\Win: indeed, for any~$v\in f_{\Win}(W)$, either $v\in
-  \Win$, or \Eve has an action to move from~$v$ to some state
+  The winning states of Eve form a pre-fixpoint of~$f_{\Win}$
+  containing~$\Win$: indeed, for any~$v\in f_{\Win}(W)$, either $v\in
+  \Win$, or Eve has an action to move from~$v$ to some state
   in~$W$. Hence $v$ is winning, i.e., $v\in W$.
   
 %  indeed, in each winning state, Eve~has an action whose successors
@@ -93,8 +87,8 @@ winning states for~\Eve in~$\calC$.
 
   Conversely, from any state~$v$ that is not in the least
   pre-fixpoint~$X$, for any~edge~$(v,T)$, there is a state~$v'\in T$
-  that again is not in~$X$. This defines a strategy for \Adam to avoid
-  reaching~$\Win$, so that \Eve does not have a winning strategy from~$v$.
+  that again is not in~$X$. This defines a strategy for Adam to avoid
+  reaching~$\Win$, so that Eve does not have a winning strategy from~$v$.
 \end{proof}
 
 
@@ -128,10 +122,12 @@ winning states for~\Eve in~$\calC$.
                   }
                   }
                   \Return{$F(v_0)$}
-  \caption{Liu-Smolka algorithm\protect\footnotemark for least fixpoint of~$f_W$}
+%  \caption{Liu-Smolka algorithm\protect\footnotemark for least fixpoint of~$f_W$}
+  \caption{Liu-Smolka algorithm for least fixpoint of~$f_W$}
   \label{9-algo:LS98}
 \end{algorithm}
-\footnotetext{Our version of the algorithm slightly differs from the
+
+\footnote{Our version of the algorithm slightly differs from the
   original one~\cite{LS98}: we~let $\Dep(v'):=\{(v,T)\}$ at the penultimate line
   of the \textbf{while} loop (which otherwise results in a wrong
   result, as~already noticed in~\cite{JLSO13}), reinforce the
@@ -187,8 +183,8 @@ vertices can be updated to~$1$.
  %%   $\Dep(v)$ to $W$ when setting value of~$v$ to~$1$.}
 
 
-The correctness of this algorithm relies on the following lemma:
-\begin{lemma}[\cite{LS98}]\label{9-lemma:ls98}
+The correctness of this algorithm relies on the following lemma~\cite{LS98}:
+\begin{lemma}[Invariant]\label{9-lemma:ls98}
   The following properties hold at the end of each run in the
   \textbf{while} loop of \Cref{9-algo:LS98}:
   \begin{itemize}
@@ -247,9 +243,6 @@ The correctness of this algorithm relies on the following lemma:
     $(x,Y)\in\Wait^{i-1}$, or $(x,Y)\in\Dep^{i-1}(x')$ for some~$x'\in Y$
     with $F(x')=0$. In~the former case: since $x\not=v^i$,
     if~$(x,Y)\in\Wait^{i-1}$ then also $(x,Y)\in \Wait^i$;
-%    %, since
-%    %$\Wait^i=(\Wait^{i-1} \setminus\{(v^i,T^i)\})\cup
-%    %\Dep^{i-1}(v^i)$.
     in the latter case: if $(x,Y)\in\Dep^{i-1}(x')$ for some~$x'\in Y$
     with~$F(x')=0$, then \emph{(i)}~either $x'=v^i$, and
     $(x,Y)\in\Wait^i$ because $\Dep^{i-1}(v^i)\subseteq \Wait^i$
@@ -356,7 +349,7 @@ $F^n(v_0)=0$ and $\Wait^n=\emptyset$.
 \medskip
 It~remains to prove termination. For this, we~first notice that, for
 any hyper-edge~$(v,S)$, if $(v,S)\in\Dep^i(v')$ then $(v,S)\in\Wait^j$
-for some~$j<i$, and if $(v,S)\in\Wait^j$ or $(v,S)\in\Dep^j(v')$ for
+for some~$j < i$, and if $(v,S)\in\Wait^j$ or $(v,S)\in\Dep^j(v')$ for
 some~$v'$, then $F^j(v)\not=\bot$.
 
 We~then set
@@ -366,8 +359,6 @@ M=
 2\hskip-4pt\sum_{v\text{ s.t. }F(v)=\bot}\hskip-4pt \size{\{(v,S)\in E\}} 
 + \hskip-4pt\sum_{v\text{ s.t. }F(v)=0}\hskip-4pt \size{\Dep(v)}
 - \hskip-4pt\sum_{v\text{ s.t. }F(v)=1}\hskip-4pt \size{\Dep(v)}
-%\sum_{(v,S)\in\Wait}(|S|+1) + \sum_{v\text{ s.t. } F(v)=\bot} \sum_{(v,S)\in E} (|S|+1)
-%+ \sum_{v\mid F(v)=0} \sum_{(v',S)\in \Dep(v)} (|S|+1).
 \]
 again writing~$M^i$ for the value of~$M$ after the $i$-th run through
 the \textbf{while} loop.  This value is at most~$2\size{E}$ when
@@ -566,12 +557,8 @@ not contain any difficult argument.
   \item for any~$S\in\Passed$ and $q\in F(S)$,  $q$ is winning for~Eve;
   \item for any $S\in\Passed$ and $q\in S\setminus F(S)$,
     either
-    %the $\Wait$ list is not empty, 
     $\Wait$ contains a symbolic transition~$(S,\alpha,S')$ from~$S$
     with~$S'\in\Passed$,
-    %\todo{is it normal that this condition does not depend on~$q$?},
-    %% normal : ca veut dire ``le calcul n'est pas fini''
-    %\fbox{Condition removed; false initially: with $S'\in\Passed$},
     or
     \[
       q\notin \predt\Bigl(F(S)\cup \bigcup_{\substack{S\xrightarrow{c} V\\ V\in\Passed}} \predc(F(V)),\ \bigcup_{\substack{S\xrightarrow{u} V\\ V\in\Passed}} \predu(V\setminus F(V))\Bigr) \cap S.
@@ -841,7 +828,7 @@ all configurations with location colored~$\Win$. We~prove that $q\in M$:
 \end{itemize}
 In the end, we~have proven that $\pi(M)\cup\Win \subseteq M$, so that
 $M$ is a pre-fixpoint of $X\mapsto \pi(X)\cup\Win$, hence it~contains
-all winning configurations of~\Eve and $L$ only contains losing
+all winning configurations of Eve and $L$ only contains losing
 configurations.
 \end{proof}
 
@@ -864,5 +851,5 @@ in~$T$).
 We~can then conclude:
 \begin{theorem}
 \Cref{9-algo:sotftr} terminates when extrapolation is used, and returns~$1$ if, and only~if,
-$(\ell_0,\mathbf{0})$~is winning for~\Eve.
+$(\ell_0,\mathbf{0})$~is winning for Eve.
 \end{theorem}

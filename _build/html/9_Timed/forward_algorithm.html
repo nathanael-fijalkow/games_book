@@ -747,10 +747,9 @@ is a pair <span class="math notranslate nohighlight">\(G=(V,E)\)</span> in which
 states with sets of states.</p>
 <p>For any order-preserving
 function <span class="math notranslate nohighlight">\(f\colon 2^V\to2^V\)</span>
-(<strong>order-preserving</strong> meaning non-decreasing for the <span class="math notranslate nohighlight">\(\subseteq\)</span>-relation),</p>
-<p>a <strong>pre-fixpoint</strong> is a set <span class="math notranslate nohighlight">\(X\subseteq V\)</span> for which <span class="math notranslate nohighlight">\(f(X)\subseteq
-X\)</span>; it is a <strong>fixpoint</strong> if <span class="math notranslate nohighlight">\(f(X)=X\)</span>. By Knaster-Tarski theorem, such
-functions always admit a least pre-fixpoint which is also the least fixpoint.</p>
+(<strong>order-preserving</strong> meaning non-decreasing for the <span class="math notranslate nohighlight">\(\subseteq\)</span>-relation),
+a <strong>pre-fixpoint</strong> is a set <span class="math notranslate nohighlight">\(X\subseteq V\)</span> for which <span class="math notranslate nohighlight">\(f(X)\subseteq X\)</span>;
+it is a <strong>fixpoint</strong> if <span class="math notranslate nohighlight">\(f(X)=X\)</span>. By Knaster-Tarski theorem, such functions always admit a least pre-fixpoint which is also the least fixpoint.</p>
 <p>Fix a dependency graph <span class="math notranslate nohighlight">\(G=(V,E)\)</span>.
 For <span class="math notranslate nohighlight">\(W\subseteq V\)</span>,
 we define a mapping <span class="math notranslate nohighlight">\(f_W\colon 2^V\to 2^V\)</span>: for
@@ -771,65 +770,47 @@ is not, in the least fixpoint of <span class="math notranslate nohighlight">\(f_
 <p>Before tackling the algorithm, let us link least fixpoints in
 dependency graphs and winning sets in concurrent games (with
 reachability objectives): with a concurrent arena
-<span class="math notranslate nohighlight">\(\mathcal C=(V, \textsf{Act},\delta,c')\)</span> and a target set <span class="math notranslate nohighlight">\(Win\)</span>, we associate
+<span class="math notranslate nohighlight">\(\mathcal{C}=(V, \textsf{Act},\delta,c')\)</span> and a target set <span class="math notranslate nohighlight">\(\textrm{Win}\)</span>, we associate
 the dependency graph <span class="math notranslate nohighlight">\(G=(V,E)\)</span>, where <span class="math notranslate nohighlight">\((v,T)\in E\)</span> whenever <span class="math notranslate nohighlight">\(v\in V\)</span>
 and <span class="math notranslate nohighlight">\(T\subseteq V\)</span> is such that there exists an action <span class="math notranslate nohighlight">\(a\)</span> for which
 <span class="math notranslate nohighlight">\(T=\{v' \mid \exists a'\in \textsf{Act}.\ v'=\delta(v,a,a')\}\)</span>.  Then for any
-set <span class="math notranslate nohighlight">\(X\subseteq V\)</span>, the set <span class="math notranslate nohighlight">\(f_{ Win}(X)\)</span> contains <span class="math notranslate nohighlight">\(Win\)</span> and all the
+set <span class="math notranslate nohighlight">\(X\subseteq V\)</span>, the set <span class="math notranslate nohighlight">\(f_{ \textrm{Win}}(X)\)</span> contains <span class="math notranslate nohighlight">\(\textrm{Win}\)</span> and all the
 states from which Eve can force a visit to <span class="math notranslate nohighlight">\(X\)</span> in one step.
 We then have:</p>
 <div class="proof proposition admonition" id="9-prop:fixp-game">
 <p class="admonition-title"><span class="caption-number">Proposition 282 </span> (NEEDS TITLE 9-prop:fixp-game)</p>
 <div class="proposition-content section" id="proof-content">
-<p>The least fixpoint of <span class="math notranslate nohighlight">\(f_{ Win}\)</span> in <span class="math notranslate nohighlight">\(G\)</span> corresponds to the set <span class="math notranslate nohighlight">\(W\)</span> of
-winning states for  Eve in <span class="math notranslate nohighlight">\(\mathcal C\)</span>.</p>
+<p>The least fixpoint of <span class="math notranslate nohighlight">\(f_{ \textrm{Win}}\)</span> in <span class="math notranslate nohighlight">\(G\)</span> corresponds to the set <span class="math notranslate nohighlight">\(W\)</span> of
+winning states for Eve in <span class="math notranslate nohighlight">\(\mathcal{C}\)</span>.</p>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
-<p>The winning states of  Eve form a pre-fixpoint of <span class="math notranslate nohighlight">\(f_{ Win}\)</span>
-containing  Win: indeed, for any <span class="math notranslate nohighlight">\(v\in f_{ Win}(W)\)</span>, either <span class="math notranslate nohighlight">\(v\in
-   Win\)</span>, or  Eve has an action to move from <span class="math notranslate nohighlight">\(v\)</span> to some state
+<p>The winning states of Eve form a pre-fixpoint of <span class="math notranslate nohighlight">\(f_{ \textrm{Win}}\)</span>
+containing <span class="math notranslate nohighlight">\(\textrm{Win}\)</span>: indeed, for any <span class="math notranslate nohighlight">\(v\in f_{ \textrm{Win}}(W)\)</span>, either <span class="math notranslate nohighlight">\(v\in
+   \textrm{Win}\)</span>, or Eve has an action to move from <span class="math notranslate nohighlight">\(v\)</span> to some state
 in <span class="math notranslate nohighlight">\(W\)</span>. Hence <span class="math notranslate nohighlight">\(v\)</span> is winning, i.e., <span class="math notranslate nohighlight">\(v\in W\)</span>.</p>
 <p>Conversely, from any state <span class="math notranslate nohighlight">\(v\)</span> that is not in the least
 pre-fixpoint <span class="math notranslate nohighlight">\(X\)</span>, for any edge <span class="math notranslate nohighlight">\((v,T)\)</span>, there is a state <span class="math notranslate nohighlight">\(v'\in T\)</span>
-that again is not in <span class="math notranslate nohighlight">\(X\)</span>. This defines a strategy for  Adam to avoid
-reaching <span class="math notranslate nohighlight">\(Win\)</span>, so that  Eve does not have a winning strategy from <span class="math notranslate nohighlight">\(v\)</span>.</p>
+that again is not in <span class="math notranslate nohighlight">\(X\)</span>. This defines a strategy for Adam to avoid
+reaching <span class="math notranslate nohighlight">\(\textrm{Win}\)</span>, so that Eve does not have a winning strategy from <span class="math notranslate nohighlight">\(v\)</span>.</p>
 </div>
-<p>\begin{algorithm}
-\SetKwFunction{Pop}{pop}\SetAlgoNoEnd
-\KwData{A dependency graph <span class="math notranslate nohighlight">\(G=(V,E)\)</span>, a set <span class="math notranslate nohighlight">\(W\subseteq V\)</span>, a node <span class="math notranslate nohighlight">\(v_0\in V\)</span>}
-\KwResult{Is <span class="math notranslate nohighlight">\(v_0\)</span> in the least fixpoint of <span class="math notranslate nohighlight">\(f_W\)</span>?}</p>
-<p>\For{<span class="math notranslate nohighlight">\(v\in V\)</span>}{\lIf{<span class="math notranslate nohighlight">\(v\in W\)</span>}{<span class="math notranslate nohighlight">\(F(v):=1\)</span>}
-\lElseIf{<span class="math notranslate nohighlight">\(v==v_0\)</span>}{<span class="math notranslate nohighlight">\(F(v):=0\)</span>}
-\lElse{<span class="math notranslate nohighlight">\(F(v):=\bot\)</span>}}</p>
-<p><span class="math notranslate nohighlight">\(\textsf{Dep}(v_0):=\emptyset\)</span>;</p>
-<p><span class="math notranslate nohighlight">\(\textsf{Wait}:=\{(v,T)\in E \mid v=v_0\}\)</span>;</p>
-<p>\While{(<span class="math notranslate nohighlight">\(\textsf{Wait}\not=\emptyset\)</span> and <span class="math notranslate nohighlight">\(F(v_0)==0\)</span>)}
-{<span class="math notranslate nohighlight">\((v,T):=\Pop{ \textsf{Wait}}\)</span>;\
-\If({// case 1}){<span class="math notranslate nohighlight">\(F(v)==0\)</span> and <span class="math notranslate nohighlight">\(\forall v'\in T.\ F(v')==1\)</span>}
-{<span class="math notranslate nohighlight">\(F(v):=1\)</span>;\
-<span class="math notranslate nohighlight">\(\textsf{Wait}:= \textsf{Wait}\cup \textsf{Dep}(v)\)</span>;}
-\ElseIf({// case 2}){<span class="math notranslate nohighlight">\(\exists v'\in T.\ F(v')==0\)</span>}
-{<span class="math notranslate nohighlight">\(\textsf{Dep}(v'):= \textsf{Dep}(v') \cup \{(v,T)\}\)</span>;}
-\ElseIf({// case 3}){<span class="math notranslate nohighlight">\(\exists v'\in T.\ F(v')==\bot\)</span>}
-{<span class="math notranslate nohighlight">\(F(v'):=0\)</span>; \
-<span class="math notranslate nohighlight">\(\textsf{Dep}(v'):=\{(v,T)\}\)</span>;\
-<span class="math notranslate nohighlight">\(\textsf{Wait}:= \textsf{Wait}\cup\{(w,U)\in E \mid w=v'\}\)</span>;
-}
-}
-\Return{<span class="math notranslate nohighlight">\(F(v_0)\)</span>}
-\caption{Liu-Smolka algorithm\protect\footnotemark for least fixpoint of <span class="math notranslate nohighlight">\(f_W\)</span>}
-\label{9-algo:LS98}
-\end{algorithm}
-\footnotetext{Our version of the algorithm slightly differs from the
+<div class="figure align-center" id="algo-ls98">
+<img alt="../_images/9-algo:LS98.png" src="../_images/9-algo:LS98.png" />
+<p class="caption"><span class="caption-number">Fig. 70 </span><span class="caption-text">Liu-Smolka algorithm for least fixpoint of <span class="math notranslate nohighlight">\(f_W\)</span></span><a class="headerlink" href="#algo-ls98" title="Permalink to this image">¶</a></p>
+</div>
+<p><a class="reference internal" href="#algo-ls98"><span class="std std-numref">Fig. 70</span></a> can be seen as an alternation of forward
+exploration and backward propagation.</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Our version of the algorithm slightly differs from the
 original one <span id="id3">[<a class="reference internal" href="references.html#id161"><span>LS98</span></a>]</span>: we let <span class="math notranslate nohighlight">\(\textsf{Dep}(v'):=\{(v,T)\}\)</span> at the penultimate line
 of the <strong>while</strong> loop (which otherwise results in a wrong
 result, as already noticed in <span id="id4">[<span>JLSO13</span>]</span>), reinforce the
 condition for case <span class="math notranslate nohighlight">\(1\)</span> (which otherwise would not guarantee
 termination), and reinforce the condition of the <strong>while</strong> loop
-to get earlier termination.}</p>
-<p><code class="xref std std-numref docutils literal notranslate"><span class="pre">9-algo:LS98</span></code> can be seen as an alternation of forward
-exploration and backward propagation. Intuitively, the algorithm first
+to get earlier termination.</p>
+</div>
+<p>Intuitively, the algorithm first
 explores the graph in a forward manner, remembering for each node <span class="math notranslate nohighlight">\(v\)</span>
 the set <span class="math notranslate nohighlight">\(\textsf{Dep}(v)\)</span> of nodes that <strong>depend</strong> on <span class="math notranslate nohighlight">\(v\)</span>, and have to be
 reexplored if the status of <span class="math notranslate nohighlight">\(v\)</span> is updated.</p>
@@ -841,11 +822,12 @@ and <span class="math notranslate nohighlight">\(1\)</span> if <span class="math
 are scheduled to be visited again to check whether their statuses have to be changed.
 This is how the backward propagation is triggered; in fact, the search will climb in the tree as long as the values of
 vertices can be updated to <span class="math notranslate nohighlight">\(1\)</span>.</p>
-<p>The correctness of this algorithm relies on the following lemma:</p>
-<p>````{prf:lemma} <span id="id5">[<a class="reference internal" href="references.html#id161"><span>LS98</span></a>]</span>
-:label: 9-lemma:ls98</p>
+<p>The correctness of this algorithm relies on the following lemma <span id="id5">[<a class="reference internal" href="references.html#id161"><span>LS98</span></a>]</span>:</p>
+<div class="proof lemma admonition" id="9-lemma:ls98">
+<p class="admonition-title"><span class="caption-number">Lemma 283 </span> (Invariant)</p>
+<div class="lemma-content section" id="proof-content">
 <p>The following properties hold at the end of each run in the
-<strong>while</strong> loop of <code class="xref std std-numref docutils literal notranslate"><span class="pre">9-algo:LS98</span></code>:</p>
+<strong>while</strong> loop of <a class="reference internal" href="#algo-ls98"><span class="std std-numref">Fig. 70</span></a>:</p>
 <ul class="simple">
 <li><p>for any <span class="math notranslate nohighlight">\(v\in V\)</span>, if <span class="math notranslate nohighlight">\(F(v)=1\)</span>, then <span class="math notranslate nohighlight">\(v\)</span> belongs to the least
 fixpoint containing <span class="math notranslate nohighlight">\(W\)</span>;</p></li>
@@ -853,77 +835,70 @@ fixpoint containing <span class="math notranslate nohighlight">\(W\)</span>;</p>
 <span class="math notranslate nohighlight">\((v,T)\in  \textsf{Wait}\)</span> or <span class="math notranslate nohighlight">\((v,T)\in \textsf{Dep}(v')\)</span> for some <span class="math notranslate nohighlight">\(v'\in T\)</span> with
 <span class="math notranslate nohighlight">\(F(v')=0\)</span>.</p></li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
-````{admonition} Proof
-:class: dropdown tip
-
-  We fix an execution of {numref}`9-algo:LS98`, and prove that both
-  claims are true at the beginning and end of each iteration through
-  the **while** loop. To clarify the presentation, we use
-  superscript $i$ to indicate the value of variables at the end of the
-  $i$-th run through the loop, so that $\textsf{Wait}^3$ is the value of
-  variable $\textsf{Wait}$ after three iterations (and $\textsf{Wait}^0$ is its value
-  after initialization). In particular, $(v^i,T^i)$ is the
-  symbolic transition popped from the $\textsf{Wait}$ list during the $i$-th
-  iteration (and is not defined for $i=0$).
-
-  Let us first prove the first property: the initialization phase
-  clearly enforces that if $F^0(x)=1$, then $x\in W$, which is
-  included in any fixpoint of $f_W$. Now, assume that the property
-  holds true at the beginning of the $i$-th run through the loop
-  (i.e., if $F^{i-1}(x)=1$, then $x$ is in the least fixpoint), and
-  pick some $x\in V$ such that $F^i(x)=1$. If $F^{i-1}(x)=1$, our
-  result follows; if not, then the $i$-th iteration of the loop must
-  have run via case $1$, hence $F^{i-1}(x&#39;)=1$ for all $x&#39;\in
-  T^i$. By our induction hypothesis, this indicates that $T^i$ is part
-  of the least fixpoint, and by definition of $f_W$, $x$ must also
-  belong to the least fixpoint.
-
-  \smallskip
-  The second statement also clearly holds after initialization:
-  initially, $F^0(x)=0$ only for $x=v_0$, and all transitions
-  from $v_0$ have been stored in $\textsf{Wait}^0$. We now assume that the
-  property holds when entering the **while** loop for the $i$-th
-  time, and consider $x$ such that $F^i(x)=0$ at the end of that
-  loop. We pick $(x,Y)\in E$.
-  
-  *  if the $i$-th run through the loop visits case $1$, then
-    already $F^{i-1}(x)=0$ (hence $x\not=v^i$). Then either
-    $(x,Y)\in \textsf{Wait}^{i-1}$, or $(x,Y)\in \textsf{Dep}^{i-1}(x&#39;)$ for some $x&#39;\in Y$
-    with $F(x&#39;)=0$. In the former case: since $x\not=v^i$,
-    if $(x,Y)\in \textsf{Wait}^{i-1}$ then also $(x,Y)\in  \textsf{Wait}^i$;
-
-    in the latter case: if $(x,Y)\in \textsf{Dep}^{i-1}(x&#39;)$ for some $x&#39;\in Y$
-    with $F(x&#39;)=0$, then **(i)** either $x&#39;=v^i$, and
-    $(x,Y)\in \textsf{Wait}^i$ because $\textsf{Dep}^{i-1}(v^i)\subseteq  \textsf{Wait}^i$
-    (last line of case $1$), **(ii)** or ${x&#39;\not=v^i}$, and
-    $(x,Y)\in  \textsf{Dep}^{i-1}(x&#39;)= \textsf{Dep}^{i}(x&#39;)$ and $F^i(x&#39;)=F^{i-1}(x&#39;)=0$.
-
-  *  if the $i$-th run goes to case $2$, then again $F^{i-1}(x)=0$,
-    and the induction hypothesis applies: either $(x,Y)$ is
-    in $\textsf{Wait}^{i-1}$, or it is in $\textsf{Dep}^{i-1}(x&#39;)$ for some $x&#39;\in Y$
-    with $F^{i-1}(x&#39;)=0$. For the latter case, observe that
-    $\textsf{Dep}^{i-1}(x&#39;)\subseteq  \textsf{Dep}^i(x&#39;)$, and $F^{i}(x&#39;)=F^{i-1}(x&#39;)$
-    when running case $2$; for the former case, we have
-    $\textsf{Wait}^i= \textsf{Wait}^{i-1}\setminus\{(v^i,T^i)\}$, so that $(x,Y)$
-    remain in $\textsf{Wait}^i$ if $(x,Y)\not=(v^i,T^i)$; finally,
-    if $(x,Y)=(v^i,T^i)$, then case $2$ precisely adds $(v^i,T^i)$
-    to $\textsf{Dep}^i(v&#39;)$ for some $v&#39;\in T^i$ with $F^i(v&#39;)=0$, which concludes
-    the proof for this case.
-
-  *  for case $3$, we first consider the case where $x$ is the
-    state $v&#39;$ selected at the beginning of case $3$: in that case,
-    all transitions from $x$ are added to $\textsf{Wait}$, so that
-    $(x,Y)\in \textsf{Wait}^i$. Now, if $x$ is not the selected state $v&#39;$,
-    then $F^{i-1}(x)=0$, and again either $x\in \textsf{Wait}^{i-1}$ or
-    $x\in \textsf{Dep}^{i-1}(x&#39;)$ for some $x&#39;\in Y$ with
-    $F^{i-1}(x&#39;)=0$. The latter case is preserved when running
-    case $3$; if $x\in \textsf{Wait}^{i-1}$: if $(x,Y)\not=(v^i,T^i)$, then
-    $x\in \textsf{Wait}^i$, while if $(x,Y)=(v^i,T^i)$, then
-    $(x,Y)\in \textsf{Dep}^i(v&#39;)$ for the state $v&#39;\in T^i$ selected at the
-    beginning of case $3$ (and for which $F^i(v&#39;)=0$).
-
-</pre></div>
+</div>
+</div><div class="dropdown tip admonition">
+<p class="admonition-title">Proof</p>
+<p>We fix an execution of <a class="reference internal" href="#algo-ls98"><span class="std std-numref">Fig. 70</span></a>, and prove that both
+claims are true at the beginning and end of each iteration through
+the <strong>while</strong> loop. To clarify the presentation, we use
+superscript <span class="math notranslate nohighlight">\(i\)</span> to indicate the value of variables at the end of the
+<span class="math notranslate nohighlight">\(i\)</span>-th run through the loop, so that <span class="math notranslate nohighlight">\(\textsf{Wait}^3\)</span> is the value of
+variable <span class="math notranslate nohighlight">\(\textsf{Wait}\)</span> after three iterations (and <span class="math notranslate nohighlight">\(\textsf{Wait}^0\)</span> is its value
+after initialization). In particular, <span class="math notranslate nohighlight">\((v^i,T^i)\)</span> is the
+symbolic transition popped from the <span class="math notranslate nohighlight">\(\textsf{Wait}\)</span> list during the <span class="math notranslate nohighlight">\(i\)</span>-th
+iteration (and is not defined for <span class="math notranslate nohighlight">\(i=0\)</span>).</p>
+<p>Let us first prove the first property: the initialization phase
+clearly enforces that if <span class="math notranslate nohighlight">\(F^0(x)=1\)</span>, then <span class="math notranslate nohighlight">\(x\in W\)</span>, which is
+included in any fixpoint of <span class="math notranslate nohighlight">\(f_W\)</span>. Now, assume that the property
+holds true at the beginning of the <span class="math notranslate nohighlight">\(i\)</span>-th run through the loop
+(i.e., if <span class="math notranslate nohighlight">\(F^{i-1}(x)=1\)</span>, then <span class="math notranslate nohighlight">\(x\)</span> is in the least fixpoint), and
+pick some <span class="math notranslate nohighlight">\(x\in V\)</span> such that <span class="math notranslate nohighlight">\(F^i(x)=1\)</span>. If <span class="math notranslate nohighlight">\(F^{i-1}(x)=1\)</span>, our
+result follows; if not, then the <span class="math notranslate nohighlight">\(i\)</span>-th iteration of the loop must
+have run via case <span class="math notranslate nohighlight">\(1\)</span>, hence <span class="math notranslate nohighlight">\(F^{i-1}(x')=1\)</span> for all <span class="math notranslate nohighlight">\(x'\in
+  T^i\)</span>. By our induction hypothesis, this indicates that <span class="math notranslate nohighlight">\(T^i\)</span> is part
+of the least fixpoint, and by definition of <span class="math notranslate nohighlight">\(f_W\)</span>, <span class="math notranslate nohighlight">\(x\)</span> must also
+belong to the least fixpoint.</p>
+<p>\smallskip
+The second statement also clearly holds after initialization:
+initially, <span class="math notranslate nohighlight">\(F^0(x)=0\)</span> only for <span class="math notranslate nohighlight">\(x=v_0\)</span>, and all transitions
+from <span class="math notranslate nohighlight">\(v_0\)</span> have been stored in <span class="math notranslate nohighlight">\(\textsf{Wait}^0\)</span>. We now assume that the
+property holds when entering the <strong>while</strong> loop for the <span class="math notranslate nohighlight">\(i\)</span>-th
+time, and consider <span class="math notranslate nohighlight">\(x\)</span> such that <span class="math notranslate nohighlight">\(F^i(x)=0\)</span> at the end of that
+loop. We pick <span class="math notranslate nohighlight">\((x,Y)\in E\)</span>.</p>
+<ul class="simple">
+<li><p>if the <span class="math notranslate nohighlight">\(i\)</span>-th run through the loop visits case <span class="math notranslate nohighlight">\(1\)</span>, then
+already <span class="math notranslate nohighlight">\(F^{i-1}(x)=0\)</span> (hence <span class="math notranslate nohighlight">\(x\not=v^i\)</span>). Then either
+<span class="math notranslate nohighlight">\((x,Y)\in \textsf{Wait}^{i-1}\)</span>, or <span class="math notranslate nohighlight">\((x,Y)\in \textsf{Dep}^{i-1}(x')\)</span> for some <span class="math notranslate nohighlight">\(x'\in Y\)</span>
+with <span class="math notranslate nohighlight">\(F(x')=0\)</span>. In the former case: since <span class="math notranslate nohighlight">\(x\not=v^i\)</span>,
+if <span class="math notranslate nohighlight">\((x,Y)\in \textsf{Wait}^{i-1}\)</span> then also <span class="math notranslate nohighlight">\((x,Y)\in  \textsf{Wait}^i\)</span>;
+in the latter case: if <span class="math notranslate nohighlight">\((x,Y)\in \textsf{Dep}^{i-1}(x')\)</span> for some <span class="math notranslate nohighlight">\(x'\in Y\)</span>
+with <span class="math notranslate nohighlight">\(F(x')=0\)</span>, then <strong>(i)</strong> either <span class="math notranslate nohighlight">\(x'=v^i\)</span>, and
+<span class="math notranslate nohighlight">\((x,Y)\in \textsf{Wait}^i\)</span> because <span class="math notranslate nohighlight">\(\textsf{Dep}^{i-1}(v^i)\subseteq  \textsf{Wait}^i\)</span>
+(last line of case <span class="math notranslate nohighlight">\(1\)</span>), <strong>(ii)</strong> or <span class="math notranslate nohighlight">\({x'\not=v^i}\)</span>, and
+<span class="math notranslate nohighlight">\((x,Y)\in  \textsf{Dep}^{i-1}(x')= \textsf{Dep}^{i}(x')\)</span> and <span class="math notranslate nohighlight">\(F^i(x')=F^{i-1}(x')=0\)</span>.</p></li>
+<li><p>if the <span class="math notranslate nohighlight">\(i\)</span>-th run goes to case <span class="math notranslate nohighlight">\(2\)</span>, then again <span class="math notranslate nohighlight">\(F^{i-1}(x)=0\)</span>,
+and the induction hypothesis applies: either <span class="math notranslate nohighlight">\((x,Y)\)</span> is
+in <span class="math notranslate nohighlight">\(\textsf{Wait}^{i-1}\)</span>, or it is in <span class="math notranslate nohighlight">\(\textsf{Dep}^{i-1}(x')\)</span> for some <span class="math notranslate nohighlight">\(x'\in Y\)</span>
+with <span class="math notranslate nohighlight">\(F^{i-1}(x')=0\)</span>. For the latter case, observe that
+<span class="math notranslate nohighlight">\(\textsf{Dep}^{i-1}(x')\subseteq  \textsf{Dep}^i(x')\)</span>, and <span class="math notranslate nohighlight">\(F^{i}(x')=F^{i-1}(x')\)</span>
+when running case <span class="math notranslate nohighlight">\(2\)</span>; for the former case, we have
+<span class="math notranslate nohighlight">\(\textsf{Wait}^i= \textsf{Wait}^{i-1}\setminus\{(v^i,T^i)\}\)</span>, so that <span class="math notranslate nohighlight">\((x,Y)\)</span>
+remain in <span class="math notranslate nohighlight">\(\textsf{Wait}^i\)</span> if <span class="math notranslate nohighlight">\((x,Y)\not=(v^i,T^i)\)</span>; finally,
+if <span class="math notranslate nohighlight">\((x,Y)=(v^i,T^i)\)</span>, then case <span class="math notranslate nohighlight">\(2\)</span> precisely adds <span class="math notranslate nohighlight">\((v^i,T^i)\)</span>
+to <span class="math notranslate nohighlight">\(\textsf{Dep}^i(v')\)</span> for some <span class="math notranslate nohighlight">\(v'\in T^i\)</span> with <span class="math notranslate nohighlight">\(F^i(v')=0\)</span>, which concludes
+the proof for this case.</p></li>
+<li><p>for case <span class="math notranslate nohighlight">\(3\)</span>, we first consider the case where <span class="math notranslate nohighlight">\(x\)</span> is the
+state <span class="math notranslate nohighlight">\(v'\)</span> selected at the beginning of case <span class="math notranslate nohighlight">\(3\)</span>: in that case,
+all transitions from <span class="math notranslate nohighlight">\(x\)</span> are added to <span class="math notranslate nohighlight">\(\textsf{Wait}\)</span>, so that
+<span class="math notranslate nohighlight">\((x,Y)\in \textsf{Wait}^i\)</span>. Now, if <span class="math notranslate nohighlight">\(x\)</span> is not the selected state <span class="math notranslate nohighlight">\(v'\)</span>,
+then <span class="math notranslate nohighlight">\(F^{i-1}(x)=0\)</span>, and again either <span class="math notranslate nohighlight">\(x\in \textsf{Wait}^{i-1}\)</span> or
+<span class="math notranslate nohighlight">\(x\in \textsf{Dep}^{i-1}(x')\)</span> for some <span class="math notranslate nohighlight">\(x'\in Y\)</span> with
+<span class="math notranslate nohighlight">\(F^{i-1}(x')=0\)</span>. The latter case is preserved when running
+case <span class="math notranslate nohighlight">\(3\)</span>; if <span class="math notranslate nohighlight">\(x\in \textsf{Wait}^{i-1}\)</span>: if <span class="math notranslate nohighlight">\((x,Y)\not=(v^i,T^i)\)</span>, then
+<span class="math notranslate nohighlight">\(x\in \textsf{Wait}^i\)</span>, while if <span class="math notranslate nohighlight">\((x,Y)=(v^i,T^i)\)</span>, then
+<span class="math notranslate nohighlight">\((x,Y)\in \textsf{Dep}^i(v')\)</span> for the state <span class="math notranslate nohighlight">\(v'\in T^i\)</span> selected at the
+beginning of case <span class="math notranslate nohighlight">\(3\)</span> (and for which <span class="math notranslate nohighlight">\(F^i(v')=0\)</span>).</p></li>
+</ul>
 </div>
 <p>As a corollary, if the algorithm terminates after <span class="math notranslate nohighlight">\(n\)</span> rounds of the
 <strong>while</strong> loop, then either <span class="math notranslate nohighlight">\(F^n(v_0)=1\)</span>, or
@@ -948,10 +923,9 @@ of <span class="math notranslate nohighlight">\(f_W\)</span>. It thus contains t
 that any state <span class="math notranslate nohighlight">\(v\)</span> not in <span class="math notranslate nohighlight">\(B\)</span> (i.e., with <span class="math notranslate nohighlight">\(F^n(v)=0\)</span>) for sure does
 not belong to that least fixpoint. In particular, <span class="math notranslate nohighlight">\(v_0\)</span> is not in
 the fixpoint.</p>
-<p>\medskip
-It remains to prove termination. For this, we first notice that, for
+<p>It remains to prove termination. For this, we first notice that, for
 any hyper-edge <span class="math notranslate nohighlight">\((v,S)\)</span>, if <span class="math notranslate nohighlight">\((v,S)\in \textsf{Dep}^i(v')\)</span> then <span class="math notranslate nohighlight">\((v,S)\in \textsf{Wait}^j\)</span>
-for some <span class="math notranslate nohighlight">\(j&lt;i\)</span>, and if <span class="math notranslate nohighlight">\((v,S)\in \textsf{Wait}^j\)</span> or <span class="math notranslate nohighlight">\((v,S)\in \textsf{Dep}^j(v')\)</span> for
+for some <span class="math notranslate nohighlight">\(j &lt; i\)</span>, and if <span class="math notranslate nohighlight">\((v,S)\in \textsf{Wait}^j\)</span> or <span class="math notranslate nohighlight">\((v,S)\in \textsf{Dep}^j(v')\)</span> for
 some <span class="math notranslate nohighlight">\(v'\)</span>, then <span class="math notranslate nohighlight">\(F^j(v)\not=\bot\)</span>.</p>
 <p>We then set</p>
 <div class="math notranslate nohighlight">
@@ -960,7 +934,8 @@ M=
 2 | \textsf{Wait|} + 
 2\hskip-4pt\sum_{v\text{ s.t. }F(v)=\bot}\hskip-4pt  |\{(v,S)\in E\|} 
 + \hskip-4pt\sum_{v\text{ s.t. }F(v)=0}\hskip-4pt  | \textsf{Dep|(v)}
-- \hskip-4pt\sum_{v\text{ s.t. }F(v)=1}\hskip-4pt  | \textsf{Dep|(v)}\]</div>
+- \hskip-4pt\sum_{v\text{ s.t. }F(v)=1}\hskip-4pt  | \textsf{Dep|(v)}
+\]</div>
 <p>again writing <span class="math notranslate nohighlight">\(M^i\)</span> for the value of <span class="math notranslate nohighlight">\(M\)</span> after the <span class="math notranslate nohighlight">\(i\)</span>-th run through
 the <strong>while</strong> loop.  This value is at most <span class="math notranslate nohighlight">\(2 |E|\)</span> when
 entering the <strong>while</strong> loop for the first time; clearly, it can
@@ -980,13 +955,13 @@ to <span class="math notranslate nohighlight">\(\textsf{Wait}\)</span> are compe
 is <span class="math notranslate nohighlight">\(\bot\)</span>, and only one extra edge has to be considered in the
 second sum. Hence again <span class="math notranslate nohighlight">\(M^i\leq M^{i-1}-1\)</span>.</p></li>
 </ul>
-<p>This concludes the correctness proof of <code class="xref std std-numref docutils literal notranslate"><span class="pre">9-algo:LS98</span></code>.</p>
-<div class="proof theorem admonition" id="theorem-1">
-<p class="admonition-title"><span class="caption-number">Theorem 283 </span> (NEEDS TITLE AND LABEL)</p>
+<p>This concludes the correctness proof of <a class="reference internal" href="#algo-ls98"><span class="std std-numref">Fig. 70</span></a>.</p>
+<div class="proof theorem admonition" id="theorem-2">
+<p class="admonition-title"><span class="caption-number">Theorem 284 </span> (NEEDS TITLE AND LABEL)</p>
 <div class="theorem-content section" id="proof-content">
-<p><code class="xref std std-numref docutils literal notranslate"><span class="pre">9-algo:LS98</span></code> terminates, and returns <span class="math notranslate nohighlight">\(1\)</span> if, and only if,
+<p><a class="reference internal" href="#algo-ls98"><span class="std std-numref">Fig. 70</span></a> terminates, and returns <span class="math notranslate nohighlight">\(1\)</span> if, and only if,
 <span class="math notranslate nohighlight">\(v_0\)</span> belongs to the least fixpoint of <span class="math notranslate nohighlight">\(f_W\)</span>.</p>
-<p><code class="xref std std-numref docutils literal notranslate"><span class="pre">9-algo:LS98</span></code> terminates, and returns <span class="math notranslate nohighlight">\(1\)</span> if, and only if,
+<p><a class="reference internal" href="#algo-ls98"><span class="std std-numref">Fig. 70</span></a> terminates, and returns <span class="math notranslate nohighlight">\(1\)</span> if, and only if,
 <span class="math notranslate nohighlight">\(v_0\)</span> belongs to the least fixpoint of <span class="math notranslate nohighlight">\(f_W\)</span>.</p>
 </div>
 </div><p>Using <a class="reference internal" href="#9-prop:fixp-game">Proposition 282</a>, we get a <strong>forward</strong> algorithm for
@@ -1003,81 +978,49 @@ computing whether a given zone <span class="math notranslate nohighlight">\((\el
 maintains, for each zone <span class="math notranslate nohighlight">\(S=(\ell,Z)\)</span> it explores, a subzone <span class="math notranslate nohighlight">\((\ell,Z')\)</span> of
 configurations that it knows are winning; this subzone is stored as
 <span class="math notranslate nohighlight">\(F(S)\)</span>, and is updated during the execution.
-As in <code class="xref std std-numref docutils literal notranslate"><span class="pre">9-algo:LS98</span></code>, a waiting list keeps track of the
+As in <a class="reference internal" href="#algo-ls98"><span class="std std-numref">Fig. 70</span></a>, a waiting list keeps track of the
 zones to be explored, and a dependency list stores the list of nodes
 to be revisited upon update of the winning subzone of a zone.
-The algorithm is given in <code class="xref std std-numref docutils literal notranslate"><span class="pre">9-algo:sotftr</span></code>.</p>
-<p>\begin{algorithm}
-\SetKwFunction{Pop}{pop}\SetAlgoNoEnd
-\KwData{A reachability timed game <span class="math notranslate nohighlight">\(\mathcal{G}=( \mathcal{A},  \mathtt{Reach}( Win))\)</span>,
-a location <span class="math notranslate nohighlight">\(\ell_0\in  \mathcal{L}\)</span>}
-\KwResult{Is <span class="math notranslate nohighlight">\((\ell_0,\mathbf{0})\)</span> winning for Eve?}</p>
-<p><span class="math notranslate nohighlight">\(S_0:= \sf Post_{\geq 0}(\ell_0,\mathbf 0)\)</span>;</p>
-<p>\leIf{<span class="math notranslate nohighlight">\(c(S_0)== Win\)</span>}{<span class="math notranslate nohighlight">\(F(S_0):=S_0\)</span>}{<span class="math notranslate nohighlight">\(F(S_0):=\emptyset\)</span>}</p>
-<p><span class="math notranslate nohighlight">\(\textsf{Passed}:=\{S_0\}\)</span>;<br />
-// <span class="math notranslate nohighlight">\(\textsf{Passed}\)</span> stores all configurations for which <span class="math notranslate nohighlight">\(F\)</span> is defined</p>
-<p><span class="math notranslate nohighlight">\(\textsf{Dep}(S_0):=\emptyset\)</span>;</p>
-<p><span class="math notranslate nohighlight">\(\textsf{Wait}:=\{(S_0,\alpha,T) \mid 
-    T= \sf Post_{\geq 0}( \sf Post_{\alpha}(S_0))\not=\emptyset, \alpha\text{ transition of } \mathcal{G}\}\)</span>;</p>
-<p>\While{(<span class="math notranslate nohighlight">\(\textsf{Wait}\not=\emptyset\)</span> and <span class="math notranslate nohighlight">\((v_0,\mathbf 0)\notin F(S_0)\)</span>)}
-{<span class="math notranslate nohighlight">\((S,\alpha,T)):=\Pop{ \textsf{Wait}}\)</span>;\
-\If({// case <span class="math notranslate nohighlight">\(A\)</span>}){<span class="math notranslate nohighlight">\(T\in \textsf{Passed}\)</span>}
-{<span class="math notranslate nohighlight">\(\textsf{Dep}(T):= \textsf{Dep}(T) \cup \{(S,\alpha,T)\}\)</span>;\
-<span class="math notranslate nohighlight">\(W:= \sf Pred_{\geq 0}\left(F(S)\cup \bigcup_{\substack{S\xrightarrow{c} V\\ \!\!V\in \textsf{Passed}\!\!}}  \sf Pred_c(F(V)),\ \bigcup_{\substack{S\xrightarrow{u} V\\ \!\!V\in \textsf{Passed}\!\!}} \sf Pred_u(V\setminus F(V))\right) \cap S\)</span>;\
-\If{<span class="math notranslate nohighlight">\(F(S) \subsetneq W\)</span>}{<span class="math notranslate nohighlight">\(F(S):=W\)</span>;\
-<span class="math notranslate nohighlight">\(\textsf{Wait}:= \textsf{Wait}\cup \textsf{Dep}(S)\)</span>;}}
-\Else({// case <span class="math notranslate nohighlight">\(B\)</span>})
-{<span class="math notranslate nohighlight">\(\textsf{Passed}:= \textsf{Passed} \cup\{T\}\)</span>; \
-\If{<span class="math notranslate nohighlight">\(c(T)== Win\)</span>}{<span class="math notranslate nohighlight">\(F(T):=T\)</span>\ <span class="math notranslate nohighlight">\(\textsf{Wait}:= \textsf{Wait}\cup\{(S,\alpha,T)\}\)</span>}
-\Else{<span class="math notranslate nohighlight">\(F(T):=\emptyset\)</span>}
-<span class="math notranslate nohighlight">\(\textsf{Dep}(T):=\{(S,\alpha,T)\}\)</span>;\
-<span class="math notranslate nohighlight">\(\textsf{Wait}:= \textsf{Wait}\cup\{(T,\alpha,U) \mid U= \sf Post_{\geq 0}( \sf Post_{\alpha}(T))\not=\emptyset, \alpha\text{ transition of } \mathcal{G}\}\)</span>;
-}
-}
-\leIf{<span class="math notranslate nohighlight">\((v_0,\mathbf 0)\in F(S_0)\)</span>}{\Return 1}{\Return 0}</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    \caption{Symbolic on-the-fly algorithm for timed reachability}
-</pre></div>
+The algorithm is given in <a class="reference internal" href="#algo-sotftr"><span class="std std-numref">Fig. 71</span></a>.</p>
+<div class="figure align-center" id="algo-sotftr">
+<img alt="../_images/9-algo:sotftr.png" src="../_images/9-algo:sotftr.png" />
+<p class="caption"><span class="caption-number">Fig. 71 </span><span class="caption-text">Symbolic on-the-fly algorithm for timed reachability</span><a class="headerlink" href="#algo-sotftr" title="Permalink to this image">¶</a></p>
 </div>
-<p>\label{9-algo:sotftr}
-\end{algorithm}</p>
 <p>The correctness of the algorithm can be proven using the following
 lemma. We omit the proof of this lemma, as it is tedious and and does
 not contain any difficult argument.</p>
 <div class="proof lemma admonition" id="9-lem:sotftr">
-<p class="admonition-title"><span class="caption-number">Lemma 284 </span> (NEEDS TITLE 9-lem:sotftr)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 285 </span> (NEEDS TITLE 9-lem:sotftr)</p>
 <div class="lemma-content section" id="proof-content">
 <p>The following properties hold at the end of each run through
-the <strong>while</strong> loop of <code class="xref std std-numref docutils literal notranslate"><span class="pre">9-algo:sotftr</span></code>:</p>
+the <strong>while</strong> loop of <a class="reference internal" href="#algo-sotftr"><span class="std std-numref">Fig. 71</span></a>:</p>
 <ul class="simple">
 <li><p>for any <span class="math notranslate nohighlight">\(S\in \textsf{Passed}\)</span> and any transition <span class="math notranslate nohighlight">\(\alpha\)</span>, if
-<span class="math notranslate nohighlight">\(T= \sf Post_{\geq 0}( \sf Post_\alpha(S))\not=\emptyset\)</span>,
+<span class="math notranslate nohighlight">\(T= \mathsf{Post}_{\geq 0}( \mathsf{Post}_\alpha(S))\not=\emptyset\)</span>,
 then either <span class="math notranslate nohighlight">\((S,\alpha,T)\in \textsf{Wait}\)</span>, or
 <span class="math notranslate nohighlight">\(T\in \textsf{Passed}\)</span> and <span class="math notranslate nohighlight">\((S,\alpha,T)\in \textsf{Dep}(T)\)</span>;</p></li>
 <li><p>for any <span class="math notranslate nohighlight">\(S\in \textsf{Passed}\)</span> and <span class="math notranslate nohighlight">\(q\in F(S)\)</span>,  <span class="math notranslate nohighlight">\(q\)</span> is winning for Eve;</p></li>
 <li><p>for any <span class="math notranslate nohighlight">\(S\in \textsf{Passed}\)</span> and <span class="math notranslate nohighlight">\(q\in S\setminus F(S)\)</span>,
-either</p></li>
+either
+<span class="math notranslate nohighlight">\(\textsf{Wait}\)</span> contains a symbolic transition <span class="math notranslate nohighlight">\((S,\alpha,S')\)</span> from <span class="math notranslate nohighlight">\(S\)</span>
+with <span class="math notranslate nohighlight">\(S'\in \textsf{Passed}\)</span>,
+or</p></li>
 </ul>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$\textsf{Wait}$ contains a symbolic transition $(S,\alpha,S&#39;)$ from $S$
-with $S&#39;\in \textsf{Passed}$,
-
-or
-</pre></div>
-</div>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-      q\notin  \sf Pred_{\geq 0}\Bigl(F(S)\cup \bigcup_{\substack{S\xrightarrow{c} V\\ V\in \textsf{Passed}}}  \sf Pred_c(F(V)),\ \bigcup_{\substack{S\xrightarrow{u} V\\ V\in \textsf{Passed}}}  \sf Pred_u(V\setminus F(V))\Bigr) \cap S.
+      q\notin  \mathsf{Pred}_{\geq 0}\Bigl(F(S)\cup \bigcup_{\substack{S\xrightarrow{c} V\\ V\in \textsf{Passed}}}  \mathsf{Pred}_c(F(V)),\ \bigcup_{\substack{S\xrightarrow{u} V\\ V\in \textsf{Passed}}}  \mathsf{Pred}_u(V\setminus F(V))\Bigr) \cap S.
     \end{split}\]</div>
 </div>
 </div><p>The proof is omitted but can be found in <span id="id7">[<span>CDFLL05</span>]</span>.</p>
 <p>Using these invariants, we get the following result:</p>
-<div class="proof lemma admonition" id="lemma-3">
-<p class="admonition-title"><span class="caption-number">Lemma 285 </span> (NEEDS TITLE AND LABEL)</p>
+<div class="proof lemma admonition" id="lemma-4">
+<p class="admonition-title"><span class="caption-number">Lemma 286 </span> (NEEDS TITLE AND LABEL)</p>
 <div class="lemma-content section" id="proof-content">
-<p>If <code class="xref std std-numref docutils literal notranslate"><span class="pre">9-algo:sotftr</span></code> terminates, all configurations in <span class="math notranslate nohighlight">\(F(S)\)</span> for
+<p>If <a class="reference internal" href="#algo-sotftr"><span class="std std-numref">Fig. 71</span></a> terminates, all configurations in <span class="math notranslate nohighlight">\(F(S)\)</span> for
 any <span class="math notranslate nohighlight">\(S\in \textsf{Passed}\)</span> are winning for Eve;  if additionally
 <span class="math notranslate nohighlight">\(\textsf{Wait}=\emptyset\)</span>, then all configurations in <span class="math notranslate nohighlight">\(S\setminus F(S)\)</span>, for
 any <span class="math notranslate nohighlight">\(S\in \textsf{Passed}\)</span>, are losing for Eve.</p>
-<p>If <code class="xref std std-numref docutils literal notranslate"><span class="pre">9-algo:sotftr</span></code> terminates, all configurations in <span class="math notranslate nohighlight">\(F(S)\)</span> for
+<p>If <a class="reference internal" href="#algo-sotftr"><span class="std std-numref">Fig. 71</span></a> terminates, all configurations in <span class="math notranslate nohighlight">\(F(S)\)</span> for
 any <span class="math notranslate nohighlight">\(S\in \textsf{Passed}\)</span> are winning for Eve;  if additionally
 <span class="math notranslate nohighlight">\(\textsf{Wait}=\emptyset\)</span>, then all configurations in <span class="math notranslate nohighlight">\(S\setminus F(S)\)</span>, for
 any <span class="math notranslate nohighlight">\(S\in \textsf{Passed}\)</span>, are losing for Eve.</p>
@@ -1085,24 +1028,24 @@ any <span class="math notranslate nohighlight">\(S\in \textsf{Passed}\)</span>, 
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
 <p>The first statement corresponds to the second statement of
-<a class="reference internal" href="#9-lem:sotftr">Lemma 284</a>. Now, assume <span class="math notranslate nohighlight">\(\textsf{Wait}^n=\emptyset\)</span> after
+<a class="reference internal" href="#9-lem:sotftr">Lemma 285</a>. Now, assume <span class="math notranslate nohighlight">\(\textsf{Wait}^n=\emptyset\)</span> after
 termination at the <span class="math notranslate nohighlight">\(n\)</span>-th step,
 and</p>
 <p>let <span class="math notranslate nohighlight">\(L=\{q\in  \mathcal{L}\times\mathbb{R}_{\geq 0}^{ \mathcal{C}} \mid \exists
 S\in \textsf{Passed}^n.\ q\in S\setminus F^n(S)\}\)</span>, and <span class="math notranslate nohighlight">\(M\)</span> be the complement
 of <span class="math notranslate nohighlight">\(L\)</span>. For any <span class="math notranslate nohighlight">\(S\in \textsf{Passed}^n\)</span>, we then have <span class="math notranslate nohighlight">\(M\cap S\subseteq
 F^n(S)\)</span>.</p>
-<p>Pick <span class="math notranslate nohighlight">\(q\in \pi(M)\cup  Win\)</span>, where we abusively write <span class="math notranslate nohighlight">\(Win\)</span> to denote
-all configurations with location colored <span class="math notranslate nohighlight">\(Win\)</span>. We prove that <span class="math notranslate nohighlight">\(q\in M\)</span>:</p>
+<p>Pick <span class="math notranslate nohighlight">\(q\in \pi(M)\cup  \textrm{Win}\)</span>, where we abusively write <span class="math notranslate nohighlight">\(\textrm{Win}\)</span> to denote
+all configurations with location colored <span class="math notranslate nohighlight">\(\textrm{Win}\)</span>. We prove that <span class="math notranslate nohighlight">\(q\in M\)</span>:</p>
 <ul class="simple">
-<li><p>if <span class="math notranslate nohighlight">\(q\in Win\)</span>: assume <span class="math notranslate nohighlight">\(q\in L\)</span>, and pick <span class="math notranslate nohighlight">\(S\in \textsf{Passed}^n\)</span> such
-that <span class="math notranslate nohighlight">\(q\in S\setminus F^n(S)\)</span>. Since <span class="math notranslate nohighlight">\(q\in S\)</span>, it holds <span class="math notranslate nohighlight">\(c(S)= Win\)</span>;
+<li><p>if <span class="math notranslate nohighlight">\(q\in \textrm{Win}\)</span>: assume <span class="math notranslate nohighlight">\(q\in L\)</span>, and pick <span class="math notranslate nohighlight">\(S\in \textsf{Passed}^n\)</span> such
+that <span class="math notranslate nohighlight">\(q\in S\setminus F^n(S)\)</span>. Since <span class="math notranslate nohighlight">\(q\in S\)</span>, it holds <span class="math notranslate nohighlight">\(c(S)= \textrm{Win}\)</span>;
 but then <span class="math notranslate nohighlight">\(F^n(S)\)</span> is defined (since <span class="math notranslate nohighlight">\(S\in \textsf{Passed}^n\)</span>), and it
 equals <span class="math notranslate nohighlight">\(S\)</span> by initialization of <span class="math notranslate nohighlight">\(F\)</span>. This contradicts the fact that
 <span class="math notranslate nohighlight">\(q\in S\setminus F^n(S)\)</span>, hence <span class="math notranslate nohighlight">\(q\in M\)</span>.</p></li>
 <li><p>if <span class="math notranslate nohighlight">\(q\in\pi(M)\)</span>: we again assume <span class="math notranslate nohighlight">\(q\in L\)</span>. Then for some
 <span class="math notranslate nohighlight">\(S\in \textsf{Passed}^n\)</span>, <span class="math notranslate nohighlight">\(q\in S\setminus F^n(S)\)</span>. By the third property of
-<a class="reference internal" href="#9-lem:sotftr">Lemma 284</a>, <span class="math notranslate nohighlight">\(q\notin W^n\)</span></p></li>
+<a class="reference internal" href="#9-lem:sotftr">Lemma 285</a>, <span class="math notranslate nohighlight">\(q\notin W^n\)</span></p></li>
 </ul>
 <p>(because <span class="math notranslate nohighlight">\(\textsf{Wait}^n\)</span> is
 empty).  Since <span class="math notranslate nohighlight">\(M\cap U \subseteq F^n(U)\)</span> for all <span class="math notranslate nohighlight">\(U\in \textsf{Passed}^n\)</span>
@@ -1110,27 +1053,30 @@ and <span class="math notranslate nohighlight">\(F^n(U)=\emptyset\)</span> for a
 and by monotonicity, we get</p>
 <div class="math notranslate nohighlight">
 \[
-  q\notin \sf Pred_{\geq 0}\Biggl((M\cap S)\cup \bigcup_{\substack{S\xrightarrow{c}
-    V}}  \sf Pred_c(M\cap V),\ \bigcup_{\substack{S\xrightarrow{u}
-    V}}  \sf Pred_u(V\setminus (M\cap V))\Biggr) \cap S.
+  q\notin \mathsf{Pred}_{\geq 0}\Biggl((M\cap S)\cup \bigcup_{\substack{S\xrightarrow{c}
+    V}}  \mathsf{Pred}_c(M\cap V),\ \bigcup_{\substack{S\xrightarrow{u}
+    V}}  \mathsf{Pred}_u(V\setminus (M\cap V))\Biggr) \cap S.
   \]</div>
-<p>Now, notice that any <span class="math notranslate nohighlight">\(S\in \textsf{Passed}^n\)</span> is closed under <span class="math notranslate nohighlight">\(\sf Post_{\geq 0}\)</span>. Then
-\begin{xalignat*}1
-\pi(M)\cap S &amp;=  \sf Pred_{\geq 0}(M\cup \sf Pred_c(M),  \sf Pred_u(\overline M)) \
-&amp;=  \sf Pred_{\geq 0}((M\cap S)\cup ( \sf Pred_c(M)\cap S),  \sf Pred_u(\overline M)).
-\end{xalignat*}
-Now, it can be checked that <span class="math notranslate nohighlight">\(\sf Pred_c(M)\cap S \subseteq
-  \bigcup_{\substack{S\xrightarrow{c} V}}  \sf Pred_c(M\cap V)\)</span> and
-<span class="math notranslate nohighlight">\(\sf Pred_u(\overline M) \supseteq \bigcup_{\substack{S\xrightarrow{u}
-      V}}  \sf Pred_u(V\setminus (M\cap V))\)</span>.  So the fact that <span class="math notranslate nohighlight">\(q\in
+<p>Now, notice that any <span class="math notranslate nohighlight">\(S\in \textsf{Passed}^n\)</span> is closed under <span class="math notranslate nohighlight">\(\mathsf{Post}_{\geq 0}\)</span>. Then</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+1
+    \pi(M)\cap S &amp;=  \mathsf{Pred}_{\geq 0}(M\cup \mathsf{Pred}_c(M),  \mathsf{Pred}_u(\overline M)) \\
+     &amp;=  \mathsf{Pred}_{\geq 0}((M\cap S)\cup ( \mathsf{Pred}_c(M)\cap S),  \mathsf{Pred}_u(\overline M)).
+  
+\end{split}\]</div>
+<p>Now, it can be checked that <span class="math notranslate nohighlight">\(\mathsf{Pred}_c(M)\cap S \subseteq
+  \bigcup_{\substack{S\xrightarrow{c} V}}  \mathsf{Pred}_c(M\cap V)\)</span> and
+<span class="math notranslate nohighlight">\(\mathsf{Pred}_u(\overline M) \supseteq \bigcup_{\substack{S\xrightarrow{u}
+      V}}  \mathsf{Pred}_u(V\setminus (M\cap V))\)</span>.  So the fact that <span class="math notranslate nohighlight">\(q\in
   \pi(M)\)</span> and <span class="math notranslate nohighlight">\(q\in S\)</span> leads to a contradiction. This entails that
 <span class="math notranslate nohighlight">\(q\notin L\)</span>, hence <span class="math notranslate nohighlight">\(q\in M\)</span>.</p>
-<p>In the end, we have proven that <span class="math notranslate nohighlight">\(\pi(M)\cup Win \subseteq M\)</span>, so that
-<span class="math notranslate nohighlight">\(M\)</span> is a pre-fixpoint of <span class="math notranslate nohighlight">\(X\mapsto \pi(X)\cup Win\)</span>, hence it contains
-all winning configurations of  Eve and <span class="math notranslate nohighlight">\(L\)</span> only contains losing
+<p>In the end, we have proven that <span class="math notranslate nohighlight">\(\pi(M)\cup \textrm{Win} \subseteq M\)</span>, so that
+<span class="math notranslate nohighlight">\(M\)</span> is a pre-fixpoint of <span class="math notranslate nohighlight">\(X\mapsto \pi(X)\cup \textrm{Win}\)</span>, hence it contains
+all winning configurations of Eve and <span class="math notranslate nohighlight">\(L\)</span> only contains losing
 configurations.</p>
 </div>
-<p>The procedure given in <code class="xref std std-numref docutils literal notranslate"><span class="pre">9-algo:sotftr</span></code> will in general not
+<p>The procedure given in <a class="reference internal" href="#algo-sotftr"><span class="std std-numref">Fig. 71</span></a> will in general not
 terminate: as in the case of timed automata, the number of zones
 generated by the algorithm may be infinite. This is classically
 avoided using <strong>extrapolation</strong>: this consists in abstracting the
@@ -1143,13 +1089,13 @@ by noticing that any triple <span class="math notranslate nohighlight">\((S,\alp
 a finite number of times (bounded by the number of regions
 in <span class="math notranslate nohighlight">\(T\)</span>).</p>
 <p>We can then conclude:</p>
-<div class="proof theorem admonition" id="theorem-4">
-<p class="admonition-title"><span class="caption-number">Theorem 286 </span> (NEEDS TITLE AND LABEL)</p>
+<div class="proof theorem admonition" id="theorem-5">
+<p class="admonition-title"><span class="caption-number">Theorem 287 </span> (NEEDS TITLE AND LABEL)</p>
 <div class="theorem-content section" id="proof-content">
-<p><code class="xref std std-numref docutils literal notranslate"><span class="pre">9-algo:sotftr</span></code> terminates when extrapolation is used, and returns <span class="math notranslate nohighlight">\(1\)</span> if, and only if,
-<span class="math notranslate nohighlight">\((\ell_0,\mathbf{0})\)</span> is winning for  Eve.</p>
-<p><code class="xref std std-numref docutils literal notranslate"><span class="pre">9-algo:sotftr</span></code> terminates when extrapolation is used, and returns <span class="math notranslate nohighlight">\(1\)</span> if, and only if,
-<span class="math notranslate nohighlight">\((\ell_0,\mathbf{0})\)</span> is winning for  Eve.</p>
+<p><a class="reference internal" href="#algo-sotftr"><span class="std std-numref">Fig. 71</span></a> terminates when extrapolation is used, and returns <span class="math notranslate nohighlight">\(1\)</span> if, and only if,
+<span class="math notranslate nohighlight">\((\ell_0,\mathbf{0})\)</span> is winning for Eve.</p>
+<p><a class="reference internal" href="#algo-sotftr"><span class="std std-numref">Fig. 71</span></a> terminates when extrapolation is used, and returns <span class="math notranslate nohighlight">\(1\)</span> if, and only if,
+<span class="math notranslate nohighlight">\((\ell_0,\mathbf{0})\)</span> is winning for Eve.</p>
 </div>
 </div></div>
 </div>
@@ -1190,7 +1136,7 @@ in <span class="math notranslate nohighlight">\(T\)</span>).</p>
     <div class="container">
       <p>
         
-          By a set of authors coordinated by Nathana&euml;l Fijalkow<br/>
+          By a set of authors<br/>
         
             &copy; Copyright 2021.<br/>
       </p>

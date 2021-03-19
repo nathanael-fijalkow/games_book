@@ -103,7 +103,9 @@ def rewrite_macros(path, file):
 				post_macro = re.sub(macro, replace, post_macro)
 				match = re.search(macro, post_macro)
 
+	# print(existing_macro)
 	new_list_macros = re.sub(r'\\newcommand\{.*?\}(\[\d\])?\{.*?\}\s', r'', existing_macro)
+	# print(new_list_macros)
 
 	# # Rewrite macros in the remaining macros
 	# changed = True

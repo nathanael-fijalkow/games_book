@@ -27,11 +27,11 @@ We rely on the high-level presentation of value iteration algorithms given in Se
 Let $\mathcal{G} = ( \mathcal{A}, \mathtt{Parity}[ \textsf{col}])$ a parity game with $n$ vertices and priorities in $[1,d]$,
 and without loss of generality $d$ is even.
 
-The first step is to define a notion of value function $val^ \mathcal{G} : V \to Y$ with $(Y,\le)$ a lattice satisfying the characterisation principle:
-for all vertices $v$ we have that Eve wins from $v$ if and only if $val^ \mathcal{G}(v) \neq \bot$, where $\bot$ is the least element in $Y$.
-The goal of the algorithm is to compute $val^ \mathcal{G}$, from which we then easily obtain the winning region thanks to the characterisation principle.
+The first step is to define a notion of value function $\textrm{val}^ \mathcal{G} : V \to Y$ with $(Y,\le)$ a lattice satisfying the characterisation principle:
+for all vertices $v$ we have that Eve wins from $v$ if and only if $\textrm{val}^ \mathcal{G}(v) \neq \bot$, where $\bot$ is the least element in $Y$.
+The goal of the algorithm is to compute $\textrm{val}^ \mathcal{G}$, from which we then easily obtain the winning region thanks to the characterisation principle.
 
-To set the machinery of value iteration algorithms in motion we can either construct $val^ \mathcal{G}$ as the unique fixed point of a contracting operator using Banach's fixed point theorem or the greatest fixed point of a monotonic operator using Kleene's fixed point theorem.
+To set the machinery of value iteration algorithms in motion we can either construct $\textrm{val}^ \mathcal{G}$ as the unique fixed point of a contracting operator using Banach's fixed point theorem or the greatest fixed point of a monotonic operator using Kleene's fixed point theorem.
 
 Let us here follow the second approach. 
 We let $F_V$ be the lattice of functions $V \to Y$ equipped with the componentwise order induced by $Y$.
@@ -45,8 +45,8 @@ $$
 \end{cases}
 $$
 
-such that $val^ \mathcal{G}$ is the greatest fixed point of $\mathbb{O}$.
-The algorithm would then simply use {prf:ref}`1-thm:kleene` to compute $val^ \mathcal{G}$ by iterating the operator $\mathbb{O}$.
+such that $\textrm{val}^ \mathcal{G}$ is the greatest fixed point of $\mathbb{O}$.
+The algorithm would then simply use {prf:ref}`1-thm:kleene` to compute $\textrm{val}^ \mathcal{G}$ by iterating the operator $\mathbb{O}$.
 
 Let us look at this question using the notion of progress measures, which are post-fixed points of $\mathbb{O}$,
 meaning $\mu$ such that $\mu \le  \mathbb{O}(\mu)$. 
@@ -502,11 +502,11 @@ Hence checking whether a vertex $v$ is neglected requires considering all of its
 and checking whether $\mu(v) \vartriangleleft_{ \textsf{col}(v)} \mu(v')$.
 Let us write $\Delta$ for the complexity of checking whether $\mu(v) \vartriangleleft_{ \textsf{col}(v)} \mu(v')$.
 Hence checking whether $v$ is neglected costs 
-$O(|  In^{-1}(v)| \cdot \Delta)$, where $|  In^{-1}(v)|$ is the number of outgoing edges of $v$.
+$O(|  \textrm{In}^{-1}(v)| \cdot \Delta)$, where $|  \textrm{In}^{-1}(v)|$ is the number of outgoing edges of $v$.
 
 A naive implementation of {numref}`3-algo:value_iteration` would in each repeat loop go through every vertex $v$ 
 to check whether it is neglected.
-This would incur a linear cost: $\sum_{v \in V} O(|  In^{-1}(v)| \cdot \Delta) = O(m \cdot \Delta)$.
+This would incur a linear cost: $\sum_{v \in V} O(|  \textrm{In}^{-1}(v)| \cdot \Delta) = O(m \cdot \Delta)$.
 Thus the overall complexity would be
 
 $$
@@ -555,7 +555,7 @@ but it also has implications on the complexity.
 Indeed one iteration of the repeat loop over some vertex $v$ involves
 
 $$
-O\left( (|  In^{-1}(v)| + |  Out^{-1}(v)|) \cdot \Delta \right)
+O\left( (|  \textrm{In}^{-1}(v)| + |  \textrm{Out}^{-1}(v)|) \cdot \Delta \right)
 $$
 
 operations,
@@ -566,7 +566,7 @@ Thus the overall complexity is
 
 $$
 O\left( 
-\sum_{v \in V} (|  In^{-1}(v)| + |  Out^{-1}(v)|) \cdot \Delta \cdot |T|
+\sum_{v \in V} (|  \textrm{In}^{-1}(v)| + |  \textrm{Out}^{-1}(v)|) \cdot \Delta \cdot |T|
 \right) 
 = O(m \cdot \Delta \cdot |T|).
 $$

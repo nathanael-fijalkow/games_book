@@ -60,7 +60,7 @@ The variable $g$ in $\mathcal{L}_{\mathit{mp}}^{\mathit{dual}}$ is often called 
 ````{prf:lemma} NEEDS TITLE 5-lem:dual-bound-step
 :label: 5-lem:dual-bound-step
 
-Let $({g}, \vec{y})$ be a feasible solution of $\mathcal{L}_{\mathit{mp}}^{\mathit{dual}}$ and let $Y^{(i)}$, where $i\geq 0$, be a random variable such that $Y^{(i)}( \pi)= \vec{y}_{ In(\pi_i)}.$ Then for each strategy $\sigma$, each vertex $v_0$, and each $n\geq 0$ it holds $\mathbb{E}^\sigma_{ v_0}[\sum_{i=0}^{n-1} c( \pi_i)]\leq n\cdot {g}- \vec{y}_{ v_0} + \mathbb{E}^\sigma_{ v_0} [Y^{(n)}]$.
+Let $({g}, \vec{y})$ be a feasible solution of $\mathcal{L}_{\mathit{mp}}^{\mathit{dual}}$ and let $Y^{(i)}$, where $i\geq 0$, be a random variable such that $Y^{(i)}( \pi)= \vec{y}_{ \textrm{In}(\pi_i)}.$ Then for each strategy $\sigma$, each vertex $v_0$, and each $n\geq 0$ it holds $\mathbb{E}^\sigma_{ v_0}[\sum_{i=0}^{n-1} c( \pi_i)]\leq n\cdot {g}- \vec{y}_{ v_0} + \mathbb{E}^\sigma_{ v_0} [Y^{(n)}]$.
 
 ````
 
@@ -79,14 +79,14 @@ We now obtain a bound for the third term on the RHS of {eq}`5-eq:mpdual-1`. In t
 
 $$
 
- \mathbb{E}^\sigma_v [Y^{(n)}]&= \sum_{v\in V}  \vec{y}_v\cdot \mathbb{P}^\sigma_{ v_0}( In(\pi_n)=v)
-=\sum_{v\in V}  \vec{y}_v\cdot \bigg(\sum_{\substack{ \pi'\in \Pi_n\\  last( \pi')=v}} \mathbb{P}^\sigma_{ v_0}( \pi') \bigg) \\
-&=\sum_{v\in V}  \vec{y}_v\cdot \bigg(\sum_{\substack{ \pi'\in \Pi_n\\  last( \pi')=v}} \mathbb{P}^\sigma_{ v_0}( \pi')\cdot\big(\underbrace{\sum_{a\in A}\sigma(a\mid  \pi')}_{=1} \big)\bigg) \\
-&= \sum_{\substack{v\in V\\ a \in  A}}  \vec{y}_v\cdot \bigg(\sum_{\substack{ \pi'\in \Pi_n\\  last( \pi')=v}} \mathbb{P}^\sigma_{ v_0}( \pi')\cdot\sigma(a\mid  \pi')\bigg)\\
+ \mathbb{E}^\sigma_v [Y^{(n)}]&= \sum_{v\in V}  \vec{y}_v\cdot \mathbb{P}^\sigma_{ v_0}( \textrm{In}(\pi_n)=v)
+=\sum_{v\in V}  \vec{y}_v\cdot \bigg(\sum_{\substack{ \pi'\in \Pi_n\\  \textrm{last}( \pi')=v}} \mathbb{P}^\sigma_{ v_0}( \pi') \bigg) \\
+&=\sum_{v\in V}  \vec{y}_v\cdot \bigg(\sum_{\substack{ \pi'\in \Pi_n\\  \textrm{last}( \pi')=v}} \mathbb{P}^\sigma_{ v_0}( \pi')\cdot\big(\underbrace{\sum_{a\in A}\sigma(a\mid  \pi')}_{=1} \big)\bigg) \\
+&= \sum_{\substack{v\in V\\ a \in  A}}  \vec{y}_v\cdot \bigg(\sum_{\substack{ \pi'\in \Pi_n\\  \textrm{last}( \pi')=v}} \mathbb{P}^\sigma_{ v_0}( \pi')\cdot\sigma(a\mid  \pi')\bigg)\\
 \text{(by {numref}`5-fig:mp-dual`)}\hspace{3mm}
-&{\leq}\sum_{\substack{v\in V\\ a\in  A}} \bigg( {g} - c(v,a) + \sum_{u\in V} \Delta(u\mid v,a)\cdot  \vec{y}_u\bigg)\cdot\bigg(\sum_{\substack{ \pi'\in \Pi_n\\  last( \pi')=v}} \mathbb{P}^\sigma_{ v_0}( \pi')\cdot\sigma(a\mid  \pi')\bigg)\\
-&= {g}\cdot\underbrace{\sum_{\substack{v\in V\\ a\in  A}}\sum_{\substack{ \pi'\in \Pi_n\\  last( \pi')=v}} \mathbb{P}^\sigma_{ v_0}( \pi')\cdot\sigma(a\mid  \pi')}_{=1}\\&\quad-\underbrace{\sum_{\substack{v\in V\\ a\in  A}}\sum_{\substack{ \pi'\in \Pi_n\\  last( \pi')=v}} \mathbb{P}^\sigma_{ v_0}( \pi')\cdot\sigma(a\mid  \pi')\cdot c(v,a)}_{= \mathbb{E}^\sigma_{ v_0}[ c( \pi_n)]}\\
-&\quad +\underbrace{\sum_{\substack{v,u\in  V\\ a \in  A}}\sum_{\substack{ \pi'\in \Pi_n\\  last( \pi')=v}}  \mathbb{P}^\sigma_{ v_0}( \pi')\cdot\sigma(a\mid  \pi')\cdot  \Delta(u\mid v,a)\cdot  \vec{y}_u}_{= \mathbb{E}^\sigma_{ v_0}[Y^{(n+1)}]}.
+&{\leq}\sum_{\substack{v\in V\\ a\in  A}} \bigg( {g} - c(v,a) + \sum_{u\in V} \Delta(u\mid v,a)\cdot  \vec{y}_u\bigg)\cdot\bigg(\sum_{\substack{ \pi'\in \Pi_n\\  \textrm{last}( \pi')=v}} \mathbb{P}^\sigma_{ v_0}( \pi')\cdot\sigma(a\mid  \pi')\bigg)\\
+&= {g}\cdot\underbrace{\sum_{\substack{v\in V\\ a\in  A}}\sum_{\substack{ \pi'\in \Pi_n\\  \textrm{last}( \pi')=v}} \mathbb{P}^\sigma_{ v_0}( \pi')\cdot\sigma(a\mid  \pi')}_{=1}\\&\quad-\underbrace{\sum_{\substack{v\in V\\ a\in  A}}\sum_{\substack{ \pi'\in \Pi_n\\  \textrm{last}( \pi')=v}} \mathbb{P}^\sigma_{ v_0}( \pi')\cdot\sigma(a\mid  \pi')\cdot c(v,a)}_{= \mathbb{E}^\sigma_{ v_0}[ c( \pi_n)]}\\
+&\quad +\underbrace{\sum_{\substack{v,u\in  V\\ a \in  A}}\sum_{\substack{ \pi'\in \Pi_n\\  \textrm{last}( \pi')=v}}  \mathbb{P}^\sigma_{ v_0}( \pi')\cdot\sigma(a\mid  \pi')\cdot  \Delta(u\mid v,a)\cdot  \vec{y}_u}_{= \mathbb{E}^\sigma_{ v_0}[Y^{(n+1)}]}.
 
 $$
 

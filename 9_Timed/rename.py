@@ -10,6 +10,7 @@ def rename():
 			content = g.read()
 			g.close()
 			content = re.sub(r' \\Eve', r' Eve', content)
+			content = re.sub(r' \\Adam', r' Adam', content)
 			g = open(f, "w")
 			content = g.write(content)
 			g.close()

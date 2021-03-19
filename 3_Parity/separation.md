@@ -36,8 +36,8 @@ $$
  \mathbf{A} = (Q,q_0,\delta : Q \times [1,d] \to Q, \mathtt{Safe}[ \textsf{col}_\mathbf{A}]),
 $$
 
-where $\textsf{col}_\mathbf{A} : Q \times [1,d] \to  \left\{  Win, Lose \right\}$.
-A word $w \in [1,d]^\omega$ is accepted if the run $\rho$ over $w$ only contains transitions in $Win$.
+where $\textsf{col}_\mathbf{A} : Q \times [1,d] \to  \left\{  \textrm{Win \right\}, \textrm{Lose}}$.
+A word $w \in [1,d]^\omega$ is accepted if the run $\rho$ over $w$ only contains transitions in $\textrm{Win}$.
 We use the following simplifying convention for safety automata: we distinguish a special rejecting state $\bot$
 and assume that all transitions are accepting except the ones leading to $\bot$. 
 Said differently, a word $w$ is accepted if and only if it the run over $w$ does not contain the state $\bot$.
@@ -130,7 +130,7 @@ We first define the graph $G \times Q$ whose set of vertices is $V \times Q$ and
 for every edge $(v,v') \in E$ and state $q \in Q$ there is an edge from $(v,q)$ to $(v',\delta(q, \textsf{col}(u)))$.
 The arena is $\mathcal{A} \times  \mathbf{A} = (G \times Q,  V_\mathrm{Eve} \times Q,  V_\mathrm{Adam} \times Q)$.
 Using the convention for safety automata that the rejecting transitions are precisely those leading to the rejecting state $\bot$,
-the colouring function is defined by $\textsf{col}'(v,q) =  Win$ if $q \neq \bot$, and $Lose$ otherwise.
+the colouring function is defined by $\textsf{col}'(v,q) =  \textrm{Win}$ if $q \neq \bot$, and $\textrm{Lose}$ otherwise.
 
 ````{prf:observation} Reduction to safety games using separating automata
 :label: 3-fact:reduction

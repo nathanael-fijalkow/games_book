@@ -77,6 +77,8 @@ def section_transformer(nb_chap, file_name, path, title, label):
 	content = re.sub(r'\\\[([\s\S]*?)\\\]', r'\n\n$$\1$$\n\n', content)
 	#### Remove vskip1em
 	content = re.sub(r'\\vskip1em', r'\n', content)
+	#### Remove medskip
+	content = re.sub(r'\\medskip', r'\n', content)
 	#### Remove noindent
 	content = re.sub(r'\\noindent', r'\n', content)
 	#### Remove begingroup and endgroup
@@ -104,23 +106,24 @@ def section_transformer(nb_chap, file_name, path, title, label):
 		match = re.search(pattern, content)
 
 	#### Remove textrm
-	pattern = r'\\textrm\{([\s\S]*?)$'
-	match = re.search(pattern, content)
-	while match:
-		(begin_eq,end_eq) = match.span()
-		eq = match.group(1)
-		end_eq = match_next(eq, '{', '}')
-		new_eq = eq[:end_eq]
-		# print("new_eq\n" + new_eq)
-		content = content[:begin_eq] + new_eq + content[begin_eq + 9 + end_eq:]
-		match = re.search(pattern, content)
+	# pattern = r'\\textrm\{([\s\S]*?)$'
+	# match = re.search(pattern, content)
+	# while match:
+	# 	(begin_eq,end_eq) = match.span()
+	# 	eq = match.group(1)
+	# 	end_eq = match_next(eq, '{', '}')
+	# 	new_eq = eq[:end_eq]
+	# 	# print("new_eq\n" + new_eq)
+	# 	content = content[:begin_eq] + new_eq + content[begin_eq + 9 + end_eq:]
+	# 	match = re.search(pattern, content)
 
 	#### Rewrite footnotes
+	# We place the margin before the next stop
 	def rewrite_footnote(s):
 		st = s.group(1)
 		i = match_next(st, '{', '}')
 		# print(st[:i])
-		end = re.match(r'[\s\S]*?[:.]', st[i+1:]).end()
+		end = re.match(r'[\s\S]*?[.]', st[i+1:]).end()
 		# print(st[i+1:i+1+end])
 		return st[i+1:i+1+end] + "\n\n```{margin}\n" + st[:i] + "\n```\n\n" + st[i+1+end:] 
 
@@ -141,8 +144,6 @@ def section_transformer(nb_chap, file_name, path, title, label):
 	# w_{t+1} = (1 + r_{t+1}) s(w_t) + y_{t+1}
 	# $$ (5-eq:disc-limit-transition)
 
-	# THIS IS THE RIGHT WAY TO PROCEED. I SHOULD UPDATE THE NEXT ONES (theorems and so on): 
-	# the label can be anywhere
 	pattern = r'\\begin\{equation\*?\}([\s\S]*?)\\end\{equation\*?\}'
 	match = re.search(pattern, content)
 	while match:
@@ -161,7 +162,7 @@ def section_transformer(nb_chap, file_name, path, title, label):
 		content = content[:begin_eq] + new_eq + content[end_eq:]
 		match = re.search(pattern, content)
 
-	pattern = r'\\begin\{align\*?\}([\s\S]*?)\\end\{align\*?\}'
+	pattern = r'\\begin\{x?aligna?t?\*?\}([\s\S]*?)\\end\{x?aligna?t?\*?\}'
 	match = re.search(pattern, content)
 	while match:
 		(begin_eq,end_eq) = match.span()
@@ -224,7 +225,8 @@ def section_transformer(nb_chap, file_name, path, title, label):
 	content = re.sub(p1, s1, content)
 	content = re.sub(p2, s2, content)
 
-	#### Deal with references to theorems and others
+	#### Deal with references to theorems and others: ["thm","def","prop","lem","ex","rmk"]
+
 	def rewrite_ref(s):
 		st = s.group(1)
 		list_ref = re.split(r',', st)
@@ -245,21 +247,16 @@ def section_transformer(nb_chap, file_name, path, title, label):
 	p = r"\\[cC]ref\{(.*?)\}"
 	content = re.sub(p, rewrite_ref, content)
 
-	# p = r"~?\\[cC]ref\{{(\d*?)-{}:(.*?)\}}"
-	# s = r" {{prf:ref}}`\1-{}:\2`"
-
-	# l = ["thm","def","prop","lem", "ex", "rmk"]
-
-	# for origin_name in l:
-	# 	content = re.sub(p.format(origin_name), s.format(origin_name), content)
-
 	#### Deal with figures
 
-	# remove figs and creates files
-	list_fig = re.findall(r'\\begin\{figure\*?\}(\[.*?\])?([\s\S]*?)\\caption\{[\s\S]*?\}\s*?\\label\{(.*?)\}\s*?\\end\{figure\*?\}', content)
+	def rewrite_figs(s):
+		st = s.group(2)
+		# print(st)
+		pattern = r'([\s\S]*?)\\caption\{([\s\S]*?)\}\s*\\label\{([\d]*?)-fig:(.*?)\}'
+		match = re.search(pattern, st)
+		label = match.group(3) + '-fig:' + match.group(4)
 
-	for x in list_fig:
-		h = open("FigAndAlgos/" + x[2] + ".tex", 'w')
+		h = open("FigAndAlgos/" + label + ".tex", 'w')
 		macros_transformer(path,"macros_local.tex")
 		h.write("\\documentclass[preview,border=0mm,convert={density=600,outext=.png}]{standalone}\n\
 \\usepackage{amsfonts,amssymb,amsmath}\n\
@@ -267,48 +264,45 @@ def section_transformer(nb_chap, file_name, path, title, label):
 \\input{../tikz-style.tex}\n\
 \\input{../norenew_macros.tex}\n\
 \\input{./../" + path + "norenew_macros_local.tex}\n\
-\\begin{document}\n" + x[1] + "\n\\end{document}")
+\\begin{document}\n" + match.group(1) + "\n\\end{document}")
+		h.close()
 
-	pattern = r'\\begin\{figure\*?\}(\[.*?\])?[\s\S]*?\\caption\{([\s\S]*?)\}\s*?\\label\{(.*?)\}\s*?\\end\{figure\*?\}'
-	content = re.sub(pattern, r'\n```{figure} ./../FigAndAlgos/\3.png\n:name: \3\n:align: center\n\2\n```', content)
+		new_fig = '\n```{figure} ./../FigAndAlgos/' + label 
+		new_fig += '.png\n:name: ' + label  
+		new_fig += '\n:align: center\n' + match.group(2) + '\n```'
+		return new_fig
 
-# 	list_fig = re.findall(r'\\begin\{figure\*?\}[\s\S]*?(\\begin\{tikzpicture\}[\s\S]*?\\end\{tikzpicture\})[\s\S]*?\\caption\{[\s\S]*?\}\s*?\\label\{(.*?)\}\s*?\\end\{figure\*?\}', content)
-
-# 	for x in list_fig:
-# 		h = open("FigAndAlgos/" + x[1] + ".tex", 'w')
-# 		macros_transformer(path,"macros_local.tex")
-# 		h.write("\\documentclass[preview,border=0mm,convert={density=600,outext=.png}]{standalone}\n\
-# \\usepackage{amsfonts,amssymb,amsmath}\n\
-# \\usepackage{tikz}\n\\usetikzlibrary{automata,shapes,patterns,calc,arrows}\n\
-# \\input{../tikz-style.tex}\n\
-# \\input{../norenew_macros.tex}\n\
-# \\input{./../" + path + "norenew_macros_local.tex}\n\
-# \\begin{document}\n" + x[0] + "\n\\end{document}")
-
-# 	pattern = r'\\begin\{figure\*?\}[\s\S]*?\\begin\{tikzpicture\}[\s\S]*?\\end\{tikzpicture\}[\s\S]*?\\caption\{([\s\S]*?)\}\s*?\\label\{(.*?)\}\s*?\\end\{figure\*?\}'
-# 	content = re.sub(pattern, r'\n```{figure} ./../FigAndAlgos/\2.png\n:name: \2\n:align: center\n\1\n```', content)
+	pattern_figs = r'\\begin\{figure[*]?\}(\[\w*?\])?([\s\S]*?)\\end\{figure[*]?\}'
+	content = re.sub(pattern_figs, rewrite_figs, content)
 
 	#### Deal with algorithms
 
 	# remove algorithms and creates files
 
-	list_algos = re.findall(r'\\begin\{algorithm\}([\s\S]*?)\\caption\{([\s\S]*?)\}\n\\label\{(.*?)\}\n\\end\{algorithm\}', content)
+	def rewrite_algos(s):
+		st = s.group(2)
+		# print(st)
+		pattern = r'([\s\S]*?)\\caption\{([\s\S]*?)\}\s*\\label\{([\d]*?)-algo:(.*?)\}'
+		match = re.search(pattern, st)
+		label = match.group(3) + '-algo:' + match.group(4)
 
-	# print(list_algos)
-
-	for x in list_algos:
-		h = open("FigAndAlgos/" + x[2] + ".tex", 'w')
+		h = open("FigAndAlgos/" + label + ".tex", 'w')
 		macros_transformer(path,"macros_local.tex")
 		h.write("\\documentclass[preview,border=0mm,convert={density=600,outext=.png}]{standalone}\n\
 \\usepackage{amsfonts,amssymb,amsmath}\n\
 \\usepackage[norelsize,ruled,vlined,noend]{algorithm2e}\n\
 \\input{../norenew_macros.tex}\n\
 \\input{./../" + path + "norenew_macros_local.tex}\n\
-\\begin{document}\n\\begin{algorithm}[H]\n" + re.sub(r'\\text\{', r'\\textrm{', x[0]) + "\n\\end{algorithm}\n\\end{document}")
+\\begin{document}\n\\begin{algorithm}[H]\n" + re.sub(r'\\text\{', r'\\textrm{', match.group(1)) + "\n\\end{algorithm}\n\\end{document}")
 		h.close()
 
-	content = re.sub(r'\\begin\{algorithm\}([\s\S]*?)\\caption\{([\s\S]*?)\}\n\\label\{(.*?)\}\n\\end\{algorithm\}', \
-		r'\n```{figure} ./../FigAndAlgos/\3.png\n:name: \3\n:align: center\n\2\n```', content)
+		new_algo = '\n```{figure} ./../FigAndAlgos/' + label 
+		new_algo += '.png\n:name: ' + label  
+		new_algo += '\n:align: center\n' + match.group(2) + '\n```'
+		return new_algo
+
+	pattern_algos = r'\\begin\{algorithm[*]?\}(\[\w*?\])?([\s\S]*?)\\end\{algorithm[*]?\}'
+	content = re.sub(pattern_algos, rewrite_algos, content)
 	
 	#### Deal with accents
 	# Must be after extracting figs and algos: otherwise they would not have correct accents when compiled with LaTeX
@@ -461,6 +455,7 @@ def section_transformer(nb_chap, file_name, path, title, label):
 
 	#### Remove knowledge
 	content = re.sub(r'""(.*?)""', r'\1', content)
+	content = re.sub(r'"(.*?)@.*?"', r'\1', content)
 	content = re.sub(r'"(.*?)"', r'\1', content)
 	content = re.sub(r'\\knowledge.*?\n', r'', content)
 
@@ -563,8 +558,8 @@ def section_transformer(nb_chap, file_name, path, title, label):
 
 	#### Deal with proof
 
-	content = re.sub(r'\\begin\{proof\}([\s\S]*?)\\end\{proof\}', \
-		r'\n````{admonition} Proof\n:class: dropdown tip\n\1\n````\n', content)
+	content = re.sub(r'\\begin\{proof\}(\[Sketch\])?([\s\S]*?)\\end\{proof\}', \
+		r'\n````{admonition} Proof\n:class: dropdown tip\n\2\n````\n', content)
 
 	#### Deal with citations
 	content = re.sub(r'~\\cite\{(.*?)\}', r' {cite}`\1`', content)

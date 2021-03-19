@@ -23,13 +23,13 @@ Stochastic reachability games are pure positionally determined.
 ````{admonition} Proof
 :class: dropdown tip
 
-  Let $G = ( V,E,\delta, Win)$ be a stochastic reachability
+  Let $G = ( V,E,\delta, \textrm{Win})$ be a stochastic reachability
   game.  We define an operator $\mathfrak{F}$ expressing Bellman-like
   equations for the game $G$:
 
 $$
   \mathfrak{F}(\nu)(v) = \left\{\begin{array}{l@{  }l}
-      1 & \text{if}\ v =  Win \\
+      1 & \text{if}\ v =  \textrm{Win} \\
       \max_{(v,v') \in E} \nu(v') & \text{if}\ v \in  V_\mathrm{Eve} \\
       \min_{(v,v') \in E} \nu(v') & \text{if}\ v \in  V_\mathrm{Adam} \\
       \sum_{v' \in  V} \delta(v)(v') \cdot \nu(v') & \text{if} \in   V_{\text{Rand}}
@@ -48,8 +48,8 @@ $$
 
 $$
      **lfp**(\mathfrak{F}) (v) \le \sup_\sigma \inf_\tau
-     \mathbb{P}_{\sigma,\tau}^v( \mathtt{Reach}( Win)) \le \inf_\tau \sup_\sigma
-     \mathbb{P}_{\sigma,\tau}^v( \mathtt{Reach}( Win)) \enspace.
+     \mathbb{P}_{\sigma,\tau}^v( \mathtt{Reach}( \textrm{Win})) \le \inf_\tau \sup_\sigma
+     \mathbb{P}_{\sigma,\tau}^v( \mathtt{Reach}( \textrm{Win})) \enspace.
     $$
 
 ````
@@ -58,71 +58,71 @@ $$
     We first argue for the right inequality:
     \begin{eqnarray*}
       \forall \sigma' \forall \tau:\
-       \mathbb{P}_{\sigma',\tau}^v( \mathtt{Reach}( Win)) & \le & \sup_\sigma
-       \mathbb{P}_{\sigma,\tau}^v( \mathtt{Reach}( Win)) \\
+       \mathbb{P}_{\sigma',\tau}^v( \mathtt{Reach}( \textrm{Win})) & \le & \sup_\sigma
+       \mathbb{P}_{\sigma,\tau}^v( \mathtt{Reach}( \textrm{Win})) \\
       \forall \sigma'\forall \tau :\  \inf_{\tau'}
-       \mathbb{P}_{\sigma',\tau'}^v( \mathtt{Reach}( Win)) & \le & \sup_\sigma
-       \mathbb{P}_{\sigma,\tau}^v( \mathtt{Reach}( Win)) \\
+       \mathbb{P}_{\sigma',\tau'}^v( \mathtt{Reach}( \textrm{Win})) & \le & \sup_\sigma
+       \mathbb{P}_{\sigma,\tau}^v( \mathtt{Reach}( \textrm{Win})) \\
       \forall \tau:\ \sup_{\sigma'} \inf_{\tau'}
-       \mathbb{P}_{\sigma',\tau'}^v( \mathtt{Reach}( Win)) & \le & \sup_\sigma
-       \mathbb{P}_{\sigma,\tau}^v( \mathtt{Reach}( Win)) \\
+       \mathbb{P}_{\sigma',\tau'}^v( \mathtt{Reach}( \textrm{Win})) & \le & \sup_\sigma
+       \mathbb{P}_{\sigma,\tau}^v( \mathtt{Reach}( \textrm{Win})) \\
       \sup_{\sigma'} \inf_{\tau'}
-       \mathbb{P}_{\sigma',\tau}'^v( \mathtt{Reach}( Win)) & \le & \inf_{\tau} \sup_\sigma
-       \mathbb{P}_{\sigma,\tau}^v( \mathtt{Reach}( Win)) 
+       \mathbb{P}_{\sigma',\tau}'^v( \mathtt{Reach}( \textrm{Win})) & \le & \inf_{\tau} \sup_\sigma
+       \mathbb{P}_{\sigma,\tau}^v( \mathtt{Reach}( \textrm{Win})) 
     \end{eqnarray*}
 
     For proving the left inequality, it is sufficient to show that
     $v \mapsto \sup_\sigma \inf_\tau
-     \mathbb{P}_{\sigma,\tau}^v( \mathtt{Reach}( Win))$ is a fixpoint of
+     \mathbb{P}_{\sigma,\tau}^v( \mathtt{Reach}( \textrm{Win}))$ is a fixpoint of
     $\mathfrak{F}$.  Pick $v \in  V_\mathrm{Eve}$.
 
  \begin{eqnarray*}
-      \sup_\sigma \inf_\tau  \mathbb{P}_{\sigma,\tau}^v( \mathtt{Reach}( Win)) & = &
+      \sup_\sigma \inf_\tau  \mathbb{P}_{\sigma,\tau}^v( \mathtt{Reach}( \textrm{Win})) & = &
       \sup_\sigma \inf_\tau \sum_{v'} \sigma(v)(v')  \cdot
-       \mathbb{P}_{\sigma',\tau'}^{v'}( \mathtt{Reach}( Win)) \\
+       \mathbb{P}_{\sigma',\tau'}^{v'}( \mathtt{Reach}( \textrm{Win})) \\
       & & \text{where}\ \sigma'\ \text{and}\ \tau'\ \text{are residual
         strategies after}\ (v,v') \\
-      & = & \sup_\sigma \sum_{v'} \sigma(v)(v')  \cdot \inf_\tau  \mathbb{P}_{\sigma',\tau'}^{v'}( \mathtt{Reach}( Win)) \\
+      & = & \sup_\sigma \sum_{v'} \sigma(v)(v')  \cdot \inf_\tau  \mathbb{P}_{\sigma',\tau'}^{v'}( \mathtt{Reach}( \textrm{Win})) \\
       & & \text{since}\ \tau\ \text{is not concerned by this choice}
       \\
       & = & \max_{(v,v') \in E} \sup_{\sigma\ \text{s.t.}\
         \sigma(v) = v'} \inf_\tau
-       \mathbb{P}_{\sigma',\tau'}^{v'}( \mathtt{Reach}( Win)) \\
+       \mathbb{P}_{\sigma',\tau'}^{v'}( \mathtt{Reach}( \textrm{Win})) \\
       & & \text{since deterministic choices are the best} \\
       & = & \max_{(v,v') \in E} \sup_{\sigma'} \inf_{\tau'}
-       \mathbb{P}_{\sigma',\tau'}^{v'}( \mathtt{Reach}( Win)) \\
+       \mathbb{P}_{\sigma',\tau'}^{v'}( \mathtt{Reach}( \textrm{Win})) \\
       & & \text{since the first choice is now fixed} \\
-      & = & \mathfrak{F}( \mathbb{P}_{\sigma,\tau}^{\bullet}( \mathtt{Reach}( Win)))(v)
+      & = & \mathfrak{F}( \mathbb{P}_{\sigma,\tau}^{\bullet}( \mathtt{Reach}( \textrm{Win})))(v)
     \end{eqnarray*}
-    where $\mathbb{P}_{\sigma,\tau}^{\bullet}( \mathtt{Reach}( Win)))$ is the
+    where $\mathbb{P}_{\sigma,\tau}^{\bullet}( \mathtt{Reach}( \textrm{Win})))$ is the
     function with associates with vertex $v$ the value
-    $\mathbb{P}_{\sigma,\tau}^{v}( \mathtt{Reach}( Win)))$.
+    $\mathbb{P}_{\sigma,\tau}^{v}( \mathtt{Reach}( \textrm{Win})))$.
 
     Assume now that $v \in  V_\mathrm{Adam}$.
 
     \begin{eqnarray*}
-      \sup_\sigma \inf_\tau  \mathbb{P}_{\sigma,\tau}^v( \mathtt{Reach}( Win)) & = &
+      \sup_\sigma \inf_\tau  \mathbb{P}_{\sigma,\tau}^v( \mathtt{Reach}( \textrm{Win})) & = &
       \sup_\sigma \inf_\tau \sum_{v'} \tau(v)(v')
-      \cdot  \mathbb{P}_{\sigma',\tau'}^{v'}( \mathtt{Reach}( Win)) \\
+      \cdot  \mathbb{P}_{\sigma',\tau'}^{v'}( \mathtt{Reach}( \textrm{Win})) \\
       & & \text{where}\ \sigma'\ \text{and}\ \tau'\ \text{are residual
         strategies after}\ (v,v') \\
       & = & \sup_\sigma \min_{(v,v') \in E} \inf_{\tau\
         \text{s.t.}\ \tau(v) = v'} 
-        \mathbb{P}_{\sigma',\tau'}^{v'}( \mathtt{Reach}( Win)) \\
+        \mathbb{P}_{\sigma',\tau'}^{v'}( \mathtt{Reach}( \textrm{Win})) \\
       & & \text{since deterministic choices are the best} \\
       & = & \min_{(v,v') \in E}  \sup_{\sigma'} \inf_{\tau\
-        \text{s.t.}\ \tau(v) = v'}  \mathbb{P}_{\sigma',\tau'}^{v'}( \mathtt{Reach}( Win)) \\
+        \text{s.t.}\ \tau(v) = v'}  \mathbb{P}_{\sigma',\tau'}^{v'}( \mathtt{Reach}( \textrm{Win})) \\
       & & \text{since}\ \sigma\ \text{is not concerned with the first
         choice} \\
-      & = & \mathfrak{F}( \mathbb{P}_{\sigma,\tau}^{\bullet}( \mathtt{Reach}( Win)))(v)
+      & = & \mathfrak{F}( \mathbb{P}_{\sigma,\tau}^{\bullet}( \mathtt{Reach}( \textrm{Win})))(v)
     \end{eqnarray*}
 
     Finally, let  $v \in   V_{\text{Rand}}$. 
     \begin{eqnarray*}
-      \sup_\sigma \inf_\tau  \mathbb{P}_{\sigma,\tau}^v( \mathtt{Reach}( Win)) & = & \sum_{v'} \delta(v)(v') \cdot \sup_{\sigma'} \inf_{\tau'}  \mathbb{P}_{\sigma',\tau'}^{v'}( \mathtt{Reach}( Win))\\
+      \sup_\sigma \inf_\tau  \mathbb{P}_{\sigma,\tau}^v( \mathtt{Reach}( \textrm{Win})) & = & \sum_{v'} \delta(v)(v') \cdot \sup_{\sigma'} \inf_{\tau'}  \mathbb{P}_{\sigma',\tau'}^{v'}( \mathtt{Reach}( \textrm{Win}))\\
             & & \text{where}\ \sigma'\ \text{and}\ \tau'\ \text{are residual
                 strategies after}\ (v,v') \\
-      & = & \mathfrak{F}( \mathbb{P}_{\sigma,\tau}^{\bullet}( \mathtt{Reach}( Win)))(v)
+      & = & \mathfrak{F}( \mathbb{P}_{\sigma,\tau}^{\bullet}( \mathtt{Reach}( \textrm{Win})))(v)
     \end{eqnarray*}
     This concludes the proof.
 
@@ -135,7 +135,7 @@ $$
 
 $$
      **lfp**(\mathfrak{F})(v) \ge \inf_\tau \sup_\sigma
-     \mathbb{P}_{\sigma,\tau}^v( \mathtt{Reach}( Win)) \enspace.
+     \mathbb{P}_{\sigma,\tau}^v( \mathtt{Reach}( \textrm{Win})) \enspace.
     $$
 
 ````
@@ -157,7 +157,7 @@ $$
 
 $$
      **lfp**(\mathfrak{F})(v) = \sup_\sigma
-     \mathbb{P}_{\sigma,\tau^*}^v( \mathtt{Reach}( Win)) \enspace.
+     \mathbb{P}_{\sigma,\tau^*}^v( \mathtt{Reach}( \textrm{Win})) \enspace.
     $$
 
     When $\tau^*$ is fixed, the game becomes a finite Markov decision
@@ -168,25 +168,25 @@ $$
     for every $v \in V$:
 
 $$
-     \mathbb{P}_{\sigma^*,\tau^*}^v( \mathtt{Reach}( Win)) = \sup_\sigma
-     \mathbb{P}_{\sigma,\tau^*}^v( \mathtt{Reach}( Win)) \enspace.
+     \mathbb{P}_{\sigma^*,\tau^*}^v( \mathtt{Reach}( \textrm{Win})) = \sup_\sigma
+     \mathbb{P}_{\sigma,\tau^*}^v( \mathtt{Reach}( \textrm{Win})) \enspace.
     $$
 
-    Furthermore, $\mathbb{P}_{\sigma^*,\tau^*}^\bullet( \mathtt{Reach}( Win))$ is
+    Furthermore, $\mathbb{P}_{\sigma^*,\tau^*}^\bullet( \mathtt{Reach}( \textrm{Win}))$ is
     the least fixpoint of the Bellman equations for the MDP
     $\mathcal{G}_{\tau^*}$ (see {eq}`5-eq:Bellman`).
     
     It remains to observe that $**lfp**(\mathfrak{F})$ satisfies the
     Bellman equations of the MDP under $\tau^*$: this is true from
-     Eve vertices since equations at those vertices are the same in
-    the game and in the MDP; this is true from  Adam vertices by local
+     \textrm{Eve} vertices since equations at those vertices are the same in
+    the game and in the MDP; this is true from  \textrm{Adam} vertices by local
     optimality of $\tau^*$. Hence we deduce that
 
 $$
        **lfp**(\mathfrak{F}) \ge
-       \mathbb{P}_{\sigma^*,\tau^*}^\bullet( \mathtt{Reach}( Win)) = \sup_\sigma
-       \mathbb{P}_{\sigma,\tau^*}^\bullet( \mathtt{Reach}( Win)) \ge \inf_\tau
-      \sup_\sigma  \mathbb{P}_{\sigma,\tau}^\bullet( \mathtt{Reach}( Win)) \enspace.
+       \mathbb{P}_{\sigma^*,\tau^*}^\bullet( \mathtt{Reach}( \textrm{Win})) = \sup_\sigma
+       \mathbb{P}_{\sigma,\tau^*}^\bullet( \mathtt{Reach}( \textrm{Win})) \ge \inf_\tau
+      \sup_\sigma  \mathbb{P}_{\sigma,\tau}^\bullet( \mathtt{Reach}( \textrm{Win})) \enspace.
     $$
 
     This concludes the proof of the lemma. 
@@ -198,9 +198,9 @@ By Lemma {prf:ref}`6-lem:lfpgeval` and {prf:ref}`6-lem:lfpleval`  we derive that
 $$
     **lfp**(\mathfrak{F}) =
    \sup_\sigma \inf_\tau 
-     \mathbb{P}_{\sigma,\tau}^\bullet( \mathtt{Reach}( Win)) =  \inf_\tau \sup_\sigma
-    \mathbb{P}_{\sigma,\tau}^\bullet( \mathtt{Reach}( Win)) = 
-    \mathbb{P}_{\sigma^*,\tau^*}^\bullet( \mathtt{Reach}( Win)) \enspace.
+     \mathbb{P}_{\sigma,\tau}^\bullet( \mathtt{Reach}( \textrm{Win})) =  \inf_\tau \sup_\sigma
+    \mathbb{P}_{\sigma,\tau}^\bullet( \mathtt{Reach}( \textrm{Win})) = 
+    \mathbb{P}_{\sigma^*,\tau^*}^\bullet( \mathtt{Reach}( \textrm{Win})) \enspace.
   $$
 
   This proves that $\mathcal{G}$ is pure memoryless determined, and that

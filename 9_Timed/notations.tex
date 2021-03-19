@@ -61,7 +61,7 @@ games.
   \Clocks,\EE,\EA, c)$, where $\Locs$ is a finite set of locations,
   $\Clocks$~is a finite set of clocks, $\EE,\EA \subseteq \Locs \times
   \Phi_\Clocks \times 2^\Clocks \times \mathcal{L}$ are the sets of
-  edges respectively controlled by \Eve and~\Adam,
+  edges respectively controlled by Eve and~\Adam,
 %controllable and uncontrollable \NM{Parler d'Adam et Eve ?} edges
 %  respectively, 
   and $c\colon \EE\cup\EA \to C$ is the coloring function.
@@ -82,7 +82,7 @@ defined by~$\calT$.
 
 The~actions of both players are pairs~$(d,e)$ where $d\in\Realnn$ is a
 delay they want to wait before playing their controlled
-action~$e$. Action~$(d,e)$ is available for~\Eve (resp.~\Adam) in
+action~$e$. Action~$(d,e)$ is available for Eve (resp. Adam) in
 configuration~$(\ell,\nu)$ if $e\in\EE(\ell)$ (resp.~$e\in\EA(\ell)$)
 and, writing $e=(\ell,g,R,\ell')$, if additionally $\nu+d\models g$;
 in~other terms, the~clock constraint (called~\emph{""guard""}~hereafter)
@@ -116,15 +116,15 @@ action~$(d,e)$.
 %% Intuitively, at each configuration, both players choose a delay and an edge (in their respective sets) that is enabled after that delay. The shortest delay and the corresponding edge determines the next vertex.
 
 This definition captures the concurrent nature of the interaction
-between a controller~(\Eve) and its environment~(\Adam) in a real-time
+between a controller (Eve) and its environment (Adam) in a real-time
 system, since none of the players knows in advance how long the
 opponent will want to wait before performing her transition.
 The~semantics of a timed arena $(\Locs, \Clocks,\EE,\EA)$ can then
 formally be defined in terms of a concurrent arena (following the
-definition of \cref{sec-concurrent-def}).  The~underlying
+definition of \cref{8-sec:notations}).  The~underlying
 graph~$(V,E)$ is such that $V=\Locs\times \Realnn^{\Clocks}$, and $E=
-V\times C\times V$; the~set of actions of~\Eve is $\Realnn\times\EE$, and that
-of~\Adam is $\Realnn\times\EA$; finally, the transition function,
+V\times C\times V$; the~set of actions of Eve is $\Realnn\times\EE$, and that
+of Adam is $\Realnn\times\EA$; finally, the transition function,
 which is not stochastic in our case, maps any
 configuration~$(\ell,\nu)$ and pair of actions~$(d_\Eve,e_\Eve)$ and
 $(d_\Adam,e_\Adam)$ to the edge $((\ell,\nu),\gamma,
@@ -153,8 +153,8 @@ the natural way.
 %% %We~write~$\vec{0}$ for the valuation that assigns~$0$ to every clock;
 %% %and let~$(\ell_0,\vec{0}) \in \calQ$ be the \emph{initial state}.
 
-%% At any configuration~$(\ell,\nu)$, the actions of \Eve are pairs~$(d,e) \in \Realnn \times \EE(\ell)$
-%% such that~$e$ is enabled at~$\nu+d$. Similarly, the actions of \Adam are pairs~$(d,e)\in \Realnn \times \EA(\ell)$ with~$e$ enabled at~$\nu+d$.
+%% At any configuration~$(\ell,\nu)$, the actions of Eve are pairs~$(d,e) \in \Realnn \times \EE(\ell)$
+%% such that~$e$ is enabled at~$\nu+d$. Similarly, the actions of Adam are pairs~$(d,e)\in \Realnn \times \EA(\ell)$ with~$e$ enabled at~$\nu+d$.
 
 %% The next configuration is determined via the function
 %% \[
@@ -167,7 +167,7 @@ the natural way.
 %% \right.
 %% \]
 
-%Notice that we break ties in favor of \Adam since we will be interested winning strategies for \Eve.
+%Notice that we break ties in favor of Adam since we will be interested winning strategies for Eve.
 Contrary to~\cref{7-chap:concurrent}, in this chapter we only consider deterministic strategies\footnote{Adding randomization over the infinite sets of actions is beyond the scope of this chapter.}
 %  , and to the best of our knowledge, stochastic strategies
 % in timed games have never been studied.}.
@@ -192,7 +192,7 @@ determined, as illustrated in the following example.
     (A) edge[dashed] node[above] {$0<x < 1$} (C);
   \end{tikzpicture}
   \caption{Timed arena~$\TA_2$. Solid arrow is Eve's, dashed one is Adam's.}
-%    \Eve's edges are shown with plain arrows, and \Adam's with dashed ones.}
+%    Eve's edges are shown with plain arrows, and Adam's with dashed ones.}
   \label{9-fig:ta2}
 \end{figure}
 
@@ -200,11 +200,11 @@ determined, as illustrated in the following example.
 
 
 \begin{example}[Timed Games are not Determined]
-  In the timed arena~$\TA_2$ defined in~\cref{9-fig:ta2}, from configuration~$(\ell_0,\vec{0})$, \Eve does not have a winning strategy to reach location~$\ell_1$, but \Adam does not have a winning strategy either to avoid~$\ell_1$.
-  In fact, available moves for both players consist in~$(d,(\ell_0,\ell_1))$ with~$0< d<1$ for \Eve, and~$(d',(\ell_0,\ell_2))$ with~$0< d' < 1$ for~\Adam.
-  Thus, for any particular delay~$0<d<1$ chosen by~\Eve, \Adam has a possible delay $d<d'<1$ which leads to~$\ell_2$, which is losing for~\Eve.
-  This shows that \Eve does not have a winning strategy.
-  The argument is however symmetric, and \Adam also does not have a winning strategy to avoid~$\ell_1$.
+  In the timed arena~$\TA_2$ defined in~\cref{9-fig:ta2}, from configuration~$(\ell_0,\vec{0})$, Eve does not have a winning strategy to reach location~$\ell_1$, but Adam does not have a winning strategy either to avoid~$\ell_1$.
+  In fact, available moves for both players consist in~$(d,(\ell_0,\ell_1))$ with~$0< d<1$ for Eve, and~$(d',(\ell_0,\ell_2))$ with~$0< d' < 1$ for~\Adam.
+  Thus, for any particular delay~$0<d<1$ chosen by~\Eve, Adam has a possible delay $d<d'<1$ which leads to~$\ell_2$, which is losing for~\Eve.
+  This shows that Eve does not have a winning strategy.
+  The argument is however symmetric, and Adam also does not have a winning strategy to avoid~$\ell_1$.
   Timed games are thus non determined.
 \end{example}
 
@@ -254,24 +254,24 @@ determined, as illustrated in the following example.
 \begin{example}[Winning strategy on running example]
 Let us consider again the example of \cref{9-fig:ta1} and see whether Eve
 has a winning strategy from the initial configuration.
-At the initial configuration~$\ell_1,x=0$, \Eve needs to make a move towards~$\ell_2$
-while~$x\leq 1$ since whenever~$x>1$, \Adam can move to~$\ell_5$ which guarantees \Eve's lost.
-Assume the game proceeds to~$\ell_2$ with any value~$x\leq 1$. Here, \Eve can try to wait
-until~$x\geq 2$ and go to~$G$. However, if~$x<1$, then \Adam can move to~$\ell_3$.
-From this location, \Eve can guarantee to come back to~$\ell_2$ with~$x=1$, and then move to~$G$ and win the game.
-Assume now that from~$\ell_1$, the game proceeds to~$\ell_3$ with~$x=0$ due to~\Adam's move.
-Again, \Eve can wait for 1 time unit, and go back to~$\ell_2$ with~$x=1$, and win the game.
+At the initial configuration~$\ell_1,x=0$, Eve needs to make a move towards~$\ell_2$
+while~$x\leq 1$ since whenever~$x>1$, Adam can move to~$\ell_5$ which guarantees Eve's lost.
+Assume the game proceeds to~$\ell_2$ with any value~$x\leq 1$. Here, Eve can try to wait
+until~$x\geq 2$ and go to~$G$. However, if~$x<1$, then Adam can move to~$\ell_3$.
+From this location, Eve can guarantee to come back to~$\ell_2$ with~$x=1$, and then move to~$G$ and win the game.
+Assume now that from~$\ell_1$, the game proceeds to~$\ell_3$ with~$x=0$ due to Adam's move.
+Again, Eve can wait for 1 time unit, and go back to~$\ell_2$ with~$x=1$, and win the game.
 %
-Hence, \Eve has a winning strategy from $\ell_1$ for all~$x\leq 1$, and from~$\ell_2$
+Hence, Eve has a winning strategy from $\ell_1$ for all~$x\leq 1$, and from~$\ell_2$
 for all values of~$x$.
 \end{example}
 
 
 In this chapter, the main problem we are interested in is determining
-whether \Eve has a strategy for her reachability objective.
+whether Eve has a strategy for her reachability objective.
 Let~$\vec{0}$ denote the clock valuation assigning~$0$ to all clocks.
 
-\decisionproblem{A timed arena~$\calT$, initial location~$\ell_0$, and a reachability objective~$\Reach(\Win)$}{Does \Eve has a winning strategy in~$(\calT,\Reach(\Win))$ from configuration~$(\ell_0,\vec{0})$.}
+\decisionproblem{A timed arena~$\calT$, initial location~$\ell_0$, and a reachability objective~$\Reach(\Win)$}{Does Eve has a winning strategy in~$(\calT,\Reach(\Win))$ from configuration~$(\ell_0,\vec{0})$.}
 
 The difficulty of this problem is that the concurrent
 game~$((V,E),\Delta,\Omega)$ has an infinite state-space, and players
@@ -279,4 +279,4 @@ have infinitely many actions.  We~thus start by studying a data
 structure to represent sets of states and operations to compute
 successors and predecessors on these sets.  We then give two
 algorithms to solve the above problem.  We~also show how such a
-strategy for \Eve can be computed and finitely represented.
+strategy for Eve can be computed and finitely represented.

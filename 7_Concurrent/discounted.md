@@ -309,9 +309,9 @@ There is an illustration in Figure {numref}`7-fig:exact-hard`, using the vertex 
 Using an argument like above, we see that the probability $p$ to play the top action in the vertex $s'$ is such that $p(1-\gamma)=(1-p)(1-\gamma)x$, where $x$ is the value of $s^*$. Thus, $x=\frac{p}{1-p}$. If $p$ only needs to be exponential small, then $x$ is exponentially small as well. This is true for any yes-instance of the sum-of-square-roots problem and thus, we only need polynomially many digits to decide the problem. We can find polynomially many digits of $\sqrt{b_i}$ for each $i$ in polynomial time. We get the following lemma.
 
 ````{prf:lemma} NEEDS TITLE AND LABEL 
-Giving an exponential lower-bound on patience for optimal stationary strategies in concurrent discounted games implies that the sum-of-square-roots problem is in $PTIME$
+Giving an exponential lower-bound on patience for optimal stationary strategies in concurrent discounted games implies that the sum-of-square-roots problem is in $\textrm{PTIME}$
 
-Giving an exponential lower-bound on patience for optimal stationary strategies in concurrent discounted games implies that the sum-of-square-roots problem is in $PTIME$
+Giving an exponential lower-bound on patience for optimal stationary strategies in concurrent discounted games implies that the sum-of-square-roots problem is in $\textrm{PTIME}$
 
 ````
 

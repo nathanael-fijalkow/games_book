@@ -58,7 +58,7 @@ For any $  v_0 $ and $ \sigma $ it holds $  \mathbb{P}^\sigma_{ v_0} ( \{ \pi \m
 
 Assume the converse. Then in some MDP there is a set of vertices $ X $ which is not an EC but satisfies $  \mathbb{P}^\sigma_{ v_0}( \mathtt{Inf} = X ) > 0 $. Since $ X $ is not an EC, there is a vertex $ v \in X $ in which any (even randomized) choice of action results in leaving $ X $ with probability at least $  p_{\min} > 0$ (recall that $ p_{\min} $ is the smallest non-zero edge probability in the MDP).
 
-Let $ \mathit{Stay}_k $ be the set of plays in $\{ \mathtt{Inf} = X \}$ which, from step $ k $ on, never visit a vertex outside of $ X $. Since $ \{ \mathtt{Inf} = X \}  = \bigcup_{i=1}^{\infty} \mathit{Stay}_i$, by union bound we get $  \mathbb{P}^\sigma_{ v_0}(\mathit{Stay}_{k_0})>0 $ for some  $ k_0\in  \mathbb{N} $. Let $ \mathit{Vis}_j $ denote the set of all plays in $ \mathit{Stay}_{k_0} $ that visit $ v $ at least $ j $ times **after** the step $ k_0 $. Since $  \mathit{Stay}_{k_0} \subseteq \{ \mathtt{Inf} = X\}$, we have $  \mathit{Stay}_{k_0} \cap \mathit{Vis}_j = \mathit{Stay}_{k_0} $ for each $ j $. But an easy induction shows that  $  \mathbb{P}_{ v_0}^\sigma (\mathit{Stay}_{k_0} \cap \mathit{Vis}_{j+1} ) \leq  \mathbb{P}_{ v_0}^\sigma(\{  In( \pi_{k_0}) \in X \})\cdot p_{\min}^j$, since every visit to $ v $ brings a  risk at least $p_{\min}$ of falling out of $ X $. The latter number converges to zero, so $  \mathbb{P}_{ v_0}^\sigma (\mathit{Stay}_{k_0}) = \lim_{j\rightarrow \infty} \mathbb{P}_{ v_0}^\sigma (\mathit{Stay}_{k_0}) = \lim_{j\rightarrow \infty} \mathbb{P}_{ v_0}^\sigma (\mathit{Stay}_{k_0} \cap\mathit{Vis}_{j+1}) =  0$, a contradiction.
+Let $ \mathit{Stay}_k $ be the set of plays in $\{ \mathtt{Inf} = X \}$ which, from step $ k $ on, never visit a vertex outside of $ X $. Since $ \{ \mathtt{Inf} = X \}  = \bigcup_{i=1}^{\infty} \mathit{Stay}_i$, by union bound we get $  \mathbb{P}^\sigma_{ v_0}(\mathit{Stay}_{k_0})>0 $ for some  $ k_0\in  \mathbb{N} $. Let $ \mathit{Vis}_j $ denote the set of all plays in $ \mathit{Stay}_{k_0} $ that visit $ v $ at least $ j $ times **after** the step $ k_0 $. Since $  \mathit{Stay}_{k_0} \subseteq \{ \mathtt{Inf} = X\}$, we have $  \mathit{Stay}_{k_0} \cap \mathit{Vis}_j = \mathit{Stay}_{k_0} $ for each $ j $. But an easy induction shows that  $  \mathbb{P}_{ v_0}^\sigma (\mathit{Stay}_{k_0} \cap \mathit{Vis}_{j+1} ) \leq  \mathbb{P}_{ v_0}^\sigma(\{  \textrm{In}( \pi_{k_0}) \in X \})\cdot p_{\min}^j$, since every visit to $ v $ brings a  risk at least $p_{\min}$ of falling out of $ X $. The latter number converges to zero, so $  \mathbb{P}_{ v_0}^\sigma (\mathit{Stay}_{k_0}) = \lim_{j\rightarrow \infty} \mathbb{P}_{ v_0}^\sigma (\mathit{Stay}_{k_0}) = \lim_{j\rightarrow \infty} \mathbb{P}_{ v_0}^\sigma (\mathit{Stay}_{k_0} \cap\mathit{Vis}_{j+1}) =  0$, a contradiction.
 
 ````
 
@@ -73,30 +73,11 @@ An end component $  M $ is a **maximal end component (MEC)** if no other end-com
 
 If two ECs have a non-empty intersection, then their union is again an EC. Hence, every EC is contained in exactly one MEC, and the total number of MECs is bounded by $ | V| $, since two distinct MECs must be disjoint. Moreover, the decomposition of an MDP into MECs can be computed in polynomial time.
 
-\begin{algorithm}
-\KwData{An MDP $  \mathcal{M} $}
-\SetKwFunction{FTreat}{Treat}
-\SetKwProg{Fn}{Function}{:}{}
-
-$**List** \leftarrow \emptyset$ \tcp*{List of found MECs}
-
-$ G \leftarrow ( V, E) $ \tcp*{The underlying graph of $  \mathcal{M} $} 
-
-\While{$G$ is non-empty}{
-Decompose $ G $ into strongly connected components;
-
-$ R \leftarrow \emptyset $ \tcp*{The list of vertices to remove.}
-\ForEach{bottom SCC $ B $ of $ G $}{
-$ B $ is a MEC of $  \mathcal{M} $, add it to $ **List** $;\\
-$ R \leftarrow R \cup ( V \setminus  W_{=1}( \mathcal{M}, \mathtt{Safe}( V\setminus B)))$ \tcp*{Schedule removal of vertices from which $B$ cannot be avoided in $\mathcal{M}$.}
-} 
-remove vertices in $R$ from $G$ along with adjacent edges
-}
-
-\Return{$**List**$}
-\caption{Algorithm for MEC decomposition of an MDP.}
-\label{5-algo:MEC-decomposition}
-\end{algorithm}
+```{figure} ./../FigAndAlgos/5-algo:MEC-decomposition.png
+:name: 5-algo:MEC-decomposition
+:align: center
+Algorithm for MEC decomposition of an MDP.
+```
 
 ````{prf:theorem} NEEDS TITLE 5-thm:MEC-decomposition-complexity
 :label: 5-thm:MEC-decomposition-complexity
