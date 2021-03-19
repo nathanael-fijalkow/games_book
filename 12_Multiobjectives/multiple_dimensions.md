@@ -3,18 +3,6 @@
 
 ```{math}
 
-}}
-}}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
 }
 }
 }
@@ -39,9 +27,9 @@
 
 ```
 
-For the first part of this chapter, we consider multidimension quantitative games. With regard to the formalism of \cref{chap:payoffs}, the only change to the arena is the set of colours associated with edges: we now have vectors in $\mathbb{R}^k$ where $k \in  \mathbb{N}_{>0}$ is the dimension of the game. As before, for computational purposes, it makes sense to restrict our colouring to rational numbers, and for the sake of simplicity, we even consider **integers only** without loss of generality.
+For the first part of this chapter, we consider multidimension quantitative games. With regard to the formalism of {prf:ref}`chap:payoffs`, the only change to the arena is the set of colours associated with edges: we now have vectors in $\mathbb{R}^k$ where $k \in  \mathbb{N}_{>0}$ is the dimension of the game. As before, for computational purposes, it makes sense to restrict our colouring to rational numbers, and for the sake of simplicity, we even consider **integers only** without loss of generality.
 
-For the weighted games of \cref{chap:payoffs}, where a single quantitative objective $f$ is considered, we know that the value of the game exists. In most cases, optimal strategies do too, which makes the problems of computing the value and solving the game for a given threshold morally equivalent. In our simple multidimension setting, we focus on **conjunctions** of objectives. Similarly to what we did in the one-dimension case, we will write $f_{\geq \vec{x}}$ with $\vec{x} \in  \mathbb{Q}^k$ to define the objective
+For the weighted games of {prf:ref}`chap:payoffs`, where a single quantitative objective $f$ is considered, we know that the value of the game exists. In most cases, optimal strategies do too, which makes the problems of computing the value and solving the game for a given threshold morally equivalent. In our simple multidimension setting, we focus on **conjunctions** of objectives. Similarly to what we did in the one-dimension case, we will write $f_{\geq \vec{x}}$ with $\vec{x} \in  \mathbb{Q}^k$ to define the objective
 
 $$
 f_{\geq \vec{x}} = \bigcap_{i = 1}^{k} \left\lbrace  \pi \in E^\omega \mid f_i( \pi) \geq \vec{x}_i\right\rbrace 
@@ -52,7 +40,7 @@ where $f_i( \pi)$ represents the evaluation of $f$ on the sequence of colours in
 ````{prf:example} NEEDS TITLE 12-ex:MMP
 :label: 12-ex:MMP
 
-Consider the simple one-player game in {numref}`12-fig:MultiMP` fitted with the mean-payoff objective $\mathtt{MeanPayoff}^-$  (recall that two variants exist depending on the use of lim-sup or lim-inf). \todo{Notation issue should be solved in Benjamin/Petr's chapters. Add ref here.} Let us first recall that in the single-objective case, memoryless strategies suffice to play optimally ( {prf:ref}`4-thm:mean_payoff_positional`). In this game, such strategies permit to achieve payoffs $(1,-1)$, $(-1,-1)$ and $(-1,1)$. Intuitively, $(-1,-1)$ is not interesting since we can do better with $(1,-1)$ or $(-1,1)$. On the other hand, these two other payoffs are incomparable and thus should not be discriminated a priori. In the multiobjective world, there is usually no total order between the outcomes of a game -- fixing a total order would actually boil down to transforming the game into a one-dimension game -- which is why there is in general no optimal strategy but rather **Pareto-optimal** ones. Intuitively, a strategy is Pareto-optimal if there exists no other strategy yielding a payoff which is as good in all dimensions and strictly better in at least one dimension.
+Consider the simple one-player game in {numref}`12-fig:MultiMP` fitted with the mean-payoff objective $\mathtt{MeanPayoff}^-$  (recall that two variants exist depending on the use of lim-sup or lim-inf). \todo{Notation issue should be solved in Benjamin/Petr's chapters. Add ref here.} Let us first recall that in the single-objective case, memoryless strategies suffice to play optimally ({prf:ref}`4-thm:mean_payoff_positional`). In this game, such strategies permit to achieve payoffs $(1,-1)$, $(-1,-1)$ and $(-1,1)$. Intuitively, $(-1,-1)$ is not interesting since we can do better with $(1,-1)$ or $(-1,1)$. On the other hand, these two other payoffs are incomparable and thus should not be discriminated a priori. In the multiobjective world, there is usually no total order between the outcomes of a game -- fixing a total order would actually boil down to transforming the game into a one-dimension game -- which is why there is in general no optimal strategy but rather **Pareto-optimal** ones. Intuitively, a strategy is Pareto-optimal if there exists no other strategy yielding a payoff which is as good in all dimensions and strictly better in at least one dimension.
 
 ````
 
@@ -73,7 +61,7 @@ The concept of Pareto-optimality has an important consequence on multiobjective 
 ````{prf:example} NEEDS TITLE 12-ex:MMP2
 :label: 12-ex:MMP2
 
-Let us go back to  {prf:ref}`12-ex:MMP` and fix objective $\mathtt{MeanPayoff}^{-}_{\geq \vec{x}}$ where $\vec{x} = (0, 0)$. As discussed before, this threshold cannot be achieved by a memoryless strategy. Actually, this is also the case for any **finite-memory** strategy. Indeed, any finite-memory strategy induces an ultimately periodic play, where either (a) the periodic part only visits $v_0$ (resp. $v_1$), yielding payoff $(1,-1)$ (resp. $(-1,1)$) thanks to prefix independence (\cref{chap:payoffs}), or (b) it visits both in which case the mean-payoff is of the form
+Let us go back to {prf:ref}`12-ex:MMP` and fix objective $\mathtt{MeanPayoff}^{-}_{\geq \vec{x}}$ where $\vec{x} = (0, 0)$. As discussed before, this threshold cannot be achieved by a memoryless strategy. Actually, this is also the case for any **finite-memory** strategy. Indeed, any finite-memory strategy induces an ultimately periodic play, where either (a) the periodic part only visits $v_0$ (resp. $v_1$), yielding payoff $(1,-1)$ (resp. $(-1,1)$) thanks to prefix independence ({prf:ref}`chap:payoffs`), or (b) it visits both in which case the mean-payoff is of the form
 
 $$
 \vec{y} =  \mathtt{MeanPayoff}^{-}( \pi) = \dfrac{a \cdot (1, -1) + 2 \cdot b \cdot (-1, -1) + c \cdot (-1, 1)}{a + 2 \cdot b + c}
@@ -83,7 +71,9 @@ where $a, c \in  \mathbb{N}$ and $b \in  \mathbb{N}_{>0}$. Observe that $\vec{y}
 
 ````
 
-````{admonition} Remark 
+````{prf:remark} NEEDS TITLE AND LABEL 
+While Eve cannot achieve $(0, 0)$ with finite memory, she can achieve (i.e., ensure at least) any payoff $(-\varepsilon, -\varepsilon)$ for $\varepsilon > 0$, using sufficient memory: for instance, by taking $b = 1$ and $a = c = \lceil \frac{1}{\varepsilon} - 1\rceil$ (if $\varepsilon \geq 1$, any strategy works so $a = b = 0$ is fine). In that sense, the payoff $\vec{x} = (0, 0)$ achievable by an infinite-memory strategy can be seen as the supremum of payoffs achievable by finite-memory strategies. Actually, this is exactly how we defined strategy $\sigma$: Eve plays according to an infinite sequence of finite-memory strategies parametrised by $\ell$, such that each strategy of the sequence ensures mean-payoff $(-\varepsilon, -\varepsilon)$, with $\varepsilon \to 0$ when $\ell \to \infty$.
+
 While Eve cannot achieve $(0, 0)$ with finite memory, she can achieve (i.e., ensure at least) any payoff $(-\varepsilon, -\varepsilon)$ for $\varepsilon > 0$, using sufficient memory: for instance, by taking $b = 1$ and $a = c = \lceil \frac{1}{\varepsilon} - 1\rceil$ (if $\varepsilon \geq 1$, any strategy works so $a = b = 0$ is fine). In that sense, the payoff $\vec{x} = (0, 0)$ achievable by an infinite-memory strategy can be seen as the supremum of payoffs achievable by finite-memory strategies. Actually, this is exactly how we defined strategy $\sigma$: Eve plays according to an infinite sequence of finite-memory strategies parametrised by $\ell$, such that each strategy of the sequence ensures mean-payoff $(-\varepsilon, -\varepsilon)$, with $\varepsilon \to 0$ when $\ell \to \infty$.
 
 ````

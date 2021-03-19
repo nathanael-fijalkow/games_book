@@ -38,8 +38,10 @@ and present a third quasipolynomial time algorithm in the form of a value iterat
 
 As a conclusion Section {ref}`3-sec:relationships` discusses the relationships between the different algorithms: in what sense are separating automata and value iteration algorithms equivalent through the notion of universal trees, and how does this family compare to the other two families of algorithms described above.
 
-````{admonition} Remark 
-We already proved in  {prf:ref}`2-thm:parity` that parity games are positionally determined for both players, so in this chapter when considering a strategy we implicitly assume that it is positional.
+````{prf:remark} NEEDS TITLE AND LABEL 
+We already proved in {prf:ref}`2-thm:parity` that parity games are positionally determined for both players, so in this chapter when considering a strategy we implicitly assume that it is positional.
+
+We already proved in {prf:ref}`2-thm:parity` that parity games are positionally determined for both players, so in this chapter when considering a strategy we implicitly assume that it is positional.
 
 ````
 

@@ -3,7 +3,7 @@
 
 ```{math}
 
-\def\payoff{\ensuremath{f}}
+\def\payoff{f}
 
 \def\Act{A}
 \def\Agt{\mathcal{P}}
@@ -15,7 +15,7 @@
 \def\opt{\textsf{opt}}
 \def\proj{\textsf{proj}}
 \def\devg{\textsf{DevGame}}
-\def\Coalition{\ensuremath{\mathcal{C}}}
+\def\Coalition{\mathcal{C}}
 
 \renewcommand{\Game}{\game}
 
@@ -41,7 +41,7 @@ We then briefly show that this reasoning can be repeated, and present the iterat
 ## Definition
 The notion of **dominance** is used to compare strategies 
 with respect to payoffs they yield against the rest of the players' strategies.
-Consider the example of \cref\{13-tab:normal-adm}.
+Consider the example of {prf:ref}`13-tab:normal-adm`.
 Given a strategy of the second player, playing $B$ is always at least as good
 as playing $A$ for the first player.
 In fact, again $C$, $B$ yields a payoff of $4$ which is better than $3$, the payoff of $A$;
@@ -82,9 +82,9 @@ rectangular set. Let \(\sigma,\sigma' \in S_i\). Strategy \(\sigma\)
 written \(\sigma_i \ge_S \sigma'_i\), if from all vertices \(v_0\):
 
 $$
-  \forall \sigma_{-i} \in S_{-i}, \payoff_i(  \textrm{Out}(v_0,\sigma'_i,\sigma_{-i}))
+  \forall \sigma_{-i} \in S_{-i}, \payoff_i(  Out(v_0,\sigma'_i,\sigma_{-i}))
   \ge
-  \payoff_i(  \textrm{Out}(v_0, \sigma_i, \sigma_{-i})).
+  \payoff_i(  Out(v_0, \sigma_i, \sigma_{-i})).
 $$
 
 Strategy \(\sigma_i\) **weakly dominates** strategy \(\sigma'_i\)
@@ -109,7 +109,7 @@ the best the player can achieve with the help of other players, given the strate
 \(\sigma_i\) for a history \(h\) with respect to a rectangular set of
 strategies \(S\), is
 
-*    \(\pes_i(S,h,\sigma_i) = \inf_{\sigma_{-i} \in S_{-i}} \payoff_{i}(h \cdot   \textrm{Out}( \textrm{last}(h), \sigma_i,\sigma_{-i})).\)
+*    \(\pes_i(S,h,\sigma_i) = \inf_{\sigma_{-i} \in S_{-i}} \payoff_{i}(h \cdot   Out( last(h), \sigma_i,\sigma_{-i})).\)
 
 The **pessimistic value of a history** \(h\) for \(A_i\) with respect
 to a rectangular set of strategies \(S\) is given by:
@@ -119,7 +119,7 @@ to a rectangular set of strategies \(S\) is given by:
 The **optimistic value** of a strategy \(\sigma_i\) for a history
 \(h\) with respect to a rectangular set of strategies \(S\) is given by:
 
-*    \(\opt_i(S,h,\sigma_i) = \sup_{\sigma_{-i} \in S_{-i}} \payoff_i (h_{\le |h|-2} \cdot   \textrm{Out}( \textrm{last}(h), \sigma_i,\sigma_{-i})).\)
+*    \(\opt_i(S,h,\sigma_i) = \sup_{\sigma_{-i} \in S_{-i}} \payoff_i (h_{\le |h|-2} \cdot   Out( last(h), \sigma_i,\sigma_{-i})).\)
 
 The **optimistic value** of a history \(h\) for \(A_{i}\) with
 respect to a rectangular set of strategies \(S\) is given by:
@@ -174,7 +174,7 @@ players.
 
 For simple safety games, the pessimistic and optimistic values do not depend
 on the full history but only on the last state: for all histories
-\(\pes_i(h) = \pes_i( \textrm{last}(h))\) and \(\opt_i(h) = \opt_i( \textrm{last}(h))\).
+\(\pes_i(h) = \pes_i( last(h))\) and \(\opt_i(h) = \opt_i( last(h))\).
 
 Note that in safety games (and any qualitative games) values can be only
 1 (for winning) and 0 (for losing) and since the pessimistic value is
@@ -236,9 +236,9 @@ are called **dominated edges**.
 
 ````
 
-````{prf:theorem} NEEDS LABEL Characterisation of Admissible Strategies
+````{prf:theorem} Characterisation of Admissible Strategies
+:label: 13-thm:adm
 
-  \label{13-thm:adm}
 Admissible
 strategies for player \(A_i\) are the strategies that never take actions
 in \(D_i\).
@@ -249,7 +249,7 @@ in \(D_i\).
 :class: dropdown tip
  We show that if \(A_i\) plays an admissible strategy
 \(\sigma_i\) then the value cannot decrease on a transition controled by
-\(A_i\). Let \(\rho \in   \textrm{Out}(\sigma_i,\sigma_{-i})\), and \(k\) an index
+\(A_i\). Let \(\rho \in   Out(\sigma_i,\sigma_{-i})\), and \(k\) an index
 such that \(\rho_k \in V_i\). Let \((v, v') = \sigma_i(\rho_{\le k})\):
 
 *    If \(\pes_i(\rho_k)=1\), then \(\sigma_i\) has to be winning against
@@ -257,7 +257,7 @@ such that \(\rho_k \in V_i\). Let \((v, v') = \sigma_i(\rho_{\le k})\):
   weakly dominated by such a strategy. Since there is no such strategy
   from a state with value \(\pes_i \leq 0\), we must have \(\pes_i(v')=1\).
 *    If \(\opt_i(\rho_k) = 1\), then, by definition, there is a profile \(\sigma'\) such that
-  \(\rho = \payoff(  \textrm{Out}(v, \sigma')) = 1\).
+  \(\rho = \payoff(  Out(v, \sigma')) = 1\).
   Assume that $\opt_i(v')=0$. Then $\sigma_i$ is dominated by the strategy
   $\sigma_i''$ obtained from $\sigma_i$ by making it switch to $\sigma'$ at $v$.
   In fact, $\sigma_i$ is losing against all strategies of $-i$, while $\sigma_i''$
@@ -271,9 +271,9 @@ player \(A_i\) and assume \(\sigma_i' >_S \sigma_i\). We will prove
 
 Let us fix some objects before developing the proof. There is a vertex
 \(v\) and strategy profile \(\sigma_{-i} \in S_{-i}\) such that
-\(\payoff(  \textrm{Out}(v,\sigma_i',\sigma_{-i}))=1 \wedge \payoff(  \textrm{Out}(v,\sigma_i,\sigma_{-i})=0\).
-Let \(\rho =   \textrm{Out}(v,\sigma_i,\sigma_{-i})\) and
-\(\rho' =   \textrm{Out}(v,\sigma_i',\sigma_{-i})\). Consider the first position
+\(\payoff(  Out(v,\sigma_i',\sigma_{-i}))=1 \wedge \payoff(  Out(v,\sigma_i,\sigma_{-i})=0\).
+Let \(\rho =   Out(v,\sigma_i,\sigma_{-i})\) and
+\(\rho' =   Out(v,\sigma_i',\sigma_{-i})\). Consider the first position
 where these runs differ: write \(\rho = w \cdot s' \cdot s_2 \cdot w'\)
 and \(\rho' = w \cdot s' \cdot s_1 \cdot w''\).
 
@@ -282,9 +282,9 @@ The following are simple facts that can be seen easily:
 *    \(s' \in V_i\), because the strategy of the other players
   are identical in the two runs.
 *    \(\opt_i(s_1) = 1\) because
-  \(\payoff(  \textrm{Out}(v,\sigma_i',\sigma_{-i}))=1\)
+  \(\payoff(  Out(v,\sigma_i',\sigma_{-i}))=1\)
 *    \(\pes_i(s_2) = 0\) because
-  \(\payoff(  \textrm{Out}(v,\sigma_i,\sigma_{-i}))=0\)
+  \(\payoff(  Out(v,\sigma_i,\sigma_{-i}))=0\)
 
 If \(\opt_i(s_2) = 0\) or \(\pes_i(s_1) = 1\) then
 \(s' \rightarrow s_2 \in D_i\) so \(\sigma_i\) takes a transition of
@@ -296,7 +296,7 @@ a strategy for $-i$ against which $\sigma_i$ wins and $\sigma_i'$ loses,
 which contradicts the hypothesis that $\sigma_i'$ weakly dominates $\sigma_i$.
 
 We first construct a profile \(\sigma_{-i}^2 \in S_{-i}\) such that
-\(\payoff(  \textrm{Out}(s_2,\sigma_i,\sigma_{-i}^2))=1\).
+\(\payoff(  Out(s_2,\sigma_i,\sigma_{-i}^2))=1\).
 
 Strategy \(\sigma_{-i}^2\in S_{-i}\) never decreases
 the optimistic value from \(1\) to \(0\) since the optimistic value is nonincreasing.
@@ -327,7 +327,7 @@ Formally, given a history \(h\), \(\sigma_{-i}'(h) =\)
 *    \(\sigma_{-i}(h)\) otherwise
 
 Clearly we have
-\(\payoff_i(  \textrm{Out}_s(\sigma_i,\sigma_{-i}'))= 1 \wedge \payoff_i(  \textrm{Out}_s(\sigma_i',\sigma_{-i}')) = 0\),
+\(\payoff_i(  Out_s(\sigma_i,\sigma_{-i}'))= 1 \wedge \payoff_i(  Out_s(\sigma_i',\sigma_{-i}')) = 0\),
 which contradicts \(\sigma_i' \ge_S \sigma_i\).
 
 ````
@@ -364,7 +364,7 @@ parity objectives, as we will see in the following example.
 \end{figure}
 
 ````{prf:example} NEEDS TITLE AND LABEL 
-  Consider the example in figure \cref\{fig:adm-parity}.
+  Consider the example in figure {prf:ref}`fig:adm-parity`.
   In this example, although the strategy that always stays in $v_0$
   does not decrease the value of player 1, it is dominated because
   it has no chance of winning.
@@ -372,7 +372,7 @@ parity objectives, as we will see in the following example.
   being helped by player 2 and actualy reaching $\Omega_1$ it therefore
   dominates the first strategy.
 
-  Consider the example in figure \cref\{fig:adm-parity}.
+  Consider the example in figure {prf:ref}`fig:adm-parity`.
   In this example, although the strategy that always stays in $v_0$
   does not decrease the value of player 1, it is dominated because
   it has no chance of winning.
@@ -414,13 +414,13 @@ More precisely, we have the following property whose proof is omitted.
 ````{prf:lemma} NEEDS TITLE AND LABEL 
 Let \(v\in V\), \(P_i\in \Agt\) and \(\rho\) a play be
 such that \(\exists^\infty k. \opt_{i}(\rho_k) = 1\). There exists
-\(\sigma_i\) admissible such that \(\rho \in   \textrm{Out}(v, \sigma_i)\) if, and
+\(\sigma_i\) admissible such that \(\rho \in   Out(v, \sigma_i)\) if, and
 only if, \(\payoff_i(\rho) = 1\) or
 \(\exists^\infty k. \rho_k \in H_i\).
 
 Let \(v\in V\), \(P_i\in \Agt\) and \(\rho\) a play be
 such that \(\exists^\infty k. \opt_{i}(\rho_k) = 1\). There exists
-\(\sigma_i\) admissible such that \(\rho \in   \textrm{Out}(v, \sigma_i)\) if, and
+\(\sigma_i\) admissible such that \(\rho \in   Out(v, \sigma_i)\) if, and
 only if, \(\payoff_i(\rho) = 1\) or
 \(\exists^\infty k. \rho_k \in H_i\).
 
@@ -431,7 +431,7 @@ only if, \(\payoff_i(\rho) = 1\) or
 
 Once each player is restricted to use admissible strategies, they can
 further refine their choices knowing that other players will not be using dominated strategies.
-We already saw this in the example of \Cref{13-tab:normal-adm}.
+We already saw this in the example of {prf:ref}`13-tab:normal-adm`.
 In fact, once player $1$ has eliminated strategy $A$ (which is dominated by $B$),
 player $2$ can use this information since its best response against the remaining strategies is $C$.
 In more complex games, this reasoning can be repeated and take several steps before converging.
@@ -463,7 +463,7 @@ Strategies that survive all step of elimination are said **iteratively admissibl
 
 We prove this result only for simple safety games since the case of parity conditions is too complex for the scope of this book.
 
-Intuitively, given a game $G$,  {prf:ref}`13-thm:adm` tells us that any strategy for player $P_i$ that avoids using edges $D_i$ is admissible. So if we remove all edges $\cup_{P_i \in \Agt} D_i$ from the
+Intuitively, given a game $G$, {prf:ref}`13-thm:adm` tells us that any strategy for player $P_i$ that avoids using edges $D_i$ is admissible. So if we remove all edges $\cup_{P_i \in \Agt} D_i$ from the
 game to obtain a new game called $G_1$, then all strategies of $G_1$ (for all players) are admissible in $G$, and conversely.
 We can then repeat this process to $G_1$: we construct $G_2$ by eliminating all dominated edges
 in $G_1$, and get that admissible strategies in $G_1$ are exactly all strategies of $G_2$,

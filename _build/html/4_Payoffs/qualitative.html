@@ -716,18 +716,18 @@ which perform <strong>arithmetic operations</strong> on the sequence of weights.
 \[
  \mathtt{Sup}(\rho) = \sup_i \rho_i.
 \]</div>
-<p>This extends the qualitative objective <span class="math notranslate nohighlight">\(\mathtt{Reach}[ \textrm{Win}]\)</span> in the following sense:
-the objective <span class="math notranslate nohighlight">\(\mathtt{Reach}[ \textrm{Win}]\)</span> corresponds to the quantitative objective <span class="math notranslate nohighlight">\(\mathtt{Sup}\)</span> using two weights: <span class="math notranslate nohighlight">\(0\)</span> for <span class="math notranslate nohighlight">\(\textrm{Lose}\)</span> and <span class="math notranslate nohighlight">\(1\)</span> for <span class="math notranslate nohighlight">\(\textrm{Win}\)</span>.
-The outcome of a sequence is <span class="math notranslate nohighlight">\(1\)</span> if and only if the sequence contains <span class="math notranslate nohighlight">\(\textrm{Win}\)</span>.
-It refines <span class="math notranslate nohighlight">\(\mathtt{Reach}[ \textrm{Win}]\)</span> by specifying (numerical) preferences.</p>
+<p>This extends the qualitative objective <span class="math notranslate nohighlight">\(\mathtt{Reach}[ Win]\)</span> in the following sense:
+the objective <span class="math notranslate nohighlight">\(\mathtt{Reach}[ Win]\)</span> corresponds to the quantitative objective <span class="math notranslate nohighlight">\(\mathtt{Sup}\)</span> using two weights: <span class="math notranslate nohighlight">\(0\)</span> for <span class="math notranslate nohighlight">\(Lose\)</span> and <span class="math notranslate nohighlight">\(1\)</span> for <span class="math notranslate nohighlight">\(Win\)</span>.
+The outcome of a sequence is <span class="math notranslate nohighlight">\(1\)</span> if and only if the sequence contains <span class="math notranslate nohighlight">\(Win\)</span>.
+It refines <span class="math notranslate nohighlight">\(\mathtt{Reach}[ Win]\)</span> by specifying (numerical) preferences.</p>
 <p>The dual objective is to consider the smallest weight:</p>
 <div class="math notranslate nohighlight">
 \[
  \mathtt{Inf}(\rho) = \inf_i \rho_i.
 \]</div>
-<p>The qualitative objective <span class="math notranslate nohighlight">\(\mathtt{Safe}[ \textrm{Win}]\)</span> corresponds to the quantitative objective <span class="math notranslate nohighlight">\(\mathtt{Inf}\)</span>
-using two weights: <span class="math notranslate nohighlight">\(0\)</span> for <span class="math notranslate nohighlight">\(\textrm{Win}\)</span> and <span class="math notranslate nohighlight">\(1\)</span> for <span class="math notranslate nohighlight">\(\textrm{Lose}\)</span>.
-The outcome of a sequence is <span class="math notranslate nohighlight">\(0\)</span> if and only if the sequence does not contain <span class="math notranslate nohighlight">\(\textrm{Lose}\)</span>.</p>
+<p>The qualitative objective <span class="math notranslate nohighlight">\(\mathtt{Safe}[ Win]\)</span> corresponds to the quantitative objective <span class="math notranslate nohighlight">\(\mathtt{Inf}\)</span>
+using two weights: <span class="math notranslate nohighlight">\(0\)</span> for <span class="math notranslate nohighlight">\(Win\)</span> and <span class="math notranslate nohighlight">\(1\)</span> for <span class="math notranslate nohighlight">\(Lose\)</span>.
+The outcome of a sequence is <span class="math notranslate nohighlight">\(0\)</span> if and only if the sequence does not contain <span class="math notranslate nohighlight">\(Lose\)</span>.</p>
 <p>Similarly the following quantitative objectives refine <span class="math notranslate nohighlight">\(\mathtt{Buchi}\)</span> and <span class="math notranslate nohighlight">\(\mathtt{CoBuchi}\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -736,7 +736,7 @@ The outcome of a sequence is <span class="math notranslate nohighlight">\(0\)</s
 \]</div>
 <p>The analyses and algorithms for solving games with <span class="math notranslate nohighlight">\(\mathtt{Reach}\)</span>, <span class="math notranslate nohighlight">\(\mathtt{Safe}\)</span>, <span class="math notranslate nohighlight">\(\mathtt{Buchi}\)</span>, and <span class="math notranslate nohighlight">\(\mathtt{CoBuchi}\)</span> objectives extend to these four quantitative objectives.</p>
 <div class="proof theorem admonition" id="4-thm:sup-inf-limsup-liminf">
-<p class="admonition-title"><span class="caption-number">Theorem 90 </span> (Sup, Inf, LimSup, LimInf objectives)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 99 </span> (Sup, Inf, LimSup, LimInf objectives)</p>
 <div class="theorem-content section" id="proof-content">
 <p>Games with objectives <span class="math notranslate nohighlight">\(\mathtt{Sup}\)</span>, <span class="math notranslate nohighlight">\(\mathtt{Inf}\)</span>, <span class="math notranslate nohighlight">\(\mathtt{LimSup}\)</span>, and <span class="math notranslate nohighlight">\(\mathtt{LimInf}\)</span> are uniformly positionally determined for both players.
 There exists an algorithm for computing the value function of those games in polynomial time and space.
@@ -749,8 +749,8 @@ and for all algorithms the space complexity is <span class="math notranslate noh
 <p class="admonition-title">Proof</p>
 <p>We sketch the algorithm for the objective <span class="math notranslate nohighlight">\(\mathtt{Sup}\)</span>, the other cases are similar.
 Let <span class="math notranslate nohighlight">\(c_1 &lt; \dots &lt; c_k\)</span> be the ordered enumeration of all weights in the game.
-The set of vertices of value <span class="math notranslate nohighlight">\(c_k\)</span> is <span class="math notranslate nohighlight">\(\textrm{Attr}_\mathrm{Eve}(c_k)\)</span>, which can be computed in linear time.
-We then construct the subgame <span class="math notranslate nohighlight">\(\Game'\)</span> of <span class="math notranslate nohighlight">\(\Game\)</span> induced by <span class="math notranslate nohighlight">\(V \setminus  \textrm{Attr}_\mathrm{Eve}(c_k)\)</span>,
+The set of vertices of value <span class="math notranslate nohighlight">\(c_k\)</span> is <span class="math notranslate nohighlight">\(Attr_\mathrm{Eve}(c_k)\)</span>, which can be computed in linear time.
+We then construct the subgame <span class="math notranslate nohighlight">\(\Game'\)</span> of <span class="math notranslate nohighlight">\(\Game\)</span> induced by <span class="math notranslate nohighlight">\(V \setminus  Attr_\mathrm{Eve}(c_k)\)</span>,
 and continue recursively: <span class="math notranslate nohighlight">\(\Game'\)</span> has one less weight.</p>
 <p>A naive complexity analysis yields a time complexity <span class="math notranslate nohighlight">\(O(km)\)</span>, but it is easily refined to <span class="math notranslate nohighlight">\(O(m)\)</span>
 by revisiting the attractor computation and showing that each edge in the whole game is treated at most once

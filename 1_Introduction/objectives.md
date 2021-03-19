@@ -10,7 +10,7 @@
 We present in this section the main objectives and their representations.
 An objective may depend upon a set of parameters which are sometimes omitted when clear from the context.
 
-Let us recall how we define classes of conditions: we first define an objective, for instance $\mathtt{Safe} \subseteq  \left\{  \textrm{Win \right\}, \textrm{Lose}}^\omega$.
+Let us recall how we define classes of conditions: we first define an objective, for instance $\mathtt{Safe} \subseteq  \left\{  Win, Lose \right\}^\omega$.
 For an arena and a colouring function $\textsf{col}$ defined over this arena this induces the safety condition $\mathtt{Safe}[ \textsf{col}]$.
 Given an arena and a condition $W$ over this arena we say that $W$ is **a** safety condition if 
 there exists $\textsf{col}$ such that $W =  \mathtt{Safe}[ \textsf{col}]$.
@@ -19,44 +19,44 @@ The same terminology is used for all other objectives.
 ## Prefix dependent qualitative objectives: safety and reachability
 
 The safety objective is the simplest qualitative objective:
-the set of colours is $\left\{  \textrm{Win \right\}, \textrm{Lose}}$, 
-and safety requires that the colour $\textrm{Lose}$ is never seen.
+the set of colours is $\left\{  Win, Lose \right\}$, 
+and safety requires that the colour $Lose$ is never seen.
 Formally:
 
 $$
- \mathtt{Safe} =  \left\{ \rho \in  \left\{  \textrm{Win \right\ \right\}, \textrm{Lose}}^\omega : \forall i, \rho_i \neq  \textrm{Lose}}.
+ \mathtt{Safe} =  \left\{ \rho \in  \left\{  Win, Lose \right\ \right\}^\omega : \forall i, \rho_i \neq  Lose}.
 $$
 
 In the example represented in {numref}`1-fig:safety_game_example`, 
-a play is winning if if it never visits the vertex labelled $\textrm{Lose}$.
+a play is winning if if it never visits the vertex labelled $Lose$.
 Eve wins from the four vertices on the left and loses from all the others, which is represented by the two dotted areas.
 
 ```{figure} ./../FigAndAlgos/1-fig:safety_game_example.png
 :name: 1-fig:safety_game_example
 :align: center
 An example of a safety game. 
-The vertex on the bottom right is labelled $\textrm{Lose}$, all the others are implicitly labelled $\textrm{Win}$;
-the condition of Eve is to avoid the vertex labelled $\textrm{Lose}$.
+The vertex on the bottom right is labelled $Lose$, all the others are implicitly labelled $Win$;
+the condition of Eve is to avoid the vertex labelled $Lose$.
 The two dotted areas represent the winning regions of each player.
 ```
 
 The dual of the safety objective is the reachability objective: 
-the set of colours is $\left\{  \textrm{Win \right\}, \textrm{Lose}}$,
-and reachability requires that the colour $\textrm{Win}$ is seen at least once.
+the set of colours is $\left\{  Win, Lose \right\}$,
+and reachability requires that the colour $Win$ is seen at least once.
 Formally:
 
 $$
- \mathtt{Reach} =  \left\{ \rho \in  \left\{  \textrm{Win \right\ \right\}, \textrm{Lose}}^\omega : \exists i, \rho_i =  \textrm{Win}}.
+ \mathtt{Reach} =  \left\{ \rho \in  \left\{  Win, Lose \right\ \right\}^\omega : \exists i, \rho_i =  Win}.
 $$
 
 Safety and reachability conditions are dual:
 
 $$
- \textrm{Paths}_\omega \setminus  \mathtt{Safe}[ \textsf{col}] =  \mathtt{Reach}[\overline{ \textsf{col}}] \quad ; \quad
- \textrm{Paths}_\omega \setminus  \mathtt{Reach}[ \textsf{col}] =  \mathtt{Safe}[\overline{ \textsf{col}}].
+ Paths_\omega \setminus  \mathtt{Safe}[ \textsf{col}] =  \mathtt{Reach}[\overline{ \textsf{col}}] \quad ; \quad
+ Paths_\omega \setminus  \mathtt{Reach}[ \textsf{col}] =  \mathtt{Safe}[\overline{ \textsf{col}}].
 $$
 
-where $\overline{ \textsf{col}}$ swaps $\textrm{Win}$ and $\textrm{Lose}$ in $\textsf{col}$.
+where $\overline{ \textsf{col}}$ swaps $Win$ and $Lose$ in $\textsf{col}$.
 Consequently, if the condition for Eve is a safety condition, then the condition for Adam is a reachability condition, and conversely.
 
 ## Prefix independent qualitative objectives: B&uuml;chi, CoB&uuml;chi, and Parity
@@ -83,8 +83,8 @@ $$
 B&uuml;chi and CoB&uuml;chi conditions are dual:
 
 $$
- \textrm{Paths}_\omega \setminus  \mathtt{Buchi}[ \textsf{col}] =  \mathtt{CoBuchi}[ \textsf{col} + 1] \quad ; \quad
- \textrm{Paths}_\omega \setminus  \mathtt{CoBuchi}[ \textsf{col}] =  \mathtt{Buchi}[ \textsf{col} - 1].
+ Paths_\omega \setminus  \mathtt{Buchi}[ \textsf{col}] =  \mathtt{CoBuchi}[ \textsf{col} + 1] \quad ; \quad
+ Paths_\omega \setminus  \mathtt{CoBuchi}[ \textsf{col}] =  \mathtt{Buchi}[ \textsf{col} - 1].
 $$
 
 where $\textsf{col} + 1$ adds one to $\textsf{col}$ (since $\textsf{col}$ maps vertices to $\left\{ 1,2 \right\}$, $\textsf{col} + 1$ maps vertices to $\left\{ 2,3 \right\}$),
@@ -122,7 +122,7 @@ First, B&uuml;chi and CoB&uuml;chi objectives are parity objectives for the set 
 Second, the parity conditions are self dual:
 
 $$
- \textrm{Paths}_\omega \setminus  \mathtt{Parity}([i,j])[ \textsf{col}] =  \mathtt{Parity}([i+1,j+1])[ \textsf{col} + 1],
+ Paths_\omega \setminus  \mathtt{Parity}([i,j])[ \textsf{col}] =  \mathtt{Parity}([i+1,j+1])[ \textsf{col} + 1],
 $$
 
 where $\textsf{col} + 1$ adds one to $\textsf{col}$.
@@ -144,7 +144,7 @@ Given an objective $\Omega \subseteq C^\omega$ we use a colouring function $\tex
 We extend this notation to sets of vertices and colours as follows.
 
 *  A set of vertices $F \subseteq V$ induces the colouring function $\textsf{col}_F$ defined by 
-$\textsf{col}_F(v) =  \textrm{Win}$ if $v \in F$ and $\textsf{col}_F(v) =  \textrm{Lose}$ otherwise.
+$\textsf{col}_F(v) =  Win$ if $v \in F$ and $\textsf{col}_F(v) =  Lose$ otherwise.
 For $F \subseteq V$ we define $\mathtt{Safe}[F]$ as $\mathtt{Safe}[ \textsf{col}_F]$: it requires that no vertex from $F$ is ever visited.
 *  A colour $c \in C$ induces the set of vertices $\textsf{col}^{-1}(c)$ labelled by $c$.
 The condition $\mathtt{Safe}[c]$ requires that the colour $c$ is never visited.
@@ -153,9 +153,9 @@ We apply this convention to safety, B&uuml;chi, and CoB&uuml;chi conditions: for
 
 $$
 \begin{array}{ccccc}
- \mathtt{Reach}[F] & = &  \mathtt{Reach}[ \textsf{col}_F] & = &  \left\{  \pi \in  \textrm{Paths \right\}_\omega : \exists i,   \textrm{In}( \pi_i) \in F}, \\
- \mathtt{Buchi}[F] & = &  \mathtt{Buchi}[ \textsf{col}_F] & = &  \left\{  \pi \in  \textrm{Paths \right\}_\omega : \forall j, \exists i \ge j,   \textrm{In}( \pi_i) \in F}, \\
- \mathtt{CoBuchi}[F] & = &  \mathtt{CoBuchi}[ \textsf{col}_F] & = &  \left\{  \pi \in  \textrm{Paths \right\}_\omega : \exists j, \forall i \ge j,   \textrm{In}( \pi_i) \notin F},
+ \mathtt{Reach}[F] & = &  \mathtt{Reach}[ \textsf{col}_F] & = &  \left\{  \pi \in  Paths_\omega : \exists i,   In( \pi_i) \in F \right\}, \\
+ \mathtt{Buchi}[F] & = &  \mathtt{Buchi}[ \textsf{col}_F] & = &  \left\{  \pi \in  Paths_\omega : \forall j, \exists i \ge j,   In( \pi_i) \in F \right\}, \\
+ \mathtt{CoBuchi}[F] & = &  \mathtt{CoBuchi}[ \textsf{col}_F] & = &  \left\{  \pi \in  Paths_\omega : \exists j, \forall i \ge j,   In( \pi_i) \notin F \right\},
 \end{array}
 $$
 

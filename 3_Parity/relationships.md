@@ -64,7 +64,7 @@ The answer is unfortunately yes, there exists a lower bound on the size of unive
 
 The last question we discuss here is whether there exists a quasipolynomial strategy improvement algorithm.
 In particular a natural attempt would be to use universal trees for this endeavour.
-Unfortunately, this fails:  {prf:ref}`3-lem:key_property` explains that for the particular choice of the lattice $Y$,
+Unfortunately, this fails: {prf:ref}`3-lem:key_property` explains that for the particular choice of the lattice $Y$,
 functions $\mu : V \to Y$ can be used both to certify that a graph satisfies parity or that it satisfies the complement of parity.
 Both implications are used in the correctness proof of the algorithm.
-This symmetric feature is lost with universal trees, which only satisfy one of the two implications, stated in  {prf:ref}`3-lem:progress_measure`.
+This symmetric feature is lost with universal trees, which only satisfy one of the two implications, stated in {prf:ref}`3-lem:progress_measure`.

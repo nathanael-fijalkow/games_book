@@ -65,7 +65,7 @@ $$
  \inf_\tau \sup_\sigma \mathbb{E}_{ \delta_0}^{\sigma,\tau}\enspace.
 $$
 
-This value is denoted $\textrm{val}( \delta_0)$
+This value is denoted $val( \delta_0)$
 and is computable .
 
 ```{margin}
@@ -111,7 +111,7 @@ about matrix games.
 In the simplified poker example,
 the reduction is as follows.
 
-We rely on the formal description of the game at the end of \cref{subsec:formalimp}
+We rely on the formal description of the game at the end of {prf:ref}`subsec:formalimp`
 and perform two simplifications.
 First, we only consider strategies playing moves according to the rules,
 other strategies are strategically useless.
@@ -178,7 +178,7 @@ In other words, she should bluff with probability $\frac{1}{6}$ when she receive
 Adam has a unique optimal strategy which consists in calling or folding
 with equal probability $\frac{1}{2}$\enspace.
 
-> **Proof of  {prf:ref}`8-thm:finiteimperfecthaveval`.**
+> **Proof of {prf:ref}`8-thm:finiteimperfecthaveval`.**
 
 The example illustrates
 the correspondance between behavioural strategies in the finite-duration game on one side
@@ -273,16 +273,16 @@ where the vertical pipe denotes a conditional probability.
 
 ````
 
-We proceed with the proof of  {prf:ref}`8-thm:finiteimperfecthaveval`.
+We proceed with the proof of {prf:ref}`8-thm:finiteimperfecthaveval`.
 
-According to  {prf:ref}`8-lem:mat`,
+According to {prf:ref}`8-lem:mat`,
 the normal form has a value and optimal strategies
 for each player. 
-Denote $\textrm{val}_N$ the value
+Denote $val_N$ the value
 and $\Sigma^\sharp$ and $T^\sharp$ the optimal strategies.
 Let $\sigma^\sharp=\Phi'(\Sigma^\sharp)$.
 Then $\sigma^\sharp$ ensures a payoff
-of at least $\textrm{val}_N$ in the imperfect information game,
+of at least $val_N$ in the imperfect information game,
 because for every strategy $\tau$,
 
 $$
@@ -292,16 +292,16 @@ $$
 =
 \sum_{\sigma',\tau' \in  \text{Strat}_d}\Sigma^\sharp(\sigma') \Phi(\tau)(\tau')
 \mathbb{E}_{ \delta_0}^{\sigma',\tau'}
-\geq   \textrm{val}_N\enspace,
+\geq   val_N\enspace,
 $$
 
-where the first equalities are applications of  {prf:ref}`8-lem:impinffinite`
+where the first equalities are applications of {prf:ref}`8-lem:impinffinite`
 and the inequality is by optimality of $\Sigma^\sharp$.
 Symmetrically, 
 $\tau^\sharp=\Phi'(T^\sharp)$ guarantees 
-$\forall \sigma,\mathbb{E}_{ \delta_0}^{\sigma,\tau^\sharp}\leq  \textrm{val}_N$. 
+$\forall \sigma,\mathbb{E}_{ \delta_0}^{\sigma,\tau^\sharp}\leq  val_N$. 
 Thus the value of the game with finite duration
-is $\textrm{val}_N$ and $\sigma^\sharp$
+is $val_N$ and $\sigma^\sharp$
 and $\tau^\sharp$ are optimal.\qed
 
 (8-subsec:reduction_linear_programming)=
@@ -352,12 +352,14 @@ First, representing a behavioral strategy $\sigma:R_E \to  \mathcal{D}(A)$
  of Eve as a **plan** $\pi:R_E  \to [0,1]$
  recursively defined by $\pi(\epsilon) = 1$
  and for every $s_0\cdots s_n \in R_E, s\in S$,
- ```{math}
+ 
+$$
 
 & \pi(s_0\cdots s_n\cdot s) = \pi(s_0\cdots s_n) \cdot
  \sigma(s_0\cdots s_n)( \text{Act}(s))\enspace.
  
-```
+$$
+
 Remind that actions are observable and $\text{Act}(s)$
 denotes the action that Eve has just played
 before receiving signal $s$.
@@ -368,11 +370,13 @@ the following equalities.
 First, $p_\epsilon = 1$.
 Second, for every 
 $s_0\ldots s_{n-1}s,s_0\ldots s_{n-1}s' \in R_E$,
-```{math}
+
+$$
 
 ( \text{Act}(s)= \text{Act}(s')) \implies \left(p_{s_0\ldots s_{n-1}s}= p_{s_0\ldots s_{n-1}s'}\right)\enspace.
 
-```
+$$
+
 We denote $p_{s_0\ldots s_{n-1}a}$ the common value of
 all $p_{s_0\ldots s_{n-1}s}$ with $a= \text{Act}(s)$.
 The third equality is 
@@ -388,22 +392,23 @@ $p_{s_0\ldots s_{n-1}}=\sum_{a\in A} p_{s_0\ldots s_{n-1}a}$ \enspace.
 For every play $(v_0,a_0,b_0,s_0,t_0,c_0),\ldots,(v_k,a_k,b_k,s_k,t_k,c_k)$
  we denote $\mathbb{E}(\pi)$ the product of all transition
 probabilities of $\pi$ and $r_{E}(\pi)$ the sequence of signals of Eve in this play:
-```{math}
+
+$$
 
 &\mathbb{E}(\pi) =  \delta_0(v_0)\cdot \Delta(v_0,a_0,b_0,s_0,t_0,c_0)
   \cdots \Delta(v_k,a_k,b_k,s_k,t_k,c_k)\\
  & r_{E}(\pi) = s_0,s_1,\ldots,s_k\enspace.
 
-```
+$$
 
 We show that the following linear program with variables
   $(p_r)_{r \in R_E}$, $(v_r)_{r\in R_A}$
-  has an optimal solution which equals to $\textrm{val}( \delta_0)$.
+  has an optimal solution which equals to $val( \delta_0)$.
  For every sequences of signals $r \in R_A$
  we denote $T_A(r)$ the (possibly empty)
  set of terminal plays whose sequence of signals for Adam is $r$.
 
-```{math}
+$$
 
 &\text{Maximise $v_{\epsilon}$ subject to}
 \notag\\
@@ -421,7 +426,7 @@ v_{r} \leq \sum\limits_{\substack{rs \in R_A\\s \in S,  \text{Act}(s)=a}}
 v_{rs} + \sum\limits_{\pi \in T(r)} \mathbb{E}(\pi) \cdot   {\tt pay}(\pi) \cdot 
 p_{r_E(\pi)}
 
-```
+$$
 
 For our purpose,
 it is enough to establish 
@@ -429,7 +434,7 @@ that the optimal solution of the LP
 is
 
 $$
-  \textrm{val}( \delta_0) = \sup_\sigma \min\limits_{\tau\text{ deterministic}} \mathbb{E}_{ \delta_0}^{\sigma,\tau}\enspace.
+  val( \delta_0) = \sup_\sigma \min\limits_{\tau\text{ deterministic}} \mathbb{E}_{ \delta_0}^{\sigma,\tau}\enspace.
 $$
 
 The reason is that in a matrix game,

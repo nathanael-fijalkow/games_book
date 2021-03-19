@@ -38,9 +38,9 @@
 
 ```
 
-\Cref{11-th:undec} shows that vector games are too powerful to be
+{prf:ref}`11-th:undec` shows that vector games are too powerful to be
 algorithmically relevant, except in dimension one where
-\cref{11-th:dim1} applies.  This prompts the study of restricted kinds
+{prf:ref}`11-th:dim1` applies.  This prompts the study of restricted kinds
 of vector games, which might be decidable in arbitrary dimension.
 This section introduces one such restriction, called
 **asymmetry**, which turns out to be very fruitful: it yields
@@ -53,9 +53,9 @@ games" (see Section {ref}`11-sec:resource`).
  A vector system
 $\?V=( \?L, A, \?L_\mathrm{Eve}, \?L_\mathrm{Adam}, k)$ is
 asymmetric\index{asymmetry|see{vector system}} if, for all
-locations $\ell\in \?L_\mathrm{Adam}$ controlled by  \textrm{Adam}\ and all actions
+locations $\ell\in \?L_\mathrm{Adam}$ controlled by  Adam\ and all actions
 $( \ell\step{\vec u} \ell')\in A$ originating from those,
-$\vec u=\vec 0$ the zero vector.  In other words,  \textrm{Adam}\ may only
+$\vec u=\vec 0$ the zero vector.  In other words,  Adam\ may only
 change the current location, and cannot interact directly with the
 counters.
 
@@ -65,13 +65,13 @@ counters.
   {numref}`11-fig:avg` presents an asymmetric vector system of
   dimension two with locations partitioned as $\?L_\mathrm{Eve}=\{ \ell, \ell_{2,1}, \ell_{\text-1,0}\}$ and $\?L_\mathrm{Adam}=\{ \ell'\}$% , and actions
   
-  .  We omit the labels on the actions originating from  \textrm{Adam}'s
+  .  We omit the labels on the actions originating from  Adam's
   locations, since those are necessarily the zero vector.  It is
   worth observing that this vector system behaves quite differently
-  from the one of  {prf:ref}`11-ex:mwg` on \cpageref{11-ex:mwg}: for
-  instance, in $\ell'(0,1)$,  \textrm{Adam}\ can now ensure that the sink will
+  from the one of {prf:ref}`11-ex:mwg` on \cpageref{11-ex:mwg}: for
+  instance, in $\ell'(0,1)$,  Adam\ can now ensure that the sink will
   be reached by playing the action $\ell'\step{0,0} \ell_{\text-1,0}$,
-  whereas in  {prf:ref}`11-ex:mwg`, the action $\ell'\step{-1,0} \ell$
+  whereas in {prf:ref}`11-ex:mwg`, the action $\ell'\step{-1,0} \ell$
   was just inhibited by the natural semantics.
 
 ````
@@ -107,24 +107,25 @@ configuration reachability remains undecidable.
   assume without loss of generality that $\?M$ checks that all its
   counters are zero before going to $\ell_\mathtt{halt}$, we construct
   an asymmetric vector system
-  $\?V  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=}( \?L\uplus \?L_{\eqby?0}\uplus \?L_{ k}, A', \?L\uplus \?L'_{\eqby?0}, \?L_{\eqby?0}, k)$
+  $\?V  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=}( \?L\uplus \?L_{\eqby?0}\uplus \?L_{ k}, A', \?L\uplus \?L'_{\eqby?0}, \?L_{\eqby?0}, k)$
   where all the original locations and $\?L_{ k}$ are
-  controlled by  \textrm{Eve}\ and $\?L_{\eqby?0}$ is controlled by  \textrm{Adam}.
+  controlled by  Eve\ and $\?L_{\eqby?0}$ is controlled by  Adam.
 
 ```{figure} ./../FigAndAlgos/11-fig:asym-undec.png
 :name: 11-fig:asym-undec
 :align: center
-Schema of the reduction in the proof of \cref{11-th:asym-undec}.
+Schema of the reduction in the proof of {prf:ref}`11-th:asym-undec`.
 ```
 
   We
   use $\?L_{\eqby?0}$ and $\?L_{ k}$ as two sets of locations disjoint from $\?L$ defined by
-  ```{math}
+  
+$$
 
-     \?L_{\eqby?0}&  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=}\{ \ell'_{i\eqby?0}\in \?L\times\{1,\dots, k\}\mid\exists \ell\in \?L\mathbin.( \ell\step{i\eqby?0} \ell')\in A\}\\
-     \?L_{ k}&  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=}\{ \ell_{i}\mid 1\leq i\leq  k\}
+     \?L_{\eqby?0}&  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=}\{ \ell'_{i\eqby?0}\in \?L\times\{1,\dots, k\}\mid\exists \ell\in \?L\mathbin.( \ell\step{i\eqby?0} \ell')\in A\}\\
+     \?L_{ k}&  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=}\{ \ell_{i}\mid 1\leq i\leq  k\}
     \intertext{and define the set of actions by (see {numref}`11-fig:asym-undec`)}
-     A'&  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=}\{ \ell\step{\vec
+     A'&  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=}\{ \ell\step{\vec
           e_i} \ell'\mid( \ell\step{\vec e_i} \ell')\in A\}\cup\{ \ell\step{-\vec e_i} \ell''\mid( \ell\step{-\vec e_i} \ell'')\in A\}\\
     &\:\cup\:\{ \ell\step{\vec
       0} \ell'_{i\eqby?0},\;\;\: \ell'_{i\eqby?0}\!\!\step{\vec
@@ -133,63 +134,64 @@ Schema of the reduction in the proof of \cref{11-th:asym-undec}.
     &\:\cup\:\{ \ell_i\!\step{-\vec e_j} \ell_{i},\;\;\: \ell_{i}\!\step{\vec
       0} \ell_\mathtt{halt}\mid 1\leq i,j\leq k, j\neq i\}\;.
   
-```
+$$
+
   We use $\ell_0(\vec 0)$ as initial configuration and
   $\ell_\mathtt{halt}(\vec 0)$ as target configuration for the
   constructed configuration reachability instance.  Here is the crux
-  of the argument why  \textrm{Eve}\ has a winning strategy to reach
+  of the argument why  Eve\ has a winning strategy to reach
   $\ell_\mathtt{halt}(\vec 0)$ from $\ell_0(\vec 0)$ if and only if
   the Minsky machine@deterministic Minsky machine halts, i.e., if
   and only if the Minsky machine@deterministic Minsky machine
   reaches $\ell_\mathtt{halt}(\vec 0)$.
   
   Consider any configuration $\ell(\vec v)$.  If
-  $( \ell\step{\vec e_i} \ell')\in A$,  \textrm{Eve}\ has no choice but to apply
+  $( \ell\step{\vec e_i} \ell')\in A$,  Eve\ has no choice but to apply
   $\ell\step{\vec e_i} \ell'$ and go to the configuration
   $\ell'(\vec v+\vec e_i)$ also reached in one step in $\?M$.  If
   $\{ \ell\step{i\eqby?0} \ell', \ell\step{-\vec e_i} \ell''\}\in A$ and
-  $\vec v(i)=0$, due to the natural semantics,  \textrm{Eve}\ cannot use the
+  $\vec v(i)=0$, due to the natural semantics,  Eve\ cannot use the
   action $\ell\step{-\vec e_i} \ell''$, thus she must use
-  $\ell\step{\vec 0} \ell'_{i\eqby?0}$.  Then, either  \textrm{Adam}\ plays
-  $\ell'_{i\eqby?0}\!\!\step{\vec 0} \ell'$ and  \textrm{Eve}\ regains the
+  $\ell\step{\vec 0} \ell'_{i\eqby?0}$.  Then, either  Adam\ plays
+  $\ell'_{i\eqby?0}\!\!\step{\vec 0} \ell'$ and  Eve\ regains the
   control in $\ell'(\vec v)$, which was also the configuration reached
-  in one step in $\?M$, or  \textrm{Adam}\ plays
-  $\ell'_{i\eqby?0}\!\!\step{\vec 0} \ell_{i}$ and  \textrm{Eve}\ 
+  in one step in $\?M$, or  Adam\ plays
+  $\ell'_{i\eqby?0}\!\!\step{\vec 0} \ell_{i}$ and  Eve\ 
   regains the control in $\ell_{i}(\vec v)$ with
   $\vec v(i)=0$.  Using the actions
   $\ell_{i}\!\step{-\vec e_j} \ell_{i}$ for
-  $j\neq i$,  \textrm{Eve}\ can then reach $\ell_{i}(\vec 0)$ and move
+  $j\neq i$,  Eve\ can then reach $\ell_{i}(\vec 0)$ and move
   to $\ell_\mathtt{halt}(\vec 0)$.  Finally, if
   $\{ \ell\step{i\eqby?0} \ell', \ell\step{-\vec e_i} \ell''\}\in A$ and
-  $\vec v(i)>0$,  \textrm{Eve}\ can choose: if she uses
+  $\vec v(i)>0$,  Eve\ can choose: if she uses
   $\ell\step{-\vec e_i} \ell''$, she ends in the configuration
   $\ell''(\vec v-\vec e_i)$ also reached in one step in $\?M$.  In
   fact, she should not use $\ell\step{\vec 0} \ell'_{i\eqby?0}$,
-  because  \textrm{Adam}\ would then have the opportunity to apply
+  because  Adam\ would then have the opportunity to apply
   $\ell'_{i\eqby?0}\!\!\step{\vec 0} \ell_{i}$, and in
   $\ell_{i}(\vec v)$ with $\vec v(i)>0$, there is no way to
   reach a configuration with an empty $i$th component, let alone to
-  reach $\ell_\mathtt{halt}(\vec 0)$.  Thus, if $\?M$ halts, then  \textrm{Eve}\ 
+  reach $\ell_\mathtt{halt}(\vec 0)$.  Thus, if $\?M$ halts, then  Eve\ 
   has a winning strategy that mimics the unique play
-  of $\?M$, and conversely, if  \textrm{Eve}\ wins, then necessarily she had to
+  of $\?M$, and conversely, if  Eve\ wins, then necessarily she had to
   follow the play of $\?M$ and thus the machine halts.
 
   \medskip Finally, regarding the existential initial credit
-  variant, the arguments used in the proof of \cref{11-th:undec} apply
+  variant, the arguments used in the proof of {prf:ref}`11-th:undec` apply
   similarly to show that it is also undecidable.
 
 ````
 
-In dimension one, \cref{11-th:dim1} applies, thus "configuration
-reachability" is decidable in  \textrm{EXPSPACE}.  This bound is actually
+In dimension one, {prf:ref}`11-th:dim1` applies, thus "configuration
+reachability" is decidable in  EXPSPACE.  This bound is actually
 tight.
 
-````{prf:theorem} Asymmetric vector games are  \textrm{EXPSPACE}-complete in dimension one
+````{prf:theorem} Asymmetric vector games are  EXPSPACE-complete in dimension one
 :label: 11-th:asym-dim1
 
   Configuration reachability asymmetric vector games, both with
   given and with existential initial credit,
-  are  \textrm{EXPSPACE}-complete in dimension one.
+  are  EXPSPACE-complete in dimension one.
 
 ````
 
@@ -197,38 +199,41 @@ tight.
 :class: dropdown tip
 
   Let us first consider the existential initial credit variant.  We
-  proceed as in \cref{11-th:countdown-given,11-th:countdown-exist} and
+  proceed as in {prf:ref}`11-th:countdown-given` and {prf:ref}`11-th:countdown-exist` and
   reduce from the acceptance problem for a deterministic Turing
   machine working in exponential space $m=2^{p(n)}$.  The reduction is
-  mostly the same as in \cref{11-th:countdown-given}, with a few changes.
+  mostly the same as in {prf:ref}`11-th:countdown-given`, with a few changes.
   Consider the integer $m-n$ from that reduction.  While this is an
   exponential value, it can be written as $m-n=\sum_{0\leq e\leq
   p(n)}2^{e}\cdot b_e$ for a polynomial number of bits $b_0,\dots,b_{p(n)}$.
-  For all $0\leq d\leq p(n)$, we define $m_d  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=} \sum_{0\leq e\leq
+  For all $0\leq d\leq p(n)$, we define $m_d  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=} \sum_{0\leq e\leq
   d}2^{e}\cdot b_e$; thus $m-n+1=m_{p(n)}+1$.
 
   We define now the sets of
   locations
-  ```{math}
+  
+$$
 
-     \?L_\mathrm{Eve}&  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=}\{ \ell_0,\smiley\}
+     \?L_\mathrm{Eve}&  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=}\{ \ell_0,\smiley\}
       \cup\{ \ell_\gamma\mid\gamma\in\Gamma'\}
       \cup\{ \ell_\gamma^k\mid 1\leq k\leq 3\}
       \cup\{ \ell_{=j}\mid 0<j\leq n\}\\
       &\:\cup\:\{ \ell_{1\leq?\leq m_d+1}\mid 0\leq d\leq
   p(n)\}\cup\{ \ell_{1\leq?\leq 2^d}\mid 1\leq d\leq p(n)\}\;,\\
-     \?L_\mathrm{Adam}&  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=}\{ \ell_{(\gamma_1,\gamma_2,\gamma_3)}\mid\gamma_1,\gamma_2,\gamma_3\in\Gamma'\}\;.
+     \?L_\mathrm{Adam}&  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=}\{ \ell_{(\gamma_1,\gamma_2,\gamma_3)}\mid\gamma_1,\gamma_2,\gamma_3\in\Gamma'\}\;.
   
-```
+$$
+
   The intention behind the locations $\ell_{=j}\in \?L_\mathrm{Eve}$ is
-  that  \textrm{Eve}\ can reach $\smiley(0)$ from a configuration $\ell_{=j}(c)$ if
+  that  Eve\ can reach $\smiley(0)$ from a configuration $\ell_{=j}(c)$ if
   and only if $c=j$; we define accordingly $A$ with the
   action $\ell_{=j}\step{-j}\smiley$.
-  Similarly,  \textrm{Eve}\ should be able to reach $\smiley(0)$ from
+  Similarly,  Eve\ should be able to reach $\smiley(0)$ from
   $\ell_{1\leq?\leq m_d+1}(c)$ for $0\leq d\leq p(n)$ if and only if
   $1\leq c\leq m_d+1$,
   which is implemented by the following actions: if $b_{d+1}=1$, then
-  ```{math}
+  
+$$
 
      \ell_{1\leq?\leq m_{d+1}+1}&\step{0} \ell_{1\leq?\leq 2^{d+1}}\;,&
      \ell_{1\leq?\leq m_{d+1}+1}&\step{-2^{d+1}} \ell_{1\leq ?\leq m_{d}+1}\;,
@@ -244,13 +249,14 @@ tight.
                                                   2^d}\;,\\ \ell_{1\leq?\leq
     2^1}&\step{-1} \ell_{=1}\;,& \ell_{1\leq?\leq 2^1}&\step{0} \ell_{=1}\;.
   
-```
+$$
 
   The remainder of the reduction is now very similar to the reduction shown
-  in \cref{11-th:countdown-given}.
-  Regarding initialisation,  \textrm{Eve}\ can choose her initial position,
+  in {prf:ref}`11-th:countdown-given`.
+  Regarding initialisation,  Eve\ can choose her initial position,
   which we implement by the actions
-  ```{math}
+  
+$$
 
      \ell_0 &\step{-1}  \ell_0 &  \ell_0 &\step{-1} \ell_{(q_\mathrm{final},a)}&&\text{for $a\in\Gamma$}\;.
     \intertext{Outside the boundary cases, the game is implemented by
@@ -259,7 +265,7 @@ tight.
   $\gamma_1,\gamma_2,\gamma_3\vdash\gamma$}\;,\\  \ell_{(\gamma_1,\gamma_2,\gamma_3)}&\step{0} \ell^k_{\gamma_k}& \ell^k_{\gamma_k}&\step{-k} \ell_{\gamma_k}&&\text{for
   $k\in\{1,2,3\}$}\;.
   \intertext{We handle the endmarker positions via the following
-  actions, where  \textrm{Eve}\ proceeds along the left edge
+  actions, where  Eve\ proceeds along the left edge
   of {numref}`11-fig:exp` until she reaches the initial left endmarker:}
     \ell_\triangleright&\step{-m-2} \ell_\triangleright\;,&  \ell_\triangleright&\step{-1} \ell_{=1}\;,&  \ell_\triangleleft&\step{-m-1} \ell_\triangleright\;.
   \intertext{For the positions inside the input word $w=a_1\cdots
@@ -272,10 +278,10 @@ tight.
   action}
    \ell_\Box&\step{-n-2} \ell_{1\leq?\leq m_{p(n)}+1}\;.
   
-```
+$$
 
   Regarding the given initial credit variant, we add a new location
-  $\ell'_0$ controlled by  \textrm{Eve}\ and let her choose her initial credit
+  $\ell'_0$ controlled by  Eve\ and let her choose her initial credit
   when starting from $\ell'_0(0)$ by using the new actions
   $\ell'_0\step{1} \ell'_0$ and $\ell'_0\step{0} \ell_0$.
 
@@ -304,12 +310,12 @@ $x<y$ holds if $x\leq y$ and $y\not\leq x$.
 
 The upward closure of a subset $S\subseteq X$ is the set of
 elements greater or equal to the elements of S:
-${\uparrow}S  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=}\{x\in X\mid\exists y\in S\mathbin.y\leq x\}$.  A
+${\uparrow}S  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=}\{x\in X\mid\exists y\in S\mathbin.y\leq x\}$.  A
 subset $U\subseteq X$ is upwards closed if ${\uparrow}U=U$.  When
 $S=\{x\}$ is a singleton, we write more simply ${\uparrow}x$ for its
 upward closure and call the resulting upwards closed set a
 principal filter.  Dually, the downward closure of $S$ is
-${\downarrow}S  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=}\{x\in X\mid\exists y\in S\mathbin.x\leq y\}$, a
+${\downarrow}S  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=}\{x\in X\mid\exists y\in S\mathbin.x\leq y\}$, a
 downwards closed set is a subset $D\subseteq X$ such that
 $D={\downarrow}D$, and ${\downarrow}x$ is called a principal
 ideal.  Note that the complement $X\setminus U$ of an upwards closed
@@ -329,7 +335,7 @@ ordering.
 Consider a set of colours $C$ and a vertex colouring $\mathrm{vcol}{:}\,V\to C$
 of the natural semantics $\natural(\?V)$ of a vector system, which
 defines a colouring $\textsf{col}{:}\,E\to C$ where
-$\textsf{col}(e)  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=} \mathrm{vcol}( \textrm{In}(e))$.  We
+$\textsf{col}(e)  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=} \mathrm{vcol}( In(e))$.  We
 say that the colouring $\mathrm{vcol}$ is monotonic if $C$ is finite and,
 for every colour $p\in C$, the set $\mathrm{vcol}^{-1}(p)$ of vertices coloured
 by $p$ is upwards closed with respect to ${\leq}$.  Clearly, the
@@ -342,7 +348,7 @@ is monotonic.
 ````{prf:lemma} Simulation
 :label: 11-lem:mono
 
-  In a monotonic asymmetric vector game, if  \textrm{Eve}\ wins from a
+  In a monotonic asymmetric vector game, if  Eve\ wins from a
   vertex $v_0$, then she also wins from $v'_0$ for all $v'_0\geq
   v_0$.
 
@@ -354,17 +360,17 @@ is monotonic.
   It suffices for this to check that, for all $v_1\leq v_2$ in $V$,
   \begin{description}
   \item[(colours)] $\mathrm{vcol}(v_1)= \mathrm{vcol}(v_2)$ since $\mathrm{vcol}$ is monotonic;
-  \item[(zig  \textrm{Eve})] if $v_1,v_2\in V_\mathrm{Eve}$, $a\in A$, and
+  \item[(zig  Eve)] if $v_1,v_2\in V_\mathrm{Eve}$, $a\in A$, and
     $\Delta(v_1,a)=v'_1\neq \bot$ is defined, then
-    $v'_2  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=} \Delta(v_2,a)$ is such that $v'_2\geq v'_1$: indeed,
+    $v'_2  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=} \Delta(v_2,a)$ is such that $v'_2\geq v'_1$: indeed,
     $v'_1\neq \bot$ entails that $v_1$ is a configuration
     $\ell(\vec v_1)$ and $v'_1= \ell'(\vec v_1+\vec u)$ for the action
     $a=( \ell\step{\vec u} \ell')\in A$, but then $v_2= \ell(\vec v_2)$
     for some $\vec v_2\geq\vec v_1$ and
     $v'_2= \ell'(\vec v_2+\vec u)\geq v'_1$;
-  \item[(zig  \textrm{Adam})] if $v_1,v_2\in V_\mathrm{Adam}$, $a\in A$, and
+  \item[(zig  Adam)] if $v_1,v_2\in V_\mathrm{Adam}$, $a\in A$, and
     $\Delta(v_2,a)=v'_2$ is defined, then
-    $v'_1  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=} \Delta(v_1,a)\leq v'_2$: indeed, either $v'_2= \bot$ and
+    $v'_1  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=} \Delta(v_1,a)\leq v'_2$: indeed, either $v'_2= \bot$ and
     then $v'_1= \bot$, or $v'_2\neq \bot$, thus
     $v_2= \ell(\vec v_2)$, $v'_2= \ell'(\vec v_2)$, and
     $a=( \ell\step{\vec 0} \ell')\in A$ (recall that the game is
@@ -372,15 +378,15 @@ is monotonic.
     $\vec v_1\leq\vec v_2$ and thus $v'_1= \ell'(\vec v_1)\leq v'_2$.
   \end{description}
   The above conditions show that, if $\sigma{:}\,E^\ast\to A$ is a
-  strategy of  \textrm{Eve}\ that wins from $v_0$, then by
+  strategy of  Eve\ that wins from $v_0$, then by
   simulating $\sigma$ starting from $v'_0$---i.e., by applying the
   same actions when given a pointwise larger or equal history---she
   will also win.\todoquestion{Is that clear?}
 
 ````
 
-Note that  {prf:ref}`11-lem:mono` implies that $W_\mathrm{Eve}$ is upwards closed:
-$v_0\in W_\mathrm{Eve}$ and $v_0\leq v'_0$ imply $v_0'\in W_\mathrm{Eve}$.   {prf:ref}`11-lem:mono`
+Note that {prf:ref}`11-lem:mono` implies that $W_\mathrm{Eve}$ is upwards closed:
+$v_0\in W_\mathrm{Eve}$ and $v_0\leq v'_0$ imply $v_0'\in W_\mathrm{Eve}$.  {prf:ref}`11-lem:mono`
 does not necessarily hold in vector games without the asymmetry
 condition.  For instance, in both {numref}`11-fig:cov,11-fig:nonterm` on
 \cpageref{11-fig:cov}, $\ell'(0,1)\in W_\mathrm{Eve}$ but $\ell'(1,2)\in W_\mathrm{Adam}$ for
@@ -420,10 +426,10 @@ consequence of **Dickson's Lemma** {cite}`Dickson:1913`.
 > **Pareto Limits**
 
  By the finite basis property of
-$(V,{\leq})$ and  {prf:ref}`11-lem:mono`, in a monotonic "asymmetric
+$(V,{\leq})$ and {prf:ref}`11-lem:mono`, in a monotonic "asymmetric
 vector game", $W_\mathrm{Eve}=\bigcup_{1\leq j\leq n}{\uparrow} \ell_j(\vec v_j)$
 is a finite union of principal filters.  The set
-$\mathsf{Pareto}  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=}\{ \ell_1(\vec v_1),\dots, \ell_n(\vec v_n)\}$ is
+$\mathsf{Pareto}  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=}\{ \ell_1(\vec v_1),\dots, \ell_n(\vec v_n)\}$ is
 called the Pareto limit or **Pareto frontier** of the game.
 Both the existential and the given initial credit variants of the
 game can be reduced to computing this Pareto limit: with
@@ -434,13 +440,14 @@ whether $\ell_0(\vec v)\in\mathsf{Pareto}$ for some $\vec v\leq\vec
 v_0$.
 
 ````{prf:example} NEEDS LABEL Pareto limit
+
   Consider the asymmetric vector system from {numref}`11-fig:avg` on
   \cpageref{11-fig:avg}.  For the coverability game with target
   configuration $\ell(2,2)$, the Pareto limit is
   $\mathsf{Pareto}=\{ \ell(2,2), \ell'(3,2), \ell_{2,1}(0,1), \ell_{\text-1,0}(3,2)\}$,
   while for the non-termination game, $\mathsf{Pareto}=\emptyset$:
-   \textrm{Eve}\ loses from all the vertices.  Observe that this is consistent
-  with  \textrm{Eve}'s winning region in the coverability energy game
+   Eve\ loses from all the vertices.  Observe that this is consistent
+  with  Eve's winning region in the coverability energy game
   shown in {numref}`11-fig:cov-nrg`.
 
 ````
@@ -452,7 +459,7 @@ v_0$.
   where the meta-decrement from $\ell_0$ to $\ell_1$ can be
   implemented using $O(n)$ additional counters and a set $\?L'$ of
   $O(n)$ additional locations by the arguments of the
-  forthcoming \cref{11-th:avag-hard}.
+  forthcoming {prf:ref}`11-th:avag-hard`.
 
 ```{figure} ./../FigAndAlgos/11-fig:pareto.png
 :name: 11-fig:pareto
@@ -462,12 +469,12 @@ A one-player vector system
 ```
   For the coverability game with target
   configuration $\ell_f(\vec 0)$, if $\ell_0$ is the initial location
-  and we are given initial credit $m\cdot\vec e_1$,  \textrm{Eve}\ wins if and
+  and we are given initial credit $m\cdot\vec e_1$,  Eve\ wins if and
   only if $m\geq 2^{2^n}$, but with existential initial credit she
   can start from $\ell_0(\vec e_2)$ instead.  We have indeed
   $\mathsf{Pareto}\cap(\{ \ell_0, \ell_1, \ell_f\}\times\+N^ k)=\{ \ell_0(\vec
   e_2), \ell_0(2^{2^n}\cdot\vec e_1), \ell_1(\vec 0), \ell_f(\vec 0)\}$.
-  Looking more in-depth into the construction of \cref{11-th:avag-hard},
+  Looking more in-depth into the construction of {prf:ref}`11-th:avag-hard`,
   there is also an at least double exponential number of distinct
   minimal configurations in $\mathsf{Pareto}$.
 
@@ -475,7 +482,7 @@ A one-player vector system
 
 > **Finite Memory**
 
-Besides having a finitely represented winning region,  \textrm{Eve}\ also has
+Besides having a finitely represented winning region,  Eve\ also has
 finite memory strategies in asymmetric vector games with parity
 objectives; the following argument is straightforward to adapt to
 the other regular objectives from Chapter {ref}`2-chap:regular`.
@@ -483,7 +490,7 @@ the other regular objectives from Chapter {ref}`2-chap:regular`.
 ````{prf:lemma} Finite memory suffices in parity asymmetric vector games
 :label: 11-lem:finmem
 
-  If  \textrm{Eve}\ has a strategy winning from some vertex $v_0$ in a
+  If  Eve\ has a strategy winning from some vertex $v_0$ in a
   parity@parity vector game asymmetric vector game, then she has a
   finite-memory one.
 
@@ -501,7 +508,7 @@ the other regular objectives from Chapter {ref}`2-chap:regular`.
   $v_{n_0}\leq v_{n_1}\leq\cdots$.  There exists $i<j$ such
   that $p=\max_{n_i\leq n<n_j} \mathrm{vcol}(v_n)$ is the maximal priority
   occurring in some interval $v_{n_i},v_{n_{i+1}},\dots,v_{n_{j-1}}$.
-  Then  \textrm{Eve}\ can play in $v_{n_j}$ as if she were in $v_{n_i}$, in
+  Then  Eve\ can play in $v_{n_j}$ as if she were in $v_{n_i}$, in
   $v_{n_j+1}$ as if she were in $v_{n_i+1}$ and so on, and we prune
   the tree at index $n_j$ along this branch so that $v_{n_j}$ is a
   leaf, and we call $v_{n_i}$ the return node of that leaf.  We
@@ -521,9 +528,9 @@ the other regular objectives from Chapter {ref}`2-chap:regular`.
   action $\ell\step{\vec u} \ell'\in A$, if $\vec v'\geq\vec v$ and
   $m$ has a child $m'$ labelled by $\ell'(\vec v+\vec u)$ in the
   self-covering tree, then either $m'$ is a leaf with "return
-  node" $m''$ and we set $\delta(m,e)  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=} m''$, or $m'$ is an
-  internal node and we set $\delta(m,e)  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=} m'$; in all the other
-  cases, $\delta(m,e)  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=} m_\bot$.
+  node" $m''$ and we set $\delta(m,e)  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=} m''$, or $m'$ is an
+  internal node and we set $\delta(m,e)  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=} m'$; in all the other
+  cases, $\delta(m,e)  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=} m_\bot$.
 
   \todoquestion{Is that reasonably clear?  A
     bit heavy no?}
@@ -533,10 +540,11 @@ the other regular objectives from Chapter {ref}`2-chap:regular`.
 \TODO{Provide an additional example of a self-covering tree.}
 
 ````{prf:example} NEEDS LABEL doubly exponential memory
+
   Consider the one-player vector system of {numref}`11-fig:finitemem`,
   where the meta-decrement from $\ell_1$ to $\ell_0$ can be
   implemented using $O(n)$ additional counters and $O(n)$ additional
-  locations by the arguments of the forthcoming \cref{11-th:avag-hard}
+  locations by the arguments of the forthcoming {prf:ref}`11-th:avag-hard`
   on \cpageref{11-th:avag-hard}.
 
 ```{figure} ./../FigAndAlgos/11-fig:finitemem.png
@@ -547,15 +555,19 @@ A one-player vector system
 ```
 
   For the parity@parity vector game game with location colouring
-  $\mathrm{lcol}( \ell_0)  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=} 2$ and $\mathrm{lcol}( \ell_1)  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=} 1$, note that  \textrm{Eve}\ 
+  $\mathrm{lcol}( \ell_0)  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=} 2$ and $\mathrm{lcol}( \ell_1)  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=} 1$, note that  Eve\ 
   must visit $\ell_0$ infinitely often in order to fulfil the parity
   requirements.  Starting from the initial
-  configuration $\ell_0(\vec 0)$, any winning play of  \textrm{Eve}\ begins
-  by ```{math}\n  \ell_0(\vec 0)\step{0} \ell_1(\vec 0)\step{\vec
+  configuration $\ell_0(\vec 0)$, any winning play of  Eve\ begins
+  by 
+$$
+  \ell_0(\vec 0)\step{0} \ell_1(\vec 0)\step{\vec
       e_1} \ell_1(\vec e_1)\step{\vec e_1}\cdots\step{\vec
       e_1} \ell_1(m\cdot\vec
     e_1)\mstep{-2^{2^n}} \ell_0((m-2^{2^n})\cdot\vec
-    e_1) \\n``` for some $m\geq 2^{2^n}$ before she visits
+    e_1) 
+$$
+ for some $m\geq 2^{2^n}$ before she visits
   again a
   configuration---namely $\ell_0((m-2^{2^n})\cdot\vec e_1)$---greater
   or equal than a previous configuration---namely
@@ -572,8 +584,8 @@ A one-player vector system
 (11-sec:attr)=
 ### Attractor Computation for Coverability
 So far, we have not seen how to compute the Pareto limit derived
-from  {prf:ref}`11-lem:mono` nor the finite memory structure derived
-from  {prf:ref}`11-lem:finmem`.  These objects are not merely finite but
+from {prf:ref}`11-lem:mono` nor the finite memory structure derived
+from {prf:ref}`11-lem:finmem`.  These objects are not merely finite but
 also computable.  The simplest case is the one of coverability
 asymmetric monotonic vector games: the fixed-point computation of
 Section {ref}`2-sec:attractors` for reachability objectives can be turned into
@@ -592,12 +604,14 @@ an algorithm computing the Pareto limit of the game.
 
 Let $\ell_f(\vec v_f)$ be the target configuration.  We define a
 chain $U_0\subseteq U_1\subseteq\cdots$ of sets $U_i\subseteq V$ by
-```{math}
 
-  U_0&  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=}{\uparrow} \ell_f(\vec v_f)\;,&
-  U_{i+1}&  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=} U_i\cup\mathrm{Pre}(U_i)\;.
+$$
 
-```
+  U_0&  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=}{\uparrow} \ell_f(\vec v_f)\;,&
+  U_{i+1}&  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=} U_i\cup\mathrm{Pre}(U_i)\;.
+
+$$
+
 Observe that for all $i$, $U_i$ is upwards closed.  This can be
 checked by induction over $i$: it holds initially in $U_0$, and for
 the induction step, if $v\in U_{i+1}$ and $v'\geq v$, then either
@@ -622,12 +636,14 @@ representing those infinite upwards closed sets $U_i$.  Thankfully,
 by the finite basis property, each $U_i$ has a finite basis $B_i$
 such that ${\uparrow}B_i=U_i$.  We therefore compute the following
 sequence of sets
-```{math}
 
-  B_0&  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=}\{ \ell_f(\vec v_f)\}&B_{i+1}&  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=}
+$$
+
+  B_0&  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=}\{ \ell_f(\vec v_f)\}&B_{i+1}&  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=}
                                        B_i\cup\min\mathrm{Pre}({\uparrow}B_i)\;.
 
-```
+$$
+
 Indeed, given a finite basis $B_i$ for $U_i$, it is straightforward to
 compute a finite basis for the upwards closed $\mathrm{Pre}(U_i)$.
 This results in {numref}`11-algo:cov` below.
@@ -643,9 +659,9 @@ Fixed point algorithm for coverability in asymmetric "vector
 
 While this algorithm terminates thanks to the "ascending chain
 condition", it may take quite long.  For instance, in
- {prf:ref}`11-ex:pareto`, it requires at least $2^{2^n}$ steps before it
+{prf:ref}`11-ex:pareto`, it requires at least $2^{2^n}$ steps before it
 reaches its fixed point.  This is a worst-case instance, as it turns
-out that this algorithm works in  \textrm{kEXP}[2]; see the bibliographic notes
+out that this algorithm works in  kEXP[2]; see the bibliographic notes
 at the end of the chapter.  Note that such a
 fixed-point computation does not work directly for non-termination
 or parity vector games, due to the need for greatest fixed-points.

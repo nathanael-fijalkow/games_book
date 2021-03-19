@@ -710,13 +710,16 @@
 <p>There is a broad field of study related to Markov decision processes, with a history going as far as  1950’s <span id="id1">[<a class="reference internal" href="#id102"><span>Bel57</span></a>]</span>. It is beyond the scope of this chapter to provide a comprehensive overview of the related literature. Nonetheless, in this section we provide pointers to the most significant works connected to our techniques as well as to works that can serve as a starting point for a further study.</p>
 <p>One of the most widely used references for MDP-related research is the textbook by Puterman <span id="id2">[<a class="reference internal" href="#id123"><span>Put05</span></a>]</span>. The textbook views MDPs from an operations research point-of-view, focusing on finite-horizon, discounted, total-reward, and average reward (an alternative name for mean-payoff) objectives. Regular objectives fall outside of the book’s focus, though reachability can be viewed as a special case of the positive bounded total reward objectives studied in the book. An in-depth study of the textbook will impart to its reader the knowledge of many useful techniques for MDP analysis, though a reader who is a newcomer to MDPs might feel somewhat intimidated by its sheer volume and generality. In this chapter, we follow Puterman’s exposition mainly in the discounted payoff, albeit in a rather condensed form.</p>
 <p>For mean-payoff MDPs, <span id="id3">[<a class="reference internal" href="#id123"><span>Put05</span></a>]</span> follows similar blueprint as in the discounted case: first characterizing the optimal values via a suitable optimality equation and then deriving the value iteration, strategy improvement, and linear programming methods from this characterization. We use the linear programming as our foundational stone, focusing on the relationship between strategies and feasible solutions of the program. We note that value and strategy iteration for mean-payoff MDPs come with super-polynomial lower bounds, see, e.g. <span id="id4">[<a class="reference internal" href="#id110"><span>Fea10a</span></a>,<a class="reference internal" href="#id111"><span>Fea10b</span></a>]</span>, or <span id="id5">[<a class="reference internal" href="#id123"><span>Put05</span></a>]</span>, where it is shown that strategy improvement converges at least as fast as value iteration.</p>
-<p>Also, <span id="id6">[<a class="reference internal" href="#id123"><span>Put05</span></a>]</span> makes the initial analysis of mean-payoff MDPs in the context of <strong>unichain</strong> MDPs, and then extends to arbitrary MDPs, with strongly connected MDPs treated as a special case of the latter. While unichain is an important theoretical concept, in the context of formal methods and automata it is preferable to work with strongly connected MDPs. We also note that all the results in the mean-payoff sections hold also for <span class="math notranslate nohighlight">\(\mathtt{MeanPayoff}^{\;+}\)</span>. Almost all of the proofs are the same, with an important exception of \Cref{5-cor:mp-value-bound}, where Fatou’s lemma cannot be used to prove that <span class="math notranslate nohighlight">\(\textsf{p-Payoff}( v_0,\sigma) \leq  \textsf{s-Payoff}( v_0,\sigma)\)</span>. Instead, we could use <strong>martingale techniques</strong> here. Martingales are an important concept in probability theory <span id="id7">[<a class="reference internal" href="#id128"><span>Wil91</span></a>]</span>, with applications e.g. in analysis of infinite-state MDPs and stochastic games <span id="id8">[<a class="reference internal" href="#id105"><span>BrazdilBrovzekEKuvcera11</span></a>]</span>. We can use martingales to strengthen  <a class="reference internal" href="mean_payoff_properties.html#5-lem:dual-bound-step">Lemma 159</a> by showing that the probability  of <span class="math notranslate nohighlight">\(\sum_{i=0}^{n-1} c( \pi_i) \geq \sqrt{n}\cdot  \mathbb{E}^\sigma_{ v_0}[\sum_{i=0}^{n-1} c( \pi_i)]\)</span> converges (with an exponential rate of decay) to <span class="math notranslate nohighlight">\(0\)</span> as <span class="math notranslate nohighlight">\(n\rightarrow \infty\)</span>, which allows us to prove the required bound for <span class="math notranslate nohighlight">\(\limsup\)</span>.</p>
+<p>Also, <span id="id6">[<a class="reference internal" href="#id123"><span>Put05</span></a>]</span> makes the initial analysis of mean-payoff MDPs in the context of <strong>unichain</strong> MDPs, and then extends to arbitrary MDPs, with strongly connected MDPs treated as a special case of the latter. While unichain is an important theoretical concept, in the context of formal methods and automata it is preferable to work with strongly connected MDPs. We also note that all the results in the mean-payoff sections hold also for <span class="math notranslate nohighlight">\(\mathtt{MeanPayoff}^{\;+}\)</span>. Almost all of the proofs are the same, with an important exception of <a class="reference internal" href="mean_payoff_properties.html#5-cor:mp-value-bound">Corollary 170</a>, where Fatou’s lemma cannot be used to prove that <span class="math notranslate nohighlight">\(\textsf{p-Payoff}( v_0,\sigma) \leq  \textsf{s-Payoff}( v_0,\sigma)\)</span>. Instead, we could use <strong>martingale techniques</strong> here. Martingales are an important concept in probability theory <span id="id7">[<a class="reference internal" href="#id129"><span>Wil91</span></a>]</span>, with applications e.g. in analysis of infinite-state MDPs and stochastic games <span id="id8">[<a class="reference internal" href="#id105"><span>BrazdilBrovzekEKuvcera11</span></a>]</span>. We can use martingales to strengthen <a class="reference internal" href="mean_payoff_properties.html#5-lem:dual-bound-step">Lemma 169</a> by showing that the probability  of <span class="math notranslate nohighlight">\(\sum_{i=0}^{n-1} c( \pi_i) \geq \sqrt{n}\cdot  \mathbb{E}^\sigma_{ v_0}[\sum_{i=0}^{n-1} c( \pi_i)]\)</span> converges (with an exponential rate of decay) to <span class="math notranslate nohighlight">\(0\)</span> as <span class="math notranslate nohighlight">\(n\rightarrow \infty\)</span>, which allows us to prove the required bound for <span class="math notranslate nohighlight">\(\limsup\)</span>.</p>
 <p>The notion of a (M)EC as well as many techniques we use in the EC section are due to de Alfaro, whose thesis <span id="id9">[<a class="reference internal" href="#id109"><span>dA97</span></a>]</span> details the evolution of the concept and its relation to similar notions. The algorithm for MEC decomposition is taken from <span id="id10">[<a class="reference internal" href="#id108"><span>CH11</span></a>]</span>, where more advanced algorithms as well as use of MECs in parity MDPs are discussed.</p>
 <p>For an overview of literature related to verification of temporal properties in MDPs, we refer the reader to the monograph <span id="id11">[<a class="reference internal" href="#id100"><span>BK08</span></a>]</span>.</p>
-<p>MDPs are also used as a prime model in reinforcement learning (RL), one of the classical yet rapidly evolving sub-fields of AI. For RL-centric view of MDPs, we point the reader towards the textbooks <span id="id12">[<a class="reference internal" href="#id126"><span>SB18</span></a>,<a class="reference internal" href="#id103"><span>Ber07</span></a>]</span>.</p>
+<p>MDPs are also used as a prime model in reinforcement learning (RL), one of the classical yet rapidly evolving sub-fields of AI. For RL-centric view of MDPs, we point the reader towards the textbooks <span id="id12">[<a class="reference internal" href="#id127"><span>SB18</span></a>,<a class="reference internal" href="#id103"><span>Ber07</span></a>]</span>.</p>
 <p id="id13"><dl class="citation">
 <dt class="label" id="id104"><span class="brackets">Bil95</span></dt>
 <dd><p>Patrick Billingsley. <em>Probability and Measure</em>. John Wiley &amp; Sons, 1995.</p>
+</dd>
+<dt class="label" id="id124"><span class="brackets">Ros06</span></dt>
+<dd><p>Jeffrey S. Rosenthal. <em>A First Look at Rigorous Probability Theory</em>. World Scientific Publishing, 2nd edition, 2006.</p>
 </dd>
 <dt class="label" id="id99"><span class="brackets">ADoleansD00</span></dt>
 <dd><p>Robert B. Ash and Catherine A. Doléans-Dade. <em>Probability and Measure Theory</em>. Academic Press, 2000. ISBN 9780120652020.</p>
@@ -727,11 +730,11 @@
 <dt class="label" id="id123"><span class="brackets">Put05</span><span class="fn-backref">(<a href="#id2">1</a>,<a href="#id3">2</a>,<a href="#id5">3</a>,<a href="#id6">4</a>)</span></dt>
 <dd><p>Martin L. Puterman. <em>Markov Decision Processes: Discrete Stochastic Dynamic Programming</em>. John Wiley &amp; Sons, 2005.</p>
 </dd>
-<dt class="label" id="id124"><span class="brackets">Sav70</span></dt>
+<dt class="label" id="id125"><span class="brackets">Sav70</span></dt>
 <dd><p>Walter J. Savitch. Relationships between Nondeterministic and Deterministic Tape Complexities. <em>Journal of Computer and System Sciences</em>, 4(2):177–192, 1970. <a class="reference external" href="https://doi.org/10.1016/S0022-0000(70)80006-X">doi:10.1016/S0022-0000(70)80006-X</a>.</p>
 </dd>
 <dt class="label" id="id119"><span class="brackets">Lad75</span></dt>
-<dd><p>Richard E. Ladner. The circuit value problem is log space complete for ¶. <em>SIGACT News</em>, 7(1):18–20, 1975. URL: <a class="reference external" href="http://doi.acm.org/10.1145/990518.990519">http://doi.acm.org/10.1145/990518.990519</a>, <a class="reference external" href="https://doi.org/10.1145/990518.990519">doi:10.1145/990518.990519</a>.</p>
+<dd><p>Richard E. Ladner. The circuit value problem is log space complete for \PTIME . <em>SIGACT News</em>, 7(1):18–20, 1975. URL: <a class="reference external" href="http://doi.acm.org/10.1145/990518.990519">http://doi.acm.org/10.1145/990518.990519</a>, <a class="reference external" href="https://doi.org/10.1145/990518.990519">doi:10.1145/990518.990519</a>.</p>
 </dd>
 <dt class="label" id="id107"><span class="brackets">CDH10</span></dt>
 <dd><p>Krishnendu Chatterjee, Laurent Doyen, and Thomas A. Henzinger. Qualitative Analysis of Partially-Observable Markov Decision Processes. In <em>Proceedings of the International Symposium on Mathematical Foundations of Computer Science, MFCS'10</em>, 258–269. Springer-Verlag, 2010.</p>
@@ -739,7 +742,7 @@
 <dt class="label" id="id101"><span class="brackets">Bar68</span></dt>
 <dd><p>Erwin H. Bareiss. Sylvester's identity and multistep integer-preserving Gaussian elimination. <em>Mathematics of Computation</em>, 22:565–578, 1968.</p>
 </dd>
-<dt class="label" id="id127"><span class="brackets">Tse90</span></dt>
+<dt class="label" id="id128"><span class="brackets">Tse90</span></dt>
 <dd><p>Paul Tseng. Solving H-horizon, stationary Markov decision problems in time proportional to \(\log (H)\). <em>Operation Research Letters</em>, 9(5):287–297, 1990.</p>
 </dd>
 <dt class="label" id="id113"><span class="brackets">Gar07</span></dt>
@@ -748,10 +751,13 @@
 <dt class="label" id="id115"><span class="brackets">HDJ12</span></dt>
 <dd><p>Romain Hollanders, Jean-Charles Delvenne, and Raphaël M. Jungers. The complexity of policy iteration is exponential for discounted Markov decision processes. In <em>Proceedings of the IEEE Conference on Decision and Control, CDC'12</em>, volume, 5997–6002. IEEE Computer Society, 2012.</p>
 </dd>
+<dt class="label" id="id118"><span class="brackets">Kha79</span></dt>
+<dd><p>Leonid G. Khachiyan. A polynomial algorithm in linear programming. <em>Soviet Mathematics Doklady</em>, 20:191–194, 1979.</p>
+</dd>
 <dt class="label" id="id117"><span class="brackets">Kar84</span></dt>
 <dd><p>Narendra Karmarkar. A new polynomial-time algorithm for linear programming. <em>Combinatorica</em>, 4(4):373–395, 1984.</p>
 </dd>
-<dt class="label" id="id129"><span class="brackets">Ye11</span></dt>
+<dt class="label" id="id130"><span class="brackets">Ye11</span></dt>
 <dd><p>Yinyu Ye. The simplex and policy-iteration methods are strongly polynomial for the Markov decision problem with a fixed discount rate. <em>Mathematics of Operations Research</em>, 36(4):593 – 603, 2011.</p>
 </dd>
 <dt class="label" id="id120"><span class="brackets">Matouvsek07</span></dt>
@@ -775,7 +781,7 @@
 <dt class="label" id="id111"><span class="brackets"><a class="fn-backref" href="#id4">Fea10b</a></span></dt>
 <dd><p>John Fearnley. Exponential lower bounds for policy iteration. In <em>Proceedings of the International Colloquium on Automata, Languages and Programming, ICALP'10</em>, 551–562. Springer-Verlag, 2010.</p>
 </dd>
-<dt class="label" id="id128"><span class="brackets"><a class="fn-backref" href="#id7">Wil91</a></span></dt>
+<dt class="label" id="id129"><span class="brackets"><a class="fn-backref" href="#id7">Wil91</a></span></dt>
 <dd><p>David Williams. <em>Probability with Martingales</em>. Cambridge University Press, 1991.</p>
 </dd>
 <dt class="label" id="id105"><span class="brackets"><a class="fn-backref" href="#id8">BrazdilBrovzekEKuvcera11</a></span></dt>
@@ -790,7 +796,7 @@
 <dt class="label" id="id100"><span class="brackets"><a class="fn-backref" href="#id11">BK08</a></span></dt>
 <dd><p>Christel Baier and Joost-Pieter Katoen. <em>Principles of Model Checking</em>. MIT Press, 2008.</p>
 </dd>
-<dt class="label" id="id126"><span class="brackets"><a class="fn-backref" href="#id12">SB18</a></span></dt>
+<dt class="label" id="id127"><span class="brackets"><a class="fn-backref" href="#id12">SB18</a></span></dt>
 <dd><p>Richard S. Sutton and Andrew G. Barto. <em>Reinforcement Learning: An Introduction</em>. MIT Press, 2nd edition, 2018.</p>
 </dd>
 <dt class="label" id="id103"><span class="brackets"><a class="fn-backref" href="#id12">Ber07</a></span></dt>

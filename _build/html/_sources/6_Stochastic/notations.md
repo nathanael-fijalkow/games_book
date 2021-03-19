@@ -61,7 +61,7 @@ with a winning objectives to define a stochastic game.
 
 ````
 
-For $\textrm{Win} \subseteq  V$, letting $\Omega =  \mathtt{Reach}( \textrm{Win})$ gives
+For $Win \subseteq  V$, letting $\Omega =  \mathtt{Reach}( Win)$ gives
 rise to a stochastic reachability game.
 Of course, one may consider more general $\omega$-regular
 properties. We write $\mathds{1}_\Omega$ for the characteristic
@@ -83,14 +83,14 @@ $\mathbb{P}_{\sigma,\tau}^v(\mathds{1}_\Omega)$ is the outcome of the profile
 $(\sigma,\tau)$.
 
 The **value for Eve** in $\mathcal{G}$ from $v$ is defined as
-$\textrm{val}_\mathrm{Eve}^ \mathcal{G}(v) = \sup_{\sigma} \inf_{\tau}
+$val_\mathrm{Eve}^ \mathcal{G}(v) = \sup_{\sigma} \inf_{\tau}
  \mathbb{P}_{\sigma,\tau}^v(\mathds{1}_\Omega)$, whereas symmetrically the
 **supremum value** is
-$\textrm{val}_\mathrm{Adam}^ \mathcal{G}(v) = \inf_{\tau}\sup_{\sigma}
+$val_\mathrm{Adam}^ \mathcal{G}(v) = \inf_{\tau}\sup_{\sigma}
  \mathbb{P}_{\sigma,\tau}^v(\mathds{1}_\Omega)$. Clearly enough,
-$\textrm{val}_\mathrm{Eve}^ \mathcal{G}(v) \leq  \textrm{val}_\mathrm{Adam}^ \mathcal{G}(v)$.  When the converse
+$val_\mathrm{Eve}^ \mathcal{G}(v) \leq  val_\mathrm{Adam}^ \mathcal{G}(v)$.  When the converse
 inequality holds, the game is **determined** and the **value**
-of $v$ in $\mathcal{G}$ is denoted $\textrm{val}^ \mathcal{G}(v)$. Moreover, if the value
+of $v$ in $\mathcal{G}$ is denoted $val^ \mathcal{G}(v)$. Moreover, if the value
 is attained by positional strategies $\sigma$ and $\tau$, $\mathcal{G}$ is
 said to be **positionally determined**. **Strong determinacy**
 means that for every threshold $c$, either Eve has a strategy to
@@ -98,7 +98,7 @@ ensure that the probability that the play belongs to $\Omega$ is at
 least $c$, or Adam has a strategy to ensure probability $< c$ to for
 the set of plays satisfying $\Omega$.
 
-Back to the example of Figure \cref\{6-fig:ex-stoch-arena}, assume that
+Back to the example of Figure {numref}`6-fig:ex-stoch-arena`, assume that
 Eve and Adam play the following pure positional strategies:
 $\sigma(v_0) = v_1$, $\sigma(v_2) = v_3$, $\sigma(v_5) = v_5$ and
 $\tau(v_6) = v_5$. Under such a strategy profile, starting in $v_0$,
@@ -106,5 +106,5 @@ the probability to reach $v_7$ is
 $\mathbb{P}_{\sigma,\tau}^{v_0}(\mathds{1}_{ \mathtt{Reach}(\{v_7\})}) = \frac 2
 3$. In fact, strategy $\sigma$ for Eve is optimal for the
 reachability objective $\mathtt{Reach}(\{v_7\})$, and we will justify that
-$\textrm{val}_\mathrm{Eve}^ \mathcal{G}(v_0) =  \textrm{val}_\mathrm{Adam}^ \mathcal{G}(v_0) = \frac 2 3$.
+$val_\mathrm{Eve}^ \mathcal{G}(v_0) =  val_\mathrm{Adam}^ \mathcal{G}(v_0) = \frac 2 3$.
 

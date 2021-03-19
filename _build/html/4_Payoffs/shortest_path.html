@@ -738,13 +738,13 @@
 <p>The quantitative objective <span class="math notranslate nohighlight">\(\mathtt{Sup}\)</span> generalises the qualitative
 objective <span class="math notranslate nohighlight">\(\mathtt{Reach}\)</span> by stating numerical preferences on the target.
 Another quantitative extension of the reachability objective is to quantify the cost of a path towards the target.
-We define the quantitative objective <span class="math notranslate nohighlight">\(\mathtt{ShortestPath}\)</span> over the set of colours <span class="math notranslate nohighlight">\(C =  \mathbb{Z} \cup  \left\{  \textrm{Win \right\}}\)</span> by</p>
+We define the quantitative objective <span class="math notranslate nohighlight">\(\mathtt{ShortestPath}\)</span> over the set of colours <span class="math notranslate nohighlight">\(C =  \mathbb{Z} \cup  \left\{  Win \right\}\)</span> by</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
  \mathtt{ShortestPath}(\rho) =
   \begin{cases}
-    - \infty &amp; \text{if } \rho_k \neq  \textrm{Win} \text{ for all } k \\
-    - \sum_{i = 0}^{k-1} \rho_i &amp; \text{for $k$ the first index such that } \rho_k =  \textrm{Win}.
+    - \infty &amp; \text{if } \rho_k \neq  Win \text{ for all } k \\
+    - \sum_{i = 0}^{k-1} \rho_i &amp; \text{for $k$ the first index such that } \rho_k =  Win.
   \end{cases}
 \end{split}\]</div>
 <p>Two remarks are in order.</p>
@@ -753,7 +753,7 @@ We define the quantitative objective <span class="math notranslate nohighlight">
 which is why we introduce <span class="math notranslate nohighlight">\(\mathtt{ShortestPath}\)</span> with a minus sign:
 we interpret the weights as costs and Eve is trying to reach the target with the smallest possible cost.</p></li>
 <li><p>We use the same abusive terminology as for the shortest path graph problem: the cost of a path is the sum of the weights along it
-(until the first occurence of <span class="math notranslate nohighlight">\(\textrm{Win}\)</span>) and we are looking for a path of minimal cost, hence not necessarily the shortest in number of edges.</p></li>
+(until the first occurence of <span class="math notranslate nohighlight">\(Win\)</span>) and we are looking for a path of minimal cost, hence not necessarily the shortest in number of edges.</p></li>
 </ul>
 <p>Solving shortest path games in full generality is not easy; we will come back to it at the end of this chapter using some results obtained along the way.
 Let us first illustrate the difficulties, and then solve the special case where the weights are non-negative.
@@ -761,23 +761,23 @@ We fix a shortest path game <span class="math notranslate nohighlight">\(\Game\)
 Recall that by definition:</p>
 <div class="math notranslate nohighlight">
 \[
-  \textrm{val}(v) = \sup_{\sigma} \inf_{\tau}  \mathtt{ShortestPath}(\pi^v_{\sigma,\tau}).\]</div>
+  val(v) = \sup_{\sigma} \inf_{\tau}  \mathtt{ShortestPath}(\pi^v_{\sigma,\tau}).\]</div>
 <p>Hence for a vertex <span class="math notranslate nohighlight">\(v\)</span> there are three possibilities:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(val(v) = -\infty\)</span>, meaning that Eve cannot ensure to reach <span class="math notranslate nohighlight">\(\textrm{Win}\)</span> with a finite cost,</p></li>
-<li><p><span class="math notranslate nohighlight">\(\textrm{val}(v) \in  \mathbb{Z}\)</span>, meaning that Eve can ensure to reach <span class="math notranslate nohighlight">\(\textrm{Win}\)</span> with a finite cost,</p></li>
-<li><p><span class="math notranslate nohighlight">\(\textrm{val}(v) = \infty\)</span>, meaning that Eve can ensure to reach <span class="math notranslate nohighlight">\(\textrm{Win}\)</span> with arbitrarily negative cost.</p></li>
+<li><p><span class="math notranslate nohighlight">\(val(v) = -\infty\)</span>, meaning that Eve cannot ensure to reach <span class="math notranslate nohighlight">\(Win\)</span> with a finite cost,</p></li>
+<li><p><span class="math notranslate nohighlight">\(val(v) \in  \mathbb{Z}\)</span>, meaning that Eve can ensure to reach <span class="math notranslate nohighlight">\(Win\)</span> with a finite cost,</p></li>
+<li><p><span class="math notranslate nohighlight">\(val(v) = \infty\)</span>, meaning that Eve can ensure to reach <span class="math notranslate nohighlight">\(Win\)</span> with arbitrarily negative cost.</p></li>
 </ul>
-<p>As we will see, detecting whether <span class="math notranslate nohighlight">\(\textrm{val}(v) = -\infty\)</span> is easy: this is equivalent to asking whether
-<span class="math notranslate nohighlight">\(v \notin  \textrm{Attr}_\mathrm{Eve}( \textrm{Win})\)</span> as stated in  <a class="reference internal" href="#4-lem:detecting_minus_infinity">Lemma 120</a>.
-The second case where <span class="math notranslate nohighlight">\(\textrm{val}(v) \in  \mathbb{Z}\)</span> will be an occasion to revisit the attractor computation from Section <a class="reference internal" href="../2_Regular/attractors.html#sec-attractors"><span class="std std-ref">Reachability games</span></a>
+<p>As we will see, detecting whether <span class="math notranslate nohighlight">\(val(v) = -\infty\)</span> is easy: this is equivalent to asking whether
+<span class="math notranslate nohighlight">\(v \notin  Attr_\mathrm{Eve}( Win)\)</span> as stated in <a class="reference internal" href="#4-lem:detecting_minus_infinity">Lemma 129</a>.
+The second case where <span class="math notranslate nohighlight">\(val(v) \in  \mathbb{Z}\)</span> will be an occasion to revisit the attractor computation from Section <a class="reference internal" href="../2_Regular/attractors.html#sec-attractors"><span class="std std-ref">Reachability games</span></a>
 in a quantitative setting.
 Most of the difficulty lies in the third case, where</p>
 <div class="proof lemma admonition" id="4-lem:detecting_minus_infinity">
-<p class="admonition-title"><span class="caption-number">Lemma 120 </span> (Detection of infinite value)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 129 </span> (Detection of infinite value)</p>
 <div class="lemma-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\Game\)</span> a shortest path game and <span class="math notranslate nohighlight">\(v\)</span> a vertex.
-Then <span class="math notranslate nohighlight">\(\textrm{val}(v) = -\infty\)</span> if and only if <span class="math notranslate nohighlight">\(v \notin  \textrm{Attr}_\mathrm{Eve}( \textrm{Win})\)</span>.</p>
+Then <span class="math notranslate nohighlight">\(val(v) = -\infty\)</span> if and only if <span class="math notranslate nohighlight">\(v \notin  Attr_\mathrm{Eve}( Win)\)</span>.</p>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
@@ -785,15 +785,15 @@ Then <span class="math notranslate nohighlight">\(\textrm{val}(v) = -\infty\)</s
 </div>
 <div class="figure align-center" id="fig-optimal-strategies-shortest-path-game">
 <img alt="../_images/1-fig:optimal_strategies_shortest_path_game.png" src="../_images/1-fig:optimal_strategies_shortest_path_game.png" />
-<p class="caption"><span class="caption-number">Fig. 40 </span><span class="caption-text">An example of a shortest path game with negative weights Eve does not have an optimal strategy.
-Indeed <span class="math notranslate nohighlight">\(\textrm{val}(v_0) = \infty\)</span> since for any <span class="math notranslate nohighlight">\(k\)</span>, Eve has a strategy ensuring that <span class="math notranslate nohighlight">\(\mathtt{ShortestPath}\)</span> is <span class="math notranslate nohighlight">\(k\)</span>
-by using <span class="math notranslate nohighlight">\(k\)</span> times the self loop <span class="math notranslate nohighlight">\(-1\)</span> before reaching <span class="math notranslate nohighlight">\(\textrm{Win}\)</span>.
-However, if she never reaches <span class="math notranslate nohighlight">\(\textrm{Win}\)</span> the outcome is <span class="math notranslate nohighlight">\(-\infty\)</span>.</span><a class="headerlink" href="#fig-optimal-strategies-shortest-path-game" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 41 </span><span class="caption-text">An example of a shortest path game with negative weights Eve does not have an optimal strategy.
+Indeed <span class="math notranslate nohighlight">\(val(v_0) = \infty\)</span> since for any <span class="math notranslate nohighlight">\(k\)</span>, Eve has a strategy ensuring that <span class="math notranslate nohighlight">\(\mathtt{ShortestPath}\)</span> is <span class="math notranslate nohighlight">\(k\)</span>
+by using <span class="math notranslate nohighlight">\(k\)</span> times the self loop <span class="math notranslate nohighlight">\(-1\)</span> before reaching <span class="math notranslate nohighlight">\(Win\)</span>.
+However, if she never reaches <span class="math notranslate nohighlight">\(Win\)</span> the outcome is <span class="math notranslate nohighlight">\(-\infty\)</span>.</span><a class="headerlink" href="#fig-optimal-strategies-shortest-path-game" title="Permalink to this image">¶</a></p>
 </div>
 <div class="section" id="shortest-path-games-with-non-negative-weights">
 <h2>Shortest path games with non-negative weights<a class="headerlink" href="#shortest-path-games-with-non-negative-weights" title="Permalink to this headline">¶</a></h2>
 <div class="proof theorem admonition" id="4-thm:shortest path-positive">
-<p class="admonition-title"><span class="caption-number">Theorem 121 </span> (Positional determinacy and value iteration algorithm)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 130 </span> (Positional determinacy and value iteration algorithm)</p>
 <div class="theorem-content section" id="proof-content">
 <p>Shortest path games with non-negative weights are uniformly positionally determined for both players.</p>
 <div class="margin sidebar">
@@ -805,7 +805,7 @@ However, if she never reaches <span class="math notranslate nohighlight">\(\text
 </div>
 </div><p>We rely on the high-level presentation of value iteration algorithms given in Section <a class="reference internal" href="../1_Introduction/value_iteration.html#sec-value-iteration"><span class="std std-ref">Value iteration algorithms</span></a>.</p>
 <div class="proof lemma admonition" id="4-lem:optimal_strategies_shortest_path_games">
-<p class="admonition-title"><span class="caption-number">Lemma 122 </span> (Optimal strategies)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 131 </span> (Optimal strategies)</p>
 <div class="lemma-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\Game\)</span> be a shortest path game with non-negative weights, then there exists an optimal strategy <span class="math notranslate nohighlight">\(\sigma\)</span> for Eve.</p>
 </div>
@@ -815,14 +815,14 @@ However, if she never reaches <span class="math notranslate nohighlight">\(\text
 <span class="math notranslate nohighlight">\(\mathtt{ShortestPath}\)</span> takes value in the non-positive integers, in particular is a set of integers bounded from above.
 This implies that the supremum is indeed a maximum.</p>
 </div>
-<p><a class="reference internal" href="#fig-optimal-strategies-shortest-path-game"><span class="std std-numref">Fig. 40</span></a> shows that the assumption that all weights are non-negative
-in  <a class="reference internal" href="#4-lem:optimal_strategies_shortest_path_games">Lemma 122</a> is necessary.</p>
+<p><a class="reference internal" href="#fig-optimal-strategies-shortest-path-game"><span class="std std-numref">Fig. 41</span></a> shows that the assumption that all weights are non-negative
+in <a class="reference internal" href="#4-lem:optimal_strategies_shortest_path_games">Lemma 131</a> is necessary.</p>
 <p>We consider the complete lattice <span class="math notranslate nohighlight">\(Y = - \mathbb{N} \cup  \left\{ -\infty \right\}\)</span> equipped with the natural order and the function <span class="math notranslate nohighlight">\(\delta : Y \times C \to Y\)</span> defined by</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \delta(x, w) = 
 \begin{cases}
-0 &amp; \text{ if } w =  \textrm{Win} \\
+0 &amp; \text{ if } w =  Win \\
 x - w &amp; \text{ if } w \in  \mathbb{N}.
 \end{cases}
 \end{split}\]</div>
@@ -836,76 +836,76 @@ Note that <span class="math notranslate nohighlight">\(\delta\)</span> is monoto
 \min  \left\{ \delta( f(v'), w) : (v,w,v') \in E \right\} &amp; \text{ if } v \in  V_\mathrm{Adam}.
 \end{cases}
 \end{split}\]</div>
-<p>Thanks to  <a class="reference internal" href="../1_Introduction/fixed_points.html#1-thm:kleene">Theorem 24</a>, the operator <span class="math notranslate nohighlight">\(\mathbb{O}\)</span> has a greatest fixed point which is also the greatest post-fixed point of <span class="math notranslate nohighlight">\(\mathbb{O}\)</span>.
+<p>Thanks to <a class="reference internal" href="../1_Introduction/fixed_points.html#1-thm:kleene">Theorem 26</a>, the operator <span class="math notranslate nohighlight">\(\mathbb{O}\)</span> has a greatest fixed point which is also the greatest post-fixed point of <span class="math notranslate nohighlight">\(\mathbb{O}\)</span>.
 The latter are functions <span class="math notranslate nohighlight">\(f \in F_V\)</span> such that <span class="math notranslate nohighlight">\(f \le  \mathbb{O}(f)\)</span> and called progress measures.</p>
 <div class="proof lemma admonition" id="4-lem:SP-greatest-fixed-point">
-<p class="admonition-title"><span class="caption-number">Lemma 123 </span> (Greatest fixed point)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 132 </span> (Greatest fixed point)</p>
 <div class="lemma-content section" id="proof-content">
-<p>Let <span class="math notranslate nohighlight">\(\Game\)</span> be a shortest path game with non-negative weights, then <span class="math notranslate nohighlight">\(\textrm{val}\)</span> is the greatest fixed point of <span class="math notranslate nohighlight">\(\mathbb{O}\)</span>.</p>
+<p>Let <span class="math notranslate nohighlight">\(\Game\)</span> be a shortest path game with non-negative weights, then <span class="math notranslate nohighlight">\(val\)</span> is the greatest fixed point of <span class="math notranslate nohighlight">\(\mathbb{O}\)</span>.</p>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
 <p>We show the following two properties:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\textrm{val}\)</span> is a progress measure;</p></li>
-<li><p>for every progress measure <span class="math notranslate nohighlight">\(f\)</span> we have <span class="math notranslate nohighlight">\(f \le   \textrm{val}\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(val\)</span> is a progress measure;</p></li>
+<li><p>for every progress measure <span class="math notranslate nohighlight">\(f\)</span> we have <span class="math notranslate nohighlight">\(f \le   val\)</span>.</p></li>
 </ul>
 <p>Since the greatest fixed point of <span class="math notranslate nohighlight">\(\mathbb{O}\)</span> is also the greatest progress measure, this implies the result.</p>
 <p>We show the first item.
-Thanks to  <a class="reference internal" href="#4-lem:optimal_strategies_shortest_path_games">Lemma 122</a> there exists <span class="math notranslate nohighlight">\(\sigma\)</span> an optimal strategy for Eve.</p>
+Thanks to <a class="reference internal" href="#4-lem:optimal_strategies_shortest_path_games">Lemma 131</a> there exists <span class="math notranslate nohighlight">\(\sigma\)</span> an optimal strategy for Eve.</p>
 <p>Consider a vertex <span class="math notranslate nohighlight">\(v\)</span>.
 If <span class="math notranslate nohighlight">\(v \in  V_\mathrm{Eve}\)</span> we need to show that</p>
 <div class="math notranslate nohighlight">
 \[
-  \textrm{val}(v) \le \max  \left\{ \delta(  \textrm{val}(v'), w) : (v,w,v') \in E \right\},
+  val(v) \le \max  \left\{ \delta(  val(v'), w) : (v,w,v') \in E \right\},
 \]</div>
 <p>and if <span class="math notranslate nohighlight">\(v \in  V_\mathrm{Adam}\)</span> that</p>
 <div class="math notranslate nohighlight">
 \[
-  \textrm{val}(v) \le \min  \left\{ \delta(  \textrm{val}(v'), w) : (v,w,v') \in E \right\}.
+  val(v) \le \min  \left\{ \delta(  val(v'), w) : (v,w,v') \in E \right\}.
 \]</div>
 <p>Let <span class="math notranslate nohighlight">\((v,w,v') \in E\)</span> a move consistent with <span class="math notranslate nohighlight">\(\sigma\)</span>: if <span class="math notranslate nohighlight">\(v \in  V_\mathrm{Eve}\)</span> then
 <span class="math notranslate nohighlight">\(\sigma(v) = (v,w,v')\)</span>, if <span class="math notranslate nohighlight">\(v \in  V_\mathrm{Adam}\)</span> this is any outgoing edge of <span class="math notranslate nohighlight">\(v\)</span>,
-we show that <span class="math notranslate nohighlight">\(\textrm{val}(v) \le \delta(  \textrm{val}(v'), w)\)</span> which implies both inequalities.</p>
-<p>If <span class="math notranslate nohighlight">\(\textrm{val}(v) = -\infty\)</span> then the inequality holds, so we can assume that <span class="math notranslate nohighlight">\(\textrm{val}(v) \neq -\infty\)</span>.</p>
+we show that <span class="math notranslate nohighlight">\(val(v) \le \delta(  val(v'), w)\)</span> which implies both inequalities.</p>
+<p>If <span class="math notranslate nohighlight">\(val(v) = -\infty\)</span> then the inequality holds, so we can assume that <span class="math notranslate nohighlight">\(val(v) \neq -\infty\)</span>.</p>
 <p>We distinguish two cases.
-If <span class="math notranslate nohighlight">\(w =  \textrm{Win}\)</span> then <span class="math notranslate nohighlight">\(\delta(  \textrm{val}(v'),  \textrm{Win}) = 0\)</span> so the inequality holds.
+If <span class="math notranslate nohighlight">\(w =  Win\)</span> then <span class="math notranslate nohighlight">\(\delta(  val(v'),  Win) = 0\)</span> so the inequality holds.
 Otherwise <span class="math notranslate nohighlight">\(w \in  \mathbb{N}\)</span>.
-Let us assume towards contradiction that <span class="math notranslate nohighlight">\(\textrm{val}(v) &gt; \delta(  \textrm{val}(v'), w) =   \textrm{val}(v') - w\)</span>.
+Let us assume towards contradiction that <span class="math notranslate nohighlight">\(val(v) &gt; \delta(  val(v'), w) =   val(v') - w\)</span>.
 Let <span class="math notranslate nohighlight">\(\sigma' = \sigma_{\mid (v,w,v')}\)</span> the strategy induced by <span class="math notranslate nohighlight">\(\sigma\)</span> after playing <span class="math notranslate nohighlight">\((v,w,v')\)</span>.
 Let <span class="math notranslate nohighlight">\(\pi'\)</span> a play consistent with <span class="math notranslate nohighlight">\(\sigma'\)</span> from <span class="math notranslate nohighlight">\(v'\)</span>.
 The play <span class="math notranslate nohighlight">\(\pi = (v,w,v')  \pi'\)</span> is consistent with <span class="math notranslate nohighlight">\(\sigma\)</span> from <span class="math notranslate nohighlight">\(v\)</span> and since <span class="math notranslate nohighlight">\(\sigma\)</span> is optimal
-this implies that <span class="math notranslate nohighlight">\(\mathtt{ShortestPath}( \pi) \ge   \textrm{val}(v)\)</span>.
-Hence every play consistent with <span class="math notranslate nohighlight">\(\sigma'\)</span> from <span class="math notranslate nohighlight">\(v'\)</span> ensure <span class="math notranslate nohighlight">\(\textrm{val}(v) + w\)</span>, which is strictly greater than <span class="math notranslate nohighlight">\(\textrm{val}(v')\)</span>
-contradicting the definition of <span class="math notranslate nohighlight">\(\textrm{val}(v')\)</span>.
-Thus the inequality <span class="math notranslate nohighlight">\(\textrm{val}(v) \le \delta(  \textrm{val}(v'), w)\)</span> holds.</p>
+this implies that <span class="math notranslate nohighlight">\(\mathtt{ShortestPath}( \pi) \ge   val(v)\)</span>.
+Hence every play consistent with <span class="math notranslate nohighlight">\(\sigma'\)</span> from <span class="math notranslate nohighlight">\(v'\)</span> ensure <span class="math notranslate nohighlight">\(val(v) + w\)</span>, which is strictly greater than <span class="math notranslate nohighlight">\(val(v')\)</span>
+contradicting the definition of <span class="math notranslate nohighlight">\(val(v')\)</span>.
+Thus the inequality <span class="math notranslate nohighlight">\(val(v) \le \delta(  val(v'), w)\)</span> holds.</p>
 <p>We now show the second item.
 Let <span class="math notranslate nohighlight">\(f\)</span> be a progress measure, we define a positional strategy <span class="math notranslate nohighlight">\(\sigma\)</span>
-by <span class="math notranslate nohighlight">\(\sigma(v) = (v,w,v')\)</span> such that <span class="math notranslate nohighlight">\(f(v) \le \delta(f(v'), w)\)</span>, and show that <span class="math notranslate nohighlight">\(f \le   \textrm{val}\)</span>.
+by <span class="math notranslate nohighlight">\(\sigma(v) = (v,w,v')\)</span> such that <span class="math notranslate nohighlight">\(f(v) \le \delta(f(v'), w)\)</span>, and show that <span class="math notranslate nohighlight">\(f \le   val\)</span>.
 We consider a vertex <span class="math notranslate nohighlight">\(v\)</span> and show that for every play <span class="math notranslate nohighlight">\(\pi\)</span> consistent with <span class="math notranslate nohighlight">\(\sigma\)</span> from <span class="math notranslate nohighlight">\(v\)</span> we have
 <span class="math notranslate nohighlight">\(f(v) \le  \mathtt{ShortestPath}( \pi)\)</span>.
 This is easily shown for finite plays by induction on the length and then for infinite plays by taking the limit.
-This implies that <span class="math notranslate nohighlight">\(f(v) \le   \textrm{val}^\sigma(v) = \inf_\tau  \mathtt{ShortestPath}( \pi^v_{\sigma,\tau})\)</span>,
-and then <span class="math notranslate nohighlight">\(f(v) \le \sup_{\sigma}   \textrm{val}^\sigma(v) =   \textrm{val}(v)\)</span>.</p>
+This implies that <span class="math notranslate nohighlight">\(f(v) \le   val^\sigma(v) = \inf_\tau  \mathtt{ShortestPath}( \pi^v_{\sigma,\tau})\)</span>,
+and then <span class="math notranslate nohighlight">\(f(v) \le \sup_{\sigma}   val^\sigma(v) =   val(v)\)</span>.</p>
 </div>
-<p>Thanks to  <a class="reference internal" href="../1_Introduction/fixed_points.html#1-thm:kleene">Theorem 24</a> <span class="math notranslate nohighlight">\(\textrm{val}\)</span> can be computed by a greatest fixed point algorithm.
+<p>Thanks to <a class="reference internal" href="../1_Introduction/fixed_points.html#1-thm:kleene">Theorem 26</a> <span class="math notranslate nohighlight">\(val\)</span> can be computed by a greatest fixed point algorithm.
 To obtain the announced complexity we carefully define the data structure.</p>
-<p>The pseudocode is given in <a class="reference internal" href="#algo-value-iteration-shortest-path-non-negative"><span class="std std-numref">Fig. 41</span></a>.</p>
+<p>The pseudocode is given in <a class="reference internal" href="#algo-value-iteration-shortest-path-non-negative"><span class="std std-numref">Fig. 42</span></a>.</p>
 <div class="figure align-center" id="algo-value-iteration-shortest-path-non-negative">
 <img alt="../_images/4-algo:value_iteration_shortest_path_non_negative.png" src="../_images/4-algo:value_iteration_shortest_path_non_negative.png" />
-<p class="caption"><span class="caption-number">Fig. 41 </span><span class="caption-text">The value iteration algorithm for shortest path games with non-negative weights.</span><a class="headerlink" href="#algo-value-iteration-shortest-path-non-negative" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 42 </span><span class="caption-text">The value iteration algorithm for shortest path games with non-negative weights.</span><a class="headerlink" href="#algo-value-iteration-shortest-path-non-negative" title="Permalink to this image">¶</a></p>
 </div>
 <div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
 <p>We follow a similar approach as in Dijkstra’s algorithm, keeping an
 estimation <span class="math notranslate nohighlight">\(\ell(v)\in \mathbb{R}\)</span> of the shortest paths towards the target
-<span class="math notranslate nohighlight">\(\textrm{Win}\)</span> from vertices <span class="math notranslate nohighlight">\(v\)</span> in a set <span class="math notranslate nohighlight">\(S\)</span>, still to be considered; these
+<span class="math notranslate nohighlight">\(Win\)</span> from vertices <span class="math notranslate nohighlight">\(v\)</span> in a set <span class="math notranslate nohighlight">\(S\)</span>, still to be considered; these
 estimations are refined greedily along the computation. We
 initialise <span class="math notranslate nohighlight">\(S\)</span> to <span class="math notranslate nohighlight">\(V\)</span>, and all values <span class="math notranslate nohighlight">\(\ell(v)\)</span> to <span class="math notranslate nohighlight">\(+\infty\)</span>, except
-for vertices just after an edge of the target <span class="math notranslate nohighlight">\(\textrm{Win}\)</span> that we put at
+for vertices just after an edge of the target <span class="math notranslate nohighlight">\(Win\)</span> that we put at
 <span class="math notranslate nohighlight">\(0\)</span>. For vertices <span class="math notranslate nohighlight">\(u\)</span> of Eve, we need more information and thus keep
 track of a mapping from successors of <span class="math notranslate nohighlight">\(u\)</span> towards the value
-<span class="math notranslate nohighlight">\(\ell(u,v)\in \mathbb{R}\)</span> of the current shortest path from <span class="math notranslate nohighlight">\(u\)</span> to <span class="math notranslate nohighlight">\(\textrm{Win}\)</span>,
+<span class="math notranslate nohighlight">\(\ell(u,v)\in \mathbb{R}\)</span> of the current shortest path from <span class="math notranslate nohighlight">\(u\)</span> to <span class="math notranslate nohighlight">\(Win\)</span>,
 going through the edge <span class="math notranslate nohighlight">\((u,v)\)</span>. We have that <span class="math notranslate nohighlight">\(\ell(u)\)</span> is the
 maximal value of <span class="math notranslate nohighlight">\(\ell(u,v)\)</span> for all successor vertices <span class="math notranslate nohighlight">\(v\)</span>: in
 particular, as long as one of the successors <span class="math notranslate nohighlight">\(v\)</span> still has value
@@ -921,24 +921,24 @@ the value of <span class="math notranslate nohighlight">\(\ell(u)\)</span> is up
 </ul>
 <p>This continues until there are no more vertices in <span class="math notranslate nohighlight">\(S\)</span> after which
 we return the values <span class="math notranslate nohighlight">\(\ell(u)\)</span> that we can prove to be the actual
-values <span class="math notranslate nohighlight">\(\textrm{val}(u)\)</span> of each vertex <span class="math notranslate nohighlight">\(u\)</span>. Let us denote by <span class="math notranslate nohighlight">\(S_i\)</span> and
+values <span class="math notranslate nohighlight">\(val(u)\)</span> of each vertex <span class="math notranslate nohighlight">\(u\)</span>. Let us denote by <span class="math notranslate nohighlight">\(S_i\)</span> and
 <span class="math notranslate nohighlight">\(\ell_i(u)\)</span> the values of <span class="math notranslate nohighlight">\(S\)</span> and <span class="math notranslate nohighlight">\(\ell(u)\)</span> in iteration <span class="math notranslate nohighlight">\(i\)</span>. We
 prove the following invariants:</p>
 <ol class="simple">
 <li><p>for all iterations <span class="math notranslate nohighlight">\(i\)</span>, <span class="math notranslate nohighlight">\(\ell_i(u)\)</span> is equal to the value
-<span class="math notranslate nohighlight">\(\textrm{val}_{ \mathcal{G}_i}(u)\)</span> in the shortest path game <span class="math notranslate nohighlight">\(\mathcal{G}_i\)</span> obtained
+<span class="math notranslate nohighlight">\(val_{ \mathcal{G}_i}(u)\)</span> in the shortest path game <span class="math notranslate nohighlight">\(\mathcal{G}_i\)</span> obtained
 from <span class="math notranslate nohighlight">\(i\)</span> by replacing the cost <span class="math notranslate nohighlight">\(c(v,w)\)</span> of each edge with
 <span class="math notranslate nohighlight">\(+\infty\)</span> if both endpoints <span class="math notranslate nohighlight">\(v\)</span> and <span class="math notranslate nohighlight">\(w\)</span> are still in <span class="math notranslate nohighlight">\(S_i\)</span>;</p></li>
 <li><p>moreover,
-<span class="math notranslate nohighlight">\(\min\{\ell_i(v)\mid v\in S_i\}\geq \max\{ \textrm{val}_{ \mathcal{G}}(v)\mid
+<span class="math notranslate nohighlight">\(\min\{\ell_i(v)\mid v\in S_i\}\geq \max\{ val_{ \mathcal{G}}(v)\mid
 v\notin S_i\}\)</span> which generalises the greedy property crucial to
 the correctness of Dijkstra’s algorithm.</p></li>
 </ol>
 <p>Since the cost of each edge in <span class="math notranslate nohighlight">\(\mathcal{G}_i\)</span> only decreases along the
 various iterations, it is also the case for the values
-<span class="math notranslate nohighlight">\(\textrm{val}_{ \mathcal{G}_i}(u)\)</span>. More precisely, the invariant shows that
-<span class="math notranslate nohighlight">\(\ell_i(u)= \textrm{val}_{ \mathcal{G}_i}(u)\)</span> for all <span class="math notranslate nohighlight">\(u\in S_i\)</span>, and
-<span class="math notranslate nohighlight">\(\ell_i(u)= \textrm{val}_{ \mathcal{G}}(u)\)</span> for all <span class="math notranslate nohighlight">\(u\notin S_i\)</span>. The proofs are
+<span class="math notranslate nohighlight">\(val_{ \mathcal{G}_i}(u)\)</span>. More precisely, the invariant shows that
+<span class="math notranslate nohighlight">\(\ell_i(u)= val_{ \mathcal{G}_i}(u)\)</span> for all <span class="math notranslate nohighlight">\(u\in S_i\)</span>, and
+<span class="math notranslate nohighlight">\(\ell_i(u)= val_{ \mathcal{G}}(u)\)</span> for all <span class="math notranslate nohighlight">\(u\notin S_i\)</span>. The proofs are
 very similar to the usual proofs and can be found in great details
 in <span id="id1">[<a class="reference internal" href="references.html#id100"><span>KBB+08</span></a>]</span>.</p>
 <p>From a complexity point of view, there is no doubt that the various
@@ -952,7 +952,7 @@ algorithm, allows one to obtain an overall complexity
 <h2>Detection of <span class="math notranslate nohighlight">\(-\infty\)</span> vertices with mean payoff games<a class="headerlink" href="#detection-of-infty-vertices-with-mean-payoff-games" title="Permalink to this headline">¶</a></h2>
 <p>However, contrary to the previous payoffs, the <strong>positional</strong>
 determinacy result no longer holds as shows the example
-in <a class="reference internal" href="#fig-memory"><span class="std std-numref">Fig. 42</span></a>. In this game, there are two positional
+in <a class="reference internal" href="#fig-memory"><span class="std std-numref">Fig. 43</span></a>. In this game, there are two positional
 strategies for Adam: <span class="math notranslate nohighlight">\(\tau_1(v_1)=(v_1,v_0)\)</span> and
 <span class="math notranslate nohighlight">\(\tau_2(v_1)=(v_1,v_2)\)</span>. Strategy <span class="math notranslate nohighlight">\(\tau_1\)</span> does not guarantee Adam to
 reach the target, since Eve can play the cycle <span class="math notranslate nohighlight">\((v_1,v_0)\)</span> forever and
@@ -969,55 +969,55 @@ time. However Eve still has a positional optimal strategy that
 consists in always going to <span class="math notranslate nohighlight">\(v_2\)</span>. This is always the case as we
 discuss later. Notice that the possible absence of optimal positional
 strategies for Adam makes non-trivial an upper bound of the form
-<span class="math notranslate nohighlight">\(\textrm{NP}\cap \textrm{coNP}\)</span> in the complexity of solving shortest path games.</p>
+<span class="math notranslate nohighlight">\(NP\cap coNP\)</span> in the complexity of solving shortest path games.</p>
 <div class="figure align-center" id="fig-memory">
 <img alt="../_images/4-fig:memory.png" src="../_images/4-fig:memory.png" />
-<p class="caption"><span class="caption-number">Fig. 42 </span><span class="caption-text">A shortest path game, with <span class="math notranslate nohighlight">\(v_2\)</span> being the target vertex,
+<p class="caption"><span class="caption-number">Fig. 43 </span><span class="caption-text">A shortest path game, with <span class="math notranslate nohighlight">\(v_2\)</span> being the target vertex,
 where Adam needs memory to play optimally</span><a class="headerlink" href="#fig-memory" title="Permalink to this image">¶</a></p>
 </div>
 <p>Apart from the complication on the memory requirement for Adam to play
 optimally, one other technical difficulty arises from the presence of
 vertices with optimal value <span class="math notranslate nohighlight">\(-\infty\)</span>: this is the case when Adam may
-reach a target of <span class="math notranslate nohighlight">\(\textrm{Win}\)</span> while controlling a negative cycle along the
+reach a target of <span class="math notranslate nohighlight">\(Win\)</span> while controlling a negative cycle along the
 way. As previously announced, this is closely related with mean payoff
 games: <span id="id2">[<a class="reference internal" href="references.html#id90"><span>BGHM17</span></a>]</span></p>
 <div class="proof theorem admonition" id="4-thm:-infty-MP">
-<p class="admonition-title"><span class="caption-number">Theorem 124 </span> (Detection of infinite values)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 133 </span> (Detection of infinite values)</p>
 <div class="theorem-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\mathcal{A}\)</span> be an arena.</p>
 <ul class="simple">
-<li><p>If the game <span class="math notranslate nohighlight">\(\mathcal{G}=( \mathcal{A}, \mathtt{ShortestPath}( \textrm{Win}))\)</span> has no
-vertices <span class="math notranslate nohighlight">\(v\)</span> of value <span class="math notranslate nohighlight">\(\textrm{val}^ \mathcal{G}(v)=+\infty\)</span>, and the only
-outgoing edges of vertices in <span class="math notranslate nohighlight">\(\textrm{Win}\)</span> are self loops of weight <span class="math notranslate nohighlight">\(0\)</span>,
-then for all vertices <span class="math notranslate nohighlight">\(v\)</span>, <span class="math notranslate nohighlight">\(\textrm{val}^ \mathcal{G}(v)=-\infty\)</span> if and only
-if <span class="math notranslate nohighlight">\(\textrm{val}^{ \mathcal{G}'}(v)&lt;0\)</span> if <span class="math notranslate nohighlight">\(\mathcal{G}'=( \mathcal{A}, \mathtt{MeanPayoff})\)</span> is the
+<li><p>If the game <span class="math notranslate nohighlight">\(\mathcal{G}=( \mathcal{A}, \mathtt{ShortestPath}( Win))\)</span> has no
+vertices <span class="math notranslate nohighlight">\(v\)</span> of value <span class="math notranslate nohighlight">\(val^ \mathcal{G}(v)=+\infty\)</span>, and the only
+outgoing edges of vertices in <span class="math notranslate nohighlight">\(Win\)</span> are self loops of weight <span class="math notranslate nohighlight">\(0\)</span>,
+then for all vertices <span class="math notranslate nohighlight">\(v\)</span>, <span class="math notranslate nohighlight">\(val^ \mathcal{G}(v)=-\infty\)</span> if and only
+if <span class="math notranslate nohighlight">\(val^{ \mathcal{G}'}(v)&lt;0\)</span> if <span class="math notranslate nohighlight">\(\mathcal{G}'=( \mathcal{A}, \mathtt{MeanPayoff})\)</span> is the
 associated mean payoff game on the same arena.</p></li>
 <li><p>Reciprocally, if <span class="math notranslate nohighlight">\(\mathcal{G}=( \mathcal{A}, \mathtt{MeanPayoff})\)</span>, we can build in
-polynomial time a game <span class="math notranslate nohighlight">\(\mathcal{G}'=( \mathcal{A}', \mathtt{ShortestPath}( \textrm{Win}))\)</span> such
-that <span class="math notranslate nohighlight">\(\textrm{val}^ \mathcal{G}(v)&lt;0\)</span> if and only if
-<span class="math notranslate nohighlight">\(\textrm{val}^{ \mathcal{G}'}(v) =-\infty\)</span>.</p></li>
+polynomial time a game <span class="math notranslate nohighlight">\(\mathcal{G}'=( \mathcal{A}', \mathtt{ShortestPath}( Win))\)</span> such
+that <span class="math notranslate nohighlight">\(val^ \mathcal{G}(v)&lt;0\)</span> if and only if
+<span class="math notranslate nohighlight">\(val^{ \mathcal{G}'}(v) =-\infty\)</span>.</p></li>
 </ul>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
-<p>For the first item, if <span class="math notranslate nohighlight">\(\textrm{val}^{ \mathcal{G}'}(v)&lt;0\)</span>, there exists a
+<p>For the first item, if <span class="math notranslate nohighlight">\(val^{ \mathcal{G}'}(v)&lt;0\)</span>, there exists a
 profile of optimal positional strategies <span class="math notranslate nohighlight">\((\sigma^*,\tau^*)\)</span>: the
 outcome starting in <span class="math notranslate nohighlight">\(v\)</span> and following this profile ends up in a loop
 with total cost <span class="math notranslate nohighlight">\(&lt;0\)</span>. For every <span class="math notranslate nohighlight">\(M&gt;0\)</span>, we can construct a strategy
 <span class="math notranslate nohighlight">\(\tau^M\)</span> for Adam that ensures in <span class="math notranslate nohighlight">\(\mathcal{G}\)</span> a payoff at most <span class="math notranslate nohighlight">\(-M\)</span>,
-which then proves that <span class="math notranslate nohighlight">\(\textrm{val}^ \mathcal{G}(v)=-\infty\)</span>: strategy <span class="math notranslate nohighlight">\(\tau^M\)</span>
+which then proves that <span class="math notranslate nohighlight">\(val^ \mathcal{G}(v)=-\infty\)</span>: strategy <span class="math notranslate nohighlight">\(\tau^M\)</span>
 is obtained by playing strategy <span class="math notranslate nohighlight">\(\tau^*\)</span> until the accumulated cost
 is less than <span class="math notranslate nohighlight">\(-M-nW\)</span>, with <span class="math notranslate nohighlight">\(W=\max_{(v,c,v')\in E} |c|\)</span>, after
-which he switches to an attractor strategy towards <span class="math notranslate nohighlight">\(\textrm{Win}\)</span> (which
+which he switches to an attractor strategy towards <span class="math notranslate nohighlight">\(Win\)</span> (which
 exists from every vertex of the game, since no vertices have value
 <span class="math notranslate nohighlight">\(+\infty\)</span>). Since the attractor strategy reaches the target in at
 most <span class="math notranslate nohighlight">\(n\)</span> steps, the value of <span class="math notranslate nohighlight">\(\tau^M\)</span> from <span class="math notranslate nohighlight">\(v\)</span> is at most <span class="math notranslate nohighlight">\(-M\)</span>.</p>
-<p>Reciprocally, if <span class="math notranslate nohighlight">\(\textrm{val}^ \mathcal{G}(v)=-\infty\)</span>, for <span class="math notranslate nohighlight">\(M=nW\)</span>,
+<p>Reciprocally, if <span class="math notranslate nohighlight">\(val^ \mathcal{G}(v)=-\infty\)</span>, for <span class="math notranslate nohighlight">\(M=nW\)</span>,
 consider a strategy <span class="math notranslate nohighlight">\(\tau^M\)</span> of Adam guaranteeing a payoff less than
 <span class="math notranslate nohighlight">\(-M\)</span>. Consider, towards a contradiction, a positional strategy
 <span class="math notranslate nohighlight">\(\sigma\)</span> of Eve that secures a non-negative mean payoff. The play of
 <span class="math notranslate nohighlight">\(\mathcal{G}\)</span> following the profile <span class="math notranslate nohighlight">\((\sigma,\tau^M)\)</span> necessarily leads to
-<span class="math notranslate nohighlight">\(\textrm{Win}\)</span>, while visiting at least one negative cycle, around a given
+<span class="math notranslate nohighlight">\(Win\)</span>, while visiting at least one negative cycle, around a given
 vertex <span class="math notranslate nohighlight">\(v'\)</span>. If <span class="math notranslate nohighlight">\(v'\in  V_\mathrm{Eve}\)</span>, Eve is not the one choosing to exit the
 cycle (since she is following a positional strategy), so Adam can
 modify its strategy to stay forever in the negative cycle, which
@@ -1026,28 +1026,28 @@ mean payoff. If <span class="math notranslate nohighlight">\(v'\in  V_\mathrm{Ad
 the negative cycle by modifying his strategy. Therefore, Eve cannot
 have a positional strategy securing a non-negative mean payoff: by
 positional determinacy of mean payoff games
-( <a class="reference internal" href="mean_payoff.html#4-thm:mean_payoff_positional">Theorem 92</a>), Eve cannot have any strategy securing
+(<a class="reference internal" href="mean_payoff.html#4-thm:mean_payoff_positional">Theorem 101</a>), Eve cannot have any strategy securing
 a non-negative mean payoff.</p>
 <p>\medskip For the second item, without loss of generality, suppose
 that <span class="math notranslate nohighlight">\(\mathcal{A}\)</span> is a bipartite arena,
 i.e. <span class="math notranslate nohighlight">\(E\subseteq  V_\mathrm{Adam}\times  V_\mathrm{Eve}\cup V_\mathrm{Eve}\times  V_\mathrm{Adam}\)</span>. The new arena
 <span class="math notranslate nohighlight">\(\mathcal{A}'\)</span> is obtained by adding a fresh target <span class="math notranslate nohighlight">\(v_t\)</span> with edges
 <span class="math notranslate nohighlight">\((v,v_t)\)</span> for all <span class="math notranslate nohighlight">\(v\in  V_\mathrm{Adam}\)</span>, as well as an edge <span class="math notranslate nohighlight">\((v_t,v_t)\)</span>, all of
-cost 0. Consider the game <span class="math notranslate nohighlight">\(\mathcal{G}'=( \mathcal{A}', \mathtt{ShortestPath}( \textrm{Win}))\)</span>
-with <span class="math notranslate nohighlight">\(\textrm{Win} = \{v_t\}\)</span>. By construction and using the bipartite
-hypothesis, Adam always has a strategy to reach <span class="math notranslate nohighlight">\(\textrm{Win}\)</span>, so that no
-vertices <span class="math notranslate nohighlight">\(v\)</span> have a value <span class="math notranslate nohighlight">\(\textrm{val}^{ \mathcal{G}'}(v)=+\infty\)</span>. By letting
+cost 0. Consider the game <span class="math notranslate nohighlight">\(\mathcal{G}'=( \mathcal{A}', \mathtt{ShortestPath}( Win))\)</span>
+with <span class="math notranslate nohighlight">\(Win = \{v_t\}\)</span>. By construction and using the bipartite
+hypothesis, Adam always has a strategy to reach <span class="math notranslate nohighlight">\(Win\)</span>, so that no
+vertices <span class="math notranslate nohighlight">\(v\)</span> have a value <span class="math notranslate nohighlight">\(val^{ \mathcal{G}'}(v)=+\infty\)</span>. By letting
 <span class="math notranslate nohighlight">\(\mathcal{G}''=( \mathcal{A}', \mathtt{MeanPayoff})\)</span>, the previous item shows that
-<span class="math notranslate nohighlight">\(\textrm{val}^{ \mathcal{G}'}(v)=-\infty\)</span> if and only if
-<span class="math notranslate nohighlight">\(\textrm{val}^{ \mathcal{G}''}(v)&lt;0\)</span>. To conclude, it only remains to show that
-<span class="math notranslate nohighlight">\(\textrm{val}^{ \mathcal{G}}(v)&lt;0\)</span> if and only if <span class="math notranslate nohighlight">\(\textrm{val}^{ \mathcal{G}''}(v)&lt;0\)</span>. By
+<span class="math notranslate nohighlight">\(val^{ \mathcal{G}'}(v)=-\infty\)</span> if and only if
+<span class="math notranslate nohighlight">\(val^{ \mathcal{G}''}(v)&lt;0\)</span>. To conclude, it only remains to show that
+<span class="math notranslate nohighlight">\(val^{ \mathcal{G}}(v)&lt;0\)</span> if and only if <span class="math notranslate nohighlight">\(val^{ \mathcal{G}''}(v)&lt;0\)</span>. By
 mapping positional strategies from <span class="math notranslate nohighlight">\(\mathcal{G}\)</span> to <span class="math notranslate nohighlight">\(\mathcal{G}''\)</span>, we easily
-obtain <span class="math notranslate nohighlight">\(\textrm{val}^{ \mathcal{G}''}(v)\leq  \textrm{val}^ \mathcal{G}(v)\)</span>, so the direct
-implication holds. For the converse, if <span class="math notranslate nohighlight">\(\textrm{val}^{ \mathcal{G}''}(v)&lt;0\)</span>, the
+obtain <span class="math notranslate nohighlight">\(val^{ \mathcal{G}''}(v)\leq  val^ \mathcal{G}(v)\)</span>, so the direct
+implication holds. For the converse, if <span class="math notranslate nohighlight">\(val^{ \mathcal{G}''}(v)&lt;0\)</span>, the
 target <span class="math notranslate nohighlight">\(v_t\)</span> cannot be visited by a profile of positional optimal
 strategies (otherwise the mean payoff would be 0): projecting the
 play from <span class="math notranslate nohighlight">\(\mathcal{G}''\)</span> on <span class="math notranslate nohighlight">\(\mathcal{G}\)</span> therefore shows that
-<span class="math notranslate nohighlight">\(\textrm{val}^{ \mathcal{G}}(v)\leq  \textrm{val}^{ \mathcal{G}''}(v) &lt;0\)</span>.</p>
+<span class="math notranslate nohighlight">\(val^{ \mathcal{G}}(v)\leq  val^{ \mathcal{G}''}(v) &lt;0\)</span>.</p>
 </div>
 </div>
 <div class="section" id="a-pseudopolynomial-time-value-iteration-algorithm">
@@ -1062,15 +1062,15 @@ the new vector <span class="math notranslate nohighlight">\((y_v)_{v\in V}\)</sp
 <div class="math notranslate nohighlight">
 \[\begin{split}y_v =
   \begin{cases}
-    0 &amp; \text{ if } v\in  \textrm{Win}\\
+    0 &amp; \text{ if } v\in  Win\\
     \max_{(v,v')\in E} [c(v,v') + x_{v'}] &amp;
-    \text{ if } v\in  V_\mathrm{Eve}\setminus  \textrm{Win}\\
+    \text{ if } v\in  V_\mathrm{Eve}\setminus  Win\\
     \min_{(v,v')\in E} [c(v,v') + x_{v'}] &amp; \text{ if } v\in
-     V_\mathrm{Adam}\setminus  \textrm{Win}
+     V_\mathrm{Adam}\setminus  Win
   \end{cases}\end{split}\]</div>
-<p>Notice the similarity with respect to the <span class="math notranslate nohighlight">\(\textrm{Lift}\)</span> operator used in the
+<p>Notice the similarity with respect to the <span class="math notranslate nohighlight">\(Lift\)</span> operator used in the
 value iteration algorithm for mean payoff
-(<a class="reference internal" href="mean_payoff.html#algo-value-iteration-mp"><span class="std std-numref">Fig. 37</span></a>): the following arguments are thus
+(<a class="reference internal" href="mean_payoff.html#algo-value-iteration-mp"><span class="std std-numref">Fig. 38</span></a>): the following arguments are thus
 very resembling to the ones already presented in the case of
 mean payoff. Here, we obtain a more precise information though, since
 it directly gives us the values for the shortest path objective
@@ -1081,16 +1081,16 @@ following lemma (where we again let <span class="math notranslate nohighlight">\
 know that finite values are bounded below, so that an intermediate
 step of speed-up can detect the vertices of value <span class="math notranslate nohighlight">\(-\infty\)</span>.</p>
 <div class="proof lemma admonition" id="4-lem:-infty">
-<p class="admonition-title"><span class="caption-number">Lemma 125 </span> (Lower bound on values)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 134 </span> (Lower bound on values)</p>
 <div class="lemma-content section" id="proof-content">
 <p>In a shortest path game <span class="math notranslate nohighlight">\(\mathcal{G}\)</span>, all vertices <span class="math notranslate nohighlight">\(v\)</span> with a value
-<span class="math notranslate nohighlight">\(\textrm{val}(v)&lt;-(n-1) W\)</span> have value <span class="math notranslate nohighlight">\(\textrm{val}(v)=-\infty\)</span>.</p>
+<span class="math notranslate nohighlight">\(val(v)&lt;-(n-1) W\)</span> have value <span class="math notranslate nohighlight">\(val(v)=-\infty\)</span>.</p>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
 <p>Consider a strategy <span class="math notranslate nohighlight">\(\tau\)</span> of Adam securing a value <span class="math notranslate nohighlight">\(&lt;-(n-1) W\)</span>
 from a given vertex <span class="math notranslate nohighlight">\(v\)</span>. We show that in the mean payoff game
-<span class="math notranslate nohighlight">\(\mathcal{G}'\)</span> described in  <a class="reference internal" href="#4-thm:-infty-MP">Theorem 124</a>, vertex <span class="math notranslate nohighlight">\(v\)</span> has value
+<span class="math notranslate nohighlight">\(\mathcal{G}'\)</span> described in <a class="reference internal" href="#4-thm:-infty-MP">Theorem 133</a>, vertex <span class="math notranslate nohighlight">\(v\)</span> has value
 <span class="math notranslate nohighlight">\(&lt;0\)</span>, which allows us to conclude. Let <span class="math notranslate nohighlight">\(\sigma\)</span> be a positional
 strategy of Eve. By hypothesis, the play <span class="math notranslate nohighlight">\(\pi\)</span> starting in <span class="math notranslate nohighlight">\(v\)</span> and
 following the profile <span class="math notranslate nohighlight">\((\sigma,\tau)\)</span> has a payoff
@@ -1107,7 +1107,7 @@ otherwise. We consider then the sequence
 <span class="math notranslate nohighlight">\((\vec x^n = (GF)^n(\top))_{n\in  \mathbb{N}}\)</span>, with <span class="math notranslate nohighlight">\(\top\)</span> the vector having
 all components equal to <span class="math notranslate nohighlight">\(+\infty\)</span>. Since it generalises the attractor
 computation, after <span class="math notranslate nohighlight">\(n\)</span> steps, vertices with a value
-<span class="math notranslate nohighlight">\(\textrm{val}(v)&lt;+\infty\)</span> have been discovered: they are the only ones such
+<span class="math notranslate nohighlight">\(val(v)&lt;+\infty\)</span> have been discovered: they are the only ones such
 that <span class="math notranslate nohighlight">\(x^{n}_v &lt; +\infty\)</span>. Moreover, these vertices satisfy
 <span class="math notranslate nohighlight">\(x^{n}_v\leq n W\)</span> since a given path towards the target has been
 discovered along the first <span class="math notranslate nohighlight">\(n\)</span> iterations. Since the mapping <span class="math notranslate nohighlight">\(GF\)</span> is
@@ -1117,14 +1117,14 @@ non-increasing. Since it can only take values in the finite set
 \cup\{+\infty\}\)</span>, it is stabilising: there exists a step <span class="math notranslate nohighlight">\(N\)</span> such that
 <span class="math notranslate nohighlight">\(\vec x^N=\vec x^{N+1}\)</span>. Notice that an a priori bound on <span class="math notranslate nohighlight">\(N\)</span> is
 <span class="math notranslate nohighlight">\((2n-1)W n + n\)</span>. A careful analysis allows one to show that
-<span class="math notranslate nohighlight">\(\vec x^N= \textrm{val}^ \mathcal{G}\)</span>: the main argument is the fact that the
+<span class="math notranslate nohighlight">\(\vec x^N= val^ \mathcal{G}\)</span>: the main argument is the fact that the
 stabilisation of the sequence at index <span class="math notranslate nohighlight">\(N\)</span> allows one to show by
 induction that <span class="math notranslate nohighlight">\(N\)</span> steps suffice for Adam to guarantee that he has
 reached a target vertex while getting the optimal value. With all the
 details provided in <span id="id3">[<a class="reference internal" href="references.html#id90"><span>BGHM17</span></a>]</span>, we
 finally obtain</p>
 <div class="proof theorem admonition" id="4-thm:SP-pseudopoly-algo">
-<p class="admonition-title"><span class="caption-number">Theorem 126 </span> (Pseudopolynomial computation of values)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 135 </span> (Pseudopolynomial computation of values)</p>
 <div class="theorem-content section" id="proof-content">
 <p>We can compute in pseudopolynomial time the values of a
 shortest path game.</p>

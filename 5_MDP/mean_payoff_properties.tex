@@ -38,7 +38,8 @@ In mean-payoff  MDPs, a crucial role is played by the linear program $\lpmp$ pic
 
 %\vspace{-1em}
 
-$$
+HOW DO WE DEAL WITH EQUATION LABELS IN FIGURES?
+
 \begin{figure}[h]
 	\begin{alignat}{2}
 	\text{{maximize}} \quad &\sum_{v\in \vertices, a \in \actions} x_{(v,a)} \cdot \colouring(v,a),\quad \textrm{ 
@@ -47,24 +48,32 @@ $$
 		&\quad&\text{for all $v\in \vertices$}\label{5-eq:mdp-flow} \\
 	 \sum_{v\in\vertices,a\in \actions} x_{v,a}&=1 &&\label{5-eq:mdp-freq-1} \\
 	 x_{v,a} &\geq 0  &&\text{for all $v\in \vertices,a\in \actions$} \label{5-eq:mdp-freq-nonnegp}
-	% z_q & \geq 0 & \text{ for all } q\in Q
 	\end{alignat}
 	\caption{The linear program $\lpmp$ with variables $x_{(v,a)}$ for  $v\in \vertices,a\in \actions$.}
 	\label{5-fig:mp-lin}
 \end{figure}
-$$
 
-There is a correspondence between feasible solutions of $\lpmp$ and the strategies in the corresponding MDP. Intuitively, in a solution corresponding to a strategy $\sigma$, the value of a variable $x_{v,a}$ describes the expected frequency with which $\sigma$ visits $v$ and plays $a$ upon such a visit. These frequencies must obey the \emph{flow constraints}~\cref{5-eq:mdp-flow} and must represent a probability distribution, which is ensured by~\cref{5-eq:mdp-freq-1} and~\cref{5-eq:mdp-freq-nonnegp}. The objective function then represents the expected mean payoff. Of high importance is also the linear program which is \emph{dual} to $\lpmp$. This dual program, denoted $\lpmpdual$, is pictured in Figure~\cref\{5-fig:mp-dual}. (For a refresher on linear programming and duality, see, e.g.~\cite{Matousek:2007}).
+%\begin{figure}[h]
+%	\begin{alignat}{2}
+%	\text{{maximize}} \quad &\sum_{v\in \vertices, a \in \actions} x_{(v,a)} \cdot \colouring(v,a),\quad \textrm{ 
+%			subject to }\nonumber \\
+%	  \sum_{\substack{u\in\vertices\\ a \in \actions}} x_{(u,a)}\cdot \probTranFunc(v\mid u,a) &= \sum_{a \in \actions} x_{v,a}
+%		&\quad&\text{for all $v\in \vertices$}\label{5-eq:mdp-flow} \\
+%	 \sum_{v\in\vertices,a\in \actions} x_{v,a}&=1 &&\label{5-eq:mdp-freq-1} \\
+%	 x_{v,a} &\geq 0  &&\text{for all $v\in \vertices,a\in \actions$} \label{5-eq:mdp-freq-nonnegp}
+%	\end{alignat}
+%	\caption{The linear program $\lpmp$ with variables $x_{(v,a)}$ for  $v\in \vertices,a\in \actions$.}
+%	\label{5-fig:mp-lin}
+%\end{figure}
+
+There is a correspondence between feasible solutions of $\lpmp$ and the strategies in the corresponding MDP. Intuitively, in a solution corresponding to a strategy $\sigma$, the value of a variable $x_{v,a}$ describes the expected frequency with which $\sigma$ visits $v$ and plays $a$ upon such a visit. These frequencies must obey the \emph{flow constraints}~\cref{5-eq:mdp-flow} and must represent a probability distribution, which is ensured by~\cref{5-eq:mdp-freq-1} and~\cref{5-eq:mdp-freq-nonnegp}. The objective function then represents the expected mean payoff. Of high importance is also the linear program which is \emph{dual} to $\lpmp$. This dual program, denoted $\lpmpdual$, is pictured in~\cref{5-fig:mp-dual}. (For a refresher on linear programming and duality, see, e.g.~\cite{Matousek:2007}).
 
 \begin{figure}[h]
 	\begin{alignat}{2}
 	&\text{{minimize} }\quad g \quad \textrm{ 
 		subject to }\nonumber \\
 	&g -\colouring(v,a) + \sum_{u\in\vertices}\probTranFunc(u\mid v,a)\cdot y_u \geq y_v 
-	\quad\text{for all $(v,a)\in \vertices\times \actions$}\label{5-eq:mp-lpdual}
-%	\sum_{v\in\vertices,a\in \actions} x_{v,a}&=1 && \\
-%	x_{v,a} &\geq 0  &&\text{for all $v\in \vertices,a\in \actions$}
-	% z_q & \geq 0 & \text{ for all } q\in Q
+	\quad\text{for all $(v,a)\in \vertices\times \actions$}
 	\end{alignat}
 	\caption{The linear program $\lpmpdual$ with variables $g$ and $y_v$ for each  $v\in \vertices$.}
 	\label{5-fig:mp-dual}
@@ -95,7 +104,7 @@ We now obtain a bound for the third term on the RHS of~\cref{5-eq:mpdual-1}. In 
 =\sum_{v\in\vertices}  \vec{y}_v\cdot \bigg(\sum_{\substack{\play'\in \Pi_n\\ \last(\play')=v}}\probm^\sigma_{\vinit}(\play') \bigg) \\
 &=\sum_{v\in\vertices}  \vec{y}_v\cdot \bigg(\sum_{\substack{\play'\in \Pi_n\\ \last(\play')=v}}\probm^\sigma_{\vinit}(\play')\cdot\big(\underbrace{\sum_{a\in\actions}\sigma(a\mid \play')}_{=1} \big)\bigg) \\
 &= \sum_{\substack{v\in\vertices\\ a \in \actions}}  \vec{y}_v\cdot \bigg(\sum_{\substack{\play'\in \Pi_n\\ \last(\play')=v}}\probm^\sigma_{\vinit}(\play')\cdot\sigma(a\mid \play')\bigg)\\
-\text{(by~\cref{5-eq:mp-lpdual})}\hspace{3mm}
+\text{(by~\cref{5-fig:mp-dual})}\hspace{3mm}
 &{\leq}\sum_{\substack{v\in\vertices\\ a\in \actions}} \bigg( {g} -\colouring(v,a) + \sum_{u\in\vertices}\probTranFunc(u\mid v,a)\cdot  \vec{y}_u\bigg)\cdot\bigg(\sum_{\substack{\play'\in \Pi_n\\ \last(\play')=v}}\probm^\sigma_{\vinit}(\play')\cdot\sigma(a\mid \play')\bigg)\\
 &= {g}\cdot\underbrace{\sum_{\substack{v\in\vertices\\ a\in \actions}}\sum_{\substack{\play'\in \Pi_n\\ \last(\play')=v}}\probm^\sigma_{\vinit}(\play')\cdot\sigma(a\mid \play')}_{=1}\\&\quad-\underbrace{\sum_{\substack{v\in\vertices\\ a\in \actions}}\sum_{\substack{\play'\in \Pi_n\\ \last(\play')=v}}\probm^\sigma_{\vinit}(\play')\cdot\sigma(a\mid \play')\cdot\colouring(v,a)}_{=\expv^\sigma_{\vinit}[\colouring(\play_n)]}\\
 &\quad +\underbrace{\sum_{\substack{v,u\in \vertices\\ a \in \actions}}\sum_{\substack{\play'\in \Pi_n\\ \last(\play')=v}} \probm^\sigma_{\vinit}(\play')\cdot\sigma(a\mid \play')\cdot \probTranFunc(u\mid v,a)\cdot  \vec{y}_u}_{=\expv^\sigma_{\vinit}[Y^{(n+1)}]}.
@@ -112,7 +121,7 @@ Let $g$ be the objective value of some feasible solution of $\lpmpdual$. Then fo
 \end{corollary}
 \begin{proof}
 Let $ ({g}, \vec{y})$ be any feasible solution of $\lpmpdual$.
-By \Cref{5-lem:dual-bound-step} we have, for every $n\geq 0$, that $\expv^\sigma_{\vinit}[\frac{1}{n}\sum_{i=0}^{n-1}\colouring(\play_i)]\leq g - \frac{ \vec{y}_{\vinit}}{n}+ \frac{1}{n}\expv^\sigma_{\vinit} [Y^{(n)}]$. Since $ \vec{y}_{\vinit}$ is a constant and $|\expv^\sigma_{\vinit} [Y^{(n)}]|$ is bounded by the constant $ \max_{v\in \vertices}|\vec{y}_v|$ that is independent of $n$, the last two terms on the RHS vanish as $n$ goes to $\infty$. Hence, also $\stepPay(\vinit,\sigma) = \liminf_{n\rightarrow \infty} \expv^\sigma_{\vinit}[\frac{1}{n}\sum_{i=0}^{n-1}\colouring(\play_i)] \leq g$. It remains to show that we have $\playPay(\vinit,\sigma) \leq \stepPay(\vinit,\sigma)$, but this immediately follows from the Fatou's lemma~\cite[Theorem 1.6.8]{Ash&Doleans-Dade:2000}.
+By \cref{5-lem:dual-bound-step} we have, for every $n\geq 0$, that $\expv^\sigma_{\vinit}[\frac{1}{n}\sum_{i=0}^{n-1}\colouring(\play_i)]\leq g - \frac{ \vec{y}_{\vinit}}{n}+ \frac{1}{n}\expv^\sigma_{\vinit} [Y^{(n)}]$. Since $ \vec{y}_{\vinit}$ is a constant and $|\expv^\sigma_{\vinit} [Y^{(n)}]|$ is bounded by the constant $ \max_{v\in \vertices}|\vec{y}_v|$ that is independent of $n$, the last two terms on the RHS vanish as $n$ goes to $\infty$. Hence, also $\stepPay(\vinit,\sigma) = \liminf_{n\rightarrow \infty} \expv^\sigma_{\vinit}[\frac{1}{n}\sum_{i=0}^{n-1}\colouring(\play_i)] \leq g$. It remains to show that we have $\playPay(\vinit,\sigma) \leq \stepPay(\vinit,\sigma)$, but this immediately follows from the Fatou's lemma~\cite[Theorem 1.6.8]{Ash&Doleans-Dade:2000}.
 \end{proof}
 
 \begin{corollary}
@@ -120,7 +129,7 @@ By \Cref{5-lem:dual-bound-step} we have, for every $n\geq 0$, that $\expv^\sigma
 Both the linear programs $\lpmp$ and $\lpmpdual$ have a feasible solution. Hence, both have an optimal solution and the optimal values of the objective functions in these programs are equal.
 \end{corollary}
 \begin{proof}
-One can easily construct a feasible solution for $\lpmpdual$ by setting all the $y$-variables to $0$ and $g$ to $\maxc$. By the duality theorem for linear programming, to show that also $\lpmp$ has feasible solution it suffices to show that the objective function of $\lpmpdual$ is bounded from below. But this follows from \Cref{5-cor:mp-value-bound}, since there is at least one strategy $\sigma$ giving us the lower bound (in particular, the objective function is bounded from below by $-\maxc$). The second part follows immediately by linear programming duality.
+One can easily construct a feasible solution for $\lpmpdual$ by setting all the $y$-variables to $0$ and $g$ to $\maxc$. By the duality theorem for linear programming, to show that also $\lpmp$ has feasible solution it suffices to show that the objective function of $\lpmpdual$ is bounded from below. But this follows from \cref{5-cor:mp-value-bound}, since there is at least one strategy $\sigma$ giving us the lower bound (in particular, the objective function is bounded from below by $-\maxc$). The second part follows immediately by linear programming duality.
 \end{proof}
 
 

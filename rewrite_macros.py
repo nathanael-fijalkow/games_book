@@ -5,6 +5,8 @@ def rewrite_macros(path, file):
 	content = f.read()
 	f.close()
 
+	# print(content)
+	
 	list_macros = re.findall(r'\\newcommand{(.*?)}{(.*?)}\s', content)
 
 	match = re.search(r'```{math}([\s\S]*?)```', content)

@@ -3,48 +3,6 @@
 
 ```{math}
 
-\usepackage{amsmath}
-  
-\newcommand*\Realnn{\mathbb{R}_{\geq 0}}
-\newcommand*\Clocks{\mathcal{C}}
-\newcommand*\TA{\ensuremath{\mathcal{A}}}
-\newcommand*\Locs{\mathcal{L}}
-\newcommand*\Clocksz{\mathcal{C}_0}
-\newcommand*\calQ{\mathcal{Q}}
-\newcommand*\state{\mathsf{state}}
-\newcommand*\trans{\mathsf{trans}}
-\newcommand*\post{\mathsf{post}}
-\newcommand*\step{\mathsf{step}}
-
-\newcommand*\postta{\ensuremath{\textrm{\sf Post}}}
-\newcommand*\preta{\ensuremath{\textrm{\sf Pre}}}
-\newcommand*\unreset{\ensuremath{\textrm{\sf Unreset}}}
-\newcommand*\posttime{\ensuremath{\textrm{\sf Post}_{\geq 0}}}
-\newcommand*\pretime{\ensuremath{\textrm{\sf Pre}_{\geq 0}}} 
-\newcommand*\reset{\mathsf{Reset}}
-
-\def\predc{\textrm{\sf Pred}_c}
-\def\predt{\textrm{\sf Pred}_{\geq 0}} 
-\def\predu{\textrm{\sf Pred}_u}
-
-\def\calP{\mathcal P}
-\def\calC{\mathcal C}
-\def\calT{\mathcal T}
-\def\Dep{\textsf{Dep}}
-\def\Wait{\textsf{Wait}}
-\def\Passed{\textsf{Passed}}
-\def\Act{\textsf{Act}}
-
-\def\EA{E_{\Adam}}
-\def\EE{E_{\Eve}}
-
-\newcommand\zone[1]{\ensuremath{\left\llbracket#1\right\rrbracket}}
-
-\def\NM#1{\textcolor{green!50!black}{\checkmark}\marginpar{\color{green!50!black}NM: #1}} 
-\long\def\NMlong#1{\medskip\par{\color{green!50!black}NM: #1}\medskip\par}
-\def\OS#1{\textcolor{blue!50!black}{\checkmark}\marginpar{\color{blue!50!black}OS: #1}} 
-\long\def\OSlong#1{\medskip\par{\color{blue!50!black}OS: #1}\medskip\par}
-
 \renewcommand{\Game}{\game}
 
 ```
@@ -53,9 +11,9 @@ We introduce a data structure to represent sets of clock
 valuations and manipulate them efficiently in order to compute
 successors and predecessors in a given timed game. This will allow us
 to use a fixpoint characterization of the winning states analogous to
-that in finite games as in \cref{chap:regular}. 
+that in finite games as in Chapter {ref}`2-chap:regular`.
 
-A **zone** is any subset of $\Realnn^\Clocks$ that can be defined
+A **zone** is any subset of $\mathbb{R}_{\geq 0}^ \mathcal{C}$ that can be defined
 using a clock constraint (hence a zone is convex).  We will see that
 sets of states that appear when exploring the state space of a timed
 game can be represented using zones.  We use the
@@ -65,11 +23,11 @@ verification {cite}`Dil90,BM83`. The idea is to store, in a matrix,
 upper bounds on clocks and on differences of pairs of clocks.
 
 Formally, given a clock
-set $\Clocks=\{x_1,\ldots,x_m\}$, we define $\Clocksz = \Clocks \cup \{x_0\}$
+set $\mathcal{C}=\{x_1,\ldots,x_m\}$, we define $\mathcal{C}_0 =  \mathcal{C} \cup \{x_0\}$
 where $x_0$ is seen as a
 special clock which is always $0$.
 
-A difference-bound matrix (DBM) is a $|\Clocksz|\times |\Clocksz|$
+A difference-bound matrix (DBM) is a $| \mathcal{C}_0|\times | \mathcal{C}_0|$
 matrix with coefficients in $\{\mathord\leq,\mathord<\} \times
 \mathbb{Z}$.  For any DBM $M$, the $(i,j)$-component of the matrix $M$
 will be written $(\prec^M_{i,j}, M_{i,j})$ where $\prec^M_{i,j}$ is
@@ -77,14 +35,14 @@ the inequality in $\{\mathord\leq,\mathord<\}$, and $M_{i,j}$ the
 integer coefficient. A DBM $M$ defines the zone
 
 $$
-  [M] = \Bigl\{v\in \Realnn^{\Clocks}\Bigm|
-  \bigwedge_{0\leq i,j \leq |\Clocksz|} v(x_i)-v(x_j) \prec^M_{i,j} M_{i,j}\Bigr\},
+  [M] = \Bigl\{v\in  \mathbb{R}_{\geq 0}^{ \mathcal{C}}\Bigm|
+  \bigwedge_{0\leq i,j \leq | \mathcal{C}_0|} v(x_i)-v(x_j) \prec^M_{i,j} M_{i,j}\Bigr\},
 $$
 
 where $v(x_0) = 0$.
 
 ````{prf:example} NEEDS TITLE AND LABEL 
-  Consider the clock set $\Clocks=\{x_1,x_2\}$
+  Consider the clock set $\mathcal{C}=\{x_1,x_2\}$
   and the zone $Z$ defined by 
   $x_1\leq 1 \land x_1-x_2 \leq 0 \land x_2\leq 3\land x_2-x_1 \leq 2$, which can be
   written as the following DBM:
@@ -123,7 +81,7 @@ $$
 
   The diagram to the right of the figure represents the set $[M]$.
 
-  Consider the clock set $\Clocks=\{x_1,x_2\}$
+  Consider the clock set $\mathcal{C}=\{x_1,x_2\}$
   and the zone $Z$ defined by 
   $x_1\leq 1 \land x_1-x_2 \leq 0 \land x_2\leq 3\land x_2-x_1 \leq 2$, which can be
   written as the following DBM:
@@ -168,40 +126,40 @@ We now define elementary operations on DBMs which are used to explore
 the state space of timed games. We start by giving set-theoretic
 definitions and then comment on their computation with DBMs.
 
-Let $\posttime(Z)$ denote the zone describing the
-**time-successors** of $Z$, and $\pretime(Z)$ the
+Let $\sf Post_{\geq 0}(Z)$ denote the zone describing the
+**time-successors** of $Z$, and $\sf Pre_{\geq 0}(Z)$ the
 **time-predecessors** of $Z$. Formally,
 \begin{xalignat*}1
-    \posttime(Z)&= \{v \in \Realnn^{\Clocks}
+     \sf Post_{\geq 0}(Z)&= \{v \in  \mathbb{R}_{\geq 0}^{ \mathcal{C}}
     \mid \exists t\geq 0.\  v-t \in Z\}
     \\
-    \pretime(Z) &=
-    \{v \in \Realnn^{\Clocks} \mid \exists t \geq 0.\ v + t \in Z\}.
+     \sf Pre_{\geq 0}(Z) &=
+    \{v \in  \mathbb{R}_{\geq 0}^{ \mathcal{C}} \mid \exists t \geq 0.\ v + t \in Z\}.
 \end{xalignat*}
 
-Given $R\subseteq\Clocks$, we also define
+Given $R\subseteq \mathcal{C}$, we also define
 \begin{xalignat*}1
-  \reset_R(Z) &= \{v \in \Realnn^{\Clocks} \mid \exists v' \in Z.\
+   \mathsf{Reset}_R(Z) &= \{v \in  \mathbb{R}_{\geq 0}^{ \mathcal{C}} \mid \exists v' \in Z.\
   v=v'[R\leftarrow 0]\} \\
-  \unreset_R(Z) &= \{ v \in \Realnn^{\Clocks} \mid \exists v' \in Z.\
+   \sf Unreset_R(Z) &= \{ v \in  \mathbb{R}_{\geq 0}^{ \mathcal{C}} \mid \exists v' \in Z.\
   v' = v[R \leftarrow 0]\}.
 \end{xalignat*}
 
 These operations, together with intersection, suffice to describe
 one-step successors and predecessors by an edge of a timed automaton.
 For instance, given edge $e=(\ell,g,R,\ell')$ and
-set $S \subseteq \Realnn^\Clocks$, the set of states that are reached
+set $S \subseteq  \mathbb{R}_{\geq 0}^ \mathcal{C}$, the set of states that are reached
 after letting time elapse and taking edge $e$ can be obtained as
 
 $$
-  \postta_e(S) = \reset_R(\posttime(S)\cap G),
+   \sf Post_e(S) =  \mathsf{Reset}_R( \sf Post_{\geq 0}(S)\cap G),
 $$
 
 where $G$ denotes the zone corresponding to the guard $g$.
 Similarly, we can compute the predecessors of $S$ by edge $e$ as
 
 $$
-\preta_e(S) = \pretime(G \cap \unreset_R(S)).
+ \sf Pre_e(S) =  \sf Pre_{\geq 0}(G \cap  \sf Unreset_R(S)).
 
 $$
 
@@ -215,7 +173,7 @@ Operations on zones
 
 It is not hard to prove that the above operations preserve zones: if $S$ is a
 zone, then so is the result of any of these operations. Moreover, each
-single operation can be computed in time $O(|\Clocks|^3)$ using the
+single operation can be computed in time $O(| \mathcal{C}|^3)$ using the
 DBM representation. The underlying algorithms often modify some
 elements of the matrix and run an all-pairs shortest path algorithm,
 namely the Floyd-Roy-Warshall algorithm, on a graph whose adjacency
@@ -235,10 +193,10 @@ Let us call the above operations **basic operations** on DBMs {cite}`BY04`.
 ````
 
 Observe that a DBM always describes a convex subset
-of $\Realnn^\Clocks$ since it is a conjunction of convex clock
+of $\mathbb{R}_{\geq 0}^ \mathcal{C}$ since it is a conjunction of convex clock
 constraints. However, the set of winning states is in general
 non-convex in timed games. The simple arena
-of {numref}`9-fig:non-convex` provides an example: if  \textrm{Eve}'s objective
+of {numref}`9-fig:non-convex` provides an example: if  Eve's objective
 is to reach $\ell_1$, then it should just avoid the configurations
 satisfying $1\leq x_1,x_2\leq 2$. But this set of predecessors is then
 non-convex as shown in {numref}`9-fig:non-convex`.
@@ -250,7 +208,7 @@ We thus have to work with unions of zones, also called
 :name: 9-fig:non-convex
 :align: center
 Winning configurations (in $\ell$)
-    for  \textrm{Eve} to ensure reaching $\ell_1$.
+    for  Eve to ensure reaching $\ell_1$.
 
 ```
 
@@ -282,7 +240,7 @@ predecessor and successor operations are replaced by their zone-based
 counterparts.
 
 As for finite games, we are interested in computing a fixpoint to
-determine whether a given configuration is winning for  \textrm{Eve}. We start
+determine whether a given configuration is winning for  Eve. We start
 by introducing the zone-based counterparts of the controllable predecessors operator
 which
 is the main tool in the algorithms.

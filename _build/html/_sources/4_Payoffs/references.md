@@ -9,7 +9,7 @@
 
 One player variants due to Karp {cite}`Karp:1978`
 
- {prf:ref}`4-thm:shortest path-positive`
+{prf:ref}`4-thm:shortest path-positive`
 {cite}`Khachiyan&al:2008`
 
 NP and coNP: {cite}`Puri:1995`?
@@ -18,7 +18,7 @@ This chapter has been the occasion to start revealing a ladder of
 reductions going up from parity games to discounted payoff games,
 going through mean payoff games: it shows that parity games are the
 simplest fragment of games from a computational perspective, in
-$\textrm{UP}\cap  \textrm{coUP}$. In Chapter {ref}`6-chap:stochastic`, the last reduction from
+$UP\cap  coUP$. In Chapter {ref}`6-chap:stochastic`, the last reduction from
 discounted payoff games to simple stochastic games will complete the
 computational landscape.
 
@@ -104,7 +104,7 @@ weak property indeed partition the strongly connected components of
 the arena into the ones where all cycles are positive, and the ones
 where all cycles are negative; in each of these components, it is
 shown why the value iteration algorithm converges in polynomial
-time.  {prf:ref}`4-thm:-infty-MP` shows a polynomial time reduction between
+time. {prf:ref}`4-thm:-infty-MP` shows a polynomial time reduction between
 the detection of vertices of optimal value $-\infty$ in a
 shortest path game and the detection of vertices of negative optimale
 value in the corresponding mean payoff games: however it is still open

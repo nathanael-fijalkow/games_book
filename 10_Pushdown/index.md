@@ -17,9 +17,9 @@
 
 \renewcommand{\qed}{$\square$}
 
-\newcommand {\Stepsg}[1]{\ensuremath{\mathit{Steps}_{#1}}}
+\newcommand {\Stepsg}[1]{\mathit{Steps}_{#1}}
 
-\newcommand {\Rounds}[1]{\ensuremath{\mathit{Rounds}_{#1}}}
+\newcommand {\Rounds}[1]{\mathit{Rounds}_{#1}}
 
 \renewcommand{\Game}{\game}
 

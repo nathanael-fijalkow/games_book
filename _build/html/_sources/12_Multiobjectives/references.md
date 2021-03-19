@@ -3,18 +3,6 @@
 
 ```{math}
 
-}}
-}}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
 }
 }
 }
@@ -43,7 +31,7 @@ As discussed in the introduction, the literature on multiobjective models is too
 
 > **Multidimension games.**
 
- Energy games and their related work were discussed in \cref{chap:counters}. Our presentation of mean-payoff games is inspired by Velner et al. {cite}`Velner&al:2015`. Brenguier and Raskin studied the Pareto curves of these games in {cite}`Brenguier&Raskin:2015`. While we considered **conjunctions** of mean-payoff objectives, Velner proved that Boolean combinations lead to undecidability {cite}`Velner:2015`.
+ Energy games and their related work were discussed in {prf:ref}`chap:counters`. Our presentation of mean-payoff games is inspired by Velner et al. {cite}`Velner&al:2015`. Brenguier and Raskin studied the Pareto curves of these games in {cite}`Brenguier&Raskin:2015`. While we considered **conjunctions** of mean-payoff objectives, Velner proved that Boolean combinations lead to undecidability {cite}`Velner:2015`.
 
 The undecidability of total-payoff games was first established in {cite}`Chatterjee&al:2015` via reduction from the halting problem for two-counter machines: we provided here a new, simpler proof based on robot games {cite}`Niskanen&Potapov&Reichert:2016`. This undecidability result, along with the complexity barriers of mean-payoff and total-payoff games, motivated the introduction of (multidimension) **window objectives**: conservative variants of mean-payoff and total-payoff objectives that benefit from increased tractability and permit to reason about time bounds {cite}`Chatterjee&al:2015`. Window variants of parity objectives have been studied in {cite}`Bruyere&Hautem&Randour:2016`.
 

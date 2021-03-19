@@ -19,22 +19,22 @@ $$
 Parity objectives are uniformly positionally determined for both players.
 
 ```{margin}
-See \cref{2-rmk:finite_infinite} for the case of infinite games.
+See {prf:ref}`2-rmk:finite_infinite` for the case of infinite games.
 ```
 
 There exists an algorithm for computing the winning regions of parity games in exponential time,
 and more precisely of complexity $O(m n^d)$.
 The space complexity of $O(nd)$.
 
-Furthermore, solving parity games is in $\textrm{NP} \cap  \textrm{coNP}$.
+Furthermore, solving parity games is in $NP \cap  coNP$.
 
 ````
 
-To prove  {prf:ref}`2-thm:parity` we first construct a recursive algorithm for computing the winning regions of parity games.
+To prove {prf:ref}`2-thm:parity` we first construct a recursive algorithm for computing the winning regions of parity games.
 The algorithm is often called Zielonka's algorithm, or more accurately McNaughton Zielonka's algorithm.
 We refer to the reference section Section {ref}`2-sec:references` for a discussion on this nomenclature.
 We will see that the positionaly determinacy result for both players will be a consequence of the analysis of the algorithm.
-The $\textrm{NP} \cap  \textrm{coNP}$ complexity bounds will be discussed at the end of this section.
+The $NP \cap  coNP$ complexity bounds will be discussed at the end of this section.
 
 The following lemma induces (half of) the recursive algorithm.
 Identifying a colour and its set of vertices we write $d$ for the set of vertices of priority $d$.
@@ -43,11 +43,11 @@ Identifying a colour and its set of vertices we write $d$ for the set of vertice
 :label: 2-lem:zielonka_even
 
 Let $\Game$ be a parity game with priorities in $[1,d]$, and $d$ even.
-Let $\Game'$ be the subgame of $\Game$ induced by $V \setminus  \textrm{Attr}_\mathrm{Eve}(d)$.
+Let $\Game'$ be the subgame of $\Game$ induced by $V \setminus  Attr_\mathrm{Eve}(d)$.
 
 *  If $W_\mathrm{Adam}(\Game') = \emptyset$, then $W_\mathrm{Eve}(\Game) = V$.
 *  If $W_\mathrm{Adam}(\Game') \neq \emptyset$, 
-let $\Game''$ be the subgame of $\Game$ induced by $V \setminus  \textrm{Attr}_\mathrm{Adam}(  W_\mathrm{Adam}(\Game') )$,
+let $\Game''$ be the subgame of $\Game$ induced by $V \setminus  Attr_\mathrm{Adam}(  W_\mathrm{Adam}(\Game') )$,
 then $W_\mathrm{Eve}(\Game) =  W_\mathrm{Eve}(\Game'')$.
 
 ````
@@ -60,11 +60,11 @@ and that if $W_\mathrm{Adam}(\Game') \neq \emptyset$, then $\Game''$ has less ve
 
 We prove the first item. 
 
-Let $\sigma_d$ be an attractor strategy ensuring to reach $d$ from $\textrm{Attr}_\mathrm{Eve}(d)$.
-Consider a winning strategy for Eve from $V \setminus  \textrm{Attr}_\mathrm{Eve}(d)$ in $\Game'$, it induces a strategy $\sigma'$ in $\Game$.
-We construct a strategy $\sigma$ in $\Game$ as the disjoint union of $\sigma_d$ on $\textrm{Attr}_\mathrm{Eve}(d)$ and of $\sigma'$ on $V \setminus  \textrm{Attr}_\mathrm{Eve}(d)$.
-Any play consistent with $\sigma$ either enters $\textrm{Attr}_\mathrm{Eve}(d)$ infinitely many times, 
-or eventually remains in $V \setminus  \textrm{Attr}_\mathrm{Eve}(d)$ and is eventually consistent with $\sigma'$.
+Let $\sigma_d$ be an attractor strategy ensuring to reach $d$ from $Attr_\mathrm{Eve}(d)$.
+Consider a winning strategy for Eve from $V \setminus  Attr_\mathrm{Eve}(d)$ in $\Game'$, it induces a strategy $\sigma'$ in $\Game$.
+We construct a strategy $\sigma$ in $\Game$ as the disjoint union of $\sigma_d$ on $Attr_\mathrm{Eve}(d)$ and of $\sigma'$ on $V \setminus  Attr_\mathrm{Eve}(d)$.
+Any play consistent with $\sigma$ either enters $Attr_\mathrm{Eve}(d)$ infinitely many times, 
+or eventually remains in $V \setminus  Attr_\mathrm{Eve}(d)$ and is eventually consistent with $\sigma'$.
 In the first case it sees infinitely many times $d$, which is even and maximal, hence satisfies $\mathtt{Parity}$, 
 and in the other case since $\sigma'$ is winning the play satisfies $\mathtt{Parity}$.
 Thus $\sigma$ is winning from $V$.
@@ -72,19 +72,19 @@ Thus $\sigma$ is winning from $V$.
 We now look at the second item.
 
 Let $\tau_a$ denote an attractor strategy 
-from $\textrm{Attr}_\mathrm{Adam}( W_\mathrm{Adam}(\Game')) \setminus  W_\mathrm{Adam}(\Game')$.
+from $Attr_\mathrm{Adam}( W_\mathrm{Adam}(\Game')) \setminus  W_\mathrm{Adam}(\Game')$.
 Consider a winning strategy for Adam from $W_\mathrm{Adam}(\Game')$ in $\Game'$, it induces a strategy $\tau'$ in $\Game$.
-Since $V \setminus  \textrm{Attr}_\mathrm{Eve}(d)$ is a trap for Eve, this implies that $\tau'$ is a winning strategy in $\Game$.
+Since $V \setminus  Attr_\mathrm{Eve}(d)$ is a trap for Eve, this implies that $\tau'$ is a winning strategy in $\Game$.
 Consider now a winning strategy in the game $\Game''$ from $W_\mathrm{Adam}(\Game'')$, it induces a strategy $\tau''$ in $\Game$.
-The set $V \setminus  \textrm{Attr}_\mathrm{Adam}(  W_\mathrm{Adam}(\Game') )$ may not be a trap for Eve, so we cannot conclude that $\tau''$ is a winning strategy in $\Game$,
+The set $V \setminus  Attr_\mathrm{Adam}(  W_\mathrm{Adam}(\Game') )$ may not be a trap for Eve, so we cannot conclude that $\tau''$ is a winning strategy in $\Game$,
 and it indeed may not be.
-We construct a strategy $\tau$ in $\Game$ as the (disjoint) union of the strategy $\tau_a$ on $\textrm{Attr}_\mathrm{Adam}( W_\mathrm{Adam}(\Game')) \setminus  W_\mathrm{Adam}(\Game')$,
+We construct a strategy $\tau$ in $\Game$ as the (disjoint) union of the strategy $\tau_a$ on $Attr_\mathrm{Adam}( W_\mathrm{Adam}(\Game')) \setminus  W_\mathrm{Adam}(\Game')$,
 the strategy $\tau'$ on $W_\mathrm{Adam}(\Game')$ and the strategy $\tau''$ on $W_\mathrm{Adam}(\Game'')$.
-We argue that $\tau$ is winning from $\textrm{Attr}_\mathrm{Adam}(  W_\mathrm{Adam}(\Game') ) \cup  W_\mathrm{Adam}(\Game'')$ in $\Game$.
+We argue that $\tau$ is winning from $Attr_\mathrm{Adam}(  W_\mathrm{Adam}(\Game') ) \cup  W_\mathrm{Adam}(\Game'')$ in $\Game$.
 Indeed, any play consistent with this strategy in $\Game$ either stays forever in $W_\mathrm{Adam}(\Game'')$ hence is consistent with $\tau''$
-or enters $\textrm{Attr}_\mathrm{Adam}(  W_\mathrm{Adam}(\Game') )$, hence is eventually consistent with $\tau'$.
+or enters $Attr_\mathrm{Adam}(  W_\mathrm{Adam}(\Game') )$, hence is eventually consistent with $\tau'$.
 In both cases this implies that the play is winning.
-Thus we have proved that $\textrm{Attr}_\mathrm{Adam}(  W_\mathrm{Adam}(\Game') ) \cup  W_\mathrm{Adam}(\Game'') \subseteq  W_\mathrm{Adam}(\Game)$.
+Thus we have proved that $Attr_\mathrm{Adam}(  W_\mathrm{Adam}(\Game') ) \cup  W_\mathrm{Adam}(\Game'') \subseteq  W_\mathrm{Adam}(\Game)$.
 
 We now show that $W_\mathrm{Eve}(\Game'') \subseteq  W_\mathrm{Eve}(\Game)$, which implies the converse inclusion.
 Consider a winning strategy from $W_\mathrm{Eve}(\Game'')$ in $\Game''$, it induces a strategy $\sigma$ in $\Game$.
@@ -100,17 +100,17 @@ We do not prove the following lemma as it is the exact dual of the previous lemm
 :label: 2-lem:zielonka_odd
 
 Let $\Game$ be a parity game with priorities in $[1,d]$, and $d$ odd.
-Let $\Game'$ be the subgame of $\Game$ induced by $V \setminus  \textrm{Attr}_\mathrm{Adam}(d)$.
+Let $\Game'$ be the subgame of $\Game$ induced by $V \setminus  Attr_\mathrm{Adam}(d)$.
 
 *  If $W_\mathrm{Eve}(\Game') = \emptyset$, then $W_\mathrm{Adam}(\Game) = V$.
-*  If $W_\mathrm{Eve}(\Game') \neq \emptyset$, let $\Game''$ be the subgame of $\Game$ induced by $V \setminus  \textrm{Attr}_\mathrm{Eve}(  W_\mathrm{Eve}(\Game') )$,
+*  If $W_\mathrm{Eve}(\Game') \neq \emptyset$, let $\Game''$ be the subgame of $\Game$ induced by $V \setminus  Attr_\mathrm{Eve}(  W_\mathrm{Eve}(\Game') )$,
 then $W_\mathrm{Adam}(\Game) =  W_\mathrm{Adam}(\Game'')$.
 
 ````
 
 The algorithm is presented in pseudocode in {numref}`2-algo:zielonka`.
 
-The proofs of  {prf:ref}`2-lem:zielonka_even` and  {prf:ref}`2-lem:zielonka_odd` also imply that parity games are positionally determined for both players.
+The proofs of {prf:ref}`2-lem:zielonka_even` and {prf:ref}`2-lem:zielonka_odd` also imply that parity games are positionally determined for both players.
 Indeed, winning strategies are defined as disjoint unions of strategies constructed inductively.
 
 We now perform a complexity analysis.
@@ -129,13 +129,13 @@ In each recursive call we perform two attractor computations so the number of op
 in one recursive call is $O(m)$.
 Thus the overall time complexity is $O(m n^d)$.
 
-We finish the proof of  {prf:ref}`2-thm:parity` by sketching the argument that solving parity games is in $\textrm{NP} \cap  \textrm{coNP}$.
+We finish the proof of {prf:ref}`2-thm:parity` by sketching the argument that solving parity games is in $NP \cap  coNP$.
 The first observation is that computing the winning regions of the one player variants of parity games can be done in polynomial time
 through a simple graph analysis that we do not detail here.
-The $\textrm{NP}$ and $\textrm{coNP}$ algorithms are the following: guess a winning positional strategy,
+The $NP$ and $coNP$ algorithms are the following: guess a winning positional strategy,
 and check whether it is winning by computing the winning regions of the one player game induced by the strategy.
-Guessing a strategy for Eve is a witness that the answer is yes so it yields an $\textrm{NP}$ algorithm,
-and guessing a strategy for Adam yields a $\textrm{coNP}$ algorithm.
+Guessing a strategy for Eve is a witness that the answer is yes so it yields an $NP$ algorithm,
+and guessing a strategy for Adam yields a $coNP$ algorithm.
 
 Chapter {ref}`3-chap:parity` is devoted to the study of advanced algorithms for parity games.
 

@@ -53,11 +53,11 @@ The algorithm will only manipulate strategies respecting parity.
 > **Evaluating a strategy.**
 
 The first question is: given a strategy $\sigma$, how to evaluate it (in order to later improve it)?
-As explained in Section {ref}`1-sec:strategy_improvement` towards this goal we define a value function $\textrm{val}^{\sigma} : V \to Y$.
+As explained in Section {ref}`1-sec:strategy_improvement` towards this goal we define a value function $val^{\sigma} : V \to Y$.
 
-We let $\textrm{val}^{\sigma}(v) = \min_\tau   \textrm{val}( \pi_{\sigma,\tau}^v)$ where $\tau$ ranges over (general) strategies for Adam, so we first need to define the value of the play $\pi =  \pi_{\sigma,\tau}^v$.
-If $\pi$ is stopped, then $\textrm{val}( \pi)$ is the tuple $(p_1, p_2, \dots, p_d)$ where $p_i$ is the number of times that priority $p$ appears on the play.
-Otherwise $\textrm{val}( \pi)$ is $\top$ if $\pi$ satisfies parity, and $\bot$ if $\pi$ does not satisfy parity.
+We let $val^{\sigma}(v) = \min_\tau   val( \pi_{\sigma,\tau}^v)$ where $\tau$ ranges over (general) strategies for Adam, so we first need to define the value of the play $\pi =  \pi_{\sigma,\tau}^v$.
+If $\pi$ is stopped, then $val( \pi)$ is the tuple $(p_1, p_2, \dots, p_d)$ where $p_i$ is the number of times that priority $p$ appears on the play.
+Otherwise $val( \pi)$ is $\top$ if $\pi$ satisfies parity, and $\bot$ if $\pi$ does not satisfy parity.
 So the value of a play is either $\top$, $\bot$, or a multiset of priorities;
 we let $Y$ denote the (infinite) set consisting of these elements.
 
@@ -111,17 +111,17 @@ $$
 Since $\delta$ is monotonic so is $\mathbb{O}$.
 
 ````{prf:observation} NEEDS TITLE AND LABEL 
-The function $\textrm{val}^\sigma$ is a fixed point of $\mathbb{O}$ in $F^\sigma_V$.
+The function $val^\sigma$ is a fixed point of $\mathbb{O}$ in $F^\sigma_V$.
 
-The function $\textrm{val}^\sigma$ is a fixed point of $\mathbb{O}$ in $F^\sigma_V$.
+The function $val^\sigma$ is a fixed point of $\mathbb{O}$ in $F^\sigma_V$.
 
 ````
 
-Unfortunately, $\textrm{val}^{\sigma}$ is not in general the greatest fixed point of $\mathbb{O}$ in $F^\sigma_V$;
+Unfortunately, $val^{\sigma}$ is not in general the greatest fixed point of $\mathbb{O}$ in $F^\sigma_V$;
 let us analyse this in more details.
 Let $\mu$ a fixed point of $\mathbb{O}$ in $F^\sigma_V$, there are two cases. 
-For a vertex $v$ such that there exists a stopped play $\pi$ starting from $v$, we have $\mu(v) \le   \textrm{val}(\pi)$, and more generally
-$\mu(v) \le \inf_{\pi}   \textrm{val}(\pi)$ where $\pi$ ranges over all stopped plays starting from $v$.
+For a vertex $v$ such that there exists a stopped play $\pi$ starting from $v$, we have $\mu(v) \le   val(\pi)$, and more generally
+$\mu(v) \le \inf_{\pi}   val(\pi)$ where $\pi$ ranges over all stopped plays starting from $v$.
 The problem is for a vertex $v$ such that no plays starting from $v$ are stopped: 
 we can have either $\mu(v) = \top$ or $\mu(v) = \bot$, irrespective of whether the play satisfies parity or not.
 From this discussion we obtain the following result.
@@ -129,7 +129,7 @@ From this discussion we obtain the following result.
 ````{prf:lemma} NEEDS TITLE 3-lem:greatest_fixed_point
 :label: 3-lem:greatest_fixed_point
 
-If $\sigma$ respects parity, then $\textrm{val}^{\sigma}$ is the greatest fixed point of $\mathbb{O}$ in $F^\sigma_V$.
+If $\sigma$ respects parity, then $val^{\sigma}$ is the greatest fixed point of $\mathbb{O}$ in $F^\sigma_V$.
 
 ````
 
@@ -139,14 +139,14 @@ We reach the last item in the construction of the algorithm: the notion of switc
 Let $\sigma$ a strategy. We say that an edge $e = (v,v')$ is switchable if
 
 $$
-\delta(  \textrm{val}^{\sigma}(v'), \textsf{col}(v)) > \delta(  \textrm{val}^{\sigma}(u), \textsf{col}(v)) \text{ where } \sigma(v) = (v,u).
+\delta(  val^{\sigma}(v'), \textsf{col}(v)) > \delta(  val^{\sigma}(u), \textsf{col}(v)) \text{ where } \sigma(v) = (v,u).
 $$
 
-Intuitively: according to $\textrm{val}^{\sigma}$, playing $e$ is better than playing $\sigma(v)$.
+Intuitively: according to $val^{\sigma}$, playing $e$ is better than playing $\sigma(v)$.
 
 Given a strategy $\sigma$ and an edge $e = (v,v')$ we use $\sigma[v \to e]$ to denote the strategy playing $e$ from $v$ 
 and follow $\sigma$ from all other vertices.
-Let us write $\sigma \le \sigma'$ if for all vertices $v$ we have $\textrm{val}^{\sigma}(v) \le   \textrm{val}^{\sigma'}(v)$,
+Let us write $\sigma \le \sigma'$ if for all vertices $v$ we have $val^{\sigma}(v) \le   val^{\sigma'}(v)$,
 and $\sigma < \sigma'$ if additionally $\neg (\sigma' \le \sigma)$.
 
 > **The algorithm.**
@@ -207,7 +207,7 @@ $$
 
 For all $i \in [0,k-1]$ we have $\mu(v_i) \le \delta(\mu(v_{i+1 \mod k}), \textsf{col}(v_i))$.
 By monotonicity of $\delta$ this implies $\mu(v_1) \le \delta(\mu(v_1), \textsf{col}(v_{k-1}) \cdots  \textsf{col}(v_0))$.
-Thanks to  {prf:ref}`3-lem:key_property` this implies that the maximum priority in $\left\{  \textsf{col \right\}(v_0),\dots, \textsf{col}(v_{k-1})}$ is even.
+Thanks to {prf:ref}`3-lem:key_property` this implies that the maximum priority in $\left\{  \textsf{col \right\}(v_0),\dots, \textsf{col}(v_{k-1})}$ is even.
 
 ````
 
@@ -216,7 +216,7 @@ A progress measure for $\Game[\sigma]$ is a post-fixed point of $\mathbb{O}$ in 
 it is a function $\mu : V \to Y$ such that $\mu(v) = \emptyset$ if $\sigma(v) =  \mathtt{-}$ and $\mu \le  \mathbb{O}(\mu)$,
 which means that $\mu(v) \le \min  \left\{  \delta(\mu(v'), \textsf{col \right\}(v)) : (v,v') \in E}$.
 
-We now rely on  {prf:ref}`3-lem:greatest_fixed_point` and  {prf:ref}`3-lem:key_property` to prove the two principles: progress and optimality.
+We now rely on {prf:ref}`3-lem:greatest_fixed_point` and {prf:ref}`3-lem:key_property` to prove the two principles: progress and optimality.
 
 ````{prf:lemma} NEEDS LABEL Progress
 
@@ -233,39 +233,39 @@ We first argue that $\sigma'$ respects parity.
 The fact that $e = (v,v')$ is switchable reads
 
 $$
-\delta(  \textrm{val}^\sigma(v'), \textsf{col}(v)) > \delta(  \textrm{val}^\sigma(u), \textsf{col}(v)),
+\delta(  val^\sigma(v'), \textsf{col}(v)) > \delta(  val^\sigma(u), \textsf{col}(v)),
 $$
 
-and by definition of $\textrm{val}^\sigma$ we have $\textrm{val}^\sigma(v) = \delta(  \textrm{val}^\sigma(u), \textsf{col}(v))$,
-which implies $\textrm{val}^\sigma(v) < \delta(  \textrm{val}^\sigma(v'), \textsf{col}(v))$, and in particular $\textrm{val}^\sigma(v) \neq \top$.
+and by definition of $val^\sigma$ we have $val^\sigma(v) = \delta(  val^\sigma(u), \textsf{col}(v))$,
+which implies $val^\sigma(v) < \delta(  val^\sigma(v'), \textsf{col}(v))$, and in particular $val^\sigma(v) \neq \top$.
 
 Let us consider the parity graph $\Game[\sigma']$ and note that for all edges $e' = (s,t)$ 
-we have $\textrm{val}^\sigma(s) \le \delta(  \textrm{val}^\sigma(t), \textsf{col}(s))$:
-indeed either $e'$ is an edge in $\Game[\sigma]$ and this is by definition of $\textrm{val}^\sigma$,
+we have $val^\sigma(s) \le \delta(  val^\sigma(t), \textsf{col}(s))$:
+indeed either $e'$ is an edge in $\Game[\sigma]$ and this is by definition of $val^\sigma$,
 or $e' = e$ and the inequality was proved just above.
 
-Since $\sigma$ respects parity $\textrm{val}^\sigma$ does not take the value $\bot$.
-But we cannot apply (the first item of)  {prf:ref}`3-lem:key_property` yet because $\textrm{val}^\sigma$ may have value $\top$.
-However by definition of $\textrm{val}^\sigma$ for all vertices $s$ such that $\textrm{val}^\sigma(s) = \top$ all paths from $s$ satisfy parity,
+Since $\sigma$ respects parity $val^\sigma$ does not take the value $\bot$.
+But we cannot apply (the first item of) {prf:ref}`3-lem:key_property` yet because $val^\sigma$ may have value $\top$.
+However by definition of $val^\sigma$ for all vertices $s$ such that $val^\sigma(s) = \top$ all paths from $s$ satisfy parity,
 so it is enough to consider the parity graph obtained from $\Game[\sigma']$ by removing all such vertices.
-The first item of  {prf:ref}`3-lem:key_property` implies that it satisfies parity, hence $\Game[\sigma']$ as well.
+The first item of {prf:ref}`3-lem:key_property` implies that it satisfies parity, hence $\Game[\sigma']$ as well.
 
-At this point we know that $\sigma'$ respects parity, which thanks to  {prf:ref}`3-lem:greatest_fixed_point`
-implies that $\textrm{val}^{\sigma'}$ is the greatest fixed point of $\mathbb{O}$ in $F^{\sigma'}_V$.
+At this point we know that $\sigma'$ respects parity, which thanks to {prf:ref}`3-lem:greatest_fixed_point`
+implies that $val^{\sigma'}$ is the greatest fixed point of $\mathbb{O}$ in $F^{\sigma'}_V$.
 
-We now argue that $\textrm{val}^\sigma$ is a progress measure for $\mathcal{G}[\sigma']$.
+We now argue that $val^\sigma$ is a progress measure for $\mathcal{G}[\sigma']$.
 For all vertices but $v$ this is clear because the outgoing edges are the same in $\mathcal{G}[\sigma]$ and in $\mathcal{G}[\sigma']$.
-For $v$ as argued above we have $\textrm{val}^\sigma(v) < \delta(  \textrm{val}^\sigma(v'), \textsf{col}(v))$.
-It follows that $\textrm{val}^\sigma$ is indeed a progress measure for $\mathcal{G}[\sigma']$.
-Since $\textrm{val}^{\sigma'}$ is the greatest fixed point of $\mathbb{O}$ in $F^{\sigma'}_V$, this implies that 
-$\textrm{val}^{\sigma} \le   \textrm{val}^{\sigma'}$.
+For $v$ as argued above we have $val^\sigma(v) < \delta(  val^\sigma(v'), \textsf{col}(v))$.
+It follows that $val^\sigma$ is indeed a progress measure for $\mathcal{G}[\sigma']$.
+Since $val^{\sigma'}$ is the greatest fixed point of $\mathbb{O}$ in $F^{\sigma'}_V$, this implies that 
+$val^{\sigma} \le   val^{\sigma'}$.
 
-We now show that $\textrm{val}^{\sigma} <   \textrm{val}^{\sigma'}$. 
-Using $\textrm{val}^{\sigma}(v') \le   \textrm{val}^{\sigma'}(v')$ and the monotonicity of $\delta$ we obtain that
-$\delta(  \textrm{val}^\sigma(v'), \textsf{col}(v)) \le \delta(  \textrm{val}^{\sigma'}(v'), \textsf{col}(v))$.
-By definition of $\textrm{val}^{\sigma'}$ we have $\textrm{val}^{\sigma'}(v) = \delta(  \textrm{val}^{\sigma'}(v'), \textsf{col}(v))$
-and together with $\textrm{val}^\sigma(v) < \delta(  \textrm{val}^\sigma(v'), \textsf{col}(v))$ this implies that
-$\textrm{val}^\sigma(v) <   \textrm{val}^{\sigma'}(v)$.
+We now show that $val^{\sigma} <   val^{\sigma'}$. 
+Using $val^{\sigma}(v') \le   val^{\sigma'}(v')$ and the monotonicity of $\delta$ we obtain that
+$\delta(  val^\sigma(v'), \textsf{col}(v)) \le \delta(  val^{\sigma'}(v'), \textsf{col}(v))$.
+By definition of $val^{\sigma'}$ we have $val^{\sigma'}(v) = \delta(  val^{\sigma'}(v'), \textsf{col}(v))$
+and together with $val^\sigma(v) < \delta(  val^\sigma(v'), \textsf{col}(v))$ this implies that
+$val^\sigma(v) <   val^{\sigma'}(v)$.
 
 ````
 
@@ -280,27 +280,27 @@ $\sigma$ is winning from all vertices of $W_\mathrm{Eve}(\Game)$.
 :class: dropdown tip
 
 The fact that $\sigma$ respects parity means that it is a winning strategy
-from all vertices $v$ such that $\textrm{val}^\sigma(v) = \top$.
-It also implies that for all vertices $v$ we have $\textrm{val}^{\sigma}(v) \neq \bot$.
-We now prove that Adam has a winning strategy from all vertices $v$ such that $\textrm{val}^{\sigma}(v) \neq \top$.
+from all vertices $v$ such that $val^\sigma(v) = \top$.
+It also implies that for all vertices $v$ we have $val^{\sigma}(v) \neq \bot$.
+We now prove that Adam has a winning strategy from all vertices $v$ such that $val^{\sigma}(v) \neq \top$.
 We construct a strategy of Adam by
 
 $$
-\forall v \in  V_\mathrm{Adam},\ \tau(v) =  \textrm{argmin}  \left\{  \delta(  \textrm{val}^{\sigma \right\}(u), \textsf{col}(v)) : (v,u) \in E }.
+\forall v \in  V_\mathrm{Adam},\ \tau(v) =  argmin  \left\{  \delta(  val^{\sigma \right\}(u), \textsf{col}(v)) : (v,u) \in E }.
 $$
 
-We argue that $\tau$ ensures the complement of parity from all vertices $v$ such that $\textrm{val}^{\sigma}(v) \neq \top$.
+We argue that $\tau$ ensures the complement of parity from all vertices $v$ such that $val^{\sigma}(v) \neq \top$.
 Let us consider $\Game[\tau]$ the parity graph obtained from $\Game$ by restricting the outgoing edges from $V_\mathrm{Adam}$
 to those prescribed by $\tau$.
 We argue that for all edges $(v,,v')$ in $\mathcal{G}[\tau]$, we have 
-$\textrm{val}^{\sigma}(v) \ge \delta(  \textrm{val}^{\sigma}(v'), \textsf{col}(v))$.
-Once this is proved we conclude using the second item of  {prf:ref}`3-lem:key_property` implying that $\Game[\tau]$ satisfies the complement of parity.
+$val^{\sigma}(v) \ge \delta(  val^{\sigma}(v'), \textsf{col}(v))$.
+Once this is proved we conclude using the second item of {prf:ref}`3-lem:key_property` implying that $\Game[\tau]$ satisfies the complement of parity.
 
 The first case is when $v \in  V_\mathrm{Eve}$. 
 Let $\sigma(v) = (v,u)$.
 Since the edge $e = (v,v')$ is not switchable we have 
-$\delta(  \textrm{val}^{\sigma}(v'), \textsf{col}(v)) \le \delta(  \textrm{val}^{\sigma}(u), \textsf{col}(v))$.
-By definition of $\textrm{val}^\sigma$ we have $\textrm{val}^\sigma(v) = \delta(  \textrm{val}^{\sigma}(u), \textsf{col}(v))$,
+$\delta(  val^{\sigma}(v'), \textsf{col}(v)) \le \delta(  val^{\sigma}(u), \textsf{col}(v))$.
+By definition of $val^\sigma$ we have $val^\sigma(v) = \delta(  val^{\sigma}(u), \textsf{col}(v))$,
 implying the desired inequality.
 
 The second case is when $v \in  V_\mathrm{Adam}$, it holds by definition of $\tau$.
@@ -309,9 +309,9 @@ The second case is when $v \in  V_\mathrm{Adam}$, it holds by definition of $\ta
 
 > **Complexity analysis.**
 
-The computation of $\textrm{val}^\sigma$ for a strategy $\sigma$ can be seen to be a shortest path problem where distances are measured using the operator $\le$. 
+The computation of $val^\sigma$ for a strategy $\sigma$ can be seen to be a shortest path problem where distances are measured using the operator $\le$. 
 Thus, any algorithm for the shortest path problem can be applied, such as the Bellman-Ford algorithm.
-In particular computing $\textrm{val}^\sigma$ can be done in polynomial time, and even more efficiently through a refined analysis.
+In particular computing $val^\sigma$ can be done in polynomial time, and even more efficiently through a refined analysis.
 
 An aspect of the algorithm we did not develop is choosing the switchable edge.
 It is possible to switch not only one edge but a set of switchable edges at each iteration, making this question worse: 

@@ -3,7 +3,7 @@
 
 ```{math}
 
-\def\payoff{\ensuremath{f}}
+\def\payoff{f}
 
 \def\Act{A}
 \def\Agt{\mathcal{P}}
@@ -15,7 +15,7 @@
 \def\opt{\textsf{opt}}
 \def\proj{\textsf{proj}}
 \def\devg{\textsf{DevGame}}
-\def\Coalition{\ensuremath{\mathcal{C}}}
+\def\Coalition{\mathcal{C}}
 
 \renewcommand{\Game}{\game}
 
@@ -84,17 +84,17 @@ exponentially smaller.
 Because of that, the algorithm is no longer polynomial.
 If there are no constraints on the Nash equilibrium we are looking for, the
 complexity of the problem cannot be characterized using classical classes
-like  \textrm{NP}-completness because equilibria always
+like  NP-completness because equilibria always
 exists and thus the answer to the decision problem would always be true.
 The characterization of the complexity was done using the PPAD class {cite}`Daskalakis&Goldberg&Papadimitriou:2009`.
 
 Nash equilibria with LTL objectives is expressible in logics such as
 strategy logic {cite}`Chatterjee&Henzinger&Piterman:2010` or ATL$^\ast$ {cite}`Alur&Henzinger&Kupferman:2002`, as well as other extensions of this equilibria.
 However, satisfiability in these logic is difficult: it is
-2 \textrm{EXP}-complete for ATL$^\ast$ and undecidable for
+2 EXP-complete for ATL$^\ast$ and undecidable for
 strategy logic in general.
 An decidable fragment of strategy logic has been identified {cite}`Mogavero&Murano&Perelli&Vardi:2012`,
-but remains difficult; it is 2 \textrm{EXP}-complete.
+but remains difficult; it is 2 EXP-complete.
 
 
 ```{bibliography}

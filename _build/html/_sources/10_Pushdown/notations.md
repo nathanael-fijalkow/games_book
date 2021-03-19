@@ -10,9 +10,9 @@
 
 \renewcommand{\qed}{$\square$}
 
-\newcommand {\Stepsg}[1]{\ensuremath{\mathit{Steps}_{#1}}}
+\newcommand {\Stepsg}[1]{\mathit{Steps}_{#1}}
 
-\newcommand {\Rounds}[1]{\ensuremath{\mathit{Rounds}_{#1}}}
+\newcommand {\Rounds}[1]{\mathit{Rounds}_{#1}}
 
 \renewcommand{\Game}{\game}
 
@@ -21,7 +21,7 @@
 A **pushdown system** is a tuple $\mathcal{P} = (Q,Q_{ \mathrm{Eve}}, Q_{ \mathrm{Adam}}, \Gamma,\Delta,C)$\AC{Do we add $\textsf{col}()$ and $\bot$ to the tuple of a pushdown system ? I have no opinion.} 
 where:
  
-*  $Q$ is a finite set of control states with $Q = Q_{ \mathrm{Eve}} \uplus Q_{ \mathrm{Adam}}$ which is partionned between the two players  \textrm{Eve} and  \textrm{Adam}. Moreover with each state $q$ is associated a colour $\textsf{col}(q) \acchanged{\in C}$;*  $\Gamma$ is the stack alphabet. There is a special bottom-of-stack symbol, denoted $\bot$, which does not belong to $\Gamma$; we let $\Gamma_\bot$ denote the alphabet $\Gamma \cup  \left\{ \bot \right\}$;
+*  $Q$ is a finite set of control states with $Q = Q_{ \mathrm{Eve}} \uplus Q_{ \mathrm{Adam}}$ which is partionned between the two players  Eve and  Adam. Moreover with each state $q$ is associated a colour $\textsf{col}(q) \acchanged{\in C}$;*  $\Gamma$ is the stack alphabet. There is a special bottom-of-stack symbol, denoted $\bot$, which does not belong to $\Gamma$; we let $\Gamma_\bot$ denote the alphabet $\Gamma \cup  \left\{ \bot \right\}$;
 *  $\Delta:Q\times \Gamma_\bot\rightarrow 2^{Q\times\{ \mathrm{pop}, \mathrm{push}(\gamma)\mid \gamma\in\Gamma\}}$ is the transition relation. We additionally require that for all states $p,q\in Q$, $(q, \mathrm{pop})\notin\Delta(p,\bot)$, i.e., the bottom of stack symbol is never popped.
 
 We call a pair $(p,s)\in Q \times \bot\Gamma^*$ a **configuration** of $\mathcal{P}$: $p$ is the control state of the configuration while $s$ is its stack content. We let $\mathrm{sh}((p,s))=|s|-1$ denote the **stack height** of the  configuration $(p,s)$. \acchanged{Intuitively, if $(q, \mathrm{push}(\gamma'))$ belongs to $\Delta(p,\gamma)$, the pushdown system
@@ -33,16 +33,23 @@ A pushdown system induces an arena $\mathcal{A} = (G, V_\mathrm{Eve}, V_\mathrm{
 *  the set of vertices is the set $V = Q \times \bot\Gamma^* $ of configurations of $\mathcal{P}$ with $V_\mathrm{Eve} = Q_{ \mathrm{Eve}} \times \bot\Gamma^*$ 
 and $V_\mathrm{Adam} = Q_{ \mathrm{Adam}} \times \bot\Gamma^* $;
 *  the set $E$ of edges induced by $\Delta$ is
-```{math}\n
+
+$$
+
 \begin{split}
 E  = & \{((p,s\gamma),  \textsf{col}(p),(q,s)) \mid (q, \mathrm{pop})\in\Delta(p,\gamma)\}\quad \cup \\ 
 &  \{((p,s\gamma),  \textsf{col}(p),(q,s\gamma\gamma')) \mid (q, \mathrm{push}(\gamma'))\in\Delta(p,\gamma)\}.
 \end{split}
-\\n```
+
+$$
 
 \acchanged{
 
-````{admonition} Remark 
+````{prf:remark} NEEDS TITLE AND LABEL 
+In this chapter, we deviate slightly from the general setting used in the book as we colour vertices and not edges. 
+Because we only consider qualitative objectives, it is more convenient to consider the equivalent setting where we label vertices by colours rather than edges which is the usual convention in pushdown games.  
+In the definition of a pushdown arena, the colour of an edge is uniquely determined by the colour of the control state of the source vertex. Therefore,  we also view in this chapter plays as sequences of vertices rather than sequences of edges.
+
 In this chapter, we deviate slightly from the general setting used in the book as we colour vertices and not edges. 
 Because we only consider qualitative objectives, it is more convenient to consider the equivalent setting where we label vertices by colours rather than edges which is the usual convention in pushdown games.  
 In the definition of a pushdown arena, the colour of an edge is uniquely determined by the colour of the control state of the source vertex. Therefore,  we also view in this chapter plays as sequences of vertices rather than sequences of edges.
@@ -65,17 +72,17 @@ Consider the pushdown system $\mathcal{P} = (Q,Q_{ \mathrm{Eve}}, Q_{ \mathrm{Ad
 
 {numref}`10-fig:example-pushdown-game-1` depicts the part of the pushdown arena $\mathcal{A}$ induced by $\mathcal{P}$ when restricted to the vertices reachable from $(p,\bot)$.
 
-Consider the reachability game $( \mathcal{A},  \mathtt{Reach}(\{0\}))$. Then, every vertex of the form $(q,\bot v)$ is winning for  \textrm{Eve} and every vertex of the form $(p,\bot v)$ is winning for  \textrm{Adam} as  \textrm{Adam} can always choose to push a $\gamma$-symbol while remaining in state $p$ hence always avoiding the state $r$ (which is the only state with colour $0$). If instead we consider, the B&uuml;chi game $\mathtt{Buchi}(\{0,2\})$, then  \textrm{Eve} is winning form all vertices. The strategy for  \textrm{Adam} consisting in always pushing a $\gamma$-symbol while remaining in state $p$ results in a play that infinitely often sees the colour $2$.
+Consider the reachability game $( \mathcal{A},  \mathtt{Reach}(\{0\}))$. Then, every vertex of the form $(q,\bot v)$ is winning for  Eve and every vertex of the form $(p,\bot v)$ is winning for  Adam as  Adam can always choose to push a $\gamma$-symbol while remaining in state $p$ hence always avoiding the state $r$ (which is the only state with colour $0$). If instead we consider, the B&uuml;chi game $\mathtt{Buchi}(\{0,2\})$, then  Eve is winning form all vertices. The strategy for  Adam consisting in always pushing a $\gamma$-symbol while remaining in state $p$ results in a play that infinitely often sees the colour $2$.
 
 ```{figure} ./../FigAndAlgos/10-fig:example-pushdown-game-1.png
 :name: 10-fig:example-pushdown-game-1
 :align: center
-Pushdown arena from  {prf:ref}`10-ex:pushdown-game-1`
+Pushdown arena from {prf:ref}`10-ex:pushdown-game-1`
 ```
 
 ````
 
-As a pushdown arena is in general infinite, the **winning region** for  \textrm{Eve}, i.e., the set of winning vertices for  \textrm{Eve} may not admit a finite presentation. Similarly, for objectives for which finite-memory strategies exists, the question of whether such a strategy can be finitely presented (and computed) is raised. Hence, we will in general distinguish the following three algorithmic problems.
+As a pushdown arena is in general infinite, the **winning region** for  Eve, i.e., the set of winning vertices for  Eve may not admit a finite presentation. Similarly, for objectives for which finite-memory strategies exists, the question of whether such a strategy can be finitely presented (and computed) is raised. Hence, we will in general distinguish the following three algorithmic problems.
 
 ```{admonition} Problem
 
@@ -99,7 +106,7 @@ For pushdown games, computing the winning region means solving the following pro
 
 ```
 
-In  {prf:ref}`10-thm:regularity-wr`, we will show that the winning region can be described by a finite-state automaton  for a large class of qualitative winning conditions.
+In {prf:ref}`10-thm:regularity-wr`, we will show that the winning region can be described by a finite-state automaton  for a large class of qualitative winning conditions.
 
 ```{admonition} Problem
 
@@ -107,7 +114,7 @@ For pushdown games, computing a winning strategy means solving the following pro
 
 **INPUT**: A pushdown game $\mathcal{G}$
 
-**COMPUTE**: A finite presentation of a strategy for  \textrm{Eve} that is winning from any vertex in the winning region for Eve in $\mathcal{G}$
+**COMPUTE**: A finite presentation of a strategy for  Eve that is winning from any vertex in the winning region for Eve in $\mathcal{G}$
 
 ```
 

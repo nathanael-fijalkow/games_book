@@ -56,14 +56,15 @@ where we use standard notations for conditional probability measures.
 The set of colours is $C=\{0,1\}$.
 The reachability, safety, B&uuml;chi and coB&uuml;chi condition
  condition are defined as follows:
- ```{math}
+ 
+$$
 
  & {\tt Reach}=\{\exists n\in \mathbb{N}, C_n  = 1\}\\
 & {\tt Safety}=\{\forall n\in \mathbb{N}, C_n = 0\}\\
 & {\tt Buchi}=\{\forall m \in  \mathbb{N}, \exists n \geq m, C_n=1\}\\
 & {\tt CoBuchi} = \{\exists m \in  \mathbb{N}, \forall n \geq m, C_n = 0\}\enspace.
 
-```
+$$
 
 When the winning condition is ${\tt Win}$,
 Eve and Adam use strategies
@@ -142,10 +143,14 @@ some other interesting  decision problems to consider.
 
   A strategy $\sigma$ for Eve is **almost-surely winning**
   from an initial distribution $\delta_0$ if
-```{math}\n\label{eq:as}
+
+$$
+\label{eq:as}
   \forall \tau,
   \mathbb{P}^{\sigma,\tau}_{ \delta_0}( {\tt Win})=1\enspace.
-\\n```
+
+$$
+
 When such an almost-surely strategy $\sigma$ exists, the initial distribution $\delta_0$
 is said to be almost-surely winning (for Eve).
 
@@ -153,10 +158,14 @@ A less enjoyable situation for Eve is when she only has a
 positively winning strategy.
   A strategy $\sigma$ for Eve is **positively winning** from
   an initial distribution $\delta_0$ if
-```{math}\n%\label{eq:pos}
+
+$$
+%\label{eq:pos}
   \forall \tau,
   \mathbb{P}^{\sigma,\tau}_{ \delta_0}( {\tt Win})>0\enspace.
-\\n```
+
+$$
+
 When such a strategy $\sigma$ exists, the initial distribution $\delta$
 is said to be positively winning (for Eve).
 Symmetrically, a
@@ -188,7 +197,7 @@ $$
 
 The proof of this result is given in the next section.
 
-Since reachability and safety games are dual, a consequence of  {prf:ref}`8-thm:qualitative_determinacy`, is that in a reachability game, every initial
+Since reachability and safety games are dual, a consequence of {prf:ref}`8-thm:qualitative_determinacy`, is that in a reachability game, every initial
 distribution is either almost-surely winning for Eve,
 almost-surely winning for Adam, or positively
 winning for both players.
@@ -216,13 +225,11 @@ everything, Adam is blind (he only observes his own actions),
 and Eve's objective is to visit only finitely many times the ${\large \frownie}$-state. The initial state is $\large{\frownie}$. The set of actions is $\{a,b,c,d\}$.
 All transitions are deterministic.%$t$.
 
-\begin{figure}[h]
-\begin{center}
-
-\end{center}
-\caption{Co-B&uuml;chi games are not qualitatively determined.}
-\label{chap9fig4}
-\end{figure}
+```{figure} ./../FigAndAlgos/chap9fig4.png
+:name: chap9fig4
+:align: center
+Co-B&uuml;chi games are not qualitatively determined.
+```
 
 On one hand, no strategy $\Sigma$
 is almost-surely winning for Eve
@@ -288,7 +295,7 @@ For safety games, the same problem is \EXPTIME-complete.
 ````
 
 Concerning winning positively a {\em safety or co-B&uuml;chi game}, one
-can use  {prf:ref}`8-thm:qualitative_determinacy` and the determinacy property: Adam
+can use {prf:ref}`8-thm:qualitative_determinacy` and the determinacy property: Adam
 has a positively winning strategy in the above game if and only if
 Eve has no almost-surely winning strategy. Therefore, deciding
 when Adam has a positively winning strategy can also be done, with
@@ -304,11 +311,11 @@ almost-surely winning for Eve is
 \EXPTIME-complete.
 In safety games
 Eve is perfectly
-informed {about the state}, the decision problem is in  \textrm{PTIME}.
+informed {about the state}, the decision problem is in  PTIME.
 
 ````
 
-## Qualitative determinacy: proof of  {prf:ref}`8-thm:qualitative_determinacy`
+## Qualitative determinacy: proof of {prf:ref}`8-thm:qualitative_determinacy`
 
 > **Beliefs.**
 
@@ -342,14 +349,15 @@ Beliefs of Adam are defined similarly.
 Given an initial distribution $\delta$,
 we denote
 $\mathcal{B}_{\text{Eve}}^n$ the random variable defined by}
-```{math}
 
-&{ \mathcal{B}_{\text{Eve}}^{0} =  \textrm{supp}(\delta)}\\
-&{ \mathcal{B}_{\text{Eve}}^{n+1} = \mathcal{B}_{\text{Eve}}( \textrm{supp}(\delta),C_1,\ldots,C_{n+1})
+$$
+
+&{ \mathcal{B}_{\text{Eve}}^{0} =  supp(\delta)}\\
+&{ \mathcal{B}_{\text{Eve}}^{n+1} = \mathcal{B}_{\text{Eve}}( supp(\delta),C_1,\ldots,C_{n+1})
 =  \mathcal{B}_{\text{Eve}}( \mathcal{B}_{\text{Eve}}^n,C_{n+1})
 \enspace.}
 
-```
+$$
 
 ````
 
@@ -362,10 +370,10 @@ as well as the possible current state.
 
 {Let $\mathcal{A}$ be an arena with observable actions.}
   From an initial set ${\mathcal{L}} \subseteq  V
-  \times  \ensuremath{\mathcal{P}( V)}$ of pairs composed of a state and a belief
+  \times  \mathcal{P}( V)$ of pairs composed of a state and a belief
   for Adam, the 2-belief of Eve after having received signal $c$ is the subset of 
 $V
-  \times  \ensuremath{\mathcal{P}( V)}$ defined by:
+  \times  \mathcal{P}( V)$ defined by:
 
 $$
    \mathcal{B}^{(2)}_{Eve}({\mathcal{L}},s) = \{ (v, \mathcal{B}_{\text{Adam}}(L,t)) \mid
@@ -375,7 +383,7 @@ $$
   $$
 
 From an initial set ${\mathcal{L}} \subseteq  V
-\times  \ensuremath{\mathcal{P}( V)}$ of pairs composed of a state and a belief
+\times  \mathcal{P}( V)$ of pairs composed of a state and a belief
 for Adam, the 2-belief of Eve after having  received a sequence of
 signals $s_1,\ldots,s_n$ is defined inductively by:
 
@@ -457,7 +465,7 @@ We will use several times  the following technical lemma about belief-based stra
 :label: lem:borelcantelli
 
 {Fix a B&uuml;chi game.}
-Let $\mathcal{L} \subseteq  \ensuremath{\mathcal{P}(V)}$ 
+Let $\mathcal{L} \subseteq  \mathcal{P}(V)$ 
 and $\sigma$ a strategy for player $1$.
 Assume that
 $\sigma$ is a belief
@@ -465,14 +473,16 @@ strategy,
 $\mathcal{L}$ is downward-closed
 (i.e. $L\in \mathcal{L} \land L' \subseteq L \implies L'\in  \mathcal{L}$)
 and for every $L\in \mathcal{L}\setminus \{\emptyset\}$ and every strategy $\tau$,
-```{math}
+
+$$
 
 \label{eq:pos}
 & \probimp{\sigma,\tau}{\delta_L}{ \mathtt{Reach}} > 0\enspace,\\
  \label{eq:belstab}
 &\probimp{\sigma,\tau}{\delta_L}{\forall n\in \mathbb{N}, \mathcal{B}_{\text{Eve}}^n\in  \mathcal{L}} = 1\enspace.
 
-```
+$$
+
 Then $\sigma$ is almost-surely winning for the B&uuml;chi game from any support 
 $L\in  \mathcal{L}\setminus \{\emptyset\}$. 
 
@@ -503,11 +513,13 @@ and $p_{\min}$ is the minimal non-zero transition probability.
 Moreover {eq}`8-eq:belstab` implies that
 in this one-player game the second component of the state space is always in $\mathcal{L}$, whatever strategy $\tau$ is played by player $2$.
 Remind the definition
- ```{math}
+ 
+$$
 
   {\tt Reach}=\{\exists n\in \mathbb{N}, C_n  = 1\}\enspace.
 
-```
+$$
+
 As a consequence, in this one-player game
 for every $m\in \mathbb{N}$,
 and every behavioral strategy $\tau$ and every 
@@ -565,23 +577,29 @@ In a B&uuml;chi game
 with observable actions,
 let $\delta\in\Delta(K)$ be an initial distribution which is not positively 
 winning for Adam,
-i.e. $\textrm{supp}(\delta)\not\in  \mathcal{L}_{\text{Adam},>0}$.
+i.e. $supp(\delta)\not\in  \mathcal{L}_{\text{Adam},>0}$.
 Then for every strategy $\tau$ of Adam
-```{math}\n
+
+$$
+
 \label{eq:LLstable}
 \mathbb{P}^{\sigma_\textsf{max},\tau}_{\delta}(\forall n \in  \mathbb{N},  \mathcal{B}_{\text{Eve}}^n \not\in  \mathcal{L}_{\text{Adam},>0} )=1\enspace.
-\\n```
+
+$$
 
 In a B&uuml;chi game
 with observable actions,
 let $\delta\in\Delta(K)$ be an initial distribution which is not positively 
 winning for Adam,
-i.e. $\textrm{supp}(\delta)\not\in  \mathcal{L}_{\text{Adam},>0}$.
+i.e. $supp(\delta)\not\in  \mathcal{L}_{\text{Adam},>0}$.
 Then for every strategy $\tau$ of Adam
-```{math}\n
+
+$$
+
 \label{eq:LLstable}
 \mathbb{P}^{\sigma_\textsf{max},\tau}_{\delta}(\forall n \in  \mathbb{N},  \mathcal{B}_{\text{Eve}}^n \not\in  \mathcal{L}_{\text{Adam},>0} )=1\enspace.
-\\n```
+
+$$
 
 ````
 
@@ -611,7 +629,7 @@ plays forever the corresponding positively winning strategy.
 Remark that this strategy of Adam is not described as a behavioural strategy
 but rather as a finite-memory strategy. Since actions are observable,
 such a finite-memory strategy can be turned into a behavioural one,
-see Lemma 4.6 and 4.7 in {cite}`BGGjacm`.
+see (Lemma 4.6 and 4.7 in {cite}`BGGjacm`).
 
 Why is Adam strategy positively winning from $L$?
 Whatever action $a\in A$ is played by Eve,
@@ -627,7 +645,7 @@ she might lose with positive probability.
 \medskip 
 
 The notion of maximal strategy being defined,
-we can complete the proof of  {prf:ref}`8-thm:qualitative_determinacy`.
+we can complete the proof of {prf:ref}`8-thm:qualitative_determinacy`.
 For that, we show that
 $\sigma_{ \textsf{max}}$
 is almost-surely
@@ -680,7 +698,7 @@ The day the coin toss is tail, he picks up randomly some $B\in  \mathcal{L}_{\te
 Remark that this strategy of Adam is not described as a behavioural strategy
 but, since actions are observable,
 such a finite-memory strategy can be turned into a behavioural one,
-see Lemma 4.6 and 4.7 in {cite}`BGGjacm`.
+see (Lemma 4.6 and 4.7 in {cite}`BGGjacm`).
 
 Now that $\tau'$ is defined, we prove it is positively winning from $L$.
 Let $E$ be the event 
@@ -710,7 +728,7 @@ $$
 $$
 
 where the first implication holds because, by definition of $\sigma_{ \textsf{max}}$ and $E$,
-for every $s_1\cdots s_n\in CS^*,  \textrm{supp}(\sigma(s_1\cdots s_n))\subseteq  \textrm{supp}(\sigma_{ \textsf{max}}(s_1\cdots s_n))$
+for every $s_1\cdots s_n\in CS^*,  supp(\sigma(s_1\cdots s_n))\subseteq  supp(\sigma_{ \textsf{max}}(s_1\cdots s_n))$
 
 while the second implication is from {eq}`8-eq:winsafe`.
 Thus $\probimp{\sigma,\tau}{\delta_L}{ {\tt Safety}}= 1$ and we get
@@ -758,20 +776,20 @@ hypothesis $L\in   \mathcal{L}_{\text{Eve},=1}$. As a consequence we get {eq}`8-
 
 \medskip
 
-Using {eq}`8-eq:LLpasM`, we apply  {prf:ref}`8-lem:borelcantelli` to the collection 
+Using {eq}`8-eq:LLpasM`, we apply {prf:ref}`8-lem:borelcantelli` to the collection 
 $\overline{  \mathcal{L}_{\text{Adam},>0}}$ and the strategy $\sigma_{ \textsf{max}}$.
 The collection $\overline{  \mathcal{L}_{\text{Adam},>0}}$ is downward-closed because $\mathcal{L}_{\text{Adam},>0}$ is upward-closed: if a support is positively winning for Adam then any greater support is positively winning as well, using the same positively winning strategy.
 
 Thus $\sigma_{ \textsf{max}}$ is almost-surely winning for the B&uuml;chi game from every support in $\overline{  \mathcal{L}_{\text{Adam},>0}}$ i.e. every support which is not positively winning for Adam, hence the game is qualitatively determined.
 
 (8-subsec:proof)=
-## Decidability: proof of  {prf:ref}`8-thm:main` and  {prf:ref}`8-thm:main2`
+## Decidability: proof of {prf:ref}`8-thm:main` and {prf:ref}`8-thm:main2`
 
 ### A na\"ive algorithm
 
 As a corollary of the proof of qualitative determinacy
-( {prf:ref}`8-thm:qualitative_determinacy`), we get a maximal strategy $\sigma_\textsf{max}$
-for player $1$ (see  {prf:ref}`8-def:maximalstrategy`) to win
+({prf:ref}`8-thm:qualitative_determinacy`), we get a maximal strategy $\sigma_\textsf{max}$
+for player $1$ (see {prf:ref}`8-def:maximalstrategy`) to win
 almost-surely B&uuml;chi games.
 
 ````{prf:corollary} NEEDS TITLE 8-cor:asmem
@@ -783,22 +801,22 @@ almost-surely B&uuml;chi games.
 
 ````
 
-A simple algorithm to decide for which player a game is winning can be derived from \cref{8-cor:asmem}: this simple algorithm enumerates all possible belief strategies
+A simple algorithm to decide for which player a game is winning can be derived from {prf:ref}`8-cor:asmem`: this simple algorithm enumerates all possible belief strategies
 
 and test each one of them to see if it is almost-surely winning. The test reduces to checking positive winning in one-player co-B&uuml;chi games and can be done in exponential time.
 
 As there is a doubly exponential number of {belief} strategies, this can be done in time doubly exponential. 
 This algorithm also appears in {cite}`GS-icalp09`.
-This settles the upper bound for  {prf:ref}`8-thm:main`. 
+This settles the upper bound for {prf:ref}`8-thm:main`. 
 
-The lower bounds are established in  {prf:ref}`8-thm:hard`, proving that this enumeration algorithm is
+The lower bounds are established in {prf:ref}`8-thm:hard`, proving that this enumeration algorithm is
   optimal for worst case complexity.  While optimal in the worst case,
   this algorithm is {likely to be unefficient in practice}.  For instance, if player
   $1$ has no almost-surely winning strategy, then this algorithm will
   enumerate every single of the doubly exponential many {possible belief}
   strategies.  Instead, we provide fix-point algorithms which do not
-  enumerate every possible strategy in  {prf:ref}`8-thm:qdec1` for
-  reachability games and  {prf:ref}`8-thm:qdec2` for B&uuml;chi games.
+  enumerate every possible strategy in {prf:ref}`8-thm:qdec1` for
+  reachability games and {prf:ref}`8-thm:qdec2` for B&uuml;chi games.
   Although they should perform better on games with particular
   structures, these fix-point algorithms still have a worst-case
   2-\EXPTIME\ complexity.
@@ -811,13 +829,13 @@ are almost-surely or positively winning for various objectives.
 ````{prf:theorem} Deciding positive winning in reachability games
 :label: theo:qdec1
  
-In a reachability game each initial distribution $\delta$ is either positively winning for player $1$ or surely winning for player $2$, and this depends only on $\textrm{supp}(\delta)\subseteq  V$.
+In a reachability game each initial distribution $\delta$ is either positively winning for player $1$ or surely winning for player $2$, and this depends only on $supp(\delta)\subseteq  V$.
 
-  The corresponding partition of $\ensuremath{\mathcal{P}( V)}$ is computable in
+  The corresponding partition of $\mathcal{P}( V)$ is computable in
   time $\mathcal{O}\left(|G| \cdot 2^{| V|}\right)$, where $|G| $ denotes
   the size of the description of the game,
   as the largest fix-point of a monotonic operator
-$\Phi: \ensuremath{\mathcal{P}( \ensuremath{\mathcal{P}(V))}}\to  \ensuremath{\mathcal{P}( \ensuremath{\mathcal{P}(V))}}$
+$\Phi: \mathcal{P}( \mathcal{P}(V))\to  \mathcal{P}( \mathcal{P}(V))$
 computable in time linear in $|G| $.
 
 ````
@@ -827,9 +845,9 @@ We denote $TT$ the set of vertices whose colour is $1$.
 ````{admonition} Proof
 :class: dropdown tip
 
-Let $\mathcal{L}_\infty\subseteq  \ensuremath{\mathcal{P}( V \setminus TT)}$
+Let $\mathcal{L}_\infty\subseteq  \mathcal{P}( V \setminus TT)$
 be the greatest fix-point of the monotonic operator
-$\Phi: \ensuremath{\mathcal{P}( \ensuremath{\mathcal{P}( V \setminus TT))}}\to  \ensuremath{\mathcal{P}( \ensuremath{\mathcal{P}( V \setminus TT))}}$ defined by:
+$\Phi: \mathcal{P}( \mathcal{P}( V \setminus TT))\to  \mathcal{P}( \mathcal{P}( V \setminus TT))$ defined by:
 \be
 \label{eq:defphi}
 \Phi( \mathcal{L})=\{L\in  \mathcal{L} \mid
@@ -857,24 +875,24 @@ there always exists such an action.
 When playing with the belief strategy $\tau_B$,
 starting from a support in $\mathcal{L}_\infty$,
 the beliefs of player $2$ stay in $\mathcal{L}_\infty$
-and never intersect $TT$ because $\mathcal{L}_\infty\subseteq  \ensuremath{\mathcal{P}( V \setminus TT)}$.
-{According to property {eq}`8-eq:beln_lemma` of beliefs ( {prf:ref}`8-lem:beliefs`)},
+and never intersect $TT$ because $\mathcal{L}_\infty\subseteq  \mathcal{P}( V \setminus TT)$.
+{According to property {eq}`8-eq:beln_lemma` of beliefs ({prf:ref}`8-lem:beliefs`)},
 this guarantees the play never visits $TT$,
 whatever strategy is used by player $1$.
 
 We now prove the second item.
 
 Let
-$\mathcal{L}_0= \ensuremath{\mathcal{P}( V \setminus TT)}\supseteq
+$\mathcal{L}_0= \mathcal{P}( V \setminus TT)\supseteq
  \mathcal{L}_1=\Phi( \mathcal{L}_0)\supseteq  \mathcal{L}_2=\Phi( \mathcal{L}_1)\ldots$ and $\mathcal{L}_\infty$
 be the limit of this sequence, the greatest fix-point of $\Phi$.
   We
-prove that for any support $L\in \ensuremath{\mathcal{P}( V)}$, if
+prove that for any support $L\in \mathcal{P}( V)$, if
 $L\not\in \mathcal{L}_\infty$ then: \be\label{eq:postoprove} \text{$\sigma_{ {\tt rand}}$ is
   positively winning for player $1$ from $L$}\enspace.  \end{equation}If $L\cap TT
 \not=\emptyset$, {eq}`8-eq:postoprove` is obvious.  To deal with
 the case where {$L\cap  TT =\emptyset$}, we define for every
-$n\in \mathbb{N}$, $\mathcal{K}_n =  \ensuremath{\mathcal{P}( V \setminus TT)}  \setminus  \mathcal{L}_n$, and we
+$n\in \mathbb{N}$, $\mathcal{K}_n =  \mathcal{P}( V \setminus TT)  \setminus  \mathcal{L}_n$, and we
 prove by induction on $n\in \mathbb{N}$ that for every $L\in \mathcal{K}_n$, for every
 initial distribution $\delta_L$ with support $L$, for every {behavioral} strategy
 $\tau$, \be\label{eq:topo} \probimp{\sigma_{ {\tt rand}},\tau}{\delta_L}{\exists m, 2\leq
@@ -889,13 +907,13 @@ Let $J_0\subseteq J$ be the support of $\tau(\delta_L)$ and $j_L\in J_0$.  Accor
 to {eq}`8-eq:LLLn`, by definition of $\Phi$, there exists a signal
 $d\in D$ such that $a_2(d)=j_L$ and
  $\mathcal{B}_{\text{Adam}}(L,d)\not \in  \mathcal{L}_n$ and $\mathcal{B}_{\text{Adam}}(L,d)\neq \emptyset$.
-{According to  property {eq}`8-eq:belief_compute` of beliefs ( {prf:ref}`8-lem:beliefs`),} 
+{According to  property {eq}`8-eq:belief_compute` of beliefs ({prf:ref}`8-lem:beliefs`),} 
  $\forall k \in  \mathcal{B}_{\text{Adam}}(L,d),\probimp{\sigma_{ {\tt rand}},\tau}{\delta_L}{V_2 =k\land D_1=d}  > 0$.
    If
 $\mathcal{B}_{\text{Adam}}(L,d)\cap TT \not= \emptyset$ then according to
 the definition of beliefs,
 $\probimp{\sigma_{ {\tt rand}},\tau}{\delta_L}{V_2\in TT}>0$.  Otherwise
-$\mathcal{B}_{\text{Adam}}(L,d)\in \ensuremath{\mathcal{P}( V \setminus TT)} \setminus \mathcal{L}_n= \mathcal{K}_n$ hence
+$\mathcal{B}_{\text{Adam}}(L,d)\in \mathcal{P}( V \setminus TT) \setminus \mathcal{L}_n= \mathcal{K}_n$ hence
 distribution $\delta_{d}:k\to \probimp{\sigma_{ {\tt rand}},\tau}{\delta_L}{V_2 =k\mid D_1=d}$
 has its support in $\mathcal{K}_n$. By inductive hypothesis, for every
 behavioral strategy $\tau'$,
@@ -914,7 +932,7 @@ which completes the proof of the inductive
 step.
 {
 Hence {eq}`8-eq:topo` holds for every behavioral strategy 
-$\tau$. Thus, according to  {prf:ref}`8-lem:actioneq3`, {eq}`8-eq:topo`
+$\tau$. Thus, according to {prf:ref}`8-lem:actioneq3`, {eq}`8-eq:topo`
 holds as well for every general strategy $\tau$.
 }
 
@@ -953,27 +971,27 @@ To decide whether player $1$ wins almost-surely a B&uuml;chi game,
 we provide an algorithm which runs in doubly-exponential time.
 It uses the algorithm for reachability games as a sub-procedure.
 
-````{prf:theorem} NEEDS LABEL Deciding almost-sure winning in B&uuml;chi games
-
-  \label{theo:qdec2} In a B&uuml;chi game each initial distribution
+````{prf:theorem} Deciding almost-sure winning in B&uuml;chi games
+:label: theo:qdec2
+ In a B&uuml;chi game each initial distribution
   $\delta$ is either almost-surely winning for player $1$ or
   positively winning for player $2$, and this depends only on
-  $\textrm{supp}(\delta)\subseteq  V$.
+  $supp(\delta)\subseteq  V$.
 
-The corresponding partition of $\ensuremath{\mathcal{P}( V)}$ is computable in
+The corresponding partition of $\mathcal{P}( V)$ is computable in
 time $\mathcal{O}\left(2^{2^{|G|}}\right)$, where $|G|$ denotes the size of the description of the game,
 as a projection of the greatest
 fix-point $\mathcal{L}_\infty$
 of a monotonic operator
 
 $$\Psi:
- \ensuremath{\mathcal{P}( \ensuremath{\mathcal{P}( V))}\times V}
+ \mathcal{P}( \mathcal{P}( V)\times V)
 \to
- \ensuremath{\mathcal{P}( \ensuremath{\mathcal{P}( V))}\times V}
+ \mathcal{P}( \mathcal{P}( V)\times V)
 \enspace.
 $$
 
-The operator $\Psi$ is computable using as a nested fix-point the operator $\Phi$ of  {prf:ref}`8-thm:qdec1`.
+The operator $\Psi$ is computable using as a nested fix-point the operator $\Phi$ of {prf:ref}`8-thm:qdec1`.
  The almost-surely winning belief strategy of player $1$ and the positively winning $2$-belief strategy of player $2$  can be extracted 
 from $\mathcal{L}_\infty$.
 
@@ -981,11 +999,11 @@ from $\mathcal{L}_\infty$.
 
 \smallskip
 
-We sketch the main ideas of the proof of  {prf:ref}`8-thm:qdec2`.
+We sketch the main ideas of the proof of {prf:ref}`8-thm:qdec2`.
 
 First, suppose that from **every** initial support, player $1$ can
 win positively the  reachability game.
-{Then she can do so using a belief strategy and according to  {prf:ref}`8-lem:borelcantelli`,}
+{Then she can do so using a belief strategy and according to {prf:ref}`8-lem:borelcantelli`,}
 this strategy guarantees
 almost-surely the B&uuml;chi condition.
 
@@ -1020,29 +1038,29 @@ reaching target states, which may create another positively winning
 support for player $2$, and so on. This is the basis of our fix-point algorithm.
 
 Using these ideas, we prove that the set
-$\mathcal{L}_\infty\subseteq  \ensuremath{\mathcal{P}( V)}$ of supports almost-surely
+$\mathcal{L}_\infty\subseteq  \mathcal{P}( V)$ of supports almost-surely
 winning for player $1$ for the B&uuml;chi objective is the largest set of
 initial supports from which:
 \begin{multline}
 \label{eq-dag}
 \tag{$\dag$}
-\textrm{player $1$ has a strategy
-  which win positively the reachability game}\\
-\textrm{and also ensures at the same time
-  her belief to stay in }  \mathcal{L}_\infty .
+player $1$ has a strategy
+  which win positively the reachability game\\
+and also ensures at the same time
+  her belief to stay in   \mathcal{L}_\infty .
 \end{multline}
 
-Property \cref{eq-dag} can be reformulated as a reachability
+Property {prf:ref}`eq-dag` can be reformulated as a reachability
 condition in a new game whose states are states of the original game
 augmented with beliefs of player $1$, kept hidden to player $2$.
 
 The fix-point characterisation suggests the following algorithm for
 computing the set of supports positively winning for player $2$:
-$\ensuremath{\mathcal{P}( V)} \setminus \mathcal{L}_\infty$ is the limit of the sequence
+$\mathcal{P}( V) \setminus \mathcal{L}_\infty$ is the limit of the sequence
 $\emptyset= \mathcal{L}_0'\subsetneq  \mathcal{L}_0'\cup  \mathcal{L}_1''\subsetneq \mathcal{L}_0'\cup
  \mathcal{L}_1'\subsetneq  \mathcal{L}_0'\cup  \mathcal{L}_1'\cup  \mathcal{L}_2''\subsetneq\ldots
 \subsetneq  \mathcal{L}_0'\cup \cdots \cup  \mathcal{L}'_m
-= \ensuremath{\mathcal{P}( V)} \setminus \mathcal{L}_\infty$, where
+= \mathcal{P}( V) \setminus \mathcal{L}_\infty$, where
 
 *  from supports in $\mathcal{L}''_{i+1}$ player $2$ can surely guarantee the safety objective,
 under the hypothesis that player $1$ 

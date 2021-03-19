@@ -743,30 +743,18 @@ with reachability objectives.</p>
 <div class="section" id="from-discounted-games-to-stochastic-reachability-games">
 <h2>From discounted games to stochastic reachability games<a class="headerlink" href="#from-discounted-games-to-stochastic-reachability-games" title="Permalink to this headline">¶</a></h2>
 <p>\nat{reference: ZP-tcs96}</p>
-<div class="proof proposition admonition" id="proposition-0">
-<p class="admonition-title"><span class="caption-number">Proposition 197 </span> (NEEDS TITLE AND LABEL)</p>
+<div class="proof proposition admonition" id="prop:dg2ssg">
+<p class="admonition-title"><span class="caption-number">Proposition 207 </span> (NEEDS TITLE prop:dg2ssg)</p>
 <div class="proposition-content section" id="proof-content">
-<p>\label{prop:dg2ssg}
-For any arena <span class="math notranslate nohighlight">\(\mathcal{A}\)</span> with weights in <span class="math notranslate nohighlight">\([0,1]\)</span> and <span class="math notranslate nohighlight">\(\lambda\)</span> a
+<p>For any arena <span class="math notranslate nohighlight">\(\mathcal{A}\)</span> with weights in <span class="math notranslate nohighlight">\([0,1]\)</span> and <span class="math notranslate nohighlight">\(\lambda\)</span> a
 discount factor, one can construct a stochastic arena <span class="math notranslate nohighlight">\(\mathcal{A}'\)</span> with
-<span class="math notranslate nohighlight">\(\textrm{Win} \subseteq  V'\)</span> and an injection
+<span class="math notranslate nohighlight">\(Win \subseteq  V'\)</span> and an injection
 <span class="math notranslate nohighlight">\(\iota :  V \to  V'\)</span> such that
 <span class="math notranslate nohighlight">\(\forall v \in  V\)</span></p>
 <div class="math notranslate nohighlight">
 \[
-    \mathsf{value}(v, \mathcal{A},\textrm{discount}(\lambda)) =
-    \mathsf{value}(\iota(v), \mathcal{A}', \mathtt{Reach}( \textrm{Win})) \enspace.
-  \]</div>
-<p>\label{prop:dg2ssg}
-For any arena <span class="math notranslate nohighlight">\(\mathcal{A}\)</span> with weights in <span class="math notranslate nohighlight">\([0,1]\)</span> and <span class="math notranslate nohighlight">\(\lambda\)</span> a
-discount factor, one can construct a stochastic arena <span class="math notranslate nohighlight">\(\mathcal{A}'\)</span> with
-<span class="math notranslate nohighlight">\(\textrm{Win} \subseteq  V'\)</span> and an injection
-<span class="math notranslate nohighlight">\(\iota :  V \to  V'\)</span> such that
-<span class="math notranslate nohighlight">\(\forall v \in  V\)</span></p>
-<div class="math notranslate nohighlight">
-\[
-    \mathsf{value}(v, \mathcal{A},\textrm{discount}(\lambda)) =
-    \mathsf{value}(\iota(v), \mathcal{A}', \mathtt{Reach}( \textrm{Win})) \enspace.
+    \mathsf{value}(v, \mathcal{A},discount(\lambda)) =
+    \mathsf{value}(\iota(v), \mathcal{A}', \mathtt{Reach}( Win)) \enspace.
   \]</div>
 </div>
 </div><div class="dropdown tip admonition">
@@ -778,19 +766,19 @@ edge <span class="math notranslate nohighlight">\(e = (v, \mathbf{w},v')\)</span
 a transition from <span class="math notranslate nohighlight">\(v\)</span> to a random vertex <span class="math notranslate nohighlight">\(v_e\)</span>, and the distribution
 <span class="math notranslate nohighlight">\(\delta(v_e)\)</span> assigns probability <span class="math notranslate nohighlight">\(\lambda\)</span> to <span class="math notranslate nohighlight">\(v'\)</span>,
 <span class="math notranslate nohighlight">\((1{-}\lambda) \mathbf{w}\)</span> to <span class="math notranslate nohighlight">\(\smiley\)</span> and <span class="math notranslate nohighlight">\((1{-}\lambda)(1{-} \mathbf{w})\)</span>
-to <span class="math notranslate nohighlight">\(\frownie\)</span>. The set <span class="math notranslate nohighlight">\(\textrm{Win}\)</span> of target vertices in <span class="math notranslate nohighlight">\(\mathcal{A}'\)</span>
+to <span class="math notranslate nohighlight">\(\frownie\)</span>. The set <span class="math notranslate nohighlight">\(Win\)</span> of target vertices in <span class="math notranslate nohighlight">\(\mathcal{A}'\)</span>
 consists of <span class="math notranslate nohighlight">\(\{smiley\}\)</span>. To complete the reduction, we let <span class="math notranslate nohighlight">\(\iota\)</span>
 be the identity function on vertices of <span class="math notranslate nohighlight">\(\mathcal{A}\)</span>.</p>
 <p>Note that the transformation from <span class="math notranslate nohighlight">\(\mathcal{A}\)</span> to <span class="math notranslate nohighlight">\(\mathcal{A}'\)</span> is clearly
 polynomial.</p>
 <p>To establish that this transformation preserves the values,
 <strong>i.e.</strong>\ that for every <span class="math notranslate nohighlight">\(v \in  V\)</span>,
-<span class="math notranslate nohighlight">\(\mathsf{value}(v, \mathcal{A},\textrm{discount}(\lambda)) =
-  \mathsf{value}(v, \mathcal{A}', \mathtt{Reach}( \textrm{Win}))\)</span>, we prove that these
+<span class="math notranslate nohighlight">\(\mathsf{value}(v, \mathcal{A},discount(\lambda)) =
+  \mathsf{value}(v, \mathcal{A}', \mathtt{Reach}( Win))\)</span>, we prove that these
 values are solutions to the same system of equations.</p>
 <p>In the sequel, we write <span class="math notranslate nohighlight">\(\mathsf{value}_{ \mathcal{A}'}(v)\)</span> as a shortcut
-for <span class="math notranslate nohighlight">\(\mathsf{value}(v, \mathcal{A}', \mathtt{Reach}( \textrm{Win}))\)</span>.
-By \Cref{th:determinacy}, the values in the stochastic simple game
+for <span class="math notranslate nohighlight">\(\mathsf{value}(v, \mathcal{A}', \mathtt{Reach}( Win))\)</span>.
+By <code class="xref prf prf-ref docutils literal notranslate"><span class="pre">th:determinacy</span></code>, the values in the stochastic simple game
 <span class="math notranslate nohighlight">\(\mathcal{A}'\)</span> are solutions to the system of Bellman equations. The sink
 vertices have trivial values, <span class="math notranslate nohighlight">\(\mathsf{value}_{ \mathcal{A}'}(\smiley) =1\)</span>
 and <span class="math notranslate nohighlight">\(\mathsf{value}_{ \mathcal{A}'}(\frownie) =0\)</span>.  For every non-random
@@ -825,17 +813,17 @@ random vertices, we obtain that for every non-random vertex
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>We thus observe that the values in $\mathcal{A}&#39;$, after elimination of
 values for intermediate random vertices, satisfy the equations of
 values in the discounted game (see the proof
-of  {prf:ref}`4-thm:discounted` in \Cref{chap:4_Payoffs}). Since
+of {prf:ref}`4-thm:discounted` in {prf:ref}`chap:4_Payoffs`). Since
 this system of equations has a unique solution, we deduce the
 desired equality:
 $\mathsf{value}_{ \mathcal{A}&#39;}(v) =
-\mathsf{value}(v, \mathcal{A},\textrm{discount}(\lambda))$.
+\mathsf{value}(v, \mathcal{A},discount(\lambda))$.
 
 \qed
 </pre></div>
 </div>
 </div>
-<p>Remark that \Cref{prop:dg2ssg} trivially extends to
+<p>Remark that <a class="reference internal" href="#prop:dg2ssg">Proposition 207</a> trivially extends to
 discounted stochastic games: from a discounted stochastic game, one
 can build a stochastic reachability game that preserves the values.</p>
 </div>
@@ -847,7 +835,7 @@ also provide a reduction from mean-payoff objectives to discounted
 payoff objectives, for what concerns stochastic arenas. More
 precisely:</p>
 <div class="proof theorem admonition" id="theorem-1">
-<p class="admonition-title"><span class="caption-number">Theorem 198 </span> (NEEDS TITLE AND LABEL)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 208 </span> (NEEDS TITLE AND LABEL)</p>
 <div class="theorem-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\mathcal{A}\)</span> be a stochastic arena with integer costs. One can
 effectively compute a discount factor <span class="math notranslate nohighlight">\(\lambda^*\)</span> such that for
@@ -869,25 +857,25 @@ proof without expression for <span class="math notranslate nohighlight">\(\lambd
 <h2>From stochastic parity  to stochastic mean-payoff<a class="headerlink" href="#from-stochastic-parity-to-stochastic-mean-payoff" title="Permalink to this headline">¶</a></h2>
 <p>\nat{reference CH-ipl08, Theorem 3}</p>
 <div class="proof proposition admonition" id="proposition-2">
-<p class="admonition-title"><span class="caption-number">Proposition 199 </span> (NEEDS TITLE AND LABEL)</p>
+<p class="admonition-title"><span class="caption-number">Proposition 209 </span> (NEEDS TITLE AND LABEL)</p>
 <div class="proposition-content section" id="proof-content">
 <p>For every stochastic arena <span class="math notranslate nohighlight">\(\mathcal{A}\)</span> with priorities in <span class="math notranslate nohighlight">\([0,d]\)</span>, one
 can construct a weight function from <span class="math notranslate nohighlight">\(V\)</span> to <span class="math notranslate nohighlight">\(\mathbb{Z}\)</span>
 such that <span class="math notranslate nohighlight">\(\forall v \in  V\)</span>, if
-<span class="math notranslate nohighlight">\( \mathsf{value}(v, \mathcal{A},\textrm{parity}) \notin \{0,1\}\)</span>, then</p>
+<span class="math notranslate nohighlight">\( \mathsf{value}(v, \mathcal{A},parity) \notin \{0,1\}\)</span>, then</p>
 <div class="math notranslate nohighlight">
 \[
-    \mathsf{value}(v, \mathcal{A},\textrm{parity}) =
-    \frac 1 2 (\mathsf{value}(v, \mathcal{A},\textrm{mean\_payoff})  {+} 1) \enspace.
+    \mathsf{value}(v, \mathcal{A},parity) =
+    \frac 1 2 (\mathsf{value}(v, \mathcal{A},mean\_payoff)  {+} 1) \enspace.
   \]</div>
 <p>For every stochastic arena <span class="math notranslate nohighlight">\(\mathcal{A}\)</span> with priorities in <span class="math notranslate nohighlight">\([0,d]\)</span>, one
 can construct a weight function from <span class="math notranslate nohighlight">\(V\)</span> to <span class="math notranslate nohighlight">\(\mathbb{Z}\)</span>
 such that <span class="math notranslate nohighlight">\(\forall v \in  V\)</span>, if
-<span class="math notranslate nohighlight">\( \mathsf{value}(v, \mathcal{A},\textrm{parity}) \notin \{0,1\}\)</span>, then</p>
+<span class="math notranslate nohighlight">\( \mathsf{value}(v, \mathcal{A},parity) \notin \{0,1\}\)</span>, then</p>
 <div class="math notranslate nohighlight">
 \[
-    \mathsf{value}(v, \mathcal{A},\textrm{parity}) =
-    \frac 1 2 (\mathsf{value}(v, \mathcal{A},\textrm{mean\_payoff})  {+} 1) \enspace.
+    \mathsf{value}(v, \mathcal{A},parity) =
+    \frac 1 2 (\mathsf{value}(v, \mathcal{A},mean\_payoff)  {+} 1) \enspace.
   \]</div>
 </div>
 </div><div class="dropdown tip admonition">
@@ -896,69 +884,69 @@ such that <span class="math notranslate nohighlight">\(\forall v \in  V\)</span>
 parity objective in polynomial time.</p>
 <p>\nat{ref for this ? Florian}
 Let us
-write <span class="math notranslate nohighlight">\(W_\textrm{Eve}\)</span> and <span class="math notranslate nohighlight">\(W_\textrm{Adam}\)</span> for these sets, respectively. We let
+write <span class="math notranslate nohighlight">\(W_Eve\)</span> and <span class="math notranslate nohighlight">\(W_Adam\)</span> for these sets, respectively. We let
 <span class="math notranslate nohighlight">\(p_{\min}\)</span> be the minimal probability that appears in the arena
 <span class="math notranslate nohighlight">\(\mathcal{A}\)</span>, and <span class="math notranslate nohighlight">\(n\)</span> be the number of vertices.</p>
-<p>We define the following weight function: for every <span class="math notranslate nohighlight">\(v \in W_\textrm{Eve}\)</span>,
+<p>We define the following weight function: for every <span class="math notranslate nohighlight">\(v \in W_Eve\)</span>,
 to every edge <span class="math notranslate nohighlight">\((v,k,v')\)</span> in the parity game, we associate the weight
-<span class="math notranslate nohighlight">\(1\)</span>; for every <span class="math notranslate nohighlight">\(v \in W_\textrm{Adam}\)</span>, to every edge <span class="math notranslate nohighlight">\((v,k,v')\)</span>, we associate
+<span class="math notranslate nohighlight">\(1\)</span>; for every <span class="math notranslate nohighlight">\(v \in W_Adam\)</span>, to every edge <span class="math notranslate nohighlight">\((v,k,v')\)</span>, we associate
 the weight <span class="math notranslate nohighlight">\(-1\)</span>; most importantly, for every
-<span class="math notranslate nohighlight">\(v \notin W_\textrm{Eve} \cup W_\textrm{Adam}\)</span>, to every edge <span class="math notranslate nohighlight">\((v,k,v')\)</span>, we associate the
+<span class="math notranslate nohighlight">\(v \notin W_Eve \cup W_Adam\)</span>, to every edge <span class="math notranslate nohighlight">\((v,k,v')\)</span>, we associate the
 weight <span class="math notranslate nohighlight">\((-1)^k (2n)^k p_{\min}^{-nk}\)</span>.</p>
 <p>Let us prove that the above weight function satisfies</p>
 <div class="math notranslate nohighlight">
 \[
-    \forall v \in  V \setminus (W_\textrm{Eve} \cup W_\textrm{Adam}),\ 
-    \mathsf{value}(v, \mathcal{A},\textrm{parity}) = \frac 1 2
-    (\mathsf{value}(v, \mathcal{A},\textrm{mean\_payoff}) {+} 1)\enspace.
+    \forall v \in  V \setminus (W_Eve \cup W_Adam),\ 
+    \mathsf{value}(v, \mathcal{A},parity) = \frac 1 2
+    (\mathsf{value}(v, \mathcal{A},mean\_payoff) {+} 1)\enspace.
   \]</div>
 <p>To do so, we prove both inequalities.</p>
-<p>\fbox{here we assume sinks for <span class="math notranslate nohighlight">\(W_\textrm{Eve}\)</span> and <span class="math notranslate nohighlight">\(W_\textrm{Adam}\)</span>, with
+<p>\fbox{here we assume sinks for <span class="math notranslate nohighlight">\(W_Eve\)</span> and <span class="math notranslate nohighlight">\(W_Adam\)</span>, with
 appropriate priorities}</p>
 <div class="proof lemma admonition" id="lemma-3">
-<p class="admonition-title"><span class="caption-number">Lemma 200 </span> (NEEDS TITLE AND LABEL  Let <span class="math notranslate nohighlight">\(v \in  V\)</span>. Let <span class="math notranslate nohighlight">\(\sigma\)</span> be a pure)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 210 </span> (NEEDS TITLE AND LABEL  Let <span class="math notranslate nohighlight">\(v \in  V\)</span>. Let <span class="math notranslate nohighlight">\(\sigma\)</span> be a pure)</p>
 <div class="lemma-content section" id="proof-content">
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>positional optimal strategy for Eve in the parity game
-$( \mathcal{A},\textrm{parity})$. For every positional strategy $\tau$
+$( \mathcal{A},parity)$. For every positional strategy $\tau$
 of Adam
-$\mathbb{P}_{\sigma,\tau}^v( \mathtt{Reach}(W_\textrm{Adam})) \leq 1 -
-\mathsf{value}(v, \mathcal{A},\textrm{parity})$.
+$\mathbb{P}_{\sigma,\tau}^v( \mathtt{Reach}(W_Adam)) \leq 1 -
+\mathsf{value}(v, \mathcal{A},parity)$.
 </pre></div>
 </div>
 <p>Let <span class="math notranslate nohighlight">\(v \in  V\)</span>. Let <span class="math notranslate nohighlight">\(\sigma\)</span> be a pure
 positional optimal strategy for Eve in the parity game
-<span class="math notranslate nohighlight">\(( \mathcal{A},\textrm{parity})\)</span>. For every positional strategy <span class="math notranslate nohighlight">\(\tau\)</span>
+<span class="math notranslate nohighlight">\(( \mathcal{A},parity)\)</span>. For every positional strategy <span class="math notranslate nohighlight">\(\tau\)</span>
 of Adam
-<span class="math notranslate nohighlight">\(\mathbb{P}_{\sigma,\tau}^v( \mathtt{Reach}(W_\textrm{Adam})) \leq 1 -
-    \mathsf{value}(v, \mathcal{A},\textrm{parity})\)</span>.</p>
+<span class="math notranslate nohighlight">\(\mathbb{P}_{\sigma,\tau}^v( \mathtt{Reach}(W_Adam)) \leq 1 -
+    \mathsf{value}(v, \mathcal{A},parity)\)</span>.</p>
 </div>
 </div></div>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>This is a direct consequence of the definition of the value.
 </pre></div>
 </div>
 <div class="proof lemma admonition" id="lemma-4">
-<p class="admonition-title"><span class="caption-number">Lemma 201 </span> (NEEDS TITLE AND LABEL)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 211 </span> (NEEDS TITLE AND LABEL)</p>
 <div class="lemma-content section" id="proof-content">
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>  Let $\sigma$ be a pure positional optimal strategy for Eve in
-  the parity game $( \mathcal{A},\textrm{parity})$. For every positional
+  the parity game $( \mathcal{A},parity)$. For every positional
   strategy $\tau$ of Adam, for every BSCC $C$ induced by
-  $(\sigma,\tau)$ different from $W_\textrm{Adam}$ and $W_\textrm{Eve}$,
-  $\mathbb{P}_{\sigma,\tau}^C(\textrm{parity}) &gt;0$.
+  $(\sigma,\tau)$ different from $W_Adam$ and $W_Eve$,
+  $\mathbb{P}_{\sigma,\tau}^C(parity) &gt;0$.
 
   Let $\sigma$ be a pure positional optimal strategy for Eve in
-  the parity game $( \mathcal{A},\textrm{parity})$. For every positional
+  the parity game $( \mathcal{A},parity)$. For every positional
   strategy $\tau$ of Adam, for every BSCC $C$ induced by
-  $(\sigma,\tau)$ different from $W_\textrm{Adam}$ and $W_\textrm{Eve}$,
-  $\mathbb{P}_{\sigma,\tau}^C(\textrm{parity}) &gt;0$.
+  $(\sigma,\tau)$ different from $W_Adam$ and $W_Eve$,
+  $\mathbb{P}_{\sigma,\tau}^C(parity) &gt;0$.
 </pre></div>
 </div>
 </div>
 </div><div class="highlight-none notranslate"><div class="highlight"><pre><span></span>\begin{proof}
-  Indeed, $\mathsf{value}(C, \mathcal{A},\textrm{parity}) \in (0,1)$ by
+  Indeed, $\mathsf{value}(C, \mathcal{A},parity) \in (0,1)$ by
   definition. Since $\sigma$ is optimal, for $v \in C$,
-  $\mathbb{P}_{\sigma,\tau}^v(\textrm{parity}) \geq
-  \mathsf{value}(v, \mathcal{A},\textrm{parity}) &gt;0$ (and even
-  $\mathbb{P}_{\sigma,\tau}^v(\textrm{parity})=1$).
+  $\mathbb{P}_{\sigma,\tau}^v(parity) \geq
+  \mathsf{value}(v, \mathcal{A},parity) &gt;0$ (and even
+  $\mathbb{P}_{\sigma,\tau}^v(parity)=1$).
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
@@ -967,16 +955,16 @@ of Adam
     starting from $C$ and playing $(\sigma,\tau)$.
 
     Corollary: under $(\sigma,\tau)$ with $\sigma$ optimal for parity,
-    apart from the $W_\textrm{Adam}$ BSCC, all BSCC are good for  \textrm{Eve}.
+    apart from the $W_Adam$ BSCC, all BSCC are good for  Eve.
 
 ````{prf:lemma} NEEDS TITLE AND LABEL 
       Let $\sigma$ be a pure positional optimal strategy for Eve in
-      the parity game $( \mathcal{A},\textrm{parity})$. For every positional
+      the parity game $( \mathcal{A},parity)$. For every positional
       strategy $\tau$ of Adam, for every good BSCC $C$ induced by
       $(\sigma,\tau)$, $\mathtt{MeanPayoff}_{\sigma,\tau}^C( \mathcal{A}) \geq 1$.
 
       Let $\sigma$ be a pure positional optimal strategy for Eve in
-      the parity game $( \mathcal{A},\textrm{parity})$. For every positional
+      the parity game $( \mathcal{A},parity)$. For every positional
       strategy $\tau$ of Adam, for every good BSCC $C$ induced by
       $(\sigma,\tau)$, $\mathtt{MeanPayoff}_{\sigma,\tau}^C( \mathcal{A}) \geq 1$.
     
@@ -984,8 +972,8 @@ of Adam
 </div>
 <div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>  The case $C = W_\textrm{Eve}$ is trivial. We assume
-  $C \cap W_\textrm{Eve} = \emptyset$ in the sequel.
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>  The case $C = W_Eve$ is trivial. We assume
+  $C \cap W_Eve = \emptyset$ in the sequel.
   
   Let $v$ be a vertex with maximal parity $d_C$ (hence even and
   non-zero) in $C$. Starting from $C$ and under $(\sigma,\tau)$,
@@ -1010,18 +998,18 @@ of Adam
 </div>
 </div>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>\begin{eqnarray*}
-   \mathtt{MeanPayoff}_{\sigma,\tau}^{v} &amp; \geq &amp; -  \mathbb{P}_{\sigma,\tau}^v( \mathtt{Reach}(W_\textrm{Adam})) + \sum_{C \textrm{ Good BSCC}}  \mathbb{P}_{\sigma,\tau}^v( \mathtt{Reach}(C))\\
-                                &amp; \geq &amp; -1 + \mathsf{value}(v, \mathcal{A},\textrm{parity}) +  \mathbb{P}_{\sigma,\tau}^v( \mathtt{Parity})\\
-                                &amp; \geq &amp; -1 + \mathsf{value}(v, \mathcal{A},\textrm{parity}) + \inf_{\tau&#39;}  \mathbb{P}_{\sigma,\tau&#39;}^v( \mathtt{Parity})\\
-                                &amp; \geq &amp; -1 + \mathsf{value}(v, \mathcal{A},\textrm{parity}) + \mathsf{value}(v, \mathcal{A},\textrm{parity})\\
-                                &amp;  \geq &amp; -1 + 2  \mathsf{value}(v, \mathcal{A},\textrm{parity}) \enspace.
+   \mathtt{MeanPayoff}_{\sigma,\tau}^{v} &amp; \geq &amp; -  \mathbb{P}_{\sigma,\tau}^v( \mathtt{Reach}(W_Adam)) + \sum_{C  Good BSCC}  \mathbb{P}_{\sigma,\tau}^v( \mathtt{Reach}(C))\\
+                                &amp; \geq &amp; -1 + \mathsf{value}(v, \mathcal{A},parity) +  \mathbb{P}_{\sigma,\tau}^v( \mathtt{Parity})\\
+                                &amp; \geq &amp; -1 + \mathsf{value}(v, \mathcal{A},parity) + \inf_{\tau&#39;}  \mathbb{P}_{\sigma,\tau&#39;}^v( \mathtt{Parity})\\
+                                &amp; \geq &amp; -1 + \mathsf{value}(v, \mathcal{A},parity) + \mathsf{value}(v, \mathcal{A},parity)\\
+                                &amp;  \geq &amp; -1 + 2  \mathsf{value}(v, \mathcal{A},parity) \enspace.
 \end{eqnarray*}
 
 Assume again that $\sigma$ is positional optimal for the parity
-objective, and fix $\tau$ an optimal counterstrategy for  \textrm{Adam} in
+objective, and fix $\tau$ an optimal counterstrategy for  Adam in
 $( \mathcal{A}, \mathtt{MeanPayoff})$. We deduce:
 \begin{eqnarray*}
-  -1 + 2 \mathsf{value}(v, \mathcal{A},\textrm{parity}) &amp; \leq &amp; 
+  -1 + 2 \mathsf{value}(v, \mathcal{A},parity) &amp; \leq &amp; 
                                                             \mathtt{MeanPayoff}_{\sigma,\tau}^{v}\\
                                                   &amp; = &amp; \inf_{\tau&#39;}
                                                          \mathtt{MeanPayoff}_{\sigma,\tau&#39;}^{v}\\
@@ -1035,11 +1023,11 @@ $( \mathcal{A}, \mathtt{MeanPayoff})$. We deduce:
 This proves the first inequality.
 
 The reverse inequality, can be proved by swapping the roles of
-$\textrm{Eve}$ and $\textrm{Adam}$ everywhere.
+$Eve$ and $Adam$ everywhere.
 </pre></div>
 </div>
 <p>\end{proof}</p>
-<p>Figure \cref{6-fig:reductions} summarizes the relations between classes
+<p>Figure <code class="xref std std-numref docutils literal notranslate"><span class="pre">6-fig:reductions</span></code> summarizes the relations between classes
 of stochastic games.</p>
 </div>
 </div>

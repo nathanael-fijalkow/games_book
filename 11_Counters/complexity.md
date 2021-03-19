@@ -42,13 +42,13 @@ Unlike general vector games and configuration reachability
 asymmetric ones, coverability, non-termination, and
 parity@parity vector game asymmetric vector games are decidable.
 We survey in this section the best known complexity bounds for every
-case; see \cref{11-tbl:cmplx} at the end of the chapter for a summary.
+case; see {prf:ref}`11-tbl:cmplx` at the end of the chapter for a summary.
 
 (11-sec:up)=
 ## Upper Bounds
 We begin with complexity upper bounds.  The main results are that
 parity@parity vector game games with existential initial credit
-can be solved in  \textrm{coNP}, but are in  \textrm{kEXP}[2] with "given initial
+can be solved in  coNP, but are in  kEXP[2] with "given initial
 credit".  In both cases however, the complexity is pseudo-polynomial
 if both the dimension $k$ and the number of priorities $d$ are
 fixed, which is rather good news: one can hope that, in practice, both
@@ -61,7 +61,7 @@ condition) are tiny compared to the size of the system.
 
 > **Counterless Strategies**
 
-Consider a strategy $\tau$ of  \textrm{Adam}\ in a vector game.  In all the
+Consider a strategy $\tau$ of  Adam\ in a vector game.  In all the
 games we consider, uniform positional strategies suffice over the
 infinite arena $\natural(\?V)=(V,E, V_\mathrm{Eve}, V_\mathrm{Adam})$: $\tau$ maps vertices
 in $V$ to edges in $E$.  We call $\tau$ counterless if, for all
@@ -75,7 +75,7 @@ the play.
 
   Let $\?V=( \?L, A, \?L_\mathrm{Eve}, \?L_\mathrm{Adam}, k)$ be an "asymmetric
   vector system", $\ell_0\in \?L$ be a location, and
-  $\mathrm{lcol}{:}\, \?L\to\{1,\dots,d\}$ be a location colouring.  If  \textrm{Adam}\ 
+  $\mathrm{lcol}{:}\, \?L\to\{1,\dots,d\}$ be a location colouring.  If  Adam\ 
   wins from $\ell_0(\vec v)$ for every initial credit $\vec v$ in the
   parity@parity vector game game played over $\?V$ with $\mathrm{lcol}$, then
   he has a single counterless strategy such that he wins from
@@ -86,24 +86,24 @@ the play.
 ````{admonition} Proof
 :class: dropdown tip
 
-  Let $A_\mathrm{Adam}  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=}\{( \ell\step{\vec
+  Let $A_\mathrm{Adam}  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=}\{( \ell\step{\vec
     u} \ell')\in A\mid \ell\in \?L_\mathrm{Adam}\}$ be the set of actions
-  controlled by  \textrm{Adam}.  We assume without loss of generality that
+  controlled by  Adam.  We assume without loss of generality that
   every location $\ell\in \?L_\mathrm{Adam}$ has either one or two outgoing
   actions, thus $| \?L_\mathrm{Adam}|\leq| A_\mathrm{Adam}|\leq
   2| \?L_\mathrm{Adam}|$.  We proceed by induction over $| A_\mathrm{Adam}|$.  For
   the base case, if $| A_\mathrm{Adam}|=| \?L_\mathrm{Adam}|$ then every location
-  controlled by  \textrm{Adam}\ has a single outgoing action, thus any
-  strategy for  \textrm{Adam}\ is trivially counterless.
+  controlled by  Adam\ has a single outgoing action, thus any
+  strategy for  Adam\ is trivially counterless.
 
   For the induction step, consider some location
   $\hat \ell\in \?L_\mathrm{Adam}$ with two outgoing actions
-  $a_l  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=}\hat \ell\step{\vec 0} \ell_l$ and
-  $a_r  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=}\hat \ell\step{\vec 0} \ell_r$.  Let $\?V_l$ and $\?V_r$ be
+  $a_l  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=}\hat \ell\step{\vec 0} \ell_l$ and
+  $a_r  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=}\hat \ell\step{\vec 0} \ell_r$.  Let $\?V_l$ and $\?V_r$ be
   the vector systems obtained from $\?V$ by removing
   respectively $a_r$ and $a_l$ from $A$, i.e., by using
-  $A_l  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=} A\setminus\{a_r\}$ and
-  $A_r  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=} A\setminus\{a_l\}$.  If $\textrm{Adam}$ wins the
+  $A_l  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=} A\setminus\{a_r\}$ and
+  $A_r  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=} A\setminus\{a_l\}$.  If $Adam$ wins the
   parity@parity vector game game from $\ell(\vec v)$ for every
   initial credit $\vec v$ in either $\?V_l$ or $\?V_r$, then by
   induction hypothesis he has a counterless winning strategy winning
@@ -111,25 +111,25 @@ the play.
   strategy is winning in $\?V$ from $\ell(\vec v)$ for every initial
   credit $\vec v$.
 
-  In order to conclude the proof, we show that, if  \textrm{Adam}\ loses in
+  In order to conclude the proof, we show that, if  Adam\ loses in
   $\?V_l$ from $\ell_0(\vec v_l)$ for some $\vec v_l\in\+N^ k$ and in
   $\?V_r$ from $\ell_0(\vec v_r)$ for some $\vec v_r\in\+N^ k$, then
-  there exists $\vec v_0\in\+N^ k$ such that  \textrm{Eve}\ wins from
+  there exists $\vec v_0\in\+N^ k$ such that  Eve\ wins from
   $\ell_0(\vec v_0)$ in $\?V$.  Let $\sigma_l$ and $\sigma_r$ denote
-   \textrm{Eve}'s winning strategies in the two games.  By a slight abuse of
+   Eve's winning strategies in the two games.  By a slight abuse of
   notations (justified by the fact that we are only interested in a
   few initial vertices), we see plays as sequences of actions and
   strategies as maps $A^\ast\to A$.\todoquestion{I hope this is not too messy}  Consider the set of
   plays consistent with $\sigma_r$ starting from $\ell_0(\vec v_r)$.
-  If none of those plays visits $\hat \ell$, then $\textrm{Eve}$ wins in $\?V$
+  If none of those plays visits $\hat \ell$, then $Eve$ wins in $\?V$
   from $\ell_0(\vec v_r)$ and we conclude.  Otherwise, there is some
   finite prefix $\hat\pi$ of a play that
   visits $\hat \ell(\hat{\vec v})$ for some vector
   $\hat{\vec v}=\vec v_r+ w(\hat\pi)$.  We let
-  $\vec v_0  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=}\vec v_l+\hat{\vec v}$ and show that  \textrm{Eve}\ wins from
+  $\vec v_0  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=}\vec v_l+\hat{\vec v}$ and show that  Eve\ wins from
   $\ell_0(\vec v_0)$.
 
-  \begin{scope}    We define now a strategy $\sigma$ for $\textrm{Eve}$ over $\?V$ that
+  \begin{scope}    We define now a strategy $\sigma$ for $Eve$ over $\?V$ that
     switches between applying $\sigma_l$ and $\sigma_r$ each time
     $a_r$ is used and switches back each time $a_l$ is used.  More
     precisely, given a finite or infinite sequence $\pi$ of actions,
@@ -137,21 +137,21 @@ the play.
     segment $\pi_j\in( A\setminus\{a_l,a_r\})^\ast$ does not use
     either $a_l$ nor $a_r$ and each $a_j\in\{a_l,a_r\}$.  The
     associated mode $m(j)\in\{l,r\}$ of a segment $\pi_j$
-    is $m(1)  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=} l$ for the initial segment and otherwise
-    $m(j)  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=} l$ if $e_{j-1}=a_l$ and $m(j)  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=} r$ otherwise.  The
+    is $m(1)  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=} l$ for the initial segment and otherwise
+    $m(j)  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=} l$ if $e_{j-1}=a_l$ and $m(j)  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=} r$ otherwise.  The
     $l$-subsequence associated with $\pi$ is the sequence of segments
-    $\pi(l)  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=}\pi_{l_1}a_{l_2-1}\pi_{l_2}a_{l_3-1}\pi_{l_3}\cdots$
+    $\pi(l)  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=}\pi_{l_1}a_{l_2-1}\pi_{l_2}a_{l_3-1}\pi_{l_3}\cdots$
     with mode $m(l_i)=l$, while the $r$-subsequence is the sequence
-    $\pi(r)  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=}\hat\pi a_{r_1-1}\pi_{r_1}a_{r_2-1}\pi_{r_2}\cdots$
+    $\pi(r)  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=}\hat\pi a_{r_1-1}\pi_{r_1}a_{r_2-1}\pi_{r_2}\cdots$
     with mode $m(r_i)=r$ prefixed by $\hat\pi$.  Then we let
-    $\sigma(\pi)  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=}\sigma_{m}(\pi(m))$ where $m\in\{l,r\}$ is the
+    $\sigma(\pi)  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=}\sigma_{m}(\pi(m))$ where $m\in\{l,r\}$ is the
     mode of the last segment of $\pi$.
 
     Consider an infinite play $\pi$ consistent with $\sigma$ starting
     from $\ell_0(\vec v_0)$.  Since $\vec v_0\geq\vec v_l$ and
     $\vec v_0\geq \vec v_r+ w(\hat\pi)$, $\pi(l)$ and $\pi(r)$
     starting from $\ell_0(\vec v_0)$ are consistent with
-    simulating---in the sense of  {prf:ref}`11-lem:mono`---$\sigma_l$
+    simulating---in the sense of {prf:ref}`11-lem:mono`---$\sigma_l$
     from $\ell_0(\vec v_l)$ and $\sigma_r$ from $\ell_0(\vec v_r)$.
     Let $\pi'$ be a finite prefix of $\pi$.  Then
     $w(\pi')= w(\pi'(l))+ w(\pi'(r))$ where $\pi'(l)$
@@ -163,25 +163,25 @@ the play.
     $\pi(l)$ and $\pi(r)$ is even (note that one of $\pi(l)$
     and $\pi(r)$ might not be infinite), thus the maximal priority
     seen infinitely often along $\pi$ is also even.  This shows
-    that $\sigma$ is winning for  \textrm{Eve}\ from $\ell_0(\vec v_0)$.\todoquestion{Is
+    that $\sigma$ is winning for  Eve\ from $\ell_0(\vec v_0)$.\todoquestion{Is
     that clear?}
   \end{scope}
 
 ````
 
-We are going to exploit  {prf:ref}`11-lem:counterless`
-in \cref{11-th:exist-easy} in order to prove a  \textrm{coNP}\ upper bound for
+We are going to exploit {prf:ref}`11-lem:counterless`
+in {prf:ref}`11-th:exist-easy` in order to prove a  coNP\ upper bound for
 asymmetric games with existential initial credit: it suffices in
 order to decide those games to guess a counterless winning
-strategy $\tau$ for  \textrm{Adam}\ and check that it is indeed winning by
-checking that  \textrm{Eve}\ loses the one-player game arising from $\tau$.
+strategy $\tau$ for  Adam\ and check that it is indeed winning by
+checking that  Eve\ loses the one-player game arising from $\tau$.
 This last step requires an algorithmic result of independent interest.
 
 > **One-player Case**
 
 Let $\?V=( \?L, A, k)$ be a vector addition system with states,
 $\mathrm{lcol}{:}\, \?L\to\{1,\dots,d\}$ a location colouring, and
-$\ell_0\in \?L$ an initial location.  Then  \textrm{Eve}\ wins the
+$\ell_0\in \?L$ an initial location.  Then  Eve\ wins the
 parity@parity vector game one-player game from $\ell_0(\vec v_0)$
 for some initial credit $\vec v_0$ if and only if there exists some
 location such that
@@ -194,7 +194,7 @@ location such that
 
 Indeed, assume we can find such a location $\ell$.  Let
 $\hat\pi\in A^\ast$ be a path from $\ell_0$ to $\ell$ and $\vec
-v_0(i)  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=}\max\{\| w(\pi')\|\mid\pi'\text{ is a prefix of
+v_0(i)  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=}\max\{\| w(\pi')\|\mid\pi'\text{ is a prefix of
 }\hat\pi\pi\}$ for all $1\leq i\leq k$.  Then $\ell_0(\vec v_0)$ can
 reach $\ell(\vec v_0+ w(\hat\pi))$ in the natural semantics
 of $\?V$ by following $\hat\pi$, and then $\ell(\vec v_0+\vec
@@ -202,10 +202,10 @@ W(\hat\pi)+n w(\pi))\geq  \ell(\vec v_0+ w(\hat\pi))$ after
 $n$ repetitions of the cycle $\pi$.  The infinite play arising from
 this strategy has an even maximal priority.
 
-Conversely, if  \textrm{Eve}\ wins, then there is a winning play
+Conversely, if  Eve\ wins, then there is a winning play
 $\pi\in A^\omega$ from $\ell_0(\vec v_0)$ for some $\vec v_0$.
 Recall that $(V,{\leq})$ is a wqo, and we argue as in
- {prf:ref}`11-lem:finmem` that there is indeed such a location $\ell$.
+{prf:ref}`11-lem:finmem` that there is indeed such a location $\ell$.
 
 \medskip
 Therefore, solving one-player parity vector games boils down to
@@ -218,7 +218,7 @@ time {cite}`Kosaraju&Sullivan:1988`.
 \begin{scope}
 Let us start with a relaxed problem: we call a
 multi-cycle a non-empty finite set of cycles $\Pi$ and let
-$w(\Pi)  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=}\sum_{\pi\in\Pi} w(\pi)$ be its weight; we write
+$w(\Pi)  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=}\sum_{\pi\in\Pi} w(\pi)$ be its weight; we write
 $t\in\Pi$ if $t\in\pi$ for some $\pi\in\Pi$.
 Let $M\in 2^{ A}$ be a set of `mandatory' subsets of actions and
 $F\subseteq A$ a set of `forbidden' actions.  Then we say that
@@ -242,15 +242,16 @@ $t\not\in\Pi$.  We use the same terminology for a single cycle $\pi$.
 
   We reduce the problem to solving a linear program.  For a
   location $\ell$, let
-  $\mathrm{in}( \ell)  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=}\{( \ell'\step{\vec u} \ell)\in A\mid
+  $\mathrm{in}( \ell)  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=}\{( \ell'\step{\vec u} \ell)\in A\mid
    \ell'\in \?L\}$
   and
-  $\mathrm{out}( \ell)  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=}\{( \ell\step{\vec u} \ell')\in A\mid
+  $\mathrm{out}( \ell)  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=}\{( \ell\step{\vec u} \ell')\in A\mid
    \ell'\in \?L\}$ be its sets of incoming and outgoing actions.  The
   linear program has a variable $x_a$ for each action $a\in A$,
   which represents the number of times the action $a$ occurs in
   the multi-cycle.  It consists of the following contraints:
-  ```{math}
+  
+$$
 
     \forall \ell&\in \?L,&\sum_{a\in\mathrm{in}( \ell)}x_a&=\sum_{a\in\mathrm{out}( \ell)}x_a\;,\tag{multi-cycle}\\
     \forall a&\in A,&x_a&\geq 0\;,\tag{non-negative uses}\\
@@ -261,7 +262,8 @@ $t\not\in\Pi$.  We use the same terminology for a single cycle $\pi$.
                                                in $M$ is used}\\
     \forall a&\in F,&x_a&= 0\;.\tag{no forbidden actions}
   
-```
+$$
+
   As solving a linear program is in polynomial time {cite}``\todoquestion{agree
   on a ref with Chapter {ref}`8-chap:signal`?}, the result follows.
 
@@ -313,7 +315,7 @@ $\text{cycle}(\?V,M,F)$
 
 It remains to see how to compute the partition $\?L/{\sim}$. Consider
 for this the set of actions
-$A'  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=}\{a\mid\exists\Pi\text{ a non-negative multi-cycle
+$A'  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=}\{a\mid\exists\Pi\text{ a non-negative multi-cycle
   suitable for $(M,F)$ with $a\in\Pi$}\}$ and
 $\?V'=( \?L', A', k)$ the subsystem induced by $A'$.
 \begin{claim}
@@ -338,11 +340,11 @@ $\?V'=( \?L', A', k)$ the subsystem induced by $A'$.
   $a=( \ell''\step{\vec u} \ell')\in A'$ for some $\vec u$.  By
   induction hypothesis, $\ell\sim \ell''$ and since $a\in A'$,
   $\ell''\sim \ell'$, thus $\ell\sim \ell'$ by transitivity shown
-  in \cref{11-cl:sim}. 
+  in {prf:ref}`11-cl:sim`. 
 
 ````
 
-By \cref{11-cl:part}, the equivalence classes of $\sim$ are the
+By {prf:ref}`11-cl:part`, the equivalence classes of $\sim$ are the
 strongly connected components of $\?V'$.  This yields the following
 polynomial time algorithm for computing $\?L/{\sim}$.
 
@@ -352,7 +354,7 @@ polynomial time algorithm for computing $\?L/{\sim}$.
 $\text{partition}(\?V,M,F)$
 ```
 
-Together,  {prf:ref}`11-lem:zmulticycle`
+Together, {prf:ref}`11-lem:zmulticycle`
 and {numref}`11-algo:part,11-algo:zcycle` yield the following.
 
 ````{prf:lemma} Polynomial-time detection of suitable non-negative cycles
@@ -371,7 +373,7 @@ parity@parity vector games in vector addition systems with states.
 ````{prf:theorem} Existential one-player parity vector games are in \P
 :label: 11-thm:zcycle
 
-  Whether  \textrm{Eve}\ wins a one-player parity vector game with
+  Whether  Eve\ wins a one-player parity vector game with
   existential initial credit is in \P.
 
 ````
@@ -384,10 +386,10 @@ parity@parity vector games in vector addition systems with states.
   $\ell_0\in \?L$ an initial location.  We start by trimming $\?V$ to
   only keep the locations reachable from $\ell_0$ in the underlying
   directed graph.  Then, for every even priority $p\in\{1,\dots,d\}$,
-  we use  {prf:ref}`11-lem:zcycle` to check for the existence of a
+  we use {prf:ref}`11-lem:zcycle` to check for the existence of a
   non-negative cycle with maximal priority $p$: it suffices for this
-  to set $M  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=}\{ \mathrm{lcol}^{-1}(p)\}$ and
-  $F  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=} \mathrm{lcol}^{-1}(\{p+1,\dots,d\})$.
+  to set $M  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=}\{ \mathrm{lcol}^{-1}(p)\}$ and
+  $F  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=} \mathrm{lcol}^{-1}(\{p+1,\dots,d\})$.
 
 ````
 
@@ -397,7 +399,7 @@ parity@parity vector games in vector addition systems with states.
 
 We are now equipped to prove our upper bounds.  We begin with a nearly
 trivial case.  In a coverability asymmetric vector game with
-existential initial credit, the counters play no role at all:  \textrm{Eve}\ 
+existential initial credit, the counters play no role at all:  Eve\ 
 has a winning strategy for some initial credit in the vector game if
 and only if she has one to reach the target location $\ell_f$ in the
 finite game played over $\?L$ and edges $( \ell, \ell')$ whenever
@@ -413,26 +415,26 @@ coverability asymmetric vector games are quite easy to solve.
 ````
 
 Regarding non-termination and parity@parity vector game, we
-exploit  {prf:ref}`11-lem:counterless,11-thm:zcycle`.
+exploit {prf:ref}`11-lem:counterless` and {prf:ref}`11-thm:zcycle`.
 
-````{prf:theorem} Existential parity asymmetric vector games are in  \textrm{coNP}
+````{prf:theorem} Existential parity asymmetric vector games are in  coNP
 :label: 11-th:exist-easy
 
   Non-termination and parity@parity vector game asymmetric
-  vector games with existential initial credit are in  \textrm{coNP}.
+  vector games with existential initial credit are in  coNP.
 
 ````
 
 ````{admonition} Proof
 :class: dropdown tip
 
-  By \cref{11-rk:nonterm2parity}, it suffices to prove the statement for
-  parity@parity vector games games.  By  {prf:ref}`11-lem:counterless`,
-  if  \textrm{Adam}\ wins the game, we can guess a counterless winning
+  By {prf:ref}`11-rk:nonterm2parity`, it suffices to prove the statement for
+  parity@parity vector games games.  By {prf:ref}`11-lem:counterless`,
+  if  Adam\ wins the game, we can guess a counterless winning
   strategy $\tau$ telling which action to choose for every location.
-  This strategy yields a one-player game, and by  {prf:ref}`11-thm:zcycle`
+  This strategy yields a one-player game, and by {prf:ref}`11-thm:zcycle`
   we can check in polynomial time that $\tau$ was indeed winning
-  for  \textrm{Adam}.
+  for  Adam.
 
 ````
 
@@ -454,12 +456,12 @@ can simply apply the results of Section {ref}`11-sec:bounding`.
   Consider an asymmetric vector system
   $\?V=( \?L, A, \?L_\mathrm{Eve}, \?L_\mathrm{Adam}, k)$ and a location
   colouring $\mathrm{lcol}{:}\, \?L\to\{1,\dots,2d\}$.
-  By  {prf:ref}`11-lem:parity2bounding`, the parity vector game with
+  By {prf:ref}`11-lem:parity2bounding`, the parity vector game with
   existential initial credit over $\?V$ problem reduces to a
   bounding game with existential initial credit over a "vector
   system" $\?V'=( \?L', A', \?L'_\mathrm{Eve}, \?L'_\mathrm{Adam}, k+d)$ where
   $\?L'\in O(| \?L|)$ and $\| A'\|=\| A\|$.
-  By \cref{11-th:bounding}, it suffices to consider the case of a
+  By {prf:ref}`11-th:bounding`, it suffices to consider the case of a
   non-termination game with existential initial credit played over
   the bounded semantics $\mathcal{A}_B(\?V')$ where $B$ is in
   $(| \?L'|\cdot\| A'\|)^{O( k+d)^3}$.  Such a game can be solved in
@@ -478,7 +480,7 @@ can simply apply the results of Section {ref}`11-sec:bounding`.
 
   Coverability, non-termination, and parity@parity vector game
   asymmetric vector games with given initial credit are in
-   \textrm{kEXP}[2].  If the dimension is fixed, they are in  \textrm{EXP}, and if the
+   kEXP[2].  If the dimension is fixed, they are in  EXP, and if the
   number of priorities is also fixed, they are in pseudo-polynomial
   time.
 
@@ -493,50 +495,56 @@ shown in Section {ref}`11-sec:up` are tight.
 ### Existential Initial Credit
 
 In the existential initial credit variant of our games, we have the
-following lower bound matching \cref{11-th:exist-easy}, already with a
+following lower bound matching {prf:ref}`11-th:exist-easy`, already with a
 unary encoding.
 
-````{prf:theorem} Existential non-termination asymmetric vector games are  \textrm{coNP}-hard
+````{prf:theorem} Existential non-termination asymmetric vector games are  coNP-hard
 :label: 11-th:exist-hard
 
   Non-termination, and parity@parity vector game
   asymmetric vector games with existential initial credit are
-   \textrm{coNP}-hard.% in any dimension $k\geq 2$.
+   coNP-hard.% in any dimension $k\geq 2$.
 
 ````
 
 ````{admonition} Proof
 :class: dropdown tip
 
-  By \cref{11-rk:nonterm2parity}, it suffices to show hardness for
+  By {prf:ref}`11-rk:nonterm2parity`, it suffices to show hardness for
   non-termination games.  We reduce from the \lang{3SAT} problem:
   given a formula $\varphi=\bigwedge_{1\leq i\leq m}C_i$ where each
   clause $C_i$ is a disjonction of the form
   $\ell_{i,1}\vee  \ell_{i,2}\vee  \ell_{i,3}$ of literals taken from
   $X=\{x_1,\neg x_1,x_2,$ $\neg x_2,\dots,x_k,\neg x_k\}$, we construct
-  an asymmetric vector system $\?V$ where  \textrm{Eve}\ wins the
+  an asymmetric vector system $\?V$ where  Eve\ wins the
   non-termination game with existential initial credit if and only
   if $\varphi$ is not satisfiable; since the game is determined, we
-  actually show that  \textrm{Adam}\ wins the game if and only if $\varphi$ is
+  actually show that  Adam\ wins the game if and only if $\varphi$ is
   satisfiable.
 
   Our vector system has dimension $2k$, and for a literal
   $\ell\in X$, we define the vector
-  ```{math}\n
-    \vec u_\ell  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=}\begin{cases}
+  
+$$
+
+    \vec u_\ell  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=}\begin{cases}
       \vec e_{2n-1}-\vec e_{2n}&\text{if }  \ell=x_n\;,\\
       \vec e_{2n}-\vec e_{2n-1}&\text{if }  \ell=\neg x_n\;.
     \end{cases}
-  \\n```
-  We define $\?V  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=}( \?L, A, \?L_\mathrm{Eve}, \?L_\mathrm{Adam},2k)$ where
-  ```{math}
-
-     \?L_\mathrm{Eve}&  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=}\{\varphi\}\cup\{  \ell_{i,j}\mid 1\leq i\leq m,1\leq j\leq
-                3\}\;,\\
-     \?L_\mathrm{Adam}&  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=}\{C_i\mid 1\leq i\leq m\}\;,\\
-     A&  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=}\{\varphi\step{\vec 0}C_i\mid 1\leq i\leq m\}\cup\{C_i\step{\vec 0}  \ell_{i,j},\;\;  \ell_{i,j}\xrightarrow{\vec u_{  \ell_{i,j}}}\varphi\mid 1\leq i\leq m,1\leq j\leq 3\}\;.
   
-```
+$$
+
+  We define $\?V  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=}( \?L, A, \?L_\mathrm{Eve}, \?L_\mathrm{Adam},2k)$ where
+  
+$$
+
+     \?L_\mathrm{Eve}&  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=}\{\varphi\}\cup\{  \ell_{i,j}\mid 1\leq i\leq m,1\leq j\leq
+                3\}\;,\\
+     \?L_\mathrm{Adam}&  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=}\{C_i\mid 1\leq i\leq m\}\;,\\
+     A&  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=}\{\varphi\step{\vec 0}C_i\mid 1\leq i\leq m\}\cup\{C_i\step{\vec 0}  \ell_{i,j},\;\;  \ell_{i,j}\xrightarrow{\vec u_{  \ell_{i,j}}}\varphi\mid 1\leq i\leq m,1\leq j\leq 3\}\;.
+  
+$$
+
   \begin{scope}
     We use $\varphi$ as our initial location.
             
@@ -548,7 +556,7 @@ unary encoding.
     non-conflicting literal assignment $v$ that satisfies all the
     clauses: for each $1\leq i\leq m$, there exists $1\leq j\leq 3$
     such that $v(  \ell_{i,j})=1$; this yields a counterless strategy
-    for  \textrm{Adam}, which selects $(C_i,  \ell_{i,j})$ for each
+    for  Adam, which selects $(C_i,  \ell_{i,j})$ for each
     $1\leq i\leq m$.  Consider any infinite play consistent with
     this strategy.  This play only visits literals $\ell$ where
     $v(  \ell)=1$.  There exists a literal $\ell\in X$ that is visited
@@ -560,8 +568,8 @@ unary encoding.
     component $2n$.  Hence the play is losing from any initial credit.
 
     Conversely, assume that $\varphi$ is not satisfiable.  By
-    contradiction, assume that  \textrm{Adam}\ wins the game for all initial
-    credits.  By  {prf:ref}`11-lem:counterless`, he has a counterless winning
+    contradiction, assume that  Adam\ wins the game for all initial
+    credits.  By {prf:ref}`11-lem:counterless`, he has a counterless winning
     strategy $\tau$ that selects a literal in every clause.  Consider
     a literal assignment that maps each one of the selected literals
     to $1$ and the remaining ones in a non-conflicting manner.  By
@@ -569,7 +577,7 @@ unary encoding.
     but because $\varphi$ is not satisfiable, it is conflicting:
     necessarily, there exist $1\leq n\leq k$ and $1\leq i,i'\leq m$,
     such that $\tau$ selects $x_n$ in $C_i$ and $\neg x_n$ in
-    $C_{i'}$.  But this yields a winning strategy for  \textrm{Eve}, which
+    $C_{i'}$.  But this yields a winning strategy for  Eve, which
     alternates in the initial location $\varphi$ between $C_{i}$
     and $C_{i'}$, and for which an initial credit
     $\vec e_{2n-1}+\vec e_{2n}$ suffices: a contradiction.
@@ -577,25 +585,25 @@ unary encoding.
 
 ````
 
-Note that \cref{11-th:exist-hard} does not apply to fixed dimensions
-$k\geq 2$.  We know by \cref{11-cor:exist-pseudop} that those games can
+Note that {prf:ref}`11-th:exist-hard` does not apply to fixed dimensions
+$k\geq 2$.  We know by {prf:ref}`11-cor:exist-pseudop` that those games can
 be solved in pseudo-polynomial time if the number of priorities is
-fixed, and by \cref{11-th:exist-easy} that they are in  \textrm{coNP}.
+fixed, and by {prf:ref}`11-th:exist-easy` that they are in  coNP.
 
 ### Given Initial Credit
 
 With given initial credit, we have a lower bound matching the
- \textrm{kEXP}[2] upper bound of \cref{11-th:avag-easy}, already with a unary
+ kEXP[2] upper bound of {prf:ref}`11-th:avag-easy`, already with a unary
 encoding.  The proof itself is an adaptation of the proof by
-\citem[Lipton]{Lipton:1976} of  \textrm{EXPSPACE}-hardness of coverability in
+\citem[Lipton]{Lipton:1976} of  EXPSPACE-hardness of coverability in
 the one-player case.
 
-````{prf:theorem} Coverability and non-termination asymmetric vector games are { \textrm{kEXP}[2]-hard}
+````{prf:theorem} Coverability and non-termination asymmetric vector games are { kEXP[2]-hard}
 :label: 11-th:avag-hard
 
   Coverability, non-termination, and parity@parity vector game
   asymmetric vector games with given initial credit are
-   \textrm{kEXP}[2]-hard.
+   kEXP[2]-hard.
 
 ````
 
@@ -604,21 +612,21 @@ the one-player case.
 
   We reduce from the halting problem of an alternating Minsky
   machine $\?M=( \?L, A, \?L_\mathrm{Eve}, \?L_\mathrm{Adam}, k)$ with counters
-  bounded by $B  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=} 2^{2^n}$ for $n  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{\textrm{def}}}}{=}|\?M|$.  Such a machine is
+  bounded by $B  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=} 2^{2^n}$ for $n  \stackrel{\!\,\!\,\raisebox{-.15ex}{\scalebox{.5}{def}}}{=}|\?M|$.  Such a machine is
   similar to an asymmetric vector system with increments
   $\ell\step{\vec e_i} \ell'$, decrements $\ell\step{-\vec e_i} \ell'$,
   and zero test actions $\ell\step{i\eqby?0} \ell'$, all
   restricted to locations $\ell\in \?L_\mathrm{Eve}$; the only actions
-  available to  \textrm{Adam}\ are actions $\ell\step{\vec 0} \ell'$.  The
+  available to  Adam\ are actions $\ell\step{\vec 0} \ell'$.  The
   set of locations contains a distinguished `halt' location
   $\ell_\mathtt{halt}\in \?L$ with no outgoing action.  The
   machine comes with the promise that, along any play, the norm of
   all the visited configurations $\ell(\vec v)$ satisfies
   $\|\vec v\|<B$.  The halting problem asks, given an initial
-  location $\ell_0\in \?L$, whether  \textrm{Eve}\ has a winning strategy to
+  location $\ell_0\in \?L$, whether  Eve\ has a winning strategy to
   visit $\ell_\mathtt{halt}(\vec v)$ for some $\vec v\in\+N^ k$ from
   the initial configuration $\ell_0(\vec 0)$.  This problem is
-   \textrm{kEXP}[2]-complete if $k\geq 3$ by standard
+   kEXP[2]-complete if $k\geq 3$ by standard
   arguments {cite}`Fischer&Meyer&Rosenberg:1968`.
 
             by a quick refresher on Lipton's construction {cite}`Lipton:1976`;
@@ -677,7 +685,7 @@ A naive implementation of the
 
   \bigskip Let us return to the proof.  Consider an instance of the
   halting problem.  We first exhibit a reduction to coverability;
-  by \cref{11-rk:cov2parity}, this will also entail the  \textrm{kEXP}[2]-hardness
+  by {prf:ref}`11-rk:cov2parity`, this will also entail the  kEXP[2]-hardness
   of parity@parity vector game asymmetric vector games.  We
   build an asymmetric vector system
   $\?V=( \?L', A', \?L'_\mathrm{Eve}, \?L_\mathrm{Adam}, k')$ with
@@ -692,8 +700,8 @@ A naive implementation of the
   $1\leq i\leq k$, before starting the simulation by an action
   $\ell'_k\step{\vec 0} \ell_0$.  The simulation of $\?M$ uses the
   actions depicted in {numref}`11-fig:lipton`.  Those maintain the
-  invariant on the complement counters.  Regarding zero tests,  \textrm{Eve}\ 
-  yields the control to  \textrm{Adam}, who has a choice between performing a
+  invariant on the complement counters.  Regarding zero tests,  Eve\ 
+  yields the control to  Adam, who has a choice between performing a
   meta-decrement that will fail if $\bar{\mathtt c}_i< 2^{2^n}$,
   which by the invariant is if and only if $\mathtt{c}_i>0$, or going
   to $\ell'$.
@@ -702,16 +710,16 @@ A naive implementation of the
 :name: 11-fig:lipton
 :align: center
 Schema of the reduction to
-      coverability in the proof of \cref{11-th:avag-hard}.
+      coverability in the proof of {prf:ref}`11-th:avag-hard`.
 ```
   
-  It is hopefully clear that  \textrm{Eve}\ wins the coverability game played
+  It is hopefully clear that  Eve\ wins the coverability game played
   on $\?V$ starting from $\ell'_0(\vec 0)$ and with target
   configuration $\ell_\mathtt{halt}(\vec 0)$ if and only if the
   alternating Minsky machine halts.
 
   \medskip Regarding non-termination games, we use essentially the
-  same reduction.  First observe that, if  \textrm{Eve}\ can ensure reaching
+  same reduction.  First observe that, if  Eve\ can ensure reaching
   $\ell_\mathtt{halt}$ in the alternating Minsky machine, then she
   can do so after at most $| \?L|B^ k$ steps.  We therefore use a
   `time budget': this is an additional component in $\?V$ with
@@ -726,7 +734,7 @@ Schema of the reduction to
 :name: 11-fig:lipton-nonterm
 :align: center
 Schema of the reduction to
-      non-termination in the proof of \cref{11-th:avag-hard}.
+      non-termination in the proof of {prf:ref}`11-th:avag-hard`.
 ```
 
   We still need to extend our initialisation phase.  It suffices for
@@ -740,19 +748,19 @@ Schema of the reduction to
 
 ````
 
-The proof of \cref{11-th:avag-hard} relies crucially on the fact that the
+The proof of {prf:ref}`11-th:avag-hard` relies crucially on the fact that the
 dimension is not fixed: although $k\geq 3$ suffices in the
 alternating Minsky machine, we need $O(|\?M|)$ additional counters
 to carry out the reduction.  A separate argument is thus needed in
-order to match the  \textrm{EXP}\ upper bound of \cref{11-th:avag-easy} in fixed
+order to match the  EXP\ upper bound of {prf:ref}`11-th:avag-easy` in fixed
 dimension.
 
-````{prf:theorem} Fixed-dimensional coverability and non-termination asymmetric vector games are  \textrm{EXP}-hard
+````{prf:theorem} Fixed-dimensional coverability and non-termination asymmetric vector games are  EXP-hard
 :label: 11-th:avag-two
 
   Coverability, non-termination, and parity@parity vector game
   asymmetric vector games with given initial credit are
-   \textrm{EXP}-hard in dimension $k\geq 2$.
+   EXP-hard in dimension $k\geq 2$.
 
 ````
 
@@ -760,17 +768,17 @@ dimension.
 :class: dropdown tip
 
   We exhibit a reduction from countdown games with "given initial
-  credit", which are  \textrm{EXP}-complete by \cref{11-th:countdown-given}.
+  credit", which are  EXP-complete by {prf:ref}`11-th:countdown-given`.
   Consider an instance of a configuration reachability countdown
   game: a countdown system
   $\?V=( \?L, A, \?L_\mathrm{Eve}, \?L_\mathrm{Adam},1)$ with initial
   configuration $\ell_0(n_0)$ and target
   configuration $\smiley(0)$---as seen in the proof
-  of \cref{11-th:countdown-given}, we can indeed assume that the target
-  credit is zero; we will also assume that  \textrm{Eve}\ controls $\smiley$ and
+  of {prf:ref}`11-th:countdown-given`, we can indeed assume that the target
+  credit is zero; we will also assume that  Eve\ controls $\smiley$ and
   that the only action available in $\smiley$ is
   $\smiley\step{-1}\smiley$.  We construct an asymmetric "vector
-  system" $\?V'$ of dimension 2 such that  \textrm{Eve}\ can ensure
+  system" $\?V'$ of dimension 2 such that  Eve\ can ensure
   reaching $\smiley(0,n_0)$ from $\ell_0(n_0,0)$ in $\?V'$ if and only
   if she could ensure reaching $\smiley(0)$ from $\ell_0(n_0)$
   in $\?V$.  The translation is depicted in {numref}`11-fig:dim2`.
@@ -779,29 +787,29 @@ dimension.
 :name: 11-fig:dim2
 :align: center
 Schema of the reduction in the proof
-    of \cref{11-th:avag-two}.
+    of {prf:ref}`11-th:avag-two`.
 ```
     
   The idea behind this translation is that a configuration $\ell(c)$
   of $\?V$ is simulated by a configuration $\ell(c,n_0-c)$ in $\?V'$.
-  The crucial point is how to handle  \textrm{Adam}'s moves.  In a
+  The crucial point is how to handle  Adam's moves.  In a
   configuration $\ell(c,n_0-c)$ with $\ell\in \?L_\mathrm{Adam}$, according
-  to the natural semantics of $\?V$,  \textrm{Adam}\ should be able to
+  to the natural semantics of $\?V$,  Adam\ should be able to
   simulate an action $\ell\step{-n} \ell'$ if and only if $c\geq n$.
-  Observe that otherwise if $c<n$ and thus $n_0-c>n_0-n$,  \textrm{Eve}\ can
+  Observe that otherwise if $c<n$ and thus $n_0-c>n_0-n$,  Eve\ can
   play to reach $\smiley$ and win immediately.  An exception to the
   above is if $n$ is minimal among the decrements in $\ell$, because
   according to the natural semantics of $\?V$, if $c<n$ there should
   be an edge to the sink, and this is handled in the second line
   of {numref}`11-fig:dim2`.
 
-  Then  \textrm{Eve}\ can reach $\smiley(0,n_0)$ if and only if she can cover
+  Then  Eve\ can reach $\smiley(0,n_0)$ if and only if she can cover
   $\smiley(0,n_0)$, if and only if she can avoid the sink thanks to
   the self loop $\smiley\step{0,0}\smiley$.  This
-  shows the  \textrm{EXP}-hardness of coverability and non-termination
+  shows the  EXP-hardness of coverability and non-termination
   asymmetric vector games in dimension two; the hardness of
   parity@parity vector game follows
-  from \cref{11-rk:cov2parity,11-rk:nonterm2parity}.
+  from {prf:ref}`11-rk:cov2parity` and {prf:ref}`11-rk:nonterm2parity`.
 
 ````
 

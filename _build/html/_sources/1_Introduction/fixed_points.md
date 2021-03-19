@@ -65,7 +65,7 @@ replacing inflationary by deflationary and preserves suprema by preserves infima
 The typical example of a complete lattice and one that we will use often in this book is the powerset of a set equipped with the inclusion between subsets. The least element is the empty set, the greatest element the full set, and least and greatest upper bounds are given by union and intersection.
 An example of an infinite complete lattice is $\mathbb{R} \cup  \left\{ \pm \infty \right\}$ equipped with the natural order.
 
-We state a variant of  {prf:ref}`1-thm:kleene` for a set of operators $\mathbb{O}_i : X \to X$ for $i \in I$.
+We state a variant of {prf:ref}`1-thm:kleene` for a set of operators $\mathbb{O}_i : X \to X$ for $i \in I$.
 Naturally we say that $x \in X$ is a fixed point of the set of operators $( \mathbb{O}_i)_{i \in I}$ if for all $i \in I$ we have $\mathbb{O}_i(x) = x$.
 
 ````{prf:theorem} Kleene fixed point theorem for a finite lattice and a set of operators

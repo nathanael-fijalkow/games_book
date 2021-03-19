@@ -16,9 +16,9 @@ We have indeed reduced the quantitative analysis of all kinds of stochastic game
   A stochastic arena $\mathcal{A} = ( V,E,\delta)$ is said to be
   **simple** if
   
-  *  $V$ contains two sink vertices $v_{ \textrm{Eve}}$ and $v_{ \textrm{Adam}}$;
+  *  $V$ contains two sink vertices $v_{ Eve}$ and $v_{ Adam}$;
   *  every non-sink vertex
-    $v \in  V \setminus \{v_{ \textrm{Eve}},v_{ \textrm{Adam}}\}$ has two
+    $v \in  V \setminus \{v_{ Eve},v_{ Adam}\}$ has two
     successors;
   *  every random vertex $v \in   V_{\text{Rand}}$ is an
     **average vertex**, that is, for every vertex
@@ -28,9 +28,9 @@ We have indeed reduced the quantitative analysis of all kinds of stochastic game
   A stochastic arena $\mathcal{A} = ( V,E,\delta)$ is said to be
   **simple** if
   
-  *  $V$ contains two sink vertices $v_{ \textrm{Eve}}$ and $v_{ \textrm{Adam}}$;
+  *  $V$ contains two sink vertices $v_{ Eve}$ and $v_{ Adam}$;
   *  every non-sink vertex
-    $v \in  V \setminus \{v_{ \textrm{Eve}},v_{ \textrm{Adam}}\}$ has two
+    $v \in  V \setminus \{v_{ Eve},v_{ Adam}\}$ has two
     successors;
   *  every random vertex $v \in   V_{\text{Rand}}$ is an
     **average vertex**, that is, for every vertex
@@ -40,7 +40,7 @@ We have indeed reduced the quantitative analysis of all kinds of stochastic game
 ````
 
 With a simple stochastic arena is naturally associated the
-reachability objective $\mathtt{Reach}(\{v_{ \textrm{Eve}}\})$. The resulting game is
+reachability objective $\mathtt{Reach}(\{v_{ Eve}\})$. The resulting game is
 called a **simple stochastic game**.
 
 ````{prf:proposition} NEEDS TITLE AND LABEL 
@@ -58,8 +58,8 @@ More precisely,
 :class: dropdown tip
 
   Let $\mathcal{A} = ( V,E,\delta)$ be an arbitrary stochastic
-  arena. First of all, all vertices in $\textrm{Win}$ are merged into a single
-  sink vertex $v_\textrm{Eve}$.
+  arena. First of all, all vertices in $Win$ are merged into a single
+  sink vertex $v_Eve$.
 
   Assume $v \in   V_{\text{Rand}}$ is a random vertex with $k$ outgoing
   edges, with probabilities $p_1, \cdots, p_k$, leading respectively
@@ -114,11 +114,11 @@ From binary random vertices to average ones.
 ````{prf:definition} NEEDS TITLE AND LABEL 
   A simple stochastic game is **stopping** if for every vertex
   $v \in  V$ and under every \nat{pure positional} strategy profile
-  $(\sigma,\tau)$, $\mathbb{P}_{\sigma,\tau}^v( \mathtt{Reach}(\{v_\textrm{Eve},v_\textrm{Adam}\})) >0$.
+  $(\sigma,\tau)$, $\mathbb{P}_{\sigma,\tau}^v( \mathtt{Reach}(\{v_Eve,v_Adam\})) >0$.
 
   A simple stochastic game is **stopping** if for every vertex
   $v \in  V$ and under every \nat{pure positional} strategy profile
-  $(\sigma,\tau)$, $\mathbb{P}_{\sigma,\tau}^v( \mathtt{Reach}(\{v_\textrm{Eve},v_\textrm{Adam}\})) >0$.
+  $(\sigma,\tau)$, $\mathbb{P}_{\sigma,\tau}^v( \mathtt{Reach}(\{v_Eve,v_Adam\})) >0$.
 
 ````
 
@@ -155,10 +155,10 @@ the game, and strategies achieving these values.
 
 The algorithm focuses on the role of random vertices in the game, and
 is based on the fact that amongst two random vertices, one of them is
-likely to be better for  \textrm{Eve}, while the other will be better for  \textrm{Adam}
+likely to be better for  Eve, while the other will be better for  Adam
 (or they are equally good). We will start proving a strategy
 enumeration algorithm, where, given a permutation of the set of random
-vertices, one computes adequate strategies for  \textrm{Eve} and  \textrm{Adam}; under
+vertices, one computes adequate strategies for  Eve and  Adam; under
 some assumptions on the permutation (liveness and self-consistency),
 those strategies will be provably optimal. We will show that there
 will be some live and self-consistent permutation, implying the
@@ -174,15 +174,15 @@ conclude with the strategy improvement algorithm
 ### Computing almost-sure winning or almost-sure losing states
 
 The algorithms we will present assume that games are
-**normalized**, that is, there is a unique vertex denoted $\ensuremath{v_{win}}$
-(resp. $\ensuremath{v_{lose}}$) with value $1$ (resp. $0$).  This is without loss of
+**normalized**, that is, there is a unique vertex denoted $v_{win}$
+(resp. $v_{lose}$) with value $1$ (resp. $0$).  This is without loss of
 generality since:
 
 *  vertices with value $1$ (resp. $0$) can be computed in
   polynomial time;
 *  all vertices with value $1$ (resp. $0$) can be replaced by a
-  single sink vertex $\ensuremath{v_{win}}$ (resp. $\ensuremath{v_{lose}}$);
-*  the target reachability state is set to $\ensuremath{v_{win}}$.
+  single sink vertex $v_{win}$ (resp. $v_{lose}$);
+*  the target reachability state is set to $v_{win}$.
 
 The only point that we will discuss is the first item above. General
 transformations assigning a non-stochastic parity game to each
@@ -193,16 +193,16 @@ games that we are focusing on, and we briefly describe the
 construction here, inspired by {cite}`paulin-nathalie`:
 
 *  For computing vertices with value $1$: replace a random vertex
-  $v$ with an  \textrm{Adam} vertex $v_A$ and an  \textrm{Eve} vertex $v_E$. Any edge
+  $v$ with an  Adam vertex $v_A$ and an  Eve vertex $v_E$. Any edge
   going to $v$ in the original game will go to $v_A$; there will be an
   edge $v_A \to v_E$ with priority $1$; if $v \to v'$ in the original
   game, then $v_A \to v'$ with priority $2$ in the new game, and $v_E
   \to v'$ with priority $1$ in the new game. We add a selfloop over
-  $\textrm{Win}$ with priority $2$. Then, a vertex is almost-sure winning
+  $Win$ with priority $2$. Then, a vertex is almost-sure winning
   (that is, has value $1$) in the original game if and only if it is
   winning in the constructed non-stochastic parity game.
 *  For computing vertices with value $0$: give each random vertex
-  $v$ to  \textrm{Adam}. Then, a vertex has value $0$ in the original game if
+  $v$ to  Adam. Then, a vertex has value $0$ in the original game if
   and only if it is losing in the constructed non-stochastic parity
   game.
 
@@ -210,23 +210,23 @@ From now on, we assume that the game $\mathcal{G}$ is normalized.
 
 ### Permutation of random vertices
 
-Assume that from vertex $v$ belonging to  \textrm{Eve}, one can choose between
+Assume that from vertex $v$ belonging to  Eve, one can choose between
 two random vertices $v_1$ and $v_2$ such that the value of $v_1$ is
-larger than the value of $v_2$, then obviously  \textrm{Eve} should choose to
-go to $v_1$. The idea will then be for  \textrm{Eve} to target random vertices
+larger than the value of $v_2$, then obviously  Eve should choose to
+go to $v_1$. The idea will then be for  Eve to target random vertices
 with the largest possible values. We formalize this idea below
 
 We write $V_{\text{Rand}} = \{v_1,\ldots,v_k\}$.
 
 The idea will be to order random vertices in such a way that the
-higher is a random vertice (in the order), the better it is for  \textrm{Eve};
+higher is a random vertice (in the order), the better it is for  Eve;
 and conversely, the smaller is a random vertice (in the order), the
-worse it is for  \textrm{Adam}. We fix a permutation
+worse it is for  Adam. We fix a permutation
 $\pi:   V_{\text{Rand}} \to   V_{\text{Rand}}$, and abusively write
 $\pi_i =  \pi^{-1}(v_i)$, the $i$-th element in the order defined
 by $\pi$.
 
-We define the deterministic attractor operator $\ensuremath{**DetAtt**}$ as
+We define the deterministic attractor operator $**DetAtt**$ as
 follows. If $X \subseteq  V$, we define inductively the
 sequence $(X_i)_{i \ge 0}$ by:
 
@@ -245,7 +245,7 @@ $$
 The deterministic attractor of $X$ is then given by:
 
 $$
- \ensuremath{**DetAtt**}(X) = \lim_{i \to +\infty} X_i = \bigcup_{i =0}^{+\infty} X_i
+ **DetAtt**(X) = \lim_{i \to +\infty} X_i = \bigcup_{i =0}^{+\infty} X_i
 $$
 
 Note that since $V$ is finite, the sequence $(X_i)_{i \ge 0}$
@@ -259,42 +259,42 @@ order) as follows:
 $$
 \left\{
 \begin{array}{l}
-  W_\pi^{k+1}  = \{ \ensuremath{v_{win}}\} \\
+  W_\pi^{k+1}  = \{ v_{win}\} \\
   W_\pi^i =
-   \ensuremath{**DetAtt**}(\{ \pi_i,\ldots, \pi_k, \ensuremath{v_{win}}\}) \setminus \bigcup_{j=i+1}^{k+1}
+   **DetAtt**(\{ \pi_i,\ldots, \pi_k, v_{win}\}) \setminus \bigcup_{j=i+1}^{k+1}
   W_\pi^j\quad \forall 1 \le i \le k \\ 
-  W_\pi^0 = V \setminus \bigcup_{j=1}^{k+1} W_\pi^j = \{ \ensuremath{v_{lose}}\}
+  W_\pi^0 = V \setminus \bigcup_{j=1}^{k+1} W_\pi^j = \{ v_{lose}\}
 \end{array}
 \right.
 $$
 
 The last equality (for $W_\pi^0$) holds since (i) from vertices in
-$W_\pi^0$  \textrm{Adam} can enforce avoiding $V_{\text{Rand}} \cup
-\{ \ensuremath{v_{win}}\}$ (by determinacy of non-stochastic reachability games
+$W_\pi^0$  Adam can enforce avoiding $V_{\text{Rand}} \cup
+\{ v_{win}\}$ (by determinacy of non-stochastic reachability games
 \pat{ref to a previous chapter?}), yielding only losing outcomes, and
-(ii) $\ensuremath{v_{lose}}$ is the unique vertex with value $0$ (by
+(ii) $v_{lose}$ is the unique vertex with value $0$ (by
 assumption). Later, we will write $W_\pi^{\ge j}$ for
 $\bigcup_{i=j}^{k+1} W_\pi^i$.
 
 Given $\pi$ a permutation, we define strategies $\sigma_\pi$ (for
- \textrm{Eve}) and $\tau_\pi$ (for  \textrm{Adam}) such that on $W_\pi^i$:
+ Eve) and $\tau_\pi$ (for  Adam) such that on $W_\pi^i$:
 
 *  $\sigma_\pi$ is a pure and positional attractor strategy to
-  $\{ \pi_i,\ldots, \pi_k, \ensuremath{v_{win}}\}$;
+  $\{ \pi_i,\ldots, \pi_k, v_{win}\}$;
 *  $\tau_\pi$ is a pure and positional trapping strategy avoiding
-  $\{ \pi_{i+1},\ldots, \pi_k, \ensuremath{v_{win}}\}$.
+  $\{ \pi_{i+1},\ldots, \pi_k, v_{win}\}$.
 
 Those two strategies obviously exist: $\sigma_\pi$ exists by
 definition of the deterministic attractor, while $\tau_\pi$ exists
 by determinacy of reachability games (if a vertex is not winning for
- \textrm{Eve} for a reachability objective, then it is winning for  \textrm{Adam} for
+ Eve for a reachability objective, then it is winning for  Adam for
 the corresponding safety objective).
 
 We can then define for every $v \in  V$:
 
 $$
 \begin{array}{rcl}
-  \textrm{val}_\pi(v) &=&  \mathbb{P}_{\sigma_\pi,\tau_\pi}^v( \mathtt{Reach}( \textrm{Win}))
+  val_\pi(v) &=&  \mathbb{P}_{\sigma_\pi,\tau_\pi}^v( \mathtt{Reach}( Win))
 \end{array}
 $$
 
@@ -304,16 +304,11 @@ equations.
 The rest of this section is devoted to a proof of the following
 result, which uses only basic arguments:
 
-````{prf:theorem} NEEDS TITLE AND LABEL 
-  \label{6-thm:corr-strat-improv}
-  There is a permutation $\pi$ such that $\sigma_\pi$ is optimal
-  for  \textrm{Eve} and $\tau_\pi$ is optimal for  \textrm{Adam}. Given a permutation
-  $\pi$, we can check in polynomial time whether $\sigma_\pi$ and
-  $\tau_\pi$ are optimal.
+````{prf:theorem} NEEDS TITLE 6-thm:corr-strat-improv
+:label: 6-thm:corr-strat-improv
 
-  \label{6-thm:corr-strat-improv}
   There is a permutation $\pi$ such that $\sigma_\pi$ is optimal
-  for  \textrm{Eve} and $\tau_\pi$ is optimal for  \textrm{Adam}. Given a permutation
+  for  Eve and $\tau_\pi$ is optimal for  Adam. Given a permutation
   $\pi$, we can check in polynomial time whether $\sigma_\pi$ and
   $\tau_\pi$ are optimal.
 
@@ -329,11 +324,11 @@ games.
 We say that a permutation $\pi$ is **self-consistent** whenever:
 
 $$
-  \textrm{val}_\pi( \pi_1) \le   \textrm{val}_\pi( \pi_2) \le \ldots \le   \textrm{val}_\pi( \pi_k)
+  val_\pi( \pi_1) \le   val_\pi( \pi_2) \le \ldots \le   val_\pi( \pi_k)
 $$
 
 That is, the order given by $\pi$ coincides with the preference of
- \textrm{Eve}.
+ Eve.
 
 We say $\pi$ is **live** whenever for every $1 \le i \le k$:
 
@@ -343,7 +338,7 @@ $$
 
 That is, there is a direct move from $\pi_i$ to one of the vertices
 in larger attractors. In particular, with positive probability, one
-goes closer to $\ensuremath{v_{win}}$ and hence eventually reach $\ensuremath{v_{win}}$.
+goes closer to $v_{win}$ and hence eventually reach $v_{win}$.
 
 \medskip We will show that $\pi$-strategies associated with a live
 and self-consistent permutation $\pi$ are optimal for both players.
@@ -358,52 +353,30 @@ refine these properties to show that $\sigma_\pi$ and $\tau_\pi$
 are (local) best responses to each others, when the permutation is
 self-consistent.
 
-````{prf:lemma} NEEDS TITLE AND LABEL 
-  \label{stoch:lemma2}
+````{prf:lemma} NEEDS TITLE stoch:lemma2
+:label: stoch:lemma2
+
   We write (\ddag) for the assumption that $\pi$ is self-consistent.
   
-  1.  $\textrm{val}_\pi( \ensuremath{v_{lose}}) = 0$ and $\textrm{val}_\pi( \ensuremath{v_{win}}) = 1$;
+  1.  $val_\pi( v_{lose}) = 0$ and $val_\pi( v_{win}) = 1$;
   2.  for every $1 \le i \le k$, for every $v \in W_\pi^i$,
-    $\textrm{val}_\pi(v) =   \textrm{val}_\pi( \pi_i)$;
+    $val_\pi(v) =   val_\pi( \pi_i)$;
   3.  For every $v \in   V_\mathrm{Eve}$,
 
 $$
-      \textrm{val}_\pi(v) =   \textrm{val}_\pi(\sigma_\pi(v)) \stackrel{(\ddag)}{=}
-    \max_{w\ \text{s.t.}\ (v,w) \in E}   \textrm{val}_\pi(w)
+      val_\pi(v) =   val_\pi(\sigma_\pi(v)) \stackrel{(\ddag)}{=}
+    \max_{w\ \text{s.t.}\ (v,w) \in E}   val_\pi(w)
     $$
 
   4.  For every $v \in   V_\mathrm{Adam}$,
 
 $$
-      \textrm{val}_\pi(v) =   \textrm{val}_\pi(\tau_\pi(v)) \stackrel{(\ddag)}{=}
-    \min_{w\ \text{s.t.}\ (v,w) \in E}   \textrm{val}_\pi(w)
+      val_\pi(v) =   val_\pi(\tau_\pi(v)) \stackrel{(\ddag)}{=}
+    \min_{w\ \text{s.t.}\ (v,w) \in E}   val_\pi(w)
     $$
 
-  5.  For every $v \in   V_{\text{Rand}}$, $\textrm{val}_\pi(v) = \sum_{w\
-      \text{s.t.}\ (v,w) \in E} \delta(v)(w) \cdot   \textrm{val}_\pi(w)$.
-
-  \label{stoch:lemma2}
-  We write (\ddag) for the assumption that $\pi$ is self-consistent.
-  
-  1.  $\textrm{val}_\pi( \ensuremath{v_{lose}}) = 0$ and $\textrm{val}_\pi( \ensuremath{v_{win}}) = 1$;
-  2.  for every $1 \le i \le k$, for every $v \in W_\pi^i$,
-    $\textrm{val}_\pi(v) =   \textrm{val}_\pi( \pi_i)$;
-  3.  For every $v \in   V_\mathrm{Eve}$,
-
-$$
-      \textrm{val}_\pi(v) =   \textrm{val}_\pi(\sigma_\pi(v)) \stackrel{(\ddag)}{=}
-    \max_{w\ \text{s.t.}\ (v,w) \in E}   \textrm{val}_\pi(w)
-    $$
-
-  4.  For every $v \in   V_\mathrm{Adam}$,
-
-$$
-      \textrm{val}_\pi(v) =   \textrm{val}_\pi(\tau_\pi(v)) \stackrel{(\ddag)}{=}
-    \min_{w\ \text{s.t.}\ (v,w) \in E}   \textrm{val}_\pi(w)
-    $$
-
-  5.  For every $v \in   V_{\text{Rand}}$, $\textrm{val}_\pi(v) = \sum_{w\
-      \text{s.t.}\ (v,w) \in E} \delta(v)(w) \cdot   \textrm{val}_\pi(w)$.
+  5.  For every $v \in   V_{\text{Rand}}$, $val_\pi(v) = \sum_{w\
+      \text{s.t.}\ (v,w) \in E} \delta(v)(w) \cdot   val_\pi(w)$.
 
 ````
 
@@ -416,82 +389,75 @@ $$
   vertex, the strategy profile $(\sigma_\pi,\tau_\pi)$ generates a
   unique path. So we can speak of the first random vertex encountered
   from $v$ when applying $(\sigma_\pi,\tau_\pi)$. By definition of
-  $\sigma_\pi$ (attractor to $\{ \pi_i,\ldots, \pi_k, \ensuremath{v_{win}}\}$) and
+  $\sigma_\pi$ (attractor to $\{ \pi_i,\ldots, \pi_k, v_{win}\}$) and
   $\tau_\pi$ (trapping strategy avoiding
-  $\{ \pi_{i+1},\ldots, \pi_k, \ensuremath{v_{win}}\}$), this random vertex can only
+  $\{ \pi_{i+1},\ldots, \pi_k, v_{win}\}$), this random vertex can only
   be $\pi_i$. According values follow, proving the second item.
 
   Assume $v \in   V_\mathrm{Eve} \cap W_\pi^i$.  By definition of
   $\sigma_\pi$ (being an attractor strategy), $\sigma_\pi(v) \in
-  W_\pi^i \cup \{ \pi_i,\ldots, \pi_k, \ensuremath{v_{win}}\}$. Dually, since $v
+  W_\pi^i \cup \{ \pi_i,\ldots, \pi_k, v_{win}\}$. Dually, since $v
   \notin W_\pi^{\ge i+1}$, $\sigma_\pi(v) \notin
-  \{ \pi_{i+1},\ldots, \pi_k, \ensuremath{v_{win}}\}$. Hence, $\sigma_\pi(v) \in
+  \{ \pi_{i+1},\ldots, \pi_k, v_{win}\}$. Hence, $\sigma_\pi(v) \in
   W_\pi^i \cup \{ \pi_i\} = W_\pi^i$, and we get that
-  $\textrm{val}_\pi(v) =   \textrm{val}_\pi( \pi_i) =   \textrm{val}_\pi(\sigma_\pi(v))$.
+  $val_\pi(v) =   val_\pi( \pi_i) =   val_\pi(\sigma_\pi(v))$.
   Assume (towards a contradiction) that there is $w \in  V$
-  such that $(v,w) \in E$ and $\textrm{val}_\pi(w)>  \textrm{val}_\pi(v)$.  Since
-  $\textrm{val}_\pi(w) >   \textrm{val}_\pi(v) =   \textrm{val}_\pi( \pi_i)$, by
+  such that $(v,w) \in E$ and $val_\pi(w)>  val_\pi(v)$.  Since
+  $val_\pi(w) >   val_\pi(v) =   val_\pi( \pi_i)$, by
   self-consistence, it is the case that $w \in W_\pi^j$ with $j > i$
-  (with $\textrm{val}_\pi(w) =   \textrm{val}_\pi( \pi_j)$). But then, we can
-  deduce that $v \in  \ensuremath{**DetAtt**}(w) \subseteq
-   \ensuremath{**DetAtt**}(\{ \pi_j,\ldots, \pi_k, \ensuremath{v_{win}}\})$, which is not the case,
+  (with $val_\pi(w) =   val_\pi( \pi_j)$). But then, we can
+  deduce that $v \in  **DetAtt**(w) \subseteq
+   **DetAtt**(\{ \pi_j,\ldots, \pi_k, v_{win}\})$, which is not the case,
   since $v \notin W_\pi^{\ge i+1} \supseteq W_\pi^j$. There is
-  therefore a contradiction, and we can conclude that $\textrm{val}_\pi(v) =
-  \max_{w\ \text{s.t.}\ (v,w) \in E}   \textrm{val}_\pi(w)$.
+  therefore a contradiction, and we can conclude that $val_\pi(v) =
+  \max_{w\ \text{s.t.}\ (v,w) \in E}   val_\pi(w)$.
 
   Assume $v \in   V_\mathrm{Adam} \cap W_\pi^i$. By definition of
   $\sigma_\pi$ (being a trapping strategy), $\tau_\pi(v) \notin
-  \{ \pi_{i+1},\ldots, \pi_k, \ensuremath{v_{win}}\}$. However since $v \in
+  \{ \pi_{i+1},\ldots, \pi_k, v_{win}\}$. However since $v \in
   W_\pi^i$, we nevertheless have that $\tau_\pi(v) \in W_\pi^i
-  \cup \{ \pi_i,\ldots, \pi_k, \ensuremath{v_{win}}\}$, hence $\tau_\pi(v) \in
-  W_\pi^i \cup \{ \pi_i\} = W_\pi^i$. Hence $\textrm{val}_\pi(v) =
-    \textrm{val}_\pi( \pi_i) =   \textrm{val}_\pi(\tau_\pi(v))$.  Assume (towards a
+  \cup \{ \pi_i,\ldots, \pi_k, v_{win}\}$, hence $\tau_\pi(v) \in
+  W_\pi^i \cup \{ \pi_i\} = W_\pi^i$. Hence $val_\pi(v) =
+    val_\pi( \pi_i) =   val_\pi(\tau_\pi(v))$.  Assume (towards a
   contradiction) that there is $w \in  V$ such that $(v,w) \in
-  E$ and $\textrm{val}_\pi(w)<  \textrm{val}_\pi(v)$. As in the previous item, by
+  E$ and $val_\pi(w)<  val_\pi(v)$. As in the previous item, by
   self-consistence, $w \in W_\pi^j$ with $j<i$. But, $v$ can only be
   in a deterministic attractor if all its successors already are. This
   contradicts the fact that $w \in W_\pi^j$, hence $w \notin
   W_\pi^{\ge j+1} \supseteq W_\pi^i$. Hence, we conclude that
-  $\textrm{val}_\pi(v) = \min_{w\ \text{s.t.}\ (v,w) \in E}   \textrm{val}_\pi(w)$.
+  $val_\pi(v) = \min_{w\ \text{s.t.}\ (v,w) \in E}   val_\pi(w)$.
 
   The fifth item is straightforward hence omitted.  \qed
 
 ````
 
-As a consequence of  {prf:ref}`6-lem:lemma2`, we get that $\textrm{val}_\pi$
+As a consequence of {prf:ref}`6-lem:lemma2`, we get that $val_\pi$
 is a fixpoint of Bellman's equations, hence it is larger than (or
-equal to) the least fixpoint of Bellman's equations, that is $\textrm{val}^*$:
+equal to) the least fixpoint of Bellman's equations, that is $val^*$:
 
 ````{prf:corollary} NEEDS TITLE AND LABEL 
   Assume $\pi$ is self-consistent.  Then for every $v \in
-   V$, $\textrm{val}^*(v) \le   \textrm{val}_\pi(v)$.
+   V$, $val^*(v) \le   val_\pi(v)$.
 
   Assume $\pi$ is self-consistent.  Then for every $v \in
-   V$, $\textrm{val}^*(v) \le   \textrm{val}_\pi(v)$.
+   V$, $val^*(v) \le   val_\pi(v)$.
 
 ````
 
 The converse inequality is not true for general or self-consistent
 permutations, but will require the liveness property. One of the main
 advantages of a live permutation $\pi$ is that it induces a
-stopping MDP when  \textrm{Eve} plays according to $\sigma_\pi$:  \textrm{Adam}
-will not be able to prevent the game converging to $\ensuremath{v_{lose}}$ and $\ensuremath{v_{win}}$.
+stopping MDP when  Eve plays according to $\sigma_\pi$:  Adam
+will not be able to prevent the game converging to $v_{lose}$ and $v_{win}$.
 
-````{prf:lemma} NEEDS TITLE AND LABEL 
-  \label{stoch:lemma:stopping}
-  Let $\pi$ be a live permutation. Then, for every  \textrm{Adam}'s strategy
+````{prf:lemma} NEEDS TITLE stoch:lemma:stopping
+:label: stoch:lemma:stopping
+
+  Let $\pi$ be a live permutation. Then, for every  Adam's strategy
   $\tau$, for every vertex $v$:
 
 $$
-   \mathbb{P}^v_{\sigma_\pi,\tau} ( \mathtt{Reach}(\{ \ensuremath{v_{lose}}, \ensuremath{v_{win}}\})) = 1
-  $$
-
-  \label{stoch:lemma:stopping}
-  Let $\pi$ be a live permutation. Then, for every  \textrm{Adam}'s strategy
-  $\tau$, for every vertex $v$:
-
-$$
-   \mathbb{P}^v_{\sigma_\pi,\tau} ( \mathtt{Reach}(\{ \ensuremath{v_{lose}}, \ensuremath{v_{win}}\})) = 1
+   \mathbb{P}^v_{\sigma_\pi,\tau} ( \mathtt{Reach}(\{ v_{lose}, v_{win}\})) = 1
   $$
 
 ````
@@ -525,7 +491,7 @@ $$
 
 $$
    \mathbb{P}^v_{\sigma_\pi,\tau}\Big(\exists h < |W_\pi^i|\
-  \text{s.t.}\ V_{l+h} \in \{ \pi_i,\ldots, \pi_k, \ensuremath{v_{win}}\} \mid V_l
+  \text{s.t.}\ V_{l+h} \in \{ \pi_i,\ldots, \pi_k, v_{win}\} \mid V_l
   \in W_\pi^i\Big)=1
   $$
 
@@ -536,15 +502,15 @@ $$
   0$,
 
 $$
-   \mathbb{P}^v_{\sigma_\pi,\tau}\Big(V_{l+| V|}= \ensuremath{v_{win}} \mid V_l
-  \ne  \ensuremath{v_{lose}}\Big) \ge \alpha^k
+   \mathbb{P}^v_{\sigma_\pi,\tau}\Big(V_{l+| V|}= v_{win} \mid V_l
+  \ne  v_{lose}\Big) \ge \alpha^k
   $$
 
   which we can rewrite as:
 
 $$
    \mathbb{P}^v_{\sigma_\pi,\tau}\Big(\forall 0 \le l \le l' \le
-  l+| V|,\ V_{l'} \ne  \ensuremath{v_{win}} \mid V_l \ne  \ensuremath{v_{lose}}\Big) \le
+  l+| V|,\ V_{l'} \ne  v_{win} \mid V_l \ne  v_{lose}\Big) \le
   (1-\alpha^k)
   $$
 
@@ -552,21 +518,21 @@ $$
 
 $$
    \mathbb{P}^v_{\sigma_\pi,\tau}\Big(\forall l \le i \cdot | V|,\
-  V_{l} \ne  \ensuremath{v_{win}} \mid V_0 \ne  \ensuremath{v_{lose}}\Big) \le (1-\alpha^k)^i
+  V_{l} \ne  v_{win} \mid V_0 \ne  v_{lose}\Big) \le (1-\alpha^k)^i
   $$
 
   We  deduce that for every $v \in  V$,
 
 $$
-   \mathbb{P}^v_{\sigma_\pi,\tau}(\forall l \ge 0,\ V_l \ne  \ensuremath{v_{win}} \mid
-  V_0 \ne  \ensuremath{v_{lose}}) = 0
+   \mathbb{P}^v_{\sigma_\pi,\tau}(\forall l \ge 0,\ V_l \ne  v_{win} \mid
+  V_0 \ne  v_{lose}) = 0
   $$
 
   We conclude with
 
 $$
-   \mathbb{P}^v_{\sigma_\pi,\tau}(\exists l \ge 0,\ V_l =  \ensuremath{v_{win}} \mid V_0
-  \ne  \ensuremath{v_{lose}}) = 1
+   \mathbb{P}^v_{\sigma_\pi,\tau}(\exists l \ge 0,\ V_l =  v_{win} \mid V_0
+  \ne  v_{lose}) = 1
   $$
 
   hence with the statement.
@@ -575,18 +541,18 @@ $$
 
 ````{prf:lemma} NEEDS TITLE AND LABEL 
   Let $\pi$ be a live and self-consistent permutation.  Then for
-  every $v \in  V$,  $\textrm{val}_\pi(v) \le   \textrm{val}^*(v)$.
+  every $v \in  V$,  $val_\pi(v) \le   val^*(v)$.
 
   Let $\pi$ be a live and self-consistent permutation.  Then for
-  every $v \in  V$,  $\textrm{val}_\pi(v) \le   \textrm{val}^*(v)$.
+  every $v \in  V$,  $val_\pi(v) \le   val^*(v)$.
 
 ````
 
 ````{admonition} Proof
 :class: dropdown tip
 
-  Fix a pure positional  \textrm{Adam}'s strategy $\tau$. The tuple
-  $( \mathbb{P}_{\sigma_\pi,\tau}^v( \mathtt{Reach}( \textrm{Win})))_{v \in  V}$ is
+  Fix a pure positional  Adam's strategy $\tau$. The tuple
+  $( \mathbb{P}_{\sigma_\pi,\tau}^v( \mathtt{Reach}( Win)))_{v \in  V}$ is
   a
 
   solution to the following equations:
@@ -597,8 +563,8 @@ $$
       x_v = x_{\sigma_\pi(v)} & \text{if}\ v \in   V_\mathrm{Eve} \\
       x_v = \sum_{w\ \text{s.t.}\ (v,w) \in E} \delta(v)(w) \cdot
       x_w  & \text{if}\ v \in   V_{\text{Rand}} \\
-      x_{ \ensuremath{v_{win}}} = 1 \\
-      x_{ \ensuremath{v_{lose}}} = 0
+      x_{ v_{win}} = 1 \\
+      x_{ v_{lose}} = 0
     \end{array}\right.
   $$
 
@@ -611,58 +577,47 @@ $$
       x_v = x_{\sigma_\pi(v)}  & \text{if}\ v \in   V_\mathrm{Eve} \\
       x_v = \sum_{w\ \text{s.t.}\ (v,w) \in E} \delta(v)(w) \cdot x_w
       & \text{if}\ v \in   V_{\text{Rand}} \\
-      x_{ \ensuremath{v_{win}}} = 1 \\
-      x_{ \ensuremath{v_{lose}}} = 0
+      x_{ v_{win}} = 1 \\
+      x_{ v_{lose}} = 0
     \end{array}\right.
   $$
 
-  Since the MDP (when $\sigma_\pi$ has been fixed) is stopping (see  {prf:ref}`6-lem:stopping`), there is no proper end-component
-  (except $\{ \ensuremath{v_{win}}\}$ and $\{ \ensuremath{v_{lose}}\}$), and the above system of
+  Since the MDP (when $\sigma_\pi$ has been fixed) is stopping (see {prf:ref}`6-lem:stopping`), there is no proper end-component
+  (except $\{ v_{win}\}$ and $\{ v_{lose}\}$), and the above system of
   inequations has a unique minimal solution, which is the unique
   solution of the same system with $=$ instead of $\ge$.
 
-  On the other hand  {prf:ref}`6-lem:lemma2` tells us that
-  $(  \textrm{val}_\pi(v))_{v \in V}$ can only be that unique
+  On the other hand {prf:ref}`6-lem:lemma2` tells us that
+  $(  val_\pi(v))_{v \in V}$ can only be that unique
   solution. Hence, for every $v \in  V$:
 
 $$
-    \textrm{val}_\pi(v) \le  \mathbb{P}_{\sigma_\pi,\tau}^v( \mathtt{Reach}( \textrm{Win}))
+    val_\pi(v) \le  \mathbb{P}_{\sigma_\pi,\tau}^v( \mathtt{Reach}( Win))
   $$
 
-  Since this holds for every pure positional strategy $\tau$ of  \textrm{Adam},
+  Since this holds for every pure positional strategy $\tau$ of  Adam,
   we conclude that for every $v \in  V$,
-  $\textrm{val}_\pi(v) \le   \textrm{val}^*(v)$. \qed
+  $val_\pi(v) \le   val^*(v)$. \qed
 
 ````
 
-````{prf:corollary} NEEDS TITLE AND LABEL 
-  \label{stoch:coro}
-  Let $\pi$ be a live and self-consistent permutation. Then, for
-  every $v \in  V$, $\textrm{val}^*(v) =   \textrm{val}_\pi(v)$.
+````{prf:corollary} NEEDS TITLE stoch:coro
+:label: stoch:coro
 
-  \label{stoch:coro}
   Let $\pi$ be a live and self-consistent permutation. Then, for
-  every $v \in  V$, $\textrm{val}^*(v) =   \textrm{val}_\pi(v)$.  
+  every $v \in  V$, $val^*(v) =   val_\pi(v)$.  
 
 ````
 
 ### Existence of a live and self-consistent permutation
 
-````{prf:lemma} NEEDS TITLE AND LABEL 
-  \label{stoch:lemma:croissant}
+````{prf:lemma} NEEDS TITLE stoch:lemma:croissant
+:label: stoch:lemma:croissant
+
   Let $\pi$ be a live permutation such that
 
 $$
-    \textrm{val}^*( \pi_1) \le   \textrm{val}^*( \pi_2) \le \ldots \le   \textrm{val}^*( \pi_k)
-  $$
-
-  Then, $\pi$ is self-consistent.
-
-  \label{stoch:lemma:croissant}
-  Let $\pi$ be a live permutation such that
-
-$$
-    \textrm{val}^*( \pi_1) \le   \textrm{val}^*( \pi_2) \le \ldots \le   \textrm{val}^*( \pi_k)
+    val^*( \pi_1) \le   val^*( \pi_2) \le \ldots \le   val^*( \pi_k)
   $$
 
   Then, $\pi$ is self-consistent.
@@ -672,24 +627,24 @@ $$
 ````{admonition} Proof
 :class: dropdown tip
 
-  We will show that for every vertex $v \in  V$, $\textrm{val}^*(v) =
-    \textrm{val}_\pi(v)$. This will ne enough for proving the expected result.
+  We will show that for every vertex $v \in  V$, $val^*(v) =
+    val_\pi(v)$. This will ne enough for proving the expected result.
 
-  We first show a counterpart to  {prf:ref}`6-lem:lemma2` for
-  $\textrm{val}^*$:
+  We first show a counterpart to {prf:ref}`6-lem:lemma2` for
+  $val^*$:
   
 ````{prf:lemma} NEEDS TITLE AND LABEL 
-    Same hypotheses as  {prf:ref}`6-lem:croissant`. Then:
+    Same hypotheses as {prf:ref}`6-lem:croissant`. Then:
     
-    1.  $\textrm{val}^*( \ensuremath{v_{lose}}) = 0$ and $\textrm{val}^*( \ensuremath{v_{win}}) = 1$;
+    1.  $val^*( v_{lose}) = 0$ and $val^*( v_{win}) = 1$;
     2.  for every $1 \le i \le k$, for every $v \in W_\pi^i$,
-      $\textrm{val}^*(v) =   \textrm{val}^*( \pi_i)$.
+      $val^*(v) =   val^*( \pi_i)$.
 
-    Same hypotheses as  {prf:ref}`6-lem:croissant`. Then:
+    Same hypotheses as {prf:ref}`6-lem:croissant`. Then:
     
-    1.  $\textrm{val}^*( \ensuremath{v_{lose}}) = 0$ and $\textrm{val}^*( \ensuremath{v_{win}}) = 1$;
+    1.  $val^*( v_{lose}) = 0$ and $val^*( v_{win}) = 1$;
     2.  for every $1 \le i \le k$, for every $v \in W_\pi^i$,
-      $\textrm{val}^*(v) =   \textrm{val}^*( \pi_i)$.
+      $val^*(v) =   val^*( \pi_i)$.
 
 ````
 
@@ -698,30 +653,30 @@ $$
 
     We then focus on item 2.  Assume $v \in W_\pi^i$, and define
     strategy $\sigma^*$ from $v$ as $\sigma_\pi$ (attractor strategy
-    to $\{ \pi_i,\ldots, \pi_k, \ensuremath{v_{win}}\}$) until $\ensuremath{v_{win}}$ or a random
+    to $\{ \pi_i,\ldots, \pi_k, v_{win}\}$) until $v_{win}$ or a random
     vertex $\pi_j$ ($j \ge i$) is reached; in the latter case, switch
     to an optimal strategy out of $\pi_j$. We obviously get that for
-    every strategy $\tau$ for  \textrm{Adam},
-    $\mathbb{P}_{\sigma^*,\tau}^v( \mathtt{Reach}(\{ \ensuremath{v_{win}}\})) \ge \min_{i \le j \le
-      k}  \textrm{val}^*( \pi_j) =   \textrm{val}^*( \pi_i)$. Hence $\textrm{val}^*(v) \ge
-      \textrm{val}^*( \pi_i)$.
+    every strategy $\tau$ for  Adam,
+    $\mathbb{P}_{\sigma^*,\tau}^v( \mathtt{Reach}(\{ v_{win}\})) \ge \min_{i \le j \le
+      k}  val^*( \pi_j) =   val^*( \pi_i)$. Hence $val^*(v) \ge
+      val^*( \pi_i)$.
     
     Conversely define strategy $\tau^*$ from $v$ as $\tau_\pi$
-    (trapping strategy out of $\{ \pi_{i+1},\ldots, \pi_k, \ensuremath{v_{win}}\}$)
-    until $\ensuremath{v_{lose}}$ or a random vertex $\pi_j$ ($j \le i$) is reached;
+    (trapping strategy out of $\{ \pi_{i+1},\ldots, \pi_k, v_{win}\}$)
+    until $v_{lose}$ or a random vertex $\pi_j$ ($j \le i$) is reached;
     in the latter case, switch to an optimal strategy out of
     $\pi_j$. Note that it can a priori be the case that we never hit
-    $\ensuremath{v_{lose}}$ or a random vertex, but this is good to  \textrm{Adam}. However we
-    can conclude that for every strategy $\sigma$ for  \textrm{Eve},
-    $\mathbb{P}_{\sigma,\tau^*}^v( \mathtt{Reach}(\{ \ensuremath{v_{win}}\})) \le \max_{1 \le j \le
-      i}  \textrm{val}^*( \pi_j) =   \textrm{val}^*( \pi_i)$. Hence
-    $\textrm{val}^*(v) \le   \textrm{val}^*( \pi_i)$.
+    $v_{lose}$ or a random vertex, but this is good to  Adam. However we
+    can conclude that for every strategy $\sigma$ for  Eve,
+    $\mathbb{P}_{\sigma,\tau^*}^v( \mathtt{Reach}(\{ v_{win}\})) \le \max_{1 \le j \le
+      i}  val^*( \pi_j) =   val^*( \pi_i)$. Hence
+    $val^*(v) \le   val^*( \pi_i)$.
 
     This allows to conclude item 2, hence the lemma.
   
 ````
 
-  Both $\textrm{val}^*$ and $\textrm{val}_\pi$ satisfy the system of equations:
+  Both $val^*$ and $val_\pi$ satisfy the system of equations:
 
 $$
   \left\{\begin{array}{ll} 
@@ -729,8 +684,8 @@ $$
 
       x_v = \sum_{w\ \text{s.t.}\ (v,w) \in E} \delta(v)(w) \cdot x_w
       & \text{if}\ v \in   V_{\text{Rand}} \\
-      x_{ \ensuremath{v_{win}}} = 1 \\
-      x_{ \ensuremath{v_{lose}}} = 0
+      x_{ v_{win}} = 1 \\
+      x_{ v_{lose}} = 0
     \end{array}\right.
   $$
 
@@ -742,94 +697,87 @@ $$
 
       x_{ \pi_i} = \sum_{j=0}^{k+1} \delta( \pi_i)(W_\pi^j) \cdot x_{ \pi_j}
       & \\
-      x_{ \ensuremath{v_{win}}} = 1 \\
-      x_{ \ensuremath{v_{lose}}} = 0
+      x_{ v_{win}} = 1 \\
+      x_{ v_{lose}} = 0
     \end{array}\right.
   $$
 
   Since $\pi$ is live this system has a unique solution!  Hence
-  $\textrm{val}^* =   \textrm{val}_\pi$, and $\pi$ is self-consistent.
+  $val^* =   val_\pi$, and $\pi$ is self-consistent.
 \end{proof}
 
 It remains to show that there always exist  a live permutation
-satisfying the hypothesis of  {prf:ref}`6-lem:croissant`.
+satisfying the hypothesis of {prf:ref}`6-lem:croissant`.
 
 To do so, we show the following structural property of the game, which
 will help building an appropriate live permutation.
 
-````{prf:lemma} NEEDS TITLE AND LABEL 
-  \label{stoch:lemma:structure}
-  Let $\{ \ensuremath{v_{win}}\} \subseteq X \subseteq V$ be a subset of vertices, and
-  $Y = V \setminus  \ensuremath{**DetAtt**}(X)$. Then either $Y = \{ \ensuremath{v_{lose}}\}$, or there
-  is a random vertex $v \in Y$ such that $\textrm{val}^*(v) = \max\{  \textrm{val}^*(w)
-  \mid w \in Y\}$ and $\delta(v)\Big( \ensuremath{**DetAtt**}(X)\Big)>0$.
+````{prf:lemma} NEEDS TITLE stoch:lemma:structure
+:label: stoch:lemma:structure
 
-  \label{stoch:lemma:structure}
-  Let $\{ \ensuremath{v_{win}}\} \subseteq X \subseteq V$ be a subset of vertices, and
-  $Y = V \setminus  \ensuremath{**DetAtt**}(X)$. Then either $Y = \{ \ensuremath{v_{lose}}\}$, or there
-  is a random vertex $v \in Y$ such that $\textrm{val}^*(v) = \max\{  \textrm{val}^*(w)
-  \mid w \in Y\}$ and $\delta(v)\Big( \ensuremath{**DetAtt**}(X)\Big)>0$.
+  Let $\{ v_{win}\} \subseteq X \subseteq V$ be a subset of vertices, and
+  $Y = V \setminus  **DetAtt**(X)$. Then either $Y = \{ v_{lose}\}$, or there
+  is a random vertex $v \in Y$ such that $val^*(v) = \max\{  val^*(w)
+  \mid w \in Y\}$ and $\delta(v)\Big( **DetAtt**(X)\Big)>0$.
 
 ````
 
 ````{admonition} Proof
 :class: dropdown tip
 
-  Let $Z = \textsf{Argmax}_Y (  \textrm{val}^*)$. We assume that there is no
+  Let $Z = \textsf{Argmax}_Y (  val^*)$. We assume that there is no
   random vertex $v \in Z \cap   V_{\text{Rand}}$ such that
-  $\delta(v)\Big( \ensuremath{**DetAtt**}(X)\Big)>0$. We will show that $Z =
-  \{ \ensuremath{v_{lose}}\}$, which will imply $Y = \{ \ensuremath{v_{lose}}\}$. To do so, we show
-  that if $v \in Z$, then $\textrm{val}^*(v) = 0$.  We fix $v \in Z$, and we
-  assume towards a contradiction that $\textrm{val}^*(v)>0$.
+  $\delta(v)\Big( **DetAtt**(X)\Big)>0$. We will show that $Z =
+  \{ v_{lose}\}$, which will imply $Y = \{ v_{lose}\}$. To do so, we show
+  that if $v \in Z$, then $val^*(v) = 0$.  We fix $v \in Z$, and we
+  assume towards a contradiction that $val^*(v)>0$.
 
-  Let $\tau$ be a pure positional  \textrm{Adam}'s strategy on $Y$ avoiding
-  $\ensuremath{**DetAtt**}(X)$: by definition, $\tau(Y) \subseteq Y$. Also, one can
+  Let $\tau$ be a pure positional  Adam's strategy on $Y$ avoiding
+  $**DetAtt**(X)$: by definition, $\tau(Y) \subseteq Y$. Also, one can
   argue that $\tau(Z) \subseteq Z$. Indeed otherwise there is $v' \in
-  Z$ such that $\tau(v') \in Y \setminus Z$. Thus, $\textrm{val}^*(\tau(v')) <
-    \textrm{val}^*(v')$, which is not possible since $\textrm{val}^*(v') = \min_{w\
-    \text{s.t.}\ (v',w) \in E}   \textrm{val}^*(w)$ (Bellman's equations). Also
+  Z$ such that $\tau(v') \in Y \setminus Z$. Thus, $val^*(\tau(v')) <
+    val^*(v')$, which is not possible since $val^*(v') = \min_{w\
+    \text{s.t.}\ (v',w) \in E}   val^*(w)$ (Bellman's equations). Also
   by Bellman's equations, if $v' \in   V_{\text{Rand}} \cap Z$, for
-  every $w'$ such that $\delta(v')(w')>0$, $\textrm{val}^*(w') =
-    \textrm{val}^*(v')$. By assumption, it cannot be the case that $w' \in
-   \ensuremath{**DetAtt**}(X)$, hence $w' \in Z$.  Let $v' \in Z \cap   V_\mathrm{Eve}$. If
+  every $w'$ such that $\delta(v')(w')>0$, $val^*(w') =
+    val^*(v')$. By assumption, it cannot be the case that $w' \in
+   **DetAtt**(X)$, hence $w' \in Z$.  Let $v' \in Z \cap   V_\mathrm{Eve}$. If
   there is $w' \notin Z$ such that $(v',w') \in E$, then it must be
   the case that $w' \in Y \setminus Z$: indeed, it cannot be the case
-  that $w' \in  \ensuremath{**DetAtt**}(X)$, otherwise $v'$ would also be in
-  $\ensuremath{**DetAtt**}(X)$.
+  that $w' \in  **DetAtt**(X)$, otherwise $v'$ would also be in
+  $**DetAtt**(X)$.
 
   We now define strategy $\tau'$ which plays from $v$ as $\tau$ until
-  $Z$ is left, and then $\tau'$ plays an optimal strategy for  \textrm{Adam}.
-  Let $\sigma$ be a strategy for  \textrm{Eve}. Under the profile
+  $Z$ is left, and then $\tau'$ plays an optimal strategy for  Adam.
+  Let $\sigma$ be a strategy for  Eve. Under the profile
   $(\sigma,\tau')$ from $v$, either we stay forever in $Z$, or we
-  leave at some  \textrm{Eve}'s vertex $v'$ towards a vertex $w'$ with
-  $\textrm{val}^*(w') <   \textrm{val}^*(v') =   \textrm{val}^*(v)$ (recall the discussion
+  leave at some  Eve's vertex $v'$ towards a vertex $w'$ with
+  $val^*(w') <   val^*(v') =   val^*(v)$ (recall the discussion
   above). We can then write:
   \begin{eqnarray*}
-     \mathbb{P}_{\sigma,\tau'}( \mathtt{Reach}(\{ \ensuremath{v_{win}}\})) &=&
-     \mathbb{P}_{\sigma,\tau'}( \mathtt{Reach}(\{ \ensuremath{v_{win}}\}) \mid \text{stays in}\  Z\
+     \mathbb{P}_{\sigma,\tau'}( \mathtt{Reach}(\{ v_{win}\})) &=&
+     \mathbb{P}_{\sigma,\tau'}( \mathtt{Reach}(\{ v_{win}\}) \mid \text{stays in}\  Z\
     \text{forever}) \cdot   \mathbb{P}_{\sigma,\tau'}(\text{stays in}\  Z\
     \text{forever}) \\ 
     && + \sum_{(v',w') \in (Z \times (Y \setminus Z) \cap E)} 
-     \mathbb{P}_{\sigma,\tau'}( \mathtt{Reach}(\{ \ensuremath{v_{win}}\}) \mid
+     \mathbb{P}_{\sigma,\tau'}( \mathtt{Reach}(\{ v_{win}\}) \mid
     \text{leave via}\  (v',w')) \cdot
      \mathbb{P}_{\sigma,\tau'}(\text{leave via}\  (v',w')) \\
     & = & 0 \cdot  \mathbb{P}_{\sigma,\tau'}(\text{stays in}\  Z\
     \text{forever}) + \sum_{(v',w') \in (Z \times (Y \setminus Z) \cap
-      E)}    \textrm{val}^*(w') \cdot
+      E)}    val^*(w') \cdot
      \mathbb{P}_{\sigma,\tau'}(\text{leave via}\  (v',w')) \\
     & \le & \beta
   \end{eqnarray*}
-  where $\beta = \max \{  \textrm{val}^*(w) \mid w \in Y \setminus Z\} <
-    \textrm{val}^*(v)$.  Hence, we get $\textrm{val}^*(v) \le \beta <   \textrm{val}^*(v)$. This
+  where $\beta = \max \{  val^*(w) \mid w \in Y \setminus Z\} <
+    val^*(v)$.  Hence, we get $val^*(v) \le \beta <   val^*(v)$. This
   is a contradiction.
 
 ````
 
-````{prf:lemma} NEEDS TITLE AND LABEL 
-  \label{stoch:lemma-existence}
-  There is a live and self-consistent permutation.
+````{prf:lemma} NEEDS TITLE stoch:lemma-existence
+:label: stoch:lemma-existence
 
-  \label{stoch:lemma-existence}
   There is a live and self-consistent permutation.
 
 ````
@@ -838,40 +786,40 @@ will help building an appropriate live permutation.
 :class: dropdown tip
 
   We will define a permutation $\pi$ inductively, by repeatedly
-  using  {prf:ref}`6-lem:structure`.  For every $i =k, \ldots
+  using {prf:ref}`6-lem:structure`.  For every $i =k, \ldots
   ,1$ we define $\pi_i$ by applying
-  Lemma  {prf:ref}`6-lem:structure` to $X =
-  \{ \pi_{i+1},\ldots, \pi_k, \ensuremath{v_{win}}\}$.
+  Lemma {prf:ref}`6-lem:structure` to $X =
+  \{ \pi_{i+1},\ldots, \pi_k, v_{win}\}$.
 
   By construction,
   
-  *  $\textrm{val}^*( \pi_i) = \max \{  \textrm{val}^*(v) \mid v \in V \setminus
-     \ensuremath{**DetAtt**}(\{ \pi_{i+1},\ldots, \pi_k, \ensuremath{v_{win}}\})\}$;
-  *      $\delta( \pi_i)\Big( \ensuremath{**DetAtt**}(\{ \pi_{i+1},\ldots, \pi_k, \ensuremath{v_{win}}\})\Big)
+  *  $val^*( \pi_i) = \max \{  val^*(v) \mid v \in V \setminus
+     **DetAtt**(\{ \pi_{i+1},\ldots, \pi_k, v_{win}\})\}$;
+  *      $\delta( \pi_i)\Big( **DetAtt**(\{ \pi_{i+1},\ldots, \pi_k, v_{win}\})\Big)
     >0$
   
-  Hence, $\pi$ is live, and the hypothesis of  {prf:ref}`6-lem:croissant` is satisfied. Hence $\pi$ is
+  Hence, $\pi$ is live, and the hypothesis of {prf:ref}`6-lem:croissant` is satisfied. Hence $\pi$ is
   self-consistent. This concludes the proof.
 
 ````
 
 ### Complexity analysis
 
-To obtain the polynomial-time complexity claimed in  {prf:ref}`6-thm:corr-strat-improv`, we realize that once a
+To obtain the polynomial-time complexity claimed in {prf:ref}`6-thm:corr-strat-improv`, we realize that once a
 permutation $\pi$ is fixed, computing the sets $W_\pi^i$ can be done
 in polynomial time (those are simple attractors), and corresponding
 strategies $\sigma_\pi$ and $\tau_\pi$ can be simultaneously
-computed as well. Now, computing $\textrm{val}_\pi$ reduces to computing the
-probability to reach $\ensuremath{v_{win}}$ in the induced Markov chain, which is
+computed as well. Now, computing $val_\pi$ reduces to computing the
+probability to reach $v_{win}$ in the induced Markov chain, which is
 known to be possible in polynomial time. Note that we could improve
 the complexity by reducing the Markov chain to a Markov chain where
-the only vertices are $V_{\text{Rand}} \cup \{ \ensuremath{v_{lose}}, \ensuremath{v_{win}}\}$, but
+the only vertices are $V_{\text{Rand}} \cup \{ v_{lose}, v_{win}\}$, but
 this would only marginally impact the overall complexity.
 
 (6-subsubsec:last)=
 ### Strategy enumeration algorithm
 
-Thanks to  {prf:ref}`6-thm:corr-strat-improv`, we get an algorithm
+Thanks to {prf:ref}`6-thm:corr-strat-improv`, we get an algorithm
 to compute values and optimal strategies for both players in a
 stochastic reachability game: enumerate permutations of random
 vertices, and for each of them, check whether it is live and
@@ -895,15 +843,15 @@ The algorithm consists in the following steps:
 *  Initialization step: Compute a live permutation $\pi$
 *  Improvement step: Given a live permutation $\pi$, compute a
   live and self-consistent permutation in $\mathcal{G}[\sigma_\pi]$, the
-  restriction of game $\mathcal{G}$ where $\textrm{Eve}$ always plays according to
+  restriction of game $\mathcal{G}$ where $Eve$ always plays according to
   $\sigma_\pi$.
 
 Below, since we will speak of games $\mathcal{G}$, $\mathcal{G}[\sigma_\pi]$ and
 even $\mathcal{G}[\sigma_{ \pi'}]$, when speaking about the value of the
 game, we will specify the game in which we consider the value. For
-instance, $\textrm{val}^*_{ \mathcal{G}[\sigma_\pi]}$ denotes the value vector of the game
-$\mathcal{G}[\sigma_\pi]$, and $\textrm{val}_{ \mathcal{G}, \pi}$ denotes the former
-$\textrm{val}_\pi$.
+instance, $val^*_{ \mathcal{G}[\sigma_\pi]}$ denotes the value vector of the game
+$\mathcal{G}[\sigma_\pi]$, and $val_{ \mathcal{G}, \pi}$ denotes the former
+$val_\pi$.
 
 We will argue (though not with full details) that the following
 properties are satisfied by the algorithm:
@@ -916,28 +864,28 @@ properties are satisfied by the algorithm:
   well.
 4.  The improvement step really implements some improvement:
   
-  *  $\textrm{val}^*_{ \mathcal{G}[\sigma_\pi]} \le
-      \textrm{val}^*_{ \mathcal{G}[\sigma_{ \pi'}]}$, and
-  *  $\textrm{val}^*_{ \mathcal{G}[\sigma_\pi]} =
-      \textrm{val}^*_{ \mathcal{G}[\sigma_{ \pi'}]}$ implies that $\pi'$ is
+  *  $val^*_{ \mathcal{G}[\sigma_\pi]} \le
+      val^*_{ \mathcal{G}[\sigma_{ \pi'}]}$, and
+  *  $val^*_{ \mathcal{G}[\sigma_\pi]} =
+      val^*_{ \mathcal{G}[\sigma_{ \pi'}]}$ implies that $\pi'$ is
     self-consistent.
 
-The first property is based on the construction of  {prf:ref}`6-lem:existence`.
+The first property is based on the construction of {prf:ref}`6-lem:existence`.
 
-For the second property, we know as a consequence of  {prf:ref}`6-thm:corr-strat-improv` that there exists a live and
+For the second property, we know as a consequence of {prf:ref}`6-thm:corr-strat-improv` that there exists a live and
 self-consistent permutation $\pi'$ in $\mathcal{G}[\sigma_{ \pi}]$,
 provided we prove that $\mathcal{G}[\sigma_{ \pi}]$ is normalized (this was
 a general assumption of the approach, mentioned in Subsection {ref}`6-subsec:first`). This is actually the case since
 every proper vertex $v$ can be proven to have a value strictly within
 $0$ and $1$ in $\mathcal{G}[\sigma_{ \pi}]$ (it is indeed smaller in
 $\mathcal{G}[\sigma_{ \pi}]$ than in $\mathcal{G}$ since $\mathcal{G}[\sigma_{ \pi}]$
-offers less options to  \textrm{Eve}, and it cannot be $0$, using a proof
-similar to that of  {prf:ref}`6-lem:stopping`).
+offers less options to  Eve, and it cannot be $0$, using a proof
+similar to that of {prf:ref}`6-lem:stopping`).
 
 Now, since $\mathcal{G}[\sigma_\pi]$ turns out to be a Markov decision
 process, values of all random vertices can be computed in polynomial
 time using linear programming; then we can apply a construction
-similar to that of  {prf:ref}`6-lem:existence` to get a live and
+similar to that of {prf:ref}`6-lem:existence` to get a live and
 self-consistent permutation $\pi'$ in $\mathcal{G}[\sigma_\pi]$. This
 yields a polynomial time algorithm to compute $\pi'$.
 
@@ -953,20 +901,20 @@ new permutation $\pi'$ improves over $\pi$.
 :class: dropdown tip
 
   Since $\pi'$ is live and self-consistent in $\mathcal{G}[\sigma_\pi]$,
-  by \cref{6-cor:}, extending the previous notations, we
+  by {prf:ref}`6-cor:`, extending the previous notations, we
   get that
-  $\textrm{val}^*_{ \mathcal{G}[\sigma_\pi]} =
-    \textrm{val}_{ \mathcal{G}[\sigma_\pi], \pi'}$. Now, since $\pi'$ is
+  $val^*_{ \mathcal{G}[\sigma_\pi]} =
+    val_{ \mathcal{G}[\sigma_\pi], \pi'}$. Now, since $\pi'$ is
   self-consistent in $\mathcal{G}[\sigma_\pi]$, we deduce that
 
 $$
-      \textrm{val}^*_{ \mathcal{G}[\sigma_\pi]}( \pi'_1) \le
-      \textrm{val}^*_{ \mathcal{G}[\sigma_\pi]}( \pi'_2) \le \dots \le
-      \textrm{val}^*_{ \mathcal{G}[\sigma_\pi]}( \pi'_k)
+      val^*_{ \mathcal{G}[\sigma_\pi]}( \pi'_1) \le
+      val^*_{ \mathcal{G}[\sigma_\pi]}( \pi'_2) \le \dots \le
+      val^*_{ \mathcal{G}[\sigma_\pi]}( \pi'_k)
   $$
 
-  We consider the following family of strategies for  \textrm{Eve} in $\mathcal{G}$:
-  for every $n$, $\sigma^{(n)}$ is the strategy where  \textrm{Eve} plays
+  We consider the following family of strategies for  Eve in $\mathcal{G}$:
+  for every $n$, $\sigma^{(n)}$ is the strategy where  Eve plays
   according to $\sigma_{ \pi'}$ up to its $n$-th visit to a random
   vertex, and then switches to $\sigma_\pi$. 
 
@@ -977,7 +925,7 @@ We can then prove:
 ````{prf:lemma} Converge of the sequence of values
 :label: 6-lem:convergence_sequence_values
 
-The sequence $(  \textrm{val}_{ \mathcal{G},\sigma^{(n)}})_n$ is non-decreasing.
+The sequence $(  val_{ \mathcal{G},\sigma^{(n)}})_n$ is non-decreasing.
 
 ````
 
@@ -985,51 +933,51 @@ The sequence $(  \textrm{val}_{ \mathcal{G},\sigma^{(n)}})_n$ is non-decreasing.
 :class: dropdown tip
 
     We do the proof by induction on $n$.  We focus on $n=0$, and prove
-    below that $\textrm{val}_{ \mathcal{G},\sigma^{(1)}} \ge
-      \textrm{val}_{ \mathcal{G},\sigma^{(0)}}$. First notice that $\sigma^{(0)} =
+    below that $val_{ \mathcal{G},\sigma^{(1)}} \ge
+      val_{ \mathcal{G},\sigma^{(0)}}$. First notice that $\sigma^{(0)} =
     \sigma_\pi$.
 
     First, notice that $v \in W_{ \mathcal{G}, \pi'}^i$ for some $i$, and $v
     \in W_{ \mathcal{G}[\sigma_\pi], \pi'}^j$ for some $j$. This
-    $game[ \pi]$ restricts actions of  \textrm{Eve}, we immediately get $i \ge
+    $game[ \pi]$ restricts actions of  Eve, we immediately get $i \ge
     j$. Hence, applying the line of inequalities at the beginning of
     the proof of the larger lemma,
-    $\textrm{val}^*_{ \mathcal{G}[\sigma_\pi]}( \pi'_j) \le
-      \textrm{val}^*_{ \mathcal{G}[\sigma_\pi]}( \pi'_i)$.
+    $val^*_{ \mathcal{G}[\sigma_\pi]}( \pi'_j) \le
+      val^*_{ \mathcal{G}[\sigma_\pi]}( \pi'_i)$.
 
-    If  \textrm{Eve} plays with $\sigma^{(1)}$, the definition of
+    If  Eve plays with $\sigma^{(1)}$, the definition of
     $\sigma_{ \pi'}$ ensures that the first random vertex (or
     terminal vertex) which is visited when starting in $v$ belongs to
-    $\{ \pi'_i, \pi'_{i+1},\dots, \pi'_k, \ensuremath{v_{win}}\}$, so since from
+    $\{ \pi'_i, \pi'_{i+1},\dots, \pi'_k, v_{win}\}$, so since from
     that vertex, $\sigma^{(1)}$ plays according to $\sigma_\pi$, we
     get:
 
 $$
-      \textrm{val}_{ \mathcal{G},\sigma^{(1)}}(v) \ge \min
-    \{  \textrm{val}^*_{ \mathcal{G}[\sigma_\pi]}( \pi'_i),
-      \textrm{val}^*_{ \mathcal{G}[\sigma_\pi]}( \pi'_{i+1}),\dots,
-      \textrm{val}^*_{ \mathcal{G}[\sigma_\pi]}( \pi'_k),1\} \ge
-      \textrm{val}^*_{ \mathcal{G}[\sigma_\pi]}( \pi'_i)
+      val_{ \mathcal{G},\sigma^{(1)}}(v) \ge \min
+    \{  val^*_{ \mathcal{G}[\sigma_\pi]}( \pi'_i),
+      val^*_{ \mathcal{G}[\sigma_\pi]}( \pi'_{i+1}),\dots,
+      val^*_{ \mathcal{G}[\sigma_\pi]}( \pi'_k),1\} \ge
+      val^*_{ \mathcal{G}[\sigma_\pi]}( \pi'_i)
     $$
 
-    since $\textrm{val}^*_{ \mathcal{G}[\sigma_\pi]} =   \textrm{val}_{ \mathcal{G},\sigma_\pi}$.
+    since $val^*_{ \mathcal{G}[\sigma_\pi]} =   val_{ \mathcal{G},\sigma_\pi}$.
 
     Now, when playing $\sigma_\pi = \sigma^{(0)}$ from $v$, 
 
-    Thanks to   {prf:ref}`6-lem:lemma2`, since $v \in
+    Thanks to  {prf:ref}`6-lem:lemma2`, since $v \in
     W_{ \mathcal{G}[\sigma_\pi], \pi'}^j$,
-    $\textrm{val}_{ \mathcal{G}[\sigma_\pi], \pi'}(v) =
-      \textrm{val}_{ \mathcal{G}[\sigma_\pi], \pi'}( \pi'_j)$ and hence (as argued
+    $val_{ \mathcal{G}[\sigma_\pi], \pi'}(v) =
+      val_{ \mathcal{G}[\sigma_\pi], \pi'}( \pi'_j)$ and hence (as argued
     in the proof of the larger lemma,
-    $\textrm{val}_{ \mathcal{G}[\sigma_\pi], \pi'} =
-      \textrm{val}^*_{ \mathcal{G}[\sigma_\pi]}$), $\textrm{val}^*_{ \mathcal{G}[\sigma_\pi]}(v) =
-      \textrm{val}^*_{ \mathcal{G}[\sigma_\pi]}( \pi'_j)$. We conclude that:
+    $val_{ \mathcal{G}[\sigma_\pi], \pi'} =
+      val^*_{ \mathcal{G}[\sigma_\pi]}$), $val^*_{ \mathcal{G}[\sigma_\pi]}(v) =
+      val^*_{ \mathcal{G}[\sigma_\pi]}( \pi'_j)$. We conclude that:
 
 $$
-      \textrm{val}_{\sigma_\pi}(v) =   \textrm{val}^*_{ \mathcal{G}[\sigma_\pi]}(v) \le
-      \textrm{val}^*_{ \mathcal{G}[\sigma_\pi]}( \pi'_j) \le
-      \textrm{val}^*_{ \mathcal{G}[\sigma_\pi]}( \pi'_i) \le
-      \textrm{val}_{ \mathcal{G},\sigma^{(1)}}(v)
+      val_{\sigma_\pi}(v) =   val^*_{ \mathcal{G}[\sigma_\pi]}(v) \le
+      val^*_{ \mathcal{G}[\sigma_\pi]}( \pi'_j) \le
+      val^*_{ \mathcal{G}[\sigma_\pi]}( \pi'_i) \le
+      val_{ \mathcal{G},\sigma^{(1)}}(v)
     $$
 
     which concludes the initial case for the induction.
@@ -1039,44 +987,44 @@ $$
     until a first random vertex is encounted, and then the first one
     switches to $\sigma^{(n+1)}$ while the other switches to
     $\sigma^{(n)}$. Hence, using the induction hypothesis that
-    $\sigma^{(n+1)}$ is better for  \textrm{Eve} than $\sigma^{(n)}$, we can
+    $\sigma^{(n+1)}$ is better for  Eve than $\sigma^{(n)}$, we can
     conclude.
   
 ````
 
-  Let $\tau$ be an  \textrm{Adam}'s strategy. Since $\pi'$ has been shown to
-  be live in $\mathcal{G}$, applying   {prf:ref}`6-lem:stopping`, we
-  get that: $\mathbb{P}^v_{\sigma_{ \pi'},\tau} ( \mathtt{Reach}(\{ \ensuremath{v_{win}}\})) =
-   \mathbb{P}^v_{\sigma_{ \pi'},\tau} (\neg \mathtt{Reach}(\{ \ensuremath{v_{lose}}\}))$. This last
+  Let $\tau$ be an  Adam's strategy. Since $\pi'$ has been shown to
+  be live in $\mathcal{G}$, applying  {prf:ref}`6-lem:stopping`, we
+  get that: $\mathbb{P}^v_{\sigma_{ \pi'},\tau} ( \mathtt{Reach}(\{ v_{win}\})) =
+   \mathbb{P}^v_{\sigma_{ \pi'},\tau} (\neg \mathtt{Reach}(\{ v_{lose}\}))$. This last
   probability value coincides with $\lim_{n \to +\infty}
-   \mathbb{P}^v_{\sigma_{ \pi'},\tau} (\neg \mathtt{Reach}_{\le n}(\{ \ensuremath{v_{lose}}\}))$,
-  the probability to not reach $\ensuremath{v_{lose}}$ for the first $n$ visits to a
+   \mathbb{P}^v_{\sigma_{ \pi'},\tau} (\neg \mathtt{Reach}_{\le n}(\{ v_{lose}\}))$,
+  the probability to not reach $v_{lose}$ for the first $n$ visits to a
   random vertex; for these $n$ first visits, $\sigma_{ \pi'}$
   coincides with $\sigma^{(n)}$, hence
-  $\mathbb{P}^v_{\sigma_{ \pi'},\tau} ( \mathtt{Reach}(\{ \ensuremath{v_{win}}\})) \ge \lim_{n\to
-    +\infty}  \mathbb{P}^v_{\sigma^{(n)},\tau} ( \mathtt{Reach}(\{ \ensuremath{v_{win}}\}))$. By
+  $\mathbb{P}^v_{\sigma_{ \pi'},\tau} ( \mathtt{Reach}(\{ v_{win}\})) \ge \lim_{n\to
+    +\infty}  \mathbb{P}^v_{\sigma^{(n)},\tau} ( \mathtt{Reach}(\{ v_{win}\}))$. By
   definition of value in a game, this last term is larger than or
-  equal to $\lim_{n \to+\infty}  \textrm{val}_{ \mathcal{G},\sigma^{(n)}}$, hence
-  $\lim_{n \to+\infty}  \textrm{val}_{ \mathcal{G},\sigma^{(n)}} \le
-    \textrm{val}_{ \mathcal{G}, \pi'}$.
+  equal to $\lim_{n \to+\infty}  val_{ \mathcal{G},\sigma^{(n)}}$, hence
+  $\lim_{n \to+\infty}  val_{ \mathcal{G},\sigma^{(n)}} \le
+    val_{ \mathcal{G}, \pi'}$.
 
   We conclude that:
 
 $$
-    \textrm{val}^*_{ \mathcal{G}[\sigma_\pi]} =   \textrm{val}_{ \mathcal{G},\sigma^{(0)}} \le
-    \textrm{val}_{ \mathcal{G},\sigma^{(1)}} \le   \textrm{val}_{ \mathcal{G},\sigma^{(2)}} \le \dots\le
-  \lim_{n \to +\infty}   \textrm{val}_{ \mathcal{G},\sigma^{(n)}} \le
-    \textrm{val}^*_{ \mathcal{G}[\sigma_{ \pi'}]}
+    val^*_{ \mathcal{G}[\sigma_\pi]} =   val_{ \mathcal{G},\sigma^{(0)}} \le
+    val_{ \mathcal{G},\sigma^{(1)}} \le   val_{ \mathcal{G},\sigma^{(2)}} \le \dots\le
+  \lim_{n \to +\infty}   val_{ \mathcal{G},\sigma^{(n)}} \le
+    val^*_{ \mathcal{G}[\sigma_{ \pi'}]}
   $$
 
-  \medskip Assume now that $\textrm{val}^*_{ \mathcal{G}[\sigma_\pi]} =
-    \textrm{val}^*_{ \mathcal{G}[\sigma_{ \pi'}]}$. Then applying the first line of
+  \medskip Assume now that $val^*_{ \mathcal{G}[\sigma_\pi]} =
+    val^*_{ \mathcal{G}[\sigma_{ \pi'}]}$. Then applying the first line of
   inequalities above, we get:
 
 $$
-    \textrm{val}^*_{ \mathcal{G}[\sigma_{ \pi'}]}( \pi'_1) \le
-    \textrm{val}^*_{ \mathcal{G}[\sigma_{ \pi'}]}( \pi'_2) \le \dots \le
-    \textrm{val}^*_{ \mathcal{G}[\sigma_{ \pi'}]}( \pi'_k)
+    val^*_{ \mathcal{G}[\sigma_{ \pi'}]}( \pi'_1) \le
+    val^*_{ \mathcal{G}[\sigma_{ \pi'}]}( \pi'_2) \le \dots \le
+    val^*_{ \mathcal{G}[\sigma_{ \pi'}]}( \pi'_k)
   $$
 
   Now, the strategy $\tau_{ \pi'}$ is precisely the optimal strategy
@@ -1084,17 +1032,17 @@ $$
     not argued that way in GH09}, hence for every vertex $v$:
 
 $$
-    \textrm{val}^*_{ \mathcal{G}[\sigma_{ \pi'}]}(v) = \inf_\tau
-   \mathbb{P}^v_{\sigma_{ \pi'},\tau} ( \mathtt{Reach}(\{ \ensuremath{v_{win}}\})) =
-   \mathbb{P}^v_{\sigma_{ \pi'},\tau_{ \pi'}} ( \mathtt{Reach}(\{ \ensuremath{v_{win}}\})) =
-    \textrm{val}_{ \mathcal{G}, \pi'}
+    val^*_{ \mathcal{G}[\sigma_{ \pi'}]}(v) = \inf_\tau
+   \mathbb{P}^v_{\sigma_{ \pi'},\tau} ( \mathtt{Reach}(\{ v_{win}\})) =
+   \mathbb{P}^v_{\sigma_{ \pi'},\tau_{ \pi'}} ( \mathtt{Reach}(\{ v_{win}\})) =
+    val_{ \mathcal{G}, \pi'}
   $$
 
   We deduce that
 
 $$
-    \textrm{val}_{ \mathcal{G}, \pi'}( \pi'_1) \le   \textrm{val}_{ \mathcal{G}, \pi'}( \pi'_2) \le
-  \dots \le   \textrm{val}_{ \mathcal{G}, \pi'}( \pi'_k)
+    val_{ \mathcal{G}, \pi'}( \pi'_1) \le   val_{ \mathcal{G}, \pi'}( \pi'_2) \le
+  \dots \le   val_{ \mathcal{G}, \pi'}( \pi'_k)
   $$
 
   which is precisely the definition of a self-consistent permutation

@@ -105,7 +105,8 @@ The rules of the game,
 are defined by the set of **legal** transitions.
 Let $c \in \{\spadesuit,\blacksquare\}$.
 The following transitions are legal.
-```{math}
+
+$$
 
 & \Delta({\tt Start},{\tt \cdot},{\tt \cdot})((c,{\tt Play}),c,\circ,0)=
 \begin{cases}
@@ -130,7 +131,7 @@ The following transitions are legal.
 & \Delta((c,{\tt Raised}),{\tt \cdot},{\tt fold})({\tt End},{\tt fold_1},{\tt fold_1},+1)=1\\
 & \text{state ${\tt End}$ is absorbing with payoff $0$.}
 
-```
+$$
 
 To simplify the notations,
 we assumed in the general case
@@ -152,7 +153,7 @@ depending on the sequence of signals.
 
 Intuitively, players make their decisions based upon the sequence of
 signals they receive, which is formalised with strategies. 
-There are several natural classes of strategies to play games with signals, as discussed in {cite}`horn_remember` and Section 4 in {cite}`BGGjacm`.
+There are several natural classes of strategies to play games with signals, as discussed in {cite}`horn_remember` and (Section 4 in {cite}`BGGjacm`).
 
 A behavioural strategy of Eve associates
 with every realisable sequence of signals a probability distribution
@@ -181,6 +182,6 @@ $$
 (a= \text{Act}(s) \land b= \text{Act}(t))\enspace. 
 $$
 
-In Lemma 4.6 and 4.7 in {cite}`BGGjacm` it was shown that without loss of generality,
+In (Lemma 4.6 and 4.7 in {cite}`BGGjacm`) it was shown that without loss of generality,
 one can consider games where actions are observable and players 
 play behavioural strategies. The discussion is technical and beyond the scope of this book.

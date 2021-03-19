@@ -85,7 +85,7 @@ $$
 Muller objectives are determined with finite memory strategies of size $d!$.
 
 ```{margin}
-See \cref{2-rmk:finite_infinite} for the case of infinite games.
+See {prf:ref}`2-rmk:finite_infinite` for the case of infinite games.
 ```
 
 There exists an algorithm for computing the winning regions of Muller games in exponential time,
@@ -103,11 +103,11 @@ The following lemma induces the recursive algorithm for computing the winning re
 :label: 2-lem:Muller_even
 
 Let $\Game$ be a Muller game such that $C \in  \mathcal{F}$.
-For each $c \in C$, let $\Game_c$ be the subgame of $\Game$ induced by $V \setminus  \textrm{Attr}_\mathrm{Eve}(c)$.
+For each $c \in C$, let $\Game_c$ be the subgame of $\Game$ induced by $V \setminus  Attr_\mathrm{Eve}(c)$.
 
 *  If for all $c \in C$, we have $W_\mathrm{Adam}(\Game_c) = \emptyset$, then $W_\mathrm{Eve}(\Game) = V$.
 *  If there exists $c \in C$ such that $W_\mathrm{Adam}(\Game_c) \neq \emptyset$,
-let $\Game'$ be the subgame of $\Game$ induced by $V \setminus  \textrm{Attr}_\mathrm{Adam}(  W_\mathrm{Adam}(\Game_c) )$,
+let $\Game'$ be the subgame of $\Game$ induced by $V \setminus  Attr_\mathrm{Adam}(  W_\mathrm{Adam}(\Game_c) )$,
 then $W_\mathrm{Eve}(\Game) =  W_\mathrm{Eve}(\Game')$.
 
 ````
@@ -117,33 +117,33 @@ then $W_\mathrm{Eve}(\Game) =  W_\mathrm{Eve}(\Game')$.
 
 We prove the first item.
 
-For each $c \in C$, let $\sigma_c$ be an attractor strategy ensuring to reach $c$ from $\textrm{Attr}_\mathrm{Eve}(c)$,
-and consider a winning strategy for Eve from $V \setminus  \textrm{Attr}_\mathrm{Eve}(c)$ in $\Game_c$, it induces a strategy $\sigma'_c$ in $\Game$.
+For each $c \in C$, let $\sigma_c$ be an attractor strategy ensuring to reach $c$ from $Attr_\mathrm{Eve}(c)$,
+and consider a winning strategy for Eve from $V \setminus  Attr_\mathrm{Eve}(c)$ in $\Game_c$, it induces a strategy $\sigma'_c$ in $\Game$.
 We construct a strategy $\sigma$ in $\Game$ which will simulate the strategies above in turn; to do so it uses $C$ as top-level memory states.
 (We note that the strategies $\sigma'_c$ may use memory as well, so $\sigma$ may actually use more memory than just $C$.)
-The strategy $\sigma$ with memory $c$ simulates $\sigma_c$ from $\textrm{Attr}_\mathrm{Eve}(c)$ and $\sigma'_c$ from $V \setminus  \textrm{Attr}_\mathrm{Eve}(c)$,
+The strategy $\sigma$ with memory $c$ simulates $\sigma_c$ from $Attr_\mathrm{Eve}(c)$ and $\sigma'_c$ from $V \setminus  Attr_\mathrm{Eve}(c)$,
 and if it ever reaches $c$ it updates its memory state to $c + 1$ and $1$ if $c = d$.
 Any play consistent with $\sigma$ either updates its memory state infinitely many times, 
-or eventually remains in $V \setminus  \textrm{Attr}_\mathrm{Eve}(c)$ and is eventually consistent with $\sigma'_c$.
+or eventually remains in $V \setminus  Attr_\mathrm{Eve}(c)$ and is eventually consistent with $\sigma'_c$.
 In the first case it sees each colour infinitely many times, and since $C \in  \mathcal{F}$ the play satisfies $\mathtt{Muller}( \mathcal{F})$, 
 and in the other case since $\sigma'_c$ is winning the play satisfies $\mathtt{Muller}( \mathcal{F})$.
 Thus $\sigma$ is winning from $V$.
 
 We now look at the second item.
 
-Let $\tau_a$ denote an attractor strategy from $\textrm{Attr}_\mathrm{Adam}( W_\mathrm{Adam}(\Game_c)) \setminus  W_\mathrm{Adam}(\Game_c)$.
+Let $\tau_a$ denote an attractor strategy from $Attr_\mathrm{Adam}( W_\mathrm{Adam}(\Game_c)) \setminus  W_\mathrm{Adam}(\Game_c)$.
 Consider a winning strategy for Adam from $W_\mathrm{Adam}(\Game_c)$ in $\Game_c$, it induces a strategy $\tau_c$ in $\Game$.
-Since $V \setminus  \textrm{Attr}_\mathrm{Eve}(c)$ is a trap for Eve, this implies that $\tau_c$ is a winning strategy in $\Game$.
+Since $V \setminus  Attr_\mathrm{Eve}(c)$ is a trap for Eve, this implies that $\tau_c$ is a winning strategy in $\Game$.
 Consider now a winning strategy in the game $\Game'$ from $W_\mathrm{Adam}(\Game')$, it induces a strategy $\tau'$ in $\Game$.
-The set $V \setminus  \textrm{Attr}_\mathrm{Adam}(  W_\mathrm{Adam}(\Game_c) )$ may not be a trap for Eve, so we cannot conclude that $\tau'$ is a winning strategy in $\Game$,
+The set $V \setminus  Attr_\mathrm{Adam}(  W_\mathrm{Adam}(\Game_c) )$ may not be a trap for Eve, so we cannot conclude that $\tau'$ is a winning strategy in $\Game$,
 and it indeed may not be.
-We construct a strategy $\tau$ in $\Game$ as the (disjoint) union of the strategy $\tau_a$ on $\textrm{Attr}_\mathrm{Adam}( W_\mathrm{Adam}(\Game_c)) \setminus  W_\mathrm{Adam}(\Game_c)$,
+We construct a strategy $\tau$ in $\Game$ as the (disjoint) union of the strategy $\tau_a$ on $Attr_\mathrm{Adam}( W_\mathrm{Adam}(\Game_c)) \setminus  W_\mathrm{Adam}(\Game_c)$,
 the strategy $\tau_c$ on $W_\mathrm{Adam}(\Game_c)$ and the strategy $\tau'$ on $W_\mathrm{Adam}(\Game')$.
-We argue that $\tau$ is winning from $\textrm{Attr}_\mathrm{Adam}(  W_\mathrm{Adam}(\Game_c) ) \cup  W_\mathrm{Adam}(\Game')$ in $\Game$.
+We argue that $\tau$ is winning from $Attr_\mathrm{Adam}(  W_\mathrm{Adam}(\Game_c) ) \cup  W_\mathrm{Adam}(\Game')$ in $\Game$.
 Indeed, any play consistent with this strategy in $\Game$ either stays forever in $W_\mathrm{Adam}(\Game')$ hence is consistent with $\tau'$
-or enters $\textrm{Attr}_\mathrm{Adam}(  W_\mathrm{Adam}(\Game_c) )$, so it is eventually consistent with $\tau_c$.
+or enters $Attr_\mathrm{Adam}(  W_\mathrm{Adam}(\Game_c) )$, so it is eventually consistent with $\tau_c$.
 In both cases this implies that the play is winning.
-Thus we have proved that $\textrm{Attr}_\mathrm{Adam}(  W_\mathrm{Adam}(\Game_c) ) \cup  W_\mathrm{Adam}(\Game') \subseteq  W_\mathrm{Adam}(\Game)$.
+Thus we have proved that $Attr_\mathrm{Adam}(  W_\mathrm{Adam}(\Game_c) ) \cup  W_\mathrm{Adam}(\Game') \subseteq  W_\mathrm{Adam}(\Game)$.
 
 We now show that $W_\mathrm{Eve}(\Game') \subseteq  W_\mathrm{Eve}(\Game)$, which implies the converse inclusion.
 Consider a winning strategy from $W_\mathrm{Eve}(\Game')$ in $\Game'$, it induces a strategy $\sigma$ in $\Game$.
@@ -159,11 +159,11 @@ We do not prove it as it is the exact dual of the previous lemma, and the proof 
 :label: 2-lem:Muller_odd
 
 Let $\Game$ be a Muller game such that $C \notin  \mathcal{F}$.
-For each $c \in C$, let $\Game_c$ be the subgame of $\Game$ induced by $V \setminus  \textrm{Attr}_\mathrm{Adam}(c)$.
+For each $c \in C$, let $\Game_c$ be the subgame of $\Game$ induced by $V \setminus  Attr_\mathrm{Adam}(c)$.
 
 *  If for all $c \in C$, we have $W_\mathrm{Eve}(\Game_c) = \emptyset$, then $W_\mathrm{Adam}(\Game) = V$.
 *  If there exists $c \in C$ such that $W_\mathrm{Eve}(\Game_c) \neq \emptyset$,
-let $\Game'$ be the subgame of $\Game$ induced by $V \setminus  \textrm{Attr}_\mathrm{Eve}(  W_\mathrm{Eve}(\Game_c) )$,
+let $\Game'$ be the subgame of $\Game$ induced by $V \setminus  Attr_\mathrm{Eve}(  W_\mathrm{Eve}(\Game_c) )$,
 then $W_\mathrm{Adam}(\Game) =  W_\mathrm{Adam}(\Game')$.
 
 ````
@@ -189,7 +189,7 @@ so $f(n,d) \le (d+1)n (1 + dn + (dn)^2 + \dots + (dn)^{d-2}) = O((dn)^d)$.
 In each recursive call we perform $d+1$ attractor computations so the number of operations in one recursive call is $O(dm)$.
 Thus the overall time complexity is $O(m d (dn)^d)$.
 
-The proofs of  {prf:ref}`2-lem:Muller_even` and  {prf:ref}`2-lem:Muller_odd` also imply that Muller games are determined with finite memory of size $d!$.
+The proofs of {prf:ref}`2-lem:Muller_even` and {prf:ref}`2-lem:Muller_odd` also imply that Muller games are determined with finite memory of size $d!$.
 We do not make it more precise here because an improved analysis of the memory requirements will be conducted in Section {ref}`2-sec:zielonka`
 using a variant of this algorithm.
 
@@ -208,9 +208,9 @@ Rabin games are uniformly positionally determined.
 
 ````
 
- {prf:ref}`2-thm:Rabin_positional_determinacy` holds for infinite games.
+{prf:ref}`2-thm:Rabin_positional_determinacy` holds for infinite games.
 However the proof we give here only applies to finite games and does not easily extend to infinite ones.
-A different approach is required to obtain the positionality result for infinite games, see  {prf:ref}`2-thm:characterisation_Zielonka_tree`.
+A different approach is required to obtain the positionality result for infinite games, see {prf:ref}`2-thm:characterisation_Zielonka_tree`.
 
 ````{admonition} Proof
 :class: dropdown tip
@@ -266,7 +266,7 @@ This directly yields a contradiction: neither $\pi_1$ nor $\pi_2$ satisfy $\math
 
 ````
 
-The proof of  {prf:ref}`2-thm:Rabin_positional_determinacy` yields a stronger result: every prefix independent submixing objective is positionally determined over finite arenas, where the submixing property is defined as follows for the objective $\Omega$:
+The proof of {prf:ref}`2-thm:Rabin_positional_determinacy` yields a stronger result: every prefix independent submixing objective is positionally determined over finite arenas, where the submixing property is defined as follows for the objective $\Omega$:
 
 $$
 \begin{array}{lccccccccccc}
@@ -288,11 +288,11 @@ Every prefix independent submixing objective is uniformly positionally determine
 ````{prf:theorem} Complexity of solving Rabin games
 :label: 2-thm:Rabin_complexity
 
-Solving Rabin games is $\textrm{NP}$-complete.
+Solving Rabin games is $NP$-complete.
 
 ````
 
-In order to simplify the reduction for proving  {prf:ref}`2-thm:Rabin_complexity` let us make some remarks about colouring functions.
+In order to simplify the reduction for proving {prf:ref}`2-thm:Rabin_complexity` let us make some remarks about colouring functions.
 We defined colouring functions as $\textsf{col} : V \to C$, meaning that we label vertices.
 Let us discuss here three more general definitions and how to reduce them to the vertex colouring functions
 in the case of Rabin games.
@@ -332,9 +332,9 @@ In the reduction below we use these more general definitions to simplify the pre
 ````{admonition} Proof
 :class: dropdown tip
 
-The proof that solving Rabin games is in $\textrm{NP}$ follows the same lines as for solving parity games: the algorithm guesses a positional strategy and checks whether it is indeed winning. This requires proving that solving Rabin games where Adam control all vertices can be done in polynomial time, which is indeed true and easy to see so we will not elaborate further on this.
+The proof that solving Rabin games is in $NP$ follows the same lines as for solving parity games: the algorithm guesses a positional strategy and checks whether it is indeed winning. This requires proving that solving Rabin games where Adam control all vertices can be done in polynomial time, which is indeed true and easy to see so we will not elaborate further on this.
 
-To prove the $\textrm{NP}$-hardness we reduce the satisfiability problem for boolean formulas in conjunctive normal form ($\SAT$) to solving Rabin games. 
+To prove the $NP$-hardness we reduce the satisfiability problem for boolean formulas in conjunctive normal form ($\SAT$) to solving Rabin games. 
 
 Let $\Phi$ be a formula in conjunctive normal form with $n$ variables $x_1 \ldots x_n$ and $m$ clauses $C_1 \dots C_m$, where each $C_j$ is of the form $\ell_{j_1} \vee \ell_{j_2} \vee \ell_{j_3}$:
 
@@ -366,7 +366,7 @@ Since all the literals chosen by Eve satisfy the same assignment $\mathbf{v}$ sh
 It follows that $\sigma$ is a winning strategy for Eve.
 
 Conversely, let us assume that Eve has a winning strategy.
-Thanks to  {prf:ref}`2-thm:Rabin_positional_determinacy` she has a positional winning strategy $\sigma$. 
+Thanks to {prf:ref}`2-thm:Rabin_positional_determinacy` she has a positional winning strategy $\sigma$. 
 We argue that $\sigma$ cannot choose some literal $\ell$ in some clause $C$ and the literal $\bar{\ell}$ in another clause $C'$.
 If this would be the case, consider the strategy of Adam alternating between the two clauses $C$ and $C'$ and play it against $\sigma$:
 both $\ell$ and $\bar{\ell}$ are chosen infinitely many times, and no other literals.
@@ -388,7 +388,7 @@ The Rabin game for $\Phi = (x \vee y \vee z) \bigwedge (x \vee \bar{y} \vee \bar
 ````{prf:theorem} Complexity of solving Muller games
 :label: 2-thm:complexity_Muller
 
-Solving Muller games is $\textrm{PSPACE}$-complete.
+Solving Muller games is $PSPACE$-complete.
 
 ````
 
@@ -399,9 +399,9 @@ As for Rabin games this can be reduced to the original definition of colouring f
 ````{admonition} Proof
 :class: dropdown tip
 
-The $\textrm{PSPACE}$ algorithm was constructed in  {prf:ref}`2-thm:muller`.
+The $PSPACE$ algorithm was constructed in {prf:ref}`2-thm:muller`.
 
-To prove the $\textrm{PSPACE}$-hardness we reduce the evaluation of quantified boolean formulas in disjunctive normal form ($\QBF$) to solving Muller games. 
+To prove the $PSPACE$-hardness we reduce the evaluation of quantified boolean formulas in disjunctive normal form ($\QBF$) to solving Muller games. 
 
 Let $\Psi$ be a quantified boolean formula in disjunctive normal form with $n$ variables $x_1 \ldots x_n$ and $m$ clauses $C_1 \dots C_m$, where each $C_j$ is of the form $\ell_{j_1} \wedge \ell_{j_2} \wedge \ell_{j_3}$:
 

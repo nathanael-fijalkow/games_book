@@ -712,34 +712,34 @@ This is a key difference with strategy improvement algorithms (also called polic
 We assume that the games we consider in this section are positionally determined, therefore all strategies are assumed to be positional.</p>
 <p>Let us consider a game <span class="math notranslate nohighlight">\(\mathcal{G}\)</span> and set as a goal to construct an optimal strategy for Eve.
 As for value iteration algorithms we work with a value function:
-the key idea behind strategy improvement is to use <span class="math notranslate nohighlight">\(\textrm{val}^{\sigma}\)</span> to improve the strategy <span class="math notranslate nohighlight">\(\sigma\)</span>
+the key idea behind strategy improvement is to use <span class="math notranslate nohighlight">\(val^{\sigma}\)</span> to improve the strategy <span class="math notranslate nohighlight">\(\sigma\)</span>
 by <strong>switching</strong> an edge, which is an operation that creates a new strategy.
 This involves defining the notion of <strong>switchable edge</strong>:
 the edge <span class="math notranslate nohighlight">\((v,u)\)</span> is switchable if</p>
 <div class="math notranslate nohighlight">
 \[
-\delta(  \textrm{val}^{\sigma}(u), \textsf{col}(v)) &gt; \delta(  \textrm{val}^{\sigma}(v'), \textsf{col}(v)) \text{ where } \sigma(v) = (v,v').
+\delta(  val^{\sigma}(u), \textsf{col}(v)) &gt; \delta(  val^{\sigma}(v'), \textsf{col}(v)) \text{ where } \sigma(v) = (v,v').
 \]</div>
-<p>Intuitively: according to <span class="math notranslate nohighlight">\(\textrm{val}^{\sigma}\)</span>, playing <span class="math notranslate nohighlight">\((v,u)\)</span> is better than playing <span class="math notranslate nohighlight">\(\sigma(v)\)</span>.</p>
+<p>Intuitively: according to <span class="math notranslate nohighlight">\(val^{\sigma}\)</span>, playing <span class="math notranslate nohighlight">\((v,u)\)</span> is better than playing <span class="math notranslate nohighlight">\(\sigma(v)\)</span>.</p>
 <p>Given a strategy <span class="math notranslate nohighlight">\(\sigma\)</span> and an edge <span class="math notranslate nohighlight">\(e = (v,u)\)</span> we use <span class="math notranslate nohighlight">\(\sigma[v \to e]\)</span> to denote the strategy playing <span class="math notranslate nohighlight">\(e\)</span> from <span class="math notranslate nohighlight">\(v\)</span> and all other vertices follow <span class="math notranslate nohighlight">\(\sigma\)</span>.
-Let us write <span class="math notranslate nohighlight">\(\sigma \le \sigma'\)</span> if for all vertices <span class="math notranslate nohighlight">\(v\)</span> we have <span class="math notranslate nohighlight">\(\textrm{val}^{\sigma}(v) \le   \textrm{val}^{\sigma'}(v)\)</span>,
+Let us write <span class="math notranslate nohighlight">\(\sigma \le \sigma'\)</span> if for all vertices <span class="math notranslate nohighlight">\(v\)</span> we have <span class="math notranslate nohighlight">\(val^{\sigma}(v) \le   val^{\sigma'}(v)\)</span>,
 and <span class="math notranslate nohighlight">\(\sigma &lt; \sigma'\)</span> if additionally <span class="math notranslate nohighlight">\(\neg (\sigma' \le \sigma)\)</span>.</p>
 <p>The difficulty is that <span class="math notranslate nohighlight">\(e = (v,u)\)</span> being switchable does not mean that it is a better move than <span class="math notranslate nohighlight">\(\sigma(v)\)</span> in any context,
-but only according to the value function <span class="math notranslate nohighlight">\(\textrm{val}^{\sigma}\)</span>, so it is not clear that <span class="math notranslate nohighlight">\(\sigma[v \to e]\)</span> is better than <span class="math notranslate nohighlight">\(\sigma\)</span>.
+but only according to the value function <span class="math notranslate nohighlight">\(val^{\sigma}\)</span>, so it is not clear that <span class="math notranslate nohighlight">\(\sigma[v \to e]\)</span> is better than <span class="math notranslate nohighlight">\(\sigma\)</span>.
 Strategy improvement algorithms depend on the following two principles.</p>
 <div class="proof property admonition" id="1-property:progress">
-<p class="admonition-title"><span class="caption-number">Property 31 </span> (Progress)</p>
+<p class="admonition-title"><span class="caption-number">Property 35 </span> (Progress)</p>
 <div class="property-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\sigma\)</span> be a strategy and let <span class="math notranslate nohighlight">\(e = (v,u)\)</span> be a switchable edge.
 Then <span class="math notranslate nohighlight">\(\sigma &lt; \sigma[v \to e]\)</span>.</p>
 </div>
 </div><div class="proof property admonition" id="1-property:optimality">
-<p class="admonition-title"><span class="caption-number">Property 32 </span> (Optimality)</p>
+<p class="admonition-title"><span class="caption-number">Property 36 </span> (Optimality)</p>
 <div class="property-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\sigma\)</span> be a strategy that has no switchable edges, then <span class="math notranslate nohighlight">\(\sigma\)</span> is optimal.</p>
 </div>
 </div><p>The algorithm is the following: start at an initial strategy <span class="math notranslate nohighlight">\(\sigma_0\)</span>.
-In each round <span class="math notranslate nohighlight">\(i\)</span> compute <span class="math notranslate nohighlight">\(\textrm{val}^{\sigma_i}\)</span> and look for a switchable edge.
+In each round <span class="math notranslate nohighlight">\(i\)</span> compute <span class="math notranslate nohighlight">\(val^{\sigma_i}\)</span> and look for a switchable edge.
 If there exists a switchable edge <span class="math notranslate nohighlight">\(e_i = (v_i,v'_i)\)</span>, let <span class="math notranslate nohighlight">\(\sigma_{i+1} = \sigma_i[v_i \to e_i]\)</span> and iterate to the next round.
 Otherwise, return the optimal strategy <span class="math notranslate nohighlight">\(\sigma_i\)</span>.</p>
 <p>The algorithm computes a sequence of strategies
@@ -748,14 +748,19 @@ Note that any such sequence must be finite, since at each step we strictly incre
 <p>If both progress and optimality principles hold as stated this yields a strategy improvement algorithm computing the optimal strategy.
 Unfortunately such ideal properties rarely hold and it is often necessary to state and prove weaker properties,
 we refer to Chapter <span class="xref std std-ref">3-chap:parity,4-chap:payoffs</span> for examples.</p>
-<div class="admonition-remark admonition">
-<p class="admonition-title">Remark</p>
+<div class="proof remark admonition" id="remark-2">
+<p class="admonition-title"><span class="caption-number">Remark 37 </span> (NEEDS TITLE AND LABEL)</p>
+<div class="remark-content section" id="proof-content">
+<p>In the description above we did not specify which switchable edge to choose.
+Actually strategy improvement algorithms often switch more than one edge at a time, making this question worse:
+which subset of the switchable edges should be chosen?
+Many possible rules for choosing this set have been studied, as for instance the <strong>greedy all-switches</strong> rule.</p>
 <p>In the description above we did not specify which switchable edge to choose.
 Actually strategy improvement algorithms often switch more than one edge at a time, making this question worse:
 which subset of the switchable edges should be chosen?
 Many possible rules for choosing this set have been studied, as for instance the <strong>greedy all-switches</strong> rule.</p>
 </div>
-</div>
+</div></div>
 
     <script type="text/x-thebe-config">
     {
