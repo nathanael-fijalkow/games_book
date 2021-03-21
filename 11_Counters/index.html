@@ -706,36 +706,8 @@
 <span id="chap-counters"></span><h1>Games with Counters<a class="headerlink" href="#games-with-counters" title="Permalink to this headline">¶</a></h1>
 <a class="bg-primary mb-1 reference internal image-reference" href="../_images/11.jpg"><img alt="illustration" class="bg-primary mb-1 align-center" src="../_images/11.jpg" style="width: 400px;" /></a>
 <div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}\begin{split}\providecommand{\dom}{\mathrm{dom}\,}
-\newcommand\pto{\mathrel{\ooalign{\hfil$\mapstochar\mkern5mu$\hfil\cr$\to$\cr}}}
-\newcommand{\decpb}[3][]{\begin{problem}[#1]\\[-1.7em]\begin{description}     
-    \item[input:] {#2}
-    \item[question:] {#3}
-    \end{description}
-  \end{problem}}\end{split}\\\newcommand{\step}[1]{\xrightarrow{\,\raisebox{-1pt}[0pt][0pt]{\scriptsize\ensuremath
-      {#1}}\,}}
-\newcommand{\mstep}[1]{\xrightarrow{\,\raisebox{-1pt}[6pt][0pt]{\scriptsize\ensuremath
-      {#1}}\,}}
-\providecommand{\pop}{\mathrm{pop}}
-\providecommand{\push}[1]{\mathrm{push}(#1)}
-\providecommand{\mymoot}[1]{}
-\renewcommand{\natural}{\arena_\+N}
-\newcommand{\capp}[2][C]{\overline{\vec #2}^{#1}}
-\let\oldcite\cite
-\renewcommand{\cite}{\citep}
-\providecommand{\citep}{\oldcite}
-\providecommand{\citet}{\cite}
-\providecommand{\citem}[2][1]{#1 {cite}`#2`}
-\providecommand{\qedhere}{\ensuremath\Box}
-\providecommand{\col}{\mathfrak c}
-\providecommand{
-}{}
-\providecommand{
-}{}
-\providecommand{\ensuremath}{}
-\providecommand{\raisebox}[1]{}
-\providecommand{\scalebox}[1]{}\\\renewcommand{\Game}{\game}
-\end{aligned}\end{align} \]</div>
+\[\newcommand{\capp}[2][C]{\overline{\vec #2}^{#1}}
+\]</div>
 <p>Written by Sylvain Schmitz</p>
 <p>Just like timed games arise from timed systems and pushdown games
 from pushdown systems, counter games arise from (multi-)counter
@@ -750,7 +722,7 @@ counter systems give rise to infinite graphs that can be turned into
 infinite game arenas.</p>
 <p>One could populate a zoo with the many variants of counter systems,
 depending on the available counter operations.  One of the best known
-specimens in this zoo are Minsky machines <span id="id1">[<a class="reference internal" href="references.html#id196"><span>Min67</span></a>]</span>,
+specimens in this zoo are Minsky machines <span id="id1">[<a class="reference internal" href="references.html#id223"><span>Min67</span></a>]</span>,
 where the operations are incrementing a counter, decrementing it, or
 testing whether its value is zero.  Minsky machines are a universal
 model of computation: their reachability problem is undecidable,
@@ -758,12 +730,12 @@ already with only two counters.  From the algorithmic perspective we
 promote in this book, this means that the counter games arising from
 Minsky machines are not going to be very interesting, unless perhaps
 if we restrict ourselves to a single counter.  A more promising
-species in our zoo are <strong>“vector addition systems with
-states”</strong> <span id="id2">[<a class="reference internal" href="references.html#id184"><span>Gre78</span></a>,<a class="reference internal" href="references.html#id185"><span>HP79</span></a>]</span>—or,
-equivalently, Petri nets <span id="id3">[<a class="reference internal" href="references.html#id198"><span>Pet62</span></a>]</span>—, where the only
-available operations are increments and decrements.  “Vector addition
-systems with states” enjoy a decidable reachability
-problem <span id="id4">[<a class="reference internal" href="references.html#id195"><span>May81</span></a>,<a class="reference internal" href="references.html#id191"><span>Kos82</span></a>,<a class="reference internal" href="references.html#id192"><span>Lam92</span></a>,<a class="reference internal" href="references.html#id193"><span>Ler11</span></a>]</span>, which
+species in our zoo are <strong>vector addition systems with
+states</strong> <span id="id2">[<a class="reference internal" href="references.html#id211"><span>Gre78</span></a>,<a class="reference internal" href="references.html#id212"><span>HP79</span></a>]</span>—or,
+equivalently, Petri nets <span id="id3">[<a class="reference internal" href="references.html#id225"><span>Pet62</span></a>]</span>—, where the only
+available operations are increments and decrements.  Vector addition
+systems with states enjoy a decidable reachability
+problem <span id="id4">[<a class="reference internal" href="references.html#id222"><span>May81</span></a>,<a class="reference internal" href="references.html#id218"><span>Kos82</span></a>,<a class="reference internal" href="references.html#id219"><span>Lam92</span></a>,<a class="reference internal" href="references.html#id220"><span>Ler11</span></a>]</span>, which
 makes them a much better candidate for studying the associated games.</p>
 <p>In this chapter, we focus on vector games, that is, on games defined
 on arenas defined by vector addition systems with states with a
@@ -778,25 +750,21 @@ therefore decidable.  Most of the section is thus devoted to proving
 sharp complexity lower bounds, already in the case of so-called
 <strong>countdown games</strong>.</p></li>
 <li><p>In Section <a class="reference internal" href="avag.html#sec-avag"><span class="std std-ref">Asymmetric games</span></a>, we turn our attention to the main results of
-this chapter.  By suitably restricting both</p></li>
-</ol>
-<p>the systems, with an
+this chapter.  By suitably restricting both  the systems, with an
 <strong>asymmetry</strong> condition that forbids Adam to manipulate the
-counters, and</p>
-<p>the objective, with a <strong>monotonicity</strong>
-condition that ensures that Eve’s winning region is “upwards
-closed”—meaning that larger counter values make it easier for
-her to win—,</p>
-<p>one obtains a class of decidable vector games where “finite
-memory” strategies are sufficient.</p>
+counters, and  the objective, with a <strong>monotonicity</strong>
+condition that ensures that Eve’s winning region is upwards
+closed—meaning that larger counter values make it easier for
+her to win—, one obtains a class of decidable vector games where finite
+memory strategies are sufficient.</p></li>
+</ol>
 <ul class="simple">
 <li><p>This class is still rich enough to find many applications, and we
 zoom in on the connections with resource-conscious games like
 <strong>energy</strong> games and <strong>bounding</strong> games in
 Section <a class="reference internal" href="resource.html#sec-resource"><span class="std std-ref">Resource-conscious games</span></a>—a subject that will be taken further in
 Chapter <a class="reference internal" href="../12_Multiobjectives/index.html#chap-multiobjective"><span class="std std-ref">Games with multiple objectives</span></a>.</p></li>
-<li><p>The computational complexity of asymmetric “monotonic&#64;monotonic
-objective vector games” is now well-understood, and we devote
+<li><p>The computational complexity of asymmetric monotonic vector games is now well-understood, and we devote
 Section <a class="reference internal" href="complexity.html#sec-complexity"><span class="std std-ref">The complexity of asymmetric monotone games</span></a> to the topic; <code class="xref prf prf-ref docutils literal notranslate"><span class="pre">11-tbl:cmplx</span></code> at the end of
 the chapter summarises these results.</p></li>
 </ul>

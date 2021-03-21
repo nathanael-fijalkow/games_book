@@ -3,8 +3,6 @@
 
 ```{math}
 
-\renewcommand{\Game}{\game}
-
 ```
 
 Given the DBM data structure we presented,

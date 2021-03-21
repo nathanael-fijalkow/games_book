@@ -3,10 +3,6 @@
 
 ```{math}
 
-\renewcommand{\H}{\mathcal{H}}
-
-\renewcommand{\Game}{\game}
-
 ```
 
 ````{prf:theorem} NEEDS TITLE 3-thm:strategy_improvement
@@ -29,22 +25,22 @@ where $\sigma(v) =  \mathtt{-}$ indicates that Eve has chosen to stop the game, 
 Adam is not allowed to stop the game, so strategies for Adam remain unchanged.
 We say that a play ending with $\mathtt{-}$ is stopped.
 
-For reasoning it will be useful to consider the parity graph $\Game[\sigma]$ obtained from $\Game$ by restricting the outgoing edges from $V_\mathrm{Eve}$
+For reasoning it will be useful to consider the parity graph $\mathcal{G}[\sigma]$ obtained from $\mathcal{G}$ by restricting the outgoing edges from $V_\mathrm{Eve}$
 to those prescribed by $\sigma$. 
 Recall that we say that a parity graph (without stopping option) satisfies parity from $v$ if all infinite paths from $v$ satisfy parity.
-Then a strategy $\sigma$ is winning from $v$ if and only if the parity graph $\Game[\sigma]$ satisfies parity from $v$.
+Then a strategy $\sigma$ is winning from $v$ if and only if the parity graph $\mathcal{G}[\sigma]$ satisfies parity from $v$.
 
 Since we added the option for Eve to stop the game we introduce a new terminology: 
 we say that a strategy $\sigma$ respects parity if all infinite plays consistent with $\sigma$ satisfy parity,
-equivalently all infinite paths in $\Game[\sigma]$ satisfy parity, not requiring anything of stopped plays.
+equivalently all infinite paths in $\mathcal{G}[\sigma]$ satisfy parity, not requiring anything of stopped plays.
 
 We say that a cycle is even if the maximal priority along the cycle is even, and it is odd otherwise. 
 Respecting parity is characterised using cycles:
 
 ````{prf:observation} NEEDS TITLE AND LABEL 
-A strategy $\sigma$ respects parity if and only if all cycles in $\Game[\sigma]$ are even.
+A strategy $\sigma$ respects parity if and only if all cycles in $\mathcal{G}[\sigma]$ are even.
 
-A strategy $\sigma$ respects parity if and only if all cycles in $\Game[\sigma]$ are even.
+A strategy $\sigma$ respects parity if and only if all cycles in $\mathcal{G}[\sigma]$ are even.
 
 ````
 
@@ -103,7 +99,7 @@ We then define an operator $\mathbb{O} : F^\sigma_V \to F^\sigma_V$ by
 $$
  \mathbb{O}(\mu)(v) = 
 \begin{cases}
-\min  \left\{ \delta( \mu(v'),  \textsf{col \right\}(v)) : (v,v') \in E} & \text{if } \sigma(v) \neq  \mathtt{-} \\
+\min  \left\{ \delta( \mu(v'),  \mathfrak{c \right\}(v)) : (v,v') \in E} & \text{if } \sigma(v) \neq  \mathtt{-} \\
 \emptyset & \text{if } \sigma(v) =  \mathtt{-}.
 \end{cases}
 $$
@@ -139,7 +135,7 @@ We reach the last item in the construction of the algorithm: the notion of switc
 Let $\sigma$ a strategy. We say that an edge $e = (v,v')$ is switchable if
 
 $$
-\delta(  \textrm{val}^{\sigma}(v'), \textsf{col}(v)) > \delta(  \textrm{val}^{\sigma}(u), \textsf{col}(v)) \text{ where } \sigma(v) = (v,u).
+\delta(  \textrm{val}^{\sigma}(v'), \mathfrak{c}(v)) > \delta(  \textrm{val}^{\sigma}(u), \mathfrak{c}(v)) \text{ where } \sigma(v) = (v,u).
 $$
 
 Intuitively: according to $\textrm{val}^{\sigma}$, playing $e$ is better than playing $\sigma(v)$.
@@ -186,10 +182,10 @@ The following lemma states the two important properties of $(Y,\le)$ and $\delta
 Let $G$ a parity graph (with no stopping option).
 
 *  If there exists $\mu : V \to Y$ such that for all vertices $v$ we have $\mu(v) \neq \top,\bot$
-and for all edges $(v,u) \in E$ we have $\mu(v) \le \delta(\mu(u), \textsf{col}(v))$,
+and for all edges $(v,u) \in E$ we have $\mu(v) \le \delta(\mu(u), \mathfrak{c}(v))$,
 then $G$ satisfies parity.
 *  If there exists $\mu : V \to Y$ such that for all vertices $v$ we have $\mu(v) \neq \top,\bot$
-and for all edges $(v,u) \in E$ we have $\mu(v) \ge \delta(\mu(u), \textsf{col}(v))$,
+and for all edges $(v,u) \in E$ we have $\mu(v) \ge \delta(\mu(u), \mathfrak{c}(v))$,
 then $G$ satisfies the complement of parity.
 
 ````
@@ -205,16 +201,16 @@ $$
 \pi = (v_0,v_1) (v_1,v_2) \cdots (v_{k-1},v_0).
 $$
 
-For all $i \in [0,k-1]$ we have $\mu(v_i) \le \delta(\mu(v_{i+1 \mod k}), \textsf{col}(v_i))$.
-By monotonicity of $\delta$ this implies $\mu(v_1) \le \delta(\mu(v_1), \textsf{col}(v_{k-1}) \cdots  \textsf{col}(v_0))$.
-Thanks to {prf:ref}`3-lem:key_property` this implies that the maximum priority in $\left\{  \textsf{col \right\}(v_0),\dots, \textsf{col}(v_{k-1})}$ is even.
+For all $i \in [0,k-1]$ we have $\mu(v_i) \le \delta(\mu(v_{i+1 \mod k}), \mathfrak{c}(v_i))$.
+By monotonicity of $\delta$ this implies $\mu(v_1) \le \delta(\mu(v_1), \mathfrak{c}(v_{k-1}) \cdots  \mathfrak{c}(v_0))$.
+Thanks to {prf:ref}`3-lem:key_property` this implies that the maximum priority in $\left\{  \mathfrak{c \right\}(v_0),\dots, \mathfrak{c}(v_{k-1})}$ is even.
 
 ````
 
 Let $\sigma$ a strategy respecting parity. 
-A progress measure for $\Game[\sigma]$ is a post-fixed point of $\mathbb{O}$ in $F^\sigma_V$:
+A progress measure for $\mathcal{G}[\sigma]$ is a post-fixed point of $\mathbb{O}$ in $F^\sigma_V$:
 it is a function $\mu : V \to Y$ such that $\mu(v) = \emptyset$ if $\sigma(v) =  \mathtt{-}$ and $\mu \le  \mathbb{O}(\mu)$,
-which means that $\mu(v) \le \min  \left\{  \delta(\mu(v'), \textsf{col \right\}(v)) : (v,v') \in E}$.
+which means that $\mu(v) \le \min  \left\{  \delta(\mu(v'), \mathfrak{c \right\}(v)) : (v,v') \in E}$.
 
 We now rely on {prf:ref}`3-lem:greatest_fixed_point` and {prf:ref}`3-lem:key_property` to prove the two principles: progress and optimality.
 
@@ -233,38 +229,38 @@ We first argue that $\sigma'$ respects parity.
 The fact that $e = (v,v')$ is switchable reads
 
 $$
-\delta(  \textrm{val}^\sigma(v'), \textsf{col}(v)) > \delta(  \textrm{val}^\sigma(u), \textsf{col}(v)),
+\delta(  \textrm{val}^\sigma(v'), \mathfrak{c}(v)) > \delta(  \textrm{val}^\sigma(u), \mathfrak{c}(v)),
 $$
 
-and by definition of $\textrm{val}^\sigma$ we have $\textrm{val}^\sigma(v) = \delta(  \textrm{val}^\sigma(u), \textsf{col}(v))$,
-which implies $\textrm{val}^\sigma(v) < \delta(  \textrm{val}^\sigma(v'), \textsf{col}(v))$, and in particular $\textrm{val}^\sigma(v) \neq \top$.
+and by definition of $\textrm{val}^\sigma$ we have $\textrm{val}^\sigma(v) = \delta(  \textrm{val}^\sigma(u), \mathfrak{c}(v))$,
+which implies $\textrm{val}^\sigma(v) < \delta(  \textrm{val}^\sigma(v'), \mathfrak{c}(v))$, and in particular $\textrm{val}^\sigma(v) \neq \top$.
 
-Let us consider the parity graph $\Game[\sigma']$ and note that for all edges $e' = (s,t)$ 
-we have $\textrm{val}^\sigma(s) \le \delta(  \textrm{val}^\sigma(t), \textsf{col}(s))$:
-indeed either $e'$ is an edge in $\Game[\sigma]$ and this is by definition of $\textrm{val}^\sigma$,
+Let us consider the parity graph $\mathcal{G}[\sigma']$ and note that for all edges $e' = (s,t)$ 
+we have $\textrm{val}^\sigma(s) \le \delta(  \textrm{val}^\sigma(t), \mathfrak{c}(s))$:
+indeed either $e'$ is an edge in $\mathcal{G}[\sigma]$ and this is by definition of $\textrm{val}^\sigma$,
 or $e' = e$ and the inequality was proved just above.
 
 Since $\sigma$ respects parity $\textrm{val}^\sigma$ does not take the value $\bot$.
 But we cannot apply (the first item of) {prf:ref}`3-lem:key_property` yet because $\textrm{val}^\sigma$ may have value $\top$.
 However by definition of $\textrm{val}^\sigma$ for all vertices $s$ such that $\textrm{val}^\sigma(s) = \top$ all paths from $s$ satisfy parity,
-so it is enough to consider the parity graph obtained from $\Game[\sigma']$ by removing all such vertices.
-The first item of {prf:ref}`3-lem:key_property` implies that it satisfies parity, hence $\Game[\sigma']$ as well.
+so it is enough to consider the parity graph obtained from $\mathcal{G}[\sigma']$ by removing all such vertices.
+The first item of {prf:ref}`3-lem:key_property` implies that it satisfies parity, hence $\mathcal{G}[\sigma']$ as well.
 
 At this point we know that $\sigma'$ respects parity, which thanks to {prf:ref}`3-lem:greatest_fixed_point`
 implies that $\textrm{val}^{\sigma'}$ is the greatest fixed point of $\mathbb{O}$ in $F^{\sigma'}_V$.
 
 We now argue that $\textrm{val}^\sigma$ is a progress measure for $\mathcal{G}[\sigma']$.
 For all vertices but $v$ this is clear because the outgoing edges are the same in $\mathcal{G}[\sigma]$ and in $\mathcal{G}[\sigma']$.
-For $v$ as argued above we have $\textrm{val}^\sigma(v) < \delta(  \textrm{val}^\sigma(v'), \textsf{col}(v))$.
+For $v$ as argued above we have $\textrm{val}^\sigma(v) < \delta(  \textrm{val}^\sigma(v'), \mathfrak{c}(v))$.
 It follows that $\textrm{val}^\sigma$ is indeed a progress measure for $\mathcal{G}[\sigma']$.
 Since $\textrm{val}^{\sigma'}$ is the greatest fixed point of $\mathbb{O}$ in $F^{\sigma'}_V$, this implies that 
 $\textrm{val}^{\sigma} \le   \textrm{val}^{\sigma'}$.
 
 We now show that $\textrm{val}^{\sigma} <   \textrm{val}^{\sigma'}$. 
 Using $\textrm{val}^{\sigma}(v') \le   \textrm{val}^{\sigma'}(v')$ and the monotonicity of $\delta$ we obtain that
-$\delta(  \textrm{val}^\sigma(v'), \textsf{col}(v)) \le \delta(  \textrm{val}^{\sigma'}(v'), \textsf{col}(v))$.
-By definition of $\textrm{val}^{\sigma'}$ we have $\textrm{val}^{\sigma'}(v) = \delta(  \textrm{val}^{\sigma'}(v'), \textsf{col}(v))$
-and together with $\textrm{val}^\sigma(v) < \delta(  \textrm{val}^\sigma(v'), \textsf{col}(v))$ this implies that
+$\delta(  \textrm{val}^\sigma(v'), \mathfrak{c}(v)) \le \delta(  \textrm{val}^{\sigma'}(v'), \mathfrak{c}(v))$.
+By definition of $\textrm{val}^{\sigma'}$ we have $\textrm{val}^{\sigma'}(v) = \delta(  \textrm{val}^{\sigma'}(v'), \mathfrak{c}(v))$
+and together with $\textrm{val}^\sigma(v) < \delta(  \textrm{val}^\sigma(v'), \mathfrak{c}(v))$ this implies that
 $\textrm{val}^\sigma(v) <   \textrm{val}^{\sigma'}(v)$.
 
 ````
@@ -272,7 +268,7 @@ $\textrm{val}^\sigma(v) <   \textrm{val}^{\sigma'}(v)$.
 ````{prf:lemma} NEEDS LABEL Optimality
 
 Let $\sigma$ a strategy respecting parity that has no switchable edges, then 
-$\sigma$ is winning from all vertices of $W_\mathrm{Eve}(\Game)$.
+$\sigma$ is winning from all vertices of $W_\mathrm{Eve}(  \mathcal{G})$.
 
 ````
 
@@ -286,21 +282,21 @@ We now prove that Adam has a winning strategy from all vertices $v$ such that $\
 We construct a strategy of Adam by
 
 $$
-\forall v \in  V_\mathrm{Adam},\ \tau(v) =  \textrm{argmin}  \left\{  \delta(  \textrm{val}^{\sigma \right\}(u), \textsf{col}(v)) : (v,u) \in E }.
+\forall v \in  V_\mathrm{Adam},\ \tau(v) =  \textrm{argmin}  \left\{  \delta(  \textrm{val}^{\sigma \right\}(u), \mathfrak{c}(v)) : (v,u) \in E }.
 $$
 
 We argue that $\tau$ ensures the complement of parity from all vertices $v$ such that $\textrm{val}^{\sigma}(v) \neq \top$.
-Let us consider $\Game[\tau]$ the parity graph obtained from $\Game$ by restricting the outgoing edges from $V_\mathrm{Adam}$
+Let us consider $\mathcal{G}[\tau]$ the parity graph obtained from $\mathcal{G}$ by restricting the outgoing edges from $V_\mathrm{Adam}$
 to those prescribed by $\tau$.
 We argue that for all edges $(v,,v')$ in $\mathcal{G}[\tau]$, we have 
-$\textrm{val}^{\sigma}(v) \ge \delta(  \textrm{val}^{\sigma}(v'), \textsf{col}(v))$.
-Once this is proved we conclude using the second item of {prf:ref}`3-lem:key_property` implying that $\Game[\tau]$ satisfies the complement of parity.
+$\textrm{val}^{\sigma}(v) \ge \delta(  \textrm{val}^{\sigma}(v'), \mathfrak{c}(v))$.
+Once this is proved we conclude using the second item of {prf:ref}`3-lem:key_property` implying that $\mathcal{G}[\tau]$ satisfies the complement of parity.
 
 The first case is when $v \in  V_\mathrm{Eve}$. 
 Let $\sigma(v) = (v,u)$.
 Since the edge $e = (v,v')$ is not switchable we have 
-$\delta(  \textrm{val}^{\sigma}(v'), \textsf{col}(v)) \le \delta(  \textrm{val}^{\sigma}(u), \textsf{col}(v))$.
-By definition of $\textrm{val}^\sigma$ we have $\textrm{val}^\sigma(v) = \delta(  \textrm{val}^{\sigma}(u), \textsf{col}(v))$,
+$\delta(  \textrm{val}^{\sigma}(v'), \mathfrak{c}(v)) \le \delta(  \textrm{val}^{\sigma}(u), \mathfrak{c}(v))$.
+By definition of $\textrm{val}^\sigma$ we have $\textrm{val}^\sigma(v) = \delta(  \textrm{val}^{\sigma}(u), \mathfrak{c}(v))$,
 implying the desired inequality.
 
 The second case is when $v \in  V_\mathrm{Adam}$, it holds by definition of $\tau$.

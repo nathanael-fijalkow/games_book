@@ -3,8 +3,6 @@
 
 ```{math}
 
-\renewcommand{\Game}{\game}
-
 ```
 
 Timed games were first introduced by Asarin, Maler, Pnueli and Sifakis {cite}`MPS95,AMPS98`, in a

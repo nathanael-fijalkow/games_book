@@ -3,10 +3,6 @@
 
 ```{math}
 
-\renewcommand{\H}{\mathcal{H}}
-
-\renewcommand{\Game}{\game}
-
 ```
 
 ````{prf:theorem} NEEDS TITLE 3-thm:value_iteration_quasipoly
@@ -24,7 +20,7 @@ The space complexity of the algorithm is $O(m + n \log(d))$.
 ````
 
 We rely on the high-level presentation of value iteration algorithms given in Section {ref}`1-sec:value_iteration`.
-Let $\mathcal{G} = ( \mathcal{A}, \mathtt{Parity}[ \textsf{col}])$ a parity game with $n$ vertices and priorities in $[1,d]$,
+Let $\mathcal{G} = ( \mathcal{A}, \mathtt{Parity}[ \mathfrak{c}])$ a parity game with $n$ vertices and priorities in $[1,d]$,
 and without loss of generality $d$ is even.
 
 The first step is to define a notion of value function $\textrm{val}^ \mathcal{G} : V \to Y$ with $(Y,\le)$ a lattice satisfying the characterisation principle:
@@ -40,8 +36,8 @@ We are looking for a monotonic function $\delta : Y \times [1,d] \to Y$ inducing
 $$
  \mathbb{O}(\mu)(v) = 
 \begin{cases}
-\max  \left\{ \delta( \mu(v'),  \textsf{col \right\}(v)) : (v,v') \in E} & \text{ if } v \in  V_\mathrm{Eve}, \\
-\min  \left\{ \delta( \mu(v'),  \textsf{col \right\}(v)) : (v,v') \in E} & \text{ if } v \in  V_\mathrm{Adam},
+\max  \left\{ \delta( \mu(v'),  \mathfrak{c \right\}(v)) : (v,v') \in E} & \text{ if } v \in  V_\mathrm{Eve}, \\
+\min  \left\{ \delta( \mu(v'),  \mathfrak{c \right\}(v)) : (v,v') \in E} & \text{ if } v \in  V_\mathrm{Adam},
 \end{cases}
 $$
 
@@ -53,7 +49,7 @@ meaning $\mu$ such that $\mu \le  \mathbb{O}(\mu)$.
 Since the greatest fixed point of $\mathbb{O}$ is also its greatest post-fixed point, an equivalent formulation of the characterisation principle above reads: for all vertices $v$ we have that Eve wins from $v$ if and only if there exists a progress measure $\mu$ such that $\mu(v) \neq \bot$.
 
 To summarise this discussion, we are looking for a lattice $(Y,\le)$ and a monotonic function $\delta : Y \times [1,d] \to Y$ 
-such that for all parity games $\Game$ with $n$ vertices and priorities in $[1,d]$, 
+such that for all parity games $\mathcal{G}$ with $n$ vertices and priorities in $[1,d]$, 
 for all vertices $v$ we have that Eve wins from $v$ if and only if there exists a progress measure $\mu$ such that $\mu(v) \neq \bot$.
 Our next step is to show how the notion of universal trees provides a class of solutions to this problem.
 
@@ -259,18 +255,18 @@ This in turn induces a monotonic operator $\mathbb{O}_t : F_V \to F_V$ defined b
 $$
  \mathbb{O}(\mu)(v) = 
 \begin{cases}
-\max  \left\{ \delta( \mu(v'),  \textsf{col \right\}(v)) : (v,v') \in E} & \text{ if } v \in  V_\mathrm{Eve}, \\
-\min  \left\{ \delta( \mu(v'),  \textsf{col \right\}(v)) : (v,v') \in E} & \text{ if } v \in  V_\mathrm{Adam}.
+\max  \left\{ \delta( \mu(v'),  \mathfrak{c \right\}(v)) : (v,v') \in E} & \text{ if } v \in  V_\mathrm{Eve}, \\
+\min  \left\{ \delta( \mu(v'),  \mathfrak{c \right\}(v)) : (v,v') \in E} & \text{ if } v \in  V_\mathrm{Adam}.
 \end{cases}
 $$
 
-Let $\Game$ be a parity game, a progress measure is a function $\mu : V \to Y_t$ which is a post-fixed point: $\mu \le  \mathbb{O}_t(\mu)$. 
+Let $\mathcal{G}$ be a parity game, a progress measure is a function $\mu : V \to Y_t$ which is a post-fixed point: $\mu \le  \mathbb{O}_t(\mu)$. 
 Expanding the definitions, this means that for all vertices $v$, we have
 
 $$
 \begin{array}{llll}
-\exists (v,v') \in E,\ & \mu(v) \le \delta_t( \mu(v'),  \textsf{col}(v)) & \text{ if } v \in  V_\mathrm{Eve}, \\
-\forall (v,v') \in E,\ & \mu(v) \le \delta_t( \mu(v'),  \textsf{col}(v)) & \text{ if } v \in  V_\mathrm{Adam}.
+\exists (v,v') \in E,\ & \mu(v) \le \delta_t( \mu(v'),  \mathfrak{c}(v)) & \text{ if } v \in  V_\mathrm{Eve}, \\
+\forall (v,v') \in E,\ & \mu(v) \le \delta_t( \mu(v'),  \mathfrak{c}(v)) & \text{ if } v \in  V_\mathrm{Adam}.
 \end{array}
 $$
 
@@ -278,8 +274,8 @@ The definition of $\delta_t$ further simplifies it to: for all vertices $v$, we 
 
 $$
 \begin{array}{llll}
-\exists (v,v') \in E,\ & \mu(v) \vartriangleleft_{ \textsf{col}(v)} \mu(v') & \text{ if } v \in  V_\mathrm{Eve}, \\
-\forall (v,v') \in E,\ & \mu(v) \vartriangleleft_{ \textsf{col}(v)} \mu(v') & \text{ if } v \in  V_\mathrm{Adam}.
+\exists (v,v') \in E,\ & \mu(v) \vartriangleleft_{ \mathfrak{c}(v)} \mu(v') & \text{ if } v \in  V_\mathrm{Eve}, \\
+\forall (v,v') \in E,\ & \mu(v) \vartriangleleft_{ \mathfrak{c}(v)} \mu(v') & \text{ if } v \in  V_\mathrm{Adam}.
 \end{array}
 $$
 
@@ -288,14 +284,14 @@ The following theorem is our first and main step towards proving the characteris
 ````{prf:theorem} NEEDS TITLE 3-thm:progress_measure
 :label: 3-thm:progress_measure
 
-Let $\Game$ be a parity game and $v$ a vertex.
+Let $\mathcal{G}$ be a parity game and $v$ a vertex.
 Then Eve wins from $v$ if and only if there exists a tree $t$ and a progress measure $\mu : V \to Y_t$ such that $\mu(v) \neq \bot$.
 
 ````
 
 In order to prove {prf:ref}`3-thm:progress_measure`, we first consider the case of parity graphs.
 A progress measure in a parity graph is a function $\mu : V \to Y_t$ such that 
-for all edges $(v,v') \in E$ we have $\mu(v) \vartriangleleft_{ \textsf{col}(v)} \mu(v')$.
+for all edges $(v,v') \in E$ we have $\mu(v) \vartriangleleft_{ \mathfrak{c}(v)} \mu(v')$.
 
 Recall that a graph satisfies parity from $v$ if all infinite paths from $v$ satisfy parity.
 This is equivalent to asking whether all cycles reachable from $v$ are even, meaning the maximal priority appearing in the cycle is even.
@@ -313,7 +309,7 @@ there exists a tree $t$ and a progress measure $\mu : V \to Y_t$ such that $\mu(
 :class: dropdown tip
 
 Let us assume that there exists a tree $t$ and a progress measure $\mu : V \to Y_t$ such that $\mu(v) \neq \bot$
-and for all edges $(v,v') \in E$ we have $\mu(v) \vartriangleleft_{ \textsf{col}(v)} \mu(v')$.
+and for all edges $(v,v') \in E$ we have $\mu(v) \vartriangleleft_{ \mathfrak{c}(v)} \mu(v')$.
 To show that $G$ satisfies parity from $v$ we show that any cycle reachable from $v$ is even.
 Let us consider such a cycle:
 
@@ -322,16 +318,16 @@ $$
 $$
 
 Since the cycle is reachable from $v$ and $\mu(v) \neq \bot$, this implies that $\mu(v_i) \neq \bot$ for $i \in [1,k]$.
-Let us assume towards contradiction that its maximal priority is odd, and without loss of generality it is $\textsf{col}(v_1)$.
+Let us assume towards contradiction that its maximal priority is odd, and without loss of generality it is $\mathfrak{c}(v_1)$.
 Applying our hypothesis to each edge of the cycle we have
 
 $$
-\mu(v_1) \vartriangleleft_{ \textsf{col}(v_1)} \mu(v_2) \vartriangleleft_{ \textsf{col}(v_2)} \cdots 
-\vartriangleleft_{ \textsf{col}(v_{k-1})} \mu(v_k) \vartriangleleft_{ \textsf{col}(v_k)} \mu(v_1).
+\mu(v_1) \vartriangleleft_{ \mathfrak{c}(v_1)} \mu(v_2) \vartriangleleft_{ \mathfrak{c}(v_2)} \cdots 
+\vartriangleleft_{ \mathfrak{c}(v_{k-1})} \mu(v_k) \vartriangleleft_{ \mathfrak{c}(v_k)} \mu(v_1).
 $$
 
-The second item of {prf:ref}`3-lem:properties_tree` implies that $\mu(v_1) \vartriangleleft_{ \textsf{col}(v_1)} \mu(v_1)$, 
-which contradicts the third item since $\vartriangleleft_{ \textsf{col}(v_1)}$ is non-reflexive given that $\textsf{col}(v_1)$ is odd.
+The second item of {prf:ref}`3-lem:properties_tree` implies that $\mu(v_1) \vartriangleleft_{ \mathfrak{c}(v_1)} \mu(v_1)$, 
+which contradicts the third item since $\vartriangleleft_{ \mathfrak{c}(v_1)}$ is non-reflexive given that $\mathfrak{c}(v_1)$ is odd.
 
 Let us now prove the converse implication.
 We prove the following property by induction on the number of vertices:
@@ -349,7 +345,7 @@ such that $\mu_d(v) \neq \bot$ for all vertices $v \in V \setminus V_d$.
 We extend $\mu_d$ to $\mu : V \to Y_t$: for $v \in V_d$ we let $\mu(v) = \ell_{\max}$ where $\ell_{\max}$ is the maximal element in $Y_t$.
 Then $\mu$ is a progress measure such that $\mu_d(v) \neq \bot$ for all vertices $v \in V$.
 Indeed the additional edges are of the form $(v,v')$ for either $v \in V_d$ or $v' \in V_d$:
-in the first case $\mu(v) \vartriangleleft_{ \textsf{col}(v)} \mu(v')$ holds because $\vartriangleleft_d$ is the full relation,
+in the first case $\mu(v) \vartriangleleft_{ \mathfrak{c}(v)} \mu(v')$ holds because $\vartriangleleft_d$ is the full relation,
 and in the second case because $\mu(v') = \ell_{\max}$.
 
 **Case $d$ odd.**
@@ -369,7 +365,7 @@ Formally, $t_1 = [t^1_1,\dots,t^k_1]$ and $t_2 = [t^1_2,\dots,t^{k'}_2]$, let
 $t = [t^1_2,\dots,t^{k'}_2,\ t^1_1,\dots,t^k_1]$.
 We define $\mu : V \to Y_t$ by $\mu(v) = \mu_i(v)$ if $v \in W_i$.
 Then $\mu$ is a progress measure: for edges in the graphs induced by $W_1$ and $W_2$ this is because $\mu_1$ and $\mu_2$ are,
-and the additional edges are from $v \in W_2$ to $v' \in W_1$, so indeed $\mu(v) \vartriangleleft_{ \textsf{col}(v)} \mu(v')$ holds.
+and the additional edges are from $v \in W_2$ to $v' \in W_1$, so indeed $\mu(v) \vartriangleleft_{ \mathfrak{c}(v)} \mu(v')$ holds.
 This finishes the inductive proof of the property.
 
 We show that the property extends to graphs not satisfying parity.
@@ -381,7 +377,7 @@ We extend $\mu_W$ to $\mu : V \to Y_t$: for $v \notin W$ we let $\mu(v) = \bot$.
 To see that $\mu$ is a progress measure we make two remarks.
 First, if $v \in W$ then all successors of $v$ are also in $W$ (by prefix independence of parity),
 so the edges in $G$ are either in $G'$ or from $v \in V \setminus W$ to $v' \in W$.
-In the first case $\mu(v) \vartriangleleft_{ \textsf{col}(v)} \mu(v')$ holds because $\mu_W$ is a progress measure,
+In the first case $\mu(v) \vartriangleleft_{ \mathfrak{c}(v)} \mu(v')$ holds because $\mu_W$ is a progress measure,
 and in the second case because $\mu(v) = \bot$.
 
 ````
@@ -392,16 +388,16 @@ We can now prove {prf:ref}`3-thm:progress_measure`.
 :class: dropdown tip
 
 Assume that Eve wins from $v$ and let $\sigma$ be a positional strategy.
-The parity graph $\Game[\sigma]$ satisfies parity from $v$, so thanks to {prf:ref}`3-lem:progress_measure`
+The parity graph $\mathcal{G}[\sigma]$ satisfies parity from $v$, so thanks to {prf:ref}`3-lem:progress_measure`
 there exists a tree $t$ and a function $\mu : V \to Y_t$ such that $\mu(v) \neq \bot$
-and for all edges $(v,v') \in E$ we have $\mu(v) \vartriangleleft_{ \textsf{col}(v)} \mu(v')$.
+and for all edges $(v,v') \in E$ we have $\mu(v) \vartriangleleft_{ \mathfrak{c}(v)} \mu(v')$.
 We remark that $\mu : V \to Y_t$ is actually a progress measure: the condition for $v \in  V_\mathrm{Eve}$ is ensured by the edge $\sigma(v)$,
 and the condition for $v \in  V_\mathrm{Adam}$ by assumption on $\mu$.
 
 Conversely, assume that there exists a tree $t$ and a progress measure $\mu : V \to Y_t$.
-It induces a positional strategy defined by $\sigma(v) = (v,v')$ such that $\mu(v) \vartriangleleft_{ \textsf{col}(v)} \mu(v')$.
+It induces a positional strategy defined by $\sigma(v) = (v,v')$ such that $\mu(v) \vartriangleleft_{ \mathfrak{c}(v)} \mu(v')$.
 We argue that $\sigma$ is a winning strategy from any vertex $v$ such that $\mu(v) \neq \bot$.
-This is a consequence of {prf:ref}`3-lem:progress_measure` for the parity graph $\Game[\sigma]$.
+This is a consequence of {prf:ref}`3-lem:progress_measure` for the parity graph $\mathcal{G}[\sigma]$.
 
 ````
 
@@ -412,7 +408,7 @@ This is where we use universal trees:
 ````{prf:corollary} NEEDS TITLE 3-cor:progress_measure
 :label: 3-cor:progress_measure
 
-Let $\Game$ be a parity game with $n$ vertices and priorities in $[1,d]$, and $v$ a vertex.
+Let $\mathcal{G}$ be a parity game with $n$ vertices and priorities in $[1,d]$, and $v$ a vertex.
 Let $T$ be a $(n,d/2)$-universal tree.
 Then Eve wins from $v$ if and only if there exists a progress measure $\mu : V \to Y_T$ such that $\mu(v) \neq \bot$.
 
@@ -450,12 +446,12 @@ $$
  \mathbb{O}_v(\mu)(u) = 
 \begin{cases}
 \mu(v) & \text{ if } u \neq v, \\
-\max  \left\{ \delta( \mu(v'),  \textsf{col \right\}(v)) : (v,v') \in E} & \text{ if } u = v \in  V_\mathrm{Eve}, \\
-\min  \left\{ \delta( \mu(v'),  \textsf{col \right\}(v)) : (v,v') \in E} & \text{ if } u = v \in  V_\mathrm{Adam}.
+\max  \left\{ \delta( \mu(v'),  \mathfrak{c \right\}(v)) : (v,v') \in E} & \text{ if } u = v \in  V_\mathrm{Eve}, \\
+\min  \left\{ \delta( \mu(v'),  \mathfrak{c \right\}(v)) : (v,v') \in E} & \text{ if } u = v \in  V_\mathrm{Adam}.
 \end{cases}
 $$
 
-We introduce some terminology: we say that an edge $e = (v,v')$ is **neglected** if $\neg (\mu(v) \vartriangleleft_{ \textsf{col}(v)} \mu(v'))$,
+We introduce some terminology: we say that an edge $e = (v,v')$ is **neglected** if $\neg (\mu(v) \vartriangleleft_{ \mathfrak{c}(v)} \mu(v'))$,
 and a vertex $v$ is **neglected** if $\neg (\mu(v) \le  \mathbb{O}_v(\mu)(v))$.
 
 ```{figure} ./../FigAndAlgos/3-fig:lifting.png
@@ -499,8 +495,8 @@ To determine the overall complexity we need to discuss two aspects of the algori
 We note that a vertex $v \in  V_\mathrm{Eve}$ is neglected if and only if all its outgoing edges are neglected,
 and a vertex $v \in  V_\mathrm{Adam}$ is neglected if and only if it has a neglected outgoing edge.
 Hence checking whether a vertex $v$ is neglected requires considering all of its outgoing edges $(v,v')$
-and checking whether $\mu(v) \vartriangleleft_{ \textsf{col}(v)} \mu(v')$.
-Let us write $\Delta$ for the complexity of checking whether $\mu(v) \vartriangleleft_{ \textsf{col}(v)} \mu(v')$.
+and checking whether $\mu(v) \vartriangleleft_{ \mathfrak{c}(v)} \mu(v')$.
+Let us write $\Delta$ for the complexity of checking whether $\mu(v) \vartriangleleft_{ \mathfrak{c}(v)} \mu(v')$.
 Hence checking whether $v$ is neglected costs 
 $O(|  \textrm{In}^{-1}(v)| \cdot \Delta)$, where $|  \textrm{In}^{-1}(v)|$ is the number of outgoing edges of $v$.
 

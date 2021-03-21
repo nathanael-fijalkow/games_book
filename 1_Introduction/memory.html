@@ -729,8 +729,7 @@
   <div class="section" id="memory">
 <span id="sec-memory"></span><h1>Memory<a class="headerlink" href="#memory" title="Permalink to this headline">¶</a></h1>
 <div class="math notranslate nohighlight">
-\[\renewcommand{\Game}{\game}
-\]</div>
+\[\]</div>
 <p>A strategy can be a very complicated object, in particular it is infinite.
 Indeed, it is a function <span class="math notranslate nohighlight">\(\sigma :  \textrm{Paths} \to E\)</span>,
 which means that in order to choose the next move the strategy considers everything played so far:
@@ -750,18 +749,18 @@ Formally, a positional strategy for Eve is a function</p>
 \]</div>
 <p>A positional strategy induces a strategy by <span class="math notranslate nohighlight">\(\widehat{\sigma}(\pi) = \sigma( \textrm{last}(\pi))\)</span>.</p>
 <p>For reasoning about positional strategies it is useful to define the following notion.
-Let <span class="math notranslate nohighlight">\(\Game\)</span> be a game and <span class="math notranslate nohighlight">\(\sigma\)</span> a positional strategy, we define <span class="math notranslate nohighlight">\(\Game[\sigma]\)</span> the graph with condition <span class="math notranslate nohighlight">\(W\)</span> induced by <span class="math notranslate nohighlight">\(\sigma\)</span> on <span class="math notranslate nohighlight">\(\Game\)</span>.
+Let <span class="math notranslate nohighlight">\(\mathcal{G}\)</span> be a game and <span class="math notranslate nohighlight">\(\sigma\)</span> a positional strategy, we define <span class="math notranslate nohighlight">\(\mathcal{G}[\sigma]\)</span> the graph with condition <span class="math notranslate nohighlight">\(W\)</span> induced by <span class="math notranslate nohighlight">\(\sigma\)</span> on <span class="math notranslate nohighlight">\(\mathcal{G}\)</span>.
 The set of vertices is <span class="math notranslate nohighlight">\(V\)</span> and the set of edges is</p>
 <div class="math notranslate nohighlight">
 \[
 E[\sigma] =  \left\{ e = (v,v') \in E : v \in  V_\mathrm{Adam} \text{ or  \right\} \left( v \in  V_\mathrm{Eve} \text{ and } \sigma(v) = e \right)}.
 \]</div>
-<p>It is equipped with the condition <span class="math notranslate nohighlight">\(W\)</span> inherited from <span class="math notranslate nohighlight">\(\Game\)</span>.</p>
+<p>It is equipped with the condition <span class="math notranslate nohighlight">\(W\)</span> inherited from <span class="math notranslate nohighlight">\(\mathcal{G}\)</span>.</p>
 <div class="proof observation admonition" id="1-fact:game_induced_positional_strategy">
 <p class="admonition-title"><span class="caption-number">Observation 16 </span> (Game induced by a positional strategy)</p>
 <div class="observation-content section" id="proof-content">
-<p>Let <span class="math notranslate nohighlight">\(\Game\)</span> be a game with condition <span class="math notranslate nohighlight">\(W\)</span>, <span class="math notranslate nohighlight">\(\sigma\)</span> a positional strategy, and <span class="math notranslate nohighlight">\(v\)</span> a vertex.
-Then the strategy <span class="math notranslate nohighlight">\(\sigma\)</span> is winning from <span class="math notranslate nohighlight">\(v\)</span> if and only if all infinite paths in <span class="math notranslate nohighlight">\(\Game[\sigma]\)</span> from <span class="math notranslate nohighlight">\(v\)</span> satisfy <span class="math notranslate nohighlight">\(W\)</span>.</p>
+<p>Let <span class="math notranslate nohighlight">\(\mathcal{G}\)</span> be a game with condition <span class="math notranslate nohighlight">\(W\)</span>, <span class="math notranslate nohighlight">\(\sigma\)</span> a positional strategy, and <span class="math notranslate nohighlight">\(v\)</span> a vertex.
+Then the strategy <span class="math notranslate nohighlight">\(\sigma\)</span> is winning from <span class="math notranslate nohighlight">\(v\)</span> if and only if all infinite paths in <span class="math notranslate nohighlight">\(\mathcal{G}[\sigma]\)</span> from <span class="math notranslate nohighlight">\(v\)</span> satisfy <span class="math notranslate nohighlight">\(W\)</span>.</p>
 </div>
 </div><p>We say that a qualitative objective <span class="math notranslate nohighlight">\(\Omega\)</span> is positionally determined (sometimes simply positional) if
 for every game <span class="math notranslate nohighlight">\(\mathcal{G}\)</span> with objective <span class="math notranslate nohighlight">\(\Omega\)</span> and every vertex <span class="math notranslate nohighlight">\(v\)</span>,
@@ -778,9 +777,9 @@ using <span class="math notranslate nohighlight">\(n \cdot \log(\frac{m}{n})\)</
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
-<p>Let <span class="math notranslate nohighlight">\(\Omega\)</span> be a positionally determined objective and <span class="math notranslate nohighlight">\(\Game\)</span> a qualitative game with objective <span class="math notranslate nohighlight">\(\Omega\)</span>.
-We first determine <span class="math notranslate nohighlight">\(W_\mathrm{Eve}(\Game)\)</span>, which requires one call to a solving algorithm for each vertex.
-We fix a vertex <span class="math notranslate nohighlight">\(v \in  W_\mathrm{Eve}(\Game)\)</span> and determine a winning positional move from <span class="math notranslate nohighlight">\(v\)</span>.
+<p>Let <span class="math notranslate nohighlight">\(\Omega\)</span> be a positionally determined objective and <span class="math notranslate nohighlight">\(\mathcal{G}\)</span> a qualitative game with objective <span class="math notranslate nohighlight">\(\Omega\)</span>.
+We first determine <span class="math notranslate nohighlight">\(W_\mathrm{Eve}(  \mathcal{G})\)</span>, which requires one call to a solving algorithm for each vertex.
+We fix a vertex <span class="math notranslate nohighlight">\(v \in  W_\mathrm{Eve}(  \mathcal{G})\)</span> and determine a winning positional move from <span class="math notranslate nohighlight">\(v\)</span>.
 We let <span class="math notranslate nohighlight">\(d(v)\)</span> denote the outdegree of <span class="math notranslate nohighlight">\(v\)</span>.
 We choose a subset of <span class="math notranslate nohighlight">\(\lfloor \frac{d(v)}{2} \rfloor\)</span> outgoing edges of <span class="math notranslate nohighlight">\(v\)</span>, construct the game where we remove these edges,
 and solve it using <span class="math notranslate nohighlight">\(v\)</span> as initial vertex.

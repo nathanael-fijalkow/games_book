@@ -3,8 +3,6 @@
 
 ```{math}
 
-\renewcommand{\Game}{\game}
-
 ```
 
 The prefix independent objectives we studied so far are B&uuml;chi, CoB&uuml;chi, and their joint extension the parity objectives.
@@ -102,13 +100,13 @@ The following lemma induces the recursive algorithm for computing the winning re
 ````{prf:lemma} Fixed point characterisation of the winning regions for Muller games
 :label: 2-lem:Muller_even
 
-Let $\Game$ be a Muller game such that $C \in  \mathcal{F}$.
-For each $c \in C$, let $\Game_c$ be the subgame of $\Game$ induced by $V \setminus  \textrm{Attr}_\mathrm{Eve}(c)$.
+Let $\mathcal{G}$ be a Muller game such that $C \in  \mathcal{F}$.
+For each $c \in C$, let $\mathcal{G}_c$ be the subgame of $\mathcal{G}$ induced by $V \setminus  \textrm{Attr}_\mathrm{Eve}(c)$.
 
-*  If for all $c \in C$, we have $W_\mathrm{Adam}(\Game_c) = \emptyset$, then $W_\mathrm{Eve}(\Game) = V$.
-*  If there exists $c \in C$ such that $W_\mathrm{Adam}(\Game_c) \neq \emptyset$,
-let $\Game'$ be the subgame of $\Game$ induced by $V \setminus  \textrm{Attr}_\mathrm{Adam}(  W_\mathrm{Adam}(\Game_c) )$,
-then $W_\mathrm{Eve}(\Game) =  W_\mathrm{Eve}(\Game')$.
+*  If for all $c \in C$, we have $W_\mathrm{Adam}(  \mathcal{G}_c) = \emptyset$, then $W_\mathrm{Eve}(  \mathcal{G}) = V$.
+*  If there exists $c \in C$ such that $W_\mathrm{Adam}(  \mathcal{G}_c) \neq \emptyset$,
+let $\mathcal{G}'$ be the subgame of $\mathcal{G}$ induced by $V \setminus  \textrm{Attr}_\mathrm{Adam}(  W_\mathrm{Adam}(  \mathcal{G}_c) )$,
+then $W_\mathrm{Eve}(  \mathcal{G}) =  W_\mathrm{Eve}(  \mathcal{G}')$.
 
 ````
 
@@ -118,8 +116,8 @@ then $W_\mathrm{Eve}(\Game) =  W_\mathrm{Eve}(\Game')$.
 We prove the first item.
 
 For each $c \in C$, let $\sigma_c$ be an attractor strategy ensuring to reach $c$ from $\textrm{Attr}_\mathrm{Eve}(c)$,
-and consider a winning strategy for Eve from $V \setminus  \textrm{Attr}_\mathrm{Eve}(c)$ in $\Game_c$, it induces a strategy $\sigma'_c$ in $\Game$.
-We construct a strategy $\sigma$ in $\Game$ which will simulate the strategies above in turn; to do so it uses $C$ as top-level memory states.
+and consider a winning strategy for Eve from $V \setminus  \textrm{Attr}_\mathrm{Eve}(c)$ in $\mathcal{G}_c$, it induces a strategy $\sigma'_c$ in $\mathcal{G}$.
+We construct a strategy $\sigma$ in $\mathcal{G}$ which will simulate the strategies above in turn; to do so it uses $C$ as top-level memory states.
 (We note that the strategies $\sigma'_c$ may use memory as well, so $\sigma$ may actually use more memory than just $C$.)
 The strategy $\sigma$ with memory $c$ simulates $\sigma_c$ from $\textrm{Attr}_\mathrm{Eve}(c)$ and $\sigma'_c$ from $V \setminus  \textrm{Attr}_\mathrm{Eve}(c)$,
 and if it ever reaches $c$ it updates its memory state to $c + 1$ and $1$ if $c = d$.
@@ -131,24 +129,24 @@ Thus $\sigma$ is winning from $V$.
 
 We now look at the second item.
 
-Let $\tau_a$ denote an attractor strategy from $\textrm{Attr}_\mathrm{Adam}( W_\mathrm{Adam}(\Game_c)) \setminus  W_\mathrm{Adam}(\Game_c)$.
-Consider a winning strategy for Adam from $W_\mathrm{Adam}(\Game_c)$ in $\Game_c$, it induces a strategy $\tau_c$ in $\Game$.
-Since $V \setminus  \textrm{Attr}_\mathrm{Eve}(c)$ is a trap for Eve, this implies that $\tau_c$ is a winning strategy in $\Game$.
-Consider now a winning strategy in the game $\Game'$ from $W_\mathrm{Adam}(\Game')$, it induces a strategy $\tau'$ in $\Game$.
-The set $V \setminus  \textrm{Attr}_\mathrm{Adam}(  W_\mathrm{Adam}(\Game_c) )$ may not be a trap for Eve, so we cannot conclude that $\tau'$ is a winning strategy in $\Game$,
+Let $\tau_a$ denote an attractor strategy from $\textrm{Attr}_\mathrm{Adam}( W_\mathrm{Adam}(  \mathcal{G}_c)) \setminus  W_\mathrm{Adam}(  \mathcal{G}_c)$.
+Consider a winning strategy for Adam from $W_\mathrm{Adam}(  \mathcal{G}_c)$ in $\mathcal{G}_c$, it induces a strategy $\tau_c$ in $\mathcal{G}$.
+Since $V \setminus  \textrm{Attr}_\mathrm{Eve}(c)$ is a trap for Eve, this implies that $\tau_c$ is a winning strategy in $\mathcal{G}$.
+Consider now a winning strategy in the game $\mathcal{G}'$ from $W_\mathrm{Adam}(  \mathcal{G}')$, it induces a strategy $\tau'$ in $\mathcal{G}$.
+The set $V \setminus  \textrm{Attr}_\mathrm{Adam}(  W_\mathrm{Adam}(  \mathcal{G}_c) )$ may not be a trap for Eve, so we cannot conclude that $\tau'$ is a winning strategy in $\mathcal{G}$,
 and it indeed may not be.
-We construct a strategy $\tau$ in $\Game$ as the (disjoint) union of the strategy $\tau_a$ on $\textrm{Attr}_\mathrm{Adam}( W_\mathrm{Adam}(\Game_c)) \setminus  W_\mathrm{Adam}(\Game_c)$,
-the strategy $\tau_c$ on $W_\mathrm{Adam}(\Game_c)$ and the strategy $\tau'$ on $W_\mathrm{Adam}(\Game')$.
-We argue that $\tau$ is winning from $\textrm{Attr}_\mathrm{Adam}(  W_\mathrm{Adam}(\Game_c) ) \cup  W_\mathrm{Adam}(\Game')$ in $\Game$.
-Indeed, any play consistent with this strategy in $\Game$ either stays forever in $W_\mathrm{Adam}(\Game')$ hence is consistent with $\tau'$
-or enters $\textrm{Attr}_\mathrm{Adam}(  W_\mathrm{Adam}(\Game_c) )$, so it is eventually consistent with $\tau_c$.
+We construct a strategy $\tau$ in $\mathcal{G}$ as the (disjoint) union of the strategy $\tau_a$ on $\textrm{Attr}_\mathrm{Adam}( W_\mathrm{Adam}(  \mathcal{G}_c)) \setminus  W_\mathrm{Adam}(  \mathcal{G}_c)$,
+the strategy $\tau_c$ on $W_\mathrm{Adam}(  \mathcal{G}_c)$ and the strategy $\tau'$ on $W_\mathrm{Adam}(  \mathcal{G}')$.
+We argue that $\tau$ is winning from $\textrm{Attr}_\mathrm{Adam}(  W_\mathrm{Adam}(  \mathcal{G}_c) ) \cup  W_\mathrm{Adam}(  \mathcal{G}')$ in $\mathcal{G}$.
+Indeed, any play consistent with this strategy in $\mathcal{G}$ either stays forever in $W_\mathrm{Adam}(  \mathcal{G}')$ hence is consistent with $\tau'$
+or enters $\textrm{Attr}_\mathrm{Adam}(  W_\mathrm{Adam}(  \mathcal{G}_c) )$, so it is eventually consistent with $\tau_c$.
 In both cases this implies that the play is winning.
-Thus we have proved that $\textrm{Attr}_\mathrm{Adam}(  W_\mathrm{Adam}(\Game_c) ) \cup  W_\mathrm{Adam}(\Game') \subseteq  W_\mathrm{Adam}(\Game)$.
+Thus we have proved that $\textrm{Attr}_\mathrm{Adam}(  W_\mathrm{Adam}(  \mathcal{G}_c) ) \cup  W_\mathrm{Adam}(  \mathcal{G}') \subseteq  W_\mathrm{Adam}(  \mathcal{G})$.
 
-We now show that $W_\mathrm{Eve}(\Game') \subseteq  W_\mathrm{Eve}(\Game)$, which implies the converse inclusion.
-Consider a winning strategy from $W_\mathrm{Eve}(\Game')$ in $\Game'$, it induces a strategy $\sigma$ in $\Game$.
-Since $\Game'$ is a trap for Adam, any play consistent with $\sigma$ stays forever in $W_\mathrm{Eve}(\Game')$, 
-implying that $\sigma$ is winning from $W_\mathrm{Eve}(\Game')$ in $\Game$.
+We now show that $W_\mathrm{Eve}(  \mathcal{G}') \subseteq  W_\mathrm{Eve}(  \mathcal{G})$, which implies the converse inclusion.
+Consider a winning strategy from $W_\mathrm{Eve}(  \mathcal{G}')$ in $\mathcal{G}'$, it induces a strategy $\sigma$ in $\mathcal{G}$.
+Since $\mathcal{G}'$ is a trap for Adam, any play consistent with $\sigma$ stays forever in $W_\mathrm{Eve}(  \mathcal{G}')$, 
+implying that $\sigma$ is winning from $W_\mathrm{Eve}(  \mathcal{G}')$ in $\mathcal{G}$.
 
 ````
 
@@ -158,13 +156,13 @@ We do not prove it as it is the exact dual of the previous lemma, and the proof 
 ````{prf:lemma} Dual fixed point characterisation of the winning regions for Muller games
 :label: 2-lem:Muller_odd
 
-Let $\Game$ be a Muller game such that $C \notin  \mathcal{F}$.
-For each $c \in C$, let $\Game_c$ be the subgame of $\Game$ induced by $V \setminus  \textrm{Attr}_\mathrm{Adam}(c)$.
+Let $\mathcal{G}$ be a Muller game such that $C \notin  \mathcal{F}$.
+For each $c \in C$, let $\mathcal{G}_c$ be the subgame of $\mathcal{G}$ induced by $V \setminus  \textrm{Attr}_\mathrm{Adam}(c)$.
 
-*  If for all $c \in C$, we have $W_\mathrm{Eve}(\Game_c) = \emptyset$, then $W_\mathrm{Adam}(\Game) = V$.
-*  If there exists $c \in C$ such that $W_\mathrm{Eve}(\Game_c) \neq \emptyset$,
-let $\Game'$ be the subgame of $\Game$ induced by $V \setminus  \textrm{Attr}_\mathrm{Eve}(  W_\mathrm{Eve}(\Game_c) )$,
-then $W_\mathrm{Adam}(\Game) =  W_\mathrm{Adam}(\Game')$.
+*  If for all $c \in C$, we have $W_\mathrm{Eve}(  \mathcal{G}_c) = \emptyset$, then $W_\mathrm{Adam}(  \mathcal{G}) = V$.
+*  If there exists $c \in C$ such that $W_\mathrm{Eve}(  \mathcal{G}_c) \neq \emptyset$,
+let $\mathcal{G}'$ be the subgame of $\mathcal{G}$ induced by $V \setminus  \textrm{Attr}_\mathrm{Eve}(  W_\mathrm{Eve}(  \mathcal{G}_c) )$,
+then $W_\mathrm{Adam}(  \mathcal{G}) =  W_\mathrm{Adam}(  \mathcal{G}')$.
 
 ````
 
@@ -182,8 +180,8 @@ $$
 f(n,d) \le d \cdot f(n,d-1) + f(n-1,d) + d + 1.
 $$
 
-The term $d \cdot f(n,d-1)$ corresponds to the recursive call to $\Game_c$ for each $c \in C$,
-the term $f(n-1,d)$ to the recursive call to $\Game'$.
+The term $d \cdot f(n,d-1)$ corresponds to the recursive call to $\mathcal{G}_c$ for each $c \in C$,
+the term $f(n-1,d)$ to the recursive call to $\mathcal{G}'$.
 We obtain $f(n,d) \le d n \cdot f(n,d-1) + (d+1)n$,
 so $f(n,d) \le (d+1)n (1 + dn + (dn)^2 + \dots + (dn)^{d-2}) = O((dn)^d)$.
 In each recursive call we perform $d+1$ attractor computations so the number of operations in one recursive call is $O(dm)$.
@@ -293,17 +291,17 @@ Solving Rabin games is $\textrm{NP}$-complete.
 ````
 
 In order to simplify the reduction for proving {prf:ref}`2-thm:Rabin_complexity` let us make some remarks about colouring functions.
-We defined colouring functions as $\textsf{col} : V \to C$, meaning that we label vertices.
+We defined colouring functions as $\mathfrak{c} : V \to C$, meaning that we label vertices.
 Let us discuss here three more general definitions and how to reduce them to the vertex colouring functions
 in the case of Rabin games.
 
-*  Partial colouring functions: $\textsf{col} : V \to C \cup  \left\{ \emptyset \right\}$.
+*  Partial colouring functions: $\mathfrak{c} : V \to C \cup  \left\{ \emptyset \right\}$.
 
 We introduce a new Rabin pair $(R,G)$ and colour all uncoloured vertices by $G$.
 The Rabin condition will never be satisfied because of this new addition 
 since the colour $R$ does not appear at all in the game.
 
-*  Edge colouring functions: $\textsf{col} : E \to C$.
+*  Edge colouring functions: $\mathfrak{c} : E \to C$.
 
 We reduce from an edge colouring function to a partial vertex colouring function as illustrated in {numref}`2-fig:reduction_edge_colouring`:
 we add a dummy vertex for each edge and colour it with the colour of its edge, leaving already existing vertices without colours.
@@ -314,7 +312,7 @@ we add a dummy vertex for each edge and colour it with the colour of its edge, l
 Reduction from edge colouring to partial vertex colouring.
 ```
 
-*  Multiset colouring functions: $\textsf{col} : V \to 2^C$.
+*  Multiset colouring functions: $\mathfrak{c} : V \to 2^C$.
 
 We reduce from a multiset colouring function to a vertex colouring function as illustrated in {numref}`2-fig:reduction_multiset_colouring`: 
 for each vertex $v$ coloured by a set $S$ we add a dummy vertex for each colour $c \in S$ and replace $v$ by the line of dummy vertices.
@@ -410,8 +408,8 @@ $$
 \Phi(x_1,\dots,x_n) = \bigvee_{j=1}^m \ell_{j_1} \wedge \ell_{j_2} \wedge \ell_{j_3}.
 $$
 
-We construct a Muller game $\Game$ with $m+1$ vertices (one per clause, all controlled by Adam, plus a unique vertex controlled by Eve), $4m$ edges ($4$ per clause), and $2n$ colours (one per literal).
-We will show that the formula $\Psi$ evaluates to true if and only if Eve has a winning strategy in the Muller game $\Game$.
+We construct a Muller game $\mathcal{G}$ with $m+1$ vertices (one per clause, all controlled by Adam, plus a unique vertex controlled by Eve), $4m$ edges ($4$ per clause), and $2n$ colours (one per literal).
+We will show that the formula $\Psi$ evaluates to true if and only if Eve has a winning strategy in the Muller game $\mathcal{G}$.
 
 We first describe the Muller condition. 
 The set of colours is the set of literals.

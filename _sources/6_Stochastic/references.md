@@ -3,8 +3,6 @@
 
 ```{math}
 
-\renewcommand{\Game}{\game}
-
 ```
 
 A good reference for this proof is Kucera (chapter on stochastic

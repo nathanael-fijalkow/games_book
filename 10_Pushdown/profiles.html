@@ -720,7 +720,7 @@
 <span id="sec-profiles"></span><h1>Profiles and regularity of the winning regions<a class="headerlink" href="#profiles-and-regularity-of-the-winning-regions" title="Permalink to this headline">¶</a></h1>
 <div class="math notranslate nohighlight">
 \[ \begin{align}\begin{aligned}\def\AC#1{\textcolor{green!50!black}{\checkmark}\marginpar{\color{green!50!black}AC: #1}} \\\def\acchanged#1{{#1}}
-\def\OS#1{\textcolor{red}{\checkmark}\marginpar{\color{red}OS: #1}}\\\renewcommand{\qed}{$\square$}\\\newcommand {\Stepsg}[1]{\mathit{Steps}_{#1}}\\\newcommand {\Rounds}[1]{\mathit{Rounds}_{#1}}\\\renewcommand{\Game}{\game}
+\def\OS#1{\textcolor{red}{\checkmark}\marginpar{\color{red}OS: #1}}\\\newcommand {\Stepsg}[1]{\mathit{Steps}_{#1}}\\\newcommand {\Rounds}[1]{\mathit{Rounds}_{#1}}
 \end{aligned}\end{align} \]</div>
 <p>In this section, we consider a large class of objectives called <strong>prefix independent</strong>. For these objectives, a pushdown game can be meaningfully decomposed by considering the part of the game between the moment a symbol is pushed onto the stack and stopping as soon as it is popped.  As a consequence, we will see that for prefix independent
 objectives, the winning region can be described  using finite state automata.</p>
@@ -867,7 +867,7 @@ we have <span class="math notranslate nohighlight">\(u=r_{i_1}\cdot r_{i_k}=\ell
 <h2>Reachability Pushdown Game<a class="headerlink" href="#reachability-pushdown-game" title="Permalink to this headline">¶</a></h2>
 <p>We will see in the following section that for the parity condition and more generally for any <span class="math notranslate nohighlight">\(\omega\)</span>-regular winning conditions the <span class="math notranslate nohighlight">\((q,\gamma)\)</span>-profiles can be computed for any <span class="math notranslate nohighlight">\(q \in Q\)</span> and <span class="math notranslate nohighlight">\(\gamma \in \Gamma\)</span>. We start by the simpler case of the reachability objective.</p>
 <p>At first sight, the reachability objective is not captured by <a class="reference internal" href="#10-thm:regularity-wr">Theorem 292</a> as it is not prefix independent. However with a slight adaptation of the reduced game <span class="math notranslate nohighlight">\(\mathcal{G}(R)\)</span> <a class="reference internal" href="#10-thm:regularity-wr">Theorem 292</a>  for the reachability condition. Intuitively we ask that the play stops as soon as a target vertex is reached.</p>
-<p>More formally, for a reachability objective <span class="math notranslate nohighlight">\(\mathtt{Reach}(F)\)</span> and letting <span class="math notranslate nohighlight">\(V=V_\mathrm{Eve}\cup V_\mathrm{Adam}\)</span> and <span class="math notranslate nohighlight">\(V_F = \{ v \in V \mid   \textsf{col}(v) \in F\}\)</span>:</p>
+<p>More formally, for a reachability objective <span class="math notranslate nohighlight">\(\mathtt{Reach}(F)\)</span> and letting <span class="math notranslate nohighlight">\(V=V_\mathrm{Eve}\cup V_\mathrm{Adam}\)</span> and <span class="math notranslate nohighlight">\(V_F = \{ v \in V \mid   \mathfrak{c}(v) \in F\}\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[ \overline{\Omega}(R) = [(V \setminus Q \times \{\bot\})^* \cdot V_F \cdot V^\omega]\cup [(V \setminus (Q\times\{\bot\} \cup V_F))^* \cdot (R\times \{\bot\}) \cdot V^\omega]
 \]</div>
@@ -876,7 +876,7 @@ we have <span class="math notranslate nohighlight">\(u=r_{i_1}\cdot r_{i_k}=\ell
 In the special case of the reachability objective, the set <span class="math notranslate nohighlight">\(\mathrm{Profs}\)</span> of triples <span class="math notranslate nohighlight">\((p,\gamma,R)\)</span> such that <span class="math notranslate nohighlight">\(R \in \mathcal{R}(p,\gamma)\)</span> can be expressed as a smallest fix-point.</p>
 <p>More precisely, <span class="math notranslate nohighlight">\(\mathrm{Profs}\)</span> is the smallest subset of <span class="math notranslate nohighlight">\(Q\times \Gamma \times \mathcal{P}(Q))\)</span> such that for <span class="math notranslate nohighlight">\(p \in Q\)</span>, <span class="math notranslate nohighlight">\(\gamma \in \Gamma\)</span> and <span class="math notranslate nohighlight">\(R \subseteq Q\)</span>, <span class="math notranslate nohighlight">\((p,\gamma,R)\)</span> belongs <span class="math notranslate nohighlight">\(\mathrm{Profs}\)</span> if either:</p>
 <ol class="simple">
-<li><p><span class="math notranslate nohighlight">\(p \in Q_F=\{ q \in Q \mid   \textsf{col}(q) \in F\}\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(p \in Q_F=\{ q \in Q \mid   \mathfrak{c}(q) \in F\}\)</span>,</p></li>
 <li><p>or <span class="math notranslate nohighlight">\(p \in Q_{ \mathrm{Eve}}\)</span> and for some <span class="math notranslate nohighlight">\(q \in Q\)</span>,</p></li>
 </ol>
 <ul class="simple">

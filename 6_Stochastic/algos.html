@@ -771,8 +771,7 @@
   <div class="section" id="algorithms">
 <span id="sec-algos"></span><h1>Algorithms<a class="headerlink" href="#algorithms" title="Permalink to this headline">¶</a></h1>
 <div class="math notranslate nohighlight">
-\[\renewcommand{\Game}{\game}
-\]</div>
+\[\]</div>
 <p>We have shown that stochastic reachability games are central to the (quantitative) analysis of stochastic games.
 We have indeed reduced the quantitative analysis of all kinds of stochastic games to stochastic reachability games. We will now present algorithms for stochastic reachability games.</p>
 <div class="section" id="value-iteration">
@@ -1162,7 +1161,7 @@ equal to) the least fixpoint of Bellman’s equations, that is <span class="math
 </div><p>The converse inequality is not true for general or self-consistent
 permutations, but will require the liveness property. One of the main
 advantages of a live permutation <span class="math notranslate nohighlight">\(\pi\)</span> is that it induces a
-stopping MDP when  \textrm{Eve} plays according to <span class="math notranslate nohighlight">\(\sigma_\pi\)</span>:  \textrm{Adam}
+`stopping’ MDP when  \textrm{Eve} plays according to <span class="math notranslate nohighlight">\(\sigma_\pi\)</span>:  \textrm{Adam}
 will not be able to prevent the game converging to <span class="math notranslate nohighlight">\(v_{lose}\)</span> and <span class="math notranslate nohighlight">\(v_{win}\)</span>.</p>
 <div class="proof lemma admonition" id="stoch:lemma:stopping">
 <p class="admonition-title"><span class="caption-number">Lemma 220 </span> (NEEDS TITLE stoch:lemma:stopping)</p>
@@ -1434,23 +1433,24 @@ Let <span class="math notranslate nohighlight">\(\sigma\)</span> be a strategy f
 <span class="math notranslate nohighlight">\((\sigma,\tau')\)</span> from <span class="math notranslate nohighlight">\(v\)</span>, either we stay forever in <span class="math notranslate nohighlight">\(Z\)</span>, or we
 leave at some  \textrm{Eve}’s vertex <span class="math notranslate nohighlight">\(v'\)</span> towards a vertex <span class="math notranslate nohighlight">\(w'\)</span> with
 <span class="math notranslate nohighlight">\(\textrm{val}^*(w') &lt;   \textrm{val}^*(v') =   \textrm{val}^*(v)\)</span> (recall the discussion
-above). We can then write:
-\begin{eqnarray*}
-\mathbb{P}<em>{\sigma,\tau’}( \mathtt{Reach}({ v</em>{win}})) &amp;=&amp;
-\mathbb{P}<em>{\sigma,\tau’}( \mathtt{Reach}({ v</em>{win}}) \mid \text{stays in}\  Z<br />
-\text{forever}) \cdot   \mathbb{P}<em>{\sigma,\tau’}(\text{stays in}\  Z<br />
-\text{forever}) \
-&amp;&amp; + \sum</em>{(v’,w’) \in (Z \times (Y \setminus Z) \cap E)}
-\mathbb{P}<em>{\sigma,\tau’}( \mathtt{Reach}({ v</em>{win}}) \mid
-\text{leave via}\  (v’,w’)) \cdot
-\mathbb{P}<em>{\sigma,\tau’}(\text{leave via}\  (v’,w’)) \
-&amp; = &amp; 0 \cdot  \mathbb{P}</em>{\sigma,\tau’}(\text{stays in}\  Z<br />
-\text{forever}) + \sum_{(v’,w’) \in (Z \times (Y \setminus Z) \cap
-E)}    \textrm{val}^<em>(w’) \cdot
-\mathbb{P}_{\sigma,\tau’}(\text{leave via}\  (v’,w’)) \
-&amp; \le &amp; \beta
-\end{eqnarray</em>}
-where <span class="math notranslate nohighlight">\(\beta = \max \{  \textrm{val}^*(w) \mid w \in Y \setminus Z\} &lt;
+above). We can then write:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{eqnarray*}
+     \mathbb{P}_{\sigma,\tau'}( \mathtt{Reach}(\{ v_{win}\})) &amp;=&amp;
+     \mathbb{P}_{\sigma,\tau'}( \mathtt{Reach}(\{ v_{win}\}) \mid \text{stays in}\  Z\
+    \text{forever}) \cdot   \mathbb{P}_{\sigma,\tau'}(\text{stays in}\  Z\
+    \text{forever}) \\ 
+    &amp;&amp; + \sum_{(v',w') \in (Z \times (Y \setminus Z) \cap E)} 
+     \mathbb{P}_{\sigma,\tau'}( \mathtt{Reach}(\{ v_{win}\}) \mid
+    \text{leave via}\  (v',w')) \cdot
+     \mathbb{P}_{\sigma,\tau'}(\text{leave via}\  (v',w')) \\
+    &amp; = &amp; 0 \cdot  \mathbb{P}_{\sigma,\tau'}(\text{stays in}\  Z\
+    \text{forever}) + \sum_{(v',w') \in (Z \times (Y \setminus Z) \cap
+      E)}    \textrm{val}^*(w') \cdot
+     \mathbb{P}_{\sigma,\tau'}(\text{leave via}\  (v',w')) \\
+    &amp; \le &amp; \beta
+  \end{eqnarray*}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\beta = \max \{  \textrm{val}^*(w) \mid w \in Y \setminus Z\} &lt;
     \textrm{val}^*(v)\)</span>.  Hence, we get <span class="math notranslate nohighlight">\(\textrm{val}^*(v) \le \beta &lt;   \textrm{val}^*(v)\)</span>. This
 is a contradiction.</p>
 </div>

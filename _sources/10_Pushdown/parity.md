@@ -8,13 +8,9 @@
 \def\acchanged#1{{#1}}
 \def\OS#1{\textcolor{red}{\checkmark}\marginpar{\color{red}OS: #1}}
 
-\renewcommand{\qed}{$\square$}
-
 \newcommand {\Stepsg}[1]{\mathit{Steps}_{#1}}
 
 \newcommand {\Rounds}[1]{\mathit{Rounds}_{#1}}
-
-\renewcommand{\Game}{\game}
 
 ```
 
@@ -47,14 +43,14 @@ finite pieces.
 In the factorisation induced by $\Stepsg{ \pi}$, a factor $v_i\cdots v_j$ is called a
 **bump** if $\mathrm{sh}(v_j)= \mathrm{sh}(v_i)$, called a **Stair** otherwise (that is, if $\mathrm{sh}(v_j)= \mathrm{sh}(v_i)+1$).
 
-For any play $\pi$ with $\Stepsg{ \pi}=\{n_0<n_1<\cdots\}$, we can define the sequence $(  \textsf{col}( \pi)_i)_{i\geq
-0}\in\{0,\dots,d\}^{\mathbb{N}}$ by setting $\textsf{col}( \pi)_i=\max\{  \textsf{col}(v_k)\mid n_i\leq k\leq n_{i+1}\}$.
+For any play $\pi$ with $\Stepsg{ \pi}=\{n_0<n_1<\cdots\}$, we can define the sequence $(  \mathfrak{c}( \pi)_i)_{i\geq
+0}\in\{0,\dots,d\}^{\mathbb{N}}$ by setting $\mathfrak{c}( \pi)_i=\max\{  \mathfrak{c}(v_k)\mid n_i\leq k\leq n_{i+1}\}$.
 This sequence fully characterises the parity objective.
 
 ````{prf:proposition} NEEDS TITLE 10-prop:trans_cond
 :label: 10-prop:trans_cond
 
-Let $\pi$ be a play. Then $\pi$ satisfies the parity condition  if and only if $\limsup((  \textsf{col}( \pi)_i)_{i\geq 0})$ is even.
+Let $\pi$ be a play. Then $\pi$ satisfies the parity condition  if and only if $\limsup((  \mathfrak{c}( \pi)_i)_{i\geq 0})$ is even.
 
 ````
 
@@ -64,7 +60,7 @@ In the sequel, we build a new parity game $\widetilde{ \mathcal{G}}$ over a **fi
 This new game
 **simulates** the original pushdown game, in the sense that the
 sequence of visited colours during a correct simulation of some play $\pi$ in $\mathcal{G}$ is
-exactly the sequence $(  \textsf{col}( \pi)_i)_{i\geq 0}$. Moreover, a play in which
+exactly the sequence $(  \mathfrak{c}( \pi)_i)_{i\geq 0}$. Moreover, a play in which
 a player does not correctly simulate the pushdown game is losing
 for that player. We shall see that the winning region in $\widetilde{ \mathcal{G}}$ allows us to compute the set of profiles $\{\mathcal{R}(q,\gamma) \mid q\in Q \text{ and } \gamma\in\Gamma\}$. Hence, by {prf:ref}`10-thm:regularity-wr`, it will imply that one can solve a pushdown game as well as compute its winning region.
 
@@ -104,7 +100,7 @@ $S_c$ where $c$ is the largest colour seen in
 the current stack level (this information is encoded in the vertex, reset after each pursue move and updated after each jump
 move). If  \textrm{Adam}
 does a jump move to a state $r$ in $S_{i}$, the currently
-stored value for $c$ is updated to $\max(c,i,  \textsf{col}(r))$,
+stored value for $c$ is updated to $\max(c,i,  \mathfrak{c}(r))$,
 which is the largest colour seen since the current stack level was
 reached.
 
@@ -114,8 +110,8 @@ described intermediate steps. The local structure is given in
 {numref}`10-fig:reduced-arena`. Two special sink vertices $t\! t$ and $f\!\! f$ are
 used to simulate pop moves. This arena is equipped with a
 colouring function on the edges: an edge from a vertex
-$(p,\alpha, \overrightarrow{R},c,q,\beta, \overrightarrow{S})$ to a vertex $(r,\alpha, \overrightarrow{R},\max(c,i,  \textsf{col}(r))$ has colour $i$ where $i$ is the colour of the simulated bump, an edge from a vertex
-$(p,\alpha, \overrightarrow{R},c,q,\beta, \overrightarrow{S})$ to a vertex $(q,\beta, \overrightarrow{S}  \textsf{col}(q))$ simulating a jump move has colour $\textsf{col}(q)$, the loop on $t\! t$ has colour $0$ while the loop on $f\!\! f$ has colour $1$; all other edges get the irrelevant colour $0$.
+$(p,\alpha, \overrightarrow{R},c,q,\beta, \overrightarrow{S})$ to a vertex $(r,\alpha, \overrightarrow{R},\max(c,i,  \mathfrak{c}(r))$ has colour $i$ where $i$ is the colour of the simulated bump, an edge from a vertex
+$(p,\alpha, \overrightarrow{R},c,q,\beta, \overrightarrow{S})$ to a vertex $(q,\beta, \overrightarrow{S}  \mathfrak{c}(q))$ simulating a jump move has colour $\mathfrak{c}(q)$, the loop on $t\! t$ has colour $0$ while the loop on $f\!\! f$ has colour $1$; all other edges get the irrelevant colour $0$.
 
 We now formally describe arena
 $\widetilde{ \mathcal{A}}$ (we refer to {numref}`10-fig:reduced-arena`) and provide some extra insight.
@@ -167,19 +163,19 @@ controlled by  \textrm{Adam} who chooses either to simulate a bump or a
 stair. In the first case, he additionally has to pick the maximal colour of the
 bump. To simulate a bump with maximal
 colour $i$, he goes, through an edge coloured by $i$, to a vertex
-$(r,\alpha, \overrightarrow{R},\max(c,i,  \textsf{col}(r)))$, for some $r\in
+$(r,\alpha, \overrightarrow{R},\max(c,i,  \mathfrak{c}(r)))$, for some $r\in
 S_i$.
 
-To simulate a stair,  \textrm{Adam} goes, through an edge coloured by $\textsf{col}(q)$, to the vertex
-$(q,\beta, \overrightarrow{S},  \textsf{col}(q))$.
+To simulate a stair,  \textrm{Adam} goes, through an edge coloured by $\mathfrak{c}(q)$, to the vertex
+$(q,\beta, \overrightarrow{S},  \mathfrak{c}(q))$.
 
 The last component of the vertex (that stores the
 largest colour seen since the currently simulated stack level was
 reached) has to be updated in all those cases. After simulating a bump
 of maximal colour $i$, the maximal colour is
-$\max(c,i,  \textsf{col}(r))$. After simulating a stair, this colour has to
+$\max(c,i,  \mathfrak{c}(r))$. After simulating a stair, this colour has to
 be initialized (since a new stack level is simulated). Its value, is
-therefore $\textsf{col}(q)$, which is the unique colour since the (new) stack
+therefore $\mathfrak{c}(q)$, which is the unique colour since the (new) stack
 level was reached.
 
 The edges for which we did not precise the colour are assigned colour $0$.
@@ -193,12 +189,12 @@ The following holds.
 
 1. [(i)] A configuration $(p_{in},\bot)$ is winning for  \textrm{Eve} in $\mathcal{G}$
 if and only if
-$(p_{in},\bot,(\emptyset,\dots,\emptyset),  \textsf{col}(p_{in)})$
+$(p_{in},\bot,(\emptyset,\dots,\emptyset),  \mathfrak{c}(p_{in)})$
 is winning for  \textrm{Eve} in
 $\widetilde{ \mathcal{G}}$.
 
 2. [(ii)] For every $q\in Q$, $\gamma\in\Gamma$ and $R\subseteq Q$, $R\in\mathcal{R}(q,\gamma)$ if and only if
-$(q,\gamma,(R,\dots,R),  \textsf{col}(q))$
+$(q,\gamma,(R,\dots,R),  \mathfrak{c}(q))$
 is winning for  \textrm{Eve} in
 $\widetilde{ \mathcal{G}}$.
 
@@ -219,7 +215,7 @@ finite pieces.
 
 Indeed, for any play $\pi$ with $\Stepsg{ \pi}=\{n_0<n_1<\cdots\}$, one can define the sequence $( \pi_i)_{i\geq
 0}$ by setting ${ \pi}_i=v_{n_i}\cdots v_{n_{i+1}}$. Note that each of the $\Lambda_i$ is either a bump or a stair.
-We designate $( \pi_i)_{i\geq 0}$ as the **rounds factorisation** of $\pi$ and we let $\textsf{col}( \pi_i)$ denotes the largest colour in $\pi_i$.
+We designate $( \pi_i)_{i\geq 0}$ as the **rounds factorisation** of $\pi$ and we let $\mathfrak{c}( \pi_i)$ denotes the largest colour in $\pi_i$.
 
 ### Factorisation of a play in $\widetilde{ \mathcal{G}}$.
 
@@ -237,7 +233,7 @@ $(p,\alpha, \overrightarrow{R},c)$. We have the following possible forms for a r
 
 $$
 
-(p,\alpha, \overrightarrow{R},c)(p,\alpha, \overrightarrow{R},c,q,\beta)(p,\alpha, \overrightarrow{R},c,q,\beta, \overrightarrow{S})i (r,\alpha, \overrightarrow{R},\max(c,i,  \textsf{col}(s)))
+(p,\alpha, \overrightarrow{R},c)(p,\alpha, \overrightarrow{R},c,q,\beta)(p,\alpha, \overrightarrow{R},c,q,\beta, \overrightarrow{S})i (r,\alpha, \overrightarrow{R},\max(c,i,  \mathfrak{c}(s)))
 
 $$
 
@@ -249,7 +245,7 @@ followed by a sequence of moves that ends by popping $\beta$. Moreover $i$ is th
 
 $$
 
-(p,\alpha, \overrightarrow{R},c)(p,\alpha, \overrightarrow{R},c,q,\beta)(p,\alpha, \overrightarrow{R},c,q,\beta, \overrightarrow{S})  \textsf{col}(q)(q,\beta, \overrightarrow{S},  \textsf{col}(q))
+(p,\alpha, \overrightarrow{R},c)(p,\alpha, \overrightarrow{R},c,q,\beta)(p,\alpha, \overrightarrow{R},c,q,\beta, \overrightarrow{S})  \mathfrak{c}(q)(q,\beta, \overrightarrow{S},  \mathfrak{c}(q))
 
 $$
 
@@ -303,7 +299,7 @@ Assume that the configuration $(p_{in},\bot)$ is winning for  \textrm{Eve} in $\
 and let $\sigma$ be a corresponding winning strategy for her.
 
 Using $\sigma$, we define a strategy $\widetilde{\sigma}$ for  \textrm{Eve} in
-$\widetilde{ \mathcal{G}}$ from $(p_{in},\bot,(\emptyset,\dots,\emptyset),  \textsf{col}(p_{in)})$.
+$\widetilde{ \mathcal{G}}$ from $(p_{in},\bot,(\emptyset,\dots,\emptyset),  \mathfrak{c}(p_{in)})$.
 This strategy stores a finite play in $\mathcal{G}$, that is an element in
 $V^*$. This memory will
 be denoted $\pi$. At the beginning $\pi$ is initialized to
@@ -346,7 +342,7 @@ More formally,
 $$
 
 \begin{split}
-S_i=&\{r\mid \exists\ \pi\cdot(q,s\alpha\beta)v_0\cdots v_k(r,s\alpha)\cdots\text{ play in }  \mathcal{G}  \text{ where  \textrm{Eve} respects } \sigma \text{ and s.t. }\\ &  \mathrm{sh}(v_j)>|\sigma\alpha|,\ \forall j=0,\dots,k  \text{, and }\max(\{  \textsf{col}(v_j)\mid j=0,\dots,k\}\cup\{  \textsf{col}(q)\})=i\}
+S_i=&\{r\mid \exists\ \pi\cdot(q,s\alpha\beta)v_0\cdots v_k(r,s\alpha)\cdots\text{ play in }  \mathcal{G}  \text{ where  \textrm{Eve} respects } \sigma \text{ and s.t. }\\ &  \mathrm{sh}(v_j)>|\sigma\alpha|,\ \forall j=0,\dots,k  \text{, and }\max(\{  \mathfrak{c}(v_j)\mid j=0,\dots,k\}\cup\{  \mathfrak{c}(q)\})=i\}
 \end{split}
 
 $$
@@ -384,7 +380,7 @@ The following proposition is a direct consequence of how $\widetilde{\sigma}$ wa
 :label: prop:par_dir_dep_paritexp
 
 Let $\widetilde{ \pi}$ be a finite play in $\widetilde{ \mathcal{G}}$ that starts from
-$(p_{in},\bot,(\emptyset,\dots,\emptyset),  \textsf{col}(p_{in)})$,
+$(p_{in},\bot,(\emptyset,\dots,\emptyset),  \mathfrak{c}(p_{in)})$,
 ends in a vertex of the form $(p,\alpha, \overrightarrow{R},c)$,
 and where  \textrm{Eve} respects $\widetilde{\sigma}$. Let $\pi$ be the play associated with $\widetilde{ \pi}$
 built by the strategy $\widetilde{\sigma}$. Then the following holds:
@@ -410,7 +406,7 @@ following proposition.
 :label: prop:toto
 
 Let $\widetilde{ \pi}$ be an infinite play in $\widetilde{ \mathcal{G}}$ that starts from
-$(p_{in},\bot,(\emptyset,\dots,\emptyset),$ $\textsf{col}(p_{in)})$,
+$(p_{in},\bot,(\emptyset,\dots,\emptyset),$ $\mathfrak{c}(p_{in)})$,
 and where  \textrm{Eve} respects $\widetilde{\sigma}$. Let $\pi$ be the associated
 play built by the strategy $\widetilde{\sigma}$, and let $( \pi_i)_{i\geq 0}$ be its rounds factorisation. Let $( \widetilde{ \pi}_i)_{i\geq 0}$ be
 the rounds factorisation of $\widetilde{ \pi}$. Then, for every $i\geq 1$ the
@@ -418,15 +414,15 @@ following hold:
 
 1.  $\widetilde{ \pi}_i$ is a bump if and only if $\pi_i$ is a bump
 
-2.  $\widetilde{ \pi}_i$ has colour $\textsf{col}( \pi_i)$.
+2.  $\widetilde{ \pi}_i$ has colour $\mathfrak{c}( \pi_i)$.
 
 ````
 
 {prf:ref}`prop:toto` implies that for any infinite play
 $\widetilde{ \pi}$ in $\widetilde{ \mathcal{G}}$ starting from
-$(p_{in},\bot,(\emptyset,\dots,\emptyset),$ $\textsf{col}(p_{in)})$
+$(p_{in},\bot,(\emptyset,\dots,\emptyset),$ $\mathfrak{c}(p_{in)})$
 where  \textrm{Eve} respects $\widetilde{\sigma}$, the sequence of visited colours in $\widetilde{ \pi}$ is
-$(  \textsf{col}( \pi)_i)_{i\geq 0}$ for the corresponding play $\pi$
+$(  \mathfrak{c}( \pi)_i)_{i\geq 0}$ for the corresponding play $\pi$
 in $\mathcal{G}$.
 Hence, using {prf:ref}`10-prop:trans_cond` we conclude that
 $\widetilde{ \pi}$ is winning if
@@ -440,7 +436,7 @@ her.
 Note that in order to prove the converse implication of {prf:ref}`10-thm:games` one could follow the direct implication and consider the point of view of  \textrm{Adam}. Nevertheless the proof we give here starts from a winning strategy for  \textrm{Eve} in $\widetilde{ \mathcal{G}}$ and deduces a strategy for her in $\mathcal{G}$: this induces a more involved proof but has the advantage to lead to an effective construction of a winning strategy for  \textrm{Eve} in $\mathcal{G}$ if one has an effective strategy for her in $\widetilde{ \mathcal{G}}$
 
 Assume now that  \textrm{Eve} has a winning strategy $\widetilde{\sigma}$ in $\widetilde{ \mathcal{G}}$
-from $(p_{\mathit in},\bot,(\emptyset,\dots,\emptyset),  \textsf{col}(p_{in)})$.
+from $(p_{\mathit in},\bot,(\emptyset,\dots,\emptyset),  \mathfrak{c}(p_{in)})$.
 Using $\widetilde{\sigma}$, we build a strategy $\sigma$ for  \textrm{Eve} in
 $\mathcal{G}$ for plays starting from $(p_{\mathit in},\bot)$.
 
@@ -456,7 +452,7 @@ the word obtained by reading $\Pi$ from bottom to top (without
 considering the bottom-of-stack symbol of $\Pi$). In any play
 where  \textrm{Eve} respects $\sigma$, $StCont(\Pi)$ will be a play
 in $\widetilde{ \mathcal{G}}$ that starts from $(p_{\mathit
-in},\bot,(\emptyset,\dots,\emptyset),  \textsf{col}(p_{in)})$ and where
+in},\bot,(\emptyset,\dots,\emptyset),  \mathfrak{c}(p_{in)})$ and where
  \textrm{Eve} respects her winning strategy $\widetilde{\sigma}$. Moreover, for any
 play $\pi$ where  \textrm{Eve} respects $\sigma$, we will always have that
 $top(\Pi)=(p,\alpha, \overrightarrow{R},c)$ if and only if
@@ -465,7 +461,7 @@ $(p,s\alpha)$. Finally, if  \textrm{Eve} keeps respecting $\sigma$, and
 if $\alpha$  is eventually popped the configuration reached
 will be of the form $(r,s)$ for some $r\in R_i$, where
 $i$ is the largest visited colour since $\alpha$  was on the stack.
-Initially, $\Pi$ only contains $(p_{in},\bot,(\emptyset,\dots,\emptyset),  \textsf{col}(p_{in)})$.
+Initially, $\Pi$ only contains $(p_{in},\bot,(\emptyset,\dots,\emptyset),  \mathfrak{c}(p_{in)})$.
 
 In order to describe $\sigma$, we assume that we are in some
 configuration $(p,s\alpha)$ and that
@@ -496,7 +492,7 @@ that is part of a stair. This
 configuration is therefore in the stair that simulates the pushing
 of $\alpha$ onto the stack.  \textrm{Eve} updates $\Pi$ by pushing
 $c$ in $\Pi$ followed by
-$(r,\alpha', \overrightarrow{R'},\max(c',c,  \textsf{col}(r)))$.
+$(r,\alpha', \overrightarrow{R'},\max(c',c,  \mathfrak{c}(r)))$.
 
 Assume that the last move, played by  \textrm{Eve} or  \textrm{Adam}, was to go from
 $(p,s\alpha)$ to some configuration $(q,s\alpha\beta)$, and let
@@ -506,7 +502,7 @@ reach if $\beta$ is eventually popped.  \textrm{Eve} updates $\Pi$ by
 successively pushing
 $(p,\alpha, \overrightarrow{R},c,q,\beta)$,
 $(p,\alpha, \overrightarrow{R},c,q,\beta, \overrightarrow{S})$, and
-$(q,\beta, \overrightarrow{S},  \textsf{col}(q))$.
+$(q,\beta, \overrightarrow{S},  \mathfrak{c}(q))$.
 
 ```{figure} ./../FigAndAlgos/10-fig:mise_a_jour_pile_strategie.png
 :name: 10-fig:mise_a_jour_pile_strategie
@@ -529,7 +525,7 @@ following facts:
 $\overrightarrow{R}\in(2^Q)^{d+1}$ and $0\leq c\leq d$.
 
 2.  $StCont(\Pi)$ is a finite play in $\widetilde{ \mathcal{G}}$ that starts
-from $(p_{\mathit in},\bot,(\emptyset,\dots,\emptyset),  \textsf{col}(p_{in)})$,
+from $(p_{\mathit in},\bot,(\emptyset,\dots,\emptyset),  \mathfrak{c}(p_{in)})$,
 that ends with $(p,\alpha, \overrightarrow{R},c)$ and where
  \textrm{Eve} respects $\widetilde{\sigma}$.
 
@@ -591,7 +587,7 @@ Then the following holds:
 
 *  $\pi_i$ is a bump if and only if ${ \pi}_i$ is a bump.
 
-*  $\pi_i$ has colour $\textsf{col}( \pi)_i$.
+*  $\pi_i$ has colour $\mathfrak{c}( \pi)_i$.
 
 ````
 
@@ -717,21 +713,21 @@ Then, the plays goes for rounds of the following form:
 *  From a vertex $(\gamma,R,\sigma_\gamma,S)$, where $\gamma\in \Gamma$, $R\subseteq Q$, $\sigma_\gamma$ is an $(R,\gamma)$-local strategy and $S$ is a set of $R$-summaries,  \textrm{Eve} chooses for every $\alpha\in\Gamma$ a $(W(R,\alpha),\alpha))$-local strategy $\sigma_\alpha$ that pops in $R$ and a set of $ W(R,\alpha)$-summaries $S_\alpha$ that is both complete and winning. The play then goes in $(\gamma,R,\sigma_\gamma,S,(\sigma_\alpha,S_\alpha)_{\alpha\in\Gamma})$.
 *  Then,  \textrm{Adam} chooses some $\alpha$ in $\Gamma$ and the play goes in $(\alpha,W(R,\alpha),\sigma_\alpha,S_\alpha)$.
 
-Consider a tuple $(\gamma,R,\sigma_\gamma,S,(\sigma_\alpha,S_\alpha)_{\alpha\in\Gamma})$ where $\gamma\in\Gamma$, $R\subseteq Q$, $\sigma_\gamma$ is an $(R,\gamma)$-local strategy, $S$ is a set of $R$-summaries, and, for every $\alpha\in\Gamma$, $\sigma_\alpha$ is a $(W(R,\alpha),\alpha))$-local strategy $\sigma_\alpha$ that pops in $R$ and $S_\alpha$ is a set of $W(R,\alpha)$-summaries that is both complete and winning. The tuple $(\gamma,R,\sigma_\gamma,(\sigma_\alpha,S_\alpha)_{\alpha\in\Gamma})$ is **consistent** if, for every $(p,r)\in R^2$, one has $(p,\max(  \textsf{col}(p),c,  \textsf{col}(r)),r)\in S$ as soon as we are in one of the following  two situations (the second one being the degenerated version of the first one).
+Consider a tuple $(\gamma,R,\sigma_\gamma,S,(\sigma_\alpha,S_\alpha)_{\alpha\in\Gamma})$ where $\gamma\in\Gamma$, $R\subseteq Q$, $\sigma_\gamma$ is an $(R,\gamma)$-local strategy, $S$ is a set of $R$-summaries, and, for every $\alpha\in\Gamma$, $\sigma_\alpha$ is a $(W(R,\alpha),\alpha))$-local strategy $\sigma_\alpha$ that pops in $R$ and $S_\alpha$ is a set of $W(R,\alpha)$-summaries that is both complete and winning. The tuple $(\gamma,R,\sigma_\gamma,(\sigma_\alpha,S_\alpha)_{\alpha\in\Gamma})$ is **consistent** if, for every $(p,r)\in R^2$, one has $(p,\max(  \mathfrak{c}(p),c,  \mathfrak{c}(r)),r)\in S$ as soon as we are in one of the following  two situations (the second one being the degenerated version of the first one).
 
 *  There exists $\alpha\in\Gamma$, $(q,c,q')\in S_\alpha$ such that
 
     1. [(i)] either $p\in Q_\mathrm{Eve}$ and $(q, \mathrm{push}(\alpha))=\sigma_\gamma(p)$, or $p\in Q_\mathrm{Adam}$ and $(q, \mathrm{push}(\alpha))\in \Delta(p,\gamma)$, and 
     2. [(ii)] either $q'\in Q_\mathrm{Eve}$ and $(r, \mathrm{pop})=\sigma_\alpha(q')$, or $q'\in Q_\mathrm{Adam}$ and $(r, \mathrm{pop})\in \Delta(q',\alpha)$.
 
-Intuitively, if with state $p$ and top symbol $\gamma$ one can push $\alpha$ and go to state $q$ from which we know that we can later go back to the same stack content with state $q'$ and maximal colour $c$, and finally pop $\gamma$ and end in state $r$, then we conclude that we can go from $p$ to $r$ while seeing $\max(  \textsf{col}(p),c,  \textsf{col}(r))$ as the maximal colour.
+Intuitively, if with state $p$ and top symbol $\gamma$ one can push $\alpha$ and go to state $q$ from which we know that we can later go back to the same stack content with state $q'$ and maximal colour $c$, and finally pop $\gamma$ and end in state $r$, then we conclude that we can go from $p$ to $r$ while seeing $\max(  \mathfrak{c}(p),c,  \mathfrak{c}(r))$ as the maximal colour.
 *  There exists $\alpha\in\Gamma$ and $q\in W(R,\alpha)$ such that
 
     1. [(i)] either $p\in Q_\mathrm{Eve}$ and $(q, \mathrm{push}(\alpha))=\sigma_\gamma(p)$, or $p\in Q_\mathrm{Adam}$ and $(q, \mathrm{push}(\alpha))\in \Delta(p,\gamma)$, and 
     2. [(ii)] either $q\in Q_\mathrm{Eve}$ and $(r, \mathrm{pop})=\sigma_\alpha(q)$, or $q\in Q_\mathrm{Adam}$ and $(r, \mathrm{pop})\in \Delta(q,\alpha)$,
-    3. [(iii)] $c=  \textsf{col}(q)$.
+    3. [(iii)] $c=  \mathfrak{c}(q)$.
 
-Intuitively, if with state $p$ and top symbol $\gamma$ one can push $\alpha$ and go to state $q$ and directly pops $\gamma$ and end in state $r$, then we conclude that we can go from $p$ to $r$ while seeing $\max(  \textsf{col}(p),  \textsf{col}(q),  \textsf{col}(r))$ as the maximal colour.
+Intuitively, if with state $p$ and top symbol $\gamma$ one can push $\alpha$ and go to state $q$ and directly pops $\gamma$ and end in state $r$, then we conclude that we can go from $p$ to $r$ while seeing $\max(  \mathfrak{c}(p),  \mathfrak{c}(q),  \mathfrak{c}(r))$ as the maximal colour.
 
 In the previous informal description, the only allowed choices for $(\sigma_\alpha,S_\alpha)_{\alpha\in\Gamma}$ are those that leads to consistent tuples.
 Formally, we define the arena $\widehat{ \mathcal{A}}$ as follows:

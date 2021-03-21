@@ -3,8 +3,6 @@
 
 ```{math}
 
-\renewcommand{\Game}{\game}
-
 ```
 
 We consider **stochastic games with signals**, that are a standard tool in game theory to model imperfect information in stochastic games {cite}`sorinafirst,dinahnicolas1,renault2`.

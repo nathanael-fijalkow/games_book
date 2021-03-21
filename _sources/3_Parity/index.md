@@ -10,10 +10,6 @@
 
 ```{math}
 
-\renewcommand{\H}{\mathcal{H}}
-
-\renewcommand{\Game}{\game}
-
 ```
 
 
@@ -23,14 +19,14 @@ Written by John Fearnley, Nathana&euml;l Fijalkow
 
 A possible taxonomy of algorithms for solving parity games distinguishes three families:
 
-*  strategy improvement algorithms, which construct a sequence of improving strategies until reaching an optimal strategy. 
+*  `strategy improvement algorithms', which construct a sequence of improving strategies until reaching an optimal strategy. 
 We will construct in Section {ref}`3-sec:strategy_improvement` an exponential time strategy improvement algorithm.
 
-*  attractor decomposition algorithms, which decompose a game through a sequence of attractor computations. 
+*  `attractor decomposition algorithms', which decompose a game through a sequence of attractor computations. 
 The first and archetypical example is McNaughton Zielonka algorithm defined in Section {ref}`2-sec:parity`. 
 We will present in Section {ref}`3-sec:zielonka` a quasipolynomial time algorithm improving over this algorithm.
 
-*  value iteration algorithms, which find an optimal strategy through the computation of a value function.
+*  `value iteration algorithms', which find an optimal strategy through the computation of a value function.
 An equivalent point of view on this family of algorithms is the use of separating automata for reducing parity games to safety games.
 We introduce the framework of separating automata in Section {ref}`3-sec:separation` and give a quasipolynomial time algorithm as an instanciation of it. 
 We then construct value iteration algorithms through the notion of universal trees in Section {ref}`3-sec:value_iteration`,

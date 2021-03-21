@@ -746,14 +746,13 @@
   <div class="section" id="objectives">
 <span id="sec-objectives"></span><h1>Objectives<a class="headerlink" href="#objectives" title="Permalink to this headline">¶</a></h1>
 <div class="math notranslate nohighlight">
-\[\renewcommand{\Game}{\game}
-\]</div>
+\[\]</div>
 <p>We present in this section the main objectives and their representations.
 An objective may depend upon a set of parameters which are sometimes omitted when clear from the context.</p>
 <p>Let us recall how we define classes of conditions: we first define an objective, for instance <span class="math notranslate nohighlight">\(\mathtt{Safe} \subseteq  \left\{  \textrm{Win \right\}, \textrm{Lose}}^\omega\)</span>.
-For an arena and a colouring function <span class="math notranslate nohighlight">\(\textsf{col}\)</span> defined over this arena this induces the safety condition <span class="math notranslate nohighlight">\(\mathtt{Safe}[ \textsf{col}]\)</span>.
+For an arena and a colouring function <span class="math notranslate nohighlight">\(\mathfrak{c}\)</span> defined over this arena this induces the safety condition <span class="math notranslate nohighlight">\(\mathtt{Safe}[ \mathfrak{c}]\)</span>.
 Given an arena and a condition <span class="math notranslate nohighlight">\(W\)</span> over this arena we say that <span class="math notranslate nohighlight">\(W\)</span> is <strong>a</strong> safety condition if
-there exists <span class="math notranslate nohighlight">\(\textsf{col}\)</span> such that <span class="math notranslate nohighlight">\(W =  \mathtt{Safe}[ \textsf{col}]\)</span>.
+there exists <span class="math notranslate nohighlight">\(\mathfrak{c}\)</span> such that <span class="math notranslate nohighlight">\(W =  \mathtt{Safe}[ \mathfrak{c}]\)</span>.
 The same terminology is used for all other objectives.</p>
 <div class="section" id="prefix-dependent-qualitative-objectives-safety-and-reachability">
 <h2>Prefix dependent qualitative objectives: safety and reachability<a class="headerlink" href="#prefix-dependent-qualitative-objectives-safety-and-reachability" title="Permalink to this headline">¶</a></h2>
@@ -786,10 +785,10 @@ Formally:</p>
 <p>Safety and reachability conditions are dual:</p>
 <div class="math notranslate nohighlight">
 \[
- \textrm{Paths}_\omega \setminus  \mathtt{Safe}[ \textsf{col}] =  \mathtt{Reach}[\overline{ \textsf{col}}] \quad ; \quad
- \textrm{Paths}_\omega \setminus  \mathtt{Reach}[ \textsf{col}] =  \mathtt{Safe}[\overline{ \textsf{col}}].
+ \textrm{Paths}_\omega \setminus  \mathtt{Safe}[ \mathfrak{c}] =  \mathtt{Reach}[\overline{ \mathfrak{c}}] \quad ; \quad
+ \textrm{Paths}_\omega \setminus  \mathtt{Reach}[ \mathfrak{c}] =  \mathtt{Safe}[\overline{ \mathfrak{c}}].
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(\overline{ \textsf{col}}\)</span> swaps <span class="math notranslate nohighlight">\(\textrm{Win}\)</span> and <span class="math notranslate nohighlight">\(\textrm{Lose}\)</span> in <span class="math notranslate nohighlight">\(\textsf{col}\)</span>.
+<p>where <span class="math notranslate nohighlight">\(\overline{ \mathfrak{c}}\)</span> swaps <span class="math notranslate nohighlight">\(\textrm{Win}\)</span> and <span class="math notranslate nohighlight">\(\textrm{Lose}\)</span> in <span class="math notranslate nohighlight">\(\mathfrak{c}\)</span>.
 Consequently, if the condition for Eve is a safety condition, then the condition for Adam is a reachability condition, and conversely.</p>
 </div>
 <div class="section" id="prefix-independent-qualitative-objectives-buchi-cobuchi-and-parity">
@@ -803,7 +802,7 @@ Formally:</p>
 \[
  \mathtt{Buchi} =  \left\{ \rho \in  \left\{ 1,2 \right\ \right\}^\omega : \forall j, \exists i \ge j, \rho_i = 2}.
 \]</div>
-<p>The dual of the Büchi objective is the <strong>CoB{“uchi}</strong> objective:
+<p>The dual of the Büchi objective is the <strong>CoB{\uchi}</strong> objective:
 the set of colours is <span class="math notranslate nohighlight">\(\left\{ 2,3 \right\}\)</span>, it requires that the colour <span class="math notranslate nohighlight">\(3\)</span> is seen finitely many times.
 Formally:</p>
 <div class="math notranslate nohighlight">
@@ -813,11 +812,11 @@ Formally:</p>
 <p>Büchi and CoBüchi conditions are dual:</p>
 <div class="math notranslate nohighlight">
 \[
- \textrm{Paths}_\omega \setminus  \mathtt{Buchi}[ \textsf{col}] =  \mathtt{CoBuchi}[ \textsf{col} + 1] \quad ; \quad
- \textrm{Paths}_\omega \setminus  \mathtt{CoBuchi}[ \textsf{col}] =  \mathtt{Buchi}[ \textsf{col} - 1].
+ \textrm{Paths}_\omega \setminus  \mathtt{Buchi}[ \mathfrak{c}] =  \mathtt{CoBuchi}[ \mathfrak{c} + 1] \quad ; \quad
+ \textrm{Paths}_\omega \setminus  \mathtt{CoBuchi}[ \mathfrak{c}] =  \mathtt{Buchi}[ \mathfrak{c} - 1].
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(\textsf{col} + 1\)</span> adds one to <span class="math notranslate nohighlight">\(\textsf{col}\)</span> (since <span class="math notranslate nohighlight">\(\textsf{col}\)</span> maps vertices to <span class="math notranslate nohighlight">\(\left\{ 1,2 \right\}\)</span>, <span class="math notranslate nohighlight">\(\textsf{col} + 1\)</span> maps vertices to <span class="math notranslate nohighlight">\(\left\{ 2,3 \right\}\)</span>),
-and similarly for <span class="math notranslate nohighlight">\(\textsf{col} - 1\)</span>.
+<p>where <span class="math notranslate nohighlight">\(\mathfrak{c} + 1\)</span> adds one to <span class="math notranslate nohighlight">\(\mathfrak{c}\)</span> (since <span class="math notranslate nohighlight">\(\mathfrak{c}\)</span> maps vertices to <span class="math notranslate nohighlight">\(\left\{ 1,2 \right\}\)</span>, <span class="math notranslate nohighlight">\(\mathfrak{c} + 1\)</span> maps vertices to <span class="math notranslate nohighlight">\(\left\{ 2,3 \right\}\)</span>),
+and similarly for <span class="math notranslate nohighlight">\(\mathfrak{c} - 1\)</span>.
 Consequently, if the condition for Eve is a Büchi condition, then the condition for Adam is a CoBüchi condition, and conversely.</p>
 <p>We now define the parity objectives.
 Let <span class="math notranslate nohighlight">\([i,j]\)</span> be an interval with <span class="math notranslate nohighlight">\(i,j \in  \mathbb{N}\)</span> used as a parameter defining the range of priorities.
@@ -845,9 +844,9 @@ First, Büchi and CoBüchi objectives are parity objectives for the set of colou
 Second, the parity conditions are self dual:</p>
 <div class="math notranslate nohighlight">
 \[
- \textrm{Paths}_\omega \setminus  \mathtt{Parity}([i,j])[ \textsf{col}] =  \mathtt{Parity}([i+1,j+1])[ \textsf{col} + 1],
+ \textrm{Paths}_\omega \setminus  \mathtt{Parity}([i,j])[ \mathfrak{c}] =  \mathtt{Parity}([i+1,j+1])[ \mathfrak{c} + 1],
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(\textsf{col} + 1\)</span> adds one to <span class="math notranslate nohighlight">\(\textsf{col}\)</span>.
+<p>where <span class="math notranslate nohighlight">\(\mathfrak{c} + 1\)</span> adds one to <span class="math notranslate nohighlight">\(\mathfrak{c}\)</span>.
 Hence if the condition for Eve is a parity condition, then the condition for Adam is also a parity condition.</p>
 <p><a class="reference internal" href="#fig-parity-game-example"><span class="std std-numref">Fig. 3</span></a> presents an example of a parity game.
 The priority of a vertex is given by its label.</p>
@@ -859,22 +858,22 @@ The two dotted areas represent the winning regions of each player.</span><a clas
 </div>
 <div class="section" id="conventions">
 <h2>Conventions<a class="headerlink" href="#conventions" title="Permalink to this headline">¶</a></h2>
-<p>Given an objective <span class="math notranslate nohighlight">\(\Omega \subseteq C^\omega\)</span> we use a colouring function <span class="math notranslate nohighlight">\(\textsf{col} : V \to C\)</span> to induce the condition <span class="math notranslate nohighlight">\(\Omega[ \textsf{col}]\)</span>.
+<p>Given an objective <span class="math notranslate nohighlight">\(\Omega \subseteq C^\omega\)</span> we use a colouring function <span class="math notranslate nohighlight">\(\mathfrak{c} : V \to C\)</span> to induce the condition <span class="math notranslate nohighlight">\(\Omega[ \mathfrak{c}]\)</span>.
 We extend this notation to sets of vertices and colours as follows.</p>
 <ul class="simple">
-<li><p>A set of vertices <span class="math notranslate nohighlight">\(F \subseteq V\)</span> induces the colouring function <span class="math notranslate nohighlight">\(\textsf{col}_F\)</span> defined by
-<span class="math notranslate nohighlight">\(\textsf{col}_F(v) =  \textrm{Win}\)</span> if <span class="math notranslate nohighlight">\(v \in F\)</span> and <span class="math notranslate nohighlight">\(\textsf{col}_F(v) =  \textrm{Lose}\)</span> otherwise.
-For <span class="math notranslate nohighlight">\(F \subseteq V\)</span> we define <span class="math notranslate nohighlight">\(\mathtt{Safe}[F]\)</span> as <span class="math notranslate nohighlight">\(\mathtt{Safe}[ \textsf{col}_F]\)</span>: it requires that no vertex from <span class="math notranslate nohighlight">\(F\)</span> is ever visited.</p></li>
-<li><p>A colour <span class="math notranslate nohighlight">\(c \in C\)</span> induces the set of vertices <span class="math notranslate nohighlight">\(\textsf{col}^{-1}(c)\)</span> labelled by <span class="math notranslate nohighlight">\(c\)</span>.
+<li><p>A set of vertices <span class="math notranslate nohighlight">\(F \subseteq V\)</span> induces the colouring function <span class="math notranslate nohighlight">\(\mathfrak{c}_F\)</span> defined by
+<span class="math notranslate nohighlight">\(\mathfrak{c}_F(v) =  \textrm{Win}\)</span> if <span class="math notranslate nohighlight">\(v \in F\)</span> and <span class="math notranslate nohighlight">\(\mathfrak{c}_F(v) =  \textrm{Lose}\)</span> otherwise.
+For <span class="math notranslate nohighlight">\(F \subseteq V\)</span> we define <span class="math notranslate nohighlight">\(\mathtt{Safe}[F]\)</span> as <span class="math notranslate nohighlight">\(\mathtt{Safe}[ \mathfrak{c}_F]\)</span>: it requires that no vertex from <span class="math notranslate nohighlight">\(F\)</span> is ever visited.</p></li>
+<li><p>A colour <span class="math notranslate nohighlight">\(c \in C\)</span> induces the set of vertices <span class="math notranslate nohighlight">\(\mathfrak{c}^{-1}(c)\)</span> labelled by <span class="math notranslate nohighlight">\(c\)</span>.
 The condition <span class="math notranslate nohighlight">\(\mathtt{Safe}[c]\)</span> requires that the colour <span class="math notranslate nohighlight">\(c\)</span> is never visited.</p></li>
 </ul>
 <p>We apply this convention to safety, Büchi, and CoBüchi conditions: for <span class="math notranslate nohighlight">\(F \subseteq V\)</span>,</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{array}{ccccc}
- \mathtt{Reach}[F] &amp; = &amp;  \mathtt{Reach}[ \textsf{col}_F] &amp; = &amp;  \left\{  \pi \in  \textrm{Paths \right\}_\omega : \exists i,   \textrm{In}( \pi_i) \in F}, \\
- \mathtt{Buchi}[F] &amp; = &amp;  \mathtt{Buchi}[ \textsf{col}_F] &amp; = &amp;  \left\{  \pi \in  \textrm{Paths \right\}_\omega : \forall j, \exists i \ge j,   \textrm{In}( \pi_i) \in F}, \\
- \mathtt{CoBuchi}[F] &amp; = &amp;  \mathtt{CoBuchi}[ \textsf{col}_F] &amp; = &amp;  \left\{  \pi \in  \textrm{Paths \right\}_\omega : \exists j, \forall i \ge j,   \textrm{In}( \pi_i) \notin F},
+ \mathtt{Reach}[F] &amp; = &amp;  \mathtt{Reach}[ \mathfrak{c}_F] &amp; = &amp;  \left\{  \pi \in  \textrm{Paths \right\}_\omega : \exists i,   \textrm{In}( \pi_i) \in F}, \\
+ \mathtt{Buchi}[F] &amp; = &amp;  \mathtt{Buchi}[ \mathfrak{c}_F] &amp; = &amp;  \left\{  \pi \in  \textrm{Paths \right\}_\omega : \forall j, \exists i \ge j,   \textrm{In}( \pi_i) \in F}, \\
+ \mathtt{CoBuchi}[F] &amp; = &amp;  \mathtt{CoBuchi}[ \mathfrak{c}_F] &amp; = &amp;  \left\{  \pi \in  \textrm{Paths \right\}_\omega : \exists j, \forall i \ge j,   \textrm{In}( \pi_i) \notin F},
 \end{array}
 \end{split}\]</div>
 <p>similarly extended to colours.</p>
@@ -914,7 +913,7 @@ In this example the dotted areas represent the winning regions for the threshold
 <p class="caption"><span class="caption-number">Fig. 4 </span><span class="caption-text">An example of a mean payoff game.
 The dotted areas represent the winning regions for the qualitative objective <span class="math notranslate nohighlight">\(\mathtt{MeanPayoff}_{\ge 0}\)</span>.</span><a class="headerlink" href="#fig-mp-game-example" title="Permalink to this image">¶</a></p>
 </div>
-<p>The discounted payoff quantitative objective is parameterised by a discount factor <span class="math notranslate nohighlight">\(\lambda \in (0,1)\)</span>.
+<p>The discounted payoff” quantitative objective is parameterised by a discount factor <span class="math notranslate nohighlight">\(\lambda \in (0,1)\)</span>.
 It is defined by:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -926,8 +925,8 @@ The discount factor ensures that the limit exists for sequences with bounded wei
 which is holds for all plays since a (finite) game contains finitely many different weights.</p>
 <div class="section" id="representations-for-quantitative-objectives">
 <h3>Representations for quantitative objectives<a class="headerlink" href="#representations-for-quantitative-objectives" title="Permalink to this headline">¶</a></h3>
-<p>Let us consider a game <span class="math notranslate nohighlight">\(\Game\)</span> with either a mean payoff or a discountedd payoff condition.
-Let <span class="math notranslate nohighlight">\(W\)</span> denote the largest weight appearing in <span class="math notranslate nohighlight">\(\Game\)</span> in absolute value.</p>
+<p>Let us consider a game <span class="math notranslate nohighlight">\(\mathcal{G}\)</span> with either a mean payoff or a discountedd payoff condition.
+Let <span class="math notranslate nohighlight">\(W\)</span> denote the largest weight appearing in <span class="math notranslate nohighlight">\(\mathcal{G}\)</span> in absolute value.</p>
 <p>Choosing the machine word size <span class="math notranslate nohighlight">\(w = \log(m) + \log(W)\)</span> implies that either an edge
 or a vertex together with its weight can be stored in one machine word and that we can perform arithmetic operations on weights.
 For mean payoff games this means that the input size is <span class="math notranslate nohighlight">\(O(m)\)</span>.</p>

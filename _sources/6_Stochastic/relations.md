@@ -3,8 +3,6 @@
 
 ```{math}
 
-\renewcommand{\Game}{\game}
-
 ```
 
 Stochastic reachability games are powerful enough to encode
@@ -248,7 +246,7 @@ $$
     starting from $C$ and playing $(\sigma,\tau)$.
 
     Corollary: under $(\sigma,\tau)$ with $\sigma$ optimal for parity,
-    apart from the $W_\textrm{Adam}$ BSCC, all BSCC are good for  \textrm{Eve}.
+    apart from the $W_\textrm{Adam}$ BSCC, all BSCC are `good' for  \textrm{Eve}.
 
 ````{prf:lemma} NEEDS TITLE AND LABEL 
       Let $\sigma$ be a pure positional optimal strategy for Eve in

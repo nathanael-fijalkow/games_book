@@ -3,8 +3,6 @@
 
 ```{math}
 
-\renewcommand{\Game}{\game}
-
 ```
 
 The Zielonka tree is a combinatorial structure associated with a Muller objective which very neatly exposes its properties.
@@ -47,7 +45,7 @@ $$
 Let $j$ be the position of $c$ in $\ell$, the priority of this transition is defined by:
 
 $$
- \textsf{col}((\ell,c,\ell')) =
+ \mathfrak{c}((\ell,c,\ell')) =
 \begin{cases}
 2 j      & \text{ if } \ell([1,j]) \in  \mathcal{F}, \\
 2 j - 1  & \text{ otherwise.}
@@ -239,7 +237,7 @@ there are two cases:
 ````
 
 For the Muller objective represented in {numref}`2-fig:Zielonka_tree_example`, we have $m_\mathcal{F} = 3$.
-In the following result we consider **partial** colouring functions: $\textsf{col} : V \to C \cup  \left\{ \emptyset \right\}$,
+In the following result we consider **partial** colouring functions: $\mathfrak{c} : V \to C \cup  \left\{ \emptyset \right\}$,
 meaning that some vertices can be left uncolored (formally, labelled $\emptyset$).
 
 ````{prf:theorem} Memory requirements for Muller games
@@ -281,16 +279,16 @@ The following lemma is an improved variant of {prf:ref}`2-lem:Muller_even`.
 ````{prf:lemma} Fixed point characterisation of the winning regions for Muller games using the Zielonka tree
 :label: 2-lem:McNaughton_Zielonka_even
 
-Let $\Game$ be a Muller game with objective $\mathtt{Muller}( \mathcal{F})$ such that $C \in  \mathcal{F}$.
+Let $\mathcal{G}$ be a Muller game with objective $\mathtt{Muller}( \mathcal{F})$ such that $C \in  \mathcal{F}$.
 Let $C_1, \dots, C_k$ be the maximal subsets of $C$ such that $C_i \notin  \mathcal{F}$.
 We let $\mathcal{F}_1,\dots, \mathcal{F}_k$ be the corresponding induced Muller objectives,
-and define $\Game_i$ be the subgame of $\Game$ induced by $V \setminus  \textrm{Attr}_\mathrm{Eve}(C \setminus C_i)$
+and define $\mathcal{G}_i$ be the subgame of $\mathcal{G}$ induced by $V \setminus  \textrm{Attr}_\mathrm{Eve}(C \setminus C_i)$
 with objective $\mathtt{Muller}( \mathcal{F}_i)$.
 
-*  If for all $i \in [1,k]$, we have $W_\mathrm{Adam}(\Game_i) = \emptyset$, then $W_\mathrm{Eve}(\Game) = V$.
-*  If there exists $i \in [1,k]$ such that $W_\mathrm{Adam}(\Game_i) \neq \emptyset$,
-let $\Game'$ be the subgame of $\Game$ induced by $V \setminus  \textrm{Attr}_\mathrm{Adam}(  W_\mathrm{Adam}(\Game_i) )$,
-then $W_\mathrm{Eve}(\Game) =  W_\mathrm{Eve}(\Game')$.
+*  If for all $i \in [1,k]$, we have $W_\mathrm{Adam}(  \mathcal{G}_i) = \emptyset$, then $W_\mathrm{Eve}(  \mathcal{G}) = V$.
+*  If there exists $i \in [1,k]$ such that $W_\mathrm{Adam}(  \mathcal{G}_i) \neq \emptyset$,
+let $\mathcal{G}'$ be the subgame of $\mathcal{G}$ induced by $V \setminus  \textrm{Attr}_\mathrm{Adam}(  W_\mathrm{Adam}(  \mathcal{G}_i) )$,
+then $W_\mathrm{Eve}(  \mathcal{G}) =  W_\mathrm{Eve}(  \mathcal{G}')$.
 
 ````
 
@@ -307,8 +305,8 @@ $$
 We prove the first item.
 
 For each $i \in [1,k]$, let $\sigma_i$ be an attractor strategy ensuring to reach $C_i$ from $\textrm{Attr}_\mathrm{Eve}(C_i)$,
-and consider a winning strategy for Eve from $V \setminus  \textrm{Attr}_\mathrm{Eve}(C_i)$ in $\Game_i$, it induces a strategy $\sigma'_i$ in $\Game$.
-We construct a strategy $\sigma$ in $\Game$ which will simulate the strategies above in turn; to do so it uses $[1,k]$ as top-level memory states.
+and consider a winning strategy for Eve from $V \setminus  \textrm{Attr}_\mathrm{Eve}(C_i)$ in $\mathcal{G}_i$, it induces a strategy $\sigma'_i$ in $\mathcal{G}$.
+We construct a strategy $\sigma$ in $\mathcal{G}$ which will simulate the strategies above in turn; to do so it uses $[1,k]$ as top-level memory states.
 (We will look at more closely at the memory structure at the end of the proof.)
 The strategy $\sigma$ with memory $i$ simulates $\sigma_i$ from $\textrm{Attr}_\mathrm{Eve}(C_i)$ and $\sigma'_i$ from $V \setminus  \textrm{Attr}_\mathrm{Eve}(C_i)$,
 and if it ever reaches a vertex in $C_i$ it updates its memory state to $i + 1$ and $1$ if $i = k$.
@@ -326,24 +324,24 @@ corresponding to the definition of $m_\mathcal{F}$.
 
 We now look at the second item.
 
-Consider a winning strategy for Adam from $W_\mathrm{Adam}(\Game_i)$ in $\Game_i$, it induces a strategy $\tau_i$ in $\Game$.
-Since $V \setminus  \textrm{Attr}_\mathrm{Eve}(C_i)$ is a trap for Eve, this implies that $\tau_i$ is a winning strategy in $\Game$.
-Let $\tau_a$ denote an attractor strategy from $\textrm{Attr}_\mathrm{Adam}( W_\mathrm{Adam}(\Game_i)) \setminus  W_\mathrm{Adam}(\Game_i)$.
-Consider now a winning strategy in the game $\Game'$ from $W_\mathrm{Adam}(\Game')$, it induces a strategy $\tau'$ in $\Game$.
-The set $V \setminus  \textrm{Attr}_\mathrm{Adam}(  W_\mathrm{Adam}(\Game_i) )$ may not be a trap for Eve, so we cannot conclude that $\tau'$ is a winning strategy in $\Game$,
+Consider a winning strategy for Adam from $W_\mathrm{Adam}(  \mathcal{G}_i)$ in $\mathcal{G}_i$, it induces a strategy $\tau_i$ in $\mathcal{G}$.
+Since $V \setminus  \textrm{Attr}_\mathrm{Eve}(C_i)$ is a trap for Eve, this implies that $\tau_i$ is a winning strategy in $\mathcal{G}$.
+Let $\tau_a$ denote an attractor strategy from $\textrm{Attr}_\mathrm{Adam}( W_\mathrm{Adam}(  \mathcal{G}_i)) \setminus  W_\mathrm{Adam}(  \mathcal{G}_i)$.
+Consider now a winning strategy in the game $\mathcal{G}'$ from $W_\mathrm{Adam}(  \mathcal{G}')$, it induces a strategy $\tau'$ in $\mathcal{G}$.
+The set $V \setminus  \textrm{Attr}_\mathrm{Adam}(  W_\mathrm{Adam}(  \mathcal{G}_i) )$ may not be a trap for Eve, so we cannot conclude that $\tau'$ is a winning strategy in $\mathcal{G}$,
 and it indeed may not be.
-We construct a strategy $\tau$ in $\Game$ as the (disjoint) union of the strategy $\tau_a$ on $\textrm{Attr}_\mathrm{Adam}( W_\mathrm{Adam}(\Game_i)) \setminus  W_\mathrm{Adam}(\Game_i)$,
-the strategy $\tau_i$ on $W_\mathrm{Adam}(\Game_i)$ and the strategy $\tau'$ on $W_\mathrm{Adam}(\Game')$.
-We argue that $\tau$ is winning from $\textrm{Attr}_\mathrm{Adam}(  W_\mathrm{Adam}(\Game_i) ) \cup  W_\mathrm{Adam}(\Game')$ in $\Game$.
-Indeed, any play consistent with this strategy in $\Game$ either stays forever in $W_\mathrm{Adam}(\Game')$ hence is consistent with $\tau'$
-or enters $\textrm{Attr}_\mathrm{Adam}(  W_\mathrm{Adam}(\Game_i) )$, so it is eventually consistent with $\tau_i$.
+We construct a strategy $\tau$ in $\mathcal{G}$ as the (disjoint) union of the strategy $\tau_a$ on $\textrm{Attr}_\mathrm{Adam}( W_\mathrm{Adam}(  \mathcal{G}_i)) \setminus  W_\mathrm{Adam}(  \mathcal{G}_i)$,
+the strategy $\tau_i$ on $W_\mathrm{Adam}(  \mathcal{G}_i)$ and the strategy $\tau'$ on $W_\mathrm{Adam}(  \mathcal{G}')$.
+We argue that $\tau$ is winning from $\textrm{Attr}_\mathrm{Adam}(  W_\mathrm{Adam}(  \mathcal{G}_i) ) \cup  W_\mathrm{Adam}(  \mathcal{G}')$ in $\mathcal{G}$.
+Indeed, any play consistent with this strategy in $\mathcal{G}$ either stays forever in $W_\mathrm{Adam}(  \mathcal{G}')$ hence is consistent with $\tau'$
+or enters $\textrm{Attr}_\mathrm{Adam}(  W_\mathrm{Adam}(  \mathcal{G}_i) )$, so it is eventually consistent with $\tau_i$.
 In both cases this implies that the play is winning.
-Thus we have proved that $\textrm{Attr}_\mathrm{Adam}(  W_\mathrm{Adam}(\Game_c) ) \cup  W_\mathrm{Adam}(\Game') \subseteq  W_\mathrm{Adam}(\Game)$.
+Thus we have proved that $\textrm{Attr}_\mathrm{Adam}(  W_\mathrm{Adam}(  \mathcal{G}_c) ) \cup  W_\mathrm{Adam}(  \mathcal{G}') \subseteq  W_\mathrm{Adam}(  \mathcal{G})$.
 
-We now show that $W_\mathrm{Eve}(\Game') \subseteq  W_\mathrm{Eve}(\Game)$, which implies the converse inclusion.
-Consider a winning strategy from $W_\mathrm{Eve}(\Game')$ in $\Game'$, it induces a strategy $\sigma$ in $\Game$.
-Since $\Game'$ is a trap for Adam, any play consistent with $\sigma$ stays forever in $W_\mathrm{Eve}(\Game')$, 
-implying that $\sigma$ is winning from $W_\mathrm{Eve}(\Game')$ in $\Game$.
+We now show that $W_\mathrm{Eve}(  \mathcal{G}') \subseteq  W_\mathrm{Eve}(  \mathcal{G})$, which implies the converse inclusion.
+Consider a winning strategy from $W_\mathrm{Eve}(  \mathcal{G}')$ in $\mathcal{G}'$, it induces a strategy $\sigma$ in $\mathcal{G}$.
+Since $\mathcal{G}'$ is a trap for Adam, any play consistent with $\sigma$ stays forever in $W_\mathrm{Eve}(  \mathcal{G}')$, 
+implying that $\sigma$ is winning from $W_\mathrm{Eve}(  \mathcal{G}')$ in $\mathcal{G}$.
 
 Let us now discuss how many memory states are necessary to implement the strategy $\tau$.
 By induction hypothesis, the strategy $\tau_i$ uses $m_{2^{C_i} \setminus  \mathcal{F}_i}$ memory states
@@ -357,15 +355,15 @@ The corresponding lemma when $C \notin  \mathcal{F}$ is stated below, its proof 
 ````{prf:lemma} Dual fixed point characterisation of the winning regions for Muller games using the Zielonka tree
 :label: 2-lem:McNaughton_Zielonka_odd
 
-Let $\Game$ be a Muller game such that $C \notin  \mathcal{F}$.
+Let $\mathcal{G}$ be a Muller game such that $C \notin  \mathcal{F}$.
 Let $C_1, \dots, C_k$ be the maximal subsets of $C$ such that $C_i \in  \mathcal{F}$.
 We let $\mathcal{F}_1,\dots, \mathcal{F}_k$ be the corresponding induced Muller objectives,
-and define $\Game_i$ be the subgame of $\Game$ induced by $V \setminus  \textrm{Attr}_\mathrm{Adam}(C \setminus C_i)$ with objective $\mathtt{Muller}( \mathcal{F}_i)$.
+and define $\mathcal{G}_i$ be the subgame of $\mathcal{G}$ induced by $V \setminus  \textrm{Attr}_\mathrm{Adam}(C \setminus C_i)$ with objective $\mathtt{Muller}( \mathcal{F}_i)$.
 
-*  If for all $i \in [1,k]$, we have $W_\mathrm{Eve}(\Game_i) = \emptyset$, then $W_\mathrm{Adam}(\Game) = V$.
-*  If there exists $i \in [1,k]$ such that $W_\mathrm{Eve}(\Game_i) \neq \emptyset$,
-let $\Game'$ be the subgame of $\Game$ induced by $V \setminus  \textrm{Attr}_\mathrm{Eve}(  W_\mathrm{Eve}(\Game_i) )$,
-then $W_\mathrm{Adam}(\Game) =  W_\mathrm{Adam}(\Game')$.
+*  If for all $i \in [1,k]$, we have $W_\mathrm{Eve}(  \mathcal{G}_i) = \emptyset$, then $W_\mathrm{Adam}(  \mathcal{G}) = V$.
+*  If there exists $i \in [1,k]$ such that $W_\mathrm{Eve}(  \mathcal{G}_i) \neq \emptyset$,
+let $\mathcal{G}'$ be the subgame of $\mathcal{G}$ induced by $V \setminus  \textrm{Attr}_\mathrm{Eve}(  W_\mathrm{Eve}(  \mathcal{G}_i) )$,
+then $W_\mathrm{Adam}(  \mathcal{G}) =  W_\mathrm{Adam}(  \mathcal{G}')$.
 
 ````
 

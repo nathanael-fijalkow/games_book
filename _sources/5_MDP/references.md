@@ -3,13 +3,11 @@
 
 ```{math}
 
-\renewcommand{\Game}{\game}
-
 ```
 
 There is a broad field of study related to Markov decision processes, with a history going as far as  1950's {cite}`Bellman:1957`. It is beyond the scope of this chapter to provide a comprehensive overview of the related literature. Nonetheless, in this section we provide pointers to the most significant works connected to our techniques as well as to works that can serve as a starting point for a further study.
 
-One of the most widely used references for MDP-related research is the textbook by Puterman {cite}`Puterman:2005`. The textbook views MDPs from an operations research point-of-view, focusing on finite-horizon, discounted, total-reward, and average reward (an alternative name for mean-payoff) objectives. Regular objectives fall outside of the book's focus, though reachability can be viewed as a special case of the positive bounded total reward objectives studied in the book. An in-depth study of the textbook will impart to its reader the knowledge of many useful techniques for MDP analysis, though a reader who is a newcomer to MDPs might feel somewhat intimidated by its sheer volume and generality. In this chapter, we follow Puterman's exposition mainly in the discounted payoff, albeit in a rather condensed form. 
+One of the most widely used references for MDP-related research is the textbook by Puterman {cite}`Puterman:2005`. The textbook views MDPs from an operations research point-of-view, focusing on finite-horizon, discounted, total-reward, and average reward (an alternative name for mean-payoff) objectives. Regular objectives fall outside of the book's focus, though reachability can be viewed as a special case of the `positive bounded total reward' objectives studied in the book. An in-depth study of the textbook will impart to its reader the knowledge of many useful techniques for MDP analysis, though a reader who is a newcomer to MDPs might feel somewhat intimidated by its sheer volume and generality. In this chapter, we follow Puterman's exposition mainly in the discounted payoff, albeit in a rather condensed form. 
 
 For mean-payoff MDPs, {cite}`Puterman:2005` follows similar blueprint as in the discounted case: first characterizing the optimal values via a suitable optimality equation and then deriving the value iteration, strategy improvement, and linear programming methods from this characterization. We use the linear programming as our foundational stone, focusing on the relationship between strategies and feasible solutions of the program. We note that value and strategy iteration for mean-payoff MDPs come with super-polynomial lower bounds, see, e.g. {cite}`Fearnley:2010,Fearnley:2010b`, or {cite}`Puterman:2005`, where it is shown that strategy improvement converges at least as fast as value iteration.
 

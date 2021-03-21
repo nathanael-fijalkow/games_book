@@ -3,8 +3,6 @@
 
 ```{math}
 
-\renewcommand{\Game}{\game}
-
 ```
 
 The study of games is deeply intertwined with automata over infinite words and trees.
@@ -50,9 +48,9 @@ In that case the transition relation becomes a transition function $\delta : Q \
 The key property of deterministic automata is that for every word there exists exactly one run over it.
 
 We use the same approach as for games for defining classes of automata with the same conditions:
-an objective $\Omega \subseteq C^\omega$ and a colouring function $\textsf{col} : \Delta \to C$ 
-induce an acceptance condition $\Omega[ \textsf{col}] \subseteq \Delta^\omega$.
-For deterministic automata the colouring function becomes $\textsf{col} : Q \times \Sigma \to C$.
+an objective $\Omega \subseteq C^\omega$ and a colouring function $\mathfrak{c} : \Delta \to C$ 
+induce an acceptance condition $\Omega[ \mathfrak{c}] \subseteq \Delta^\omega$.
+For deterministic automata the colouring function becomes $\mathfrak{c} : Q \times \Sigma \to C$.
 As for games the objective qualifies the automaton, so we speak of a parity automaton if it uses a parity objective.
 
 ````{prf:theorem} Omega-regular languages

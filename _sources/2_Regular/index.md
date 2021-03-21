@@ -10,8 +10,6 @@
 
 ```{math}
 
-\renewcommand{\Game}{\game}
-
 ```
 
 

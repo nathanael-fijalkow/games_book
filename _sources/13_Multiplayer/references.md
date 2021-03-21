@@ -17,8 +17,6 @@
 \def\devg{\textsf{DevGame}}
 \def\Coalition{\mathcal{C}}
 
-\renewcommand{\Game}{\game}
-
 ```
 
 Most results about equilibria fall into two-categories: they either prove
@@ -60,7 +58,7 @@ were studied in
 \todo{Romain: please check the refs}
 
 Imperfect information games in the context of multiplayer games are difficult.
-As soon as there are information forks interesting problems are indecidable.
+As soon as there are `information forks' interesting problems are indecidable.
 Deciding whether two players can ensure an objective against a third player
 is undecidable.
 As a corollary the Nash equilibrium problem is also undecidable {cite}`Pnueli&Rosner:1990`.

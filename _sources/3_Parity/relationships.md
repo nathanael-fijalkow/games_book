@@ -3,10 +3,6 @@
 
 ```{math}
 
-\renewcommand{\H}{\mathcal{H}}
-
-\renewcommand{\Game}{\game}
-
 ```
 
 At the beginning of the chapter we described three families of algorithms: 

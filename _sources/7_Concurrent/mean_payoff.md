@@ -3,8 +3,6 @@
 
 ```{math}
 
-\renewcommand{\Game}{\game}
-
 ```
 
 In this section we consider concurrent mean-payoff games. 
@@ -20,7 +18,7 @@ For any fixed number $n$, there is a polynomial time algorithm for approximating
 
 ````
 
-We will not show this lemma, but simply note that the $\epsilon$-optimal strategies known for general concurrent mean-payoff games  can be viewed as playing the corresponding discounted game with a variable discount factor that depends on how nice the rewards has been up to now. Basically, in each round you play the optimal strategy in the corresponding discounted game with a discount factor $\gamma$. Whenever 
+We will not show this lemma, but simply note that the $\epsilon$-optimal strategies known for general concurrent mean-payoff games  can be viewed as playing the corresponding discounted game with a variable discount factor that depends on how `nice' the rewards has been up to now. Basically, in each round you play the optimal strategy in the corresponding discounted game with a discount factor $\gamma$. Whenever 
  your rewards are close to or better than the value, you decrease $\gamma$ towards 0 and in each round your rewards are much worse than the value you let $\gamma$ increase, except not bigger than the initial $\gamma$ in the first round. Much of this section will argue that many natural candidates for simpler types of strategies does not work.
 
 We will show that approximating the value, however, can, as mentioned, be done in polynomial space. The proof relies on Proposition 22 from {cite}`HKLMT:2011`, stating the following:

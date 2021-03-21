@@ -3,8 +3,6 @@
 
 ```{math}
 
-\renewcommand{\Game}{\game}
-
 ```
 
 In this section we define quantitative objectives extending the qualitative objectives $\mathtt{Safe}$, $\mathtt{Reach}$, $\mathtt{Buchi}$, and $\mathtt{CoBuchi}$.
@@ -61,8 +59,8 @@ and for all algorithms the space complexity is $O(m)$.
 We sketch the algorithm for the objective $\mathtt{Sup}$, the other cases are similar.
 Let $c_1 < \dots < c_k$ be the ordered enumeration of all weights in the game.
 The set of vertices of value $c_k$ is $\textrm{Attr}_\mathrm{Eve}(c_k)$, which can be computed in linear time.
-We then construct the subgame $\Game'$ of $\Game$ induced by $V \setminus  \textrm{Attr}_\mathrm{Eve}(c_k)$,
-and continue recursively: $\Game'$ has one less weight.
+We then construct the subgame $\mathcal{G}'$ of $\mathcal{G}$ induced by $V \setminus  \textrm{Attr}_\mathrm{Eve}(c_k)$,
+and continue recursively: $\mathcal{G}'$ has one less weight.
 
 A naive complexity analysis yields a time complexity $O(km)$, but it is easily refined to $O(m)$ 
 by revisiting the attractor computation and showing that each edge in the whole game is treated at most once

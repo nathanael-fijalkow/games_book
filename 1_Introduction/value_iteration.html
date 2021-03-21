@@ -734,8 +734,7 @@
   <div class="section" id="value-iteration-algorithms">
 <span id="sec-value-iteration"></span><h1>Value iteration algorithms<a class="headerlink" href="#value-iteration-algorithms" title="Permalink to this headline">¶</a></h1>
 <div class="math notranslate nohighlight">
-\[\renewcommand{\Game}{\game}
-\]</div>
+\[\]</div>
 <p>In this section and the next we discuss two families of fixed point algorithms for solving games.
 The goal is to highlight the main ingredients for constructing algorithms in these two families.
 If the descriptions below are too abstract it may be useful to see concrete instantiations:
@@ -743,8 +742,8 @@ we refer to Chapter <a class="reference internal" href="../4_Payoffs/index.html#
 <div class="section" id="the-value-function">
 <h2>The value function<a class="headerlink" href="#the-value-function" title="Permalink to this headline">¶</a></h2>
 <p>The key ingredient of a value iteration algorithm is a value function.
-For a quantitative game <span class="math notranslate nohighlight">\(\Game\)</span> with condition <span class="math notranslate nohighlight">\(f = \Phi[ \textsf{col}]\)</span> over the set of colours <span class="math notranslate nohighlight">\(C\)</span>,
-assuming that <span class="math notranslate nohighlight">\(\Game\)</span> is determined it admits a value function</p>
+For a quantitative game <span class="math notranslate nohighlight">\(\mathcal{G}\)</span> with condition <span class="math notranslate nohighlight">\(f = \Phi[ \mathfrak{c}]\)</span> over the set of colours <span class="math notranslate nohighlight">\(C\)</span>,
+assuming that <span class="math notranslate nohighlight">\(\mathcal{G}\)</span> is determined it admits a value function</p>
 <div class="math notranslate nohighlight">
 \[
  \textrm{val}^{ \mathcal{G}} : V \to   \mathbb{R} \cup  \left\{ \pm \infty \right\},
@@ -757,9 +756,9 @@ assuming that <span class="math notranslate nohighlight">\(\Game\)</span> is det
 <p>where <span class="math notranslate nohighlight">\(\sigma\)</span> ranges over strategies of Eve, <span class="math notranslate nohighlight">\(\tau\)</span> over strategies of Adam,
 and <span class="math notranslate nohighlight">\(\pi_{\sigma,\tau}^v\)</span> is the play consistent with <span class="math notranslate nohighlight">\(\sigma\)</span> and <span class="math notranslate nohighlight">\(\tau\)</span> from <span class="math notranslate nohighlight">\(v\)</span>.
 In particular we write <span class="math notranslate nohighlight">\(\textrm{val}^{\sigma}\)</span> for <span class="math notranslate nohighlight">\(\inf_{\tau}\ f(\pi_{\sigma,\tau}^v)\)</span>.</p>
-<p>For a qualitative game <span class="math notranslate nohighlight">\(\Game\)</span> there is no notion of a value function so the first step in constructing a value iteration
+<p>For a qualitative game <span class="math notranslate nohighlight">\(\mathcal{G}\)</span> there is no notion of a value function so the first step in constructing a value iteration
 algorithm is to define a meaningful notion of value function.
-Let us assume that the condition is <span class="math notranslate nohighlight">\(\Omega[ \textsf{col}]\)</span> over the set of colours <span class="math notranslate nohighlight">\(C\)</span>.
+Let us assume that the condition is <span class="math notranslate nohighlight">\(\Omega[ \mathfrak{c}]\)</span> over the set of colours <span class="math notranslate nohighlight">\(C\)</span>.
 The first ingredient is a lattice <span class="math notranslate nohighlight">\((Y,\le)\)</span> together with a function <span class="math notranslate nohighlight">\(\textrm{val} : C^\omega \to Y\)</span> for evaluating plays, taking the role of the quantitative condition <span class="math notranslate nohighlight">\(f\)</span>.
 The value function is <span class="math notranslate nohighlight">\(\textrm{val}^{ \mathcal{G}} : V \to Y\)</span> defined as</p>
 <div class="math notranslate nohighlight">
@@ -780,24 +779,27 @@ The value function is <span class="math notranslate nohighlight">\(\textrm{val}^
 <p>We let <span class="math notranslate nohighlight">\(F_V\)</span> denote the set of functions <span class="math notranslate nohighlight">\(V \to Y\)</span>, it is a lattice when equipped with the componentwise (partial) order induced by <span class="math notranslate nohighlight">\(Y\)</span>:
 we say that <span class="math notranslate nohighlight">\(\mu \le \mu'\)</span> if for all vertices <span class="math notranslate nohighlight">\(v\)</span> we have <span class="math notranslate nohighlight">\(\mu(v) \le \mu'(v)\)</span>.</p>
 <p>The second ingredient is a function <span class="math notranslate nohighlight">\(\delta : Y \times C \to Y\)</span> inducing an operator <span class="math notranslate nohighlight">\(\mathbb{O} : F_V \to F_V\)</span> defined by and satisfying the following principle:</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>This form is for two player games, the operator has to be adapted to more complex settings such as stochastic or concurrent games.</p>
+</div>
 <div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}\begin{split}
+\[\begin{split}
  \mathbb{O}(\mu)(v) = 
 \begin{cases}
-\max  \left\{ \delta( \mu(v'),  \textsf{col \right\}(v)) : (v,v') \in E} &amp; \text{ if } v \in  V_\mathrm{Eve}, \\
-\min  \left\{ \delta( \mu(v'),  \textsf{col \right\}(v)) : (v,v') \in E} &amp; \text{ if } v \in  V_\mathrm{Adam}.\end{split}\\```{margin}
-This form is for two player games, the operator has to be adapted to more complex settings such as stochastic or concurrent games.
-```\\\end{cases}
-\end{aligned}\end{align} \]</div>
+\max  \left\{ \delta( \mu(v'),  \mathfrak{c \right\}(v)) : (v,v') \in E} &amp; \text{ if } v \in  V_\mathrm{Eve}, \\
+\min  \left\{ \delta( \mu(v'),  \mathfrak{c \right\}(v)) : (v,v') \in E} &amp; \text{ if } v \in  V_\mathrm{Adam}.
+\end{cases}
+\end{split}\]</div>
 <div class="proof property admonition" id="1-property:fixed_point">
 <p class="admonition-title"><span class="caption-number">Property 29 </span> (Fixed point)</p>
 <div class="property-content section" id="proof-content">
 <p>The function <span class="math notranslate nohighlight">\(\textrm{val}^{ \mathcal{G}}\)</span> is a fixed point of the operator <span class="math notranslate nohighlight">\(\mathbb{O}\)</span>.</p>
 </div>
-</div><p>This fixed point principle is often tightly related to the fact the <span class="math notranslate nohighlight">\(\Game\)</span> is positionally determined for both players.
+</div><p>This fixed point principle is often tightly related to the fact the <span class="math notranslate nohighlight">\(\mathcal{G}\)</span> is positionally determined for both players.
 The fact that <span class="math notranslate nohighlight">\(\textrm{val}^{ \mathcal{G}} =  \mathbb{O}(  \textrm{val}^{ \mathcal{G}})\)</span> means that from a vertex <span class="math notranslate nohighlight">\(v\)</span>,
 the value <span class="math notranslate nohighlight">\(\textrm{val}^{ \mathcal{G}}(v)\)</span> can be computed locally, <strong>i.e.</strong> by considering the maximum or the minimum over all edges <span class="math notranslate nohighlight">\((v,v')\)</span>
-of a function <span class="math notranslate nohighlight">\(\delta\)</span> of <span class="math notranslate nohighlight">\(\textrm{val}^{ \mathcal{G}}(v')\)</span> and of <span class="math notranslate nohighlight">\(\textsf{col}(v)\)</span>.
+of a function <span class="math notranslate nohighlight">\(\delta\)</span> of <span class="math notranslate nohighlight">\(\textrm{val}^{ \mathcal{G}}(v')\)</span> and of <span class="math notranslate nohighlight">\(\mathfrak{c}(v)\)</span>.
 The choice of minimum or maximum corresponds to the goal of the players: Eve wants to maximise the outcome and Adam to minimise it.</p>
 </div>
 <div class="section" id="fixed-point-through-contraction">
@@ -853,16 +855,16 @@ Expanding the definitions: for all vertices <span class="math notranslate nohigh
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{array}{llll}
-\mu(v) &amp; \le &amp; \max  \left\{ \delta( \mu(v'),  \textsf{col \right\}(v)) : (v,v') \in E} &amp; \text{ if } v \in  V_\mathrm{Eve}, \\
-\mu(v) &amp; \le &amp; \min  \left\{ \delta( \mu(v'),  \textsf{col \right\}(v)) : (v,v') \in E} &amp; \text{ if } v \in  V_\mathrm{Adam},
+\mu(v) &amp; \le &amp; \max  \left\{ \delta( \mu(v'),  \mathfrak{c \right\}(v)) : (v,v') \in E} &amp; \text{ if } v \in  V_\mathrm{Eve}, \\
+\mu(v) &amp; \le &amp; \min  \left\{ \delta( \mu(v'),  \mathfrak{c \right\}(v)) : (v,v') \in E} &amp; \text{ if } v \in  V_\mathrm{Adam},
 \end{array}
 \end{split}\]</div>
 <p>which is equivalent to the more familiar definition of progress measures: for all vertices <span class="math notranslate nohighlight">\(v\)</span>, we have</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{array}{llll}
-\exists (v,v') \in E,\ &amp; \mu(v) \le \delta( \mu(v'),  \textsf{col}(v)) &amp; \text{ if } v \in  V_\mathrm{Eve}, \\
-\forall (v,v') \in E,\ &amp; \mu(v) \le \delta( \mu(v'),  \textsf{col}(v)) &amp; \text{ if } v \in  V_\mathrm{Adam}.
+\exists (v,v') \in E,\ &amp; \mu(v) \le \delta( \mu(v'),  \mathfrak{c}(v)) &amp; \text{ if } v \in  V_\mathrm{Eve}, \\
+\forall (v,v') \in E,\ &amp; \mu(v) \le \delta( \mu(v'),  \mathfrak{c}(v)) &amp; \text{ if } v \in  V_\mathrm{Adam}.
 \end{array}
 \end{split}\]</div>
 <p>The characterisation principle can be equivalently stated as follows.</p>
@@ -888,8 +890,8 @@ A naive upper bound on <span class="math notranslate nohighlight">\(k\)</span> i
  \mathbb{O}_v(\mu)(u) = 
 \begin{cases}
 \mu(v) &amp; \text{ if } u \neq v, \\
-\max  \left\{ \delta( \mu(v'),  \textsf{col \right\}(v)) : (v,v') \in E} &amp; \text{ if } u = v \in  V_\mathrm{Eve}, \\
-\min  \left\{ \delta( \mu(v'),  \textsf{col \right\}(v)) : (v,v') \in E} &amp; \text{ if } u = v \in  V_\mathrm{Adam}.
+\max  \left\{ \delta( \mu(v'),  \mathfrak{c \right\}(v)) : (v,v') \in E} &amp; \text{ if } u = v \in  V_\mathrm{Eve}, \\
+\min  \left\{ \delta( \mu(v'),  \mathfrak{c \right\}(v)) : (v,v') \in E} &amp; \text{ if } u = v \in  V_\mathrm{Adam}.
 \end{cases}
 \end{split}\]</div>
 <p>The fixed points of <span class="math notranslate nohighlight">\(\mathbb{O}\)</span> and of the set of operators <span class="math notranslate nohighlight">\(( \mathbb{O}_v)_{v \in V}\)</span> are the same
@@ -900,8 +902,8 @@ and the ideas described above can be applied using <a class="reference internal"
  \mathbb{O}_v(\mu)(u) = 
 \begin{cases}
 \mu(v) &amp; \text{ if } u \neq v, \\
-\max  \left\{ \delta( \mu(v'),  \textsf{col \right\}(v)) : (v,v') \in E} &amp; \text{ if } u = v \in  V_\mathrm{Eve}, \\
-\min  \left\{ \delta( \mu(v'),  \textsf{col \right\}(v)) : (v,v') \in E} &amp; \text{ if } u = v \in  V_\mathrm{Adam}.
+\max  \left\{ \delta( \mu(v'),  \mathfrak{c \right\}(v)) : (v,v') \in E} &amp; \text{ if } u = v \in  V_\mathrm{Eve}, \\
+\min  \left\{ \delta( \mu(v'),  \mathfrak{c \right\}(v)) : (v,v') \in E} &amp; \text{ if } u = v \in  V_\mathrm{Adam}.
 \end{cases}
 \end{split}\]</div>
 <p>The fixed points of <span class="math notranslate nohighlight">\(\mathbb{O}\)</span> and of the set of operators <span class="math notranslate nohighlight">\(( \mathbb{O}_v)_{v \in V}\)</span> are the same
