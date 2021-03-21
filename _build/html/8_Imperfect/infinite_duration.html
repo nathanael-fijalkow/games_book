@@ -779,8 +779,7 @@
   <div class="section" id="infinite-duration">
 <span id="sec-infinite-duration"></span><h1>Infinite duration<a class="headerlink" href="#infinite-duration" title="Permalink to this headline">¶</a></h1>
 <div class="math notranslate nohighlight">
-\[\renewcommand{\Game}{\game}
-\]</div>
+\[\]</div>
 <p>Games with infinite duration and imperfect information
 are a natural model for applications such as synthesis
 of controllers of embedded systems.
@@ -815,12 +814,14 @@ and we denote <span class="math notranslate nohighlight">\(\pi_n\)</span> the fi
 probability measure over <span class="math notranslate nohighlight">\(\Delta^\omega\)</span> such that
 for every <span class="math notranslate nohighlight">\(v\in V\)</span>,
 <span class="math notranslate nohighlight">\(\mathbb{P}^{\sigma,\tau}_{ \delta_0}(V_0 = v) =  \delta_0(v)\)</span>
-and for every <span class="math notranslate nohighlight">\(n\in \mathbb{N}\)</span>,
-\begin{multline*}</p>
-<p>\mathbb{P}^{\sigma,\tau}<em>{ \delta_0}(V</em>{n+1}, S_{n}, T_{n} \mid \pi_n) \
+and for every <span class="math notranslate nohighlight">\(n\in \mathbb{N}\)</span>,</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{multline*}
+
+\mathbb{P}^{\sigma,\tau}_{ \delta_0}(V_{n+1}, S_{n}, T_{n} \mid \pi_n) \\
 = \sigma(S_0\cdots S_{n-1})(A_{n}) \cdot \tau(T_0\cdots T_{n-1})(B_n) \cdot \Delta(V_n,A_n,B_n)(V_{n+1},S_{n},T_{n})\enspace,
-\end{multline*}
-where we use standard notations for conditional probability measures.</p>
+\end{multline*}\]</div>
+<p>where we use standard notations for conditional probability measures.</p>
 <blockquote>
 <div><p><strong>Winning conditions.</strong></p>
 </div></blockquote>
@@ -916,9 +917,7 @@ positively winning strategy.
 A strategy <span class="math notranslate nohighlight">\(\sigma\)</span> for Eve is <strong>positively winning</strong> from
 an initial distribution <span class="math notranslate nohighlight">\(\delta_0\)</span> if</p>
 <div class="math notranslate nohighlight">
-\[
-%\label{eq:pos}
-  \forall \tau,
+\[  \forall \tau,
   \mathbb{P}^{\sigma,\tau}_{ \delta_0}( {\tt Win})&gt;0\enspace.\]</div>
 <p>When such a strategy <span class="math notranslate nohighlight">\(\sigma\)</span> exists, the initial distribution <span class="math notranslate nohighlight">\(\delta\)</span>
 is said to be positively winning (for Eve).
@@ -969,7 +968,7 @@ nor Adam has a positively winning strategy.</p>
 <p>In this game, Eve observes
 everything, Adam is blind (he only observes his own actions),
 and Eve’s objective is to visit only finitely many times the <span class="math notranslate nohighlight">\({\large \frownie}\)</span>-state. The initial state is <span class="math notranslate nohighlight">\(\large{\frownie}\)</span>. The set of actions is <span class="math notranslate nohighlight">\(\{a,b,c,d\}\)</span>.
-All transitions are deterministic.%<span class="math notranslate nohighlight">\(t\)</span>.</p>
+All transitions are deterministic.</p>
 <p>On one hand, no strategy <span class="math notranslate nohighlight">\(\Sigma\)</span>
 is almost-surely winning for Eve
 for her co-Büchi objective.
@@ -981,30 +980,30 @@ strategy
 Fix strategy <span class="math notranslate nohighlight">\(\sigma\)</span> and assume towards contradiction that <span class="math notranslate nohighlight">\(\sigma\)</span> is almost-surely winning.
 We define a strategy <span class="math notranslate nohighlight">\(\tau\)</span>
 such that
-<span class="math notranslate nohighlight">\(\probimp{\sigma,\tau}{\frownie}{  {\tt Buchi}} &gt; 0\)</span>.
+<span class="math notranslate nohighlight">\(\mathbb{P}^{\sigma,\tau}_{\frownie}\left({  {\tt Buchi}\right)} &gt; 0\)</span>.
 Strategy <span class="math notranslate nohighlight">\(\tau\)</span> starts by playing only <span class="math notranslate nohighlight">\(c\)</span>.
 The probability to be in state <span class="math notranslate nohighlight">\(\frownie\)</span> at step <span class="math notranslate nohighlight">\(n\)</span> is
-<span class="math notranslate nohighlight">\(x^{0}_n = \probimp{\sigma,c^\omega}{\frownie}{V_n=\frownie}\)</span> and since <span class="math notranslate nohighlight">\(\sigma\)</span> is almost-surely winning then <span class="math notranslate nohighlight">\(x^{0}_n \to_n 0\)</span> thus there exists  <span class="math notranslate nohighlight">\(n_0\)</span> such that
+<span class="math notranslate nohighlight">\(x^{0}_n =  \mathbb{P}^{\sigma,c^\omega}_{\frownie}\left({V_n=\frownie}\right)\)</span> and since <span class="math notranslate nohighlight">\(\sigma\)</span> is almost-surely winning then <span class="math notranslate nohighlight">\(x^{0}_n \to_n 0\)</span> thus there exists  <span class="math notranslate nohighlight">\(n_0\)</span> such that
 <span class="math notranslate nohighlight">\(x^{0}_{n_0}\leq \frac{1}{2}\)</span>.
 Then <span class="math notranslate nohighlight">\(\tau\)</span> plays <span class="math notranslate nohighlight">\(d\)</span> at step <span class="math notranslate nohighlight">\(n_0\)</span>.
 Assuming the state was <span class="math notranslate nohighlight">\(2\)</span> when <span class="math notranslate nohighlight">\(d\)</span> was played,
 the probability to be in state <span class="math notranslate nohighlight">\(\frownie\)</span> at step <span class="math notranslate nohighlight">\(n\geq n_0\)</span> is
-<span class="math notranslate nohighlight">\(x^{1}_n = \probimp{\sigma,c^{n_0}dc^\omega}{\frownie}{V_{n}=\frownie\mid V_{n_0}=\frownie}\)</span>
+<span class="math notranslate nohighlight">\(x^{1}_n =  \mathbb{P}^{\sigma,c^{n_0}dc^\omega}_{\frownie}\left({V_{n}\right)=\frownie\mid V_{n_0}=\frownie}\)</span>
 and since <span class="math notranslate nohighlight">\(\sigma\)</span> is almost-surely winning there exists <span class="math notranslate nohighlight">\(n_1\)</span> such that
 <span class="math notranslate nohighlight">\(x^{1}_{n_1}\leq  \frac{1}{4}\)</span>.
 Then <span class="math notranslate nohighlight">\(\tau\)</span> plays <span class="math notranslate nohighlight">\(d\)</span> at step <span class="math notranslate nohighlight">\(n_1\)</span>.
 By induction we keep defining <span class="math notranslate nohighlight">\(\tau\)</span> this way so that
 <span class="math notranslate nohighlight">\(\tau=c^{n_0-1}d c^{n_1 - n_0 - 1}dc^{n_2 - n_1 - 1}d \cdots \)</span>.
 and for every <span class="math notranslate nohighlight">\(k\in  \mathbb{N}\)</span>,
-<span class="math notranslate nohighlight">\(\probimp{\sigma,\tau}{\frownie}{
-V_{n_{k+1}}=\frownie
+<span class="math notranslate nohighlight">\(\mathbb{P}^{\sigma,\tau}_{\frownie}\left({
+V_{n_{k+1}\right)}=\frownie
 \text{ and }
 V_{n_{k+1}-1}=2
 \mid 
 V_{n_{k}}=\frownie
 } \geq 1 - \frac{1}{2^{k+1}}\)</span>.
 Thus finally
-<span class="math notranslate nohighlight">\(\probimp{\sigma,\tau}{\frownie}{ {\tt Buchi}} \geq
+<span class="math notranslate nohighlight">\(\mathbb{P}^{\sigma,\tau}_{\frownie}\left({ {\tt Buchi}\right)} \geq
 \Pi_{k} (1 - \frac{1}{2^{k+1}})&gt;0\)</span> which contradicts the hypothesis.</p>
 <p>}</p>
 <p>On the other hand, Adam does not have a positively winning
@@ -1060,11 +1059,12 @@ to the signals received by the player.</p>
 <div class="definition-content section" id="proof-content">
 <p>{Let <span class="math notranslate nohighlight">\(\mathcal{A}\)</span> be an arena with observable actions.}
 From an initial set of states <span class="math notranslate nohighlight">\(L\subseteq V\)</span>, the belief of
-Eve after having received signal <span class="math notranslate nohighlight">\(s\)</span> is:
-\begin{multline*}
-\mathcal{B}_{\text{Eve}}(L,s) =
-{ v\in V \mid \exists l\in L, t\in S \text{ such that }  \Delta(l,s,t)(v, \text{Act}(s), \text{Act}(t))&gt;0}\enspace.<br />
-\end{multline*}</p>
+Eve after having received signal <span class="math notranslate nohighlight">\(s\)</span> is:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{multline*}
+ \mathcal{B}_{\text{Eve}}(L,s) =
+ \{ v\in V \mid \exists l\in L, t\in S \text{ such that }  \Delta(l,s,t)(v, \text{Act}(s), \text{Act}(t))&gt;0\}\enspace.  
+  \end{multline*}\]</div>
 <p>Remark that in this definition we use the fact that actions of Eve are observable,
 thus when he receives a signal <span class="math notranslate nohighlight">\(s\in C\)</span> Eve can deduce he played action
 <span class="math notranslate nohighlight">\(a_1(c)\in I\)</span>.
@@ -1186,9 +1186,9 @@ strategy,
 and for every <span class="math notranslate nohighlight">\(L\in \mathcal{L}\setminus \{\emptyset\}\)</span> and every strategy <span class="math notranslate nohighlight">\(\tau\)</span>,</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\label{eq:pos}
-&amp; \probimp{\sigma,\tau}{\delta_L}{ \mathtt{Reach}} &gt; 0\enspace,\\
+&amp;  \mathbb{P}^{\sigma,\tau}_{\delta_L}\left({ \mathtt{Reach}\right)} &gt; 0\enspace,\\
  \label{eq:belstab}
-&amp;\probimp{\sigma,\tau}{\delta_L}{\forall n\in \mathbb{N}, \mathcal{B}_{\text{Eve}}^n\in  \mathcal{L}} = 1\enspace.\end{split}\]</div>
+&amp; \mathbb{P}^{\sigma,\tau}_{\delta_L}\left({\forall n\in \mathbb{N}\right), \mathcal{B}_{\text{Eve}}^n\in  \mathcal{L}} = 1\enspace.\end{split}\]</div>
 <p>Then <span class="math notranslate nohighlight">\(\sigma\)</span> is almost-surely winning for the Büchi game from any support
 <span class="math notranslate nohighlight">\(L\in  \mathcal{L}\setminus \{\emptyset\}\)</span>.</p>
 </div>
@@ -1199,7 +1199,7 @@ Since <span class="math notranslate nohighlight">\(\mathcal{L}\)</span> is downw
 thus <code class="xref eq docutils literal notranslate"><span class="pre">8-eq:pos</span></code> implies
 \be
 \forall L\in  \mathcal{L},\forall l\in L,
-\probimp{\sigma,\tau}{\delta_L}{ \mathtt{Reach}\mid V_0=l} &gt; 0\enspace.
+\mathbb{P}^{\sigma,\tau}<em>{\delta_L}\left({ \mathtt{Reach}\right)\mid V_0=l} &gt; 0\enspace.
 \label{eq:pos2}
 \end{equation}
 }
@@ -1208,7 +1208,7 @@ Once <span class="math notranslate nohighlight">\(\sigma\)</span> is fixed then 
 \be
 \label{eq:sigmamproperty}
 \forall L\in  \mathcal{L},\forall l\in L, \forall \tau,
-\probimp{\tau}{\delta_L}{ \mathtt{Reach} \mid V_0=l} &gt; \varepsilon\enspace,
+\mathbb{P}^{\tau}</em>{\delta_L}\left({ \mathtt{Reach}\right) \mid V_0=l} &gt; \varepsilon\enspace,
 \ee
 where <span class="math notranslate nohighlight">\(N=|K|\cdot 2^{|K|}\)</span>
 and <span class="math notranslate nohighlight">\(\varepsilon = p_{\min}^{|K|\cdot 2^{|K|}}\)</span>
@@ -1224,29 +1224,29 @@ and every behavioral strategy <span class="math notranslate nohighlight">\(\tau\
 <p><span class="math notranslate nohighlight">\(l\in V\)</span>,
 \be
 \label{eq:sigmamproperty2}
-\probimp{\tau}{\delta_L}
+\mathbb{P}^{\tau}<em>{\delta_L}
 { \exists m \leq n \leq m+ N, C_n = 1 \mid
 K_m = l
 }
 \geq \varepsilon,
 \ee
-whenever <span class="math notranslate nohighlight">\(\probimp{\tau}{\delta_L}{V_m=l} &gt; 0\)</span>.
+whenever <span class="math notranslate nohighlight">\(\mathbb{P}^{\tau}_{\delta_L}\left({V_m=l}\right) &gt; 0\)</span>.
 }
 We use the Borel-Cantelli Lemma to conclude the proof.
 According to <code class="xref eq docutils literal notranslate"><span class="pre">8-eq:sigmamproperty2</span></code>,
 for every <span class="math notranslate nohighlight">\(\tau\)</span>, <span class="math notranslate nohighlight">\(L\in\overline{ \mathcal{L}}\)</span>,
 <span class="math notranslate nohighlight">\(m\in  \mathbb{N}\)</span>,
 \be
-\probimp{\tau}{\delta_L}
+\probimp{\tau}\left({\delta_L}\right)
 { \exists n, mN \leq n &lt; (m+ 1)N, C_n=1
-\mid V_{mN}
+\mid V</em>{mN}
 }
 \geq \varepsilon,
 \ee
 which implies for every behavioral strategy <span class="math notranslate nohighlight">\(\tau\)</span> and <span class="math notranslate nohighlight">\(k,m\in \mathbb{N}\)</span>,</p>
 <div class="math notranslate nohighlight">
 \[
-\probimp{\tau}{\delta_L}
+ \mathbb{P}^{\tau}_{\delta_L}
 {\forall n,  \left((m\cdot N) \leq n &lt; ((m+k) \cdot N) \implies  C_n \neq 1 \right)}\leq  \left(1 - \varepsilon\right)^k\enspace.
 \]</div>
 <p>Since <span class="math notranslate nohighlight">\(\sum_k \left(1 - \varepsilon\right)^k\)</span> is finite,
@@ -1254,11 +1254,11 @@ we can apply Borel-Cantelli Lemma for the events
 <span class="math notranslate nohighlight">\((\{\forall n, m\cdot N \leq n &lt; (m+k) \cdot N \implies  C_n\neq 1\})_k\)</span>
 and we get
 <span class="math notranslate nohighlight">\(\nonumber
-\probimp{\tau}{\delta_L}{\forall n, m\cdot N \leq n  \implies  C_n\neq 1}=0
+\probimp{\tau}\left({\delta_L}\right){\forall n, m\cdot N \leq n  \implies  C_n\neq 1}=0
 \)</span>
 thus
 \be\label{eq:assss}\nonumber
-\probimp{\tau}{\delta_L}{ {\tt Buchi}}=1\enspace.
+\mathbb{P}^{\tau}_{\delta_L}\left({ {\tt Buchi}\right)}=1\enspace.
 \ee</p>
 <p>As a consequence <span class="math notranslate nohighlight">\(\sigma\)</span> is almost-surely winning for the
 Büchi game.</p>
@@ -1330,13 +1330,13 @@ thus it is enough to consider  Büchi games.</p>
 <p>The first step is to prove that for every <span class="math notranslate nohighlight">\(L\in  \mathcal{L}_{\text{Eve},=1}\)</span>,
 for every strategy <span class="math notranslate nohighlight">\(\tau\)</span> of Adam,
 \be\label{eq:LLpasM}</p>
-<p>\probimp{\sigma_{ \textsf{max}},\tau}{\delta_L}{ {\tt Safety}} &lt; 1 \enspace.
+<p>\mathbb{P}^{\sigma_{ \textsf{max}},\tau}_{\delta_L}\left({ {\tt Safety}\right)} &lt; 1 \enspace.
 \ee
 We prove <code class="xref eq docutils literal notranslate"><span class="pre">8-eq:LLpasM</span></code> by contradiction.
 Assume <code class="xref eq docutils literal notranslate"><span class="pre">8-eq:LLpasM</span></code> does not hold for some <span class="math notranslate nohighlight">\(L\in   \mathcal{L}_{\text{Eve},=1}\)</span></p>
 <p>and strategy <span class="math notranslate nohighlight">\(\tau\)</span>:
 \be\label{eq:winsafe}
-\probimp{\sigma_{ \textsf{max}},\tau}{\delta_L}{ {\tt Safety} } = 1\enspace.
+\mathbb{P}^{\sigma_{ \textsf{max}},\tau}_{\delta_L}\left({ {\tt Safety}\right) } = 1\enspace.
 \ee
 Under this assumption we use <span class="math notranslate nohighlight">\(\tau\)</span> to build a strategy positively winning from <span class="math notranslate nohighlight">\(L\)</span>,
 which will contradict the hypothesis
@@ -1379,63 +1379,63 @@ E = \{ \forall n\in  \mathbb{N}, A_n \in  {\tt ISafe}_\mathcal{L}( \mathcal{B}_{
 <p>Then for every behavioral strategy <span class="math notranslate nohighlight">\(\sigma\)</span>:</p>
 <ul class="simple">
 <li><p>[\textbullet]
-Either <span class="math notranslate nohighlight">\(\probimp{\sigma,\tau'}{\delta_L}{E}=1\)</span>. In this case</p></li>
+Either <span class="math notranslate nohighlight">\(\mathbb{P}^{\sigma,\tau'}_{\delta_L}\left({E}\right)=1\)</span>. In this case</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
-\probimp{\sigma,\tau'}{\delta_L}{ {\tt Safety}}&gt; 0\enspace,
+ \mathbb{P}^{\sigma,\tau'}_{\delta_L}\left({ {\tt Safety}\right)}&gt; 0\enspace,
 \]</div>
 <p>because for every {finite play <span class="math notranslate nohighlight">\(\pi=v_0a_0b_0s_1t_1v_1\cdots v_n\)</span>,}</p>
 <div class="math notranslate nohighlight">
 \[
-\left(\probimp{\sigma,\tau'}{\delta_L}{ \pi} &gt; 0\right)
+\left( \mathbb{P}^{\sigma,\tau'}_{\delta_L}\left({ \pi}\right) &gt; 0\right)
 \implies
-\left(\probimp{\sigma_{ \textsf{max}},\tau'}{\delta_L}{ \pi} &gt; 0\right)
+\left( \mathbb{P}^{\sigma_{ \textsf{max}},\tau'}_{\delta_L}\left({ \pi}\right) &gt; 0\right)
 \implies
  {\tt Safety}\enspace,
 \]</div>
 <p>where the first implication holds because, by definition of <span class="math notranslate nohighlight">\(\sigma_{ \textsf{max}}\)</span> and <span class="math notranslate nohighlight">\(E\)</span>,
 for every <span class="math notranslate nohighlight">\(s_1\cdots s_n\in CS^*,  \textrm{supp}(\sigma(s_1\cdots s_n))\subseteq  \textrm{supp}(\sigma_{ \textsf{max}}(s_1\cdots s_n))\)</span></p>
 <p>while the second implication is from <code class="xref eq docutils literal notranslate"><span class="pre">8-eq:winsafe</span></code>.
-Thus <span class="math notranslate nohighlight">\(\probimp{\sigma,\tau}{\delta_L}{ {\tt Safety}}= 1\)</span> and we get
-<span class="math notranslate nohighlight">\(\probimp{\sigma,\tau'}{\delta_L}{ {\tt Safety}} &gt; 0\)</span> by definition of
+Thus <span class="math notranslate nohighlight">\(\mathbb{P}^{\sigma,\tau}_{\delta_L}\left({ {\tt Safety}\right)}= 1\)</span> and we get
+<span class="math notranslate nohighlight">\(\mathbb{P}^{\sigma,\tau'}_{\delta_L}\left({ {\tt Safety}\right)} &gt; 0\)</span> by definition of
 <span class="math notranslate nohighlight">\(\tau'\)</span>.</p>
 <ul class="simple">
 <li><p>[\textbullet]
-Or <span class="math notranslate nohighlight">\(\probimp{\sigma,\tau'}{\delta_L}{E}&lt;1\)</span>.
+Or <span class="math notranslate nohighlight">\(\mathbb{P}^{\sigma,\tau'}_{\delta_L}\left({E}\right)&lt;1\)</span>.
 Then by definition of <span class="math notranslate nohighlight">\(E\)</span> there exists <span class="math notranslate nohighlight">\(n\in \mathbb{N}\)</span></p></li>
 </ul>
 <p>such that</p>
 <div class="math notranslate nohighlight">
 \[
-\probimp{\sigma,\tau'}{\delta_L}{A_n  \not\in
- {\tt ISafe}_\mathcal{L}( \mathcal{B}_{\text{Eve}}^n)}&gt;0\enspace.
+ \mathbb{P}^{\sigma,\tau'}_{\delta_L}\left({A_n  \not\in
+ {\tt ISafe}\right)_\mathcal{L}( \mathcal{B}_{\text{Eve}}^n)}&gt;0\enspace.
 \]</div>
 <p>{
 By definition of <span class="math notranslate nohighlight">\({\tt ISafe}_\mathcal{L}\)</span> it implies
-<span class="math notranslate nohighlight">\(\probimp{\sigma,\tau'}{\delta_L}{ \mathcal{B}_{\text{Eve}}^{n+1}  \in  \mathcal{L}}&gt;0\)</span>,
+<span class="math notranslate nohighlight">\(\mathbb{P}^{\sigma,\tau'}_{\delta_L}\left({ \mathcal{B}\right)_{\text{Eve}}^{n+1}  \in  \mathcal{L}}&gt;0\)</span>,
 thus there exists <span class="math notranslate nohighlight">\(B\in  \mathcal{L}\)</span> such that
-<span class="math notranslate nohighlight">\(\probimp{\sigma,\tau'}{\delta_L}{ \mathcal{B}_{\text{Eve}}^{n+1} =B}&gt;0\)</span>.
+<span class="math notranslate nohighlight">\(\mathbb{P}^{\sigma,\tau'}_{\delta_L}\left({ \mathcal{B}\right)_{\text{Eve}}^{n+1} =B}&gt;0\)</span>.
 By definition of <span class="math notranslate nohighlight">\(\tau'\)</span> we get
-<span class="math notranslate nohighlight">\(\probimp{\sigma,\tau_{n+1,B}}{\delta_L}{ \mathcal{B}_{\text{Eve}}^{n+1} =B}&gt;0\)</span>,
+<span class="math notranslate nohighlight">\(\mathbb{P}^{\sigma,\tau_{n+1,B}}_{\delta_L}\left({ \mathcal{B}\right)_{\text{Eve}}^{n+1} =B}&gt;0\)</span>,
 because whatever finite play <span class="math notranslate nohighlight">\(v_0,\ldots, v_{n+1}\)</span> leads with positive probability to
 the event <span class="math notranslate nohighlight">\(\{ \mathcal{B}_{\text{Eve}}^{n+1} =B\}\)</span>,
 the same finite play can occur with
 <span class="math notranslate nohighlight">\(\tau_{n+1,B}\)</span> since <span class="math notranslate nohighlight">\(\tau_{n+1,B}\)</span> plays every possible action for the <span class="math notranslate nohighlight">\(n+1\)</span> first steps.
 Since <span class="math notranslate nohighlight">\(\tau_{n+1,B}\)</span> coincides with <span class="math notranslate nohighlight">\(\tau_{\tt rand}\)</span> for the first <span class="math notranslate nohighlight">\(n+1\)</span> steps then
 by definition of beliefs,
-<span class="math notranslate nohighlight">\(\probimp{\sigma,\tau_{n+1,B}}{\delta_L}{ \mathcal{B}_{\text{Eve}}^{n+1} =B}&gt;0\)</span>
-and <span class="math notranslate nohighlight">\(B\subseteq \{ k\in K\mid \probimp{\sigma,\tau_{n+1,B}}{\delta_L}{K_{n+1}=k\mid  \mathcal{B}_{\text{Eve}}^{n+1} =B}&gt;0\}\)</span>.</p>
+<span class="math notranslate nohighlight">\(\mathbb{P}^{\sigma,\tau_{n+1,B}}_{\delta_L}\left({ \mathcal{B}\right)_{\text{Eve}}^{n+1} =B}&gt;0\)</span>
+and <span class="math notranslate nohighlight">\(B\subseteq \{ k\in K\mid  \mathbb{P}^{\sigma,\tau_{n+1,B}}_{\delta_L}\left({K_{n+1}\right)=k\mid  \mathcal{B}_{\text{Eve}}^{n+1} =B}&gt;0\}\)</span>.</p>
 <p>Using the definition of <span class="math notranslate nohighlight">\(\tau_B\)</span> we get
-<span class="math notranslate nohighlight">\(\probimp{\sigma,\tau_{n+1,B}}{\delta_L}{ {\tt CoBuchi}}&gt;0\)</span>.
+<span class="math notranslate nohighlight">\(\mathbb{P}^{\sigma,\tau_{n+1,B}}_{\delta_L}\left({ {\tt CoBuchi}\right)}&gt;0\)</span>.
 }
 As a consequence by definition of <span class="math notranslate nohighlight">\(\tau'\)</span>
-we get  $ \probimp{\sigma,\tau’}{\delta_L}{ {\tt CoBuchi}}</p>
+we get  $  \mathbb{P}^{\sigma,\tau’}_{\delta_L}\left({ {\tt CoBuchi}\right)}</p>
 <blockquote>
 <div><p>0 $.</p>
 </div></blockquote>
 <p>In both cases, for every <span class="math notranslate nohighlight">\(\sigma\)</span>,
-<span class="math notranslate nohighlight">\(\probimp{\sigma,\tau'}{\delta_L}{ {\tt CoBuchi} } &gt;0 \)</span>
+<span class="math notranslate nohighlight">\(\mathbb{P}^{\sigma,\tau'}_{\delta_L}\left({ {\tt CoBuchi}\right) } &gt;0 \)</span>
 thus <span class="math notranslate nohighlight">\(\tau'\)</span> is positively winning from <span class="math notranslate nohighlight">\(L\)</span>.
 This contradicts the
 hypothesis <span class="math notranslate nohighlight">\(L\in   \mathcal{L}_{\text{Eve},=1}\)</span>. As a consequence we get <code class="xref eq docutils literal notranslate"><span class="pre">8-eq:LLpasM</span></code> by contradiction.</p>
@@ -1539,36 +1539,36 @@ the case where {<span class="math notranslate nohighlight">\(L\cap  TT =\emptyse
 <span class="math notranslate nohighlight">\(n\in \mathbb{N}\)</span>, <span class="math notranslate nohighlight">\(\mathcal{K}_n =  \mathcal{P}( V \setminus TT)  \setminus  \mathcal{L}_n\)</span>, and we
 prove by induction on <span class="math notranslate nohighlight">\(n\in \mathbb{N}\)</span> that for every <span class="math notranslate nohighlight">\(L\in \mathcal{K}_n\)</span>, for every
 initial distribution <span class="math notranslate nohighlight">\(\delta_L\)</span> with support <span class="math notranslate nohighlight">\(L\)</span>, for every {behavioral} strategy
-<span class="math notranslate nohighlight">\(\tau\)</span>, \be\label{eq:topo} \probimp{\sigma_{ {\tt rand}},\tau}{\delta_L}{\exists m, 2\leq
-m\leq n+1, V_m\in TT }&gt;0 \enspace.  \end{equation}For
+<span class="math notranslate nohighlight">\(\tau\)</span>, \be\label{eq:topo}  \mathbb{P}^{\sigma_{ {\tt rand}},\tau}<em>{\delta_L}\left({\exists m, 2\leq
+m\leq n+1, V_m\in TT }\right)&gt;0 \enspace.  \end{equation}For
 <span class="math notranslate nohighlight">\(n=0\)</span>, <code class="xref eq docutils literal notranslate"><span class="pre">8-eq:topo</span></code> is obvious because <span class="math notranslate nohighlight">\(\mathcal{K}_0=\emptyset\)</span>.  Suppose
 that for some <span class="math notranslate nohighlight">\(n\in \mathbb{N}\)</span>, <code class="xref eq docutils literal notranslate"><span class="pre">8-eq:topo</span></code> holds for every <span class="math notranslate nohighlight">\(L'\in \mathcal{K}_n\)</span>,
 and let <span class="math notranslate nohighlight">\(L\in \mathcal{K}_{n+1} \setminus  \mathcal{K}_n\)</span>.
 Then by definition of <span class="math notranslate nohighlight">\(\mathcal{K}_{n+1}\)</span>, \be\label{eq:LLLn}
-L\in \mathcal{L}_{n} \setminus\Phi( \mathcal{L}_n)\enspace.  \end{equation}Let <span class="math notranslate nohighlight">\(\delta_L\)</span> be an initial
+L\in \mathcal{L}</em>{n} \setminus\Phi( \mathcal{L}_n)\enspace.  \end{equation}Let <span class="math notranslate nohighlight">\(\delta_L\)</span> be an initial
 distribution with support <span class="math notranslate nohighlight">\(L\)</span> and <span class="math notranslate nohighlight">\(\tau\)</span> any behavioral strategy for player <span class="math notranslate nohighlight">\(2\)</span>.
 Let <span class="math notranslate nohighlight">\(J_0\subseteq J\)</span> be the support of <span class="math notranslate nohighlight">\(\tau(\delta_L)\)</span> and <span class="math notranslate nohighlight">\(j_L\in J_0\)</span>.  According
 to <code class="xref eq docutils literal notranslate"><span class="pre">8-eq:LLLn</span></code>, by definition of <span class="math notranslate nohighlight">\(\Phi\)</span>, there exists a signal
 <span class="math notranslate nohighlight">\(d\in D\)</span> such that <span class="math notranslate nohighlight">\(a_2(d)=j_L\)</span> and
 <span class="math notranslate nohighlight">\(\mathcal{B}_{\text{Adam}}(L,d)\not \in  \mathcal{L}_n\)</span> and <span class="math notranslate nohighlight">\(\mathcal{B}_{\text{Adam}}(L,d)\neq \emptyset\)</span>.
 {According to  property <code class="xref eq docutils literal notranslate"><span class="pre">8-eq:belief_compute</span></code> of beliefs (<code class="xref prf prf-ref docutils literal notranslate"><span class="pre">8-lem:beliefs</span></code>),}
-<span class="math notranslate nohighlight">\(\forall k \in  \mathcal{B}_{\text{Adam}}(L,d),\probimp{\sigma_{ {\tt rand}},\tau}{\delta_L}{V_2 =k\land D_1=d}  &gt; 0\)</span>.
+<span class="math notranslate nohighlight">\(\forall k \in  \mathcal{B}_{\text{Adam}}(L,d), \mathbb{P}^{\sigma_{ {\tt rand}},\tau}_{\delta_L}\left({V_2 =k\land D_1=d}\right)  &gt; 0\)</span>.
 If
 <span class="math notranslate nohighlight">\(\mathcal{B}_{\text{Adam}}(L,d)\cap TT \not= \emptyset\)</span> then according to
 the definition of beliefs,
-<span class="math notranslate nohighlight">\(\probimp{\sigma_{ {\tt rand}},\tau}{\delta_L}{V_2\in TT}&gt;0\)</span>.  Otherwise
+<span class="math notranslate nohighlight">\(\mathbb{P}^{\sigma_{ {\tt rand}},\tau}_{\delta_L}\left({V_2\in TT}\right)&gt;0\)</span>.  Otherwise
 <span class="math notranslate nohighlight">\(\mathcal{B}_{\text{Adam}}(L,d)\in \mathcal{P}( V \setminus TT) \setminus \mathcal{L}_n= \mathcal{K}_n\)</span> hence
-distribution <span class="math notranslate nohighlight">\(\delta_{d}:k\to \probimp{\sigma_{ {\tt rand}},\tau}{\delta_L}{V_2 =k\mid D_1=d}\)</span>
+distribution <span class="math notranslate nohighlight">\(\delta_{d}:k\to  \mathbb{P}^{\sigma_{ {\tt rand}},\tau}_{\delta_L}\left({V_2 =k\mid D_1=d}\right)\)</span>
 has its support in <span class="math notranslate nohighlight">\(\mathcal{K}_n\)</span>. By inductive hypothesis, for every
 behavioral strategy <span class="math notranslate nohighlight">\(\tau'\)</span>,</p>
 <div class="math notranslate nohighlight">
-\[\probimp{\sigma_{ {\tt rand}},\tau'}{\delta_{d}}{\exists m\in \mathbb{N}, 2\leq
+\[\mathbb{P}^{\sigma_{ {\tt rand}},\tau'}_{\delta_{d}}\left({\exists m\in \mathbb{N}\right), 2\leq
   m\leq n+1, V_m\in TT}&gt;0\]</div>
 <p>hence using the shifting lemma and the
 definition of <span class="math notranslate nohighlight">\(\delta_{d}\)</span>,</p>
 <div class="math notranslate nohighlight">
 \[
-\probimp{\sigma_{ {\tt rand}},\tau}{\delta}{\exists m\in \mathbb{N},
+ \mathbb{P}^{\sigma_{ {\tt rand}},\tau}_{\delta}\left({\exists m\in \mathbb{N}\right),
   3\leq m\leq n+2, V_m\in TT}&gt;0\enspace,\]</div>
 <p>which completes the proof of the inductive
 step.
@@ -1595,9 +1595,9 @@ and probabilities before reaching a target state, when player <span class="math 
 the uniform memoryless strategy <span class="math notranslate nohighlight">\(\sigma_{ {\tt rand}}\)</span>.  From an initial
 distribution positively winning for the reachability objective, for
 every strategy <span class="math notranslate nohighlight">\(\tau\)</span>, \be\label{eq:bounds}
-\probimp{\sigma_{ {\tt rand}},\tau}{\delta}{\exists n\leq 2^{\mid  V
-\mid}, C_n = 1}\geq \left(
-\frac{1}{p_{\min}\mid A\mid}\right)^{2^{\lvert V\lvert}}\enspace,
+\mathbb{P}^{\sigma_{ {\tt rand}},\tau}<em>{\delta}\left({\exists n\leq 2^{\mid  V
+\mid}\right), C_n = 1}\geq \left(
+\frac{1}{p</em>{\min}\mid A\mid}\right)^{2^{\lvert V\lvert}}\enspace,
 \end{equation}
 where <span class="math notranslate nohighlight">\(p_{\min}\)</span> is the smallest non-zero transition probability.</p>
 </div>
@@ -1666,15 +1666,16 @@ support for player <span class="math notranslate nohighlight">\(2\)</span>, and 
 <p>Using these ideas, we prove that the set
 <span class="math notranslate nohighlight">\(\mathcal{L}_\infty\subseteq  \mathcal{P}( V)\)</span> of supports almost-surely
 winning for player <span class="math notranslate nohighlight">\(1\)</span> for the Büchi objective is the largest set of
-initial supports from which:
-\begin{multline}
+initial supports from which:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-85b32195-1979-45cb-ada5-ef1ba3e034ca">
+<span class="eqno">(12)<a class="headerlink" href="#equation-85b32195-1979-45cb-ada5-ef1ba3e034ca" title="Permalink to this equation">¶</a></span>\[\begin{multline}
 \label{eq-dag}
-\tag{<span class="math notranslate nohighlight">\(\dag\)</span>}
-\textrm{player <span class="math notranslate nohighlight">\(1\)</span> has a strategy
-which win positively the reachability game}\
+\tag{$\dag$}
+\textrm{player $1$ has a strategy
+  which win positively the reachability game}\\
 \textrm{and also ensures at the same time
-her belief to stay in }  \mathcal{L}_\infty .
-\end{multline}</p>
+  her belief to stay in }  \mathcal{L}_\infty .
+\end{multline}\]</div>
 <p>Property <code class="xref prf prf-ref docutils literal notranslate"><span class="pre">eq-dag</span></code> can be reformulated as a reachability
 condition in a new game whose states are states of the original game
 augmented with beliefs of player <span class="math notranslate nohighlight">\(1\)</span>, kept hidden to player <span class="math notranslate nohighlight">\(2\)</span>.</p>

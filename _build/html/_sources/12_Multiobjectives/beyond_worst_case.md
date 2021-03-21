@@ -5,8 +5,6 @@
 
 % Generic probability measure, also prob. measure operator
 
-\renewcommand{\Game}{\game}
-
 ```
 
 We now turn to a completely different meaning of **multiobjective**. Let us take a few steps back. Throughout this book, we have studied two types of interaction between players: rational, antagonistic interaction between Eve and Adam; and stochastic interaction with a random player. Consider the quantitative settings of {prf:ref}`chap:payoffs` and {prf:ref}`chap:mdp`. In the zero-sum two-player games of the former, Adam is seen as a **purely antagonistic adversary**, so the goal of Eve is to ensure strict worst-case guarantees, i.e., a minimal performance level against all possible strategies of Adam. In the MDPs of the latter, Eve interacts with randomness (through actions or random vertices) and she wants to ensure a good **expected value** for the considered payoff.
@@ -36,16 +34,8 @@ This is important as far as modelling is concerned, as in our context, transitio
 
  Let us sum up the situation: we have a two-player arena $\mathcal{A}$ with a mean-payoff objective $\mathtt{MeanPayoff}^{-}_{> \alpha}$ and a finite-memory stochastic model for Adam yielding the MDP $\mathcal{A}_{\tau^\text{stoch}}$. Now, let $\beta \in  \mathbb{Q}$ be the expected value threshold we want to ensure in the MDP (i.e., on average against the stochastic model of Adam).
 
-```{admonition} Problem
-
-Our beyond worst-case (BWC) problem is as follows.
-
-**INPUT**: An arena $\mathcal{A}$, a finite-memory stochastic model $\tau^\text{stoch}$, an\\ & initial vertex $v_0$, two thresholds $\alpha, \beta \in  \mathbb{Q}$\\
-
-**QUESTION**: Does Eve have a **finite-memory** strategy $\sigma$ such that $\sigma$ is \\ & winning for objective $\mathtt{MeanPayoff}^{-}_{> \alpha} \text{ from } v_0 \text{ in }  \mathcal{A}$\\ &
-and $\mathbf{E}^{\sigma}_{ \mathcal{A}_{\tau^\text{stoch}},v_0}[ \mathtt{MeanPayoff}^{-}] > \beta$?
-
-```
+\decpb{Beyond worst-case}{An arena $\mathcal{A}$, a finite-memory stochastic model $\tau^\text{stoch}$, an\\ & initial vertex $v_0$, two thresholds $\alpha, \beta \in  \mathbb{Q}$\\}{Does Eve have a **finite-memory** strategy $\sigma$ such that $\sigma$ is \\ & winning for objective $\mathtt{MeanPayoff}^{-}_{> \alpha} \text{ from } v_0 \text{ in }  \mathcal{A}$\\ &
+and $\mathbf{E}^{\sigma}_{ \mathcal{A}_{\tau^\text{stoch}},v_0}[ \mathtt{MeanPayoff}^{-}] > \beta$?}
 
 We assume $\beta > \alpha$, otherwise the problem trivially reduces to the classical worst-case analysis: if all plays consistent with $\sigma$ have mean-payoff greater than $\alpha \geq \beta$ then the expected value is also greater than $\alpha$ regardless of the stochastic model.
 
@@ -65,7 +55,7 @@ The output as described in {numref}`12-algo:BWC` is Boolean: the algorithm answe
 
 The preprocessing is composed of four main steps. First, we modify the colouring function $c^i$ in order to consider the equivalent BWC problem with thresholds $(0,\, \beta)$ instead of $(\alpha^{i},\, \beta^{i})$. This classical trick is used to get rid of explicitly considering the worst-case threshold in the following, as it is equal to zero.
 
-Second, observe that any strategy that is winning for the BWC problem must also be winning for the classical **worst-case problem**, as solved in the two-player games of {prf:ref}`chap:payoffs`. Such a strategy cannot allow visits of any vertex from which Eve cannot ensure winning against an antagonistic adversary because mean-payoff is a prefix independent objective (hence it is not possible to win it over the finite prefix up to such a vertex). Thus, we reduce our study to $\mathcal{A}^{w}$, the subarena induced by Eve's worst-case winning vertices -- which we compute in pseudo-poly\-nomial time thanks to $\textsf{SolveWorstCaseMeanPayoff}( \mathcal{A}, c)$ (implementing the algorithm of {prf:ref}`chap:payoffs`). \todo{I need a label on Subsect. 4.3.4 to cite it precisely.}  Note that we use the modified colouring and that $\mathcal{A}^{w}$ is a proper arena (same argument as {prf:ref}`12-rmk:properArena`). Obviously, if from the initial vertex $v_0^{i}$, Eve cannot win the worst-case problem, then the answer to the BWC problem is No.
+Second, observe that any strategy that is winning for the BWC problem must also be winning for the classical **worst-case problem**, as solved in the two-player games of {prf:ref}`chap:payoffs`. Such a strategy cannot allow visits of any vertex from which Eve cannot ensure winning against an antagonistic adversary because mean-payoff is a prefix independent objective (hence it is not possible to `win' it over the finite prefix up to such a vertex). Thus, we reduce our study to $\mathcal{A}^{w}$, the subarena induced by Eve's worst-case winning vertices -- which we compute in pseudo-poly\-nomial time thanks to $\textsf{SolveWorstCaseMeanPayoff}( \mathcal{A}, c)$ (implementing the algorithm of {prf:ref}`chap:payoffs`). \todo{I need a label on Subsect. 4.3.4 to cite it precisely.}  Note that we use the modified colouring and that $\mathcal{A}^{w}$ is a proper arena (same argument as {prf:ref}`12-rmk:properArena`). Obviously, if from the initial vertex $v_0^{i}$, Eve cannot win the worst-case problem, then the answer to the BWC problem is No.
 
 Third, we build arena $\mathcal{A}$, the product of $\mathcal{A}^{w}$ and the memory structure of Adam's stochastic model $\tau^i$. Intuitively, we expand the initial arena by integrating the memory elements in the graph. Note that this does not modify the power of Adam in the two-player interpretation of the arena.
 
@@ -164,14 +154,14 @@ Lastly, consider the arena depicted in {numref}`12-fig:bwcWinningECsComputationE
 ## Ensure reaching winning end-components
  As discussed, under any arbitrary strategy of $\text{Eve}$, vertices visited infinitely often form an EC with probability one ({prf:ref}`5-lem:EC-inf`). Now, if we take a **finite-memory** strategy that **satisfies** the $\text{BWC}$ problem, we can refine this result and state that they form a **winning** EC with probability one. Equivalently, let ${\sf Inf}( \pi)$ denote the set of vertices visited infinitely often along a play $\pi$: we have that the probability that a play $\pi$ is such that ${\sf Inf}( \pi) =  U$ for some $U \in  \mathcal{E} \setminus  \mathcal{W}$ is zero. The equality is crucial. It may be the case, with non-zero probability, that ${\sf Inf}( \pi) =  U' \subsetneq  U$, for some $U' \in  \mathcal{W}$, and $U \in  \mathcal{E} \setminus  \mathcal{W}$ (hence the recursive algorithm to compute $\mathcal{U}_{w}$). It is clear that $\text{Eve}$ should not visit all the vertices of a LEC forever, as then she would not be able to guarantee the worst-case threshold inside the corresponding subarena.
 
-````{prf:lemma} NEEDS TITLE 12-lem:EC-inf
-:label: 12-lem:EC-inf
-
-For any initial vertex $ v_0 $ and finite-memory strategy $ \sigma $ that satisfies the BWC problem, it holds that $  \mathbb{P}^\sigma_{ {\mathcal{P}}, v_0} ( \{ \pi \mid  {\sf Inf}( \pi) \in  \mathcal{W} \}) = 1 $.
-
 ```{margin}
 This is no longer true if Eve may use infinite memory: there may still be some incentive to stay in a LEC. But this goes beyond the scope of our overview.
 ```
+
+````{prf:lemma} NEEDS TITLE 12-lem:EC-inf
+:label: 12-lem:EC-inf
+
+For any initial vertex $ v_0 $ and finite-memory strategy $ \sigma $ that satisfies the BWC problem, it holds that $  \mathbb{P}^\sigma_{ {\mathcal{P}}, v_0} ( \{ \pi \mid  {\sf Inf}( \pi) \in  \mathcal{W} \}) = 1 $. 
 
 ````
 

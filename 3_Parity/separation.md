@@ -3,10 +3,6 @@
 
 ```{math}
 
-\renewcommand{\H}{\mathcal{H}}
-
-\renewcommand{\Game}{\game}
-
 ```
 
 ## The separation framework
@@ -18,41 +14,41 @@ with acceptance objective $\mathtt{Safe}$ and defining $\mathtt{Parity}([1,d])$,
 meaning $L( \mathbf{A}) =  \mathtt{Parity}([1,d])$.
 With such an automaton in hand {prf:ref}`1-lem:automata_reduction` implies the following reduction:
 from a parity game $\mathcal{G}$ construct the safety game $\mathcal{G} \times  \mathbf{A}$ satisfying that
-Eve has a winning strategy in $\Game$ from $v_0$ if and only if she has a winning strategy in $\Game \times  \mathbf{A}$ from $(v_0,q_0)$.
+Eve has a winning strategy in $\mathcal{G}$ from $v_0$ if and only if she has a winning strategy in $\mathcal{G} \times  \mathbf{A}$ from $(v_0,q_0)$.
 
 Unfortunately, it can be shown (using a topological argument) that there is no such automaton.
 The separation framework defines a (weaker) sufficient condition for the reduction above to be correct.
 Instead of insisting that $L( \mathbf{A}) =  \mathtt{Parity}([1,d])$,
-it is enough to have $W_\mathrm{Eve}( \mathcal{A}, \mathtt{Parity}[ \textsf{col}]) =  W_\mathrm{Eve}( \mathcal{A},L( \mathbf{A})[ \textsf{col}])$.
+it is enough to have $W_\mathrm{Eve}( \mathcal{A}, \mathtt{Parity}[ \mathfrak{c}]) =  W_\mathrm{Eve}( \mathcal{A},L( \mathbf{A})[ \mathfrak{c}])$.
 To ensure this equality we will only require that $L( \mathbf{A})$ **separates** winning plays from losing plays.
 The two **key** ideas are first to take advantage of the positionality of parity objectives 
 by restricting further winning plays to **positional** winning plays,
-and second to state $W_\mathrm{Eve}( \mathcal{A}, \mathtt{Parity}[ \textsf{col}]) =  W_\mathrm{Eve}( \mathcal{A},L( \mathbf{A})[ \textsf{col}])$ not for all parity games,
+and second to state $W_\mathrm{Eve}( \mathcal{A}, \mathtt{Parity}[ \mathfrak{c}]) =  W_\mathrm{Eve}( \mathcal{A},L( \mathbf{A})[ \mathfrak{c}])$ not for all parity games,
 but only for parity games with $n$ vertices and priorities in $[1,d]$.
 
 A deterministic safety automaton over the alphabet $[1,d]$ is given by
 
 $$
- \mathbf{A} = (Q,q_0,\delta : Q \times [1,d] \to Q, \mathtt{Safe}[ \textsf{col}_\mathbf{A}]),
+ \mathbf{A} = (Q,q_0,\delta : Q \times [1,d] \to Q, \mathtt{Safe}[ \mathfrak{c}_\mathbf{A}]),
 $$
 
-where $\textsf{col}_\mathbf{A} : Q \times [1,d] \to  \left\{  \textrm{Win \right\}, \textrm{Lose}}$.
+where $\mathfrak{c}_\mathbf{A} : Q \times [1,d] \to  \left\{  \textrm{Win \right\}, \textrm{Lose}}$.
 A word $w \in [1,d]^\omega$ is accepted if the run $\rho$ over $w$ only contains transitions in $\textrm{Win}$.
 We use the following simplifying convention for safety automata: we distinguish a special rejecting state $\bot$
 and assume that all transitions are accepting except the ones leading to $\bot$. 
 Said differently, a word $w$ is accepted if and only if it the run over $w$ does not contain the state $\bot$.
-Hence we do not need to specify $\textsf{col}_\mathbf{A}$:
+Hence we do not need to specify $\mathfrak{c}_\mathbf{A}$:
 in the next two sections by an automaton we mean a deterministic safety automaton
 given by $\mathbf{A} = (Q,q_0,\delta : Q \times [1,d] \to Q)$.
 
 Let us now give a sufficient condition for the automaton $\mathbf{A}$ 
-to imply the correctness of the reduction from the parity game $\Game$ to the safety game $\Game \times  \mathbf{A}$.
+to imply the correctness of the reduction from the parity game $\mathcal{G}$ to the safety game $\mathcal{G} \times  \mathbf{A}$.
 The condition that we define now is that the automaton $\mathbf{A}$ is $(n,d)$-separating; it relies on the notion of parity graphs.
 Recall a parity graph satisfies parity from $v$ if all infinite paths from $v$ satisfy parity,
-and that a strategy $\sigma$ is winning from $v$ if and only if the parity graph $\Game[\sigma]$ satisfies parity from $v$.
+and that a strategy $\sigma$ is winning from $v$ if and only if the parity graph $\mathcal{G}[\sigma]$ satisfies parity from $v$.
 
 We say that an automaton reads, accepts, or rejects a path $\pi$ in a parity graph, 
-which is an abuse because what the automaton reads is the induced sequence of colours $\textsf{col}(\pi)$.
+which is an abuse because what the automaton reads is the induced sequence of colours $\mathfrak{c}(\pi)$.
 
 ````{prf:definition} Separating automata
 :label: 3-def:separating_automata
@@ -92,11 +88,11 @@ The following lemma shows the definition of separating automata in action.
 :label: 3-lem:separating_automata
 
 Let $\mathbf{A}$ an $(n,d)$-separating automaton.
-Then for all parity games $\mathcal{G} = ( \mathcal{A}, \mathtt{Parity}[ \textsf{col}])$ with $n$ vertices and priorities in $[1,d]$, 
+Then for all parity games $\mathcal{G} = ( \mathcal{A}, \mathtt{Parity}[ \mathfrak{c}])$ with $n$ vertices and priorities in $[1,d]$, 
 we have
 
 $$
- W_\mathrm{Eve}( \mathcal{G}) =  W_\mathrm{Eve}( \mathcal{A},L( \mathbf{A})[ \textsf{col}]).
+ W_\mathrm{Eve}( \mathcal{G}) =  W_\mathrm{Eve}( \mathcal{A},L( \mathbf{A})[ \mathfrak{c}]).
 $$
 
 ````
@@ -104,39 +100,39 @@ $$
 ````{admonition} Proof
 :class: dropdown tip
 
-The inclusion $W_\mathrm{Eve}( \mathcal{G}) \subseteq  W_\mathrm{Eve}( \mathcal{A},L( \mathbf{A})[ \textsf{col}])$ follows from positional determinacy and the inclusion 
+The inclusion $W_\mathrm{Eve}( \mathcal{G}) \subseteq  W_\mathrm{Eve}( \mathcal{A},L( \mathbf{A})[ \mathfrak{c}])$ follows from positional determinacy and the inclusion 
 $\mathtt{Parity}_{\mid n} \subseteq L( \mathbf{A})$.
 Let $v \in  W_\mathrm{Eve}( \mathcal{G})$.
 Consider $\sigma$ a positional strategy ensuring parity from $v$ and construct the parity graph $\mathcal{G}[\sigma]$, it satisfies parity from $v$.
-Hence the strategy $\sigma$ also ensures $L( \mathbf{A})[ \textsf{col}]$ from $v$, so $v \in  W_\mathrm{Eve}( \mathcal{A},L( \mathbf{A})[ \textsf{col}])$.
+Hence the strategy $\sigma$ also ensures $L( \mathbf{A})[ \mathfrak{c}]$ from $v$, so $v \in  W_\mathrm{Eve}( \mathcal{A},L( \mathbf{A})[ \mathfrak{c}])$.
 
 Conversely, the inclusion $L( \mathbf{A}) \subseteq  \mathtt{Parity}$ implies the inclusion 
-$L( \mathbf{A})[ \textsf{col}] \subseteq  \mathtt{Parity}[ \textsf{col}]$, which in turn implies 
-$W_\mathrm{Eve}( \mathcal{A},L( \mathbf{A})[ \textsf{col}]) \subseteq  W_\mathrm{Eve}( \mathcal{G})$.
+$L( \mathbf{A})[ \mathfrak{c}] \subseteq  \mathtt{Parity}[ \mathfrak{c}]$, which in turn implies 
+$W_\mathrm{Eve}( \mathcal{A},L( \mathbf{A})[ \mathfrak{c}]) \subseteq  W_\mathrm{Eve}( \mathcal{G})$.
 
 ````
 
 The last step is to explain how to solve a game with objective $L( \mathbf{A})$, as already discussed in Section {ref}`1-sec:reductions`.
-Let $\Game = ( \mathcal{A}, L( \mathbf{A})[ \textsf{col}])$.
+Let $\mathcal{G} = ( \mathcal{A}, L( \mathbf{A})[ \mathfrak{c}])$.
 We construct a safety game by making the synchronised product of the arena with the automaton:
 
 $$
-\Game \times  \mathbf{A} = ( \mathcal{A} \times  \mathbf{A},  \mathtt{Safe}[ \textsf{col}']),
+  \mathcal{G} \times  \mathbf{A} = ( \mathcal{A} \times  \mathbf{A},  \mathtt{Safe}[ \mathfrak{c}']),
 $$
 
 where the safety condition ensures that the play is accepted by $\mathbf{A}$.
 Formally, we construct the arena $\mathcal{A} \times  \mathbf{A}$ as follows.
 We first define the graph $G \times Q$ whose set of vertices is $V \times Q$ and set of edges is defined as follows:
-for every edge $(v,v') \in E$ and state $q \in Q$ there is an edge from $(v,q)$ to $(v',\delta(q, \textsf{col}(u)))$.
+for every edge $(v,v') \in E$ and state $q \in Q$ there is an edge from $(v,q)$ to $(v',\delta(q, \mathfrak{c}(u)))$.
 The arena is $\mathcal{A} \times  \mathbf{A} = (G \times Q,  V_\mathrm{Eve} \times Q,  V_\mathrm{Adam} \times Q)$.
 Using the convention for safety automata that the rejecting transitions are precisely those leading to the rejecting state $\bot$,
-the colouring function is defined by $\textsf{col}'(v,q) =  \textrm{Win}$ if $q \neq \bot$, and $\textrm{Lose}$ otherwise.
+the colouring function is defined by $\mathfrak{c}'(v,q) =  \textrm{Win}$ if $q \neq \bot$, and $\textrm{Lose}$ otherwise.
 
 ````{prf:observation} Reduction to safety games using separating automata
 :label: 3-fact:reduction
 
 Eve has a winning strategy in $\mathcal{G}$ from $v_0$ if and only if
-she has a winning strategy in $\Game \times  \mathbf{A}$ from $(v_0,q_0)$.
+she has a winning strategy in $\mathcal{G} \times  \mathbf{A}$ from $(v_0,q_0)$.
 
 ````
 
@@ -151,9 +147,9 @@ There exists an algorithm for solving parity games of complexity $O(m \cdot | \m
 ````{admonition} Proof
 :class: dropdown tip
 
-Let $\Game$ a parity game with $n$ vertices and priorities in $[1,d]$.
-Thanks to {prf:ref}`3-lem:separating_automata` and {prf:ref}`3-fact:reduction`, solving $\Game$
-is equivalent to solving the safety game $\Game \times  \mathbf{A}$.
+Let $\mathcal{G}$ a parity game with $n$ vertices and priorities in $[1,d]$.
+Thanks to {prf:ref}`3-lem:separating_automata` and {prf:ref}`3-fact:reduction`, solving $\mathcal{G}$
+is equivalent to solving the safety game $\mathcal{G} \times  \mathbf{A}$.
 Thanks to {prf:ref}`2-thm:reachability` solving safety games can be done in time linear in the number of edges.
 This yields an algorithm for solving parity games whose running time is $O(m \cdot | \mathbf{A}|)$.
 

@@ -3,8 +3,6 @@
 
 ```{math}
 
-\renewcommand{\Game}{\game}
-
 ```
 
 The objective of this book is to present the state of the art on games on graphs, which is part of a larger research topic called game theory.

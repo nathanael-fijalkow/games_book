@@ -3,8 +3,6 @@
 
 ```{math}
 
-\renewcommand{\Game}{\game}
-
 ```
 
 ## The Random Access Machine model of computation
@@ -12,7 +10,7 @@
 For complexity statements we consider the classical Turing model of computation.
 However for algorithmic results the Turing model is a bit painful and unnatural hence it is customary to use the Random Access Machine (RAM) model instead.
 Intuitively this corresponds to using a standard imperative programming language on a usual computer which can create, access, and update variables.
-There are variants of the RAM model; to be specific the one we use and describe here is called word RAM.
+There are variants of the RAM model; to be specific the one we use and describe here is called `word RAM'.
 The main reason to use the RAM model is to make our life easier by hiding some small computational costs which are inessential for our purposes.
 
 The memory is arranged in machine words whose size is a parameter $w$ to be fixed depending on the problem.
@@ -23,7 +21,7 @@ A concrete implication is that checking whether an element belongs to a set is a
 
 We consider an (often implicit) set of basic operations operating on a constant number of machine words; 
 addition, multiplication, subtraction, division, and comparison of integers are typical examples.
-The second key assumption is the unit cost model, it says that the time complexity (also called cost) of basic operations is constant.
+The second key assumption is the `unit cost model', it says that the time complexity (also called cost) of basic operations is constant.
 This convention implies that we can manipulate counters for small numbers with no additional complexity, this will be useful in many situations.
 
 We note that this is unrealistic as it means that for instance we can compute the number $2^{2^n}$ by repeatedly squaring $2$: the complexity is $O(n)$ but this number uses $O(2^n)$ bits hence cannot be generated in polynomial time using a Turing machine.

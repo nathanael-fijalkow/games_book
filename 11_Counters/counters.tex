@@ -28,7 +28,8 @@ $\Loc_\mAdam=\emptyset$, i.e., it corresponds to the one-player case.
     (1) edge[bend left=30] node {$-1,0$} (0)
     (1) edge[bend right=30,swap] node {$2,1$} (0);
   \end{tikzpicture}
-  \caption{A "vector system".}\label{11-fig:mwg}
+  \caption{A "vector system".}
+  \label{11-fig:mwg}
 \end{figure}
 
 The intuition behind a "vector system" is that it
@@ -115,7 +116,7 @@ over~$\Act$.%   Because we work with qualitative objectives, we
 % vary depending on the kind of game we are playing.
 
 \begin{example}[natural semantics]
-{11-ex:sem}
+\label{11-ex:sem}
   \Cref{11-fig:sem} illustrates the "natural semantics" of the system
   of~\cref{11-fig:mwg}; observe that all the configurations $\loc(0,n)$
   for $n\in\+N$ lead to the "sink".
@@ -363,13 +364,14 @@ $\vec v_f$.\footnote{The name `"coverability"' comes from the the
   $\loc_f(\vec v_f)$, i.e., to reach a configuration $\loc_f(\vec v')$
   with $\vec v'\geq\vec v_f$.}
 
-\decpb["configuration reachability vector game" with "given initial credit"]%
+\decpb["configuration reachability vector game" with "given initial credit"]
 {\label{11-pb:reach} A "vector system"
   $\?V=(\Loc,\Act,\Loc_\mEve,\Loc_\mAdam,\dd)$, an initial location
   $\loc_0\in\Loc$, an initial credit $\vec v_0\in\+N^\dd$, and a
-  target configuration $\loc_f(\vec v_f)\in\Loc\times\+N^\dd$.}%
+  target configuration $\loc_f(\vec v_f)\in\Loc\times\+N^\dd$.}
 {Does Eve have a strategy to reach $\loc(\vec v)$ from
-  $\loc_0(\vec v_0)$?\\That is, does she win the ""configuration
+  $\loc_0(\vec v_0)$?
+  That is, does she win the ""configuration
   reachability"" game $(\natural(\?V),\col,\Reach)$ from
   $\loc_0(\vec v_0)$, where $\col(e)= \Win$ if and only if
   $\ing(e)=\loc_f(\vec v_f)$?}
@@ -380,7 +382,8 @@ $\vec v_f$.\footnote{The name `"coverability"' comes from the the
   $\loc_0\in\Loc$, an initial credit $\vec v_0\in\+N^\dd$, and a
   target configuration $\loc_f(\vec v_f)\in\Loc\times\+N^\dd$.}%
 {Does Eve have a strategy to reach $\loc(\vec v')$ for some
-  $\vec v'\geq\vec v_f$ from $\loc_0(\vec v_0)$?\\That is, does she win
+  $\vec v'\geq\vec v_f$ from $\loc_0(\vec v_0)$?
+  That is, does she win
   the ""coverability"" game $(\natural(\?V),\col,\Reach)$ from
   $\loc_0(\vec v_0)$, where $\col(e)= \Win$ if and only if
   $\ing(e)=\loc_f(\vec v')$ for some $\vec v'\geq\vec v_f$?}
@@ -396,7 +399,7 @@ $\vec v_f$.\footnote{The name `"coverability"' comes from the the
   the action $\loc\step{-1,-1}\loc$ until she reaches~$\loc(2,2)$.
   Furthermore, in $\loc'(0,1)$---due to the "natural semantics"---,
   Adam has no choice but to use the action $\loc'\step{2,1}\loc$:
-  therefore $\loc'(0,1)$ and $\loc(1,1)$ are also winning for Eve[.]
+  therefore $\loc'(0,1)$ and $\loc(1,1)$ are also winning for Eve.
 \begin{figure}[htbp]
   \centering\scalebox{.48}{
   \begin{tikzpicture}[auto,on grid,node distance=2.5cm]
@@ -800,7 +803,7 @@ her winning region.
   Indeed, in both "configuration reachability" and "coverability", we
   can assume without loss of generality that $\loc_f\in\Loc_\mEve$ is
   controlled by Eve and that $\vec v_f=\vec 0$ is the "zero
-  vector". Here is a \logspace\ reduction to that case.  If
+  vector". Here is a $\LOGSPACE$ reduction to that case.  If
   $\loc_0(\vec v_0)=\loc_f(\vec v_f)$ in the case of "configuration
   reachability", or $\loc_0=\loc_f$ and $\vec v_0\geq\vec v_f$ in the
   case of "coverability", the problem is trivial.
@@ -817,7 +820,7 @@ her winning region.
 
 \begin{remark}[Coverability to reachability]
 \label{11-rk:cov2reach}
-  There is a \logspace\ reduction from "coverability" to
+  There is a $\LOGSPACE$ reduction from "coverability" to
   "configuration reachability".  By \cref{11-rk:cov2cov}, we can assume
   without loss of generality that $\loc_f\in\Loc_\mEve$ is controlled
   by Eve and that $\vec v_f=\vec 0$ is the "zero vector". It suffices
@@ -830,12 +833,14 @@ following is a very simple kind of "safety"
 games where $C\eqdef\{\varepsilon,\Lose\}$ and $\Omega\eqdef\Safe$;
 \cref{11-fig:nonterm} shows Eve\'s "winning region" in the case of the
 graphs of \cref{11-fig:mwg,11-fig:sem}.
+
 \decpb["non-termination vector game" with "given initial credit"]%
 {\label{11-pb:nonterm} A "vector system"
   $\?V=(\Loc,\Act,\Loc_\mEve,\Loc_\mAdam,\dd)$, an initial location
   $\loc_0\in\Loc$, and an initial credit $\vec v_0\in\+N^\dd$.}%
 {Does Eve have a strategy to avoid the "sink"~$\sink$ from
-  $\loc_0(\vec v_0)$?\\That is, does she win the ""non-termination""
+  $\loc_0(\vec v_0)$?
+  That is, does she win the ""non-termination""
   game $(\natural(\?V),\col,\Safe)$ from $\loc_0(\vec v_0)$, where
   $\col(e)=\Lose$ if and only if $\ing(e)=\sink$?} 
 
@@ -1047,15 +1052,15 @@ semantics", we assume that we are provided with a \emph{location
   location colouring $\lcol{:}\,\Loc\to\{1,\dots,d\}$ for some $d>0$.}%
   {Does Eve have a strategy to simultaneously avoid the
   "sink"~$\sink$ and fulfil the \index{parity!\emph{see also} vector
-  game\protect\mymoot|mymoot}"parity" objective from $\loc_0(\vec
-  v_0)$?\\That is, does she win the ""parity@parity vector game"" game
+  game\protect\mymoot|mymoot} objective from $\loc_0(\vec
+  v_0)$? That is, does she win the ""parity@parity vector game"" game
   $(\natural(\?V),\col,\Parity)$ from $\loc_0(\vec v_0)$, where
   $\col(e)\eqdef\lcol(\loc)$ if $\ing(e)=\loc(\vec v)$ for
   some~$\vec v\in\+N^\dd$, and $\col(e)\eqdef 1$ if $\ing(e)=\sink$?}
 
 \begin{remark}[Non termination to parity]
 \label{11-rk:nonterm2parity}
-  There is a \logspace\ reduction from "non-termination" to
+  There is a $\LOGSPACE$ reduction from "non-termination" to
   "parity@parity vector game".
   Indeed, the two games coincide if we pick the constant location
   "colouring" defined by $\lcol(\loc)\eqdef 2$ for all $\loc\in\Loc$ in
@@ -1063,7 +1068,7 @@ semantics", we assume that we are provided with a \emph{location
 \end{remark}
 \begin{remark}[Coverability to parity]
 \label{11-rk:cov2parity}
-  There is a \logspace\ reduction from "coverability" to
+  There is a $\LOGSPACE$ reduction from "coverability" to
   "parity@parity vector game".  Indeed, by \cref{11-rk:cov2cov}, we can assume
   that $\loc_f\in\Loc_\mEve$ is controlled by Eve and that the target
   credit is $\vec v_f=\vec 0$ the "zero vector".  It suffices
@@ -1100,15 +1105,15 @@ chapter---, they become undecidable in the two-player setting.
   \AP Formally, a ""deterministic Minsky machine"" with $\dd$~counters
   $\?M=(\Loc,\Act,\dd)$ is defined similarly to a "vector addition
   system with states" with additional ""zero test"" actions
-  $a=(\loc\step{i\eqby?0}\loc')$.  The set of locations contains a
+  $a=(\loc\step{i\eqby{?0}}\loc')$.  The set of locations contains a
   distinguished `halt' location~$\loc_\mathtt{halt}$, and for every
   $\loc\in\Loc$, exactly one of the following holds: either (i)
   $(\loc\step{\vec e_i}\loc')\in\Act$ for some $0<i\leq\dd$ and
-  $\loc'\in\Loc$, or (ii) $(\loc\step{i\eqby?0}\loc')\in\Act$ and
+  $\loc'\in\Loc$, or (ii) $(\loc\step{i\eqby{?0}}\loc')\in\Act$ and
   $(\loc\step{-\vec e_i}\loc'')\in\Act$ for some $0<i\leq\dd$ and
   $\loc',\loc''\in\Loc$, or (iii) $\loc=\loc_\mathtt{halt}$.  The
   semantics of~$\?M$ extends the "natural semantics" by
-  handling "zero tests" actions $a=(\loc\step{i\eqby?0}\loc')$: we
+  handling "zero tests" actions $a=(\loc\step{i\eqby{?0}}\loc')$: we
   define the domain as $\dom a\eqdef\{\loc(\vec v)\mid \vec v(i)=0\}$
   and the image by $a(\loc(\vec v))\eqdef \loc(\vec v)$.  This
   semantics is deterministic, and from any starting vertex of $\natural(\?M)$,
@@ -1123,10 +1128,10 @@ chapter---, they become undecidable in the two-player setting.
   %     &\text{if }\delta(\loc)=(\mathtt{c}_i\texttt{+\!+};\inst{goto}\loc'),\\
   %     \loc'(\vec v)
   %     &\text{if
-  %     }\delta(\loc)=(\inst{if}\mathtt{c}_i\eqby?0\inst{goto}\loc'\inst{else}\mathtt{c}_i\textrm{-}\textrm{-};\inst{goto}\loc'')\text{
+  %     }\delta(\loc)=(\inst{if}\mathtt{c}_i\eqby{?0}\inst{goto}\loc'\inst{else}\mathtt{c}_i\textrm{-}\textrm{-};\inst{goto}\loc'')\text{
   %       and }\vec v(i)=0,\\
   %     \loc''(\vec v-\vec e_i)\!
-  %     &\text{if }\delta(\loc)=(\inst{if}\mathtt{c}_i\eqby?0\inst{goto}\loc'\inst{else}\mathtt{c}_i\textrm{-}\textrm{-};\inst{goto}\loc'')\text{
+  %     &\text{if }\delta(\loc)=(\inst{if}\mathtt{c}_i\eqby{?0}\inst{goto}\loc'\inst{else}\mathtt{c}_i\textrm{-}\textrm{-};\inst{goto}\loc'')\text{
   %       and }\vec v(i)>0.
   %   \end{cases}
   % \end{equation*}
@@ -1147,8 +1152,8 @@ chapter---, they become undecidable in the two-player setting.
     \centering
     \begin{tikzpicture}[auto,on grid,node distance=1.5cm]
       \node(to){$\mapsto$};
-      \node[anchor=east,left=2.5cm of to](mm){"deterministic Minsky machine"};
-      \node[anchor=west,right=2.5cm of to](mwg){"vector system"};
+      \node[anchor=east,left=2.5cm of to](mm){deterministic Minsky machine};
+      \node[anchor=west,right=2.5cm of to](mwg){vector system};
       \node[below=.7cm of to](map){$\rightsquigarrow$};
       \node[left=2.75cm of map](0){$\loc$};
       \node[right=of 0](1){$\loc'$};
@@ -1160,14 +1165,14 @@ chapter---, they become undecidable in the two-player setting.
       \node[above right=.5cm and 1.5cm of 4](6){$\loc'$};
       \node[right=1.25cm of map2,s-eve](7){$\loc$};
       \node[below right=.5cm and 1.5cm of 7,s-eve](8){$\loc''$};
-      \node[above right=.5cm and 1.5cm of 7,s-adam,inner sep=-1.5pt](9){$\loc'_{i\eqby?0}$};
+      \node[above right=.5cm and 1.5cm of 7,s-adam,inner sep=-1.5pt](9){$\loc'_{i\eqby{?0}}$};
       \node[below right=.5cm and 1.5cm of 9,s-eve](10){$\loc'$};
       \node[above right=.5cm and 1.5cm of 9,s-adam](11){$\frownie$};
       \path[arrow,every node/.style={font=\scriptsize}]
       (0) edge node{$\vec e_i$} (1)
       (2) edge node{$\vec e_i$} (3)
       (4) edge[swap] node{$-\vec e_i$} (5)
-      (4) edge node{$i\eqby?0$} (6)
+      (4) edge node{$i\eqby{?0}$} (6)
       (7) edge[swap] node{$-\vec e_i$} (8)
       (7) edge node{$\vec 0$} (9)
       (9) edge[swap] node{$\vec 0$} (10)
@@ -1179,18 +1184,18 @@ chapter---, they become undecidable in the two-player setting.
   \cref{11-pb:cov}.  Given an instance of the "halting problem", i.e.,
   given a "deterministic Minsky machine" $\?M=(\Loc,\Act,\dd)$ and an
   initial location $\loc_0$, we construct a "vector system"
-  $\?V\eqdef(\Loc\uplus\Loc_{\eqby?0}\uplus\{\frownie\},\Act',\Loc,\Loc_{\eqby?0}\uplus\{\frownie\},\dd)$
+  $\?V\eqdef(\Loc\uplus\Loc_{\eqby{?0}}\uplus\{\frownie\},\Act',\Loc,\Loc_{\eqby{?0}}\uplus\{\frownie\},\dd)$
   where all the original locations are controlled by~Eve and
-  $\Loc_{\eqby?0}\uplus\{\frownie\}$ is a set of new locations
-  controlled by Adam.  We use $\Loc_{\eqby?0}$ as a set of
+  $\Loc_{\eqby{?0}}\uplus\{\frownie\}$ is a set of new locations
+  controlled by Adam.  We use $\Loc_{\eqby{?0}}$ as a set of
   locations defined by
   \begin{align*}
-    \Loc_{\eqby?0}&\eqdef\{\loc'_{i\eqby?0}\mid\exists\loc\in\Loc\mathbin.(\loc\step{i\eqby?0}\loc')\in\Act\}\intertext{and
+    \Loc_{\eqby{?0}}&\eqdef\{\loc'_{i\eqby{?0}}\mid\exists\loc\in\Loc\mathbin.(\loc\step{i\eqby{?0}}\loc')\in\Act\}\intertext{and
                    define the set of actions by (see \cref{11-fig:undec})}
     \Act'&\eqdef\{\loc\step{\vec
           e_i}\loc'\mid(\loc\step{\vec e_i}\loc')\in\Act\}\cup\{\loc\step{-\vec e_i}\loc''\mid(\loc\step{-\vec e_i}\loc'')\in\Act\}\\
     &\:\cup\:\{\loc\step{\vec
-      0}\loc'_{i\eqby?0},\;\;\:\loc'_{i\eqby?0}\!\!\step{\vec 0}\loc',\;\;\:\loc'_{i\eqby?0}\!\!\step{-\vec e_i}\frownie\mid(\loc\step{i\eqby?0}\loc')\in\Act\}\;.
+      0}\loc'_{i\eqby{?0}},\;\;\:\loc'_{i\eqby{?0}}\!\!\step{\vec 0}\loc',\;\;\:\loc'_{i\eqby{?0}}\!\!\step{-\vec e_i}\frownie\mid(\loc\step{i\eqby{?0}}\loc')\in\Act\}\;.
   \end{align*}
   We use $\loc_0(\vec 0)$ as initial configuration and
   $\loc_\mathtt{halt}(\vec 0)$ as target configuration for the
@@ -1203,22 +1208,22 @@ chapter---, they become undecidable in the two-player setting.
   $(\loc\step{\vec e_i}\loc')\in\Act$, Eve has no choice but to apply
   $\loc\step{\vec e_i}\loc'$ and go to the configuration
   $\loc'(\vec v+\vec e_i)$ also reached in one step in~$\?M$.  If
-  $\{\loc\step{i\eqby?0}\loc',\loc\step{-\vec e_i}\loc''\}\in\Act$ and
+  $\{\loc\step{i\eqby{?0}}\loc',\loc\step{-\vec e_i}\loc''\}\in\Act$ and
   $\vec v(i)=0$, due to the "natural semantics", Eve cannot use the
   action $\loc\step{-\vec e_i}\loc''$, thus she must use
-  $\loc\step{\vec 0}\loc'_{i\eqby?0}$.  Still due to the "natural
+  $\loc\step{\vec 0}\loc'_{i\eqby{?0}}$.  Still due to the "natural
   semantics", Adam cannot use
-  $\loc'_{i\eqby?0}\!\!\step{-\vec e_i}\frownie$, thus he must use
-  $\loc'_{i\eqby?0}\!\!\step{\vec 0}\loc'$.  Hence Eve regains the
+  $\loc'_{i\eqby{?0}}\!\!\step{-\vec e_i}\frownie$, thus he must use
+  $\loc'_{i\eqby{?0}}\!\!\step{\vec 0}\loc'$.  Hence Eve regains the
   control in $\loc'(\vec v)$, which was also the configuration reached
   in one step in~$\?M$.  Finally, if
-  $\{\loc\step{i\eqby?0}\loc',\loc\step{-\vec e_i}\loc''\}\in\Act$ and
+  $\{\loc\step{i\eqby{?0}}\loc',\loc\step{-\vec e_i}\loc''\}\in\Act$ and
   $\vec v(i)>0$, Eve can choose: if she uses
   $\loc\step{-\vec e_i}\loc''$, she ends in the configuration
   $\loc''(\vec v-\vec e_i)$ also reached in one step in~$\?M$.  In
-  fact, she should not use $\loc\step{\vec 0}\loc'_{i\eqby?0}$,
+  fact, she should not use $\loc\step{\vec 0}\loc'_{i\eqby{?0}}$,
   because Adam would then have the opportunity to apply
-  $\loc'_{i\eqby?0}\!\!\step{-\vec e_i}\frownie$ and to win, as
+  $\loc'_{i\eqby{?0}}\!\!\step{-\vec e_i}\frownie$ and to win, as
   $\frownie$ is a deadlock location and all the subsequent moves end
   in the "sink".  Thus, if $\?M$ halts, then Eve has a winning
   strategy that simply follows the unique "play" of~$\?M$, and
@@ -1229,7 +1234,7 @@ chapter---, they become undecidable in the two-player setting.
   "halting problem" is similarly akin to the \emph{complement} of
   "non-termination" with "given initial credit"~$\vec 0$.  This means
   that, in the "vector system"
-  $\?V=(\Loc\uplus\Loc_{\eqby?0}\uplus\{\frownie\},\Act',\Loc,\Loc_{\eqby?0}\uplus\{\frownie\},\dd)$
+  $\?V=(\Loc\uplus\Loc_{\eqby{?0}}\uplus\{\frownie\},\Act',\Loc,\Loc_{\eqby{?0}}\uplus\{\frownie\},\dd)$
   defined earlier, Eve has a winning strategy to avoid the "sink"
   from~$\loc_0(\vec 0)$ if and only if the given "Minsky
   machine@deterministic Minsky machine" does
@@ -1242,7 +1247,7 @@ chapter---, they become undecidable in the two-player setting.
   i.e., given a "deterministic Minsky machine" $\?M=(\Loc,\Act,\dd)$
   and an initial location $\loc_0$, we add $\dd$~new locations
   $\loc_\dd,\loc_{\dd-1},\dots,\loc_1$ with respective actions
-  $\loc_j\step{-\vec e_j}\loc_j$ and $\loc_j\step{j\eqby?0}\loc_{j-1}$
+  $\loc_j\step{-\vec e_j}\loc_j$ and $\loc_j\step{j\eqby{?0}}\loc_{j-1}$
   for all $\dd\geq j>0$.  This modified machine first resets all its
   counters to zero before reaching $\loc_0(\vec 0)$ and then performs
   the same execution as the original machine.  Thus there exists an

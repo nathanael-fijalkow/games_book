@@ -3,8 +3,6 @@
 
 ```{math}
 
-\renewcommand{\Game}{\game}
-
 ```
 
 The quantitative objective $\mathtt{Sup}$ generalises the qualitative
@@ -30,7 +28,7 @@ we interpret the weights as costs and Eve is trying to reach the target with the
 
 Solving shortest path games in full generality is not easy; we will come back to it at the end of this chapter using some results obtained along the way.
 Let us first illustrate the difficulties, and then solve the special case where the weights are non-negative.
-We fix a shortest path game $\Game$.
+We fix a shortest path game $\mathcal{G}$.
 Recall that by definition:
 
 $$
@@ -53,7 +51,7 @@ Most of the difficulty lies in the third case, where
 ````{prf:lemma} Detection of infinite value
 :label: 4-lem:detecting_minus_infinity
 
-Let $\Game$ a shortest path game and $v$ a vertex.
+Let $\mathcal{G}$ a shortest path game and $v$ a vertex.
 Then $\textrm{val}(v) = -\infty$ if and only if $v \notin  \textrm{Attr}_\mathrm{Eve}( \textrm{Win})$.
 
 ````
@@ -95,7 +93,7 @@ We rely on the high-level presentation of value iteration algorithms given in Se
 ````{prf:lemma} Optimal strategies
 :label: 4-lem:optimal_strategies_shortest_path_games
 
-Let $\Game$ be a shortest path game with non-negative weights, then there exists an optimal strategy $\sigma$ for Eve.
+Let $\mathcal{G}$ be a shortest path game with non-negative weights, then there exists an optimal strategy $\sigma$ for Eve.
 
 ````
 
@@ -138,7 +136,7 @@ The latter are functions $f \in F_V$ such that $f \le  \mathbb{O}(f)$ and called
 ````{prf:lemma} Greatest fixed point
 :label: 4-lem:SP-greatest-fixed-point
 
-Let $\Game$ be a shortest path game with non-negative weights, then $\textrm{val}$ is the greatest fixed point of $\mathbb{O}$.
+Let $\mathcal{G}$ be a shortest path game with non-negative weights, then $\textrm{val}$ is the greatest fixed point of $\mathbb{O}$.
 
 ````
 

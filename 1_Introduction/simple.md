@@ -3,8 +3,6 @@
 
 ```{math}
 
-\renewcommand{\Game}{\game}
-
 ```
 
 The first model we define is the common denominator of most models studied in this book:
@@ -18,7 +16,7 @@ game.
 
 ## Players
 
-The term $2$-player means that there are two players, Eve and Adam.
+The term `$2$-player' means that there are two players, Eve and Adam.
 Many, many different names have been used: Player $0$ and Player $1$, 
 Player I and Player II as in descriptive complexity,
 &Eacute;lo&iuml;se and Ab&eacute;lard, Circle and Square, corresponding to the graphical representation, 
@@ -28,10 +26,10 @@ and this is only a very partial list of names they have been given.
 In the names Eve and Adam, the first letters refer to $\exists$ and $\forall$ suggesting a duality between them.
 We will make use of their gender to distinguish between them, so we speak of her or his strategy.
 
-We speak of $1$-player games when there is only one player.
+We speak of `$1$-player' games when there is only one player.
 In the context of stochastic games, we refer to random as a third player, and more precisely as half a player.
-Hence a $2\frac{1}{2}$-player game is a stochastic game with two players,
-and a $1\frac{1}{2}$-player game is a stochastic game with one player.
+Hence a `$2\frac{1}{2}$-player' game is a stochastic game with two players,
+and a `$1\frac{1}{2}$-player' game is a stochastic game with one player.
 
 The situation where there are more than two players is called multiplayer games.
 
@@ -78,10 +76,10 @@ belongs to Eve, or that Eve owns or controls $v$, and similarly for Adam.
 An arena is given by a graph and the sets $V_\mathrm{Eve}$ and $V_\mathrm{Adam}$.
 In the context of games, vertices are often referred to as positions.
 
-The adjective **finite** means that the arena is finite, **i.e.** there are finitely many vertices (hence finitely many edges).
-We oppose **deterministic** to **stochastic**: in the first definition we are giving here, 
+The adjective `**finite**' means that the arena is finite, **i.e.** there are finitely many vertices (hence finitely many edges).
+We oppose `**deterministic**' to `**stochastic**': in the first definition we are giving here, 
 there is no stochastic aspect in the game.
-An important assumption, called **perfect information**, says that the players see everything about how the game
+An important assumption, called `**perfect information**', says that the players see everything about how the game
 is played out, in particular they see the other player's moves.
 
 ```{figure} ./../FigAndAlgos/1-fig:arena_example.png
@@ -149,27 +147,27 @@ and by extension a class of games induced by a given objective, for instance par
 We fix a set $C$ of colours. 
 A qualitative objective is $\Omega \subseteq C^\omega$, and a quantitative objective is a function $\Phi : C^\omega \to   \mathbb{R} \cup  \left\{ \pm \infty \right\}$. 
 
-The link between an arena and an objective is given by a colouring function $\textsf{col} : V \to C$ labelling vertices of the graph by colours.
-We extend $\textsf{col}$ componentwise to induce $\textsf{col} :  \textrm{Paths}_\omega \to C^\omega$ mapping plays to sequences of colours:
+The link between an arena and an objective is given by a colouring function $\mathfrak{c} : V \to C$ labelling vertices of the graph by colours.
+We extend $\mathfrak{c}$ componentwise to induce $\mathfrak{c} :  \textrm{Paths}_\omega \to C^\omega$ mapping plays to sequences of colours:
 
 $$
- \textsf{col}(v_0 v_1 \dots) =  \textsf{col}(v_0)\  \textsf{col}(v_1) \dots
+ \mathfrak{c}(v_0 v_1 \dots) =  \mathfrak{c}(v_0)\  \mathfrak{c}(v_1) \dots
 $$
 
-A qualitative objective $\Omega$ and a colouring function $\textsf{col}$ induce a qualitative condition $\Omega[ \textsf{col}]$ defined by:
+A qualitative objective $\Omega$ and a colouring function $\mathfrak{c}$ induce a qualitative condition $\Omega[ \mathfrak{c}]$ defined by:
 
 $$
-\Omega[ \textsf{col}] =  \left\{  \pi \in  \textrm{Paths \right\}_\omega :  \textsf{col}( \pi) \in \Omega}.
+\Omega[ \mathfrak{c}] =  \left\{  \pi \in  \textrm{Paths \right\}_\omega :  \mathfrak{c}( \pi) \in \Omega}.
 $$
 
-When $\textsf{col}$ is clear from the context we sometimes say that a play $\pi$ satisfies $\Omega$ but the intended meaning is that 
-$\pi$ satisfies $\Omega[ \textsf{col}]$, equivalently that $\textsf{col}( \pi) \in \Omega$.
+When $\mathfrak{c}$ is clear from the context we sometimes say that a play $\pi$ satisfies $\Omega$ but the intended meaning is that 
+$\pi$ satisfies $\Omega[ \mathfrak{c}]$, equivalently that $\mathfrak{c}( \pi) \in \Omega$.
 
-Similarly, a quantitative objective $\Phi : C^\omega \to   \mathbb{R} \cup  \left\{ \pm \infty \right\}$ and a colouring function $\textsf{col}$ induce 
-a quantitative condition $\Phi[ \textsf{col}] :  \textrm{Paths}_\omega \to   \mathbb{R} \cup  \left\{ \pm \infty \right\}$ defined by:
+Similarly, a quantitative objective $\Phi : C^\omega \to   \mathbb{R} \cup  \left\{ \pm \infty \right\}$ and a colouring function $\mathfrak{c}$ induce 
+a quantitative condition $\Phi[ \mathfrak{c}] :  \textrm{Paths}_\omega \to   \mathbb{R} \cup  \left\{ \pm \infty \right\}$ defined by:
 
 $$
-\Phi[ \textsf{col}]( \pi) = \Phi( \textsf{col}( \pi)).
+\Phi[ \mathfrak{c}]( \pi) = \Phi( \mathfrak{c}( \pi)).
 $$
 
 ````{prf:remark} NEEDS TITLE AND LABEL 
@@ -200,32 +198,32 @@ and $E$ is a set of edges.
 
 *  An arena is a tuple $\mathcal{A} = (G, V_\mathrm{Eve}, V_\mathrm{Adam})$ where $G$ is a graph over the set of vertices $V$ and $V =  V_\mathrm{Eve} \uplus  V_\mathrm{Adam}$.
 
-*  A colouring function is a function $\textsf{col} : V \to C$ where $C$ is a set of colours.
+*  A colouring function is a function $\mathfrak{c} : V \to C$ where $C$ is a set of colours.
 
 *  A qualitative condition is $W \subseteq  \textrm{Paths}_\omega$.
 
 *  A qualitative objective is a subset $\Omega \subseteq C^\omega$.
-A colouring function $\textsf{col}$ and a qualitative objective $\Omega$ induce 
-a qualitative condition $\Omega[ \textsf{col}]$.
+A colouring function $\mathfrak{c}$ and a qualitative objective $\Omega$ induce 
+a qualitative condition $\Omega[ \mathfrak{c}]$.
 
 *  A qualitative game $\mathcal{G}$ is a tuple $( \mathcal{A},W)$ where $\mathcal{A}$ is an arena and $W$ a qualitative condition.
 
 *  A quantitative condition is $f :  \textrm{Paths}_\omega \to   \mathbb{R} \cup  \left\{ \pm \infty \right\}$.
 
 *  A quantitative objective $\Phi$ is a function $\Phi : C^\omega \to   \mathbb{R} \cup  \left\{ \pm \infty \right\}$.
-A colouring function $\textsf{col}$ and a quantitative objective $\Phi$ induce 
-a quantitative condition $\Phi[ \textsf{col}]$.
+A colouring function $\mathfrak{c}$ and a quantitative objective $\Phi$ induce 
+a quantitative condition $\Phi[ \mathfrak{c}]$.
 
 *  A quantitative game $\mathcal{G}$ is a tuple $( \mathcal{A},f)$ where $\mathcal{A}$ is an arena and $f$ a quantitative condition.
 
 ````
 
 To be specific, the definition above is for $2$-player zero sum turn based perfect information games.
-As a convention we use the condition to qualify games, so for instance parity games are games equipped with a parity condition.
-This extends to graphs: we speak of a graph with condition $W$ for a graph equipped with a condition $W$,
-and for instance a mean payoff graph if $W$ is a mean payoff condition.
+As a convention we use the condition to qualify games, so for instance `parity games' are games equipped with a parity condition.
+This extends to graphs: we speak of a `graph with condition $W$' for a graph equipped with a condition $W$,
+and for instance a `mean payoff graph' if $W$ is a mean payoff condition.
 
-We often introduce notations implicitly: for instance when we introduce a qualitative game $\Game$ without specifying the arena and the condition, it is understood that the arena is $\mathcal{A}$ and the condition $W$.
+We often introduce notations implicitly: for instance when we introduce a qualitative game $\mathcal{G}$ without specifying the arena and the condition, it is understood that the arena is $\mathcal{A}$ and the condition $W$.
 
 We always implicitly take the point of view of Eve. 
 Since we consider zero sum games we can easily reverse the point of view by considering the qualitative game 
@@ -308,40 +306,16 @@ We identify three computational problems.
 The first is that of solving a game, which is the simplest one and since it induces a decision problem, allows us 
 to make complexity theoretic statements.
 
-```{admonition} Problem
-
-For qualitative games, solving the game means solving the following decision problem:
-
-**INPUT**: A qualitative game $\mathcal{G}$ and a vertex $v$
-
-**QUESTION**: Does Eve win $\mathcal{G}$ from $v$?
-
-```
+\decpb{Solving the game}{A qualitative game $\mathcal{G}$ and a vertex $v$}{Does Eve win $\mathcal{G}$ from $v$?}
 
 The second problem extends the previous one: most algorithms solve games for all vertices at once instead of only for the given initial vertex.
 This is called computing the winning regions.
 
-```{admonition} Problem
-
-For qualitative games, computing the winning regions means solving the following computational task:
-
-**INPUT**: A qualitative game $\mathcal{G}$
-
-**COMPUTE**: $W_\mathrm{Eve}( \mathcal{G})$ and $W_\mathrm{Adam}( \mathcal{G})$
-
-```
+\decpb{Computing the winning regions}{A qualitative game $\mathcal{G}$}{$W_\mathrm{Eve}( \mathcal{G})$ and $W_\mathrm{Adam}( \mathcal{G})$}
 
 The third problem is constructing a winning strategy.
 
-```{admonition} Problem
-
-For qualitative games, constructing a winning strategy means solving the following computational task:
-
-**INPUT**: A qualitative game $\mathcal{G}$ and a vertex $v$
-
-**COMPUTE**: A winning strategy for Eve from $v$
-
-```
+\decpb{Constructing a winning strategy}{A qualitative game $\mathcal{G}$ and a vertex $v$}{A winning strategy for Eve from $v$}
 
 We did not specify how the winning regions or the winning strategies are represented, this will depend on the types of games we consider.
 
@@ -460,40 +434,19 @@ Note that this determinacy result does not imply the existence of optimal strate
 
 As for qualitative games, we identify different computational problems.
 The first is solving the game.
-```{admonition} Problem
 
-For quantitative games, solving the game means solving the following decision problem:
-
-**INPUT**: A quantitative game $\mathcal{G}$, a vertex $v$, and a threshold $x \in   \mathbb{Q} \cup  \left\{ \pm \infty \right\}$
-
-**QUESTION**: Does Eve have a strategy ensuring $x$ from $v$?
-
-```
+\decpb{Solving the game}{A quantitative game $\mathcal{G}$, a vertex $v$, and a threshold $x \in   \mathbb{Q} \cup  \left\{ \pm \infty \right\}$}{Does Eve have a strategy ensuring $x$ from $v$?}
 
 A very close problem is the value problem.
-```{admonition} Problem
 
-For quantitative games, solving the value problem means solving the following decision problem:
-
-**INPUT**: A quantitative game $\mathcal{G}$, a vertex $v$, and a threshold $x \in   \mathbb{Q} \cup  \left\{ \pm \infty \right\}$
-
-**QUESTION**: Is it true that $\textrm{val}^{ \mathcal{G}}(v) \ge x$?
-
-```
+\decpb{Solving the value problem}{A quantitative game $\mathcal{G}$, a vertex $v$, and a threshold $x \in   \mathbb{Q} \cup  \left\{ \pm \infty \right\}$}{Is it true that $\textrm{val}^{ \mathcal{G}}(v) \ge x$?}
 
 The two problems of solving a game and the value problem are not quite equivalent: 
 they become equivalent if we assume the existence of optimal strategies.
 
 The value problem is directly related to computing the value.
-```{admonition} Problem
 
-For quantitative games, computing the value means solving the following computational task:
-
-**INPUT**: A quantitative game $\mathcal{G}$ and a vertex $v$
-
-**COMPUTE**: $\textrm{val}^{ \mathcal{G}}(v)$
-
-```
+\decpb{Computing the value}{A quantitative game $\mathcal{G}$ and a vertex $v$}{$\textrm{val}^{ \mathcal{G}}(v)$}
 
 What computing the value means may become unclear if the value is not a rational number, making its representation complicated.
 Especially in this case, it may be enough to approximate the value, which is indeed what the value problem gives us: 
@@ -510,26 +463,13 @@ using $\log(\frac{1}{\varepsilon})$ calls to the algorithm $A$.
 ````
 
 The following problem is global, in the same way as computing the winning regions.
-```{admonition} Problem
 
-For quantitative games, computing the value function means solving the following computational task:
-
-**INPUT**: A quantitative game $\mathcal{G}$
-
-**COMPUTE**: The value function $\textrm{val}^{ \mathcal{G}} : V \to   \mathbb{R} \cup  \left\{ \pm \infty \right\}$
-
-```
+\decpb{Computing the value function}{A quantitative game $\mathcal{G}$}{Output the value function $\textrm{val}^{ \mathcal{G}} : V \to   \mathbb{R} \cup  \left\{ \pm \infty \right\}$}
 
 Finally, we are sometimes interested in constructing optimal strategies provided they exist.
-```{admonition} Problem
 
-For quantitative games, constructing an optimal strategy means solving the following computational task:
+\decpb{Constructing an optimal strategy}{A quantitative game $\mathcal{G}$ and a vertex $v$}{Output an optimal strategy from $v$}
 
-**INPUT**: A quantitative game $\mathcal{G}$ and a vertex $v$
-
-**COMPUTE**: An optimal strategy from $v$
-
-```
 A close variant is to construct $\varepsilon$-optimal strategies, usually with $\varepsilon$ given as input.
 
 ## Prefix independent objectives
@@ -552,7 +492,7 @@ $$
 ````{prf:observation} Winning for prefix independent objectives
 :label: 1-fact:winning_prefix_independent_qualitative
 
-Let $\Game$ be a qualitative game with objective $\Omega$ closed under removing prefixes,
+Let $\mathcal{G}$ be a qualitative game with objective $\Omega$ closed under removing prefixes,
 $\sigma$ a winning strategy from $v$,
 and $\pi$ a finite play consistent with $\sigma$ starting from $v$.
 Then $\sigma_{\mid  \pi}$ is winning from $v' =  \textrm{last}( \pi)$.
@@ -572,7 +512,7 @@ the play $\pi'$ is winning. Thus $\sigma_{\mid  \pi}$ is winning from $v'$.
 ````{prf:corollary} Reachable vertices of a winning strategy for prefix independent objectives
 :label: 1-cor:reachable_vertices_prefix_independent
 
-Let $\Game$ be a qualitative game with objective $\Omega$ closed under removing prefixes and $\sigma$ a winning strategy from $v$.
+Let $\mathcal{G}$ be a qualitative game with objective $\Omega$ closed under removing prefixes and $\sigma$ a winning strategy from $v$.
 Then all vertices reachable from $v$ by a play consistent with $\sigma$ are winning.
 
 ````
@@ -592,7 +532,7 @@ The fact above extends to quantitative objectives with the same proof.
 ````{prf:observation} Winning for prefix independent objectives, quantitative case
 :label: 1-fact:winning_prefix_independent_quantitative
 
-Let $\Game$ be a quantitative game with objective $\Phi$ monotonic under removing prefixes,
+Let $\mathcal{G}$ be a quantitative game with objective $\Phi$ monotonic under removing prefixes,
 $\sigma$ a strategy ensuring $x$ from $v$, and $\pi$ a finite play consistent with $\sigma$ starting from $v$.
 Then $\sigma_{\mid  \pi}$ ensures $x$ from $v' =  \textrm{last}( \pi)$.
 
@@ -611,7 +551,7 @@ this implies that $\Phi( \pi') \ge x$. Thus $\sigma_{\mid  \pi}$ ensures $x$ fro
 ````{prf:corollary} Comparison of values along a play
 :label: 1-cor:comparison_values_along_play
 
-Let $\Game$ be a quantitative game with objective $\Phi$ monotonic under removing prefixes and $\sigma$ an optimal strategy from $v$.
+Let $\mathcal{G}$ be a quantitative game with objective $\Phi$ monotonic under removing prefixes and $\sigma$ an optimal strategy from $v$.
 Then for all vertices $v'$ reachable from $v$ by a play consistent with $\sigma$ we have $\textrm{val}^{ \mathcal{G}}(v) \le   \textrm{val}^{ \mathcal{G}}(v')$.
 
 ````

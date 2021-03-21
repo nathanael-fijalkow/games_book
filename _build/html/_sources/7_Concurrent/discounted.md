@@ -3,8 +3,6 @@
 
 ```{math}
 
-\renewcommand{\Game}{\game}
-
 ```
 
 In this section we focus on concurrent discounted games. 
@@ -234,7 +232,7 @@ Alternate concurrent discounted game with value $v_s=-2+\sqrt{4+2(1-\gamma)}$
 Consider the following game $G'$:
 There are three vertices, $\{0,1,s\}$ where $0$ and $1$ are absorbing, with color 0 and 1 respectively.
 The vertex $s$ is such that (1)
-$c(s,i,j)=0$ for all $i,j$, (2) $\Delta(s,i,j)=s$ for $i+1=j$ (i.e. for $(i,j)\in \{(1,2),(2,3)\}$), (3) $\Delta(s,i,j)=0$ for $i+j=4$ (i.e. the other diagonal, $(i,j)\in \{(3,1),(2,2),(1,3)\}$) and (4) $\Delta(s,i,j)=1$ otherwise (i.e. for $(i,j)\in \{(1,1),(2,1),(3,2),(3,3)\}$).
+$c(s,i,j)=0$ for all $i,j$, (2) $\Delta(s,i,j)=s$ for $i+1=j$ (i.e. for $(i,j)\in \{(1,2),(2,3)\}$), (3) $\Delta(s,i,j)=0$ for $i+j=4$ (i.e. the `other' diagonal, $(i,j)\in \{(3,1),(2,2),(1,3)\}$) and (4) $\Delta(s,i,j)=1$ otherwise (i.e. for $(i,j)\in \{(1,1),(2,1),(3,2),(3,3)\}$).
  The game is illustrated in Figure {numref}`7-fig:sqroot2`.
  
 We will argue that the value of $G'$ is equal to that of $G$.

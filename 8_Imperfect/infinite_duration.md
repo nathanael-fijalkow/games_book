@@ -3,8 +3,6 @@
 
 ```{math}
 
-\renewcommand{\Game}{\game}
-
 ```
 
 Games with infinite duration and imperfect information
@@ -160,7 +158,7 @@ positively winning strategy.
   an initial distribution $\delta_0$ if
 
 $$
-%\label{eq:pos}
+
   \forall \tau,
   \mathbb{P}^{\sigma,\tau}_{ \delta_0}( {\tt Win})>0\enspace.
 
@@ -223,7 +221,7 @@ nor Adam has a positively winning strategy.
 In this game, Eve observes
 everything, Adam is blind (he only observes his own actions),
 and Eve's objective is to visit only finitely many times the ${\large \frownie}$-state. The initial state is $\large{\frownie}$. The set of actions is $\{a,b,c,d\}$.
-All transitions are deterministic.%$t$.
+All transitions are deterministic.
 
 On one hand, no strategy $\Sigma$
 is almost-surely winning for Eve
@@ -236,30 +234,30 @@ $\sigma\in C^*\to \Delta(I)$ of Eve is almost-surely winning.
 Fix strategy $\sigma$ and assume towards contradiction that $\sigma$ is almost-surely winning. 
 We define a strategy $\tau$
 such that
-$\probimp{\sigma,\tau}{\frownie}{  {\tt Buchi}} > 0$.
+$\mathbb{P}^{\sigma,\tau}_{\frownie}\left({  {\tt Buchi}\right)} > 0$.
 Strategy $\tau$ starts by playing only $c$.
 The probability to be in state $\frownie$ at step $n$ is
-$x^{0}_n = \probimp{\sigma,c^\omega}{\frownie}{V_n=\frownie}$ and since $\sigma$ is almost-surely winning then $x^{0}_n \to_n 0$ thus there exists  $n_0$ such that 
+$x^{0}_n =  \mathbb{P}^{\sigma,c^\omega}_{\frownie}\left({V_n=\frownie}\right)$ and since $\sigma$ is almost-surely winning then $x^{0}_n \to_n 0$ thus there exists  $n_0$ such that 
 $x^{0}_{n_0}\leq \frac{1}{2}$.
 Then $\tau$ plays $d$ at step $n_0$.
 Assuming the state was $2$ when $d$ was played, 
 the probability to be in state $\frownie$ at step $n\geq n_0$ is
-$x^{1}_n = \probimp{\sigma,c^{n_0}dc^\omega}{\frownie}{V_{n}=\frownie\mid V_{n_0}=\frownie}$
+$x^{1}_n =  \mathbb{P}^{\sigma,c^{n_0}dc^\omega}_{\frownie}\left({V_{n}\right)=\frownie\mid V_{n_0}=\frownie}$
 and since $\sigma$ is almost-surely winning there exists $n_1$ such that
 $x^{1}_{n_1}\leq  \frac{1}{4}$.
 Then $\tau$ plays $d$ at step $n_1$.
 By induction we keep defining $\tau$ this way so that
 $\tau=c^{n_0-1}d c^{n_1 - n_0 - 1}dc^{n_2 - n_1 - 1}d \cdots $.
 and for every $k\in  \mathbb{N}$,
-$\probimp{\sigma,\tau}{\frownie}{
-V_{n_{k+1}}=\frownie
+$\mathbb{P}^{\sigma,\tau}_{\frownie}\left({
+V_{n_{k+1}\right)}=\frownie
 \text{ and }
 V_{n_{k+1}-1}=2
 \mid 
 V_{n_{k}}=\frownie
 } \geq 1 - \frac{1}{2^{k+1}}$.
 Thus finally
-$\probimp{\sigma,\tau}{\frownie}{ {\tt Buchi}} \geq
+$\mathbb{P}^{\sigma,\tau}_{\frownie}\left({ {\tt Buchi}\right)} \geq
 \Pi_{k} (1 - \frac{1}{2^{k+1}})>0$ which contradicts the hypothesis.
 
 }
@@ -471,9 +469,9 @@ and for every $L\in \mathcal{L}\setminus \{\emptyset\}$ and every strategy $\tau
 $$
 
 \label{eq:pos}
-& \probimp{\sigma,\tau}{\delta_L}{ \mathtt{Reach}} > 0\enspace,\\
+&  \mathbb{P}^{\sigma,\tau}_{\delta_L}\left({ \mathtt{Reach}\right)} > 0\enspace,\\
  \label{eq:belstab}
-&\probimp{\sigma,\tau}{\delta_L}{\forall n\in \mathbb{N}, \mathcal{B}_{\text{Eve}}^n\in  \mathcal{L}} = 1\enspace.
+& \mathbb{P}^{\sigma,\tau}_{\delta_L}\left({\forall n\in \mathbb{N}\right), \mathcal{B}_{\text{Eve}}^n\in  \mathcal{L}} = 1\enspace.
 
 $$
 
@@ -490,7 +488,7 @@ Since $\mathcal{L}$ is downward-closed then $\forall L\in  \mathcal{L},\forall l
 thus {eq}`8-eq:pos` implies 
 \be
 \forall L\in  \mathcal{L},\forall l\in L,
- \probimp{\sigma,\tau}{\delta_L}{ \mathtt{Reach}\mid V_0=l} > 0\enspace.
+  \mathbb{P}^{\sigma,\tau}_{\delta_L}\left({ \mathtt{Reach}\right)\mid V_0=l} > 0\enspace.
  \label{eq:pos2}
 \end{equation}
 }
@@ -499,7 +497,7 @@ Once $\sigma$ is fixed then the game is a one-player game with state space $V\ti
 \be
 \label{eq:sigmamproperty}
 \forall L\in  \mathcal{L},\forall l\in L, \forall \tau,
- \probimp{\tau}{\delta_L}{ \mathtt{Reach} \mid V_0=l} > \varepsilon\enspace,
+  \mathbb{P}^{\tau}_{\delta_L}\left({ \mathtt{Reach}\right) \mid V_0=l} > \varepsilon\enspace,
  \ee
 where $N=|K|\cdot 2^{|K|}$
 and $\varepsilon = p_{\min}^{|K|\cdot 2^{|K|}}$
@@ -521,20 +519,20 @@ and every behavioral strategy $\tau$ and every
 $l\in V$,
 \be
 \label{eq:sigmamproperty2}
-\probimp{\tau}{\delta_L}
+ \mathbb{P}^{\tau}_{\delta_L}
 { \exists m \leq n \leq m+ N, C_n = 1 \mid
 K_m = l
 }
 \geq \varepsilon,
 \ee
-whenever $\probimp{\tau}{\delta_L}{V_m=l} > 0$.
+whenever $\mathbb{P}^{\tau}_{\delta_L}\left({V_m=l}\right) > 0$.
 }
 We use the Borel-Cantelli Lemma to conclude the proof.
 According to {eq}`8-eq:sigmamproperty2`,
 for every $\tau$, $L\in\overline{ \mathcal{L}}$, 
 $m\in  \mathbb{N}$,
 \be
-\probimp{\tau}{\delta_L}
+\probimp{\tau}\left({\delta_L}\right)
 { \exists n, mN \leq n < (m+ 1)N, C_n=1
 \mid V_{mN}
 }
@@ -543,7 +541,7 @@ $m\in  \mathbb{N}$,
 which implies for every behavioral strategy $\tau$ and $k,m\in \mathbb{N}$,
 
 $$
-\probimp{\tau}{\delta_L}
+ \mathbb{P}^{\tau}_{\delta_L}
 {\forall n,  \left((m\cdot N) \leq n < ((m+k) \cdot N) \implies  C_n \neq 1 \right)}\leq  \left(1 - \varepsilon\right)^k\enspace.
 $$
 
@@ -552,11 +550,11 @@ we can apply Borel-Cantelli Lemma for the events
 $(\{\forall n, m\cdot N \leq n < (m+k) \cdot N \implies  C_n\neq 1\})_k$
 and we get
 $\nonumber
-\probimp{\tau}{\delta_L}{\forall n, m\cdot N \leq n  \implies  C_n\neq 1}=0
+\probimp{\tau}\left({\delta_L}\right){\forall n, m\cdot N \leq n  \implies  C_n\neq 1}=0
 $
 thus
 \be\label{eq:assss}\nonumber
-\probimp{\tau}{\delta_L}{ {\tt Buchi}}=1\enspace.
+ \mathbb{P}^{\tau}_{\delta_L}\left({ {\tt Buchi}\right)}=1\enspace.
 \ee
 
 As a consequence $\sigma$ is almost-surely winning for the 
@@ -650,14 +648,14 @@ The first step is to prove that for every $L\in  \mathcal{L}_{\text{Eve},=1}$,
 for every strategy $\tau$ of Adam,
 \be\label{eq:LLpasM}
 
-\probimp{\sigma_{ \textsf{max}},\tau}{\delta_L}{ {\tt Safety}} < 1 \enspace.
+ \mathbb{P}^{\sigma_{ \textsf{max}},\tau}_{\delta_L}\left({ {\tt Safety}\right)} < 1 \enspace.
 \ee
 We prove {eq}`8-eq:LLpasM` by contradiction.
 Assume {eq}`8-eq:LLpasM` does not hold for some $L\in   \mathcal{L}_{\text{Eve},=1}$
 
 and strategy $\tau$:
 \be\label{eq:winsafe}
-\probimp{\sigma_{ \textsf{max}},\tau}{\delta_L}{ {\tt Safety} } = 1\enspace.
+ \mathbb{P}^{\sigma_{ \textsf{max}},\tau}_{\delta_L}\left({ {\tt Safety}\right) } = 1\enspace.
 \ee
 Under this assumption we use $\tau$ to build a strategy positively winning from $L$,
 which will contradict the hypothesis 
@@ -703,18 +701,18 @@ $$
 Then for every behavioral strategy $\sigma$:
 
   * [\textbullet]
-Either $\probimp{\sigma,\tau'}{\delta_L}{E}=1$. In this case
+Either $\mathbb{P}^{\sigma,\tau'}_{\delta_L}\left({E}\right)=1$. In this case
 
 $$
-\probimp{\sigma,\tau'}{\delta_L}{ {\tt Safety}}> 0\enspace,
+ \mathbb{P}^{\sigma,\tau'}_{\delta_L}\left({ {\tt Safety}\right)}> 0\enspace,
 $$
 
 because for every {finite play $\pi=v_0a_0b_0s_1t_1v_1\cdots v_n$,}
 
 $$
-\left(\probimp{\sigma,\tau'}{\delta_L}{ \pi} > 0\right)
+\left( \mathbb{P}^{\sigma,\tau'}_{\delta_L}\left({ \pi}\right) > 0\right)
 \implies
-\left(\probimp{\sigma_{ \textsf{max}},\tau'}{\delta_L}{ \pi} > 0\right)
+\left( \mathbb{P}^{\sigma_{ \textsf{max}},\tau'}_{\delta_L}\left({ \pi}\right) > 0\right)
 \implies
  {\tt Safety}\enspace,
 $$
@@ -723,45 +721,45 @@ where the first implication holds because, by definition of $\sigma_{ \textsf{ma
 for every $s_1\cdots s_n\in CS^*,  \textrm{supp}(\sigma(s_1\cdots s_n))\subseteq  \textrm{supp}(\sigma_{ \textsf{max}}(s_1\cdots s_n))$
 
 while the second implication is from {eq}`8-eq:winsafe`.
-Thus $\probimp{\sigma,\tau}{\delta_L}{ {\tt Safety}}= 1$ and we get
-$\probimp{\sigma,\tau'}{\delta_L}{ {\tt Safety}} > 0$ by definition of
+Thus $\mathbb{P}^{\sigma,\tau}_{\delta_L}\left({ {\tt Safety}\right)}= 1$ and we get
+$\mathbb{P}^{\sigma,\tau'}_{\delta_L}\left({ {\tt Safety}\right)} > 0$ by definition of
 $\tau'$.
 * [\textbullet]
-Or $\probimp{\sigma,\tau'}{\delta_L}{E}<1$.
+Or $\mathbb{P}^{\sigma,\tau'}_{\delta_L}\left({E}\right)<1$.
 Then by definition of $E$ there exists $n\in \mathbb{N}$
 
 such that
 
 $$
-\probimp{\sigma,\tau'}{\delta_L}{A_n  \not\in
- {\tt ISafe}_\mathcal{L}( \mathcal{B}_{\text{Eve}}^n)}>0\enspace.
+ \mathbb{P}^{\sigma,\tau'}_{\delta_L}\left({A_n  \not\in
+ {\tt ISafe}\right)_\mathcal{L}( \mathcal{B}_{\text{Eve}}^n)}>0\enspace.
 $$
 
 {
 By definition of ${\tt ISafe}_\mathcal{L}$ it implies
-$\probimp{\sigma,\tau'}{\delta_L}{ \mathcal{B}_{\text{Eve}}^{n+1}  \in  \mathcal{L}}>0$,
+$\mathbb{P}^{\sigma,\tau'}_{\delta_L}\left({ \mathcal{B}\right)_{\text{Eve}}^{n+1}  \in  \mathcal{L}}>0$,
 thus there exists $B\in  \mathcal{L}$ such that
-$\probimp{\sigma,\tau'}{\delta_L}{ \mathcal{B}_{\text{Eve}}^{n+1} =B}>0$.
+$\mathbb{P}^{\sigma,\tau'}_{\delta_L}\left({ \mathcal{B}\right)_{\text{Eve}}^{n+1} =B}>0$.
 By definition of $\tau'$ we get
-$\probimp{\sigma,\tau_{n+1,B}}{\delta_L}{ \mathcal{B}_{\text{Eve}}^{n+1} =B}>0$,
+$\mathbb{P}^{\sigma,\tau_{n+1,B}}_{\delta_L}\left({ \mathcal{B}\right)_{\text{Eve}}^{n+1} =B}>0$,
 because whatever finite play $v_0,\ldots, v_{n+1}$ leads with positive probability to
 the event $\{ \mathcal{B}_{\text{Eve}}^{n+1} =B\}$,
 the same finite play can occur with 
 $\tau_{n+1,B}$ since $\tau_{n+1,B}$ plays every possible action for the $n+1$ first steps.
 Since $\tau_{n+1,B}$ coincides with $\tau_{\tt rand}$ for the first $n+1$ steps then
 by definition of beliefs,
-$\probimp{\sigma,\tau_{n+1,B}}{\delta_L}{ \mathcal{B}_{\text{Eve}}^{n+1} =B}>0$
-and $B\subseteq \{ k\in K\mid \probimp{\sigma,\tau_{n+1,B}}{\delta_L}{K_{n+1}=k\mid  \mathcal{B}_{\text{Eve}}^{n+1} =B}>0\}$.
+$\mathbb{P}^{\sigma,\tau_{n+1,B}}_{\delta_L}\left({ \mathcal{B}\right)_{\text{Eve}}^{n+1} =B}>0$
+and $B\subseteq \{ k\in K\mid  \mathbb{P}^{\sigma,\tau_{n+1,B}}_{\delta_L}\left({K_{n+1}\right)=k\mid  \mathcal{B}_{\text{Eve}}^{n+1} =B}>0\}$.
 
 Using the definition of $\tau_B$ we get 
-$\probimp{\sigma,\tau_{n+1,B}}{\delta_L}{ {\tt CoBuchi}}>0$.
+$\mathbb{P}^{\sigma,\tau_{n+1,B}}_{\delta_L}\left({ {\tt CoBuchi}\right)}>0$.
 }
 As a consequence by definition of $\tau'$
-we get  $ \probimp{\sigma,\tau'}{\delta_L}{ {\tt CoBuchi}}
+we get  $  \mathbb{P}^{\sigma,\tau'}_{\delta_L}\left({ {\tt CoBuchi}\right)}
 >0 $.
   
 In both cases, for every $\sigma$,
-$\probimp{\sigma,\tau'}{\delta_L}{ {\tt CoBuchi} } >0 $
+$\mathbb{P}^{\sigma,\tau'}_{\delta_L}\left({ {\tt CoBuchi}\right) } >0 $
 thus $\tau'$ is positively winning from $L$.
 This contradicts the
 hypothesis $L\in   \mathcal{L}_{\text{Eve},=1}$. As a consequence we get {eq}`8-eq:LLpasM` by contradiction.
@@ -885,8 +883,8 @@ the case where {$L\cap  TT =\emptyset$}, we define for every
 $n\in \mathbb{N}$, $\mathcal{K}_n =  \mathcal{P}( V \setminus TT)  \setminus  \mathcal{L}_n$, and we
 prove by induction on $n\in \mathbb{N}$ that for every $L\in \mathcal{K}_n$, for every
 initial distribution $\delta_L$ with support $L$, for every {behavioral} strategy
-$\tau$, \be\label{eq:topo} \probimp{\sigma_{ {\tt rand}},\tau}{\delta_L}{\exists m, 2\leq
-  m\leq n+1, V_m\in TT }>0 \enspace.  \end{equation}For
+$\tau$, \be\label{eq:topo}  \mathbb{P}^{\sigma_{ {\tt rand}},\tau}_{\delta_L}\left({\exists m, 2\leq
+  m\leq n+1, V_m\in TT }\right)>0 \enspace.  \end{equation}For
 $n=0$, {eq}`8-eq:topo` is obvious because $\mathcal{K}_0=\emptyset$.  Suppose
 that for some $n\in \mathbb{N}$, {eq}`8-eq:topo` holds for every $L'\in \mathcal{K}_n$,
 and let $L\in \mathcal{K}_{n+1} \setminus  \mathcal{K}_n$.
@@ -898,24 +896,24 @@ to {eq}`8-eq:LLLn`, by definition of $\Phi$, there exists a signal
 $d\in D$ such that $a_2(d)=j_L$ and
  $\mathcal{B}_{\text{Adam}}(L,d)\not \in  \mathcal{L}_n$ and $\mathcal{B}_{\text{Adam}}(L,d)\neq \emptyset$.
 {According to  property {eq}`8-eq:belief_compute` of beliefs ({prf:ref}`8-lem:beliefs`),} 
- $\forall k \in  \mathcal{B}_{\text{Adam}}(L,d),\probimp{\sigma_{ {\tt rand}},\tau}{\delta_L}{V_2 =k\land D_1=d}  > 0$.
+ $\forall k \in  \mathcal{B}_{\text{Adam}}(L,d), \mathbb{P}^{\sigma_{ {\tt rand}},\tau}_{\delta_L}\left({V_2 =k\land D_1=d}\right)  > 0$.
    If
 $\mathcal{B}_{\text{Adam}}(L,d)\cap TT \not= \emptyset$ then according to
 the definition of beliefs,
-$\probimp{\sigma_{ {\tt rand}},\tau}{\delta_L}{V_2\in TT}>0$.  Otherwise
+$\mathbb{P}^{\sigma_{ {\tt rand}},\tau}_{\delta_L}\left({V_2\in TT}\right)>0$.  Otherwise
 $\mathcal{B}_{\text{Adam}}(L,d)\in \mathcal{P}( V \setminus TT) \setminus \mathcal{L}_n= \mathcal{K}_n$ hence
-distribution $\delta_{d}:k\to \probimp{\sigma_{ {\tt rand}},\tau}{\delta_L}{V_2 =k\mid D_1=d}$
+distribution $\delta_{d}:k\to  \mathbb{P}^{\sigma_{ {\tt rand}},\tau}_{\delta_L}\left({V_2 =k\mid D_1=d}\right)$
 has its support in $\mathcal{K}_n$. By inductive hypothesis, for every
 behavioral strategy $\tau'$,
 
-$$\probimp{\sigma_{ {\tt rand}},\tau'}{\delta_{d}}{\exists m\in \mathbb{N}, 2\leq
+$$\mathbb{P}^{\sigma_{ {\tt rand}},\tau'}_{\delta_{d}}\left({\exists m\in \mathbb{N}\right), 2\leq
   m\leq n+1, V_m\in TT}>0$$
 
 hence using the shifting lemma and the
 definition of $\delta_{d}$,
 
 $$
-\probimp{\sigma_{ {\tt rand}},\tau}{\delta}{\exists m\in \mathbb{N},
+ \mathbb{P}^{\sigma_{ {\tt rand}},\tau}_{\delta}\left({\exists m\in \mathbb{N}\right),
   3\leq m\leq n+2, V_m\in TT}>0\enspace,$$
 
 which completes the proof of the inductive
@@ -949,8 +947,8 @@ and probabilities before reaching a target state, when player $1$ uses
 the uniform memoryless strategy $\sigma_{ {\tt rand}}$.  From an initial
 distribution positively winning for the reachability objective, for
 every strategy $\tau$, \be\label{eq:bounds}
-\probimp{\sigma_{ {\tt rand}},\tau}{\delta}{\exists n\leq 2^{\mid  V
-    \mid}, C_n = 1}\geq \left(
+ \mathbb{P}^{\sigma_{ {\tt rand}},\tau}_{\delta}\left({\exists n\leq 2^{\mid  V
+    \mid}\right), C_n = 1}\geq \left(
   \frac{1}{p_{\min}\mid A\mid}\right)^{2^{\lvert V\lvert}}\enspace,
 \end{equation}
 where $p_{\min}$ is the smallest non-zero transition probability.

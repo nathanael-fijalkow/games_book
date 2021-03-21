@@ -5,8 +5,6 @@
 
 % Generic probability measure, also prob. measure operator
 
-\renewcommand{\Game}{\game}
-
 ```
 
 For the first part of this chapter, we consider multidimension quantitative games. With regard to the formalism of {prf:ref}`chap:payoffs`, the only change to the arena is the set of colours associated with edges: we now have vectors in $\mathbb{R}^k$ where $k \in  \mathbb{N}_{>0}$ is the dimension of the game. As before, for computational purposes, it makes sense to restrict our colouring to rational numbers, and for the sake of simplicity, we even consider **integers only** without loss of generality.
@@ -38,7 +36,7 @@ Given a $k$-dimension game $\mathcal{G}$ based on the conjunction of $k$ maximis
 A simple multidimension mean-payoff game where Eve needs infinite memory to play (Pareto-)optimally.
 ```
 
-The concept of Pareto-optimality has an important consequence on multiobjective problems: the correspondence between solving a threshold problem and computing an optimal strategy that holds in the single-objective case does not carry over. Indeed, one may now be interested in computing the Pareto frontier consisting of all Pareto  vectors achievable by Eve. This comes at great cost complexity-wise as this frontier may include many points, and in some settings, even an **infinite number of Pareto vectors** (see Section {ref}`12-sec:percentile` for an example), \todo{Add direct ref when done.} sometimes forcing us to resort to approximation. This requires specific techniques that go beyond the focus of this chapter, hence in the following we mostly discuss the **threshold problem**, also referred to as solving the game for a given threshold vector.
+The concept of Pareto-optimality has an important consequence on multiobjective problems: the correspondence between solving a threshold problem and computing an optimal strategy that holds in the single-objective case does not carry over. Indeed, one may now be interested in computing the Pareto frontier consisting of all Pareto  vectors achievable by Eve. This comes at great cost complexity-wise as this frontier may include many points, and in some settings, even an **infinite number of Pareto vectors** (see Section {ref}`12-sec:percentile` for an example), \todo{Add direct ref when done.} sometimes forcing us to resort to approximation. This requires specific techniques that go beyond the focus of this chapter, hence in the following we mostly discuss the **threshold problem**, also referred to as `solving the game' for a given threshold vector.
 
 ````{prf:example} NEEDS TITLE 12-ex:MMP2
 :label: 12-ex:MMP2

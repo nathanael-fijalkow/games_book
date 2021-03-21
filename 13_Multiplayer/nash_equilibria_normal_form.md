@@ -17,8 +17,6 @@
 \def\devg{\textsf{DevGame}}
 \def\Coalition{\mathcal{C}}
 
-\renewcommand{\Game}{\game}
-
 ```
 
 The normal form games we consider differ from the matrix games of Chapter {ref}`7-chap:concurrent`, in that each player has their own payoff.
@@ -295,19 +293,11 @@ The problem we are interested in is to decide the existence of a Nash
 equilibrium in which the objectives of a given set of players are
 satisfied.
 
-```{admonition} Problem
-
-**INPUT**: 
-\parbox[t]{0.75\textwidth}{Multiplayer game $(\mathcal{A}, (\payoff_P)_{P \in \Agt})$, payoff
+\decpb{Existence of a constrained Nash equilibrium}
+{multiplayer game $(\mathcal{A}, (\payoff_P)_{P \in \Agt})$, payoff
   bounds $(b_P)_{P\in\ \Agt}$, and initial vertex $v_0$}
-
-**QUESTION**: 
-  \parbox[t]{0.75\textwidth}{is there
-a Nash equilibrium $\sigma_{\Agt}$ such that for all
+{is there a Nash equilibrium $\sigma_{\Agt}$ such that for all
 $P \in \Agt, \payoff_P(  \textrm{Out}({v_0,\sigma_{\Agt}})) \ge b_P$?}
-
-```
-\todo{OS: I don't know how to fix this alignment issue}
 
 The algorithm is based on a reduction to zero-sum two-players games,
 which allows us to use algorithms presented in the previous chapters of

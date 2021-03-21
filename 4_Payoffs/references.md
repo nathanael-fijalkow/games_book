@@ -3,8 +3,6 @@
 
 ```{math}
 
-\renewcommand{\Game}{\game}
-
 ```
 
 One player variants due to Karp {cite}`Karp:1978`
@@ -33,7 +31,7 @@ Chapter {ref}`6-chap:stochastic`).
 
 We have followed the proof of Ehrenfeucht and
 Mycielski {cite}`Ehrebfeucht&Mycielski:1979` to prove the positional
-determinacy of mean payoff games. In 2004, Bj\"orklund, Sandberg and
+determinacy of mean payoff games. In 2004, Bj\orklund, Sandberg and
 Vorobyov {cite}`Bjorklund&Sandberg&Vorobyov:2004` claimed a simpler
 proof that works directly, with no back-and-forth reasoning between
 the first cycle objective and the original mean payoff one: however,
@@ -44,7 +42,7 @@ further the first-cycle games.
 We gave several algorithms to solve mean payoff games, apart from the
 one of Zwick and Paterson {cite}`Zwick&Paterson:1996`.
 
-The **strategy improvement technique** is due to Bj\"orklund and
+The **strategy improvement technique** is due to Bj\orklund and
 Vorobyov {cite}`Bjorklund&Vorobyov:2007`, presented via the new notion
 of **longest shortest path problem (LSP)**. Other solutions to
 obtain a strategy iteration algorithm for mean payoff games work by

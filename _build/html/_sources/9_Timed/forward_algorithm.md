@@ -3,8 +3,6 @@
 
 ```{math}
 
-\renewcommand{\Game}{\game}
-
 ```
 
 The backward algorithm we just presented is conceptually simple, but
@@ -94,9 +92,6 @@ winning states for Eve in $\mathcal{C}$.
 Liu-Smolka algorithm for least fixpoint of $f_W$
 ```
 
-{numref}`9-algo:LS98` can be seen as an alternation of forward
-exploration and backward propagation.
-
 ```{margin}
 Our version of the algorithm slightly differs from the
   original one {cite}`LS98`: we let $\textsf{Dep}(v'):=\{(v,T)\}$ at the penultimate line
@@ -107,7 +102,8 @@ Our version of the algorithm slightly differs from the
   to get earlier termination.
 ```
 
- Intuitively, the algorithm first
+{numref}`9-algo:LS98` can be seen as an alternation of forward
+exploration and backward propagation. Intuitively, the algorithm first
 explores the graph in a forward manner, remembering for each node $v$
 the set $\textsf{Dep}(v)$ of nodes that **depend** on $v$, and have to be
 reexplored if the status of $v$ is updated.

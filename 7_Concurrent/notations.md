@@ -3,8 +3,6 @@
 
 ```{math}
 
-\renewcommand{\Game}{\game}
-
 ```
 
 The definition of arena $\mathcal{A}$ in this chapter is $\mathcal{A}=(G, \Delta)$, where $G=(V,E)$ is a graph and $\Delta:V\times A\times A\rightarrow   \mathcal{D}(E)$. In particular, we are not using the sets $V_\mathrm{Adam}$ and $V_\mathrm{Eve}$.

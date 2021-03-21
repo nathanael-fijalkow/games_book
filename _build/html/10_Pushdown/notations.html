@@ -706,12 +706,12 @@
 <span id="sec-notations"></span><h1>Notations<a class="headerlink" href="#notations" title="Permalink to this headline">¶</a></h1>
 <div class="math notranslate nohighlight">
 \[ \begin{align}\begin{aligned}\def\AC#1{\textcolor{green!50!black}{\checkmark}\marginpar{\color{green!50!black}AC: #1}} \\\def\acchanged#1{{#1}}
-\def\OS#1{\textcolor{red}{\checkmark}\marginpar{\color{red}OS: #1}}\\\renewcommand{\qed}{$\square$}\\\newcommand {\Stepsg}[1]{\mathit{Steps}_{#1}}\\\newcommand {\Rounds}[1]{\mathit{Rounds}_{#1}}\\\renewcommand{\Game}{\game}
+\def\OS#1{\textcolor{red}{\checkmark}\marginpar{\color{red}OS: #1}}\\\newcommand {\Stepsg}[1]{\mathit{Steps}_{#1}}\\\newcommand {\Rounds}[1]{\mathit{Rounds}_{#1}}
 \end{aligned}\end{align} \]</div>
-<p>A <strong>pushdown system</strong> is a tuple <span class="math notranslate nohighlight">\(\mathcal{P} = (Q,Q_{ \mathrm{Eve}}, Q_{ \mathrm{Adam}}, \Gamma,\Delta,C)\)</span>\AC{Do we add <span class="math notranslate nohighlight">\(\textsf{col}()\)</span> and <span class="math notranslate nohighlight">\(\bot\)</span> to the tuple of a pushdown system ? I have no opinion.}
+<p>A <strong>pushdown system</strong> is a tuple <span class="math notranslate nohighlight">\(\mathcal{P} = (Q,Q_{ \mathrm{Eve}}, Q_{ \mathrm{Adam}}, \Gamma,\Delta,C)\)</span>\AC{Do we add <span class="math notranslate nohighlight">\(\mathfrak{c}()\)</span> and <span class="math notranslate nohighlight">\(\bot\)</span> to the tuple of a pushdown system ? I have no opinion.}
 where:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(Q\)</span> is a finite set of control states with <span class="math notranslate nohighlight">\(Q = Q_{ \mathrm{Eve}} \uplus Q_{ \mathrm{Adam}}\)</span> which is partionned between the two players  \textrm{Eve} and  \textrm{Adam}. Moreover with each state <span class="math notranslate nohighlight">\(q\)</span> is associated a colour <span class="math notranslate nohighlight">\(\textsf{col}(q) \acchanged{\in C}\)</span>;*  <span class="math notranslate nohighlight">\(\Gamma\)</span> is the stack alphabet. There is a special bottom-of-stack symbol, denoted <span class="math notranslate nohighlight">\(\bot\)</span>, which does not belong to <span class="math notranslate nohighlight">\(\Gamma\)</span>; we let <span class="math notranslate nohighlight">\(\Gamma_\bot\)</span> denote the alphabet <span class="math notranslate nohighlight">\(\Gamma \cup  \left\{ \bot \right\}\)</span>;</p></li>
+<li><p><span class="math notranslate nohighlight">\(Q\)</span> is a finite set of control states with <span class="math notranslate nohighlight">\(Q = Q_{ \mathrm{Eve}} \uplus Q_{ \mathrm{Adam}}\)</span> which is partionned between the two players  \textrm{Eve} and  \textrm{Adam}. Moreover with each state <span class="math notranslate nohighlight">\(q\)</span> is associated a colour <span class="math notranslate nohighlight">\(\mathfrak{c}(q) \acchanged{\in C}\)</span>;*  <span class="math notranslate nohighlight">\(\Gamma\)</span> is the stack alphabet. There is a special bottom-of-stack symbol, denoted <span class="math notranslate nohighlight">\(\bot\)</span>, which does not belong to <span class="math notranslate nohighlight">\(\Gamma\)</span>; we let <span class="math notranslate nohighlight">\(\Gamma_\bot\)</span> denote the alphabet <span class="math notranslate nohighlight">\(\Gamma \cup  \left\{ \bot \right\}\)</span>;</p></li>
 <li><p><span class="math notranslate nohighlight">\(\Delta:Q\times \Gamma_\bot\rightarrow 2^{Q\times\{ \mathrm{pop}, \mathrm{push}(\gamma)\mid \gamma\in\Gamma\}}\)</span> is the transition relation. We additionally require that for all states <span class="math notranslate nohighlight">\(p,q\in Q\)</span>, <span class="math notranslate nohighlight">\((q, \mathrm{pop})\notin\Delta(p,\bot)\)</span>, i.e., the bottom of stack symbol is never popped.</p></li>
 </ul>
 <p>We call a pair <span class="math notranslate nohighlight">\((p,s)\in Q \times \bot\Gamma^*\)</span> a <strong>configuration</strong> of <span class="math notranslate nohighlight">\(\mathcal{P}\)</span>: <span class="math notranslate nohighlight">\(p\)</span> is the control state of the configuration while <span class="math notranslate nohighlight">\(s\)</span> is its stack content. We let <span class="math notranslate nohighlight">\(\mathrm{sh}((p,s))=|s|-1\)</span> denote the <strong>stack height</strong> of the  configuration <span class="math notranslate nohighlight">\((p,s)\)</span>. \acchanged{Intuitively, if <span class="math notranslate nohighlight">\((q, \mathrm{push}(\gamma'))\)</span> belongs to <span class="math notranslate nohighlight">\(\Delta(p,\gamma)\)</span>, the pushdown system
@@ -725,8 +725,8 @@ and <span class="math notranslate nohighlight">\(V_\mathrm{Adam} = Q_{ \mathrm{A
 </ul>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{split}
-E  = &amp; \{((p,s\gamma),  \textsf{col}(p),(q,s)) \mid (q, \mathrm{pop})\in\Delta(p,\gamma)\}\quad \cup \\ 
-&amp;  \{((p,s\gamma),  \textsf{col}(p),(q,s\gamma\gamma')) \mid (q, \mathrm{push}(\gamma'))\in\Delta(p,\gamma)\}.
+E  = &amp; \{((p,s\gamma),  \mathfrak{c}(p),(q,s)) \mid (q, \mathrm{pop})\in\Delta(p,\gamma)\}\quad \cup \\ 
+&amp;  \{((p,s\gamma),  \mathfrak{c}(p),(q,s\gamma\gamma')) \mid (q, \mathrm{push}(\gamma'))\in\Delta(p,\gamma)\}.
 \end{split}\end{split}\]</div>
 <p>\acchanged{</p>
 <div class="proof remark admonition" id="remark-0">
@@ -741,13 +741,13 @@ In the definition of a pushdown arena, the colour of an edge is uniquely determi
 </div>
 </div><p>}</p>
 <p>Finally, a <strong>pushdown game</strong> is a game played on a pushdown arena. In this chapter we only consider qualitative objectives of the form <span class="math notranslate nohighlight">\(\Omega\subseteq C^\omega\)</span> \acchanged{where <span class="math notranslate nohighlight">\(C\)</span> is the set of colours. As in our definition,
-colours are associated to control states, the objective we consider only depend on the sequence of control states of the configurations visited along a play. By a slight abuse of notation, for a play <span class="math notranslate nohighlight">\(\pi \in V^*\)</span>, we let <span class="math notranslate nohighlight">\(\pi=(p_1,s_1)(p_2,s_2)\cdots \in \Omega\)</span> denotes the fact that the sequences of colours <span class="math notranslate nohighlight">\((  \textsf{col}(p_i))_{i\geq 1}\)</span> belongs to <span class="math notranslate nohighlight">\(\Omega\)</span>.}</p>
+colours are associated to control states, the objective we consider only depend on the sequence of control states of the configurations visited along a play. By a slight abuse of notation, for a play <span class="math notranslate nohighlight">\(\pi \in V^*\)</span>, we let <span class="math notranslate nohighlight">\(\pi=(p_1,s_1)(p_2,s_2)\cdots \in \Omega\)</span> denotes the fact that the sequences of colours <span class="math notranslate nohighlight">\((  \mathfrak{c}(p_i))_{i\geq 1}\)</span> belongs to <span class="math notranslate nohighlight">\(\Omega\)</span>.}</p>
 <div class="proof example admonition" id="10-ex:pushdown-game-1">
 <p class="admonition-title"><span class="caption-number">Example 289 </span> (NEEDS TITLE 10-ex:pushdown-game-1)</p>
 <div class="example-content section" id="proof-content">
 <p>Consider the pushdown system <span class="math notranslate nohighlight">\(\mathcal{P} = (Q,Q_{ \mathrm{Eve}}, Q_{ \mathrm{Adam}}, \Gamma,\Delta)\)</span> where:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(Q_{ \mathrm{Eve}}=\{q,r\}\)</span> and <span class="math notranslate nohighlight">\(Q_{ \mathrm{Adam}}=\{p\}\)</span>; <span class="math notranslate nohighlight">\(\textsf{col}(p) = 1\)</span>, <span class="math notranslate nohighlight">\(\textsf{col}(q) = 2\)</span> and <span class="math notranslate nohighlight">\(\textsf{col}(r) = 0\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(Q_{ \mathrm{Eve}}=\{q,r\}\)</span> and <span class="math notranslate nohighlight">\(Q_{ \mathrm{Adam}}=\{p\}\)</span>; <span class="math notranslate nohighlight">\(\mathfrak{c}(p) = 1\)</span>, <span class="math notranslate nohighlight">\(\mathfrak{c}(q) = 2\)</span> and <span class="math notranslate nohighlight">\(\mathfrak{c}(r) = 0\)</span>.</p></li>
 <li><p><span class="math notranslate nohighlight">\(\Gamma=\{\gamma\}\)</span> is a singleton.</p></li>
 <li><p><span class="math notranslate nohighlight">\(\Delta(p,\bot) = \{(p, \mathrm{push}(\gamma))\}\)</span>, <span class="math notranslate nohighlight">\(\Delta(p,\gamma) = \{(p, \mathrm{push}(\gamma)),(q, \mathrm{pop})\}\)</span>, <span class="math notranslate nohighlight">\(\Delta(q,\bot) = \{(r, \mathrm{push}(\gamma))\}\)</span>, <span class="math notranslate nohighlight">\(\Delta(q,\gamma) = \{(q, \mathrm{pop})\}\)</span> and <span class="math notranslate nohighlight">\(\Delta(r,\gamma) = \{(q, \mathrm{pop})\}\)</span>.</p></li>
 </ul>
@@ -759,26 +759,10 @@ colours are associated to control states, the objective we consider only depend 
 </div>
 </div>
 </div><p>As a pushdown arena is in general infinite, the <strong>winning region</strong> for  \textrm{Eve}, i.e., the set of winning vertices for  \textrm{Eve} may not admit a finite presentation. Similarly, for objectives for which finite-memory strategies exists, the question of whether such a strategy can be finitely presented (and computed) is raised. Hence, we will in general distinguish the following three algorithmic problems.</p>
-<div class="admonition-problem admonition">
-<p class="admonition-title">Problem</p>
-<p>For pushdown games, solving the game means solving the following decision problem:</p>
-<p><strong>INPUT</strong>: A pushdown game <span class="math notranslate nohighlight">\(\mathcal{G}\)</span> and an initial vertex <span class="math notranslate nohighlight">\(v_0\)</span></p>
-<p><strong>QUESTION</strong>: Does Eve win <span class="math notranslate nohighlight">\(\mathcal{G}\)</span> from <span class="math notranslate nohighlight">\(v_0\)</span>?</p>
-</div>
-<div class="admonition-problem admonition">
-<p class="admonition-title">Problem</p>
-<p>For pushdown games, computing the winning region means solving the following problem:</p>
-<p><strong>INPUT</strong>: A pushdown game <span class="math notranslate nohighlight">\(\mathcal{G}\)</span></p>
-<p><strong>COMPUTE</strong>: A finite presentation of the set <span class="math notranslate nohighlight">\(v\)</span> of vertices from which  Eve wins <span class="math notranslate nohighlight">\(\mathcal{G}\)</span></p>
-<p>\end{tabular}</p>
-</div>
+<p>\decpb{Solving a pushdown game}{A pushdown game <span class="math notranslate nohighlight">\(\mathcal{G}\)</span> and an initial vertex <span class="math notranslate nohighlight">\(v_0\)</span>}{Does Eve win <span class="math notranslate nohighlight">\(\mathcal{G}\)</span> from <span class="math notranslate nohighlight">\(v_0\)</span>?}</p>
+<p>\decpb{Computing the winning region}{A pushdown game <span class="math notranslate nohighlight">\(\mathcal{G}\)</span>}{Output a finite presentation of the set <span class="math notranslate nohighlight">\(v\)</span> of vertices from which  Eve wins <span class="math notranslate nohighlight">\(\mathcal{G}\)</span>}</p>
 <p>In <a class="reference internal" href="profiles.html#10-thm:regularity-wr">Theorem 292</a>, we will show that the winning region can be described by a finite-state automaton  for a large class of qualitative winning conditions.</p>
-<div class="admonition-problem admonition">
-<p class="admonition-title">Problem</p>
-<p>For pushdown games, computing a winning strategy means solving the following problem:</p>
-<p><strong>INPUT</strong>: A pushdown game <span class="math notranslate nohighlight">\(\mathcal{G}\)</span></p>
-<p><strong>COMPUTE</strong>: A finite presentation of a strategy for  \textrm{Eve} that is winning from any vertex in the winning region for Eve in <span class="math notranslate nohighlight">\(\mathcal{G}\)</span></p>
-</div>
+<p>\decpb{Computing a winning strategy}{A pushdown game <span class="math notranslate nohighlight">\(\mathcal{G}\)</span>}{Output a finite presentation of a strategy for  \textrm{Eve} that is winning from any vertex in the winning region for Eve in <span class="math notranslate nohighlight">\(\mathcal{G}\)</span>}</p>
 <p>We will show, for parity pushdown games, that the winning strategy can be described using either a finite-state automaton (see Section <span class="xref std std-ref">10-sec:regular-strat</span>) or a pushdown automaton (see Section <span class="xref std std-ref">10-sec:pushdown-strat</span>).</p>
 </div>
 

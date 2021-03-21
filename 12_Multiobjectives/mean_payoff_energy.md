@@ -5,8 +5,6 @@
 
 % Generic probability measure, also prob. measure operator
 
-\renewcommand{\Game}{\game}
-
 ```
 
 Another well-known equivalence in one-dimension is the one between mean-payoff and energy games (in the existential initial credit form), mentioned in {prf:ref}`chap:payoffs`. The reduction is trivial: Eve has a winning strategy (and an initial credit) in the energy game if and only if she has a strategy to ensure mean-payoff at least equal to zero in the mean-payoff game played over the same arena. Intuitively, the mean-payoff strategy of Eve has to reach a subgame where she can ensure that all cycles formed are non-negative (see cycle games in {prf:ref}`chap:payoffs`). The initial credit (which can be as high as Eve wants) offsets the cost of reaching such a subgame as well as the low point of cycles in it (which can be negative but is bounded).
@@ -102,7 +100,7 @@ e., prefix of play) $\rho$ starting in vertex $v$ and ending in vertex $v_\eta$,
 
 For $\varepsilon > 0$, we declare a node $\eta$ of $T_{\sigma_i^v}$ to be **$\varepsilon$-good** if the mean over dimension $i$ on the path from the root to $\eta$ is at least $-\varepsilon$ (as usual, we project this path to $C^\omega$ to evaluate it). For $\ell \in  \mathbb{N}$, let $\widehat{T}^{i, \ell}_{v, \varepsilon}$ be the tree obtained from $T_{\sigma_i^v}$ by removing all descendants of $\varepsilon$-good nodes that are at depth at least $\ell$: hence, all branches of $\widehat{T}^{i, \ell}_{v, \varepsilon}$ have length at least $\ell$ and their leaves are $\varepsilon$-good.
 
-We first show that $\widehat{T}^{i, \ell}_{v, \varepsilon}$ is a finite tree. By K\"onig's Lemma {cite}`Konig:1936`, we only need to show that every branch is finite. By contradiction, assume it is not the case and there exists some infinite branch. By construction, it implies that this branch contains no $\varepsilon$-good node after depth $\ell$. Thus, the corresponding play $\pi$, which is consistent with $\sigma_i^v$, necessarily has $\mathtt{MeanPayoff}^{+}_{i}( \pi) \leq -\varepsilon$. This contradicts the hypothesis that $\sigma_i^v$ is winning for dimension $i$. Hence the tree is indeed finite.
+We first show that $\widehat{T}^{i, \ell}_{v, \varepsilon}$ is a finite tree. By K\onig's Lemma {cite}`Konig:1936`, we only need to show that every branch is finite. By contradiction, assume it is not the case and there exists some infinite branch. By construction, it implies that this branch contains no $\varepsilon$-good node after depth $\ell$. Thus, the corresponding play $\pi$, which is consistent with $\sigma_i^v$, necessarily has $\mathtt{MeanPayoff}^{+}_{i}( \pi) \leq -\varepsilon$. This contradicts the hypothesis that $\sigma_i^v$ is winning for dimension $i$. Hence the tree is indeed finite.
 
 Based on these finite trees, we now build an infinite-memory strategy for Eve that will be winning for the conjunct objective $\mathtt{MeanPayoff}^{+}_{\geq \vec{0}}$:
 
@@ -158,7 +156,7 @@ Since we already know that Eve wins from $V \setminus W_{\text{Adam}}$, it remai
 
 ````
 
-We use the core reasoning of this proof to build an algorithm solving multidimension lim-sup mean-payoff games ({numref}`12-algo:MMP`). Intuitively, we iteratively remove vertices that are declared losing for Eve because Adam can win on some dimension from them. Such vertices can be computed in pseudo-polynomial time using the algorithm presented in {prf:ref}`chap:payoffs`, \todo{I need a label on Subsect. 4.3.4 to cite it precisely.} here dubbed \textsf{SolveOneDimMeanPayoff}, and taking as parameters the arena and the considered dimension. Since removing vertices based on some dimension $i$ may decrease the power of Eve and her ability to win for another dimension $i'$, we need the outer loop: in the end, we ensure that $V'$ contains exactly all the vertices from which Eve has a winning strategy for each dimension. By {prf:ref}`12-lem:MMP-Eve` and the proof of {prf:ref}`12-lem:MMP-Adam`, we know that this is equal to $W_{\text{Eve}}$.
+We use the core reasoning of this proof to build an algorithm solving multidimension lim-sup mean-payoff games ({numref}`12-algo:MMP`). Intuitively, we iteratively remove vertices that are declared losing for Eve because Adam can win on some dimension from them. Such vertices can be computed in pseudo-polynomial" time using the algorithm presented in {prf:ref}`chap:payoffs`, \todo{I need a label on Subsect. 4.3.4 to cite it precisely.} here dubbed \textsf{SolveOneDimMeanPayoff}, and taking as parameters the arena and the considered dimension. Since removing vertices based on some dimension $i$ may decrease the power of Eve and her ability to win for another dimension $i'$, we need the outer loop: in the end, we ensure that $V'$ contains exactly all the vertices from which Eve has a winning strategy for each dimension. By {prf:ref}`12-lem:MMP-Eve` and the proof of {prf:ref}`12-lem:MMP-Adam`, we know that this is equal to $W_{\text{Eve}}$.
 
 ````{prf:remark} NEEDS TITLE 12-rmk:properArena
 :label: 12-rmk:properArena

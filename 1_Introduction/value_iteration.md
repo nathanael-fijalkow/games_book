@@ -3,8 +3,6 @@
 
 ```{math}
 
-\renewcommand{\Game}{\game}
-
 ```
 
 In this section and the next we discuss two families of fixed point algorithms for solving games.
@@ -15,8 +13,8 @@ we refer to Chapter {ref}`4-chap:payoffs` for archetypical examples, and also to
 ## The value function
 
 The key ingredient of a value iteration algorithm is a value function.
-For a quantitative game $\Game$ with condition $f = \Phi[ \textsf{col}]$ over the set of colours $C$, 
-assuming that $\Game$ is determined it admits a value function
+For a quantitative game $\mathcal{G}$ with condition $f = \Phi[ \mathfrak{c}]$ over the set of colours $C$, 
+assuming that $\mathcal{G}$ is determined it admits a value function
 
 $$
  \textrm{val}^{ \mathcal{G}} : V \to   \mathbb{R} \cup  \left\{ \pm \infty \right\},
@@ -32,9 +30,9 @@ where $\sigma$ ranges over strategies of Eve, $\tau$ over strategies of Adam,
 and $\pi_{\sigma,\tau}^v$ is the play consistent with $\sigma$ and $\tau$ from $v$.
 In particular we write $\textrm{val}^{\sigma}$ for $\inf_{\tau}\ f(\pi_{\sigma,\tau}^v)$.
 
-For a qualitative game $\Game$ there is no notion of a value function so the first step in constructing a value iteration
+For a qualitative game $\mathcal{G}$ there is no notion of a value function so the first step in constructing a value iteration
 algorithm is to define a meaningful notion of value function.
-Let us assume that the condition is $\Omega[ \textsf{col}]$ over the set of colours $C$.
+Let us assume that the condition is $\Omega[ \mathfrak{c}]$ over the set of colours $C$.
 The first ingredient is a lattice $(Y,\le)$ together with a function $\textrm{val} : C^\omega \to Y$ for evaluating plays, taking the role of the quantitative condition $f$.
 The value function is $\textrm{val}^{ \mathcal{G}} : V \to Y$ defined as
 
@@ -62,16 +60,15 @@ we say that $\mu \le \mu'$ if for all vertices $v$ we have $\mu(v) \le \mu'(v)$.
 
 The second ingredient is a function $\delta : Y \times C \to Y$ inducing an operator $\mathbb{O} : F_V \to F_V$ defined by and satisfying the following principle:
 
-$$
- \mathbb{O}(\mu)(v) = 
-\begin{cases}
-\max  \left\{ \delta( \mu(v'),  \textsf{col \right\}(v)) : (v,v') \in E} & \text{ if } v \in  V_\mathrm{Eve}, \\
-\min  \left\{ \delta( \mu(v'),  \textsf{col \right\}(v)) : (v,v') \in E} & \text{ if } v \in  V_\mathrm{Adam}.
-
 ```{margin}
 This form is for two player games, the operator has to be adapted to more complex settings such as stochastic or concurrent games.
 ```
 
+$$
+ \mathbb{O}(\mu)(v) = 
+\begin{cases}
+\max  \left\{ \delta( \mu(v'),  \mathfrak{c \right\}(v)) : (v,v') \in E} & \text{ if } v \in  V_\mathrm{Eve}, \\
+\min  \left\{ \delta( \mu(v'),  \mathfrak{c \right\}(v)) : (v,v') \in E} & \text{ if } v \in  V_\mathrm{Adam}.
 \end{cases}
 $$
 
@@ -82,10 +79,10 @@ The function $\textrm{val}^{ \mathcal{G}}$ is a fixed point of the operator $\ma
 
 ````
 
-This fixed point principle is often tightly related to the fact the $\Game$ is positionally determined for both players.
+This fixed point principle is often tightly related to the fact the $\mathcal{G}$ is positionally determined for both players.
 The fact that $\textrm{val}^{ \mathcal{G}} =  \mathbb{O}(  \textrm{val}^{ \mathcal{G}})$ means that from a vertex $v$, 
 the value $\textrm{val}^{ \mathcal{G}}(v)$ can be computed locally, **i.e.** by considering the maximum or the minimum over all edges $(v,v')$ 
-of a function $\delta$ of $\textrm{val}^{ \mathcal{G}}(v')$ and of $\textsf{col}(v)$.
+of a function $\delta$ of $\textrm{val}^{ \mathcal{G}}(v')$ and of $\mathfrak{c}(v)$.
 The choice of minimum or maximum corresponds to the goal of the players: Eve wants to maximise the outcome and Adam to minimise it.
 
 ## Fixed point through contraction
@@ -149,8 +146,8 @@ Expanding the definitions: for all vertices $v$, we have
 
 $$
 \begin{array}{llll}
-\mu(v) & \le & \max  \left\{ \delta( \mu(v'),  \textsf{col \right\}(v)) : (v,v') \in E} & \text{ if } v \in  V_\mathrm{Eve}, \\
-\mu(v) & \le & \min  \left\{ \delta( \mu(v'),  \textsf{col \right\}(v)) : (v,v') \in E} & \text{ if } v \in  V_\mathrm{Adam},
+\mu(v) & \le & \max  \left\{ \delta( \mu(v'),  \mathfrak{c \right\}(v)) : (v,v') \in E} & \text{ if } v \in  V_\mathrm{Eve}, \\
+\mu(v) & \le & \min  \left\{ \delta( \mu(v'),  \mathfrak{c \right\}(v)) : (v,v') \in E} & \text{ if } v \in  V_\mathrm{Adam},
 \end{array}
 $$
 
@@ -158,8 +155,8 @@ which is equivalent to the more familiar definition of progress measures: for al
 
 $$
 \begin{array}{llll}
-\exists (v,v') \in E,\ & \mu(v) \le \delta( \mu(v'),  \textsf{col}(v)) & \text{ if } v \in  V_\mathrm{Eve}, \\
-\forall (v,v') \in E,\ & \mu(v) \le \delta( \mu(v'),  \textsf{col}(v)) & \text{ if } v \in  V_\mathrm{Adam}.
+\exists (v,v') \in E,\ & \mu(v) \le \delta( \mu(v'),  \mathfrak{c}(v)) & \text{ if } v \in  V_\mathrm{Eve}, \\
+\forall (v,v') \in E,\ & \mu(v) \le \delta( \mu(v'),  \mathfrak{c}(v)) & \text{ if } v \in  V_\mathrm{Adam}.
 \end{array}
 $$
 
@@ -190,8 +187,8 @@ $$
  \mathbb{O}_v(\mu)(u) = 
 \begin{cases}
 \mu(v) & \text{ if } u \neq v, \\
-\max  \left\{ \delta( \mu(v'),  \textsf{col \right\}(v)) : (v,v') \in E} & \text{ if } u = v \in  V_\mathrm{Eve}, \\
-\min  \left\{ \delta( \mu(v'),  \textsf{col \right\}(v)) : (v,v') \in E} & \text{ if } u = v \in  V_\mathrm{Adam}.
+\max  \left\{ \delta( \mu(v'),  \mathfrak{c \right\}(v)) : (v,v') \in E} & \text{ if } u = v \in  V_\mathrm{Eve}, \\
+\min  \left\{ \delta( \mu(v'),  \mathfrak{c \right\}(v)) : (v,v') \in E} & \text{ if } u = v \in  V_\mathrm{Adam}.
 \end{cases}
 $$
 
@@ -204,8 +201,8 @@ $$
  \mathbb{O}_v(\mu)(u) = 
 \begin{cases}
 \mu(v) & \text{ if } u \neq v, \\
-\max  \left\{ \delta( \mu(v'),  \textsf{col \right\}(v)) : (v,v') \in E} & \text{ if } u = v \in  V_\mathrm{Eve}, \\
-\min  \left\{ \delta( \mu(v'),  \textsf{col \right\}(v)) : (v,v') \in E} & \text{ if } u = v \in  V_\mathrm{Adam}.
+\max  \left\{ \delta( \mu(v'),  \mathfrak{c \right\}(v)) : (v,v') \in E} & \text{ if } u = v \in  V_\mathrm{Eve}, \\
+\min  \left\{ \delta( \mu(v'),  \mathfrak{c \right\}(v)) : (v,v') \in E} & \text{ if } u = v \in  V_\mathrm{Adam}.
 \end{cases}
 $$
 

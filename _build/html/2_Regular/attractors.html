@@ -705,12 +705,11 @@
   <div class="section" id="reachability-games">
 <span id="sec-attractors"></span><h1>Reachability games<a class="headerlink" href="#reachability-games" title="Permalink to this headline">¶</a></h1>
 <div class="math notranslate nohighlight">
-\[\renewcommand{\Game}{\game}
-\]</div>
+\[\]</div>
 <p>Recall that the objective <span class="math notranslate nohighlight">\(\mathtt{Reach}\)</span> requires that the colour <span class="math notranslate nohighlight">\(\textrm{Win}\)</span> appears at least once and
 <span class="math notranslate nohighlight">\(\mathtt{Safe}\)</span> requires the the colour <span class="math notranslate nohighlight">\(\textrm{Lose}\)</span> never appears.
-We identify the colour <span class="math notranslate nohighlight">\(\textrm{Win}\)</span> with <span class="math notranslate nohighlight">\(\textsf{col}^{-1}( \textrm{Win})\)</span> the set of vertices labelled <span class="math notranslate nohighlight">\(\textrm{Win}\)</span>,
-so we write <span class="math notranslate nohighlight">\(v \in  \textrm{Win}\)</span> when <span class="math notranslate nohighlight">\(\textsf{col}(v) =  \textrm{Win}\)</span>, and similarly for <span class="math notranslate nohighlight">\(\textrm{Lose}\)</span>.</p>
+We identify the colour <span class="math notranslate nohighlight">\(\textrm{Win}\)</span> with <span class="math notranslate nohighlight">\(\mathfrak{c}^{-1}( \textrm{Win})\)</span> the set of vertices labelled <span class="math notranslate nohighlight">\(\textrm{Win}\)</span>,
+so we write <span class="math notranslate nohighlight">\(v \in  \textrm{Win}\)</span> when <span class="math notranslate nohighlight">\(\mathfrak{c}(v) =  \textrm{Win}\)</span>, and similarly for <span class="math notranslate nohighlight">\(\textrm{Lose}\)</span>.</p>
 <div class="proof theorem admonition" id="2-thm:reachability">
 <p class="admonition-title"><span class="caption-number">Theorem 39 </span> (Positional determinacy and complexity of reachability games)</p>
 <div class="theorem-content section" id="proof-content">
@@ -726,7 +725,7 @@ The complexity would be slightly different in the Turing model: an additional <s
 <p>In the litterature the complexity <span class="math notranslate nohighlight">\(O(n + m)\)</span> is often reported for solving reachability games.
 Since we make the assumption that every vertex has an outgoing edge this implies that <span class="math notranslate nohighlight">\(n \le m\)</span>, so <span class="math notranslate nohighlight">\(O(n + m) = O(m)\)</span>.</p>
 <p>Towards proving <a class="reference internal" href="#2-thm:reachability">Theorem 39</a> let us introduce some notations.
-Let us consider a reachability game <span class="math notranslate nohighlight">\(\Game = ( \mathcal{A},  \mathtt{Reach}[ \textsf{col}])\)</span>.
+Let us consider a reachability game <span class="math notranslate nohighlight">\(\mathcal{G} = ( \mathcal{A},  \mathtt{Reach}[ \mathfrak{c}])\)</span>.
 For a subset <span class="math notranslate nohighlight">\(F \subseteq V\)</span>, we let <span class="math notranslate nohighlight">\(\textrm{Pre}_\mathrm{Eve}(F) \subseteq V\)</span> the set of vertices from which Eve can ensure
 that the next vertex is in <span class="math notranslate nohighlight">\(F\)</span>:</p>
 <div class="math notranslate nohighlight">
@@ -746,18 +745,21 @@ if <span class="math notranslate nohighlight">\(F \subseteq F'\)</span> then <sp
 Hence <a class="reference internal" href="../1_Introduction/fixed_points.html#1-thm:kleene">Theorem 26</a> applies: this operator has a least fixed point
 which we call the attractor of <span class="math notranslate nohighlight">\(\textrm{Win}\)</span> for Eve and write <span class="math notranslate nohighlight">\(\textrm{Attr}_\mathrm{Eve}( \textrm{Win})\)</span>,
 and it is computed by the following sequence: we let <span class="math notranslate nohighlight">\(\textrm{Attr}_\mathrm{Eve}^0( \textrm{Win}) =  \textrm{Win}\)</span> and</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>For technical convenience we shift the sequence by one, ignoring the first term which is the empty set</p>
+</div>
 <div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}
- \textrm{Attr}_\mathrm{Eve}^{k+1}( \textrm{Win}) =  \textrm{Attr}_\mathrm{Eve}^{k}( \textrm{Win})\ \cup\  \textrm{Pre}_\mathrm{Eve}( \textrm{Attr}_\mathrm{Eve}^{k}( \textrm{Win})).\\```{margin}
-For technical convenience we shift the sequence by one, ignoring the first term which is the empty set
-```\end{aligned}\end{align} \]</div>
+\[
+ \textrm{Attr}_\mathrm{Eve}^{k+1}( \textrm{Win}) =  \textrm{Attr}_\mathrm{Eve}^{k}( \textrm{Win})\ \cup\  \textrm{Pre}_\mathrm{Eve}( \textrm{Attr}_\mathrm{Eve}^{k}( \textrm{Win})).
+\]</div>
 <p>This constructs a sequence <span class="math notranslate nohighlight">\(( \textrm{Attr}_\mathrm{Eve}^{k}( \textrm{Win}))_{k \in  \mathbb{N}}\)</span> of non-decreasing subsets of <span class="math notranslate nohighlight">\(V\)</span>.
 If the game is finite and <span class="math notranslate nohighlight">\(n\)</span> is the number of vertices,
 the sequence stabilises after at most <span class="math notranslate nohighlight">\(n-1\)</span> steps, <strong>i.e.</strong> <span class="math notranslate nohighlight">\(\textrm{Attr}_\mathrm{Eve}^{n-1}( \textrm{Win}) =  \textrm{Attr}_\mathrm{Eve}^{n}( \textrm{Win}) =  \textrm{Attr}_\mathrm{Eve}( \textrm{Win})\)</span>.</p>
 <p>Let us drop the finiteness assumption: if the game is infinite but has finite outdegree, meaning that for any vertex there is a finite number of outgoing edges, then the operator above preserves suprema so thanks to <a class="reference internal" href="../1_Introduction/fixed_points.html#1-thm:kleene">Theorem 26</a>
 we have <span class="math notranslate nohighlight">\(\textrm{Attr}_\mathrm{Eve}( \textrm{Win}) = \bigcup_{k \in  \mathbb{N}}  \textrm{Attr}_\mathrm{Eve}^k( \textrm{Win})\)</span>.
 In full generality the operator does not preserve suprema and the use of ordinals is necessary:
-we define the sequence <span class="math notranslate nohighlight">\(( \textrm{Attr}_\mathrm{Eve}^{\alpha}( \textrm{Win}))\)</span> indexed by ordinals up to the cardinal of <span class="math notranslate nohighlight">\(\Game\)</span>,
+we define the sequence <span class="math notranslate nohighlight">\(( \textrm{Attr}_\mathrm{Eve}^{\alpha}( \textrm{Win}))\)</span> indexed by ordinals up to the cardinal of <span class="math notranslate nohighlight">\(\mathcal{G}\)</span>,
 the case of a limit ordinal <span class="math notranslate nohighlight">\(\alpha\)</span> being <span class="math notranslate nohighlight">\(\textrm{Attr}_\mathrm{Eve}^{\alpha}( \textrm{Win}) = \bigcup_{\beta &lt; \alpha}  \textrm{Attr}_\mathrm{Eve}^{\beta}( \textrm{Win})\)</span>.
 We then show that <span class="math notranslate nohighlight">\(\textrm{Attr}_\mathrm{Eve}( \textrm{Win})\)</span> is the union of all elements in this sequence.</p>
 <p>We do not elaborate further this most general case but note that the overhead is mostly technical, the proof below of <a class="reference internal" href="#2-lem:reachability">Lemma 40</a> can be adapted with little changes using a transfinite induction.</p>
@@ -834,7 +836,7 @@ The invariant of the algorithm satisfied before each iteration of the repeat loo
 \[
 S \subseteq A \text{ and }  \textrm{Attr}_\mathrm{Eve}^ \mathcal{G}( \textrm{Win}) = A \cup  \textrm{Attr}_\mathrm{Eve}^{ \mathcal{G}_t}(S).
 \]</div>
-<p>The invariant is satisfied initially because <span class="math notranslate nohighlight">\(A = S =  \textrm{Win}\)</span> and <span class="math notranslate nohighlight">\(\Game_t = \Game\)</span>.
+<p>The invariant is satisfied initially because <span class="math notranslate nohighlight">\(A = S =  \textrm{Win}\)</span> and <span class="math notranslate nohighlight">\(\mathcal{G}_t =   \mathcal{G}\)</span>.
 To show that it is preserved by one iteration of the repeat loop, let us assume that we choose and remove <span class="math notranslate nohighlight">\(v'\)</span> from <span class="math notranslate nohighlight">\(S\)</span>.
 Let us write <span class="math notranslate nohighlight">\(\mathcal{G}_{\text{before}}\)</span> for the game before considering <span class="math notranslate nohighlight">\(v'\)</span>, and <span class="math notranslate nohighlight">\(\mathcal{G}_{\text{after}}\)</span> for the game after considering <span class="math notranslate nohighlight">\(v'\)</span>:
 all incoming edges to <span class="math notranslate nohighlight">\(v'\)</span> have been removed in <span class="math notranslate nohighlight">\(\mathcal{G}_{\text{after}}\)</span>.
@@ -859,7 +861,7 @@ The same algorithm analysed in the Turing model of computation would have an add
 <div class="proof lemma admonition" id="2-lem:attractors_trap">
 <p class="admonition-title"><span class="caption-number">Lemma 42 </span> (Attractors induce traps)</p>
 <div class="lemma-content section" id="proof-content">
-<p>Let <span class="math notranslate nohighlight">\(\Game\)</span> a game and <span class="math notranslate nohighlight">\(F \subseteq V\)</span> a subset of edges.
+<p>Let <span class="math notranslate nohighlight">\(\mathcal{G}\)</span> a game and <span class="math notranslate nohighlight">\(F \subseteq V\)</span> a subset of edges.
 Then <span class="math notranslate nohighlight">\(V \setminus  \textrm{Attr}_\mathrm{Eve}(F)\)</span> is a trap for Eve and symmetrically <span class="math notranslate nohighlight">\(V \setminus  \textrm{Attr}_\mathrm{Adam}(F)\)</span> is a trap for Adam.</p>
 </div>
 </div></div>

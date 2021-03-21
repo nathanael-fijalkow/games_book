@@ -3,8 +3,6 @@
 
 ```{math}
 
-\renewcommand{\Game}{\game}
-
 ```
 
 As shown in the previous section, the optimal solution of any of the programs $\mathcal{L}_{\mathit{mp}}$, $\mathcal{L}_{\mathit{mp}}^{\mathit{dual}}$ gives us an upper bound on the optimal value. In this sub-section we show that in strongly connected MDPs: a) a value of every vertex is the same; b) from a solution of $\mathcal{L}_{\mathit{mp}}$ one can extract a memoryless deterministic strategy $\sigma$ whose expected mean-payoff is well defined (i.e., the preconditions of {prf:ref}`5-lem:limit-defined` are satisfied)) and equal to the objective value of the solution. Moreover, if the solution in question is optimal, then $ \sigma $ is optimal for both $\textsf{p-Payoff}$- and $\textsf{s-Payoff}$-semantics.
@@ -93,7 +91,7 @@ The set $S$ can be partitioned into subsets $S_1, S_2,\dots, S_m$ such that each
 ````{admonition} Proof
 :class: dropdown tip
 
-Let $v\in S$ be arbitrary and let $U_v\subseteq  S$ be the set of all vertices reachable with positive probability from $v$ in $\mathcal{M}_{ S}^{\sigma}$. Then $v$ is reachable (in $\mathcal{M}_{ S}^{\sigma}$) with positive probability from each $u\in U_v$: otherwise, there would be a positive probability of never revisiting $v$, a contradiction with each vertex being recurrent in $\mathcal{M}_{ S}^{\sigma}$ ({prf:ref}`5-lem:mc-rec`). Hence, $U_v$ induces a strongly connected sub-MDP (or sub-chain) of $\mathcal{M}_{ S}^{\sigma}$. It is easy to show that if $U_v \neq U_w$ for some $v\neq w $, then the two sets must be disjoint.
+Let $v\in S$ be arbitrary and let $U_v\subseteq  S$ be the set of all vertices reachable with positive probability from $v$ in $\mathcal{M}_{ S}^{\sigma}$. Then $v$ is reachable (in $\mathcal{M}_{ S}^{\sigma}$) with positive probability from each $u\in U_v$: otherwise, there would be a positive probability of never revisiting $v$, a contradiction with each vertex being recurrent in $\mathcal{M}_{ S}^{\sigma}$ ({prf:ref}`5-lem:mc-rec`). Hence, $U_v$ induces a strongly connected `sub-MDP' (or sub-chain) of $\mathcal{M}_{ S}^{\sigma}$. It is easy to show that if $U_v \neq U_w$ for some $v\neq w $, then the two sets must be disjoint.
 
 ````
 
@@ -139,7 +137,7 @@ $$
 
 $$ (5-eq:mc-opt-limit)
 
-It remains to take a step from the left-hand side of {eq}`5-eq:ergodic-use` towards the mean payoff. To this end, we construct a new Markov chain $\mathcal{M}_Q'$ from $\mathcal{M}_Q$ by splitting every edge $(u,v)$ with a new dummy vertex $d_{u,v}$ (i.e., $d_{u,v}$ has one edge incoming from $u$ with probability $P_{u,v}$ and one edge outgoing to $v$ with probability $1$). In $\mathcal{M}_Q'$ we define a vector $\vec{h}'$ s.t. for each vertex $d_{u,v}$ the vector $ \vec{h}' $ has the $ d_{u,v} $-component equal to $c(u,v)$, while the components corresponding to the original vertices are zero. It is easy to check that $\mathcal{M}_Q'$  is strongly connected and that it has an invariant distribution $\vec{z}'$ defined by $\vec{z}'_v= \vec{z}_v/2$ for $v$ in $Q$ and $\vec{z}'_{d_{u,v}}=\frac{ \vec{z}_u\cdot P_{u,v}}{2}$ for $(u,v)$ an edge of $\mathcal{M}_Q$.
+It remains to take a step from the left-hand side of {eq}`5-eq:ergodic-use` towards the mean payoff. To this end, we construct a new Markov chain $\mathcal{M}_Q'$ from $\mathcal{M}_Q$ by `splitting' every edge $(u,v)$ with a new dummy vertex $d_{u,v}$ (i.e., $d_{u,v}$ has one edge incoming from $u$ with probability $P_{u,v}$ and one edge outgoing to $v$ with probability $1$). In $\mathcal{M}_Q'$ we define a vector $\vec{h}'$ s.t. for each vertex $d_{u,v}$ the vector $ \vec{h}' $ has the $ d_{u,v} $-component equal to $c(u,v)$, while the components corresponding to the original vertices are zero. It is easy to check that $\mathcal{M}_Q'$  is strongly connected and that it has an invariant distribution $\vec{z}'$ defined by $\vec{z}'_v= \vec{z}_v/2$ for $v$ in $Q$ and $\vec{z}'_{d_{u,v}}=\frac{ \vec{z}_u\cdot P_{u,v}}{2}$ for $(u,v)$ an edge of $\mathcal{M}_Q$.
 Also, by easy induction, for each play $\pi$ of length $n$ in $\mathcal{M}_Q$ it holds $\frac{1}{n}\sum_{i=0}^{n-1} c( \pi_i) = \frac{1}{n}\sum_{i=0}^{2n-1}\vec{h}'_{ \textrm{In}( \pi_i')}$, where $\pi'$ is the unique play in $\mathcal{M}_Q'$ obtained from $\pi$ by splitting edges with appropriate dummy vertices. Hence, 
 
 $$
@@ -253,7 +251,7 @@ Assume that a linear program in a standard form has two basic feasible solutions
 :class: dropdown tip
 
 Write $A\cdot \vec{x} = \vec{b}$ the equational constraints of the LP.
-If $\vec{x}$ is a basic feasible solution, then it solves the equation $A_{N} \cdot \vec{x}_N = \vec{b}$, where $A_N$ ($  N$ stands for non-zero) is obtained from $A$ by removing all columns corresponding to zero components of $\vec{x}$, and   $\vec{x}_N$ is obtained from $\vec{x}$ by removing all zero components. 
+If $\vec{x}$ is a basic feasible solution, then it solves the equation $A_{N} \cdot \vec{x}_N = \vec{b}$, where $A_N$ ($  N$ stands for `non-zero') is obtained from $A$ by removing all columns corresponding to zero components of $\vec{x}$, and   $\vec{x}_N$ is obtained from $\vec{x}$ by removing all zero components. 
 
 Since $\vec{x}$ has as many non-zero components as there are rows of $A$, it follows that $A_N$ is a square matrix. Since $\vec{x}$ is a basic solution, $A_N$ is regular (its columns are linearly independent) and $\vec{x}=A_{N}^{-1}\cdot \vec{b}$ is uniquely determined by $A_N$. Repeating the same argument for $\vec{x}'$ yields $\vec{x}'=A_{N}^{-1}\cdot \vec{b}= \vec{x}$.
 

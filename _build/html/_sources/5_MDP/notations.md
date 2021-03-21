@@ -3,8 +3,6 @@
 
 ```{math}
 
-\renewcommand{\Game}{\game}
-
 ```
 
 We write vectors in boldface: $ \vec{x}, \vec{y}, $ etc. For a vector $ \vec{x} $ indexed by a set $ I $ (i.e. $ \vec{x}\in \mathbb{R}^I $) we denote by $ \vec{x}_i $ the value of the component whose index is  $i\in I  $. 
@@ -66,11 +64,11 @@ In the setting of MDPs it is technically convenient to encode regular objectives
 
 > **Plays and strategies in MDPs**
 
- The way in which a play is generated in an MDP is similar to games, but now encompasses a certain degree of randomness. There is a single player, say Eve, who controls all the vertices. Eve's interaction with the world described by an MDP is probabilistic. One reason is the stochasticity of the transition function, the other is the fact that in MDP settings, it is usually permitted for Eve to use randomised strategies. Formally, a randomised strategy is a function $\sigma : E^* \to  \mathcal{D}(A)$, which to each finite play assigns a probability distribution over actions. 
+ The way in which a play is generated in an MDP is similar to games, but now encompasses a certain degree of randomness. There is a single player, say Eve, who controls all the vertices. Eve's interaction with the `world' described by an MDP is probabilistic. One reason is the stochasticity of the transition function, the other is the fact that in MDP settings, it is usually permitted for Eve to use randomised strategies. Formally, a randomised strategy is a function $\sigma : E^* \to  \mathcal{D}(A)$, which to each finite play assigns a probability distribution over actions. 
 
  We typically shorten $\sigma( \pi)(a)$ to $\sigma(a\mid  \pi)$.
 
-In this section, we will refer to randomised strategies simply as strategies. The strategies known from the game setting will be called  deterministic strategies. Formally, a deterministic strategy can be viewed as a special type of a randomised strategy which always selects a Dirac distribution over the edges. We shorten memoryless randomised/deterministic to MR and MD, respectively.
+In this section, we will refer to randomised strategies simply as `strategies.' The strategies known from the game setting will be called  deterministic strategies. Formally, a deterministic strategy can be viewed as a special type of a randomised strategy which always selects a Dirac distribution over the edges. We shorten `memoryless randomised/deterministic' to MR and MD, respectively.
 
 Now a play in an MDP is produced as follows: in each step, when the finite play produced so far (i.e. the history of the game token's movement) is $\pi$, Eve chooses an action $a$ randomly according to the distribution $\sigma( \pi)$. Then, an edge outgoing from $\textrm{last}( \pi)$ is chosen randomly according to $\Delta( \textrm{last}( \pi),a)$ and the token is pushed along the selected edge. As shown below, this intuitive process can be formalized by constructing a special probability space whose sample space consists of infinite plays in the MDP.
 
@@ -134,7 +132,7 @@ sigma-algebra $\mathcal{F}_{ \mathcal{M}}$, and their probabilities can be infer
 basic probabilistic reasoning. Nevertheless, one should keep in mind that all the 
 probabilistic argumentation rests on solid formal grounds.
 
-In the standard MDP literature {cite}`Puterman:2005`, the plays are often defined as alternating sequence of vertices and actions. Here we stick to the edge-based definition inherited from deterministic games. Still, we would sometimes like to speak about quantities such as probability that action $a$ is taken in step $i$. To this end, we introduce, for each strategy $\sigma$, each action $a$,  and each $i\geq 0$,  a random variable $\actevent{\sigma}{a}{i}$ such that $\actevent{\sigma}{a}{i}( \pi)=\sigma( \pi_{< i})(a)$. It is easy to check that  $\mathbb{E}^\sigma_v[\actevent{\sigma}{a}{i}]$ is the probability that action $a$ is played in step $i$ when using strategy $\sigma$.
+In the standard MDP literature {cite}`Puterman:2005`, the plays are often defined as alternating sequence of vertices and actions. Here we stick to the edge-based definition inherited from deterministic games. Still, we would sometimes like to speak about quantities such as `probability that action $a$ is taken in step $i$.' To this end, we introduce, for each strategy $\sigma$, each action $a$,  and each $i\geq 0$,  a random variable $A^{\sigma}_{a,i}$ such that $A^{\sigma}_{a,i}( \pi)=\sigma( \pi_{< i})(a)$. It is easy to check that  $\mathbb{E}^\sigma_v[  A^{\sigma}_{a,i}]$ is the probability that action $a$ is played in step $i$ when using strategy $\sigma$.
 
 > **Objectives in MDPs**
 
@@ -160,7 +158,7 @@ In line with previous conventions, we
 stipulate that Eve aims to maximize this probability. 
 
 The situation is more complex for quantitative objectives. As shown in the previous chapter, 
-when working with quantitative objectives, the set of colours $C$ is typically the set of real numbers (or a subset thereof), and the quantitative objective is given by an aggregating function $f\colon  C^\omega \rightarrow  \mathbb{R}$, which can be extended into a function $\bar{ f}\colon  E^\omega \rightarrow  \mathbb{R} $ by putting $  \bar{ f}( \pi) =  f(  c( \pi_0) c( \pi_1)\cdots) $.
+when working with quantitative objectives, the set of colours $C$ is typically the set of real numbers (or a subset thereof), and the quantitative objective is given by an `aggregating function' $f\colon  C^\omega \rightarrow  \mathbb{R}$, which can be extended into a function $\bar{ f}\colon  E^\omega \rightarrow  \mathbb{R} $ by putting $  \bar{ f}( \pi) =  f(  c( \pi_0) c( \pi_1)\cdots) $.
 
 In the MDP setting, we 
 require that $\bar{ f}$ is $\mathcal{F}_{ \mathcal{M}}$-measurable, which 
@@ -193,5 +191,5 @@ We say that a strategy $\sigma$ is $\varepsilon$-optimal in $v$, for some $\vare
 
 For qualitative objectives, there are additional modes of objective satisfaction. Given such an objective $\Omega$, we say that a strategy $\sigma$ is almost-surely winning from $v$ if $\mathbb{E}^{\sigma}_{ \mathcal{M},v}[ \mathbf{1}_{ \Omega}]=1$, i.e. if the run produced by $\sigma$ falls into $\Omega$ with probability $1$. We also say that $\sigma$ is positively winning from $ v $ if $\mathbb{E}^{\sigma}_{ \mathcal{M},v}[ \mathbf{1}_{ \Omega}]>0$. For strategies that are winning in the non-stochastic game sense, i.e. that **cannot** produce a run not belonging to $\Omega$, are usually called surely winning to distinguish them from the above concepts. We denote by $W_{>0}( \mathcal{M}, \Omega)$ and $W_{=1}( \mathcal{M}, \Omega)$ the sets of all vertices of $\mathcal{M}$ from which there exists a positively or almost-surely winning strategy for the objective $\Omega$, respectively.
 
-The problems pertaining to the existence of almost-surely or positively winning strategy are often called **qualitative problems** in the MDP literature, while the notion **quantitative problems** covers the general notion of optimizing the expectation of some random variable. We do not use such a nomenclature here so as to avoid confusion with qualitative vs. quantitative objectives as defined in Chapter {ref}`1-chap:introduction`. Instead, we will refer directly to, e.g. almost-sure reachability while using the term optimal reachability to refer to the expectation-maximization problem.
+The problems pertaining to the existence of almost-surely or positively winning strategy are often called **qualitative problems** in the MDP literature, while the notion **quantitative problems** covers the general notion of optimizing the expectation of some random variable. We do not use such a nomenclature here so as to avoid confusion with qualitative vs. quantitative objectives as defined in Chapter {ref}`1-chap:introduction`. Instead, we will refer directly to, e.g. `almost-sure reachability' while using the term `optimal reachability' to refer to the expectation-maximization problem.
 

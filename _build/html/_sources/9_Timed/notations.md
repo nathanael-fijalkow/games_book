@@ -3,8 +3,6 @@
 
 ```{math}
 
-\renewcommand{\Game}{\game}
-
 ```
 
 We fix a finite set $\mathcal{C}$ of clock variables to be used
@@ -114,12 +112,12 @@ the natural way.
 
 Contrary to Chapter {ref}`7-chap:concurrent`, in this chapter we only consider deterministic strategies
 
-  As a result, timed games are not
-determined, as illustrated in the following example.
-
 ```{margin}
 Adding randomization over the infinite sets of actions is beyond the scope of this chapter.
 ```
+
+  As a result, timed games are not
+determined, as illustrated in the following example.
 
 ```{figure} ./../FigAndAlgos/9-fig:ta2.png
 :name: 9-fig:ta2
@@ -159,9 +157,7 @@ In this chapter, the main problem we are interested in is determining
 whether Eve has a strategy for her reachability objective.
 Let $\vec{0}$ denote the clock valuation assigning $0$ to all clocks.
 
-**INPUT**: A timed arena $\mathcal{T}$, initial location $\ell_0$, and a reachability objective $\mathtt{Reach}( \textrm{Win})$
-
-**QUESTION**: Does Eve has a winning strategy in $( \mathcal{T}, \mathtt{Reach}( \textrm{Win}))$ from configuration $(\ell_0,\vec{0})$.
+\decpb{Solving a timed reachability game}{A timed arena $\mathcal{T}$, initial location $\ell_0$, and a reachability objective $\mathtt{Reach}( \textrm{Win})$}{Does Eve has a winning strategy in $( \mathcal{T}, \mathtt{Reach}( \textrm{Win}))$ from configuration $(\ell_0,\vec{0})$.}
 
 The difficulty of this problem is that the concurrent
 game $((V,E),\Delta,\Omega)$ has an infinite state-space, and players

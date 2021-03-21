@@ -3,8 +3,6 @@
 
 ```{math}
 
-\renewcommand{\Game}{\game}
-
 ```
 
 Yet another interesting quantitative objective---that is closely
@@ -154,7 +152,7 @@ costs---resulting in a pseudopolynomial time algorithm {cite}`Brihaye&Geeraerts&
 
 ````{admonition} Proof
 :class: dropdown tip
-%[Sketch of proof]
+
   Let $\mathcal{A}$ be the arena of the total payoff game. Consider an
   arena $\mathcal{A}^k$ consisting of $k$ modified copies of $\mathcal{A}$ as
   well as a fresh target vertex $v_f$: in the $j$-th copy of $\mathcal{A}$

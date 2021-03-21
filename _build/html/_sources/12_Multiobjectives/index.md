@@ -12,11 +12,8 @@
 
 % Generic probability measure, also prob. measure operator
 
-\renewcommand{\Game}{\game}
-
 ```
 
-%\input{12_knowledge}
 
 Written by Mickael Randour
 

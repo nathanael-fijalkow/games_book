@@ -3,8 +3,6 @@
 
 ```{math}
 
-\renewcommand{\Game}{\game}
-
 ```
 
 Recall that the objective $\mathtt{Buchi}$ requires that the colour $\textrm{Win}$ appears infinitely many times
@@ -34,12 +32,12 @@ The following lemma implies {prf:ref}`2-thm:Buchi`.
 ````{prf:lemma} Fixed point characterisation of the winning region for Buchi games
 :label: 2-lem:Buchi_second
 
-Let $\Game$ be a B&uuml;chi game.
+Let $\mathcal{G}$ be a B&uuml;chi game.
 
-*  If $\textrm{Attr}_\mathrm{Eve}( \textrm{Win}) = V$, then $W_\mathrm{Eve}(\Game) = V$.
+*  If $\textrm{Attr}_\mathrm{Eve}( \textrm{Win}) = V$, then $W_\mathrm{Eve}(  \mathcal{G}) = V$.
 *  If $\textrm{Attr}_\mathrm{Eve}( \textrm{Win}) \neq V$, 
-let $\Game'$ be the subgame of $\Game$ induced by $V \setminus  \textrm{Attr}_\mathrm{Adam}( V \setminus  \textrm{Attr}_\mathrm{Eve}( \textrm{Win}) )$,
-then $W_\mathrm{Eve}(\Game) =  W_\mathrm{Eve}(\Game')$.
+let $\mathcal{G}'$ be the subgame of $\mathcal{G}$ induced by $V \setminus  \textrm{Attr}_\mathrm{Adam}( V \setminus  \textrm{Attr}_\mathrm{Eve}( \textrm{Win}) )$,
+then $W_\mathrm{Eve}(  \mathcal{G}) =  W_\mathrm{Eve}(  \mathcal{G}')$.
 
 ````
 
@@ -68,7 +66,7 @@ Thus $\sigma$ is winning from $V$.
 
 We now look at the second item.
 
-We first prove that $\textrm{Attr}_\mathrm{Adam}(V \setminus  \textrm{Attr}_\mathrm{Eve}( \textrm{Win})) \subseteq  W_\mathrm{Adam}(\Game)$.
+We first prove that $\textrm{Attr}_\mathrm{Adam}(V \setminus  \textrm{Attr}_\mathrm{Eve}( \textrm{Win})) \subseteq  W_\mathrm{Adam}(  \mathcal{G})$.
 Let $\tau_a$ denote an attractor strategy ensuring to reach $V \setminus  \textrm{Attr}_\mathrm{Eve}( \textrm{Win})$ from $\textrm{Attr}_\mathrm{Adam}(V \setminus  \textrm{Attr}_\mathrm{Eve}( \textrm{Win}))$,
 and $\tau_c$ a counter-attractor strategy ensuring to stay in $V \setminus  \textrm{Attr}_\mathrm{Eve}( \textrm{Win})$ hence in never to reach $\textrm{Win}$.
 We construct the strategy $\tau$ as the disjoint union of $\tau_a$ and $\tau_c$:
@@ -86,13 +84,13 @@ Any play consistent with $\tau$ is first consistent with $\tau_a$ until reaching
 then is consistent with $\tau_c$ and stays there forever.
 In this second phase it in particular does not visit $\textrm{Win}$, 
 implying that the play visits $\textrm{Win}$ finitely many times, so it is winning.
-Thus we have proved that $\textrm{Attr}_\mathrm{Adam}(V \setminus  \textrm{Attr}_\mathrm{Eve}( \textrm{Win})) \subseteq  W_\mathrm{Adam}(\Game)$,
-implying $W_\mathrm{Eve}(\Game) \subseteq V \setminus  \textrm{Attr}_\mathrm{Adam}(V \setminus  \textrm{Attr}_\mathrm{Eve}( \textrm{Win}))$.
+Thus we have proved that $\textrm{Attr}_\mathrm{Adam}(V \setminus  \textrm{Attr}_\mathrm{Eve}( \textrm{Win})) \subseteq  W_\mathrm{Adam}(  \mathcal{G})$,
+implying $W_\mathrm{Eve}(  \mathcal{G}) \subseteq V \setminus  \textrm{Attr}_\mathrm{Adam}(V \setminus  \textrm{Attr}_\mathrm{Eve}( \textrm{Win}))$.
 
-We now show that $W_\mathrm{Eve}(\Game') \subseteq  W_\mathrm{Eve}(\Game)$, which implies the converse inclusion.
-Consider a winning strategy from $W_\mathrm{Eve}(\Game')$ in $\Game'$, it induces a strategy $\sigma$ in $\Game$.
-Since $\Game'$ is a trap for Adam, any play consistent with $\sigma$ stays forever in $W_\mathrm{Eve}(\Game')$, 
-implying that $\sigma$ is winning from $W_\mathrm{Eve}(\Game')$ in $\Game$.
+We now show that $W_\mathrm{Eve}(  \mathcal{G}') \subseteq  W_\mathrm{Eve}(  \mathcal{G})$, which implies the converse inclusion.
+Consider a winning strategy from $W_\mathrm{Eve}(  \mathcal{G}')$ in $\mathcal{G}'$, it induces a strategy $\sigma$ in $\mathcal{G}$.
+Since $\mathcal{G}'$ is a trap for Adam, any play consistent with $\sigma$ stays forever in $W_\mathrm{Eve}(  \mathcal{G}')$, 
+implying that $\sigma$ is winning from $W_\mathrm{Eve}(  \mathcal{G}')$ in $\mathcal{G}$.
 
 ````
 
@@ -103,7 +101,7 @@ and each of them involves two attractor computations, implying the time complexi
 ```{figure} ./../FigAndAlgos/2-algo:Buchi_first.png
 :name: 2-algo:Buchi_first
 :align: center
-The first quadratic time algorithm for solving B{\"uchi} games.
+The first quadratic time algorithm for solving B{\uchi} games.
 ```
 
 ## A second algorithm
@@ -196,7 +194,7 @@ implying that it satisfies $\mathtt{CoBuchi}[ \textrm{Win}]$.
 ```{figure} ./../FigAndAlgos/2-algo:Buchi_second.png
 :name: 2-algo:Buchi_second
 :align: center
-The second quadratic time algorithm for solving B{\"uchi} games.
+The second quadratic time algorithm for solving B{\uchi} games.
 ```
 
 ````{prf:remark} NEEDS TITLE AND LABEL 

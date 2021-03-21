@@ -3,8 +3,6 @@
 
 ```{math}
 
-\renewcommand{\Game}{\game}
-
 ```
 
 A matrix game is a game defined from a $(R\times C)$-matrix $M$  of numbers for some $R,C$.

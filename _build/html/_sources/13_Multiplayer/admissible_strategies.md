@@ -17,8 +17,6 @@
 \def\devg{\textsf{DevGame}}
 \def\Coalition{\mathcal{C}}
 
-\renewcommand{\Game}{\game}
-
 ```
 
 Nash equilibria and their variants seen so far describe stable situations

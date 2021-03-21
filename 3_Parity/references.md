@@ -3,10 +3,6 @@
 
 ```{math}
 
-\renewcommand{\H}{\mathcal{H}}
-
-\renewcommand{\Game}{\game}
-
 ```
 
 We refer to Section {ref}`2-sec:references` for the role of parity objectives and how they emerged in automata theory as a subclass of Muller objectives.
@@ -26,7 +22,7 @@ Both the proofs of Emerson and Jutla {cite}`Emerson&Jutla:1991` and of Walukiewi
 
 Jurdzi&#324;ski {cite}`Jurdzinski:2000` used this notion to give the first value iteration algorithm for parity games, 
 with running time $O(m n^{d/2})$.
-The algorithm is called small progress measures and is an instance of the class of value iteration algorithms we construct 
+The algorithm is called `small progress measures' and is an instance of the class of value iteration algorithms we construct 
 in Section {ref}`3-sec:value_iteration` by considering the universal tree of size $n^h$.
 Bernet, Janin, and Walukiewicz {cite}`Bernet&Janin&Walukiewicz:2002` investigated reductions from parity games to safety games
 through the notion of permissive strategies, and constructed a separating automaton corresponding to the universal tree of size $n^h$.
@@ -40,7 +36,7 @@ Our presentation follows the technical developments of the subsequent paper by F
 Boja&#324;czyk and Czerwi&#324;ski {cite}`Bojanczyk&Czerwinski:2018` introduce the separation framework to better understand the original algorithm.
 
 Soon after two other quasipolynomial time algorithms emerged.
-Jurdzi&#324;ski and Lazi{\'c} {cite}`Jurdzinski&Lazic:2017` showed that the small progress measure algorithm can be adapted to a succinct progress measure algorithm, matching (and slightly improving) the quasipolynomial time complexity.
+Jurdzi&#324;ski and Lazi{\'c} {cite}`Jurdzinski&Lazic:2017` showed that the small progress measure algorithm can be adapted to a `succinct progress measure' algorithm, matching (and slightly improving) the quasipolynomial time complexity.
 The presentation using universal tree that we follow in Section {ref}`3-sec:value_iteration` and an almost matching lower bound on their sizes is due to Fijalkow {cite}`Fijalkow:2018`.
 The connection between separating automata and universal trees was shown by Czerwi&#324;ski, Daviaud, Fijalkow, Jurdzi&#324;ski, Lazi{\'c}, and Parys {cite}`Czerwinski&Daviaud&al:2018`. 
 

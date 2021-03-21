@@ -3,8 +3,6 @@
 
 ```{math}
 
-\renewcommand{\Game}{\game}
-
 ```
 
 Value iteration algorithms manipulate value functions and never construct any strategy, at least explicitly.
@@ -19,7 +17,7 @@ This involves defining the notion of **switchable edge**:
 the edge $(v,u)$ is switchable if
 
 $$
-\delta(  \textrm{val}^{\sigma}(u), \textsf{col}(v)) > \delta(  \textrm{val}^{\sigma}(v'), \textsf{col}(v)) \text{ where } \sigma(v) = (v,v').
+\delta(  \textrm{val}^{\sigma}(u), \mathfrak{c}(v)) > \delta(  \textrm{val}^{\sigma}(v'), \mathfrak{c}(v)) \text{ where } \sigma(v) = (v,v').
 $$
 
 Intuitively: according to $\textrm{val}^{\sigma}$, playing $(v,u)$ is better than playing $\sigma(v)$.

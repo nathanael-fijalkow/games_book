@@ -289,28 +289,16 @@ We identify three computational problems.
 The first is that of ""solving a game"", which is the simplest one and since it induces a decision problem, allows us 
 to make complexity theoretic statements.
 
-\begin{svgraybox}
-For qualitative games, ``solving the game'' means solving the following decision problem:
-\vskip1em
-\decisionproblem{A "qualitative game" $\game$ and a vertex $v$}{Does Eve win $\game$ from $v$?}
-\end{svgraybox}
+\decpb{Solving the game}{A "qualitative game" $\game$ and a vertex $v$}{Does Eve win $\game$ from $v$?}
 
 The second problem extends the previous one: most algorithms solve games for all vertices at once instead of only for the given initial vertex.
 This is called ""computing the winning regions"".
 
-\begin{svgraybox}
-For qualitative games, ``computing the winning regions'' means solving the following computational task:
-\vskip1em
-\task{A "qualitative game" $\game$}{$\WE(\game)$ and $\WA(\game)$}
-\end{svgraybox}
+\decpb{Computing the winning regions}{A "qualitative game" $\game$}{$\WE(\game)$ and $\WA(\game)$}
 
 The third problem is ""constructing a winning strategy"".
 
-\begin{svgraybox}
-For qualitative games, ``constructing a winning strategy'' means solving the following computational task:
-\vskip1em
-\task{A "qualitative game" $\game$ and a vertex $v$}{A winning strategy for Eve from $v$}
-\end{svgraybox}
+\decpb{Constructing a winning strategy}{A "qualitative game" $\game$ and a vertex $v$}{A winning strategy for Eve from $v$}
 
 We did not specify how the winning regions or the winning strategies are represented, this will depend on the types of games we consider.
 
@@ -410,28 +398,19 @@ Note that this determinacy result does not imply the existence of optimal strate
 \subsection*{Computational problems for quantitative games}
 As for qualitative games, we identify different computational problems.
 The first is solving the game.
-\begin{svgraybox}
-For quantitative games, ``solving the game'' means solving the following decision problem:
-\vskip1em
-\decisionproblem{A "quantitative game" $\game$, a vertex $v$, and a threshold $x \in \Qinfty$}{Does Eve have a strategy ensuring $x$ from $v$?}
-\end{svgraybox}
+
+\decpb{Solving the game}{A "quantitative game" $\game$, a vertex $v$, and a threshold $x \in \Qinfty$}{Does Eve have a strategy ensuring $x$ from $v$?}
 
 A very close problem is the ""value problem"".
-\begin{svgraybox}
-For quantitative games, ``solving the value problem'' means solving the following decision problem:
-\vskip1em
-\decisionproblem{A "quantitative game" $\game$, a vertex $v$, and a threshold $x \in \Qinfty$}{Is it true that $\Value^{\game}(v) \ge x$?}
-\end{svgraybox}
+
+\decpb{Solving the value problem}{A "quantitative game" $\game$, a vertex $v$, and a threshold $x \in \Qinfty$}{Is it true that $\Value^{\game}(v) \ge x$?}
 
 The two problems of "solving a game" and the "value problem" are not quite equivalent: 
 they become equivalent if we assume the existence of optimal strategies.
 
 The "value problem" is directly related to ""computing the value"".
-\begin{svgraybox}
-For quantitative games, ``computing the value'' means solving the following computational task:
-\vskip1em
-\task{A "quantitative game" $\game$ and a vertex $v$}{$\Value^{\game}(v)$}
-\end{svgraybox}
+
+\decpb{Computing the value}{A "quantitative game" $\game$ and a vertex $v$}{$\Value^{\game}(v)$}
 
 What "computing the value" means may become unclear if the value is not a rational number, making its representation complicated.
 Especially in this case, it may be enough to approximate the value, which is indeed what the "value problem" gives us: 
@@ -446,18 +425,13 @@ using $\log(\frac{1}{\varepsilon})$ calls to the algorithm $A$.
 \end{lemma}
 
 The following problem is global, in the same way as "computing the winning regions".
-\begin{svgraybox}
-For quantitative games, ``computing the value function'' means solving the following computational task:
-\vskip1em
-\task{A "quantitative game" $\game$}{The value function $\Value^{\game} : V \to \Rinfty$}
-\end{svgraybox}
+
+\decpb{Computing the value function}{A "quantitative game" $\game$}{Output the value function $\Value^{\game} : V \to \Rinfty$}
 
 Finally, we are sometimes interested in constructing optimal strategies provided they exist.
-\begin{svgraybox}
-For quantitative games, ``constructing an optimal strategy'' means solving the following computational task:
-\vskip1em
-\task{A "quantitative game" $\game$ and a vertex $v$}{An optimal strategy from $v$}
-\end{svgraybox}
+
+\decpb{Constructing an optimal strategy}{A "quantitative game" $\game$ and a vertex $v$}{Output an optimal strategy from $v$}
+
 A close variant is to construct $\varepsilon$-optimal strategies, usually with $\varepsilon$ given as input.
 
 \subsection*{Prefix independent objectives}

@@ -3,8 +3,6 @@
 
 ```{math}
 
-\renewcommand{\Game}{\game}
-
 ```
 
 We start with some results on the very interesting class of game
@@ -145,12 +143,12 @@ $$
 $$
 
 The first line corresponds to Eve never raising,
-thus her odds are +1 euro at $25\%$ 
-and -1 at $75\%$ thus an expected payoff of
+thus her odds are +1 euro at $25\
+and -1 at $75\
 $-0.5$.
 The third line corresponds to Eve always raising.
-If Adam calls then her odds are +3 at $25\%$
-and -3 at $75\%$, on average $-1.5$.
+If Adam calls then her odds are +3 at $25\
+and -3 at $75\
 If Adam folds, she gets payoff +1.
 
 Remark that the rows where Eve checks with $\spadesuit$

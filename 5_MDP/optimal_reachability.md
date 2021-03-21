@@ -3,8 +3,6 @@
 
 ```{math}
 
-\renewcommand{\Game}{\game}
-
 ```
 
 In this final section, we prove {prf:ref}`5-thm:quant-reachability-main`. The proof bears many similarities to the methods for discounted MDPs, hence we only sketch the process and point out the key differences. Throughout the section we assume that **targets are sinks**, i.e. that a vertex coloured by $\textrm{Win}$ has only a self loop as the single outgoing edge. Modifying an MDP to accommodate this does not influence reachability probabilities in any way.
@@ -68,7 +66,7 @@ By an easy induction on $n$, using the fact that target states are  sinks.
 
 ````
 
-Now an analogue of {prf:ref}`5-lem:disc-val-lower` does not hold for reachability: a strategy playing only $\vec{x}^*$-safe actions might not be optimal (indeed, it might not reach $\textrm{Win}$ at all). Instead, we proceed as follows: Let $\mathcal{M}^*$ be an MDP in which we disable, in each state $v$, all actions that are not $\vec{x}^*$-safe in $v$. This can be formally done by adding a new non-target sink vertex $ \mathit{sink} $, an edge from each original vertex to $ \mathit{sink} $, and stipulating that each action $a$ that is disabled in a vertex $ v $ chooses, when played in $ v $ in $  \mathcal{M}^*$, the edge leading to $ \mathit{sink} $ with probability 1.
+Now an analogue of {prf:ref}`5-lem:disc-val-lower` does not hold for reachability: a strategy playing only $\vec{x}^*$-safe actions might not be optimal (indeed, it might not reach $\textrm{Win}$ at all). Instead, we proceed as follows: Let $\mathcal{M}^*$ be an MDP in which we `disable', in each state $v$, all actions that are not $\vec{x}^*$-safe in $v$. This can be formally done by adding a new non-target sink vertex $ \mathit{sink} $, an edge from each original vertex to $ \mathit{sink} $, and stipulating that each action $a$ that is disabled in a vertex $ v $ chooses, when played in $ v $ in $  \mathcal{M}^*$, the edge leading to $ \mathit{sink} $ with probability 1.
 
 ````{prf:lemma} NEEDS TITLE 5-lem:quant-reach-pruning-unsafe
 :label: 5-lem:quant-reach-pruning-unsafe

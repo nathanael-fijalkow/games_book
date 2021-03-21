@@ -724,8 +724,7 @@
   <div class="section" id="buchi-games">
 <span id="sec-buchi"></span><h1>Büchi games<a class="headerlink" href="#buchi-games" title="Permalink to this headline">¶</a></h1>
 <div class="math notranslate nohighlight">
-\[\renewcommand{\Game}{\game}
-\]</div>
+\[\]</div>
 <p>Recall that the objective <span class="math notranslate nohighlight">\(\mathtt{Buchi}\)</span> requires that the colour <span class="math notranslate nohighlight">\(\textrm{Win}\)</span> appears infinitely many times
 and <span class="math notranslate nohighlight">\(\mathtt{CoBuchi}\)</span> requires that the colour <span class="math notranslate nohighlight">\(\textrm{Lose}\)</span> appears finitely many times.</p>
 <div class="proof theorem admonition" id="2-thm:Buchi">
@@ -747,12 +746,12 @@ We present two different yet very similar algorithms.</p>
 <div class="proof lemma admonition" id="2-lem:Buchi_second">
 <p class="admonition-title"><span class="caption-number">Lemma 44 </span> (Fixed point characterisation of the winning region for Buchi games)</p>
 <div class="lemma-content section" id="proof-content">
-<p>Let <span class="math notranslate nohighlight">\(\Game\)</span> be a Büchi game.</p>
+<p>Let <span class="math notranslate nohighlight">\(\mathcal{G}\)</span> be a Büchi game.</p>
 <ul class="simple">
-<li><p>If <span class="math notranslate nohighlight">\(\textrm{Attr}_\mathrm{Eve}( \textrm{Win}) = V\)</span>, then <span class="math notranslate nohighlight">\(W_\mathrm{Eve}(\Game) = V\)</span>.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(\textrm{Attr}_\mathrm{Eve}( \textrm{Win}) = V\)</span>, then <span class="math notranslate nohighlight">\(W_\mathrm{Eve}(  \mathcal{G}) = V\)</span>.</p></li>
 <li><p>If <span class="math notranslate nohighlight">\(\textrm{Attr}_\mathrm{Eve}( \textrm{Win}) \neq V\)</span>,
-let <span class="math notranslate nohighlight">\(\Game'\)</span> be the subgame of <span class="math notranslate nohighlight">\(\Game\)</span> induced by <span class="math notranslate nohighlight">\(V \setminus  \textrm{Attr}_\mathrm{Adam}( V \setminus  \textrm{Attr}_\mathrm{Eve}( \textrm{Win}) )\)</span>,
-then <span class="math notranslate nohighlight">\(W_\mathrm{Eve}(\Game) =  W_\mathrm{Eve}(\Game')\)</span>.</p></li>
+let <span class="math notranslate nohighlight">\(\mathcal{G}'\)</span> be the subgame of <span class="math notranslate nohighlight">\(\mathcal{G}\)</span> induced by <span class="math notranslate nohighlight">\(V \setminus  \textrm{Attr}_\mathrm{Adam}( V \setminus  \textrm{Attr}_\mathrm{Eve}( \textrm{Win}) )\)</span>,
+then <span class="math notranslate nohighlight">\(W_\mathrm{Eve}(  \mathcal{G}) =  W_\mathrm{Eve}(  \mathcal{G}')\)</span>.</p></li>
 </ul>
 </div>
 </div><div class="dropdown tip admonition">
@@ -775,7 +774,7 @@ each of them consistent with <span class="math notranslate nohighlight">\(\sigma
 then one step consistent with <span class="math notranslate nohighlight">\(\sigma_p\)</span>.
 Thus <span class="math notranslate nohighlight">\(\sigma\)</span> is winning from <span class="math notranslate nohighlight">\(V\)</span>.</p>
 <p>We now look at the second item.</p>
-<p>We first prove that <span class="math notranslate nohighlight">\(\textrm{Attr}_\mathrm{Adam}(V \setminus  \textrm{Attr}_\mathrm{Eve}( \textrm{Win})) \subseteq  W_\mathrm{Adam}(\Game)\)</span>.
+<p>We first prove that <span class="math notranslate nohighlight">\(\textrm{Attr}_\mathrm{Adam}(V \setminus  \textrm{Attr}_\mathrm{Eve}( \textrm{Win})) \subseteq  W_\mathrm{Adam}(  \mathcal{G})\)</span>.
 Let <span class="math notranslate nohighlight">\(\tau_a\)</span> denote an attractor strategy ensuring to reach <span class="math notranslate nohighlight">\(V \setminus  \textrm{Attr}_\mathrm{Eve}( \textrm{Win})\)</span> from <span class="math notranslate nohighlight">\(\textrm{Attr}_\mathrm{Adam}(V \setminus  \textrm{Attr}_\mathrm{Eve}( \textrm{Win}))\)</span>,
 and <span class="math notranslate nohighlight">\(\tau_c\)</span> a counter-attractor strategy ensuring to stay in <span class="math notranslate nohighlight">\(V \setminus  \textrm{Attr}_\mathrm{Eve}( \textrm{Win})\)</span> hence in never to reach <span class="math notranslate nohighlight">\(\textrm{Win}\)</span>.
 We construct the strategy <span class="math notranslate nohighlight">\(\tau\)</span> as the disjoint union of <span class="math notranslate nohighlight">\(\tau_a\)</span> and <span class="math notranslate nohighlight">\(\tau_c\)</span>:</p>
@@ -792,19 +791,19 @@ Any play consistent with <span class="math notranslate nohighlight">\(\tau\)</sp
 then is consistent with <span class="math notranslate nohighlight">\(\tau_c\)</span> and stays there forever.
 In this second phase it in particular does not visit <span class="math notranslate nohighlight">\(\textrm{Win}\)</span>,
 implying that the play visits <span class="math notranslate nohighlight">\(\textrm{Win}\)</span> finitely many times, so it is winning.
-Thus we have proved that <span class="math notranslate nohighlight">\(\textrm{Attr}_\mathrm{Adam}(V \setminus  \textrm{Attr}_\mathrm{Eve}( \textrm{Win})) \subseteq  W_\mathrm{Adam}(\Game)\)</span>,
-implying <span class="math notranslate nohighlight">\(W_\mathrm{Eve}(\Game) \subseteq V \setminus  \textrm{Attr}_\mathrm{Adam}(V \setminus  \textrm{Attr}_\mathrm{Eve}( \textrm{Win}))\)</span>.</p>
-<p>We now show that <span class="math notranslate nohighlight">\(W_\mathrm{Eve}(\Game') \subseteq  W_\mathrm{Eve}(\Game)\)</span>, which implies the converse inclusion.
-Consider a winning strategy from <span class="math notranslate nohighlight">\(W_\mathrm{Eve}(\Game')\)</span> in <span class="math notranslate nohighlight">\(\Game'\)</span>, it induces a strategy <span class="math notranslate nohighlight">\(\sigma\)</span> in <span class="math notranslate nohighlight">\(\Game\)</span>.
-Since <span class="math notranslate nohighlight">\(\Game'\)</span> is a trap for Adam, any play consistent with <span class="math notranslate nohighlight">\(\sigma\)</span> stays forever in <span class="math notranslate nohighlight">\(W_\mathrm{Eve}(\Game')\)</span>,
-implying that <span class="math notranslate nohighlight">\(\sigma\)</span> is winning from <span class="math notranslate nohighlight">\(W_\mathrm{Eve}(\Game')\)</span> in <span class="math notranslate nohighlight">\(\Game\)</span>.</p>
+Thus we have proved that <span class="math notranslate nohighlight">\(\textrm{Attr}_\mathrm{Adam}(V \setminus  \textrm{Attr}_\mathrm{Eve}( \textrm{Win})) \subseteq  W_\mathrm{Adam}(  \mathcal{G})\)</span>,
+implying <span class="math notranslate nohighlight">\(W_\mathrm{Eve}(  \mathcal{G}) \subseteq V \setminus  \textrm{Attr}_\mathrm{Adam}(V \setminus  \textrm{Attr}_\mathrm{Eve}( \textrm{Win}))\)</span>.</p>
+<p>We now show that <span class="math notranslate nohighlight">\(W_\mathrm{Eve}(  \mathcal{G}') \subseteq  W_\mathrm{Eve}(  \mathcal{G})\)</span>, which implies the converse inclusion.
+Consider a winning strategy from <span class="math notranslate nohighlight">\(W_\mathrm{Eve}(  \mathcal{G}')\)</span> in <span class="math notranslate nohighlight">\(\mathcal{G}'\)</span>, it induces a strategy <span class="math notranslate nohighlight">\(\sigma\)</span> in <span class="math notranslate nohighlight">\(\mathcal{G}\)</span>.
+Since <span class="math notranslate nohighlight">\(\mathcal{G}'\)</span> is a trap for Adam, any play consistent with <span class="math notranslate nohighlight">\(\sigma\)</span> stays forever in <span class="math notranslate nohighlight">\(W_\mathrm{Eve}(  \mathcal{G}')\)</span>,
+implying that <span class="math notranslate nohighlight">\(\sigma\)</span> is winning from <span class="math notranslate nohighlight">\(W_\mathrm{Eve}(  \mathcal{G}')\)</span> in <span class="math notranslate nohighlight">\(\mathcal{G}\)</span>.</p>
 </div>
 <p>The algorithm is presented in pseudocode in <a class="reference internal" href="#algo-buchi-first"><span class="std std-numref">Fig. 9</span></a>.
 For the complexity analysis, the algorithm performs at most <span class="math notranslate nohighlight">\(n\)</span> recursive calls
 and each of them involves two attractor computations, implying the time complexity <span class="math notranslate nohighlight">\(O(mn)\)</span>.</p>
 <div class="figure align-center" id="algo-buchi-first">
 <img alt="../_images/2-algo:Buchi_first.png" src="../_images/2-algo:Buchi_first.png" />
-<p class="caption"><span class="caption-number">Fig. 9 </span><span class="caption-text">The first quadratic time algorithm for solving B{“uchi} games.</span><a class="headerlink" href="#algo-buchi-first" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 9 </span><span class="caption-text">The first quadratic time algorithm for solving B{\uchi} games.</span><a class="headerlink" href="#algo-buchi-first" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="a-second-algorithm">
@@ -882,7 +881,7 @@ implying that it satisfies <span class="math notranslate nohighlight">\(\mathtt{
 <p><a class="reference internal" href="#2-lem:Buchi">Lemma 45</a> directly transfers to <a class="reference internal" href="#algo-buchi-second"><span class="std std-numref">Fig. 10</span></a>.</p>
 <div class="figure align-center" id="algo-buchi-second">
 <img alt="../_images/2-algo:Buchi_second.png" src="../_images/2-algo:Buchi_second.png" />
-<p class="caption"><span class="caption-number">Fig. 10 </span><span class="caption-text">The second quadratic time algorithm for solving B{“uchi} games.</span><a class="headerlink" href="#algo-buchi-second" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 10 </span><span class="caption-text">The second quadratic time algorithm for solving B{\uchi} games.</span><a class="headerlink" href="#algo-buchi-second" title="Permalink to this image">¶</a></p>
 </div>
 <div class="proof remark admonition" id="remark-3">
 <p class="admonition-title"><span class="caption-number">Remark 46 </span> (NEEDS TITLE AND LABEL)</p>

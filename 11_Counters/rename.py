@@ -9,7 +9,7 @@ def rename():
 			g = open(f, "r")
 			content = g.read()
 			g.close()
-			content = re.sub(r' \\Eve', r' Eve', content)
+			content = re.sub(r' \$\\EXPSPACE\$\\', r' $\EXPSPACE$ ', content)
 			g = open(f, "w")
 			content = g.write(content)
 			g.close()

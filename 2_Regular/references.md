@@ -3,16 +3,12 @@
 
 ```{math}
 
-\renewcommand{\Game}{\game}
-
 ```
-
-%This chapter constructed algorithms for solving games with so-called regular objectives:
 
 The interest in reachability objectives goes beyond automata theory and logic.
 The attractor computation presented in Section {ref}`2-sec:attractors` is inspired by the backward induction principle due to Zermelo {cite}`Zermelo:1913`, 
 which was used to show that well founded games (**i.e.** where all plays are finite) are determined.
-The word attractor (together with traps and subgames) first appeared in Zielonka's work 
+The word `attractor' (together with `traps' and `subgames') first appeared in Zielonka's work 
 on Muller games {cite}`Zielonka:1998`, but without the algorithmic point of view.
 A naive implementation of the attractor would have a quadractic time complexity.
 It is difficult to give credit for the linear time algorithm since the problem being very natural it has appeared in several contexts,
@@ -46,10 +42,10 @@ As discussed in Section {ref}`1-sec:references`, a key step was made by applying
 to complementation results for automata.
 The parity objectives appeared in this context as a (and in fact, the) subclass of Muller objectives which is positionally determined for both players.
 They have been defined (with some variants) independently by several authors: Wagner {cite}`Wagner:1979`,
-Mostowski {cite}`Mostowski:1984` who called them Rabin chain, 
+Mostowski {cite}`Mostowski:1984` who called them `Rabin chain', 
 Emerson and Jutla {cite}`Emerson&Jutla:1991` who first used the name parity, 
 and McNaughton {cite}`McNaughton:1993`.
-The idea can be traced back to the difference hierarchy by Hausdorff {cite}`Hausdorff:1914`.
+The idea can be traced back to the `difference hierarchy' by Hausdorff {cite}`Hausdorff:1914`.
 The proof of the positionality was obtained independently by Mostowski {cite}`Mostowski:1991`, 
 Emerson and Jutla {cite}`Emerson&Jutla:1991`, and McNaughton {cite}`McNaughton:1993` (the latter proof is for finite games).
 Later Walukiewicz {cite}`Walukiewicz:2002` gave another very elegant proof.

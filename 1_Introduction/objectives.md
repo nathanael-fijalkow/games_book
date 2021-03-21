@@ -3,17 +3,15 @@
 
 ```{math}
 
-\renewcommand{\Game}{\game}
-
 ```
 
 We present in this section the main objectives and their representations.
 An objective may depend upon a set of parameters which are sometimes omitted when clear from the context.
 
 Let us recall how we define classes of conditions: we first define an objective, for instance $\mathtt{Safe} \subseteq  \left\{  \textrm{Win \right\}, \textrm{Lose}}^\omega$.
-For an arena and a colouring function $\textsf{col}$ defined over this arena this induces the safety condition $\mathtt{Safe}[ \textsf{col}]$.
+For an arena and a colouring function $\mathfrak{c}$ defined over this arena this induces the safety condition $\mathtt{Safe}[ \mathfrak{c}]$.
 Given an arena and a condition $W$ over this arena we say that $W$ is **a** safety condition if 
-there exists $\textsf{col}$ such that $W =  \mathtt{Safe}[ \textsf{col}]$.
+there exists $\mathfrak{c}$ such that $W =  \mathtt{Safe}[ \mathfrak{c}]$.
 The same terminology is used for all other objectives.
 
 ## Prefix dependent qualitative objectives: safety and reachability
@@ -52,11 +50,11 @@ $$
 Safety and reachability conditions are dual:
 
 $$
- \textrm{Paths}_\omega \setminus  \mathtt{Safe}[ \textsf{col}] =  \mathtt{Reach}[\overline{ \textsf{col}}] \quad ; \quad
- \textrm{Paths}_\omega \setminus  \mathtt{Reach}[ \textsf{col}] =  \mathtt{Safe}[\overline{ \textsf{col}}].
+ \textrm{Paths}_\omega \setminus  \mathtt{Safe}[ \mathfrak{c}] =  \mathtt{Reach}[\overline{ \mathfrak{c}}] \quad ; \quad
+ \textrm{Paths}_\omega \setminus  \mathtt{Reach}[ \mathfrak{c}] =  \mathtt{Safe}[\overline{ \mathfrak{c}}].
 $$
 
-where $\overline{ \textsf{col}}$ swaps $\textrm{Win}$ and $\textrm{Lose}$ in $\textsf{col}$.
+where $\overline{ \mathfrak{c}}$ swaps $\textrm{Win}$ and $\textrm{Lose}$ in $\mathfrak{c}$.
 Consequently, if the condition for Eve is a safety condition, then the condition for Adam is a reachability condition, and conversely.
 
 ## Prefix independent qualitative objectives: B&uuml;chi, CoB&uuml;chi, and Parity
@@ -72,7 +70,7 @@ $$
  \mathtt{Buchi} =  \left\{ \rho \in  \left\{ 1,2 \right\ \right\}^\omega : \forall j, \exists i \ge j, \rho_i = 2}.
 $$
 
-The dual of the B&uuml;chi objective is the **CoB{\"uchi}** objective: 
+The dual of the B&uuml;chi objective is the **CoB{\uchi}** objective: 
 the set of colours is $\left\{ 2,3 \right\}$, it requires that the colour $3$ is seen finitely many times.
 Formally:
 
@@ -83,12 +81,12 @@ $$
 B&uuml;chi and CoB&uuml;chi conditions are dual:
 
 $$
- \textrm{Paths}_\omega \setminus  \mathtt{Buchi}[ \textsf{col}] =  \mathtt{CoBuchi}[ \textsf{col} + 1] \quad ; \quad
- \textrm{Paths}_\omega \setminus  \mathtt{CoBuchi}[ \textsf{col}] =  \mathtt{Buchi}[ \textsf{col} - 1].
+ \textrm{Paths}_\omega \setminus  \mathtt{Buchi}[ \mathfrak{c}] =  \mathtt{CoBuchi}[ \mathfrak{c} + 1] \quad ; \quad
+ \textrm{Paths}_\omega \setminus  \mathtt{CoBuchi}[ \mathfrak{c}] =  \mathtt{Buchi}[ \mathfrak{c} - 1].
 $$
 
-where $\textsf{col} + 1$ adds one to $\textsf{col}$ (since $\textsf{col}$ maps vertices to $\left\{ 1,2 \right\}$, $\textsf{col} + 1$ maps vertices to $\left\{ 2,3 \right\}$),
-and similarly for $\textsf{col} - 1$.
+where $\mathfrak{c} + 1$ adds one to $\mathfrak{c}$ (since $\mathfrak{c}$ maps vertices to $\left\{ 1,2 \right\}$, $\mathfrak{c} + 1$ maps vertices to $\left\{ 2,3 \right\}$),
+and similarly for $\mathfrak{c} - 1$.
 Consequently, if the condition for Eve is a B&uuml;chi condition, then the condition for Adam is a CoB&uuml;chi condition, and conversely.
 
 We now define the parity objectives.
@@ -122,10 +120,10 @@ First, B&uuml;chi and CoB&uuml;chi objectives are parity objectives for the set 
 Second, the parity conditions are self dual:
 
 $$
- \textrm{Paths}_\omega \setminus  \mathtt{Parity}([i,j])[ \textsf{col}] =  \mathtt{Parity}([i+1,j+1])[ \textsf{col} + 1],
+ \textrm{Paths}_\omega \setminus  \mathtt{Parity}([i,j])[ \mathfrak{c}] =  \mathtt{Parity}([i+1,j+1])[ \mathfrak{c} + 1],
 $$
 
-where $\textsf{col} + 1$ adds one to $\textsf{col}$.
+where $\mathfrak{c} + 1$ adds one to $\mathfrak{c}$.
 Hence if the condition for Eve is a parity condition, then the condition for Adam is also a parity condition.
 
 {numref}`1-fig:parity_game_example` presents an example of a parity game. 
@@ -140,22 +138,22 @@ The two dotted areas represent the winning regions of each player.
 
 ## Conventions
 
-Given an objective $\Omega \subseteq C^\omega$ we use a colouring function $\textsf{col} : V \to C$ to induce the condition $\Omega[ \textsf{col}]$.
+Given an objective $\Omega \subseteq C^\omega$ we use a colouring function $\mathfrak{c} : V \to C$ to induce the condition $\Omega[ \mathfrak{c}]$.
 We extend this notation to sets of vertices and colours as follows.
 
-*  A set of vertices $F \subseteq V$ induces the colouring function $\textsf{col}_F$ defined by 
-$\textsf{col}_F(v) =  \textrm{Win}$ if $v \in F$ and $\textsf{col}_F(v) =  \textrm{Lose}$ otherwise.
-For $F \subseteq V$ we define $\mathtt{Safe}[F]$ as $\mathtt{Safe}[ \textsf{col}_F]$: it requires that no vertex from $F$ is ever visited.
-*  A colour $c \in C$ induces the set of vertices $\textsf{col}^{-1}(c)$ labelled by $c$.
+*  A set of vertices $F \subseteq V$ induces the colouring function $\mathfrak{c}_F$ defined by 
+$\mathfrak{c}_F(v) =  \textrm{Win}$ if $v \in F$ and $\mathfrak{c}_F(v) =  \textrm{Lose}$ otherwise.
+For $F \subseteq V$ we define $\mathtt{Safe}[F]$ as $\mathtt{Safe}[ \mathfrak{c}_F]$: it requires that no vertex from $F$ is ever visited.
+*  A colour $c \in C$ induces the set of vertices $\mathfrak{c}^{-1}(c)$ labelled by $c$.
 The condition $\mathtt{Safe}[c]$ requires that the colour $c$ is never visited.
 
 We apply this convention to safety, B&uuml;chi, and CoB&uuml;chi conditions: for $F \subseteq V$,
 
 $$
 \begin{array}{ccccc}
- \mathtt{Reach}[F] & = &  \mathtt{Reach}[ \textsf{col}_F] & = &  \left\{  \pi \in  \textrm{Paths \right\}_\omega : \exists i,   \textrm{In}( \pi_i) \in F}, \\
- \mathtt{Buchi}[F] & = &  \mathtt{Buchi}[ \textsf{col}_F] & = &  \left\{  \pi \in  \textrm{Paths \right\}_\omega : \forall j, \exists i \ge j,   \textrm{In}( \pi_i) \in F}, \\
- \mathtt{CoBuchi}[F] & = &  \mathtt{CoBuchi}[ \textsf{col}_F] & = &  \left\{  \pi \in  \textrm{Paths \right\}_\omega : \exists j, \forall i \ge j,   \textrm{In}( \pi_i) \notin F},
+ \mathtt{Reach}[F] & = &  \mathtt{Reach}[ \mathfrak{c}_F] & = &  \left\{  \pi \in  \textrm{Paths \right\}_\omega : \exists i,   \textrm{In}( \pi_i) \in F}, \\
+ \mathtt{Buchi}[F] & = &  \mathtt{Buchi}[ \mathfrak{c}_F] & = &  \left\{  \pi \in  \textrm{Paths \right\}_\omega : \forall j, \exists i \ge j,   \textrm{In}( \pi_i) \in F}, \\
+ \mathtt{CoBuchi}[F] & = &  \mathtt{CoBuchi}[ \mathfrak{c}_F] & = &  \left\{  \pi \in  \textrm{Paths \right\}_\omega : \exists j, \forall i \ge j,   \textrm{In}( \pi_i) \notin F},
 \end{array}
 $$
 
@@ -205,7 +203,7 @@ An example of a mean payoff game.
 The dotted areas represent the winning regions for the qualitative objective $\mathtt{MeanPayoff}_{\ge 0}$.
 ```
 
-The discounted payoff quantitative objective is parameterised by a discount factor $\lambda \in (0,1)$.
+The discounted payoff" quantitative objective is parameterised by a discount factor $\lambda \in (0,1)$.
 It is defined by:
 
 $$
@@ -219,8 +217,8 @@ which is holds for all plays since a (finite) game contains finitely many differ
 
 ### Representations for quantitative objectives
 
-Let us consider a game $\Game$ with either a mean payoff or a discountedd payoff condition.
-Let $W$ denote the largest weight appearing in $\Game$ in absolute value.
+Let us consider a game $\mathcal{G}$ with either a mean payoff or a discountedd payoff condition.
+Let $W$ denote the largest weight appearing in $\mathcal{G}$ in absolute value.
 
 Choosing the machine word size $w = \log(m) + \log(W)$ implies that either an edge 
 or a vertex together with its weight can be stored in one machine word and that we can perform arithmetic operations on weights.

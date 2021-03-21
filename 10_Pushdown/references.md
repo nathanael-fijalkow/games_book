@@ -8,13 +8,9 @@
 \def\acchanged#1{{#1}}
 \def\OS#1{\textcolor{red}{\checkmark}\marginpar{\color{red}OS: #1}}
 
-\renewcommand{\qed}{$\square$}
-
 \newcommand {\Stepsg}[1]{\mathit{Steps}_{#1}}
 
 \newcommand {\Rounds}[1]{\mathit{Rounds}_{#1}}
-
-\renewcommand{\Game}{\game}
 
 ```
 

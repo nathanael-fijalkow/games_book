@@ -2,26 +2,26 @@
 decidable in dimension one.  They are indeed decidable, and more
 generally we learned in \cref{10-chap:pushdown} that "one-counter
 games"---with the additional ability to test the counter for
-zero---were decidable and in fact \PSPACE-complete.  This might seem
+zero---were decidable and in fact $\PSPACE$-complete.  This might seem
 to settle the case of "vector games" in dimension one, except that the
 "one-counter games" of \cref{10-chap:pushdown} only allow integer
 weights in $\{-1,1\}$, whereas we allow arbitrary updates in~$\+Z$
-with a binary encoding.  Hence the \PSPACE\ upper bound of
-\cref{10-chap:pushdown} becomes an~\EXPSPACE\ one for ""succinct
+with a binary encoding.  Hence the $\PSPACE$  upper bound of
+\cref{10-chap:pushdown} becomes an~$\EXPSPACE$ one for ""succinct
 one-counter games"".
 
-\begin{corollary}[One-dimensional vector games are in \EXPSPACE]
+\begin{corollary}[One-dimensional vector games are in $\EXPSPACE$]
 \label{11-cor:dim1}
   "Configuration reachability", "coverability", "non-termination", and
   "parity@parity vector game" "vector games", both with "given" and with "existential
-  initial credit", are in \EXPSPACE\ in dimension one.
+  initial credit", are in $\EXPSPACE$  in dimension one.
 \end{corollary}
 \begin{proof}\hfill\\
   \TODO{proof of \cref{11-cor:dim1} depends on how \cref{10-sec:one-counter} is written}
 \end{proof}
 
 The goal of this section is therefore to establish that this
-\EXPSPACE\ upper bound is tight (in most cases), by proving a matching
+$\EXPSPACE$ upper bound is tight (in most cases), by proving a matching
 lower bound in \cref{11-sec:one-counter}.  But first, we will study a
 class of one-dimensional "vector games" of independent interest in
 \cref{11-sec:countdown}: "countdown games".
@@ -32,15 +32,15 @@ class of one-dimensional "vector games" of independent interest in
 \AP A one-dimensional "vector system"
 $\?V=(\Loc,\Act,\Loc_\mEve,\Loc_\mAdam,1)$ is called a ""countdown
 system"" if $\Act\subseteq\Loc\times\+Z_{<0}\times\Loc$, that is, if
-for all $(\loc\step z\loc')\in\Act$, $z<0$.  We consider the games
+for all $(\loc\step{z}\loc')\in\Act$, $z<0$.  We consider the games
 defined by "countdown systems", both with "given" and with
 "existential initial credit", and call the resulting games ""countdown
 games"".
 
-\begin{theorem}[Countdown games are \EXP-complete]
+\begin{theorem}[Countdown games are $\EXP$-complete]
 \label{11-th:countdown-given}
   "Configuration reachability" and "coverability" "countdown games"
-  with "given initial credit" are \EXP-complete.
+  with "given initial credit" are $\EXP$-complete.
 \end{theorem}
 \begin{proof}
   For the upper bound, consider an instance, i.e., a "countdown
@@ -53,7 +53,7 @@ games"".
   is encoded in binary, this is at most exponential in the size of the
   instance.  As seen in \cref{2-chap:regular}, such a "reachability"
   game can be solved in time polynomial in the size of the finite
-  graph, thus in \EXP\ overall.
+  graph, thus in $\EXP$\ overall.
 
   \medskip For the lower bound, we start by considering a game played
   over an exponential-time Turing machine, before showing how to
@@ -255,10 +255,10 @@ games"".
 \end{proof}
 
 
-\begin{theorem}[Existential countdown games are \EXPSPACE-complete]
+\begin{theorem}[Existential countdown games are $\EXPSPACE$-complete]
 \label{11-th:countdown-exist}
   "Configuration reachability" and "coverability" "countdown games"
-  with "existential initial credit" are \EXPSPACE-complete.
+  with "existential initial credit" are $\EXPSPACE$-complete.
 \end{theorem}
 \begin{proof}
    For the upper bound, consider an instance, i.e., a "countdown
@@ -270,7 +270,7 @@ games"".
    $\loc'_0\step{1}\loc'_0$ and $\loc'_0\step 0\loc_0$, and asking
    whether Eve has a winning strategy starting from $\loc'_0(0)$ in
    the new system.  By \cref{11-cor:dim1}, this "configuration
-   reachability" game can be solved in \EXPSPACE.
+   reachability" game can be solved in $\EXPSPACE$.
 
    \medskip For the lower bound, we reduce from the acceptance problem
    of a deterministic Turing machine working in exponential space.
@@ -294,14 +294,14 @@ problem.
   initial location $\loc_0\in\Loc$, and an initial credit
   $n_0\in\+N$.}
   {Does Eve have a strategy to reach a configuration $\loc(0)$ for
-  some $\loc\in\Loc$?\\That is, does she win the ""zero
-  reachability""\index{zero reachability|see{countdown game}}
+  some $\loc\in\Loc$?
+  That is, does she win the ""zero reachability""\index{zero reachability|see{countdown game}}
   game $(\?A_\+N(\?V),\col,\Reach)$ from $\loc_0(n_0)$, where
   $\col(e)=\Win$ if and only if $\ing(e)=\loc(0)$ for some $\loc\in\Loc$?}
-\begin{theorem}[Countdown to zero games are \EXP-complete]
+\begin{theorem}[Countdown to zero games are $\EXP$-complete]
 \label{11-th:countdown-zero}
   "Zero reachability" "countdown games" with "given initial credit"
-  are \EXP-complete.
+  are $\EXP$-complete.
 \end{theorem}
 \begin{proof}
   The upper bound of \cref{11-th:countdown-given} applies in the same
@@ -321,23 +321,23 @@ problem.
 \label{11-sec:one-counter}
 
 "Countdown games" are frequently employed to prove complexity lower
-bounds.  Here, we use them to show that the \EXPSPACE\ upper bounds
+bounds.  Here, we use them to show that the $\EXPSPACE$  upper bounds
 from \cref{11-cor:dim1} are tight in most cases.
 \begin{theorem}[The complexity of vector games in dimension one]
 \label{11-th:dim1}
   "Configuration reachability", "coverability", and "parity@parity
   vector game" "vector games", both with "given" and with "existential
-  initial credit", are \EXPSPACE-complete in dimension one;
-  "non-termination" "vector games" in dimension one are \EXP-hard with
-  "given initial credit" and \EXPSPACE-complete with "existential
+  initial credit", are $\EXPSPACE$-complete in dimension one;
+  "non-termination" "vector games" in dimension one are $\EXP$-hard with
+  "given initial credit" and $\EXPSPACE$-complete with "existential
   initial credit".
 \end{theorem}
 \begin{proof}
   By \cref{11-th:countdown-exist}, "configuration reachability" and
   "coverability" "vector games" with existential initial credit
-  are \EXPSPACE-hard in dimension one.
+  are $\EXPSPACE$-hard in dimension one.
   Furthermore, \cref{11-rk:cov2parity} allows to deduce that
-  "parity@parity vector game" is also \EXPSPACE-hard.  Finally, we can
+  "parity@parity vector game" is also $\EXPSPACE$-hard.  Finally, we can
   argue as in the upper bound proof of \cref{11-th:countdown-exist} that
   all these games are also hard with "given initial credit": we add a
   new initial location $\loc'_0$ controlled by Eve with actions
@@ -348,8 +348,8 @@ from \cref{11-cor:dim1} are tight in most cases.
   0\smiley$ to the construction
   of \cref{11-th:countdown-given,11-th:countdown-exist}: then the only way
   to build an infinite play that avoids the "sink" is to reach the
-  target location $\smiley$.  This shows that the games are \EXP-hard
-  with "given initial credit" and \EXPSPACE-hard with "existential
+  target location $\smiley$.  This shows that the games are $\EXP$-hard
+  with "given initial credit" and $\EXPSPACE$-hard with "existential
   initial credit".  Note that the trick of reducing "existential" to
   "given initial credit" with an initial incrementing loop $\loc'_0\step
   1\loc'_0$ does not work, because Eve would have a trivial winning
@@ -358,6 +358,6 @@ from \cref{11-cor:dim1} are tight in most cases.
 
 %% To the best of my knowledge, there is a complexity gap for 
 %% "non-termination" "vector games" with "given initial credit" in
-%% dimension one, between \EXP-hardness and \EXPSPACE-easiness.
+%% dimension one, between $\EXP$-hardness and $\EXPSPACE$-easiness.
 
 % Local IspellDict: british

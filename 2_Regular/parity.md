@@ -3,8 +3,6 @@
 
 ```{math}
 
-\renewcommand{\Game}{\game}
-
 ```
 
 Recall that the parity objective extends B&uuml;chi and coB&uuml;chi objectives:
@@ -42,18 +40,18 @@ Identifying a colour and its set of vertices we write $d$ for the set of vertice
 ````{prf:lemma} Fixed point characterisation of the winning regions for parity games
 :label: 2-lem:zielonka_even
 
-Let $\Game$ be a parity game with priorities in $[1,d]$, and $d$ even.
-Let $\Game'$ be the subgame of $\Game$ induced by $V \setminus  \textrm{Attr}_\mathrm{Eve}(d)$.
+Let $\mathcal{G}$ be a parity game with priorities in $[1,d]$, and $d$ even.
+Let $\mathcal{G}'$ be the subgame of $\mathcal{G}$ induced by $V \setminus  \textrm{Attr}_\mathrm{Eve}(d)$.
 
-*  If $W_\mathrm{Adam}(\Game') = \emptyset$, then $W_\mathrm{Eve}(\Game) = V$.
-*  If $W_\mathrm{Adam}(\Game') \neq \emptyset$, 
-let $\Game''$ be the subgame of $\Game$ induced by $V \setminus  \textrm{Attr}_\mathrm{Adam}(  W_\mathrm{Adam}(\Game') )$,
-then $W_\mathrm{Eve}(\Game) =  W_\mathrm{Eve}(\Game'')$.
+*  If $W_\mathrm{Adam}(  \mathcal{G}') = \emptyset$, then $W_\mathrm{Eve}(  \mathcal{G}) = V$.
+*  If $W_\mathrm{Adam}(  \mathcal{G}') \neq \emptyset$, 
+let $\mathcal{G}''$ be the subgame of $\mathcal{G}$ induced by $V \setminus  \textrm{Attr}_\mathrm{Adam}(  W_\mathrm{Adam}(  \mathcal{G}') )$,
+then $W_\mathrm{Eve}(  \mathcal{G}) =  W_\mathrm{Eve}(  \mathcal{G}'')$.
 
 ````
 
-To see that this leads to a recursive algorithm, we note that $\Game'$ has priorities in $[1,d-1]$
-and that if $W_\mathrm{Adam}(\Game') \neq \emptyset$, then $\Game''$ has less vertices than $\Game$.
+To see that this leads to a recursive algorithm, we note that $\mathcal{G}'$ has priorities in $[1,d-1]$
+and that if $W_\mathrm{Adam}(  \mathcal{G}') \neq \emptyset$, then $\mathcal{G}''$ has less vertices than $\mathcal{G}$.
 
 ````{admonition} Proof
 :class: dropdown tip
@@ -61,8 +59,8 @@ and that if $W_\mathrm{Adam}(\Game') \neq \emptyset$, then $\Game''$ has less ve
 We prove the first item. 
 
 Let $\sigma_d$ be an attractor strategy ensuring to reach $d$ from $\textrm{Attr}_\mathrm{Eve}(d)$.
-Consider a winning strategy for Eve from $V \setminus  \textrm{Attr}_\mathrm{Eve}(d)$ in $\Game'$, it induces a strategy $\sigma'$ in $\Game$.
-We construct a strategy $\sigma$ in $\Game$ as the disjoint union of $\sigma_d$ on $\textrm{Attr}_\mathrm{Eve}(d)$ and of $\sigma'$ on $V \setminus  \textrm{Attr}_\mathrm{Eve}(d)$.
+Consider a winning strategy for Eve from $V \setminus  \textrm{Attr}_\mathrm{Eve}(d)$ in $\mathcal{G}'$, it induces a strategy $\sigma'$ in $\mathcal{G}$.
+We construct a strategy $\sigma$ in $\mathcal{G}$ as the disjoint union of $\sigma_d$ on $\textrm{Attr}_\mathrm{Eve}(d)$ and of $\sigma'$ on $V \setminus  \textrm{Attr}_\mathrm{Eve}(d)$.
 Any play consistent with $\sigma$ either enters $\textrm{Attr}_\mathrm{Eve}(d)$ infinitely many times, 
 or eventually remains in $V \setminus  \textrm{Attr}_\mathrm{Eve}(d)$ and is eventually consistent with $\sigma'$.
 In the first case it sees infinitely many times $d$, which is even and maximal, hence satisfies $\mathtt{Parity}$, 
@@ -72,24 +70,24 @@ Thus $\sigma$ is winning from $V$.
 We now look at the second item.
 
 Let $\tau_a$ denote an attractor strategy 
-from $\textrm{Attr}_\mathrm{Adam}( W_\mathrm{Adam}(\Game')) \setminus  W_\mathrm{Adam}(\Game')$.
-Consider a winning strategy for Adam from $W_\mathrm{Adam}(\Game')$ in $\Game'$, it induces a strategy $\tau'$ in $\Game$.
-Since $V \setminus  \textrm{Attr}_\mathrm{Eve}(d)$ is a trap for Eve, this implies that $\tau'$ is a winning strategy in $\Game$.
-Consider now a winning strategy in the game $\Game''$ from $W_\mathrm{Adam}(\Game'')$, it induces a strategy $\tau''$ in $\Game$.
-The set $V \setminus  \textrm{Attr}_\mathrm{Adam}(  W_\mathrm{Adam}(\Game') )$ may not be a trap for Eve, so we cannot conclude that $\tau''$ is a winning strategy in $\Game$,
+from $\textrm{Attr}_\mathrm{Adam}( W_\mathrm{Adam}(  \mathcal{G}')) \setminus  W_\mathrm{Adam}(  \mathcal{G}')$.
+Consider a winning strategy for Adam from $W_\mathrm{Adam}(  \mathcal{G}')$ in $\mathcal{G}'$, it induces a strategy $\tau'$ in $\mathcal{G}$.
+Since $V \setminus  \textrm{Attr}_\mathrm{Eve}(d)$ is a trap for Eve, this implies that $\tau'$ is a winning strategy in $\mathcal{G}$.
+Consider now a winning strategy in the game $\mathcal{G}''$ from $W_\mathrm{Adam}(  \mathcal{G}'')$, it induces a strategy $\tau''$ in $\mathcal{G}$.
+The set $V \setminus  \textrm{Attr}_\mathrm{Adam}(  W_\mathrm{Adam}(  \mathcal{G}') )$ may not be a trap for Eve, so we cannot conclude that $\tau''$ is a winning strategy in $\mathcal{G}$,
 and it indeed may not be.
-We construct a strategy $\tau$ in $\Game$ as the (disjoint) union of the strategy $\tau_a$ on $\textrm{Attr}_\mathrm{Adam}( W_\mathrm{Adam}(\Game')) \setminus  W_\mathrm{Adam}(\Game')$,
-the strategy $\tau'$ on $W_\mathrm{Adam}(\Game')$ and the strategy $\tau''$ on $W_\mathrm{Adam}(\Game'')$.
-We argue that $\tau$ is winning from $\textrm{Attr}_\mathrm{Adam}(  W_\mathrm{Adam}(\Game') ) \cup  W_\mathrm{Adam}(\Game'')$ in $\Game$.
-Indeed, any play consistent with this strategy in $\Game$ either stays forever in $W_\mathrm{Adam}(\Game'')$ hence is consistent with $\tau''$
-or enters $\textrm{Attr}_\mathrm{Adam}(  W_\mathrm{Adam}(\Game') )$, hence is eventually consistent with $\tau'$.
+We construct a strategy $\tau$ in $\mathcal{G}$ as the (disjoint) union of the strategy $\tau_a$ on $\textrm{Attr}_\mathrm{Adam}( W_\mathrm{Adam}(  \mathcal{G}')) \setminus  W_\mathrm{Adam}(  \mathcal{G}')$,
+the strategy $\tau'$ on $W_\mathrm{Adam}(  \mathcal{G}')$ and the strategy $\tau''$ on $W_\mathrm{Adam}(  \mathcal{G}'')$.
+We argue that $\tau$ is winning from $\textrm{Attr}_\mathrm{Adam}(  W_\mathrm{Adam}(  \mathcal{G}') ) \cup  W_\mathrm{Adam}(  \mathcal{G}'')$ in $\mathcal{G}$.
+Indeed, any play consistent with this strategy in $\mathcal{G}$ either stays forever in $W_\mathrm{Adam}(  \mathcal{G}'')$ hence is consistent with $\tau''$
+or enters $\textrm{Attr}_\mathrm{Adam}(  W_\mathrm{Adam}(  \mathcal{G}') )$, hence is eventually consistent with $\tau'$.
 In both cases this implies that the play is winning.
-Thus we have proved that $\textrm{Attr}_\mathrm{Adam}(  W_\mathrm{Adam}(\Game') ) \cup  W_\mathrm{Adam}(\Game'') \subseteq  W_\mathrm{Adam}(\Game)$.
+Thus we have proved that $\textrm{Attr}_\mathrm{Adam}(  W_\mathrm{Adam}(  \mathcal{G}') ) \cup  W_\mathrm{Adam}(  \mathcal{G}'') \subseteq  W_\mathrm{Adam}(  \mathcal{G})$.
 
-We now show that $W_\mathrm{Eve}(\Game'') \subseteq  W_\mathrm{Eve}(\Game)$, which implies the converse inclusion.
-Consider a winning strategy from $W_\mathrm{Eve}(\Game'')$ in $\Game''$, it induces a strategy $\sigma$ in $\Game$.
-Since $\Game''$ is a trap for Adam, any play consistent with $\sigma$ stays forever in $W_\mathrm{Eve}(\Game'')$, 
-implying that $\sigma$ is winning from $W_\mathrm{Eve}(\Game'')$ in $\Game$.
+We now show that $W_\mathrm{Eve}(  \mathcal{G}'') \subseteq  W_\mathrm{Eve}(  \mathcal{G})$, which implies the converse inclusion.
+Consider a winning strategy from $W_\mathrm{Eve}(  \mathcal{G}'')$ in $\mathcal{G}''$, it induces a strategy $\sigma$ in $\mathcal{G}$.
+Since $\mathcal{G}''$ is a trap for Adam, any play consistent with $\sigma$ stays forever in $W_\mathrm{Eve}(  \mathcal{G}'')$, 
+implying that $\sigma$ is winning from $W_\mathrm{Eve}(  \mathcal{G}'')$ in $\mathcal{G}$.
 
 ````
 
@@ -99,12 +97,12 @@ We do not prove the following lemma as it is the exact dual of the previous lemm
 ````{prf:lemma} Dual fixed point characterisation of the winning regions for parity games
 :label: 2-lem:zielonka_odd
 
-Let $\Game$ be a parity game with priorities in $[1,d]$, and $d$ odd.
-Let $\Game'$ be the subgame of $\Game$ induced by $V \setminus  \textrm{Attr}_\mathrm{Adam}(d)$.
+Let $\mathcal{G}$ be a parity game with priorities in $[1,d]$, and $d$ odd.
+Let $\mathcal{G}'$ be the subgame of $\mathcal{G}$ induced by $V \setminus  \textrm{Attr}_\mathrm{Adam}(d)$.
 
-*  If $W_\mathrm{Eve}(\Game') = \emptyset$, then $W_\mathrm{Adam}(\Game) = V$.
-*  If $W_\mathrm{Eve}(\Game') \neq \emptyset$, let $\Game''$ be the subgame of $\Game$ induced by $V \setminus  \textrm{Attr}_\mathrm{Eve}(  W_\mathrm{Eve}(\Game') )$,
-then $W_\mathrm{Adam}(\Game) =  W_\mathrm{Adam}(\Game'')$.
+*  If $W_\mathrm{Eve}(  \mathcal{G}') = \emptyset$, then $W_\mathrm{Adam}(  \mathcal{G}) = V$.
+*  If $W_\mathrm{Eve}(  \mathcal{G}') \neq \emptyset$, let $\mathcal{G}''$ be the subgame of $\mathcal{G}$ induced by $V \setminus  \textrm{Attr}_\mathrm{Eve}(  W_\mathrm{Eve}(  \mathcal{G}') )$,
+then $W_\mathrm{Adam}(  \mathcal{G}) =  W_\mathrm{Adam}(  \mathcal{G}'')$.
 
 ````
 
@@ -121,8 +119,8 @@ $$
 f(n,d) \le f(n,d-1) + f(n-1,d) + 2.
 $$
 
-The term $f(n,d-1)$ corresponds to the recursive call to $\Game'$, 
-the term $f(n-1,d)$ to the recursive call to $\Game''$.
+The term $f(n,d-1)$ corresponds to the recursive call to $\mathcal{G}'$, 
+the term $f(n-1,d)$ to the recursive call to $\mathcal{G}''$.
 We obtain $f(n,d) \le n \cdot f(n,d-1) + 2n$,
 so $f(n,d) \le 2(n + n^2 + \dots + n^{d-1}) = O(n^d)$.
 In each recursive call we perform two attractor computations so the number of operations

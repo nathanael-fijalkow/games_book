@@ -3,8 +3,6 @@
 
 ```{math}
 
-\renewcommand{\Game}{\game}
-
 ```
 
 A natural approach for aggregating an infinite sequence of weights is to consider the arithmetic mean.
@@ -152,7 +150,7 @@ The definition of $\mathrm{Cycles}\xspace(\pi)$ is extended for infinite plays.
 We write $\mathrm{FC}\xspace(\pi)$ for the first cycle in $\pi$.
 Let us note that the definitions above do not depend on the mean payoff objectives.
 
-Let $\mathcal{G} = ( \mathcal{A}, \mathtt{MeanPayoff}^+[ \textsf{col}])$ a limit superior mean payoff game.
+Let $\mathcal{G} = ( \mathcal{A}, \mathtt{MeanPayoff}^+[ \mathfrak{c}])$ a limit superior mean payoff game.
 The outline of the proof is as follows.
 
 1.  We define the condition $\mathrm{FirstCycle}\xspace$ and $\mathcal{G}_{\text{FC}} = ( \mathcal{A}, \mathrm{FirstCycle}\xspace)$,
@@ -164,7 +162,7 @@ and show that $\textrm{val}^{ \mathcal{G}} =   \textrm{val}^{ \mathcal{G}_{\text
 3.  We show that $\mathcal{G}_{\text{FC}}$ is positionally determined for both players.
 
 **Step 1.**
-For a path $\pi = v_0 v_1 \dots v_{k-1}$ we write $\mathrm{Mean}\xspace(\pi)$ for $\frac{1}{k} \sum_{i = 0}^{k-1}  \textsf{col}(v_i)$.
+For a path $\pi = v_0 v_1 \dots v_{k-1}$ we write $\mathrm{Mean}\xspace(\pi)$ for $\frac{1}{k} \sum_{i = 0}^{k-1}  \mathfrak{c}(v_i)$.
 The condition $\mathrm{FirstCycle}\xspace$ computes the arithmetic mean of the first cycle.
 Formally:
 
@@ -274,7 +272,7 @@ $$
 $$
 
 In words: if a cycle is closed before visiting $v$, then the condition is $\mathrm{FirstCycle}\xspace$
-and otherwise when reaching $v$ the game is reset and the condition is $\mathrm{FirstCycle}\xspace$ from this point onwards.
+and otherwise when reaching $v$ the game is `reset' and the condition is $\mathrm{FirstCycle}\xspace$ from this point onwards.
 
 This second step is similar to the first step; the reason why we separated them is because this step
 relies on the fact that $\mathtt{MeanPayoff}^+$ is prefix independent.
@@ -379,7 +377,7 @@ Let us extract from the proof of {prf:ref}`4-thm:mean_payoff_positional` a more 
 
 Let $\Phi$ a quantitative objective over the set of colours $C$.
 Let $f : C^* \to  \mathbb{R}$ satisfying the following properties,
-for all games $\Game$ with objective $\Phi$:
+for all games $\mathcal{G}$ with objective $\Phi$:
 
 *  for all $x \in   \mathbb{R} \cup  \left\{ \pm \infty \right\}$, for all plays $\pi$,
 
@@ -410,8 +408,8 @@ implying the positionality of games with objective $\Phi$.
 :label: 4-cor:rational-MP
 
 *  Limit superior and limit inferior mean payoff games are equivalent:
-for every arena $\mathcal{A}$ and colouring function $\textsf{col} : E \to  \mathbb{Z}$,
-let $\mathcal{G}_{+} = ( \mathcal{A}, \mathtt{MeanPayoff}^+[ \textsf{col}])$ and $\mathcal{G}_{-} = ( \mathcal{A}, \mathtt{MeanPayoff}^-[ \textsf{col}])$,
+for every arena $\mathcal{A}$ and colouring function $\mathfrak{c} : E \to  \mathbb{Z}$,
+let $\mathcal{G}_{+} = ( \mathcal{A}, \mathtt{MeanPayoff}^+[ \mathfrak{c}])$ and $\mathcal{G}_{-} = ( \mathcal{A}, \mathtt{MeanPayoff}^-[ \mathfrak{c}])$,
 then $\textrm{val}^{ \mathcal{G}_+} =   \textrm{val}^{ \mathcal{G}_-}$.
 This implies that a positional strategy is optimal in $\mathcal{G}_+$ if and only if it is optimal in $\mathcal{G}_-$.
 
@@ -420,7 +418,7 @@ and write $\mathtt{MeanPayoff}$ instead.
 
 *  For all mean payoff games $\mathcal{G}$ and vertices $v$, 
 the value $\textrm{val}^ \mathcal{G}(v)$ is a rational number of the form $\frac{a}{n}$ with $a \in [-nW,nW]$,
-where $W$ is the largest weight appearing in $\Game$ in absolute value.
+where $W$ is the largest weight appearing in $\mathcal{G}$ in absolute value.
 
 ````
 
@@ -476,15 +474,15 @@ which can be solved in polynomial time by a dynamic programming algorithm.
 The second ingredient is the positional determinacy result proved in {prf:ref}`4-thm:mean_payoff_positional`.
 
 Let us show the $\textrm{NP}$ membership. 
-Consider a mean payoff game $\Game$, a vertex $v$ and a threshold $x \in   \mathbb{Q} \cup  \left\{ \pm \infty \right\}$.
+Consider a mean payoff game $\mathcal{G}$, a vertex $v$ and a threshold $x \in   \mathbb{Q} \cup  \left\{ \pm \infty \right\}$.
 Thanks to {prf:ref}`4-thm:mean_payoff_positional`, we know that there exist an optimal positional strategy for Eve.
-With a non-deterministic Turing machine, we may guess a positional strategy for Eve, and check that it ensures $x$ in $\Game$ from $v$. 
+With a non-deterministic Turing machine, we may guess a positional strategy for Eve, and check that it ensures $x$ in $\mathcal{G}$ from $v$. 
 
 Let us now show the $\textrm{coNP}$ membership. 
-By determinacy of mean payoff games, whether Eve **cannot** ensure $x$ in $\Game$ from $v$ 
-is equivalent to whether Adam can ensure $x$ in $\Game$ from $v$.
+By determinacy of mean payoff games, whether Eve **cannot** ensure $x$ in $\mathcal{G}$ from $v$ 
+is equivalent to whether Adam can ensure $x$ in $\mathcal{G}$ from $v$.
 Again thanks to {prf:ref}`4-thm:mean_payoff_positional`, we know that there exist an optimal positional strategy for Adam.
-With a non-deterministic Turing machine, we may guess a positional strategy for Adam, and check that it ensures $x$ in $\Game$ from $v$. 
+With a non-deterministic Turing machine, we may guess a positional strategy for Adam, and check that it ensures $x$ in $\mathcal{G}$ from $v$. 
 
 ````
 
@@ -503,26 +501,26 @@ We now show that solving mean payoff games is at least as hard as solving parity
 ````{admonition} Proof
 :class: dropdown tip
 
-Let $\mathcal{G} = ( \mathcal{A},  \mathtt{Parity}[ \textsf{col}])$ a parity game with $n$ vertices and priorities in $[1,d]$.
-We construct a mean payoff game $\mathcal{G}' = ( \mathcal{A},  \mathtt{MeanPayoff}[ \textsf{col}'])$ using the same arena:
+Let $\mathcal{G} = ( \mathcal{A},  \mathtt{Parity}[ \mathfrak{c}])$ a parity game with $n$ vertices and priorities in $[1,d]$.
+We construct a mean payoff game $\mathcal{G}' = ( \mathcal{A},  \mathtt{MeanPayoff}[ \mathfrak{c}'])$ using the same arena:
 
 $$
- \textsf{col}'(v) = (-n)^{ \textsf{col}(v)}.
+ \mathfrak{c}'(v) = (-n)^{ \mathfrak{c}(v)}.
 $$
 
-Note that $\textsf{col}'(v)$ is of polynomial size since $\log(| \textsf{col}'(v)|) =  \textsf{col}(v) \log(n) \leq d \log(n)$.
+Note that $\mathfrak{c}'(v)$ is of polynomial size since $\log(| \mathfrak{c}'(v)|) =  \mathfrak{c}(v) \log(n) \leq d \log(n)$.
 
-The key property relating $\textsf{col}'$ and $\textsf{col}$ is the following:
+The key property relating $\mathfrak{c}'$ and $\mathfrak{c}$ is the following:
 for $c = v_0 \dots v_{k-1}$ a simple cycle (implying $k \le n$),
 the largest priority in $c$ is even 
 if and only if $\mathrm{Mean}\xspace(c) \ge 0$.
-Indeed, if the largest priority in $c$ is $p$ even reached in $v_i$ then $\textsf{col}'(v_i) = n^p$
-and for $j \neq i$ we have $\textsf{col}'(v_j) \ge -n^{p-1}$,
+Indeed, if the largest priority in $c$ is $p$ even reached in $v_i$ then $\mathfrak{c}'(v_i) = n^p$
+and for $j \neq i$ we have $\mathfrak{c}'(v_j) \ge -n^{p-1}$,
 and since there are at most $n$ vertices in total the largest priority dominates the others.
 
 We claim that $W_\mathrm{Eve}( \mathcal{G}) =  W_\mathrm{Eve}( \mathcal{G}')$.
 
-Let $\sigma$ be a positional strategy winning from $W_\mathrm{Eve}( \mathcal{G})$, we show that $\sigma$ is also winning from $W_\mathrm{Eve}( \mathcal{G})$ in $\Game'$.
+Let $\sigma$ be a positional strategy winning from $W_\mathrm{Eve}( \mathcal{G})$, we show that $\sigma$ is also winning from $W_\mathrm{Eve}( \mathcal{G})$ in $\mathcal{G}'$.
 Since mean payoff are uniformly positionally determined for both players (see {prf:ref}`4-thm:mean_payoff_positional`),
 there exists $\tau$ a positional strategy winning from $W_\mathrm{Adam}( \mathcal{G}')$.
 Let $v \in  W_\mathrm{Eve}( \mathcal{G})$, we consider $\pi = \pi^v_{\sigma,\tau}$ the play consistent with $\sigma$ and $\tau$ starting from $v$.
@@ -561,15 +559,15 @@ where $\sigma(v) =  \mathtt{-}$ indicates that Eve has chosen to stop the game, 
 Adam is not allowed to stop the game, so strategies for Adam remain unchanged.
 We say that a play ending with $\mathtt{-}$ is stopped.
 
-For reasoning it will be useful to consider the mean payoff graph $\Game[\sigma]$ obtained from $\Game$ by restricting the outgoing edges from $V_\mathrm{Eve}$
+For reasoning it will be useful to consider the mean payoff graph $\mathcal{G}[\sigma]$ obtained from $\mathcal{G}$ by restricting the outgoing edges from $V_\mathrm{Eve}$
 to those prescribed by $\sigma$. 
 We say that a mean payoff graph (without stopping option) satisfies mean payoff from $v$ if all infinite paths $\pi$ from $v$ satisfy 
 $\mathtt{MeanPayoff}(\pi) \ge 0$.
-Then a strategy $\sigma$ is winning from $v$ if and only if the mean payoff graph $\Game[\sigma]$ satisfies mean payoff from $v$.
+Then a strategy $\sigma$ is winning from $v$ if and only if the mean payoff graph $\mathcal{G}[\sigma]$ satisfies mean payoff from $v$.
 
 Since we added the option for Eve to stop the game we introduce a new terminology: 
 we say that a strategy $\sigma$ respects mean payoff if all infinite plays consistent with $\sigma$ satisfy mean payoff,
-equivalently all infinite paths in $\Game[\sigma]$ satisfy mean payoff, not requiring anything of stopped plays.
+equivalently all infinite paths in $\mathcal{G}[\sigma]$ satisfy mean payoff, not requiring anything of stopped plays.
 
 We say that a cycle is non-negative if the sum of the weights in the cycle is non-negative, and it is negative otherwise. 
 Respecting mean payoff is characterised using cycles:
@@ -577,7 +575,7 @@ Respecting mean payoff is characterised using cycles:
 ````{prf:observation} Characterisation using cycles
 :label: 4-fact:characterisation
 
-A strategy $\sigma$ respects mean payoff if and only if all cycles in $\Game[\sigma]$ are non-negative.
+A strategy $\sigma$ respects mean payoff if and only if all cycles in $\mathcal{G}[\sigma]$ are non-negative.
 
 ````
 
@@ -619,7 +617,7 @@ We then define an operator $\mathbb{O} : F^\sigma_V \to F^\sigma_V$ by
 $$
  \mathbb{O}(\mu)(v) = 
 \begin{cases}
-\min  \left\{ \delta( \mu(v'),  \textsf{col \right\}(v)) : (v,v') \in E} & \text{if } \sigma(v) \neq  \mathtt{-} \\
+\min  \left\{ \delta( \mu(v'),  \mathfrak{c \right\}(v)) : (v,v') \in E} & \text{if } \sigma(v) \neq  \mathtt{-} \\
 \emptyset & \text{if } \sigma(v) =  \mathtt{-}.
 \end{cases}
 $$
@@ -654,7 +652,7 @@ We reach the last item in the construction of the algorithm: the notion of switc
 Let $\sigma$ a strategy. We say that an edge $e = (v,v')$ is switchable if
 
 $$
-\delta(  \textrm{val}^{\sigma}(v'), \textsf{col}(v)) > \delta(  \textrm{val}^{\sigma}(u), \textsf{col}(v)) \text{ where } \sigma(v) = (v,u).
+\delta(  \textrm{val}^{\sigma}(v'), \mathfrak{c}(v)) > \delta(  \textrm{val}^{\sigma}(u), \mathfrak{c}(v)) \text{ where } \sigma(v) = (v,u).
 $$
 
 Intuitively: according to $\textrm{val}^{\sigma}$, playing $e$ is better than playing $\sigma(v)$.
@@ -700,10 +698,10 @@ The following lemma states the two important properties of $(Y,\le)$ and $\delta
 Let $G$ a mean payoff graph (with no stopping option).
 
 *  If there exists $\mu : V \to Y$ such that for all vertices $v$ we have $\mu(v) \neq \top,\bot$
-and for all edges $(v,u) \in E$ we have $\mu(v) \le \delta(\mu(u), \textsf{col}(v))$,
+and for all edges $(v,u) \in E$ we have $\mu(v) \le \delta(\mu(u), \mathfrak{c}(v))$,
 then $G$ satisfies mean payoff.
 *  If there exists $\mu : V \to Y$ such that for all vertices $v$ we have $\mu(v) \neq \top,\bot$
-and for all edges $(v,u) \in E$ we have $\mu(v) \ge \delta(\mu(u), \textsf{col}(v))$,
+and for all edges $(v,u) \in E$ we have $\mu(v) \ge \delta(\mu(u), \mathfrak{c}(v))$,
 then $G$ satisfies the complement of mean payoff.
 
 ````
@@ -719,16 +717,16 @@ $$
 \pi = v_0 v_1 \dots v_{k-1}.
 $$
 
-For all $i \in [0,k-1]$ we have $\mu(v_i) \le \delta(\mu(v_{i+1 \mod k}), \textsf{col}(v_i))$.
-By monotonicity of $\delta$ this implies $\mu(v_1) \le \delta(\mu(v_1), \textsf{col}(v_{k-1}) \cdots  \textsf{col}(v_0))$.
-Thanks to {prf:ref}`4-fact:non-negative-sum`, this implies that $\sum_{i \in [0,k-1]}  \textsf{col}(v_i) \ge 0$.
+For all $i \in [0,k-1]$ we have $\mu(v_i) \le \delta(\mu(v_{i+1 \mod k}), \mathfrak{c}(v_i))$.
+By monotonicity of $\delta$ this implies $\mu(v_1) \le \delta(\mu(v_1), \mathfrak{c}(v_{k-1}) \cdots  \mathfrak{c}(v_0))$.
+Thanks to {prf:ref}`4-fact:non-negative-sum`, this implies that $\sum_{i \in [0,k-1]}  \mathfrak{c}(v_i) \ge 0$.
 
 ````
 
 Let $\sigma$ a strategy respecting mean payoff. 
-A progress measure for $\Game[\sigma]$ is a post-fixed point of $\mathbb{O}$ in $F^\sigma_V$:
+A progress measure for $\mathcal{G}[\sigma]$ is a post-fixed point of $\mathbb{O}$ in $F^\sigma_V$:
 it is a function $\mu : V \to Y$ such that $\mu(v) = \emptyset$ if $\sigma(v) =  \mathtt{-}$ and $\mu \le  \mathbb{O}(\mu)$,
-which means that $\mu(v) \le \min  \left\{  \delta(\mu(v'), \textsf{col \right\}(v)) : (v,v') \in E}$.
+which means that $\mu(v) \le \min  \left\{  \delta(\mu(v'), \mathfrak{c \right\}(v)) : (v,v') \in E}$.
 
 We now rely on {prf:ref}`4-lem:greatest_fixed_point` and {prf:ref}`4-lem:key_property` to prove the two principles: progress and optimality.
 
@@ -748,38 +746,38 @@ We first argue that $\sigma'$ respects mean payoff.
 The fact that $e = (v,v')$ is switchable reads
 
 $$
-\delta(  \textrm{val}^\sigma(v'), \textsf{col}(v)) > \delta(  \textrm{val}^\sigma(u), \textsf{col}(v)),
+\delta(  \textrm{val}^\sigma(v'), \mathfrak{c}(v)) > \delta(  \textrm{val}^\sigma(u), \mathfrak{c}(v)),
 $$
 
-and by definition of $\textrm{val}^\sigma$ we have $\textrm{val}^\sigma(v) = \delta(  \textrm{val}^\sigma(u), \textsf{col}(v))$,
-which implies $\textrm{val}^\sigma(v) < \delta(  \textrm{val}^\sigma(v'), \textsf{col}(v))$, and in particular $\textrm{val}^\sigma(v) \neq \top$.
+and by definition of $\textrm{val}^\sigma$ we have $\textrm{val}^\sigma(v) = \delta(  \textrm{val}^\sigma(u), \mathfrak{c}(v))$,
+which implies $\textrm{val}^\sigma(v) < \delta(  \textrm{val}^\sigma(v'), \mathfrak{c}(v))$, and in particular $\textrm{val}^\sigma(v) \neq \top$.
 
-Let us consider the mean payoff graph $\Game[\sigma']$ and note that for all edges $e' = (s,t)$ 
-we have $\textrm{val}^\sigma(s) \le \delta(  \textrm{val}^\sigma(t), \textsf{col}(s))$:
-indeed either $e'$ is an edge in $\Game[\sigma]$ and this is by definition of $\textrm{val}^\sigma$,
+Let us consider the mean payoff graph $\mathcal{G}[\sigma']$ and note that for all edges $e' = (s,t)$ 
+we have $\textrm{val}^\sigma(s) \le \delta(  \textrm{val}^\sigma(t), \mathfrak{c}(s))$:
+indeed either $e'$ is an edge in $\mathcal{G}[\sigma]$ and this is by definition of $\textrm{val}^\sigma$,
 or $e' = e$ and the inequality was proved just above.
 
 Since $\sigma$ respects mean payoff $\textrm{val}^\sigma$ does not take the value $\bot$.
 But we cannot apply (the first item of) {prf:ref}`4-lem:key_property` yet because $\textrm{val}^\sigma$ may have value $\top$.
 However by definition of $\textrm{val}^\sigma$ for all vertices $s$ such that $\textrm{val}^\sigma(s) = \top$ all paths from $s$ satisfy mean payoff,
-so it is enough to consider the mean payoff graph obtained from $\Game[\sigma']$ by removing all such vertices.
-The first item of {prf:ref}`4-lem:key_property` implies that it satisfies mean payoff, hence $\Game[\sigma']$ as well.
+so it is enough to consider the mean payoff graph obtained from $\mathcal{G}[\sigma']$ by removing all such vertices.
+The first item of {prf:ref}`4-lem:key_property` implies that it satisfies mean payoff, hence $\mathcal{G}[\sigma']$ as well.
 
 At this point we know that $\sigma'$ respects mean payoff, which thanks to {prf:ref}`4-lem:greatest_fixed_point`
 implies that $\textrm{val}^{\sigma'}$ is the greatest fixed point of $\mathbb{O}$ in $F^{\sigma'}_V$.
 
 We now argue that $\textrm{val}^\sigma$ is a progress measure for $\mathcal{G}[\sigma']$.
 For all vertices but $v$ this is clear because the outgoing edges are the same in $\mathcal{G}[\sigma]$ and in $\mathcal{G}[\sigma']$.
-For $v$ as argued above we have $\textrm{val}^\sigma(v) < \delta(  \textrm{val}^\sigma(v'), \textsf{col}(v))$.
+For $v$ as argued above we have $\textrm{val}^\sigma(v) < \delta(  \textrm{val}^\sigma(v'), \mathfrak{c}(v))$.
 It follows that $\textrm{val}^\sigma$ is indeed a progress measure for $\mathcal{G}[\sigma']$.
 Since $\textrm{val}^{\sigma'}$ is the greatest fixed point of $\mathbb{O}$ in $F^{\sigma'}_V$, this implies that 
 $\textrm{val}^{\sigma} \le   \textrm{val}^{\sigma'}$.
 
 We now show that $\textrm{val}^{\sigma} <   \textrm{val}^{\sigma'}$. 
 Using $\textrm{val}^{\sigma}(v') \le   \textrm{val}^{\sigma'}(v')$ and the monotonicity of $\delta$ we obtain that
-$\delta(  \textrm{val}^\sigma(v'), \textsf{col}(v)) \le \delta(  \textrm{val}^{\sigma'}(v'), \textsf{col}(v))$.
-By definition of $\textrm{val}^{\sigma'}$ we have $\textrm{val}^{\sigma'}(v) = \delta(  \textrm{val}^{\sigma'}(v'), \textsf{col}(v))$
-and together with $\textrm{val}^\sigma(v) < \delta(  \textrm{val}^\sigma(v'), \textsf{col}(v))$ this implies that
+$\delta(  \textrm{val}^\sigma(v'), \mathfrak{c}(v)) \le \delta(  \textrm{val}^{\sigma'}(v'), \mathfrak{c}(v))$.
+By definition of $\textrm{val}^{\sigma'}$ we have $\textrm{val}^{\sigma'}(v) = \delta(  \textrm{val}^{\sigma'}(v'), \mathfrak{c}(v))$
+and together with $\textrm{val}^\sigma(v) < \delta(  \textrm{val}^\sigma(v'), \mathfrak{c}(v))$ this implies that
 $\textrm{val}^\sigma(v) <   \textrm{val}^{\sigma'}(v)$.
 
 ````
@@ -788,7 +786,7 @@ $\textrm{val}^\sigma(v) <   \textrm{val}^{\sigma'}(v)$.
 :label: 4-lem:optimality
 
 Let $\sigma$ be a strategy respecting mean payoff that has no switchable edges, then 
-$\sigma$ is winning from all vertices of $W_\mathrm{Eve}(\Game)$.
+$\sigma$ is winning from all vertices of $W_\mathrm{Eve}(  \mathcal{G})$.
 
 ````
 
@@ -802,21 +800,21 @@ We now prove that Adam has a winning strategy from all vertices $v$ such that $\
 We construct a strategy of Adam by
 
 $$
-\forall v \in  V_\mathrm{Adam},\ \tau(v) =  \textrm{argmin}  \left\{  \delta(  \textrm{val}^{\sigma \right\}(u), \textsf{col}(v)) : (v,u) \in E }.
+\forall v \in  V_\mathrm{Adam},\ \tau(v) =  \textrm{argmin}  \left\{  \delta(  \textrm{val}^{\sigma \right\}(u), \mathfrak{c}(v)) : (v,u) \in E }.
 $$
 
 We argue that $\tau$ ensures the complement of mean payoff from all vertices $v$ such that $\textrm{val}^{\sigma}(v) \neq \top$.
-Let us consider $\Game[\tau]$ the mean payoff graph obtained from $\Game$ by restricting the outgoing edges from $V_\mathrm{Adam}$
+Let us consider $\mathcal{G}[\tau]$ the mean payoff graph obtained from $\mathcal{G}$ by restricting the outgoing edges from $V_\mathrm{Adam}$
 to those prescribed by $\tau$.
 We argue that for all edges $(v,,v')$ in $\mathcal{G}[\tau]$, we have 
-$\textrm{val}^{\sigma}(v) \ge \delta(  \textrm{val}^{\sigma}(v'), \textsf{col}(v))$.
-Once this is proved we conclude using the second item of {prf:ref}`4-lem:key_property` implying that $\Game[\tau]$ satisfies the complement of mean payoff.
+$\textrm{val}^{\sigma}(v) \ge \delta(  \textrm{val}^{\sigma}(v'), \mathfrak{c}(v))$.
+Once this is proved we conclude using the second item of {prf:ref}`4-lem:key_property` implying that $\mathcal{G}[\tau]$ satisfies the complement of mean payoff.
 
 The first case is when $v \in  V_\mathrm{Eve}$. 
 Let $\sigma(v) = (v,u)$.
 Since the edge $e = (v,v')$ is not switchable we have 
-$\delta(  \textrm{val}^{\sigma}(v'), \textsf{col}(v)) \le \delta(  \textrm{val}^{\sigma}(u), \textsf{col}(v))$.
-By definition of $\textrm{val}^\sigma$ we have $\textrm{val}^\sigma(v) = \delta(  \textrm{val}^{\sigma}(u), \textsf{col}(v))$,
+$\delta(  \textrm{val}^{\sigma}(v'), \mathfrak{c}(v)) \le \delta(  \textrm{val}^{\sigma}(u), \mathfrak{c}(v))$.
+By definition of $\textrm{val}^\sigma$ we have $\textrm{val}^\sigma(v) = \delta(  \textrm{val}^{\sigma}(u), \mathfrak{c}(v))$,
 implying the desired inequality.
 
 The second case is when $v \in  V_\mathrm{Adam}$, it holds by definition of $\tau$.

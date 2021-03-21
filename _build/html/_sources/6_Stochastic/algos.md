@@ -3,8 +3,6 @@
 
 ```{math}
 
-\renewcommand{\Game}{\game}
-
 ```
 
 We have shown that stochastic reachability games are central to the (quantitative) analysis of stochastic games. 
@@ -447,7 +445,7 @@ equal to) the least fixpoint of Bellman's equations, that is $\textrm{val}^*$:
 The converse inequality is not true for general or self-consistent
 permutations, but will require the liveness property. One of the main
 advantages of a live permutation $\pi$ is that it induces a
-stopping MDP when  \textrm{Eve} plays according to $\sigma_\pi$:  \textrm{Adam}
+`stopping' MDP when  \textrm{Eve} plays according to $\sigma_\pi$:  \textrm{Adam}
 will not be able to prevent the game converging to $v_{lose}$ and $v_{win}$.
 
 ````{prf:lemma} NEEDS TITLE stoch:lemma:stopping

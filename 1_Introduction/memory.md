@@ -3,8 +3,6 @@
 
 ```{math}
 
-\renewcommand{\Game}{\game}
-
 ```
 
 A strategy can be a very complicated object, in particular it is infinite.
@@ -30,20 +28,20 @@ $$
 A positional strategy induces a strategy by $\widehat{\sigma}(\pi) = \sigma( \textrm{last}(\pi))$.
 
 For reasoning about positional strategies it is useful to define the following notion.
-Let $\Game$ be a game and $\sigma$ a positional strategy, we define $\Game[\sigma]$ the graph with condition $W$ induced by $\sigma$ on $\Game$.
+Let $\mathcal{G}$ be a game and $\sigma$ a positional strategy, we define $\mathcal{G}[\sigma]$ the graph with condition $W$ induced by $\sigma$ on $\mathcal{G}$.
 The set of vertices is $V$ and the set of edges is
 
 $$
 E[\sigma] =  \left\{ e = (v,v') \in E : v \in  V_\mathrm{Adam} \text{ or  \right\} \left( v \in  V_\mathrm{Eve} \text{ and } \sigma(v) = e \right)}.
 $$
 
-It is equipped with the condition $W$ inherited from $\Game$.
+It is equipped with the condition $W$ inherited from $\mathcal{G}$.
 
 ````{prf:observation} Game induced by a positional strategy
 :label: 1-fact:game_induced_positional_strategy
 
-Let $\Game$ be a game with condition $W$, $\sigma$ a positional strategy, and $v$ a vertex.
-Then the strategy $\sigma$ is winning from $v$ if and only if all infinite paths in $\Game[\sigma]$ from $v$ satisfy $W$.
+Let $\mathcal{G}$ be a game with condition $W$, $\sigma$ a positional strategy, and $v$ a vertex.
+Then the strategy $\sigma$ is winning from $v$ if and only if all infinite paths in $\mathcal{G}[\sigma]$ from $v$ satisfy $W$.
 
 ````
 
@@ -67,9 +65,9 @@ using $n \cdot \log(\frac{m}{n})$ calls to the algorithm $A$.
 ````{admonition} Proof
 :class: dropdown tip
 
-Let $\Omega$ be a positionally determined objective and $\Game$ a qualitative game with objective $\Omega$.
-We first determine $W_\mathrm{Eve}(\Game)$, which requires one call to a solving algorithm for each vertex.
-We fix a vertex $v \in  W_\mathrm{Eve}(\Game)$ and determine a winning positional move from $v$.
+Let $\Omega$ be a positionally determined objective and $\mathcal{G}$ a qualitative game with objective $\Omega$.
+We first determine $W_\mathrm{Eve}(  \mathcal{G})$, which requires one call to a solving algorithm for each vertex.
+We fix a vertex $v \in  W_\mathrm{Eve}(  \mathcal{G})$ and determine a winning positional move from $v$.
 We let $d(v)$ denote the outdegree of $v$.
 We choose a subset of $\lfloor \frac{d(v)}{2} \rfloor$ outgoing edges of $v$, construct the game where we remove these edges,
 and solve it using $v$ as initial vertex.

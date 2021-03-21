@@ -3,8 +3,6 @@
 
 ```{math}
 
-\renewcommand{\Game}{\game}
-
 ```
 
 We will now give the references for this chapter, split into a few paragraphs, each corresponding to a section in the chapter.

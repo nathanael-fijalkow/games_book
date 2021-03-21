@@ -3,11 +3,7 @@
 
 ```{math}
 
-\renewcommand{\Game}{\game}
-
 ```
-
-%We start our study of algorithmic problems for MDPs with the most basic
 
 > **Positive reachability**
 
@@ -66,14 +62,15 @@ colour $c$ and $\mathit{Cyl}(\pi)$ is the basic cylinder determined by
 $\pi$. Since $X$ is a countable set, from the property (3.) of a probability 
 measure it follows that $\mathbb{P}^\sigma_{ \mathcal{M},v}( \mathtt{Reach}( c))>0$ if and 
 only if there exists $\pi\in X$ with 
-$\mathbb{P}^\sigma_{ \mathcal{M},v}( \mathit{Cyl}( \pi))>0$. For the latter to hold, it must 
-be that either $\pi= \epsilon$, in which case $C(v)= c$, or 
-$\pi$ is a non-empty play initiated in $v$ and reaching a colour 
-$c$, as required.
+$\mathbb{P}^\sigma_{ \mathcal{M},v}( \mathit{Cyl}( \pi))>0$. For the latter to hold, it must
 
 ```{margin}
 Arguments of this style are said to invoke a union bound. 
 ```
+
+be that either $\pi= \epsilon$, in which case $C(v)= c$, or 
+$\pi$ is a non-empty play initiated in $v$ and reaching a colour 
+$c$, as required.
 
 $(2)\Rightarrow(3)$:
 This is straightforward.

@@ -9,8 +9,10 @@ def macros_transformer(path, file):
 	content = re.sub(r'%(.*?)\n', r'\n', content)
 
 	#### Remove "re"
-	content = re.sub(r'\\renewcommand\{(.*?)\}\{(.*?)\}\s',\
-		r'\\ifdefined\1\n    \\renewcommand{\1}{\2}\n\\else\n    \\newcommand{\1}{\2}\n\\fi', content)
+	content = re.sub(r'\\renewcommand\{(.*?)\}\{(.*?)\}\s',r'\\providecommand\{\1\}\{\2\}\n', content)
+
+	# content = re.sub(r'\\renewcommand\{(.*?)\}\{(.*?)\}\s',\
+	# 	r'\\ifdefined\1\n    \\renewcommand{\1}{\2}\n\\else\n    \\newcommand{\1}{\2}\n\\fi', content)
 
 	# print(content)
 

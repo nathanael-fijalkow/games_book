@@ -5,8 +5,6 @@
 
 % Generic probability measure, also prob. measure operator
 
-\renewcommand{\Game}{\game}
-
 ```
 
 In this section, we turn to two other objectives deeply studied in {prf:ref}`chap:payoffs`: we study total-payoff and shortest path games. We will see that the multidimension setting has dire consequences for both.
@@ -36,7 +34,7 @@ In one-dimension games ($k = 1$), all four assertions are equivalent. In multidi
 ```{figure} ./../FigAndAlgos/12-fig:MPTP.png
 :name: 12-fig:MPTP
 :align: center
-Equivalence between mean-payoff and total-payoff games. Dashed im\-pli\-ca\-tions are only valid in one-dimension games. We use $\sigma \models \Omega$ as a shortcut for $\sigma$ is winning from $v_0$ for $\Omega$.
+Equivalence between mean-payoff and total-payoff games. Dashed im\-pli\-ca\-tions are only valid in one-dimension games. We use $\sigma \models \Omega$ as a shortcut for `$\sigma$ is winning from $v_0$ for $\Omega$'.
 ```
 
 ````{admonition} Proof

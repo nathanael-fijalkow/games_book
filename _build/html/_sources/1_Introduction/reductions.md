@@ -3,8 +3,6 @@
 
 ```{math}
 
-\renewcommand{\Game}{\game}
-
 ```
 
 Automata and memory structures can be used to construct reductions between games.
@@ -16,24 +14,24 @@ while memory structures work at the level of conditions, hence depend on the gra
 Let $\Omega$ a qualitative objective over the set of colours $C$, and $\Omega'$ a second qualitative objective.
 We say that $\Omega$ reduces to $\Omega'$ if there exists a **deterministic** automaton $\mathbf{A}$ over the alphabet $C$ with acceptance objective $\Omega'$ defining $\Omega$, **i.e.** such that $L( \mathbf{A}) = \Omega$.
 
-This implies that we can transform a game $\Game$ with objective $\Omega$ into an equivalent one $\Game \times  \mathbf{A}$ with objective $\Omega'$ by composing $\Game$ with $\mathbf{A}$: 
+This implies that we can transform a game $\mathcal{G}$ with objective $\Omega$ into an equivalent one $\mathcal{G} \times  \mathbf{A}$ with objective $\Omega'$ by composing $\mathcal{G}$ with $\mathbf{A}$: 
 the automaton reads the sequence of colours from $C$ induced by the play and 
 produces a new sequence of colours which is accepted if its satisfies $\Omega'$.
 
 Formally, let $\mathcal{A}$ an arena and
 
 $$
- \mathbf{A} = (Q,q_0,\delta : Q \times C \to Q,\Omega'[ \textsf{col}_\mathbf{A}])
+ \mathbf{A} = (Q,q_0,\delta : Q \times C \to Q,\Omega'[ \mathfrak{c}_\mathbf{A}])
 $$
 
-a deterministic automaton with $\textsf{col}_\mathbf{A} : Q \times C \to C'$.
+a deterministic automaton with $\mathfrak{c}_\mathbf{A} : Q \times C \to C'$.
 We construct the arena $\mathcal{A} \times  \mathbf{A}$ as follows.
 We first define the graph $G \times Q$ whose set of vertices is $V \times Q$ and set of edges is defined as follows:
-for every edge $e = (v,v') \in E$ and state $q \in Q$ there is an edge $e_q$ from $(v,q)$ to $(v',\delta(q, \textsf{col}(v)))$:
+for every edge $e = (v,v') \in E$ and state $q \in Q$ there is an edge $e_q$ from $(v,q)$ to $(v',\delta(q, \mathfrak{c}(v)))$:
 the second component computes the run of $\mathbf{A}$ on the sequence of colours induced by the play.
 The arena is $\mathcal{A} \times  \mathbf{A} = (G \times Q,  V_\mathrm{Eve} \times Q,  V_\mathrm{Adam} \times Q)$.
-The colouring function is defined by $\textsf{col}'((v,q)) =  \textsf{col}_\mathbf{A}(q, \textsf{col}(v))$.
-The game is $\mathcal{G} \times  \mathbf{A} = ( \mathcal{A} \times  \mathbf{A}, \Omega'[ \textsf{col}'])$. 
+The colouring function is defined by $\mathfrak{c}'((v,q)) =  \mathfrak{c}_\mathbf{A}(q, \mathfrak{c}(v))$.
+The game is $\mathcal{G} \times  \mathbf{A} = ( \mathcal{A} \times  \mathbf{A}, \Omega'[ \mathfrak{c}'])$. 
 
 The following lemma states two consequences to the fact that $\Omega$ reduces to $\Omega'$.
 
@@ -41,7 +39,7 @@ The following lemma states two consequences to the fact that $\Omega$ reduces to
 :label: 1-lem:automata_reduction
 
 If $\Omega$ reduces to $\Omega'$ through the automaton $\mathbf{A}$ with $S$ states, then 
-Eve has a winning strategy in $\Game$ from $v_0$ if and only if she has a winning strategy in $\Game \times  \mathbf{A}$ from $(v_0,q_0)$.
+Eve has a winning strategy in $\mathcal{G}$ from $v_0$ if and only if she has a winning strategy in $\mathcal{G} \times  \mathbf{A}$ from $(v_0,q_0)$.
 
 Consequently, the following properties hold:
 
@@ -95,48 +93,48 @@ we let $\mathcal{M} \times   \mathcal{M}'$ denote the memory structure obtained 
 :label: 1-lem:memory_structure_reduction
 
 If $W$ reduces to $W'$ through the memory structure $\mathcal{M}$, then
-Eve has a winning strategy in $\Game = (  \mathcal{A},W)$ from $v_0$ if and only if 
-she has a winning strategy in $\Game \times   \mathcal{M} = (  \mathcal{A} \times   \mathcal{M}, W')$ from $(v_0,m_0)$. 
+Eve has a winning strategy in $\mathcal{G} = (  \mathcal{A},W)$ from $v_0$ if and only if 
+she has a winning strategy in $\mathcal{G} \times   \mathcal{M} = (  \mathcal{A} \times   \mathcal{M}, W')$ from $(v_0,m_0)$. 
 
-More specifically, if Eve has a winning strategy in $\Game \times   \mathcal{M}$ from $(v,m_0)$ using $\mathcal{M}'$ as memory structure, 
-then she has a winning strategy in $\Game$ from $v$ using $\mathcal{M} \times   \mathcal{M}'$ as memory structure.
-In particular if the strategy in $\Game \times   \mathcal{M}$ is memoryless, then the strategy in $\Game$ uses $\mathcal{M}$ as memory structure.
+More specifically, if Eve has a winning strategy in $\mathcal{G} \times   \mathcal{M}$ from $(v,m_0)$ using $\mathcal{M}'$ as memory structure, 
+then she has a winning strategy in $\mathcal{G}$ from $v$ using $\mathcal{M} \times   \mathcal{M}'$ as memory structure.
+In particular if the strategy in $\mathcal{G} \times   \mathcal{M}$ is memoryless, then the strategy in $\mathcal{G}$ uses $\mathcal{M}$ as memory structure.
 
 ````
 
 ````{admonition} Proof
 :class: dropdown tip
 
-A winning strategy in $\Game$ directly induces a winning strategy in $\Game \times   \mathcal{M}$ simply by ignoring the additional information
+A winning strategy in $\mathcal{G}$ directly induces a winning strategy in $\mathcal{G} \times   \mathcal{M}$ simply by ignoring the additional information
 and thanks to the equivalence above because $W$ reduces to $W'$.
-For the converse implication, let $\sigma$ be a winning strategy in $\Game \times   \mathcal{M}$ using $\mathcal{M}'$ as memory structure.
+For the converse implication, let $\sigma$ be a winning strategy in $\mathcal{G} \times   \mathcal{M}$ using $\mathcal{M}'$ as memory structure.
 Recall that $\sigma$ is defined through the function $\sigma : ( V_\mathrm{Eve} \times M) \times M' \to E_M$.
 
 Let $p : E_M \to E$ mapping the edge $e_m$ to $e$.
-We construct a strategy $\sigma'$ in $\Game$ using $\mathcal{M} \times   \mathcal{M}'$ as memory structure by
+We construct a strategy $\sigma'$ in $\mathcal{G}$ using $\mathcal{M} \times   \mathcal{M}'$ as memory structure by
 
 $$
 \sigma'(v, (m,m')) = p(\sigma((v,m), m')).
 $$
 
 The correspondence between plays in $\mathcal{A}$ and $\mathcal{A} \times  \mathcal{M}$ maps plays consistent with $\sigma$ to plays consistent with $\sigma'$,
-which together with the fact that $W$ reduces to $W'$ implies that $\sigma'$ is a winning strategy in $\Game$ from $v$.
+which together with the fact that $W$ reduces to $W'$ implies that $\sigma'$ is a winning strategy in $\mathcal{G}$ from $v$.
 
 ````
 
 To obtain {prf:ref}`1-lem:automata_reduction` as a corollary of {prf:ref}`1-lem:memory_structure_reduction`
 we observe that a reduction between objectives using an automaton induces a reduction between the induced conditions using a memory structure.
 Formally, let us assume that $\Omega$ reduces to $\Omega'$, 
-and let $\mathbf{A} = (Q, q_0, \delta, \Omega'[ \textsf{col}_\mathbf{A}])$ such that $L( \mathbf{A}) = \Omega$.
-Let $\Game = (  \mathcal{A}, \Omega[ \textsf{col}])$ a game.
+and let $\mathbf{A} = (Q, q_0, \delta, \Omega'[ \mathfrak{c}_\mathbf{A}])$ such that $L( \mathbf{A}) = \Omega$.
+Let $\mathcal{G} = (  \mathcal{A}, \Omega[ \mathfrak{c}])$ a game.
 
 We first define the memory structure $\mathcal{M} = (Q, q_0, \delta')$: the transition function is $\delta' : Q \times E \to Q$, it is defined
-by $\delta'(q,(v,v')) = \delta(q,  \textsf{col}(v))$.
-We then define $\textsf{col}'(v,q) =  \textsf{col}_\mathbf{A}(q,  \textsf{col}(v))$.
+by $\delta'(q,(v,v')) = \delta(q,  \mathfrak{c}(v))$.
+We then define $\mathfrak{c}'(v,q) =  \mathfrak{c}_\mathbf{A}(q,  \mathfrak{c}(v))$.
 
-We note that $\Omega[ \textsf{col}]$ reduces to $\Omega'[ \textsf{col}']$: for all plays $\pi$ in $\mathcal{A}$, we have 
-$\pi \in \Omega[ \textsf{col}]$ if and only if $\pi' \in \Omega'[ \textsf{col}']$: this is a reformulation of the fact that $L( \mathbf{A}) = \Omega$.
+We note that $\Omega[ \mathfrak{c}]$ reduces to $\Omega'[ \mathfrak{c}']$: for all plays $\pi$ in $\mathcal{A}$, we have 
+$\pi \in \Omega[ \mathfrak{c}]$ if and only if $\pi' \in \Omega'[ \mathfrak{c}']$: this is a reformulation of the fact that $L( \mathbf{A}) = \Omega$.
 
-We construct the game $\Game' = (  \mathcal{A} \times   \mathcal{M}, \Omega'[ \textsf{col}'])$.
+We construct the game $\mathcal{G}' = (  \mathcal{A} \times   \mathcal{M}, \Omega'[ \mathfrak{c}'])$.
 Thanks to {prf:ref}`1-lem:memory_structure_reduction` the two games have the same winner and a strategy in the latter induce a strategy in the former
 by composing with the memory structure $\mathcal{M}$, implying {prf:ref}`1-lem:automata_reduction`.

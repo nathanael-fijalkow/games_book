@@ -8,13 +8,9 @@
 \def\acchanged#1{{#1}}
 \def\OS#1{\textcolor{red}{\checkmark}\marginpar{\color{red}OS: #1}}
 
-\renewcommand{\qed}{$\square$}
-
 \newcommand {\Stepsg}[1]{\mathit{Steps}_{#1}}
 
 \newcommand {\Rounds}[1]{\mathit{Rounds}_{#1}}
-
-\renewcommand{\Game}{\game}
 
 ```
 
@@ -234,7 +230,7 @@ We will see in the following section that for the parity condition and more gene
 
 At first sight, the reachability objective is not captured by {prf:ref}`10-thm:regularity-wr` as it is not prefix independent. However with a slight adaptation of the reduced game $\mathcal{G}(R)$ {prf:ref}`10-thm:regularity-wr`  for the reachability condition. Intuitively we ask that the play stops as soon as a target vertex is reached.
 
-More formally, for a reachability objective $\mathtt{Reach}(F)$ and letting $V=V_\mathrm{Eve}\cup V_\mathrm{Adam}$ and $V_F = \{ v \in V \mid   \textsf{col}(v) \in F\}$:
+More formally, for a reachability objective $\mathtt{Reach}(F)$ and letting $V=V_\mathrm{Eve}\cup V_\mathrm{Adam}$ and $V_F = \{ v \in V \mid   \mathfrak{c}(v) \in F\}$:
 
 $$ \overline{\Omega}(R) = [(V \setminus Q \times \{\bot\})^* \cdot V_F \cdot V^\omega]\cup [(V \setminus (Q\times\{\bot\} \cup V_F))^* \cdot (R\times \{\bot\}) \cdot V^\omega]
 $$
@@ -245,7 +241,7 @@ In the special case of the reachability objective, the set $\mathrm{Profs}$ of t
 
 More precisely, $\mathrm{Profs}$ is the smallest subset of $Q\times \Gamma \times \mathcal{P}(Q))$ such that for $p \in Q$, $\gamma \in \Gamma$ and $R \subseteq Q$, $(p,\gamma,R)$ belongs $\mathrm{Profs}$ if either: 
 
-1.  $p \in Q_F=\{ q \in Q \mid   \textsf{col}(q) \in F\}$,
+1.  $p \in Q_F=\{ q \in Q \mid   \mathfrak{c}(q) \in F\}$,
 2.  or $p \in Q_{ \mathrm{Eve}}$ and for some $q \in Q$,
 
 *  either $(q, \mathrm{pop}) \in \Delta(p,\gamma)$ and $q \in R$,

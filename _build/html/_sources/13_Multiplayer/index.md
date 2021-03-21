@@ -24,8 +24,6 @@
 \def\devg{\textsf{DevGame}}
 \def\Coalition{\mathcal{C}}
 
-\renewcommand{\Game}{\game}
-
 ```
 
 
@@ -85,21 +83,20 @@ hunted.
 When a player chooses hawk then the best payoff for the opponent is
 obtained by choosing dove, so as to avoid fighting for resources.
 So, dove is the best response to hawk. Reciprocally, the best response to
-dove is to play hawk. There are two equilibria: (Hawk, Dove) and
+dove is to play hawk. There are two `equilibria': (Hawk, Dove) and
 (Dove, Hawk), where no player has an interest in changing their
 strategy. Note that the highest payoff a player can ensure
 (against all adversary strategies) is only $1$.
 
 Nash showed the existence of such equilibria in any normal-form game
 ,
-which may require randomized strategies.
 
 ```{margin}
 normal-form games are also called matrix games, and some
 specific form was defined in {prf:ref}`chap:concurrent`.
 ```
 
- This result
+which may require randomized strategies. This result
 revolutionized the field of economics, where it is used to analyze
 competitions between firms or government economic policies for example.
 Game theory and the concept of Nash equilibrium are now applied to

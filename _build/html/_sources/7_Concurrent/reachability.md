@@ -3,8 +3,6 @@
 
 ```{math}
 
-\renewcommand{\Game}{\game}
-
 ```
 
 In this section we consider concurrent reachability games. 
@@ -64,7 +62,7 @@ The following lemma states some classical results for concurrent reachability ga
 
 The decision problem for the existential first order theory over the reals is the following decision problem:
 Given a function $F: \mathbb{R}^n\rightarrow \{\text{true},\text{false}\}$, is there an vector $v$ such that $F(v)$ is true?
-The function $F$ must be an well-formed (i.e. connected with logical and, or and not) quantifier-free formula over polynomial inequalities.
+The function $F$ must be an well-formed (i.e. connected with logical `and', `or' and `not') quantifier-free formula over polynomial inequalities.
 E.g. $x^2y+z\geq 5\wedge \neg (xz\leq 3)$ would be such a function.
 
 ````{prf:lemma} NEEDS TITLE AND LABEL 

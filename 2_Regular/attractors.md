@@ -3,14 +3,12 @@
 
 ```{math}
 
-\renewcommand{\Game}{\game}
-
 ```
 
 Recall that the objective $\mathtt{Reach}$ requires that the colour $\textrm{Win}$ appears at least once and 
 $\mathtt{Safe}$ requires the the colour $\textrm{Lose}$ never appears.
-We identify the colour $\textrm{Win}$ with $\textsf{col}^{-1}( \textrm{Win})$ the set of vertices labelled $\textrm{Win}$,
-so we write $v \in  \textrm{Win}$ when $\textsf{col}(v) =  \textrm{Win}$, and similarly for $\textrm{Lose}$.
+We identify the colour $\textrm{Win}$ with $\mathfrak{c}^{-1}( \textrm{Win})$ the set of vertices labelled $\textrm{Win}$,
+so we write $v \in  \textrm{Win}$ when $\mathfrak{c}(v) =  \textrm{Win}$, and similarly for $\textrm{Lose}$.
 
 ````{prf:theorem} Positional determinacy and complexity of reachability games
 :label: 2-thm:reachability
@@ -32,7 +30,7 @@ In the litterature the complexity $O(n + m)$ is often reported for solving reach
 Since we make the assumption that every vertex has an outgoing edge this implies that $n \le m$, so $O(n + m) = O(m)$.
 
 Towards proving {prf:ref}`2-thm:reachability` let us introduce some notations.
-Let us consider a reachability game $\Game = ( \mathcal{A},  \mathtt{Reach}[ \textsf{col}])$.
+Let us consider a reachability game $\mathcal{G} = ( \mathcal{A},  \mathtt{Reach}[ \mathfrak{c}])$.
 For a subset $F \subseteq V$, we let $\textrm{Pre}_\mathrm{Eve}(F) \subseteq V$ the set of vertices from which Eve can ensure 
 that the next vertex is in $F$:
 
@@ -55,13 +53,12 @@ Hence {prf:ref}`1-thm:kleene` applies: this operator has a least fixed point
 which we call the attractor of $\textrm{Win}$ for Eve and write $\textrm{Attr}_\mathrm{Eve}( \textrm{Win})$,
 and it is computed by the following sequence: we let $\textrm{Attr}_\mathrm{Eve}^0( \textrm{Win}) =  \textrm{Win}$ and
 
-$$
- \textrm{Attr}_\mathrm{Eve}^{k+1}( \textrm{Win}) =  \textrm{Attr}_\mathrm{Eve}^{k}( \textrm{Win})\ \cup\  \textrm{Pre}_\mathrm{Eve}( \textrm{Attr}_\mathrm{Eve}^{k}( \textrm{Win})).
-
 ```{margin}
 For technical convenience we shift the sequence by one, ignoring the first term which is the empty set
 ```
 
+$$
+ \textrm{Attr}_\mathrm{Eve}^{k+1}( \textrm{Win}) =  \textrm{Attr}_\mathrm{Eve}^{k}( \textrm{Win})\ \cup\  \textrm{Pre}_\mathrm{Eve}( \textrm{Attr}_\mathrm{Eve}^{k}( \textrm{Win})).
 $$
 
 This constructs a sequence $( \textrm{Attr}_\mathrm{Eve}^{k}( \textrm{Win}))_{k \in  \mathbb{N}}$ of non-decreasing subsets of $V$.
@@ -71,7 +68,7 @@ the sequence stabilises after at most $n-1$ steps, **i.e.** $\textrm{Attr}_\math
 Let us drop the finiteness assumption: if the game is infinite but has finite outdegree, meaning that for any vertex there is a finite number of outgoing edges, then the operator above preserves suprema so thanks to {prf:ref}`1-thm:kleene` 
 we have $\textrm{Attr}_\mathrm{Eve}( \textrm{Win}) = \bigcup_{k \in  \mathbb{N}}  \textrm{Attr}_\mathrm{Eve}^k( \textrm{Win})$.
 In full generality the operator does not preserve suprema and the use of ordinals is necessary:
-we define the sequence $( \textrm{Attr}_\mathrm{Eve}^{\alpha}( \textrm{Win}))$ indexed by ordinals up to the cardinal of $\Game$,
+we define the sequence $( \textrm{Attr}_\mathrm{Eve}^{\alpha}( \textrm{Win}))$ indexed by ordinals up to the cardinal of $\mathcal{G}$,
 the case of a limit ordinal $\alpha$ being $\textrm{Attr}_\mathrm{Eve}^{\alpha}( \textrm{Win}) = \bigcup_{\beta < \alpha}  \textrm{Attr}_\mathrm{Eve}^{\beta}( \textrm{Win})$.
 We then show that $\textrm{Attr}_\mathrm{Eve}( \textrm{Win})$ is the union of all elements in this sequence.
 
@@ -164,7 +161,7 @@ $$
 S \subseteq A \text{ and }  \textrm{Attr}_\mathrm{Eve}^ \mathcal{G}( \textrm{Win}) = A \cup  \textrm{Attr}_\mathrm{Eve}^{ \mathcal{G}_t}(S).
 $$
 
-The invariant is satisfied initially because $A = S =  \textrm{Win}$ and $\Game_t = \Game$.
+The invariant is satisfied initially because $A = S =  \textrm{Win}$ and $\mathcal{G}_t =   \mathcal{G}$.
 To show that it is preserved by one iteration of the repeat loop, let us assume that we choose and remove $v'$ from $S$.
 Let us write $\mathcal{G}_{\text{before}}$ for the game before considering $v'$, and $\mathcal{G}_{\text{after}}$ for the game after considering $v'$:
 all incoming edges to $v'$ have been removed in $\mathcal{G}_{\text{after}}$.
@@ -195,7 +192,7 @@ The notion of attractors induces a common way of constructing traps as stated in
 ````{prf:lemma} Attractors induce traps
 :label: 2-lem:attractors_trap
 
-Let $\Game$ a game and $F \subseteq V$ a subset of edges.
+Let $\mathcal{G}$ a game and $F \subseteq V$ a subset of edges.
 Then $V \setminus  \textrm{Attr}_\mathrm{Eve}(F)$ is a trap for Eve and symmetrically $V \setminus  \textrm{Attr}_\mathrm{Adam}(F)$ is a trap for Adam.
 
 ````

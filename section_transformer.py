@@ -28,10 +28,12 @@ def section_transformer(nb_chap, file_name, path, title, label):
 	print("> Reading %s" % file_name)
 
 	#### Remove comments
-	content = re.sub(r'(\s)%(.*?)(?=\n)', r'\1', content)
+	content = re.sub(r'(?!\\)%(.*?)(?=\n)', r'', content)
+
+	#### Remove local macros for tex
+	content = re.sub(r'\\input\{macros_local_tex\}', r'', content)
 
 	#### Add macros
-
 	f = open("macros_complexity.tex", "r")
 	macros_complexity = f.read()
 	content = macros_complexity + "```\n" + content
@@ -68,6 +70,8 @@ def section_transformer(nb_chap, file_name, path, title, label):
 	content = re.sub(r'\\hfill', r'', content)
 	#### Rewrite textsuperscript
 	content = re.sub(r'\\textsuperscript\{([\s\S]*?)\}', r'\1', content)
+	#### Remove scriptsize
+	content = re.sub(r'\\scriptsize\{([\s\S]*?)\}', r'\1', content)
 	#### Make sure $$ can breath
 	content = re.sub(r'\$\$', r'\n\n$$\n\n', content)
 	#### Rewrite textsc
@@ -80,19 +84,20 @@ def section_transformer(nb_chap, file_name, path, title, label):
 	#### Remove medskip
 	content = re.sub(r'\\medskip', r'\n', content)
 	#### Remove noindent
-	content = re.sub(r'\\noindent', r'\n', content)
+	content = re.sub(r'\\noindent', r'', content)
 	#### Remove begingroup and endgroup
-	content = re.sub(r'\\begingroup', r'\n', content)
-	content = re.sub(r'\\endgroup', r'\n', content)
+	content = re.sub(r'\\begingroup', r'', content)
+	content = re.sub(r'\\endgroup', r'', content)
 	#### Remove allowdisplaybreaks
-	content = re.sub(r'\\allowdisplaybreaks', r'\n', content)
+	content = re.sub(r'\\allowdisplaybreaks', r'', content)
 	#### Remove AP
-	content = re.sub(r'\\AP', r'\n', content)
+	content = re.sub(r'\\AP', r'', content)
 	#### Remove svgraybox
-	content = re.sub(r'\\begin\{svgraybox\}([\s\S]*?)\\end\{svgraybox\}', \
-		r'```{admonition} Problem\n\1\n```', content)
+	## Obsolete: removed svgraybox
+	# content = re.sub(r'\\begin\{svgraybox\}([\s\S]*?)\\end\{svgraybox\}', \
+	# 	r'```{admonition} Problem\n\1\n```', content)
 	#### Reshape quotes
-	content = re.sub(r'\`\`(.*?)\'\'', r'''\1''', content)
+	content = re.sub(r'\`(.*?)\'', r'\1', content)
 	#### Remove ensuremath
 	pattern = r'\\ensuremath\{([\s\S]*?)$'
 	match = re.search(pattern, content)
@@ -104,6 +109,10 @@ def section_transformer(nb_chap, file_name, path, title, label):
 		# print("new_eq\n" + new_eq)
 		content = content[:begin_eq] + new_eq + content[begin_eq + 13 + end_eq:]
 		match = re.search(pattern, content)
+
+	#### Rewrite \?, \+ 
+	content = re.sub(r'\\[?](\w*?)(?=\W)', r'\\mathcal{\1}', content)
+	content = re.sub(r'\\[+](\w*?)(?=\W)', r'\\mathbb{\1}', content)
 
 	#### Remove textrm
 	# pattern = r'\\textrm\{([\s\S]*?)$'
@@ -117,13 +126,51 @@ def section_transformer(nb_chap, file_name, path, title, label):
 	# 	content = content[:begin_eq] + new_eq + content[begin_eq + 9 + end_eq:]
 	# 	match = re.search(pattern, content)
 
+	#### Deal with decpb
+	# turns 
+	# \decpb[title]{\label{label} input}{question}
+	# into
+	# ```{admonition} Problem title\n:name: label**INPUT**: input\n\n QUESTION**: question\n```
+
+	# pattern = r'\\decpb\[([\s\S]*?)\]\s*\{(\\label\{.*?\})?([\s\S]*?)\}\s*\{([\s\S]*?)\}'
+	pattern = r'\\decpb\[([\s\S]*?)\]\s*\{(\\label\{.*?\})?([\s\S]*?)$'
+	match = re.search(pattern, content)
+	while match:
+		(start,end) = match.span()
+		title = match.group(1)
+		label = match.group(2)[7:-1] if match.group(2) else None
+		rest = match.group(3)
+		# locate end of input
+		i = match_next(rest, '{', '}')	
+		dec_input = rest[:i]
+		# print("\nINPUT:\n" + dec_input)
+		rest = rest[i+1:]
+		# locate beginning of question
+		match = re.search("{", rest)
+		(start_question,end) = match.span()
+		rest = rest[start_question + 1:]
+		# locate end of question
+		i = match_next(rest, '{', '}')	
+		dec_question = rest[:i]
+		# print("\nQUESTION:\n" + dec_question)
+		rest = rest[i+1:]
+		# print("\nREST:\n" + rest[:100])
+		match = None
+		if label:
+			new_pb = r'```{admonition} Problem (' + title + ')\n:name: ' + label + '\n**INPUT**: ' + dec_input + '\n\n**QUESTION**: ' + dec_question + '\n```'
+			content = content[:start] + new_pb + "\n" + rest
+		else:
+			new_pb = r'```{admonition} Problem (' + title + ')\n**INPUT**: ' + dec_input + '\n\n**QUESTION**: ' + dec_question + '\n```'
+			content = content[:start] + new_pb + "\n" + rest
+		match = re.search(pattern, content)
+
 	#### Rewrite footnotes
 	# We place the margin before the next stop
 	def rewrite_footnote(s):
 		st = s.group(1)
 		i = match_next(st, '{', '}')
 		# print(st[:i])
-		end = re.match(r'[\s\S]*?[.]', st[i+1:]).end()
+		end = re.match(r'[\s\S]*?[.\n]', st[i+1:]).end()
 		# print(st[i+1:i+1+end])
 		return st[i+1:i+1+end] + "\n\n```{margin}\n" + st[:i] + "\n```\n\n" + st[i+1+end:] 
 
@@ -178,6 +225,19 @@ def section_transformer(nb_chap, file_name, path, title, label):
 			# new_eq = '```{math}\n' + eq + '\n```'
 		content = content[:begin_eq] + new_eq + content[end_eq:]
 		match = re.search(pattern, content)
+
+	#### Deal with references to decision problems
+	# [](link) DOES NOT WORK!
+	# Here is [text](label)
+
+	p1 = r"~\\[cC]ref\{(\d*?)-pb:(.*?)\}"
+	s1 = r" [Problem](\1-pb:\2)"
+
+	p2 = r"\\[cC]ref\{(\d*?)-pb:(.*?)\}"
+	s2 = r"[Problem](\1-pb:\2)"
+
+	content = re.sub(p1, s1, content)
+	content = re.sub(p2, s2, content)
 
 	#### Deal with references to (sub)*sections
 
@@ -315,37 +375,6 @@ def section_transformer(nb_chap, file_name, path, title, label):
 	content = re.sub(r'\{\\\'n}', r'&#324;', content)
 	content = re.sub(r'\{\\\'y}', r'&yacute;', content)
 
-	#### Deal with decisionproblems and tasks
-	def rewrite_decisionproblems(s):
-		s = s.group(1)
-		i = match_next(s, '{', '}')
-		inp = s[:i]
-		j = match_next(s[i+2:], '{', '}')
-		out = s[i+2:i+2+j]
-		return "**INPUT**: " + inp + "\n\n**QUESTION**: " + out + "\n" + s[i+2+j+1:]
-
-	pattern = r'\\decisionproblem\{([\s\S]*)'
-	match = re.search(pattern, content)
-	while match:
-		content = re.sub(pattern, rewrite_decisionproblems, content)
-		match = re.search(pattern, content)
-
-	def rewrite_tasks(s):
-		s = s.group(1)
-		i = match_next(s, '{', '}')
-		inp = s[:i]
-		j = match_next(s[i+2:], '{', '}')
-		out = s[i+2:i+2+j]
-		return "**INPUT**: " + inp + "\n\n**COMPUTE**: " + out + "\n" + s[i+2+j+1:]
-
-	pattern = r'\\task\{([\s\S]*)'
-	match = re.search(pattern, content)
-	while match:
-		content = re.sub(pattern, rewrite_tasks, content)
-		match = re.search(pattern, content)
-
-	# content = re.sub(r'\\task\{([\s\S]*?)\}\{([\s\S]*?)\}\n', r'**INPUT**: \1\n\n**COMPUTE**: \2\n', content)
-
 	#### Deal with subsections and subsubsections
 
 	# replace
@@ -421,12 +450,20 @@ def section_transformer(nb_chap, file_name, path, title, label):
 
 	# replace
 	# \begin{quotation}
-	# ``An extraordinary number of basic ideas in model theory can be expressed in terms of games.''
+	# An extraordinary number of basic ideas in model theory can be expressed in terms of games.
 	# \end{quotation}
 	# by
 	# > An extraordinary number of basic ideas in model theory can be expressed in terms of games.
 
-	content = re.sub(r'\\begin\{quotation\}\n`([\s\S]*?)\'\n\\end\{quotation\}', r'\n\n> `\1\'\n\n', content)
+	content = re.sub(r'\\begin\{quotation\}\n([\s\S]*?)\n\\end\{quotation\}', r'\n\n> `\1\'\n\n', content)
+
+	#### Remove knowledge
+	content = re.sub(r'""([^"]*?)@[^"]*?""', r'\1', content)
+	content = re.sub(r'""([^"]*?)""', r'\1', content)
+	content = re.sub(r'"([^"]*?)@[^"]*?"', r'\1', content)
+	content = re.sub(r'"([^"]*?)"', r'\1', content)
+	content = re.sub(r'\\knowledge[\s\S]*?\n', r'', content)
+	content = re.sub(r'\\index\{(\w*?)![\s\S]*?mymoot\}', r'\1', content)
 
 	#### Rewrite highlighted text
 	def rewrite_highlighted(s):
@@ -452,12 +489,6 @@ def section_transformer(nb_chap, file_name, path, title, label):
 	while match:
 		content = re.sub(pattern, rewrite_highlighted, content)
 		match = re.search(pattern, content)
-
-	#### Remove knowledge
-	content = re.sub(r'""(.*?)""', r'\1', content)
-	content = re.sub(r'"(.*?)@.*?"', r'\1', content)
-	content = re.sub(r'"(.*?)"', r'\1', content)
-	content = re.sub(r'\\knowledge.*?\n', r'', content)
 
 	#### Deal with itemize and enumerate
 
@@ -562,10 +593,10 @@ def section_transformer(nb_chap, file_name, path, title, label):
 		r'\n````{admonition} Proof\n:class: dropdown tip\n\2\n````\n', content)
 
 	#### Deal with citations
-	content = re.sub(r'~\\cite\{(.*?)\}', r' {cite}`\1`', content)
-	content = re.sub(r'\\cite\{(.*?)\}', r'{cite}`\1`', content)
-	content = re.sub(r'~\\cite\[(.*?)\]\{(.*?)\}', r' (\1 in {cite}`\2`)', content)
-	content = re.sub(r'\\cite\[(.*?)\]\{(.*?)\}', r'(\1 in {cite}`\2`)', content)
+	content = re.sub(r'~\\cite[ptm]?\{(.*?)\}', r' {cite}`\1`', content)
+	content = re.sub(r'\\cite[ptm]?\{(.*?)\}', r'{cite}`\1`', content)
+	content = re.sub(r'~\\cite[ptm]?\[(.*?)\]\{(.*?)\}', r' (\1 in {cite}`\2`)', content)
+	content = re.sub(r'\\cite[ptm]?\[(.*?)\]\{(.*?)\}', r'(\1 in {cite}`\2`)', content)
 
 	#### Remove indents
 	content = re.sub(r'\t', r'', content)

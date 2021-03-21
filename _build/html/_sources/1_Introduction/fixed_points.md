@@ -3,8 +3,6 @@
 
 ```{math}
 
-\renewcommand{\Game}{\game}
-
 ```
 
 Let $X$ be a set and $\mathbb{O} : X \to X$ a function that we call an operator, we say that $x \in X$ is a fixed point of $\mathbb{O}$ if $\mathbb{O}(x) = x$.
@@ -60,7 +58,7 @@ Furthermore:
 ````
 
 Under the same assumptions $\mathbb{O}$ has a greatest fixed point which is the greatest post-fixed point and can be computed in similar ways,
-replacing inflationary by deflationary and preserves suprema by preserves infima.
+replacing `inflationary' by `deflationary' and `preserves suprema' by `preserves infima'.
 
 The typical example of a complete lattice and one that we will use often in this book is the powerset of a set equipped with the inclusion between subsets. The least element is the empty set, the greatest element the full set, and least and greatest upper bounds are given by union and intersection.
 An example of an infinite complete lattice is $\mathbb{R} \cup  \left\{ \pm \infty \right\}$ equipped with the natural order.

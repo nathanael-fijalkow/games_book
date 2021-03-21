@@ -69,9 +69,9 @@ In spite of the restriction to "asymmetric" "vector systems",
   assume without loss of generality that $\?M$ checks that all its
   counters are zero before going to $\loc_\mathtt{halt}$, we construct
   an "asymmetric vector system"
-  $\?V\eqdef(\Loc\uplus\Loc_{\eqby?0}\uplus\Loc_{\dd},\Act',\Loc\uplus\Loc'_{\eqby?0},\Loc_{\eqby?0},\dd)$
+  $\?V\eqdef(\Loc\uplus\Loc_{\eqby{?0}}\uplus\Loc_{\dd},\Act',\Loc\uplus\Loc'_{\eqby{?0}},\Loc_{\eqby{?0}},\dd)$
   where all the original locations and $\Loc_{\dd}$ are
-  controlled by~Eve and $\Loc_{\eqby?0}$ is controlled by Adam.
+  controlled by~Eve and $\Loc_{\eqby{?0}}$ is controlled by Adam.
 
   \begin{figure}[htbp]
     \centering
@@ -90,7 +90,7 @@ In spite of the restriction to "asymmetric" "vector systems",
       \node[above right=.5cm and 1.5cm of 4](6){$\loc'$};
       \node[right=1.25cm of map2,s-eve](7){$\loc$};
       \node[below right=.5cm and 1.5cm of 7,s-eve](8){$\loc''$};
-      \node[above right=.5cm and 1.5cm of 7,s-adam,inner sep=-1.5pt](9){$\loc'_{i\eqby?0}$};
+      \node[above right=.5cm and 1.5cm of 7,s-adam,inner sep=-1.5pt](9){$\loc'_{i\eqby{?0}}$};
       \node[below right=.5cm and 1.5cm of 9,s-eve](10){$\loc'$};
       \node[above right=.5cm and 1.5cm of 9,s-eve](11){$\loc_{i}$};
       \node[right=of 11,s-eve,inner sep=0pt](12){$\loc_{\mathtt{halt}}$};
@@ -98,7 +98,7 @@ In spite of the restriction to "asymmetric" "vector systems",
       (0) edge node{$\vec e_i$} (1)
       (2) edge node{$\vec e_i$} (3)
       (4) edge[swap] node{$-\vec e_i$} (5)
-      (4) edge node{$i\eqby?0$} (6)
+      (4) edge node{$i\eqby{?0}$} (6)
       (7) edge[swap] node{$-\vec e_i$} (8)
       (7) edge node{$\vec 0$} (9)
       (9) edge[swap] node{$\vec 0$} (10)
@@ -110,17 +110,17 @@ In spite of the restriction to "asymmetric" "vector systems",
   \end{figure}
 
   We
-  use $\Loc_{\eqby?0}$ and $\Loc_{\dd}$ as two sets of locations disjoint from~$\Loc$ defined by
+  use $\Loc_{\eqby{?0}}$ and $\Loc_{\dd}$ as two sets of locations disjoint from~$\Loc$ defined by
   \begin{align*}
-    \Loc_{\eqby?0}&\eqdef\{\loc'_{i\eqby?0}\in\Loc\times\{1,\dots,\dd\}\mid\exists\loc\in\Loc\mathbin.(\loc\step{i\eqby?0}\loc')\in\Act\}\\
+    \Loc_{\eqby{?0}}&\eqdef\{\loc'_{i\eqby{?0}}\in\Loc\times\{1,\dots,\dd\}\mid\exists\loc\in\Loc\mathbin.(\loc\step{i\eqby{?0}}\loc')\in\Act\}\\
     \Loc_{\dd}&\eqdef\{\loc_{i}\mid 1\leq i\leq \dd\}
     \intertext{and define the set of actions by (see \cref{11-fig:asym-undec})}
     \Act'&\eqdef\{\loc\step{\vec
           e_i}\loc'\mid(\loc\step{\vec e_i}\loc')\in\Act\}\cup\{\loc\step{-\vec e_i}\loc''\mid(\loc\step{-\vec e_i}\loc'')\in\Act\}\\
     &\:\cup\:\{\loc\step{\vec
-      0}\loc'_{i\eqby?0},\;\;\:\loc'_{i\eqby?0}\!\!\step{\vec
-      0}\loc',\;\;\:\loc'_{i\eqby?0}\!\!\step{\vec 0}\loc_{i}\mid
-      (\loc\step{i\eqby?0}\loc')\in\Act\}\\
+      0}\loc'_{i\eqby{?0}},\;\;\:\loc'_{i\eqby{?0}}\!\!\step{\vec
+      0}\loc',\;\;\:\loc'_{i\eqby{?0}}\!\!\step{\vec 0}\loc_{i}\mid
+      (\loc\step{i\eqby{?0}}\loc')\in\Act\}\\
     &\:\cup\:\{\loc_i\!\step{-\vec e_j}\loc_{i},\;\;\:\loc_{i}\!\step{\vec
       0}\loc_\mathtt{halt}\mid 1\leq i,j\leq\dd, j\neq i\}\;.
   \end{align*}
@@ -137,26 +137,26 @@ In spite of the restriction to "asymmetric" "vector systems",
   $(\loc\step{\vec e_i}\loc')\in\Act$, Eve has no choice but to apply
   $\loc\step{\vec e_i}\loc'$ and go to the configuration
   $\loc'(\vec v+\vec e_i)$ also reached in one step in~$\?M$.  If
-  $\{\loc\step{i\eqby?0}\loc',\loc\step{-\vec e_i}\loc''\}\in\Act$ and
+  $\{\loc\step{i\eqby{?0}}\loc',\loc\step{-\vec e_i}\loc''\}\in\Act$ and
   $\vec v(i)=0$, due to the "natural semantics", Eve cannot use the
   action $\loc\step{-\vec e_i}\loc''$, thus she must use
-  $\loc\step{\vec 0}\loc'_{i\eqby?0}$.  Then, either Adam plays
-  $\loc'_{i\eqby?0}\!\!\step{\vec 0}\loc'$ and Eve regains the
+  $\loc\step{\vec 0}\loc'_{i\eqby{?0}}$.  Then, either Adam plays
+  $\loc'_{i\eqby{?0}}\!\!\step{\vec 0}\loc'$ and Eve regains the
   control in $\loc'(\vec v)$, which was also the configuration reached
   in one step in~$\?M$, or Adam plays
-  $\loc'_{i\eqby?0}\!\!\step{\vec 0}\loc_{i}$ and Eve 
+  $\loc'_{i\eqby{?0}}\!\!\step{\vec 0}\loc_{i}$ and Eve 
   regains the control in $\loc_{i}(\vec v)$ with
   $\vec v(i)=0$.  Using the actions
   $\loc_{i}\!\step{-\vec e_j}\loc_{i}$ for
   $j\neq i$, Eve can then reach $\loc_{i}(\vec 0)$ and move
   to $\loc_\mathtt{halt}(\vec 0)$.  Finally, if
-  $\{\loc\step{i\eqby?0}\loc',\loc\step{-\vec e_i}\loc''\}\in\Act$ and
+  $\{\loc\step{i\eqby{?0}}\loc',\loc\step{-\vec e_i}\loc''\}\in\Act$ and
   $\vec v(i)>0$, Eve can choose: if she uses
   $\loc\step{-\vec e_i}\loc''$, she ends in the configuration
   $\loc''(\vec v-\vec e_i)$ also reached in one step in~$\?M$.  In
-  fact, she should not use $\loc\step{\vec 0}\loc'_{i\eqby?0}$,
+  fact, she should not use $\loc\step{\vec 0}\loc'_{i\eqby{?0}}$,
   because Adam would then have the opportunity to apply
-  $\loc'_{i\eqby?0}\!\!\step{\vec 0}\loc_{i}$, and in
+  $\loc'_{i\eqby{?0}}\!\!\step{\vec 0}\loc_{i}$, and in
   $\loc_{i}(\vec v)$ with $\vec v(i)>0$, there is no way to
   reach a configuration with an empty $i$th component, let alone to
   reach $\loc_\mathtt{halt}(\vec 0)$.  Thus, if $\?M$ halts, then Eve 
@@ -170,13 +170,13 @@ In spite of the restriction to "asymmetric" "vector systems",
 \end{proof}
 
 In dimension~one, \cref{11-th:dim1} applies, thus "configuration
-reachability" is decidable in \EXPSPACE.  This bound is actually
+reachability" is decidable in $\EXPSPACE$.  This bound is actually
 tight.
-\begin{theorem}[Asymmetric vector games are \EXPSPACE-complete in dimension~one]
+\begin{theorem}[Asymmetric vector games are $\EXPSPACE$-complete in dimension~one]
 \label{11-th:asym-dim1}
   "Configuration reachability" "asymmetric vector games", both with
   "given" and with "existential initial credit",
-  are \EXPSPACE-complete in dimension~one.
+  are $\EXPSPACE$-complete in dimension~one.
 \end{theorem}
 \begin{proof}
   Let us first consider the "existential initial credit" variant.  We

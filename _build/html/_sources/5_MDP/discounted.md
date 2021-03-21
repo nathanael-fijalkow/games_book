@@ -3,8 +3,6 @@
 
 ```{math}
 
-\renewcommand{\Game}{\game}
-
 ```
 
 In this section, we consider MDPs with edges coloured by rational numbers 
@@ -599,7 +597,7 @@ $\frac{| V|^2\cdot (| A|-1)}{1-\lambda}\cdot
 \log(\frac{| V|^2}{1-\lambda})$, with each iteration requiring  
 $\mathcal{O}(| V|^2\cdot | A|)$ arithmetic operations. This has 
 also an impact on the strategy improvement method: it can be shown that strategy 
-improvement in discounted MDPs is really just a re-implementation of the 
+improvement in discounted MDPs is really just a `re-implementation' of the 
 simplex algorithm using a different syntax. Hence, the strongly polynomial 
 complexity bound for a fixed discount factor holds there as well.
 

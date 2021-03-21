@@ -3,8 +3,6 @@
 
 ```{math}
 
-\renewcommand{\Game}{\game}
-
 ```
 
 The MEC decomposition can be used to reduce several optimization problems (including general mean-payoff optimization) to optimizing reachability probability. Recall that in the optimal reachability problem, we are given an MDP $\mathcal{M}$ (with coloured vertices) and a colour $\textrm{Win} \in C$. The task is to find a strategy $\sigma$ that maximizes $  \mathbb{P}^\sigma_{ v_0}( \mathtt{Reach}( \textrm{Win}))$, the probability of reaching a vertex coloured by $\textrm{Win}$. The main result on reachability MDPs, which we prove in Section {ref}`5-sec:general-reachability`, is as follows:
@@ -89,7 +87,7 @@ Let $\mathcal{M}$ be a strongly connected mean-payoff MDP and $r^*$ the value of
 ````{admonition} Proof
 :class: dropdown tip
 
-Assume that the statement is not true. Then there exist $\sigma, v_0$ as well as numbers $\epsilon,\delta>0 $ and $n_0 \in  \mathbb{N}$ s.t. the probability of the following set of plays $X_{\epsilon,n_0}$ is at least $\delta$: a play $\pi$ belongs to $X_{\epsilon,n_0}$ if for every $n\geq n_0$ it holds $\frac{1}{n}\sum_{i=0}^{n-1} c( \pi_i) \geq x^* +  \varepsilon$. We construct a new strategy $\sigma'$, which proceeds in a series of episodes. Every episode starts in $v_0$, and for the first $n_0$ steps of the, episode $\sigma'$ mimics $\sigma$. After that, it checks, in every step $n$, whether the payoff accumulated since the start of the episode is at least $n\cdot(r^* +  \varepsilon)$. If this holds, we mimic $\sigma$ for one more step. If the inequality is violated, we immediately restart, i.e. return to $v_0$ (can be performed with probability $1$ due to the MDP being strongly connected) and once in $v_0$, start a new episode which mimics $\sigma$ from the beginning. By our assumption, the probability of not performing a reset in a given episode is at least $\delta>0$. Hence, with probability $1$ we witness only finitely many resets, after which we produce a play whose suffix has mean-payoff at least $r^* + e$. By prefix independence of mean-payoff ({prf:ref}`5-thm:mp-valcomp`), $\mathbb{E}^{\sigma'}_{ v_0} [  \mathtt{MeanPayoff}^{\;-}] \geq r^* +  \varepsilon,$ a contradiction.
+Assume that the statement is not true. Then there exist $\sigma, v_0$ as well as numbers $\epsilon,\delta>0 $ and $n_0 \in  \mathbb{N}$ s.t. the probability of the following set of plays $X_{\epsilon,n_0}$ is at least $\delta$: a play $\pi$ belongs to $X_{\epsilon,n_0}$ if for every $n\geq n_0$ it holds $\frac{1}{n}\sum_{i=0}^{n-1} c( \pi_i) \geq x^* +  \varepsilon$. We construct a new strategy $\sigma'$, which proceeds in a series of episodes. Every episode starts in $v_0$, and for the first $n_0$ steps of the, episode $\sigma'$ mimics $\sigma$. After that, it checks, in every step $n$, whether the payoff accumulated since the start of the episode is at least $n\cdot(r^* +  \varepsilon)$. If this holds, we mimic $\sigma$ for one more step. If the inequality is violated, we immediately `restart,' i.e. return to $v_0$ (can be performed with probability $1$ due to the MDP being strongly connected) and once in $v_0$, start a new episode which mimics $\sigma$ from the beginning. By our assumption, the probability of not performing a reset in a given episode is at least $\delta>0$. Hence, with probability $1$ we witness only finitely many resets, after which we produce a play whose suffix has mean-payoff at least $r^* + e$. By prefix independence of mean-payoff ({prf:ref}`5-thm:mp-valcomp`), $\mathbb{E}^{\sigma'}_{ v_0} [  \mathtt{MeanPayoff}^{\;-}] \geq r^* +  \varepsilon,$ a contradiction.
 
 ````
 
@@ -128,7 +126,7 @@ Let $M$ be a MEC of $\mathcal{M}$ and $r^*$ the mean-payoff value of every verte
  Whenever we are in some $ v\in  M $ and play an action that is not $  M $-safe in $ v $, this results into a cheat with  probability at least $ p_{\min} $. Thus, the total probability that this happens after at least $ k $ steps, i.e. the quantity 
 $$
 
-q= \sum_{i \geq k}\;\sum_{v\in  M}\;\sum_{a \text{ not $  M $-safe in v}} \mathbb{E}^\sigma_{ v_0}[ \actevent{\sigma}{a}{i}\cdot \mathbf{1}_{  \textrm{Out}( \pi_i)= v} ] , 
+q= \sum_{i \geq k}\;\sum_{v\in  M}\;\sum_{a \text{ not $  M $-safe in v}} \mathbb{E}^\sigma_{ v_0}[   A^{\sigma}_{a,i}\cdot \mathbf{1}_{  \textrm{Out}( \pi_i)= v} ] , 
 $$ (5-eq:mec-cheat)
 
  is bounded by $  \mathbb{P}_{ v_0}^\sigma( \pi \text{ cheats after more than $ k $ steps})/p_{\min} \leq \delta/4$.

@@ -724,8 +724,7 @@
   <div class="section" id="a-quasipolynomial-time-separating-automata-algorithm">
 <span id="sec-separation"></span><h1>A quasipolynomial time separating automata algorithm<a class="headerlink" href="#a-quasipolynomial-time-separating-automata-algorithm" title="Permalink to this headline">¶</a></h1>
 <div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}\renewcommand{\H}{\mathcal{H}}\\\renewcommand{\Game}{\game}
-\end{aligned}\end{align} \]</div>
+\[\]</div>
 <div class="section" id="the-separation-framework">
 <h2>The separation framework<a class="headerlink" href="#the-separation-framework" title="Permalink to this headline">¶</a></h2>
 <p>We describe a general approach for reducing parity games to safety games.
@@ -735,36 +734,36 @@ with acceptance objective <span class="math notranslate nohighlight">\(\mathtt{S
 meaning <span class="math notranslate nohighlight">\(L( \mathbf{A}) =  \mathtt{Parity}([1,d])\)</span>.
 With such an automaton in hand <a class="reference internal" href="../1_Introduction/reductions.html#1-lem:automata_reduction">Lemma 20</a> implies the following reduction:
 from a parity game <span class="math notranslate nohighlight">\(\mathcal{G}\)</span> construct the safety game <span class="math notranslate nohighlight">\(\mathcal{G} \times  \mathbf{A}\)</span> satisfying that
-Eve has a winning strategy in <span class="math notranslate nohighlight">\(\Game\)</span> from <span class="math notranslate nohighlight">\(v_0\)</span> if and only if she has a winning strategy in <span class="math notranslate nohighlight">\(\Game \times  \mathbf{A}\)</span> from <span class="math notranslate nohighlight">\((v_0,q_0)\)</span>.</p>
+Eve has a winning strategy in <span class="math notranslate nohighlight">\(\mathcal{G}\)</span> from <span class="math notranslate nohighlight">\(v_0\)</span> if and only if she has a winning strategy in <span class="math notranslate nohighlight">\(\mathcal{G} \times  \mathbf{A}\)</span> from <span class="math notranslate nohighlight">\((v_0,q_0)\)</span>.</p>
 <p>Unfortunately, it can be shown (using a topological argument) that there is no such automaton.
 The separation framework defines a (weaker) sufficient condition for the reduction above to be correct.
 Instead of insisting that <span class="math notranslate nohighlight">\(L( \mathbf{A}) =  \mathtt{Parity}([1,d])\)</span>,
-it is enough to have <span class="math notranslate nohighlight">\(W_\mathrm{Eve}( \mathcal{A}, \mathtt{Parity}[ \textsf{col}]) =  W_\mathrm{Eve}( \mathcal{A},L( \mathbf{A})[ \textsf{col}])\)</span>.
+it is enough to have <span class="math notranslate nohighlight">\(W_\mathrm{Eve}( \mathcal{A}, \mathtt{Parity}[ \mathfrak{c}]) =  W_\mathrm{Eve}( \mathcal{A},L( \mathbf{A})[ \mathfrak{c}])\)</span>.
 To ensure this equality we will only require that <span class="math notranslate nohighlight">\(L( \mathbf{A})\)</span> <strong>separates</strong> winning plays from losing plays.
 The two <strong>key</strong> ideas are first to take advantage of the positionality of parity objectives
 by restricting further winning plays to <strong>positional</strong> winning plays,
-and second to state <span class="math notranslate nohighlight">\(W_\mathrm{Eve}( \mathcal{A}, \mathtt{Parity}[ \textsf{col}]) =  W_\mathrm{Eve}( \mathcal{A},L( \mathbf{A})[ \textsf{col}])\)</span> not for all parity games,
+and second to state <span class="math notranslate nohighlight">\(W_\mathrm{Eve}( \mathcal{A}, \mathtt{Parity}[ \mathfrak{c}]) =  W_\mathrm{Eve}( \mathcal{A},L( \mathbf{A})[ \mathfrak{c}])\)</span> not for all parity games,
 but only for parity games with <span class="math notranslate nohighlight">\(n\)</span> vertices and priorities in <span class="math notranslate nohighlight">\([1,d]\)</span>.</p>
 <p>A deterministic safety automaton over the alphabet <span class="math notranslate nohighlight">\([1,d]\)</span> is given by</p>
 <div class="math notranslate nohighlight">
 \[
- \mathbf{A} = (Q,q_0,\delta : Q \times [1,d] \to Q, \mathtt{Safe}[ \textsf{col}_\mathbf{A}]),
+ \mathbf{A} = (Q,q_0,\delta : Q \times [1,d] \to Q, \mathtt{Safe}[ \mathfrak{c}_\mathbf{A}]),
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(\textsf{col}_\mathbf{A} : Q \times [1,d] \to  \left\{  \textrm{Win \right\}, \textrm{Lose}}\)</span>.
+<p>where <span class="math notranslate nohighlight">\(\mathfrak{c}_\mathbf{A} : Q \times [1,d] \to  \left\{  \textrm{Win \right\}, \textrm{Lose}}\)</span>.
 A word <span class="math notranslate nohighlight">\(w \in [1,d]^\omega\)</span> is accepted if the run <span class="math notranslate nohighlight">\(\rho\)</span> over <span class="math notranslate nohighlight">\(w\)</span> only contains transitions in <span class="math notranslate nohighlight">\(\textrm{Win}\)</span>.
 We use the following simplifying convention for safety automata: we distinguish a special rejecting state <span class="math notranslate nohighlight">\(\bot\)</span>
 and assume that all transitions are accepting except the ones leading to <span class="math notranslate nohighlight">\(\bot\)</span>.
 Said differently, a word <span class="math notranslate nohighlight">\(w\)</span> is accepted if and only if it the run over <span class="math notranslate nohighlight">\(w\)</span> does not contain the state <span class="math notranslate nohighlight">\(\bot\)</span>.
-Hence we do not need to specify <span class="math notranslate nohighlight">\(\textsf{col}_\mathbf{A}\)</span>:
+Hence we do not need to specify <span class="math notranslate nohighlight">\(\mathfrak{c}_\mathbf{A}\)</span>:
 in the next two sections by an automaton we mean a deterministic safety automaton
 given by <span class="math notranslate nohighlight">\(\mathbf{A} = (Q,q_0,\delta : Q \times [1,d] \to Q)\)</span>.</p>
 <p>Let us now give a sufficient condition for the automaton <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>
-to imply the correctness of the reduction from the parity game <span class="math notranslate nohighlight">\(\Game\)</span> to the safety game <span class="math notranslate nohighlight">\(\Game \times  \mathbf{A}\)</span>.
+to imply the correctness of the reduction from the parity game <span class="math notranslate nohighlight">\(\mathcal{G}\)</span> to the safety game <span class="math notranslate nohighlight">\(\mathcal{G} \times  \mathbf{A}\)</span>.
 The condition that we define now is that the automaton <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is <span class="math notranslate nohighlight">\((n,d)\)</span>-separating; it relies on the notion of parity graphs.
 Recall a parity graph satisfies parity from <span class="math notranslate nohighlight">\(v\)</span> if all infinite paths from <span class="math notranslate nohighlight">\(v\)</span> satisfy parity,
-and that a strategy <span class="math notranslate nohighlight">\(\sigma\)</span> is winning from <span class="math notranslate nohighlight">\(v\)</span> if and only if the parity graph <span class="math notranslate nohighlight">\(\Game[\sigma]\)</span> satisfies parity from <span class="math notranslate nohighlight">\(v\)</span>.</p>
+and that a strategy <span class="math notranslate nohighlight">\(\sigma\)</span> is winning from <span class="math notranslate nohighlight">\(v\)</span> if and only if the parity graph <span class="math notranslate nohighlight">\(\mathcal{G}[\sigma]\)</span> satisfies parity from <span class="math notranslate nohighlight">\(v\)</span>.</p>
 <p>We say that an automaton reads, accepts, or rejects a path <span class="math notranslate nohighlight">\(\pi\)</span> in a parity graph,
-which is an abuse because what the automaton reads is the induced sequence of colours <span class="math notranslate nohighlight">\(\textsf{col}(\pi)\)</span>.</p>
+which is an abuse because what the automaton reads is the induced sequence of colours <span class="math notranslate nohighlight">\(\mathfrak{c}(\pi)\)</span>.</p>
 <div class="proof definition admonition" id="3-def:separating_automata">
 <p class="admonition-title"><span class="caption-number">Definition 80 </span> (Separating automata)</p>
 <div class="definition-content section" id="proof-content">
@@ -796,43 +795,43 @@ as <span class="math notranslate nohighlight">\(\mathtt{Parity}_{\mid n} \subset
 <p class="admonition-title"><span class="caption-number">Lemma 81 </span> (Game equivalence using separating automata)</p>
 <div class="lemma-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> an <span class="math notranslate nohighlight">\((n,d)\)</span>-separating automaton.
-Then for all parity games <span class="math notranslate nohighlight">\(\mathcal{G} = ( \mathcal{A}, \mathtt{Parity}[ \textsf{col}])\)</span> with <span class="math notranslate nohighlight">\(n\)</span> vertices and priorities in <span class="math notranslate nohighlight">\([1,d]\)</span>,
+Then for all parity games <span class="math notranslate nohighlight">\(\mathcal{G} = ( \mathcal{A}, \mathtt{Parity}[ \mathfrak{c}])\)</span> with <span class="math notranslate nohighlight">\(n\)</span> vertices and priorities in <span class="math notranslate nohighlight">\([1,d]\)</span>,
 we have</p>
 <div class="math notranslate nohighlight">
 \[
- W_\mathrm{Eve}( \mathcal{G}) =  W_\mathrm{Eve}( \mathcal{A},L( \mathbf{A})[ \textsf{col}]).
+ W_\mathrm{Eve}( \mathcal{G}) =  W_\mathrm{Eve}( \mathcal{A},L( \mathbf{A})[ \mathfrak{c}]).
 \]</div>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
-<p>The inclusion <span class="math notranslate nohighlight">\(W_\mathrm{Eve}( \mathcal{G}) \subseteq  W_\mathrm{Eve}( \mathcal{A},L( \mathbf{A})[ \textsf{col}])\)</span> follows from positional determinacy and the inclusion
+<p>The inclusion <span class="math notranslate nohighlight">\(W_\mathrm{Eve}( \mathcal{G}) \subseteq  W_\mathrm{Eve}( \mathcal{A},L( \mathbf{A})[ \mathfrak{c}])\)</span> follows from positional determinacy and the inclusion
 <span class="math notranslate nohighlight">\(\mathtt{Parity}_{\mid n} \subseteq L( \mathbf{A})\)</span>.
 Let <span class="math notranslate nohighlight">\(v \in  W_\mathrm{Eve}( \mathcal{G})\)</span>.
 Consider <span class="math notranslate nohighlight">\(\sigma\)</span> a positional strategy ensuring parity from <span class="math notranslate nohighlight">\(v\)</span> and construct the parity graph <span class="math notranslate nohighlight">\(\mathcal{G}[\sigma]\)</span>, it satisfies parity from <span class="math notranslate nohighlight">\(v\)</span>.
-Hence the strategy <span class="math notranslate nohighlight">\(\sigma\)</span> also ensures <span class="math notranslate nohighlight">\(L( \mathbf{A})[ \textsf{col}]\)</span> from <span class="math notranslate nohighlight">\(v\)</span>, so <span class="math notranslate nohighlight">\(v \in  W_\mathrm{Eve}( \mathcal{A},L( \mathbf{A})[ \textsf{col}])\)</span>.</p>
+Hence the strategy <span class="math notranslate nohighlight">\(\sigma\)</span> also ensures <span class="math notranslate nohighlight">\(L( \mathbf{A})[ \mathfrak{c}]\)</span> from <span class="math notranslate nohighlight">\(v\)</span>, so <span class="math notranslate nohighlight">\(v \in  W_\mathrm{Eve}( \mathcal{A},L( \mathbf{A})[ \mathfrak{c}])\)</span>.</p>
 <p>Conversely, the inclusion <span class="math notranslate nohighlight">\(L( \mathbf{A}) \subseteq  \mathtt{Parity}\)</span> implies the inclusion
-<span class="math notranslate nohighlight">\(L( \mathbf{A})[ \textsf{col}] \subseteq  \mathtt{Parity}[ \textsf{col}]\)</span>, which in turn implies
-<span class="math notranslate nohighlight">\(W_\mathrm{Eve}( \mathcal{A},L( \mathbf{A})[ \textsf{col}]) \subseteq  W_\mathrm{Eve}( \mathcal{G})\)</span>.</p>
+<span class="math notranslate nohighlight">\(L( \mathbf{A})[ \mathfrak{c}] \subseteq  \mathtt{Parity}[ \mathfrak{c}]\)</span>, which in turn implies
+<span class="math notranslate nohighlight">\(W_\mathrm{Eve}( \mathcal{A},L( \mathbf{A})[ \mathfrak{c}]) \subseteq  W_\mathrm{Eve}( \mathcal{G})\)</span>.</p>
 </div>
 <p>The last step is to explain how to solve a game with objective <span class="math notranslate nohighlight">\(L( \mathbf{A})\)</span>, as already discussed in Section <a class="reference internal" href="../1_Introduction/reductions.html#sec-reductions"><span class="std std-ref">Reductions</span></a>.
-Let <span class="math notranslate nohighlight">\(\Game = ( \mathcal{A}, L( \mathbf{A})[ \textsf{col}])\)</span>.
+Let <span class="math notranslate nohighlight">\(\mathcal{G} = ( \mathcal{A}, L( \mathbf{A})[ \mathfrak{c}])\)</span>.
 We construct a safety game by making the synchronised product of the arena with the automaton:</p>
 <div class="math notranslate nohighlight">
 \[
-\Game \times  \mathbf{A} = ( \mathcal{A} \times  \mathbf{A},  \mathtt{Safe}[ \textsf{col}']),
+  \mathcal{G} \times  \mathbf{A} = ( \mathcal{A} \times  \mathbf{A},  \mathtt{Safe}[ \mathfrak{c}']),
 \]</div>
 <p>where the safety condition ensures that the play is accepted by <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>.
 Formally, we construct the arena <span class="math notranslate nohighlight">\(\mathcal{A} \times  \mathbf{A}\)</span> as follows.
 We first define the graph <span class="math notranslate nohighlight">\(G \times Q\)</span> whose set of vertices is <span class="math notranslate nohighlight">\(V \times Q\)</span> and set of edges is defined as follows:
-for every edge <span class="math notranslate nohighlight">\((v,v') \in E\)</span> and state <span class="math notranslate nohighlight">\(q \in Q\)</span> there is an edge from <span class="math notranslate nohighlight">\((v,q)\)</span> to <span class="math notranslate nohighlight">\((v',\delta(q, \textsf{col}(u)))\)</span>.
+for every edge <span class="math notranslate nohighlight">\((v,v') \in E\)</span> and state <span class="math notranslate nohighlight">\(q \in Q\)</span> there is an edge from <span class="math notranslate nohighlight">\((v,q)\)</span> to <span class="math notranslate nohighlight">\((v',\delta(q, \mathfrak{c}(u)))\)</span>.
 The arena is <span class="math notranslate nohighlight">\(\mathcal{A} \times  \mathbf{A} = (G \times Q,  V_\mathrm{Eve} \times Q,  V_\mathrm{Adam} \times Q)\)</span>.
 Using the convention for safety automata that the rejecting transitions are precisely those leading to the rejecting state <span class="math notranslate nohighlight">\(\bot\)</span>,
-the colouring function is defined by <span class="math notranslate nohighlight">\(\textsf{col}'(v,q) =  \textrm{Win}\)</span> if <span class="math notranslate nohighlight">\(q \neq \bot\)</span>, and <span class="math notranslate nohighlight">\(\textrm{Lose}\)</span> otherwise.</p>
+the colouring function is defined by <span class="math notranslate nohighlight">\(\mathfrak{c}'(v,q) =  \textrm{Win}\)</span> if <span class="math notranslate nohighlight">\(q \neq \bot\)</span>, and <span class="math notranslate nohighlight">\(\textrm{Lose}\)</span> otherwise.</p>
 <div class="proof observation admonition" id="3-fact:reduction">
 <p class="admonition-title"><span class="caption-number">Observation 82 </span> (Reduction to safety games using separating automata)</p>
 <div class="observation-content section" id="proof-content">
 <p>Eve has a winning strategy in <span class="math notranslate nohighlight">\(\mathcal{G}\)</span> from <span class="math notranslate nohighlight">\(v_0\)</span> if and only if
-she has a winning strategy in <span class="math notranslate nohighlight">\(\Game \times  \mathbf{A}\)</span> from <span class="math notranslate nohighlight">\((v_0,q_0)\)</span>.</p>
+she has a winning strategy in <span class="math notranslate nohighlight">\(\mathcal{G} \times  \mathbf{A}\)</span> from <span class="math notranslate nohighlight">\((v_0,q_0)\)</span>.</p>
 </div>
 </div><div class="proof theorem admonition" id="3-thm:algorithm_separating_automata">
 <p class="admonition-title"><span class="caption-number">Theorem 83 </span> (Algorithm using separating automata)</p>
@@ -842,9 +841,9 @@ There exists an algorithm for solving parity games of complexity <span class="ma
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
-<p>Let <span class="math notranslate nohighlight">\(\Game\)</span> a parity game with <span class="math notranslate nohighlight">\(n\)</span> vertices and priorities in <span class="math notranslate nohighlight">\([1,d]\)</span>.
-Thanks to <a class="reference internal" href="#3-lem:separating_automata">Lemma 81</a> and <a class="reference internal" href="#3-fact:reduction">Observation 82</a>, solving <span class="math notranslate nohighlight">\(\Game\)</span>
-is equivalent to solving the safety game <span class="math notranslate nohighlight">\(\Game \times  \mathbf{A}\)</span>.
+<p>Let <span class="math notranslate nohighlight">\(\mathcal{G}\)</span> a parity game with <span class="math notranslate nohighlight">\(n\)</span> vertices and priorities in <span class="math notranslate nohighlight">\([1,d]\)</span>.
+Thanks to <a class="reference internal" href="#3-lem:separating_automata">Lemma 81</a> and <a class="reference internal" href="#3-fact:reduction">Observation 82</a>, solving <span class="math notranslate nohighlight">\(\mathcal{G}\)</span>
+is equivalent to solving the safety game <span class="math notranslate nohighlight">\(\mathcal{G} \times  \mathbf{A}\)</span>.
 Thanks to <a class="reference internal" href="../2_Regular/attractors.html#2-thm:reachability">Theorem 39</a> solving safety games can be done in time linear in the number of edges.
 This yields an algorithm for solving parity games whose running time is <span class="math notranslate nohighlight">\(O(m \cdot | \mathbf{A}|)\)</span>.</p>
 </div>
