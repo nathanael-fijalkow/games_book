@@ -14,12 +14,12 @@ A stochastic arena $\mathcal{A} = ( V,E,\delta)$ is said to be
 
 *  $V$ contains two sink vertices $v_{ \textrm{Eve}}$ and $v_{ \textrm{Adam}}$;
 *  every non-sink vertex
-  $v \in  V \setminus \{v_{ \textrm{Eve}},v_{ \textrm{Adam}}\}$ has two
-  successors;
+$v \in  V \setminus \{v_{ \textrm{Eve}},v_{ \textrm{Adam}}\}$ has two
+successors;
 *  every random vertex $v \in   V_{\text{Rand}}$ is an
-  **average vertex**, that is, for every vertex
-  $v'\in  V$, $(v,v') \in E$ implies
-  $\delta(v,v')=\frac{1}{2}$.
+**average vertex**, that is, for every vertex
+$v'\in  V$, $(v,v') \in E$ implies
+$\delta(v,v')=\frac{1}{2}$.
 
 ````
 
@@ -340,23 +340,23 @@ We write ($\ddag$) for the assumption that $\pi$ is self-consistent.
 
 1.  $\textrm{val}_\pi( v_{lose}) = 0$ and $\textrm{val}_\pi( v_{win}) = 1$;
 2.  for every $1 \le i \le k$, for every $v \in W_\pi^i$,
-  $\textrm{val}_\pi(v) =   \textrm{val}_\pi( \pi_i)$;
+$\textrm{val}_\pi(v) =   \textrm{val}_\pi( \pi_i)$;
 3.  For every $v \in   V_\mathrm{Eve}$,
 
 $$
-    \textrm{val}_\pi(v) =   \textrm{val}_\pi(\sigma_\pi(v)) \stackrel{(\ddag)}{=}
-  \max_{w\ \text{s.t.}\ (v,w) \in E}   \textrm{val}_\pi(w)
-  $$
+  \textrm{val}_\pi(v) =   \textrm{val}_\pi(\sigma_\pi(v)) \stackrel{(\ddag)}{=}
+\max_{w\ \text{s.t.}\ (v,w) \in E}   \textrm{val}_\pi(w)
+$$
 
 4.  For every $v \in   V_\mathrm{Adam}$,
 
 $$
-    \textrm{val}_\pi(v) =   \textrm{val}_\pi(\tau_\pi(v)) \stackrel{(\ddag)}{=}
-  \min_{w\ \text{s.t.}\ (v,w) \in E}   \textrm{val}_\pi(w)
-  $$
+  \textrm{val}_\pi(v) =   \textrm{val}_\pi(\tau_\pi(v)) \stackrel{(\ddag)}{=}
+\min_{w\ \text{s.t.}\ (v,w) \in E}   \textrm{val}_\pi(w)
+$$
 
 5.  For every $v \in   V_{\text{Rand}}$, $\textrm{val}_\pi(v) = \sum_{w\
-    \text{s.t.}\ (v,w) \in E} \delta(v)(w) \cdot   \textrm{val}_\pi(w)$.
+  \text{s.t.}\ (v,w) \in E} \delta(v)(w) \cdot   \textrm{val}_\pi(w)$.
 
 ````
 
@@ -449,7 +449,7 @@ Let
 
 $$
 \alpha = \min_{1 \le i \le k} \delta( \pi_i) \big(W_\pi^{\ge
-  i+1}\big)
+i+1}\big)
 $$
 
 By definition of a live permutation, $\alpha>0$.
@@ -535,27 +535,27 @@ a solution to the following equations:
 
 $$
 \left\{\begin{array}{ll} x_v =
-    x_{\tau(v)} & \text{if}\ v \in   V_\mathrm{Adam} \\
-    x_v = x_{\sigma_\pi(v)} & \text{if}\ v \in   V_\mathrm{Eve} \\
-    x_v = \sum_{w\ \text{s.t.}\ (v,w) \in E} \delta(v)(w) \cdot
-    x_w  & \text{if}\ v \in   V_{\text{Rand}} \\
-    x_{ v_{win}} = 1 \\
-    x_{ v_{lose}} = 0
-  \end{array}\right.
+  x_{\tau(v)} & \text{if}\ v \in   V_\mathrm{Adam} \\
+  x_v = x_{\sigma_\pi(v)} & \text{if}\ v \in   V_\mathrm{Eve} \\
+  x_v = \sum_{w\ \text{s.t.}\ (v,w) \in E} \delta(v)(w) \cdot
+  x_w  & \text{if}\ v \in   V_{\text{Rand}} \\
+  x_{ v_{win}} = 1 \\
+  x_{ v_{lose}} = 0
+\end{array}\right.
 $$
 
 In particular, it is a solution to the following inequations:
 
 $$
 \left\{\begin{array}{ll} 
-    x_v \ge \min_{w\ \text{s.t.}\ (v,w) \in E}
-    x_w & \text{if}\ v \in   V_\mathrm{Adam} \\
-    x_v = x_{\sigma_\pi(v)}  & \text{if}\ v \in   V_\mathrm{Eve} \\
-    x_v = \sum_{w\ \text{s.t.}\ (v,w) \in E} \delta(v)(w) \cdot x_w
-    & \text{if}\ v \in   V_{\text{Rand}} \\
-    x_{ v_{win}} = 1 \\
-    x_{ v_{lose}} = 0
-  \end{array}\right.
+  x_v \ge \min_{w\ \text{s.t.}\ (v,w) \in E}
+  x_w & \text{if}\ v \in   V_\mathrm{Adam} \\
+  x_v = x_{\sigma_\pi(v)}  & \text{if}\ v \in   V_\mathrm{Eve} \\
+  x_v = \sum_{w\ \text{s.t.}\ (v,w) \in E} \delta(v)(w) \cdot x_w
+  & \text{if}\ v \in   V_{\text{Rand}} \\
+  x_{ v_{win}} = 1 \\
+  x_{ v_{lose}} = 0
+\end{array}\right.
 $$
 
 Since the MDP (when $\sigma_\pi$ has been fixed) is stopping (see {prf:ref}`6-lem:stopping`), there is no proper end-component
@@ -607,47 +607,47 @@ We first show a counterpart to {prf:ref}`6-lem:lemma2` for
 $\textrm{val}^*$:
 
 ````{prf:lemma} NEEDS TITLE AND LABEL 
-  Same hypotheses as {prf:ref}`6-lem:croissant`. Then:
-  
-  1.  $\textrm{val}^*( v_{lose}) = 0$ and $\textrm{val}^*( v_{win}) = 1$;
-  2.  for every $1 \le i \le k$, for every $v \in W_\pi^i$,
-    $\textrm{val}^*(v) =   \textrm{val}^*( \pi_i)$.
+Same hypotheses as {prf:ref}`6-lem:croissant`. Then:
 
-  Same hypotheses as {prf:ref}`6-lem:croissant`. Then:
-  
-  1.  $\textrm{val}^*( v_{lose}) = 0$ and $\textrm{val}^*( v_{win}) = 1$;
-  2.  for every $1 \le i \le k$, for every $v \in W_\pi^i$,
-    $\textrm{val}^*(v) =   \textrm{val}^*( \pi_i)$.
+1.  $\textrm{val}^*( v_{lose}) = 0$ and $\textrm{val}^*( v_{win}) = 1$;
+2.  for every $1 \le i \le k$, for every $v \in W_\pi^i$,
+  $\textrm{val}^*(v) =   \textrm{val}^*( \pi_i)$.
+
+Same hypotheses as {prf:ref}`6-lem:croissant`. Then:
+
+1.  $\textrm{val}^*( v_{lose}) = 0$ and $\textrm{val}^*( v_{win}) = 1$;
+2.  for every $1 \le i \le k$, for every $v \in W_\pi^i$,
+  $\textrm{val}^*(v) =   \textrm{val}^*( \pi_i)$.
 
 ````
 
 ````{admonition} Proof
 :class: dropdown tip
 
-  Notice that item 1 is obvious. 
+Notice that item 1 is obvious. 
 
-  We then focus on item 2.  Assume $v \in W_\pi^i$, and define
-  strategy $\sigma^*$ from $v$ as $\sigma_\pi$ (attractor strategy
-  to $\{ \pi_i,\ldots, \pi_k, v_{win}\}$) until $v_{win}$ or a random
-  vertex $\pi_j$ ($j \ge i$) is reached; in the latter case, switch
-  to an optimal strategy out of $\pi_j$. We obviously get that for
-  every strategy $\tau$ for $\textrm{Adam}$,
-  $\mathbb{P}_{\sigma^*,\tau}^v( \mathtt{Reach}(\{ v_{win}\})) \ge \min_{i \le j \le
-    k}  \textrm{val}^*( \pi_j) =   \textrm{val}^*( \pi_i)$. Hence $\textrm{val}^*(v) \ge
-    \textrm{val}^*( \pi_i)$.
-  
-  Conversely define strategy $\tau^*$ from $v$ as $\tau_\pi$
-  (trapping strategy out of $\{ \pi_{i+1},\ldots, \pi_k, v_{win}\}$)
-  until $v_{lose}$ or a random vertex $\pi_j$ ($j \le i$) is reached;
-  in the latter case, switch to an optimal strategy out of
-  $\pi_j$. Note that it can a priori be the case that we never hit
-  $v_{lose}$ or a random vertex, but this is good to $\textrm{Adam}$. However we
-  can conclude that for every strategy $\sigma$ for $\textrm{Eve}$,
-  $\mathbb{P}_{\sigma,\tau^*}^v( \mathtt{Reach}(\{ v_{win}\})) \le \max_{1 \le j \le
-    i}  \textrm{val}^*( \pi_j) =   \textrm{val}^*( \pi_i)$. Hence
-  $\textrm{val}^*(v) \le   \textrm{val}^*( \pi_i)$.
+We then focus on item 2.  Assume $v \in W_\pi^i$, and define
+strategy $\sigma^*$ from $v$ as $\sigma_\pi$ (attractor strategy
+to $\{ \pi_i,\ldots, \pi_k, v_{win}\}$) until $v_{win}$ or a random
+vertex $\pi_j$ ($j \ge i$) is reached; in the latter case, switch
+to an optimal strategy out of $\pi_j$. We obviously get that for
+every strategy $\tau$ for $\textrm{Adam}$,
+$\mathbb{P}_{\sigma^*,\tau}^v( \mathtt{Reach}(\{ v_{win}\})) \ge \min_{i \le j \le
+  k}  \textrm{val}^*( \pi_j) =   \textrm{val}^*( \pi_i)$. Hence $\textrm{val}^*(v) \ge
+  \textrm{val}^*( \pi_i)$.
 
-  This allows to conclude item 2, hence the lemma.
+Conversely define strategy $\tau^*$ from $v$ as $\tau_\pi$
+(trapping strategy out of $\{ \pi_{i+1},\ldots, \pi_k, v_{win}\}$)
+until $v_{lose}$ or a random vertex $\pi_j$ ($j \le i$) is reached;
+in the latter case, switch to an optimal strategy out of
+$\pi_j$. Note that it can a priori be the case that we never hit
+$v_{lose}$ or a random vertex, but this is good to $\textrm{Adam}$. However we
+can conclude that for every strategy $\sigma$ for $\textrm{Eve}$,
+$\mathbb{P}_{\sigma,\tau^*}^v( \mathtt{Reach}(\{ v_{win}\})) \le \max_{1 \le j \le
+  i}  \textrm{val}^*( \pi_j) =   \textrm{val}^*( \pi_i)$. Hence
+$\textrm{val}^*(v) \le   \textrm{val}^*( \pi_i)$.
+
+This allows to conclude item 2, hence the lemma.
 
 ````
 
@@ -658,26 +658,26 @@ Both $\textrm{val}^*$ and $\textrm{val}_\pi$ satisfy the system of equations:
 
 $$
 \left\{\begin{array}{ll} 
-    x_v = x_{ \pi_i} & \text{if}\ v \in W_\pi^i \\
+  x_v = x_{ \pi_i} & \text{if}\ v \in W_\pi^i \\
 
-    x_v = \sum_{w\ \text{s.t.}\ (v,w) \in E} \delta(v)(w) \cdot x_w
-    & \text{if}\ v \in   V_{\text{Rand}} \\
-    x_{ v_{win}} = 1 \\
-    x_{ v_{lose}} = 0
-  \end{array}\right.
+  x_v = \sum_{w\ \text{s.t.}\ (v,w) \in E} \delta(v)(w) \cdot x_w
+  & \text{if}\ v \in   V_{\text{Rand}} \\
+  x_{ v_{win}} = 1 \\
+  x_{ v_{lose}} = 0
+\end{array}\right.
 $$
 
 We can rewrite this system into:
 
 $$
 \left\{\begin{array}{ll} 
-    x_v = x_{ \pi_i} & \text{if}\ v \in W_\pi^i \\
+  x_v = x_{ \pi_i} & \text{if}\ v \in W_\pi^i \\
 
-    x_{ \pi_i} = \sum_{j=0}^{k+1} \delta( \pi_i)(W_\pi^j) \cdot x_{ \pi_j}
-    & \\
-    x_{ v_{win}} = 1 \\
-    x_{ v_{lose}} = 0
-  \end{array}\right.
+  x_{ \pi_i} = \sum_{j=0}^{k+1} \delta( \pi_i)(W_\pi^j) \cdot x_{ \pi_j}
+  & \\
+  x_{ v_{win}} = 1 \\
+  x_{ v_{lose}} = 0
+\end{array}\right.
 $$
 
 Since $\pi$ is live this system has a unique solution!  Hence
@@ -716,7 +716,7 @@ $\textrm{DetAtt}(X)$: by definition, $\tau(Y) \subseteq Y$. Also, one can
 argue that $\tau(Z) \subseteq Z$. Indeed otherwise there is $v' \in
 Z$ such that $\tau(v') \in Y \setminus Z$. Thus, $\textrm{val}^*(\tau(v')) <
   \textrm{val}^*(v')$, which is not possible since $\textrm{val}^*(v') = \min_{w\
-  \text{s.t.}\ (v',w) \in E}   \textrm{val}^*(w)$ (Bellman's equations). Also
+\text{s.t.}\ (v',w) \in E}   \textrm{val}^*(w)$ (Bellman's equations). Also
 by Bellman's equations, if $v' \in   V_{\text{Rand}} \cap Z$, for
 every $w'$ such that $\delta(v')(w')>0$, $\textrm{val}^*(w') =
   \textrm{val}^*(v')$. By assumption, it cannot be the case that $w' \in
@@ -734,19 +734,19 @@ leave at some $\textrm{Eve}$'s vertex $v'$ towards a vertex $w'$ with
 $\textrm{val}^*(w') <   \textrm{val}^*(v') =   \textrm{val}^*(v)$ (recall the discussion
 above). We can then write:
 \begin{eqnarray*}
-   \mathbb{P}_{\sigma,\tau'}( \mathtt{Reach}(\{ v_{win}\})) &=&
-   \mathbb{P}_{\sigma,\tau'}( \mathtt{Reach}(\{ v_{win}\}) \mid \text{stays in}\  Z\
-  \text{forever}) \cdot   \mathbb{P}_{\sigma,\tau'}(\text{stays in}\  Z\
-  \text{forever}) \\ 
-  && + \sum_{(v',w') \in (Z \times (Y \setminus Z) \cap E)} 
-   \mathbb{P}_{\sigma,\tau'}( \mathtt{Reach}(\{ v_{win}\}) \mid
-  \text{leave via}\  (v',w')) \cdot
-   \mathbb{P}_{\sigma,\tau'}(\text{leave via}\  (v',w')) \\
-  & = & 0 \cdot  \mathbb{P}_{\sigma,\tau'}(\text{stays in}\  Z\
-  \text{forever}) + \sum_{(v',w') \in (Z \times (Y \setminus Z) \cap
-    E)}    \textrm{val}^*(w') \cdot
-   \mathbb{P}_{\sigma,\tau'}(\text{leave via}\  (v',w')) \\
-  & \le & \beta
+ \mathbb{P}_{\sigma,\tau'}( \mathtt{Reach}(\{ v_{win}\})) &=&
+ \mathbb{P}_{\sigma,\tau'}( \mathtt{Reach}(\{ v_{win}\}) \mid \text{stays in}\  Z\
+\text{forever}) \cdot   \mathbb{P}_{\sigma,\tau'}(\text{stays in}\  Z\
+\text{forever}) \\ 
+&& + \sum_{(v',w') \in (Z \times (Y \setminus Z) \cap E)} 
+ \mathbb{P}_{\sigma,\tau'}( \mathtt{Reach}(\{ v_{win}\}) \mid
+\text{leave via}\  (v',w')) \cdot
+ \mathbb{P}_{\sigma,\tau'}(\text{leave via}\  (v',w')) \\
+& = & 0 \cdot  \mathbb{P}_{\sigma,\tau'}(\text{stays in}\  Z\
+\text{forever}) + \sum_{(v',w') \in (Z \times (Y \setminus Z) \cap
+  E)}    \textrm{val}^*(w') \cdot
+ \mathbb{P}_{\sigma,\tau'}(\text{leave via}\  (v',w')) \\
+& \le & \beta
 \end{eqnarray*}
 where $\beta = \max \{  \textrm{val}^*(w) \mid w \in Y \setminus Z\} <
   \textrm{val}^*(v)$.  Hence, we get $\textrm{val}^*(v) \le \beta <   \textrm{val}^*(v)$. This
@@ -771,7 +771,7 @@ $X = \{ \pi_{i+1},\ldots, \pi_k, v_{win}\}$.
 By construction,
 
 *  $\textrm{val}^*( \pi_i) = \max \{  \textrm{val}^*(v) \mid v \in V \setminus
-   \textrm{DetAtt}(\{ \pi_{i+1},\ldots, \pi_k, v_{win}\})\}$;
+ \textrm{DetAtt}(\{ \pi_{i+1},\ldots, \pi_k, v_{win}\})\}$;
 *  $\delta( \pi_i)\Big( \textrm{DetAtt}(\{ \pi_{i+1},\ldots, \pi_k, v_{win}\})\Big) >0$
 
 Hence, $\pi$ is live, and the hypothesis of {prf:ref}`6-lem:croissant` is satisfied. Hence $\pi$ is
@@ -841,10 +841,10 @@ well.
 4.  The improvement step really implements some improvement:
 
 *  $\textrm{val}^*_{ \mathcal{G}[\sigma_\pi]} \le
-    \textrm{val}^*_{ \mathcal{G}[\sigma_{ \pi'}]}$, and
+  \textrm{val}^*_{ \mathcal{G}[\sigma_{ \pi'}]}$, and
 *  $\textrm{val}^*_{ \mathcal{G}[\sigma_\pi]} =
-    \textrm{val}^*_{ \mathcal{G}[\sigma_{ \pi'}]}$ implies that $\pi'$ is
-  self-consistent.
+  \textrm{val}^*_{ \mathcal{G}[\sigma_{ \pi'}]}$ implies that $\pi'$ is
+self-consistent.
 
 The first property is based on the construction of {prf:ref}`6-lem:existence`.
 
@@ -878,9 +878,9 @@ $\textrm{val}^*_{ \mathcal{G}[\sigma_\pi]} =
 self-consistent in $\mathcal{G}[\sigma_\pi]$, we deduce that
 
 $$
-    \textrm{val}^*_{ \mathcal{G}[\sigma_\pi]}( \pi'_1) \le
-    \textrm{val}^*_{ \mathcal{G}[\sigma_\pi]}( \pi'_2) \le \dots \le
-    \textrm{val}^*_{ \mathcal{G}[\sigma_\pi]}( \pi'_k)
+  \textrm{val}^*_{ \mathcal{G}[\sigma_\pi]}( \pi'_1) \le
+  \textrm{val}^*_{ \mathcal{G}[\sigma_\pi]}( \pi'_2) \le \dots \le
+  \textrm{val}^*_{ \mathcal{G}[\sigma_\pi]}( \pi'_k)
 $$
 
 We consider the following family of strategies for $\textrm{Eve}$ in $\mathcal{G}$:
@@ -900,63 +900,63 @@ The sequence $(  \textrm{val}_{ \mathcal{G},\sigma^{(n)}})_n$ is non-decreasing.
 ````{admonition} Proof
 :class: dropdown tip
 
-  We do the proof by induction on $n$.  We focus on $n=0$, and prove
-  below that $\textrm{val}_{ \mathcal{G},\sigma^{(1)}} \ge
-    \textrm{val}_{ \mathcal{G},\sigma^{(0)}}$. First notice that $\sigma^{(0)} =
-  \sigma_\pi$.
+We do the proof by induction on $n$.  We focus on $n=0$, and prove
+below that $\textrm{val}_{ \mathcal{G},\sigma^{(1)}} \ge
+  \textrm{val}_{ \mathcal{G},\sigma^{(0)}}$. First notice that $\sigma^{(0)} =
+\sigma_\pi$.
 
-  First, notice that $v \in W_{ \mathcal{G}, \pi'}^i$ for some $i$, and $v
-  \in W_{ \mathcal{G}[\sigma_\pi], \pi'}^j$ for some $j$. This
-  $game[ \pi]$ restricts actions of $\textrm{Eve}$, we immediately get $i \ge j$. 
-  Hence, applying the line of inequalities at the beginning of
-  the proof of the larger lemma,
-  $\textrm{val}^*_{ \mathcal{G}[\sigma_\pi]}( \pi'_j) \le
-    \textrm{val}^*_{ \mathcal{G}[\sigma_\pi]}( \pi'_i)$.
+First, notice that $v \in W_{ \mathcal{G}, \pi'}^i$ for some $i$, and $v
+\in W_{ \mathcal{G}[\sigma_\pi], \pi'}^j$ for some $j$. This
+$game[ \pi]$ restricts actions of $\textrm{Eve}$, we immediately get $i \ge j$. 
+Hence, applying the line of inequalities at the beginning of
+the proof of the larger lemma,
+$\textrm{val}^*_{ \mathcal{G}[\sigma_\pi]}( \pi'_j) \le
+  \textrm{val}^*_{ \mathcal{G}[\sigma_\pi]}( \pi'_i)$.
 
-  If $\textrm{Eve}$ plays with $\sigma^{(1)}$, the definition of
-  $\sigma_{ \pi'}$ ensures that the first random vertex (or
-  terminal vertex) which is visited when starting in $v$ belongs to
-  $\{ \pi'_i, \pi'_{i+1},\dots, \pi'_k, v_{win}\}$, so since from
-  that vertex, $\sigma^{(1)}$ plays according to $\sigma_\pi$, we
-  get:
-
-$$
-    \textrm{val}_{ \mathcal{G},\sigma^{(1)}}(v) \ge \min
-  \{  \textrm{val}^*_{ \mathcal{G}[\sigma_\pi]}( \pi'_i),
-    \textrm{val}^*_{ \mathcal{G}[\sigma_\pi]}( \pi'_{i+1}),\dots,
-    \textrm{val}^*_{ \mathcal{G}[\sigma_\pi]}( \pi'_k),1\} \ge
-    \textrm{val}^*_{ \mathcal{G}[\sigma_\pi]}( \pi'_i)
-  $$
-
-  since $\textrm{val}^*_{ \mathcal{G}[\sigma_\pi]} =   \textrm{val}_{ \mathcal{G},\sigma_\pi}$.
-
-  Now, when playing $\sigma_\pi = \sigma^{(0)}$ from $v$, 
-
-  Thanks to  {prf:ref}`6-lem:lemma2`, since $v \in
-  W_{ \mathcal{G}[\sigma_\pi], \pi'}^j$,
-  $\textrm{val}_{ \mathcal{G}[\sigma_\pi], \pi'}(v) =
-    \textrm{val}_{ \mathcal{G}[\sigma_\pi], \pi'}( \pi'_j)$ and hence (as argued
-  in the proof of the larger lemma,
-  $\textrm{val}_{ \mathcal{G}[\sigma_\pi], \pi'} =
-    \textrm{val}^*_{ \mathcal{G}[\sigma_\pi]}$), $\textrm{val}^*_{ \mathcal{G}[\sigma_\pi]}(v) =
-    \textrm{val}^*_{ \mathcal{G}[\sigma_\pi]}( \pi'_j)$. We conclude that:
+If $\textrm{Eve}$ plays with $\sigma^{(1)}$, the definition of
+$\sigma_{ \pi'}$ ensures that the first random vertex (or
+terminal vertex) which is visited when starting in $v$ belongs to
+$\{ \pi'_i, \pi'_{i+1},\dots, \pi'_k, v_{win}\}$, so since from
+that vertex, $\sigma^{(1)}$ plays according to $\sigma_\pi$, we
+get:
 
 $$
-    \textrm{val}_{\sigma_\pi}(v) =   \textrm{val}^*_{ \mathcal{G}[\sigma_\pi]}(v) \le
-    \textrm{val}^*_{ \mathcal{G}[\sigma_\pi]}( \pi'_j) \le
-    \textrm{val}^*_{ \mathcal{G}[\sigma_\pi]}( \pi'_i) \le
-    \textrm{val}_{ \mathcal{G},\sigma^{(1)}}(v)
-  $$
+  \textrm{val}_{ \mathcal{G},\sigma^{(1)}}(v) \ge \min
+\{  \textrm{val}^*_{ \mathcal{G}[\sigma_\pi]}( \pi'_i),
+  \textrm{val}^*_{ \mathcal{G}[\sigma_\pi]}( \pi'_{i+1}),\dots,
+  \textrm{val}^*_{ \mathcal{G}[\sigma_\pi]}( \pi'_k),1\} \ge
+  \textrm{val}^*_{ \mathcal{G}[\sigma_\pi]}( \pi'_i)
+$$
 
-  which concludes the initial case for the induction.
+since $\textrm{val}^*_{ \mathcal{G}[\sigma_\pi]} =   \textrm{val}_{ \mathcal{G},\sigma_\pi}$.
+
+Now, when playing $\sigma_\pi = \sigma^{(0)}$ from $v$, 
+
+Thanks to  {prf:ref}`6-lem:lemma2`, since $v \in
+W_{ \mathcal{G}[\sigma_\pi], \pi'}^j$,
+$\textrm{val}_{ \mathcal{G}[\sigma_\pi], \pi'}(v) =
+  \textrm{val}_{ \mathcal{G}[\sigma_\pi], \pi'}( \pi'_j)$ and hence (as argued
+in the proof of the larger lemma,
+$\textrm{val}_{ \mathcal{G}[\sigma_\pi], \pi'} =
+  \textrm{val}^*_{ \mathcal{G}[\sigma_\pi]}$), $\textrm{val}^*_{ \mathcal{G}[\sigma_\pi]}(v) =
+  \textrm{val}^*_{ \mathcal{G}[\sigma_\pi]}( \pi'_j)$. We conclude that:
+
+$$
+  \textrm{val}_{\sigma_\pi}(v) =   \textrm{val}^*_{ \mathcal{G}[\sigma_\pi]}(v) \le
+  \textrm{val}^*_{ \mathcal{G}[\sigma_\pi]}( \pi'_j) \le
+  \textrm{val}^*_{ \mathcal{G}[\sigma_\pi]}( \pi'_i) \le
+  \textrm{val}_{ \mathcal{G},\sigma^{(1)}}(v)
+$$
+
+which concludes the initial case for the induction.
 
  The inductive step is then rather straightforward: the
-  two strategies $\sigma^{(n+2)}$ and $\sigma^{(n+1)}$ coincide
-  until a first random vertex is encounted, and then the first one
-  switches to $\sigma^{(n+1)}$ while the other switches to
-  $\sigma^{(n)}$. Hence, using the induction hypothesis that
-  $\sigma^{(n+1)}$ is better for $\textrm{Eve}$ than $\sigma^{(n)}$, we can
-  conclude.
+two strategies $\sigma^{(n+2)}$ and $\sigma^{(n+1)}$ coincide
+until a first random vertex is encounted, and then the first one
+switches to $\sigma^{(n+1)}$ while the other switches to
+$\sigma^{(n)}$. Hence, using the induction hypothesis that
+$\sigma^{(n+1)}$ is better for $\textrm{Eve}$ than $\sigma^{(n)}$, we can
+conclude.
 
 ````
 
@@ -973,7 +973,7 @@ the probability to not reach $v_{lose}$ for the first $n$ visits to a
 random vertex; for these $n$ first visits, $\sigma_{ \pi'}$
 coincides with $\sigma^{(n)}$, hence
 $\mathbb{P}^v_{\sigma_{ \pi'},\tau} ( \mathtt{Reach}(\{ v_{win}\})) \ge \lim_{n\to
-  +\infty}  \mathbb{P}^v_{\sigma^{(n)},\tau} ( \mathtt{Reach}(\{ v_{win}\}))$. By
++\infty}  \mathbb{P}^v_{\sigma^{(n)},\tau} ( \mathtt{Reach}(\{ v_{win}\}))$. By
 definition of value in a game, this last term is larger than or
 equal to $\lim_{n \to+\infty}  \textrm{val}_{ \mathcal{G},\sigma^{(n)}}$, hence
 $\lim_{n \to+\infty}  \textrm{val}_{ \mathcal{G},\sigma^{(n)}} \le
@@ -1000,7 +1000,7 @@ $$
 
 Now, the strategy $\tau_{ \pi'}$ is precisely the optimal strategy
 against $\sigma_{ \pi'}$ \pat{Not so sure of the argument, it is
-  not argued that way in GH09}, hence for every vertex $v$:
+not argued that way in GH09}, hence for every vertex $v$:
 
 $$
   \textrm{val}^*_{ \mathcal{G}[\sigma_{ \pi'}]}(v) = \inf_\tau
