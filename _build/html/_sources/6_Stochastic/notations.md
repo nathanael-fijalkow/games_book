@@ -9,14 +9,14 @@ Let us first define the arenas stochastic games will be played on:
 A stochastic arena is a tuple $\mathcal{A} = ( V,E,\delta)$ where
 
 *  $V =  V_\mathrm{Adam} \sqcup  V_\mathrm{Eve} \sqcup   V_{\text{Rand}}$ is a
-  finite set of vertices, partitionned into vertices of Adam, Eve,
-  and random vertices;
+finite set of vertices, partitionned into vertices of Adam, Eve,
+and random vertices;
 *  $E \subseteq  V \times  V$ is the set of
-  edges;
+edges;
 *  $\delta :   V_{\text{Rand}} \to  \mathcal{D}( V)$ is the
-  probabilistic transition function, which satisfies:
-  $\forall v \in   V_{\text{Rand}}$, $\delta(v)(w)>0$ iff
-  $(v,w) \in E$.
+probabilistic transition function, which satisfies:
+$\forall v \in   V_{\text{Rand}}$, $\delta(v)(w)>0$ iff
+$(v,w) \in E$.
 
 ````
 
@@ -24,7 +24,7 @@ A stochastic arena is a tuple $\mathcal{A} = ( V,E,\delta)$ where
 :name: 6-fig:ex-stoch-arena
 :align: center
 Example of a stochastic arena: circle nodes belong to Eve,
-  square nodes to Adam, and diamond nodes are random.
+square nodes to Adam, and diamond nodes are random.
 ```
 
 Similarly to non-stochastic arenas, one can equip a stochastic arena
@@ -37,7 +37,7 @@ A stochastic game is a tuple $\mathcal{G} = ( \mathcal{A},\Omega)$ where
 
 *  $\mathcal{A}$ is a stochastic arena;
 *  $\Omega \subseteq  V^\omega$ is the (qualitative)
-  winning objective.
+winning objective.
 
 ````
 

@@ -23,8 +23,8 @@ $\iota :  V \to  V'$ such that
 $\forall v \in  V$
 
 $$
-  \mathsf{value}(v, \mathcal{A},\textrm{discount}(\lambda)) =
-  \mathsf{value}(\iota(v), \mathcal{A}', \mathtt{Reach}( \textrm{Win})) \enspace.
+\mathsf{value}(v, \mathcal{A},\textrm{discount}(\lambda)) =
+\mathsf{value}(\iota(v), \mathcal{A}', \mathtt{Reach}( \textrm{Win})) \enspace.
 $$
 
 ````
@@ -61,9 +61,9 @@ and $\mathsf{value}_{ \mathcal{A}'}(\frownie) =0$.  For every non-random
 vertex $v \notin \{\smiley,\frownie\}$ in $\mathcal{A}'$,
 
 $$
-  \mathsf{value}_{ \mathcal{A}'}(v)
+\mathsf{value}_{ \mathcal{A}'}(v)
 = \begin{cases}   \max_{(v,v_e) \in E'}  \mathsf{value}_{ \mathcal{A}'}(v_e) & \text{if}\ v \in  V_\mathrm{Eve} \\
-   \min_{(v,v_e) \in E'}  \mathsf{value}_{ \mathcal{A}'}(v_e)  & \text{if}\ v \in  V_\mathrm{Adam}
+ \min_{(v,v_e) \in E'}  \mathsf{value}_{ \mathcal{A}'}(v_e)  & \text{if}\ v \in  V_\mathrm{Adam}
  \end{cases}
  $$
 
@@ -80,23 +80,23 @@ random vertices, we obtain that for every non-random vertex
 $v \notin \{\smiley,\frownie\}$ in $\mathcal{A}'$,
 
 $$
-  \mathsf{value}_{ \mathcal{A}'}(v) =
-  \begin{cases}
-    \max_{e=(v, \mathbf{w},v') \in E}  \lambda \cdot
+\mathsf{value}_{ \mathcal{A}'}(v) =
+\begin{cases}
+  \max_{e=(v, \mathbf{w},v') \in E}  \lambda \cdot
  \mathsf{value}_{ \mathcal{A}'}(v') + (1{-}\lambda)  \mathbf{w} & \text{if}\ v \in  V_\mathrm{Eve}\\
-    \min_{(v, \mathbf{w},v') \in E}  \lambda \cdot
+  \min_{(v, \mathbf{w},v') \in E}  \lambda \cdot
  \mathsf{value}_{ \mathcal{A}'}(v') + (1{-}\lambda)  \mathbf{w} & \text{if}\ v \in  V_\mathrm{Adam}
  \end{cases}
-  $$
+$$
 
-  We thus observe that the values in $\mathcal{A}'$, after elimination of
-  values for intermediate random vertices, satisfy the equations of
-  values in the discounted game (see the proof
-  of {prf:ref}`4-thm:discounted` in {prf:ref}`chap:4_Payoffs`). Since
-  this system of equations has a unique solution, we deduce the
-  desired equality:
-  $\mathsf{value}_{ \mathcal{A}'}(v) =
-  \mathsf{value}(v, \mathcal{A},\textrm{discount}(\lambda))$.
+We thus observe that the values in $\mathcal{A}'$, after elimination of
+values for intermediate random vertices, satisfy the equations of
+values in the discounted game (see the proof
+of {prf:ref}`4-thm:discounted` in {prf:ref}`chap:4_Payoffs`). Since
+this system of equations has a unique solution, we deduce the
+desired equality:
+$\mathsf{value}_{ \mathcal{A}'}(v) =
+\mathsf{value}(v, \mathcal{A},\textrm{discount}(\lambda))$.
 
 ````
 
@@ -135,8 +135,8 @@ such that $\forall v \in  V$, if
 $ \mathsf{value}(v, \mathcal{A},\textrm{parity}) \notin \{0,1\}$, then
 
 $$
-  \mathsf{value}(v, \mathcal{A},\textrm{parity}) =
-  \frac 1 2 (\mathsf{value}(v, \mathcal{A},\textrm{mean payoff})  {+} 1) \enspace.
+\mathsf{value}(v, \mathcal{A},\textrm{parity}) =
+\frac 1 2 (\mathsf{value}(v, \mathcal{A},\textrm{mean payoff})  {+} 1) \enspace.
 $$
 
 ````
@@ -158,9 +158,9 @@ weight $(-1)^k (2n)^k p_{\min}^{-nk}$.
 Let us prove that the above weight function satisfies
 
 $$
-  \forall v \in  V \setminus (W_\textrm{Eve} \cup W_\textrm{Adam}),\ 
-  \mathsf{value}(v, \mathcal{A},\textrm{parity}) = \frac 1 2
-  (\mathsf{value}(v, \mathcal{A},\textrm{mean payoff}) {+} 1)\enspace.
+\forall v \in  V \setminus (W_\textrm{Eve} \cup W_\textrm{Adam}),\ 
+\mathsf{value}(v, \mathcal{A},\textrm{parity}) = \frac 1 2
+(\mathsf{value}(v, \mathcal{A},\textrm{mean payoff}) {+} 1)\enspace.
 $$
 
 To do so, we prove both inequalities.
@@ -168,93 +168,93 @@ To do so, we prove both inequalities.
 Here we assume sinks for $W_\textrm{Eve}$ and $W_\textrm{Adam}$, with appropriate priorities.
 
 ````{prf:lemma} NEEDS TITLE AND LABEL  Let $v \in  V$. Let $\sigma$ be a pure
-  positional optimal strategy for Eve in the parity game
-  $( \mathcal{A},\textrm{parity})$. For every positional strategy $\tau$
-  of Adam
-  $\mathbb{P}_{\sigma,\tau}^v( \mathtt{Reach}(W_\textrm{Adam})) \leq 1 -
-  \mathsf{value}(v, \mathcal{A},\textrm{parity})$.
+positional optimal strategy for Eve in the parity game
+$( \mathcal{A},\textrm{parity})$. For every positional strategy $\tau$
+of Adam
+$\mathbb{P}_{\sigma,\tau}^v( \mathtt{Reach}(W_\textrm{Adam})) \leq 1 -
+\mathsf{value}(v, \mathcal{A},\textrm{parity})$.
  
  Let $v \in  V$. Let $\sigma$ be a pure
-  positional optimal strategy for Eve in the parity game
-  $( \mathcal{A},\textrm{parity})$. For every positional strategy $\tau$
-  of Adam
-  $\mathbb{P}_{\sigma,\tau}^v( \mathtt{Reach}(W_\textrm{Adam})) \leq 1 -
-  \mathsf{value}(v, \mathcal{A},\textrm{parity})$.
+positional optimal strategy for Eve in the parity game
+$( \mathcal{A},\textrm{parity})$. For every positional strategy $\tau$
+of Adam
+$\mathbb{P}_{\sigma,\tau}^v( \mathtt{Reach}(W_\textrm{Adam})) \leq 1 -
+\mathsf{value}(v, \mathcal{A},\textrm{parity})$.
 
 ````
 
-  This is a direct consequence of the definition of the value.
+This is a direct consequence of the definition of the value.
 
 ````{prf:lemma} NEEDS TITLE AND LABEL 
-    Let $\sigma$ be a pure positional optimal strategy for Eve in
-    the parity game $( \mathcal{A},\textrm{parity})$. For every positional
-    strategy $\tau$ of Adam, for every BSCC $C$ induced by
-    $(\sigma,\tau)$ different from $W_\textrm{Adam}$ and $W_\textrm{Eve}$,
-    $\mathbb{P}_{\sigma,\tau}^C(\textrm{parity}) >0$.
+  Let $\sigma$ be a pure positional optimal strategy for Eve in
+  the parity game $( \mathcal{A},\textrm{parity})$. For every positional
+  strategy $\tau$ of Adam, for every BSCC $C$ induced by
+  $(\sigma,\tau)$ different from $W_\textrm{Adam}$ and $W_\textrm{Eve}$,
+  $\mathbb{P}_{\sigma,\tau}^C(\textrm{parity}) >0$.
 
-    Let $\sigma$ be a pure positional optimal strategy for Eve in
-    the parity game $( \mathcal{A},\textrm{parity})$. For every positional
-    strategy $\tau$ of Adam, for every BSCC $C$ induced by
-    $(\sigma,\tau)$ different from $W_\textrm{Adam}$ and $W_\textrm{Eve}$,
-    $\mathbb{P}_{\sigma,\tau}^C(\textrm{parity}) >0$.
+  Let $\sigma$ be a pure positional optimal strategy for Eve in
+  the parity game $( \mathcal{A},\textrm{parity})$. For every positional
+  strategy $\tau$ of Adam, for every BSCC $C$ induced by
+  $(\sigma,\tau)$ different from $W_\textrm{Adam}$ and $W_\textrm{Eve}$,
+  $\mathbb{P}_{\sigma,\tau}^C(\textrm{parity}) >0$.
 
 ````
 
 ````{admonition} Proof
 :class: dropdown tip
 
-    Indeed, $\mathsf{value}(C, \mathcal{A},\textrm{parity}) \in (0,1)$ by
-    definition. Since $\sigma$ is optimal, for $v \in C$,
-    $\mathbb{P}_{\sigma,\tau}^v(\textrm{parity}) \geq
-    \mathsf{value}(v, \mathcal{A},\textrm{parity}) >0$ (and even
-    $\mathbb{P}_{\sigma,\tau}^v(\textrm{parity})=1$).
+  Indeed, $\mathsf{value}(C, \mathcal{A},\textrm{parity}) \in (0,1)$ by
+  definition. Since $\sigma$ is optimal, for $v \in C$,
+  $\mathbb{P}_{\sigma,\tau}^v(\textrm{parity}) \geq
+  \mathsf{value}(v, \mathcal{A},\textrm{parity}) >0$ (and even
+  $\mathbb{P}_{\sigma,\tau}^v(\textrm{parity})=1$).
 
 ````
 
-  As a consequence, the maximum parity in $C$ is even since all
-  vertices of $C$ are visited infinitely-often almost-surely when
-  starting from $C$ and playing $(\sigma,\tau)$.
+As a consequence, the maximum parity in $C$ is even since all
+vertices of $C$ are visited infinitely-often almost-surely when
+starting from $C$ and playing $(\sigma,\tau)$.
 
-  Corollary: under $(\sigma,\tau)$ with $\sigma$ optimal for parity,
-  apart from the $W_\textrm{Adam}$ BSCC, all BSCC are `good' for  \textrm{Eve}.
+Corollary: under $(\sigma,\tau)$ with $\sigma$ optimal for parity,
+apart from the $W_\textrm{Adam}$ BSCC, all BSCC are `good' for  \textrm{Eve}.
 
 ````{prf:lemma} NEEDS TITLE AND LABEL 
-    Let $\sigma$ be a pure positional optimal strategy for Eve in
-    the parity game $( \mathcal{A},\textrm{parity})$. For every positional
-    strategy $\tau$ of Adam, for every good BSCC $C$ induced by
-    $(\sigma,\tau)$, $\mathtt{MeanPayoff}_{\sigma,\tau}^C( \mathcal{A}) \geq 1$.
+  Let $\sigma$ be a pure positional optimal strategy for Eve in
+  the parity game $( \mathcal{A},\textrm{parity})$. For every positional
+  strategy $\tau$ of Adam, for every good BSCC $C$ induced by
+  $(\sigma,\tau)$, $\mathtt{MeanPayoff}_{\sigma,\tau}^C( \mathcal{A}) \geq 1$.
 
-    Let $\sigma$ be a pure positional optimal strategy for Eve in
-    the parity game $( \mathcal{A},\textrm{parity})$. For every positional
-    strategy $\tau$ of Adam, for every good BSCC $C$ induced by
-    $(\sigma,\tau)$, $\mathtt{MeanPayoff}_{\sigma,\tau}^C( \mathcal{A}) \geq 1$.
+  Let $\sigma$ be a pure positional optimal strategy for Eve in
+  the parity game $( \mathcal{A},\textrm{parity})$. For every positional
+  strategy $\tau$ of Adam, for every good BSCC $C$ induced by
+  $(\sigma,\tau)$, $\mathtt{MeanPayoff}_{\sigma,\tau}^C( \mathcal{A}) \geq 1$.
 
 ````
 
 ````{admonition} Proof
 :class: dropdown tip
 
-    The case $C = W_\textrm{Eve}$ is trivial. We assume
-    $C \cap W_\textrm{Eve} = \emptyset$ in the sequel.
-    
-    Let $v$ be a vertex with maximal parity $d_C$ (hence even and
-    non-zero) in $C$. Starting from $C$ and under $(\sigma,\tau)$,
-    the frequency of $v$ is at least $\frac{1}{n} p_{\min}^n$
-    \fbox{to be argued}
+  The case $C = W_\textrm{Eve}$ is trivial. We assume
+  $C \cap W_\textrm{Eve} = \emptyset$ in the sequel.
+  
+  Let $v$ be a vertex with maximal parity $d_C$ (hence even and
+  non-zero) in $C$. Starting from $C$ and under $(\sigma,\tau)$,
+  the frequency of $v$ is at least $\frac{1}{n} p_{\min}^n$
+  \fbox{to be argued}
 
-    Given the definition of the weight function, the mean-payoff
-    from $C$ and under $(\sigma,\tau)$ is at least
+  Given the definition of the weight function, the mean-payoff
+  from $C$ and under $(\sigma,\tau)$ is at least
 
 $$
-      \frac{1}{n} p_{\min}^n (2n)^{d_C} p_{\min}^{-n d_C} -
-      (2n)^{d_C -1} \frac{1}{p_{\min}^{n (d_C-1)}} = (2n)^{d_C -1}
-      \frac{1}{p_{\min}^{n (d_C-1)}} =
-      (\frac{2n}{p_{\min}^n})^{d_C{-}1}\enspace.
-    $$
+    \frac{1}{n} p_{\min}^n (2n)^{d_C} p_{\min}^{-n d_C} -
+    (2n)^{d_C -1} \frac{1}{p_{\min}^{n (d_C-1)}} = (2n)^{d_C -1}
+    \frac{1}{p_{\min}^{n (d_C-1)}} =
+    (\frac{2n}{p_{\min}^n})^{d_C{-}1}\enspace.
+  $$
 
-    Here, we bounded from above the frequency of over states in $C$
-    by $1$, and considered the worst case, **i.e.**, parity
-    $d_C-1$.
+  Here, we bounded from above the frequency of over states in $C$
+  by $1$, and considered the worst case, **i.e.**, parity
+  $d_C-1$.
 
 ````
 
@@ -262,24 +262,24 @@ $$
 :class: dropdown tip
 
 \begin{eqnarray*}
-     \mathtt{MeanPayoff}_{\sigma,\tau}^{v} & \geq & -  \mathbb{P}_{\sigma,\tau}^v( \mathtt{Reach}(W_\textrm{Adam})) + \sum_{C \textrm{ Good BSCC}}  \mathbb{P}_{\sigma,\tau}^v( \mathtt{Reach}(C))\\
-                                  & \geq & -1 + \mathsf{value}(v, \mathcal{A},\textrm{parity}) +  \mathbb{P}_{\sigma,\tau}^v( \mathtt{Parity})\\
-                                  & \geq & -1 + \mathsf{value}(v, \mathcal{A},\textrm{parity}) + \inf_{\tau'}  \mathbb{P}_{\sigma,\tau'}^v( \mathtt{Parity})\\
-                                  & \geq & -1 + \mathsf{value}(v, \mathcal{A},\textrm{parity}) + \mathsf{value}(v, \mathcal{A},\textrm{parity})\\
-                                  &  \geq & -1 + 2  \mathsf{value}(v, \mathcal{A},\textrm{parity}) \enspace.
+   \mathtt{MeanPayoff}_{\sigma,\tau}^{v} & \geq & -  \mathbb{P}_{\sigma,\tau}^v( \mathtt{Reach}(W_\textrm{Adam})) + \sum_{C \textrm{ Good BSCC}}  \mathbb{P}_{\sigma,\tau}^v( \mathtt{Reach}(C))\\
+                                & \geq & -1 + \mathsf{value}(v, \mathcal{A},\textrm{parity}) +  \mathbb{P}_{\sigma,\tau}^v( \mathtt{Parity})\\
+                                & \geq & -1 + \mathsf{value}(v, \mathcal{A},\textrm{parity}) + \inf_{\tau'}  \mathbb{P}_{\sigma,\tau'}^v( \mathtt{Parity})\\
+                                & \geq & -1 + \mathsf{value}(v, \mathcal{A},\textrm{parity}) + \mathsf{value}(v, \mathcal{A},\textrm{parity})\\
+                                &  \geq & -1 + 2  \mathsf{value}(v, \mathcal{A},\textrm{parity}) \enspace.
 \end{eqnarray*}
 
 Assume again that $\sigma$ is positional optimal for the parity objective, and fix $\tau$ an optimal counterstrategy for  \textrm{Adam} in $( \mathcal{A}, \mathtt{MeanPayoff})$. We deduce:
 \begin{eqnarray*}
-    -1 + 2 \mathsf{value}(v, \mathcal{A},\textrm{parity}) & \leq & 
-                                                              \mathtt{MeanPayoff}_{\sigma,\tau}^{v}\\
-                                                    & = & \inf_{\tau'}
-                                                           \mathtt{MeanPayoff}_{\sigma,\tau'}^{v}\\
-                                                    & \leq &
-                                                              \sup_{\sigma'}\inf_{\tau'}
-                                                              \mathtt{MeanPayoff}_{\sigma',\tau'}^{v}\\
-                                                    & = & 
-                                                          \mathsf{value}(v, \mathcal{A}, \mathtt{MeanPayoff}) \enspace.
+  -1 + 2 \mathsf{value}(v, \mathcal{A},\textrm{parity}) & \leq & 
+                                                            \mathtt{MeanPayoff}_{\sigma,\tau}^{v}\\
+                                                  & = & \inf_{\tau'}
+                                                         \mathtt{MeanPayoff}_{\sigma,\tau'}^{v}\\
+                                                  & \leq &
+                                                            \sup_{\sigma'}\inf_{\tau'}
+                                                            \mathtt{MeanPayoff}_{\sigma',\tau'}^{v}\\
+                                                  & = & 
+                                                        \mathsf{value}(v, \mathcal{A}, \mathtt{MeanPayoff}) \enspace.
 \end{eqnarray*} 
 This proves the first inequality.
 

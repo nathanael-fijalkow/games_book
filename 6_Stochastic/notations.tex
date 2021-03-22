@@ -4,48 +4,48 @@ Let us first define the arenas stochastic games will be played on:
 A ""stochastic arena"" is a tuple $\arena = (\vertices,E,\delta)$ where
 \begin{itemize}
 \item $\vertices = \VA \sqcup \VE \sqcup \Randomvertices$ is a
-  finite set of vertices, partitionned into vertices of Adam, Eve,
-  and ""random vertices"";
+finite set of vertices, partitionned into vertices of Adam, Eve,
+and ""random vertices"";
 \item $E \subseteq \vertices \times \vertices$ is the set of
-  edges;
+edges;
 \item $\delta : \Randomvertices \to \dist(\vertices)$ is the
-  probabilistic transition function, which satisfies:
-  $\forall v \in \Randomvertices$, $\delta(v)(w)>0$ iff
-  $(v,w) \in E$.
+probabilistic transition function, which satisfies:
+$\forall v \in \Randomvertices$, $\delta(v)(w)>0$ iff
+$(v,w) \in E$.
 \end{itemize}
 \end{definition}
 
 \begin{figure}
 \centering
-  \begin{tikzpicture}[scale=1.3]
-  \node[s-eve] (init) at (0,0) {$v_0$};
-  \node[s-random] (v1) at (2,0) {$v_1$};
-  \node[s-eve] (v2) at (4,0) {$v_2$};    
-  \node[s-random] (v3) at (6,0) {$v_3$};
-  \node[s-random] (v4) at (0,-1.5) {$v_4$};
-  \node[s-eve] (v5) at (2,-1.5) {$v_5$};
-  \node[s-adam] (v6) at (4,-1.5) {$v_6$};    
-  \node[s-eve] (v7) at (6,-1.5) {$v_7$};
-  
-  \path[arrow] (init) edge (v1)
-  (init) edge[bend left] (v4)
-  (v4) edge[bend left] node[left] {$\frac 3 4$} (init)
-  (v4) edge node[above] {$\frac 1 4$} (v5)
-  (v5) edge[bend left] (v6)
-  (v6) edge (v7)
-  (v6) edge[bend left] (v5)
-  (v5) edge[selfloop=90]  (v5)
-  (v7) edge[selfloop]  (v7)
-  (v1) edge node[above] {$\frac 2 3$} (v2)
-  (v1) edge node[above right] {$\frac 1 3$} (v6)
-  (v2) edge (v6)
-  (v2) edge[bend left] (v3)
-  (v3) edge[bend left] node[below] {$\frac 1 2$} (v2)
-  (v3) edge node[right] {$\frac 1 2$} (v7)
+\begin{tikzpicture}[scale=1.3]
+\node[s-eve] (init) at (0,0) {$v_0$};
+\node[s-random] (v1) at (2,0) {$v_1$};
+\node[s-eve] (v2) at (4,0) {$v_2$};    
+\node[s-random] (v3) at (6,0) {$v_3$};
+\node[s-random] (v4) at (0,-1.5) {$v_4$};
+\node[s-eve] (v5) at (2,-1.5) {$v_5$};
+\node[s-adam] (v6) at (4,-1.5) {$v_6$};    
+\node[s-eve] (v7) at (6,-1.5) {$v_7$};
+
+\path[arrow] (init) edge (v1)
+(init) edge[bend left] (v4)
+(v4) edge[bend left] node[left] {$\frac 3 4$} (init)
+(v4) edge node[above] {$\frac 1 4$} (v5)
+(v5) edge[bend left] (v6)
+(v6) edge (v7)
+(v6) edge[bend left] (v5)
+(v5) edge[selfloop=90]  (v5)
+(v7) edge[selfloop]  (v7)
+(v1) edge node[above] {$\frac 2 3$} (v2)
+(v1) edge node[above right] {$\frac 1 3$} (v6)
+(v2) edge (v6)
+(v2) edge[bend left] (v3)
+(v3) edge[bend left] node[below] {$\frac 1 2$} (v2)
+(v3) edge node[right] {$\frac 1 2$} (v7)
 %    (init) edge node[left] {$\frac 1 {10}$} (av)
 %    (init) edge node[left] {$\frac 3 {10}$} (rv)
 %    (init) edge node[right] {$\frac 2 {5}$} (ev)
-  ;    
+;    
 % \node[s-random] (root) at (0,0) {$v$};
 % \node[s-random] (left) at (-.75,-1) {};
 % \node[s-random] (right) at (.75,-1) {};
@@ -65,9 +65,9 @@ A ""stochastic arena"" is a tuple $\arena = (\vertices,E,\delta)$ where
 % % (ab) edge[out=195,in=-15] (notab)
 % % (ab) edge[out=205,in=-25] (notb)
 % ;
-  \end{tikzpicture}
+\end{tikzpicture}
 \caption{Example of a stochastic arena: circle nodes belong to Eve,
-  square nodes to Adam, and diamond nodes are random.}
+square nodes to Adam, and diamond nodes are random.}
 \label{6-fig:ex-stoch-arena}
 \end{figure}
 
@@ -80,7 +80,7 @@ A ""stochastic game"" is a tuple $\game = (\arena,\Omega)$ where
 \begin{itemize}
 \item $\arena$ is a stochastic arena;
 \item $\Omega \subseteq \vertices^\omega$ is the (qualitative)
-  winning objective.
+winning objective.
 \end{itemize}
 \end{definition}
 
