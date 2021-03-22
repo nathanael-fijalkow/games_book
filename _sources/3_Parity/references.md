@@ -1,10 +1,6 @@
 (3-sec:references)=
 # Bibliographic references
 
-```{math}
-
-```
-
 We refer to Section {ref}`2-sec:references` for the role of parity objectives and how they emerged in automata theory as a subclass of Muller objectives.
 Another related motivation comes from the works of Emerson, Jutla, and Sistla {cite}`Emerson&Jutla&Sistla:1993`,
 who showed that solving parity games is linear-time equivalent to the model-checking problem for modal $\mu$-calculus.

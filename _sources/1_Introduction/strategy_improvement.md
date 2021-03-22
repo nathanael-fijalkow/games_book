@@ -1,10 +1,6 @@
 (1-sec:strategy_improvement)=
 # Strategy improvement algorithms
 
-```{math}
-
-```
-
 Value iteration algorithms manipulate value functions and never construct any strategy, at least explicitly.
 This is a key difference with strategy improvement algorithms (also called policy iteration algorithms) whose fundamental idea is to maintain and improve a strategy.
 We assume that the games we consider in this section are positionally determined, therefore all strategies are assumed to be positional.

@@ -1,10 +1,6 @@
 (1-sec:intro)=
 # What is this book about?
 
-```{math}
-
-```
-
 The objective of this book is to present the state of the art on games on graphs, which is part of a larger research topic called game theory.
 Games on graphs is the field concerned with games whose rules and evolution are represented by a graph. We mostly focus on infinite duration games, but their study is deeply interleaved with finite duration games.
 They form a prominent model in two related subjects: the first is automata theory and logic, and the second is verification and synthesis,

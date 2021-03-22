@@ -1,10 +1,6 @@
 (2-sec:zielonka)=
 # Zielonka tree
 
-```{math}
-
-```
-
 The Zielonka tree is a combinatorial structure associated with a Muller objective which very neatly exposes its properties.
 As a warm-up we first present its predecessor the LAR construction, and then show the properties of Zielonka trees.
 As we will see, the key feature of the Zielonka tree of a Muller objective $\mathtt{Muller}( \mathcal{F})$ is to characterise its exact memory requirements.

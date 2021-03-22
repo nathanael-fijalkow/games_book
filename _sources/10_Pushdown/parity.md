@@ -1,19 +1,6 @@
 (10-sec:parity)=
 # Parity pushdown games
 
-```{math}
-
-\def\AC#1{\textcolor{green!50!black}{\checkmark}\marginpar{\color{green!50!black}AC: #1}} 
-
-\def\acchanged#1{{#1}}
-\def\OS#1{\textcolor{red}{\checkmark}\marginpar{\color{red}OS: #1}}
-
-\newcommand {\Stepsg}[1]{\mathit{Steps}_{#1}}
-
-\newcommand {\Rounds}[1]{\mathit{Rounds}_{#1}}
-
-```
-
 We now focus on the central case of parity objectives. 
 In Subsection {ref}`10-subsec:computing-profiles`, we show how to compute the set of profils using a reduction to finite parity game.
 

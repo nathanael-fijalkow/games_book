@@ -723,9 +723,6 @@
                 
   <div class="section" id="vector-games">
 <span id="sec-counters"></span><h1>Vector games<a class="headerlink" href="#vector-games" title="Permalink to this headline">¶</a></h1>
-<div class="math notranslate nohighlight">
-\[\newcommand{\capp}[2][C]{\overline{\vec #2}^{#1}}
-\]</div>
 <p>A vector system is a finite directed graph with a partition of
 the vertices and weighted edges.  Formally, it is a tuple
 <span class="math notranslate nohighlight">\(\mathcal{V}=( \mathcal{L}, A, \mathcal{L}_\mathrm{Eve}, \mathcal{L}_\mathrm{Adam}, k)\)</span> where <span class="math notranslate nohighlight">\(k\in\mathbb{N}\)</span> is a
@@ -733,12 +730,12 @@ dimension, <span class="math notranslate nohighlight">\(\mathcal{L}\)</span> is 
 locations controlled by Eve and Adam, i.e.,
 <span class="math notranslate nohighlight">\(\mathcal{L}= \mathcal{L}_\mathrm{Eve}\uplus  \mathcal{L}_\mathrm{Adam}\)</span>, and
 <span class="math notranslate nohighlight">\(A\subseteq  \mathcal{L}\times\mathbb{Z}^ k\times \mathcal{L}\)</span> is a finite set of
-weighted actions.  We write <span class="math notranslate nohighlight">\(\ell \xrightarrow{\,\vec u,} \ell'\)</span>
+weighted actions.  We write <span class="math notranslate nohighlight">\(\ell \xrightarrow{\,\vec u\,} \ell'\)</span>
 rather than <span class="math notranslate nohighlight">\(( \ell,\vec u, \ell')\)</span> for actions in <span class="math notranslate nohighlight">\(A\)</span>.  A
 vector addition system with states is a vector system where
 <span class="math notranslate nohighlight">\(\mathcal{L}_\mathrm{Adam}=\emptyset\)</span>, i.e., it corresponds to the one-player case.</p>
 <div class="proof example admonition" id="11-ex:mwg">
-<p class="admonition-title"><span class="caption-number">Example 311 </span> (vector system)</p>
+<p class="admonition-title"><span class="caption-number">Example 314 </span> (vector system)</p>
 <div class="example-content section" id="proof-content">
 <p><a class="reference internal" href="#fig-mwg"><span class="std std-numref">Fig. 76</span></a> presents a vector system of
 dimension two with locations <span class="math notranslate nohighlight">\(\{ \ell, \ell'\}\)</span> where <span class="math notranslate nohighlight">\(\ell\)</span> is
@@ -750,7 +747,7 @@ controlled by Eve and <span class="math notranslate nohighlight">\(\ell'\)</span
 </div>
 <p>The intuition behind a vector system is that it
 maintains <span class="math notranslate nohighlight">\(k\)</span> counters <span class="math notranslate nohighlight">\(\mathtt{c}_1,\dots,\mathtt{c}_k\)</span> assigned
-to integer values.  An action <span class="math notranslate nohighlight">\(\ell \xrightarrow{\,\vec u,} \ell'\in A\)</span> then
+to integer values.  An action <span class="math notranslate nohighlight">\(\ell \xrightarrow{\,\vec u\,} \ell'\in A\)</span> then
 updates each counter by adding the corresponding entry of <span class="math notranslate nohighlight">\(\vec u\)</span>,
 that is for all <span class="math notranslate nohighlight">\(1\leq j\leq k\)</span>, the action performs the update
 <span class="math notranslate nohighlight">\(\mathtt{c}_j := \mathtt{c}_j+\vec u(j)\)</span>.</p>
@@ -762,14 +759,14 @@ with <span class="math notranslate nohighlight">\(\vec 0(j)  \stackrel{\!\,\!\,\
 Addition and comparison are defined componentwise, so that for
 instance <span class="math notranslate nohighlight">\(\vec u\leq\vec u'\)</span> if and only if for all <span class="math notranslate nohighlight">\(1\leq j\leq k\)</span>,
 <span class="math notranslate nohighlight">\(\vec u(j)\leq\vec u'(j)\)</span>.  We write
-<span class="math notranslate nohighlight">\(w( \ell \xrightarrow{\,\vec u,} \ell')  \stackrel{\!\,\!\,\textrm{def}}{=}\vec u\)</span> for the weight of an
+<span class="math notranslate nohighlight">\(w( \ell \xrightarrow{\,\vec u\,} \ell')  \stackrel{\!\,\!\,\textrm{def}}{=}\vec u\)</span> for the weight of an
 action and <span class="math notranslate nohighlight">\(w(\pi)  \stackrel{\!\,\!\,\textrm{def}}{=}\sum_{1\leq j\leq |\pi|} w(\pi_j)\)</span>
 for the cumulative weight of a finite sequence of actions
 <span class="math notranslate nohighlight">\(\pi\in A^\ast\)</span>.  For a vector <span class="math notranslate nohighlight">\(\vec u\in\mathbb{Z}^ k\)</span>, we use its
 infinity norm <span class="math notranslate nohighlight">\(\|\vec u\|  \stackrel{\!\,\!\,\textrm{def}}{=}\max_{1\leq j\leq k}|\vec u(j)|\)</span>,
 hence <span class="math notranslate nohighlight">\(\|\vec 0\|=0\)</span> and <span class="math notranslate nohighlight">\(\|\vec e_j\|=\|-\vec e_j\|=1\)</span>, and we let
-<span class="math notranslate nohighlight">\(\| \ell \xrightarrow{\,\vec u,} \ell'\|  \stackrel{\!\,\!\,\textrm{def}}{=}\| w( \ell \xrightarrow{\,\vec
-  u,} \ell')\|=\|\vec u\|\)</span>
+<span class="math notranslate nohighlight">\(\| \ell \xrightarrow{\,\vec u\,} \ell'\|  \stackrel{\!\,\!\,\textrm{def}}{=}\| w( \ell \xrightarrow{\,\vec
+  u\,} \ell')\|=\|\vec u\|\)</span>
 and <span class="math notranslate nohighlight">\(\| A\|  \stackrel{\!\,\!\,\textrm{def}}{=}\max_{a\in A}\| w(a)\|\)</span>.  Unless stated
 otherwise, we assume that all our vectors are represented in binary,
 hence <span class="math notranslate nohighlight">\(\| A\|\)</span> may be exponential in the size of <span class="math notranslate nohighlight">\(\mathcal{V}\)</span>.</p>
@@ -783,7 +780,7 @@ location <span class="math notranslate nohighlight">\(\ell\in  \mathcal{L}\)</sp
 <span class="math notranslate nohighlight">\(\vec v\in\mathbb{N}^ k\)</span>—such a vector represents a valuation of the
 counters <span class="math notranslate nohighlight">\(\mathtt{c}_1,\dots,\mathtt c_k\)</span>—, or the
 sink <span class="math notranslate nohighlight">\(\bot\)</span>.</p>
-<p>Consider an action in <span class="math notranslate nohighlight">\(a=( \ell \xrightarrow{\,\vec u,} \ell')\)</span> in <span class="math notranslate nohighlight">\(A\)</span>: we
+<p>Consider an action in <span class="math notranslate nohighlight">\(a=( \ell \xrightarrow{\,\vec u\,} \ell')\)</span> in <span class="math notranslate nohighlight">\(A\)</span>: we
 see it as a partial function
 <span class="math notranslate nohighlight">\(a{:}\, \mathcal{L}\times\mathbb{N}^ k\, \mathrel{\ooalign{\hfil\)</span>\mapstochar\mkern5mu<span class="math notranslate nohighlight">\(\hfil\cr\)</span>\to<span class="math notranslate nohighlight">\(\cr}}  \mathcal{L}\times\mathbb{N}^ k\)</span> with domain
 <span class="math notranslate nohighlight">\(\mathrm{dom}\, a  \stackrel{\!\,\!\,\textrm{def}}{=}\{ \ell(\vec v)\mid \vec v+\vec u\geq\vec 0\}\)</span> and image
@@ -798,7 +795,7 @@ the set <span class="math notranslate nohighlight">\(E\)</span> of edges as a se
 <p>where <span class="math notranslate nohighlight">\(\textrm{In}((v,v'))  \stackrel{\!\,\!\,\textrm{def}}{=} v\)</span> and <span class="math notranslate nohighlight">\(\textrm{Out}((v,v'))  \stackrel{\!\,\!\,\textrm{def}}{=} v'\)</span> for all
 edges <span class="math notranslate nohighlight">\((v,v')\in E\)</span>.  There is therefore an edge <span class="math notranslate nohighlight">\((v,v')\)</span> between two
 configurations <span class="math notranslate nohighlight">\(v= \ell(\vec v)\)</span> and <span class="math notranslate nohighlight">\(v'= \ell'(\vec v')\)</span> if there
-exists an action <span class="math notranslate nohighlight">\(\ell \xrightarrow{\,\vec u,} \ell'\in A\)</span> such that
+exists an action <span class="math notranslate nohighlight">\(\ell \xrightarrow{\,\vec u\,} \ell'\in A\)</span> such that
 <span class="math notranslate nohighlight">\(\vec v'=\vec v+\vec u\)</span>.  Note that, quite importantly,
 <span class="math notranslate nohighlight">\(\vec v+\vec u\)</span> must be non-negative on every coordinate for this edge
 to exist.  If no action can be applied, there is an edge to the
@@ -823,7 +820,7 @@ that avoids the sink can also be described by an initial
 configuration <span class="math notranslate nohighlight">\(\ell_0(\vec v_0)\)</span> paired with a sequence
 over <span class="math notranslate nohighlight">\(A\)</span>.</p>
 <div class="proof example admonition" id="11-ex:sem">
-<p class="admonition-title"><span class="caption-number">Example 312 </span> (natural semantics)</p>
+<p class="admonition-title"><span class="caption-number">Example 315 </span> (natural semantics)</p>
 <div class="example-content section" id="proof-content">
 <p><a class="reference internal" href="#fig-sem"><span class="std std-numref">Fig. 77</span></a> illustrates the natural semantics of the system
 of <a class="reference internal" href="#fig-mwg"><span class="std std-numref">Fig. 76</span></a>; observe that all the configurations <span class="math notranslate nohighlight">\(\ell(0,n)\)</span>
@@ -857,9 +854,8 @@ that Eve wins <span class="math notranslate nohighlight">\(\mathcal{G}\)</span> 
 configuration <span class="math notranslate nohighlight">\(\ell_0(\vec v_0)\)</span>.</p></li>
 </ul>
 <p>Let us instantiate the previous abstract definition of vector games.
-We first consider two reachability-like
-reachability
-objectives, where <span class="math notranslate nohighlight">\(C  \stackrel{\!\,\!\,\textrm{def}}{=}\{\varepsilon, \textrm{Win}\}\)</span> and
+We first consider two reachability-like</p>
+<p>objectives, where <span class="math notranslate nohighlight">\(C  \stackrel{\!\,\!\,\textrm{def}}{=}\{\varepsilon, \textrm{Win}\}\)</span> and
 <span class="math notranslate nohighlight">\(\Omega  \stackrel{\!\,\!\,\textrm{def}}{=} \mathtt{Reach}\)</span>, namely configuration reachability and
 coverability.  The difference between the two is that, in the
 configuration reachability problem, a specific configuration
@@ -902,7 +898,7 @@ the coverability game <span class="math notranslate nohighlight">\((  \mathcal{A
 <span class="math notranslate nohighlight">\(\textrm{In}(e)= \ell_f(\vec v')\)</span> for some <span class="math notranslate nohighlight">\(\vec v'\geq\vec v_f\)</span>?</p>
 </div>
 <div class="proof example admonition" id="11-ex:cov">
-<p class="admonition-title"><span class="caption-number">Example 313 </span> (Objectives)</p>
+<p class="admonition-title"><span class="caption-number">Example 316 </span> (Objectives)</p>
 <div class="example-content section" id="proof-content">
 <p>Consider the target configuration <span class="math notranslate nohighlight">\(\ell(2,2)\)</span> in
 <code class="xref std std-numref docutils literal notranslate"><span class="pre">11-fig:mwg,11-fig:sem</span></code>.  Eve’s winning region in the
@@ -910,9 +906,9 @@ configuration reachability vector game is
 <span class="math notranslate nohighlight">\(W_\mathrm{Eve}=\{ \ell(n+1,n+1)\mid n\in\mathbb{N}\}\cup\{ \ell'(0,1)\}\)</span>, displayed on the left
 in <a class="reference internal" href="#fig-cov"><span class="std std-numref">Fig. 78</span></a>.  Eve has indeed an obvious winning strategy
 from any configuration <span class="math notranslate nohighlight">\(\ell(n,n)\)</span> with <span class="math notranslate nohighlight">\(n\geq 2\)</span>, which is to use
-the action <span class="math notranslate nohighlight">\(\ell \xrightarrow{\,-1,-1,} \ell\)</span> until she reaches <span class="math notranslate nohighlight">\(\ell(2,2)\)</span>.
+the action <span class="math notranslate nohighlight">\(\ell \xrightarrow{\,-1,-1\,} \ell\)</span> until she reaches <span class="math notranslate nohighlight">\(\ell(2,2)\)</span>.
 Furthermore, in <span class="math notranslate nohighlight">\(\ell'(0,1)\)</span>—due to the natural semantics—,
-Adam has no choice but to use the action <span class="math notranslate nohighlight">\(\ell' \xrightarrow{\,2,1,} \ell\)</span>:
+Adam has no choice but to use the action <span class="math notranslate nohighlight">\(\ell' \xrightarrow{\,2,1\,} \ell\)</span>:
 therefore <span class="math notranslate nohighlight">\(\ell'(0,1)\)</span> and <span class="math notranslate nohighlight">\(\ell(1,1)\)</span> are also winning for Eve.</p>
 <div class="figure align-center" id="fig-cov">
 <img alt="../_images/11-fig:cov.png" src="../_images/11-fig:cov.png" />
@@ -927,18 +923,18 @@ border; the sink is always losing.</span><a class="headerlink" href="#fig-cov" t
 <span class="math notranslate nohighlight">\(W_\mathrm{Eve}=\{ \ell(m+2,n+2), \ell'(m+2,n+2), \ell'(0,n+1), \ell(1,n+2), \ell'(2m+2,1), \ell(2m+3,1)\mid
 m,n\in\mathbb{N}\}\)</span>
 displayed on the right in <a class="reference internal" href="#fig-cov"><span class="std std-numref">Fig. 78</span></a>.  Observe in particular
-that Adam is forced to use the action <span class="math notranslate nohighlight">\(\ell' \xrightarrow{\,2,1,}\ell\)</span> from
+that Adam is forced to use the action <span class="math notranslate nohighlight">\(\ell' \xrightarrow{\,2,1\,}\ell\)</span> from
 the configurations of the form <span class="math notranslate nohighlight">\(\ell'(0,n+1)\)</span>, which brings him to a
 configuration <span class="math notranslate nohighlight">\(\ell(2,n+2)\)</span> coloured <span class="math notranslate nohighlight">\(\textrm{Win}\)</span> in the game, and thus the
 configurations of the form <span class="math notranslate nohighlight">\(\ell(1,n+1)\)</span> are also winning for Eve
-since she can play <span class="math notranslate nohighlight">\(\ell \xrightarrow{\,-1,0,} \ell'\)</span>.  Thus the configurations of
+since she can play <span class="math notranslate nohighlight">\(\ell \xrightarrow{\,-1,0\,} \ell'\)</span>.  Thus the configurations of
 the form <span class="math notranslate nohighlight">\(\ell(2m+3,n+1)\)</span> are also winning for Eve, as she can play
-the action <span class="math notranslate nohighlight">\(\ell \xrightarrow{\,-1,0,} \ell'\)</span> to a winning configuration
+the action <span class="math notranslate nohighlight">\(\ell \xrightarrow{\,-1,0\,} \ell'\)</span> to a winning configuration
 <span class="math notranslate nohighlight">\(\ell'(2m+2,n+1)\)</span> where all the actions available to Adam go into
 her winning region.</p>
 </div>
 </div><div class="proof remark admonition" id="11-rk:cov2cov">
-<p class="admonition-title"><span class="caption-number">Remark 314 </span> (Location reachability)</p>
+<p class="admonition-title"><span class="caption-number">Remark 317 </span> (Location reachability)</p>
 <div class="remark-content section" id="proof-content">
 <p>One can notice that coverability is equivalent to <strong>location
 reachability</strong>, where we are given a target location <span class="math notranslate nohighlight">\(\ell_f\)</span> but no
@@ -952,22 +948,22 @@ vector. Here is a <span class="math notranslate nohighlight">\(\textrm{LOGSPACE}
 reachability, or <span class="math notranslate nohighlight">\(\ell_0= \ell_f\)</span> and <span class="math notranslate nohighlight">\(\vec v_0\geq\vec v_f\)</span> in the
 case of coverability, the problem is trivial.</p>
 <p>Otherwise, any winning play must use at least one action.  For
-each incoming action <span class="math notranslate nohighlight">\(a=( \ell \xrightarrow{\,\vec u,} \ell_f)\)</span> of <span class="math notranslate nohighlight">\(\ell_f\)</span>,
+each incoming action <span class="math notranslate nohighlight">\(a=( \ell \xrightarrow{\,\vec u\,} \ell_f)\)</span> of <span class="math notranslate nohighlight">\(\ell_f\)</span>,
 create a new location <span class="math notranslate nohighlight">\(\ell_a\)</span> controlled by Eve and replace <span class="math notranslate nohighlight">\(a\)</span> by
-<span class="math notranslate nohighlight">\(\ell \xrightarrow{\,\vec u,} \ell_a \xrightarrow{\,\vec 0,} \ell_f\)</span>, so that Eve gains the
+<span class="math notranslate nohighlight">\(\ell \xrightarrow{\,\vec u\,} \ell_a \xrightarrow{\,\vec 0\,} \ell_f\)</span>, so that Eve gains the
 control right before any play reaches <span class="math notranslate nohighlight">\(\ell_f\)</span>.  Also add a new
 location <span class="math notranslate nohighlight">\(\smiley\)</span> controlled by Eve with actions
-<span class="math notranslate nohighlight">\(\ell_a \xrightarrow{\,-\vec v_f,}\smiley\)</span>, and use <span class="math notranslate nohighlight">\(\smiley(\vec 0)\)</span> as target
+<span class="math notranslate nohighlight">\(\ell_a \xrightarrow{\,-\vec v_f\,}\smiley\)</span>, and use <span class="math notranslate nohighlight">\(\smiley(\vec 0)\)</span> as target
 configuration.</p>
 </div>
 </div><div class="proof remark admonition" id="11-rk:cov2reach">
-<p class="admonition-title"><span class="caption-number">Remark 315 </span> (Coverability to reachability)</p>
+<p class="admonition-title"><span class="caption-number">Remark 318 </span> (Coverability to reachability)</p>
 <div class="remark-content section" id="proof-content">
 <p>There is a <span class="math notranslate nohighlight">\(\textrm{LOGSPACE}\)</span> reduction from coverability to
-configuration reachability.  By <a class="reference internal" href="#11-rk:cov2cov">Remark 314</a>, we can assume
+configuration reachability.  By <a class="reference internal" href="#11-rk:cov2cov">Remark 317</a>, we can assume
 without loss of generality that <span class="math notranslate nohighlight">\(\ell_f\in \mathcal{L}_\mathrm{Eve}\)</span> is controlled
 by Eve and that <span class="math notranslate nohighlight">\(\vec v_f=\vec 0\)</span> is the zero vector. It suffices
-therefore to add an action <span class="math notranslate nohighlight">\(\ell_f \xrightarrow{\,-\vec e_j,} \ell_f\)</span> for
+therefore to add an action <span class="math notranslate nohighlight">\(\ell_f \xrightarrow{\,-\vec e_j\,} \ell_f\)</span> for
 all <span class="math notranslate nohighlight">\(1\leq j\leq k\)</span>.</p>
 </div>
 </div><p>Departing from reachability games, the
@@ -1002,14 +998,14 @@ colouring</strong> <span class="math notranslate nohighlight">\(\mathrm{lcol}{:}
 <span class="math notranslate nohighlight">\(\ell_0\in \mathcal{L}\)</span>, an initial credit <span class="math notranslate nohighlight">\(\vec v_0\in\mathbb{N}^ k\)</span>, and a
 location colouring <span class="math notranslate nohighlight">\(\mathrm{lcol}{:}\, \mathcal{L}\to\{1,\dots,d\}\)</span> for some <span class="math notranslate nohighlight">\(d&gt;0\)</span>.</p>
 <p><strong>QUESTION</strong>: Does Eve have a strategy to simultaneously avoid the
-sink <span class="math notranslate nohighlight">\(\bot\)</span> and fulfil the parity objective from <span class="math notranslate nohighlight">\(\ell_0(\vec
+sink <span class="math notranslate nohighlight">\(\bot\)</span> and fulfil the  parity objective from <span class="math notranslate nohighlight">\(\ell_0(\vec
   v_0)\)</span>? That is, does she win the parity game
 <span class="math notranslate nohighlight">\((  \mathcal{A}_\mathbb{N}(\mathcal{V}), \mathfrak{c}, \mathtt{Parity})\)</span> from <span class="math notranslate nohighlight">\(\ell_0(\vec v_0)\)</span>, where
 <span class="math notranslate nohighlight">\(\mathfrak{c}(e)  \stackrel{\!\,\!\,\textrm{def}}{=} \mathrm{lcol}( \ell)\)</span> if <span class="math notranslate nohighlight">\(\textrm{In}(e)= \ell(\vec v)\)</span> for
 some <span class="math notranslate nohighlight">\(\vec v\in\mathbb{N}^ k\)</span>, and <span class="math notranslate nohighlight">\(\mathfrak{c}(e)  \stackrel{\!\,\!\,\textrm{def}}{=} 1\)</span> if <span class="math notranslate nohighlight">\(\textrm{In}(e)= \bot\)</span>?</p>
 </div>
 <div class="proof remark admonition" id="11-rk:nonterm2parity">
-<p class="admonition-title"><span class="caption-number">Remark 316 </span> (Non termination to parity)</p>
+<p class="admonition-title"><span class="caption-number">Remark 319 </span> (Non termination to parity)</p>
 <div class="remark-content section" id="proof-content">
 <p>There is a <span class="math notranslate nohighlight">\(\textrm{LOGSPACE}\)</span> reduction from non-termination to
 parity.
@@ -1018,13 +1014,13 @@ colouring defined by <span class="math notranslate nohighlight">\(\mathrm{lcol}(
 the parity game.</p>
 </div>
 </div><div class="proof remark admonition" id="11-rk:cov2parity">
-<p class="admonition-title"><span class="caption-number">Remark 317 </span> (Coverability to parity)</p>
+<p class="admonition-title"><span class="caption-number">Remark 320 </span> (Coverability to parity)</p>
 <div class="remark-content section" id="proof-content">
 <p>There is a <span class="math notranslate nohighlight">\(\textrm{LOGSPACE}\)</span> reduction from coverability to
-parity.  Indeed, by <a class="reference internal" href="#11-rk:cov2cov">Remark 314</a>, we can assume
+parity.  Indeed, by <a class="reference internal" href="#11-rk:cov2cov">Remark 317</a>, we can assume
 that <span class="math notranslate nohighlight">\(\ell_f\in \mathcal{L}_\mathrm{Eve}\)</span> is controlled by Eve and that the target
 credit is <span class="math notranslate nohighlight">\(\vec v_f=\vec 0\)</span> the zero vector.  It suffices
-therefore to add an action <span class="math notranslate nohighlight">\(\ell_f \xrightarrow{\,\vec 0,} \ell_f\)</span> and to colour
+therefore to add an action <span class="math notranslate nohighlight">\(\ell_f \xrightarrow{\,\vec 0\,} \ell_f\)</span> and to colour
 every location <span class="math notranslate nohighlight">\(\ell\neq \ell_f\)</span> with <span class="math notranslate nohighlight">\(\mathrm{lcol}( \ell)  \stackrel{\!\,\!\,\textrm{def}}{=} 1\)</span> and
 to set <span class="math notranslate nohighlight">\(\mathrm{lcol}( \ell_f)  \stackrel{\!\,\!\,\textrm{def}}{=} 2\)</span>.</p>
 </div>
@@ -1040,7 +1036,7 @@ are all decidable in the one-player case—see
 the \cref[11-sec:references]{bibliographic notes} at the end of the
 chapter—, they become undecidable in the two-player setting.</p>
 <div class="proof theorem admonition" id="11-th:undec">
-<p class="admonition-title"><span class="caption-number">Theorem 318 </span> (Undecidability of vector games)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 321 </span> (Undecidability of vector games)</p>
 <div class="theorem-content section" id="proof-content">
 <p>Configuration reachability, coverability, non-termination, and
 parity vector games, both with given and
@@ -1049,22 +1045,22 @@ with existential initial credit, are undecidable in any dimension
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
-<p>By <a class="reference internal" href="#11-rk:cov2reach">Remark 315</a> and <a class="reference internal" href="#11-rk:nonterm2parity">Remark 316</a>, it suffices to prove the
+<p>By <a class="reference internal" href="#11-rk:cov2reach">Remark 318</a> and <a class="reference internal" href="#11-rk:nonterm2parity">Remark 319</a>, it suffices to prove the
 undecidability of coverability and non-termination.  For this,
 we exhibit reductions from the halting problem of deterministic
 Minsky machines with at least two counters.</p>
 <p>Formally, a deterministic Minsky machine with <span class="math notranslate nohighlight">\(k\)</span> counters
 <span class="math notranslate nohighlight">\(\mathcal{M}=( \mathcal{L}, A, k)\)</span> is defined similarly to a vector addition
 system with states with additional zero test actions
-<span class="math notranslate nohighlight">\(a=( \ell \xrightarrow{\,i \stackrel{\!\,\!\,\textrm{?0,}}{=}} \ell')\)</span>.  The set of locations contains a
+<span class="math notranslate nohighlight">\(a=( \ell \xrightarrow{\,i \stackrel{\!\,\!\,\textrm{?0\,}}{=}} \ell')\)</span>.  The set of locations contains a
 distinguished halt location <span class="math notranslate nohighlight">\(\ell_\mathtt{halt}\)</span>, and for every
 <span class="math notranslate nohighlight">\(\ell\in \mathcal{L}\)</span>, exactly one of the following holds: either (i)
-<span class="math notranslate nohighlight">\(( \ell \xrightarrow{\,\vec e_i,} \ell')\in A\)</span> for some <span class="math notranslate nohighlight">\(0&lt;i\leq k\)</span> and
-<span class="math notranslate nohighlight">\(\ell'\in \mathcal{L}\)</span>, or (ii) <span class="math notranslate nohighlight">\(( \ell \xrightarrow{\,i \stackrel{\!\,\!\,\textrm{?0,}}{=}} \ell')\in A\)</span> and
-<span class="math notranslate nohighlight">\(( \ell \xrightarrow{\,-\vec e_i,} \ell'')\in A\)</span> for some <span class="math notranslate nohighlight">\(0&lt;i\leq k\)</span> and
+<span class="math notranslate nohighlight">\(( \ell \xrightarrow{\,\vec e_i\,} \ell')\in A\)</span> for some <span class="math notranslate nohighlight">\(0&lt;i\leq k\)</span> and
+<span class="math notranslate nohighlight">\(\ell'\in \mathcal{L}\)</span>, or (ii) <span class="math notranslate nohighlight">\(( \ell \xrightarrow{\,i \stackrel{\!\,\!\,\textrm{?0\,}}{=}} \ell')\in A\)</span> and
+<span class="math notranslate nohighlight">\(( \ell \xrightarrow{\,-\vec e_i\,} \ell'')\in A\)</span> for some <span class="math notranslate nohighlight">\(0&lt;i\leq k\)</span> and
 <span class="math notranslate nohighlight">\(\ell', \ell''\in \mathcal{L}\)</span>, or (iii) <span class="math notranslate nohighlight">\(\ell= \ell_\mathtt{halt}\)</span>.  The
 semantics of <span class="math notranslate nohighlight">\(\mathcal{M}\)</span> extends the natural semantics by
-handling zero tests actions <span class="math notranslate nohighlight">\(a=( \ell \xrightarrow{\,i \stackrel{\!\,\!\,\textrm{?0,}}{=}} \ell')\)</span>: we
+handling zero tests actions <span class="math notranslate nohighlight">\(a=( \ell \xrightarrow{\,i \stackrel{\!\,\!\,\textrm{?0\,}}{=}} \ell')\)</span>: we
 define the domain as <span class="math notranslate nohighlight">\(\mathrm{dom}\, a  \stackrel{\!\,\!\,\textrm{def}}{=}\{ \ell(\vec v)\mid \vec v(i)=0\}\)</span>
 and the image by <span class="math notranslate nohighlight">\(a( \ell(\vec v))  \stackrel{\!\,\!\,\textrm{def}}{=}  \ell(\vec v)\)</span>.  This
 semantics is deterministic, and from any starting vertex of <span class="math notranslate nohighlight">\(\mathcal{A}_\mathbb{N}(\mathcal{M})\)</span>,
@@ -1084,7 +1080,7 @@ but on the one hand there is only one player and on the other hand
 the machine can perform zero tests.</p>
 <div class="figure align-center" id="fig-undec">
 <img alt="../_images/11-fig:undec.png" src="../_images/11-fig:undec.png" />
-<p class="caption"><span class="caption-number">Fig. 80 </span><span class="caption-text">Schema of the reduction in the proof of <a class="reference internal" href="#11-th:undec">Theorem 318</a>.</span><a class="headerlink" href="#fig-undec" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 80 </span><span class="caption-text">Schema of the reduction in the proof of <a class="reference internal" href="#11-th:undec">Theorem 321</a>.</span><a class="headerlink" href="#fig-undec" title="Permalink to this image">¶</a></p>
 </div>
 <p>Here is now a reduction to
 <a class="reference internal" href="#pb-cov"><span class="std std-ref">Problem</span></a>.  Given an instance of the halting problem, i.e.,
@@ -1096,12 +1092,12 @@ where all the original locations are controlled by Eve and
 controlled by Adam.  We use <span class="math notranslate nohighlight">\(\mathcal{L}_{ \stackrel{\!\,\!\,\textrm{?0}}{=}}\)</span> as a set of
 locations defined by</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}     \mathcal{L}_{ \stackrel{\!\,\!\,\textrm{?0}}{=}}&amp;  \stackrel{\!\,\!\,\textrm{def}}{=}\{ \ell'_{i \stackrel{\!\,\!\,\textrm{?0}}{=}}\mid\exists \ell\in \mathcal{L}\mathbin.( \ell \xrightarrow{\,i \stackrel{\!\,\!\,\textrm{?0,}}{=}} \ell')\in A\}\intertext{and
+\[\begin{split}     \mathcal{L}_{ \stackrel{\!\,\!\,\textrm{?0}}{=}}&amp;  \stackrel{\!\,\!\,\textrm{def}}{=}\{ \ell'_{i \stackrel{\!\,\!\,\textrm{?0}}{=}}\mid\exists \ell\in \mathcal{L}\mathbin.( \ell \xrightarrow{\,i \stackrel{\!\,\!\,\textrm{?0\,}}{=}} \ell')\in A\}\intertext{and
                    define the set of actions by (see {numref}`11-fig:undec`)}
      A'&amp;  \stackrel{\!\,\!\,\textrm{def}}{=}\{ \ell \xrightarrow{\,\vec
-          e_i,} \ell'\mid( \ell \xrightarrow{\,\vec e_i,} \ell')\in A\}\cup\{ \ell \xrightarrow{\,-\vec e_i,} \ell''\mid( \ell \xrightarrow{\,-\vec e_i,} \ell'')\in A\}\\
+          e_i\,} \ell'\mid( \ell \xrightarrow{\,\vec e_i\,} \ell')\in A\}\cup\{ \ell \xrightarrow{\,-\vec e_i\,} \ell''\mid( \ell \xrightarrow{\,-\vec e_i\,} \ell'')\in A\}\\
     &amp;\:\cup\:\{ \ell \xrightarrow{\,\vec
-      0,} \ell'_{i \stackrel{\!\,\!\,\textrm{?0}}{=}},\;\;\: \ell'_{i \stackrel{\!\,\!\,\textrm{?0}}{=}}\!\! \xrightarrow{\,\vec 0,} \ell',\;\;\: \ell'_{i \stackrel{\!\,\!\,\textrm{?0}}{=}}\!\! \xrightarrow{\,-\vec e_i,}\frownie\mid( \ell \xrightarrow{\,i \stackrel{\!\,\!\,\textrm{?0,}}{=}} \ell')\in A\}\;.
+      0\,} \ell'_{i \stackrel{\!\,\!\,\textrm{?0}}{=}},\;\;\: \ell'_{i \stackrel{\!\,\!\,\textrm{?0}}{=}}\!\! \xrightarrow{\,\vec 0\,} \ell',\;\;\: \ell'_{i \stackrel{\!\,\!\,\textrm{?0}}{=}}\!\! \xrightarrow{\,-\vec e_i\,}\frownie\mid( \ell \xrightarrow{\,i \stackrel{\!\,\!\,\textrm{?0\,}}{=}} \ell')\in A\}\;.
   
 \end{split}\]</div>
 <p>We use <span class="math notranslate nohighlight">\(\ell_0(\vec 0)\)</span> as initial configuration and
@@ -1111,25 +1107,25 @@ argument why Eve has a winning strategy to cover
 <span class="math notranslate nohighlight">\(\ell_\mathtt{halt}(\vec 0)\)</span> from <span class="math notranslate nohighlight">\(\ell_0(\vec 0)\)</span> if and only if
 the Minsky machine halts.</p>
 <p>Consider any configuration <span class="math notranslate nohighlight">\(\ell(\vec v)\)</span>.  If
-<span class="math notranslate nohighlight">\(( \ell \xrightarrow{\,\vec e_i,} \ell')\in A\)</span>, Eve has no choice but to apply
-<span class="math notranslate nohighlight">\(\ell \xrightarrow{\,\vec e_i,} \ell'\)</span> and go to the configuration
+<span class="math notranslate nohighlight">\(( \ell \xrightarrow{\,\vec e_i\,} \ell')\in A\)</span>, Eve has no choice but to apply
+<span class="math notranslate nohighlight">\(\ell \xrightarrow{\,\vec e_i\,} \ell'\)</span> and go to the configuration
 <span class="math notranslate nohighlight">\(\ell'(\vec v+\vec e_i)\)</span> also reached in one step in <span class="math notranslate nohighlight">\(\mathcal{M}\)</span>.  If
-<span class="math notranslate nohighlight">\(\{ \ell \xrightarrow{\,i \stackrel{\!\,\!\,\textrm{?0,}}{=}} \ell', \ell \xrightarrow{\,-\vec e_i,} \ell''\}\in A\)</span> and
+<span class="math notranslate nohighlight">\(\{ \ell \xrightarrow{\,i \stackrel{\!\,\!\,\textrm{?0\,}}{=}} \ell', \ell \xrightarrow{\,-\vec e_i\,} \ell''\}\in A\)</span> and
 <span class="math notranslate nohighlight">\(\vec v(i)=0\)</span>, due to the natural semantics, Eve cannot use the
-action <span class="math notranslate nohighlight">\(\ell \xrightarrow{\,-\vec e_i,} \ell''\)</span>, thus she must use
-<span class="math notranslate nohighlight">\(\ell \xrightarrow{\,\vec 0,} \ell'_{i \stackrel{\!\,\!\,\textrm{?0}}{=}}\)</span>.  Still due to the natural
+action <span class="math notranslate nohighlight">\(\ell \xrightarrow{\,-\vec e_i\,} \ell''\)</span>, thus she must use
+<span class="math notranslate nohighlight">\(\ell \xrightarrow{\,\vec 0\,} \ell'_{i \stackrel{\!\,\!\,\textrm{?0}}{=}}\)</span>.  Still due to the natural
 semantics, Adam cannot use
-<span class="math notranslate nohighlight">\(\ell'_{i \stackrel{\!\,\!\,\textrm{?0}}{=}}\!\! \xrightarrow{\,-\vec e_i,}\frownie\)</span>, thus he must use
-<span class="math notranslate nohighlight">\(\ell'_{i \stackrel{\!\,\!\,\textrm{?0}}{=}}\!\! \xrightarrow{\,\vec 0,} \ell'\)</span>.  Hence Eve regains the
+<span class="math notranslate nohighlight">\(\ell'_{i \stackrel{\!\,\!\,\textrm{?0}}{=}}\!\! \xrightarrow{\,-\vec e_i\,}\frownie\)</span>, thus he must use
+<span class="math notranslate nohighlight">\(\ell'_{i \stackrel{\!\,\!\,\textrm{?0}}{=}}\!\! \xrightarrow{\,\vec 0\,} \ell'\)</span>.  Hence Eve regains the
 control in <span class="math notranslate nohighlight">\(\ell'(\vec v)\)</span>, which was also the configuration reached
 in one step in <span class="math notranslate nohighlight">\(\mathcal{M}\)</span>.  Finally, if
-<span class="math notranslate nohighlight">\(\{ \ell \xrightarrow{\,i \stackrel{\!\,\!\,\textrm{?0,}}{=}} \ell', \ell \xrightarrow{\,-\vec e_i,} \ell''\}\in A\)</span> and
+<span class="math notranslate nohighlight">\(\{ \ell \xrightarrow{\,i \stackrel{\!\,\!\,\textrm{?0\,}}{=}} \ell', \ell \xrightarrow{\,-\vec e_i\,} \ell''\}\in A\)</span> and
 <span class="math notranslate nohighlight">\(\vec v(i)&gt;0\)</span>, Eve can choose: if she uses
-<span class="math notranslate nohighlight">\(\ell \xrightarrow{\,-\vec e_i,} \ell''\)</span>, she ends in the configuration
+<span class="math notranslate nohighlight">\(\ell \xrightarrow{\,-\vec e_i\,} \ell''\)</span>, she ends in the configuration
 <span class="math notranslate nohighlight">\(\ell''(\vec v-\vec e_i)\)</span> also reached in one step in <span class="math notranslate nohighlight">\(\mathcal{M}\)</span>.  In
-fact, she should not use <span class="math notranslate nohighlight">\(\ell \xrightarrow{\,\vec 0,} \ell'_{i \stackrel{\!\,\!\,\textrm{?0}}{=}}\)</span>,
+fact, she should not use <span class="math notranslate nohighlight">\(\ell \xrightarrow{\,\vec 0\,} \ell'_{i \stackrel{\!\,\!\,\textrm{?0}}{=}}\)</span>,
 because Adam would then have the opportunity to apply
-<span class="math notranslate nohighlight">\(\ell'_{i \stackrel{\!\,\!\,\textrm{?0}}{=}}\!\! \xrightarrow{\,-\vec e_i,}\frownie\)</span> and to win, as
+<span class="math notranslate nohighlight">\(\ell'_{i \stackrel{\!\,\!\,\textrm{?0}}{=}}\!\! \xrightarrow{\,-\vec e_i\,}\frownie\)</span> and to win, as
 <span class="math notranslate nohighlight">\(\frownie\)</span> is a deadlock location and all the subsequent moves end
 in the sink.  Thus, if <span class="math notranslate nohighlight">\(\mathcal{M}\)</span> halts, then Eve has a winning
 strategy that simply follows the unique play of <span class="math notranslate nohighlight">\(\mathcal{M}\)</span>, and
@@ -1151,7 +1147,7 @@ undecidable.  Indeed, given an instance of the halting problem,
 i.e., given a deterministic Minsky machine <span class="math notranslate nohighlight">\(\mathcal{M}=( \mathcal{L}, A, k)\)</span>
 and an initial location <span class="math notranslate nohighlight">\(\ell_0\)</span>, we add <span class="math notranslate nohighlight">\(k\)</span> new locations
 <span class="math notranslate nohighlight">\(\ell_k, \ell_{ k-1},\dots, \ell_1\)</span> with respective actions
-<span class="math notranslate nohighlight">\(\ell_j \xrightarrow{\,-\vec e_j,} \ell_j\)</span> and <span class="math notranslate nohighlight">\(\ell_j \xrightarrow{\,j \stackrel{\!\,\!\,\textrm{?0,}}{=}} \ell_{j-1}\)</span>
+<span class="math notranslate nohighlight">\(\ell_j \xrightarrow{\,-\vec e_j\,} \ell_j\)</span> and <span class="math notranslate nohighlight">\(\ell_j \xrightarrow{\,j \stackrel{\!\,\!\,\textrm{?0\,}}{=}} \ell_{j-1}\)</span>
 for all <span class="math notranslate nohighlight">\(k\geq j&gt;0\)</span>.  This modified machine first resets all its
 counters to zero before reaching <span class="math notranslate nohighlight">\(\ell_0(\vec 0)\)</span> and then performs
 the same execution as the original machine.  Thus there exists an

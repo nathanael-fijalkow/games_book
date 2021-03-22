@@ -1,10 +1,6 @@
 (8-sec:infinite_duration)=
 # Infinite duration
 
-```{math}
-
-```
-
 Games with infinite duration and imperfect information
 are a natural model for applications such as synthesis 
 of controllers of embedded systems.
@@ -700,7 +696,7 @@ $$
 
 Then for every behavioral strategy $\sigma$:
 
-  * [\textbullet]
+  * **\textbullet** 
 Either $\mathbb{P}^{\sigma,\tau'}_{\delta_L}\left({E}\right)=1$. In this case
 
 $$
@@ -724,7 +720,7 @@ while the second implication is from {eq}`8-eq:winsafe`.
 Thus $\mathbb{P}^{\sigma,\tau}_{\delta_L}\left({ {\tt Safety}\right)}= 1$ and we get
 $\mathbb{P}^{\sigma,\tau'}_{\delta_L}\left({ {\tt Safety}\right)} > 0$ by definition of
 $\tau'$.
-* [\textbullet]
+* **\textbullet** 
 Or $\mathbb{P}^{\sigma,\tau'}_{\delta_L}\left({E}\right)<1$.
 Then by definition of $E$ there exists $n\in \mathbb{N}$
 
@@ -985,8 +981,6 @@ from $\mathcal{L}_\infty$.
 
 ````
 
-\smallskip
-
 We sketch the main ideas of the proof of {prf:ref}`8-thm:qdec2`.
 
 First, suppose that from **every** initial support, player $1$ can
@@ -1088,4 +1082,3 @@ the initial memory state $\emptyset$,
 whatever signal is received there is non-zero chance that the memory state stays $\emptyset$ but it may as well 
 be updated to several other memory states.}
 
-\smallskip

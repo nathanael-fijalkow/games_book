@@ -1,10 +1,6 @@
 (4-sec:discounted_payoff)=
 # Discounted payoff games
 
-```{math}
-
-```
-
 From a practical point of view, the modelling of a real-world
 situation via mean payoff games requires that only the long-term
 behaviour is important. Since mean payoff only depends on the limit of

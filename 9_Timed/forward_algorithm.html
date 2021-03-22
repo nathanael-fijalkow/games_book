@@ -723,8 +723,6 @@
                 
   <div class="section" id="forward-algorithm">
 <span id="sec-forward-algorithm"></span><h1>Forward Algorithm<a class="headerlink" href="#forward-algorithm" title="Permalink to this headline">¶</a></h1>
-<div class="math notranslate nohighlight">
-\[\]</div>
 <p>The backward algorithm we just presented is conceptually simple, but
 it is often not very efficient in practice,
 as federations tend to grow too much in size in each iteration of the
@@ -761,7 +759,7 @@ algorithm aims at deciding whether a given vertex <span class="math notranslate 
 to the least fixpoint of <span class="math notranslate nohighlight">\(f_W\)</span>.  Classical algorithms for computing
 least fixpoints consist in iteratively
 computing <span class="math notranslate nohighlight">\((f_W^i(\emptyset))_i\)</span> until convergence (assuming <span class="math notranslate nohighlight">\(V\)</span> is
-finite). Observe that this corresponds to the algorithm of <a class="reference internal" href="backward_algorithm.html#9-thm:timed-control">Theorem 281</a>
+finite). Observe that this corresponds to the algorithm of <a class="reference internal" href="backward_algorithm.html#9-thm:timed-control">Theorem 284</a>
 for timed games.
 The Liu-Smolka algorithm proceeds from <span class="math notranslate nohighlight">\(v_0\)</span>, and explores
 the dependency graph until it can claim that <span class="math notranslate nohighlight">\(v_0\)</span> is, or that it
@@ -777,7 +775,7 @@ set <span class="math notranslate nohighlight">\(X\subseteq V\)</span>, the set 
 states from which Eve can force a visit to <span class="math notranslate nohighlight">\(X\)</span> in one step.
 We then have:</p>
 <div class="proof proposition admonition" id="9-prop:fixp-game">
-<p class="admonition-title"><span class="caption-number">Proposition 282 </span> (NEEDS TITLE 9-prop:fixp-game)</p>
+<p class="admonition-title"><span class="caption-number">Proposition 285 </span> (NEEDS TITLE 9-prop:fixp-game)</p>
 <div class="proposition-content section" id="proof-content">
 <p>The least fixpoint of <span class="math notranslate nohighlight">\(f_{ \textrm{Win}}\)</span> in <span class="math notranslate nohighlight">\(G\)</span> corresponds to the set <span class="math notranslate nohighlight">\(W\)</span> of
 winning states for Eve in <span class="math notranslate nohighlight">\(\mathcal{C}\)</span>.</p>
@@ -822,7 +820,7 @@ This is how the backward propagation is triggered; in fact, the search will clim
 vertices can be updated to <span class="math notranslate nohighlight">\(1\)</span>.</p>
 <p>The correctness of this algorithm relies on the following lemma <span id="id5">[<a class="reference internal" href="references.html#id161"><span>LS98</span></a>]</span>:</p>
 <div class="proof lemma admonition" id="9-lemma:ls98">
-<p class="admonition-title"><span class="caption-number">Lemma 283 </span> (Invariant)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 286 </span> (Invariant)</p>
 <div class="lemma-content section" id="proof-content">
 <p>The following properties hold at the end of each run in the
 <strong>while</strong> loop of <a class="reference internal" href="#algo-ls98"><span class="std std-numref">Fig. 70</span></a>:</p>
@@ -856,8 +854,7 @@ have run via case <span class="math notranslate nohighlight">\(1\)</span>, hence
   T^i\)</span>. By our induction hypothesis, this indicates that <span class="math notranslate nohighlight">\(T^i\)</span> is part
 of the least fixpoint, and by definition of <span class="math notranslate nohighlight">\(f_W\)</span>, <span class="math notranslate nohighlight">\(x\)</span> must also
 belong to the least fixpoint.</p>
-<p>\smallskip
-The second statement also clearly holds after initialization:
+<p>The second statement also clearly holds after initialization:
 initially, <span class="math notranslate nohighlight">\(F^0(x)=0\)</span> only for <span class="math notranslate nohighlight">\(x=v_0\)</span>, and all transitions
 from <span class="math notranslate nohighlight">\(v_0\)</span> have been stored in <span class="math notranslate nohighlight">\(\textsf{Wait}^0\)</span>. We now assume that the
 property holds when entering the <strong>while</strong> loop for the <span class="math notranslate nohighlight">\(i\)</span>-th
@@ -955,14 +952,14 @@ second sum. Hence again <span class="math notranslate nohighlight">\(M^i\leq M^{
 </ul>
 <p>This concludes the correctness proof of <a class="reference internal" href="#algo-ls98"><span class="std std-numref">Fig. 70</span></a>.</p>
 <div class="proof theorem admonition" id="theorem-2">
-<p class="admonition-title"><span class="caption-number">Theorem 284 </span> (NEEDS TITLE AND LABEL)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 287 </span> (NEEDS TITLE AND LABEL)</p>
 <div class="theorem-content section" id="proof-content">
 <p><a class="reference internal" href="#algo-ls98"><span class="std std-numref">Fig. 70</span></a> terminates, and returns <span class="math notranslate nohighlight">\(1\)</span> if, and only if,
 <span class="math notranslate nohighlight">\(v_0\)</span> belongs to the least fixpoint of <span class="math notranslate nohighlight">\(f_W\)</span>.</p>
 <p><a class="reference internal" href="#algo-ls98"><span class="std std-numref">Fig. 70</span></a> terminates, and returns <span class="math notranslate nohighlight">\(1\)</span> if, and only if,
 <span class="math notranslate nohighlight">\(v_0\)</span> belongs to the least fixpoint of <span class="math notranslate nohighlight">\(f_W\)</span>.</p>
 </div>
-</div><p>Using <a class="reference internal" href="#9-prop:fixp-game">Proposition 282</a>, we get a <strong>forward</strong> algorithm for
+</div><p>Using <a class="reference internal" href="#9-prop:fixp-game">Proposition 285</a>, we get a <strong>forward</strong> algorithm for
 deciding if a given state of a concurrent game is winning
 for Eve. This corresponds to the OTFUR algorithm
 of <span id="id6">[<span>CDFLL05</span>]</span>.</p>
@@ -988,7 +985,7 @@ The algorithm is given in <a class="reference internal" href="#algo-sotftr"><spa
 lemma. We omit the proof of this lemma, as it is tedious and and does
 not contain any difficult argument.</p>
 <div class="proof lemma admonition" id="9-lem:sotftr">
-<p class="admonition-title"><span class="caption-number">Lemma 285 </span> (NEEDS TITLE 9-lem:sotftr)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 288 </span> (NEEDS TITLE 9-lem:sotftr)</p>
 <div class="lemma-content section" id="proof-content">
 <p>The following properties hold at the end of each run through
 the <strong>while</strong> loop of <a class="reference internal" href="#algo-sotftr"><span class="std std-numref">Fig. 71</span></a>:</p>
@@ -1012,7 +1009,7 @@ or</p></li>
 </div><p>The proof is omitted but can be found in <span id="id7">[<span>CDFLL05</span>]</span>.</p>
 <p>Using these invariants, we get the following result:</p>
 <div class="proof lemma admonition" id="lemma-4">
-<p class="admonition-title"><span class="caption-number">Lemma 286 </span> (NEEDS TITLE AND LABEL)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 289 </span> (NEEDS TITLE AND LABEL)</p>
 <div class="lemma-content section" id="proof-content">
 <p>If <a class="reference internal" href="#algo-sotftr"><span class="std std-numref">Fig. 71</span></a> terminates, all configurations in <span class="math notranslate nohighlight">\(F(S)\)</span> for
 any <span class="math notranslate nohighlight">\(S\in \textsf{Passed}\)</span> are winning for Eve;  if additionally
@@ -1026,7 +1023,7 @@ any <span class="math notranslate nohighlight">\(S\in \textsf{Passed}\)</span>, 
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
 <p>The first statement corresponds to the second statement of
-<a class="reference internal" href="#9-lem:sotftr">Lemma 285</a>. Now, assume <span class="math notranslate nohighlight">\(\textsf{Wait}^n=\emptyset\)</span> after
+<a class="reference internal" href="#9-lem:sotftr">Lemma 288</a>. Now, assume <span class="math notranslate nohighlight">\(\textsf{Wait}^n=\emptyset\)</span> after
 termination at the <span class="math notranslate nohighlight">\(n\)</span>-th step,
 and</p>
 <p>let <span class="math notranslate nohighlight">\(L=\{q\in  \mathcal{L}\times\mathbb{R}_{\geq 0}^{ \mathcal{C}} \mid \exists
@@ -1043,7 +1040,7 @@ equals <span class="math notranslate nohighlight">\(S\)</span> by initialization
 <span class="math notranslate nohighlight">\(q\in S\setminus F^n(S)\)</span>, hence <span class="math notranslate nohighlight">\(q\in M\)</span>.</p></li>
 <li><p>if <span class="math notranslate nohighlight">\(q\in\pi(M)\)</span>: we again assume <span class="math notranslate nohighlight">\(q\in L\)</span>. Then for some
 <span class="math notranslate nohighlight">\(S\in \textsf{Passed}^n\)</span>, <span class="math notranslate nohighlight">\(q\in S\setminus F^n(S)\)</span>. By the third property of
-<a class="reference internal" href="#9-lem:sotftr">Lemma 285</a>, <span class="math notranslate nohighlight">\(q\notin W^n\)</span></p></li>
+<a class="reference internal" href="#9-lem:sotftr">Lemma 288</a>, <span class="math notranslate nohighlight">\(q\notin W^n\)</span></p></li>
 </ul>
 <p>(because <span class="math notranslate nohighlight">\(\textsf{Wait}^n\)</span> is
 empty).  Since <span class="math notranslate nohighlight">\(M\cap U \subseteq F^n(U)\)</span> for all <span class="math notranslate nohighlight">\(U\in \textsf{Passed}^n\)</span>
@@ -1081,14 +1078,14 @@ avoided using <strong>extrapolation</strong>: this consists in abstracting the
 zones being considered by larger zones, defined by only using integer
 constants less than the maximal constant appearing in the timed arena
 (as we did for regions in the proof
-of <a class="reference internal" href="backward_algorithm.html#9-thm:timed-control">Theorem 281</a>). This can be proven to preserve
+of <a class="reference internal" href="backward_algorithm.html#9-thm:timed-control">Theorem 284</a>). This can be proven to preserve
 correctness, and makes the number of zones finite. Termination follows
 by noticing that any triple <span class="math notranslate nohighlight">\((S,\alpha,T)\)</span> may be added to <span class="math notranslate nohighlight">\(\textsf{Wait}\)</span> only
 a finite number of times (bounded by the number of regions
 in <span class="math notranslate nohighlight">\(T\)</span>).</p>
 <p>We can then conclude:</p>
 <div class="proof theorem admonition" id="theorem-5">
-<p class="admonition-title"><span class="caption-number">Theorem 287 </span> (NEEDS TITLE AND LABEL)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 290 </span> (NEEDS TITLE AND LABEL)</p>
 <div class="theorem-content section" id="proof-content">
 <p><a class="reference internal" href="#algo-sotftr"><span class="std std-numref">Fig. 71</span></a> terminates when extrapolation is used, and returns <span class="math notranslate nohighlight">\(1\)</span> if, and only if,
 <span class="math notranslate nohighlight">\((\ell_0,\mathbf{0})\)</span> is winning for Eve.</p>

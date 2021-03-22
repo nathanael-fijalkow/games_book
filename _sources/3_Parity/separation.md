@@ -1,10 +1,6 @@
 (3-sec:separation)=
 # A quasipolynomial time separating automata algorithm
 
-```{math}
-
-```
-
 ## The separation framework
 
 We describe a general approach for reducing parity games to safety games.

@@ -1,10 +1,6 @@
 (9-sec:controllable_predecessor_operator)=
 # Controllable-Predecessor Operator
 
-```{math}
-
-```
-
 We present the controllable-predecessor operator which, given sets of
 states $X$ and $Y$, returns the set of states from which Eve can
 reach $X$ in one step, while avoiding states of $Y$ during Eve's

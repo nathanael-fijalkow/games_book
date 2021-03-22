@@ -8,24 +8,6 @@
 :align: center
 ```
 
-```{math}
-
-\def\payoff{f}
-
-\def\Act{A}
-\def\Agt{\mathcal{P}}
-\def\move{\textsf{move}}
-\def\Out{\textsf{Out}}
-\def\Dev{\textsf{Dev}}
-\def\maxinf{\text{\rm maxinf}}
-\def\pes{\textsf{pes}}
-\def\opt{\textsf{opt}}
-\def\proj{\textsf{proj}}
-\def\devg{\textsf{DevGame}}
-\def\Coalition{\mathcal{C}}
-
-```
-
 
 Written by Romain Brenguier, Ocan Sankur
 

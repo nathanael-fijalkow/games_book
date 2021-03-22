@@ -1,10 +1,6 @@
 (9-sec:state_space_representation)=
 # State-Space Representation
 
-```{math}
-
-```
-
 We introduce a data structure to represent sets of clock
 valuations and manipulate them efficiently in order to compute
 successors and predecessors in a given timed game. This will allow us

@@ -704,23 +704,21 @@
                 
   <div class="section" id="concurrent-mean-payoff-games">
 <span id="sec-mean-payoff"></span><h1>Concurrent mean-payoff games<a class="headerlink" href="#concurrent-mean-payoff-games" title="Permalink to this headline">¶</a></h1>
-<div class="math notranslate nohighlight">
-\[\]</div>
 <p>In this section we consider concurrent mean-payoff games.
 We will show that in general, any  <span class="math notranslate nohighlight">\(\epsilon\)</span>-optimal strategy in some concurrent mean-payoff games are quite complex.
 We will first, however, show that finding the value of a concurrent mean-payoff game can be done in polynomial space.</p>
 <div class="proof lemma admonition" id="lemm:class_meanpayoff">
-<p class="admonition-title"><span class="caption-number">Lemma 249 </span> (NEEDS TITLE lemm:class_meanpayoff)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 252 </span> (NEEDS TITLE lemm:class_meanpayoff)</p>
 <div class="lemma-content section" id="proof-content">
 <p>Concurrent mean-payoff games are determined and the value is the limit of the value of the corresponding time-limited game as well as the limit of the corresponding discounted game, for the discount factor going to 0 from above.
-There is an polynomial time algorithm, ala Lemma <a class="reference internal" href="reachability.html#lem:val1">Lemma 244</a>, for finding the set of vertices where a finite memory strategy suffice to ensure <span class="math notranslate nohighlight">\(1-\epsilon\)</span> (recall that all rewards are in <span class="math notranslate nohighlight">\(\{0,1\}\)</span>).
+There is an polynomial time algorithm, ala Lemma <a class="reference internal" href="reachability.html#lem:val1">Lemma 247</a>, for finding the set of vertices where a finite memory strategy suffice to ensure <span class="math notranslate nohighlight">\(1-\epsilon\)</span> (recall that all rewards are in <span class="math notranslate nohighlight">\(\{0,1\}\)</span>).
 For any fixed number <span class="math notranslate nohighlight">\(n\)</span>, there is a polynomial time algorithm for approximating the value in a concurrent mean-payoff game with <span class="math notranslate nohighlight">\(n\)</span> vertices (i.e. the running time is polynomial in the number of actions)</p>
 </div>
 </div><p>We will not show this lemma, but simply note that the <span class="math notranslate nohighlight">\(\epsilon\)</span>-optimal strategies known for general concurrent mean-payoff games  can be viewed as playing the corresponding discounted game with a variable discount factor that depends on how `nice’ the rewards has been up to now. Basically, in each round you play the optimal strategy in the corresponding discounted game with a discount factor <span class="math notranslate nohighlight">\(\gamma\)</span>. Whenever
 your rewards are close to or better than the value, you decrease <span class="math notranslate nohighlight">\(\gamma\)</span> towards 0 and in each round your rewards are much worse than the value you let <span class="math notranslate nohighlight">\(\gamma\)</span> increase, except not bigger than the initial <span class="math notranslate nohighlight">\(\gamma\)</span> in the first round. Much of this section will argue that many natural candidates for simpler types of strategies does not work.</p>
 <p>We will show that approximating the value, however, can, as mentioned, be done in polynomial space. The proof relies on Proposition 22 from <span id="id1">[<span>HKLMT:2011</span>]</span>, stating the following:</p>
 <div class="proof proposition admonition" id="proposition-1">
-<p class="admonition-title"><span class="caption-number">Proposition 250 </span> (NEEDS TITLE AND LABEL)</p>
+<p class="admonition-title"><span class="caption-number">Proposition 253 </span> (NEEDS TITLE AND LABEL)</p>
 <div class="proposition-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\epsilon=2^{-j}\)</span>, where <span class="math notranslate nohighlight">\(j\)</span> is some positive integer, and the probabilities be rational numbers where the nominator and denominator have bitsize at most <span class="math notranslate nohighlight">\(\tau\)</span>. Also, let <span class="math notranslate nohighlight">\(\lambda=\epsilon^{\tau m^{O(n^2)}}\)</span>. Consider some state <span class="math notranslate nohighlight">\(s\)</span> and let the value of that state in the <span class="math notranslate nohighlight">\(\lambda\)</span> discounted game be <span class="math notranslate nohighlight">\(v_{\lambda}\)</span> and the value in mean-payoff game be <span class="math notranslate nohighlight">\(v\)</span>, then <span class="math notranslate nohighlight">\(|v-v_{\lambda}|&lt;\epsilon\)</span>.</p>
 <p>Let <span class="math notranslate nohighlight">\(\epsilon=2^{-j}\)</span>, where <span class="math notranslate nohighlight">\(j\)</span> is some positive integer, and the probabilities be rational numbers where the nominator and denominator have bitsize at most <span class="math notranslate nohighlight">\(\tau\)</span>. Also, let <span class="math notranslate nohighlight">\(\lambda=\epsilon^{\tau m^{O(n^2)}}\)</span>. Consider some state <span class="math notranslate nohighlight">\(s\)</span> and let the value of that state in the <span class="math notranslate nohighlight">\(\lambda\)</span> discounted game be <span class="math notranslate nohighlight">\(v_{\lambda}\)</span> and the value in mean-payoff game be <span class="math notranslate nohighlight">\(v\)</span>, then <span class="math notranslate nohighlight">\(|v-v_{\lambda}|&lt;\epsilon\)</span>.</p>
@@ -754,7 +752,7 @@ v_{\ell-1}=2^{-2^{\ell}}=2^{-2^{O(n^2)\cdot \log(m)+\log(j\tau)}}=2^{-j\tau m^{O
 Thus, for a given number <span class="math notranslate nohighlight">\(v\)</span>, we can test if the value of a concurrent  <span class="math notranslate nohighlight">\(\lambda\)</span>-discounted game is above <span class="math notranslate nohighlight">\(v+\epsilon\)</span>, which, using the proposition above, implies that <span class="math notranslate nohighlight">\(v\)</span> is below the value of the corresponding concurrent mean-payoff game. On the other hand, the proposition also implies that if the value of the concurrent  <span class="math notranslate nohighlight">\(\lambda\)</span>-discounted game is below <span class="math notranslate nohighlight">\(v-\epsilon\)</span>, then the value of the concurrent mean-payoff game is below <span class="math notranslate nohighlight">\(v\)</span>. Being able to answer these questions lets you easily approximate the value of a concurrent mean-payoff using binary search.</p>
 <p>We get the following lemma.</p>
 <div class="proof lemma admonition" id="lemma-2">
-<p class="admonition-title"><span class="caption-number">Lemma 251 </span> (NEEDS TITLE AND LABEL)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 254 </span> (NEEDS TITLE AND LABEL)</p>
 <div class="lemma-content section" id="proof-content">
 <p>Approximating the value of a concurrent mean-payoff game can be in done in polynomial space</p>
 <p>Approximating the value of a concurrent mean-payoff game can be in done in polynomial space</p>
@@ -780,7 +778,7 @@ Let <span class="math notranslate nohighlight">\(\tau'\)</span> be the strategy 
 <p>When <span class="math notranslate nohighlight">\(\sigma\)</span> is played against <span class="math notranslate nohighlight">\(\tau'\)</span>, either we reach <span class="math notranslate nohighlight">\(\{0,1\}\)</span> and Adam plays 1 only finitely many times, while in <span class="math notranslate nohighlight">\(s\)</span> (the latter because there are only finitely many numbers below <span class="math notranslate nohighlight">\(T_{\epsilon/2}\)</span>). Thus, for Eve to win a play, the play needs to reach vertex 1. There are two ways to do so, either Eve stops before <span class="math notranslate nohighlight">\(T_{\epsilon/2}\)</span> or after. In the former case, the pr. to reach <span class="math notranslate nohighlight">\(1\)</span> is only <span class="math notranslate nohighlight">\(\epsilon/2\)</span> (because Adam needs to play <span class="math notranslate nohighlight">\(2\)</span> at the time, which is only done with pr. <span class="math notranslate nohighlight">\(\epsilon/2\)</span>). The latter only happens with pr. <span class="math notranslate nohighlight">\(\epsilon/2\)</span> by definition of <span class="math notranslate nohighlight">\(T_{\epsilon/2}\)</span> (because, Adam could play <span class="math notranslate nohighlight">\(2\)</span> for an arbitrary number of steps while following <span class="math notranslate nohighlight">\(\tau\)</span> but <span class="math notranslate nohighlight">\(s\)</span> would not be left anyway).</p>
 <p>We get the following lemma.</p>
 <div class="proof lemma admonition" id="lemm:no_finite_meanpayoff">
-<p class="admonition-title"><span class="caption-number">Lemma 252 </span> (NEEDS TITLE lemm:no_finite_meanpayoff)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 255 </span> (NEEDS TITLE lemm:no_finite_meanpayoff)</p>
 <div class="lemma-content section" id="proof-content">
 <p>No finite memory strategy can guarantee more than <span class="math notranslate nohighlight">\(0\)</span> in the Big Match.</p>
 </div>
@@ -794,7 +792,7 @@ Alternately, if Eve does not stop with pr. 1, there must be a time <span class="
 Adam’s strategy is then to play <span class="math notranslate nohighlight">\(1\)</span> for <span class="math notranslate nohighlight">\(T\)</span> steps and <span class="math notranslate nohighlight">\(2\)</span> thereafter. Observe that the pr. to reach <span class="math notranslate nohighlight">\(1\)</span> is thus at most <span class="math notranslate nohighlight">\(\epsilon\)</span>, in that it must be that Eve stops after <span class="math notranslate nohighlight">\(T\)</span>. If she does not stop (or stops in <span class="math notranslate nohighlight">\(0\)</span>), there will be only finitely many 1s.</p>
 <p>We see the following:</p>
 <div class="proof lemma admonition" id="lemm:no_markov_meanpayoff">
-<p class="admonition-title"><span class="caption-number">Lemma 253 </span> (NEEDS TITLE lemm:no_markov_meanpayoff)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 256 </span> (NEEDS TITLE lemm:no_markov_meanpayoff)</p>
 <div class="lemma-content section" id="proof-content">
 <p>No Markov strategy can guarantee more than <span class="math notranslate nohighlight">\(0\)</span> in the Big Match</p>
 </div>

@@ -1,10 +1,6 @@
 (1-sec:subgames)=
 # Traps and subgames
 
-```{math}
-
-```
-
 Let us consider a game $\mathcal{G}$ and a set $X$ of vertices.
 Assume that for every $v \in X$ there exists $(v,v') \in E$ such that $v' \in X$,
 then we can define the game $\mathcal{G}[X]$ by restricting $\mathcal{G}$ to the vertices in $X$

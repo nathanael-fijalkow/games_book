@@ -1,10 +1,6 @@
 (3-sec:strategy_improvement)=
 # An exponential time strategy improvement algorithm
 
-```{math}
-
-```
-
 ````{prf:theorem} NEEDS TITLE 3-thm:strategy_improvement
 :label: 3-thm:strategy_improvement
 

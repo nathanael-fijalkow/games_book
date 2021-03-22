@@ -1,10 +1,6 @@
 (7-sec:references)=
 # Bibilographic references
 
-```{math}
-
-```
-
 We will now give the references for this chapter, split into a few paragraphs, each corresponding to a section in the chapter.
 
 John von Neumanns work on matrix games {cite}`vonNeumann&Morgenstern:1944` (also called normal form games), showing that they have a value and there exists optimal stationary strategies, is typically considered the founding work in game theory. Besides that paper, Dantzig {cite}`Dantzig:1965` showed the equivalence to linear programming, and thus that they can be solved in polynomial time using e.g. Khachiyan's {cite}`Kha:1979` work on the ellipsoid method.

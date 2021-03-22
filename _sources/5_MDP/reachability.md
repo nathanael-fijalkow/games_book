@@ -1,10 +1,6 @@
 (5-sec:reachability)=
 # Positive and almost-sure reachability and safety in MDPs
 
-```{math}
-
-```
-
 > **Positive reachability**
 
 Analogously to classical games (cf. Chapter {ref}`2-chap:regular`), we define a one-step **positive 

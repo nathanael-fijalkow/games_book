@@ -723,10 +723,7 @@
                 
   <div class="section" id="games-in-dimension-one">
 <span id="sec-dim1"></span><h1>Games in dimension one<a class="headerlink" href="#games-in-dimension-one" title="Permalink to this headline">¶</a></h1>
-<div class="math notranslate nohighlight">
-\[\newcommand{\capp}[2][C]{\overline{\vec #2}^{#1}}
-\]</div>
-<p><a class="reference internal" href="counters.html#11-th:undec">Theorem 318</a> leaves open whether vector games might be
+<p><a class="reference internal" href="counters.html#11-th:undec">Theorem 321</a> leaves open whether vector games might be
 decidable in dimension one.  They are indeed decidable, and more
 generally we learned in Chapter <a class="reference internal" href="../10_Pushdown/index.html#chap-pushdown"><span class="std std-ref">Pushdown Games</span></a> that one-counter
 games—with the additional ability to test the counter for
@@ -738,7 +735,7 @@ with a binary encoding.  Hence the <span class="math notranslate nohighlight">\(
 Chapter <a class="reference internal" href="../10_Pushdown/index.html#chap-pushdown"><span class="std std-ref">Pushdown Games</span></a> becomes an <span class="math notranslate nohighlight">\(\textrm{EXPSPACE}\)</span> one for succinct
 one-counter games.</p>
 <div class="proof corollary admonition" id="11-cor:dim1">
-<p class="admonition-title"><span class="caption-number">Corollary 319 </span> (One-dimensional vector games are in <span class="math notranslate nohighlight">\(\textrm{EXPSPACE}\)</span>)</p>
+<p class="admonition-title"><span class="caption-number">Corollary 322 </span> (One-dimensional vector games are in <span class="math notranslate nohighlight">\(\textrm{EXPSPACE}\)</span>)</p>
 <div class="corollary-content section" id="proof-content">
 <p>Configuration reachability, coverability, non-termination, and
 parity vector games, both with given and with existential
@@ -747,7 +744,7 @@ initial credit, are in <span class="math notranslate nohighlight">\(\textrm{EXPS
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
 <p>\
-\TODO{proof of <a class="reference internal" href="#11-cor:dim1">Corollary 319</a> depends on how Section <span class="xref std std-ref">10-sec:one-counter</span> is written}</p>
+\TODO{proof of <a class="reference internal" href="#11-cor:dim1">Corollary 322</a> depends on how Section <span class="xref std std-ref">10-sec:one-counter</span> is written}</p>
 </div>
 <p>The goal of this section is therefore to establish that this
 <span class="math notranslate nohighlight">\(\textrm{EXPSPACE}\)</span> upper bound is tight (in most cases), by proving a matching
@@ -758,13 +755,13 @@ Section <a class="reference internal" href="#sec-countdown"><span class="std std
 <span id="sec-countdown"></span><h2>Countdown Games<a class="headerlink" href="#countdown-games" title="Permalink to this headline">¶</a></h2>
 <p>A one-dimensional vector system
 <span class="math notranslate nohighlight">\(\mathcal{V}=( \mathcal{L}, A, \mathcal{L}_\mathrm{Eve}, \mathcal{L}_\mathrm{Adam},1)\)</span> is called a countdown
-system if <span class="math notranslate nohighlight">\(A\subseteq \mathcal{L}\times\mathbb{Z_}{&lt;0}\times \mathcal{L}\)</span>, that is, if
-for all <span class="math notranslate nohighlight">\(( \ell \xrightarrow{\,z,} \ell')\in A\)</span>, <span class="math notranslate nohighlight">\(z&lt;0\)</span>.  We consider the games
+system if <span class="math notranslate nohighlight">\(A\subseteq \mathcal{L}\times\mathbb{Z}_{&lt;0}\times \mathcal{L}\)</span>, that is, if
+for all <span class="math notranslate nohighlight">\(( \ell \xrightarrow{\,z\,} \ell')\in A\)</span>, <span class="math notranslate nohighlight">\(z&lt;0\)</span>.  We consider the games
 defined by countdown systems, both with given and with
 existential initial credit, and call the resulting games countdown
 games.</p>
 <div class="proof theorem admonition" id="11-th:countdown-given">
-<p class="admonition-title"><span class="caption-number">Theorem 320 </span> (Countdown games are <span class="math notranslate nohighlight">\(\textrm{EXP}\)</span>-complete)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 323 </span> (Countdown games are <span class="math notranslate nohighlight">\(\textrm{EXP}\)</span>-complete)</p>
 <div class="theorem-content section" id="proof-content">
 <p>Configuration reachability and coverability countdown games
 with given initial credit are <span class="math notranslate nohighlight">\(\textrm{EXP}\)</span>-complete.</p>
@@ -859,15 +856,16 @@ target location is <span class="math notranslate nohighlight">\(\smiley\)</span>
 <p>The intention behind the locations <span class="math notranslate nohighlight">\(\ell_{=j}\in \mathcal{L}_\mathrm{Adam}\)</span> is
 that Eve can reach <span class="math notranslate nohighlight">\(\smiley\)</span> from a configuration <span class="math notranslate nohighlight">\(\ell_{=j}(c)\)</span> if
 and only if <span class="math notranslate nohighlight">\(c=j\)</span>; we accordingly define <span class="math notranslate nohighlight">\(A\)</span> with the following
-actions, where <span class="math notranslate nohighlight">\(\frownie\)</span> is a deadlock location:</p>
+actions, where <span class="math notranslate nohighlight">\(\frownie\)</span> is a deadlock location:
+NATH: ISSUE WITH INTERTEXT</p>
 <div class="math notranslate nohighlight">
-\[     \ell_{=j}&amp; \xrightarrow{\,-j-1,}\frownie\;,&amp; \ell_{=j}&amp; \xrightarrow{\,-j,}\smiley\;.
+\[     \ell_{=j}&amp; \xrightarrow{\,-j-1\,}\frownie\;,&amp; \ell_{=j}&amp; \xrightarrow{\,-j\,}\smiley\;.
   \intertext{Similarly, Eve should be able to reach $\smiley$ from
   $\ell_{1\leq?\leq m-n+1}(c)$ if and only if $1\leq c\leq m-n+1$,
   which is implemented by the actions}
-     \ell_{1\leq?\leq m-n+1}&amp; \xrightarrow{\,-m+n-2,}\frownie\;,&amp;
-     \ell_{1\leq?\leq m-n+1}&amp; \xrightarrow{\,-1,}\smiley\;,&amp;
-    \smiley&amp; \xrightarrow{\,-1,}\smiley\;.
+     \ell_{1\leq?\leq m-n+1}&amp; \xrightarrow{\,-m+n-2\,}\frownie\;,&amp;
+     \ell_{1\leq?\leq m-n+1}&amp; \xrightarrow{\,-1\,}\smiley\;,&amp;
+    \smiley&amp; \xrightarrow{\,-1\,}\smiley\;.
   
 \]</div>
 <p>Note this last action also ensures that Eve can reach the
@@ -877,29 +875,29 @@ configuration reachability game.</p>
 <p>Regarding initialisation, Eve can choose her initial position,
 which we implement by the actions</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}     \ell_0 &amp; \xrightarrow{\,-1,}  \ell_0 &amp;  \ell_0 &amp; \xrightarrow{\,-1,} \ell_{(q_\mathrm{final},a)}&amp;&amp;\text{for $a\in\Gamma$}\;.
+\[\begin{split}     \ell_0 &amp; \xrightarrow{\,-1\,}  \ell_0 &amp;  \ell_0 &amp; \xrightarrow{\,-1\,} \ell_{(q_\mathrm{final},a)}&amp;&amp;\text{for $a\in\Gamma$}\;.
     \intertext{Outside the boundary cases, the game is implemented by
     the following actions:}
-     \ell_\gamma&amp; \xrightarrow{\,-m,} \ell_{(\gamma_1,\gamma_2,\gamma_3)}&amp;&amp;&amp;&amp;\text{for
-  $\gamma_1,\gamma_2,\gamma_3\vdash\gamma$}\;,\\  \ell_{(\gamma_1,\gamma_2,\gamma_3)}&amp; \xrightarrow{\,-k,} \ell_{\gamma_k}&amp;&amp;&amp;&amp;\text{for
+     \ell_\gamma&amp; \xrightarrow{\,-m\,} \ell_{(\gamma_1,\gamma_2,\gamma_3)}&amp;&amp;&amp;&amp;\text{for
+  $\gamma_1,\gamma_2,\gamma_3\vdash\gamma$}\;,\\  \ell_{(\gamma_1,\gamma_2,\gamma_3)}&amp; \xrightarrow{\,-k\,} \ell_{\gamma_k}&amp;&amp;&amp;&amp;\text{for
   $k\in\{1,2,3\}$}\;.
   \intertext{We handle the endmarker positions via the following
   actions, where Eve proceeds along the left edge
   of {numref}`11-fig:exp` until she reaches the initial left endmarker:}
-    \ell_\triangleright&amp; \xrightarrow{\,-m-2,} \ell_\triangleright\;,&amp;  \ell_\triangleright&amp; \xrightarrow{\,-1,} \ell_{=1}\;,&amp;  \ell_\triangleleft&amp; \xrightarrow{\,-m-1,} \ell_\triangleright\;.
+    \ell_\triangleright&amp; \xrightarrow{\,-m-2\,} \ell_\triangleright\;,&amp;  \ell_\triangleright&amp; \xrightarrow{\,-1\,} \ell_{=1}\;,&amp;  \ell_\triangleleft&amp; \xrightarrow{\,-m-1\,} \ell_\triangleright\;.
   \intertext{For the positions inside the input word $w=a_1\cdots
   a_n$, we use the actions}
-   \ell_{(q_0,a_1)}&amp; \xrightarrow{\,-2,} \ell_{=1}\;,&amp; \ell_{a_j}&amp; \xrightarrow{\,-2,} \ell_{=j}&amp;&amp;\text{for
+   \ell_{(q_0,a_1)}&amp; \xrightarrow{\,-2\,} \ell_{=1}\;,&amp; \ell_{a_j}&amp; \xrightarrow{\,-2\,} \ell_{=j}&amp;&amp;\text{for
   $1&lt;j\leq n$}\;.
   \intertext{Finally, for the blank symbols of $C_1$, which should be
   associated with a counter value $c$ such that $n+3\leq c\leq m+3$, we use the
   action}
-   \ell_\Box&amp; \xrightarrow{\,-n-2,} \ell_{1\leq?\leq m-n+1}\;.&amp;&amp;&amp;&amp;&amp;\qedhere\hspace*{-1.5em}
+   \ell_\Box&amp; \xrightarrow{\,-n-2\,} \ell_{1\leq?\leq m-n+1}\;.&amp;&amp;&amp;&amp;&amp;\qedhere\hspace*{-1.5em}
   
 \end{split}\]</div>
 </div>
 <div class="proof theorem admonition" id="11-th:countdown-exist">
-<p class="admonition-title"><span class="caption-number">Theorem 321 </span> (Existential countdown games are <span class="math notranslate nohighlight">\(\textrm{EXPSPACE}\)</span>-complete)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 324 </span> (Existential countdown games are <span class="math notranslate nohighlight">\(\textrm{EXPSPACE}\)</span>-complete)</p>
 <div class="theorem-content section" id="proof-content">
 <p>Configuration reachability and coverability countdown games
 with existential initial credit are <span class="math notranslate nohighlight">\(\textrm{EXPSPACE}\)</span>-complete.</p>
@@ -912,14 +910,14 @@ location <span class="math notranslate nohighlight">\(\ell_0\)</span>, and a tar
 reduce this to an instance of configuration reachability with
 given initial credit in a one-dimensional vector system by
 adding a new location <span class="math notranslate nohighlight">\(\ell'_0\)</span> controlled by Eve with actions
-<span class="math notranslate nohighlight">\(\ell'_0 \xrightarrow{\,1,} \ell'_0\)</span> and <span class="math notranslate nohighlight">\(\ell'_0\step 0 \ell_0\)</span>, and asking
+<span class="math notranslate nohighlight">\(\ell'_0 \xrightarrow{\,1\,} \ell'_0\)</span> and <span class="math notranslate nohighlight">\(\ell'_0 \xrightarrow{\,0\,} \ell_0\)</span>, and asking
 whether Eve has a winning strategy starting from <span class="math notranslate nohighlight">\(\ell'_0(0)\)</span> in
-the new system.  By <a class="reference internal" href="#11-cor:dim1">Corollary 319</a>, this configuration
+the new system.  By <a class="reference internal" href="#11-cor:dim1">Corollary 322</a>, this configuration
 reachability game can be solved in <span class="math notranslate nohighlight">\(\textrm{EXPSPACE}\)</span>.</p>
 <p>For the lower bound, we reduce from the acceptance problem
 of a deterministic Turing machine working in exponential space.
 The reduction is the same as in the proof
-of <a class="reference internal" href="#11-th:countdown-given">Theorem 320</a>, except that now the length <span class="math notranslate nohighlight">\(t\)</span> of the
+of <a class="reference internal" href="#11-th:countdown-given">Theorem 323</a>, except that now the length <span class="math notranslate nohighlight">\(t\)</span> of the
 computation is not bounded a priori, but this is compensated by the
 fact that we are playing the existential initial credit version
 of the countdown game.  \qedhere</p>
@@ -934,25 +932,25 @@ initial location <span class="math notranslate nohighlight">\(\ell_0\in \mathcal
 <span class="math notranslate nohighlight">\(n_0\in\mathbb{N}\)</span>.</p>
 <p><strong>QUESTION</strong>: Does Eve have a strategy to reach a configuration <span class="math notranslate nohighlight">\(\ell(0)\)</span> for
 some <span class="math notranslate nohighlight">\(\ell\in \mathcal{L}\)</span>?
-That is, does she win the zero reachability\index{zero reachability|see{countdown game}}
-game <span class="math notranslate nohighlight">\((\mathcal{A_}\mathbb{N}(\mathcal{V}), \mathfrak{c}, \mathtt{Reach})\)</span> from <span class="math notranslate nohighlight">\(\ell_0(n_0)\)</span>, where
+That is, does she win the zero reachability
+game <span class="math notranslate nohighlight">\((\mathcal{A}_\mathbb{N}(\mathcal{V}), \mathfrak{c}, \mathtt{Reach})\)</span> from <span class="math notranslate nohighlight">\(\ell_0(n_0)\)</span>, where
 <span class="math notranslate nohighlight">\(\mathfrak{c}(e)= \textrm{Win}\)</span> if and only if <span class="math notranslate nohighlight">\(\textrm{In}(e)= \ell(0)\)</span> for some <span class="math notranslate nohighlight">\(\ell\in \mathcal{L}\)</span>?</p>
 </div>
 <div class="proof theorem admonition" id="11-th:countdown-zero">
-<p class="admonition-title"><span class="caption-number">Theorem 322 </span> (Countdown to zero games are <span class="math notranslate nohighlight">\(\textrm{EXP}\)</span>-complete)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 325 </span> (Countdown to zero games are <span class="math notranslate nohighlight">\(\textrm{EXP}\)</span>-complete)</p>
 <div class="theorem-content section" id="proof-content">
 <p>Zero reachability countdown games with given initial credit
 are <span class="math notranslate nohighlight">\(\textrm{EXP}\)</span>-complete.</p>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
-<p>The upper bound of <a class="reference internal" href="#11-th:countdown-given">Theorem 320</a> applies in the same
+<p>The upper bound of <a class="reference internal" href="#11-th:countdown-given">Theorem 323</a> applies in the same
 way.  Regarding the lower bound, we modify the lower bound
-construction of <a class="reference internal" href="#11-th:countdown-given">Theorem 320</a> in the following way: we
+construction of <a class="reference internal" href="#11-th:countdown-given">Theorem 323</a> in the following way: we
 use <span class="math notranslate nohighlight">\(\ell_0(2\cdot n_0+1)\)</span> as initial configuration, multiply all
 the action weights in <span class="math notranslate nohighlight">\(A\)</span> by two, and add a new
 location <span class="math notranslate nohighlight">\(\ell_\mathrm{zero}\)</span> with an action
-<span class="math notranslate nohighlight">\(\smiley \xrightarrow{\,-1,} \ell_\mathrm{zero}\)</span>.  Because all the counter
+<span class="math notranslate nohighlight">\(\smiley \xrightarrow{\,-1\,} \ell_\mathrm{zero}\)</span>.  Because all the counter
 values in the new game are odd unless we reach <span class="math notranslate nohighlight">\(\ell_\mathrm{zero}\)</span>,
 the only way for Eve to bring the counter to zero in this new game
 is to first reach <span class="math notranslate nohighlight">\(\smiley(1)\)</span>, which occurs if and only if she
@@ -963,9 +961,9 @@ could reach <span class="math notranslate nohighlight">\(\smiley(0)\)</span> in 
 <span id="sec-one-counter"></span><h2>Vector Games in Dimension One<a class="headerlink" href="#vector-games-in-dimension-one" title="Permalink to this headline">¶</a></h2>
 <p>Countdown games are frequently employed to prove complexity lower
 bounds.  Here, we use them to show that the <span class="math notranslate nohighlight">\(\textrm{EXPSPACE}\)</span>  upper bounds
-from <a class="reference internal" href="#11-cor:dim1">Corollary 319</a> are tight in most cases.</p>
+from <a class="reference internal" href="#11-cor:dim1">Corollary 322</a> are tight in most cases.</p>
 <div class="proof theorem admonition" id="11-th:dim1">
-<p class="admonition-title"><span class="caption-number">Theorem 323 </span> (The complexity of vector games in dimension one)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 326 </span> (The complexity of vector games in dimension one)</p>
 <div class="theorem-content section" id="proof-content">
 <p>Configuration reachability, coverability, and parity vector games, both with given and with existential
 initial credit, are <span class="math notranslate nohighlight">\(\textrm{EXPSPACE}\)</span>-complete in dimension one;
@@ -975,25 +973,23 @@ initial credit.</p>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
-<p>By <a class="reference internal" href="#11-th:countdown-exist">Theorem 321</a>, configuration reachability and
+<p>By <a class="reference internal" href="#11-th:countdown-exist">Theorem 324</a>, configuration reachability and
 coverability vector games with existential initial credit
 are <span class="math notranslate nohighlight">\(\textrm{EXPSPACE}\)</span>-hard in dimension one.
-Furthermore, <a class="reference internal" href="counters.html#11-rk:cov2parity">Remark 317</a> allows to deduce that
+Furthermore, <a class="reference internal" href="counters.html#11-rk:cov2parity">Remark 320</a> allows to deduce that
 parity is also <span class="math notranslate nohighlight">\(\textrm{EXPSPACE}\)</span>-hard.  Finally, we can
-argue as in the upper bound proof of <a class="reference internal" href="#11-th:countdown-exist">Theorem 321</a> that
+argue as in the upper bound proof of <a class="reference internal" href="#11-th:countdown-exist">Theorem 324</a> that
 all these games are also hard with given initial credit: we add a
 new initial location <span class="math notranslate nohighlight">\(\ell'_0\)</span> controlled by Eve with actions
-<span class="math notranslate nohighlight">\(\ell'_0\step 1 \ell'_0\)</span> and <span class="math notranslate nohighlight">\(\ell'_0\step 0 \ell_0\)</span> and play the game
+<span class="math notranslate nohighlight">\(\ell'_0 \xrightarrow{\,1\,} \ell'_0\)</span> and <span class="math notranslate nohighlight">\(\ell'_0 \xrightarrow{\,0\,} \ell_0\)</span> and play the game
 starting from <span class="math notranslate nohighlight">\(\ell'_0(0)\)</span>.</p>
-<p>Regarding non-termination, we can add a self loop <span class="math notranslate nohighlight">\(\smiley\step
-  0\smiley\)</span> to the construction
-of <a class="reference internal" href="#11-th:countdown-given">Theorem 320</a> and <a class="reference internal" href="#11-th:countdown-exist">Theorem 321</a>: then the only way
+<p>Regarding non-termination, we can add a self loop <span class="math notranslate nohighlight">\(\smiley \xrightarrow{\,0\,}\smiley\)</span> to the construction
+of <a class="reference internal" href="#11-th:countdown-given">Theorem 323</a> and <a class="reference internal" href="#11-th:countdown-exist">Theorem 324</a>: then the only way
 to build an infinite play that avoids the sink is to reach the
 target location <span class="math notranslate nohighlight">\(\smiley\)</span>.  This shows that the games are <span class="math notranslate nohighlight">\(\textrm{EXP}\)</span>-hard
 with given initial credit and <span class="math notranslate nohighlight">\(\textrm{EXPSPACE}\)</span>-hard with existential
 initial credit.  Note that the trick of reducing existential to
-given initial credit with an initial incrementing loop <span class="math notranslate nohighlight">\(\ell'_0\step
-  1 \ell'_0\)</span> does not work, because Eve would have a trivial winning
+given initial credit with an initial incrementing loop <span class="math notranslate nohighlight">\(\ell'_0 \xrightarrow{\,1\,} \ell'_0\)</span> does not work, because Eve would have a trivial winning
 strategy that consists in just playing this loop forever.</p>
 </div>
 </div>

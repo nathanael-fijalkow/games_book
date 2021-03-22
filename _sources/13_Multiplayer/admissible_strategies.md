@@ -1,24 +1,6 @@
 (13-sec:admissible_strategies)=
 # Admissible strategies
 
-```{math}
-
-\def\payoff{f}
-
-\def\Act{A}
-\def\Agt{\mathcal{P}}
-\def\move{\textsf{move}}
-\def\Out{\textsf{Out}}
-\def\Dev{\textsf{Dev}}
-\def\maxinf{\text{\rm maxinf}}
-\def\pes{\textsf{pes}}
-\def\opt{\textsf{opt}}
-\def\proj{\textsf{proj}}
-\def\devg{\textsf{DevGame}}
-\def\Coalition{\mathcal{C}}
-
-```
-
 Nash equilibria and their variants seen so far describe stable situations
 from which players have no incentive to deviate. This however is of limited use
 in some situations. First, the stability relies on the fact that all players are informed
