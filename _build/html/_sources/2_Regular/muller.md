@@ -1,10 +1,6 @@
 (2-sec:muller)=
 # Rabin, Streett, and Muller games
 
-```{math}
-
-```
-
 The prefix independent objectives we studied so far are B&uuml;chi, CoB&uuml;chi, and their joint extension the parity objectives.
 The definition of the latter may seem a bit arbitrary; the study of Muller objectives will show how parity objectives naturally emerge as a well-behaved class of objectives.
 

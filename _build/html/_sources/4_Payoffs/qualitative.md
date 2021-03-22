@@ -1,10 +1,6 @@
 (4-sec:qualitative)=
 # Refining qualitative objectives with quantities
 
-```{math}
-
-```
-
 In this section we define quantitative objectives extending the qualitative objectives $\mathtt{Safe}$, $\mathtt{Reach}$, $\mathtt{Buchi}$, and $\mathtt{CoBuchi}$.
 
 The four quantitative objectives we will define in this section return as outcome some weight in the sequence (for instance, the maximum weight).

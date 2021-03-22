@@ -1,10 +1,6 @@
 (9-sec:notations)=
 # Notations
 
-```{math}
-
-```
-
 We fix a finite set $\mathcal{C}$ of clock variables to be used
 in our timed games. Elements of $\mathbb{R}_{\geq 0}^ \mathcal{C}$, which assign a
 value to each clock, are called **valuations**.
@@ -157,7 +153,11 @@ In this chapter, the main problem we are interested in is determining
 whether Eve has a strategy for her reachability objective.
 Let $\vec{0}$ denote the clock valuation assigning $0$ to all clocks.
 
-\decpb{Solving a timed reachability game}{A timed arena $\mathcal{T}$, initial location $\ell_0$, and a reachability objective $\mathtt{Reach}( \textrm{Win})$}{Does Eve has a winning strategy in $( \mathcal{T}, \mathtt{Reach}( \textrm{Win}))$ from configuration $(\ell_0,\vec{0})$.}
+```{admonition} Problem (Solving a timed reachability game)
+**INPUT**: A timed arena $\mathcal{T}$, initial location $\ell_0$, and a reachability objective $\mathtt{Reach}( \textrm{Win})$
+
+**QUESTION**: Does Eve has a winning strategy in $( \mathcal{T}, \mathtt{Reach}( \textrm{Win}))$ from configuration $(\ell_0,\vec{0})$.
+```
 
 The difficulty of this problem is that the concurrent
 game $((V,E),\Delta,\Omega)$ has an infinite state-space, and players

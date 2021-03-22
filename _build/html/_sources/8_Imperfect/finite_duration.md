@@ -1,10 +1,6 @@
 (8-sec:finite_duration)=
 # Finite duration
 
-```{math}
-
-```
-
 We start with some results on the very interesting class of game
 with finite duration.
 

@@ -1,12 +1,6 @@
 (12-sec:multiple_dimensions)=
 # From one to multiple dimensions
 
-```{math}
-
-% Generic probability measure, also prob. measure operator
-
-```
-
 For the first part of this chapter, we consider multidimension quantitative games. With regard to the formalism of {prf:ref}`chap:payoffs`, the only change to the arena is the set of colours associated with edges: we now have vectors in $\mathbb{R}^k$ where $k \in  \mathbb{N}_{>0}$ is the dimension of the game. As before, for computational purposes, it makes sense to restrict our colouring to rational numbers, and for the sake of simplicity, we even consider **integers only** without loss of generality.
 
 For the weighted games of {prf:ref}`chap:payoffs`, where a single quantitative objective $f$ is considered, we know that the value of the game exists. In most cases, optimal strategies do too, which makes the problems of computing the value and solving the game for a given threshold morally equivalent. In our simple multidimension setting, we focus on **conjunctions** of objectives. Similarly to what we did in the one-dimension case, we will write $f_{\geq \vec{x}}$ with $\vec{x} \in  \mathbb{Q}^k$ to define the objective

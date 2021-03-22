@@ -8,10 +8,6 @@
 :align: center
 ```
 
-```{math}
-
-```
-
 
 Written by Petr Novotn&yacute;
 

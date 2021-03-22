@@ -1,10 +1,6 @@
 (4-sec:references)=
 # Bibliographic references
 
-```{math}
-
-```
-
 One player variants due to Karp {cite}`Karp:1978`
 
 {prf:ref}`4-thm:shortest path-positive`

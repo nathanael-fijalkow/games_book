@@ -1,10 +1,6 @@
 (5-sec:mean_payoff_strongly_connected)=
 # Mean-payoff optimality in strongly connected MDPs
 
-```{math}
-
-```
-
 As shown in the previous section, the optimal solution of any of the programs $\mathcal{L}_{\mathit{mp}}$, $\mathcal{L}_{\mathit{mp}}^{\mathit{dual}}$ gives us an upper bound on the optimal value. In this sub-section we show that in strongly connected MDPs: a) a value of every vertex is the same; b) from a solution of $\mathcal{L}_{\mathit{mp}}$ one can extract a memoryless deterministic strategy $\sigma$ whose expected mean-payoff is well defined (i.e., the preconditions of {prf:ref}`5-lem:limit-defined` are satisfied)) and equal to the objective value of the solution. Moreover, if the solution in question is optimal, then $ \sigma $ is optimal for both $\textsf{p-Payoff}$- and $\textsf{s-Payoff}$-semantics.
 
 ````{prf:definition} NEEDS TITLE 5-def:scc-mdp

@@ -1,10 +1,6 @@
 (5-sec:notations)=
 # Notations
 
-```{math}
-
-```
-
 We write vectors in boldface: $ \vec{x}, \vec{y}, $ etc. For a vector $ \vec{x} $ indexed by a set $ I $ (i.e. $ \vec{x}\in \mathbb{R}^I $) we denote by $ \vec{x}_i $ the value of the component whose index is  $i\in I  $. 
 
 A (discrete) probability distribution over a finite or countably infinite set $A$ is a function $f \colon A \rightarrow [0,1]$ such that $\sum_{a\in A} f(a)=1$. The support of such a distribution $f$ is the set of all $a\in A$ with $f(a)>0$. A distribution $f$ is called Dirac if its support has size 1.

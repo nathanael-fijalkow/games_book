@@ -1,10 +1,6 @@
 (5-sec:discounted)=
 # Discounted payoff in MDPs
 
-```{math}
-
-```
-
 In this section, we consider MDPs with edges coloured by rational numbers 
 and with the objective $\mathtt{DiscountedPayoff}$, defined in the same way as in 
 {prf:ref}`chap:payoffs`. We start the chapter by proving that using the play-based semantics for the discounted-payoff objective yields no loss of generality.

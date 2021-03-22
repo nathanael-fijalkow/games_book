@@ -1,10 +1,6 @@
 (1-sec:fixed_points)=
 # Generic fixed point algorithms
 
-```{math}
-
-```
-
 Let $X$ be a set and $\mathbb{O} : X \to X$ a function that we call an operator, we say that $x \in X$ is a fixed point of $\mathbb{O}$ if $\mathbb{O}(x) = x$.
 Fixed points will appear extensively in this book. 
 We describe here two general approaches for computing them: Banach's and Kleene's fixed point theorems.

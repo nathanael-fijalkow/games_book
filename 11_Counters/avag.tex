@@ -20,9 +20,8 @@ counters.
 \begin{example}[Asymmetric vector system]
 \label{11-ex:avg}
   \Cref{11-fig:avg} presents an "asymmetric vector system" of
-  dimension two with locations partitioned as $\Loc_\mEve=\{\loc,\loc_{2,1},\loc_{\text-1,0}\}$ and $\Loc_\mAdam=\{\loc'\}$% , and actions
-  %  $\{\loc\step{-1,-1}\loc,\loc\step{-1,0}\loc',\loc'\step{-1,0}\loc,\loc'\step{2,1}\loc\}$
-  .  We omit the labels on the actions originating from Adam\'s
+  dimension two with locations partitioned as $\Loc_\mEve=\{\loc,\loc_{2,1},\loc_{\text-1,0}\}$ and $\Loc_\mAdam=\{\loc'\}$.  
+  We omit the labels on the actions originating from Adam\'s
   locations, since those are necessarily the "zero vector".  It is
   worth observing that this "vector system" behaves quite differently
   from the one of \cref{11-ex:mwg} on \cpageref{11-ex:mwg}: for
@@ -77,8 +76,8 @@ In spite of the restriction to "asymmetric" "vector systems",
     \centering
     \begin{tikzpicture}[auto,on grid,node distance=1.5cm]
       \node(to){$\mapsto$};
-      \node[anchor=east,left=2.5cm of to](mm){"deterministic Minsky machine"};
-      \node[anchor=west,right=2.5cm of to](mwg){"asymmetric vector system"};
+      \node[anchor=east,left=2.5cm of to](mm){deterministic Minsky machine};
+      \node[anchor=west,right=2.5cm of to](mwg){asymmetric vector system};
       \node[below=.7cm of to](map){$\rightsquigarrow$};
       \node[left=2.75cm of map](0){$\loc$};
       \node[right=of 0](1){$\loc'$};
@@ -345,7 +344,8 @@ is "monotonic".
   strategy of Eve that wins from~$v_0$, then by
   ""simulating""~$\sigma$ starting from~$v'_0$---i.e., by applying the
   same actions when given a pointwise larger or equal history---she
-  will also win.\todoquestion{Is that clear?}
+  will also win.
+  %\todoquestion{Is that clear?}
 \end{proof}
 
 Note that \cref{11-lem:mono} implies that $\WE$ is "upwards closed":
@@ -578,12 +578,14 @@ the other regular objectives from \cref{2-chap:regular}.
   must visit $\loc_0$ infinitely often in order to fulfil the parity
   requirements.  Starting from the initial
   configuration~$\loc_0(\vec 0)$, any winning play of Eve begins
-  by \begin{equation*} \loc_0(\vec 0)\step{0}\loc_1(\vec 0)\step{\vec
+  by 
+  \begin{equation*} \loc_0(\vec 0)\step{0}\loc_1(\vec 0)\step{\vec
       e_1}\loc_1(\vec e_1)\step{\vec e_1}\cdots\step{\vec
       e_1}\loc_1(m\cdot\vec
     e_1)\mstep{-2^{2^n}}\loc_0((m-2^{2^n})\cdot\vec
-    e_1) \end{equation*} for some~$m\geq 2^{2^n}$ before she visits
-  again a
+    e_1) 
+  \end{equation*} 
+  for some~$m\geq 2^{2^n}$ before she visits again a
   configuration---namely~$\loc_0((m-2^{2^n})\cdot\vec e_1)$---greater
   or equal than a previous configuration---namely
   $\loc_0(\vec 0)$---\emph{and} witnesses a maximal even parity in the

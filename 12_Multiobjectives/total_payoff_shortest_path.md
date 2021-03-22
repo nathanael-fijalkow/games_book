@@ -1,12 +1,6 @@
 (12-sec:total_payoff_shortest_path)=
 # Total-payoff and shortest path
 
-```{math}
-
-% Generic probability measure, also prob. measure operator
-
-```
-
 In this section, we turn to two other objectives deeply studied in {prf:ref}`chap:payoffs`: we study total-payoff and shortest path games. We will see that the multidimension setting has dire consequences for both.
 
 ## Total-payoff vs. mean-payoff
@@ -20,10 +14,10 @@ Recall that one-dimension total-payoff games are memoryless determined and solvi
 
 Fix an arena $\mathcal{A}$ and an initial vertex $v_0 \in  V$. Let A, B, C and D denote the following assertions.
 
-1. [A.] Eve has a winning strategy for $\mathtt{MeanPayoff}^{+}_{\geq \vec{0}}$.
-2. [B.] Eve has a winning strategy for $\mathtt{MeanPayoff}^{-}_{\geq \vec{0}}$.
-3. [C.] There exists $\vec{x} \in  \mathbb{Q}^{k}$ such that Eve has a winning strategy for $\mathtt{TotalPayoff}^{-}_{\geq \vec{x}}$.
-4. [D.] There exists $\vec{x} \in  \mathbb{Q}^{k}$ such that Eve has a winning strategy for $\mathtt{TotalPayoff}^{+}_{\geq \vec{x}}$.
+* **A.**  Eve has a winning strategy for $\mathtt{MeanPayoff}^{+}_{\geq \vec{0}}$.
+* **B.**  Eve has a winning strategy for $\mathtt{MeanPayoff}^{-}_{\geq \vec{0}}$.
+* **C.**  There exists $\vec{x} \in  \mathbb{Q}^{k}$ such that Eve has a winning strategy for $\mathtt{TotalPayoff}^{-}_{\geq \vec{x}}$.
+* **D.**  There exists $\vec{x} \in  \mathbb{Q}^{k}$ such that Eve has a winning strategy for $\mathtt{TotalPayoff}^{+}_{\geq \vec{x}}$.
 
 In one-dimension games ($k = 1$), all four assertions are equivalent. In multidimension ones ($k > 1$), the only implications that hold are: $C \implies D \implies A$ and $C \implies B \implies A$. All other implications are false in general.
 

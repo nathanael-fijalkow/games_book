@@ -1,10 +1,6 @@
 (4-sec:mean_payoff)=
 # Mean payoff games
 
-```{math}
-
-```
-
 A natural approach for aggregating an infinite sequence of weights is to consider the arithmetic mean.
 Since the sequence $(\frac{1}{k} \sum_{i = 0}^{k-1} \rho_i)_{k \in  \mathbb{N}}$ may not converge,
 we can either consider the limit superior or the limit inferior, leading to the two definitions:

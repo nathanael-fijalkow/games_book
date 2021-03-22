@@ -1,10 +1,6 @@
 (4-sec:notations)=
 # Notations
 
-```{math}
-
-```
-
 In this chapter all objectives we consider use the set of colours $C =  \mathbb{Z}$ the set of integers 
 (or $C =  \mathbb{Z} \cup  \left\{  \textrm{Win \right\}}$ for the shortest path objective), 
 so a colour is called a weight interpreted as a payoff for Eve.

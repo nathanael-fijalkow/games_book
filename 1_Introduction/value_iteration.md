@@ -1,10 +1,6 @@
 (1-sec:value_iteration)=
 # Value iteration algorithms
 
-```{math}
-
-```
-
 In this section and the next we discuss two families of fixed point algorithms for solving games.
 The goal is to highlight the main ingredients for constructing algorithms in these two families.
 If the descriptions below are too abstract it may be useful to see concrete instantiations: 

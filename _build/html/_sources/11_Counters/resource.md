@@ -1,12 +1,6 @@
 (11-sec:resource)=
 # Resource-conscious games
 
-```{math}
-
-\newcommand{\capp}[2][C]{\overline{\vec #2}^{#1}}
-
-```
-
 Vector games are very well suited for reasoning about systems
 manipulating discrete resources, modelled as counters.  However, in
 the natural semantics, actions that would deplete some resource,
@@ -38,10 +32,10 @@ $V  \stackrel{\!\,\!\,\textrm{def}}{=}( \mathcal{L}\times\mathbb{N}^ k)\uplus\{ 
 $$
 
   E_\mathbb{E}&  \stackrel{\!\,\!\,\textrm{def}}{=} \{( \ell(\vec v),  \ell'(\vec v+\vec u)\mid
-          \ell \xrightarrow{\,\vec u,} \ell'\in A\text{
+          \ell \xrightarrow{\,\vec u\,} \ell'\in A\text{
       and }\vec v+\vec u\geq\vec 0\}\\
     &\:\cup\:\{( \ell(\vec v), \bot)\mid\forall \ell \xrightarrow{\,\vec
-      u,} \ell'\in A\mathbin.\vec v+\vec u\not\geq\vec 0\}
+      u\,} \ell'\in A\mathbin.\vec v+\vec u\not\geq\vec 0\}
     \cup\{( \bot, \bot)\}\;.
 
 $$
@@ -146,11 +140,11 @@ correspondence is quite general.
 $$
 
        \mathcal{L}_A&  \stackrel{\!\,\!\,\textrm{def}}{=}\{ \ell_a\mid a=( \ell \xrightarrow{\,\vec
-                 u,} \ell')\in A\text{ and } \ell\in \mathcal{L}_\mathrm{Adam}\}\;.
+                 u\,} \ell')\in A\text{ and } \ell\in \mathcal{L}_\mathrm{Adam}\}\;.
       \intertext{We also modify the set of actions:}
-       A'&  \stackrel{\!\,\!\,\textrm{def}}{=}\{ \ell \xrightarrow{\,\vec u,} \ell'\mid  \ell \xrightarrow{\,\vec
-             u,} \ell'\in A\text{ and } \ell\in \mathcal{L}_\mathrm{Eve}\}\\
-      &\:\cup\:\{ \ell \xrightarrow{\,\vec 0,} \ell_a,\; \ell_a \xrightarrow{\,\vec u,} \ell'\mid a=( \ell \xrightarrow{\,\vec u,} \ell')\in A\text{ and } \ell\in \mathcal{L}_\mathrm{Adam}\}\;.
+       A'&  \stackrel{\!\,\!\,\textrm{def}}{=}\{ \ell \xrightarrow{\,\vec u\,} \ell'\mid  \ell \xrightarrow{\,\vec
+             u\,} \ell'\in A\text{ and } \ell\in \mathcal{L}_\mathrm{Eve}\}\\
+      &\:\cup\:\{ \ell \xrightarrow{\,\vec 0\,} \ell_a,\; \ell_a \xrightarrow{\,\vec u\,} \ell'\mid a=( \ell \xrightarrow{\,\vec u\,} \ell')\in A\text{ and } \ell\in \mathcal{L}_\mathrm{Adam}\}\;.
     
 $$
 
@@ -159,18 +153,18 @@ $$
     $\mathrm{vcol}'$ of $\mathcal{A}_\mathbb{N}(\mathcal{V}')$ with $\mathrm{vcol}'(v)  \stackrel{\!\,\!\,\textrm{def}}{=} \mathrm{vcol}(v)$ for
     all $v\in  \mathcal{L}\times\mathbb{N}^ k\uplus\{ \bot\}$ and
     $\mathrm{vcol}'( \ell_a(\vec v))  \stackrel{\!\,\!\,\textrm{def}}{=} \mathrm{vcol}( \ell(\vec v))$ if
-    $a=( \ell \xrightarrow{\,\vec u,} \ell')\in A$.  Then, for all vertices
+    $a=( \ell \xrightarrow{\,\vec u\,} \ell')\in A$.  Then, for all vertices
     $v\in V$, Eve wins from $v$ in the energy game
     $(  \mathcal{A}_\mathbb{E}(\mathcal{V}), \mathfrak{c},\Omega)$ if and only if she wins from $v$ in
     the vector game $(  \mathcal{A}_\mathbb{N}(\mathcal{V}'), \mathfrak{c}',\Omega)$.  The crux of
     the argument is that, in a configuration $\ell(\vec v)$ where
-    $\ell\in \mathcal{L}_\mathrm{Adam}$, if $a=( \ell \xrightarrow{\,\vec u,} \ell')\in A$ is an
+    $\ell\in \mathcal{L}_\mathrm{Adam}$, if $a=( \ell \xrightarrow{\,\vec u\,} \ell')\in A$ is an
     action with $\vec v+\vec u\not\geq\vec 0$, in the energy
     semantics, Adam can force the play into the sink by
     playing $a$; the same occurs in $\mathcal{V}'$ with the natural
     semantics, as Adam can now choose to play
-    $\ell \xrightarrow{\,\vec 0,} \ell_a$ where Eve has only
-    $\ell_a \xrightarrow{\,\vec u,} \ell'$ at her disposal, which leads to the
+    $\ell \xrightarrow{\,\vec 0\,} \ell_a$ where Eve has only
+    $\ell_a \xrightarrow{\,\vec u\,} \ell'$ at her disposal, which leads to the
     sink.\todoquestion{Is that clear?}
 
 ````
@@ -195,10 +189,10 @@ $$
 
   V^B&  \stackrel{\!\,\!\,\textrm{def}}{=}\{ \ell(\vec v)\mid \ell\in \mathcal{L}\text{ and }\|\vec v\|<B\}\;,\\
   E^B&  \stackrel{\!\,\!\,\textrm{def}}{=} \{( \ell(\vec v), \ell'(\vec v+\vec u))\mid \ell \xrightarrow{\,\vec
-       u,} \ell'\in A,\vec v+\vec u\geq\vec 0,\text{ and }\|\vec
+       u\,} \ell'\in A,\vec v+\vec u\geq\vec 0,\text{ and }\|\vec
        v+\vec u\|<B\}\\
      &\:\cup\:\{( \ell(\vec v), \bot)\mid\forall \ell \xrightarrow{\,\vec
-               u,} \ell'\in A\mathbin.\vec v+\vec u\not\geq\vec
+               u\,} \ell'\in A\mathbin.\vec v+\vec u\not\geq\vec
                0\text{ or }\|\vec v+\vec u\|\geq B\}
      \cup\{( \bot, \bot)\}\;.
 
@@ -397,4 +391,4 @@ for details.
 {prf:ref}`11-th:bounding` also yields a way of handling bounding games
 with given initial credit.  
 \TODO{Last missing bit regarding complexity upper bounds.}
-
+  

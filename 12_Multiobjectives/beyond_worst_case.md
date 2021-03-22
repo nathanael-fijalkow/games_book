@@ -1,12 +1,6 @@
 (12-sec:beyond_worst_case)=
 # Beyond worst-case synthesis
 
-```{math}
-
-% Generic probability measure, also prob. measure operator
-
-```
-
 We now turn to a completely different meaning of **multiobjective**. Let us take a few steps back. Throughout this book, we have studied two types of interaction between players: rational, antagonistic interaction between Eve and Adam; and stochastic interaction with a random player. Consider the quantitative settings of {prf:ref}`chap:payoffs` and {prf:ref}`chap:mdp`. In the zero-sum two-player games of the former, Adam is seen as a **purely antagonistic adversary**, so the goal of Eve is to ensure strict worst-case guarantees, i.e., a minimal performance level against all possible strategies of Adam. In the MDPs of the latter, Eve interacts with randomness (through actions or random vertices) and she wants to ensure a good **expected value** for the considered payoff.
 
 For most objectives, these two paradigms yield elegant and simple solutions: e.g., memoryless strategies suffice for both games and MDPs with a mean-payoff objective. Nevertheless, the corresponding strategies have clear weaknesses: strategies that are good for the worst-case may exhibit suboptimal behaviours in probable situations while strategies that are good for the expected value may be terrible in some unlikely but possible situations. A natural question, of theoretical and practical interest, is to build -- **synthesize** -- strategies that combine both paradigms: strategies that both ensure (a) some worst-case threshold no matter how the adversary behaves (i.e., against any arbitrary strategy) and (b) a good expectation against the expected behaviour of the adversary (given as a stochastic model). We call this task beyond worst-case synthesis.
@@ -34,8 +28,12 @@ This is important as far as modelling is concerned, as in our context, transitio
 
  Let us sum up the situation: we have a two-player arena $\mathcal{A}$ with a mean-payoff objective $\mathtt{MeanPayoff}^{-}_{> \alpha}$ and a finite-memory stochastic model for Adam yielding the MDP $\mathcal{A}_{\tau^\text{stoch}}$. Now, let $\beta \in  \mathbb{Q}$ be the expected value threshold we want to ensure in the MDP (i.e., on average against the stochastic model of Adam).
 
-\decpb{Beyond worst-case}{An arena $\mathcal{A}$, a finite-memory stochastic model $\tau^\text{stoch}$, an\\ & initial vertex $v_0$, two thresholds $\alpha, \beta \in  \mathbb{Q}$\\}{Does Eve have a **finite-memory** strategy $\sigma$ such that $\sigma$ is \\ & winning for objective $\mathtt{MeanPayoff}^{-}_{> \alpha} \text{ from } v_0 \text{ in }  \mathcal{A}$\\ &
-and $\mathbf{E}^{\sigma}_{ \mathcal{A}_{\tau^\text{stoch}},v_0}[ \mathtt{MeanPayoff}^{-}] > \beta$?}
+```{admonition} Problem (Beyond worst-case)
+**INPUT**: An arena $\mathcal{A}$, a finite-memory stochastic model $\tau^\text{stoch}$, an\\ & initial vertex $v_0$, two thresholds $\alpha, \beta \in  \mathbb{Q}$\\
+
+**QUESTION**: Does Eve have a **finite-memory** strategy $\sigma$ such that $\sigma$ is \\ & winning for objective $\mathtt{MeanPayoff}^{-}_{> \alpha} \text{ from } v_0 \text{ in }  \mathcal{A}$\\ &
+and $\mathbf{E}^{\sigma}_{ \mathcal{A}_{\tau^\text{stoch}},v_0}[ \mathtt{MeanPayoff}^{-}] > \beta$?
+```
 
 We assume $\beta > \alpha$, otherwise the problem trivially reduces to the classical worst-case analysis: if all plays consistent with $\sigma$ have mean-payoff greater than $\alpha \geq \beta$ then the expected value is also greater than $\alpha$ regardless of the stochastic model.
 

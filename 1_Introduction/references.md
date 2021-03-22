@@ -1,10 +1,6 @@
 (1-sec:references)=
 # Bibliographic references
 
-```{math}
-
-```
-
 The study of games, usually called game theory, has a very long history rooted in mathematics, logic, and economics, among other fields.
 Foundational ideas and notions emerged from set theory with for instance backward induction by Zermelo {cite}`Zermelo:1913`, 
 and topology with determinacy results by Martin {cite}`Martin:1975` (stated as {prf:ref}`1-thm:borel_determinacy` in this chapter),

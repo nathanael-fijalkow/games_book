@@ -1,10 +1,6 @@
 (1-sec:objectives)=
 # Objectives
 
-```{math}
-
-```
-
 We present in this section the main objectives and their representations.
 An objective may depend upon a set of parameters which are sometimes omitted when clear from the context.
 

@@ -81,8 +81,9 @@ def section_transformer(nb_chap, file_name, path, title, label):
 	content = re.sub(r'\\\[([\s\S]*?)\\\]', r'\n\n$$\1$$\n\n', content)
 	#### Remove vskip1em
 	content = re.sub(r'\\vskip1em', r'\n', content)
-	#### Remove medskip
+	#### Remove medskip and smallskip
 	content = re.sub(r'\\medskip', r'\n', content)
+	content = re.sub(r'\\smallskip', r'\n', content)
 	#### Remove noindent
 	content = re.sub(r'\\noindent', r'', content)
 	#### Remove begingroup and endgroup
@@ -111,8 +112,11 @@ def section_transformer(nb_chap, file_name, path, title, label):
 		match = re.search(pattern, content)
 
 	#### Rewrite \?, \+ 
-	content = re.sub(r'\\[?](\w*?)(?=\W)', r'\\mathcal{\1}', content)
-	content = re.sub(r'\\[+](\w*?)(?=\W)', r'\\mathbb{\1}', content)
+	content = re.sub(r'\\[?]([a-zA-Z0-9]*?)(?=[\W_])', r'\\mathcal{\1}', content)
+	content = re.sub(r'\\[+]([a-zA-Z0-9]*?)(?=[\W_])', r'\\mathbb{\1}', content)
+
+	#### Remove
+	content = re.sub(r'_\\mathds\{(.*?)\}', r'\1', content)
 
 	#### Remove textrm
 	# pattern = r'\\textrm\{([\s\S]*?)$'
@@ -190,7 +194,7 @@ def section_transformer(nb_chap, file_name, path, title, label):
 	# $$
 	# w_{t+1} = (1 + r_{t+1}) s(w_t) + y_{t+1}
 	# $$ (5-eq:disc-limit-transition)
-
+	
 	pattern = r'\\begin\{equation\*?\}([\s\S]*?)\\end\{equation\*?\}'
 	match = re.search(pattern, content)
 	while match:
@@ -463,7 +467,8 @@ def section_transformer(nb_chap, file_name, path, title, label):
 	content = re.sub(r'"([^"]*?)@[^"]*?"', r'\1', content)
 	content = re.sub(r'"([^"]*?)"', r'\1', content)
 	content = re.sub(r'\\knowledge[\s\S]*?\n', r'', content)
-	content = re.sub(r'\\index\{(\w*?)![\s\S]*?mymoot\}', r'\1', content)
+	content = re.sub(r'\\index\{([\w ]*?)![\s\S]*?mymoot\}', r'', content)
+	content = re.sub(r'\\index\{([\w ]*?)[|]see\{[\s\S]*?\}\}', r'', content)
 
 	#### Rewrite highlighted text
 	def rewrite_highlighted(s):
@@ -497,10 +502,11 @@ def section_transformer(nb_chap, file_name, path, title, label):
 			self.count = start - 1
 		def __call__(self, match):
 			self.count += 1
+			# print(self.count)
 			return "{}. ".format(self.count)
 
 	def rewrite_itemize_enumerate(s, depth = 0):
-		pattern_it = r'\\begin\{itemize\}([\s\S]*?)'
+		pattern_it = r'\\begin\{itemize\}([\s\S]*?)$'
 		match_it = re.search(pattern_it, s)
 		if match_it:
 			(begin,end) = match_it.span()
@@ -510,11 +516,12 @@ def section_transformer(nb_chap, file_name, path, title, label):
 			space = ""
 			for i in range(4 * depth): 
 				space += " "
+			s_it = re.sub(r'\\item\[(.*?)\]', space + r"* **\1** ", s_it)
 			s_it = re.sub(r'\\item', space + "* ", s_it)
 			new_s = s[:begin] + s_it + s[begin+28+end:]
 			return rewrite_itemize_enumerate(new_s, depth)
 
-		pattern_enum = r'\\begin\{enumerate\}([\s\S]*?)'
+		pattern_enum = r'\\begin\{enumerate\}([\s\S]*?)$'
 		match_enum = re.search(pattern_enum, s)
 		if match_enum:
 			(begin,end) = match_enum.span()
@@ -532,6 +539,17 @@ def section_transformer(nb_chap, file_name, path, title, label):
 		return s
 
 	content = rewrite_itemize_enumerate(content)
+
+	#### Deal with description
+	pattern_desc = r'\\begin\{description\}([\s\S]*?)\\end\{description\}'
+	match_desc = re.search(pattern_desc, content)
+	if match_desc:
+		(begin,end) = match_desc.span()
+		desc = match_desc.group(1)
+		new_desc = re.sub(r'\\item\[(.*?)\]', r"* **\1** ", desc)
+		content = content[:begin] + new_desc + content[end:]
+		# print("new content\n" + content[begin-50:end+50])
+		match_desc = re.search(pattern_desc, content)
 
 	#### Deal with theorem and many other environments
 

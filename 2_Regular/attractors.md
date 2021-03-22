@@ -1,10 +1,6 @@
 (2-sec:attractors)=
 # Reachability games
 
-```{math}
-
-```
-
 Recall that the objective $\mathtt{Reach}$ requires that the colour $\textrm{Win}$ appears at least once and 
 $\mathtt{Safe}$ requires the the colour $\textrm{Lose}$ never appears.
 We identify the colour $\textrm{Win}$ with $\mathfrak{c}^{-1}( \textrm{Win})$ the set of vertices labelled $\textrm{Win}$,

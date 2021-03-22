@@ -15,7 +15,6 @@ that other natural objectives reduce to reachability.
 Stochastic reachability games are pure positionally determined.
 \end{theorem}
 
-\begin{proof}
   Let $G = (\vertices,E,\delta,\Win)$ be a stochastic reachability
   game.  We define an operator $\mathfrak{F}$ expressing Bellman-like
   equations for the game $G$:
@@ -31,9 +30,9 @@ Stochastic reachability games are pure positionally determined.
   (equipped with the pointwise standard inequality) is
   monotonic. Hence it admits a least fixpoint, which we denote
   $\lfp(\mathfrak{F})$.  We show that:
-  \begin{lemma}
-    \label{6-lem:lfpgeval}
-    For every $v$:
+  \begin{lemma}[Least fixed point characterisation]
+  \label{6-lem:lfpgeval}
+  For every $v \in V$:
     \[
     \lfp(\mathfrak{F}) (v) \le \sup_\sigma \inf_\tau
     \probm_{\sigma,\tau}^v(\Reach(\Win)) \le \inf_\tau \sup_\sigma
@@ -61,23 +60,11 @@ Stochastic reachability games are pure positionally determined.
     $v \mapsto \sup_\sigma \inf_\tau
     \probm_{\sigma,\tau}^v(\Reach(\Win))$ is a fixpoint of
     $\mathfrak{F}$.  Pick $v \in \VE$. 
-    % First, when $\sigma$ and $\tau$
-    % are both fixed, then
-    % \[
-    %   \probm_{\sigma,\tau}^v(\Reach(\Win)) = \sum_{v' \in
-    %     \text{supp}(\sigma(v))} \sigma(v)(v') \cdot
-    %   \probm_{\sigma'_{v'},\tau'}^{v'}(\Reach(\Win))
-    % \]
-    % where, given $v' \in \text{supp}(\sigma(v))$, $\sigma'_{v'}$ is
-    % the strategy coinciding with $\sigma$ after the first move to $v'$
-    % (formally, $\sigma'_{v'}(v' h) = \sigma(v v' h)$ for every finite
-    % sequence of vertices $h$).
- \begin{eqnarray*}
+	\begin{eqnarray*}
       \sup_\sigma \inf_\tau \probm_{\sigma,\tau}^v(\Reach(\Win)) & = &
       \sup_\sigma \inf_\tau \sum_{v'} \sigma(v)(v')  \cdot
       \probm_{\sigma',\tau'}^{v'}(\Reach(\Win)) \\
-      & & \text{where}\ \sigma'\ \text{and}\ \tau'\ \text{are residual
-        strategies after}\ (v,v') \\
+      & & \text{where}\ \sigma'\ \text{and}\ \tau'\ \text{are residual strategies after}\ (v,v') \\
       & = & \sup_\sigma \sum_{v'} \sigma(v)(v')  \cdot \inf_\tau \probm_{\sigma',\tau'}^{v'}(\Reach(\Win)) \\
       & & \text{since}\ \tau\ \text{is not concerned by this choice}
       \\
@@ -93,44 +80,8 @@ Stochastic reachability games are pure positionally determined.
     where $\probm_{\sigma,\tau}^{\bullet}(\Reach(\Win)))$ is the
     function with associates with vertex $v$ the value
     $\probm_{\sigma,\tau}^{v}(\Reach(\Win)))$.
-    % \begin{eqnarray*}
-    %   \sup_\sigma \inf_\tau \probm_{\sigma,\tau}^v(\Reach(\Win)) & = &
-    %   \sup_\sigma \inf_\tau \sum_{v'} \sigma(v)(V'd)
-    %   \cdot \probm_{\sigma',\tau'}^{v'}(\Reach(\Win)) \\
-    %   & & \text{where}\ \sigma'\ \text{and}\ \tau'\ \text{are residual
-    %     strategies after}\ (v,\adist,v') \\
-    %   & = & \sup_\sigma \sum_{(\adist,v')} \sigma(v)(\adist,v')
-    %   \cdot \inf_\tau \probm_{\sigma',\tau'}^{v'}(\Reach(\Win)) \\
-    %   & & \text{since}\ \tau\ \text{is not concerned by this choice}
-    %   \\
-    %   & = & \max_{(v,\adist) \in E} \sup_{\sigma\ \text{s.t.}\
-    %     \sigma(v) = \adist} \inf_\tau
-    %   \probm_{\sigma',\tau'}^{v'}(\Reach(\Win)) \\
-    %   & & \text{since deterministic choices are the best} \\
-    %   & = & \max_{(v,\adist) \in E} \sup_{\sigma'} \inf_{\tau'}
-    %   \probm_{\sigma',\tau'}^{v'}(\Reach(\Win)) \\
-    %   & & \text{since the first choice is now fixed} \\
-    %   & = & \mathfrak{F}(\probm_{\sigma,\tau}^{\bullet}(\Reach(\Win)))(v)
-    % \end{eqnarray*}
 
     Assume now that $v \in \VA$. 
-    % \begin{eqnarray*}
-    %   \sup_\sigma \inf_\tau \probm_{\sigma,\tau}^v(\Reach(\Win)) & = &
-    %   \sup_\sigma \inf_\tau \sum_{(\adist,v')} \tau(v)(\adist,v')
-    %   \cdot \probm_{\sigma',\tau'}^{v'}(\Reach(\Win)) \\
-    %   & & \text{where}\ \sigma'\ \text{and}\ \tau'\ \text{are residual
-    %     strategies after}\ (v,\adist,v') \\
-    %   & = & \sup_\sigma \min_{(v,\adist) \in E} \inf_{\tau\
-    %     \text{s.t.}\ \tau(v) = \adist} \sum_{v'} \tau(v)(\adist,v')
-    %   \cdot \probm_{\sigma',\tau'}^{v'}(\Reach(\Win)) \\
-    %   & & \text{since deterministic choices are the best} \\
-    %   & = & \min_{(v,\adist) \in E}  \sup_{\sigma'} \inf_{\tau\
-    %     \text{s.t.}\ \tau(v) = \adist} \sum_{v'} \tau(v)(\adist,v')
-    %   \cdot \probm_{\sigma',\tau'}^{v'}(\Reach(\Win)) \\
-    %   & & \text{since}\ \sigma\ \text{is not concerned with the first
-    %     choice} \\
-    %   & = & \mathfrak{F}(\probm_{\sigma,\tau}^{\bullet}(\Reach(\Win)))(v)
-    % \end{eqnarray*}
     \begin{eqnarray*}
       \sup_\sigma \inf_\tau \probm_{\sigma,\tau}^v(\Reach(\Win)) & = &
       \sup_\sigma \inf_\tau \sum_{v'} \tau(v)(v')
@@ -156,7 +107,6 @@ Stochastic reachability games are pure positionally determined.
       & = & \mathfrak{F}(\probm_{\sigma,\tau}^{\bullet}(\Reach(\Win)))(v)
     \end{eqnarray*}
     This concludes the proof.
-%
     
   \end{proof}
 
@@ -185,8 +135,8 @@ Stochastic reachability games are pure positionally determined.
     \]
     When $\tau^*$ is fixed, the game becomes a finite Markov decision
     process $\game_{\tau^*}$ (in that MDP, the random vertices are
-    isolated from the non-deterministic ones, see
-    Remark~\cref{5-rk:??}). Note that by standard results on MDP,
+    isolated from the non-deterministic ones, see~\cref{5-rk:??}). 
+    Note that by standard results on MDP,
     see~\cref{5-thm:quantireach} there exists $\sigma^*$ MD such that
     for every $v \in V$:
     \[
@@ -199,8 +149,8 @@ Stochastic reachability games are pure positionally determined.
     
     It remains to observe that $\lfp(\mathfrak{F})$ satisfies the
     Bellman equations of the MDP under $\tau^*$: this is true from
-    \Eve vertices since equations at those vertices are the same in
-    the game and in the MDP; this is true from \Adam vertices by local
+    $\Eve$ vertices since equations at those vertices are the same in
+    the game and in the MDP; this is true from $\Adam$ vertices by local
     optimality of $\tau^*$. Hence we deduce that
     \[
       \lfp(\mathfrak{F}) \ge
@@ -210,7 +160,9 @@ Stochastic reachability games are pure positionally determined.
     \]
     This concludes the proof of the lemma. 
   \end{proof}
-By Lemma~\cref{6-lem:lfpgeval} and~\cref{6-lem:lfpleval}  we derive that:
+  
+\begin{proof}
+By~\cref{6-lem:lfpgeval} and~\cref{6-lem:lfpleval}  we derive that:
  \[
    \lfp(\mathfrak{F}) =
    \sup_\sigma \inf_\tau 
@@ -220,16 +172,9 @@ By Lemma~\cref{6-lem:lfpgeval} and~\cref{6-lem:lfpleval}  we derive that:
   \]
   This proves that $\game$ is pure memoryless determined, and that
   $(\sigma^*,\tau^*)$ is an optimal pure positional strategy profile.
-  % \begin{itemize}
-  % \item $\tau^*$ is optimal (and MD)
-  % \item $\sigma^*$ is optimal (and MD)
-  % \item we can compute the values by iterating $\mathfrak{F}$ 
-  % \end{itemize}
-  %
-   
 \end{proof}
 
-The proof of Theorem~\cref{6-thm:determinacy} yields an algorithm to
+The proof of~\cref{6-thm:determinacy} yields an algorithm to
 compute the value of a stochastic game with reachability
 objective. Indeed, because the value in every vertex $v \in \vertices$
 agrees with $\lfp(\mathfrak{F})(v)$, it suffices to compute
@@ -246,22 +191,7 @@ $\probm_{\sigma,\tau}^{\arena,v}(\Reach(\{\vwin,\vlose\})) =
 1$. Whenever the game is stopping, $\mathfrak{F}$ has a unique
 fixpoint, hence the value iteration algorithm can be applied from any
 initial tuple of values.
-% \fbox{say more?}  Originally papers assume stopping games...
 
-% \nat{The positional determinacy also holds for stochastic parity games
-%   (see CHJ-soda04). Check whether it is a byproduct of reductions.}
-
-% \begin{remark}
-%   Let $\arena$ be an arena with two distinguished sink vertices
-%   $\vwin$ and $\vlose$. Assume $\Omega$ is the reachability objective
-%   $\Reach(\Win)$ where $\Win = \{\vwin\}$. The stochastic game $\game
-%   = (\arena,\Omega)$ is said stopping whenever for all strategies
-%   $\sigma$ and $\tau$,
-%   $\probm_{\sigma,\tau}^{\arena,v}(\Reach(\{\vwin,\vlose\})) = 1$ for
-%   every vertex $v$. Whenever the arena/game is stopping,
-%   $\mathfrak{F}$ has a unique fixpoint. \fbox{say more?}
-% \end{remark}
-
-Notice that the proof of Theorem~\cref{6-thm:determinacy} and the value
+Notice that the proof of~\cref{6-thm:determinacy} and the value
 iteration algorithm which derives from it do not assume that the game
 is stopping, nor that distributions are uniform.

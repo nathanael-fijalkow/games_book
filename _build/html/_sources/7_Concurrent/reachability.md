@@ -1,10 +1,6 @@
 (7-sec:reachability)=
 # Concurrent reachability games
 
-```{math}
-
-```
-
 In this section we consider concurrent reachability games. 
 Intuitively, unlike concurrent discounted games, these games cares only about the final part of the play.
 This, while perhaps not clear directly from the definitions, makes the games somewhat harder. For instance, the value iteration algorithm requires double-exponential time.

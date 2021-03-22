@@ -1,10 +1,6 @@
 (5-sec:end_components)=
 # End components
 
-```{math}
-
-```
-
 To solve mean-payoff optimization in general MDPs, as well as general optimization problems for $\omega$-regular objectives, we need to introduce a crucial notion of an **end component**.
 
 ````{prf:definition} NEEDS TITLE 5-def:ec

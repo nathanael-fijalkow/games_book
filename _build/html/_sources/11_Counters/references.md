@@ -1,12 +1,6 @@
 (11-sec:references)=
 # Bibliographic references
 
-```{math}
-
-\newcommand{\capp}[2][C]{\overline{\vec #2}^{#1}}
-
-```
-
 > **Vector Addition Systems with States**
 
 In their one-player version, i.e.\ in vector addition systems with
@@ -96,7 +90,7 @@ attractor computation algorithm {cite}`Lazic&Schmitz:2019`.
 
  An alternative take on energy games is to see a vector system
 $\mathcal{V}=( \mathcal{L}, A, \mathcal{L}_\mathrm{Eve}, \mathcal{L}_\mathrm{Adam}, k)$ as a finite arena with
-edges $\ell \xrightarrow{\,\vec u,} \ell'$ coloured by $\vec u$, thus with set of
+edges $\ell \xrightarrow{\,\vec u\,} \ell'$ coloured by $\vec u$, thus with set of
 colours $C  \stackrel{\!\,\!\,\textrm{def}}{=}\mathbb{Z}^ k$.  For an initial credit $\vec v_0\in\mathbb{N}^ k$
 and $1\leq i\leq k$, the associated energy objective is then
 defined as\todoquestion{is that the right place for this?}
@@ -218,8 +212,6 @@ and model-checking probabilistic timed
 automata {cite}`Jurdzinski&Laroussinie&Sproston:2008`.
 
 \input{tab-cmplx}
-
-
 
 ```{bibliography}
 :style: unsrtalpha

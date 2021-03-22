@@ -1,10 +1,6 @@
 (8-sec:notations)=
 # Notations
 
-```{math}
-
-```
-
 We consider **stochastic games with signals**, that are a standard tool in game theory to model imperfect information in stochastic games {cite}`sorinafirst,dinahnicolas1,renault2`.
 When playing a stochastic game with signals, players cannot observe
 the actual state of the game, nor the actions played by themselves or

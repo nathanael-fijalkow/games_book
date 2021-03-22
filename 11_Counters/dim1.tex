@@ -216,6 +216,7 @@ games"".
   that Eve can reach~$\smiley$ from a configuration $\loc_{=j}(c)$ if
   and only if $c=j$; we accordingly define~$\Act$ with the following
   actions, where~$\frownie$ is a deadlock location:
+  NATH: ISSUE WITH INTERTEXT
   \begin{align*}
     \loc_{=j}&\step{-j-1}\frownie\;,&\loc_{=j}&\step{-j}\smiley\;.
   \intertext{Similarly, Eve should be able to reach~$\smiley$ from
@@ -267,7 +268,7 @@ games"".
    reduce this to an instance of "configuration reachability" with
    "given initial credit" in a one-dimensional "vector system" by
    adding a new location $\loc'_0$ controlled by~Eve with actions
-   $\loc'_0\step{1}\loc'_0$ and $\loc'_0\step 0\loc_0$, and asking
+   $\loc'_0\step{1}\loc'_0$ and $\loc'_0\step{0}\loc_0$, and asking
    whether Eve has a winning strategy starting from $\loc'_0(0)$ in
    the new system.  By \cref{11-cor:dim1}, this "configuration
    reachability" game can be solved in $\EXPSPACE$.
@@ -341,18 +342,16 @@ from \cref{11-cor:dim1} are tight in most cases.
   argue as in the upper bound proof of \cref{11-th:countdown-exist} that
   all these games are also hard with "given initial credit": we add a
   new initial location $\loc'_0$ controlled by Eve with actions
-  $\loc'_0\step 1\loc'_0$ and $\loc'_0\step 0\loc_0$ and play the game
+  $\loc'_0\step{1}\loc'_0$ and $\loc'_0\step{0}\loc_0$ and play the game
   starting from $\loc'_0(0)$.
 
-  Regarding "non-termination", we can add a self loop $\smiley\step
-  0\smiley$ to the construction
+  Regarding "non-termination", we can add a self loop $\smiley\step{0}\smiley$ to the construction
   of \cref{11-th:countdown-given,11-th:countdown-exist}: then the only way
   to build an infinite play that avoids the "sink" is to reach the
   target location $\smiley$.  This shows that the games are $\EXP$-hard
   with "given initial credit" and $\EXPSPACE$-hard with "existential
   initial credit".  Note that the trick of reducing "existential" to
-  "given initial credit" with an initial incrementing loop $\loc'_0\step
-  1\loc'_0$ does not work, because Eve would have a trivial winning
+  "given initial credit" with an initial incrementing loop $\loc'_0\step{1}\loc'_0$ does not work, because Eve would have a trivial winning
   strategy that consists in just playing this loop forever.
 \end{proof}
 

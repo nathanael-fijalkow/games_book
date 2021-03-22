@@ -8,10 +8,6 @@
 :align: center
 ```
 
-```{math}
-
-```
-
 
 Written by Nathana&euml;l Fijalkow
 

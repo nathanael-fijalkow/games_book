@@ -1,10 +1,6 @@
 (7-sec:discounted)=
 # Concurrent discounted games
 
-```{math}
-
-```
-
 In this section we focus on concurrent discounted games. 
 The key property of these games is that to a high degree, only the relative early part of the play matters.
 We will first argue that the value iteration algorithm works and especially converges to the value of the game and then that there are stationary optimal strategies in concurrent discounted games.

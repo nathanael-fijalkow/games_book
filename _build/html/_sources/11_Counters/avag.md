@@ -1,12 +1,6 @@
 (11-sec:avag)=
 # Asymmetric games
 
-```{math}
-
-\newcommand{\capp}[2][C]{\overline{\vec #2}^{#1}}
-
-```
-
 {prf:ref}`11-th:undec` shows that vector games are too powerful to be
 algorithmically relevant, except in dimension one where
 {prf:ref}`11-th:dim1` applies.  This prompts the study of restricted kinds
@@ -21,9 +15,9 @@ games (see Section {ref}`11-sec:resource`).
 
  A vector system
 $\mathcal{V}=( \mathcal{L}, A, \mathcal{L}_\mathrm{Eve}, \mathcal{L}_\mathrm{Adam}, k)$ is
-asymmetric\index{asymmetry|see{vector system}} if, for all
+asymmetric if, for all
 locations $\ell\in \mathcal{L}_\mathrm{Adam}$ controlled by Adam and all actions
-$( \ell \xrightarrow{\,\vec u,} \ell')\in A$ originating from those,
+$( \ell \xrightarrow{\,\vec u\,} \ell')\in A$ originating from those,
 $\vec u=\vec 0$ the zero vector.  In other words, Adam may only
 change the current location, and cannot interact directly with the
 counters.
@@ -32,15 +26,14 @@ counters.
 :label: 11-ex:avg
 
   {numref}`11-fig:avg` presents an asymmetric vector system of
-  dimension two with locations partitioned as $\mathcal{L}_\mathrm{Eve}=\{ \ell, \ell_{2,1}, \ell_{\text-1,0}\}$ and $\mathcal{L}_\mathrm{Adam}=\{ \ell'\}$
-  
-  .  We omit the labels on the actions originating from Adam\'s
+  dimension two with locations partitioned as $\mathcal{L}_\mathrm{Eve}=\{ \ell, \ell_{2,1}, \ell_{\text-1,0}\}$ and $\mathcal{L}_\mathrm{Adam}=\{ \ell'\}$.  
+  We omit the labels on the actions originating from Adam\'s
   locations, since those are necessarily the zero vector.  It is
   worth observing that this vector system behaves quite differently
   from the one of {prf:ref}`11-ex:mwg` on \cpageref{11-ex:mwg}: for
   instance, in $\ell'(0,1)$, Adam can now ensure that the sink will
-  be reached by playing the action $\ell' \xrightarrow{\,0,0,} \ell_{\text-1,0}$,
-  whereas in {prf:ref}`11-ex:mwg`, the action $\ell' \xrightarrow{\,-1,0,} \ell$
+  be reached by playing the action $\ell' \xrightarrow{\,0,0\,} \ell_{\text-1,0}$,
+  whereas in {prf:ref}`11-ex:mwg`, the action $\ell' \xrightarrow{\,-1,0\,} \ell$
   was just inhibited by the natural semantics.
 
 ````
@@ -91,17 +84,17 @@ Schema of the reduction in the proof of {prf:ref}`11-th:asym-undec`.
   
 $$
 
-     \mathcal{L}_{ \stackrel{\!\,\!\,\textrm{?0}}{=}}&  \stackrel{\!\,\!\,\textrm{def}}{=}\{ \ell'_{i \stackrel{\!\,\!\,\textrm{?0}}{=}}\in \mathcal{L}\times\{1,\dots, k\}\mid\exists \ell\in \mathcal{L}\mathbin.( \ell \xrightarrow{\,i \stackrel{\!\,\!\,\textrm{?0,}}{=}} \ell')\in A\}\\
+     \mathcal{L}_{ \stackrel{\!\,\!\,\textrm{?0}}{=}}&  \stackrel{\!\,\!\,\textrm{def}}{=}\{ \ell'_{i \stackrel{\!\,\!\,\textrm{?0}}{=}}\in \mathcal{L}\times\{1,\dots, k\}\mid\exists \ell\in \mathcal{L}\mathbin.( \ell \xrightarrow{\,i \stackrel{\!\,\!\,\textrm{?0\,}}{=}} \ell')\in A\}\\
      \mathcal{L}_{ k}&  \stackrel{\!\,\!\,\textrm{def}}{=}\{ \ell_{i}\mid 1\leq i\leq  k\}
     \intertext{and define the set of actions by (see {numref}`11-fig:asym-undec`)}
      A'&  \stackrel{\!\,\!\,\textrm{def}}{=}\{ \ell \xrightarrow{\,\vec
-          e_i,} \ell'\mid( \ell \xrightarrow{\,\vec e_i,} \ell')\in A\}\cup\{ \ell \xrightarrow{\,-\vec e_i,} \ell''\mid( \ell \xrightarrow{\,-\vec e_i,} \ell'')\in A\}\\
+          e_i\,} \ell'\mid( \ell \xrightarrow{\,\vec e_i\,} \ell')\in A\}\cup\{ \ell \xrightarrow{\,-\vec e_i\,} \ell''\mid( \ell \xrightarrow{\,-\vec e_i\,} \ell'')\in A\}\\
     &\:\cup\:\{ \ell \xrightarrow{\,\vec
-      0,} \ell'_{i \stackrel{\!\,\!\,\textrm{?0}}{=}},\;\;\: \ell'_{i \stackrel{\!\,\!\,\textrm{?0}}{=}}\!\! \xrightarrow{\,\vec
-      0,} \ell',\;\;\: \ell'_{i \stackrel{\!\,\!\,\textrm{?0}}{=}}\!\! \xrightarrow{\,\vec 0,} \ell_{i}\mid
-      ( \ell \xrightarrow{\,i \stackrel{\!\,\!\,\textrm{?0,}}{=}} \ell')\in A\}\\
-    &\:\cup\:\{ \ell_i\! \xrightarrow{\,-\vec e_j,} \ell_{i},\;\;\: \ell_{i}\! \xrightarrow{\,\vec
-      0,} \ell_\mathtt{halt}\mid 1\leq i,j\leq k, j\neq i\}\;.
+      0\,} \ell'_{i \stackrel{\!\,\!\,\textrm{?0}}{=}},\;\;\: \ell'_{i \stackrel{\!\,\!\,\textrm{?0}}{=}}\!\! \xrightarrow{\,\vec
+      0\,} \ell',\;\;\: \ell'_{i \stackrel{\!\,\!\,\textrm{?0}}{=}}\!\! \xrightarrow{\,\vec 0\,} \ell_{i}\mid
+      ( \ell \xrightarrow{\,i \stackrel{\!\,\!\,\textrm{?0\,}}{=}} \ell')\in A\}\\
+    &\:\cup\:\{ \ell_i\! \xrightarrow{\,-\vec e_j\,} \ell_{i},\;\;\: \ell_{i}\! \xrightarrow{\,\vec
+      0\,} \ell_\mathtt{halt}\mid 1\leq i,j\leq k, j\neq i\}\;.
   
 $$
 
@@ -115,29 +108,29 @@ $$
   reaches $\ell_\mathtt{halt}(\vec 0)$.
   
   Consider any configuration $\ell(\vec v)$.  If
-  $( \ell \xrightarrow{\,\vec e_i,} \ell')\in A$, Eve has no choice but to apply
-  $\ell \xrightarrow{\,\vec e_i,} \ell'$ and go to the configuration
+  $( \ell \xrightarrow{\,\vec e_i\,} \ell')\in A$, Eve has no choice but to apply
+  $\ell \xrightarrow{\,\vec e_i\,} \ell'$ and go to the configuration
   $\ell'(\vec v+\vec e_i)$ also reached in one step in $\mathcal{M}$.  If
-  $\{ \ell \xrightarrow{\,i \stackrel{\!\,\!\,\textrm{?0,}}{=}} \ell', \ell \xrightarrow{\,-\vec e_i,} \ell''\}\in A$ and
+  $\{ \ell \xrightarrow{\,i \stackrel{\!\,\!\,\textrm{?0\,}}{=}} \ell', \ell \xrightarrow{\,-\vec e_i\,} \ell''\}\in A$ and
   $\vec v(i)=0$, due to the natural semantics, Eve cannot use the
-  action $\ell \xrightarrow{\,-\vec e_i,} \ell''$, thus she must use
-  $\ell \xrightarrow{\,\vec 0,} \ell'_{i \stackrel{\!\,\!\,\textrm{?0}}{=}}$.  Then, either Adam plays
-  $\ell'_{i \stackrel{\!\,\!\,\textrm{?0}}{=}}\!\! \xrightarrow{\,\vec 0,} \ell'$ and Eve regains the
+  action $\ell \xrightarrow{\,-\vec e_i\,} \ell''$, thus she must use
+  $\ell \xrightarrow{\,\vec 0\,} \ell'_{i \stackrel{\!\,\!\,\textrm{?0}}{=}}$.  Then, either Adam plays
+  $\ell'_{i \stackrel{\!\,\!\,\textrm{?0}}{=}}\!\! \xrightarrow{\,\vec 0\,} \ell'$ and Eve regains the
   control in $\ell'(\vec v)$, which was also the configuration reached
   in one step in $\mathcal{M}$, or Adam plays
-  $\ell'_{i \stackrel{\!\,\!\,\textrm{?0}}{=}}\!\! \xrightarrow{\,\vec 0,} \ell_{i}$ and Eve 
+  $\ell'_{i \stackrel{\!\,\!\,\textrm{?0}}{=}}\!\! \xrightarrow{\,\vec 0\,} \ell_{i}$ and Eve 
   regains the control in $\ell_{i}(\vec v)$ with
   $\vec v(i)=0$.  Using the actions
-  $\ell_{i}\! \xrightarrow{\,-\vec e_j,} \ell_{i}$ for
+  $\ell_{i}\! \xrightarrow{\,-\vec e_j\,} \ell_{i}$ for
   $j\neq i$, Eve can then reach $\ell_{i}(\vec 0)$ and move
   to $\ell_\mathtt{halt}(\vec 0)$.  Finally, if
-  $\{ \ell \xrightarrow{\,i \stackrel{\!\,\!\,\textrm{?0,}}{=}} \ell', \ell \xrightarrow{\,-\vec e_i,} \ell''\}\in A$ and
+  $\{ \ell \xrightarrow{\,i \stackrel{\!\,\!\,\textrm{?0\,}}{=}} \ell', \ell \xrightarrow{\,-\vec e_i\,} \ell''\}\in A$ and
   $\vec v(i)>0$, Eve can choose: if she uses
-  $\ell \xrightarrow{\,-\vec e_i,} \ell''$, she ends in the configuration
+  $\ell \xrightarrow{\,-\vec e_i\,} \ell''$, she ends in the configuration
   $\ell''(\vec v-\vec e_i)$ also reached in one step in $\mathcal{M}$.  In
-  fact, she should not use $\ell \xrightarrow{\,\vec 0,} \ell'_{i \stackrel{\!\,\!\,\textrm{?0}}{=}}$,
+  fact, she should not use $\ell \xrightarrow{\,\vec 0\,} \ell'_{i \stackrel{\!\,\!\,\textrm{?0}}{=}}$,
   because Adam would then have the opportunity to apply
-  $\ell'_{i \stackrel{\!\,\!\,\textrm{?0}}{=}}\!\! \xrightarrow{\,\vec 0,} \ell_{i}$, and in
+  $\ell'_{i \stackrel{\!\,\!\,\textrm{?0}}{=}}\!\! \xrightarrow{\,\vec 0\,} \ell_{i}$, and in
   $\ell_{i}(\vec v)$ with $\vec v(i)>0$, there is no way to
   reach a configuration with an empty $i$th component, let alone to
   reach $\ell_\mathtt{halt}(\vec 0)$.  Thus, if $\mathcal{M}$ halts, then Eve 
@@ -196,7 +189,7 @@ $$
   The intention behind the locations $\ell_{=j}\in \mathcal{L}_\mathrm{Eve}$ is
   that Eve can reach $\smiley(0)$ from a configuration $\ell_{=j}(c)$ if
   and only if $c=j$; we define accordingly $A$ with the
-  action $\ell_{=j} \xrightarrow{\,-j,}\smiley$.
+  action $\ell_{=j} \xrightarrow{\,-j\,}\smiley$.
   Similarly, Eve should be able to reach $\smiley(0)$ from
   $\ell_{1\leq?\leq m_d+1}(c)$ for $0\leq d\leq p(n)$ if and only if
   $1\leq c\leq m_d+1$,
@@ -204,19 +197,19 @@ $$
   
 $$
 
-     \ell_{1\leq?\leq m_{d+1}+1}& \xrightarrow{\,0,} \ell_{1\leq?\leq 2^{d+1}}\;,&
-     \ell_{1\leq?\leq m_{d+1}+1}& \xrightarrow{\,-2^{d+1,}} \ell_{1\leq ?\leq m_{d}+1}\;,
+     \ell_{1\leq?\leq m_{d+1}+1}& \xrightarrow{\,0\,} \ell_{1\leq?\leq 2^{d+1}}\;,&
+     \ell_{1\leq?\leq m_{d+1}+1}& \xrightarrow{\,-2^{d+1\,}} \ell_{1\leq ?\leq m_{d}+1}\;,
     \intertext{and if $b_{d+1}=0$,}
-     \ell_{1\leq?\leq m_{d+1}+1}& \xrightarrow{\,0,} \ell_{1\leq ?\leq m_{d}+1}\;,
+     \ell_{1\leq?\leq m_{d+1}+1}& \xrightarrow{\,0\,} \ell_{1\leq ?\leq m_{d}+1}\;,
     \intertext{and finally}
-     \ell_{1\leq?\leq m_0+1}& \xrightarrow{\,-b_0,} \ell_{=1}\;,& \ell_{1\leq?\leq m_0+1}& \xrightarrow{\,0,} \ell_{=1}\;,
+     \ell_{1\leq?\leq m_0+1}& \xrightarrow{\,-b_0\,} \ell_{=1}\;,& \ell_{1\leq?\leq m_0+1}& \xrightarrow{\,0\,} \ell_{=1}\;,
     \intertext{where for all $1\leq d\leq p(n)$, $\ell_{1\leq?\leq 2^d}(c)$ allows to
     reach $\smiley(0)$ if and only if $1\leq c\leq 2^d$:}
-     \ell_{1\leq?\leq 2^{d+1}}& \xrightarrow{\,-2^{d,}} \ell_{1\leq?\leq
+     \ell_{1\leq?\leq 2^{d+1}}& \xrightarrow{\,-2^{d\,}} \ell_{1\leq?\leq
                                2^d}\;,& \ell_{1\leq?\leq
-                                        2^{d+1}}& \xrightarrow{\,0,} \ell_{1\leq?\leq
+                                        2^{d+1}}& \xrightarrow{\,0\,} \ell_{1\leq?\leq
                                                   2^d}\;,\\ \ell_{1\leq?\leq
-    2^1}& \xrightarrow{\,-1,} \ell_{=1}\;,& \ell_{1\leq?\leq 2^1}& \xrightarrow{\,0,} \ell_{=1}\;.
+    2^1}& \xrightarrow{\,-1\,} \ell_{=1}\;,& \ell_{1\leq?\leq 2^1}& \xrightarrow{\,0\,} \ell_{=1}\;.
   
 $$
 
@@ -227,32 +220,32 @@ $$
   
 $$
 
-     \ell_0 & \xrightarrow{\,-1,}  \ell_0 &  \ell_0 & \xrightarrow{\,-1,} \ell_{(q_\mathrm{final},a)}&&\text{for $a\in\Gamma$}\;.
+     \ell_0 & \xrightarrow{\,-1\,}  \ell_0 &  \ell_0 & \xrightarrow{\,-1\,} \ell_{(q_\mathrm{final},a)}&&\text{for $a\in\Gamma$}\;.
     \intertext{Outside the boundary cases, the game is implemented by
     the following actions:}
-     \ell_\gamma& \xrightarrow{\,-m,} \ell_{(\gamma_1,\gamma_2,\gamma_3)}&&&&\text{for
-  $\gamma_1,\gamma_2,\gamma_3\vdash\gamma$}\;,\\  \ell_{(\gamma_1,\gamma_2,\gamma_3)}& \xrightarrow{\,0,} \ell^k_{\gamma_k}& \ell^k_{\gamma_k}& \xrightarrow{\,-k,} \ell_{\gamma_k}&&\text{for
+     \ell_\gamma& \xrightarrow{\,-m\,} \ell_{(\gamma_1,\gamma_2,\gamma_3)}&&&&\text{for
+  $\gamma_1,\gamma_2,\gamma_3\vdash\gamma$}\;,\\  \ell_{(\gamma_1,\gamma_2,\gamma_3)}& \xrightarrow{\,0\,} \ell^k_{\gamma_k}& \ell^k_{\gamma_k}& \xrightarrow{\,-k\,} \ell_{\gamma_k}&&\text{for
   $k\in\{1,2,3\}$}\;.
   \intertext{We handle the endmarker positions via the following
   actions, where Eve proceeds along the left edge
   of {numref}`11-fig:exp` until she reaches the initial left endmarker:}
-    \ell_\triangleright& \xrightarrow{\,-m-2,} \ell_\triangleright\;,&  \ell_\triangleright& \xrightarrow{\,-1,} \ell_{=1}\;,&  \ell_\triangleleft& \xrightarrow{\,-m-1,} \ell_\triangleright\;.
+    \ell_\triangleright& \xrightarrow{\,-m-2\,} \ell_\triangleright\;,&  \ell_\triangleright& \xrightarrow{\,-1\,} \ell_{=1}\;,&  \ell_\triangleleft& \xrightarrow{\,-m-1\,} \ell_\triangleright\;.
   \intertext{For the positions inside the input word $w=a_1\cdots
   a_n$, we use the actions}
-   \ell_{(q_0,a_1)}& \xrightarrow{\,-2,} \ell_{=1}\;,& \ell_{a_j}& \xrightarrow{\,-2,} \ell_{=j}&&\text{for
+   \ell_{(q_0,a_1)}& \xrightarrow{\,-2\,} \ell_{=1}\;,& \ell_{a_j}& \xrightarrow{\,-2\,} \ell_{=j}&&\text{for
   $1<j\leq n$}\;.
   \intertext{Finally, for the blank symbols of $C_1$, which should be
   associated with a counter value $c$ such that $n+3\leq c\leq m+3$,
   i.e., such that $1\leq c-n-2\leq m-n+1=m_{p(n)}+1$, we use the
   action}
-   \ell_\Box& \xrightarrow{\,-n-2,} \ell_{1\leq?\leq m_{p(n)}+1}\;.
+   \ell_\Box& \xrightarrow{\,-n-2\,} \ell_{1\leq?\leq m_{p(n)}+1}\;.
   
 $$
 
   Regarding the given initial credit variant, we add a new location
   $\ell'_0$ controlled by Eve and let her choose her initial credit
   when starting from $\ell'_0(0)$ by using the new actions
-  $\ell'_0 \xrightarrow{\,1,} \ell'_0$ and $\ell'_0 \xrightarrow{\,0,} \ell_0$.
+  $\ell'_0 \xrightarrow{\,1\,} \ell'_0$ and $\ell'_0 \xrightarrow{\,0\,} \ell_0$.
 
 ````
 
@@ -326,30 +319,30 @@ is monotonic.
 :class: dropdown tip
 
   It suffices for this to check that, for all $v_1\leq v_2$ in $V$,
-  \begin{description}
-  \item[(colours)] $\mathrm{vcol}(v_1)= \mathrm{vcol}(v_2)$ since $\mathrm{vcol}$ is monotonic;
-  \item[(zig Eve)] if $v_1,v_2\in V_\mathrm{Eve}$, $a\in A$, and
+  
+  * **(colours)**  $\mathrm{vcol}(v_1)= \mathrm{vcol}(v_2)$ since $\mathrm{vcol}$ is monotonic;
+  * **(zig Eve)**  if $v_1,v_2\in V_\mathrm{Eve}$, $a\in A$, and
     $\Delta(v_1,a)=v'_1\neq \bot$ is defined, then
     $v'_2  \stackrel{\!\,\!\,\textrm{def}}{=} \Delta(v_2,a)$ is such that $v'_2\geq v'_1$: indeed,
     $v'_1\neq \bot$ entails that $v_1$ is a configuration
     $\ell(\vec v_1)$ and $v'_1= \ell'(\vec v_1+\vec u)$ for the action
-    $a=( \ell \xrightarrow{\,\vec u,} \ell')\in A$, but then $v_2= \ell(\vec v_2)$
+    $a=( \ell \xrightarrow{\,\vec u\,} \ell')\in A$, but then $v_2= \ell(\vec v_2)$
     for some $\vec v_2\geq\vec v_1$ and
     $v'_2= \ell'(\vec v_2+\vec u)\geq v'_1$;
-  \item[(zig Adam)] if $v_1,v_2\in V_\mathrm{Adam}$, $a\in A$, and
+  * **(zig Adam)**  if $v_1,v_2\in V_\mathrm{Adam}$, $a\in A$, and
     $\Delta(v_2,a)=v'_2$ is defined, then
     $v'_1  \stackrel{\!\,\!\,\textrm{def}}{=} \Delta(v_1,a)\leq v'_2$: indeed, either $v'_2= \bot$ and
     then $v'_1= \bot$, or $v'_2\neq \bot$, thus
     $v_2= \ell(\vec v_2)$, $v'_2= \ell'(\vec v_2)$, and
-    $a=( \ell \xrightarrow{\,\vec 0,} \ell')\in A$ (recall that the game is
+    $a=( \ell \xrightarrow{\,\vec 0\,} \ell')\in A$ (recall that the game is
     asymmetric), but then $v_1= \ell(\vec v_1)$ for some
     $\vec v_1\leq\vec v_2$ and thus $v'_1= \ell'(\vec v_1)\leq v'_2$.
-  \end{description}
+  
   The above conditions show that, if $\sigma{:}\,E^\ast\to A$ is a
   strategy of Eve that wins from $v_0$, then by
   simulating $\sigma$ starting from $v'_0$---i.e., by applying the
   same actions when given a pointwise larger or equal history---she
-  will also win.\todoquestion{Is that clear?}
+  will also win.
 
 ````
 
@@ -359,7 +352,7 @@ does not necessarily hold in vector games without the asymmetry
 condition.  For instance, in both {numref}`11-fig:cov,11-fig:nonterm` on
 \cpageref{11-fig:cov}, $\ell'(0,1)\in W_\mathrm{Eve}$ but $\ell'(1,2)\in W_\mathrm{Adam}$ for
 the coverability and non-termination objectives.  This is due to
-the fact that the action $\ell' \xrightarrow{\,-1,0,} \ell$ is available
+the fact that the action $\ell' \xrightarrow{\,-1,0\,} \ell$ is available
 in $\ell'(1,2)$ but not in $\ell'(0,1)$.
 
 > **Well-quasi-orders**
@@ -490,7 +483,7 @@ the other regular objectives from Chapter {ref}`2-chap:regular`.
   state $m_0$ is the root of the tree.  In a node $m$ labelled by
   $\ell(\vec v)$, given an edge
   $e=( \ell(\vec v'), \ell'(\vec v'+\vec u))$ arising from an
-  action $\ell \xrightarrow{\,\vec u,} \ell'\in A$, if $\vec v'\geq\vec v$ and
+  action $\ell \xrightarrow{\,\vec u\,} \ell'\in A$, if $\vec v'\geq\vec v$ and
   $m$ has a child $m'$ labelled by $\ell'(\vec v+\vec u)$ in the
   self-covering tree, then either $m'$ is a leaf with return
   node $m''$ and we set $\delta(m,e)  \stackrel{\!\,\!\,\textrm{def}}{=} m''$, or $m'$ is an
@@ -525,15 +518,17 @@ A one-player vector system
   requirements.  Starting from the initial
   configuration $\ell_0(\vec 0)$, any winning play of Eve begins
   by 
+  
 $$
-  \ell_0(\vec 0) \xrightarrow{\,0,} \ell_1(\vec 0) \xrightarrow{\,\vec
-      e_1,} \ell_1(\vec e_1) \xrightarrow{\,\vec e_1,}\cdots \xrightarrow{\,\vec
-      e_1,} \ell_1(m\cdot\vec
-    e_1) \xrightarrow{\,-2^{2^n,}} \ell_0((m-2^{2^n})\cdot\vec
+  \ell_0(\vec 0) \xrightarrow{\,0\,} \ell_1(\vec 0) \xrightarrow{\,\vec
+      e_1\,} \ell_1(\vec e_1) \xrightarrow{\,\vec e_1\,}\cdots \xrightarrow{\,\vec
+      e_1\,} \ell_1(m\cdot\vec
+    e_1) \xrightarrow{\,-2^{2^n\,}} \ell_0((m-2^{2^n})\cdot\vec
     e_1) 
+  
 $$
- for some $m\geq 2^{2^n}$ before she visits
-  again a
+ 
+  for some $m\geq 2^{2^n}$ before she visits again a
   configuration---namely $\ell_0((m-2^{2^n})\cdot\vec e_1)$---greater
   or equal than a previous configuration---namely
   $\ell_0(\vec 0)$---**and** witnesses a maximal even parity in the
@@ -542,7 +537,7 @@ $$
   $\ell_0(2(m-2^{2^n})\cdot\vec e_1)$,
   $\ell_0(3(m-2^{2^n})\cdot\vec e_1)$, etc.  In this example, she
   needs at least $2^{2^n}$ memory to remember how many times the
-  $\ell_1 \xrightarrow{\,\vec e_1,} \ell_1$ loop should be taken.
+  $\ell_1 \xrightarrow{\,\vec e_1\,} \ell_1$ loop should be taken.
 
 ````
 
@@ -582,12 +577,12 @@ checked by induction over $i$: it holds initially in $U_0$, and for
 the induction step, if $v\in U_{i+1}$ and $v'\geq v$, then either
 
 *  $v= \ell(\vec v)\in\mathrm{Pre}(U_i)\cap V_\mathrm{Eve}$ thanks to some
-  $\ell \xrightarrow{\,\vec u,} \ell'\in A$ such that
+  $\ell \xrightarrow{\,\vec u\,} \ell'\in A$ such that
   $\ell'(\vec v+\vec u)\in U_i$; therefore $v'= \ell(\vec v')$ for some
   $\vec v'\geq \vec v$ is such that $\ell'(\vec v'+\vec u)\in U_i$ as
   well, thus $v'\in \mathrm{Pre}(U_i)\subseteq U_{i+1}$, or
 *  $v= \ell(\vec v)\in\mathrm{Pre}(U_i)\cap V_\mathrm{Adam}$ because for all
-  $\ell \xrightarrow{\,\vec 0,} \ell'\in A$, $\ell'(\vec v)\in U_i$; therefore
+  $\ell \xrightarrow{\,\vec 0\,} \ell'\in A$, $\ell'(\vec v)\in U_i$; therefore
   $v'= \ell(\vec v')$ for some $\vec v'\geq \vec v$ is such that
   $\ell'(\vec v')\in U_i$ as well, thus
   $v'\in \mathrm{Pre}(U_i)\subseteq U_{i+1}$, or
@@ -630,4 +625,3 @@ out that this algorithm works in  \textrm{kEXP}[2]; see the bibliographic notes
 at the end of the chapter.  Note that such a
 fixed-point computation does not work directly for non-termination
 or parity vector games, due to the need for greatest fixed-points.
-

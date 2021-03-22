@@ -1,12 +1,6 @@
 (12-sec:mean_payoff_energy)=
 # Mean-payoff and energy
 
-```{math}
-
-% Generic probability measure, also prob. measure operator
-
-```
-
 Another well-known equivalence in one-dimension is the one between mean-payoff and energy games (in the existential initial credit form), mentioned in {prf:ref}`chap:payoffs`. The reduction is trivial: Eve has a winning strategy (and an initial credit) in the energy game if and only if she has a strategy to ensure mean-payoff at least equal to zero in the mean-payoff game played over the same arena. Intuitively, the mean-payoff strategy of Eve has to reach a subgame where she can ensure that all cycles formed are non-negative (see cycle games in {prf:ref}`chap:payoffs`). The initial credit (which can be as high as Eve wants) offsets the cost of reaching such a subgame as well as the low point of cycles in it (which can be negative but is bounded).
 
 How does it fare in multiple dimensions? The study of vector games with energy semantics in Chapter {ref}`11-chap:counters` gives the following result.

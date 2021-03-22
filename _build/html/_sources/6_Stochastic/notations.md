@@ -1,36 +1,22 @@
 (6-sec:notations)=
 # Notations
 
-```{math}
-
-```
-
 Let us first define the arenas stochastic games will be played on:
 
-````{prf:definition} NEEDS TITLE AND LABEL 
-  A stochastic arena is a tuple $\mathcal{A} = ( V,E,\delta)$ where
-  
-  *  $V =  V_\mathrm{Adam} \sqcup  V_\mathrm{Eve} \sqcup   V_{\text{Rand}}$ is a
-    finite set of vertices, partitionned into vertices of Adam, Eve,
-    and random vertices;
-  *  $E \subseteq  V \times  V$ is the set of
-    edges;
-  *  $\delta :   V_{\text{Rand}} \to  \mathcal{D}( V)$ is the
-    probabilistic transition function, which satisfies:
-    $\forall v \in   V_{\text{Rand}}$, $\delta(v)(w)>0$ iff
-    $(v,w) \in E$.
+````{prf:definition} Stochastic arenas
+:label: 6-def:stochastic_arenas
 
-  A stochastic arena is a tuple $\mathcal{A} = ( V,E,\delta)$ where
-  
-  *  $V =  V_\mathrm{Adam} \sqcup  V_\mathrm{Eve} \sqcup   V_{\text{Rand}}$ is a
-    finite set of vertices, partitionned into vertices of Adam, Eve,
-    and random vertices;
-  *  $E \subseteq  V \times  V$ is the set of
-    edges;
-  *  $\delta :   V_{\text{Rand}} \to  \mathcal{D}( V)$ is the
-    probabilistic transition function, which satisfies:
-    $\forall v \in   V_{\text{Rand}}$, $\delta(v)(w)>0$ iff
-    $(v,w) \in E$.
+A stochastic arena is a tuple $\mathcal{A} = ( V,E,\delta)$ where
+
+*  $V =  V_\mathrm{Adam} \sqcup  V_\mathrm{Eve} \sqcup   V_{\text{Rand}}$ is a
+  finite set of vertices, partitionned into vertices of Adam, Eve,
+  and random vertices;
+*  $E \subseteq  V \times  V$ is the set of
+  edges;
+*  $\delta :   V_{\text{Rand}} \to  \mathcal{D}( V)$ is the
+  probabilistic transition function, which satisfies:
+  $\forall v \in   V_{\text{Rand}}$, $\delta(v)(w)>0$ iff
+  $(v,w) \in E$.
 
 ````
 
@@ -38,24 +24,20 @@ Let us first define the arenas stochastic games will be played on:
 :name: 6-fig:ex-stoch-arena
 :align: center
 Example of a stochastic arena: circle nodes belong to Eve,
-    square nodes to Adam, and diamond nodes are random.
+  square nodes to Adam, and diamond nodes are random.
 ```
 
 Similarly to non-stochastic arenas, one can equip a stochastic arena
 with a winning objectives to define a stochastic game.
 
-````{prf:definition} NEEDS TITLE AND LABEL 
-  A stochastic game is a tuple $\mathcal{G} = ( \mathcal{A},\Omega)$ where
-  
-  *  $\mathcal{A}$ is a stochastic arena;
-  *  $\Omega \subseteq  V^\omega$ is the (qualitative)
-    winning objective.
+````{prf:definition} Stochastic games
+:label: 6-def:stochastic_games
 
-  A stochastic game is a tuple $\mathcal{G} = ( \mathcal{A},\Omega)$ where
-  
-  *  $\mathcal{A}$ is a stochastic arena;
-  *  $\Omega \subseteq  V^\omega$ is the (qualitative)
-    winning objective.
+A stochastic game is a tuple $\mathcal{G} = ( \mathcal{A},\Omega)$ where
+
+*  $\mathcal{A}$ is a stochastic arena;
+*  $\Omega \subseteq  V^\omega$ is the (qualitative)
+  winning objective.
 
 ````
 

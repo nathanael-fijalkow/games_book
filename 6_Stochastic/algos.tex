@@ -3,59 +3,62 @@ We have indeed reduced the quantitative analysis of all kinds of stochastic game
 
 \subsection{Value iteration}
 
-\begin{definition}
-  A stochastic arena $\arena = (\vertices,E,\delta)$ is said to be
-  \emph{simple} if
-  \begin{itemize}
-  \item $V$ contains two sink vertices $v_{\Eve}$ and $v_{\Adam}$;
-  \item every non-sink vertex
-    $v \in \vertices \setminus \{v_{\Eve},v_{\Adam}\}$ has two
-    successors;
-  \item every random vertex $v \in \Randomvertices$ is an
-    \emph{average vertex}, that is, for every vertex
-    $v'\in \vertices$, $(v,v') \in E$ implies
-    $\delta(v,v')=\frac{1}{2}$.
-  \end{itemize}
+\begin{definition}[Binary stochastic arenas]
+\label{6-def:binary_stochastic_arenas}
+A stochastic arena $\arena = (\vertices,E,\delta)$ is said to be
+\emph{simple} if
+\begin{itemize}
+\item $V$ contains two sink vertices $v_{\Eve}$ and $v_{\Adam}$;
+\item every non-sink vertex
+  $v \in \vertices \setminus \{v_{\Eve},v_{\Adam}\}$ has two
+  successors;
+\item every random vertex $v \in \Randomvertices$ is an
+  \emph{average vertex}, that is, for every vertex
+  $v'\in \vertices$, $(v,v') \in E$ implies
+  $\delta(v,v')=\frac{1}{2}$.
+\end{itemize}
 \end{definition}
 
 With a simple stochastic arena is naturally associated the
 reachability objective $\Reach(\{v_{\Eve}\})$. The resulting game is
 called a \emph{simple stochastic game}.
-\begin{proposition}
-  There exists a polynomial time transformation from stochastic games
-  to simple stochastic games, which preserves the values.
+\begin{proposition}[Reduction from stochastic games to simple stochastic games]
+\label{6-prop:reduction_stochastic_games_simple}
+There exists a polynomial time transformation from stochastic games
+to simple stochastic games, which preserves the values.
 \end{proposition}
+
 More precisely,
 
 \begin{proof}
-  Let $\arena = (\vertices,E,\delta)$ be an arbitrary stochastic
-  arena. First of all, all vertices in $\Win$ are merged into a single
-  sink vertex $v_\Eve$.
+Let $\arena = (\vertices,E,\delta)$ be an arbitrary stochastic
+arena. First of all, all vertices in $\Win$ are merged into a single
+sink vertex $v_\Eve$.
 
-  Assume $v \in \Randomvertices$ is a random vertex with $k$ outgoing
-  edges, with probabilities $p_1, \cdots, p_k$, leading respectively
-  to $v_1,\cdots,v_k$. We first introduce intermediary vertices in
-  order to build a binary tree, whose leaves are $v_1 \cdots v_k$,
-  root is $v$, and probabilities are set at each level of the tree in
-  order to recover $p_1, \cdots p_k$ on the respective branches. This
-  introduces $O(\log(k))$ fresh vertices, and is illustrated on an
-  example on~\cref{6-fig:gen2binary}.
+Assume $v \in \Randomvertices$ is a random vertex with $k$ outgoing
+edges, with probabilities $p_1, \cdots, p_k$, leading respectively
+to $v_1,\cdots,v_k$. We first introduce intermediary vertices in
+order to build a binary tree, whose leaves are $v_1 \cdots v_k$,
+root is $v$, and probabilities are set at each level of the tree in
+order to recover $p_1, \cdots p_k$ on the respective branches. This
+introduces $O(\log(k))$ fresh vertices, and is illustrated on an
+example on~\cref{6-fig:gen2binary}.
 
-  \begin{figure}[htbp]
-    \centering
-    \begin{tikzpicture}[scale=1.3]
-    \node[s-random] (init) at (-4,-.5) {$v$};
-    \node[s-random] (rv) at (-4,-1.5) {$v_2$};
-    \node[s-adam] (av) at (-5,-1.5) {$v_1$};    
-    \node[s-eve] (ev) at (-3,-1.5) {$v_3$};
-    
-    \path[arrow] (init) edge[selfloop] node [right] {$\frac 1 5$} (init)
-    (init) edge node[left] {$\frac 1 {10}$} (av)
-    (init) edge node[left] {$\frac 3 {10}$} (rv)
-    (init) edge node[right] {$\frac 2 {5}$} (ev)
-    ;
-    
-    
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[scale=1.3]
+  \node[s-random] (init) at (-4,-.5) {$v$};
+  \node[s-random] (rv) at (-4,-1.5) {$v_2$};
+  \node[s-adam] (av) at (-5,-1.5) {$v_1$};    
+  \node[s-eve] (ev) at (-3,-1.5) {$v_3$};
+  
+  \path[arrow] (init) edge[selfloop] node [right] {$\frac 1 5$} (init)
+  (init) edge node[left] {$\frac 1 {10}$} (av)
+  (init) edge node[left] {$\frac 3 {10}$} (rv)
+  (init) edge node[right] {$\frac 2 {5}$} (ev)
+  ;
+  
+  
 \node[s-random] (root) at (0,0) {$v$};
 \node[s-random] (left) at (-.75,-1) {};
 \node[s-random] (right) at (.75,-1) {};
@@ -70,116 +73,117 @@ More precisely,
 (right) edge node[right] {$\frac 2 3$} (rright)
 (right) edge[out=70,in=0] node[right] {$\frac 1 3$} (root)
 ;
-    \end{tikzpicture}
+  \end{tikzpicture}
 \caption{From general random vertices to binary ones.}
-    \label{6-fig:gen2binary}
-  \end{figure}
+  \label{6-fig:gen2binary}
+\end{figure}
 
-  It remains to explain how to simulate a discrete probability
-  distribution from say vertex $v$ to vertices $v_1$ and $v_2$ with
-  probabilities $\frac{p}{q}$, resp.  $\frac{q-p}{q}$, using average
-  vertices only.  We let $t \in\nats$ be such that
-  $2^{t-1} \leq q < 2^{t}$. Using the binary encodings of $p$ resp.
-  $q-p$ as $a_1 \cdots a_t$ resp. $b_1 \cdots b_t$ (with most
-  significant bit first) we build the following gadget. The input
-  vertex is $v$ and for every $2 \leq i \leq t+1$, it has two exit
-  edges with accumulated probabilities $2^{-i}$. Now, if $a_i=1$
-  (resp.  $b_1 =1$), one vertex with probability $2^{-(i+1)}$ is $v_1$
-  (resp. $v_2$). The pending edges are redirected to $v$ itself. The
-  transformation is depicted in~\cref{6-fig:simul}, assuming
-  $p=11\equiv_{b} 1011$ and $q=14$ (so that
-  $p-q = 3 \equiv_{b} 0011$).  For simplicity some vertices are
-  represented several times to avoid intricate transitions. One can
-  check that this gadget indeed simulates probabilities $\frac p q$ to
-  $v_1$ and $\frac {q-p} q$ to $v_2$.
+It remains to explain how to simulate a discrete probability
+distribution from say vertex $v$ to vertices $v_1$ and $v_2$ with
+probabilities $\frac{p}{q}$, resp.  $\frac{q-p}{q}$, using average
+vertices only.  We let $t \in\nats$ be such that
+$2^{t-1} \leq q < 2^{t}$. Using the binary encodings of $p$ resp.
+$q-p$ as $a_1 \cdots a_t$ resp. $b_1 \cdots b_t$ (with most
+significant bit first) we build the following gadget. The input
+vertex is $v$ and for every $2 \leq i \leq t+1$, it has two exit
+edges with accumulated probabilities $2^{-i}$. Now, if $a_i=1$
+(resp.  $b_1 =1$), one vertex with probability $2^{-(i+1)}$ is $v_1$
+(resp. $v_2$). The pending edges are redirected to $v$ itself. The
+transformation is depicted in~\cref{6-fig:simul}, assuming
+$p=11\equiv_{b} 1011$ and $q=14$ (so that
+$p-q = 3 \equiv_{b} 0011$).  For simplicity some vertices are
+represented several times to avoid intricate transitions. One can
+check that this gadget indeed simulates probabilities $\frac p q$ to
+$v_1$ and $\frac {q-p} q$ to $v_2$.
 
-  \begin{figure}[htbp]
-    \centering
-    \begin{tikzpicture}
-      [evev/.style = {circle, draw, align=center, anchor=north, inner sep=0, minimum size=.5cm},
-      adamv/.style = {rectangle, draw, align=center, anchor = north, inner sep=0, minimum size=.5cm},
-      randomv/.style = {diamond, draw, align=center, anchor = north, inner sep=0, minimum size=.5cm},
-      node distance=.5cm]
-    %[every loop/.style={min distance=10mm,in=105,out=75,looseness=0}]
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}
+    [evev/.style = {circle, draw, align=center, anchor=north, inner sep=0, minimum size=.5cm},
+    adamv/.style = {rectangle, draw, align=center, anchor = north, inner sep=0, minimum size=.5cm},
+    randomv/.style = {diamond, draw, align=center, anchor = north, inner sep=0, minimum size=.5cm},
+    node distance=.5cm]
+  %[every loop/.style={min distance=10mm,in=105,out=75,looseness=0}]
 
-    \node[randomv] (rv) at (-3,-.5) {$v$};
-    \node[evev] (ev) at (-4,-1.5) {$v_1$};
-    \node[adamv] (av) at (-2,-1.5) {$v_2$};
-    
-    \path[-latex'] 
-    (rv) edge node[left] {$\frac {11} {14}$} (ev)
-    (rv) edge node[right] {$\frac 3 {14}$} (av)
-    ;
-
-
-    \node[randomv] (root) at (0,0) {$v$};
-%    \node[randomv] (l01) at (0,0) {};
-    \node[randomv] (l02) at (2,0) {};
-    \node[randomv] (l03) at (4,0) {};
-    \node[randomv] (l04) at (6,0) {};
-    \node[randomv] (l11) at (0,-1) {};
-    \node[randomv] (l12) at (2,-1) {};
-    \node[randomv] (l13) at (4,-1) {};
-    \node[randomv] (l14) at (6,-1) {};
-
-    \node[evev] (l21) at (-.7,-2) {$v_1$};
-    \node[below of=l21] (l21t) {$\frac 1 4$};
-    \node[randomv] (l22) at (.7,-2) {$v$};
-    \node[below of=l22] (l22t) {$\frac 1 4$};
-    \node[randomv] (l23) at (1.3,-2) {$v$};
-    \node[below of=l23] (l23t) {$\frac 1 8$};
-    \node[randomv] (l24) at (2.7,-2) {$v$};
-    \node[below of=l24] (l24t) {$\frac 1 8$};
-    \node[evev] (l25) at (3.3,-2) {$v_1$};
-    \node[below of=l25] (l25t) {$\frac 1 {16}$};
-    \node[adamv] (l26) at (4.7,-2) {$v_2$};
-    \node[below of=l26] (l26t) {$\frac 1 {16}$};
-    \node[evev] (l27) at (5.3,-2) {$v_1$};
-    \node[below of=l27] (l27t) {$\frac 1 {32}$};
-    \node[adamv] (l28) at (6.7,-2) {$v_2$};
-    \node[below of=l28] (l28t) {$\frac 1 {32}$};
-
-    \path[-latex']
-    (root) edge (l11)
-    (root) edge (l02)
-    (l02) edge (l03)
-    (l02) edge (l12)
-    (l03) edge (l04)
-    (l03) edge (l13)
-    (l11) edge (l21)
-    (l11) edge (l22)
-    (l12) edge (l23)
-    (l12) edge (l24)
-    (l13) edge (l25)
-    (l13) edge (l26)
-    (l14) edge (l27)
-    (l14) edge (l28)
-    (l04) edge (l14)
-    (l04) edge[bend right] (root)
-    ;
-    
-%    \node[]
-    \end{tikzpicture}
-    \caption{From binary random vertices to average ones.}
-    \label{6-fig:simul}
-  \end{figure}
-
+  \node[randomv] (rv) at (-3,-.5) {$v$};
+  \node[evev] (ev) at (-4,-1.5) {$v_1$};
+  \node[adamv] (av) at (-2,-1.5) {$v_2$};
   
-  For vertices owned by either of the two players, only the first step
-  of the above transformation is needed (injection of a binary tree).
+  \path[-latex'] 
+  (rv) edge node[left] {$\frac {11} {14}$} (ev)
+  (rv) edge node[right] {$\frac 3 {14}$} (av)
+  ;
 
-  The overall transformation yields a simple stochastic game with
-  $O(n(\log(n)+k))$ additional vertices, where $k$ is the maximum
-  number of bits required to represent probabilities in
-  $\game$. Moreover, for vertices in $\vertices'$ that were originally
-  in $\vertices$, the value is preserved.
+
+  \node[randomv] (root) at (0,0) {$v$};
+%    \node[randomv] (l01) at (0,0) {};
+  \node[randomv] (l02) at (2,0) {};
+  \node[randomv] (l03) at (4,0) {};
+  \node[randomv] (l04) at (6,0) {};
+  \node[randomv] (l11) at (0,-1) {};
+  \node[randomv] (l12) at (2,-1) {};
+  \node[randomv] (l13) at (4,-1) {};
+  \node[randomv] (l14) at (6,-1) {};
+
+  \node[evev] (l21) at (-.7,-2) {$v_1$};
+  \node[below of=l21] (l21t) {$\frac 1 4$};
+  \node[randomv] (l22) at (.7,-2) {$v$};
+  \node[below of=l22] (l22t) {$\frac 1 4$};
+  \node[randomv] (l23) at (1.3,-2) {$v$};
+  \node[below of=l23] (l23t) {$\frac 1 8$};
+  \node[randomv] (l24) at (2.7,-2) {$v$};
+  \node[below of=l24] (l24t) {$\frac 1 8$};
+  \node[evev] (l25) at (3.3,-2) {$v_1$};
+  \node[below of=l25] (l25t) {$\frac 1 {16}$};
+  \node[adamv] (l26) at (4.7,-2) {$v_2$};
+  \node[below of=l26] (l26t) {$\frac 1 {16}$};
+  \node[evev] (l27) at (5.3,-2) {$v_1$};
+  \node[below of=l27] (l27t) {$\frac 1 {32}$};
+  \node[adamv] (l28) at (6.7,-2) {$v_2$};
+  \node[below of=l28] (l28t) {$\frac 1 {32}$};
+
+  \path[-latex']
+  (root) edge (l11)
+  (root) edge (l02)
+  (l02) edge (l03)
+  (l02) edge (l12)
+  (l03) edge (l04)
+  (l03) edge (l13)
+  (l11) edge (l21)
+  (l11) edge (l22)
+  (l12) edge (l23)
+  (l12) edge (l24)
+  (l13) edge (l25)
+  (l13) edge (l26)
+  (l14) edge (l27)
+  (l14) edge (l28)
+  (l04) edge (l14)
+  (l04) edge[bend right] (root)
+  ;
+  
+%    \node[]
+  \end{tikzpicture}
+  \caption{From binary random vertices to average ones.}
+  \label{6-fig:simul}
+\end{figure}
+
+
+For vertices owned by either of the two players, only the first step
+of the above transformation is needed (injection of a binary tree).
+
+The overall transformation yields a simple stochastic game with
+$O(n(\log(n)+k))$ additional vertices, where $k$ is the maximum
+number of bits required to represent probabilities in
+$\game$. Moreover, for vertices in $\vertices'$ that were originally
+in $\vertices$, the value is preserved.
 \end{proof}
 
 
-\begin{definition}
-  A simple stochastic game is \emph{stopping} if for every vertex
-  $v \in \vertices$ and under every \nat{pure positional} strategy profile
-  $(\sigma,\tau)$, $\probm_{\sigma,\tau}^v(\Reach(\{v_\Eve,v_\Adam\})) >0$.
+\begin{definition}[Stopping simple stochastic games]
+\label{6-def:stopping_simple_stochastic_games}
+A simple stochastic game is \emph{stopping} if for every vertex
+$v \in \vertices$ and under every \nat{pure positional} strategy profile
+$(\sigma,\tau)$, $\probm_{\sigma,\tau}^v(\Reach(\{v_\Eve,v_\Adam\})) >0$.
 \end{definition}
 
 
@@ -225,10 +229,10 @@ the game, and strategies achieving these values.
 
 The algorithm focuses on the role of random vertices in the game, and
 is based on the fact that amongst two random vertices, one of them is
-likely to be better for \Eve, while the other will be better for \Adam
+likely to be better for $\Eve$, while the other will be better for $\Adam$
 (or they are equally good). We will start proving a strategy
 enumeration algorithm, where, given a permutation of the set of random
-vertices, one computes adequate strategies for \Eve and \Adam; under
+vertices, one computes adequate strategies for $\Eve$ and $\Adam$; under
 some assumptions on the permutation (liveness and self-consistency),
 those strategies will be provably optimal. We will show that there
 will be some live and self-consistent permutation, implying the
@@ -240,19 +244,8 @@ We start with the strategy enumeration algorithm
 conclude with the strategy improvement algorithm
 (\cref{6-subsec:algo-strat-improv}).
 
-
-% That is: \fbox{adapter ce
-%   qui suit}
-% \begin{enumerate}
-% \item we show that each player has an optimal memoryless strategy
-% \item we compute memoryless optimal strategies
-% \item we discuss complexity issues
-% \item we explain how that can be extended to more general
-%   (prefix independent) $\omega$-regular winning objectives.
-% \end{enumerate}
-
 \subsubsection{Computing almost-sure winning or almost-sure losing states}
-\label{6-subsubsec:first}
+\label{6-subsec:first}
 
 The algorithms we will present assume that games are
 \emph{normalized}, that is, there is a unique vertex denoted $\vwin$
@@ -260,9 +253,9 @@ The algorithms we will present assume that games are
 generality since:
 \begin{itemize}
 \item vertices with value $1$ (resp. $0$) can be computed in
-  polynomial time;
+polynomial time;
 \item all vertices with value $1$ (resp. $0$) can be replaced by a
-  single sink vertex $\vwin$ (resp. $\vlose$);
+single sink vertex $\vwin$ (resp. $\vlose$);
 \item the target reachability state is set to $\vwin$.
 \end{itemize}
 
@@ -270,23 +263,23 @@ The only point that we will discuss is the first item above. General
 transformations assigning a non-stochastic parity game to each
 stochastic parity game, which allow to compute almost-sure winning
 states, have been developed. \pat{it would be nice to cite
-  here~\cite{CJH-csl03}} However, we focus on the simpler reachability
+here~\cite{CJH-csl03}} However, we focus on the simpler reachability
 games that we are focusing on, and we briefly describe the
 construction here, inspired by~\cite{paulin-nathalie}:
 \begin{itemize}
 \item For computing vertices with value $1$: replace a random vertex
-  $v$ with an \Adam vertex $v_A$ and an \Eve vertex $v_E$. Any edge
-  going to $v$ in the original game will go to $v_A$; there will be an
-  edge $v_A \to v_E$ with priority $1$; if $v \to v'$ in the original
-  game, then $v_A \to v'$ with priority $2$ in the new game, and $v_E
-  \to v'$ with priority $1$ in the new game. We add a selfloop over
-  $\Win$ with priority $2$. Then, a vertex is almost-sure winning
-  (that is, has value $1$) in the original game if and only if it is
-  winning in the constructed non-stochastic parity game.
+$v$ with an $\Adam$ vertex $v_A$ and an $\Eve$ vertex $v_E$. Any edge
+going to $v$ in the original game will go to $v_A$; there will be an
+edge $v_A \to v_E$ with priority $1$; if $v \to v'$ in the original
+game, then $v_A \to v'$ with priority $2$ in the new game, and $v_E
+\to v'$ with priority $1$ in the new game. We add a selfloop over
+$\Win$ with priority $2$. Then, a vertex is almost-sure winning
+(that is, has value $1$) in the original game if and only if it is
+winning in the constructed non-stochastic parity game.
 \item For computing vertices with value $0$: give each random vertex
-  $v$ to \Adam. Then, a vertex has value $0$ in the original game if
-  and only if it is losing in the constructed non-stochastic parity
-  game.
+$v$ to $\Adam$. Then, a vertex has value $0$ in the original game if
+and only if it is losing in the constructed non-stochastic parity
+game.
 \end{itemize}
 
 
@@ -296,13 +289,13 @@ construction here, inspired by~\cite{paulin-nathalie}:
 %   case of reachability/safety games, an ad-hoc algorithm \`a la
 %   Paulin/Nathalie can be used by using priorities to ensure fairness. 
 
-%   The idea is to replace a random vertex $v$ with an \Adam vertex
-%   $v_A$ and an \Eve vertex $v_E$. Any edge going to $v$ will go to
+%   The idea is to replace a random vertex $v$ with an $\Adam$ vertex
+%   $v_A$ and an $\Eve$ vertex $v_E$. Any edge going to $v$ will go to
 %   $v_A$, and then $v_A \xrightarrow{1} v_E$ and if $v \to v'$, then
 %   $v_A \xrightarrow{2} v'$ and $v_E \xrightarrow{1} v'$. Selfloop over
 %   $\Win$ with parity $2$.
 
-%   For proba $0$, replace a random vertex by an \Adam vertex}
+%   For proba $0$, replace a random vertex by an $\Adam$ vertex}
 
 From now on, we assume that the game $\game$ is normalized.
 
@@ -312,24 +305,24 @@ From now on, we assume that the game $\game$ is normalized.
 
 \subsubsection{Permutation of random vertices}
 
-Assume that from vertex $v$ belonging to \Eve, one can choose between
+Assume that from vertex $v$ belonging to $\Eve$, one can choose between
 two random vertices $v_1$ and $v_2$ such that the value of $v_1$ is
-larger than the value of $v_2$, then obviously \Eve should choose to
-go to $v_1$. The idea will then be for \Eve to target random vertices
+larger than the value of $v_2$, then obviously $\Eve$ should choose to
+go to $v_1$. The idea will then be for $\Eve$ to target random vertices
 with the largest possible values. We formalize this idea below
 
 
 % \pat{Argue why some random vertices are better for \Eve, and why some
-%   random vertices cannot be good for \Eve and \Adam}
+%   random vertices cannot be good for $\Eve$ and \Adam}
 
 
 We write $\Randomvertices = \{v_1,\ldots,v_k\}$. 
 % , and write additionally $v_0$ for $\vlose$ and $v_{k+1}$ for
 % $\vwin$
 The idea will be to order random vertices in such a way that the
-higher is a random vertice (in the order), the better it is for \Eve;
+higher is a random vertice (in the order), the better it is for $\Eve$;
 and conversely, the smaller is a random vertice (in the order), the
-worse it is for \Adam. We fix a permutation
+worse it is for $\Adam$. We fix a permutation
 $\perm: \Randomvertices \to \Randomvertices$, and abusively write
 $\perm_i = \perm^{-1}(v_i)$, the $i$-th element in the order defined
 by $\perm$.
@@ -340,11 +333,11 @@ sequence $(X_i)_{i \ge 0}$ by:
 \[
 \left\{
 \begin{array}{rcl}
-  X_0 & =& X \\
-  X_{i+1} &=& X_i \cup \{v \in \Evevertices \mid \exists w \in X_i\
-  \text{s.t.}\ (v,w) \in E\} \\
-   && \phantom{X_i} \cup \{v \in \Adamvertices \mid \forall w \in X_i,\ 
-  (v,w) \in E\ \text{implies}\ v \in X_i\}
+X_0 & =& X \\
+X_{i+1} &=& X_i \cup \{v \in \Evevertices \mid \exists w \in X_i\
+\text{s.t.}\ (v,w) \in E\} \\
+ && \phantom{X_i} \cup \{v \in \Adamvertices \mid \forall w \in X_i,\ 
+(v,w) \in E\ \text{implies}\ v \in X_i\}
 \end{array}
 \right.
 \]
@@ -354,7 +347,7 @@ The deterministic attractor of $X$ is then given by:
 \]
 Note that since $\vertices$ is finite, the sequence $(X_i)_{i \ge 0}$
 stabilizes and the above union is actually finite.  \pat{refer to the
-  relevant previous chapter, there certainly is one.}
+relevant previous chapter, there certainly is one.}
 
 Let $\perm$ be a permutation. We define the $\perm$-regions as
 deterministic attractors to the random vertices (taken in the correct
@@ -362,16 +355,16 @@ order) as follows:
 \[
 \left\{
 \begin{array}{l}
-  W_\perm^{k+1}  = \{\vwin\} \\
-  W_\perm^i =
-  \DetAtt(\{\perm_i,\ldots,\perm_k,\vwin\}) \setminus \bigcup_{j=i+1}^{k+1}
-  W_\perm^j\quad \forall 1 \le i \le k \\ 
-  W_\perm^0 = V \setminus \bigcup_{j=1}^{k+1} W_\perm^j = \{\vlose\}
+W_\perm^{k+1}  = \{\vwin\} \\
+W_\perm^i =
+\DetAtt(\{\perm_i,\ldots,\perm_k,\vwin\}) \setminus \bigcup_{j=i+1}^{k+1}
+W_\perm^j\quad \forall 1 \le i \le k \\ 
+W_\perm^0 = V \setminus \bigcup_{j=1}^{k+1} W_\perm^j = \{\vlose\}
 \end{array}
 \right.
 \]
 The last equality (for $W_\perm^0$) holds since (i) from vertices in
-$W_\perm^0$ \Adam can enforce avoiding $\Randomvertices \cup
+$W_\perm^0$ $\Adam$ can enforce avoiding $\Randomvertices \cup
 \{\vwin\}$ (by determinacy of non-stochastic reachability games
 \pat{ref to a previous chapter?}), yielding only losing outcomes, and
 (ii) $\vlose$ is the unique vertex with value $0$ (by
@@ -379,17 +372,17 @@ assumption). Later, we will write $W_\perm^{\ge j}$ for
 $\bigcup_{i=j}^{k+1} W_\perm^i$.
 
 Given $\perm$ a permutation, we define strategies $\sigma_\perm$ (for
-\Eve) and $\tau_\perm$ (for \Adam) such that on $W_\perm^i$:
+$\Eve$) and $\tau_\perm$ (for $\Adam$) such that on $W_\perm^i$:
 \begin{itemize}
 \item $\sigma_\perm$ is a pure and positional attractor strategy to
-  $\{\perm_i,\ldots,\perm_k,\vwin\}$;
+$\{\perm_i,\ldots,\perm_k,\vwin\}$;
 \item $\tau_\perm$ is a pure and positional trapping strategy avoiding
-  $\{\perm_{i+1},\ldots,\perm_k,\vwin\}$.
+$\{\perm_{i+1},\ldots,\perm_k,\vwin\}$.
 \end{itemize}
 Those two strategies obviously exist: $\sigma_\perm$ exists by
 definition of the deterministic attractor, while $\tau_\perm$ exists
 by determinacy of reachability games (if a vertex is not winning for
-\Eve for a reachability objective, then it is winning for \Adam for
+$\Eve$ for a reachability objective, then it is winning for $\Adam$ for
 the corresponding safety objective).
 
 We can then define for every $v \in \vertices$:
@@ -399,18 +392,17 @@ We can then define for every $v \in \vertices$:
 \end{array}
 \]
 which can be easily computed using systems of linear
-equations. %\pat{refs \`a un chapitre avant ??}
-
+equations.
 
 The rest of this section is devoted to a proof of the following
 result, which uses only basic arguments:
 
-\begin{theorem}
-  \label{6-thm:corr-strat-improv}
-  There is a permutation $\perm$ such that $\sigma_\perm$ is optimal
-  for \Eve and $\tau_\perm$ is optimal for \Adam. Given a permutation
-  $\perm$, we can check in polynomial time whether $\sigma_\perm$ and
-  $\tau_\perm$ are optimal.
+\begin{theorem}[Correctness of the strategy improvement algorithm]
+\label{6-thm:corr-strat-improv}
+There is a permutation $\perm$ such that $\sigma_\perm$ is optimal
+for $\Eve$ and $\tau_\perm$ is optimal for $\Adam$. Given a permutation
+$\perm$, we can check in polynomial time whether $\sigma_\perm$ and
+$\tau_\perm$ are optimal.
 \end{theorem}
 
 We will explain in~\cref{6-subsec:algo-strat-improv} how this
@@ -419,8 +411,6 @@ computing values and optimal strategies in stochastic reachability
 games.
 
 
-%\subsubsection{Classifying stochastic vertices}
-
 \subsubsection{Live and self-consistent permutations}
 
 
@@ -428,8 +418,7 @@ We say that a permutation $\perm$ is \emph{self-consistent} whenever:
 \[
 \val_\perm(\perm_1) \le \val_\perm(\perm_2) \le \ldots \le \val_\perm(\perm_k)
 \]
-That is, the order given by $\perm$ coincides with the preference of
-\Eve.
+That is, the order given by $\perm$ coincides with the preference of $\Eve$.
 
 We say $\perm$ is \emph{live} whenever for every $1 \le i \le k$:
 \[
@@ -447,434 +436,301 @@ correctness, and will turn to the existence later.
 
 \subsubsection{Correctness of live and self-consistent permutations}
 
-% The following properties of $\val_\perm$ are always satisfied, without
-% any further assumption on $\perm$.
-% \begin{lemma}
-%   \label{stoch:lemma1}
-%   \begin{enumerate}
-%   \item $\val_\perm(\vlose) = 0$ and $\val_\perm(\vwin) = 1$;
-%   \item for every $1 \le i \le k$, for every $v \in W_\perm^i$,
-%     $\val_\perm(v) = \val_\perm(\perm_i)$;
-%   \item For every $v \in \Evevertices$, $\val_\perm(v) =
-%     \val_\perm(\sigma_\perm(v))$;
-%   \item For every $v \in \Adamvertices$, $\val_\perm(v) =
-%     \val_\perm(\tau_\perm(v))$;
-%   \item For every $v \in \Randomvertices$, $\val_\perm(v) = \sum_{w\
-%       \text{s.t.}\ (v,w) \in E} \delta(v)(w) \cdot \val_\perm(w)$.
-%   \end{enumerate}
-% \end{lemma}
-
-% \begin{proof}
-%   The first item is obvious.
-  
-%   For every $v \in W_\perm^i$, up to the first visit to a random
-%   vertex, the strategy profile $(\sigma_\perm,\tau_\perm)$ generates a
-%   unique path. So we can speak of the first random vertex encountered
-%   from $v$ when applying $(\sigma_\perm,\tau_\perm)$. By definition of
-%   $\sigma_\perm$ (attractor to $\{\perm_i,\ldots,\perm_k,\vwin\}$) and
-%   $\tau_\perm$ (trapping strategy avoiding
-%   $\{\perm_{i+1},\ldots,\perm_k,\vwin\}$), this random vertex can only
-%   be $\perm_i$. According values follow, proving the second item.
-
-%   Assume $v \in W_\perm^i$.  By definition of $\sigma_\perm$ (being an
-%   attractor strategy), $\sigma_\perm(v) \in W_\perm^i \cup
-%   \{\perm_i,\ldots,\perm_k,\vwin\}$. Dually, since $v \notin
-%   W_\perm^{\ge i+1}$, $\sigma_\perm(v) \notin
-%   \{\perm_{i+1},\ldots,\perm_k,\vwin\}$. Hence, $\sigma_\perm(v) \in
-%   W_\perm^i \cup \{\perm_i\} = W_\perm^i$, and we get that
-%   $\val_\perm(v) = \val_\perm(\perm_i) = \val_\perm(\sigma_\perm(v))$
-%   (third item).
-
-%   Assume $v \in W_\perm^i$. By definition of $\sigma_\perm$ (being a
-%   trapping strategy), $\tau_\perm(v) \notin
-%   \{\perm_{i+1},\ldots,\perm_k,\vwin\}$. However since $v \in
-%   W_\perm^i$, we nevertheless have that $\tau_\perm(v) \in W_\perm^i
-%   \cup \{\perm_i,\ldots,\perm_k,\vwin\}$, hence $\tau_\perm(v) \in
-%   W_\perm^i \cup \{\perm_i\} = W_\perm^i$. Hence $\val_\perm(v) =
-%   \val_\perm(\perm_i) = \val_\perm(\tau_\perm(v))$ (fourth item).
-
-%   The fifth item is straightforward hence omitted.  \qed
-% \end{proof}
-
-
-
 We first give some properties always satisfied by strategies
 $\sigma_\perm$ and $\tau_\perm$ without any condition on $\perm$, and
 refine these properties to show that $\sigma_\perm$ and $\tau_\perm$
 are (local) best responses to each others, when the permutation is
 self-consistent.
 
-\begin{lemma}
-  \label{stoch:lemma2}
-  We write (\ddag) for the assumption that $\perm$ is self-consistent.
-  \begin{enumerate}
-  \item $\val_\perm(\vlose) = 0$ and $\val_\perm(\vwin) = 1$;
-  \item for every $1 \le i \le k$, for every $v \in W_\perm^i$,
-    $\val_\perm(v) = \val_\perm(\perm_i)$;
-  \item For every $v \in \Evevertices$,
-    \[
-    \val_\perm(v) = \val_\perm(\sigma_\perm(v)) \stackrel{(\ddag)}{=}
-    \max_{w\ \text{s.t.}\ (v,w) \in E} \val_\perm(w)
-    \]
-  \item For every $v \in \Adamvertices$,
-    \[
-    \val_\perm(v) = \val_\perm(\tau_\perm(v)) \stackrel{(\ddag)}{=}
-    \min_{w\ \text{s.t.}\ (v,w) \in E} \val_\perm(w)
-    \]
-  % \item For every $v \in \Randomvertices$,
-  %   \[
-  %   \val_\perm(v) = \sum_{w\ \text{s.t.}\ (v,w) \in E} \delta(v)(w)
-  %   \cdot \val_\perm(w)
-  %   \]
-  \item For every $v \in \Randomvertices$, $\val_\perm(v) = \sum_{w\
-      \text{s.t.}\ (v,w) \in E} \delta(v)(w) \cdot \val_\perm(w)$.
-  \end{enumerate}
+\begin{lemma}[Correctness of live and self-consistent permutations]
+\label{stoch:lemma2}
+We write ($\ddag$) for the assumption that $\perm$ is self-consistent.
+\begin{enumerate}
+\item $\val_\perm(\vlose) = 0$ and $\val_\perm(\vwin) = 1$;
+\item for every $1 \le i \le k$, for every $v \in W_\perm^i$,
+  $\val_\perm(v) = \val_\perm(\perm_i)$;
+\item For every $v \in \Evevertices$,
+  \[
+  \val_\perm(v) = \val_\perm(\sigma_\perm(v)) \stackrel{(\ddag)}{=}
+  \max_{w\ \text{s.t.}\ (v,w) \in E} \val_\perm(w)
+  \]
+\item For every $v \in \Adamvertices$,
+  \[
+  \val_\perm(v) = \val_\perm(\tau_\perm(v)) \stackrel{(\ddag)}{=}
+  \min_{w\ \text{s.t.}\ (v,w) \in E} \val_\perm(w)
+  \]
+\item For every $v \in \Randomvertices$, $\val_\perm(v) = \sum_{w\
+    \text{s.t.}\ (v,w) \in E} \delta(v)(w) \cdot \val_\perm(w)$.
+\end{enumerate}
 \end{lemma}
 
 \begin{proof}
 
 
-  The first item is obvious.
-  
-  For every $v \in W_\perm^i$, up to the first visit to a random
-  vertex, the strategy profile $(\sigma_\perm,\tau_\perm)$ generates a
-  unique path. So we can speak of the first random vertex encountered
-  from $v$ when applying $(\sigma_\perm,\tau_\perm)$. By definition of
-  $\sigma_\perm$ (attractor to $\{\perm_i,\ldots,\perm_k,\vwin\}$) and
-  $\tau_\perm$ (trapping strategy avoiding
-  $\{\perm_{i+1},\ldots,\perm_k,\vwin\}$), this random vertex can only
-  be $\perm_i$. According values follow, proving the second item.
+The first item is obvious.
 
-  Assume $v \in \Evevertices \cap W_\perm^i$.  By definition of
-  $\sigma_\perm$ (being an attractor strategy), $\sigma_\perm(v) \in
-  W_\perm^i \cup \{\perm_i,\ldots,\perm_k,\vwin\}$. Dually, since $v
-  \notin W_\perm^{\ge i+1}$, $\sigma_\perm(v) \notin
-  \{\perm_{i+1},\ldots,\perm_k,\vwin\}$. Hence, $\sigma_\perm(v) \in
-  W_\perm^i \cup \{\perm_i\} = W_\perm^i$, and we get that
-  $\val_\perm(v) = \val_\perm(\perm_i) = \val_\perm(\sigma_\perm(v))$.
-  Assume (towards a contradiction) that there is $w \in \vertices$
-  such that $(v,w) \in E$ and $\val_\perm(w)>\val_\perm(v)$.  Since
-  $\val_\perm(w) > \val_\perm(v) = \val_\perm(\perm_i)$, by
-  self-consistence, it is the case that $w \in W_\perm^j$ with $j > i$
-  (with $\val_\perm(w) = \val_\perm(\perm_j)$). But then, we can
-  deduce that $v \in \DetAtt(w) \subseteq
-  \DetAtt(\{\perm_j,\ldots,\perm_k,\vwin\})$, which is not the case,
-  since $v \notin W_\perm^{\ge i+1} \supseteq W_\perm^j$. There is
-  therefore a contradiction, and we can conclude that $\val_\perm(v) =
-  \max_{w\ \text{s.t.}\ (v,w) \in E} \val_\perm(w)$.
+For every $v \in W_\perm^i$, up to the first visit to a random
+vertex, the strategy profile $(\sigma_\perm,\tau_\perm)$ generates a
+unique path. So we can speak of the first random vertex encountered
+from $v$ when applying $(\sigma_\perm,\tau_\perm)$. By definition of
+$\sigma_\perm$ (attractor to $\{\perm_i,\ldots,\perm_k,\vwin\}$) and
+$\tau_\perm$ (trapping strategy avoiding
+$\{\perm_{i+1},\ldots,\perm_k,\vwin\}$), this random vertex can only
+be $\perm_i$. According values follow, proving the second item.
+
+Assume $v \in \Evevertices \cap W_\perm^i$.  By definition of
+$\sigma_\perm$ (being an attractor strategy), $\sigma_\perm(v) \in
+W_\perm^i \cup \{\perm_i,\ldots,\perm_k,\vwin\}$. Dually, since $v
+\notin W_\perm^{\ge i+1}$, $\sigma_\perm(v) \notin
+\{\perm_{i+1},\ldots,\perm_k,\vwin\}$. Hence, $\sigma_\perm(v) \in
+W_\perm^i \cup \{\perm_i\} = W_\perm^i$, and we get that
+$\val_\perm(v) = \val_\perm(\perm_i) = \val_\perm(\sigma_\perm(v))$.
+Assume (towards a contradiction) that there is $w \in \vertices$
+such that $(v,w) \in E$ and $\val_\perm(w)>\val_\perm(v)$.  Since
+$\val_\perm(w) > \val_\perm(v) = \val_\perm(\perm_i)$, by
+self-consistence, it is the case that $w \in W_\perm^j$ with $j > i$
+(with $\val_\perm(w) = \val_\perm(\perm_j)$). But then, we can
+deduce that $v \in \DetAtt(w) \subseteq
+\DetAtt(\{\perm_j,\ldots,\perm_k,\vwin\})$, which is not the case,
+since $v \notin W_\perm^{\ge i+1} \supseteq W_\perm^j$. There is
+therefore a contradiction, and we can conclude that $\val_\perm(v) =
+\max_{w\ \text{s.t.}\ (v,w) \in E} \val_\perm(w)$.
 
 
-  Assume $v \in \Adamvertices \cap W_\perm^i$. By definition of
-  $\sigma_\perm$ (being a trapping strategy), $\tau_\perm(v) \notin
-  \{\perm_{i+1},\ldots,\perm_k,\vwin\}$. However since $v \in
-  W_\perm^i$, we nevertheless have that $\tau_\perm(v) \in W_\perm^i
-  \cup \{\perm_i,\ldots,\perm_k,\vwin\}$, hence $\tau_\perm(v) \in
-  W_\perm^i \cup \{\perm_i\} = W_\perm^i$. Hence $\val_\perm(v) =
-  \val_\perm(\perm_i) = \val_\perm(\tau_\perm(v))$.  Assume (towards a
-  contradiction) that there is $w \in \vertices$ such that $(v,w) \in
-  E$ and $\val_\perm(w)<\val_\perm(v)$. As in the previous item, by
-  self-consistence, $w \in W_\perm^j$ with $j<i$. But, $v$ can only be
-  in a deterministic attractor if all its successors already are. This
-  contradicts the fact that $w \in W_\perm^j$, hence $w \notin
-  W_\perm^{\ge j+1} \supseteq W_\perm^i$. Hence, we conclude that
-  $\val_\perm(v) = \min_{w\ \text{s.t.}\ (v,w) \in E} \val_\perm(w)$.
+Assume $v \in \Adamvertices \cap W_\perm^i$. By definition of
+$\sigma_\perm$ (being a trapping strategy), $\tau_\perm(v) \notin
+\{\perm_{i+1},\ldots,\perm_k,\vwin\}$. However since $v \in
+W_\perm^i$, we nevertheless have that $\tau_\perm(v) \in W_\perm^i
+\cup \{\perm_i,\ldots,\perm_k,\vwin\}$, hence $\tau_\perm(v) \in
+W_\perm^i \cup \{\perm_i\} = W_\perm^i$. Hence $\val_\perm(v) =
+\val_\perm(\perm_i) = \val_\perm(\tau_\perm(v))$.  Assume (towards a
+contradiction) that there is $w \in \vertices$ such that $(v,w) \in
+E$ and $\val_\perm(w)<\val_\perm(v)$. As in the previous item, by
+self-consistence, $w \in W_\perm^j$ with $j<i$. But, $v$ can only be
+in a deterministic attractor if all its successors already are. This
+contradicts the fact that $w \in W_\perm^j$, hence $w \notin
+W_\perm^{\ge j+1} \supseteq W_\perm^i$. Hence, we conclude that
+$\val_\perm(v) = \min_{w\ \text{s.t.}\ (v,w) \in E} \val_\perm(w)$.
 
-  The fifth item is straightforward hence omitted.  \qed
+The fifth item is straightforward hence omitted.
 \end{proof}
-%\pat{end-of-proof marker missing}
 
 As a consequence of~\cref{6-lem:lemma2}, we get that $\val_\perm$
 is a fixpoint of Bellman's equations, hence it is larger than (or
 equal to) the least fixpoint of Bellman's equations, that is $\val^*$:
-%\pat{peut-etre faire attention aux notations : je crois qu'on n'a pas
-%  utilis\'e la notation $\val^*$ avant}
 
-\begin{corollary}
-  Assume $\perm$ is self-consistent.  Then for every $v \in
-  \vertices$, $\val^*(v) \le \val_\perm(v)$.
+\begin{corollary}[Self-consistent implies solution of Bellman's equations]
+\label{6-cor:self-consistent_solution}
+Assume $\perm$ is self-consistent.  Then for every $v \in
+\vertices$, $\val^*(v) \le \val_\perm(v)$.
 \end{corollary}
 
 The converse inequality is not true for general or self-consistent
 permutations, but will require the liveness property. One of the main
 advantages of a live permutation $\perm$ is that it induces a
-``stopping'' MDP when \Eve plays according to $\sigma_\perm$: \Adam
-will not be able to prevent the game converging to $\vlose$ and $\vwin$.
+``stopping'' MDP when $\Eve$ plays according to $\sigma_\perm$: 
+$\Adam$ will not be able to prevent the game converging to $\vlose$ and $\vwin$.
 
-\begin{lemma}
-  \label{stoch:lemma:stopping}
-  Let $\perm$ be a live permutation. Then, for every \Adam's strategy
-  $\tau$, for every vertex $v$:
-  \[
-  \probm^v_{\sigma_\perm,\tau} (\Reach(\{\vlose,\vwin\})) = 1
-  \]
+\begin{lemma}[Live permutations imply stopping MDPs]
+\label{6-lem:live_stopping}
+Let $\perm$ be a live permutation. Then, for every $\Adam$'s strategy
+$\tau$, for every vertex $v$:
+\[
+\probm^v_{\sigma_\perm,\tau} (\Reach(\{\vlose,\vwin\})) = 1
+\]
 \end{lemma}
 
 \begin{proof}
-  We make use of the progress property induced by a live permutation.
-  Let
-  \[
-  \alpha = \min_{1 \le i \le k} \delta(\perm_i) \big(W_\perm^{\ge
-    i+1}\big)
-  \]
-  By definition of a live permutation, $\alpha>0$.
+We make use of the progress property induced by a live permutation.
+Let
+\[
+\alpha = \min_{1 \le i \le k} \delta(\perm_i) \big(W_\perm^{\ge
+  i+1}\big)
+\]
+By definition of a live permutation, $\alpha>0$.
 
-  We write $V_i$ for the random variable representing the $i$-th state
-  of a run.
-  %
-  By definition of $\alpha$, for every $v \in \vertices$, for every $1
-  \le i \le k$ and for every $l \ge 0$,
-  \[
-  \probm^v_{\sigma_\perm,\tau}\Big(V_{l+1} \in W_\perm^{\ge i+1} \mid
-  V_l = \perm_i\Big) \ge \alpha
-  \]
-  Also, for every $1 \le i \le k$, for every $v \in \vertices$, for
-  every $l \ge 0$,
-  \[
-  \probm^v_{\sigma_\perm,\tau}\Big(\exists h < |W_\perm^i|\
-  \text{s.t.}\ V_{l+h} \in \{\perm_i,\ldots,\perm_k,\vwin\} \mid V_l
-  \in W_\perm^i\Big)=1
-  \]
-  since $\sigma_\perm$ plays according to attractor strategies in
-  according subsets of vertices.
+We write $V_i$ for the random variable representing the $i$-th state
+of a run.
+%
+By definition of $\alpha$, for every $v \in \vertices$, for every $1
+\le i \le k$ and for every $l \ge 0$,
+\[
+\probm^v_{\sigma_\perm,\tau}\Big(V_{l+1} \in W_\perm^{\ge i+1} \mid
+V_l = \perm_i\Big) \ge \alpha
+\]
+Also, for every $1 \le i \le k$, for every $v \in \vertices$, for
+every $l \ge 0$,
+\[
+\probm^v_{\sigma_\perm,\tau}\Big(\exists h < |W_\perm^i|\
+\text{s.t.}\ V_{l+h} \in \{\perm_i,\ldots,\perm_k,\vwin\} \mid V_l
+\in W_\perm^i\Big)=1
+\]
+since $\sigma_\perm$ plays according to attractor strategies in
+according subsets of vertices.
 
-  Hence we deduce that for every $v \in \vertices$, for every $l \ge
-  0$,
-  \[
-  \probm^v_{\sigma_\perm,\tau}\Big(V_{l+|\vertices|}=\vwin \mid V_l
-  \ne \vlose\Big) \ge \alpha^k
-  \]
-  which we can rewrite as:
-  \[
-  \probm^v_{\sigma_\perm,\tau}\Big(\forall 0 \le l \le l' \le
-  l+|\vertices|,\ V_{l'} \ne \vwin \mid V_l \ne \vlose\Big) \le
-  (1-\alpha^k)
-  \]
-  Iterating, we get that for every $i$, for every $v \in \vertices$,
-  \[
-  \probm^v_{\sigma_\perm,\tau}\Big(\forall l \le i \cdot |\vertices|,\
-  V_{l} \ne \vwin \mid V_0 \ne \vlose\Big) \le (1-\alpha^k)^i
-  \]
-  We  deduce that for every $v \in \vertices$,
-  \[
-  \probm^v_{\sigma_\perm,\tau}(\forall l \ge 0,\ V_l \ne \vwin \mid
-  V_0 \ne \vlose) = 0
-  \]
-  We conclude with
-  \[
-  \probm^v_{\sigma_\perm,\tau}(\exists l \ge 0,\ V_l = \vwin \mid V_0
-  \ne \vlose) = 1
-  \]
-  hence with the statement.
+Hence we deduce that for every $v \in \vertices$, for every $l \ge
+0$,
+\[
+\probm^v_{\sigma_\perm,\tau}\Big(V_{l+|\vertices|}=\vwin \mid V_l
+\ne \vlose\Big) \ge \alpha^k
+\]
+which we can rewrite as:
+\[
+\probm^v_{\sigma_\perm,\tau}\Big(\forall 0 \le l \le l' \le
+l+|\vertices|,\ V_{l'} \ne \vwin \mid V_l \ne \vlose\Big) \le
+(1-\alpha^k)
+\]
+Iterating, we get that for every $i$, for every $v \in \vertices$,
+\[
+\probm^v_{\sigma_\perm,\tau}\Big(\forall l \le i \cdot |\vertices|,\
+V_{l} \ne \vwin \mid V_0 \ne \vlose\Big) \le (1-\alpha^k)^i
+\]
+We  deduce that for every $v \in \vertices$,
+\[
+\probm^v_{\sigma_\perm,\tau}(\forall l \ge 0,\ V_l \ne \vwin \mid
+V_0 \ne \vlose) = 0
+\]
+We conclude with
+\[
+\probm^v_{\sigma_\perm,\tau}(\exists l \ge 0,\ V_l = \vwin \mid V_0
+\ne \vlose) = 1
+\]
+hence with the statement.
 \end{proof}
-%\pat{end-of-proof marker missing}
 
-
-\begin{lemma}
-  Let $\perm$ be a live and self-consistent permutation.  Then for
-  every $v \in \vertices$,  $\val_\perm(v) \le \val^*(v)$.
-% Then
-%   $\sigma_\perm$ is optimal for \Eve and $\sigma_\perm$ is optimal for
-%   \Adam.
+\begin{lemma}[Live and self-consistent implies lower bound on values]
+\label{6-lem:live_self-consistent_lower_bound}
+Let $\perm$ be a live and self-consistent permutation.  Then for
+every $v \in \vertices$,  $\val_\perm(v) \le \val^*(v)$.
 \end{lemma}
 
 \begin{proof}
-  Fix a pure positional \Adam's strategy $\tau$. The tuple
-  $(\probm_{\sigma_\perm,\tau}^v(\Reach(\Win)))_{v \in \vertices}$ is
-  a
-  % the smallest (and even unique, due to the stopping property stated
-  % in~\cref{6-lem:stopping})
-  solution to the following equations:
-  \[
-  \left\{\begin{array}{ll} x_v =
-      x_{\tau(v)} & \text{if}\ v \in \Adamvertices \\
-      x_v = x_{\sigma_\perm(v)} & \text{if}\ v \in \Evevertices \\
-      x_v = \sum_{w\ \text{s.t.}\ (v,w) \in E} \delta(v)(w) \cdot
-      x_w  & \text{if}\ v \in \Randomvertices \\
-      x_{\vwin} = 1 \\
-      x_{\vlose} = 0
-    \end{array}\right.
-  \]
-  In particular, it is a solution to the following inequations:
-  % is the unique solution of:
-  % \[
-  % \pwrobm_{\sigma_\perm,\tau}^v(\Reach(\Win)) =
-  % \left\{\begin{array}{ll} \min_{w\ \text{s.t.}\ (v,w) \in E}
-  %     \probm_{\sigma_\perm,\tau}^w(\Reach(\Win)) & \text{if}\ v
-  %     \in
-  %     \Adamvertices \\
-  %     \max_{w\ \text{s.t.}\ (v,w) \in
-  %     E}\probm_{\sigma_\perm,\tau}^w(\Reach(\Win)) & \text{if}\ v
-  %     \in \Evevertices \\
-  %     \sum_{w\ \text{s.t.}\ (v,w) \in E} \delta(v)(w) \cdot
-  %     \probm_{\sigma_\perm,\tau}^w(\Reach(\Win)) & \text{if}\ v
-  %     \in \Randomvertices \\
-  %   \end{array}\right.
-  % \]
-  \[
-  \left\{\begin{array}{ll} 
-      x_v \ge \min_{w\ \text{s.t.}\ (v,w) \in E}
-      x_w & \text{if}\ v \in \Adamvertices \\
-      x_v = x_{\sigma_\perm(v)}  & \text{if}\ v \in \Evevertices \\
-      x_v = \sum_{w\ \text{s.t.}\ (v,w) \in E} \delta(v)(w) \cdot x_w
-      & \text{if}\ v \in \Randomvertices \\
-      x_{\vwin} = 1 \\
-      x_{\vlose} = 0
-    \end{array}\right.
-  \]
-  Since the MDP (when $\sigma_\perm$ has been fixed) is stopping (see~\cref{6-lem:stopping}), there is no proper end-component
-  (except $\{\vwin\}$ and $\{\vlose\}$), and the above system of
-  inequations has a unique minimal solution, which is the unique
-  solution of the same system with $=$ instead of $\ge$.
+Fix a pure positional $\Adam$'s strategy $\tau$. The tuple
+$(\probm_{\sigma_\perm,\tau}^v(\Reach(\Win)))_{v \in \vertices}$ is
+a solution to the following equations:
+\[
+\left\{\begin{array}{ll} x_v =
+    x_{\tau(v)} & \text{if}\ v \in \Adamvertices \\
+    x_v = x_{\sigma_\perm(v)} & \text{if}\ v \in \Evevertices \\
+    x_v = \sum_{w\ \text{s.t.}\ (v,w) \in E} \delta(v)(w) \cdot
+    x_w  & \text{if}\ v \in \Randomvertices \\
+    x_{\vwin} = 1 \\
+    x_{\vlose} = 0
+  \end{array}\right.
+\]
+In particular, it is a solution to the following inequations:
+\[
+\left\{\begin{array}{ll} 
+    x_v \ge \min_{w\ \text{s.t.}\ (v,w) \in E}
+    x_w & \text{if}\ v \in \Adamvertices \\
+    x_v = x_{\sigma_\perm(v)}  & \text{if}\ v \in \Evevertices \\
+    x_v = \sum_{w\ \text{s.t.}\ (v,w) \in E} \delta(v)(w) \cdot x_w
+    & \text{if}\ v \in \Randomvertices \\
+    x_{\vwin} = 1 \\
+    x_{\vlose} = 0
+  \end{array}\right.
+\]
+Since the MDP (when $\sigma_\perm$ has been fixed) is stopping (see~\cref{6-lem:stopping}), there is no proper end-component
+(except $\{\vwin\}$ and $\{\vlose\}$), and the above system of
+inequations has a unique minimal solution, which is the unique
+solution of the same system with $=$ instead of $\ge$.
 
-  On the other hand~\cref{6-lem:lemma2} tells us that
-  $(\val_\perm(v))_{v \in\vertices}$ can only be that unique
-  solution. Hence, for every $v \in \vertices$:
-  \[
-  \val_\perm(v) \le \probm_{\sigma_\perm,\tau}^v(\Reach(\Win))
-  \]
-  % This shows that $\tau_\perm$ plays optimally against
-  % $\sigma_\perm$.
-%   \item For every memoryless and pure \Eve's strategy $\sigma$,
-%     $(\probm_{\sigma,\tau_\perm}^v(\Reach(\Win)))_{v \in \vertices}$
-%     is the smallest solution to the following equations:
-%     \[
-%     \left\{\begin{array}{ll} x_v =
-%         x_{\sigma(v)} & \text{if}\ v \in \Evevertices \\
-%         x_v = x_{\tau_\perm(v)} & \text{if}\ v \in \Adamvertices \\
-%         x_v = \sum_{w\ \text{s.t.}\ (v,w) \in E} \delta(v)(w) \cdot
-%         x_w \\
-%         x_{\vwin} = 1 \\
-%         x_{\vlose} = 0
-%       \end{array}\right.
-%     \]
-%     In particular, it is a solution to the following inequations:
-%     \[
-%     \left\{\begin{array}{ll} x_v \le \max_{w\ \text{s.t.}\ (v,w) \in
-%           E}
-%         x_w & \text{if}\ v \in \Evevertices \\
-%         x_v = x_{\tau_\perm(v)} & \text{if}\ v \in \Adamvertices \\
-%         x_v = \sum_{w\ \text{s.t.}\ (v,w) \in E} \delta(v)(w) \cdot
-%         x_w \\
-%         x_{\vwin} = 1 \\
-%         x_{\vlose} = 0
-%       \end{array}\right.
-%     \]
-%   The above system of inequations has a unique maximal
-%   solution. \pat{c'est bien ok ?}
-
-%   On the other hand, ~\cref{6-lem:lemma2} tells us that
-%   $(\val_\perm(v))_{v \in\vertices}$ can only be that maximal
-%   solution. \fbox{??} Hence, for every $v \in \vertices$:
-%   \[
-%   \probm_{\sigma_\perm,\tau_\perm}^v(\Reach(\Win)) = \val_\perm(v) \ge
-%   \probm_{\sigma,\tau_\perm}^v(\Reach(\Win))
-%   \]
-%   This shows that $\sigma_\perm$ plays optimally against $\tau_\perm$.
-
-  Since this holds for every pure positional strategy $\tau$ of \Adam,
-  we conclude that for every $v \in \vertices$,
-  $\val_\perm(v) \le \val^*(v)$. \qed
-  %  We conclude that 
-  % \[
-  % \probm_{\sigma,\tau_\perm}^v(\Reach(\Win)) \le
-  % \probm_{\sigma_\perm,\tau_\perm}^v(\Reach(\Win)) \le
-  % \probm_{\sigma_\perm,\tau}^v(\Reach(\Win))
-  % \]
-  % Hence $\val^*(v) = \val_\perm(v)$ for every $v \in \vertices$. \qed
+On the other hand~\cref{6-lem:lemma2} tells us that
+$(\val_\perm(v))_{v \in\vertices}$ can only be that unique
+solution. Hence, for every $v \in \vertices$:
+\[
+\val_\perm(v) \le \probm_{\sigma_\perm,\tau}^v(\Reach(\Win))
+\]
+Since this holds for every pure positional strategy $\tau$ of $\Adam$,
+we conclude that for every $v \in \vertices$,
+$\val_\perm(v) \le \val^*(v)$.
 \end{proof}
 
-\begin{corollary}
-  \label{stoch:coro}
-  Let $\perm$ be a live and self-consistent permutation. Then, for
-  every $v \in \vertices$, $\val^*(v) = \val_\perm(v)$.  
+\begin{corollary}[Live and self-consistent imply optimal]
+\label{6-cor:live_self-consistent_value}
+Let $\perm$ be a live and self-consistent permutation. Then, for
+every $v \in \vertices$, $\val^*(v) = \val_\perm(v)$.  
 \end{corollary}
 
 \subsubsection{Existence of a live and self-consistent permutation}
 
+\begin{lemma}[Live and value non-decreasing imply self-consistent]
+\label{6-lem:live_non-dec_self-consistent}
+Let $\perm$ be a live permutation such that
+\[
+\val^*(\perm_1) \le \val^*(\perm_2) \le \ldots \le \val^*(\perm_k)
+\]
+Then, $\perm$ is self-consistent.
+\end{lemma}
+
+We will show that for every vertex $v \in \vertices$, $\val^*(v) =
+\val_\perm(v)$. This will ne enough for proving the expected result.
+
+We first show a counterpart to~\cref{6-lem:lemma2} for
+$\val^*$:
 \begin{lemma}
-  \label{stoch:lemma:croissant}
-  Let $\perm$ be a live permutation such that
-  \[
-  \val^*(\perm_1) \le \val^*(\perm_2) \le \ldots \le \val^*(\perm_k)
-  \]
-  Then, $\perm$ is self-consistent.
+  Same hypotheses as~\cref{6-lem:croissant}. Then:
+  \begin{enumerate}
+  \item $\val^*(\vlose) = 0$ and $\val^*(\vwin) = 1$;
+  \item for every $1 \le i \le k$, for every $v \in W_\perm^i$,
+    $\val^*(v) = \val^*(\perm_i)$.
+  \end{enumerate}
 \end{lemma}
 
 \begin{proof}
-  We will show that for every vertex $v \in \vertices$, $\val^*(v) =
-  \val_\perm(v)$. This will ne enough for proving the expected result.
+  Notice that item 1 is obvious. 
 
-  We first show a counterpart to~\cref{6-lem:lemma2} for
-  $\val^*$:
-  \begin{lemma}
-    Same hypotheses as~\cref{6-lem:croissant}. Then:
-    \begin{enumerate}
-    \item $\val^*(\vlose) = 0$ and $\val^*(\vwin) = 1$;
-    \item for every $1 \le i \le k$, for every $v \in W_\perm^i$,
-      $\val^*(v) = \val^*(\perm_i)$.
-    \end{enumerate}
-  \end{lemma}
+  We then focus on item 2.  Assume $v \in W_\perm^i$, and define
+  strategy $\sigma^*$ from $v$ as $\sigma_\perm$ (attractor strategy
+  to $\{\perm_i,\ldots,\perm_k,\vwin\}$) until $\vwin$ or a random
+  vertex $\pi_j$ ($j \ge i$) is reached; in the latter case, switch
+  to an optimal strategy out of $\pi_j$. We obviously get that for
+  every strategy $\tau$ for $\Adam$,
+  $\probm_{\sigma^*,\tau}^v(\Reach(\{\vwin\})) \ge \min_{i \le j \le
+    k}\val^*(\perm_j) = \val^*(\perm_i)$. Hence $\val^*(v) \ge
+  \val^*(\perm_i)$.
+  
+  Conversely define strategy $\tau^*$ from $v$ as $\tau_\perm$
+  (trapping strategy out of $\{\perm_{i+1},\ldots,\perm_k,\vwin\}$)
+  until $\vlose$ or a random vertex $\pi_j$ ($j \le i$) is reached;
+  in the latter case, switch to an optimal strategy out of
+  $\pi_j$. Note that it can a priori be the case that we never hit
+  $\vlose$ or a random vertex, but this is good to $\Adam$. However we
+  can conclude that for every strategy $\sigma$ for $\Eve$,
+  $\probm_{\sigma,\tau^*}^v(\Reach(\{\vwin\})) \le \max_{1 \le j \le
+    i}\val^*(\perm_j) = \val^*(\perm_i)$. Hence
+  $\val^*(v) \le \val^*(\perm_i)$.
 
-  \begin{proof}
-    Notice that item 1 is obvious. 
-    % , and that the second equalities in items 3 and 4, as well as
-    % item 5 come from Bellman's
-    % equations.  It herefore remains to argue for item 2 and the
-    % first equalities of items 3 and 4.
+  This allows to conclude item 2, hence the lemma.
+\end{proof}
 
-    We then focus on item 2.  Assume $v \in W_\perm^i$, and define
-    strategy $\sigma^*$ from $v$ as $\sigma_\perm$ (attractor strategy
-    to $\{\perm_i,\ldots,\perm_k,\vwin\}$) until $\vwin$ or a random
-    vertex $\pi_j$ ($j \ge i$) is reached; in the latter case, switch
-    to an optimal strategy out of $\pi_j$. We obviously get that for
-    every strategy $\tau$ for \Adam,
-    $\probm_{\sigma^*,\tau}^v(\Reach(\{\vwin\})) \ge \min_{i \le j \le
-      k}\val^*(\perm_j) = \val^*(\perm_i)$. Hence $\val^*(v) \ge
-    \val^*(\perm_i)$.
-    
-    Conversely define strategy $\tau^*$ from $v$ as $\tau_\perm$
-    (trapping strategy out of $\{\perm_{i+1},\ldots,\perm_k,\vwin\}$)
-    until $\vlose$ or a random vertex $\pi_j$ ($j \le i$) is reached;
-    in the latter case, switch to an optimal strategy out of
-    $\pi_j$. Note that it can a priori be the case that we never hit
-    $\vlose$ or a random vertex, but this is good to \Adam. However we
-    can conclude that for every strategy $\sigma$ for \Eve,
-    $\probm_{\sigma,\tau^*}^v(\Reach(\{\vwin\})) \le \max_{1 \le j \le
-      i}\val^*(\perm_j) = \val^*(\perm_i)$. Hence
-    $\val^*(v) \le \val^*(\perm_i)$.
-
-    % \medskip The proof of the second equalities in items 3 and 4 is
-    % absolutely similar to the same proof in
-    % ~\cref{6-lem:lemma2}. Hence it is omitted.
-    This allows to conclude item 2, hence the lemma.
-  \end{proof}
-
-  Both $\val^*$ and $\val_\perm$ satisfy the system of equations:
-  \[
-  \left\{\begin{array}{ll} 
-      x_v = x_{\perm_i} & \text{if}\ v \in W_\perm^i \\ 
-      % x_v =x_{\tau_\perm(v)} & \text{if}\ v \in \Adamvertices \\
-      % x_v = x_{\sigma_\perm(v)}  & \text{if}\ v \in \Evevertices \\
-      x_v = \sum_{w\ \text{s.t.}\ (v,w) \in E} \delta(v)(w) \cdot x_w
-      & \text{if}\ v \in \Randomvertices \\
-      x_{\vwin} = 1 \\
-      x_{\vlose} = 0
-    \end{array}\right.
-  \]
-  We can rewrite this system into:
-  \[
-  \left\{\begin{array}{ll} 
-      x_v = x_{\perm_i} & \text{if}\ v \in W_\perm^i \\ 
-      % x_v =x_{\tau_\perm(v)} & \text{if}\ v \in \Adamvertices \\
-      % x_v = x_{\sigma_\perm(v)}  & \text{if}\ v \in \Evevertices \\
-      x_{\perm_i} = \sum_{j=0}^{k+1} \delta(\perm_i)(W_\perm^j) \cdot x_{\perm_j}
-      & \\
-      x_{\vwin} = 1 \\
-      x_{\vlose} = 0
-    \end{array}\right.
-  \]
-  Since $\perm$ is live this system has a unique solution!  Hence
-  $\val^* = \val_\perm$, and $\perm$ is self-consistent.
+\begin{proof}
+Both $\val^*$ and $\val_\perm$ satisfy the system of equations:
+\[
+\left\{\begin{array}{ll} 
+    x_v = x_{\perm_i} & \text{if}\ v \in W_\perm^i \\ 
+    % x_v =x_{\tau_\perm(v)} & \text{if}\ v \in \Adamvertices \\
+    % x_v = x_{\sigma_\perm(v)}  & \text{if}\ v \in \Evevertices \\
+    x_v = \sum_{w\ \text{s.t.}\ (v,w) \in E} \delta(v)(w) \cdot x_w
+    & \text{if}\ v \in \Randomvertices \\
+    x_{\vwin} = 1 \\
+    x_{\vlose} = 0
+  \end{array}\right.
+\]
+We can rewrite this system into:
+\[
+\left\{\begin{array}{ll} 
+    x_v = x_{\perm_i} & \text{if}\ v \in W_\perm^i \\ 
+    % x_v =x_{\tau_\perm(v)} & \text{if}\ v \in \Adamvertices \\
+    % x_v = x_{\sigma_\perm(v)}  & \text{if}\ v \in \Evevertices \\
+    x_{\perm_i} = \sum_{j=0}^{k+1} \delta(\perm_i)(W_\perm^j) \cdot x_{\perm_j}
+    & \\
+    x_{\vwin} = 1 \\
+    x_{\vlose} = 0
+  \end{array}\right.
+\]
+Since $\perm$ is live this system has a unique solution!  Hence
+$\val^* = \val_\perm$, and $\perm$ is self-consistent.
 \end{proof}
 
 It remains to show that there always exist  a live permutation
@@ -884,92 +740,89 @@ To do so, we show the following structural property of the game, which
 will help building an appropriate live permutation.
 
 \begin{lemma}
-  \label{stoch:lemma:structure}
-  Let $\{\vwin\} \subseteq X \subseteq V$ be a subset of vertices, and
-  $Y = V \setminus \DetAtt(X)$. Then either $Y = \{\vlose\}$, or there
-  is a random vertex $v \in Y$ such that $\val^*(v) = \max\{\val^*(w)
-  \mid w \in Y\}$ and $\delta(v)\Big(\DetAtt(X)\Big)>0$.
+\label{stoch:lemma:structure}
+Let $\{\vwin\} \subseteq X \subseteq V$ be a subset of vertices, and
+$Y = V \setminus \DetAtt(X)$. Then either $Y = \{\vlose\}$, or there
+is a random vertex $v \in Y$ such that $\val^*(v) = \max\{\val^*(w)
+\mid w \in Y\}$ and $\delta(v)\Big(\DetAtt(X)\Big)>0$.
 \end{lemma}
 
 \begin{proof}
-  % We start by noticing that $\{\val^*(v) \mid v \in \vertices\} =
-  % \{0,1\} \cup \{\val^*(v) \mid v \in \Randomvertices\}$.
-  Let $Z = \textsf{Argmax}_Y (\val^*)$. We assume that there is no
-  random vertex $v \in Z \cap \Randomvertices$ such that
-  $\delta(v)\Big(\DetAtt(X)\Big)>0$. We will show that $Z =
-  \{\vlose\}$, which will imply $Y = \{\vlose\}$. To do so, we show
-  that if $v \in Z$, then $\val^*(v) = 0$.  We fix $v \in Z$, and we
-  assume towards a contradiction that $\val^*(v)>0$.
+% We start by noticing that $\{\val^*(v) \mid v \in \vertices\} =
+% \{0,1\} \cup \{\val^*(v) \mid v \in \Randomvertices\}$.
+Let $Z = \textsf{Argmax}_Y (\val^*)$. We assume that there is no
+random vertex $v \in Z \cap \Randomvertices$ such that
+$\delta(v)\Big(\DetAtt(X)\Big)>0$. We will show that $Z =
+\{\vlose\}$, which will imply $Y = \{\vlose\}$. To do so, we show
+that if $v \in Z$, then $\val^*(v) = 0$.  We fix $v \in Z$, and we
+assume towards a contradiction that $\val^*(v)>0$.
 
-  Let $\tau$ be a pure positional \Adam's strategy on $Y$ avoiding
-  $\DetAtt(X)$: by definition, $\tau(Y) \subseteq Y$. Also, one can
-  argue that $\tau(Z) \subseteq Z$. Indeed otherwise there is $v' \in
-  Z$ such that $\tau(v') \in Y \setminus Z$. Thus, $\val^*(\tau(v')) <
-  \val^*(v')$, which is not possible since $\val^*(v') = \min_{w\
-    \text{s.t.}\ (v',w) \in E} \val^*(w)$ (Bellman's equations). Also
-  by Bellman's equations, if $v' \in \Randomvertices \cap Z$, for
-  every $w'$ such that $\delta(v')(w')>0$, $\val^*(w') =
-  \val^*(v')$. By assumption, it cannot be the case that $w' \in
-  \DetAtt(X)$, hence $w' \in Z$.  Let $v' \in Z \cap \Evevertices$. If
-  there is $w' \notin Z$ such that $(v',w') \in E$, then it must be
-  the case that $w' \in Y \setminus Z$: indeed, it cannot be the case
-  that $w' \in \DetAtt(X)$, otherwise $v'$ would also be in
-  $\DetAtt(X)$.
+Let $\tau$ be a pure positional $\Adam$'s strategy on $Y$ avoiding
+$\DetAtt(X)$: by definition, $\tau(Y) \subseteq Y$. Also, one can
+argue that $\tau(Z) \subseteq Z$. Indeed otherwise there is $v' \in
+Z$ such that $\tau(v') \in Y \setminus Z$. Thus, $\val^*(\tau(v')) <
+\val^*(v')$, which is not possible since $\val^*(v') = \min_{w\
+  \text{s.t.}\ (v',w) \in E} \val^*(w)$ (Bellman's equations). Also
+by Bellman's equations, if $v' \in \Randomvertices \cap Z$, for
+every $w'$ such that $\delta(v')(w')>0$, $\val^*(w') =
+\val^*(v')$. By assumption, it cannot be the case that $w' \in
+\DetAtt(X)$, hence $w' \in Z$.  Let $v' \in Z \cap \Evevertices$. If
+there is $w' \notin Z$ such that $(v',w') \in E$, then it must be
+the case that $w' \in Y \setminus Z$: indeed, it cannot be the case
+that $w' \in \DetAtt(X)$, otherwise $v'$ would also be in
+$\DetAtt(X)$.
 
-  We now define strategy $\tau'$ which plays from $v$ as $\tau$ until
-  $Z$ is left, and then $\tau'$ plays an optimal strategy for \Adam.
-  Let $\sigma$ be a strategy for \Eve. Under the profile
-  $(\sigma,\tau')$ from $v$, either we stay forever in $Z$, or we
-  leave at some \Eve's vertex $v'$ towards a vertex $w'$ with
-  $\val^*(w') < \val^*(v') = \val^*(v)$ (recall the discussion
-  above). We can then write:
-  \begin{eqnarray*}
-    \probm_{\sigma,\tau'}(\Reach(\{\vwin\})) &=&
-    \probm_{\sigma,\tau'}(\Reach(\{\vwin\}) \mid \text{stays in}\  Z\
-    \text{forever}) \cdot  \probm_{\sigma,\tau'}(\text{stays in}\  Z\
-    \text{forever}) \\ 
-    && + \sum_{(v',w') \in (Z \times (Y \setminus Z) \cap E)} 
-    \probm_{\sigma,\tau'}(\Reach(\{\vwin\}) \mid
-    \text{leave via}\  (v',w')) \cdot
-    \probm_{\sigma,\tau'}(\text{leave via}\  (v',w')) \\
-    & = & 0 \cdot \probm_{\sigma,\tau'}(\text{stays in}\  Z\
-    \text{forever}) + \sum_{(v',w') \in (Z \times (Y \setminus Z) \cap
-      E)}  \val^*(w') \cdot
-    \probm_{\sigma,\tau'}(\text{leave via}\  (v',w')) \\
-    & \le & \beta
-  \end{eqnarray*}
-  where $\beta = \max \{\val^*(w) \mid w \in Y \setminus Z\} <
-  \val^*(v)$.  Hence, we get $\val^*(v) \le \beta < \val^*(v)$. This
-  is a contradiction.
+We now define strategy $\tau'$ which plays from $v$ as $\tau$ until
+$Z$ is left, and then $\tau'$ plays an optimal strategy for $\Adam$.
+Let $\sigma$ be a strategy for $\Eve$. Under the profile
+$(\sigma,\tau')$ from $v$, either we stay forever in $Z$, or we
+leave at some $\Eve$'s vertex $v'$ towards a vertex $w'$ with
+$\val^*(w') < \val^*(v') = \val^*(v)$ (recall the discussion
+above). We can then write:
+\begin{eqnarray*}
+  \probm_{\sigma,\tau'}(\Reach(\{\vwin\})) &=&
+  \probm_{\sigma,\tau'}(\Reach(\{\vwin\}) \mid \text{stays in}\  Z\
+  \text{forever}) \cdot  \probm_{\sigma,\tau'}(\text{stays in}\  Z\
+  \text{forever}) \\ 
+  && + \sum_{(v',w') \in (Z \times (Y \setminus Z) \cap E)} 
+  \probm_{\sigma,\tau'}(\Reach(\{\vwin\}) \mid
+  \text{leave via}\  (v',w')) \cdot
+  \probm_{\sigma,\tau'}(\text{leave via}\  (v',w')) \\
+  & = & 0 \cdot \probm_{\sigma,\tau'}(\text{stays in}\  Z\
+  \text{forever}) + \sum_{(v',w') \in (Z \times (Y \setminus Z) \cap
+    E)}  \val^*(w') \cdot
+  \probm_{\sigma,\tau'}(\text{leave via}\  (v',w')) \\
+  & \le & \beta
+\end{eqnarray*}
+where $\beta = \max \{\val^*(w) \mid w \in Y \setminus Z\} <
+\val^*(v)$.  Hence, we get $\val^*(v) \le \beta < \val^*(v)$. This
+is a contradiction.
 \end{proof}
 
 \begin{lemma}
-  \label{stoch:lemma-existence}
-  There is a live and self-consistent permutation.
+\label{stoch:lemma-existence}
+There is a live and self-consistent permutation.
 \end{lemma}
 
 \begin{proof}
-  We will define a permutation $\perm$ inductively, by repeatedly
-  using~\cref{6-lem:structure}.  For every $i =k, \ldots
-  ,1$ we define $\perm_i$ by applying
-  Lemma~\cref{6-lem:structure} to $X =
-  \{\perm_{i+1},\ldots,\perm_k,\vwin\}$.
+We will define a permutation $\perm$ inductively, by repeatedly using~\cref{6-lem:structure}.
+For every $i =k, \ldots ,1$ we define $\perm_i$ by applying~\cref{6-lem:structure} to 
+$X = \{\perm_{i+1},\ldots,\perm_k,\vwin\}$.
 
-  By construction,
-  \begin{itemize}
-  \item $\val^*(\perm_i) = \max \{\val^*(v) \mid v \in V \setminus
-    \DetAtt(\{\perm_{i+1},\ldots,\perm_k,\vwin\})\}$;
-  \item     $\delta(\perm_i)\Big(\DetAtt(\{\perm_{i+1},\ldots,\perm_k,\vwin\})\Big)
-    >0$
-  \end{itemize}
-  Hence, $\perm$ is live, and the hypothesis of~\cref{6-lem:croissant} is satisfied. Hence $\perm$ is
-  self-consistent. This concludes the proof.
+By construction,
+\begin{itemize}
+\item $\val^*(\perm_i) = \max \{\val^*(v) \mid v \in V \setminus
+  \DetAtt(\{\perm_{i+1},\ldots,\perm_k,\vwin\})\}$;
+\item $\delta(\perm_i)\Big(\DetAtt(\{\perm_{i+1},\ldots,\perm_k,\vwin\})\Big) >0$
+\end{itemize}
+Hence, $\perm$ is live, and the hypothesis of~\cref{6-lem:croissant} is satisfied. Hence $\perm$ is
+self-consistent. This concludes the proof.
 \end{proof}
 
 \subsubsection{Complexity analysis}
 
-To obtain the polynomial-time complexity claimed in~\cref{6-thm:corr-strat-improv}, we realize that once a
-permutation $\perm$ is fixed, computing the sets $W_\pi^i$ can be done
+To obtain the polynomial-time complexity claimed in~\cref{6-thm:corr-strat-improv}, 
+we realize that once a permutation $\perm$ is fixed, computing the sets $W_\pi^i$ can be done
 in polynomial time (those are simple attractors), and corresponding
 strategies $\sigma_\perm$ and $\tau_\perm$ can be simultaneously
 computed as well. Now, computing $\val_\perm$ reduces to computing the
@@ -980,7 +833,7 @@ the only vertices are $\Randomvertices \cup \{\vlose,\vwin\}$, but
 this would only marginally impact the overall complexity.
 
 \subsubsection{Strategy enumeration algorithm}
-\label{6-subsubsec:last}
+\label{6-subsec:last}
 
 Thanks to~\cref{6-thm:corr-strat-improv}, we get an algorithm
 to compute values and optimal strategies for both players in a
@@ -996,7 +849,7 @@ exponential.
 
 
 \subsubsection{Strategy improvement algorithm}
-\label{6-subsubsec:algo-strat-improv}
+\label{6-subsec:algo-strat-improv}
 
 %\pat{\fbox{Pat} Cette preuve a \'et\'e plus difficile \`a
 %  dig\'erer... j'esp\`ere qu'il n'y a pas d'erreur}
@@ -1010,9 +863,9 @@ The algorithm consists in the following steps:
 \begin{itemize}
 \item Initialization step: Compute a live permutation $\perm$
 \item Improvement step: Given a live permutation $\perm$, compute a
-  live and self-consistent permutation in $\game[\sigma_\perm]$, the
-  restriction of game $\game$ where $\Eve$ always plays according to
-  $\sigma_\perm$.
+live and self-consistent permutation in $\game[\sigma_\perm]$, the
+restriction of game $\game$ where $\Eve$ always plays according to
+$\sigma_\perm$.
 \end{itemize}
 %\pat{Do we want to format this into a proper algorithm?}
 Below, since we will speak of games $\game$, $\game[\sigma_\perm]$ and
@@ -1027,18 +880,18 @@ properties are satisfied by the algorithm:
 \begin{enumerate}
 \item An initial live permutation can be computed in polynomial time.
 \item For every live permutation $\perm$, one can compute in
-  polynomial time a live and self-consistent permutation $\perm'$ in
-  $\game[\sigma_\perm]$.
+polynomial time a live and self-consistent permutation $\perm'$ in
+$\game[\sigma_\perm]$.
 \item The above-mentioned permutation $\perm'$ is live in $\game$ as
-  well.
+well.
 \item The improvement step really implements some improvement:
-  \begin{itemize}
-  \item $\val^*_{\game[\sigma_\perm]} \le
-    \val^*_{\game[\sigma_{\perm'}]}$, and
-  \item $\val^*_{\game[\sigma_\perm]} =
-    \val^*_{\game[\sigma_{\perm'}]}$ implies that $\perm'$ is
-    self-consistent.
-  \end{itemize}
+\begin{itemize}
+\item $\val^*_{\game[\sigma_\perm]} \le
+  \val^*_{\game[\sigma_{\perm'}]}$, and
+\item $\val^*_{\game[\sigma_\perm]} =
+  \val^*_{\game[\sigma_{\perm'}]}$ implies that $\perm'$ is
+  self-consistent.
+\end{itemize}
 \end{enumerate}
 
 The first property is based on the construction of~\cref{6-lem:existence}.
@@ -1050,7 +903,7 @@ a general assumption of the approach, mentioned in~\cref{6-subsec:first}). This 
 every proper vertex $v$ can be proven to have a value strictly within
 $0$ and $1$ in $\game[\sigma_{\perm}]$ (it is indeed smaller in
 $\game[\sigma_{\perm}]$ than in $\game$ since $\game[\sigma_{\perm}]$
-offers less options to \Eve, and it cannot be $0$, using a proof
+offers less options to $\Eve$, and it cannot be $0$, using a proof
 similar to that of~\cref{6-lem:stopping}).
 % , which in the current form,
 % nevertheless assumes the underlying game be normalized. So it is just
@@ -1069,152 +922,144 @@ similar to that of~\cref{6-lem:existence} to get a live and
 self-consistent permutation $\perm'$ in $\game[\sigma_\perm]$. This
 yields a polynomial time algorithm to compute $\perm'$.
 
-For the third property, we realize that
-% Now, we also need to show that a live
-% permutation $\perm'$ in $\game[\sigma_\perm]$ is live in $\game$:
-$\perm'$-regions in $\game[\sigma_\perm]$ are included in
-$\perm'$-regions in $\game$, which immediately implies the result.
-
+For the third property, we realize that $\perm'$-regions in $\game[\sigma_\perm]$ are included in $\perm'$-regions in $\game$, which immediately implies the result.
 
 The last property is harder to argue; it expresses the fact that the
 new permutation $\perm'$ improves over $\perm$.  % We give the steps of
 % the proof, but not full details.
 
-\begin{proof}
-%  \pat{J'esp\`ere ne pas m'\^etre embrouill\'ee avec toutes ces notations $\val$...}
-  Since $\perm'$ is live and self-consistent in $\game[\sigma_\perm]$,
-  by~\cref{6-cor:}, extending the previous notations, we
-  get that
-  $\val^*_{\game[\sigma_\perm]} =
-  \val_{\game[\sigma_\perm],\perm'}$. Now, since $\perm'$ is
-  self-consistent in $\game[\sigma_\perm]$, we deduce that
-  \[
-    \val^*_{\game[\sigma_\perm]}(\perm'_1) \le
-    \val^*_{\game[\sigma_\perm]}(\perm'_2) \le \dots \le
-    \val^*_{\game[\sigma_\perm]}(\perm'_k)
-  \]
+Since $\perm'$ is live and self-consistent in $\game[\sigma_\perm]$,
+by~\cref{6-cor:}, extending the previous notations, we
+get that
+$\val^*_{\game[\sigma_\perm]} =
+\val_{\game[\sigma_\perm],\perm'}$. Now, since $\perm'$ is
+self-consistent in $\game[\sigma_\perm]$, we deduce that
+\[
+  \val^*_{\game[\sigma_\perm]}(\perm'_1) \le
+  \val^*_{\game[\sigma_\perm]}(\perm'_2) \le \dots \le
+  \val^*_{\game[\sigma_\perm]}(\perm'_k)
+\]
 
-  We consider the following family of strategies for \Eve in $\game$:
-  for every $n$, $\sigma^{(n)}$ is the strategy where \Eve plays
-  according to $\sigma_{\perm'}$ up to its $n$-th visit to a random
-  vertex, and then switches to $\sigma_\perm$. 
+We consider the following family of strategies for $\Eve$ in $\game$:
+for every $n$, $\sigma^{(n)}$ is the strategy where $\Eve$ plays
+according to $\sigma_{\perm'}$ up to its $n$-th visit to a random
+vertex, and then switches to $\sigma_\perm$. 
 \end{proof} 
 We can then prove:
 %  by
-  % induction (this is however not immediate) that the sequence
-  % $(\val_{\game,\sigma^{(n)}})_n$ is non-decreasing. \pat{Or we add
-  %   the next lemma}
+% induction (this is however not immediate) that the sequence
+% $(\val_{\game,\sigma^{(n)}})_n$ is non-decreasing. \pat{Or we add
+%   the next lemma}
 \begin{lemma}[Converge of the sequence of values]
 \label{6-lem:convergence_sequence_values}
 The sequence $(\val_{\game,\sigma^{(n)}})_n$ is non-decreasing.
 \end{lemma}
 
-  \begin{proof}
-    We do the proof by induction on $n$.  We focus on $n=0$, and prove
-    below that $\val_{\game,\sigma^{(1)}} \ge
-    \val_{\game,\sigma^{(0)}}$. First notice that $\sigma^{(0)} =
-    \sigma_\perm$.
+\begin{proof}
+  We do the proof by induction on $n$.  We focus on $n=0$, and prove
+  below that $\val_{\game,\sigma^{(1)}} \ge
+  \val_{\game,\sigma^{(0)}}$. First notice that $\sigma^{(0)} =
+  \sigma_\perm$.
 
-    First, notice that $v \in W_{\game,\perm'}^i$ for some $i$, and $v
-    \in W_{\game[\sigma_\perm],\perm'}^j$ for some $j$. This
-    $game[\perm]$ restricts actions of \Eve, we immediately get $i \ge
-    j$. Hence, applying the line of inequalities at the beginning of
-    the proof of the larger lemma,
-    $\val^*_{\game[\sigma_\perm]}(\perm'_j) \le
-    \val^*_{\game[\sigma_\perm]}(\perm'_i)$.
+  First, notice that $v \in W_{\game,\perm'}^i$ for some $i$, and $v
+  \in W_{\game[\sigma_\perm],\perm'}^j$ for some $j$. This
+  $game[\perm]$ restricts actions of $\Eve$, we immediately get $i \ge j$. 
+  Hence, applying the line of inequalities at the beginning of
+  the proof of the larger lemma,
+  $\val^*_{\game[\sigma_\perm]}(\perm'_j) \le
+  \val^*_{\game[\sigma_\perm]}(\perm'_i)$.
 
-    If \Eve plays with $\sigma^{(1)}$, the definition of
-    $\sigma_{\perm'}$ ensures that the first random vertex (or
-    terminal vertex) which is visited when starting in $v$ belongs to
-    $\{\perm'_i,\perm'_{i+1},\dots,\perm'_k,\vwin\}$, so since from
-    that vertex, $\sigma^{(1)}$ plays according to $\sigma_\perm$, we
-    get:
-    \[
-    \val_{\game,\sigma^{(1)}}(v) \ge \min
-    \{\val^*_{\game[\sigma_\perm]}(\perm'_i),
-    \val^*_{\game[\sigma_\perm]}(\perm'_{i+1}),\dots,
-    \val^*_{\game[\sigma_\perm]}(\perm'_k),1\} \ge
-    \val^*_{\game[\sigma_\perm]}(\perm'_i)
-    \]
-    since $\val^*_{\game[\sigma_\perm]} = \val_{\game,\sigma_\perm}$.
-
-    Now, when playing $\sigma_\perm = \sigma^{(0)}$ from $v$, 
-
-    Thanks to ~\cref{6-lem:lemma2}, since $v \in
-    W_{\game[\sigma_\perm],\perm'}^j$,
-    $\val_{\game[\sigma_\perm],\perm'}(v) =
-    \val_{\game[\sigma_\perm],\perm'}(\perm'_j)$ and hence (as argued
-    in the proof of the larger lemma,
-    $\val_{\game[\sigma_\perm],\perm'} =
-    \val^*_{\game[\sigma_\perm]}$), $\val^*_{\game[\sigma_\perm]}(v) =
-    \val^*_{\game[\sigma_\perm]}(\perm'_j)$. We conclude that:
-    \[
-    \val_{\sigma_\perm}(v) = \val^*_{\game[\sigma_\perm]}(v) \le
-    \val^*_{\game[\sigma_\perm]}(\perm'_j) \le
-    \val^*_{\game[\sigma_\perm]}(\perm'_i) \le
-    \val_{\game,\sigma^{(1)}}(v)
-    \]
-    which concludes the initial case for the induction.
-
-    \smallskip The inductive step is then rather straightforward: the
-    two strategies $\sigma^{(n+2)}$ and $\sigma^{(n+1)}$ coincide
-    until a first random vertex is encounted, and then the first one
-    switches to $\sigma^{(n+1)}$ while the other switches to
-    $\sigma^{(n)}$. Hence, using the induction hypothesis that
-    $\sigma^{(n+1)}$ is better for \Eve than $\sigma^{(n)}$, we can
-    conclude.
-  \end{proof}
-
-  Let $\tau$ be an \Adam's strategy. Since $\perm'$ has been shown to
-  be live in $\game$, applying ~\cref{6-lem:stopping}, we
-  get that: $\probm^v_{\sigma_{\perm'},\tau} (\Reach(\{\vwin\})) =
-  \probm^v_{\sigma_{\perm'},\tau} (\neg\Reach(\{\vlose\}))$. This last
-  probability value coincides with $\lim_{n \to +\infty}
-  \probm^v_{\sigma_{\perm'},\tau} (\neg\Reach_{\le n}(\{\vlose\}))$,
-  the probability to not reach $\vlose$ for the first $n$ visits to a
-  random vertex; for these $n$ first visits, $\sigma_{\perm'}$
-  coincides with $\sigma^{(n)}$, hence
-  $\probm^v_{\sigma_{\perm'},\tau} (\Reach(\{\vwin\})) \ge \lim_{n\to
-    +\infty} \probm^v_{\sigma^{(n)},\tau} (\Reach(\{\vwin\}))$. By
-  definition of value in a game, this last term is larger than or
-  equal to $\lim_{n \to+\infty}\val_{\game,\sigma^{(n)}}$, hence
-  $\lim_{n \to+\infty}\val_{\game,\sigma^{(n)}} \le
-  \val_{\game,\perm'}$.
-
-  We conclude that:
+  If $\Eve$ plays with $\sigma^{(1)}$, the definition of
+  $\sigma_{\perm'}$ ensures that the first random vertex (or
+  terminal vertex) which is visited when starting in $v$ belongs to
+  $\{\perm'_i,\perm'_{i+1},\dots,\perm'_k,\vwin\}$, so since from
+  that vertex, $\sigma^{(1)}$ plays according to $\sigma_\perm$, we
+  get:
   \[
-  \val^*_{\game[\sigma_\perm]} = \val_{\game,\sigma^{(0)}} \le
-  \val_{\game,\sigma^{(1)}} \le \val_{\game,\sigma^{(2)}} \le \dots\le
-  \lim_{n \to +\infty} \val_{\game,\sigma^{(n)}} \le
-  \val^*_{\game[\sigma_{\perm'}]}
+  \val_{\game,\sigma^{(1)}}(v) \ge \min
+  \{\val^*_{\game[\sigma_\perm]}(\perm'_i),
+  \val^*_{\game[\sigma_\perm]}(\perm'_{i+1}),\dots,
+  \val^*_{\game[\sigma_\perm]}(\perm'_k),1\} \ge
+  \val^*_{\game[\sigma_\perm]}(\perm'_i)
   \]
+  since $\val^*_{\game[\sigma_\perm]} = \val_{\game,\sigma_\perm}$.
 
-  \medskip Assume now that $\val^*_{\game[\sigma_\perm]} =
-  \val^*_{\game[\sigma_{\perm'}]}$. Then applying the first line of
-  inequalities above, we get:
+  Now, when playing $\sigma_\perm = \sigma^{(0)}$ from $v$, 
+
+  Thanks to ~\cref{6-lem:lemma2}, since $v \in
+  W_{\game[\sigma_\perm],\perm'}^j$,
+  $\val_{\game[\sigma_\perm],\perm'}(v) =
+  \val_{\game[\sigma_\perm],\perm'}(\perm'_j)$ and hence (as argued
+  in the proof of the larger lemma,
+  $\val_{\game[\sigma_\perm],\perm'} =
+  \val^*_{\game[\sigma_\perm]}$), $\val^*_{\game[\sigma_\perm]}(v) =
+  \val^*_{\game[\sigma_\perm]}(\perm'_j)$. We conclude that:
   \[
-  \val^*_{\game[\sigma_{\perm'}]}(\perm'_1) \le
-  \val^*_{\game[\sigma_{\perm'}]}(\perm'_2) \le \dots \le
-  \val^*_{\game[\sigma_{\perm'}]}(\perm'_k)
+  \val_{\sigma_\perm}(v) = \val^*_{\game[\sigma_\perm]}(v) \le
+  \val^*_{\game[\sigma_\perm]}(\perm'_j) \le
+  \val^*_{\game[\sigma_\perm]}(\perm'_i) \le
+  \val_{\game,\sigma^{(1)}}(v)
   \]
-  Now, the strategy $\tau_{\perm'}$ is precisely the optimal strategy
-  against $\sigma_{\perm'}$ \pat{Not so sure of the argument, it is
-    not argued that way in GH09}, hence for every vertex $v$:
-  \[
-  \val^*_{\game[\sigma_{\perm'}]}(v) = \inf_\tau
-  \probm^v_{\sigma_{\perm'},\tau} (\Reach(\{\vwin\})) =
-  \probm^v_{\sigma_{\perm'},\tau_{\perm'}} (\Reach(\{\vwin\})) =
-  \val_{\game,\perm'}
-  \]
-  We deduce that
-  \[
-  \val_{\game,\perm'}(\perm'_1) \le \val_{\game,\perm'}(\perm'_2) \le
-  \dots \le \val_{\game,\perm'}(\perm'_k)
-  \]
-  which is precisely the definition of a self-consistent permutation
-  in $\game$, so we are done.
-  % By ~\cref{6-lem:croissant}, we deduce that $\perm'$ is
-  % self-consistent in $\game$, which concludes the proof.
+  which concludes the initial case for the induction.
+
+  \smallskip The inductive step is then rather straightforward: the
+  two strategies $\sigma^{(n+2)}$ and $\sigma^{(n+1)}$ coincide
+  until a first random vertex is encounted, and then the first one
+  switches to $\sigma^{(n+1)}$ while the other switches to
+  $\sigma^{(n)}$. Hence, using the induction hypothesis that
+  $\sigma^{(n+1)}$ is better for $\Eve$ than $\sigma^{(n)}$, we can
+  conclude.
+\end{proof}
+
+\begin{proof}
+Let $\tau$ be an $\Adam$'s strategy. Since $\perm'$ has been shown to
+be live in $\game$, applying ~\cref{6-lem:stopping}, we
+get that: $\probm^v_{\sigma_{\perm'},\tau} (\Reach(\{\vwin\})) =
+\probm^v_{\sigma_{\perm'},\tau} (\neg\Reach(\{\vlose\}))$. This last
+probability value coincides with $\lim_{n \to +\infty}
+\probm^v_{\sigma_{\perm'},\tau} (\neg\Reach_{\le n}(\{\vlose\}))$,
+the probability to not reach $\vlose$ for the first $n$ visits to a
+random vertex; for these $n$ first visits, $\sigma_{\perm'}$
+coincides with $\sigma^{(n)}$, hence
+$\probm^v_{\sigma_{\perm'},\tau} (\Reach(\{\vwin\})) \ge \lim_{n\to
+  +\infty} \probm^v_{\sigma^{(n)},\tau} (\Reach(\{\vwin\}))$. By
+definition of value in a game, this last term is larger than or
+equal to $\lim_{n \to+\infty}\val_{\game,\sigma^{(n)}}$, hence
+$\lim_{n \to+\infty}\val_{\game,\sigma^{(n)}} \le
+\val_{\game,\perm'}$.
+
+We conclude that:
+\[
+\val^*_{\game[\sigma_\perm]} = \val_{\game,\sigma^{(0)}} \le
+\val_{\game,\sigma^{(1)}} \le \val_{\game,\sigma^{(2)}} \le \dots\le
+\lim_{n \to +\infty} \val_{\game,\sigma^{(n)}} \le
+\val^*_{\game[\sigma_{\perm'}]}
+\]
+
+\medskip Assume now that $\val^*_{\game[\sigma_\perm]} =
+\val^*_{\game[\sigma_{\perm'}]}$. Then applying the first line of
+inequalities above, we get:
+\[
+\val^*_{\game[\sigma_{\perm'}]}(\perm'_1) \le
+\val^*_{\game[\sigma_{\perm'}]}(\perm'_2) \le \dots \le
+\val^*_{\game[\sigma_{\perm'}]}(\perm'_k)
+\]
+Now, the strategy $\tau_{\perm'}$ is precisely the optimal strategy
+against $\sigma_{\perm'}$ \pat{Not so sure of the argument, it is
+  not argued that way in GH09}, hence for every vertex $v$:
+\[
+\val^*_{\game[\sigma_{\perm'}]}(v) = \inf_\tau
+\probm^v_{\sigma_{\perm'},\tau} (\Reach(\{\vwin\})) =
+\probm^v_{\sigma_{\perm'},\tau_{\perm'}} (\Reach(\{\vwin\})) =
+\val_{\game,\perm'}
+\]
+We deduce that
+\[
+\val_{\game,\perm'}(\perm'_1) \le \val_{\game,\perm'}(\perm'_2) \le
+\dots \le \val_{\game,\perm'}(\perm'_k)
+\]
+which is precisely the definition of a self-consistent permutation
+in $\game$, so we are done.
 \end{proof}
 
 This last property ensures both termination of the algorithm: indeed,
@@ -1222,8 +1067,6 @@ it is ensured by the finiteness of the number of permutations, and by
 the improvement characterization above. Note that it may be the case
 that in the worst-case, all permutations will be enumerated. No lower
 nor upper bound is known no far.
-
-
 
 \subsection{Mathematical programming}
 From Condon'93 resolution of stochastic games (assuming they are

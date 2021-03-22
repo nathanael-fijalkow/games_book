@@ -1,19 +1,6 @@
 (10-sec:profiles)=
 # Profiles and regularity of the winning regions
 
-```{math}
-
-\def\AC#1{\textcolor{green!50!black}{\checkmark}\marginpar{\color{green!50!black}AC: #1}} 
-
-\def\acchanged#1{{#1}}
-\def\OS#1{\textcolor{red}{\checkmark}\marginpar{\color{red}OS: #1}}
-
-\newcommand {\Stepsg}[1]{\mathit{Steps}_{#1}}
-
-\newcommand {\Rounds}[1]{\mathit{Rounds}_{#1}}
-
-```
-
 In this section, we consider a large class of objectives called **prefix independent**. For these objectives, a pushdown game can be meaningfully decomposed by considering the part of the game between the moment a symbol is pushed onto the stack and stopping as soon as it is popped.  As a consequence, we will see that for prefix independent
 objectives, the winning region can be described  using finite state automata.
 

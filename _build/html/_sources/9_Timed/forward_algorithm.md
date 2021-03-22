@@ -1,10 +1,6 @@
 (9-sec:forward_algorithm)=
 # Forward Algorithm
 
-```{math}
-
-```
-
 The backward algorithm we just presented is conceptually simple, but
 it is often not very efficient in practice,
 as federations tend to grow too much in size in each iteration of the
@@ -159,7 +155,6 @@ The correctness of this algorithm relies on the following lemma {cite}`LS98`:
   of the least fixpoint, and by definition of $f_W$, $x$ must also
   belong to the least fixpoint.
 
-  \smallskip
   The second statement also clearly holds after initialization:
   initially, $F^0(x)=0$ only for $x=v_0$, and all transitions
   from $v_0$ have been stored in $\textsf{Wait}^0$. We now assume that the

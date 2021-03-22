@@ -1,10 +1,6 @@
 (4-sec:shortest_path)=
 # Shortest path games
 
-```{math}
-
-```
-
 The quantitative objective $\mathtt{Sup}$ generalises the qualitative
 objective $\mathtt{Reach}$ by stating numerical preferences on the target. 
 Another quantitative extension of the reachability objective is to quantify the cost of a path towards the target.

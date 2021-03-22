@@ -1,10 +1,6 @@
 (2-sec:parity)=
 # Parity games
 
-```{math}
-
-```
-
 Recall that the parity objective extends B&uuml;chi and coB&uuml;chi objectives:
 
 $$

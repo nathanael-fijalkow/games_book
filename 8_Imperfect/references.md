@@ -1,10 +1,6 @@
 (8-sec:references)=
 # Bibliographic references
 
-```{math}
-
-```
-
 
 
 ```{bibliography}

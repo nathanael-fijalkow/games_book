@@ -1,10 +1,6 @@
 (5-sec:reductions)=
 # Reductions to optimal reachability
 
-```{math}
-
-```
-
 The MEC decomposition can be used to reduce several optimization problems (including general mean-payoff optimization) to optimizing reachability probability. Recall that in the optimal reachability problem, we are given an MDP $\mathcal{M}$ (with coloured vertices) and a colour $\textrm{Win} \in C$. The task is to find a strategy $\sigma$ that maximizes $  \mathbb{P}^\sigma_{ v_0}( \mathtt{Reach}( \textrm{Win}))$, the probability of reaching a vertex coloured by $\textrm{Win}$. The main result on reachability MDPs, which we prove in Section {ref}`5-sec:general-reachability`, is as follows:
 
 ````{prf:theorem} Solving reachability MDPs

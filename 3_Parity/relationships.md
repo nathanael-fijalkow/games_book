@@ -1,10 +1,6 @@
 (3-sec:relationships)=
 # Comparing the three families of algorithms
 
-```{math}
-
-```
-
 At the beginning of the chapter we described three families of algorithms: 
 strategy improvement, attractor decomposition, and value iterations.
 

@@ -1,10 +1,6 @@
 (1-sec:reductions)=
 # Reductions
 
-```{math}
-
-```
-
 Automata and memory structures can be used to construct reductions between games.
 Automata operate at the level of objectives, independently of the colouring function and the arena,
 while memory structures work at the level of conditions, hence depend on the graph.

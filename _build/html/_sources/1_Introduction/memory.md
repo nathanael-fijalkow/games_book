@@ -1,10 +1,6 @@
 (1-sec:memory)=
 # Memory
 
-```{math}
-
-```
-
 A strategy can be a very complicated object, in particular it is infinite.
 Indeed, it is a function $\sigma :  \textrm{Paths} \to E$,
 which means that in order to choose the next move the strategy considers everything played so far: 

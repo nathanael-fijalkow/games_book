@@ -1,10 +1,6 @@
 (1-sec:automata)=
 # Automata
 
-```{math}
-
-```
-
 The study of games is deeply intertwined with automata over infinite words and trees.
 We will not elaborate much on that aspect in this book, but in a few places we will use automata.
 We define here (non-deterministic) automata over infinite words, and refer to {cite}`Thomas:1997`

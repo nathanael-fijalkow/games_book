@@ -1,10 +1,6 @@
 (4-sec:total_payoff)=
 # Total payoff games
 
-```{math}
-
-```
-
 Yet another interesting quantitative objective---that is closely
 related with shortest path objective---is the total payoff defined by
 

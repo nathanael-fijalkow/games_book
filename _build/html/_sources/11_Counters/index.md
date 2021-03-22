@@ -8,12 +8,6 @@
 :align: center
 ```
 
-```{math}
-
-\newcommand{\capp}[2][C]{\overline{\vec #2}^{#1}}
-
-```
-
 
 Written by Sylvain Schmitz
 

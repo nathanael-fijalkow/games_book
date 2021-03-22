@@ -1,10 +1,6 @@
 (7-sec:matrix_games)=
 # Matrix games
 
-```{math}
-
-```
-
 A matrix game is a game defined from a $(R\times C)$-matrix $M$  of numbers for some $R,C$.
 The game is played as follows: Eve picks a row $r$ and Adam picks a column $c$ simulations like in rock-paper-scissors. Adam then pays Eve $M[r,c]$, i.e. the content of the entry defined by being in row $r$ and column $c$.
 A strategy in such a game for Eve (resp. Adam) consists of a distribution over the rows (resp. columns). 

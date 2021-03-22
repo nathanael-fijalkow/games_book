@@ -723,9 +723,6 @@
                 
   <div class="section" id="resource-conscious-games">
 <span id="sec-resource"></span><h1>Resource-conscious games<a class="headerlink" href="#resource-conscious-games" title="Permalink to this headline">¶</a></h1>
-<div class="math notranslate nohighlight">
-\[\newcommand{\capp}[2][C]{\overline{\vec #2}^{#1}}
-\]</div>
 <p>Vector games are very well suited for reasoning about systems
 manipulating discrete resources, modelled as counters.  However, in
 the natural semantics, actions that would deplete some resource,
@@ -752,15 +749,15 @@ system <span class="math notranslate nohighlight">\(\mathcal{V}\)</span>: we let
 <span class="math notranslate nohighlight">\(V  \stackrel{\!\,\!\,\textrm{def}}{=}( \mathcal{L}\times\mathbb{N}^ k)\uplus\{ \bot\}\)</span>, but define instead</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}  E_\mathbb{E}&amp;  \stackrel{\!\,\!\,\textrm{def}}{=} \{( \ell(\vec v),  \ell'(\vec v+\vec u)\mid
-          \ell \xrightarrow{\,\vec u,} \ell'\in A\text{
+          \ell \xrightarrow{\,\vec u\,} \ell'\in A\text{
       and }\vec v+\vec u\geq\vec 0\}\\
     &amp;\:\cup\:\{( \ell(\vec v), \bot)\mid\forall \ell \xrightarrow{\,\vec
-      u,} \ell'\in A\mathbin.\vec v+\vec u\not\geq\vec 0\}
+      u\,} \ell'\in A\mathbin.\vec v+\vec u\not\geq\vec 0\}
     \cup\{( \bot, \bot)\}\;.\end{split}\]</div>
 <p>In the energy semantics, moves that would result in a negative
 component lead to the sink instead of being inhibited.</p>
 <div class="proof example admonition" id="11-ex:nrg">
-<p class="admonition-title"><span class="caption-number">Example 333 </span> (Energy semantics)</p>
+<p class="admonition-title"><span class="caption-number">Example 336 </span> (Energy semantics)</p>
 <div class="example-content section" id="proof-content">
 <p><a class="reference internal" href="#fig-nrg"><span class="std std-numref">Fig. 87</span></a> illustrates the energy semantics of the vector
 system depicted in <a class="reference internal" href="counters.html#fig-mwg"><span class="std std-numref">Fig. 76</span></a> on \cpageref{11-fig:mwg}.  Observe that,
@@ -782,7 +779,7 @@ reachability, coverability, non-termination, and parity energy games when replac
 <span class="math notranslate nohighlight">\(\mathcal{A}_\mathbb{E}(\mathcal{V})\)</span> in \crefrange{11-pb:reach}{11-pb:parity}; the
 existential initial credit variants are defined similarly.</p>
 <div class="proof example admonition" id="11-ex:cov-nrg">
-<p class="admonition-title"><span class="caption-number">Example 334 </span> (Energy games)</p>
+<p class="admonition-title"><span class="caption-number">Example 337 </span> (Energy games)</p>
 <div class="example-content section" id="proof-content">
 <p>Consider the target configuration <span class="math notranslate nohighlight">\(\ell(2,2)\)</span> in
 <code class="xref std std-numref docutils literal notranslate"><span class="pre">11-fig:mwg,11-fig:nrg</span></code>.  Eve’s winning region in the
@@ -808,7 +805,7 @@ asymmetric system of <a class="reference internal" href="avag.html#fig-avg"><spa
 the system of <a class="reference internal" href="counters.html#fig-mwg"><span class="std std-numref">Fig. 76</span></a> are essentially the same.  This
 correspondence is quite general.</p>
 <div class="proof lemma admonition" id="11-lem:nrg">
-<p class="admonition-title"><span class="caption-number">Lemma 335 </span> (Energy vs.\ asymmetric vector games)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 338 </span> (Energy vs.\ asymmetric vector games)</p>
 <div class="lemma-content section" id="proof-content">
 <p>Energy games and asymmetric vector games are
 \logspace-equivalent for configuration reachability,
@@ -823,7 +820,7 @@ Given <span class="math notranslate nohighlight">\(\mathcal{V}\)</span>, <span c
 <span class="math notranslate nohighlight">\(\textrm{Eve}\)</span> wins <span class="math notranslate nohighlight">\((  \mathcal{A}_\mathbb{N}(\mathcal{V}), \mathfrak{c},\Omega)\)</span> from some <span class="math notranslate nohighlight">\(v\in V\)</span> if and
 only if she wins <span class="math notranslate nohighlight">\((  \mathcal{A}_\mathbb{E}(\mathcal{V}), \mathfrak{c},\Omega)\)</span> from <span class="math notranslate nohighlight">\(v\)</span>.  Of course,
 this might not be true if <span class="math notranslate nohighlight">\(\mathcal{V}\)</span> is not asymmetric, as seen for
-instance in <a class="reference internal" href="counters.html#11-ex:cov">Example 313</a> and <a class="reference internal" href="#11-ex:cov-nrg">Example 334</a>.</p>
+instance in <a class="reference internal" href="counters.html#11-ex:cov">Example 316</a> and <a class="reference internal" href="#11-ex:cov-nrg">Example 337</a>.</p>
 <p>Conversely, let us reduce energy games to asymmetric
 vector games.  Consider
 <span class="math notranslate nohighlight">\(\mathcal{V}=( \mathcal{L}, A, \mathcal{L}_\mathrm{Eve}, \mathcal{L}_\mathrm{Adam}, k)\)</span>, a colouring <span class="math notranslate nohighlight">\(\mathfrak{c}\)</span>
@@ -840,11 +837,11 @@ system
 where we add the following locations controlled by Eve:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}       \mathcal{L}_A&amp;  \stackrel{\!\,\!\,\textrm{def}}{=}\{ \ell_a\mid a=( \ell \xrightarrow{\,\vec
-                 u,} \ell')\in A\text{ and } \ell\in \mathcal{L}_\mathrm{Adam}\}\;.
+                 u\,} \ell')\in A\text{ and } \ell\in \mathcal{L}_\mathrm{Adam}\}\;.
       \intertext{We also modify the set of actions:}
-       A'&amp;  \stackrel{\!\,\!\,\textrm{def}}{=}\{ \ell \xrightarrow{\,\vec u,} \ell'\mid  \ell \xrightarrow{\,\vec
-             u,} \ell'\in A\text{ and } \ell\in \mathcal{L}_\mathrm{Eve}\}\\
-      &amp;\:\cup\:\{ \ell \xrightarrow{\,\vec 0,} \ell_a,\; \ell_a \xrightarrow{\,\vec u,} \ell'\mid a=( \ell \xrightarrow{\,\vec u,} \ell')\in A\text{ and } \ell\in \mathcal{L}_\mathrm{Adam}\}\;.
+       A'&amp;  \stackrel{\!\,\!\,\textrm{def}}{=}\{ \ell \xrightarrow{\,\vec u\,} \ell'\mid  \ell \xrightarrow{\,\vec
+             u\,} \ell'\in A\text{ and } \ell\in \mathcal{L}_\mathrm{Eve}\}\\
+      &amp;\:\cup\:\{ \ell \xrightarrow{\,\vec 0\,} \ell_a,\; \ell_a \xrightarrow{\,\vec u\,} \ell'\mid a=( \ell \xrightarrow{\,\vec u\,} \ell')\in A\text{ and } \ell\in \mathcal{L}_\mathrm{Adam}\}\;.
     
 \end{split}\]</div>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{numref}`11-fig:avg` presents the result of this reduction on the
@@ -852,18 +849,18 @@ system of {numref}`11-fig:mwg`.  We define a vertex colouring
 $\mathrm{vcol}&#39;$ of $\mathcal{A}_\mathbb{N}(\mathcal{V}&#39;)$ with $\mathrm{vcol}&#39;(v)  \stackrel{\!\,\!\,\textrm{def}}{=} \mathrm{vcol}(v)$ for
 all $v\in  \mathcal{L}\times\mathbb{N}^ k\uplus\{ \bot\}$ and
 $\mathrm{vcol}&#39;( \ell_a(\vec v))  \stackrel{\!\,\!\,\textrm{def}}{=} \mathrm{vcol}( \ell(\vec v))$ if
-$a=( \ell \xrightarrow{\,\vec u,} \ell&#39;)\in A$.  Then, for all vertices
+$a=( \ell \xrightarrow{\,\vec u\,} \ell&#39;)\in A$.  Then, for all vertices
 $v\in V$, Eve wins from $v$ in the energy game
 $(  \mathcal{A}_\mathbb{E}(\mathcal{V}), \mathfrak{c},\Omega)$ if and only if she wins from $v$ in
 the vector game $(  \mathcal{A}_\mathbb{N}(\mathcal{V}&#39;), \mathfrak{c}&#39;,\Omega)$.  The crux of
 the argument is that, in a configuration $\ell(\vec v)$ where
-$\ell\in \mathcal{L}_\mathrm{Adam}$, if $a=( \ell \xrightarrow{\,\vec u,} \ell&#39;)\in A$ is an
+$\ell\in \mathcal{L}_\mathrm{Adam}$, if $a=( \ell \xrightarrow{\,\vec u\,} \ell&#39;)\in A$ is an
 action with $\vec v+\vec u\not\geq\vec 0$, in the energy
 semantics, Adam can force the play into the sink by
 playing $a$; the same occurs in $\mathcal{V}&#39;$ with the natural
 semantics, as Adam can now choose to play
-$\ell \xrightarrow{\,\vec 0,} \ell_a$ where Eve has only
-$\ell_a \xrightarrow{\,\vec u,} \ell&#39;$ at her disposal, which leads to the
+$\ell \xrightarrow{\,\vec 0\,} \ell_a$ where Eve has only
+$\ell_a \xrightarrow{\,\vec u\,} \ell&#39;$ at her disposal, which leads to the
 sink.\todoquestion{Is that clear?}
 </pre></div>
 </div>
@@ -885,10 +882,10 @@ area.  We define for a bound <span class="math notranslate nohighlight">\(B\in\m
 <div class="math notranslate nohighlight">
 \[\begin{split}  V^B&amp;  \stackrel{\!\,\!\,\textrm{def}}{=}\{ \ell(\vec v)\mid \ell\in \mathcal{L}\text{ and }\|\vec v\|&lt;B\}\;,\\
   E^B&amp;  \stackrel{\!\,\!\,\textrm{def}}{=} \{( \ell(\vec v), \ell'(\vec v+\vec u))\mid \ell \xrightarrow{\,\vec
-       u,} \ell'\in A,\vec v+\vec u\geq\vec 0,\text{ and }\|\vec
+       u\,} \ell'\in A,\vec v+\vec u\geq\vec 0,\text{ and }\|\vec
        v+\vec u\|&lt;B\}\\
      &amp;\:\cup\:\{( \ell(\vec v), \bot)\mid\forall \ell \xrightarrow{\,\vec
-               u,} \ell'\in A\mathbin.\vec v+\vec u\not\geq\vec
+               u\,} \ell'\in A\mathbin.\vec v+\vec u\not\geq\vec
                0\text{ or }\|\vec v+\vec u\|\geq B\}
      \cup\{( \bot, \bot)\}\;.\end{split}\]</div>
 <p>As usual, <span class="math notranslate nohighlight">\(V_\mathrm{Eve}^B  \stackrel{\!\,\!\,\textrm{def}}{=} V^B\cap \mathcal{L}_\mathrm{Eve}\times\mathbb{N}^ k\)</span> and
@@ -915,7 +912,7 @@ the bounding game <span class="math notranslate nohighlight">\((  \mathcal{A}_B(
 <span class="math notranslate nohighlight">\(\ell_0(\vec v_0)\)</span>, where <span class="math notranslate nohighlight">\(\mathfrak{c}(e)  \stackrel{\!\,\!\,\textrm{def}}{=} \textrm{Lose}\)</span> if and only if <span class="math notranslate nohighlight">\(\textrm{In}(e)= \bot\)</span>?</p>
 </div>
 <div class="proof lemma admonition" id="11-lem:parity2bounding">
-<p class="admonition-title"><span class="caption-number">Lemma 336 </span> (NEEDS TITLE 11-lem:parity2bounding)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 339 </span> (NEEDS TITLE 11-lem:parity2bounding)</p>
 <div class="lemma-content section" id="proof-content">
 <p>There is a \logspace\ reduction from parity
 asymmetric vector games to bounding games, both with given
@@ -933,14 +930,14 @@ corresponding locations.</p>
 <div class="figure align-center" id="fig-bounding">
 <img alt="../_images/11-fig:bounding.png" src="../_images/11-fig:bounding.png" />
 <p class="caption"><span class="caption-number">Fig. 89 </span><span class="caption-text">Schema of the reduction to
-bounding games in the proof of <a class="reference internal" href="#11-lem:parity2bounding">Lemma 336</a>.</span><a class="headerlink" href="#fig-bounding" title="Permalink to this image">¶</a></p>
+bounding games in the proof of <a class="reference internal" href="#11-lem:parity2bounding">Lemma 339</a>.</span><a class="headerlink" href="#fig-bounding" title="Permalink to this image">¶</a></p>
 </div>
 <p>If Eve wins the bounding game played over <span class="math notranslate nohighlight">\(\mathcal{V}'\)</span> from some
 configuration <span class="math notranslate nohighlight">\(\ell_0(\vec v_0)\)</span>, then she also wins the parity
 vector game played over <span class="math notranslate nohighlight">\(\mathcal{V}\)</span> from the configuration <span class="math notranslate nohighlight">\(\ell_0(\vec
   v'_0)\)</span> where <span class="math notranslate nohighlight">\(\vec v'_0\)</span> is the projection of <span class="math notranslate nohighlight">\(\vec v_0\)</span>
 to <span class="math notranslate nohighlight">\(\mathbb{N}^ k\)</span>.  Indeed, she can play essentially the same strategy:
-by <a class="reference internal" href="avag.html#11-lem:mono">Lemma 327</a> she can simply ignore the new decrement
+by <a class="reference internal" href="avag.html#11-lem:mono">Lemma 330</a> she can simply ignore the new decrement
 self loops, while the actions on the components in
 <span class="math notranslate nohighlight">\(\{ k+1,\dots, k+d\}\)</span> ensure that the maximal priority visited
 infinitely often is even—otherwise some decrement <span class="math notranslate nohighlight">\(-\vec
@@ -961,7 +958,7 @@ the vector capped at <span class="math notranslate nohighlight">\(B\)</span>: fo
 <span class="math notranslate nohighlight">\(\capp[B_0]v(i)  \stackrel{\!\,\!\,\textrm{def}}{=}\vec v(i)\)</span> if <span class="math notranslate nohighlight">\(\vec v(i)&lt;B_0\)</span> and
 <span class="math notranslate nohighlight">\(\capp[B_0]v  \stackrel{\!\,\!\,\textrm{def}}{=} B_0\)</span> if <span class="math notranslate nohighlight">\(\vec v(i)\geq B_0\)</span>.</p>
 <p>Consider now some configuration <span class="math notranslate nohighlight">\(\ell_0(\vec
-  v_0)\in\mathsf{Pareto}( \mathcal{G})\)</span>.  As seen in <a class="reference internal" href="avag.html#11-lem:finmem">Lemma 330</a>,
+  v_0)\in\mathsf{Pareto}( \mathcal{G})\)</span>.  As seen in <a class="reference internal" href="avag.html#11-lem:finmem">Lemma 333</a>,
 since <span class="math notranslate nohighlight">\(\ell_0(\vec v_0)\in W_\mathrm{Eve}( \mathcal{G})\)</span>, there is a finite
 self-covering tree witnessing the fact, and an associated winning
 strategy.  Let <span class="math notranslate nohighlight">\(H( \ell_0(\vec v_0))\)</span> denote the height of this
@@ -996,9 +993,9 @@ then there exists <span class="math notranslate nohighlight">\(\vec v_0\leq\vec 
 self-covering tree of height <span class="math notranslate nohighlight">\(H( \ell_0(\vec v_0))\)</span> associated
 to <span class="math notranslate nohighlight">\(\ell_0(\vec v_0)\)</span>, and the strategy <span class="math notranslate nohighlight">\(\sigma'\)</span> defined by the
 memory structure from the
-proof of <a class="reference internal" href="avag.html#11-lem:finmem">Lemma 330</a>.  This is a winning strategy for Eve
+proof of <a class="reference internal" href="avag.html#11-lem:finmem">Lemma 333</a>.  This is a winning strategy for Eve
 in <span class="math notranslate nohighlight">\(\mathcal{G}\)</span> starting from <span class="math notranslate nohighlight">\(\ell_0(\vec v_0)\)</span>, and
-by <a class="reference internal" href="avag.html#11-lem:mono">Lemma 327</a>, it is also winning
+by <a class="reference internal" href="avag.html#11-lem:mono">Lemma 330</a>, it is also winning
 from <span class="math notranslate nohighlight">\(\ell_0(\capp[B_0]v)\)</span>.</p>
 <p>Here is how Eve wins <span class="math notranslate nohighlight">\(\mathcal{G}_B\)</span> from <span class="math notranslate nohighlight">\(\ell_0(\capp[B_0]v+\vec b)\)</span>.
 She essentially follows the strategy <span class="math notranslate nohighlight">\(\sigma'\)</span>, with two
@@ -1030,7 +1027,7 @@ Nevertheless, one can sometimes show that an explicit <span class="math notransl
 a bounding game.
 A simple example is provided by the coverability asymmetric
 vector games with existential initial credit arising from
-<a class="reference internal" href="counters.html#11-rk:cov2parity">Remark 317</a>, i.e., where the objective is to reach some
+<a class="reference internal" href="counters.html#11-rk:cov2parity">Remark 320</a>, i.e., where the objective is to reach some
 location <span class="math notranslate nohighlight">\(\ell_f\)</span>.  Indeed, it is rather straightforward that there
 exists a suitable initial credit such that Eve wins the game if and
 only if she wins the finite reachability game played over the
@@ -1047,7 +1044,7 @@ but we refer the reader
 to <span id="id1">[<a class="reference internal" href="references.html#id215"><span>JurdzinskiLazicS15</span></a>,<a class="reference internal" href="references.html#id207"><span>CJurdzinskiLazicS17</span></a>]</span>
 for details.</p>
 <div class="proof theorem admonition" id="11-th:bounding">
-<p class="admonition-title"><span class="caption-number">Theorem 337 </span> (Bounds on bounding)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 340 </span> (Bounds on bounding)</p>
 <div class="theorem-content section" id="proof-content">
 <p>If Eve wins a bounding game with existential initial credit
 defined by a vector
@@ -1056,7 +1053,7 @@ initial credit <span class="math notranslate nohighlight">\(\vec v_0\)</span> wi
   v_0\|=(4| \mathcal{L}|\cdot\| A\|)^{2( k+2)^3}\)</span> and a bound
 <span class="math notranslate nohighlight">\(B=2(4| \mathcal{L}|\cdot\| A\|)^{2( k+2)^3}+1\)</span> suffice for this.</p>
 </div>
-</div><p><a class="reference internal" href="#11-th:bounding">Theorem 337</a> also yields a way of handling bounding games
+</div><p><a class="reference internal" href="#11-th:bounding">Theorem 340</a> also yields a way of handling bounding games
 with given initial credit.<br />
 \TODO{Last missing bit regarding complexity upper bounds.}</p>
 </div>

@@ -1,19 +1,6 @@
 (10-sec:notations)=
 # Notations
 
-```{math}
-
-\def\AC#1{\textcolor{green!50!black}{\checkmark}\marginpar{\color{green!50!black}AC: #1}} 
-
-\def\acchanged#1{{#1}}
-\def\OS#1{\textcolor{red}{\checkmark}\marginpar{\color{red}OS: #1}}
-
-\newcommand {\Stepsg}[1]{\mathit{Steps}_{#1}}
-
-\newcommand {\Rounds}[1]{\mathit{Rounds}_{#1}}
-
-```
-
 A **pushdown system** is a tuple $\mathcal{P} = (Q,Q_{ \mathrm{Eve}}, Q_{ \mathrm{Adam}}, \Gamma,\Delta,C)$\AC{Do we add $\mathfrak{c}()$ and $\bot$ to the tuple of a pushdown system ? I have no opinion.} 
 where:
  
@@ -80,12 +67,24 @@ Pushdown arena from {prf:ref}`10-ex:pushdown-game-1`
 
 As a pushdown arena is in general infinite, the **winning region** for  \textrm{Eve}, i.e., the set of winning vertices for  \textrm{Eve} may not admit a finite presentation. Similarly, for objectives for which finite-memory strategies exists, the question of whether such a strategy can be finitely presented (and computed) is raised. Hence, we will in general distinguish the following three algorithmic problems.
 
-\decpb{Solving a pushdown game}{A pushdown game $\mathcal{G}$ and an initial vertex $v_0$}{Does Eve win $\mathcal{G}$ from $v_0$?}
+```{admonition} Problem (Solving a pushdown game)
+**INPUT**: A pushdown game $\mathcal{G}$ and an initial vertex $v_0$
 
-\decpb{Computing the winning region}{A pushdown game $\mathcal{G}$}{Output a finite presentation of the set $v$ of vertices from which  Eve wins $\mathcal{G}$}
+**QUESTION**: Does Eve win $\mathcal{G}$ from $v_0$?
+```
+
+```{admonition} Problem (Computing the winning region)
+**INPUT**: A pushdown game $\mathcal{G}$
+
+**QUESTION**: Output a finite presentation of the set $v$ of vertices from which  Eve wins $\mathcal{G}$
+```
 
 In {prf:ref}`10-thm:regularity-wr`, we will show that the winning region can be described by a finite-state automaton  for a large class of qualitative winning conditions.
 
-\decpb{Computing a winning strategy}{A pushdown game $\mathcal{G}$}{Output a finite presentation of a strategy for  \textrm{Eve} that is winning from any vertex in the winning region for Eve in $\mathcal{G}$}
+```{admonition} Problem (Computing a winning strategy)
+**INPUT**: A pushdown game $\mathcal{G}$
+
+**QUESTION**: Output a finite presentation of a strategy for  \textrm{Eve} that is winning from any vertex in the winning region for Eve in $\mathcal{G}$
+```
 
 We will show, for parity pushdown games, that the winning strategy can be described using either a finite-state automaton (see Section {ref}`10-sec:regular-strat`) or a pushdown automaton (see Section {ref}`10-sec:pushdown-strat`).

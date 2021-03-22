@@ -1,10 +1,6 @@
 (1-sec:simple)=
 # A first model of games
 
-```{math}
-
-```
-
 The first model we define is the common denominator of most models studied in this book:
 
 *  $2$-player,
@@ -306,16 +302,28 @@ We identify three computational problems.
 The first is that of solving a game, which is the simplest one and since it induces a decision problem, allows us 
 to make complexity theoretic statements.
 
-\decpb{Solving the game}{A qualitative game $\mathcal{G}$ and a vertex $v$}{Does Eve win $\mathcal{G}$ from $v$?}
+```{admonition} Problem (Solving the game)
+**INPUT**: A qualitative game $\mathcal{G}$ and a vertex $v$
+
+**QUESTION**: Does Eve win $\mathcal{G}$ from $v$?
+```
 
 The second problem extends the previous one: most algorithms solve games for all vertices at once instead of only for the given initial vertex.
 This is called computing the winning regions.
 
-\decpb{Computing the winning regions}{A qualitative game $\mathcal{G}$}{$W_\mathrm{Eve}( \mathcal{G})$ and $W_\mathrm{Adam}( \mathcal{G})$}
+```{admonition} Problem (Computing the winning regions)
+**INPUT**: A qualitative game $\mathcal{G}$
+
+**QUESTION**: $W_\mathrm{Eve}( \mathcal{G})$ and $W_\mathrm{Adam}( \mathcal{G})$
+```
 
 The third problem is constructing a winning strategy.
 
-\decpb{Constructing a winning strategy}{A qualitative game $\mathcal{G}$ and a vertex $v$}{A winning strategy for Eve from $v$}
+```{admonition} Problem (Constructing a winning strategy)
+**INPUT**: A qualitative game $\mathcal{G}$ and a vertex $v$
+
+**QUESTION**: A winning strategy for Eve from $v$
+```
 
 We did not specify how the winning regions or the winning strategies are represented, this will depend on the types of games we consider.
 
@@ -435,18 +443,30 @@ Note that this determinacy result does not imply the existence of optimal strate
 As for qualitative games, we identify different computational problems.
 The first is solving the game.
 
-\decpb{Solving the game}{A quantitative game $\mathcal{G}$, a vertex $v$, and a threshold $x \in   \mathbb{Q} \cup  \left\{ \pm \infty \right\}$}{Does Eve have a strategy ensuring $x$ from $v$?}
+```{admonition} Problem (Solving the game)
+**INPUT**: A quantitative game $\mathcal{G}$, a vertex $v$, and a threshold $x \in   \mathbb{Q} \cup  \left\{ \pm \infty \right\}$
+
+**QUESTION**: Does Eve have a strategy ensuring $x$ from $v$?
+```
 
 A very close problem is the value problem.
 
-\decpb{Solving the value problem}{A quantitative game $\mathcal{G}$, a vertex $v$, and a threshold $x \in   \mathbb{Q} \cup  \left\{ \pm \infty \right\}$}{Is it true that $\textrm{val}^{ \mathcal{G}}(v) \ge x$?}
+```{admonition} Problem (Solving the value problem)
+**INPUT**: A quantitative game $\mathcal{G}$, a vertex $v$, and a threshold $x \in   \mathbb{Q} \cup  \left\{ \pm \infty \right\}$
+
+**QUESTION**: Is it true that $\textrm{val}^{ \mathcal{G}}(v) \ge x$?
+```
 
 The two problems of solving a game and the value problem are not quite equivalent: 
 they become equivalent if we assume the existence of optimal strategies.
 
 The value problem is directly related to computing the value.
 
-\decpb{Computing the value}{A quantitative game $\mathcal{G}$ and a vertex $v$}{$\textrm{val}^{ \mathcal{G}}(v)$}
+```{admonition} Problem (Computing the value)
+**INPUT**: A quantitative game $\mathcal{G}$ and a vertex $v$
+
+**QUESTION**: $\textrm{val}^{ \mathcal{G}}(v)$
+```
 
 What computing the value means may become unclear if the value is not a rational number, making its representation complicated.
 Especially in this case, it may be enough to approximate the value, which is indeed what the value problem gives us: 
@@ -464,11 +484,19 @@ using $\log(\frac{1}{\varepsilon})$ calls to the algorithm $A$.
 
 The following problem is global, in the same way as computing the winning regions.
 
-\decpb{Computing the value function}{A quantitative game $\mathcal{G}$}{Output the value function $\textrm{val}^{ \mathcal{G}} : V \to   \mathbb{R} \cup  \left\{ \pm \infty \right\}$}
+```{admonition} Problem (Computing the value function)
+**INPUT**: A quantitative game $\mathcal{G}$
+
+**QUESTION**: Output the value function $\textrm{val}^{ \mathcal{G}} : V \to   \mathbb{R} \cup  \left\{ \pm \infty \right\}$
+```
 
 Finally, we are sometimes interested in constructing optimal strategies provided they exist.
 
-\decpb{Constructing an optimal strategy}{A quantitative game $\mathcal{G}$ and a vertex $v$}{Output an optimal strategy from $v$}
+```{admonition} Problem (Constructing an optimal strategy)
+**INPUT**: A quantitative game $\mathcal{G}$ and a vertex $v$
+
+**QUESTION**: Output an optimal strategy from $v$
+```
 
 A close variant is to construct $\varepsilon$-optimal strategies, usually with $\varepsilon$ given as input.
 

@@ -26,35 +26,35 @@ def rewrite_macros(path, file):
 	
 	# We're doing raisebox and scalebox here to avoid clashing with figures
 	#### Rewrite raisebox 
-	# \raisebox{-1pt}[0pt][0pt]{}
+	# \raisebox{-1pt}[0pt][0pt]{text}
 	pattern = r'\\raisebox(\{.*?\})(\[.*?\])?(\[.*?\])?\{([\s\S]*?)$'
 	match = re.search(pattern, content)
 	while match:
+		# print("\nRAISEBOX FOUND\n" + (match.group(0))[:100])
 		(begin_eq,end_eq) = match.span()
-		eq = match.group(4)
-		end_eq = match_next(eq, '{', '}')
-		new_eq = eq[:end_eq]
-		# print("new_eq\n" + new_eq)
-		length_skipped = len(match.group(1))
-		length_skipped += len(match.group(2)) if match.group(2) else 0
-		length_skipped += len(match.group(3)) if match.group(3) else 0
-		content = content[:begin_eq] + new_eq + content[begin_eq + 12 + length_skipped + end_eq:]
-		# print("after\n" + content[begin_eq-50:begin_eq + 50])
+		rest = match.group(4)
+		end_eq = match_next(rest, '{', '}')
+		new_eq = rest[:end_eq]
+		# print("\nNEW EQ\n" + new_eq)
+		content = content[:begin_eq] + new_eq + rest[end_eq+1:]
+		# print("\nAFTER\n" + content[begin_eq-50:begin_eq + 50])
 		match = re.search(pattern, content)
 
+	# print(content)
+
 	#### Rewrite scalebox
-	# \scalebox{.5}{}
+	# \scalebox{.5}{text}
 	pattern = r'\\scalebox(\{.*?\})\{([\s\S]*?)$'
 	match = re.search(pattern, content)
 	while match:
+		# print("\nSCALEBOX FOUND\n" + (match.group(0))[:100])
 		(begin_eq,end_eq) = match.span()
-		eq = match.group(2)
-		end_eq = match_next(eq, '{', '}')
-		new_eq = eq[:end_eq]
-		# print("new_eq\n" + new_eq)
-		length_skipped = len(match.group(1))
-		content = content[:begin_eq] + new_eq + content[begin_eq + 10 + length_skipped + end_eq:]
-		# print("after\n" + content[begin_eq-50:begin_eq + 50])
+		rest = match.group(2)
+		end_eq = match_next(rest, '{', '}')
+		new_eq = rest[:end_eq]
+		# print("\nNEW EQ\n" + new_eq)
+		content = content[:begin_eq] + new_eq + rest[end_eq+1:]
+		# print("\nAFTER\n" + content[begin_eq-50:begin_eq + 50])
 		match = re.search(pattern, content)
 
 	list_macros = re.findall(r'\\(re)?newcommand{(.*?)}{(.*?)}\s', content)
@@ -170,7 +170,11 @@ def rewrite_macros(path, file):
 
 	# print("new\n" + new_list_macros)
 
-	new_content = pre_macro + "\n```{math}\n" + new_list_macros + "```\n" + post_macro
+	match = re.search(r"macro", new_list_macros)
+	if match:
+		new_content = pre_macro + "\n```{math}\n" + new_list_macros + "```\n" + post_macro
+	else:
+		new_content = pre_macro + "\n" + post_macro		
 
 	# Last cleanup: remove consecutive line breaks
 	match = re.search(r'\s*?\n\s*?\n\s*?\s*?\n', new_content)

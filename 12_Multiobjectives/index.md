@@ -8,12 +8,6 @@
 :align: center
 ```
 
-```{math}
-
-% Generic probability measure, also prob. measure operator
-
-```
-
 
 Written by Mickael Randour
 

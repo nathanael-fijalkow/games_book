@@ -1,24 +1,6 @@
 (13-sec:nash_equilibria_normal_form)=
 # Nash Equilibria for games in normal form
 
-```{math}
-
-\def\payoff{f}
-
-\def\Act{A}
-\def\Agt{\mathcal{P}}
-\def\move{\textsf{move}}
-\def\Out{\textsf{Out}}
-\def\Dev{\textsf{Dev}}
-\def\maxinf{\text{\rm maxinf}}
-\def\pes{\textsf{pes}}
-\def\opt{\textsf{opt}}
-\def\proj{\textsf{proj}}
-\def\devg{\textsf{DevGame}}
-\def\Coalition{\mathcal{C}}
-
-```
-
 The normal form games we consider differ from the matrix games of Chapter {ref}`7-chap:concurrent`, in that each player has their own payoff.
 So for instance, when player 1 chooses column Hawk, and player 2 chooses
 row Dove, the payoff for player 1 is $\payoff_{P_1}(\text{Hawk}, \text{Dove}) = 4$.
@@ -293,11 +275,13 @@ The problem we are interested in is to decide the existence of a Nash
 equilibrium in which the objectives of a given set of players are
 satisfied.
 
-\decpb{Existence of a constrained Nash equilibrium}
-{multiplayer game $(\mathcal{A}, (\payoff_P)_{P \in \Agt})$, payoff
-  bounds $(b_P)_{P\in\ \Agt}$, and initial vertex $v_0$}
-{is there a Nash equilibrium $\sigma_{\Agt}$ such that for all
-$P \in \Agt, \payoff_P(  \textrm{Out}({v_0,\sigma_{\Agt}})) \ge b_P$?}
+```{admonition} Problem (Existence of a constrained Nash equilibrium)
+**INPUT**: multiplayer game $(\mathcal{A}, (\payoff_P)_{P \in \Agt})$, payoff
+  bounds $(b_P)_{P\in\ \Agt}$, and initial vertex $v_0$
+
+**QUESTION**: is there a Nash equilibrium $\sigma_{\Agt}$ such that for all
+$P \in \Agt, \payoff_P(  \textrm{Out}({v_0,\sigma_{\Agt}})) \ge b_P$?
+```
 
 The algorithm is based on a reduction to zero-sum two-players games,
 which allows us to use algorithms presented in the previous chapters of

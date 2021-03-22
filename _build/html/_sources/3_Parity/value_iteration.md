@@ -1,10 +1,6 @@
 (3-sec:value_iteration)=
 # A quasipolynomial time value iteration algorithm
 
-```{math}
-
-```
-
 ````{prf:theorem} NEEDS TITLE 3-thm:value_iteration_quasipoly
 :label: 3-thm:value_iteration_quasipoly
 

@@ -1,10 +1,6 @@
 (1-sec:computation)=
 # Computational models
 
-```{math}
-
-```
-
 ## The Random Access Machine model of computation
 
 For complexity statements we consider the classical Turing model of computation.

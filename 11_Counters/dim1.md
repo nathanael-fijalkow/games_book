@@ -1,12 +1,6 @@
 (11-sec:dim1)=
 # Games in dimension one
 
-```{math}
-
-\newcommand{\capp}[2][C]{\overline{\vec #2}^{#1}}
-
-```
-
  {prf:ref}`11-th:undec` leaves open whether vector games might be
 decidable in dimension one.  They are indeed decidable, and more
 generally we learned in Chapter {ref}`10-chap:pushdown` that one-counter
@@ -46,8 +40,8 @@ Section {ref}`11-sec:countdown`: countdown games.
 
  A one-dimensional vector system
 $\mathcal{V}=( \mathcal{L}, A, \mathcal{L}_\mathrm{Eve}, \mathcal{L}_\mathrm{Adam},1)$ is called a countdown
-system if $A\subseteq \mathcal{L}\times\mathbb{Z_}{<0}\times \mathcal{L}$, that is, if
-for all $( \ell \xrightarrow{\,z,} \ell')\in A$, $z<0$.  We consider the games
+system if $A\subseteq \mathcal{L}\times\mathbb{Z}_{<0}\times \mathcal{L}$, that is, if
+for all $( \ell \xrightarrow{\,z\,} \ell')\in A$, $z<0$.  We consider the games
 defined by countdown systems, both with given and with
 existential initial credit, and call the resulting games countdown
 games.
@@ -161,16 +155,17 @@ $$
   that Eve can reach $\smiley$ from a configuration $\ell_{=j}(c)$ if
   and only if $c=j$; we accordingly define $A$ with the following
   actions, where $\frownie$ is a deadlock location:
+  NATH: ISSUE WITH INTERTEXT
   
 $$
 
-     \ell_{=j}& \xrightarrow{\,-j-1,}\frownie\;,& \ell_{=j}& \xrightarrow{\,-j,}\smiley\;.
+     \ell_{=j}& \xrightarrow{\,-j-1\,}\frownie\;,& \ell_{=j}& \xrightarrow{\,-j\,}\smiley\;.
   \intertext{Similarly, Eve should be able to reach $\smiley$ from
   $\ell_{1\leq?\leq m-n+1}(c)$ if and only if $1\leq c\leq m-n+1$,
   which is implemented by the actions}
-     \ell_{1\leq?\leq m-n+1}& \xrightarrow{\,-m+n-2,}\frownie\;,&
-     \ell_{1\leq?\leq m-n+1}& \xrightarrow{\,-1,}\smiley\;,&
-    \smiley& \xrightarrow{\,-1,}\smiley\;.
+     \ell_{1\leq?\leq m-n+1}& \xrightarrow{\,-m+n-2\,}\frownie\;,&
+     \ell_{1\leq?\leq m-n+1}& \xrightarrow{\,-1\,}\smiley\;,&
+    \smiley& \xrightarrow{\,-1\,}\smiley\;.
   
 $$
 
@@ -184,24 +179,24 @@ $$
   
 $$
 
-     \ell_0 & \xrightarrow{\,-1,}  \ell_0 &  \ell_0 & \xrightarrow{\,-1,} \ell_{(q_\mathrm{final},a)}&&\text{for $a\in\Gamma$}\;.
+     \ell_0 & \xrightarrow{\,-1\,}  \ell_0 &  \ell_0 & \xrightarrow{\,-1\,} \ell_{(q_\mathrm{final},a)}&&\text{for $a\in\Gamma$}\;.
     \intertext{Outside the boundary cases, the game is implemented by
     the following actions:}
-     \ell_\gamma& \xrightarrow{\,-m,} \ell_{(\gamma_1,\gamma_2,\gamma_3)}&&&&\text{for
-  $\gamma_1,\gamma_2,\gamma_3\vdash\gamma$}\;,\\  \ell_{(\gamma_1,\gamma_2,\gamma_3)}& \xrightarrow{\,-k,} \ell_{\gamma_k}&&&&\text{for
+     \ell_\gamma& \xrightarrow{\,-m\,} \ell_{(\gamma_1,\gamma_2,\gamma_3)}&&&&\text{for
+  $\gamma_1,\gamma_2,\gamma_3\vdash\gamma$}\;,\\  \ell_{(\gamma_1,\gamma_2,\gamma_3)}& \xrightarrow{\,-k\,} \ell_{\gamma_k}&&&&\text{for
   $k\in\{1,2,3\}$}\;.
   \intertext{We handle the endmarker positions via the following
   actions, where Eve proceeds along the left edge
   of {numref}`11-fig:exp` until she reaches the initial left endmarker:}
-    \ell_\triangleright& \xrightarrow{\,-m-2,} \ell_\triangleright\;,&  \ell_\triangleright& \xrightarrow{\,-1,} \ell_{=1}\;,&  \ell_\triangleleft& \xrightarrow{\,-m-1,} \ell_\triangleright\;.
+    \ell_\triangleright& \xrightarrow{\,-m-2\,} \ell_\triangleright\;,&  \ell_\triangleright& \xrightarrow{\,-1\,} \ell_{=1}\;,&  \ell_\triangleleft& \xrightarrow{\,-m-1\,} \ell_\triangleright\;.
   \intertext{For the positions inside the input word $w=a_1\cdots
   a_n$, we use the actions}
-   \ell_{(q_0,a_1)}& \xrightarrow{\,-2,} \ell_{=1}\;,& \ell_{a_j}& \xrightarrow{\,-2,} \ell_{=j}&&\text{for
+   \ell_{(q_0,a_1)}& \xrightarrow{\,-2\,} \ell_{=1}\;,& \ell_{a_j}& \xrightarrow{\,-2\,} \ell_{=j}&&\text{for
   $1<j\leq n$}\;.
   \intertext{Finally, for the blank symbols of $C_1$, which should be
   associated with a counter value $c$ such that $n+3\leq c\leq m+3$, we use the
   action}
-   \ell_\Box& \xrightarrow{\,-n-2,} \ell_{1\leq?\leq m-n+1}\;.&&&&&\qedhere\hspace*{-1.5em}
+   \ell_\Box& \xrightarrow{\,-n-2\,} \ell_{1\leq?\leq m-n+1}\;.&&&&&\qedhere\hspace*{-1.5em}
   
 $$
 
@@ -224,7 +219,7 @@ $$
    reduce this to an instance of configuration reachability with
    given initial credit in a one-dimensional vector system by
    adding a new location $\ell'_0$ controlled by Eve with actions
-   $\ell'_0 \xrightarrow{\,1,} \ell'_0$ and $\ell'_0\step 0 \ell_0$, and asking
+   $\ell'_0 \xrightarrow{\,1\,} \ell'_0$ and $\ell'_0 \xrightarrow{\,0\,} \ell_0$, and asking
    whether Eve has a winning strategy starting from $\ell'_0(0)$ in
    the new system.  By {prf:ref}`11-cor:dim1`, this configuration
    reachability game can be solved in $\textrm{EXPSPACE}$.
@@ -249,8 +244,8 @@ problem.
 
 **QUESTION**: Does Eve have a strategy to reach a configuration $\ell(0)$ for
   some $\ell\in \mathcal{L}$?
-  That is, does she win the zero reachability\index{zero reachability|see{countdown game}}
-  game $(\mathcal{A_}\mathbb{N}(\mathcal{V}), \mathfrak{c}, \mathtt{Reach})$ from $\ell_0(n_0)$, where
+  That is, does she win the zero reachability
+  game $(\mathcal{A}_\mathbb{N}(\mathcal{V}), \mathfrak{c}, \mathtt{Reach})$ from $\ell_0(n_0)$, where
   $\mathfrak{c}(e)= \textrm{Win}$ if and only if $\textrm{In}(e)= \ell(0)$ for some $\ell\in \mathcal{L}$?
 ```
 
@@ -271,7 +266,7 @@ problem.
   use $\ell_0(2\cdot n_0+1)$ as initial configuration, multiply all
   the action weights in $A$ by two, and add a new
   location $\ell_\mathrm{zero}$ with an action
-  $\smiley \xrightarrow{\,-1,} \ell_\mathrm{zero}$.  Because all the counter
+  $\smiley \xrightarrow{\,-1\,} \ell_\mathrm{zero}$.  Because all the counter
   values in the new game are odd unless we reach $\ell_\mathrm{zero}$,
   the only way for Eve to bring the counter to zero in this new game
   is to first reach $\smiley(1)$, which occurs if and only if she
@@ -308,18 +303,16 @@ from {prf:ref}`11-cor:dim1` are tight in most cases.
   argue as in the upper bound proof of {prf:ref}`11-th:countdown-exist` that
   all these games are also hard with given initial credit: we add a
   new initial location $\ell'_0$ controlled by Eve with actions
-  $\ell'_0\step 1 \ell'_0$ and $\ell'_0\step 0 \ell_0$ and play the game
+  $\ell'_0 \xrightarrow{\,1\,} \ell'_0$ and $\ell'_0 \xrightarrow{\,0\,} \ell_0$ and play the game
   starting from $\ell'_0(0)$.
 
-  Regarding non-termination, we can add a self loop $\smiley\step
-  0\smiley$ to the construction
+  Regarding non-termination, we can add a self loop $\smiley \xrightarrow{\,0\,}\smiley$ to the construction
   of {prf:ref}`11-th:countdown-given` and {prf:ref}`11-th:countdown-exist`: then the only way
   to build an infinite play that avoids the sink is to reach the
   target location $\smiley$.  This shows that the games are $\textrm{EXP}$-hard
   with given initial credit and $\textrm{EXPSPACE}$-hard with existential
   initial credit.  Note that the trick of reducing existential to
-  given initial credit with an initial incrementing loop $\ell'_0\step
-  1 \ell'_0$ does not work, because Eve would have a trivial winning
+  given initial credit with an initial incrementing loop $\ell'_0 \xrightarrow{\,1\,} \ell'_0$ does not work, because Eve would have a trivial winning
   strategy that consists in just playing this loop forever.
 
 ````

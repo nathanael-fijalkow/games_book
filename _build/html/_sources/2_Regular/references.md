@@ -1,10 +1,6 @@
 (2-sec:references)=
 # Bibliographic references
 
-```{math}
-
-```
-
 The interest in reachability objectives goes beyond automata theory and logic.
 The attractor computation presented in Section {ref}`2-sec:attractors` is inspired by the backward induction principle due to Zermelo {cite}`Zermelo:1913`, 
 which was used to show that well founded games (**i.e.** where all plays are finite) are determined.

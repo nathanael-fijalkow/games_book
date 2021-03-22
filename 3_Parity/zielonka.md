@@ -1,10 +1,6 @@
 (3-sec:zielonka)=
 # A quasipolynomial time attractor decomposition algorithm
 
-```{math}
-
-```
-
 ````{prf:theorem} Quasipolynomial McNaughton Zielonka algorithm
 :label: 3-thm:quasipolynomial_mcnaughton_zielonka_algorithm
 

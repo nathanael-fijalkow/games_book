@@ -704,15 +704,13 @@
                 
   <div class="section" id="concurrent-reachability-games">
 <span id="sec-reachability"></span><h1>Concurrent reachability games<a class="headerlink" href="#concurrent-reachability-games" title="Permalink to this headline">¶</a></h1>
-<div class="math notranslate nohighlight">
-\[\]</div>
 <p>In this section we consider concurrent reachability games.
 Intuitively, unlike concurrent discounted games, these games cares only about the final part of the play.
 This, while perhaps not clear directly from the definitions, makes the games somewhat harder. For instance, the value iteration algorithm requires double-exponential time.
 Note that like for concurrent discounted games, if we force Eve to follow some strategy, the game reduces to a MDP and there exists optimal positional strategies.</p>
 <p>We will not prove the following known lemma. We will however, show the weaker statement that the decision problem for the value can be done in PSPACE.</p>
 <div class="proof lemma admonition" id="lemm:reach_determined">
-<p class="admonition-title"><span class="caption-number">Lemma 232 </span> (NEEDS TITLE lemm:reach_determined)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 235 </span> (NEEDS TITLE lemm:reach_determined)</p>
 <div class="lemma-content section" id="proof-content">
 <p>Concurrent reachability games are determined. Also, finding the value of a concurrent reachability game can be done in TFNP[NP]</p>
 </div>
@@ -732,13 +730,13 @@ If Adam plays the left column always, play will reach <span class="math notransl
 <p>On the other hand, if Adam plays the right column whenever Eve plays the first action with pr. 1, and otherwise plays the first action,
 then in the last round in the vertex there must be a positive pr. that play goes to vertex 0. Hence, Eve has no optimal strategy.</p>
 <div class="proof lemma admonition" id="lemm:no_opt_reach">
-<p class="admonition-title"><span class="caption-number">Lemma 233 </span> (NEEDS TITLE lemm:no_opt_reach)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 236 </span> (NEEDS TITLE lemm:no_opt_reach)</p>
 <div class="lemma-content section" id="proof-content">
 <p>Eve need not have an optimal strategy in a concurrent reachability game</p>
 </div>
 </div><p>The following lemma states some classical results for concurrent reachability games that we will not prove.</p>
 <div class="proof lemma admonition" id="lemm:reach_class">
-<p class="admonition-title"><span class="caption-number">Lemma 234 </span> (NEEDS TITLE lemm:reach_class)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 237 </span> (NEEDS TITLE lemm:reach_class)</p>
 <div class="lemma-content section" id="proof-content">
 <ul class="simple">
 <li><p>For any <span class="math notranslate nohighlight">\(\epsilon&gt;0\)</span>, there are always <span class="math notranslate nohighlight">\(\epsilon\)</span>-optimal stationary strategies for Eve and optimal stationary strategies for Adam.</p></li>
@@ -752,7 +750,7 @@ Given a function <span class="math notranslate nohighlight">\(F: \mathbb{R}^n\ri
 The function <span class="math notranslate nohighlight">\(F\)</span> must be an well-formed (i.e. connected with logical <code class="docutils literal notranslate"><span class="pre">and',</span> </code>or’ and `not’) quantifier-free formula over polynomial inequalities.
 E.g. <span class="math notranslate nohighlight">\(x^2y+z\geq 5\wedge \neg (xz\leq 3)\)</span> would be such a function.</p>
 <div class="proof lemma admonition" id="lemma-3">
-<p class="admonition-title"><span class="caption-number">Lemma 235 </span> (NEEDS TITLE AND LABEL)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 238 </span> (NEEDS TITLE AND LABEL)</p>
 <div class="lemma-content section" id="proof-content">
 <p>The decision problem for the existential theory over the reals is in PSPACE</p>
 <p>The decision problem for the existential theory over the reals is in PSPACE</p>
@@ -770,14 +768,14 @@ x\leq a_1\wedge x\leq a_2\wedge \dots \wedge x\leq a_n \wedge (x=a_1\vee x=a_2\v
 <p>Similarly, one can also describe that <span class="math notranslate nohighlight">\(x=\max(a_1,a_2,\dots,a_n)\)</span> for any number <span class="math notranslate nohighlight">\(n\)</span> and any polynomials <span class="math notranslate nohighlight">\(a_1,a_2,a_n\)</span>.</p>
 <p>We can similarly make a statement that <span class="math notranslate nohighlight">\(v_x\leq c\)</span>. Using that PSPACE is equal to co-PSPACE, we also get that we can find if <span class="math notranslate nohighlight">\(v_x\geq c\)</span> and <span class="math notranslate nohighlight">\(v_x&gt;c\)</span> and therefore also <span class="math notranslate nohighlight">\(v_x=c\)</span> and <span class="math notranslate nohighlight">\(v_x\neq c\)</span>, all in PSPACE.</p>
 <div class="proof lemma admonition" id="lemma-4">
-<p class="admonition-title"><span class="caption-number">Lemma 236 </span> (NEEDS TITLE AND LABEL)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 239 </span> (NEEDS TITLE AND LABEL)</p>
 <div class="lemma-content section" id="proof-content">
 <p>Decision problems for the values in a concurrent reachability game is in PSPACE</p>
 <p>Decision problems for the values in a concurrent reachability game is in PSPACE</p>
 </div>
 </div><p>The set of vertices that have value 0 can be found in polynomial time. This is because, the set of vertices that have value 0 in the time limited game of length <span class="math notranslate nohighlight">\(n\)</span> has also value 0 in all other time limited games. That this is so is easy to see by considering that Eve plays an <span class="math notranslate nohighlight">\(\epsilon\)</span>-optimal strategy for <span class="math notranslate nohighlight">\(v&gt;\epsilon\)</span>, where <span class="math notranslate nohighlight">\(v\)</span> is the value of the vertex with the lowest value. The game then devolves to a MDP for Adam, and the statement is true for such.</p>
 <div class="proof lemma admonition" id="lemm:find_0_reach">
-<p class="admonition-title"><span class="caption-number">Lemma 237 </span> (NEEDS TITLE lemm:find_0_reach)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 240 </span> (NEEDS TITLE lemm:find_0_reach)</p>
 <div class="lemma-content section" id="proof-content">
 <p>The set of vertices of value 0 in a concurrent reachability game can be found in polynomial time</p>
 </div>
@@ -797,7 +795,7 @@ the vertex <span class="math notranslate nohighlight">\(x\)</span> satisfies the
 Let <span class="math notranslate nohighlight">\(\ell\)</span> be the largest number such that <span class="math notranslate nohighlight">\(S^\ell\)</span> is non-empty (note that <span class="math notranslate nohighlight">\(S^i\)</span>, for <span class="math notranslate nohighlight">\(i&gt;\ell\)</span> must then be empty).</p>
 <p>We will be using the following lemma.</p>
 <div class="proof lemma admonition" id="lemma-6">
-<p class="admonition-title"><span class="caption-number">Lemma 238 </span> (NEEDS TITLE AND LABEL)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 241 </span> (NEEDS TITLE AND LABEL)</p>
 <div class="lemma-content section" id="proof-content">
 <p>The set of vertices <span class="math notranslate nohighlight">\(S_1\)</span> of value 1 satisfies the value-1-property</p>
 <p>The set of vertices <span class="math notranslate nohighlight">\(S_1\)</span> of value 1 satisfies the value-1-property</p>
@@ -811,7 +809,7 @@ This is because to get to <span class="math notranslate nohighlight">\(\textrm{W
 </div>
 <p>We will argue that this is a precise characterization of <span class="math notranslate nohighlight">\(S_1\)</span> next.</p>
 <div class="proof lemma admonition" id="lemma-7">
-<p class="admonition-title"><span class="caption-number">Lemma 239 </span> (NEEDS TITLE AND LABEL)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 242 </span> (NEEDS TITLE AND LABEL)</p>
 <div class="lemma-content section" id="proof-content">
 <p>Consider a set <span class="math notranslate nohighlight">\(S'\)</span> satisfying the value-1-property.
 Then each vertex of <span class="math notranslate nohighlight">\(S'\)</span> has value 1.\label{lem:sufficent_for_value1}</p>
@@ -838,7 +836,7 @@ We increment (where a rank is less than another if it is a smaller number. Also,
 Note that no vertex can satisfy the subset property for rank 0, since <span class="math notranslate nohighlight">\(S'\)</span> is all vertices.
 Whenever a stable configuration is reached, output <span class="math notranslate nohighlight">\(\overline{S}_1\)</span>.</p>
 <div class="proof lemma admonition" id="lemma-8">
-<p class="admonition-title"><span class="caption-number">Lemma 240 </span> (NEEDS TITLE AND LABEL)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 243 </span> (NEEDS TITLE AND LABEL)</p>
 <div class="lemma-content section" id="proof-content">
 <p>The output of the  \text{crgLim1}\ algorithm is correct</p>
 <p>The output of the  \text{crgLim1}\ algorithm is correct</p>
@@ -860,7 +858,7 @@ Thus, we only do at most <span class="math notranslate nohighlight">\(2|S_x|+1\)
 There are <span class="math notranslate nohighlight">\(n+1\)</span> ranks, so in total for <span class="math notranslate nohighlight">\(x\)</span>, we use at most <span class="math notranslate nohighlight">\((n+1)(2|S_x|+1)\)</span> checks.
 Hence, in total over all <span class="math notranslate nohighlight">\(x\)</span>, we do <span class="math notranslate nohighlight">\(O(n\sum_{x} |S_x|)\)</span> checks.</p>
 <div class="proof lemma admonition" id="lemma-9">
-<p class="admonition-title"><span class="caption-number">Lemma 241 </span> (NEEDS TITLE AND LABEL)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 244 </span> (NEEDS TITLE AND LABEL)</p>
 <div class="lemma-content section" id="proof-content">
 <p>The run time of the  \text{crgLim1}\ algorithm is <span class="math notranslate nohighlight">\(O(nk\sum_{x} |S_x|)\)</span> times</p>
 <p>The run time of the  \text{crgLim1}\ algorithm is <span class="math notranslate nohighlight">\(O(nk\sum_{x} |S_x|)\)</span> times</p>
@@ -874,7 +872,7 @@ We will define <span class="math notranslate nohighlight">\(C_i\not\in C_{i=1}^*
 <span class="math notranslate nohighlight">\(F^{r,c}(x,S\setminus S')&gt;0\)</span>.
 The set <span class="math notranslate nohighlight">\(R^{*}_{\ell}\)</span> is the first set such that <span class="math notranslate nohighlight">\(R^*_{\ell+1}\)</span> is empty (clearly, by construction all sets <span class="math notranslate nohighlight">\(R_i,C_i\)</span> for <span class="math notranslate nohighlight">\(i&gt;\ell\)</span> would also be empty).</p>
 <div class="proof lemma admonition" id="lemma-10">
-<p class="admonition-title"><span class="caption-number">Lemma 242 </span> (NEEDS TITLE AND LABEL)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 245 </span> (NEEDS TITLE AND LABEL)</p>
 <div class="lemma-content section" id="proof-content">
 <p>There is a strategy <span class="math notranslate nohighlight">\(\sigma(\epsilon)\)</span> for all <span class="math notranslate nohighlight">\(\epsilon&gt;0\)</span> iff <span class="math notranslate nohighlight">\(C_{\ell}^*\)</span> is the set of all columns</p>
 <p>There is a strategy <span class="math notranslate nohighlight">\(\sigma(\epsilon)\)</span> for all <span class="math notranslate nohighlight">\(\epsilon&gt;0\)</span> iff <span class="math notranslate nohighlight">\(C_{\ell}^*\)</span> is the set of all columns</p>
@@ -911,7 +909,7 @@ Increment <span class="math notranslate nohighlight">\(i\)</span>.
 Go to line 3.</p>
 <p>The total time is <span class="math notranslate nohighlight">\(O(\sum_{r,c}| \textrm{supp}( \Delta(x,r,c))|)\)</span> for the algorithm.</p>
 <div class="proof lemma admonition" id="lemma-11">
-<p class="admonition-title"><span class="caption-number">Lemma 243 </span> (NEEDS TITLE AND LABEL)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 246 </span> (NEEDS TITLE AND LABEL)</p>
 <div class="lemma-content section" id="proof-content">
 <p>We can check whether a vertex <span class="math notranslate nohighlight">\(x\)</span> satisfies the subset property for sets <span class="math notranslate nohighlight">\(S\)</span> and <span class="math notranslate nohighlight">\(S'\)</span> in time</p>
 <div class="math notranslate nohighlight">
@@ -922,7 +920,7 @@ Go to line 3.</p>
 </div>
 </div><p>We therefore get that</p>
 <div class="proof lemma admonition" id="lem:val1">
-<p class="admonition-title"><span class="caption-number">Lemma 244 </span> (NEEDS TITLE lem:val1)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 247 </span> (NEEDS TITLE lem:val1)</p>
 <div class="lemma-content section" id="proof-content">
 <p>\label{lemm:find_1_reach}
 We can find the set of vertices of value 1 in time <span class="math notranslate nohighlight">\(O(n\sum_{x} |S_x|\sum_{r,c}| \textrm{supp}( \Delta(x,r,c))|)\)</span></p>
@@ -938,7 +936,7 @@ There is an illustration of Purgatory <span class="math notranslate nohighlight"
 </div>
 <p>It is easy to see that all vertices but <span class="math notranslate nohighlight">\(\bot\)</span> is in <span class="math notranslate nohighlight">\(S_1\)</span>, using the value 1 property.</p>
 <div class="proof lemma admonition" id="lem:purgatory">
-<p class="admonition-title"><span class="caption-number">Lemma 245 </span> (NEEDS TITLE lem:purgatory)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 248 </span> (NEEDS TITLE lem:purgatory)</p>
 <div class="lemma-content section" id="proof-content">
 <p>For any <span class="math notranslate nohighlight">\(0&lt;\epsilon&lt;1/2\)</span> and any <span class="math notranslate nohighlight">\(k\geq 1\)</span>, there is a unique strategy for Eve with least patience which is <span class="math notranslate nohighlight">\(\epsilon\)</span>-optimal in purgatory <span class="math notranslate nohighlight">\(k\)</span>. That strategy has patience <span class="math notranslate nohighlight">\(\epsilon^{-2^{k-1}}\)</span></p>
 </div>
@@ -984,7 +982,7 @@ There is a illustration of Purgatory Duel <span class="math notranslate nohighli
 <p>We will say that a strategy <span class="math notranslate nohighlight">\(\sigma\)</span> for Eve mirrors a strategy <span class="math notranslate nohighlight">\(\tau\)</span> for Adam, if <span class="math notranslate nohighlight">\(\sigma(i)=\tau(i')\)</span> and <span class="math notranslate nohighlight">\(\sigma(i')=\tau(i)\)</span> for all <span class="math notranslate nohighlight">\(i\)</span>.
 Similarly, <span class="math notranslate nohighlight">\(\tau\)</span> mirrors <span class="math notranslate nohighlight">\(\sigma\)</span>.</p>
 <div class="proof lemma admonition" id="lemma-14">
-<p class="admonition-title"><span class="caption-number">Lemma 246 </span> (NEEDS TITLE AND LABEL)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 249 </span> (NEEDS TITLE AND LABEL)</p>
 <div class="lemma-content section" id="proof-content">
 <p>The value of vertex <span class="math notranslate nohighlight">\(s\)</span> is <span class="math notranslate nohighlight">\(1/2\)</span>. Also, for any <span class="math notranslate nohighlight">\(\epsilon&gt;0\)</span>, any <span class="math notranslate nohighlight">\((1/2-\epsilon)\)</span>-optimal strategy <span class="math notranslate nohighlight">\(\tau\)</span> for Adam does not follow a dirac distribution in <span class="math notranslate nohighlight">\(i'\)</span> for any <span class="math notranslate nohighlight">\(i'\in\{1',\dots,k'\}\)</span>. Finally, every <span class="math notranslate nohighlight">\(\epsilon\)</span>-optimal strategy is a mirror of an <span class="math notranslate nohighlight">\(\epsilon\)</span>-optimal strategy</p>
 <p>The value of vertex <span class="math notranslate nohighlight">\(s\)</span> is <span class="math notranslate nohighlight">\(1/2\)</span>. Also, for any <span class="math notranslate nohighlight">\(\epsilon&gt;0\)</span>, any <span class="math notranslate nohighlight">\((1/2-\epsilon)\)</span>-optimal strategy <span class="math notranslate nohighlight">\(\tau\)</span> for Adam does not follow a dirac distribution in <span class="math notranslate nohighlight">\(i'\)</span> for any <span class="math notranslate nohighlight">\(i'\in\{1',\dots,k'\}\)</span>. Finally, every <span class="math notranslate nohighlight">\(\epsilon\)</span>-optimal strategy is a mirror of an <span class="math notranslate nohighlight">\(\epsilon\)</span>-optimal strategy</p>
@@ -1002,7 +1000,7 @@ Then, let Eve’s mirror strategy to <span class="math notranslate nohighlight">
 <p>To do so we will use the following lemma, showing that you can sometimes modify a concurrent game (or any of its special cases) and get a game with less value. While the proof is explicitly for concurrent reachability games, the proof is basically identical for concurrent discounted and mean-payoff games.
 In a game <span class="math notranslate nohighlight">\(G\)</span>, for a vertex <span class="math notranslate nohighlight">\(v\)</span> and a duration <span class="math notranslate nohighlight">\(T\)</span>, let <span class="math notranslate nohighlight">\(v^T_G\)</span> be the value of the time-limited game with duration <span class="math notranslate nohighlight">\(T\)</span>.</p>
 <div class="proof lemma admonition" id="lem:change_succ">
-<p class="admonition-title"><span class="caption-number">Lemma 247 </span> (NEEDS TITLE lem:change_succ)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 250 </span> (NEEDS TITLE lem:change_succ)</p>
 <div class="lemma-content section" id="proof-content">
 <p>Consider a concurrent reachability game <span class="math notranslate nohighlight">\(G\)</span> and a pair of vertices <span class="math notranslate nohighlight">\(u,v\)</span>, such that for all <span class="math notranslate nohighlight">\(T\)</span>, we have that <span class="math notranslate nohighlight">\(u^T_G\geq v^T_G\)</span>. Consider a vertex <span class="math notranslate nohighlight">\(w\)</span> such that for a pair of actions, <span class="math notranslate nohighlight">\((r,c)\)</span> we have that <span class="math notranslate nohighlight">\(v\in  \textrm{supp}( \Delta(w,r,c))\)</span>. Consider an alternate game <span class="math notranslate nohighlight">\(G'\)</span> equal to <span class="math notranslate nohighlight">\(G\)</span>, except that some of the probability mass is moved from <span class="math notranslate nohighlight">\(v\)</span> to <span class="math notranslate nohighlight">\(u\)</span> when playing <span class="math notranslate nohighlight">\((r,c)\)</span> in <span class="math notranslate nohighlight">\(w\)</span>, i.e. <span class="math notranslate nohighlight">\(0&lt; \Delta(G,w,r,c)(v)- \Delta(G',w,r,c)(v)= \Delta(G',w,r,c)(u)- \Delta(G,w,r,c)(u)\)</span>.
 Then for all vertices <span class="math notranslate nohighlight">\(z\)</span> we have that <span class="math notranslate nohighlight">\(z^T_G\leq z^T_{G'}\)</span></p>
@@ -1018,21 +1016,21 @@ The lemma follows.</p>
 </div>
 <p>We are now ready to find the patience in concurrent reachability games.</p>
 <div class="proof lemma admonition" id="lemma-16">
-<p class="admonition-title"><span class="caption-number">Lemma 248 </span> (NEEDS TITLE AND LABEL)</p>
+<p class="admonition-title"><span class="caption-number">Lemma 251 </span> (NEEDS TITLE AND LABEL)</p>
 <div class="lemma-content section" id="proof-content">
 <p>Any <span class="math notranslate nohighlight">\((1/4)\)</span>-optimal strategy, for either player, in purgatory duel <span class="math notranslate nohighlight">\(k\)</span> has patience at least <span class="math notranslate nohighlight">\((3/4)^{-2^{k-1}}\)</span> for each <span class="math notranslate nohighlight">\(k\)</span></p>
 <p>Any <span class="math notranslate nohighlight">\((1/4)\)</span>-optimal strategy, for either player, in purgatory duel <span class="math notranslate nohighlight">\(k\)</span> has patience at least <span class="math notranslate nohighlight">\((3/4)^{-2^{k-1}}\)</span> for each <span class="math notranslate nohighlight">\(k\)</span></p>
 </div>
 </div><div class="dropdown tip admonition">
 <p class="admonition-title">Proof</p>
-<p>We will show that the lemma is true for Eve’s strategies and that it is true for Adam’s follows from Lemma <a class="reference internal" href="#lem:change_succ">Lemma 247</a>.
-Consider an <span class="math notranslate nohighlight">\((1/4)\)</span>-optimal strategy <span class="math notranslate nohighlight">\(\sigma\)</span> for Eve. Fixing this strategy for Eve, we get a MDP for Adam. Clearly, in this MDP <span class="math notranslate nohighlight">\(G'\)</span>, we have that <span class="math notranslate nohighlight">\(0=\bot^T_{G'}\leq s^T_{G'}\)</span> for all <span class="math notranslate nohighlight">\(T\)</span>. We can thus apply Lemma <a class="reference internal" href="#lem:change_succ">Lemma 247</a> to changing <span class="math notranslate nohighlight">\(\Delta(1',1,1)\)</span> from <span class="math notranslate nohighlight">\(\bot\)</span> to <span class="math notranslate nohighlight">\(s\)</span>. In the resulting game <span class="math notranslate nohighlight">\(G''\)</span>,
+<p>We will show that the lemma is true for Eve’s strategies and that it is true for Adam’s follows from Lemma <a class="reference internal" href="#lem:change_succ">Lemma 250</a>.
+Consider an <span class="math notranslate nohighlight">\((1/4)\)</span>-optimal strategy <span class="math notranslate nohighlight">\(\sigma\)</span> for Eve. Fixing this strategy for Eve, we get a MDP for Adam. Clearly, in this MDP <span class="math notranslate nohighlight">\(G'\)</span>, we have that <span class="math notranslate nohighlight">\(0=\bot^T_{G'}\leq s^T_{G'}\)</span> for all <span class="math notranslate nohighlight">\(T\)</span>. We can thus apply Lemma <a class="reference internal" href="#lem:change_succ">Lemma 250</a> to changing <span class="math notranslate nohighlight">\(\Delta(1',1,1)\)</span> from <span class="math notranslate nohighlight">\(\bot\)</span> to <span class="math notranslate nohighlight">\(s\)</span>. In the resulting game <span class="math notranslate nohighlight">\(G''\)</span>,
 we still have that <span class="math notranslate nohighlight">\(0=\bot^T_{G''}\leq s^T_{G''}\)</span> and thus, we can change <span class="math notranslate nohighlight">\(\Delta(1',2,2)\)</span> from <span class="math notranslate nohighlight">\(\bot\)</span> to <span class="math notranslate nohighlight">\(s\)</span>.
 Let the next game be <span class="math notranslate nohighlight">\(G^*\)</span>.
 Thus, for any <span class="math notranslate nohighlight">\(i'\in \{1',\dots,k'\}\)</span>, the plays from <span class="math notranslate nohighlight">\(i'\)</span> to <span class="math notranslate nohighlight">\(\bot\)</span> in <span class="math notranslate nohighlight">\(G^*\)</span> all goes through <span class="math notranslate nohighlight">\(s\)</span>. Note that Adam can ensure that the play reaches <span class="math notranslate nohighlight">\(s\)</span> from <span class="math notranslate nohighlight">\(i'\)</span> and thus, when he plays optimally, do so.
 Thus, whenever <span class="math notranslate nohighlight">\(s\)</span> is entered and Adam plays optimally, <span class="math notranslate nohighlight">\(k\)</span> is enter eventually with pr. 1.
 For the purpose of the value, we can thus disregard <span class="math notranslate nohighlight">\(s\)</span> and vertices in <span class="math notranslate nohighlight">\(\{1',\dots,k'\}\)</span> and just view each edge going to <span class="math notranslate nohighlight">\(s\)</span> as going to <span class="math notranslate nohighlight">\(k\)</span> instead.
-But the resulting game is purgatory <span class="math notranslate nohighlight">\(k\)</span> (in which Eve has fixed his strategy) and Eve is playing a strategy that gives value at least <span class="math notranslate nohighlight">\(1/4\)</span>, which requires  at least <span class="math notranslate nohighlight">\((3/4)^{-2^{k-1}}\)</span> patience, by Lemma <a class="reference internal" href="#lem:purgatory">Lemma 245</a>.</p>
+But the resulting game is purgatory <span class="math notranslate nohighlight">\(k\)</span> (in which Eve has fixed his strategy) and Eve is playing a strategy that gives value at least <span class="math notranslate nohighlight">\(1/4\)</span>, which requires  at least <span class="math notranslate nohighlight">\((3/4)^{-2^{k-1}}\)</span> patience, by Lemma <a class="reference internal" href="#lem:purgatory">Lemma 248</a>.</p>
 </div>
 </div>
 

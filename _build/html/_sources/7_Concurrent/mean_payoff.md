@@ -1,10 +1,6 @@
 (7-sec:mean_payoff)=
 # Concurrent mean-payoff games
 
-```{math}
-
-```
-
 In this section we consider concurrent mean-payoff games. 
 We will show that in general, any  $\epsilon$-optimal strategy in some concurrent mean-payoff games are quite complex. 
 We will first, however, show that finding the value of a concurrent mean-payoff game can be done in polynomial space.

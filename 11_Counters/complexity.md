@@ -1,12 +1,6 @@
 (11-sec:complexity)=
 # The complexity of asymmetric monotone games
 
-```{math}
-
-\newcommand{\capp}[2][C]{\overline{\vec #2}^{#1}}
-
-```
-
 Unlike general vector games and configuration reachability
 asymmetric ones, coverability, non-termination, and
 parity asymmetric vector games are decidable.
@@ -56,7 +50,7 @@ the play.
 :class: dropdown tip
 
   Let $A_\mathrm{Adam}  \stackrel{\!\,\!\,\textrm{def}}{=}\{( \ell \xrightarrow{\,\vec
-    u,} \ell')\in A\mid \ell\in \mathcal{L}_\mathrm{Adam}\}$ be the set of actions
+    u\,} \ell')\in A\mid \ell\in \mathcal{L}_\mathrm{Adam}\}$ be the set of actions
   controlled by Adam.  We assume without loss of generality that
   every location $\ell\in \mathcal{L}_\mathrm{Adam}$ has either one or two outgoing
   actions, thus $| \mathcal{L}_\mathrm{Adam}|\leq| A_\mathrm{Adam}|\leq
@@ -67,22 +61,22 @@ the play.
 
   For the induction step, consider some location
   $\hat \ell\in \mathcal{L}_\mathrm{Adam}$ with two outgoing actions
-  $a_l  \stackrel{\!\,\!\,\textrm{def}}{=}\hat \ell \xrightarrow{\,\vec 0,} \ell_l$ and
-  $a_r  \stackrel{\!\,\!\,\textrm{def}}{=}\hat \ell \xrightarrow{\,\vec 0,} \ell_r$.  Let $\mathcal{V_l}$ and $\mathcal{V_r}$ be
+  $a_l  \stackrel{\!\,\!\,\textrm{def}}{=}\hat \ell \xrightarrow{\,\vec 0\,} \ell_l$ and
+  $a_r  \stackrel{\!\,\!\,\textrm{def}}{=}\hat \ell \xrightarrow{\,\vec 0\,} \ell_r$.  Let $\mathcal{V}_l$ and $\mathcal{V}_r$ be
   the vector systems obtained from $\mathcal{V}$ by removing
   respectively $a_r$ and $a_l$ from $A$, i.e., by using
   $A_l  \stackrel{\!\,\!\,\textrm{def}}{=} A\setminus\{a_r\}$ and
   $A_r  \stackrel{\!\,\!\,\textrm{def}}{=} A\setminus\{a_l\}$.  If $\textrm{Adam}$ wins the
   parity game from $\ell(\vec v)$ for every
-  initial credit $\vec v$ in either $\mathcal{V_l}$ or $\mathcal{V_r}$, then by
+  initial credit $\vec v$ in either $\mathcal{V}_l$ or $\mathcal{V}_r$, then by
   induction hypothesis he has a counterless winning strategy winning
   from $\ell(\vec v)$ for every initial credit $\vec v$, and the same
   strategy is winning in $\mathcal{V}$ from $\ell(\vec v)$ for every initial
   credit $\vec v$.
 
   In order to conclude the proof, we show that, if Adam loses in
-  $\mathcal{V_l}$ from $\ell_0(\vec v_l)$ for some $\vec v_l\in\mathbb{N}^ k$ and in
-  $\mathcal{V_r}$ from $\ell_0(\vec v_r)$ for some $\vec v_r\in\mathbb{N}^ k$, then
+  $\mathcal{V}_l$ from $\ell_0(\vec v_l)$ for some $\vec v_l\in\mathbb{N}^ k$ and in
+  $\mathcal{V}_r$ from $\ell_0(\vec v_r)$ for some $\vec v_r\in\mathbb{N}^ k$, then
   there exists $\vec v_0\in\mathbb{N}^ k$ such that Eve wins from
   $\ell_0(\vec v_0)$ in $\mathcal{V}$.  Let $\sigma_l$ and $\sigma_r$ denote
   Eve\'s winning strategies in the two games.  By a slight abuse of
@@ -209,10 +203,10 @@ $t\not\in\Pi$.  We use the same terminology for a single cycle $\pi$.
 
   We reduce the problem to solving a linear program.  For a
   location $\ell$, let
-  $\mathrm{in}( \ell)  \stackrel{\!\,\!\,\textrm{def}}{=}\{( \ell' \xrightarrow{\,\vec u,} \ell)\in A\mid
+  $\mathrm{in}( \ell)  \stackrel{\!\,\!\,\textrm{def}}{=}\{( \ell' \xrightarrow{\,\vec u\,} \ell)\in A\mid
    \ell'\in \mathcal{L}\}$
   and
-  $\mathrm{out}( \ell)  \stackrel{\!\,\!\,\textrm{def}}{=}\{( \ell \xrightarrow{\,\vec u,} \ell')\in A\mid
+  $\mathrm{out}( \ell)  \stackrel{\!\,\!\,\textrm{def}}{=}\{( \ell \xrightarrow{\,\vec u\,} \ell')\in A\mid
    \ell'\in \mathcal{L}\}$ be its sets of incoming and outgoing actions.  The
   linear program has a variable $x_a$ for each action $a\in A$,
   which represents the number of times the action $a$ occurs in
@@ -304,7 +298,7 @@ $\mathcal{V}'=( \mathcal{L}', A', k)$ the subsystem induced by $A'$.
   to $\ell'$, then $\ell\sim \ell'$ by induction on $\pi$.  Indeed, if
   $|\pi|=0$ then $\ell= \ell'$.  For the induction step, $\pi=\pi' a$
   with $\pi'\in{ A'}^\ast$ a path from $\ell$ to $\ell''$ and
-  $a=( \ell'' \xrightarrow{\,\vec u,} \ell')\in A'$ for some $\vec u$.  By
+  $a=( \ell'' \xrightarrow{\,\vec u\,} \ell')\in A'$ for some $\vec u$.  By
   induction hypothesis, $\ell\sim \ell''$ and since $a\in A'$,
   $\ell''\sim \ell'$, thus $\ell\sim \ell'$ by transitivity shown
   in {prf:ref}`11-cl:sim`. 
@@ -370,7 +364,7 @@ existential initial credit, the counters play no role at all: Eve
 has a winning strategy for some initial credit in the vector game if
 and only if she has one to reach the target location $\ell_f$ in the
 finite game played over $\mathcal{L}$ and edges $( \ell, \ell')$ whenever
-$\ell \xrightarrow{\,\vec u,} \ell'\in A$ for some $\vec u$.  This entails that
+$\ell \xrightarrow{\,\vec u\,} \ell'\in A$ for some $\vec u$.  This entails that
 coverability asymmetric vector games are quite easy to solve.
 
 ````{prf:theorem} Existential coverability asymmetric vector games are in \P
@@ -508,7 +502,7 @@ $$
      \mathcal{L}_\mathrm{Eve}&  \stackrel{\!\,\!\,\textrm{def}}{=}\{\varphi\}\cup\{  \ell_{i,j}\mid 1\leq i\leq m,1\leq j\leq
                 3\}\;,\\
      \mathcal{L}_\mathrm{Adam}&  \stackrel{\!\,\!\,\textrm{def}}{=}\{C_i\mid 1\leq i\leq m\}\;,\\
-     A&  \stackrel{\!\,\!\,\textrm{def}}{=}\{\varphi \xrightarrow{\,\vec 0,}C_i\mid 1\leq i\leq m\}\cup\{C_i \xrightarrow{\,\vec 0,}  \ell_{i,j},\;\;  \ell_{i,j}\xrightarrow{\vec u_{  \ell_{i,j}}}\varphi\mid 1\leq i\leq m,1\leq j\leq 3\}\;.
+     A&  \stackrel{\!\,\!\,\textrm{def}}{=}\{\varphi \xrightarrow{\,\vec 0\,}C_i\mid 1\leq i\leq m\}\cup\{C_i \xrightarrow{\,\vec 0\,}  \ell_{i,j},\;\;  \ell_{i,j}\xrightarrow{\vec u_{  \ell_{i,j}}}\varphi\mid 1\leq i\leq m,1\leq j\leq 3\}\;.
   
 $$
 
@@ -530,7 +524,7 @@ $$
     infinitely often along the play, say $\ell=x_n$.  Because $v$ is
     non-conflicting, $v(\neg x_n)=0$, thus the location $\neg x_n$
     is never visited.  Thus the play uses the action
-    $\ell \xrightarrow{\,\vec e_{2n-1,}-\vec e_{2n}}\varphi$ infinitely often,
+    $\ell \xrightarrow{\,\vec e_{2n-1\,}-\vec e_{2n}}\varphi$ infinitely often,
     and never uses any action with a positive effect on
     component $2n$.  Hence the play is losing from any initial credit.
 
@@ -581,10 +575,10 @@ the one-player case.
   machine $\mathcal{M}=( \mathcal{L}, A, \mathcal{L}_\mathrm{Eve}, \mathcal{L}_\mathrm{Adam}, k)$ with counters
   bounded by $B  \stackrel{\!\,\!\,\textrm{def}}{=} 2^{2^n}$ for $n  \stackrel{\!\,\!\,\textrm{def}}{=}|\mathcal{M}|$.  Such a machine is
   similar to an asymmetric vector system with increments
-  $\ell \xrightarrow{\,\vec e_i,} \ell'$, decrements $\ell \xrightarrow{\,-\vec e_i,} \ell'$,
-  and zero test actions $\ell \xrightarrow{\,i \stackrel{\!\,\!\,\textrm{?0,}}{=}} \ell'$, all
+  $\ell \xrightarrow{\,\vec e_i\,} \ell'$, decrements $\ell \xrightarrow{\,-\vec e_i\,} \ell'$,
+  and zero test actions $\ell \xrightarrow{\,i \stackrel{\!\,\!\,\textrm{?0\,}}{=}} \ell'$, all
   restricted to locations $\ell\in \mathcal{L}_\mathrm{Eve}$; the only actions
-  available to Adam are actions $\ell \xrightarrow{\,\vec 0,} \ell'$.  The
+  available to Adam are actions $\ell \xrightarrow{\,\vec 0\,} \ell'$.  The
   set of locations contains a distinguished halt location
   $\ell_\mathtt{halt}\in \mathcal{L}$ with no outgoing action.  The
   machine comes with the promise that, along any play, the norm of
@@ -600,15 +594,15 @@ the one-player case.
     see also {cite}`Esparza:1996` for a nice exposition.  At the heart
     of the construction lies a collection of one-player gadgets
     implementing **level $j$** meta-increments
-    $\ell \xrightarrow{\,2^{2^j,}\cdot\vec c} \ell'$ and **level $j$**
-    meta-decrements $\ell \xrightarrow{\,-2^{2^j,}\cdot\vec c} \ell'$ for
+    $\ell \xrightarrow{\,2^{2^j\,}\cdot\vec c} \ell'$ and **level $j$**
+    meta-decrements $\ell \xrightarrow{\,-2^{2^j\,}\cdot\vec c} \ell'$ for
     some unit vector $\vec c$ using $O(j)$ auxiliary counters and
     $\poly(j)$ actions, with precondition that the auxiliary counters
     are initially empty in $\ell$ and postrelation that they are empty
     again in $\ell'$.  The construction is by induction over $j$; let
     us first see a naive implementation for meta-increments.  For
     the base case $j=0$, this is just a standard action
-    $\ell \xrightarrow{\,2\vec c,} \ell'$.  For the induction step $j+1$, we use
+    $\ell \xrightarrow{\,2\vec c\,} \ell'$.  For the induction step $j+1$, we use
     the gadget of {numref}`11-fig:meta-incr` below, where
     $\vec x_{j},\bar{\vec x}_{j},\vec z_{j},\bar{\vec z}_{j}$ are
     distinct fresh unit vectors: the gadget performs two nested
@@ -620,7 +614,7 @@ the one-player case.
 :name: 11-fig:meta-incr
 :align: center
 A naive implementation of the
-      meta-increment $\ell \xrightarrow{\,2^{2^{j+1,}}\cdot\vec c} \ell'$.
+      meta-increment $\ell \xrightarrow{\,2^{2^{j+1\,}}\cdot\vec c} \ell'$.
 ```
   
   Note that this level $(j+1)$ gadget contains two copies of the
@@ -634,19 +628,19 @@ A naive implementation of the
   do this in the case of the return location $\ell'$; the mechanism
   for the vector $\vec c$ is similar.  We enumerate the (finitely many)
   possible return locations $\ell_0,\dots, \ell_{m-1}$ of the gadget
-  implementing $\ell \xrightarrow{\,2^{2^{j+1,}}\cdot\vec c} \ell'$.  We use two
+  implementing $\ell \xrightarrow{\,2^{2^{j+1\,}}\cdot\vec c} \ell'$.  We use two
   auxiliary counters with unit vectors $\vec r_j$
   and $\bar{\vec r}_j$ to encode the return location.  Assume $\ell'$
   is the $i$th possible return location, i.e., $\ell'= \ell_i$ in our
   enumeration: before entering the shared gadget implementation, we
   initialise $\vec r_j$ and $\bar{\vec r}_j$ by performing the action
-  $\ell \xrightarrow{\,i\cdot\vec r_j+(m-i)\cdot\bar{\vec r,}_j}\cdots$.  Then,
+  $\ell \xrightarrow{\,i\cdot\vec r_j+(m-i)\cdot\bar{\vec r\,}_j}\cdots$.  Then,
   where we would simply go to $\ell'$ in {numref}`11-fig:meta-incr` at
   the end of the gadget, the shared gadget has a final action
-  $\cdots \xrightarrow{\,\vec 0,} \ell_{\mathrm{return}_j}$ leading to a dispatch
+  $\cdots \xrightarrow{\,\vec 0\,} \ell_{\mathrm{return}_j}$ leading to a dispatch
   location for returns: for all $0\leq i<m$, we have an action
   $\ell_{\mathrm{return}_j} \xrightarrow{\,-i\cdot\vec r_j-(m-i)\cdot\bar{\vec
-      r,}_j} \ell_i$
+      r\,}_j} \ell_i$
   that leads to the desired return location.\todoquestion{Is that
     clear enough?}
 
@@ -663,9 +657,9 @@ A naive implementation of the
   vectors for $1\leq i\leq k$.  The vector system $\mathcal{V}$ starts by
   initialising the counters $\bar{\mathtt{c}}_i$ to $B$ by a sequence
   of meta-increments
-  $\ell'_{i-1} \xrightarrow{\,2^{2^n,}\cdot\bar{\vec c}_i} \ell'_i$ for
+  $\ell'_{i-1} \xrightarrow{\,2^{2^n\,}\cdot\bar{\vec c}_i} \ell'_i$ for
   $1\leq i\leq k$, before starting the simulation by an action
-  $\ell'_k \xrightarrow{\,\vec 0,} \ell_0$.  The simulation of $\mathcal{M}$ uses the
+  $\ell'_k \xrightarrow{\,\vec 0\,} \ell_0$.  The simulation of $\mathcal{M}$ uses the
   actions depicted in {numref}`11-fig:lipton`.  Those maintain the
   invariant on the complement counters.  Regarding zero tests, Eve 
   yields the control to Adam, who has a choice between performing a
@@ -693,7 +687,7 @@ Schema of the reduction to
   associated unit vector $\vec t$.  This component is initialised to
   $| \mathcal{L}|B^ k=| \mathcal{L}|2^{ k 2^n}$ before the simulation, and decreases
   by one at every step; see {numref}`11-fig:lipton-nonterm`.  We also add
-  a self loop $\ell_\mathtt{halt} \xrightarrow{\,\vec 0,} \ell_\mathtt{halt}$.
+  a self loop $\ell_\mathtt{halt} \xrightarrow{\,\vec 0\,} \ell_\mathtt{halt}$.
   Then the only way to avoid the sink and thus to win the
   non-termination game is to reach $\ell_\mathtt{halt}$.
   
@@ -706,12 +700,12 @@ Schema of the reduction to
 
   We still need to extend our initialisation phase.  It suffices for
   this to implement a gadget for $k$-meta-increments
-  $\ell \xrightarrow{\,2^{ k 2^j,}\cdot\vec c} \ell'$ and $k$-meta-decrements
-  $\ell \xrightarrow{\,-2^{ k 2^j,}\cdot\vec c} \ell'$; this is the same argument as
-  in Lipton's construction, with a base case $\ell \xrightarrow{\,2^ k,} \ell'$
+  $\ell \xrightarrow{\,2^{ k 2^j\,}\cdot\vec c} \ell'$ and $k$-meta-decrements
+  $\ell \xrightarrow{\,-2^{ k 2^j\,}\cdot\vec c} \ell'$; this is the same argument as
+  in Lipton's construction, with a base case $\ell \xrightarrow{\,2^ k\,} \ell'$
   for $j=0$.  Then we initialise our time budget through $| \mathcal{L}|$
   successive $k$-meta-increments
-  $\ell \xrightarrow{\,2^{ k 2^n,}\cdot\vec t} \ell'$.
+  $\ell \xrightarrow{\,2^{ k 2^n\,}\cdot\vec t} \ell'$.
 
 ````
 
@@ -744,7 +738,7 @@ dimension.
   of {prf:ref}`11-th:countdown-given`, we can indeed assume that the target
   credit is zero; we will also assume that Eve controls $\smiley$ and
   that the only action available in $\smiley$ is
-  $\smiley \xrightarrow{\,-1,}\smiley$.  We construct an asymmetric vector
+  $\smiley \xrightarrow{\,-1\,}\smiley$.  We construct an asymmetric vector
   system $\mathcal{V}'$ of dimension 2 such that Eve can ensure
   reaching $\smiley(0,n_0)$ from $\ell_0(n_0,0)$ in $\mathcal{V}'$ if and only
   if she could ensure reaching $\smiley(0)$ from $\ell_0(n_0)$
@@ -762,7 +756,7 @@ Schema of the reduction in the proof
   The crucial point is how to handle Adam\'s moves.  In a
   configuration $\ell(c,n_0-c)$ with $\ell\in \mathcal{L}_\mathrm{Adam}$, according
   to the natural semantics of $\mathcal{V}$, Adam should be able to
-  simulate an action $\ell \xrightarrow{\,-n,} \ell'$ if and only if $c\geq n$.
+  simulate an action $\ell \xrightarrow{\,-n\,} \ell'$ if and only if $c\geq n$.
   Observe that otherwise if $c<n$ and thus $n_0-c>n_0-n$, Eve can
   play to reach $\smiley$ and win immediately.  An exception to the
   above is if $n$ is minimal among the decrements in $\ell$, because
@@ -772,7 +766,7 @@ Schema of the reduction in the proof
 
   Then Eve can reach $\smiley(0,n_0)$ if and only if she can cover
   $\smiley(0,n_0)$, if and only if she can avoid the sink thanks to
-  the self loop $\smiley \xrightarrow{\,0,0,}\smiley$.  This
+  the self loop $\smiley \xrightarrow{\,0,0\,}\smiley$.  This
   shows the  \textrm{EXP}-hardness of coverability and non-termination
   asymmetric vector games in dimension two; the hardness of
   parity follows

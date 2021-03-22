@@ -1,10 +1,6 @@
 (9-sec:backward_algorithm)=
 # Backward Algorithm
 
-```{math}
-
-```
-
 Given the DBM data structure we presented,
 a backward fixpoint algorithm follows for computing the winning configurations in a timed game:
 

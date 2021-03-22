@@ -1,12 +1,6 @@
 (12-sec:references)=
 # Bibliographic references
 
-```{math}
-
-% Generic probability measure, also prob. measure operator
-
-```
-
 As discussed in the introduction, the literature on multiobjective models is too vast to provide a full account here. We therefore focus on some directions particularly relevant to our focus.
 
 > **Multidimension games.**

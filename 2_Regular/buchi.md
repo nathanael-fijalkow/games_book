@@ -1,10 +1,6 @@
 (2-sec:buchi)=
 # B&uuml;chi games
 
-```{math}
-
-```
-
 Recall that the objective $\mathtt{Buchi}$ requires that the colour $\textrm{Win}$ appears infinitely many times
 and $\mathtt{CoBuchi}$ requires that the colour $\textrm{Lose}$ appears finitely many times.
 

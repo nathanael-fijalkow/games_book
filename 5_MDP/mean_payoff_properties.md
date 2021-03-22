@@ -1,10 +1,6 @@
 (5-sec:mean_payoff_properties)=
 # Mean-payoff in MDPs: General properties and linear programming
 
-```{math}
-
-```
-
 We will use the $\liminf$ variant of mean-payoff:
 
 $$

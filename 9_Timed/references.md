@@ -1,10 +1,6 @@
 (9-sec:references)=
 # Bibliographic references
 
-```{math}
-
-```
-
 Timed games were first introduced by Asarin, Maler, Pnueli and Sifakis {cite}`MPS95,AMPS98`, in a
 slightly different form.  Our presentation is based on the algorithms
 proposed by Liu and Smolka {cite}`LS98`, and extended to timed games by

@@ -1,10 +1,6 @@
 (5-sec:optimal_reachability)=
 # Optimal reachability
 
-```{math}
-
-```
-
 In this final section, we prove {prf:ref}`5-thm:quant-reachability-main`. The proof bears many similarities to the methods for discounted MDPs, hence we only sketch the process and point out the key differences. Throughout the section we assume that **targets are sinks**, i.e. that a vertex coloured by $\textrm{Win}$ has only a self loop as the single outgoing edge. Modifying an MDP to accommodate this does not influence reachability probabilities in any way.
 
 Consider the reachability operator $\mathcal{R}\colon[0,1]^{ V}\rightarrow [0,1]^{ V}$ such that for $\vec{y} =  \mathcal{R}(\vec{x})$ it holds

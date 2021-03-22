@@ -1,12 +1,6 @@
 (11-sec:counters)=
 # Vector games
 
-```{math}
-
-\newcommand{\capp}[2][C]{\overline{\vec #2}^{#1}}
-
-```
-
  A vector system is a finite directed graph with a partition of
 the vertices and weighted edges.  Formally, it is a tuple
 $\mathcal{V}=( \mathcal{L}, A, \mathcal{L}_\mathrm{Eve}, \mathcal{L}_\mathrm{Adam}, k)$ where $k\in\mathbb{N}$ is a
@@ -14,7 +8,7 @@ dimension, $\mathcal{L}$ is a finite set of locations partitioned into the
 locations controlled by Eve and Adam, i.e.,
 $\mathcal{L}= \mathcal{L}_\mathrm{Eve}\uplus  \mathcal{L}_\mathrm{Adam}$, and
 $A\subseteq  \mathcal{L}\times\mathbb{Z}^ k\times \mathcal{L}$ is a finite set of
-weighted actions.  We write $\ell \xrightarrow{\,\vec u,} \ell'$
+weighted actions.  We write $\ell \xrightarrow{\,\vec u\,} \ell'$
 rather than $( \ell,\vec u, \ell')$ for actions in $A$.  A
 vector addition system with states is a vector system where
 $\mathcal{L}_\mathrm{Adam}=\emptyset$, i.e., it corresponds to the one-player case.
@@ -36,7 +30,7 @@ A vector system.
 
 The intuition behind a vector system is that it
 maintains $k$ counters $\mathtt{c}_1,\dots,\mathtt{c}_k$ assigned
-to integer values.  An action $\ell \xrightarrow{\,\vec u,} \ell'\in A$ then
+to integer values.  An action $\ell \xrightarrow{\,\vec u\,} \ell'\in A$ then
 updates each counter by adding the corresponding entry of $\vec u$,
 that is for all $1\leq j\leq k$, the action performs the update
 $\mathtt{c}_j := \mathtt{c}_j+\vec u(j)$.
@@ -49,14 +43,14 @@ $\vec e_j(j)  \stackrel{\!\,\!\,\textrm{def}}{=} 1$ and $\vec e_{j}(j')  \stackr
 Addition and comparison are defined componentwise, so that for
 instance $\vec u\leq\vec u'$ if and only if for all $1\leq j\leq k$,
 $\vec u(j)\leq\vec u'(j)$.  We write
-$w( \ell \xrightarrow{\,\vec u,} \ell')  \stackrel{\!\,\!\,\textrm{def}}{=}\vec u$ for the weight of an
+$w( \ell \xrightarrow{\,\vec u\,} \ell')  \stackrel{\!\,\!\,\textrm{def}}{=}\vec u$ for the weight of an
 action and $w(\pi)  \stackrel{\!\,\!\,\textrm{def}}{=}\sum_{1\leq j\leq |\pi|} w(\pi_j)$
 for the cumulative weight of a finite sequence of actions
 $\pi\in A^\ast$.  For a vector $\vec u\in\mathbb{Z}^ k$, we use its
 infinity norm $\|\vec u\|  \stackrel{\!\,\!\,\textrm{def}}{=}\max_{1\leq j\leq k}|\vec u(j)|$,
 hence $\|\vec 0\|=0$ and $\|\vec e_j\|=\|-\vec e_j\|=1$, and we let
-$\| \ell \xrightarrow{\,\vec u,} \ell'\|  \stackrel{\!\,\!\,\textrm{def}}{=}\| w( \ell \xrightarrow{\,\vec
-  u,} \ell')\|=\|\vec u\|$
+$\| \ell \xrightarrow{\,\vec u\,} \ell'\|  \stackrel{\!\,\!\,\textrm{def}}{=}\| w( \ell \xrightarrow{\,\vec
+  u\,} \ell')\|=\|\vec u\|$
 and $\| A\|  \stackrel{\!\,\!\,\textrm{def}}{=}\max_{a\in A}\| w(a)\|$.  Unless stated
 otherwise, we assume that all our vectors are represented in binary,
 hence $\| A\|$ may be exponential in the size of $\mathcal{V}$.
@@ -72,7 +66,7 @@ $\vec v\in\mathbb{N}^ k$---such a vector represents a valuation of the
 counters $\mathtt{c}_1,\dots,\mathtt c_k$---, or the
 sink $\bot$.
 
- Consider an action in $a=( \ell \xrightarrow{\,\vec u,} \ell')$ in $A$: we
+ Consider an action in $a=( \ell \xrightarrow{\,\vec u\,} \ell')$ in $A$: we
 see it as a partial function
 $a{:}\, \mathcal{L}\times\mathbb{N}^ k\, \mathrel{\ooalign{\hfil$\mapstochar\mkern5mu$\hfil\cr$\to$\cr}}  \mathcal{L}\times\mathbb{N}^ k$ with domain
 $\mathrm{dom}\, a  \stackrel{\!\,\!\,\textrm{def}}{=}\{ \ell(\vec v)\mid \vec v+\vec u\geq\vec 0\}$ and image
@@ -92,7 +86,7 @@ $$
 where $\textrm{In}((v,v'))  \stackrel{\!\,\!\,\textrm{def}}{=} v$ and $\textrm{Out}((v,v'))  \stackrel{\!\,\!\,\textrm{def}}{=} v'$ for all
 edges $(v,v')\in E$.  There is therefore an edge $(v,v')$ between two
 configurations $v= \ell(\vec v)$ and $v'= \ell'(\vec v')$ if there
-exists an action $\ell \xrightarrow{\,\vec u,} \ell'\in A$ such that
+exists an action $\ell \xrightarrow{\,\vec u\,} \ell'\in A$ such that
 $\vec v'=\vec v+\vec u$.  Note that, quite importantly,
 $\vec v+\vec u$ must be non-negative on every coordinate for this edge
 to exist.  If no action can be applied, there is an edge to the
@@ -160,7 +154,7 @@ There are then two variants of the associated decision problem:
 
 Let us instantiate the previous abstract definition of vector games.
 We first consider two reachability-like
-reachability
+
 objectives, where $C  \stackrel{\!\,\!\,\textrm{def}}{=}\{\varepsilon, \textrm{Win}\}$ and
 $\Omega  \stackrel{\!\,\!\,\textrm{def}}{=} \mathtt{Reach}$, namely configuration reachability and
 coverability.  The difference between the two is that, in the
@@ -217,9 +211,9 @@ The name coverability comes from the the
   $W_\mathrm{Eve}=\{ \ell(n+1,n+1)\mid n\in\mathbb{N}\}\cup\{ \ell'(0,1)\}$, displayed on the left
   in {numref}`11-fig:cov`.  Eve has indeed an obvious winning strategy
   from any configuration $\ell(n,n)$ with $n\geq 2$, which is to use
-  the action $\ell \xrightarrow{\,-1,-1,} \ell$ until she reaches $\ell(2,2)$.
+  the action $\ell \xrightarrow{\,-1,-1\,} \ell$ until she reaches $\ell(2,2)$.
   Furthermore, in $\ell'(0,1)$---due to the natural semantics---,
-  Adam has no choice but to use the action $\ell' \xrightarrow{\,2,1,} \ell$:
+  Adam has no choice but to use the action $\ell' \xrightarrow{\,2,1\,} \ell$:
   therefore $\ell'(0,1)$ and $\ell(1,1)$ are also winning for Eve.
 
 ```{figure} ./../FigAndAlgos/11-fig:cov.png
@@ -237,13 +231,13 @@ In the coverability vector game, Eve\'s winning region is
 $W_\mathrm{Eve}=\{ \ell(m+2,n+2), \ell'(m+2,n+2), \ell'(0,n+1), \ell(1,n+2), \ell'(2m+2,1), \ell(2m+3,1)\mid
 m,n\in\mathbb{N}\}$
 displayed on the right in {numref}`11-fig:cov`.  Observe in particular
-that Adam is forced to use the action $\ell' \xrightarrow{\,2,1,}\ell$ from
+that Adam is forced to use the action $\ell' \xrightarrow{\,2,1\,}\ell$ from
 the configurations of the form $\ell'(0,n+1)$, which brings him to a
 configuration $\ell(2,n+2)$ coloured $\textrm{Win}$ in the game, and thus the
 configurations of the form $\ell(1,n+1)$ are also winning for Eve 
-since she can play $\ell \xrightarrow{\,-1,0,} \ell'$.  Thus the configurations of
+since she can play $\ell \xrightarrow{\,-1,0\,} \ell'$.  Thus the configurations of
 the form $\ell(2m+3,n+1)$ are also winning for Eve, as she can play
-the action $\ell \xrightarrow{\,-1,0,} \ell'$ to a winning configuration
+the action $\ell \xrightarrow{\,-1,0\,} \ell'$ to a winning configuration
 $\ell'(2m+2,n+1)$ where all the actions available to Adam go into
 her winning region.
 
@@ -266,12 +260,12 @@ her winning region.
   case of coverability, the problem is trivial.
   
   Otherwise, any winning play must use at least one action.  For
-  each incoming action $a=( \ell \xrightarrow{\,\vec u,} \ell_f)$ of $\ell_f$,
+  each incoming action $a=( \ell \xrightarrow{\,\vec u\,} \ell_f)$ of $\ell_f$,
   create a new location $\ell_a$ controlled by Eve and replace $a$ by
-  $\ell \xrightarrow{\,\vec u,} \ell_a \xrightarrow{\,\vec 0,} \ell_f$, so that Eve gains the
+  $\ell \xrightarrow{\,\vec u\,} \ell_a \xrightarrow{\,\vec 0\,} \ell_f$, so that Eve gains the
   control right before any play reaches $\ell_f$.  Also add a new
   location $\smiley$ controlled by Eve with actions
-  $\ell_a \xrightarrow{\,-\vec v_f,}\smiley$, and use $\smiley(\vec 0)$ as target
+  $\ell_a \xrightarrow{\,-\vec v_f\,}\smiley$, and use $\smiley(\vec 0)$ as target
   configuration.
 
 ````
@@ -283,7 +277,7 @@ her winning region.
   configuration reachability.  By {prf:ref}`11-rk:cov2cov`, we can assume
   without loss of generality that $\ell_f\in \mathcal{L}_\mathrm{Eve}$ is controlled
   by Eve and that $\vec v_f=\vec 0$ is the zero vector. It suffices
-  therefore to add an action $\ell_f \xrightarrow{\,-\vec e_j,} \ell_f$ for
+  therefore to add an action $\ell_f \xrightarrow{\,-\vec e_j\,} \ell_f$ for
   all $1\leq j\leq k$.
 
 ````
@@ -326,7 +320,7 @@ semantics, we assume that we are provided with a **location
   location colouring $\mathrm{lcol}{:}\, \mathcal{L}\to\{1,\dots,d\}$ for some $d>0$.
 
 **QUESTION**: Does Eve have a strategy to simultaneously avoid the
-  sink $\bot$ and fulfil the parity objective from $\ell_0(\vec
+  sink $\bot$ and fulfil the  parity objective from $\ell_0(\vec
   v_0)$? That is, does she win the parity game
   $(  \mathcal{A}_\mathbb{N}(\mathcal{V}), \mathfrak{c}, \mathtt{Parity})$ from $\ell_0(\vec v_0)$, where
   $\mathfrak{c}(e)  \stackrel{\!\,\!\,\textrm{def}}{=} \mathrm{lcol}( \ell)$ if $\textrm{In}(e)= \ell(\vec v)$ for
@@ -351,7 +345,7 @@ semantics, we assume that we are provided with a **location
   parity.  Indeed, by {prf:ref}`11-rk:cov2cov`, we can assume
   that $\ell_f\in \mathcal{L}_\mathrm{Eve}$ is controlled by Eve and that the target
   credit is $\vec v_f=\vec 0$ the zero vector.  It suffices
-  therefore to add an action $\ell_f \xrightarrow{\,\vec 0,} \ell_f$ and to colour
+  therefore to add an action $\ell_f \xrightarrow{\,\vec 0\,} \ell_f$ and to colour
   every location $\ell\neq \ell_f$ with $\mathrm{lcol}( \ell)  \stackrel{\!\,\!\,\textrm{def}}{=} 1$ and
   to set $\mathrm{lcol}( \ell_f)  \stackrel{\!\,\!\,\textrm{def}}{=} 2$.
 
@@ -390,15 +384,15 @@ chapter---, they become undecidable in the two-player setting.
    Formally, a deterministic Minsky machine with $k$ counters
   $\mathcal{M}=( \mathcal{L}, A, k)$ is defined similarly to a vector addition
   system with states with additional zero test actions
-  $a=( \ell \xrightarrow{\,i \stackrel{\!\,\!\,\textrm{?0,}}{=}} \ell')$.  The set of locations contains a
+  $a=( \ell \xrightarrow{\,i \stackrel{\!\,\!\,\textrm{?0\,}}{=}} \ell')$.  The set of locations contains a
   distinguished halt location $\ell_\mathtt{halt}$, and for every
   $\ell\in \mathcal{L}$, exactly one of the following holds: either (i)
-  $( \ell \xrightarrow{\,\vec e_i,} \ell')\in A$ for some $0<i\leq k$ and
-  $\ell'\in \mathcal{L}$, or (ii) $( \ell \xrightarrow{\,i \stackrel{\!\,\!\,\textrm{?0,}}{=}} \ell')\in A$ and
-  $( \ell \xrightarrow{\,-\vec e_i,} \ell'')\in A$ for some $0<i\leq k$ and
+  $( \ell \xrightarrow{\,\vec e_i\,} \ell')\in A$ for some $0<i\leq k$ and
+  $\ell'\in \mathcal{L}$, or (ii) $( \ell \xrightarrow{\,i \stackrel{\!\,\!\,\textrm{?0\,}}{=}} \ell')\in A$ and
+  $( \ell \xrightarrow{\,-\vec e_i\,} \ell'')\in A$ for some $0<i\leq k$ and
   $\ell', \ell''\in \mathcal{L}$, or (iii) $\ell= \ell_\mathtt{halt}$.  The
   semantics of $\mathcal{M}$ extends the natural semantics by
-  handling zero tests actions $a=( \ell \xrightarrow{\,i \stackrel{\!\,\!\,\textrm{?0,}}{=}} \ell')$: we
+  handling zero tests actions $a=( \ell \xrightarrow{\,i \stackrel{\!\,\!\,\textrm{?0\,}}{=}} \ell')$: we
   define the domain as $\mathrm{dom}\, a  \stackrel{\!\,\!\,\textrm{def}}{=}\{ \ell(\vec v)\mid \vec v(i)=0\}$
   and the image by $a( \ell(\vec v))  \stackrel{\!\,\!\,\textrm{def}}{=}  \ell(\vec v)$.  This
   semantics is deterministic, and from any starting vertex of $\mathcal{A}_\mathbb{N}(\mathcal{M})$,
@@ -435,12 +429,12 @@ Schema of the reduction in the proof of {prf:ref}`11-th:undec`.
   
 $$
 
-     \mathcal{L}_{ \stackrel{\!\,\!\,\textrm{?0}}{=}}&  \stackrel{\!\,\!\,\textrm{def}}{=}\{ \ell'_{i \stackrel{\!\,\!\,\textrm{?0}}{=}}\mid\exists \ell\in \mathcal{L}\mathbin.( \ell \xrightarrow{\,i \stackrel{\!\,\!\,\textrm{?0,}}{=}} \ell')\in A\}\intertext{and
+     \mathcal{L}_{ \stackrel{\!\,\!\,\textrm{?0}}{=}}&  \stackrel{\!\,\!\,\textrm{def}}{=}\{ \ell'_{i \stackrel{\!\,\!\,\textrm{?0}}{=}}\mid\exists \ell\in \mathcal{L}\mathbin.( \ell \xrightarrow{\,i \stackrel{\!\,\!\,\textrm{?0\,}}{=}} \ell')\in A\}\intertext{and
                    define the set of actions by (see {numref}`11-fig:undec`)}
      A'&  \stackrel{\!\,\!\,\textrm{def}}{=}\{ \ell \xrightarrow{\,\vec
-          e_i,} \ell'\mid( \ell \xrightarrow{\,\vec e_i,} \ell')\in A\}\cup\{ \ell \xrightarrow{\,-\vec e_i,} \ell''\mid( \ell \xrightarrow{\,-\vec e_i,} \ell'')\in A\}\\
+          e_i\,} \ell'\mid( \ell \xrightarrow{\,\vec e_i\,} \ell')\in A\}\cup\{ \ell \xrightarrow{\,-\vec e_i\,} \ell''\mid( \ell \xrightarrow{\,-\vec e_i\,} \ell'')\in A\}\\
     &\:\cup\:\{ \ell \xrightarrow{\,\vec
-      0,} \ell'_{i \stackrel{\!\,\!\,\textrm{?0}}{=}},\;\;\: \ell'_{i \stackrel{\!\,\!\,\textrm{?0}}{=}}\!\! \xrightarrow{\,\vec 0,} \ell',\;\;\: \ell'_{i \stackrel{\!\,\!\,\textrm{?0}}{=}}\!\! \xrightarrow{\,-\vec e_i,}\frownie\mid( \ell \xrightarrow{\,i \stackrel{\!\,\!\,\textrm{?0,}}{=}} \ell')\in A\}\;.
+      0\,} \ell'_{i \stackrel{\!\,\!\,\textrm{?0}}{=}},\;\;\: \ell'_{i \stackrel{\!\,\!\,\textrm{?0}}{=}}\!\! \xrightarrow{\,\vec 0\,} \ell',\;\;\: \ell'_{i \stackrel{\!\,\!\,\textrm{?0}}{=}}\!\! \xrightarrow{\,-\vec e_i\,}\frownie\mid( \ell \xrightarrow{\,i \stackrel{\!\,\!\,\textrm{?0\,}}{=}} \ell')\in A\}\;.
   
 $$
 
@@ -452,25 +446,25 @@ $$
   the Minsky machine halts.
   
   Consider any configuration $\ell(\vec v)$.  If
-  $( \ell \xrightarrow{\,\vec e_i,} \ell')\in A$, Eve has no choice but to apply
-  $\ell \xrightarrow{\,\vec e_i,} \ell'$ and go to the configuration
+  $( \ell \xrightarrow{\,\vec e_i\,} \ell')\in A$, Eve has no choice but to apply
+  $\ell \xrightarrow{\,\vec e_i\,} \ell'$ and go to the configuration
   $\ell'(\vec v+\vec e_i)$ also reached in one step in $\mathcal{M}$.  If
-  $\{ \ell \xrightarrow{\,i \stackrel{\!\,\!\,\textrm{?0,}}{=}} \ell', \ell \xrightarrow{\,-\vec e_i,} \ell''\}\in A$ and
+  $\{ \ell \xrightarrow{\,i \stackrel{\!\,\!\,\textrm{?0\,}}{=}} \ell', \ell \xrightarrow{\,-\vec e_i\,} \ell''\}\in A$ and
   $\vec v(i)=0$, due to the natural semantics, Eve cannot use the
-  action $\ell \xrightarrow{\,-\vec e_i,} \ell''$, thus she must use
-  $\ell \xrightarrow{\,\vec 0,} \ell'_{i \stackrel{\!\,\!\,\textrm{?0}}{=}}$.  Still due to the natural
+  action $\ell \xrightarrow{\,-\vec e_i\,} \ell''$, thus she must use
+  $\ell \xrightarrow{\,\vec 0\,} \ell'_{i \stackrel{\!\,\!\,\textrm{?0}}{=}}$.  Still due to the natural
   semantics, Adam cannot use
-  $\ell'_{i \stackrel{\!\,\!\,\textrm{?0}}{=}}\!\! \xrightarrow{\,-\vec e_i,}\frownie$, thus he must use
-  $\ell'_{i \stackrel{\!\,\!\,\textrm{?0}}{=}}\!\! \xrightarrow{\,\vec 0,} \ell'$.  Hence Eve regains the
+  $\ell'_{i \stackrel{\!\,\!\,\textrm{?0}}{=}}\!\! \xrightarrow{\,-\vec e_i\,}\frownie$, thus he must use
+  $\ell'_{i \stackrel{\!\,\!\,\textrm{?0}}{=}}\!\! \xrightarrow{\,\vec 0\,} \ell'$.  Hence Eve regains the
   control in $\ell'(\vec v)$, which was also the configuration reached
   in one step in $\mathcal{M}$.  Finally, if
-  $\{ \ell \xrightarrow{\,i \stackrel{\!\,\!\,\textrm{?0,}}{=}} \ell', \ell \xrightarrow{\,-\vec e_i,} \ell''\}\in A$ and
+  $\{ \ell \xrightarrow{\,i \stackrel{\!\,\!\,\textrm{?0\,}}{=}} \ell', \ell \xrightarrow{\,-\vec e_i\,} \ell''\}\in A$ and
   $\vec v(i)>0$, Eve can choose: if she uses
-  $\ell \xrightarrow{\,-\vec e_i,} \ell''$, she ends in the configuration
+  $\ell \xrightarrow{\,-\vec e_i\,} \ell''$, she ends in the configuration
   $\ell''(\vec v-\vec e_i)$ also reached in one step in $\mathcal{M}$.  In
-  fact, she should not use $\ell \xrightarrow{\,\vec 0,} \ell'_{i \stackrel{\!\,\!\,\textrm{?0}}{=}}$,
+  fact, she should not use $\ell \xrightarrow{\,\vec 0\,} \ell'_{i \stackrel{\!\,\!\,\textrm{?0}}{=}}$,
   because Adam would then have the opportunity to apply
-  $\ell'_{i \stackrel{\!\,\!\,\textrm{?0}}{=}}\!\! \xrightarrow{\,-\vec e_i,}\frownie$ and to win, as
+  $\ell'_{i \stackrel{\!\,\!\,\textrm{?0}}{=}}\!\! \xrightarrow{\,-\vec e_i\,}\frownie$ and to win, as
   $\frownie$ is a deadlock location and all the subsequent moves end
   in the sink.  Thus, if $\mathcal{M}$ halts, then Eve has a winning
   strategy that simply follows the unique play of $\mathcal{M}$, and
@@ -494,7 +488,7 @@ $$
   i.e., given a deterministic Minsky machine $\mathcal{M}=( \mathcal{L}, A, k)$
   and an initial location $\ell_0$, we add $k$ new locations
   $\ell_k, \ell_{ k-1},\dots, \ell_1$ with respective actions
-  $\ell_j \xrightarrow{\,-\vec e_j,} \ell_j$ and $\ell_j \xrightarrow{\,j \stackrel{\!\,\!\,\textrm{?0,}}{=}} \ell_{j-1}$
+  $\ell_j \xrightarrow{\,-\vec e_j\,} \ell_j$ and $\ell_j \xrightarrow{\,j \stackrel{\!\,\!\,\textrm{?0\,}}{=}} \ell_{j-1}$
   for all $k\geq j>0$.  This modified machine first resets all its
   counters to zero before reaching $\ell_0(\vec 0)$ and then performs
   the same execution as the original machine.  Thus there exists an
