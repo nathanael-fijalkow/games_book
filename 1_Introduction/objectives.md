@@ -4,7 +4,7 @@
 We present in this section the main objectives and their representations.
 An objective may depend upon a set of parameters which are sometimes omitted when clear from the context.
 
-Let us recall how we define classes of conditions: we first define an objective, for instance $\mathtt{Safe} \subseteq  \left\{  \textrm{Win \right\}, \textrm{Lose}}^\omega$.
+Let us recall how we define classes of conditions: we first define an objective, for instance $\mathtt{Safe} \subseteq \set{ \textrm{Win}, \textrm{Lose}}^\omega$.
 For an arena and a colouring function $\mathfrak{c}$ defined over this arena this induces the safety condition $\mathtt{Safe}[ \mathfrak{c}]$.
 Given an arena and a condition $W$ over this arena we say that $W$ is **a** safety condition if 
 there exists $\mathfrak{c}$ such that $W =  \mathtt{Safe}[ \mathfrak{c}]$.
@@ -13,12 +13,12 @@ The same terminology is used for all other objectives.
 ## Prefix dependent qualitative objectives: safety and reachability
 
 The safety objective is the simplest qualitative objective:
-the set of colours is $\left\{  \textrm{Win \right\}, \textrm{Lose}}$, 
+the set of colours is $\set{ \textrm{Win}, \textrm{Lose}}$, 
 and safety requires that the colour $\textrm{Lose}$ is never seen.
 Formally:
 
 $$
- \mathtt{Safe} =  \left\{ \rho \in  \left\{  \textrm{Win \right\ \right\}, \textrm{Lose}}^\omega : \forall i, \rho_i \neq  \textrm{Lose}}.
+ \mathtt{Safe} = \set{\rho \in \set{ \textrm{Win}, \textrm{Lose}}^\omega : \forall i, \rho_i \neq  \textrm{Lose}}.
 $$
 
 In the example represented in {numref}`1-fig:safety_game_example`, 
@@ -35,12 +35,12 @@ The two dotted areas represent the winning regions of each player.
 ```
 
 The dual of the safety objective is the reachability objective: 
-the set of colours is $\left\{  \textrm{Win \right\}, \textrm{Lose}}$,
+the set of colours is $\set{ \textrm{Win}, \textrm{Lose}}$,
 and reachability requires that the colour $\textrm{Win}$ is seen at least once.
 Formally:
 
 $$
- \mathtt{Reach} =  \left\{ \rho \in  \left\{  \textrm{Win \right\ \right\}, \textrm{Lose}}^\omega : \exists i, \rho_i =  \textrm{Win}}.
+ \mathtt{Reach} = \set{\rho \in \set{ \textrm{Win}, \textrm{Lose}}^\omega : \exists i, \rho_i =  \textrm{Win}}.
 $$
 
 Safety and reachability conditions are dual:
@@ -58,20 +58,20 @@ Consequently, if the condition for Eve is a safety condition, then the condition
 Safety and reachability objectives specify which colours occur or not, hence are prefix dependent.
 We now introduce objectives specifying which colours occur infinitely many times, which will naturally be prefix independent.
 
-The **B&uuml;chi** objective is over the set of colours $\left\{ 1,2 \right\}$,
+The **B&uuml;chi** objective is over the set of colours $\set{1,2}$,
 it requires that the colour $2$ is seen infinitely many times.
 Formally:
 
 $$
- \mathtt{Buchi} =  \left\{ \rho \in  \left\{ 1,2 \right\ \right\}^\omega : \forall j, \exists i \ge j, \rho_i = 2}.
+ \mathtt{Buchi} = \set{\rho \in \set{1,2}^\omega : \forall j, \exists i \ge j, \rho_i = 2}.
 $$
 
 The dual of the B&uuml;chi objective is the **CoB{\uchi}** objective: 
-the set of colours is $\left\{ 2,3 \right\}$, it requires that the colour $3$ is seen finitely many times.
+the set of colours is $\set{2,3}$, it requires that the colour $3$ is seen finitely many times.
 Formally:
 
 $$
- \mathtt{CoBuchi} =  \left\{ \rho \in  \left\{ 2,3 \right\ \right\}^\omega : \exists j, \forall i \ge j, \rho_i \neq 3}.
+ \mathtt{CoBuchi} = \set{\rho \in \set{2,3}^\omega : \exists j, \forall i \ge j, \rho_i \neq 3}.
 $$
 
 B&uuml;chi and CoB&uuml;chi conditions are dual:
@@ -81,7 +81,7 @@ $$
  \textrm{Paths}_\omega \setminus  \mathtt{CoBuchi}[ \mathfrak{c}] =  \mathtt{Buchi}[ \mathfrak{c} - 1].
 $$
 
-where $\mathfrak{c} + 1$ adds one to $\mathfrak{c}$ (since $\mathfrak{c}$ maps vertices to $\left\{ 1,2 \right\}$, $\mathfrak{c} + 1$ maps vertices to $\left\{ 2,3 \right\}$),
+where $\mathfrak{c} + 1$ adds one to $\mathfrak{c}$ (since $\mathfrak{c}$ maps vertices to $\set{1,2}$, $\mathfrak{c} + 1$ maps vertices to $\set{2,3}$),
 and similarly for $\mathfrak{c} - 1$.
 Consequently, if the condition for Eve is a B&uuml;chi condition, then the condition for Adam is a CoB&uuml;chi condition, and conversely.
 
@@ -90,7 +90,7 @@ Let $[i,j]$ be an interval with $i,j \in  \mathbb{N}$ used as a parameter defini
 The parity objective with parameters $i,j$ uses the set of colours $[i,j]$, which are referred to as priorities, and is defined by
 
 $$
- \mathtt{Parity}([i,j]) =  \left\{ \rho \in [i,j]^\omega \left| \begin{array \right\}{c} \text{ the largest priority appearing} \\ \text{infinitely many times in } \rho \text{ is even}\end{array} \right.}.
+ \mathtt{Parity}([i,j]) = \set{\rho \in [i,j]^\omega \left| \begin{array}{c} \text{ the largest priority appearing} \\ \text{infinitely many times in } \rho \text{ is even}\end{array} \right.}.
 $$
 
 We made the dependence in $[i,j]$ explicit by writing $\mathtt{Parity}([i,j])$, but we will most of the time write $\mathtt{Parity}$
@@ -147,9 +147,9 @@ We apply this convention to safety, B&uuml;chi, and CoB&uuml;chi conditions: for
 
 $$
 \begin{array}{ccccc}
- \mathtt{Reach}[F] & = &  \mathtt{Reach}[ \mathfrak{c}_F] & = &  \left\{  \pi \in  \textrm{Paths \right\}_\omega : \exists i,   \textrm{In}( \pi_i) \in F}, \\
- \mathtt{Buchi}[F] & = &  \mathtt{Buchi}[ \mathfrak{c}_F] & = &  \left\{  \pi \in  \textrm{Paths \right\}_\omega : \forall j, \exists i \ge j,   \textrm{In}( \pi_i) \in F}, \\
- \mathtt{CoBuchi}[F] & = &  \mathtt{CoBuchi}[ \mathfrak{c}_F] & = &  \left\{  \pi \in  \textrm{Paths \right\}_\omega : \exists j, \forall i \ge j,   \textrm{In}( \pi_i) \notin F},
+ \mathtt{Reach}[F] & = &  \mathtt{Reach}[ \mathfrak{c}_F] & = & \set{ \pi \in  \textrm{Paths}_\omega : \exists i,   \textrm{In}( \pi_i) \in F}, \\
+ \mathtt{Buchi}[F] & = &  \mathtt{Buchi}[ \mathfrak{c}_F] & = & \set{ \pi \in  \textrm{Paths}_\omega : \forall j, \exists i \ge j,   \textrm{In}( \pi_i) \in F}, \\
+ \mathtt{CoBuchi}[F] & = &  \mathtt{CoBuchi}[ \mathfrak{c}_F] & = & \set{ \pi \in  \textrm{Paths}_\omega : \exists j, \forall i \ge j,   \textrm{In}( \pi_i) \notin F},
 \end{array}
 $$
 
@@ -190,7 +190,7 @@ For this reason, we often use $\mathtt{MeanPayoff}$ to denote $\mathtt{MeanPayof
 {numref}`1-fig:mp_game_example` presents an example of a mean payoff game. 
 The weight of a vertex is given by its label.
 In this example the dotted areas represent the winning regions for the threshold is $0$, 
-**i.e.** the induced qualitative objective $\mathtt{MeanPayoff}_{\ge 0} =  \left\{ \rho \in C^\omega :  \mathtt{MeanPayoff \right\}(\rho) \ge 0}$.
+**i.e.** the induced qualitative objective $\mathtt{MeanPayoff}_{\ge 0} = \set{\rho \in C^\omega :  \mathtt{MeanPayoff}(\rho) \ge 0}$.
 
 ```{figure} ./../FigAndAlgos/1-fig:mp_game_example.png
 :name: 1-fig:mp_game_example

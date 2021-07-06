@@ -27,8 +27,8 @@ for (authors,title,nb_chap,label,path) in list_chap:
 	authors = re.sub(r'\{\\\`e}', r'&egrave;', authors)
 	authors = re.sub(r'\{\\\'n}', r'&#324;', authors)
 	authors = re.sub(r'\{\\\'y}', r'&yacute;', authors)
-	# if int(nb_chap) == 6:
-	if int(nb_chap) <= 13:
+	if int(nb_chap) == 1:
+	# if int(nb_chap) <= 13:
 		print("\nTransforming chapter {}".format(title))
 		chapter_transformer(nb_chap, path + "/", title, label, authors)
 

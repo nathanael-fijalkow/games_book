@@ -67,7 +67,7 @@ We also stipulate that for each edge $(v_1,v_2)$ there exists an action $a\in \a
 
 We denote by $\edges_\genColour$ the set of edges coloured by $\genColour$. Also, for MDPs where $\colours$ is some set of numbers, we use $\maxc$ to denote the number $\max_{e\in 
 	\edges}|\colouring(e)|$.
-In the setting of MDPs it is technically convenient to encode regular objectives (Reachability, B{\"u}chi,\dots) by colours on \emph{vertices} as opposed to edges. Hence, when discussing these objectives, we assume that the colouring function $\colouring$ has the type $\vertices \rightarrow \colours$.
+In the setting of MDPs it is technically convenient to encode regular objectives (Reachability, B{\"u}chi,$\dots$) by colours on \emph{vertices} as opposed to edges. Hence, when discussing these objectives, we assume that the colouring function $\colouring$ has the type $\vertices \rightarrow \colours$.
 %The probabilistic transition function is typically a partial function. An action $a$ is said to be \emph{enabled} in a vertex $v$ if $\probTranFunc(v,a)$ is defined. 
 
 % ALLOWED ACTIONS
@@ -83,13 +83,13 @@ In the setting of MDPs it is technically convenient to encode regular objectives
 %cylinder"" determined by a finite play $\play$ is a set of all infinite plays 
 %having $\play$ as a prefix.
 
- The way in which a play is generated in an MDP is similar to games, but now encompasses a certain degree of randomness. There is a single player, say Eve, who controls all the vertices. Eve's interaction with the ``world'' described by an MDP is probabilistic. One reason is the stochasticity of the transition function, the other is the fact that in MDP settings, it is usually permitted for Eve to use ""randomised strategies"". Formally, a randomised strategy is a function $\sigma : E^* \to \dist(A)$, which to each finite play assigns a probability distribution over actions. 
+ The way in which a play is generated in an MDP is similar to games, but now encompasses a certain degree of randomness. There is a single player, say Eve, who controls all the vertices. Eve's interaction with the `world' described by an MDP is probabilistic. One reason is the stochasticity of the transition function, the other is the fact that in MDP settings, it is usually permitted for Eve to use ""randomised strategies"". Formally, a randomised strategy is a function $\sigma : E^* \to \dist(A)$, which to each finite play assigns a probability distribution over actions. 
 % We stipulate that the support of $\sigma(\play)$ consists of actions that are enabled in $\last(\play)$. 
  We typically shorten $\sigma(\play)(a)$ to $\sigma(a\mid \play)$.
  
  \knowledge{randomised strategy}[randomised strategies]{notion,index={strategy!randomised}}
 %
-In this section, we will refer to randomised strategies simply as ``strategies.'' The strategies known from the game setting will be called  ""deterministic strategies"". Formally, a deterministic strategy can be viewed as a special type of a randomised strategy which always selects a Dirac distribution over the edges. We shorten ``memoryless randomised/deterministic'' to ""MR"" and ""MD"", respectively.
+In this section, we will refer to randomised strategies simply as `strategies'. The strategies known from the game setting will be called  ""deterministic strategies"". Formally, a deterministic strategy can be viewed as a special type of a randomised strategy which always selects a Dirac distribution over the edges. We shorten `memoryless randomised/deterministic' to ""MR"" and ""MD"", respectively.
 \knowledge{deterministic strategy}[deterministic strategies]{notion,index={strategy!deterministic}}
 \knowledge{MR}{notion,index={strategy!MR}}
 \knowledge{MD}{notion,index={strategy!MD}}
@@ -177,7 +177,7 @@ probabilistic argumentation rests on solid formal grounds.
 %etc. This will help to develop an intuition for manipulating probabilistic 
 %objects.
 
-In the standard MDP literature~\cite{Puterman:2005}, the plays are often defined as alternating sequence of vertices and actions. Here we stick to the edge-based definition inherited from deterministic games. Still, we would sometimes like to speak about quantities such as ``probability that action $a$ is taken in step $i$.'' To this end, we introduce, for each strategy $\sigma$, each action $a$,  and each $i\geq 0$,  a random variable $\actevent{\sigma}{a}{i}$ such that $\actevent{\sigma}{a}{i}(\play)=\sigma(\play_{< i})(a)$. It is easy to check that  $\expv^\sigma_v[\actevent{\sigma}{a}{i}]$ is the probability that action $a$ is played in step $i$ when using strategy $\sigma$.
+In the standard MDP literature~\cite{Puterman:2005}, the plays are often defined as alternating sequence of vertices and actions. Here we stick to the edge-based definition inherited from deterministic games. Still, we would sometimes like to speak about quantities such as `probability that action $a$ is taken in step $i$'. To this end, we introduce, for each strategy $\sigma$, each action $a$,  and each $i\geq 0$,  a random variable $\actevent{\sigma}{a}{i}$ such that $\actevent{\sigma}{a}{i}(\play)=\sigma(\play_{< i})(a)$. It is easy to check that  $\expv^\sigma_v[\actevent{\sigma}{a}{i}]$ is the probability that action $a$ is played in step $i$ when using strategy $\sigma$.
 
 \paragraph{Objectives in MDPs}
 
@@ -203,7 +203,7 @@ In line with previous conventions, we
 stipulate that Eve aims to maximize this probability. 
 
 The situation is more complex for quantitative objectives. As shown in the previous chapter, 
-when working with quantitative objectives, the set of colours $\colours$ is typically the set of real numbers (or a subset thereof), and the quantitative objective is given by an ``aggregating function'' $\quantObj\colon \colours^\omega \rightarrow \R$, which can be extended into a function $\quantObjExt\colon \edges^\omega \rightarrow \R $ by putting $ \quantObjExt(\play) = \quantObj( \colouring(\play_0)\colouring(\play_1)\cdots) $.
+when working with quantitative objectives, the set of colours $\colours$ is typically the set of real numbers (or a subset thereof), and the quantitative objective is given by an `aggregating function' $\quantObj\colon \colours^\omega \rightarrow \R$, which can be extended into a function $\quantObjExt\colon \edges^\omega \rightarrow \R $ by putting $ \quantObjExt(\play) = \quantObj( \colouring(\play_0)\colouring(\play_1)\cdots) $.
 %a quantitative 
 %objective in the game setting was given by a function 
 %$\quantObj\colon \colours^\omega \rightarrow \R$. 
@@ -266,7 +266,7 @@ For qualitative objectives, there are additional modes of objective satisfaction
 \knowledge{surely winning}[pos. winning]{notion,index={strategy!surely winning}}
 
 
-The problems pertaining to the existence of almost-surely or positively winning strategy are often called \emph{qualitative problems} in the MDP literature, while the notion \emph{quantitative problems} covers the general notion of optimizing the expectation of some random variable. We do not use such a nomenclature here so as to avoid confusion with qualitative vs. quantitative objectives as defined in \Cref{1-chap:introduction}. Instead, we will refer directly to, e.g. ``almost-sure reachability'' while using the term ``optimal reachability'' to refer to the expectation-maximization problem.
+The problems pertaining to the existence of almost-surely or positively winning strategy are often called \emph{qualitative problems} in the MDP literature, while the notion \emph{quantitative problems} covers the general notion of optimizing the expectation of some random variable. We do not use such a nomenclature here so as to avoid confusion with qualitative vs. quantitative objectives as defined in \Cref{1-chap:introduction}. Instead, we will refer directly to, e.g. `almost-sure reachability' while using the term `optimal reachability' to refer to the expectation-maximization problem.
 
 %To reason about the complexity of decision problems pertaining to MDPs we assume, as usual, that all numbers appearing in the MDP (numerical colours, probabilities\ldots) are rational. We will be sometimes interested, how does the bit-size of these numbers influence the runtime of our algorithms; in particular, whether the algorithms run in \emph{strongly polynomial time.}
 %

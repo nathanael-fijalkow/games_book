@@ -8,7 +8,7 @@ The first model we define is the common denominator of most models studied in th
 game.
 
 \subsection*{Players}
-The term ``$2$-player'' means that there are two ""players"", Eve and Adam.
+The term $2$-player means that there are two ""players"", Eve and Adam.
 Many, many different names have been used: Player $0$ and Player $1$, 
 Player I and Player II as in descriptive complexity,
 {\'E}lo{\"i}se and Ab{\'e}lard, Circle and Square, corresponding to the graphical representation, 
@@ -18,26 +18,32 @@ and this is only a very partial list of names they have been given.
 In the names Eve and Adam, the first letters refer to $\exists$ and $\forall$ suggesting a duality between them.
 We will make use of their gender to distinguish between them, so we speak of her or his strategy.
 
-We speak of ``$1$-player'' games when there is only one player.
+We speak of $1$-player games when there is only one player.
 In the context of stochastic games, we refer to random as a third player, and more precisely as half a player.
-Hence a ``$2\frac{1}{2}$-player'' game is a stochastic game with two players,
-and a ``$1\frac{1}{2}$-player'' game is a stochastic game with one player.
+Hence a $2\frac{1}{2}$-player game is a stochastic game with two players,
+and a $1\frac{1}{2}$-player game is a stochastic game with one player.
 
 The situation where there are more than two players is called multiplayer games.
 
 \subsection*{Graphs}
-A (directed) ""graph"" is given by a set $V$ of vertices and a set $E \subseteq V \times V$ of edges.
-For an ""edge"" $e = (v,v')$ we write $\ing(e)$ for the ""incoming vertex"" $v$ and 
-$\out(e)$ for the ""outgoing vertex"" $v'$:
-we say that $e$ is an ""outgoing edge"" of~$v$ and an ""incoming edge"" to~$v'$.
+Let us fix $C$ a set of colours. 
+A (directed, coloured) ""graph"" is given by a set $V$ of vertices and a set $E \subseteq V \times C \times V$ of edges.
+For an ""edge"" $e = (v,c,v')$ we write $\ing(e)$ for the ""incoming vertex"" $v$,
+$\out(e)$ for the ""outgoing vertex"" $v'$, and $\col(e)$ for the colour $c$:
+we say that $e$ is an ""outgoing edge"" of~$v$ and an ""incoming edge"" to~$v'$ labelled by $c$.
+It is sometimes convenient to define directly the functions $\ing,\out : E \to V$, and $\col : E \to C$.
 
-A ""path"" $\pi = v_0 v_1 \cdots$ is a non empty finite or infinite sequence of consecutive vertices: 
-for all $i$ we have $(v_i,v_{i+1}) \in E$.
+A ""path"" $\pi$ is a non empty finite or infinite sequence of the form:
+\[
+\pi = v_0 c_0 v_1 c_1 v_2 \dots
+\] 
+where for all $i$ we have $(v_i,c_i, v_{i+1}) \in E$.
+If $\pi$ is finite the last element of the sequence is a vertex.
 We let $\first(\pi)$ denote the first vertex occurring in $\pi$ and $\last(\pi)$ the last one if $\pi$ is finite.
-We say that $\pi$ ""starts from"" $\first(\pi)$ and if $\pi$ is finite $\pi$ ""ends in"" $\last(\pi)$.
+We say that $\pi$ ""starts from"" $\first(\pi)$ and if $\pi$ is finite that $\pi$ ""ends in"" $\last(\pi)$.
 We sometimes talk of a path and let the context determine whether it is finite or infinite.
 
-We let $\Paths(G) \subseteq V^+$ denote the set of finite paths in the graph $G$, sometimes omitting $G$ when clear from the context.
+We let $\Paths(G)$ denote the set of finite paths in the graph $G$, sometimes omitting $G$ when clear from the context.
 To restrict to paths starting from $v$ we write $\Paths(G,v)$.
 The set of infinite paths is $\Paths_\omega(G) \subseteq V^\omega$, and $\Paths_\omega(G,v)$ for those starting from $v$.
 
@@ -67,10 +73,10 @@ An arena is given by a graph and the sets $\VE$ and $\VA$.
 In the context of games, vertices are often referred to as positions.
 
 \vskip1em
-The adjective ``\textit{finite}'' means that the arena is finite, \textit{i.e.} there are finitely many vertices (hence finitely many edges).
-We oppose ``\textit{deterministic}'' to ``\textit{stochastic}'': in the first definition we are giving here, 
+The adjective \textit{finite} means that the arena is finite, \textit{i.e.} there are finitely many vertices (hence finitely many edges).
+We oppose \textit{deterministic} to \textit{stochastic}: in the first definition we are giving here, 
 there is no stochastic aspect in the game.
-An important assumption, called ``\textit{perfect information}'', says that the players see everything about how the game
+An important assumption, called \textit{perfect information}, says that the players see everything about how the game
 is played out, in particular they see the other player's moves.
 
 \begin{figure}
@@ -217,9 +223,9 @@ We can now give the following definitions.
 \end{itemize}
 \end{definition}
 To be specific, the definition above is for $2$-player zero sum turn based perfect information games.
-As a convention we use the condition to qualify games, so for instance ``parity games'' are games equipped with a parity condition.
-This extends to graphs: we speak of a ``graph with condition $W$'' for a graph equipped with a condition $W$,
-and for instance a ``mean payoff graph'' if $W$ is a mean payoff condition.
+As a convention we use the condition to qualify games, so for instance parity games are games equipped with a parity condition.
+This extends to graphs: we speak of a graph with condition $W$ for a graph equipped with a condition $W$,
+and for instance a mean payoff graph if $W$ is a mean payoff condition.
 
 We often introduce notations implicitly: for instance when we introduce a qualitative game $\Game$ without specifying the arena and the condition, it is understood that the arena is $\arena$ and the condition $W$.
 

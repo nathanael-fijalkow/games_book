@@ -56,7 +56,7 @@ We also stipulate that for each edge $(v_1,v_2)$ there exists an action $a\in  A
 
 We denote by $E_c$ the set of edges coloured by $c$. Also, for MDPs where $C$ is some set of numbers, we use $\max_{ c}$ to denote the number $\max_{e\in 
  E}| c(e)|$.
-In the setting of MDPs it is technically convenient to encode regular objectives (Reachability, B&uuml;chi,\dots) by colours on **vertices** as opposed to edges. Hence, when discussing these objectives, we assume that the colouring function $c$ has the type $V \rightarrow  C$.
+In the setting of MDPs it is technically convenient to encode regular objectives (Reachability, B&uuml;chi,$\dots$) by colours on **vertices** as opposed to edges. Hence, when discussing these objectives, we assume that the colouring function $c$ has the type $V \rightarrow  C$.
 
 > **Plays and strategies in MDPs**
 
@@ -64,7 +64,7 @@ In the setting of MDPs it is technically convenient to encode regular objectives
 
  We typically shorten $\sigma( \pi)(a)$ to $\sigma(a\mid  \pi)$.
 
-In this section, we will refer to randomised strategies simply as `strategies.' The strategies known from the game setting will be called  deterministic strategies. Formally, a deterministic strategy can be viewed as a special type of a randomised strategy which always selects a Dirac distribution over the edges. We shorten `memoryless randomised/deterministic' to MR and MD, respectively.
+In this section, we will refer to randomised strategies simply as strategies. The strategies known from the game setting will be called  deterministic strategies. Formally, a deterministic strategy can be viewed as a special type of a randomised strategy which always selects a Dirac distribution over the edges. We shorten memoryless randomised/deterministic to MR and MD, respectively.
 
 Now a play in an MDP is produced as follows: in each step, when the finite play produced so far (i.e. the history of the game token's movement) is $\pi$, Eve chooses an action $a$ randomly according to the distribution $\sigma( \pi)$. Then, an edge outgoing from $\textrm{last}( \pi)$ is chosen randomly according to $\Delta( \textrm{last}( \pi),a)$ and the token is pushed along the selected edge. As shown below, this intuitive process can be formalized by constructing a special probability space whose sample space consists of infinite plays in the MDP.
 
@@ -187,5 +187,5 @@ We say that a strategy $\sigma$ is $\varepsilon$-optimal in $v$, for some $\vare
 
 For qualitative objectives, there are additional modes of objective satisfaction. Given such an objective $\Omega$, we say that a strategy $\sigma$ is almost-surely winning from $v$ if $\mathbb{E}^{\sigma}_{ \mathcal{M},v}[ \mathbf{1}_{ \Omega}]=1$, i.e. if the run produced by $\sigma$ falls into $\Omega$ with probability $1$. We also say that $\sigma$ is positively winning from $ v $ if $\mathbb{E}^{\sigma}_{ \mathcal{M},v}[ \mathbf{1}_{ \Omega}]>0$. For strategies that are winning in the non-stochastic game sense, i.e. that **cannot** produce a run not belonging to $\Omega$, are usually called surely winning to distinguish them from the above concepts. We denote by $W_{>0}( \mathcal{M}, \Omega)$ and $W_{=1}( \mathcal{M}, \Omega)$ the sets of all vertices of $\mathcal{M}$ from which there exists a positively or almost-surely winning strategy for the objective $\Omega$, respectively.
 
-The problems pertaining to the existence of almost-surely or positively winning strategy are often called **qualitative problems** in the MDP literature, while the notion **quantitative problems** covers the general notion of optimizing the expectation of some random variable. We do not use such a nomenclature here so as to avoid confusion with qualitative vs. quantitative objectives as defined in Chapter {ref}`1-chap:introduction`. Instead, we will refer directly to, e.g. `almost-sure reachability' while using the term `optimal reachability' to refer to the expectation-maximization problem.
+The problems pertaining to the existence of almost-surely or positively winning strategy are often called **qualitative problems** in the MDP literature, while the notion **quantitative problems** covers the general notion of optimizing the expectation of some random variable. We do not use such a nomenclature here so as to avoid confusion with qualitative vs. quantitative objectives as defined in Chapter {ref}`1-chap:introduction`. Instead, we will refer directly to, e.g. almost-sure reachability while using the term optimal reachability to refer to the expectation-maximization problem.
 

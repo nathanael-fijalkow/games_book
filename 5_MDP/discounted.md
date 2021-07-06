@@ -333,7 +333,6 @@ $$
 &=||  \mathcal{D}^{k( \varepsilon)}(\vec{0}) - \mathcal{D}^{k( \varepsilon)+1}(\vec{0}) ||_{\infty} + 
 || \mathcal{D}_\sigma( \mathcal{D}^{k( \varepsilon)}(\vec{0})) - 
  \mathcal{D}_\sigma( \vec{x}^{\sigma})||_{\infty}\\
-
 &\leq ||  \mathcal{D}^{k( \varepsilon)}(\vec{0}) - \mathcal{D}^{k( \varepsilon)+1}(\vec{0}) ||_{\infty} + 
 \lambda\cdot||( \mathcal{D}^{k( \varepsilon)}(\vec{0})) - 
  \vec{x}^{\sigma}||_{\infty}

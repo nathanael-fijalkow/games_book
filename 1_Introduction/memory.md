@@ -28,7 +28,7 @@ Let $\mathcal{G}$ be a game and $\sigma$ a positional strategy, we define $\math
 The set of vertices is $V$ and the set of edges is
 
 $$
-E[\sigma] =  \left\{ e = (v,v') \in E : v \in  V_\mathrm{Adam} \text{ or  \right\} \left( v \in  V_\mathrm{Eve} \text{ and } \sigma(v) = e \right)}.
+E[\sigma] = \set{e = (v,v') \in E : v \in  V_\mathrm{Adam} \text{ or } \left( v \in  V_\mathrm{Eve} \text{ and } \sigma(v) = e \right)}.
 $$
 
 It is equipped with the condition $W$ inherited from $\mathcal{G}$.
@@ -183,10 +183,10 @@ and uniformly over all vertices or not.
 
 We give in {numref}`1-fig:memory_required` an example of a game where Eve has a winning strategy using two memory states
 but no positional winning strategy. 
-Let us consider the condition $\mathtt{Buchi}[ \left\{ v_1 \right\}] \wedge  \mathtt{Buchi}[ \left\{ v_2 \right\}]$, meaning that a play is winning if both $v_1$ and $v_2$ are visited infinitely many times. A positional strategy would either always choose to go left to $v_1$ or to the right to $v_2$, hence does not satisfy the condition. 
+Let us consider the condition $\mathtt{Buchi}[\set{v_1}] \wedge  \mathtt{Buchi}[\set{v_2}]$, meaning that a play is winning if both $v_1$ and $v_2$ are visited infinitely many times. A positional strategy would either always choose to go left to $v_1$ or to the right to $v_2$, hence does not satisfy the condition. 
 Some memory is required to switch between the two.
 
-Formally we let $\mathcal{M} = ( \left\{ m_1,m_2 \right\},m_1,\delta)$ defined by
+Formally we let $\mathcal{M} = (\set{m_1,m_2},m_1,\delta)$ defined by
 
 $$
 \begin{array}{lll}

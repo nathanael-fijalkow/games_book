@@ -57,6 +57,8 @@ def rewrite_macros(path, file):
 		# print("\nAFTER\n" + content[begin_eq-50:begin_eq + 50])
 		match = re.search(pattern, content)
 
+
+	##### REWRITING SIMPLE MACROS (no variables)
 	list_macros = re.findall(r'\\(re)?newcommand{(.*?)}{(.*?)}\s', content)
 	list_macros += re.findall(r'\\(pro)videcommand{(.*?)}{(.*?)}\s', content)
 
@@ -82,93 +84,75 @@ def rewrite_macros(path, file):
 		macros.append((r"\$" + macro,r"$" + replace))
 		macros.append((macro," " + replace))
 
-# \times\vertices: when replacing \vertices we replace by \times V: we need to introduce a space before
-# E_\colour: when replacing \colour we replace by E_c: we cannot introduce a space before
+# Special cases:
+# * \times\vertices: when replacing \vertices we replace by \times V: we need to introduce a space before
+# * E_\colour: when replacing \colour we replace by E_c: we cannot introduce a space before
 # We need to check in replace whether the character before is a _, in which case we don't introduce a space
 
-	# print("list macro protected:\n{}".format(macros))
-
-	##### Rewrite macros with one parameter
-	list_macros1 = re.findall(r'\\(re)?newcommand{(.*?)}\[1\]{(.*?)}\s', content)
-	list_macros1 += re.findall(r'\\(pro)videcommand{(.*?)}\[1\]{(.*?)}\s', content)
-	macros1 = []
-	for (x, macro, replace) in list_macros1:
-		macro = re.sub(r'\\', r'\\\\', macro)
-		macro += r"\{([\s\S]*?)\}"
-		# Checking whether the next symbol is non-alphanumeric is to avoid prefixes (\col for \colouring)
-		replace = re.sub(r'\\', r'\\\\', replace)
-		replace = re.sub(r'#1', r'\\1', replace)
-		# print(replace)
-		macros1.append(("_" + macro,"_" + replace))
-		macros1.append((r"\$" + macro,r"$" + replace))
-		macros1.append((macro," " + replace))
-
-	##### Rewrite macros with two parameters
-	list_macros2 = re.findall(r'\\(re)?newcommand{(.*?)}\[2\]{(.*?)}\s', content)
-	list_macros2 += re.findall(r'\\(pro)videcommand{(.*?)}\[2\]{(.*?)}\s', content)
-	macros2 = []
-	for (x, macro, replace) in list_macros2:
-		macro = re.sub(r'\\', r'\\\\', macro)
-		macro += r"\{([\s\S]*?)\}\{([\s\S]*?)\}"
-		# Checking whether the next symbol is non-alphanumeric is to avoid prefixes (\col for \colouring)
-		replace = re.sub(r'\\', r'\\\\', replace)
-		replace = re.sub(r'#1', r'\\1', replace)
-		replace = re.sub(r'#2', r'\\2', replace)
-		# print(replace)
-		macros2.append(("_" + macro,"_" + replace))
-		macros2.append((r"\$" + macro,r"$" + replace))
-		macros2.append((macro," " + replace))
-
-	##### Rewrite macros with three parameters
-	list_macros3 = re.findall(r'\\(re)?newcommand{(.*?)}\[3\]{(.*?)}\s', content)
-	list_macros3 += re.findall(r'\\(pro)videcommand{(.*?)}\[3\]{(.*?)}\s', content)
-	macros3 = []
-	for (x, macro, replace) in list_macros3:
-		macro = re.sub(r'\\', r'\\\\', macro)
-		macro += r"\{([\s\S]*?)\}\{([\s\S]*?)\}\{([\s\S]*?)\}"
-		# Checking whether the next symbol is non-alphanumeric is to avoid prefixes (\col for \colouring)
-		replace = re.sub(r'\\', r'\\\\', replace)
-		replace = re.sub(r'#1', r'\\1', replace)
-		replace = re.sub(r'#2', r'\\2', replace)
-		replace = re.sub(r'#3', r'\\3', replace)
-		# print(replace)
-		macros3.append(("_" + macro,"_" + replace))
-		macros3.append((r"\$" + macro,r"$" + replace))
-		macros3.append((macro," " + replace))
-
-	# Rewrite macros in the file
-
-	all_macros = macros + macros1 + macros2 + macros3
 	changed = True
 	while changed:
 		changed = False
-		for (macro, replace) in all_macros:
+		for (macro, replace) in macros:
 			match = re.search(macro, post_macro)
 			while match:
 				changed = True
 				post_macro = re.sub(macro, replace, post_macro)
 				match = re.search(macro, post_macro)
 
+	# print("list macro protected:\n{}".format(macros))
+
+	##### REWRITING MACROS WITH PARAMETERS
+	list_macros_param = re.findall(r'\\(re)?newcommand{(.*?)}\[(\d)\]{(.*?)}\s', content)
+	list_macros_param += re.findall(r'\\(pro)videcommand{(.*?)}\[(\d)\]{(.*?)}\s', content)
+	macros_param = []
+	for (x, macro, number_param, replace) in list_macros_param:
+		macro = re.sub(r'\\', r'\\\\', macro)
+		# Checking whether the next symbol is non-alphanumeric is to avoid prefixes (\col for \colouring)
+		macro += r"(?=\W)"
+		replace = re.sub(r'\\', r'\\\\', replace)
+		# print(replace)
+		macros_param.append(("_" + macro, "_" + replace, int(number_param)))
+		macros_param.append((r"\$" + macro, r"$" + replace, int(number_param)))
+		macros_param.append((macro," " + replace, int(number_param)))
+
+	# print(macros_param)
+	changed = True
+	while changed:
+		changed = False
+		for (macro, replace, number_param) in macros_param:
+			match = re.search(macro, post_macro)
+			while match:
+				# print("post_macro", post_macro)
+				print("macro", macro)
+				print("replace", replace)
+				print("number_param", number_param)
+				changed = True
+				(begin_match,end_match) = match.span()
+				match = match.group(0)
+				print("match", match)
+				begin_rest = end_match + 1
+				rest = post_macro[begin_rest:]
+				instantiated_replace = replace
+				for i in range(number_param):
+					print("rest onwards", rest[:50])
+					end_i = match_next(rest, '{', '}')
+					repl_i = rest[: end_i]
+					print("inside number", i, repl_i)
+					repl_i = re.sub(r'\\', r'\\\\', repl_i)
+					instantiated_replace = re.sub(r'#' + str(i+1), repl_i, instantiated_replace)
+					begin_rest += end_i + 1
+					print("instantiated_replace", instantiated_replace)
+				post_macro = post_macro[:begin_match] + instantiated_replace + post_macro[begin_rest:]
+				print("post_macro", post_macro)
+				match = re.search(macro, post_macro)
+
+
 	# print(existing_macro)
 	new_list_macros = re.sub(r'\\(re)?newcommand\{.*?\}(\[\d\])?\{.*?\}\s', r'', existing_macro)
 	new_list_macros = re.sub(r'\\providecommand\{.*?\}(\[\d\])?\{.*?\}\s', r'', new_list_macros)
 	# print(new_list_macros)
 
-	# # Rewrite macros in the remaining macros
-	# Useful only if there are weird macros not captured above...
-
-	# changed = True
-	# while changed:
-	# 	changed = False
-	# 	for (macro, replace) in all_macros:
-	# 		# print(macro)
-	# 		match = re.search(macro, new_list_macros)
-	# 		while match:
-	# 			changed = True
-	# 			new_list_macros = re.sub(macro, replace, new_list_macros)
-	# 			match = re.search(macro, new_list_macros)
-
-	# print("new\n" + new_list_macros)
+	post_macro = re.sub(r'\\\\', r'\\', post_macro)
 
 	match = re.search(r"macro", new_list_macros)
 	if match:

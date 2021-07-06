@@ -112,7 +112,7 @@ vertex belongs to $\winPos(\mdp,\Reach(\genColour))$.
 \begin{corollary}[Complexity of deciding positive reachability]
 \label{5-cor:pos-complexity}
 The problem of deciding whether a given vertex of a given MDP belongs to 
-$\winPos(\mdp,\Reach(\genColour))$ is \NL-complete. Moreover, the set $\winPos(\mdp,\Reach(\genColour))$ can be computed in linear time.
+$\winPos(\mdp,\Reach(\genColour))$ is $\NL$-complete. Moreover, the set $\winPos(\mdp,\Reach(\genColour))$ can be computed in linear time.
 \end{corollary}
 \begin{proof}
 \Cref{5-thm:positive-char} 
@@ -121,7 +121,7 @@ gives a blueprint for a logspace reduction from this problem to the
 problem is well known to be \NL-complete~\cite{Savitch:1970}. Moreover, the set of states from which a target colour is reachable can be computed by a simple graph search (e.g. by BFS), hence in linear time.
 \end{proof}
 % TODO: if space permits,{} FNL membership of strategy synthesis problem. Should 
-%be straightforward, via the ``certificate'' definition of FNL. Read the paper 
+%be straightforward, via the `certificate' definition of FNL. Read the paper 
 %referenced in complexity zoo.
 
 
@@ -281,7 +281,7 @@ Since the set $ W $ can only decrease in each iteration, the algorithm terminate
 We prove that upon termination, $W$ equals $\winAS(\mdp,\Reach(\genColour))$.
 	
 We start with the $ \subseteq $ direction. We have $W \subseteq \winPos(\mdp_W,\Reach(\genColour))$. By \Cref{5-thm:positive-char} there exists an MD strategy $\sigma$ in $\mdp_W$ which is positively winning from each vertex of $W$. We show that the same strategy is also almost-surely winning from each vertex of $W$ in $\mdp_W$ and thus also from each vertex of $W$ in $\mdp$, which also proves the second part of the theorem. 
-%Since $\mdp_W$ is a sub-MDP of $\mdp$ obtained by removing some vertices and transitions, the strategy $\sigma$ can be also regarded as a strategy in $\mdp$ (the choices in the missing vertices being defined arbitrarily) and it is then easy to see that it is also almost-surely winning in $\mdp,$ from each state of $X$. Together with the ``only if'' direction, this will also prove that MD strategies are sufficient for almost-sure reachability. 
+%Since $\mdp_W$ is a sub-MDP of $\mdp$ obtained by removing some vertices and transitions, the strategy $\sigma$ can be also regarded as a strategy in $\mdp$ (the choices in the missing vertices being defined arbitrarily) and it is then easy to see that it is also almost-surely winning in $\mdp,$ from each state of $X$. Together with the `only if' direction, this will also prove that MD strategies are sufficient for almost-sure reachability. 
 Let $v$ be any vertex of $W$ and denote $|W|$ by $\ell$. Since $\sigma$ is memoryless, it guarantees that a vertex of $\vertices_{\genColour}$ is reached with a positive probability in at most $\ell$ steps (see also the construction of $ \sigma $ in the proof of \Cref{5-thm:positive-char}), and since it is also deterministic, it guarantees that the probability $p$ of reaching $\vertices_{\genColour}$ in at most $\ell$ steps is at least $p_{\min}^{\ell}$, where  $p_{\min}$ is the smallest non-zero edge probability in $\mdp_W$. Now imagine that $\ell$ steps have elapsed and we have not yet reached $\vertices_{\genColour}$. This happens with a probability at most $(1-p_{\min}^\ell)$. However, even after these $\ell$ steps we are still in $W$, since $ \sigma  $ is a strategy in $ \mdp_w $. Hence, the probability that we do not reach $\vertices_\genColour$ within the first $2\ell$ steps is bounded by $(1-p_{\min}^\ell)^{2}$. To realize why this is the case, note that any finite play $\play$ of length $2\ell$ can be split into two halves, $\play',\play''$ of length $\ell$, and then $\probm^{\sigma}_{v}(\cylinder(\play))=\probm^{\sigma}_{v}(\cylinder(\play'))\cdot\probm^{\sigma}_{\last(\play')}(\cylinder(\play''))$ (here we use the fact that $\sigma$ is memoryless). Using this and some arithmetic, one can show that, denoting $\mathit{Avoid}_i$ the set of all plays that avoid the vertices of $\vertices_{\genColour}$ in steps $\ell\cdot(i-1)$ to $\ell\cdot(i)-1$, it holds $$\probm^{\sigma}_{v}(\mathit{Avoid}_1\cap \mathit{Avoid}_2) \leq \probm^{\sigma}_{v}(\mathit{Avoid}_1)\cdot \max_{u\in W\setminus \vertices_{\genColour}}\probm^{\sigma}_{u}(\mathit{Avoid}_1)\leq (1-p_{\min}^\ell)^{2}.$$
 
 \noindent

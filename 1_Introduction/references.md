@@ -30,7 +30,7 @@ We refer to Thomas' survey {cite}`Thomas:2009` for more details on some historic
 
 Games emerged in another aspect of automata theory: for understanding the difficult result of Rabin {cite}`Rabin:1969` saying that automata over infinite trees can be effectively complemented. 
 This is the key step for proving Rabin's seminal result that the monadic second-order theory of the infinite binary tree is decidable.
-The celebrated paper of Gurevich and Harrington {cite}`Gurevich&Harrington:1982` revisits Rabin's result by reducing the complementation question to a determinacy result for games. Interestingly, they credit McNaughton for `airing the idea' of using games in this context and then for exploiting it to Landweber {cite}`Landweber:1967`, B&uuml;chi and Landweber {cite}`Buchi&Landweber:1969`, and B&uuml;chi {cite}`Buchi:1977`.
+The celebrated paper of Gurevich and Harrington {cite}`Gurevich&Harrington:1982` revisits Rabin's result by reducing the complementation question to a determinacy result for games. Interestingly, they credit McNaughton for airing the idea of using games in this context and then for exploiting it to Landweber {cite}`Landweber:1967`, B&uuml;chi and Landweber {cite}`Buchi&Landweber:1969`, and B&uuml;chi {cite}`Buchi:1977`.
 
 Both lines of work have been highly influential in automata theory and logic;
 
@@ -47,6 +47,126 @@ They often form both a theoretical tool for understanding the model checking pro
 Another important construction of a game for understanding logical properties is the Ehrenfeucht-Fra&iuml;ss&eacute; games {cite}`Ehrenfeucht:1961,Fraisse:1950,Fraisse:1953` whose goal is to determine whether two models are equivalent against a logical formalism.
 
 
+
+```{bibliography}
+:style: unsrtalpha
+:filter: cited and chap == "1"
+```
+
+```{bibliography}
+:style: unsrtalpha
+:filter: cited and chap == "1"
+```
+
+```{bibliography}
+:style: unsrtalpha
+:filter: cited and chap == "1"
+```
+
+```{bibliography}
+:style: unsrtalpha
+:filter: cited and chap == "1"
+```
+
+```{bibliography}
+:style: unsrtalpha
+:filter: cited and chap == "1"
+```
+
+```{bibliography}
+:style: unsrtalpha
+:filter: cited and chap == "1"
+```
+
+```{bibliography}
+:style: unsrtalpha
+:filter: cited and chap == "1"
+```
+
+```{bibliography}
+:style: unsrtalpha
+:filter: cited and chap == "1"
+```
+
+```{bibliography}
+:style: unsrtalpha
+:filter: cited and chap == "1"
+```
+
+```{bibliography}
+:style: unsrtalpha
+:filter: cited and chap == "1"
+```
+
+```{bibliography}
+:style: unsrtalpha
+:filter: cited and chap == "1"
+```
+
+```{bibliography}
+:style: unsrtalpha
+:filter: cited and chap == "1"
+```
+
+```{bibliography}
+:style: unsrtalpha
+:filter: cited and chap == "1"
+```
+
+```{bibliography}
+:style: unsrtalpha
+:filter: cited and chap == "1"
+```
+
+```{bibliography}
+:style: unsrtalpha
+:filter: cited and chap == "1"
+```
+
+```{bibliography}
+:style: unsrtalpha
+:filter: cited and chap == "1"
+```
+
+```{bibliography}
+:style: unsrtalpha
+:filter: cited and chap == "1"
+```
+
+```{bibliography}
+:style: unsrtalpha
+:filter: cited and chap == "1"
+```
+
+```{bibliography}
+:style: unsrtalpha
+:filter: cited and chap == "1"
+```
+
+```{bibliography}
+:style: unsrtalpha
+:filter: cited and chap == "1"
+```
+
+```{bibliography}
+:style: unsrtalpha
+:filter: cited and chap == "1"
+```
+
+```{bibliography}
+:style: unsrtalpha
+:filter: cited and chap == "1"
+```
+
+```{bibliography}
+:style: unsrtalpha
+:filter: cited and chap == "1"
+```
+
+```{bibliography}
+:style: unsrtalpha
+:filter: cited and chap == "1"
+```
 
 ```{bibliography}
 :style: unsrtalpha

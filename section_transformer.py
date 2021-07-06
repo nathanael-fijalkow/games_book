@@ -115,7 +115,7 @@ def section_transformer(nb_chap, file_name, path, title, label):
 	content = re.sub(r'\\[?]([a-zA-Z0-9]*?)(?=[\W_])', r'\\mathcal{\1}', content)
 	content = re.sub(r'\\[+]([a-zA-Z0-9]*?)(?=[\W_])', r'\\mathbb{\1}', content)
 
-	#### Remove
+	#### Remove mathds
 	content = re.sub(r'_\\mathds\{(.*?)\}', r'\1', content)
 
 	#### Remove textrm
@@ -619,12 +619,13 @@ def section_transformer(nb_chap, file_name, path, title, label):
 	#### Remove indents
 	content = re.sub(r'\t', r'', content)
 
-	# print(content)
-
 	g = open(path + file_name + ".md", "w")
 	g.write(content)
 	g.close()
 
 	rewrite_macros(path,file_name)
 
+	# print(content)
+
 # section_transformer("5", "notations", "5_MDP/", "Index", 'index')
+# section_transformer("1", "simple", "1_Introduction/", "Introduction", 'simple')

@@ -92,7 +92,7 @@ vertex belongs to $W_{>0}( \mathcal{M}, \mathtt{Reach}( c))$.
 :label: 5-cor:pos-complexity
 
 The problem of deciding whether a given vertex of a given MDP belongs to 
-$W_{>0}( \mathcal{M}, \mathtt{Reach}( c))$ is  \textrm{NL}-complete. Moreover, the set $W_{>0}( \mathcal{M}, \mathtt{Reach}( c))$ can be computed in linear time.
+$W_{>0}( \mathcal{M}, \mathtt{Reach}( c))$ is $\textrm{NL}$-complete. Moreover, the set $W_{>0}( \mathcal{M}, \mathtt{Reach}( c))$ can be computed in linear time.
 
 ````
 

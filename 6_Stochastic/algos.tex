@@ -182,7 +182,7 @@ in $\vertices$, the value is preserved.
 \begin{definition}[Stopping simple stochastic games]
 \label{6-def:stopping_simple_stochastic_games}
 A simple stochastic game is \emph{stopping} if for every vertex
-$v \in \vertices$ and under every \nat{pure positional} strategy profile
+$v \in \vertices$ and under every pure positional strategy profile
 $(\sigma,\tau)$, $\probm_{\sigma,\tau}^v(\Reach(\{v_\Eve,v_\Adam\})) >0$.
 \end{definition}
 
@@ -262,8 +262,8 @@ single sink vertex $\vwin$ (resp. $\vlose$);
 The only point that we will discuss is the first item above. General
 transformations assigning a non-stochastic parity game to each
 stochastic parity game, which allow to compute almost-sure winning
-states, have been developed. \pat{it would be nice to cite
-here~\cite{CJH-csl03}} However, we focus on the simpler reachability
+states, have been developed~\cite{CJH-csl03}.
+However, we focus on the simpler reachability
 games that we are focusing on, and we briefly describe the
 construction here, inspired by~\cite{paulin-nathalie}:
 \begin{itemize}
@@ -346,8 +346,7 @@ The deterministic attractor of $X$ is then given by:
 \DetAtt(X) = \lim_{i \to +\infty} X_i = \bigcup_{i =0}^{+\infty} X_i
 \]
 Note that since $\vertices$ is finite, the sequence $(X_i)_{i \ge 0}$
-stabilizes and the above union is actually finite.  \pat{refer to the
-relevant previous chapter, there certainly is one.}
+stabilizes and the above union is actually finite.
 
 Let $\perm$ be a permutation. We define the $\perm$-regions as
 deterministic attractors to the random vertices (taken in the correct
@@ -365,8 +364,7 @@ W_\perm^0 = V \setminus \bigcup_{j=1}^{k+1} W_\perm^j = \{\vlose\}
 \]
 The last equality (for $W_\perm^0$) holds since (i) from vertices in
 $W_\perm^0$ $\Adam$ can enforce avoiding $\Randomvertices \cup
-\{\vwin\}$ (by determinacy of non-stochastic reachability games
-\pat{ref to a previous chapter?}), yielding only losing outcomes, and
+\{\vwin\}$ (by determinacy of non-stochastic reachability games), yielding only losing outcomes, and
 (ii) $\vlose$ is the unique vertex with value $0$ (by
 assumption). Later, we will write $W_\perm^{\ge j}$ for
 $\bigcup_{i=j}^{k+1} W_\perm^i$.
@@ -528,7 +526,7 @@ Assume $\perm$ is self-consistent.  Then for every $v \in
 The converse inequality is not true for general or self-consistent
 permutations, but will require the liveness property. One of the main
 advantages of a live permutation $\perm$ is that it induces a
-``stopping'' MDP when $\Eve$ plays according to $\sigma_\perm$: 
+`stopping' MDP when $\Eve$ plays according to $\sigma_\perm$: 
 $\Adam$ will not be able to prevent the game converging to $\vlose$ and $\vwin$.
 
 \begin{lemma}[Live permutations imply stopping MDPs]
@@ -851,9 +849,6 @@ exponential.
 \subsubsection{Strategy improvement algorithm}
 \label{6-subsec:algo-strat-improv}
 
-%\pat{\fbox{Pat} Cette preuve a \'et\'e plus difficile \`a
-%  dig\'erer... j'esp\`ere qu'il n'y a pas d'erreur}
-
 We will describe a strategy improvement algorithm, which may avoid
 enumerating all permutations. Note that there is nevertheless no
 guarantee that the overall complexity will be betther than the
@@ -944,7 +939,7 @@ We consider the following family of strategies for $\Eve$ in $\game$:
 for every $n$, $\sigma^{(n)}$ is the strategy where $\Eve$ plays
 according to $\sigma_{\perm'}$ up to its $n$-th visit to a random
 vertex, and then switches to $\sigma_\perm$. 
-\end{proof} 
+
 We can then prove:
 %  by
 % induction (this is however not immediate) that the sequence
@@ -1044,9 +1039,9 @@ inequalities above, we get:
 \val^*_{\game[\sigma_{\perm'}]}(\perm'_2) \le \dots \le
 \val^*_{\game[\sigma_{\perm'}]}(\perm'_k)
 \]
+CHECK THIS ARGUMENT 
 Now, the strategy $\tau_{\perm'}$ is precisely the optimal strategy
-against $\sigma_{\perm'}$ \pat{Not so sure of the argument, it is
-not argued that way in GH09}, hence for every vertex $v$:
+against $\sigma_{\perm'}$, hence for every vertex $v$:
 \[
 \val^*_{\game[\sigma_{\perm'}]}(v) = \inf_\tau
 \probm^v_{\sigma_{\perm'},\tau} (\Reach(\{\vwin\})) =

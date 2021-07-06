@@ -12,7 +12,7 @@ game.
 
 ## Players
 
-The term `$2$-player' means that there are two players, Eve and Adam.
+The term $2$-player means that there are two players, Eve and Adam.
 Many, many different names have been used: Player $0$ and Player $1$, 
 Player I and Player II as in descriptive complexity,
 &Eacute;lo&iuml;se and Ab&eacute;lard, Circle and Square, corresponding to the graphical representation, 
@@ -22,10 +22,10 @@ and this is only a very partial list of names they have been given.
 In the names Eve and Adam, the first letters refer to $\exists$ and $\forall$ suggesting a duality between them.
 We will make use of their gender to distinguish between them, so we speak of her or his strategy.
 
-We speak of `$1$-player' games when there is only one player.
+We speak of $1$-player games when there is only one player.
 In the context of stochastic games, we refer to random as a third player, and more precisely as half a player.
-Hence a `$2\frac{1}{2}$-player' game is a stochastic game with two players,
-and a `$1\frac{1}{2}$-player' game is a stochastic game with one player.
+Hence a $2\frac{1}{2}$-player game is a stochastic game with two players,
+and a $1\frac{1}{2}$-player game is a stochastic game with one player.
 
 The situation where there are more than two players is called multiplayer games.
 
@@ -72,10 +72,10 @@ belongs to Eve, or that Eve owns or controls $v$, and similarly for Adam.
 An arena is given by a graph and the sets $V_\mathrm{Eve}$ and $V_\mathrm{Adam}$.
 In the context of games, vertices are often referred to as positions.
 
-The adjective `**finite**' means that the arena is finite, **i.e.** there are finitely many vertices (hence finitely many edges).
-We oppose `**deterministic**' to `**stochastic**': in the first definition we are giving here, 
+The adjective **finite** means that the arena is finite, **i.e.** there are finitely many vertices (hence finitely many edges).
+We oppose **deterministic** to **stochastic**: in the first definition we are giving here, 
 there is no stochastic aspect in the game.
-An important assumption, called `**perfect information**', says that the players see everything about how the game
+An important assumption, called **perfect information**, says that the players see everything about how the game
 is played out, in particular they see the other player's moves.
 
 ```{figure} ./../FigAndAlgos/1-fig:arena_example.png
@@ -153,7 +153,7 @@ $$
 A qualitative objective $\Omega$ and a colouring function $\mathfrak{c}$ induce a qualitative condition $\Omega[ \mathfrak{c}]$ defined by:
 
 $$
-\Omega[ \mathfrak{c}] =  \left\{  \pi \in  \textrm{Paths \right\}_\omega :  \mathfrak{c}( \pi) \in \Omega}.
+\Omega[ \mathfrak{c}] =  \left\{  \pi \in  \textrm{Paths}_\omega :  \mathfrak{c}( \pi) \in \Omega \right\}.
 $$
 
 When $\mathfrak{c}$ is clear from the context we sometimes say that a play $\pi$ satisfies $\Omega$ but the intended meaning is that 
@@ -215,9 +215,9 @@ a quantitative condition $\Phi[ \mathfrak{c}]$.
 ````
 
 To be specific, the definition above is for $2$-player zero sum turn based perfect information games.
-As a convention we use the condition to qualify games, so for instance `parity games' are games equipped with a parity condition.
-This extends to graphs: we speak of a `graph with condition $W$' for a graph equipped with a condition $W$,
-and for instance a `mean payoff graph' if $W$ is a mean payoff condition.
+As a convention we use the condition to qualify games, so for instance parity games are games equipped with a parity condition.
+This extends to graphs: we speak of a graph with condition $W$ for a graph equipped with a condition $W$,
+and for instance a mean payoff graph if $W$ is a mean payoff condition.
 
 We often introduce notations implicitly: for instance when we introduce a qualitative game $\mathcal{G}$ without specifying the arena and the condition, it is understood that the arena is $\mathcal{A}$ and the condition $W$.
 
@@ -340,7 +340,7 @@ where the qualitative condition is the set of plays having value at least $x$ un
 Formally, a quantitative condition $f$ and a threshold $x$ induce a qualitative condition
 
 $$
-f_{\ge x} =  \left\{  \pi \in  \textrm{Paths \right\}_\omega \mid f( \pi) \ge x}.
+f_{\ge x} =  \left\{  \pi \in  \textrm{Paths}_\omega \mid f( \pi) \ge x \right\}.
 $$
 
 Analogously, we say that a strategy $\tau$ for Adam ensures $x$ from $v$ 

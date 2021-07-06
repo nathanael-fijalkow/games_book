@@ -13,7 +13,7 @@ For a quantitative game $\mathcal{G}$ with condition $f = \Phi[ \mathfrak{c}]$ o
 assuming that $\mathcal{G}$ is determined it admits a value function
 
 $$
- \textrm{val}^{ \mathcal{G}} : V \to   \mathbb{R} \cup  \left\{ \pm \infty \right\},
+ \textrm{val}^{ \mathcal{G}} : V \to   \mathbb{R} \cup \set{\pm \infty},
 $$
 
 which is defined as
@@ -47,7 +47,7 @@ For all vertices $v$ we have that Eve wins from $v$ if and only if $\textrm{val}
 
 ````
 
-In the remainder of this section we assume the existence of a value function $\textrm{val}^{ \mathcal{G}} : V \to Y$ (note that choosing $Y =   \mathbb{R} \cup  \left\{ \pm \infty \right\}$ covers the quantitative case) and fix as a goal to either compute or approximate it.
+In the remainder of this section we assume the existence of a value function $\textrm{val}^{ \mathcal{G}} : V \to Y$ (note that choosing $Y =   \mathbb{R} \cup \set{\pm \infty}$ covers the quantitative case) and fix as a goal to either compute or approximate it.
 
 ## Fixed point
 
@@ -63,8 +63,8 @@ This form is for two player games, the operator has to be adapted to more comple
 $$
  \mathbb{O}(\mu)(v) = 
 \begin{cases}
-\max  \left\{ \delta( \mu(v'),  \mathfrak{c \right\}(v)) : (v,v') \in E} & \text{ if } v \in  V_\mathrm{Eve}, \\
-\min  \left\{ \delta( \mu(v'),  \mathfrak{c \right\}(v)) : (v,v') \in E} & \text{ if } v \in  V_\mathrm{Adam}.
+\max \set{\delta( \mu(v'),  \mathfrak{c}(v)) : (v,v') \in E} & \text{ if } v \in  V_\mathrm{Eve}, \\
+\min \set{\delta( \mu(v'),  \mathfrak{c}(v)) : (v,v') \in E} & \text{ if } v \in  V_\mathrm{Adam}.
 \end{cases}
 $$
 
@@ -142,8 +142,8 @@ Expanding the definitions: for all vertices $v$, we have
 
 $$
 \begin{array}{llll}
-\mu(v) & \le & \max  \left\{ \delta( \mu(v'),  \mathfrak{c \right\}(v)) : (v,v') \in E} & \text{ if } v \in  V_\mathrm{Eve}, \\
-\mu(v) & \le & \min  \left\{ \delta( \mu(v'),  \mathfrak{c \right\}(v)) : (v,v') \in E} & \text{ if } v \in  V_\mathrm{Adam},
+\mu(v) & \le & \max \set{\delta( \mu(v'),  \mathfrak{c}(v)) : (v,v') \in E} & \text{ if } v \in  V_\mathrm{Eve}, \\
+\mu(v) & \le & \min \set{\delta( \mu(v'),  \mathfrak{c}(v)) : (v,v') \in E} & \text{ if } v \in  V_\mathrm{Adam},
 \end{array}
 $$
 
@@ -183,8 +183,8 @@ $$
  \mathbb{O}_v(\mu)(u) = 
 \begin{cases}
 \mu(v) & \text{ if } u \neq v, \\
-\max  \left\{ \delta( \mu(v'),  \mathfrak{c \right\}(v)) : (v,v') \in E} & \text{ if } u = v \in  V_\mathrm{Eve}, \\
-\min  \left\{ \delta( \mu(v'),  \mathfrak{c \right\}(v)) : (v,v') \in E} & \text{ if } u = v \in  V_\mathrm{Adam}.
+\max \set{\delta( \mu(v'),  \mathfrak{c}(v)) : (v,v') \in E} & \text{ if } u = v \in  V_\mathrm{Eve}, \\
+\min \set{\delta( \mu(v'),  \mathfrak{c}(v)) : (v,v') \in E} & \text{ if } u = v \in  V_\mathrm{Adam}.
 \end{cases}
 $$
 
@@ -197,8 +197,8 @@ $$
  \mathbb{O}_v(\mu)(u) = 
 \begin{cases}
 \mu(v) & \text{ if } u \neq v, \\
-\max  \left\{ \delta( \mu(v'),  \mathfrak{c \right\}(v)) : (v,v') \in E} & \text{ if } u = v \in  V_\mathrm{Eve}, \\
-\min  \left\{ \delta( \mu(v'),  \mathfrak{c \right\}(v)) : (v,v') \in E} & \text{ if } u = v \in  V_\mathrm{Adam}.
+\max \set{\delta( \mu(v'),  \mathfrak{c}(v)) : (v,v') \in E} & \text{ if } u = v \in  V_\mathrm{Eve}, \\
+\min \set{\delta( \mu(v'),  \mathfrak{c}(v)) : (v,v') \in E} & \text{ if } u = v \in  V_\mathrm{Adam}.
 \end{cases}
 $$
 

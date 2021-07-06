@@ -49,15 +49,15 @@ which is also the least pre-fixed point.
 Furthermore:
 
 *  if $X$ is finite the sequence defined by $u_0 = \bot$ and $u_{k+1} = \max(u_k,  \mathbb{O}(u_k))$ is stationary and its limit is the least fixed point of $\mathbb{O}$, and if $\mathbb{O}$ is inflationary the sequence is simply $( \mathbb{O}^k(\bot))_{k \in  \mathbb{N}}$;
-*  if $\mathbb{O}$ preserves suprema then the least fixed point of $\mathbb{O}$ is $\sup  \left\{   \mathbb{O \right\}^k(\bot) :  k \in  \mathbb{N}}$.
+*  if $\mathbb{O}$ preserves suprema then the least fixed point of $\mathbb{O}$ is $\sup \set{  \mathbb{O}^k(\bot) :  k \in  \mathbb{N}}$.
 
 ````
 
 Under the same assumptions $\mathbb{O}$ has a greatest fixed point which is the greatest post-fixed point and can be computed in similar ways,
-replacing `inflationary' by `deflationary' and `preserves suprema' by `preserves infima'.
+replacing inflationary by deflationary and preserves suprema by preserves infima.
 
 The typical example of a complete lattice and one that we will use often in this book is the powerset of a set equipped with the inclusion between subsets. The least element is the empty set, the greatest element the full set, and least and greatest upper bounds are given by union and intersection.
-An example of an infinite complete lattice is $\mathbb{R} \cup  \left\{ \pm \infty \right\}$ equipped with the natural order.
+An example of an infinite complete lattice is $\mathbb{R} \cup \set{\pm \infty}$ equipped with the natural order.
 
 We state a variant of {prf:ref}`1-thm:kleene` for a set of operators $\mathbb{O}_i : X \to X$ for $i \in I$.
 Naturally we say that $x \in X$ is a fixed point of the set of operators $( \mathbb{O}_i)_{i \in I}$ if for all $i \in I$ we have $\mathbb{O}_i(x) = x$.

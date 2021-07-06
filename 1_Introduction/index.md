@@ -32,23 +32,3 @@ value iteration algorithms in Section {ref}`1-sec:value_iteration` and strategy 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
